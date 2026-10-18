@@ -38,10 +38,11 @@ consented source is private local input, not a redistributable voice asset.
 
 ## Current acoustic instrument bank
 
-`assets/manifests/acoustic-v1.json` inventories 14 individual note/hit recordings:
-seven upright piano pitches and three pizzicato contrabass pitches from
+`assets/manifests/acoustic-v1.json` inventories 53 individual note/hit recordings:
+seven upright piano pitches with three dynamics and two takes each, plus three
+pizzicato contrabass pitches from
 [VSCO 2 CE](https://versilian-studios.com/vsco-community/), plus bass drum,
-snare, closed hat, and open hat from
+snare, closed hat, and open hat (two takes each) from
 [VCSL](https://github.com/sgossner/VCSL). Credit: Versilian Studios / Sam Gossner,
 Ivy Audio / Simon Dalzell, and library contributors.
 

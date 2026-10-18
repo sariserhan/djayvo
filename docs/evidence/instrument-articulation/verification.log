@@ -1,0 +1,42 @@
+{
+  "gates": {
+    "native_m5_release": "PASS",
+    "native_m5_sanitizers": "PASS",
+    "linux_arm64_release": "PASS",
+    "plans_event_frames_and_waveforms": "PASS",
+    "block_size_512_113": "PASS",
+    "originals_unchanged": "PASS",
+    "clean_hooks_and_unchanged_vocal_bass_stems": "PASS",
+    "decoded_audio_and_schema": "PASS",
+    "matched_audition_preparation": "PASS",
+    "browser_playback": "PASS",
+    "recorded_layers_and_takes": "PASS",
+    "instrument_realism": "PARTIAL",
+    "v4_human_listening": "NOT RUN",
+    "formal_quality": "NOT RUN",
+    "physical_intel_rerun": "NOT RUN",
+    "iphone_ai_live_release": "NOT RUN"
+  },
+  "instrument_bank": {
+    "recordings": 53,
+    "piano_layers": 3,
+    "piano_takes_per_layer": 2,
+    "drum_takes": 2,
+    "embedded_pcm_bytes": 6933350,
+    "generated_sha256": "1e20b09ce6f9c34d71a83aaae0467229b9f6e1b15468796cb7d1ea6ea8a785d0"
+  },
+  "differences": {
+    "hiphop": {
+      "maximum_pcm_error": 0.20709228515625,
+      "rms_pcm_error": 0.009945451789512587
+    },
+    "reggae": {
+      "maximum_pcm_error": 0.173309326171875,
+      "rms_pcm_error": 0.007211634192391161
+    },
+    "experimental": {
+      "maximum_pcm_error": 0.21466064453125,
+      "rms_pcm_error": 0.009160333905096447
+    }
+  }
+}

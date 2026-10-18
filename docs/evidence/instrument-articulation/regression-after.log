@@ -1,0 +1,11 @@
+PASS: rational timing and long-render drift
+PASS: sample onsets, ordering, note-off and release
+PASS: seed and block-size determinism
+PASS: instrument frequency, octave, velocity and drum output
+PASS: recorded piano dynamics and seeded piano/drum takes
+PASS: pan, gain, finite audio and overload ceiling
+PASS: plan bounds, polyphony, silence and invalid requests
+PASS: configurable sample rates and 7/8 meter
+PASS: allocation-free processing
+PASS: WAV bounds, nonfinite and incomplete writes
+PASS: 10/10 test groups

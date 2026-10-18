@@ -19,7 +19,11 @@ and 15 identical WAVs. Native M5 release and sanitizer suites pass 7/7 each.
 This does not rerun the original physical Intel machine. Preserve the old
 references and the owner's recordings. Read `docs/progress.md` for current gates.
 
-For this revision, run the smoke test with `DJAYVO_REFERENCE_PREFIX=renders/arrangement-linux/remix`
+Current v4 adds recorded piano dynamics and alternate piano/drum takes. See
+[instrument-articulation.md](instrument-articulation.md): fresh M5/Linux checks
+are **PASS**, with 18 matching WAVs; v4 listening remains **NOT RUN**.
+
+For this revision, run the smoke test with `DJAYVO_REFERENCE_PREFIX=renders/arrangement-linux/articulation-v4/remix`
 and a new `DJAYVO_OUTPUT_DIR`. The script now rejects existing output directories;
 its default is timestamped. Do not compare the revised music to historical M0
 renders as a portability test. All unchanged instructions below describe the

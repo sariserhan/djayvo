@@ -40,9 +40,8 @@ djayvo::PerformancePlan single(djayvo::Instrument instrument = djayvo::Instrumen
     p.tracks = {{instrument, -6.0, 0.0, {{137, 960, pitch, velocity}}}};
     return p;
 }
-std::vector<float> render(const djayvo::PerformancePlan& p, std::size_t block = 257,
+std::vector<float> render(const djayvo::Schedule& schedule, std::size_t block = 257,
                            djayvo::AudioStats* stats = nullptr) {
-    auto schedule = djayvo::compile(p);
     djayvo::Renderer renderer(schedule, block);
     std::vector<float> output;
     output.reserve(static_cast<std::size_t>(schedule.total_frames) * 2);
@@ -56,6 +55,10 @@ std::vector<float> render(const djayvo::PerformancePlan& p, std::size_t block = 
     check(renderer.voice_overflows() == 0, "voice overflow");
     if (stats) *stats = renderer.stats();
     return output;
+}
+std::vector<float> render(const djayvo::PerformancePlan& p, std::size_t block = 257,
+                           djayvo::AudioStats* stats = nullptr) {
+    return render(djayvo::compile(p),block,stats);
 }
 double energy(const std::vector<float>& audio) {
     double sum = 0; for (float x : audio) sum += static_cast<double>(x) * x;
@@ -110,8 +113,11 @@ void scheduling() {
     auto overlap = single();
     overlap.tracks[0].notes = {{0, 240, 69, 70}, {120, 960, 69, 70}};
     const auto both = render(overlap);
-    overlap.tracks[0].notes.erase(overlap.tracks[0].notes.begin());
-    const auto second = render(overlap);
+    auto isolated=djayvo::compile(overlap);
+    // Retain the second note's identity and take seed when isolating its release.
+    isolated.events.erase(std::remove_if(isolated.events.begin(),isolated.events.end(),
+                          [](const auto& e){return e.note_id==0;}),isolated.events.end());
+    const auto second = render(isolated);
     const auto first_end = djayvo::tick_to_frame(240, overlap.sample_rate, overlap.tempo_milli_bpm) +
                            djayvo::release_frames(djayvo::Instrument::piano, overlap.sample_rate) + 1;
     for (std::size_t i = static_cast<std::size_t>(first_end) * 2; i < both.size(); ++i)
@@ -167,6 +173,38 @@ void instruments() {
     check(energy(kick) > 1 && energy(snare) > 1 && energy(hat) > 0.1 && energy(open) > 0.1,
           "silent drum voice");
     check(kick != snare && snare != hat && hat != open, "drum sounds identical");
+}
+void sample_articulation() {
+    const auto note=[](djayvo::Instrument instrument,int pitch,int velocity,std::uint32_t seed) {
+        djayvo::Event e;e.instrument=instrument;e.pitch=pitch;e.velocity=velocity;e.noise_seed=seed;
+        djayvo::Voice voice;voice.start(e,16000);
+        std::vector<float> audio(16000);
+        for (auto& x:audio) {x=voice.next();check(std::isfinite(x),"nonfinite articulated voice");}
+        return audio;
+    };
+    const auto shape_difference=[](const std::vector<float>& a,const std::vector<float>& b) {
+        const double aa=std::sqrt(energy(a)),bb=std::sqrt(energy(b));
+        check(aa>0 && bb>0,"silent articulation");
+        double difference=0;
+        for (std::size_t i=0;i<a.size();++i) difference+=std::pow(a[i]/aa-b[i]/bb,2);
+        return difference;
+    };
+    for (int pitch:{48,60,67,72,79,84,96}) {
+        for (int velocity:{40,80,110}) {
+            const auto a=note(djayvo::Instrument::piano,pitch,velocity,1);
+            check(a==note(djayvo::Instrument::piano,pitch,velocity,1),"take selection is not deterministic");
+            check(shape_difference(a,note(djayvo::Instrument::piano,pitch,velocity,8))>0.01,
+                  "alternate piano take only changes gain");
+        }
+        for (int boundary:{55,95})
+            check(shape_difference(note(djayvo::Instrument::piano,pitch,boundary,1),
+                                   note(djayvo::Instrument::piano,pitch,boundary+1,1))>0.01,
+                  "piano velocity layer only changes gain/filtering");
+    }
+    for (int pitch:{36,38,42,46})
+        check(shape_difference(note(djayvo::Instrument::drums,pitch,80,1),
+                               note(djayvo::Instrument::drums,pitch,80,8))>0.01,
+              "alternate drum take only changes gain");
 }
 void mixing() {
     auto p = single(); p.tracks[0].pan = -1;
@@ -254,6 +292,7 @@ int main() {
         {"sample onsets, ordering, note-off and release", scheduling},
         {"seed and block-size determinism", deterministic},
         {"instrument frequency, octave, velocity and drum output", instruments},
+        {"recorded piano dynamics and seeded piano/drum takes", sample_articulation},
         {"pan, gain, finite audio and overload ceiling", mixing},
         {"plan bounds, polyphony, silence and invalid requests", validation},
         {"configurable sample rates and 7/8 meter", rates_and_meter},

@@ -1,0 +1,45 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /work/build
+[  4%] Building CXX object CMakeFiles/djayvo_core.dir/core/instruments/voice.cpp.o
+[  8%] Linking CXX static library libdjayvo_core.a
+[ 56%] Built target djayvo_core
+[ 60%] Linking CXX executable djayvo_render
+[ 65%] Linking CXX executable djayvo_remix
+[ 69%] Built target djayvo_render
+[ 73%] Built target djayvo_remix
+[ 78%] Building CXX object CMakeFiles/djayvo_tests.dir/core/tests/tests.cpp.o
+[ 82%] Linking CXX executable djayvo_remix_tests
+[ 86%] Built target djayvo_remix_tests
+[ 91%] Linking CXX executable djayvo_c_smoke
+[ 95%] Built target djayvo_c_smoke
+[100%] Linking CXX executable djayvo_tests
+[100%] Built target djayvo_tests
+Internal ctest changing into directory: /work/build
+Test project /work/build
+    Start 1: core
+1/7 Test #1: core .............................   Passed    0.41 sec
+    Start 2: remix_core
+2/7 Test #2: remix_core .......................   Passed    0.68 sec
+    Start 3: c_abi
+3/7 Test #3: c_abi ............................   Passed    0.07 sec
+    Start 4: acoustic_assets
+4/7 Test #4: acoustic_assets ..................   Passed    0.43 sec
+    Start 5: wav_integration
+5/7 Test #5: wav_integration ..................   Passed    0.59 sec
+    Start 6: remix_integration
+6/7 Test #6: remix_integration ................   Passed    1.86 sec
+    Start 7: tooling
+7/7 Test #7: tooling ..........................   Passed    0.45 sec
+
+100% tests passed, 0 tests failed out of 7
+
+Total Test time (real) =   4.49 sec
+PASS: /out/articulation-v4/remix.hiphop.wav
+PASS: /out/articulation-v4/remix.reggae.wav
+PASS: /out/articulation-v4/remix.experimental.wav
+Listening/recognizability: NOT RUN
+PASS: /out/articulation-v4/voice/remix.hiphop.wav
+PASS: /out/articulation-v4/voice/remix.reggae.wav
+PASS: /out/articulation-v4/voice/remix.experimental.wav
+Listening/recognizability: NOT RUN

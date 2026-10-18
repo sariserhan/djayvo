@@ -7,7 +7,7 @@
       "license": "CC0-1.0",
       "manifest": "assets/manifests/acoustic-v1.json",
       "runtime_dependency": false,
-      "bundled": "14 transformed PCM instrument notes/hits"
+      "bundled": "53 transformed PCM instrument notes/hits: three piano dynamics and two piano/drum takes"
     }
   ],
   "components": [

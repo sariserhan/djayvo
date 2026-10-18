@@ -1,0 +1,19 @@
+[ 56%] Built target djayvo_core
+[ 82%] Built target djayvo_remix_tests
+[ 82%] Built target djayvo_remix
+[ 82%] Building CXX object CMakeFiles/djayvo_tests.dir/core/tests/tests.cpp.o
+[ 86%] Built target djayvo_render
+[ 95%] Built target djayvo_c_smoke
+[100%] Linking CXX executable djayvo_tests
+[100%] Built target djayvo_tests
+PASS: rational timing and long-render drift
+PASS: sample onsets, ordering, note-off and release
+PASS: seed and block-size determinism
+PASS: instrument frequency, octave, velocity and drum output
+FAIL: recorded piano dynamics and seeded piano/drum takes: alternate piano take only changes gain
+PASS: pan, gain, finite audio and overload ceiling
+PASS: plan bounds, polyphony, silence and invalid requests
+PASS: configurable sample rates and 7/8 meter
+PASS: allocation-free processing
+PASS: WAV bounds, nonfinite and incomplete writes
+FAIL: 9/10 test groups

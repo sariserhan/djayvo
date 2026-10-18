@@ -88,7 +88,7 @@ def main():
         print(entry['id'], len(pcm), flush=True)
     text.append('static constexpr InstrumentSample samples[] = {')
     for e in manifest['samples']:
-        text.append(f"{{Instrument::{e['instrument']}, {e['root_midi']}, {e['id']}, "
+        text.append(f"{{Instrument::{e['instrument']}, {e['root_midi']}, {e['velocity_max']}, {e['take']}, {e['id']}, "
                     f"sizeof({e['id']})/sizeof({e['id']}[0]), 22050}},")
     text.append('};')
     output = ROOT/'core/instruments/acoustic_bank.inc'

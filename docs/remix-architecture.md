@@ -36,7 +36,8 @@ use nearby inversions, staggered attacks and two-note responses. Source
 onsets determine crops and quantized melodic-response rhythms; a confident
 coarse pitch estimate chooses the tonic. Harmony is i–VI–iv–i in minor. Grammars
 differ at a common seed; seed changes alone are not treated as new strategies.
-Timbres now use a small pinned CC0 acoustic bank; see [acoustic-review.md](acoustic-review.md).
+Timbres use a pinned 53-recording CC0 bank: three piano dynamics, two seeded
+piano/drum takes and single-layer bass. See [instrument articulation](instrument-articulation.md).
 
 Every plan plays the whole source forward at rate 1 twice. The first statement
 starts at tick zero or after a two-bar instrumental/fragment introduction,

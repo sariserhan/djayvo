@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-17 (America/New_York). Latest implementation: [vocal boundaries v3](docs/vocal-boundaries.md).
+Last updated: 2026-10-17 (America/New_York). Latest implementation: [instrument articulation v4](docs/instrument-articulation.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -28,9 +28,10 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## Next: review the current music
 
-Local [listening page](renders/voice-boundaries-v3/review/index.html): v2/v3 pairs
-and six alternate-seed mixes at matched levels. Earlier reference auditions
-remain linked. V3 listening: **NOT RUN**.
+Local [listening page](renders/voice-articulation-v4/review/index.html): v3/v4 pairs
+and six alternate-seed mixes plus isolated piano/drum comparisons at matched
+levels. Earlier reference auditions
+remain linked. V4 listening: **NOT RUN**.
 Audio links work in this checkout; private recordings are intentionally absent
 from Git and will not appear in a remote repository viewer.
 
@@ -47,7 +48,8 @@ and evaluation across diverse consented inputs.
   Owner supplies observations; development work records and acts on them.
 - [ ] **N02 — PARTIAL:** Resolve the reported artificial/game-like instrument
   sound. Acoustic samples, articulation and room treatment are implemented;
-  instrument realism still needs specific listening assessment despite general
+  v4 adds three recorded piano dynamics and two piano/drum takes. Instrument
+  realism still needs specific listening assessment despite general
   prototype acceptance.
 - [ ] **N03 — PARTIAL:** Resolve experimental's awkward passages. Fewer melody
   notes, longer bass notes and better-spaced chops are implemented; listen for
@@ -57,17 +59,17 @@ and evaluation across diverse consented inputs.
 - [ ] **N05 — NOT RUN:** Rate whether the original speech remains recognizable
   in each style. Waveform preservation passes, but intelligibility is unmeasured.
 - [ ] **N06 — PARTIAL:** Production-quality continuation now includes pause-aware
-  vocal endings, nine fresh mixes and matched v2/v3 comparisons. Prior audio is
-  retained; actual listening to the new crop behavior remains NOT RUN.
+  vocal endings and recorded instrument layers/takes, nine fresh mixes and
+  matched v3/v4 comparisons. Prior audio is retained; v4 listening remains NOT RUN.
 
-Record against [vocal boundaries v3](docs/vocal-boundaries.md), with the exact
+Record against [instrument articulation v4](docs/instrument-articulation.md), with the exact
 filename/seed, timestamp, observation, desired change and eventual evidence.
 Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
 
 Entries follow implementation order. Historical results apply to their revision;
-current platform results are in [the v3 report](docs/evidence/vocal-boundaries/report.json).
+current platform results are in [the v4 report](docs/evidence/instrument-articulation/report.json).
 
 | Done | ID | Status | Development | Commit / evidence |
 | --- | --- | --- | --- | --- |
@@ -87,15 +89,17 @@ current platform results are in [the v3 report](docs/evidence/vocal-boundaries/r
 | [x] | P14 | PASS | Shuffled baseline comparison tools, blank ratings and preregistered evaluation protocol | [Protocol](docs/evaluation-protocol.md) · [pilot preparation](docs/evidence/arrangement-review/listening-preparation.log) |
 | [x] | P15 | PASS | Smoke-test overwrite protection and comparison of mix settings | `2260689` · [verification](docs/evidence/arrangement-review/report.json) |
 | [x] | P16 | PASS | Pause-aware vocal crop endings and attack pre-roll, four-rate regression, fresh M5/Linux validation and nine voice mixes | [v3 evidence](docs/vocal-boundaries.md) |
+| [x] | P17 | PASS | Three recorded piano dynamics, two piano/drum takes, 53 pinned samples, release-test identity fix, fresh M5/Linux checks and matched comparison | [v4 evidence](docs/instrument-articulation.md) |
 
 ## Engineering backlog
 
 These are known gaps or candidate improvements, not promises that every feature
 is needed. Prioritize by recorded listening defects and product requirements.
 
-- [ ] **E01 — NOT RUN:** Evaluate richer instrument articulation if N02 still
-  fails: multiple velocity layers, repeated-hit variation, longer natural tails,
-  and suitable electronic timbres. Verify asset rights before adding any bank.
+- [ ] **E01 — PARTIAL:** V4 implements three recorded piano dynamics and two
+  seeded piano/drum takes from the pinned cleared libraries. Evaluate realism,
+  layer transitions and repeated hits; bass layers, longer tails and suitable
+  electronic timbres remain candidates requiring evidence.
 - [ ] **E02 — PARTIAL:** Improve phrase/chop selection if N03/N05 show cut words.
   V3 adds sustained low-energy endings and attack pre-roll with a bounded fallback;
   reliable word boundaries, semantic selection and listening acceptance remain open.

@@ -10,6 +10,48 @@
   "training": "No model training. Individual instrumental notes only.",
   "samples": [
     {
+      "id": "piano_48_v55_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C3_pp_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C3_pp_RR1.wav",
+      "sha256": "2fbe80d44b96c24980762eb805594cff6b84a5b4ed06ddfed70a8f8c692b856f",
+      "instrument": "piano",
+      "root_midi": 48,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "896e4a757f992c399936f4322103f040e6b1b6faf4b0adf3c3107ec9f6423f5d",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_48_v55_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C3_pp_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C3_pp_RR2.wav",
+      "sha256": "d5622ea06320325520ad254907a8076fa6c9b2b21343da49279086a96e359297",
+      "instrument": "piano",
+      "root_midi": 48,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "52d161e2aaeae427f53b6065368daf7fc5cdc75b6d1c9af1073b52613e2a12d9",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
       "id": "piano_48",
       "repository": "VSCO-2-CE",
       "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
@@ -24,6 +66,113 @@
         "sample_rate": 22050,
         "pcm_sha256": "c25cf38eb08415ee4ea46ffa6ceb08aab171552df388b3bd5614a5ac37aa1ea7",
         "source_trim_start_frame": 58,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      },
+      "velocity_max": 95,
+      "take": 0
+    },
+    {
+      "id": "piano_48_v95_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C3_mf_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C3_mf_RR2.wav",
+      "sha256": "4a72f2f5a1f0d59a1927edc54f1b587175df53db7a774aecb54654a1598deb64",
+      "instrument": "piano",
+      "root_midi": 48,
+      "maximum_seconds": 3.5,
+      "velocity_max": 95,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "17cdef1564adf7377edc616374e8c9ee4e49f0331724bdaee7fa221bb80da52a",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_48_v127_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C3_f_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C3_f_RR1.wav",
+      "sha256": "385249d5d2e5c2696cc29d0bc2f35f072ad88939545bc3b38793be98a324a7af",
+      "instrument": "piano",
+      "root_midi": 48,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "a7e5492263bb4c79e157da02756c9ddb2b2c9f57a1690e1e3f850b4a4d46567a",
+        "source_trim_start_frame": 123,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_48_v127_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C3_f_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C3_f_RR2.wav",
+      "sha256": "7b7fddc426486a7dfec28081fb668b39c7cb7cd9dbf75b184c66b2e4be00144e",
+      "instrument": "piano",
+      "root_midi": 48,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "cfafeb762ffe21f5cece28e7bb04368ce79df4323f609593035acaa0079091a3",
+        "source_trim_start_frame": 100,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_60_v55_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C4_pp_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C4_pp_RR1.wav",
+      "sha256": "0354bf405b644eb16b0d1223e304de93b4abef4e2191c552665563784d40f1ea",
+      "instrument": "piano",
+      "root_midi": 60,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "b0f33550504d24c92491569d790943daff7b76487bf498c44809cf1937b23e82",
+        "source_trim_start_frame": 62,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_60_v55_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C4_pp_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C4_pp_RR2.wav",
+      "sha256": "4e9081f0a212f6bd0183b18e0136e191adadc616577c596075a0d0050d5b2b7f",
+      "instrument": "piano",
+      "root_midi": 60,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "818c58b5f4447152198cec54cbfd2c539e01dfa83b9d4c52583c42c661129c3f",
+        "source_trim_start_frame": 0,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
       }
@@ -45,6 +194,113 @@
         "source_trim_start_frame": 18,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      },
+      "velocity_max": 95,
+      "take": 0
+    },
+    {
+      "id": "piano_60_v95_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C4_mf_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C4_mf_RR2.wav",
+      "sha256": "ed31433a1b5639cfb8c4381f46c3dd41463f791fd743c5f40ed665750976cce5",
+      "instrument": "piano",
+      "root_midi": 60,
+      "maximum_seconds": 3.5,
+      "velocity_max": 95,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "cfc34893a9102c8b5965f63e72581cf51782ccb8902b190fc1010a174dc6d646",
+        "source_trim_start_frame": 20,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_60_v127_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C4_f_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C4_f_RR1.wav",
+      "sha256": "c804b8af3109aee316a8e0551ed66e2fdc7861369aebafaa9b872f104f11b8fd",
+      "instrument": "piano",
+      "root_midi": 60,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "915d07570b784d7adb4901ded48fc917ce7dc18349b7a14bbfa6684098fff23c",
+        "source_trim_start_frame": 76,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_60_v127_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C4_f_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C4_f_RR2.wav",
+      "sha256": "e302ba1343896b04dc1b693aaec5ed64d8c82abfb1c4db47d4018b82091cedfe",
+      "instrument": "piano",
+      "root_midi": 60,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "b4078f5a83a667a1cf5b54b15d1066080d7845d92f72b24dd5cc1d281e106818",
+        "source_trim_start_frame": 174,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_67_v55_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_G4_pp_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_G4_pp_RR1.wav",
+      "sha256": "23c25a7d2757a0aaca9292b6e9a9197223fd34a946dc4fa19883fda1f7bed9a2",
+      "instrument": "piano",
+      "root_midi": 67,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "0a2fc26baacd93dd2879f723b3e2eaf86b7dea72246e70bf40d5e7b2c9c34906",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_67_v55_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_G4_pp_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_G4_pp_RR2.wav",
+      "sha256": "cadcc18b12d3199a4362a7ada635402c3d67359538ca39640433c32c02f67886",
+      "instrument": "piano",
+      "root_midi": 67,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "890c4bbf9d4efd30a699911579de6937a3149491d7d616eb5c8a52e504d83455",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
       }
     },
     {
@@ -61,6 +317,113 @@
         "frames": 77175,
         "sample_rate": 22050,
         "pcm_sha256": "54b0f8cb36e8bbcc507ce7ca29a8f9fa5367d2a1ebc6c3ba6ad05c6b81e351db",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      },
+      "velocity_max": 95,
+      "take": 0
+    },
+    {
+      "id": "piano_67_v95_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_G4_mf_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_G4_mf_RR2.wav",
+      "sha256": "6046f4b8edadec9104725f7a042dcb154c10b48b1d5a1fc21f002df87468298c",
+      "instrument": "piano",
+      "root_midi": 67,
+      "maximum_seconds": 3.5,
+      "velocity_max": 95,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "c2957210c17a374baa5c50e9d1294448490a85fb38b87d565a8dc6f5dee36b75",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_67_v127_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_G4_f_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_G4_f_RR1.wav",
+      "sha256": "87be6428c076371dd6db710311ee5338cb28761395cd0b23d0d0c1bb3635e238",
+      "instrument": "piano",
+      "root_midi": 67,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "6707b2bec457f9ce94a0ab2e1a8190ca8608d4cfa9c3f3412fadca3252089d98",
+        "source_trim_start_frame": 45,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_67_v127_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_G4_f_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_G4_f_RR2.wav",
+      "sha256": "8738fe51fad4da4b6bc19b07d00bd06f411477ee0be8e3ed1145001b046070ca",
+      "instrument": "piano",
+      "root_midi": 67,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "c0126c47e37eb76238ec57467887abc9d6480ecb5d41e4ca4c2a72209f725111",
+        "source_trim_start_frame": 35,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_72_v55_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C5_pp_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C5_pp_RR1.wav",
+      "sha256": "e0d5353f67afe55e4d6d49253651f2a8aa0c456603f538175e103769e1e1e73c",
+      "instrument": "piano",
+      "root_midi": 72,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "8ffaab2dbdd20272b20c994772688a9211a8bfaa82368d9b319b2df68d0b0597",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_72_v55_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C5_pp_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C5_pp_RR2.wav",
+      "sha256": "c5bcafbc6b285eebb604f91e279796b1e105ebc989319f973d40a76c9c726da1",
+      "instrument": "piano",
+      "root_midi": 72,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "6793a984c9e92e6395d009926e13f1d940e7a6ccb19681e20d7059d04737f64f",
         "source_trim_start_frame": 0,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
@@ -83,6 +446,113 @@
         "source_trim_start_frame": 69,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      },
+      "velocity_max": 95,
+      "take": 0
+    },
+    {
+      "id": "piano_72_v95_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C5_mf_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C5_mf_RR2.wav",
+      "sha256": "e2d78b204d7fdf52f88c6972a18ff620bf2ec3a5686f2d73a9af337cd46bdeae",
+      "instrument": "piano",
+      "root_midi": 72,
+      "maximum_seconds": 3.5,
+      "velocity_max": 95,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "df54b4d8cc7402d618938ab64d4919e83159c1aeaeb61679af5e0d21e424331f",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_72_v127_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C5_f_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C5_f_RR1.wav",
+      "sha256": "ee5a4568c4be267904908fc7e67ddf284980a8025667d0aee09f3ef39ce8efb6",
+      "instrument": "piano",
+      "root_midi": 72,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "8fc91b3be85ab413ee5dc210db6dce1d807130c8073539e5d194075c979e5f31",
+        "source_trim_start_frame": 88,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_72_v127_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C5_f_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C5_f_RR2.wav",
+      "sha256": "08fc5812a58c1cc620070fafff790127690d13e6d61403f464ab401a7eeb35fc",
+      "instrument": "piano",
+      "root_midi": 72,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "97aacbfdbaec65f19fa2d239494d0a1c3a941b9e329a4d38851efe38d69545eb",
+        "source_trim_start_frame": 89,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_79_v55_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_G5_pp_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_G5_pp_RR1.wav",
+      "sha256": "6006fc831f64d3f459825d58d5a51474ba77d59a009bd8282788abb410f7c174",
+      "instrument": "piano",
+      "root_midi": 79,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "140e4b1e024f58ea982993dcbbca9a7c04afe70d1be220f18fb5094ebfeab1b3",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_79_v55_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_G5_pp_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_G5_pp_RR2.wav",
+      "sha256": "2ccfdbcec1bb88bd3db53aac7f90d46fc734a8b5499f1ad969fa4dfd06611841",
+      "instrument": "piano",
+      "root_midi": 79,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "adb1d3e2b3adfe64e8c577f610362d111a2dd3ecf1d65ee937f0b34e3626fd00",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
       }
     },
     {
@@ -102,6 +572,113 @@
         "source_trim_start_frame": 0,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      },
+      "velocity_max": 95,
+      "take": 0
+    },
+    {
+      "id": "piano_79_v95_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_G5_mf_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_G5_mf_RR2.wav",
+      "sha256": "04669393b6846280793750f4881668f7dc1ca15b1e0d403a3f6aa331a1571782",
+      "instrument": "piano",
+      "root_midi": 79,
+      "maximum_seconds": 3.5,
+      "velocity_max": 95,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "00f426684a32b5e3159df98dfd3503088cf5ec148471d4c378d195b6e9c57fab",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_79_v127_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_G5_f_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_G5_f_RR1.wav",
+      "sha256": "ddc021b8f2742c34d1f2328fb663b914024d6f498410fe4854d12156e49b0e0f",
+      "instrument": "piano",
+      "root_midi": 79,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "e18314ddc40afe5fb524dba4ddbbce76dcd4d5632b9053afed49e7b55507063b",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_79_v127_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_G5_f_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_G5_f_RR2.wav",
+      "sha256": "1578491f0871d30d15676f886d57c262d4ab72d2cb69fe8d9e4aab61bcfa6d0a",
+      "instrument": "piano",
+      "root_midi": 79,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "2a383ea720e61b133b4832924ecef4182fbc17fc92921a2e841269ca51ece46d",
+        "source_trim_start_frame": 11,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_84_v55_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C6_pp_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C6_pp_RR1.wav",
+      "sha256": "d5c574169167c0a3186bda3a3c721073c4b5435d58357285182e09e18f957ea8",
+      "instrument": "piano",
+      "root_midi": 84,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "ced004aad214ef7c5fd5c13b1cde12844fd0de9eae42f1f888eaaed6212507a4",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_84_v55_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C6_pp_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C6_pp_RR2.wav",
+      "sha256": "a38c526e12005b7e5874ec4c2b1d515486ad8e76fc7f5e7e0a6e9a99a4756626",
+      "instrument": "piano",
+      "root_midi": 84,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "97ebeb1a13d956f9d63516399c168c797594a8afda26c6c21e727d430a2306bd",
+        "source_trim_start_frame": 75,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
       }
     },
     {
@@ -118,6 +695,113 @@
         "frames": 77175,
         "sample_rate": 22050,
         "pcm_sha256": "c0fe6d0648db40c58be5e1ede2f15be3bcb0cdcd030faa1fb656d7fc13608ca1",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      },
+      "velocity_max": 95,
+      "take": 0
+    },
+    {
+      "id": "piano_84_v95_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C6_mf_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C6_mf_RR2.wav",
+      "sha256": "5ffbbd1bd40f6f56cc5420c593ba5334f668715d5bb797474e950baa77fa1df9",
+      "instrument": "piano",
+      "root_midi": 84,
+      "maximum_seconds": 3.5,
+      "velocity_max": 95,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "41c60329454f345bc507b7740dd144fd3ecb052378eba10bc8cdd2f799c315f2",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_84_v127_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C6_f_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C6_f_RR1.wav",
+      "sha256": "76fa05988e93d40180b70dd65d93cffe185483b73658026f8b5b195ff7aa6567",
+      "instrument": "piano",
+      "root_midi": 84,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "537e9384de463db942a991b9a60563f95f06d743d99a068cdb85f441b09b7d46",
+        "source_trim_start_frame": 904,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_84_v127_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C6_f_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C6_f_RR2.wav",
+      "sha256": "e95f9174016d91e980558bf7812de94635ae4a1ff06b980eab47a052ed1651f8",
+      "instrument": "piano",
+      "root_midi": 84,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "eb5a41c0798c8a290f10b2f3347add7cbc5d5302c79b9087d853365be8bdb4eb",
+        "source_trim_start_frame": 277,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_96_v55_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C7_pp_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C7_pp_RR1.wav",
+      "sha256": "3610af9a381426de19b36c0df2140bb2b456247cd6ccd963841cababce0d6a82",
+      "instrument": "piano",
+      "root_midi": 96,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 0,
+      "prepared": {
+        "frames": 62770,
+        "sample_rate": 22050,
+        "pcm_sha256": "074e49b6664b3e96a0d8c859002c24ea0a10389beae5a4c61b71bf0481dd7a70",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_96_v55_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C7_pp_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C7_pp_RR2.wav",
+      "sha256": "cf759d6bcd969eaed4908e89b0c652e123646401f1bc9c8ec2cc56a3a1206991",
+      "instrument": "piano",
+      "root_midi": 96,
+      "maximum_seconds": 3.5,
+      "velocity_max": 55,
+      "take": 1,
+      "prepared": {
+        "frames": 68047,
+        "sample_rate": 22050,
+        "pcm_sha256": "d07e29fb8505caed7fd42992653f9224095720167f849d62519db51be208be3f",
         "source_trim_start_frame": 0,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
@@ -140,6 +824,71 @@
         "source_trim_start_frame": 0,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      },
+      "velocity_max": 95,
+      "take": 0
+    },
+    {
+      "id": "piano_96_v95_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C7_mf_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C7_mf_RR2.wav",
+      "sha256": "6e5f785cbe657862aa539a27ab98b846ae2327cf04b89dfd25a98a8b0f9d4138",
+      "instrument": "piano",
+      "root_midi": 96,
+      "maximum_seconds": 3.5,
+      "velocity_max": 95,
+      "take": 1,
+      "prepared": {
+        "frames": 71494,
+        "sample_rate": 22050,
+        "pcm_sha256": "2f7f358a3e5045dae4192c95916c56de743baae1a33fc363a45f7414b888a56c",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_96_v127_take0",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C7_f_RR1.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C7_f_RR1.wav",
+      "sha256": "11d1ca9691f0202aaf7588ca5435abf34cb96bc4bfd8a06dcb3ebcacee3100ab",
+      "instrument": "piano",
+      "root_midi": 96,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 0,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "c809eacd60f07151e646611e5af9fca03ef2877930d86af896aace19fab6e4c9",
+        "source_trim_start_frame": 901,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      }
+    },
+    {
+      "id": "piano_96_v127_take1",
+      "repository": "VSCO-2-CE",
+      "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "source_path": "Keys/Upright Nr1/UR1_C7_f_RR2.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Keys/Upright%20Nr1/UR1_C7_f_RR2.wav",
+      "sha256": "a8908be5393fefa6c898721ebf5bd47eadec470a31e1d7b06d90360c9da2a1af",
+      "instrument": "piano",
+      "root_midi": 96,
+      "maximum_seconds": 3.5,
+      "velocity_max": 127,
+      "take": 1,
+      "prepared": {
+        "frames": 77175,
+        "sample_rate": 22050,
+        "pcm_sha256": "9774a82528b6101735b2a7b3dff84d6ea3fead396e319f8b0d52148e89f6b97b",
+        "source_trim_start_frame": 1131,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
       }
     },
     {
@@ -159,7 +908,9 @@
         "source_trim_start_frame": 8,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
-      }
+      },
+      "velocity_max": 127,
+      "take": 0
     },
     {
       "id": "bass_45",
@@ -178,7 +929,9 @@
         "source_trim_start_frame": 9,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
-      }
+      },
+      "velocity_max": 127,
+      "take": 0
     },
     {
       "id": "bass_52",
@@ -197,7 +950,9 @@
         "source_trim_start_frame": 15,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
-      }
+      },
+      "velocity_max": 127,
+      "take": 0
     },
     {
       "id": "kick",
@@ -214,6 +969,29 @@
         "sample_rate": 22050,
         "pcm_sha256": "7a16baf5629a55ed8a2095f737a5db8a72990888791aef7b6227bd3acb545efc",
         "source_trim_start_frame": 4,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      },
+      "velocity_max": 127,
+      "take": 0
+    },
+    {
+      "id": "kick_v127_take1",
+      "repository": "VCSL",
+      "commit": "c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e",
+      "source_path": "Membranophones/Struck Membranophones/Bass Drum 1/BDrumNew_hit_v5_rr2_Sum.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VCSL/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e/Membranophones/Struck%20Membranophones/Bass%20Drum%201/BDrumNew_hit_v5_rr2_Sum.wav",
+      "sha256": "a83943f8125ae39469ef5dab1d0be2fe3145c6842c0621b27be5d86aa44b325d",
+      "instrument": "drums",
+      "root_midi": 36,
+      "maximum_seconds": 1.0,
+      "velocity_max": 127,
+      "take": 1,
+      "prepared": {
+        "frames": 22050,
+        "sample_rate": 22050,
+        "pcm_sha256": "3e13f692f727d5a92038ba98dd7e620d0f3ed410b4e9f266b80739080cdd47a3",
+        "source_trim_start_frame": 18,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
       }
@@ -235,6 +1013,29 @@
         "source_trim_start_frame": 173,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      },
+      "velocity_max": 127,
+      "take": 0
+    },
+    {
+      "id": "snare_v127_take1",
+      "repository": "VCSL",
+      "commit": "c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e",
+      "source_path": "Membranophones/Struck Membranophones/Snare Drum, Modern 1/Snare2_HitSN_v3_rr2_Mid.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VCSL/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e/Membranophones/Struck%20Membranophones/Snare%20Drum%2C%20Modern%201/Snare2_HitSN_v3_rr2_Mid.wav",
+      "sha256": "770a0b6bfe95583c11014d5f9af9c94c425a15bd05234c86213aec356a2ffe29",
+      "instrument": "drums",
+      "root_midi": 38,
+      "maximum_seconds": 0.65,
+      "velocity_max": 127,
+      "take": 1,
+      "prepared": {
+        "frames": 14332,
+        "sample_rate": 22050,
+        "pcm_sha256": "7d4d15e2a71c4895360217fae7aa1f1efe8ca321e82991699d5a8a09e53c78e4",
+        "source_trim_start_frame": 0,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
       }
     },
     {
@@ -252,6 +1053,29 @@
         "sample_rate": 22050,
         "pcm_sha256": "6135aedd2c7d83c9c14c20870bb3075a3ce3bef67bef8990f1cd7278b3e93357",
         "source_trim_start_frame": 300,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      },
+      "velocity_max": 127,
+      "take": 0
+    },
+    {
+      "id": "hat_closed_v127_take1",
+      "repository": "VCSL",
+      "commit": "c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e",
+      "source_path": "Idiophones/Struck Idiophones/Hi-Hat Cymbal/HiHat_HitC_v3_rr2_Mid.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VCSL/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e/Idiophones/Struck%20Idiophones/Hi-Hat%20Cymbal/HiHat_HitC_v3_rr2_Mid.wav",
+      "sha256": "fac6cf410239603afff803ea97aa78fc38ccae185b5f60217c3c8cd632c265bd",
+      "instrument": "drums",
+      "root_midi": 42,
+      "maximum_seconds": 0.3,
+      "velocity_max": 127,
+      "take": 1,
+      "prepared": {
+        "frames": 6615,
+        "sample_rate": 22050,
+        "pcm_sha256": "67531b71523e0b78b2dac1a170205f573ffccd7cdd1d6985a934f638335a6935",
+        "source_trim_start_frame": 303,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
       }
@@ -273,11 +1097,34 @@
         "source_trim_start_frame": 365,
         "source_rate": 44100,
         "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
+      },
+      "velocity_max": 127,
+      "take": 0
+    },
+    {
+      "id": "hat_open_v127_take1",
+      "repository": "VCSL",
+      "commit": "c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e",
+      "source_path": "Idiophones/Struck Idiophones/Hi-Hat Cymbal/HiHat_HitO_rr2_Mid.wav",
+      "url": "https://raw.githubusercontent.com/sgossner/VCSL/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e/Idiophones/Struck%20Idiophones/Hi-Hat%20Cymbal/HiHat_HitO_rr2_Mid.wav",
+      "sha256": "f71f21883f6fe5466d15610ef0e9241ba3851c821858a958f8a6a75bff774760",
+      "instrument": "drums",
+      "root_midi": 46,
+      "maximum_seconds": 1.0,
+      "velocity_max": 127,
+      "take": 1,
+      "prepared": {
+        "frames": 22050,
+        "sample_rate": 22050,
+        "pcm_sha256": "69e25b67d2a505e45c313d39984e7b9decff86855ebd6b623f29364576152aad",
+        "source_trim_start_frame": 366,
+        "source_rate": 44100,
+        "modifications": "mono average; onset trim; duration cap; windowed-sinc resample; peak normalize to 0.85; 1 ms attack / 30 ms tail fades; PCM16"
       }
     }
   ],
   "generated_file": "core/instruments/acoustic_bank.inc",
-  "generated_sha256": "7fac83cf1bb41b9e2e695bff5d4b8ef8a1824b873ff854cf07269041a421251c",
+  "generated_sha256": "1e20b09ce6f9c34d71a83aaae0467229b9f6e1b15468796cb7d1ea6ea8a785d0",
   "license_evidence": [
     {
       "file": "assets/licenses/VCSL-LICENSE.txt",

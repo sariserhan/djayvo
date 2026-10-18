@@ -9,15 +9,19 @@ master specification is unchanged. The original M0a record is
 [m0a-report.md](m0a-report.md), with its initial Git commit `02d0e18`.
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
-The latest [vocal boundary revision](vocal-boundaries.md) replaces fixed-length
-cuts with nearby sustained energy valleys when available, retains attack pre-roll,
-and leaves a bounded fallback where no pause is found. M5 release/sanitizer and
-Linux release each pass 7/7 suites (9 foundation + 11 remix groups). Fresh plans
-and event frames match for both supplied fixture and owner voice; six masters
-and twelve fixture stems are byte-identical across Linux/M5. Nine voice mixes,
-twelve stems and a twelve-file matched comparison page are ready. V3 listening
-is **NOT RUN**. V2 owner review remains **PARTIAL**: acceptable as a starting
-point, with production quality still open. See the [v3 report](evidence/vocal-boundaries/report.json).
+The latest [instrument articulation revision](instrument-articulation.md) adds
+three recorded piano dynamics and two takes per piano pitch/drum hit: 53 pinned
+CC0 recordings. M5 release/sanitizer and Linux release each pass 7/7 suites
+(10 foundation + 11 remix groups). Fresh fixture/owner plans and event frames
+match; six masters and twelve fixture stems are byte-identical across Linux/M5.
+Nine voice mixes, twelve stems, a new baseline and a sixteen-file matched
+comparison page are ready. V4 listening is **NOT RUN**; instrument realism and
+production quality remain **PARTIAL**. See the [v4 report](evidence/instrument-articulation/report.json).
+
+The previous [vocal boundary revision](vocal-boundaries.md) adds sustained quiet
+endings and attack pre-roll with a bounded fallback. Its code and all earlier
+recordings remain preserved. V2 owner acceptance was provisional, not a formal
+listening result for subsequent revisions.
 
 The preceding [arrangement revision](arrangement-review.md) added breaks and
 returns, nearby chord inversions, softer-note tone filtering, instrumental early
@@ -40,7 +44,7 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Gate | Status | Evidence |
 | --- | --- | --- |
 | Linux release build | PASS | Current aarch64 Debian 12 container, GCC 12.2; physical Intel rerun NOT RUN |
-| C++ unit tests | PASS | Current Mac/Linux: 9 foundation + 11 remix test groups |
+| C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 11 remix test groups |
 | C ABI | PASS | Source compiled as C calls a real render; error bounds/ABI checked |
 | End-to-end tests | PASS | Current Mac: CTest 7/7 including asset integrity |
 | ASan/UBSan | PASS | Current Mac: same seven suites, no findings |
@@ -51,11 +55,11 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Source-driven arrangement | PASS | Changed input rhythm changes chops and melodic response |
 | Three independent strategies | PASS | Different tempi, bass/drum/piano grammars and vocal treatment at the same seed |
 | Crop/event validation | PASS | No out-of-source reads; clean hook, overlap, release, duration and numeric constraints |
-| Master and stem output | PASS | Nine new 20–40 s mixes across three seeds and twelve seed-4123 stems; prior baseline retained; score/frame trace/report |
-| Audio bounds/headroom | PASS | Independent decoding of all 21 new master/stem WAVs; zero full-scale samples; finite engine output; silent final 100 ms |
+| Master and stem output | PASS | Nine new 20–40 s mixes across three seeds and twelve seed-4123 stems; new current-bank baseline; score/frame trace/report |
+| Audio bounds/headroom | PASS | Independent decoding of all 22 new master/stem/control WAVs; zero full-scale samples; finite engine output; silent final 100 ms |
 | Determinism | PASS | 48 kHz speech remixes byte-identical at 512/113 blocks; 16 kHz integration repeats too |
 | Formal export schemas | PASS | Preinstalled jsonschema 4.19.2 validates M0a/all remix exports; rejects recorded-kind without consent |
-| Dependencies/assets | PASS | No third-party DSP runtime; 14 pinned CC0 acoustic samples, notices and hashes; speech tool inventoried |
+| Dependencies/assets | PASS | No third-party DSP runtime; 53 pinned CC0 acoustic recordings, notices and hashes; speech tool inventoried |
 | Master specification | PASS | Original SHA-256 unchanged |
 | Consented human recording technical render | PASS | One owner-supplied 4.862 s source; three masters and 12 stems decoded; [trial](voice-trial.md) |
 | Human speech recognition by listeners | NOT RUN | No actual listener observations |
@@ -140,8 +144,9 @@ selected timestamps, reproduction, and the local audition package.
 
 ## Remaining limitations
 
-The acoustic bank is small, mono, single-layer and sample-based; no listener has
-yet rated its realism. No formal perceptual evaluation exists. Analysis is energy/onset/autocorrelation DSP with sustained quiet-boundary selection but
+The acoustic bank is mono and sample-based, with discrete piano layers and
+seeded piano/drum takes; bass remains single-layer. No listener has yet rated
+v4 realism or its layer transitions. No formal perceptual evaluation exists. Analysis is energy/onset/autocorrelation DSP with sustained quiet-boundary selection but
 no word boundaries or reliable semantic labels. Pitch may have octave errors.
 Varispeed couples pitch/time and can alias (current generated chops use rate 1).
 Finite instrumental early reflections exist; independent pitch/time stretching,

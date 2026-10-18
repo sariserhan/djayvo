@@ -1,0 +1,98 @@
+[
+  {
+    "file": "hiphop-previous.wav",
+    "gain_db": -1.6999999999999993,
+    "lufs": -25.0,
+    "true_peak_dbfs": -8.0
+  },
+  {
+    "file": "hiphop-new.wav",
+    "gain_db": -1.6999999999999993,
+    "lufs": -25.0,
+    "true_peak_dbfs": -7.7
+  },
+  {
+    "file": "reggae-previous.wav",
+    "gain_db": -1.3999999999999986,
+    "lufs": -25.0,
+    "true_peak_dbfs": -9.3
+  },
+  {
+    "file": "reggae-new.wav",
+    "gain_db": -1.3000000000000007,
+    "lufs": -25.0,
+    "true_peak_dbfs": -9.2
+  },
+  {
+    "file": "experimental-previous.wav",
+    "gain_db": -1.0,
+    "lufs": -25.0,
+    "true_peak_dbfs": -8.0
+  },
+  {
+    "file": "experimental-new.wav",
+    "gain_db": -1.0,
+    "lufs": -25.0,
+    "true_peak_dbfs": -7.9
+  },
+  {
+    "file": "hiphop-4124.wav",
+    "gain_db": -1.6000000000000014,
+    "lufs": -25.0,
+    "true_peak_dbfs": -8.0
+  },
+  {
+    "file": "reggae-4124.wav",
+    "gain_db": -1.3000000000000007,
+    "lufs": -25.0,
+    "true_peak_dbfs": -9.2
+  },
+  {
+    "file": "experimental-4124.wav",
+    "gain_db": -1.0,
+    "lufs": -25.0,
+    "true_peak_dbfs": -8.7
+  },
+  {
+    "file": "hiphop-4125.wav",
+    "gain_db": -1.6999999999999993,
+    "lufs": -25.0,
+    "true_peak_dbfs": -7.8
+  },
+  {
+    "file": "reggae-4125.wav",
+    "gain_db": -1.3999999999999986,
+    "lufs": -25.0,
+    "true_peak_dbfs": -9.3
+  },
+  {
+    "file": "experimental-4125.wav",
+    "gain_db": -1.1000000000000014,
+    "lufs": -25.0,
+    "true_peak_dbfs": -8.8
+  },
+  {
+    "file": "piano-previous.wav",
+    "gain_db": 4.699999999999999,
+    "lufs": -25.0,
+    "true_peak_dbfs": -8.0
+  },
+  {
+    "file": "piano-new.wav",
+    "gain_db": 4.699999999999999,
+    "lufs": -25.0,
+    "true_peak_dbfs": -8.0
+  },
+  {
+    "file": "drums-previous.wav",
+    "gain_db": 7.0,
+    "lufs": -25.0,
+    "true_peak_dbfs": -5.2
+  },
+  {
+    "file": "drums-new.wav",
+    "gain_db": 7.100000000000001,
+    "lufs": -25.0,
+    "true_peak_dbfs": -5.1
+  }
+]
