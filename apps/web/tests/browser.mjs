@@ -2,15 +2,17 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { chromium, webkit } from 'playwright';
+import { chromium, firefox, webkit } from 'playwright';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
-const output = path.join(root, 'renders/web-validation');
 const fixture = path.join(root, 'renders/fixtures/synthetic-speech.wav');
 const url = 'http://localhost:4173';
-await fs.mkdir(output, { recursive: true });
 const kind = process.env.DJAYVO_BROWSER || 'chromium';
-const browser = await (kind === 'webkit' ? webkit : chromium).launch(kind === 'chromium' ? {
+const engine = { chromium, firefox, webkit }[kind];
+if (!['chromium', 'firefox', 'webkit'].includes(kind)) throw new Error(`Unsupported DJAYVO_BROWSER: ${kind}`);
+const output = await fs.mkdtemp(path.join(root, `renders/web-${kind}-ui-`));
+console.log('Artifacts:', output);
+const browser = await engine.launch(kind === 'chromium' ? {
   args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream', `--use-file-for-fake-audio-capture=${fixture}`],
 } : {});
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true });
@@ -98,6 +100,21 @@ try {
   assert.notEqual(await page.locator('.download').first().getAttribute('download'), firstSeed);
   await screenshot({ path: path.join(output, `${kind}-desktop-mixes.png`), fullPage: true });
   check('club generation and fresh seed retain previous mixes');
+  for (const style of ['funk', 'call_response', 'hybrid']) {
+    await page.locator(`input[value=${style}]`).check();
+    await page.locator('#generate').click();
+    await page.waitForFunction(() => document.querySelectorAll('.track').length === 5, { timeout: 90000 });
+    await ready();
+    assert.equal(await page.locator('#error').isVisible(), false, await page.locator('#error').textContent());
+    assert.match(await page.locator('.download').first().getAttribute('download'), new RegExp(`^djayvo-${style}-`));
+    await page.reload();
+    await page.waitForFunction(() => document.querySelectorAll('.track').length === 5);
+    await page.getByRole('button', { name: 'Delete session', exact: true }).first().click();
+    await page.locator('#delete-confirm').click();
+    await page.waitForFunction(() => document.querySelectorAll('.track').length === 4);
+    await importFixture();
+    check(`${style} generates, survives reload and deletes without losing earlier mixes`);
+  }
   await page.setViewportSize({ width: 390, height: 844 });
   await screenshot({ path: path.join(output, `${kind}-mobile.png`), fullPage: true });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
@@ -113,8 +130,31 @@ try {
   assert.equal(await page.locator('.session').count(), 1);
   check('corrupt import rejected without damaging mixes');
   await page.evaluate(async () => {
+    await new Promise((resolve, reject) => {
+      const request = indexedDB.open('djayvo-web-v1');
+      request.onsuccess = () => {
+        const db = request.result, tx = db.transaction('mixes', 'readwrite');
+        const store = tx.objectStore('mixes'), read = store.getAll();
+        read.onsuccess = () => {
+          const source = read.result[0];
+          for (const [i, entry] of [null, { name: 7, bytes: new ArrayBuffer(4) }].entries())
+            store.add({ ...source, id: `malformed-${i}`, files: [entry, ...source.files.slice(1)] });
+        };
+        tx.oncomplete = () => { db.close(); resolve(); }; tx.onerror = reject;
+      };
+      request.onerror = reject;
+    });
+  });
+  await page.reload();
+  await page.waitForFunction(() => document.querySelector('#storage-note').textContent.startsWith('2 incomplete'));
+  assert.equal(await page.locator('.session').count(), 1);
+  assert.equal(await page.evaluate(async () => (await (await import('./library.js')).loadSessions()).length), 3);
+  await page.locator('.track audio').first().evaluate(async audio => { audio.muted = true; await audio.play(); });
+  await page.waitForFunction(() => document.querySelector('.track audio').currentTime > 0.1);
+  check('malformed saved entries are withheld without hiding healthy playable mixes or deleting damaged data');
+  await page.evaluate(async () => {
     const { loadSessions } = await import('./library.js');
-    const [session] = await loadSessions();
+    const session = (await loadSessions()).find(item => !item.id.startsWith('malformed-'));
     await new Promise((resolve, reject) => {
       const request = indexedDB.open('djayvo-web-v1');
       request.onsuccess = () => { const db = request.result; const tx = db.transaction('mixes', 'readwrite');
@@ -126,7 +166,7 @@ try {
   await page.reload();
   await page.waitForFunction(() => document.querySelector('#storage-note').textContent.includes('withheld'));
   assert.equal(await page.locator('.session').count(), 0);
-  assert.equal(await page.evaluate(async () => (await (await import('./library.js')).loadSessions()).length), 1);
+  assert.equal(await page.evaluate(async () => (await (await import('./library.js')).loadSessions()).length), 3);
   check('tampered session withheld and preserved for recovery');
   await page.getByRole('button', { name: 'Privacy & credits' }).click();
   await page.locator('#delete-all').click();

@@ -42,7 +42,11 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
-Latest: [Licensed multi-source evaluation and transient-input fix](licensed-evaluation.md).
+Latest: [Browser recovery and Firefox validation](web-recovery.md).
+Healthy sessions survive malformed stored entries, all three browser workflows
+pass, and seven Firefox/native renders agree exactly. Human quality and release
+remain open.
+Previous: [Licensed multi-source evaluation and transient-input fix](licensed-evaluation.md).
 The wider cohort exposed a short-transient rejection, now fixed with bounded
 context; source acquisition never supplies human ratings.
 Previous local engine work: [Bounded instrument reverb](feedback-reverb.md) and

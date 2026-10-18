@@ -1,0 +1,31 @@
+{
+  "browser": "firefox",
+  "version": "151.0",
+  "results": [
+    {
+      "style": "three",
+      "seconds": 11.738,
+      "artifacts": 12
+    },
+    {
+      "style": "club",
+      "seconds": 6.238,
+      "artifacts": 4
+    },
+    {
+      "style": "funk",
+      "seconds": 4.736,
+      "artifacts": 4
+    },
+    {
+      "style": "call_response",
+      "seconds": 4.45,
+      "artifacts": 4
+    },
+    {
+      "style": "hybrid",
+      "seconds": 5.364,
+      "artifacts": 4
+    }
+  ]
+}

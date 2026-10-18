@@ -10,7 +10,15 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest evaluation continuation, 2026-10-18: [Licensed multi-source evaluation](licensed-evaluation.md).
+Latest web continuation, 2026-10-18: [Browser recovery and Firefox validation](web-recovery.md).
+Malformed stored entries no longer hide healthy mixes; damaged data is retained
+until explicit deletion. **PASS:** ten JavaScript tests, 20 Chromium / 18 WebKit /
+18 Firefox workflow checks, all seven Firefox/native WAVs and event frames exact
+(max/RMS error zero), rebuilt public bundles and privacy audits. Browser selection
+now rejects unknown engines and retains each run in a fresh folder. **NOT RUN:**
+physical browser microphone and human listening. Full specification: **PARTIAL**.
+
+Previous evaluation continuation, 2026-10-18: [Licensed multi-source evaluation](licensed-evaluation.md).
 Twenty distinct public-license speech speakers, three public-domain non-speech
 recordings and a separate synthetic silence control are acquired with hashes
 and attribution. The wider test found rejection of energetic short transients;

@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [multi-source evaluation and transient-input fix](docs/licensed-evaluation.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [browser recovery and Firefox validation](docs/web-recovery.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -20,7 +20,7 @@ the source of truth and is not modified by this tracker.
 | M1 — musical quality baseline | NOT RUN | Licensed multi-source cohort and blind packet workflow prepared; formal human evaluation missing |
 | M2 — AI director benchmarks | PARTIAL | Offline import/fallback prerequisite complete; model integration and benchmark remain NOT RUN behind M1; separate pretrained feasibility trial measured |
 | M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
-| W0 — browser Instant Remix | PARTIAL | Local WebAssembly app and Chromium/WebKit technical flows pass; physical browser microphone and owner web listening remain open |
+| W0 — browser Instant Remix | PARTIAL | Local WebAssembly app and Chromium/WebKit/Firefox technical flows pass; physical browser microphone and owner web listening remain open |
 | M4 — live improvisation | PARTIAL | Research protocol and provisional budgets prepared; live implementation and hardware measurements NOT RUN |
 | M5 — production and monetization | PARTIAL | Local privacy controls, bundled rights notices and release preparation exist; beta, demand, public policy details and release approval remain |
 
@@ -77,7 +77,7 @@ The current web deliverable and evidence are in [web Instant Remix](docs/web-ins
 - [x] **W04 — PASS:** Reproducible build, isolated local server, public-file/notice audit, native regression checks and committed browser/portability evidence.
 - [ ] **W05 — NOT RUN:** Owner browser microphone and audible playback on the actual preferred browser; headphone/device switching and browser background behavior on real hardware. Fake microphone automation is not this gate.
 - [ ] **W06 — NOT RUN:** Owner listening to web mixes, especially experimental/club/funk, and the already-required diverse blinded M1 cohort. No musical-quality inference from identical WAVs.
-- [ ] **W07 — NOT RUN:** Firefox, installed Safari and mobile browser hardware coverage; public HTTPS hosting, installable/offline caching and release approval. No deployment is authorized or performed in this web pass.
+- [ ] **W07 — PARTIAL:** Firefox 151.0 full workflow and seven exact native/Firefox styles PASS; installed Safari and mobile browser hardware coverage remain NOT RUN; public HTTPS hosting, installable/offline caching and release approval. No deployment is authorized or performed in this web pass. [Firefox/recovery evidence](docs/web-recovery.md).
 
 [Native app and validation](docs/ios-instant-remix.md),
 [release readiness](docs/release-readiness.md), and
@@ -231,6 +231,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P41 | PASS | Preserve licensed evaluation credits and add anonymous listening pages; commit `0a078b3` | [Evidence](docs/licensed-evaluation.md) |
 | [x] | P42 | PASS | Accept short energetic transients with bounded context; commit `6912218`; M5/Linux regression checks | [Evidence](docs/licensed-evaluation.md) |
 | [x] | P43 | PASS | Licensed 23-source technical cohort, 276 mixes, 69 blank review packets, 92 exact cross-OS WAVs; listener summary tool commit `e798f8b` | [Evidence](docs/licensed-evaluation.md) |
+| [x] | P44 | PASS | Preserve healthy mixes when a stored session is malformed; explicit browser selection, fresh artifacts, 56 browser checks and seven exact Firefox/native WAVs | [Evidence](docs/web-recovery.md) |
 
 ## Engineering backlog
 

@@ -25,10 +25,13 @@ async function transaction(mode, action) {
 
 export async function loadSessions() {
   const records = await transaction('readonly', store => store.getAll());
-  return records.map(record => ({ ...record, files: Array.isArray(record.files) ? record.files.map(({ bytes, ...file }) => ({
-    ...file, blob: bytes instanceof ArrayBuffer
-      ? new Blob([bytes], { type: file.name?.endsWith('.wav') ? 'audio/wav' : 'application/octet-stream' }) : file.blob,
-  })) : record.files }));
+  return records.map(record => ({ ...record, files: Array.isArray(record.files) ? record.files.map(entry => {
+    // Leave malformed entries for verification; one damaged session must not hide healthy ones.
+    if (!entry || typeof entry !== 'object') return entry;
+    const { bytes, ...file } = entry;
+    return { ...file, blob: bytes instanceof ArrayBuffer
+      ? new Blob([bytes], { type: typeof file.name === 'string' && file.name.endsWith('.wav') ? 'audio/wav' : 'application/octet-stream' }) : file.blob };
+  }) : record.files }));
 }
 export const deleteSession = id => transaction('readwrite', store => store.delete(id));
 export const deleteAllSessions = () => transaction('readwrite', store => store.clear());
@@ -64,7 +67,7 @@ export async function verifySession(session) {
   const expected = styles.flatMap(style => ['wav', 'score.json', 'report.json', 'events.tsv'].map(ext => `${style}.${ext}`));
   if (expected.length !== session.files.length) return false;
   for (const name of expected) {
-    const file = session.files.find(file => file.name === name);
+    const file = session.files.find(file => file?.name === name);
     if (!file || !(file.blob instanceof Blob) || file.blob.size <= 0 || file.blob.size > 8000000) return false;
     const digest = await crypto.subtle.digest('SHA-256', await file.blob.arrayBuffer());
     const hex = Array.from(new Uint8Array(digest), n => n.toString(16).padStart(2, '0')).join('');

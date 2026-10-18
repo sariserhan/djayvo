@@ -8,6 +8,11 @@ Open **http://localhost:4173** while `python3 scripts/web_serve.py` is running.
 [Build/run instructions](../apps/web/README.md), [tracker](../TODO.md),
 [machine evidence](evidence/web-instant-remix/report.json).
 
+Latest continuation: [Browser recovery and Firefox](web-recovery.md).
+Malformed sessions are withheld without hiding healthy mixes. All seven styles
+now have Firefox/native agreement, and Chromium/WebKit/Firefox workflow checks
+pass. The original checkpoint below retains its dated counts and scope.
+
 ## Delivered flow
 
 Consent → Record or import → waveform and 2–5 second trim → Three takes or Club

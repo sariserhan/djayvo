@@ -15,3 +15,9 @@ for (const style of ['funk', 'call_response', 'hybrid']) test(`${style} sessions
   assert.equal(await verifySession({ ...session, files: [files[0], files[0], ...files.slice(2)] }), false);
   assert.equal(await verifySession({ ...session, files: [{ ...files[0], blob: new Blob(['changed']) }, ...files.slice(1)] }), false);
 });
+
+test('malformed stored file entries are withheld instead of aborting library recovery', async () => {
+  for (const file of [null, undefined, 7, 'broken', {}, { name: 'club.wav' }]) {
+    assert.equal(await verifySession({ id: 'damaged', created: 1, style: 'club', files: [file, file, file, file] }), false);
+  }
+});

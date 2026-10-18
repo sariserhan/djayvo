@@ -7,7 +7,11 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
-Latest: [Licensed multi-source cohort and transient fix](licensed-evaluation.md).
+Latest web: [Browser recovery and Firefox validation](web-recovery.md).
+All seven Firefox/native WAVs and event frames agree; malformed saved entries
+no longer hide healthy sessions. Chromium/WebKit/Firefox workflow checks PASS.
+Physical browser microphone and human listening remain NOT RUN.
+Latest evaluation: [Licensed multi-source cohort and transient fix](licensed-evaluation.md).
 Use the validated cohort and retained failures described there; independent
 listening remains NOT RUN. Private owner sources retain their original scope.
 Previous: [Reverb](feedback-reverb.md) and [optional word timing](word-timing.md).

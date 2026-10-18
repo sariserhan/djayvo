@@ -1,12 +1,14 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { chromium, webkit } from 'playwright';
+import { chromium, firefox, webkit } from 'playwright';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const kind = process.env.DJAYVO_BROWSER || 'chromium';
+const engine = { chromium, firefox, webkit }[kind];
+if (!['chromium', 'firefox', 'webkit'].includes(kind)) throw new Error(`Unsupported DJAYVO_BROWSER: ${kind}`);
 const output = await fs.mkdtemp(path.join(root, `renders/web-${kind}-engine-`));
-const browser = await (kind === 'webkit' ? webkit : chromium).launch();
+const browser = await engine.launch();
 try {
   const page = await browser.newPage();
   await page.goto('http://localhost:4173');

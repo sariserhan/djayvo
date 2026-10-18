@@ -1,0 +1,5 @@
+
+> djayvo-site@0.1.0 studio:prepare
+> node scripts/prepare-studio.mjs
+
+Prepared the audited browser studio and engine.

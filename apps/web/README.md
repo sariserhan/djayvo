@@ -66,15 +66,22 @@ The site studio preparation command copies the same audited engine into Next.
 
 ```sh
 npm --prefix apps/web ci
-npm --prefix apps/web exec -- playwright install chromium webkit
+npm --prefix apps/web exec -- playwright install chromium webkit firefox
 npm --prefix apps/web test
 node apps/web/tests/wasm.mjs
 # Keep the local server running for these commands:
 npm --prefix apps/web run test:browser
 DJAYVO_BROWSER=webkit npm --prefix apps/web run test:browser
+DJAYVO_BROWSER=firefox npm --prefix apps/web run test:browser
 node apps/web/tests/browser-render.mjs
 DJAYVO_BROWSER=webkit node apps/web/tests/browser-render.mjs
+DJAYVO_BROWSER=firefox node apps/web/tests/browser-render.mjs
 ```
+
+Browser names are explicit: `chromium`, `webkit`, or `firefox`; unknown values
+fail before launching. Both UI and worker runners keep fresh artifact folders.
+Malformed saved sessions are withheld without blocking healthy ones; no data is
+silently deleted. [Recovery and Firefox evidence](../../docs/web-recovery.md).
 
 Tests import the supplied `renders/fixtures/synthetic-speech.wav`; they do not
 regenerate it or bundle it into the application. WASM and worker comparison

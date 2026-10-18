@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-18",
+  "status": "PASS",
+  "changes": "Malformed stored file entries no longer abort healthy-session recovery; explicit browser selection and fresh artifact folders",
+  "browsers": {
+    "chromium": {
+      "status": "PASS",
+      "version": "149.0.7827.55",
+      "checks": 20
+    },
+    "webkit": {
+      "status": "PASS",
+      "version": "26.5",
+      "checks": 18
+    },
+    "firefox": {
+      "status": "PASS",
+      "version": "151.0",
+      "checks": 18
+    }
+  },
+  "unit_tests": {
+    "status": "PASS",
+    "passed": 10
+  },
+  "firefox_native_comparison": {
+    "status": "PASS",
+    "styles": 7,
+    "plan_decisions": "PASS",
+    "event_frames": "PASS",
+    "byte_identical_wavs": 7,
+    "maximum_pcm_error": 0,
+    "rms_pcm_error": 0
+  },
+  "environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "cpu": "Apple M5",
+    "macos": "26.7.1",
+    "os_build": "25G241",
+    "node": "v22.23.1",
+    "playwright": "1.61.1",
+    "url": "http://localhost:4173",
+    "desktop_viewport": [
+      1440,
+      1000
+    ],
+    "mobile_viewport": [
+      390,
+      844
+    ]
+  },
+  "browser_runtime": "Browser plugin listed but required Node REPL execution tool unavailable after discovery; existing isolated Playwright workflow used",
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "physical_microphone": "NOT RUN",
+  "human_listening": "NOT RUN",
+  "hosted_release": "NOT RUN",
+  "full_specification": "PARTIAL"
+}
