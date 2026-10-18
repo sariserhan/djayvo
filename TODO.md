@@ -29,6 +29,16 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## Current product work
 
+Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
+Owner chose Better Auth and private generation plus a reviewed public catalogue,
+with Vercel preferred for hosting. Neon PostgreSQL + R2 are recommended; no cloud
+resources or dependencies have been configured by the design work.
+
+- [x] **W08 — PASS:** Document hosting/auth/database/object-storage boundaries, private save/public submission separation, logical model and upload/deletion lifecycle.
+- [ ] **W09 — NOT RUN:** Implement Better Auth and the selected relational database; validate owner isolation, migrations and separate preview/production environments.
+- [ ] **W10 — NOT RUN:** Implement explicit private cloud save, bounded direct uploads, immutable validated assets, quotas and retryable deletion in R2.
+- [ ] **W11 — NOT RUN:** Build reviewed public catalogue, filters/search, track pages, persistent player and private playlists; verify publication consent and no private-data leaks.
+
 The owner changed priority to “first lets make it web version of this” on
 2026-10-18. **Phone work is paused by owner request.** Existing phone results and
 unresolved device gates are preserved; this change does not mark them passed.
