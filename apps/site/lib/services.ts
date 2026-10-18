@@ -4,6 +4,8 @@ import { after } from 'next/server';
 import { readConfig } from './config';
 import { createPool } from './database';
 import { authOptions } from './auth-options';
+import { audioStore } from './audio-store';
+import { PrivateAudio } from './private-audio';
 
 function createServices() {
   const config = readConfig();
@@ -18,7 +20,8 @@ function createServices() {
     ...options.advanced,
     backgroundTasks: { handler: background },
   } });
-  return { pool, auth };
+  const store=audioStore(config);
+  return { pool, auth, config, audio:store ? new PrivateAudio(pool,store) : null };
 }
 const globalServices = globalThis as typeof globalThis & { djayvoServices?: ReturnType<typeof createServices> };
 export function services() {

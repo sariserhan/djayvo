@@ -1,0 +1,21 @@
+Evidence: /Users/serhansari/Documents/projects/djayvo/renders/site-validation-AfAMYj
+PASS: anonymous consent/import/club generation/playback stay local through Next hosting
+PASS: anonymous and forged-cookie API access denied without caching
+PASS: real browser registration, verification and password sign-in
+PASS: server-rendered library and API exclude another owner; spoofed owner/cursor rejected
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.selectOption: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('Musical direction', { exact: true })[22m
+
+    at /Users/serhansari/Documents/projects/djayvo/apps/site/tests/browser.mjs:102:61 {
+  log: [
+    "  - waiting for getByLabel('Musical direction', { exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v26.3.0

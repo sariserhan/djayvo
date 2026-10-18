@@ -27,7 +27,7 @@ test('isolated Postgres account lifecycle, schema safety and owner isolation', a
   const pool = createPool(config.databaseURL);
   try {
     await t.test('migrations apply once and match pinned Better Auth configuration', async () => {
-      assert.equal((await migrate(pool)).length, 2);
+      assert.equal((await migrate(pool)).length, 3);
       assert.deepEqual(await migrate(pool), []);
       const planned = await getMigrations(authOptions(config, pool));
       assert.deepEqual(planned.toBeCreated, []);
@@ -39,10 +39,10 @@ test('isolated Postgres account lifecycle, schema safety and owner isolation', a
       const migrations = join(folder, 'migrations');
       await cp(new URL('../migrations/', import.meta.url), migrations, { recursive: true });
       const directory = pathToFileURL(`${migrations}/`);
-      await writeFile(join(migrations, '0003_failure.sql'), 'CREATE TABLE rollback_probe (id int); SELECT missing_column FROM tracks;');
+      await writeFile(join(migrations, '9999_failure.sql'), 'CREATE TABLE rollback_probe (id int); SELECT missing_column FROM tracks;');
       await assert.rejects(migrate(pool, directory));
       assert.equal((await pool.query("SELECT to_regclass('rollback_probe') AS name")).rows[0].name, null);
-      await rm(join(migrations, '0003_failure.sql'));
+      await rm(join(migrations, '9999_failure.sql'));
       await writeFile(join(migrations, '0002_tracks.sql'), '-- changed');
       await assert.rejects(migrate(pool, directory), /Applied migration changed/);
     });

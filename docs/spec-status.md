@@ -3,8 +3,9 @@
 Audited 2026-10-18 against the complete, unchanged master specification and the
 owner's later instructions. **Overall specification: PARTIAL.** Continuing
 implementation does not waive formal quality evidence or authorize publication.
-The web is the selected product platform; phone and infrastructure work remain
-paused. [TODO](../TODO.md) tracks individual past/future work and evidence links.
+The web is the selected product platform; phone and hosted infrastructure work
+remain paused. Remaining local web implementation is authorized.
+[TODO](../TODO.md) tracks individual past/future work and evidence links.
 
 | Master area | Status | Implemented / remaining |
 | --- | --- | --- |
@@ -42,7 +43,12 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
-Latest: [Research input validation](research-input-validation.md).
+Latest: [Private account audio](private-account-audio.md).
+Private saves, storage consent, owner-scoped playback/download, quota reservations
+and retryable deletion are locally implemented and tested. Live provider behavior,
+cleanup scheduling, public catalogue and production budgets remain unverified or
+unfinished. Music quality and release gates remain open.
+Previous: [Research input validation](research-input-validation.md).
 Optional voice/speech utilities reject constant offsets and empty decoded speech.
 M5 tests and unchanged comparison outputs PASS; timing accuracy, existing model
 platform disagreement and independent musical-quality evidence remain open.

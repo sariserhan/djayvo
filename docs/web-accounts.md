@@ -4,6 +4,10 @@ Recorded 2026-10-18, America/New_York. Owner selected Vercel, Next.js, Better Au
 Neon Free, R2, then **email/password sign-in and Resend**. Implementation is local;
 no cloud provision, paid upgrade, production migration, deployment or real email.
 
+Follow-up: [Private account audio](private-account-audio.md) implements local
+save/play/download/remove and an opt-in R2 adapter. The original foundation
+results below remain historical; live R2/Neon/Resend are still NOT RUN.
+
 ## Implemented
 
 `apps/site` hosts the existing audited browser studio and adds registration,

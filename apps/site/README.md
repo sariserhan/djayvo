@@ -6,8 +6,9 @@ the selected hosted providers. No hosted resources have been provisioned.
 
 The studio at `/studio/index.html` keeps the existing WebAssembly engine and
 IndexedDB library. Only its built navigation link changes to **Account**. Sign-in
-never imports, uploads or publishes local music. Cloud saving and the reviewed
-catalogue are not implemented in this slice; there are no pretend upload buttons.
+never imports, uploads or publishes local music. Private account saving, playback
+and removal have a local implementation and an opt-in R2 adapter. The reviewed
+public catalogue remains separate work.
 
 ## Run locally
 
@@ -49,6 +50,57 @@ but is separate from `localhost:3000`; no automatic transfer is attempted. Keep
 using 4173 to download older mixes. Neither sign-in nor sign-out deletes local music.
 
 ## Hosted configuration — NOT RUN
+
+### Private audio: local development
+
+Apply reviewed migration `0003_private_audio.sql` using the same explicit local
+target command above. Set `DJAYVO_LOCAL_AUDIO_DIR` to an absolute private directory
+outside `public/`, such as `<repository>/build-site/private-audio`. This checkout
+has that local directory configured. Restart the app after changing configuration.
+The library explains that development account files stay on this Mac. Hosted
+configuration rejects the local adapter.
+
+Download a finished studio WAV, open **Cloud library**, select that file, provide
+a title/direction and check the separate permission to store recognizable voices
+online. Saving never includes the original 2–5 second recording. Only metadata-free
+20–40 second stereo 48 kHz PCM16 mixes are accepted. Explicit removal hides a mix
+immediately and queues file cleanup. Run this bounded job regularly in development:
+
+```sh
+DJAYVO_CLEANUP_TARGET=127.0.0.1:55439/djayvo_local npm run audio:cleanup -- --apply
+```
+
+Without the exact target and `--apply`, it only prints the target. Cleanup processes
+up to 50 due records, retaining failures for retry. It waits until the five-minute
+upload grant plus a one-minute margin has elapsed. Scheduling, live lifecycle
+verification and production deletion recovery remain release prerequisites.
+
+### R2: disabled until live validation
+
+The server-only AWS SDK adapter is pinned in the lockfile. To prepare a separate
+private test bucket later, use `R2_ACCOUNT_ID`, `R2_BUCKET`, `R2_ACCESS_KEY_ID`,
+`R2_SECRET_ACCESS_KEY` and explicit `DJAYVO_R2_ENABLED=true`; unset the local audio
+directory. Never expose these credentials through `NEXT_PUBLIC_*`. Keep bucket
+public access off; credentials must be scoped to the intended bucket/environment.
+Configure exact app-origin CORS for PUT/GET/HEAD, the `Content-Type` request header,
+range playback and exposed range/length headers. Before release, verify the signed
+Content-Length/Content-Type contract against R2, separate preview/production
+credentials, lifecycle expiry for `uploads/` and a reliable cleanup schedule.
+
+Signed upload links can be reused until expiry. Only validated checksum-bound
+bytes enter a separate `masters/` key; a late staging rewrite cannot change the
+published mix. An in-flight PUT can outlive link expiry: an `uploads/` lifecycle
+rule and reconciliation are required for eventual removal of late orphan writes.
+No live R2 request or lifecycle/retention guarantee is claimed by local tests.
+Playback grants last 60 seconds and cannot revoke already downloaded copies.
+Limits reserve both staging and final sizes: ten active/pending tracks, 100 MiB
+per account, 1 GiB globally, 20 new reservations/account/day and 500 globally/day.
+These are application admission bounds, not a provider billing cap or a promise
+of free Vercel/R2/Neon service. Provider compute/operation budgets remain open.
+
+Evidence: [private audio validation](../../docs/private-account-audio.md).
+
+### Account providers
 
 Use `.env.example` as the names reference, never put secrets into Git or browser
 variables. Configure separate Vercel environments with separate Neon branches and

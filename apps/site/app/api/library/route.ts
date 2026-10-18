@@ -1,8 +1,10 @@
 import { services, accountsConfigured } from '../../../lib/services';
 import { listTracks, parseCursor } from '../../../lib/library';
+import { audioRequest } from '../../../lib/audio-http';
 
 export const runtime = 'nodejs';
 const headers = { 'Cache-Control': 'private, no-store' };
+export async function POST(request:Request) { return audioRequest(request); }
 export async function GET(request: Request) {
   if (!accountsConfigured()) return Response.json({ error: 'Library unavailable.' }, { status: 503, headers });
   try {

@@ -5,7 +5,14 @@ and asked to finish Linux work, then move to the Mac. Read `AGENTS.md` and the
 complete master specification. Never modify the master; its SHA-256 is
 `389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2`.
 
-**Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
+**Current priority, 2026-10-18: music quality research and remaining local web implementation; hosted infrastructure and phone work paused.**
+Latest local web work: [Private account audio](private-account-audio.md).
+The existing local database now has migration 0003 and private files under
+`build-site/private-audio`; restart with Node 22 at localhost:3000. Save a finished
+WAV explicitly from Cloud library. Twenty unit/integration and twenty browser
+checks PASS. R2 is disabled; live lifecycle/cleanup scheduling, provider services,
+catalogue, new human listening and release remain open. Read the site's README
+before applying migrations or cleanup; never print `.env.local` credentials.
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
 Latest research: [Optional-tool input validation](research-input-validation.md).
 Constant offsets and invalid decoded speech now fail before arrangement/inference.

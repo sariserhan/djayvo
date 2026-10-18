@@ -1,0 +1,77 @@
+Evidence: /Users/serhansari/Documents/projects/djayvo/renders/site-validation-oWJTsZ
+PASS: anonymous consent/import/club generation/playback stay local through Next hosting
+PASS: anonymous and forged-cookie API access denied without caching
+PASS: real browser registration, verification and password sign-in
+PASS: server-rendered library and API exclude another owner; spoofed owner/cursor rejected
+PASS: explicit voice-storage consent, private save, checksum-identical playback/download and byte-range seek
+PASS: responsive private library, cancellation of removal, immediate access revocation and queued cleanup
+PASS: oversized auth body and cross-origin state change denied
+PASS: browser password reset revokes session; new password and sign-out work
+PASS: mobile layout fits; local mix survives account navigation and sign-out
+Skip to studio
+djayvo
+Account
+Privacy & credits
+A little voice.
+A whole new
+groove.
+
+Record a few seconds. Find a different side of your sound.
+
+Your sound
+
+2–5 seconds · stays on this device
+
+I have permission to use this recording.
+● Record
+↑ Import audio
+Make it yours
+Three takes
+Hip-hop, reggae & experimental
+Club
+A longer, late-night mix
+Funk
+Syncopated bass & clipped chords
+Call & response
+Your phrase, an instrumental answer
+Surprise hybrid
+A groove that changes direction
+Make music
+
+Add your recording to begin.
+
+Your mixes
+1 / 10 sessions
+A little after dark
+
+10/18/2026, 5:42:16 PM · Saved in this browser
+
+Delete
+Club
+Download WAV
+Made here. Kept here.
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
++ ]
+- []
+
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/browser.mjs:173:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

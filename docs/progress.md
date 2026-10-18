@@ -10,6 +10,14 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest local web implementation, 2026-10-18: [Private account audio](private-account-audio.md).
+Explicit private saves, validated metadata-free WAVs, quotas, playback/download,
+removal and retryable cleanup now exist. **PASS:** 20 unit/integration checks,
+Node 22 build, Chromium/WebKit ten flows each, byte-identical stored/downloaded
+mixes and unchanged studio bundle. Live R2/Neon/Resend, cleanup scheduling and
+new listening **NOT RUN**; W10 and full specification **PARTIAL**. Hosted services
+and phone work remain paused; only the isolated local database/files were changed.
+
 Latest local research validation, 2026-10-18: [Research input validation](research-input-validation.md).
 Optional speech/voice tools now reject constant offsets; the speech worker also
 rejects empty/short decoded buffers before inference. **PASS:** 11 unit tests,
