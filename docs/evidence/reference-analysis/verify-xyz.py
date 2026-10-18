@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the x/y evidence and single-reference CLI; run with .venv-analysis Python."""
+"""Check the x/y/z evidence and single-reference CLI; run with .venv-analysis Python."""
 from pathlib import Path
 import hashlib
 import json
@@ -31,7 +31,7 @@ with tempfile.TemporaryDirectory(prefix='djayvo-reference-check-') as directory:
         assert not fresh.exists()
         results.append({'check': label, 'status': 'PASS'})
     assert before == {p.name: digest(p) for p in existing.iterdir() if p.is_file()}
-    for name in ('x', 'y'):
+    for name in ('x', 'y', 'z'):
         source = Path.home() / 'Downloads' / f'{name}.mp3'
         expected = json.loads(Path(f'docs/evidence/reference-{name}/analysis.json').read_text())
         assert digest(source) == expected[name]['sha256']
@@ -51,5 +51,5 @@ report = {'checks': results, 'master_unchanged': 'PASS', 'direct_listening': 'NO
                           'macos': platform.mac_ver()[0], 'numpy': numpy.__version__,
                           'scipy': scipy.__version__, 'matplotlib': matplotlib.__version__,
                           'ffmpeg': subprocess.check_output(['ffmpeg', '-version'], text=True).splitlines()[0]}}
-Path('docs/evidence/reference-analysis/xy-verification.json').write_text(json.dumps(report, indent=2)+'\n')
+Path('docs/evidence/reference-analysis/xyz-verification.json').write_text(json.dumps(report, indent=2)+'\n')
 print(json.dumps(report, indent=2))

@@ -1,0 +1,16 @@
+Summary:
+
+  Integrated loudness:
+    I:          -9.4 LUFS
+    Threshold: -20.3 LUFS
+
+  Loudness range:
+    LRA:        14.5 LU
+    Threshold: -30.3 LUFS
+    LRA low:   -20.4 LUFS
+    LRA high:   -5.9 LUFS
+
+  True peak:
+    Peak:        3.5 dBFS
+[out#0/null @ 0x87d018180] video:0KiB audio:117264KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:10:25.40 bitrate=N/A speed= 307x elapsed=0:00:02.03

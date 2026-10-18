@@ -1,7 +1,7 @@
 # Djayvo development tracker
 
 Last updated: 2026-10-18 (America/New_York). Latest implementation: [local blinded listening form](docs/listening-review.md).
-Latest research: [x/y reference analysis and source-led improvisation direction](docs/reference-xy-analysis.md).
+Latest research: [x/y/z reference analysis and source-led improvisation direction](docs/reference-xyz-analysis.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -54,8 +54,8 @@ closes that task only; it does not automatically pass its parent milestone.
   verified phrase/beat placement, varied musical development and appropriate
   voice presence. Requires quality evidence before production AI integration;
   current energy/grid heuristics do not satisfy this gate.
-- [ ] **C06 — PARTIAL:** [Source-led musical development](docs/reference-xy-analysis.md):
-  x/y signal analysis and current-planner gap review complete. Preserve phrase
+- [ ] **C06 — PARTIAL:** [Source-led musical development](docs/reference-xyz-analysis.md):
+  x/y/z signal analysis and current-planner gap review complete. Preserve phrase
   rhythm/rests/accents, develop instrumental motifs across sections and choose
   voice entrances contextually. New implementation and blinded quality checks
   remain NOT RUN; reference measurements do not establish listening or training rights.
@@ -247,7 +247,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P51 | PASS | Bounded expired-auth cleanup: expiry indexes, target guard, active-account preservation, locked-row/concurrent retry tests and local usage counts | [Evidence](docs/auth-cleanup.md) |
 | [x] | P52 | PASS | Recover unavailable playlist slots, keep withdrawn reports out of the actionable queue, reject stale decisions and retain unseen concerns; database/concurrency and two-browser checks | [Evidence](docs/catalogue-withdrawal.md) |
 | [x] | P53 | PASS | Local blinded rating form, frozen-packet/hash/scope protection, compatible CSV exports and two-browser checks; original 483 rows remain blank, human listening NOT RUN | [Evidence](docs/listening-review.md) |
-| [x] | P54 | PASS | Full-file x/y signal measurements, plots, unchanged source hashes and six CLI/repeatability checks; direct listening NOT RUN | [Evidence](docs/reference-xy-analysis.md) |
+| [x] | P54 | PASS | Full-file x/y/z signal measurements, plots, unchanged source hashes and seven CLI/repeatability checks; direct listening NOT RUN | [Evidence](docs/reference-xyz-analysis.md) |
 
 ## Engineering backlog
 

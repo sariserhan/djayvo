@@ -1,32 +1,32 @@
-# X and Y: reference measurements and improvisation direction
+# X, Y and Z: reference measurements and improvisation direction
 
-2026-10-18. The owner supplied `~/Downloads/x.mp3` and `y.mp3` and clarified
+2026-10-18. The owner supplied `~/Downloads/x.mp3`, `y.mp3` and `z.mp3` and clarified
 that Djayvo should create an original performance from the input. **Overall:
 PARTIAL.** Full-file signal measurements are available; direct listening is
 **NOT RUN** because this session has no audio-perception tool. No instrument,
 lyric, melody, source-to-music transformation or perceived quality is identified
-from these measurements. Neither file was uploaded, sampled into a remix or
+from these measurements. No file was uploaded, sampled into a remix or
 used for training. The original files remain outside Git and unchanged.
 
 ## What the files establish
 
-Both are 48 kHz stereo MP3s. Measurements cover the entire decoded files.
+All three are 48 kHz stereo MP3s. Measurements cover the entire decoded files.
 
-| Measurement | x.mp3 | y.mp3 |
-| --- | --- | --- |
-| Duration | 12:44.651 | 11:07.179 |
-| Integrated loudness | -8.9 LUFS | -7.9 LUFS |
-| Loudness range | 13.8 LU | 12.1 LU |
-| Decoded true peak | +4.2 dBFS | +3.1 dBFS |
-| Overall mono 20–150 Hz energy share | 65.7% | 53.9% |
+| Measurement | x.mp3 | y.mp3 | z.mp3 |
+| --- | --- | --- | --- |
+| Duration | 12:44.651 | 11:07.179 | 10:25.408 |
+| Integrated loudness | -8.9 LUFS | -7.9 LUFS | -9.4 LUFS |
+| Loudness range | 13.8 LU | 12.1 LU | 14.5 LU |
+| Decoded true peak | +4.2 dBFS | +3.1 dBFS | +3.5 dBFS |
+| Overall mono 20–150 Hz energy share | 65.7% | 53.9% | 65.4% |
 
 These are long recordings with repeated changes in level, frequency balance and
 stereo width. They may include separate demonstrations, speech or edits; signal
 analysis cannot establish which. Whole-file loudness range therefore cannot be
 treated as the dynamic range of one musical performance. The decoded overshoots
 are measurements, not recommended mastering targets. The global pulse candidates
-are ambiguous (x: approximately 86/169 BPM; y: 76/149 BPM, with competing peaks);
-neither has a verified tempo or beat grid.
+are ambiguous (x: approximately 86/169 BPM; y: 76/149 BPM; z: 60/125/173 BPM,
+with competing peaks); none has a verified tempo or beat grid.
 
 Selected windows are useful locations for a future listening pass:
 
@@ -40,18 +40,26 @@ Selected windows are useful locations for a future listening pass:
 | y, 2:00–2:10 | -7.79 dBFS | 54.8% | -10.19 dB |
 | y, 7:30–7:40 | -18.35 dBFS | 3.4% | -19.28 dB |
 | y, 8:00–8:10 | -7.90 dBFS | 62.0% | -10.32 dB |
+| z, 5:00–5:10 | -23.26 dBFS | 2.5% | -24.17 dB |
+| z, 5:30–5:40 | -8.93 dBFS | 81.1% | -12.41 dB |
+| z, 6:00–6:10 | -22.11 dBFS | 0.6% | -45.13 dB |
 
 The first x pair changes low-frequency contribution substantially without a
 similar change in stereo width. The last y pair rises about 10.5 dB in RMS while
 the low-frequency share and width increase. These demonstrate changes in the
 recordings, not proof of intentional builds, drops, instrument entrances or
 musical development. Automatic boundary candidates include x 4:06.71 and 5:57.55,
-and y 3:07.26 and 7:44.90. Their smoothed detector timestamps are approximate.
+and y 3:07.26 and 7:44.90. In z, the 5:00 to 5:30 windows show a 14.33 dB
+level increase and a large low-frequency change, followed by a much quieter,
+narrower window at 6:00. Its boundary candidates include 3:23.02 and 6:00.59.
+Their smoothed detector timestamps are approximate. These are useful audition
+locations, not evidence of the musical mechanism that created the changes.
 
 Full measurements: [x](evidence/reference-x/analysis.json),
-[y](evidence/reference-y/analysis.json). Structure plots:
+[y](evidence/reference-y/analysis.json), [z](evidence/reference-z/analysis.json). Structure plots:
 [x](evidence/reference-x/reference-structure.png),
-[y](evidence/reference-y/reference-structure.png).
+[y](evidence/reference-y/reference-structure.png),
+[z](evidence/reference-z/reference-structure.png).
 Low-frequency shares use mono STFT power between 20 Hz and 10 kHz; stereo phase
 cancellation and analysis downsampling can affect them. Side/mid energy is a
 width proxy, not a perceptual spaciousness score. Boundary level values in the
@@ -117,19 +125,21 @@ Use fresh output directories; the single-file mode rejects existing outputs:
   --input "$HOME/Downloads/x.mp3" --output renders/NEW-x-analysis
 .venv-analysis/bin/python docs/evidence/reference-analysis/analyze.py \
   --input "$HOME/Downloads/y.mp3" --output renders/NEW-y-analysis
-.venv-analysis/bin/python docs/evidence/reference-analysis/verify-xy.py
+.venv-analysis/bin/python docs/evidence/reference-analysis/analyze.py \
+  --input "$HOME/Downloads/z.mp3" --output renders/NEW-z-analysis
+.venv-analysis/bin/python docs/evidence/reference-analysis/verify-xyz.py
 ```
 
 The existing analyzer is reused; its original no-argument reference set remains.
 No new dependencies or audio assets. Verification rejects missing paired flags,
-missing input and replacement of existing evidence, repeats both entire-file
+missing input and replacement of existing evidence, repeats all three entire-file
 analyses in temporary directories and compares every JSON measurement exactly.
 It also checks original input hashes and the protected master hash.
 
 | Gate | Status | Boundary |
 | --- | --- | --- |
-| Full-file signal analysis | PASS | x and y decoded; finite samples, plots and JSON retained |
-| CLI safeguards / repeatability | PASS | Four rejected invocations and two exact measurement reruns; [receipt](evidence/reference-analysis/xy-verification.json) |
+| Full-file signal analysis | PASS | x, y and z decoded; finite samples, plots and JSON retained |
+| CLI safeguards / repeatability | PASS | Four rejected invocations and three exact measurement reruns; [receipt](evidence/reference-analysis/xyz-verification.json) |
 | Source/master preservation | PASS | Exact hashes unchanged; private/reference audio outside Git |
 | Direct listening / musical annotation | NOT RUN | No audio-perception tool available |
 | Improvisation gap analysis | PARTIAL | Code-grounded limitations and proposed development; perceptual validation missing |

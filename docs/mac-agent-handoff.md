@@ -7,9 +7,9 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research and remaining local web implementation; hosted infrastructure and phone work paused.**
 Latest owner direction: develop original music from the input phrase, with
-selective voice and instrumental motif development. [x/y reference report](reference-xy-analysis.md)
+selective voice and instrumental motif development. [x/y/z reference report](reference-xyz-analysis.md)
 contains complete signal measurements and code-grounded planner limitations.
-Six CLI/repeatability checks PASS; direct listening NOT RUN. Do not describe
+Seven CLI/repeatability checks PASS; direct listening NOT RUN. Do not describe
 measured boundaries as heard musical transitions. Original Downloads MP3s stay
 unchanged/outside Git. C06 tracks the next source-led engine/evaluation work;
 the master and frozen listening cohort remain unchanged.

@@ -7,7 +7,7 @@ The web is the selected product platform; phone and hosted infrastructure work
 remain paused. Remaining local web implementation is authorized.
 [TODO](../TODO.md) tracks individual past/future work and evidence links.
 
-Latest research: [x/y reference measurements](reference-xy-analysis.md) **PASS**;
+Latest research: [x/y/z reference measurements](reference-xyz-analysis.md) **PASS**;
 direct listening **NOT RUN**. Owner emphasizes source-led musical development.
 Current rules provide onset responses but no general contextual development of
 a source motif; C06 remains **PARTIAL**, with new engine work/evaluation open.

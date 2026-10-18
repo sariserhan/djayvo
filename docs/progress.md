@@ -10,8 +10,8 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest owner reference research, 2026-10-18: [x/y analysis](reference-xy-analysis.md).
-Full-file signal measurements, four CLI safeguards and two exact measurement
+Latest owner reference research, 2026-10-18: [x/y/z analysis](reference-xyz-analysis.md).
+Full-file signal measurements, four CLI safeguards and three exact measurement
 reruns **PASS**. Direct listening **NOT RUN**. The owner's requested direction
 is to develop the source phrase into an original composition; current finite
 grooves/forms and limited onset motifs leave that goal **PARTIAL**. Report maps
