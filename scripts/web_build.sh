@@ -11,7 +11,7 @@ if [ -x "$PWD/.venv-build/bin/cmake" ]; then PATH="$PWD/.venv-build/bin:$PATH"; 
 emcmake cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
 cmake --build build-web --target djayvo_web -j 4
 mkdir -p dist/web/engine dist/web/licenses
-cp apps/web/*.html apps/web/*.css apps/web/*.js dist/web/
+cp apps/web/*.html apps/web/*.css apps/web/*.js apps/web/manifest.webmanifest apps/web/icon.svg apps/web/icon-180.png apps/web/icon-192.png apps/web/icon-512.png dist/web/
 cp build-web/djayvo_web.mjs build-web/djayvo_web.wasm dist/web/engine/
 cp assets/licenses/*.txt dist/web/licenses/
 cp "$EMSDK_PATH/upstream/emscripten/LICENSE" dist/web/licenses/EMSCRIPTEN-LICENSE.txt

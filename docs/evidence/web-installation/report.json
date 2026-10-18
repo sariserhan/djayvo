@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "scope": "Local installation support, not OS installation or musical quality",
+  "offline_and_manifest_checks": 38,
+  "unit_tests": 14,
+  "hardware": "Apple M5 arm64",
+  "os": "macOS 26.7.1 (25G241)",
+  "node": "22.23.1",
+  "playwright": "1.61.1",
+  "source_hashes": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "dist/web/engine/djayvo_web.wasm": "6ba7bc68a0237018dfde3a84e4e28036d045b1899e8c98d811166ccfca3c3354"
+  },
+  "physical_install_launch": "NOT RUN",
+  "physical_microphone": "NOT RUN",
+  "human_listening": "NOT RUN",
+  "deployment": "NOT RUN",
+  "full_specification": "PARTIAL",
+  "ordinary_chromium_checks": 20
+}

@@ -17,7 +17,7 @@ const bundle = path.join(output, 'bundle');
 await fs.cp(path.join(root, standalone ? 'dist/web' : 'apps/site/public/studio'), bundle, { recursive: true });
 const baseWorker = await fs.readFile(path.join(bundle, 'service-worker.js'));
 let corrupt = false;
-const mime = { '.js': 'text/javascript', '.mjs': 'text/javascript', '.wasm': 'application/wasm', '.css': 'text/css', '.html': 'text/html', '.txt': 'text/plain' };
+const mime = { '.js': 'text/javascript', '.mjs': 'text/javascript', '.wasm': 'application/wasm', '.css': 'text/css', '.html': 'text/html', '.txt': 'text/plain', '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.svg': 'image/svg+xml' };
 const network = [];
 const server = createServer(async (req, res) => {
   network.push({ method: req.method, path: req.url });
@@ -46,6 +46,7 @@ const browser = await ({ chromium, firefox, webkit }[kind]).launch();
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true });
 let page = await context.newPage();
 const checks = [], errors = [];
+let installability = null;
 page.on('pageerror', error => errors.push(error.message));
 const check = name => { checks.push({ name, status: 'PASS' }); console.log('PASS:', name); };
 async function waitForAsync(predicate, arg) {
@@ -72,6 +73,32 @@ async function generate(style, tracks) {
 try {
   await page.goto(url);
   assert.match(await page.title(), /Djayvo/);
+  const manifest = await page.evaluate(async () => {
+    const link = document.querySelector('link[rel=manifest]');
+    const response = await fetch(link.href);
+    if (!response.ok || !response.headers.get('Content-Type').includes('application/manifest+json')) throw Error('Manifest unavailable');
+    const value = await response.json();
+    const icons = [...value.icons, { src: './icon-180.png', sizes: '180x180' }];
+    for (const icon of icons) {
+      const image = new Image(); image.src = new URL(icon.src, link.href).href; await image.decode();
+      if (`${image.naturalWidth}x${image.naturalHeight}` !== icon.sizes) throw Error('Wrong icon dimensions');
+    }
+    return { ...value, resolved: Object.fromEntries(['id', 'scope', 'start_url'].map(key => [key, new URL(value[key], link.href).href])) };
+  });
+  assert.equal(manifest.name, 'Djayvo'); assert.equal(manifest.display, 'standalone');
+  assert.deepEqual(manifest.resolved, { id: url, scope: url, start_url: `${url}index.html` });
+  await privacy();
+  assert.match(await page.locator('#install-status').textContent(), /install menu|quick access/);
+  assert.match(await page.locator('#privacy').textContent(), /Installed apps may have a separate library/);
+  await page.locator('#install-status').scrollIntoViewIfNeeded();
+  await page.screenshot({ path: path.join(output, 'install-desktop.png') });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator('#install-status').scrollIntoViewIfNeeded();
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  await page.screenshot({ path: path.join(output, 'install-mobile.png') });
+  await page.locator('#privacy-close').click();
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  check('manifest identity/start/scope, decoded icons and responsive installation guidance');
   assert.deepEqual(await keys(), []);
   assert.equal(await page.evaluate(async () => (await navigator.serviceWorker.getRegistrations()).length), 0);
   await page.evaluate(async () => { const cache = await caches.open('other-app-test'); await cache.put('/other', new Response('keep')); });
@@ -89,12 +116,21 @@ try {
   await page.waitForFunction(() => document.querySelector('#offline-status').textContent.startsWith('Studio saved'), null, { timeout: 90000 });
   await page.evaluate(() => navigator.serviceWorker.ready);
   const initialKeys = await keys(); assert.equal(initialKeys.length, 1);
+  if (kind === 'chromium') {
+    const protocol = await context.newCDPSession(page);
+    const parsed = await protocol.send('Page.getAppManifest');
+    assert.equal(parsed.url, `${url}manifest.webmanifest`); assert.deepEqual(parsed.errors, []);
+    installability = await protocol.send('Page.getInstallabilityErrors');
+    assert.deepEqual(installability.installabilityErrors, []);
+    await protocol.detach();
+    check('Chromium manifest parsing and browser installability diagnostics have no errors');
+  }
   await page.reload();
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   assert.equal(await page.evaluate(() => navigator.serviceWorker.controller.scriptURL), `${url}service-worker.js`);
   const cachedURLs = await page.evaluate(async key => (await (await caches.open(key)).keys()).map(request => request.url), initialKeys[0]);
   assert.ok(cachedURLs.every(item => item.startsWith(url) && !/\.wav$|\/api\/|\/account/.test(item)));
-  assert.ok(cachedURLs.includes(`${url}engine/djayvo_web.wasm`));
+  for (const file of ['engine/djayvo_web.wasm', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png', 'icon.svg']) assert.ok(cachedURLs.includes(`${url}${file}`));
   assert.equal(await page.evaluate(async () => (await fetch('/api/private')).status), 200);
   assert.equal(await page.evaluate(async () => (await fetch('/account')).status), 200);
   assert.equal(await page.evaluate(async key => (await (await caches.open(key)).keys()).length, initialKeys[0]), cachedURLs.length);
@@ -103,6 +139,7 @@ try {
   await new Promise(resolve => { server.close(resolve); server.closeAllConnections(); });
   const beforeOffline = network.length;
   await page.goto(`${url}index.html`);
+  assert.equal(await page.evaluate(async () => (await (await fetch('./manifest.webmanifest')).json()).name), 'Djayvo');
   await page.waitForFunction(() => document.querySelectorAll('.track').length === 1);
   assert.equal(await page.locator('#consent').isChecked(), false);
   await generate('three', 4);
@@ -196,7 +233,7 @@ try {
   assert.equal(await page.evaluate(async () => !!await (await caches.open('other-app-test')).match('/other')), true);
   check('explicit removal unregisters only studio/cache and preserves every mix and unrelated cache');
   assert.deepEqual(errors, []);
-  await fs.writeFile(path.join(output, 'report.json'), JSON.stringify({ status: 'PASS', mount, browser: kind, version: browser.version(), checks, cached_asset_count: cachedURLs.length, errors,
+  await fs.writeFile(path.join(output, 'report.json'), JSON.stringify({ status: 'PASS', mount, browser: kind, version: browser.version(), checks, cached_asset_count: cachedURLs.length, errors, installability, os_install_launch: 'NOT RUN',
     non_get_requests: network.filter(item => item.method !== 'GET'), physical_microphone: 'NOT RUN', human_listening: 'NOT RUN', hosting: 'NOT RUN' }, null, 2) + '\n');
 } catch (error) {
   await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ error: String(error), checks, errors }, null, 2));

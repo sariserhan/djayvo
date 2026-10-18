@@ -42,7 +42,11 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
-Latest: [Optional offline studio](offline-studio.md).
+Latest: [Optional web installation](web-installation.md).
+Manifest, original icons and user-triggered install support are implemented and
+locally checked at root/site scopes. Physical installation/launch, independent
+listening and release remain NOT RUN; full specification remains PARTIAL.
+Previous: [Optional offline studio](offline-studio.md).
 The user can retain the app/engine for offline creation and remove that cache
 without deleting mixes. Bounded verified caches and lifecycle checks pass; this
 does not close installation, hosting, human-quality or release gates.

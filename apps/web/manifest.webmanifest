@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "Djayvo",
+  "short_name": "Djayvo",
+  "description": "Turn a few seconds of your voice into music, privately on this device.",
+  "lang": "en",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101211",
+  "theme_color": "#101211",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

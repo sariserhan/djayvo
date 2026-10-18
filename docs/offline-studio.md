@@ -2,6 +2,9 @@
 
 2026-10-18. **Local offline implementation: PASS. Full specification: PARTIAL.**
 
+Subsequent work adds [installation support](web-installation.md); this report
+retains the original offline-cache results and their scope.
+
 Open **Privacy & credits → Keep studio available offline** while online. After
 setup succeeds, reopen the studio. Import/record and generate locally as before.
 **Remove offline studio** removes the cached app and instruments; saved mixes

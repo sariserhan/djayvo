@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: decimal selections preserve the exact two-second boundary
+ok 1 - decimal selections preserve the exact two-second boundary
+  ---
+  duration_ms: 0.548
+  type: 'test'
+  ...
+# Subtest: WAV is bounded PCM16 mono with finite samples and safe clipping
+ok 2 - WAV is bounded PCM16 mono with finite samples and safe clipping
+  ---
+  duration_ms: 3.309959
+  type: 'test'
+  ...
+# Subtest: browser.mjs rejects unknown browsers before launching
+ok 3 - browser.mjs rejects unknown browsers before launching
+  ---
+  duration_ms: 307.949417
+  type: 'test'
+  ...
+# Subtest: browser-render.mjs rejects unknown browsers before launching
+ok 4 - browser-render.mjs rejects unknown browsers before launching
+  ---
+  duration_ms: 303.464917
+  type: 'test'
+  ...
+# Subtest: installation is optional, capability-driven and never confuses acceptance with completion
+ok 5 - installation is optional, capability-driven and never confuses acceptance with completion
+  ---
+  duration_ms: 0.74675
+  type: 'test'
+  ...
+# Subtest: standalone platforms, prompt rejection and installation during a pending prompt remain honest
+ok 6 - standalone platforms, prompt rejection and installation during a pending prompt remain honest
+  ---
+  duration_ms: 1.50525
+  type: 'test'
+  ...
+# Subtest: funk sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+ok 7 - funk sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+  ---
+  duration_ms: 5.109625
+  type: 'test'
+  ...
+# Subtest: call_response sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+ok 8 - call_response sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+  ---
+  duration_ms: 2.51525
+  type: 'test'
+  ...
+# Subtest: hybrid sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+ok 9 - hybrid sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+  ---
+  duration_ms: 1.13975
+  type: 'test'
+  ...
+# Subtest: malformed stored file entries are withheld instead of aborting library recovery
+ok 10 - malformed stored file entries are withheld instead of aborting library recovery
+  ---
+  duration_ms: 0.109292
+  type: 'test'
+  ...
+# Subtest: composition identity ignores cosmetic changes, ordering and transposition; detects musical changes
+ok 11 - composition identity ignores cosmetic changes, ordering and transposition; detects musical changes
+  ---
+  duration_ms: 9.527833
+  type: 'test'
+  ...
+# Subtest: selection retries only duplicates, records the actual seed and bounds exhaustion before publishing
+ok 12 - selection retries only duplicates, records the actual seed and bounds exhaustion before publishing
+  ---
+  duration_ms: 3.125792
+  type: 'test'
+  ...
+# Subtest: offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets
+ok 13 - offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets
+  ---
+  duration_ms: 44.715417
+  type: 'test'
+  ...
+# Subtest: reinstall reuses a complete verified cache without redownloading or deleting it
+ok 14 - reinstall reuses a complete verified cache without redownloading or deleting it
+  ---
+  duration_ms: 14.083583
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 649.209542

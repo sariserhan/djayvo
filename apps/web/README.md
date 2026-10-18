@@ -34,8 +34,13 @@ then reopen the studio. App files and instruments are verified and saved; audio,
 account pages and API responses are excluded from this cache. Offline creation
 needs no account. Updates wait until all studio tabs close. **Remove offline
 studio** removes only the cached app; saved mixes stay in the separate library.
-Browser storage eviction can remove either; download important music. This is
-offline caching, not a home-screen installation or public-hosting claim.
+Browser storage eviction can remove either; download important music.
+
+**Privacy & credits → Add Djayvo to your device** offers installation when your
+browser supports it, with menu instructions otherwise. Installation and offline
+storage are separate choices. Installed apps may have separate storage; download
+important mixes before switching. [Installation support and checks](../../docs/web-installation.md)
+cover local browser behavior; physical install/launch and public hosting remain unverified.
 [Implementation and evidence](../../docs/offline-studio.md).
 
 ## Isolated build tools
@@ -117,8 +122,8 @@ failure history and gates.
 The local server binds only `127.0.0.1:4173`. It does not expose your Mac to the
 network. Public hosting is **NOT RUN**. A future static host must serve `.wasm`
 as `application/wasm`, use HTTPS for recording, and supply the security headers in
-`scripts/web_serve.py`. No server-side audio processing is needed. Home-screen installation, billing and public sharing remain deferred. Optional
-offline caching is implemented; the separate site shell has local account code
+`scripts/web_serve.py`. No server-side audio processing is needed. Installation support and optional offline caching are implemented; physical
+installed-app checks, billing and public sharing remain open; the separate site shell has local account code
 with live infrastructure still paused.
 WebKit automation is not installed Safari/iPhone hardware validation. Physical
 browser microphone, device routes, battery and formal listening remain open.

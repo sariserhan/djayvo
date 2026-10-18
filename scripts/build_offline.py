@@ -6,10 +6,12 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+INSTALL_ASSETS = {'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-192.png', 'icon-512.png'}
 
 
 def worker_source(bundle):
     names = {p.name for pattern in ('*.html', '*.css', '*.js') for p in (ROOT / 'apps/web').glob(pattern)}
+    names |= INSTALL_ASSETS
     names |= {'engine/djayvo_web.mjs', 'engine/djayvo_web.wasm',
               'licenses/VSCO-2-CE-LICENSE.txt', 'licenses/VCSL-LICENSE.txt',
               'licenses/BLACK-AND-GREEN-GUITARS-CC0.txt', 'licenses/EMSCRIPTEN-LICENSE.txt'}

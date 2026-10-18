@@ -1,4 +1,5 @@
 import './offline.js';
+import './install.js';
 import { compositionKey } from './novelty.js';
 import { decodeAudio, encodeWav, RATE } from './audio.js';
 import { loadSessions, saveSession, deleteSession, deleteAllSessions, verifySession, MAX_SESSIONS } from './library.js';

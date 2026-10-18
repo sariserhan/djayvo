@@ -7,7 +7,12 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
-Latest web: [Optional offline studio](offline-studio.md).
+Latest web: [Optional web installation](web-installation.md).
+Manifest/icons and user-triggered install guidance are implemented for both scopes.
+38 offline/manifest and 20 Chromium flow checks PASS; physical install/launch,
+phone execution and musical quality remain NOT RUN. Installation does not
+automatically enable offline storage or transfer mixes between browser stores.
+Previous web: [Optional offline studio](offline-studio.md).
 Enable through Privacy & credits, then reopen. Cached files exclude recordings,
 account/API responses; removal preserves mixes. Three-engine lifecycle checks
 PASS, including failed updates and actual test-server shutdown. Mobile installed

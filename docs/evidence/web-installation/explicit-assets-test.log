@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets
+ok 1 - offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets
+  ---
+  duration_ms: 36.484833
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 64.557291

@@ -10,7 +10,14 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest web continuation, 2026-10-18: [Optional offline studio](offline-studio.md).
+Latest web continuation, 2026-10-18: [Optional web installation](web-installation.md).
+Relative manifest identity/scope, original icons and a user-triggered installation
+flow now work at the root and `/studio/`. **PASS:** 38 offline/manifest checks,
+20 Chromium workflow checks, 14 unit tests and public/site bundle audits.
+**NOT RUN:** physical OS installation/launch, microphone, new listening and
+release. Full specification **PARTIAL**; music engine and protected audio unchanged.
+
+Previous web continuation, 2026-10-18: [Optional offline studio](offline-studio.md).
 Explicit offline storage now verifies a bounded public bundle; account/API/audio
 requests stay outside the cache. Corrupt installation/update, waiting activation,
 cache bounds and removal preserve saved mixes. **PASS:** 32 offline checks across

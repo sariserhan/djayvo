@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "browser": "chromium",
+  "version": "149.0.7827.55",
+  "viewport": [
+    1440,
+    1000
+  ],
+  "mobile_viewport": [
+    390,
+    844
+  ],
+  "checks": [
+    {
+      "name": "page identity, content, no overlay, consent required",
+      "status": "PASS"
+    },
+    {
+      "name": "privacy dialog keyboard dismissal",
+      "status": "PASS"
+    },
+    {
+      "name": "file import and exact two-second decimal trim",
+      "status": "PASS"
+    },
+    {
+      "name": "cancel leaves no partial library session",
+      "status": "PASS"
+    },
+    {
+      "name": "three real WAV mixes, muted playback advances and pauses previous player",
+      "status": "PASS"
+    },
+    {
+      "name": "download contains a real WAV",
+      "status": "PASS"
+    },
+    {
+      "name": "library persists; original input and consent do not persist",
+      "status": "PASS"
+    },
+    {
+      "name": "club generation and fresh seed retain previous mixes",
+      "status": "PASS"
+    },
+    {
+      "name": "funk generates, survives reload and deletes without losing earlier mixes",
+      "status": "PASS"
+    },
+    {
+      "name": "call_response generates, survives reload and deletes without losing earlier mixes",
+      "status": "PASS"
+    },
+    {
+      "name": "hybrid generates, survives reload and deletes without losing earlier mixes",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile layout and scoped delete confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "corrupt import rejected without damaging mixes",
+      "status": "PASS"
+    },
+    {
+      "name": "malformed saved entries are withheld without hiding healthy playable mixes or deleting damaged data",
+      "status": "PASS"
+    },
+    {
+      "name": "tampered session withheld and preserved for recovery",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit delete-all also removes withheld data",
+      "status": "PASS"
+    },
+    {
+      "name": "transactional ten-session bound without eviction",
+      "status": "PASS"
+    },
+    {
+      "name": "revoking consent stops and discards fake microphone capture",
+      "status": "PASS"
+    },
+    {
+      "name": "timed fake microphone capture, decode and generation (not physical microphone evidence)",
+      "status": "PASS"
+    },
+    {
+      "name": "same-origin GET requests only; no application console or page errors",
+      "status": "PASS"
+    }
+  ],
+  "request_count": 92,
+  "nonlocal_or_upload_requests": 0,
+  "console_errors": [],
+  "tooling_warnings": [],
+  "physical_microphone": "NOT RUN",
+  "human_listening": "NOT RUN"
+}
