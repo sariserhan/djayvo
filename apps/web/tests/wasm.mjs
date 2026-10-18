@@ -36,6 +36,11 @@ const result=engine.ccall('djayvo_web_render','string',['number','number','numbe
 console.log(JSON.stringify({input_rate:rate,input_frames:frames,result}));assert.equal(result,'');
 const plan=JSON.parse(engine.FS.readFile('/mix.club.score.json',{encoding:'utf8'}));
 assert.equal(plan.source.processed_frames,144000);console.log('PASS: 44.1 kHz input retains three seconds in 32-bit WebAssembly');
+for(let i=0;i<frames;i++)wav.writeInt16LE(16384,44+i*2);
+const dc=await createEngine();dc.FS.writeFile('/input.wav',wav);
+assert.match(dc.ccall('djayvo_web_render','string',['number','number','number'],[4123,0,2]), /silent or too quiet/);
+assert.equal(dc.FS.readdir('/').filter(name=>name.startsWith('mix.')).length,0);
+console.log('PASS: constant offset rejected after resampling without publishing WASM mixes');
 
 await fs.writeFile(path.join(output, 'timings.json'), JSON.stringify(results, null, 2) + '\n');
 console.log('PASS: WASM consent, corrupt input, three styles, club, funk, call-response and hybrid', output, results);

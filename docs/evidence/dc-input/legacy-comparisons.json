@@ -1,0 +1,120 @@
+{
+  "renders": {
+    "fixture-hiphop": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e"
+    },
+    "fixture-reggae": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e"
+    },
+    "fixture-experimental": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e"
+    },
+    "fixture-club": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e"
+    },
+    "fixture-funk": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e"
+    },
+    "fixture-call_response": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e"
+    },
+    "fixture-hybrid": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e"
+    },
+    "fixture-baseline": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e"
+    },
+    "owner-hiphop": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+    },
+    "owner-reggae": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+    },
+    "owner-experimental": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+    },
+    "owner-club": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+    },
+    "owner-funk": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+    },
+    "owner-call_response": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+    },
+    "owner-hybrid": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+    },
+    "owner-baseline": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+    }
+  },
+  "controls": {
+    "constant-8000--32768": {
+      "status": "FAIL",
+      "rejected": false
+    },
+    "constant-8000--16384": {
+      "status": "FAIL",
+      "rejected": false
+    },
+    "constant-8000-16384": {
+      "status": "FAIL",
+      "rejected": false
+    },
+    "constant-8000-32767": {
+      "status": "FAIL",
+      "rejected": false
+    },
+    "constant-44100--32768": {
+      "status": "FAIL",
+      "rejected": false
+    },
+    "constant-44100--16384": {
+      "status": "FAIL",
+      "rejected": false
+    },
+    "constant-44100-16384": {
+      "status": "FAIL",
+      "rejected": false
+    },
+    "constant-44100-32767": {
+      "status": "FAIL",
+      "rejected": false
+    },
+    "constant-192000--32768": {
+      "status": "FAIL",
+      "rejected": false
+    },
+    "constant-192000--16384": {
+      "status": "FAIL",
+      "rejected": false
+    },
+    "constant-192000-16384": {
+      "status": "FAIL",
+      "rejected": false
+    },
+    "constant-192000-32767": {
+      "status": "FAIL",
+      "rejected": false
+    }
+  },
+  "human_listening": "NOT RUN",
+  "status": "FAIL"
+}

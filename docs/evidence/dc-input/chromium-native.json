@@ -1,0 +1,72 @@
+{
+  "hiphop": {
+    "status": "PASS",
+    "sample_rate": 48000,
+    "frames": 1536000,
+    "event_frames": "PASS",
+    "plan_decisions": "PASS",
+    "maximum_pcm_error": 0.0,
+    "rms_pcm_error": 0.0,
+    "byte_identical_wav": true
+  },
+  "reggae": {
+    "status": "PASS",
+    "sample_rate": 48000,
+    "frames": 1536000,
+    "event_frames": "PASS",
+    "plan_decisions": "PASS",
+    "maximum_pcm_error": 0.0,
+    "rms_pcm_error": 0.0,
+    "byte_identical_wav": true
+  },
+  "experimental": {
+    "status": "PASS",
+    "sample_rate": 48000,
+    "frames": 1582452,
+    "event_frames": "PASS",
+    "plan_decisions": "PASS",
+    "maximum_pcm_error": 0.0,
+    "rms_pcm_error": 0.0,
+    "byte_identical_wav": true
+  },
+  "club": {
+    "status": "PASS",
+    "sample_rate": 48000,
+    "frames": 1741714,
+    "event_frames": "PASS",
+    "plan_decisions": "PASS",
+    "maximum_pcm_error": 0.0,
+    "rms_pcm_error": 0.0,
+    "byte_identical_wav": true
+  },
+  "funk": {
+    "status": "PASS",
+    "sample_rate": 48000,
+    "frames": 1536000,
+    "event_frames": "PASS",
+    "plan_decisions": "PASS",
+    "maximum_pcm_error": 0.0,
+    "rms_pcm_error": 0.0,
+    "byte_identical_wav": true
+  },
+  "call_response": {
+    "status": "PASS",
+    "sample_rate": 48000,
+    "frames": 1741714,
+    "event_frames": "PASS",
+    "plan_decisions": "PASS",
+    "maximum_pcm_error": 0.0,
+    "rms_pcm_error": 0.0,
+    "byte_identical_wav": true
+  },
+  "hybrid": {
+    "status": "PASS",
+    "sample_rate": 48000,
+    "frames": 1741714,
+    "event_frames": "PASS",
+    "plan_decisions": "PASS",
+    "maximum_pcm_error": 0.0,
+    "rms_pcm_error": 0.0,
+    "byte_identical_wav": true
+  }
+}

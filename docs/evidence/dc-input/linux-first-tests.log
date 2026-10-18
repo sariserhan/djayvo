@@ -1,0 +1,75 @@
+[  4%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/analysis.cpp.o
+[  8%] Linking CXX static library libdjayvo_core.a
+[ 54%] Built target djayvo_core
+[ 58%] Linking CXX executable djayvo_render
+[ 62%] Linking CXX executable djayvo_remix
+[ 70%] Built target djayvo_remix
+[ 75%] Built target djayvo_render
+[ 79%] Linking CXX executable djayvo_tests
+[ 83%] Building CXX object CMakeFiles/djayvo_remix_tests.dir/core/tests/remix_tests.cpp.o
+[ 87%] Built target djayvo_tests
+[ 91%] Linking CXX executable djayvo_c_smoke
+[ 95%] Built target djayvo_c_smoke
+[100%] Linking CXX executable djayvo_remix_tests
+[100%] Built target djayvo_remix_tests
+Internal ctest changing into directory: /work/reverb/build
+Test project /work/reverb/build
+      Start  1: core
+ 1/13 Test  #1: core .............................   Passed    0.56 sec
+      Start  2: remix_core
+ 2/13 Test  #2: remix_core .......................***Failed    6.25 sec
+PASS: bounded stereo feedback reverb, clean vocals, stems, tail and allocation-free processing
+PASS: SHA-256 known vectors
+PASS: energy/onset/phrase/pitch analysis and silence
+PASS: resampling duration, identity, round-trip and antialias
+PASS: clean hook preservation, deterministic styles, finite bounded output
+PASS: consent, crop, transform, polyphony and duration rejection
+PASS: quantized chop spacing and both clean hooks at 2/3/5 seconds
+PASS: seeded clean, instrumental and fragment openings
+Hip-hop 64-seed audit: 4 harmonic cycles, 12 drum shapes, 48 four-bar instrumental shapes
+PASS: hiphop harmonic/rhythmic seed diversity, recurring motifs and developed returns
+PASS: reggae/experimental/club harmony, rhythm and form variety across 192 seeds
+PASS: call-response turn taking, hybrid transitions and 128 seed structures
+PASS: funk syncopation, bass/kick lock, ghost notes, seed variety and input response
+FAIL: pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates: input is silent or too quiet
+PASS: subtraction and return across styles and seeds
+PASS: instrument room timing, stereo, dry speech and finite tail
+PASS: independent voice pitch/time, four rates, exact duration/reverse, bounds and no callback allocation
+PASS: tempo echo timing, stereo decay, bounded tails, hook clearance and callback safety
+PASS: club form, input-driven bass, electronic palette and stem-consistent kick ducking
+PASS: stem identity and linear mix reconstruction including room and ducking
+PASS: tempo-map source preservation and echo timing across tempo changes
+FAIL: club pause selection, deduplication, bounded fallback and transition accents: input is silent or too quiet
+PASS: cancel/render/publication rollback, concurrent destinations and stale-lock preservation
+PASS: allocation-free sample and instrument processing
+
+      Start  3: c_abi
+ 3/13 Test  #3: c_abi ............................   Passed    0.38 sec
+      Start  4: acoustic_assets
+ 4/13 Test  #4: acoustic_assets ..................   Passed    0.45 sec
+      Start  5: sustained_assets
+ 5/13 Test  #5: sustained_assets .................   Passed    0.01 sec
+      Start  6: guitar_assets
+ 6/13 Test  #6: guitar_assets ....................   Passed    0.38 sec
+      Start  7: electronic_assets
+ 7/13 Test  #7: electronic_assets ................   Passed    0.07 sec
+      Start  8: wav_integration
+ 8/13 Test  #8: wav_integration ..................   Passed    0.52 sec
+      Start  9: remix_integration
+ 9/13 Test  #9: remix_integration ................   Passed    3.96 sec
+      Start 10: word_timing
+10/13 Test #10: word_timing ......................   Passed    0.05 sec
+      Start 11: tooling
+11/13 Test #11: tooling ..........................   Passed    1.19 sec
+      Start 12: evaluation_preparation
+12/13 Test #12: evaluation_preparation ...........   Passed   12.93 sec
+      Start 13: plan_import
+13/13 Test #13: plan_import ......................   Passed    6.29 sec
+Errors while running CTest
+
+92% tests passed, 1 tests failed out of 13
+
+Total Test time (real) =  33.04 sec
+
+The following tests FAILED:
+	  2 - remix_core (Failed)

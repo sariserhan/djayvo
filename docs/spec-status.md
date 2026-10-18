@@ -42,7 +42,11 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
-Latest: [Optional web installation](web-installation.md).
+Latest: [Constant-offset input rejection](dc-input-validation.md).
+The core no longer exports mixes from constant electrical offsets. Accepted
+owner/fixture/cohort outputs retain exact PCM and event frames; human quality,
+learned direction, paused infrastructure/device work and release remain open.
+Previous: [Optional web installation](web-installation.md).
 Manifest, original icons and user-triggered install support are implemented and
 locally checked at root/site scopes. Physical installation/launch, independent
 listening and release remain NOT RUN; full specification remains PARTIAL.

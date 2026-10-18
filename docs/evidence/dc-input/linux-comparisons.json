@@ -1,0 +1,280 @@
+{
+  "renders": {
+    "fixture-hiphop": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "fixture-reggae": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "fixture-experimental": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1582452,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "fixture-club": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "fixture-funk": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "fixture-call_response": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "fixture-hybrid": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "fixture-baseline": {
+      "export": "PASS",
+      "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "owner-hiphop": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "owner-reggae": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "owner-experimental": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1582452,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "owner-club": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "owner-funk": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "owner-call_response": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "owner-hybrid": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "owner-baseline": {
+      "export": "PASS",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "comparison": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    }
+  },
+  "controls": {
+    "constant-8000--32768": {
+      "status": "PASS",
+      "rejected": true
+    },
+    "constant-8000--16384": {
+      "status": "PASS",
+      "rejected": true
+    },
+    "constant-8000-16384": {
+      "status": "PASS",
+      "rejected": true
+    },
+    "constant-8000-32767": {
+      "status": "PASS",
+      "rejected": true
+    },
+    "constant-44100--32768": {
+      "status": "PASS",
+      "rejected": true
+    },
+    "constant-44100--16384": {
+      "status": "PASS",
+      "rejected": true
+    },
+    "constant-44100-16384": {
+      "status": "PASS",
+      "rejected": true
+    },
+    "constant-44100-32767": {
+      "status": "PASS",
+      "rejected": true
+    },
+    "constant-192000--32768": {
+      "status": "PASS",
+      "rejected": true
+    },
+    "constant-192000--16384": {
+      "status": "PASS",
+      "rejected": true
+    },
+    "constant-192000-16384": {
+      "status": "PASS",
+      "rejected": true
+    },
+    "constant-192000-32767": {
+      "status": "PASS",
+      "rejected": true
+    }
+  },
+  "human_listening": "NOT RUN",
+  "status": "PASS"
+}

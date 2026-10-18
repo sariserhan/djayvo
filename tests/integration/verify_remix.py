@@ -94,6 +94,13 @@ def verify(args):
                   for p in plans.values()}
     assert len(signatures) == 3
     gates["independently_distinct_rhythm_and_arrangement_strategies"] = "PASS"
+    dc = args.output / "dc.wav"
+    with wave.open(str(dc), "wb") as w:
+        w.setparams((1, 2, 44100, 0, "NONE", "not compressed"))
+        w.writeframes(struct.pack('<h', 16384) * (44100 * 3))
+    run("dc-rejected", dc, ("--style", "all"), success=False)
+    assert not list(args.output.glob('dc-rejected*')), 'Rejected DC input published output'
+    gates["constant_offset_rejected_after_resampling_without_export"] = "PASS"
     shifted = args.output / "shifted.wav"
     make_signal(shifted, shifted=True)
     run("shifted", shifted, ("--style", "hiphop"))

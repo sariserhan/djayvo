@@ -7,6 +7,12 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
+Latest engine validation: [Constant-offset input rejection](dc-input-validation.md).
+No-signal DC inputs now fail before export; source PCM and accepted arrangements
+remain unchanged. M5/Linux release, 16 exact cross-OS renders, all 23 frozen
+recorded source checks and 59 browser flows PASS. Native/Chromium events and PCM
+are exact. Phone binary not rebuilt; no new listening or deployment. Existing
+smoke references remain valid because accepted waveforms are unchanged.
 Latest web: [Optional web installation](web-installation.md).
 Manifest/icons and user-triggered install guidance are implemented for both scopes.
 38 offline/manifest and 20 Chromium flow checks PASS; physical install/launch,

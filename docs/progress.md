@@ -10,6 +10,14 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest engine validation, 2026-10-18: [Constant-offset input rejection](dc-input-validation.md).
+The silence gate now rejects constant electrical offsets and subthreshold
+variation without altering source samples or accepted arrangements. **PASS:**
+M5/Linux 13/13, 12 rejected controls on each, 16 exact before/after and cross-OS
+WAVs, 23 unchanged frozen cohort outputs, seven exact Chromium/native renders
+and 59 browser workflow checks. Final M5 ASan/UBSan affected suites: **PASS**,
+3/3 in 200.55 seconds. **Human listening NOT RUN; full specification PARTIAL.**
+
 Latest web continuation, 2026-10-18: [Optional web installation](web-installation.md).
 Relative manifest identity/scope, original icons and a user-triggered installation
 flow now work at the root and `/studio/`. **PASS:** 38 offline/manifest checks,

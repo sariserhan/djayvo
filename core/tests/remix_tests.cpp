@@ -69,6 +69,20 @@ void analysis() {
     auto silence=a;std::fill(silence.mono.begin(),silence.mono.end(),0);rejects([&]{djayvo::analyze(silence);});
     silence.mono[5]=std::numeric_limits<float>::infinity();rejects([&]{djayvo::analyze(silence);});
     for (const auto rate:{8000U,16000U,48000U,192000U}) {
+        auto offset=a;offset.sample_rate=offset.original_rate=rate;
+        offset.original_frames=rate*3U;offset.mono.resize(rate*3U);
+        for (float level:{-1.0F,-0.5F,0.5F,1.0F}) {
+            std::fill(offset.mono.begin(),offset.mono.end(),level);
+            rejects([&]{djayvo::analyze(offset);});
+        }
+        for (double amplitude:{0.0001,0.001,0.02}) {
+            for (std::size_t i=0;i<offset.mono.size();++i)
+                offset.mono[i]=static_cast<float>(0.5+amplitude*std::sin(6.283185307179586*220*i/rate));
+            const auto original=offset.mono;
+            if (amplitude<0.002) rejects([&]{djayvo::analyze(offset);});
+            else check(!djayvo::analyze(offset).phrases.empty(),"DC offset rejected usable signal");
+            check(offset.mono==original,"input gate modified the original recording");
+        }
         for (const auto attack:{0U,rate,rate*3U-1U}) {
             auto transient=a;transient.sample_rate=transient.original_rate=rate;
             transient.original_frames=rate*3U;transient.mono.assign(rate*3U,0);
@@ -393,7 +407,8 @@ void pause_aware_chops() {
         p=djayvo::make_remix(a,features,djayvo::Strategy::experimental,4123,true,false);
         check(p.clips[1].end>=rate*47/100 && p.clips[1].end<=features.phrases[0].end,
               "phrase fallback ignores the quiet boundary or exceeds its region");
-        std::fill(a.mono.begin(),a.mono.end(),0.2f);
+        for (std::size_t i=0;i<a.mono.size();++i)
+            a.mono[i]=static_cast<float>(0.2*std::sin(6.283185307179586*220*i/rate));
         features=djayvo::analyze(a);features.onsets={rate/10,a.mono.size()-1};
         p=djayvo::make_remix(a,features,djayvo::Strategy::experimental,4123,true,false);
         check(p.clips.size()==2,"near-EOF onset creates a tiny or invalid chop");
@@ -453,7 +468,8 @@ void club_phrasing() {
         check(p.clips.size()==2,"club retained several overlapping slices of the same phrase");
         check(p.clips[1].end>=rate*8/10 && p.clips[1].end<rate*85/100 && p.clips[1].confidence==.65,
               "club crops an active long phrase before the available pause");
-        std::fill(a.mono.begin(),a.mono.end(),.2f);
+        for (std::size_t i=0;i<a.mono.size();++i)
+            a.mono[i]=static_cast<float>(0.2*std::sin(6.283185307179586*220*i/rate));
         features=djayvo::analyze(a);
         p=djayvo::make_remix(a,features,djayvo::Strategy::club,4123,true,false);
         check(p.clips.size()>=2 && p.clips[1].confidence==.3 && p.clips[1].end-p.clips[1].begin<=rate*46/100,

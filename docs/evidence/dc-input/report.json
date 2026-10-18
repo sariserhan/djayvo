@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "scope": "Core input gate and its CLI/WASM/browser callers, not musical quality",
+  "release_suites": {
+    "M5": {
+      "status": "PASS",
+      "passed": 13
+    },
+    "Linux_arm64": {
+      "status": "PASS",
+      "passed": 13
+    }
+  },
+  "actual_M5_smoke": "PASS",
+  "constant_controls_per_platform": 12,
+  "unchanged_before_after_wavs": 16,
+  "exact_M5_Linux_wavs": 16,
+  "recorded_frozen_sources_unchanged": 23,
+  "exact_browser_native_wavs": 7,
+  "maximum_pcm_error": 0,
+  "rms_pcm_error": 0,
+  "event_frame_agreement": "PASS",
+  "browser_checks": {
+    "chromium": 21,
+    "webkit": 19,
+    "firefox": 19
+  },
+  "web_unit_tests": 14,
+  "sanitizer": {
+    "status": "PASS",
+    "suites": [
+      "remix_core",
+      "c_abi",
+      "remix_integration"
+    ],
+    "passed": 3,
+    "seconds": 200.55
+  },
+  "listening": "NOT RUN",
+  "phone_current_revision": "NOT RUN",
+  "deployment": "NOT RUN",
+  "full_specification": "PARTIAL",
+  "historical_failures": [
+    "Old binary accepted twelve DC-only controls",
+    "Initial tests used DC as a continuous-sound fixture; changed to continuous tones"
+  ],
+  "source_hashes": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "core/composition/analysis.cpp": "d53771abd2219d724fb9d194a78c44231ecde5fe5e459de5b90281996239ecd0",
+    "dist/web/engine/djayvo_web.wasm": "a7fb4c204178c364e5fde8edf05c45a1916ac14d4e33ba102316a43138a67240",
+    "build-mac/djayvo_remix": "b092a05ee129f82a3ba2bec0151387dea7f88c8e24a1c9953f88fb950a0a4cb0"
+  }
+}

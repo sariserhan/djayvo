@@ -9,14 +9,25 @@ InputAnalysis analyze(const AudioBuffer& source) {
         source.mono.size() > static_cast<std::size_t>(source.sample_rate) * 15)
         throw std::invalid_argument("invalid analysis input");
     InputAnalysis a;
-    double sum = 0;
+    double sum = 0, sample_sum = 0;
     for (float x : source.mono) {
         if (!std::isfinite(x) || std::abs(x) > 1) throw std::invalid_argument("nonfinite/out-of-range input");
         a.peak = std::max(a.peak, static_cast<double>(std::abs(x)));
         sum += static_cast<double>(x) * x;
+        sample_sum += x;
     }
     a.rms = std::sqrt(sum / static_cast<double>(source.mono.size()));
     if (a.peak < 0.002 || a.rms < 0.0005) throw std::invalid_argument("input is silent or too quiet");
+    // A constant electrical offset is not usable sound; keep source PCM and reported raw levels unchanged.
+    const double mean = sample_sum / static_cast<double>(source.mono.size());
+    double signal_square = 0, signal_peak = 0;
+    for (float x : source.mono) {
+        const double signal = x - mean;
+        signal_square += signal * signal;
+        signal_peak = std::max(signal_peak, std::abs(signal));
+    }
+    if (signal_peak < 0.002 || signal_square / static_cast<double>(source.mono.size()) < 0.0005 * 0.0005)
+        throw std::invalid_argument("input is silent or too quiet");
     a.normalization_gain = std::min(3.9810717055, 0.8 / a.peak);
     const std::size_t hop = source.sample_rate / 100;
     std::vector<double> envelope;

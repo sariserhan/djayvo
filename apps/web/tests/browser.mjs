@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { encodeWav } from '../audio.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -137,6 +138,15 @@ try {
   await page.locator('#error').waitFor({ state: 'visible' });
   assert.equal(await page.locator('.session').count(), 1);
   check('corrupt import rejected without damaging mixes');
+  const dc = encodeWav(new Float32Array(48000 * 3).fill(0.5));
+  await page.locator('#file').setInputFiles({ name: 'constant.wav', mimeType: 'audio/wav', buffer: Buffer.from(dc) });
+  await page.waitForFunction(() => !document.querySelector('#generate').disabled);
+  await page.locator('#generate').click();
+  await page.locator('#error').waitFor({ state: 'visible' });
+  assert.match(await page.locator('#error').textContent(), /silent or too quiet/);
+  assert.equal(await page.locator('.session').count(), 1);
+  await importFixture();
+  check('constant-offset input rejected with a usable error and previous mixes retained');
   await page.evaluate(async () => {
     await new Promise((resolve, reject) => {
       const request = indexedDB.open('djayvo-web-v1');

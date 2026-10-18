@@ -1,0 +1,8 @@
+{
+  "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+  "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+  "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+  "core/composition/analysis.cpp": "d53771abd2219d724fb9d194a78c44231ecde5fe5e459de5b90281996239ecd0",
+  "dist/web/engine/djayvo_web.wasm": "a7fb4c204178c364e5fde8edf05c45a1916ac14d4e33ba102316a43138a67240",
+  "build-mac/djayvo_remix": "b092a05ee129f82a3ba2bec0151387dea7f88c8e24a1c9953f88fb950a0a4cb0"
+}

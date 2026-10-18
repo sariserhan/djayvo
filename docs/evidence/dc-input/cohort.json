@@ -1,0 +1,214 @@
+{
+  "status": "PASS",
+  "scope": "23 recorded sources, hip-hop, seed 4123; existing packets untouched",
+  "records": {
+    "ls-2277-149896-0026": {
+      "status": "PASS",
+      "source_sha256": "8231f9ec1b79bef07f3f2bbd5548c7ab8fff79a1e0bb774eab08507104be2381",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "193a9b07f2ff1e9c798b1954cfffbaf0f8e314da82ba991522ceeb3c468abc82",
+        ".hiphop.score.json": "3ac41354e45a4e9e05cf24224bed57892fbb2e0b710ac3631ce093bb5a3feb07",
+        ".hiphop.events.tsv": "dd420fffdb4ab14c92b74cf8598d80d043dbf2761bf03621068699584bfc67c8"
+      }
+    },
+    "ls-2035-147960-0013": {
+      "status": "PASS",
+      "source_sha256": "34f8bd54fce8acc9047e742f4246451e23ccfad02057042b6ebf78033d09052a",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "4aec3eca374fb5a96fc211ca3008cc9d125b00bdf3d053810060f96b67313a31",
+        ".hiphop.score.json": "f9a2f238f080f1217ab77e191d72f6effd637f4498ebac314209fd58895e4e0d",
+        ".hiphop.events.tsv": "9a954e6e5bb0503edc0cfc5c66f7c486fe9ce7af4c394ea3262289105a0b37ab"
+      }
+    },
+    "ls-2086-149220-0047": {
+      "status": "PASS",
+      "source_sha256": "3f0f6fc7e6b89bbef1a49a3296dc652f3a21c9a99112409a883c69a3549040e6",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "ae8a457fcc098de48ba485e37d56ad68292b5dcf4f1e139b9651687e1e58ada4",
+        ".hiphop.score.json": "edc0861d3d5c0e7b58d65b0e1da53abbbaf6bf58cb9cce76c0c0ac417fe1bdb5",
+        ".hiphop.events.tsv": "9a954e6e5bb0503edc0cfc5c66f7c486fe9ce7af4c394ea3262289105a0b37ab"
+      }
+    },
+    "ls-7976-110124-0019": {
+      "status": "PASS",
+      "source_sha256": "2ed043dcd5bd38725e8953450536ab574ac905f2561759735c671c9ec5d810e9",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "9ef52296caeb633dfb6c4c17b04832ab437ee9d19fa69444dffaff4944973d62",
+        ".hiphop.score.json": "d6d9a53e16cd5c3f7c191472f6d1d8ca60b8433c35e09a40875fcc5473ab90a7",
+        ".hiphop.events.tsv": "9b91e2f3ade25dd40de15b95ef71fd35aaedb8ad47f2e84240d72427cce5895c"
+      }
+    },
+    "ls-1988-147956-0018": {
+      "status": "PASS",
+      "source_sha256": "ebb2e7c8202c076a4fe971eb479060c10279c2284eab4454b5548cf2b54a48b6",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "d6df579e351446317f8e40acbd18f5f9c0b9d64cc14acf9c89a5191a74e93730",
+        ".hiphop.score.json": "0257e5b799d57511c9fe3f4ef6d6b4281664dd28de3f806ac126c3610291a428",
+        ".hiphop.events.tsv": "51049debac324b9f586c387264196c329df74586756a18005afebcedcec32d71"
+      }
+    },
+    "ls-777-126732-0074": {
+      "status": "PASS",
+      "source_sha256": "cda3670191027b8924af322ecb0c4641b4bc12161ba85a8f503c9d9357afd2e7",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "7cc8444e4a292d4e4e73335e4cbc49782dd6e98a8cb85b71f30eb88a71a9d46f",
+        ".hiphop.score.json": "6dcbfd30bfb412b0499de76b2a44472186dcebc50ff6d1d31738d2dec9128b86",
+        ".hiphop.events.tsv": "7fee0cb7c87ed7891eb1232a2b6e4870f749c983a9ef9fe25f8aaafb334ac58c"
+      }
+    },
+    "ls-84-121123-0012": {
+      "status": "PASS",
+      "source_sha256": "196ce28738282c266cfc2b878a73fd2962d9f040c7a51bca71d3e321765417b4",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "af23faaeb8d7a56cf669f8314a6a8849ad2bfa72532bb4ab7568548bab2d31f1",
+        ".hiphop.score.json": "719a1844e35d1c063af3b56caec37a970793429053cb7fc60e2d27c9dbe3dc30",
+        ".hiphop.events.tsv": "d93c48a1bcff6f620b3b10b4bd23fccb17b3d1ec3106e024edda6a071a1586fe"
+      }
+    },
+    "ls-1673-143397-0009": {
+      "status": "PASS",
+      "source_sha256": "e484954b0ece6fb48554db0b5e4c1057b4f897fd9894e961b7d9003dc17ab5f4",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "54a3e539dab18ce8aecd70233eaec87057a108ba2134bfd572364bbfe592987a",
+        ".hiphop.score.json": "1fe9367129d39b706c8af6f5b1db6fb22e7036c98319a2259e87c015bc9fafdf",
+        ".hiphop.events.tsv": "4e861782984beadbd1c73b994d3ad42a5da362088b3bae4599d4ac87d8f5e59a"
+      }
+    },
+    "ls-8297-275156-0004": {
+      "status": "PASS",
+      "source_sha256": "c6fb718a25254b04ce567a541edbe19e78a16ddb69e7f8a1a06395db07afdf24",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "72accbf04b848084f697270a34909aceadd3fcc6f0d28bf4520dac12128a7870",
+        ".hiphop.score.json": "bb860f9c7b57922feceaca392c020db414198e085290b42dee58edc724b8e700",
+        ".hiphop.events.tsv": "e7d5062ef35fcc2a5485f3264e75d276f09ac57fe82a60066be171448f320ea8"
+      }
+    },
+    "ls-5536-43358-0016": {
+      "status": "PASS",
+      "source_sha256": "7d8d3ad3121d37e77e06a8e24529d30904ba750fd64b63ce3ad3a3ae94185c21",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "fc7fe2f0f8cf7f6a1dc5881817abeae14fc6adc51d5d4fc7c3c255eeed67773a",
+        ".hiphop.score.json": "0dbe51eb134e474a6fff1481c76f49a1421fbaae575ce7de525b0c3720ce0827",
+        ".hiphop.events.tsv": "39b1c03b7ad586217270a9496d6e57c7476110dcedf671ee772a503c292fd8d9"
+      }
+    },
+    "ls-6345-93302-0019": {
+      "status": "PASS",
+      "source_sha256": "f9e02e782e5b8e474d372721673c503080ca3da563386ee95a345c9136c17f9b",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "18e7e3fddae1bd5f4735826fc6140af195c115c68c9bf2e7320c1b6e0bd83e9c",
+        ".hiphop.score.json": "3b266973a1e8742ddad96429c4409fb12b6e0b38a976f6e5954dd4b1825c1f4e",
+        ".hiphop.events.tsv": "35cde602f38a2961ecaf9e2a6b03e767d97604383b46dc0904ad85cd81227971"
+      }
+    },
+    "ls-6295-244435-0035": {
+      "status": "PASS",
+      "source_sha256": "d6cdac0794ba8986b8fa24095d07e513b31a97dced5ab489457255e0ce678917",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "2bcb0bcef29ffb6929e23becee782db190e53aeeab0915ec594974b3a631c0ce",
+        ".hiphop.score.json": "79ac8a102fbb5e87c46979697000cd5ca11084ae8078ed50e8ebb974b430e2d2",
+        ".hiphop.events.tsv": "de91cc488f6c5f6e64a726a728569ff2b1a93315a0f5c85f19a90b9adba6f831"
+      }
+    },
+    "ls-6313-66125-0024": {
+      "status": "PASS",
+      "source_sha256": "675ff14f578ef8faf4f07e075badc4e208c1e8aeb06d196097c8e748e6020e86",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "5b0268efc52929a4f0b29bcb7e2b9441ecf2aa280aa4023bedca920ac6cf6e96",
+        ".hiphop.score.json": "6813a6b6d56adb69d6f1c7abbc3e51e9483f967275ab36deaae76aaea6d332d9",
+        ".hiphop.events.tsv": "e3e3e4a6ab52f0f01c59e9b4f6cc38ae30d26ed88471892d447d4c8621c2f2b6"
+      }
+    },
+    "ls-5338-284437-0012": {
+      "status": "PASS",
+      "source_sha256": "3c3099c53ec62d34d2c2a36aa115fa8f0ecb42530f0393aa992427884f41420f",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "863b85c16bc46d560d6161f8cdf63531f5f0f24ff616b781469c515e79c7a4a7",
+        ".hiphop.score.json": "0e235eb7928b91cdb8664354a8915038f5084fb8c27ca17a1ca300549113e2a3",
+        ".hiphop.events.tsv": "ee38e096616590fc4f99416400103653166a817af7f2daee1b29f9976d0b5355"
+      }
+    },
+    "ls-6319-57405-0007": {
+      "status": "PASS",
+      "source_sha256": "cfe32fc11ff14284a46311c0173f0cb491d70618fa262b32f775bf277c614071",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "28b527e4a7bc1f510cd1b7af3f9a386f857e423d24b4fa256d22ca34868b8709",
+        ".hiphop.score.json": "42f1d970537e4312bc353902998512a98410fc81b5764459c57dc9863e4485bb",
+        ".hiphop.events.tsv": "8f76b28a741a5fb7837f4d533bca5493934a2ccf2c6941fdec1cab64d21d3f44"
+      }
+    },
+    "ls-1993-147965-0001": {
+      "status": "PASS",
+      "source_sha256": "950a0d7da0eee8c3432c7f46f0a5f3435dc942b5a5096a21acddee703993e803",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "e085ee063978fea12490b265f904334228fee1941aef79ce685f56aa324f7ee0",
+        ".hiphop.score.json": "5d997fa68f4a1d143c08699c3d14982654ae3efc6eff12fdbaec8b0578a5c238",
+        ".hiphop.events.tsv": "19cb5e1ab50f409d1c8be04ca627c174c424dbe30cd12e42d1b2efc63f39f0dc"
+      }
+    },
+    "ls-2078-142845-0042": {
+      "status": "PASS",
+      "source_sha256": "350525cd9ebaf9532e52db69c0cda0a7545d38cb31df65d430c481aff85de5ef",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "d38894917aa47c4bb637d846cdae45f08b5bd073232b5253c55d4e43cb76b8d9",
+        ".hiphop.score.json": "1afb77b440432c352977cae6bcb6441b6b1f9c513703b450539a50ccbaa858c2",
+        ".hiphop.events.tsv": "b2dfbf33af774c8e4293d71d457d297f6b5d19c915c1704c9ca8c005c8890a88"
+      }
+    },
+    "ls-1272-128104-0001": {
+      "status": "PASS",
+      "source_sha256": "86f4d398b91c99d38568efa94a0f9604a0edaa15bd675d90e556852ec598c914",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "a917b12a6300976a4407bcb5c4d1fb1c01833809f3f6dcc6d8674d80b2419478",
+        ".hiphop.score.json": "0dc2e81181970f46e11ed8e40beff9ddbb82d00b556609ac5936ce6dcde920b3",
+        ".hiphop.events.tsv": "88e3c498d2b8c759d67208728da1683e43723793017d72d2339883bc79150b20"
+      }
+    },
+    "ls-174-50561-0018": {
+      "status": "PASS",
+      "source_sha256": "6349836704f0a618b536b4fa1453266b09de57e20785cf8574c5597233d630b9",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "46ffc93f81a6117dde53d26626ae1fa4f02ecccb7d1894c16719cd38729d7f39",
+        ".hiphop.score.json": "ff5e707c523333fc719e50731b4c6068797d8118a53328ad906ec24d579940f6",
+        ".hiphop.events.tsv": "98d4972da434453dd2f7265c76d7142009e998439bea4926555d422ca8a02e79"
+      }
+    },
+    "ls-2803-161169-0002": {
+      "status": "PASS",
+      "source_sha256": "acae153a8d9547a67a1a22d69c0998f848bf90c27457936f2d98771f019de693",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "280ee228c9d14413c482faed3d7387f0fb5c0c0fda20b2742a9c0a50f1d243be",
+        ".hiphop.score.json": "d37680eaae0e72f64a8bf028635a8c95b814d0b48c71081301f8106f27b87fa1",
+        ".hiphop.events.tsv": "57c0561cb47934c028324ca325b158ee6310aa57025ff4ac1f815d90fbfd1712"
+      }
+    },
+    "commons-laughter": {
+      "status": "PASS",
+      "source_sha256": "23fef28e98c10cd2c6704b53de1b35a3087622d7007a74db2685e90c1a8b793c",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "dc2358ee3669495910be5174421e0a32964e76598897b399880d0abcb8c4e0f8",
+        ".hiphop.score.json": "bdb0aecc8dd5c76207cccbb454e2438fca4ec27be5147667983a8a6306deea5f",
+        ".hiphop.events.tsv": "bdcdfb93a821307a5cc00a1a7c25164d406122e797537351f5414b4bf338f305"
+      }
+    },
+    "commons-claps": {
+      "status": "PASS",
+      "source_sha256": "f2f17c1ee7d272806548f4d4d0b53524312cc9fd97a4bf2273e66d640b30caf1",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "7ef491cb230ca61cd94c587d7fbc09474e585bda1b08a0bafdabb78c25338a27",
+        ".hiphop.score.json": "7fa65b49ac1c2ff5b13253b6aeb3edca11d6224c25fac06f9abda8e1bb0f56bc",
+        ".hiphop.events.tsv": "1d0f8c6bfcc08fa8765044d755f84e7f479add5e6bea0260a4900f5ca495c7e3"
+      }
+    },
+    "commons-noise": {
+      "status": "PASS",
+      "source_sha256": "b69aebac7083c65ca95edfb8a2b7e91bedbd34e71af6890b3d9aa5dfb4001eba",
+      "unchanged_artifact_sha256": {
+        ".hiphop.wav": "b334fa4aa22609dc5a1dfd07274c29d84c75bb7623d5a7e59c19299d44069442",
+        ".hiphop.score.json": "57a0ae888d33b560ea43c606071dfeb7b94187197bac9b6f11fd8c5b776b291a",
+        ".hiphop.events.tsv": "b80599c32668f78306a2b0ac32718fa84030888621aaba314ec1c98c90e70b3e"
+      }
+    }
+  },
+  "human_listening": "NOT RUN"
+}

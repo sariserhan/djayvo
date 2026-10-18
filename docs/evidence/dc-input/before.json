@@ -1,0 +1,9 @@
+{
+  "gate": "FAIL",
+  "case": "constant PCM16 0.5, 3 seconds at 48 kHz",
+  "expected": "reject without completed export",
+  "returncode": 0,
+  "stdout": "PASS: /Users/serhansari/Documents/projects/djayvo/renders/dc-input-trt3t1ta/before.hiphop.wav\nPASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/dc-input-trt3t1ta/before.complete.json\nListening/recognizability: NOT RUN\n",
+  "stderr": "",
+  "artifacts": "/Users/serhansari/Documents/projects/djayvo/renders/dc-input-trt3t1ta"
+}
