@@ -7,6 +7,11 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
+Latest research: [Optional-tool input validation](research-input-validation.md).
+Constant offsets and invalid decoded speech now fail before arrangement/inference.
+M5 tests PASS, 42 comparison WAVs and six event plans unchanged, owner/fixture
+model estimates unchanged. Research tools remain optional; no Linux/model-parity
+fix, new listening, phone execution or infrastructure work is claimed.
 Latest engine validation: [Constant-offset input rejection](dc-input-validation.md).
 No-signal DC inputs now fail before export; source PCM and accepted arrangements
 remain unchanged. M5/Linux release, 16 exact cross-OS renders, all 23 frozen

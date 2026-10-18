@@ -4,6 +4,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+import wave
 from unittest.mock import patch
 import numpy as np
 
@@ -110,6 +111,27 @@ class VoiceResearch(unittest.TestCase):
             read_pcm(self.root/"silence.wav",(2,5))
         with self.assertRaises(ValueError):
             write_pcm(self.root/"overflow.wav",np.full((100,2),.999999))
+
+    def test_constant_offsets_rejected_per_channel_before_export(self):
+        for index, levels in enumerate(((0,), (.5,), (-.5,), (.5,.5), (.5,-.5))):
+            with self.subTest(levels=levels):
+                with wave.open(str(self.source_path), "wb") as wav:
+                    wav.setparams((len(levels),2,RATE,0,"NONE","not compressed"))
+                    wav.writeframes(np.tile(np.array(levels)*32768,(3*RATE,1)).astype("<i2").tobytes())
+                self.score["source"]["sha256"] = digest(self.source_path)
+                self.score_path.write_text(json.dumps(self.score))
+                with self.assertRaisesRegex(ValueError, "silent"):
+                    self.run_arrangement(f"offset-{index}")
+                self.assertFalse((self.root/f"offset-{index}").exists())
+
+    def test_offset_signal_is_preserved_and_one_active_channel_is_enough(self):
+        pcm = np.full((3*RATE,2), -.5)
+        pcm[:,0] += .02*np.sin(np.arange(3*RATE)*2*np.pi*220/RATE)
+        write_pcm(self.source_path,pcm)
+        before = digest(self.source_path)
+        decoded = read_pcm(self.source_path,(2,5))
+        np.testing.assert_array_equal(decoded,np.rint(pcm*32768)/32768)
+        self.assertEqual(digest(self.source_path),before)
 
 
 if __name__ == "__main__":

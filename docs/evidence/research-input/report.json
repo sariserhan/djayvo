@@ -1,0 +1,145 @@
+{
+  "platform": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "python": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "numpy": "2.5.4",
+  "output": "/Users/serhansari/Documents/projects/djayvo/renders/research-input-nc6iqx5u",
+  "protected_sha256": {
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2"
+  },
+  "listening": "NOT RUN",
+  "full_specification": "PARTIAL",
+  "cases": [
+    {
+      "name": "club-lm-7441",
+      "status": "PASS",
+      "events_identical": true,
+      "artifacts": {
+        "mix.wav": "21efc40f276603939bbee74718a8896c1f91a3270723cfbce9f65b5ac1e2984b",
+        "backing.wav": "1628cf540e8c2a2961ca68831e8df329ba289b85fefa4b2f597dba32ec07bd41",
+        "voice.wav": "c5cf85a49fc75dee5cc3b8b627efa6a0094c614930e93d936e3298b01963ad56",
+        "control.wav": "8db5f1e6c093a9fd18954cc4f3c28d733f888cf0612819360659710901aa57f8"
+      }
+    },
+    {
+      "name": "club-seed-7441",
+      "status": "PASS",
+      "events_identical": true,
+      "artifacts": {
+        "mix.wav": "8b1202869ff88b855fe25f471803815dcff11cc41a9a49d712afa8924e4ff6ae",
+        "backing.wav": "f79585b1871725b27894890784c10590fa54acd21f353e0ef28a337c6da67cf4",
+        "voice.wav": "fd4bb8d606d20a2d82969a9fdd5ff85ef7e2713af7263961231c2281b85f2fa3",
+        "control.wav": "b8b497283eb030e8595a2d51cdd93f8fd1876a756a6f7447d244b7764177e61c"
+      }
+    },
+    {
+      "name": "club-seed-7442",
+      "status": "PASS",
+      "events_identical": true,
+      "artifacts": {
+        "mix.wav": "ab026f4cbe3feb3b1f276eaaf1b0e07abcb9305e5a3481c8b2d65e46b68b3399",
+        "backing.wav": "22729859e27e733d507fe1b147f4dd0cd872c5b4dca0f90f02e4d00de30a4cbe",
+        "voice.wav": "4ce4c011554eab7c5f948104312a935842984db0de7fca448482f70618b73f81",
+        "control.wav": "efde0aac51f210fe68dd70083df445ce30682dc7aa4a1d0384bb0977bfa56661"
+      }
+    },
+    {
+      "name": "hiphop-jazz",
+      "status": "PASS",
+      "events_identical": true,
+      "artifacts": {
+        "mix.wav": "161ab4c7c617e333e70b1d2762155bf2b78bf63afb519498bf05316a9344f295",
+        "backing.wav": "45a9884a240f151ae04246b3690abac27e987c81b13c40f1bb098b3064c72c07",
+        "voice.wav": "318469f51ab24690906937b6495d19f216e9474af02612177e440c5ca63c2373",
+        "control.wav": "c07c4f297afdb6127a73225e44b16245fb0d635a2e0489a28302b28724fac176"
+      }
+    },
+    {
+      "name": "hiphop-lm-4123",
+      "status": "PASS",
+      "events_identical": true,
+      "artifacts": {
+        "mix.wav": "8ceab893089c9aa2354ed0d96e7aa1eda4ef606f73c9a550274c74f5cbfe3052",
+        "backing.wav": "18b8d6b705021bf425caf825998c5bf96c8ea4d14869409f1cbc24d801abdd10",
+        "voice.wav": "d43b2a1c651a0cfcca5245b3feba2f8760829431d3e85d25330d088639bab3ba",
+        "control.wav": "943a548541ec7501496e70e513f91f45e8df0dda921df2d94093b3c9d8be8027"
+      }
+    },
+    {
+      "name": "hiphop-seed-4123",
+      "status": "PASS",
+      "events_identical": true,
+      "artifacts": {
+        "mix.wav": "ad546978b31d1b11a20a2b22346eec9ff4212d93a78c35061d2c01b86e335ddd",
+        "backing.wav": "4670f0e0131915cf2d1907373f006f646524449100efb90b0ce55d442c466264",
+        "voice.wav": "428b45f2d20a82b7c23c07380dfb9624075ceac45ed5e7935e3dd283e35f9f50",
+        "control.wav": "4e050d3308f9b5d93cb6177842fdd0ca9d9822c663ce48ced2fa27d80bcf9bae"
+      }
+    }
+  ],
+  "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "speech_environment": {
+    "python": "3.12.13 (main, Mar  3 2026, 12:39:30) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "numpy": "2.5.4",
+    "faster-whisper": "1.2.1",
+    "ctranslate2": "4.8.3"
+  },
+  "voice_comparison": {
+    "status": "PASS",
+    "wav_files": 42,
+    "plans": 6,
+    "maximum_pcm_difference": 0,
+    "rms_pcm_difference": 0
+  },
+  "speech_comparison": [
+    {
+      "source": "owner",
+      "status": "PASS",
+      "words": 6,
+      "frames_and_confidences_identical": true,
+      "model_manifest_sha256": "58eb63835716a76ae48b18fd5ace527ad4895aea4277109841d9afa93727b8f3",
+      "inference_seconds": 0.26699587499024346,
+      "peak_rss_bytes": 412909568
+    },
+    {
+      "source": "fixture",
+      "status": "PASS",
+      "words": 7,
+      "frames_and_confidences_identical": true,
+      "model_manifest_sha256": "58eb63835716a76ae48b18fd5ace527ad4895aea4277109841d9afa93727b8f3",
+      "inference_seconds": 0.2436685410066275,
+      "peak_rss_bytes": 411615232
+    }
+  ],
+  "actual_cli_rejection": {
+    "status": "PASS",
+    "rate": 44100,
+    "published_output": false
+  },
+  "hardware": {
+    "machdep.cpu.brand_string": "Apple M5",
+    "hw.memsize": "17179869184",
+    "hw.ncpu": "10"
+  },
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241\n",
+  "tests": {
+    "word_audio": {
+      "status": "PASS",
+      "tests": 3,
+      "offset_and_quiet_controls": 18,
+      "invalid_decoded_controls": 5,
+      "valid_duration_controls": 2
+    },
+    "voice_research": {
+      "status": "PASS",
+      "tests": 8,
+      "constant_channel_controls": 5
+    },
+    "word_integration": {
+      "status": "PASS"
+    }
+  },
+  "linux_rerun": "NOT RUN"
+}

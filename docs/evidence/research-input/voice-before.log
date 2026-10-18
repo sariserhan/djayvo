@@ -1,0 +1,68 @@
+.FEEE......
+======================================================================
+ERROR: test_constant_offsets_rejected_per_channel_before_export (test_voice_research.VoiceResearch.test_constant_offsets_rejected_per_channel_before_export) (levels=(-0.5,))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_voice_research.py", line 124, in test_constant_offsets_rejected_per_channel_before_export
+    self.run_arrangement()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_voice_research.py", line 34, in run_arrangement
+    return arrange(self.source_path,self.score_path,self.bed_path,self.root/name,92,4123,
+                   kwargs.get("scene",SCENES[0]),consent=kwargs.get("consent",True))
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/arrange_voice_research.py", line 168, in arrange
+    output.mkdir()
+    ~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/pathlib/__init__.py", line 1210, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmp3caqdaes/out'
+
+======================================================================
+ERROR: test_constant_offsets_rejected_per_channel_before_export (test_voice_research.VoiceResearch.test_constant_offsets_rejected_per_channel_before_export) (levels=(0.5, 0.5))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_voice_research.py", line 124, in test_constant_offsets_rejected_per_channel_before_export
+    self.run_arrangement()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_voice_research.py", line 34, in run_arrangement
+    return arrange(self.source_path,self.score_path,self.bed_path,self.root/name,92,4123,
+                   kwargs.get("scene",SCENES[0]),consent=kwargs.get("consent",True))
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/arrange_voice_research.py", line 168, in arrange
+    output.mkdir()
+    ~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/pathlib/__init__.py", line 1210, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmp3caqdaes/out'
+
+======================================================================
+ERROR: test_constant_offsets_rejected_per_channel_before_export (test_voice_research.VoiceResearch.test_constant_offsets_rejected_per_channel_before_export) (levels=(0.5, -0.5))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_voice_research.py", line 124, in test_constant_offsets_rejected_per_channel_before_export
+    self.run_arrangement()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_voice_research.py", line 34, in run_arrangement
+    return arrange(self.source_path,self.score_path,self.bed_path,self.root/name,92,4123,
+                   kwargs.get("scene",SCENES[0]),consent=kwargs.get("consent",True))
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/arrange_voice_research.py", line 168, in arrange
+    output.mkdir()
+    ~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/pathlib/__init__.py", line 1210, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmp3caqdaes/out'
+
+======================================================================
+FAIL: test_constant_offsets_rejected_per_channel_before_export (test_voice_research.VoiceResearch.test_constant_offsets_rejected_per_channel_before_export) (levels=(0.5,))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_voice_research.py", line 123, in test_constant_offsets_rejected_per_channel_before_export
+    with self.assertRaisesRegex(ValueError, "silent"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.692s
+
+FAILED (failures=1, errors=3)

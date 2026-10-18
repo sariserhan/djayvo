@@ -37,7 +37,8 @@ def read_pcm(path, seconds):
         if len(raw) != frames * channels * 2:
             raise ValueError("Truncated WAV")
     pcm = np.frombuffer(raw, dtype="<i2").reshape(-1, channels).astype(np.float64) / 32768
-    if np.sqrt(np.mean(pcm**2)) < 1e-5:
+    # Measure variation per channel so opposite constant offsets cannot mimic signal.
+    if np.sqrt(np.mean(np.var(pcm, axis=0))) < 1e-5:
         raise ValueError("Silent or effectively silent input")
     return np.repeat(pcm, 2, axis=1) if channels == 1 else pcm
 

@@ -42,7 +42,11 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
-Latest: [Constant-offset input rejection](dc-input-validation.md).
+Latest: [Research input validation](research-input-validation.md).
+Optional voice/speech utilities reject constant offsets and empty decoded speech.
+M5 tests and unchanged comparison outputs PASS; timing accuracy, existing model
+platform disagreement and independent musical-quality evidence remain open.
+Previous: [Constant-offset input rejection](dc-input-validation.md).
 The core no longer exports mixes from constant electrical offsets. Accepted
 owner/fixture/cohort outputs retain exact PCM and event frames; human quality,
 learned direction, paused infrastructure/device work and release remain open.

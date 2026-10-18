@@ -43,7 +43,8 @@ def analyze(path,model):
     raw=subprocess.run(['ffmpeg','-v','error','-nostdin','-protocol_whitelist','pipe','-i','pipe:0',
                         '-ar','16000','-ac','1','-f','f32le','pipe:1'],input=data,capture_output=True,check=True,timeout=15).stdout
     samples=np.frombuffer(raw,dtype='<f4')
-    if len(samples)>80000 or not np.isfinite(samples).all() or np.sqrt(np.mean(samples*samples))<.001:
+    # A constant electrical offset is not usable speech energy; preserve the samples.
+    if not 32000<=len(samples)<=80000 or not np.isfinite(samples).all() or np.std(samples,dtype=np.float64)<.001:
         raise ValueError('Silence or invalid audio is not a speech-timing source')
     start=time.monotonic()
     engine=WhisperModel(str(model.resolve()),device='cpu',compute_type='int8',cpu_threads=4,num_workers=1,local_files_only=True)

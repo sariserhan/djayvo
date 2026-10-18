@@ -235,6 +235,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P45 | PASS | Opt-in offline studio with verified bounded caches, safe waiting updates/removal, root/site integration and player cleanup before URL revocation | [Evidence](docs/offline-studio.md) |
 | [x] | P46 | PASS | Optional install prompt/guidance, scope-safe manifest and original app icons; 38 offline/manifest checks, 20 Chromium workflow checks and 14 unit tests; physical installation NOT RUN | [Evidence](docs/web-installation.md) |
 | [x] | P47 | PASS | Reject constant-offset input without changing accepted music; M5/Linux 13/13, 16 exact before/after and cross-OS renders, 23 frozen source checks, seven exact browser/native renders and 59 browser flow checks | [Evidence](docs/dc-input-validation.md) |
+| [x] | P48 | PASS | Reject constant offsets and empty decoded speech in optional research tools; 11 unit tests plus crop integration, 42 unchanged comparison WAVs, six exact event plans and unchanged M5 model estimates; accuracy/listening remain open | [Evidence](docs/research-input-validation.md) |
 
 ## Engineering backlog
 

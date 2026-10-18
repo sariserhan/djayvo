@@ -1,0 +1,186 @@
+FFFFFFFFFFFFF/Users/serhansari/Documents/projects/djayvo/.venv-analysis/lib/python3.15/site-packages/numpy/_core/fromnumeric.py:3862: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/Users/serhansari/Documents/projects/djayvo/.venv-analysis/lib/python3.15/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in divide
+  ret = ret.dtype.type(ret / rcount)
+FF.
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=8000, offset=-0.5, amplitude=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=8000, offset=-0.5, amplitude=0.0001)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=8000, offset=0.5, amplitude=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=8000, offset=0.5, amplitude=0.0001)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=44100, offset=-0.5, amplitude=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=44100, offset=-0.5, amplitude=0.0001)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=44100, offset=0.5, amplitude=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=44100, offset=0.5, amplitude=0.0001)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=192000, offset=-0.5, amplitude=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=192000, offset=-0.5, amplitude=0.0001)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=192000, offset=0.5, amplitude=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) (rate=192000, offset=0.5, amplitude=0.0001)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 46, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 48, in test_constant_offsets_and_quiet_variation_rejected_before_model
+    self.model.assert_not_called()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/unittest/mock.py", line 947, in assert_not_called
+    raise AssertionError(msg)
+AssertionError: Expected 'mock' to not have been called. Called 12 times.
+Calls: [call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([-0.5       , -0.49999458, -0.5       , ..., -0.49999458,
+       -0.5       , -0.49999458], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False),
+ call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([-0.5       , -0.49998277, -0.49996948, ..., -0.500021  ,
+       -0.5000305 , -0.50002813], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False),
+ call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([0.5       , 0.49999458, 0.5       , ..., 0.49999458, 0.5       ,
+       0.49999458], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False),
+ call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([0.5       , 0.5000063 , 0.5000305 , ..., 0.49996817, 0.49996948,
+       0.49996096], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False),
+ call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([-0.49999994, -0.49999982, -0.49999964, ..., -0.49999976,
+       -0.49999964, -0.49999985], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False),
+ call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([-0.4999997 , -0.49999994, -0.4999742 , ..., -0.5000323 ,
+       -0.50002426, -0.50000113], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False),
+ call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([0.49999994, 0.49999982, 0.49999964, ..., 0.49999976, 0.49999964,
+       0.49999985], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False),
+ call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([0.5000002 , 0.49999964, 0.50002515, ..., 0.4999672 , 0.4999751 ,
+       0.49999854], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False),
+ call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([-0.4999999, -0.4999999, -0.4999999, ..., -0.4999999, -0.4999999,
+       -0.4999999], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False),
+ call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([-0.49999848, -0.50000185, -0.49997857, ..., -0.5000329 ,
+       -0.5000211 , -0.4999983 ], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False),
+ call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([0.4999999, 0.4999999, 0.4999999, ..., 0.4999999, 0.4999999,
+       0.4999999], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False),
+ call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpjs2azsee', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([0.50000143, 0.49999806, 0.5000213 , ..., 0.499967  , 0.49997887,
+       0.50000167], shape=(48000,), dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False)].
+
+======================================================================
+FAIL: test_invalid_decoded_output_rejected_before_model (test_word_audio.WordAudio.test_invalid_decoded_output_rejected_before_model) (frames=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 55, in test_invalid_decoded_output_rejected_before_model
+    with self.assertRaisesRegex(ValueError,"Silence or invalid"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_decoded_output_rejected_before_model (test_word_audio.WordAudio.test_invalid_decoded_output_rejected_before_model)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_word_audio.py", line 57, in test_invalid_decoded_output_rejected_before_model
+    self.model.assert_not_called()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/unittest/mock.py", line 947, in assert_not_called
+    raise AssertionError(msg)
+AssertionError: Expected 'mock' to not have been called. Called 1 times.
+Calls: [call('/private/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmp7cwqajvu', device='cpu', compute_type='int8', cpu_threads=4, num_workers=1, local_files_only=True),
+ call().transcribe(array([], dtype=float32), word_timestamps=True, beam_size=1, best_of=1, temperature=0, condition_on_previous_text=False, vad_filter=False, max_new_tokens=128, log_progress=False)].
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.737s
+
+FAILED (failures=15)

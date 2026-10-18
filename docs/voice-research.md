@@ -4,6 +4,10 @@
 better” and asks for human voice sometimes, with creativity deciding when it fits.
 This is informal feedback, not per-track acceptance or a formal quality result.
 
+Later validation hardening: [Research input checks](research-input-validation.md).
+Constant mono/stereo offsets are rejected; all six comparison plans and 42 WAVs
+remain identical. No new listening result is implied.
+
 Six new 30-second arrangements combine the already-consented owner recording
 with six retrieved ACE-Step instrumentals. Three club and three hip-hop cases
 use instrumental openings, short fragment pickups or later clean hooks. Each

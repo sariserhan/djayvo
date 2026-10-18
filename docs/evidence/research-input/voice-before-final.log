@@ -1,0 +1,41 @@
+.FFFF......
+======================================================================
+FAIL: test_constant_offsets_rejected_per_channel_before_export (test_voice_research.VoiceResearch.test_constant_offsets_rejected_per_channel_before_export) (levels=(0.5,))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/djayvo-research-before-q2pwoxkw/tests/test_voice_research.py", line 123, in test_constant_offsets_rejected_per_channel_before_export
+    with self.assertRaisesRegex(ValueError, "silent"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_rejected_per_channel_before_export (test_voice_research.VoiceResearch.test_constant_offsets_rejected_per_channel_before_export) (levels=(-0.5,))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/djayvo-research-before-q2pwoxkw/tests/test_voice_research.py", line 123, in test_constant_offsets_rejected_per_channel_before_export
+    with self.assertRaisesRegex(ValueError, "silent"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_rejected_per_channel_before_export (test_voice_research.VoiceResearch.test_constant_offsets_rejected_per_channel_before_export) (levels=(0.5, 0.5))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/djayvo-research-before-q2pwoxkw/tests/test_voice_research.py", line 123, in test_constant_offsets_rejected_per_channel_before_export
+    with self.assertRaisesRegex(ValueError, "silent"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_constant_offsets_rejected_per_channel_before_export (test_voice_research.VoiceResearch.test_constant_offsets_rejected_per_channel_before_export) (levels=(0.5, -0.5))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/djayvo-research-before-q2pwoxkw/tests/test_voice_research.py", line 123, in test_constant_offsets_rejected_per_channel_before_export
+    with self.assertRaisesRegex(ValueError, "silent"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.758s
+
+FAILED (failures=4)

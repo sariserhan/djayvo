@@ -5,6 +5,11 @@
 This implements optional speech analysis from specification §3.2. It does not
 advance the learned musical director or waive M1 quality evidence.
 
+Later validation hardening: [Research input checks](research-input-validation.md).
+Constant offsets and empty decoded buffers are rejected before inference;
+existing M5 timestamps/confidences remain unchanged. This does not resolve the
+model platform disagreement or establish boundary accuracy.
+
 `scripts/analyze_words.py` runs the pinned multilingual Whisper tiny conversion
 locally on CPU int8 with four threads. It requires explicit source permission,
 2–5 second PCM16 input, a hash-verified local model, bounded output and a 120-second

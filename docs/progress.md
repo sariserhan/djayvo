@@ -10,6 +10,14 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest local research validation, 2026-10-18: [Research input validation](research-input-validation.md).
+Optional speech/voice tools now reject constant offsets; the speech worker also
+rejects empty/short decoded buffers before inference. **PASS:** 11 unit tests,
+existing crop integration, all 42 existing comparison WAVs and six event plans
+unchanged (maximum/RMS difference zero), and identical M5 owner/fixture speech
+estimates. New Linux/device execution and listening **NOT RUN**; earlier model
+platform agreement remains **FAIL**. Full specification **PARTIAL**.
+
 Latest engine validation, 2026-10-18: [Constant-offset input rejection](dc-input-validation.md).
 The silence gate now rejects constant electrical offsets and subthreshold
 variation without altering source samples or accepted arrangements. **PASS:**
