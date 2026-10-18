@@ -5,6 +5,11 @@ and asked to finish Linux work, then move to the Mac. Read `AGENTS.md` and the
 complete master specification. Never modify the master; its SHA-256 is
 `389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2`.
 
+Update 2026-10-17: actual Apple M5 portability is **PASS**. See
+[mac-portability.md](mac-portability.md) for the completed run, exact environment,
+reproduction commands, and listening/recording next steps. The original Linux
+handoff below is retained as historical context. Human quality remains **NOT RUN**.
+
 ## Current state
 
 Linux has working C++17 M0a instruments and M0b/M0c source-driven remixing:

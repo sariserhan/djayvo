@@ -1,0 +1,29 @@
+{
+  "hiphop": {
+    "event_rows": 394,
+    "complete_score_equal": true,
+    "source_analysis_mix_equal": {
+      "source": true,
+      "analysis": true,
+      "mix": true
+    }
+  },
+  "reggae": {
+    "event_rows": 402,
+    "complete_score_equal": true,
+    "source_analysis_mix_equal": {
+      "source": true,
+      "analysis": true,
+      "mix": true
+    }
+  },
+  "experimental": {
+    "event_rows": 648,
+    "complete_score_equal": true,
+    "source_analysis_mix_equal": {
+      "source": true,
+      "analysis": true,
+      "mix": true
+    }
+  }
+}

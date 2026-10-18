@@ -7,18 +7,41 @@ fi
 cd "$(dirname "$0")/.."
 command -v cmake >/dev/null
 command -v python3 >/dev/null
+PYTHON=${DJAYVO_PYTHON:-$(command -v python3)}
 test -f renders/fixtures/synthetic-speech.wav
-cmake -S . -B build-mac -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=arm64
+"$PYTHON" - <<'PY'
+import hashlib
+from pathlib import Path
+expected = 'c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e'
+if hashlib.sha256(Path('renders/fixtures/synthetic-speech.wav').read_bytes()).hexdigest() != expected:
+    raise SystemExit('FAIL: supplied synthetic speech fixture hash differs; do not regenerate it.')
+PY
+# An inherited VIRTUAL_ENV can otherwise make CMake choose ~/mlx-env even
+# when python3 on PATH belongs to the project environment.
+cmake -S . -B build-mac -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=arm64 -DBUILD_TESTING=ON -DPython3_EXECUTABLE="$PYTHON"
 cmake --build build-mac --parallel 4
 ctest --test-dir build-mac --output-on-failure
 ./build-mac/djayvo_remix --input renders/fixtures/synthetic-speech.wav --synthetic-fixture --output renders/mac/remix --style all --stems
-python3 - <<'PY'
-import json, platform, subprocess
+"$PYTHON" - <<'PY'
+import json, platform, subprocess, sys
 from pathlib import Path
+def command(*args):
+    return subprocess.check_output(args, text=True).strip()
 result = {'system': platform.system(), 'machine': platform.machine(),
-          'cpu_brand': subprocess.check_output(['sysctl', '-n', 'machdep.cpu.brand_string'], text=True).strip(),
-          'compiler': subprocess.check_output(['c++', '--version'], text=True).splitlines()[0]}
+          'cpu_brand': command('sysctl', '-n', 'machdep.cpu.brand_string'),
+          'memory_bytes': int(command('sysctl', '-n', 'hw.memsize')),
+          'cpu_cores': int(command('sysctl', '-n', 'hw.ncpu')),
+          'macos_version': command('sw_vers', '-productVersion'),
+          'macos_build': command('sw_vers', '-buildVersion'),
+          'kernel_release': platform.release(),
+          'xcode': command('xcodebuild', '-version'),
+          'developer_directory': command('xcode-select', '-p'),
+          'sdk_version': command('xcrun', '--show-sdk-version'),
+          'compiler': command('c++', '--version'),
+          'cmake': command('cmake', '--version').splitlines()[0],
+          'python': sys.version, 'python_executable': sys.executable,
+          'renderer_binary': command('file', 'build-mac/djayvo_remix')}
 Path('renders/mac/environment.json').write_text(json.dumps(result, indent=2) + '\n')
 PY
-python3 scripts/compare_portability.py --reference renders/m0/remix --candidate renders/mac/remix --candidate-metadata renders/mac/environment.json --report renders/mac/portability-report.json
+"$PYTHON" scripts/compare_portability.py --reference renders/m0/remix --candidate renders/mac/remix --candidate-metadata renders/mac/environment.json --report renders/mac/portability-report.json
 echo 'Audition the three Mac renders and record real listening observations separately.'

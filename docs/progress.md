@@ -5,10 +5,11 @@ per-step approval, then requested a Mac handoff after finishing Linux work. The
 master specification is unchanged. The original M0a record is
 [m0a-report.md](m0a-report.md), with its initial Git commit `02d0e18`.
 
-**Linux implementation/technical checks: PASS. Overall M0: PARTIAL.** M0b/M0c
+**Linux and Apple M5 technical checks: PASS. Overall M0: PARTIAL.** M0b/M0c
 code and three complete recordings exist. The demonstrated input is synthetic
-speech; actual human-recording quality/recognizability and actual Apple M5
-execution remain **NOT RUN**. M1 evaluation tools and a pilot are ready, without
+speech; actual human-recording quality/recognizability remains **NOT RUN**.
+Actual Apple M5 execution is now **PASS**, with the local results in
+[mac-portability.md](mac-portability.md). M1 evaluation tools and a pilot are ready, without
 claiming human evidence. No iPhone UI, AI model, training, or live mode was built.
 
 | Gate | Status | Evidence |
@@ -33,9 +34,9 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Master specification | PASS | Original SHA-256 unchanged |
 | Human recording / recognition | NOT RUN | No consented human fixture supplied |
 | Human enjoyment, realism, audible variety | NOT RUN | No actual listener observations |
-| M0d Apple M5 execution | NOT RUN | Mac handoff/bundle and exact comparison script prepared |
+| M0d Apple M5 execution | PASS | Native arm64 release and ASan/UBSan 6/6 each; exact plans/event frames and byte-identical Linux/Mac masters; [evidence](evidence/m0d/report.json) |
 | M1 blinded quality gate | NOT RUN | Synthetic pilot only; requires diverse consented sources and reviewers |
-| M2 GPU/model benchmark | NOT RUN | Missing quality baseline and Mac execution |
+| M2 GPU/model benchmark | NOT RUN | Quality baseline and actual model measurements remain missing |
 | M3 iPhone/device | NOT RUN | Portable C ABI ready; no device/UI work claimed |
 | M4 live latency | NOT RUN | No real-time input/device measurements |
 | M5 production release | NOT RUN | No publication or monetization |
@@ -115,7 +116,7 @@ run the C ABI off the UI/audio thread. Public C++ buffers are caller-owned and
 must remain immutable during rendering. No live, battery, device route/session,
 or privacy UI behavior is claimed.
 
-Next: execute the actual M5 checkpoint, audition, collect consented source clips,
+Next: audition the validated Mac renders, collect consented source clips,
 and use the preregistered [evaluation protocol](evaluation-protocol.md) to find
 musical defects. Improve from those observations before model experiments. The
 handoff carries all work needed to continue without per-step permission pauses.

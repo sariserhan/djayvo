@@ -1,0 +1,46 @@
+{
+  "recorded_at": "2026-10-17T22:10:54.381789-04:00",
+  "project": "Djayvo",
+  "scope": "Actual Apple M5 M0d portability validation",
+  "overall_m0": "PARTIAL",
+  "engine_base_commit": "1cb2e92",
+  "master_spec_sha256": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+  "gates": {
+    "transfer_checksum_and_fixture": "PASS",
+    "master_spec_unchanged": "PASS",
+    "native_arm64_release_build": "PASS",
+    "release_ctest_6_suites": "PASS",
+    "c_abi_render": "PASS",
+    "asan_ubsan_ctest_6_suites": "PASS",
+    "linux_mac_plan_decisions": "PASS",
+    "linux_mac_event_frames": "PASS",
+    "linux_mac_pcm_tolerance": "PASS",
+    "block_512_113_determinism": "PASS",
+    "decoded_16_wav_bounds": "PASS",
+    "apple_m5_portability": "PASS",
+    "blinded_pilot_preparation": "PASS",
+    "human_recording_test": "NOT RUN",
+    "human_listening_and_recognizability": "NOT RUN",
+    "m1_blinded_quality": "NOT RUN",
+    "m2_model_benchmark": "NOT RUN",
+    "m3_iphone_device": "NOT RUN",
+    "m4_live_latency": "NOT RUN",
+    "m5_production_release": "NOT RUN"
+  },
+  "limitations": [
+    "Only supplied synthetic speech used for cross-platform comparison.",
+    "No human ratings collected. User requested recording help; source not yet supplied.",
+    "RMS is not integrated LUFS or true peak.",
+    "No DSP fixes or tolerance changes needed. Smoke script fixes interpreter selection and records toolchain metadata."
+  ],
+  "evidence": [
+    "mac-smoke.log",
+    "sanitizer.log",
+    "portability-report.json",
+    "analysis-comparison.json",
+    "block113-comparison.json",
+    "decoded-audio.json",
+    "transfer.json",
+    "artifacts.json"
+  ]
+}
