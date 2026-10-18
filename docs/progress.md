@@ -10,12 +10,13 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest platform design, 2026-10-18: owner selected Better Auth and private
-generation plus a reviewed public catalogue, and prefers Vercel hosting.
-[ADR 0002](decisions/0002-web-platform-auth-and-storage.md) recommends Neon
-PostgreSQL for relational records and R2 for audio, with explicit cloud save,
+Latest platform design, 2026-10-18: owner accepted Vercel, Better Auth, the Next.js
+shell, R2 and private generation plus a reviewed public catalogue, then selected
+Neon PostgreSQL Free with no paid database upgrade without approval.
+[ADR 0002](decisions/0002-web-platform-auth-and-storage.md) records relational
+records in Postgres and audio in R2, with explicit cloud save,
 direct transfers, validated immutable assets and separate catalogue approval.
-**Architecture proposal: PASS; adoption details: PARTIAL; backend integration,
+**Architecture and technology selection: PASS; budget controls, backend integration,
 provisioning and deployment: NOT RUN.** Current app behavior, master and recordings
 are unchanged. Tasks W08–W11 track the next work.
 

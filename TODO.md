@@ -30,12 +30,13 @@ closes that task only; it does not automatically pass its parent milestone.
 ## Current product work
 
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
-Owner chose Better Auth and private generation plus a reviewed public catalogue,
-with Vercel preferred for hosting. Neon PostgreSQL + R2 are recommended; no cloud
-resources or dependencies have been configured by the design work.
+Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,
+with private generation plus a reviewed public catalogue. Keep the database free;
+no paid upgrade without owner approval. No cloud resources or dependencies have
+been configured by the design work.
 
 - [x] **W08 — PASS:** Document hosting/auth/database/object-storage boundaries, private save/public submission separation, logical model and upload/deletion lifecycle.
-- [ ] **W09 — NOT RUN:** Implement Better Auth and the selected relational database; validate owner isolation, migrations and separate preview/production environments.
+- [ ] **W09 — NOT RUN:** Implement Better Auth and Neon PostgreSQL Free; validate owner isolation, migrations, separate preview/production environments, database size/compute/transfer budgets and graceful limits without a paid upgrade.
 - [ ] **W10 — NOT RUN:** Implement explicit private cloud save, bounded direct uploads, immutable validated assets, quotas and retryable deletion in R2.
 - [ ] **W11 — NOT RUN:** Build reviewed public catalogue, filters/search, track pages, persistent player and private playlists; verify publication consent and no private-data leaks.
 

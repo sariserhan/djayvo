@@ -2,11 +2,12 @@
 
 Date: 2026-10-18. **Design deliverable: PASS. Implementation: NOT RUN.**
 
-Owner decisions: Better Auth for authentication; private generation plus a
-reviewed public catalogue. Vercel is the owner's preferred hosting direction.
-**Recommendation:** Vercel application/API + Better Auth + Neon PostgreSQL +
-Cloudflare R2. Neon/R2 and a Next.js application shell are proposed selections,
-not provisioned services or completed integrations. No master-spec edits.
+Owner decisions: Vercel hosting, Better Auth for authentication, Neon PostgreSQL
+on the Free plan, Cloudflare R2 for audio, and private generation plus a reviewed
+public catalogue. The owner accepted Neon after specifying a zero-cost database
+budget. A Next.js application shell is included in the accepted architecture.
+These are selected technologies, not provisioned services or completed
+integrations. No master-spec edits.
 
 ## Product shape
 
@@ -52,9 +53,9 @@ remains off. Existing M1 musical-quality requirements remain open.
 
 | Component | Recommendation | Responsibility |
 | --- | --- | --- |
-| Application and API | Vercel; proposed Next.js shell, Node runtime for auth/API | Pages, catalogue queries, session checks, authorized upload/download requests |
+| Application and API | Vercel; Next.js shell, Node runtime for auth/API | Pages, catalogue queries, session checks, authorized upload/download requests |
 | Authentication | Better Auth in our backend | Sign-in, sessions, provider accounts and verification; records in Postgres |
-| Application database | Neon PostgreSQL | Owners, tracks, object references, tags, playlists, review states, permission and usage records |
+| Application database | Neon PostgreSQL Free | Owners, tracks, object references, tags, playlists, review states, permission and usage records |
 | Audio/object storage | R2 Standard | WAV masters, later compressed previews, waveform files and optional cover images |
 | Generation | Existing browser WASM worker | Reuse portable C++ engine, keep generation off the API request path |
 | Later processing | Separate bounded background executor | Verified media decoding/transcoding and waveform extraction when required; not an assumed Vercel/edge FFmpeg capability |
@@ -190,6 +191,17 @@ Neon/R2 do not share an atomic transaction: use explicit states and reconciliati
 
 ## Cost and rollout
 
+**Owner budget constraint:** keep the database on Neon Free. No paid upgrade or
+billable add-on without explicit owner approval. Measure database size, compute
+and transfer usage; staying below a storage limit alone is insufficient. Keep
+audio out of Postgres, paginate queries, cache public catalogue responses and
+clean up expired sessions/upload intents. Add usage thresholds and graceful
+cloud-save limits before launch; preserve local generation and downloads when
+cloud capacity is unavailable. Never silently delete saved tracks to fit a quota.
+Free operation requires bounded usage and is not a promise of unlimited service.
+Recheck provider allowances before provisioning; R2 and Vercel budgets are
+separate. Budget controls and capacity measurements are **NOT RUN**.
+
 R2 charges storage and operations, with no R2 egress-bandwidth charge. Other
 metered services in the delivery path can still charge. This favours direct R2
 delivery for a listening/download catalogue, but does not make the whole platform
@@ -199,7 +211,7 @@ set per-account byte limits and abuse controls before enabling uploads.
 
 Implement in this order:
 
-1. Preserve the current studio/fixtures and put the proposed application shell
+1. Preserve the current studio/fixtures and put the selected application shell
    around the same WASM engine; separate preview/production configuration.
 2. Better Auth + Postgres, migrations and owner-isolation tests.
 3. Explicit private cloud save, R2 upload/finalization, replay/download and deletion.
@@ -216,8 +228,8 @@ caches; auth sign-out/recovery; playback/seek and download in supported browsers
 | Gate | Status |
 | --- | --- |
 | Current-doc research and reviewable architecture proposal | PASS |
-| Owner choice: Better Auth, private generation + reviewed catalogue | PASS |
-| Database/storage/framework adoption and final deployment details | PARTIAL |
+| Owner choice: Vercel, Better Auth, Neon Free, R2, Next.js, private generation + reviewed catalogue | PASS |
+| Deployment configuration, capacity measurements and budget controls | NOT RUN |
 | Auth/database/R2 implementation and integration tests | NOT RUN |
 | Provisioning, paid services, migration and deployment | NOT RUN |
 | Musical quality / production acceptance | PARTIAL — prior gates unchanged |
