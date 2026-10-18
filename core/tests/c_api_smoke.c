@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
         char path[4096];
         if(snprintf(path,sizeof(path),"%s%s",argv[2],suffixes[i])>=(int)sizeof(path) || remove(path)) return 12;
     }
-    options.strategy=7;
+    options.strategy=9;
     if(djayvo_render_file(&options,error,sizeof(error))!=1) return 13;
     options.strategy=5;
     if(djayvo_render_file(&options,error,sizeof(error))!=0) {fprintf(stderr,"FAIL: %s\n",error);return 14;}
@@ -55,6 +55,16 @@ int main(int argc, char** argv) {
     for(unsigned i=0;i<5;++i) {
         char path[4096];
         if(snprintf(path,sizeof(path),"%s%s",argv[2],funk[i])>=(int)sizeof(path) || remove(path)) return 17;
+    }
+    for(unsigned style=7;style<=8;++style) {
+        options.strategy=style;
+        if(djayvo_render_file(&options,error,sizeof(error))!=0) {fprintf(stderr,"FAIL: %s\n",error);return 18;}
+        const char* exts[]={"wav","score.json","report.json","events.tsv"};
+        char path[4096];
+        for(unsigned i=0;i<4;++i) {
+            if(snprintf(path,sizeof(path),"%s.%s.%s",argv[2],style==7?"call_response":"hybrid",exts[i])>=(int)sizeof(path) || remove(path)) return 19;
+        }
+        if(snprintf(path,sizeof(path),"%s.complete.json",argv[2])>=(int)sizeof(path) || remove(path)) return 20;
     }
     puts("PASS: stable C ABI, bounded errors, cancellation, exclusive complete export and actual offline remix");
     return 0;

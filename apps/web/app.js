@@ -1,8 +1,9 @@
+import { compositionKey } from './novelty.js';
 import { decodeAudio, encodeWav, RATE } from './audio.js';
 import { loadSessions, saveSession, deleteSession, deleteAllSessions, verifySession, MAX_SESSIONS } from './library.js';
 
 const $ = id => document.getElementById(id);
-const names = { hiphop: 'Hip-hop', reggae: 'Reggae', experimental: 'Experimental', club: 'Club', funk: 'Funk' };
+const names = { hiphop: 'Hip-hop', reggae: 'Reggae', experimental: 'Experimental', club: 'Club', funk: 'Funk', call_response: 'Call & response', hybrid: 'Surprise hybrid' };
 let samples, start = 0, end = 0, previewURL, state = 'idle', worker, recorder, stream, recordTimer;
 let operation = 0, recordedAt = 0, sessions = [], urls = [], deleting;
 const say = message => { $('status').textContent = message; };
@@ -167,7 +168,7 @@ $('consent').onchange = () => {
   update();
 };
 
-$('generate').onclick = () => {
+$('generate').onclick = async () => {
   if (state !== 'idle' || !samples || !$('consent').checked) return;
   if (sessions.length >= MAX_SESSIONS) {
     fail(new Error('Your library is full. Download and delete a session before making another.')); return;
@@ -178,6 +179,15 @@ $('generate').onclick = () => {
   const token = ++operation, began = performance.now();
   const style = document.querySelector('input[name=style]:checked').value;
   const seed = crypto.getRandomValues(new Uint32Array(1))[0];
+  let recent;
+  try {
+    recent = await Promise.all(sessions.flatMap(session => session.files.filter(file => file.name.endsWith('.score.json')))
+      .map(async file => compositionKey(JSON.parse(await file.blob.text()))));
+  } catch (error) {
+    if (token === operation) { state = 'idle'; fail(new Error('Could not read your recent mixes. Reload the page and try again.')); update(); }
+    return;
+  }
+  if (token !== operation) return;
   const activeWorker = new Worker('./engine-worker.js', { type: 'module' });
   worker = activeWorker;
   const timeout = setTimeout(() => {
@@ -196,7 +206,7 @@ $('generate').onclick = () => {
     if (data.type !== 'complete') return;
     // Completion is the cancellation boundary: commit the entire set atomically.
     state = 'saving'; update();
-    const session = { id: crypto.randomUUID(), created: Date.now(), style, seed,
+    const session = { id: crypto.randomUUID(), created: Date.now(), style, seed: data.seed,
       seconds: (performance.now() - began) / 1000,
       files: data.files.map(file => ({ name: file.name, sha256: file.sha256,
         blob: new Blob([file.bytes], { type: file.name.endsWith('.wav') ? 'audio/wav' : 'application/octet-stream' }) })) };
@@ -209,7 +219,7 @@ $('generate').onclick = () => {
     } catch (error) { fail(error); }
     finally { state = 'idle'; update(); }
   };
-  activeWorker.postMessage({ wav, style, seed, consent: true }, [wav]);
+  activeWorker.postMessage({ wav, style, seed, recent, consent: true }, [wav]);
 };
 
 function element(tag, text, className) {
@@ -227,7 +237,7 @@ function renderLibrary() {
   for (const session of sessions) {
     const section = element('article', '', 'session');
     const heading = element('div', '', 'session-heading'), details = element('div');
-    details.append(element('h3', session.style === 'funk' ? 'Find your pocket' : session.style === 'club' ? 'A little after dark' : 'Three sides of your sound'));
+    details.append(element('h3', session.style === 'call_response' ? 'A conversation in sound' : session.style === 'hybrid' ? 'Around the next corner' : session.style === 'funk' ? 'Find your pocket' : session.style === 'club' ? 'A little after dark' : 'Three sides of your sound'));
     details.append(element('p', `${new Date(session.created).toLocaleString()} · ${session.unsaved ? 'Not saved — download to keep' : 'Saved in this browser'}`, 'muted'));
     const remove = element('button', 'Delete', 'text-button'); remove.setAttribute('aria-label', 'Delete session');
     remove.onclick = () => { deleting = session; $('delete-title').textContent = 'Delete this session?'; $('delete-confirm').textContent = 'Delete session'; $('delete-dialog').showModal(); $('delete-cancel').focus(); };

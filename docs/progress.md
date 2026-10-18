@@ -10,7 +10,16 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest composition continuation, 2026-10-18: [Funk and web integration](funk.md).
+Latest creative continuation, 2026-10-18: [Call-response, hybrid and repeat checking](creative-strategies.md).
+Both new directions, strict plan replay and local web persistence are implemented.
+**M5/Linux release 10/10, actual Mac smoke, 80 exact cross-OS WAVs, 30 preserved
+legacy WAVs, seven styles in Node/Chromium/WebKit, seven web unit groups and full
+UI/retry flows: PASS.** Final ASan/UBSan: **PASS**, 10/10 suites. Eight matched owner takes retain two clean hooks each.
+**Listening: NOT RUN; specification/production quality: PARTIAL.** No upload,
+model, phone work, paid resource or deployment. Details and first failed UI-test
+attempt are retained in the linked report.
+
+Previous composition continuation, 2026-10-18: [Funk and web integration](funk.md).
 A distinct syncopated grammar now uses the existing sampled instruments, seed
 variation and phrase-timed responses. CLI/C ABI, schemas, completion verification
 and local web generation/save/reload/download support it. **M5/Linux release

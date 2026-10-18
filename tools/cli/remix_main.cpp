@@ -28,7 +28,7 @@ int main(int argc,char** argv) {
             if (arg=="--help") {
                 std::cout<<"Djayvo offline source-driven remix\nUsage: djayvo_remix --input FILE "
                          <<"[--consent | --synthetic-fixture] [--output PREFIX] "
-                         <<"[--style all|hiphop|reggae|experimental|baseline|club|funk] [--stems] "
+                         <<"[--style all|hiphop|reggae|experimental|baseline|club|funk|call_response|hybrid] [--stems] "
                          <<"[--seed UINT32] [--sample-rate 8000..192000] [--block-size 1..65536]\n"
                          <<"[--plan FILE [--plan-fallback]] imports one bounded 1.0–1.3 remix score.\n"
                          <<"Plan requires one --style and matching seed/rate/source; no model is invoked.\n"
@@ -62,7 +62,8 @@ int main(int argc,char** argv) {
             if (style=="all" || style==djayvo::strategy_name(s)) strategies.push_back(s);
         if (style=="baseline") strategies.push_back(djayvo::Strategy::baseline);
         if (style=="club") strategies.push_back(djayvo::Strategy::club);
-        if (style=="funk") strategies.push_back(djayvo::Strategy::funk);
+        for (auto s : {djayvo::Strategy::funk,djayvo::Strategy::call_response,djayvo::Strategy::hybrid})
+            if (style==djayvo::strategy_name(s)) strategies.push_back(s);
         if (strategies.empty()) throw std::invalid_argument("unknown style");
         if ((fallback && plan_path.empty()) || (!plan_path.empty() && strategies.size()!=1))
             throw std::invalid_argument("plan import requires one explicit style; fallback requires --plan");

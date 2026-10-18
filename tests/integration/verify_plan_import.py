@@ -34,7 +34,7 @@ def main(renderer):
             return result
 
         plans={}
-        for style in ('hiphop','reggae','experimental','baseline','club','funk'):
+        for style in ('hiphop','reggae','experimental','baseline','club','funk','call_response','hybrid'):
             run('rules-'+style,('--style',style,'--stems'))
             path=root/f'rules-{style}.{style}.score.json'
             plans[style]=json.loads(path.read_text())

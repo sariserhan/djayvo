@@ -13,7 +13,8 @@ Track past work, open issues and future milestones in [TODO.md](TODO.md).
 The [complete specification ledger](docs/spec-status.md) records remaining code
 and evidence gates; overall completion is **PARTIAL**.
 
-Latest local engine work: [Funk composition, web integration and owner comparisons](docs/funk.md).
+Latest local engine work: [Call-response, hybrid and recent-composition checks](docs/creative-strategies.md).
+Previous local engine work: [Funk composition, web integration and owner comparisons](docs/funk.md).
 Previous engine work: [tempo maps and mix automation](docs/timeline.md).
 Previous arrangement work: [hip-hop composition variety](docs/hiphop-diversity.md).
 Previous effects work: [selective tempo echo and private comparisons](docs/vocal-echo.md),
@@ -28,7 +29,7 @@ Local account/browser checks pass; live cloud services remain unconfigured.
 Run it at http://localhost:3000 using the linked setup instructions.
 
 **Selected product platform: [Djayvo web](apps/web/README.md).** Record/import, trim,
-generate three takes, club or funk, play, save locally and download WAVs in the browser.
+generate three takes, club, funk, call-response or hybrid, play, save locally and download WAVs in the browser.
 The shared engine runs as WebAssembly without uploading audio. Start the existing
 build with `python3 scripts/web_serve.py`, then open http://localhost:4173.
 [Web checks and limits](docs/web-instant-remix.md). Phone work is paused at the

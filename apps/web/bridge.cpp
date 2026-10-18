@@ -8,7 +8,7 @@ extern "C" const char* djayvo_web_render(unsigned seed, unsigned direction, unsi
     static std::string error;
     error.clear();
     try {
-        if (direction > 2 || (permission != 1 && permission != 2))
+        if (direction > 4 || (permission != 1 && permission != 2))
             throw std::invalid_argument("Confirm permission before making music.");
         const auto original = djayvo::read_wav("/input.wav");
         if (original.original_frames < original.original_rate * 2ULL ||
@@ -16,7 +16,9 @@ extern "C" const char* djayvo_web_render(unsigned seed, unsigned direction, unsi
             throw std::invalid_argument("Choose a 2–5 second recording.");
         const auto source = djayvo::resample(original, 48000);
         const auto analysis = djayvo::analyze(source);
-        const auto styles = direction == 2 ? std::vector<djayvo::Strategy>{djayvo::Strategy::funk}
+        const auto styles = direction == 4 ? std::vector<djayvo::Strategy>{djayvo::Strategy::hybrid}
+            : direction == 3 ? std::vector<djayvo::Strategy>{djayvo::Strategy::call_response}
+            : direction == 2 ? std::vector<djayvo::Strategy>{djayvo::Strategy::funk}
             : direction == 1 ? std::vector<djayvo::Strategy>{djayvo::Strategy::club}
             : std::vector<djayvo::Strategy>{djayvo::Strategy::hiphop,
                 djayvo::Strategy::reggae, djayvo::Strategy::experimental};

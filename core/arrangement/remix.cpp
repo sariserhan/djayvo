@@ -13,6 +13,8 @@ const char* strategy_name(Strategy s) {
     case Strategy::baseline: return "baseline";
     case Strategy::club: return "club";
     case Strategy::funk: return "funk";
+    case Strategy::call_response: return "call_response";
+    case Strategy::hybrid: return "hybrid";
     }
     throw std::invalid_argument("unknown strategy");
 }
@@ -74,11 +76,13 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     auto& p = r.music;
     const bool club=strategy==Strategy::club;
     const bool funk=strategy==Strategy::funk;
+    const bool dialogue=strategy==Strategy::call_response, hybrid=strategy==Strategy::hybrid;
     p.sample_rate=source.sample_rate; p.seed=seed;
     p.tempo_milli_bpm = strategy == Strategy::hiphop ? 96000U : strategy == Strategy::reggae ? 80000U : 124000U;
     p.bars = strategy == Strategy::hiphop ? 12 : strategy == Strategy::reggae ? 10 : 16;
     if (club) {p.tempo_milli_bpm=140000;p.bars=20;p.kick_duck_db=-7;}
     if (funk) {p.tempo_milli_bpm=std::array<std::uint32_t,3>{{108000,112000,116000}}[(seed/4U)%3U];p.bars=14;}
+    if (dialogue || hybrid) {p.tempo_milli_bpm=std::array<std::uint32_t,3>{{108000,112000,116000}}[(seed/4U)%3U];p.bars=16;}
     const int break_bar=club?10:p.bars-6, return_bar=club?14:p.bars-4;
     p.sections={{"intro",0,2},{"groove",2,break_bar-2},{"break",break_bar,2},
                 {"return",return_bar,3},{"ending",p.bars-1,1}};
@@ -140,7 +144,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     const std::array<std::array<int,4>,4> hiphop_progressions{{
         {{0,-4,-7,0}},{{0,-7,-4,-2}},{{0,-2,-4,-7}},{{0,-4,-2,0}}}};
     const auto harmony=(composition>>4U)%4U,groove=seed%4U;
-    const auto progression=strategy==Strategy::hiphop?hiphop_progressions[harmony]:hiphop_progressions[0];
+    const auto progression=(strategy==Strategy::hiphop || dialogue || hybrid)?hiphop_progressions[harmony]:hiphop_progressions[0];
     const std::array<std::array<int,4>,4> funk_progressions{{
         {{0,0,-5,-5}},{{0,-7,0,-5}},{{0,-5,-4,-7}},{{0,-4,0,-7}}}};
     const std::array<std::array<int,6>,4> funk_steps{{
@@ -167,6 +171,12 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         const bool breakdown=b>=break_bar && b<return_bar;
         const bool returning=b>=return_bar;
         const bool last=b==p.bars-1;
+        // Hybrid changes grammar only at phrase boundaries, retaining key and clock.
+        const auto chapter=b<6?0U:b<break_bar?1U:2U;
+        const auto hybrid_groove=(seed%3U+chapter)%3U;
+        const bool hiphop_bar=strategy==Strategy::hiphop || (hybrid && hybrid_groove==0);
+        const bool funk_bar=funk || (hybrid && hybrid_groove==1);
+        const bool reggae_bar=strategy==Strategy::reggae || (hybrid && hybrid_groove==2);
         const int phrase_start=strategy==Strategy::hiphop && returning?return_bar:2;
         const auto phrase_bar=static_cast<std::size_t>((std::max(phrase_start,b)-phrase_start)%4);
         const int step=last?0:club?(b%4<2?0:-4):funk?funk_progressions[harmony][phrase_bar]:progression[phrase_bar];
@@ -222,7 +232,30 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         } else if (intro || breakdown) {
             chord(0,3*q,intro?55:48);
             if (intro && b==1) drum(3*q,42,42,120);
-        } else if (strategy==Strategy::hiphop) {
+        } else if (dialogue) {
+            // Leave the voice its own floor; the answer starts after the whole call.
+            if (last) {chord(0,2*q,70);bass_note(0,2*q,0,92);drum(0,36,98);}
+            else {
+                const auto bar_frame=tick_to_frame(base,p);
+                const auto first_call=tick_to_frame(opening==0?0:2*bar_ticks,p);
+                const auto second_call=tick_to_frame(break_bar*bar_ticks,p);
+                const auto breath=source.sample_rate/5U;
+                const bool full_call=(bar_frame>=first_call && bar_frame<first_call+source.mono.size()+breath) ||
+                                     (bar_frame>=second_call && bar_frame<second_call+source.mono.size()+breath);
+                bass_note(0,3*q/2,0,full_call?65:94);
+                drum(0,36,full_call?65:102);drum(2*q,38,full_call?42:86);
+                if (!full_call && b%2==1) {
+                    chord(q/2,q/2,55);
+                    for (std::size_t m=0;m<std::min<std::size_t>(motif.size(),4);++m) {
+                        const auto offset=std::min<Tick>(3*q,motif[m]);
+                        const auto note=voicing[(m+(returning?1U:0U)+groove)%3];
+                        piano.notes.push_back({base+offset,q/3,note+(note<67?12:0),velocity(returning?80:72)});
+                    }
+                    bass_note(5*q/2,q/2,7,78);
+                    for (int h=0;h<8;++h) drum(h*q/2+(h%2?swing:0),42,h%2?39:58,120);
+                }
+            }
+        } else if (hiphop_bar) {
             chord(0,last?3*q:chord_length,76);
             if (!last) chord(chord_reply,q/2,returning?68:60);
             bass_note(0,last?3*q:3*q/4,0,102);
@@ -234,7 +267,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
                     if (groove!=3 || returning || h%4!=1) drum(h*q/2+(h%2?swing:0),42,h%2?48:70,120);
                 if (returning && b%2) {drum(13*q/4,42,42,120);drum(15*q/4,42,50,120);}
             }
-        } else if (funk) {
+        } else if (funk_bar) {
             if (last) {chord(0,2*q,76);bass_note(0,2*q,0,100);drum(0,36,108);}
             else {
                 const auto& steps=funk_steps[groove];
@@ -254,7 +287,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
                     drum(h*q/4+(h%2?q/48:0),h==14 && returning?46:42,h%4==0?65:h%2?37:52,q/8);
                 }
             }
-        } else if (strategy==Strategy::reggae) {
+        } else if (reggae_bar) {
             if (last) chord(0,3*q,77);
             else for (int beat=0;beat<4;++beat) chord(beat*q+q/2,q/5,beat%2?69:77);
             bass_note(0,last?3*q:q/2,0,101);
@@ -279,24 +312,25 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         if (!club && returning && !last && b%2==static_cast<int>(seed%2U)) drum(7*q/2,46,60,q/4);
         // Phrase-derived call/response, not a continuous voice-over backing loop.
         if (b>=2 && !build && !breakdown && !last && b%2==0) {
-            const std::size_t count=std::min<std::size_t>(motif.size(),returning && !club?3:2);
+            const std::size_t count=std::min<std::size_t>(motif.size(),dialogue?1:returning && !club?3:2);
             for (std::size_t m=0;m<count;++m) {
                 const auto clip=1+(m+static_cast<std::size_t>(b))%(r.clips.size()-1);
                 Tick offset=motif[m%motif.size()];
-                if (strategy==Strategy::reggae) offset=(offset/q)*q+q/2;
+                if (reggae_bar) offset=(offset/q)*q+q/2;
                 if (strategy==Strategy::experimental) offset=(static_cast<Tick>(m)*3*q/4)%bar_ticks;
                 if (club) offset=(m?11*q/4:3*q/4);
-                if (funk) offset=std::min<Tick>(3*q,offset);
+                if (funk_bar) offset=std::min<Tick>(3*q,offset);
+                if (dialogue) offset=std::min<Tick>(q,offset);
                 r.vocals.push_back({base+offset,clip,club?-5.0:-7.0,1,false,
                                     m%2?0.25:-0.25,false});
             }
         }
         if (b==break_bar) r.vocals.push_back({base,0,-4,1,false,0,true});
         // Input rhythm also determines melodic response on alternating bars.
-        if (!club && !intro && !breakdown && !last && b%2==1) {
+        if (!club && !dialogue && !intro && !breakdown && !last && b%2==1) {
             for (std::size_t m=0;m<std::min<std::size_t>(motif.size(),2);++m) {
                 const int note=voicing[(m+(returning?1U:0U))%3];
-                piano.notes.push_back({base+(funk?std::min<Tick>(3*q,motif[m]):motif[m]),funk?q/4:3*q/4,
+                piano.notes.push_back({base+(funk_bar?std::min<Tick>(3*q,motif[m]):motif[m]),funk_bar?q/4:3*q/4,
                                       note+(note<67?12:0),velocity(65)});
             }
         }

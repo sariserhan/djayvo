@@ -18,7 +18,7 @@ from verify_export import verify_export
 def remix_recording(source, output, renderer, consent=False, seed=4123, style="all"):
     if not consent:
         raise ValueError('explicit consent is required before processing a recording')
-    if style not in ('all','hiphop','reggae','experimental','club','funk'):
+    if style not in ('all','hiphop','reggae','experimental','club','funk','call_response','hybrid'):
         raise ValueError('unknown remix style')
     styles=('hiphop','reggae','experimental') if style=='all' else (style,)
     source, output, renderer = Path(source).resolve(), Path(output).absolute(), Path(renderer).resolve()
@@ -87,7 +87,7 @@ if __name__=='__main__':
     parser.add_argument('--renderer',type=Path,default=Path('build-mac/djayvo_remix'))
     parser.add_argument('--consent',action='store_true')
     parser.add_argument('--seed',type=int,default=4123)
-    parser.add_argument('--style',choices=('all','hiphop','reggae','experimental','club','funk'),default='all')
+    parser.add_argument('--style',choices=('all','hiphop','reggae','experimental','club','funk','call_response','hybrid'),default='all')
     args=parser.parse_args()
     try:
         page=remix_recording(args.input,args.output_directory,args.renderer,args.consent,args.seed,args.style)

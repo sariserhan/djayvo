@@ -11,13 +11,13 @@ try {
   const page = await browser.newPage();
   await page.goto('http://localhost:4173');
   await page.exposeFunction('writeArtifact', async (name, base64) => {
-    if (!/^(hiphop|reggae|experimental|club|funk)\.(wav|score\.json|report\.json|events\.tsv)$/.test(name)) throw new Error('Unexpected artifact');
+    if (!/^(hiphop|reggae|experimental|club|funk|call_response|hybrid)\.(wav|score\.json|report\.json|events\.tsv)$/.test(name)) throw new Error('Unexpected artifact');
     await fs.writeFile(path.join(output, `mix.${name}`), Buffer.from(base64, 'base64'));
   });
   const bytes = Array.from(await fs.readFile(path.join(root, 'renders/fixtures/synthetic-speech.wav')));
   const results = await page.evaluate(async input => {
     const results = [];
-    for (const style of ['three', 'club', 'funk']) {
+    for (const style of ['three', 'club', 'funk', 'call_response', 'hybrid']) {
       const started = performance.now();
       await new Promise((resolve, reject) => {
         const worker = new Worker('./engine-worker.js', { type: 'module' });

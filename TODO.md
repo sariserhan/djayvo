@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [Funk composition and web integration](docs/funk.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [Call-response, hybrid and recent-composition checks](docs/creative-strategies.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -63,7 +63,7 @@ now exists; cloud resources remain unconfigured.
 
 - [x] **W08 — PASS:** Document hosting/auth/database/object-storage boundaries, private save/public submission separation, logical model and upload/deletion lifecycle.
 - [ ] **W09 — PARTIAL:** Next.js shell, Better Auth email/password, Resend adapter, generated auth schema, private metadata queries, migration safeguards and local Postgres/browser tests implemented. Live Neon/Resend, preview/production isolation, expired-auth cleanup, database compute/transfer budgets and overload limits remain. [Evidence](docs/web-accounts.md).
-- [ ] **W10 — NOT RUN:** Implement explicit private cloud save, bounded direct uploads, immutable validated assets, quotas and retryable deletion in R2. Extend the remote metadata strategy constraint for Funk before cloud saving is enabled.
+- [ ] **W10 — NOT RUN:** Implement explicit private cloud save, bounded direct uploads, immutable validated assets, quotas and retryable deletion in R2. Extend the remote metadata strategy constraint for funk/call_response/hybrid before cloud saving is enabled.
 - [ ] **W11 — NOT RUN:** Build reviewed public catalogue, filters/search, track pages, persistent player and private playlists; verify publication consent and no private-data leaks.
 
 The owner changed priority to “first lets make it web version of this” on
@@ -71,8 +71,8 @@ The owner changed priority to “first lets make it web version of this” on
 unresolved device gates are preserved; this change does not mark them passed.
 The current web deliverable and evidence are in [web Instant Remix](docs/web-instant-remix.md).
 
-- [x] **W01 — PASS:** Compile the shared engine to WebAssembly in an isolated SDK; preserve the master, fixture and owner source. Five browser styles match native Mac plans/events/WAVs exactly in Chromium and WebKit.
-- [x] **W02 — PASS:** Consent, browser recording/import, waveform/2–5 s trim, three takes/club/funk, regeneration, cancellation, playback, WAV downloads and responsive desktop/mobile layout implemented and automated flows checked.
+- [x] **W01 — PASS:** Compile the shared engine to WebAssembly in an isolated SDK; preserve the master, fixture and owner source. Seven browser styles match native Mac plans/events/WAVs exactly in Chromium and WebKit.
+- [x] **W02 — PASS:** Consent, browser recording/import, waveform/2–5 s trim, three takes/club/funk/call-response/hybrid, regeneration, cancellation, playback, WAV downloads and responsive desktop/mobile layout implemented and automated flows checked.
 - [x] **W03 — PASS:** Atomic local library, integrity verification, explicit scoped/all deletion, quota handling and ten-session limit. WebKit byte-buffer storage compatibility fixed. Original inputs are not persisted or uploaded.
 - [x] **W04 — PASS:** Reproducible build, isolated local server, public-file/notice audit, native regression checks and committed browser/portability evidence.
 - [ ] **W05 — NOT RUN:** Owner browser microphone and audible playback on the actual preferred browser; headphone/device switching and browser background behavior on real hardware. Fake microphone automation is not this gate.
@@ -87,6 +87,10 @@ listening data, device observations, model prerequisites and release approval
 are not supplied by this instruction. The master remains unchanged.
 
 ## Next: review the current music
+
+Latest [eight call-response/hybrid mixes](renders/creative-strategies-20261018/review/index.html)
+are loudness matched with voice stems. Technical gates PASS; listening NOT RUN.
+
 
 Latest [four Funk seeds](renders/funk-20261018/review/index.html): distinct note
 structures, two preserved clean hooks each, loudness-matched mixes and isolated
@@ -268,14 +272,14 @@ is needed. Prioritize by recorded listening defects and product requirements.
   expanded effects remain under E03/E04. [Timeline evidence](docs/timeline.md).
   Do not call the engine feature-complete.
 
-- [ ] **E13 — PARTIAL:** Hip-hop structural variety implemented: four chord cycles,
-  four coordinated rhythm choices, three swing amounts and return development.
-  Adjacent seeds vary rhythm; 64-seed audit and matched owner comparisons pass
-  technical checks. Perceived variety, filtering against recent takes, broader
-  styles and learned contextual direction remain open; finite combinations can repeat.
-  Funk now adds syncopated bass/kick patterns, short chords and input-timed responses,
-  with full local web support. Standalone hybrid/call-response strategies remain
-  unimplemented. [Hip-hop evidence](docs/hiphop-diversity.md); [Funk evidence](docs/funk.md).
+- [ ] **E13 — PARTIAL:** All six named Stage A rule directions now exist, plus
+  club and the baseline. Hip-hop/funk seed variety, standalone call-response and
+  hybrid with phrase-boundary rhythm changes are implemented. The local web
+  worker rejects exact recent instrumental structures with at most four candidate
+  renders, preserving actual selected seeds and previous saved mixes. Native,
+  Linux, browser and input-response checks pass; perceived variety, broader
+  listening and learned contextual direction remain open. Finite rules can still
+  sound similar. [Evidence](docs/creative-strategies.md).
 
 ## M1: formal musical-quality evaluation
 
@@ -371,3 +375,7 @@ its stated completion criterion is met. Reopen failed or regressed work with
 `FAIL` or `PARTIAL` and the concrete observation. Preserve completed history.
 New tasks use the matching prefix and next unused number. Update the milestone
 table and [progress](docs/progress.md) together; do not invent scores or dates.
+
+- 2026-10-18: Added call-response and hybrid across native/CLI/C ABI/web contracts;
+  local recent-composition rejection, 80 exact cross-OS WAVs and seven-style
+  browser agreement. [Evidence](docs/creative-strategies.md).

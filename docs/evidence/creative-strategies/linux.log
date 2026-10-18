@@ -1,0 +1,72 @@
+-- The C compiler identification is GNU 12.2.0
+-- The CXX compiler identification is GNU 12.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python3: /usr/bin/python3 (found suitable version "3.11.2", minimum required is "3.9") found components: Interpreter 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /work/creative-strategies/build
+[  4%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/plan.cpp.o
+[  8%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/demo.cpp.o
+[ 12%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/analysis.cpp.o
+[ 16%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/remix.cpp.o
+[ 20%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/remix_plan.cpp.o
+[ 25%] Building CXX object CMakeFiles/djayvo_core.dir/core/instruments/voice.cpp.o
+[ 29%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/renderer.cpp.o
+[ 33%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/input.cpp.o
+[ 37%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_renderer.cpp.o
+[ 41%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_file.cpp.o
+[ 45%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/c_api.cpp.o
+[ 50%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/wav.cpp.o
+[ 54%] Linking CXX static library libdjayvo_core.a
+[ 54%] Built target djayvo_core
+[ 58%] Building CXX object CMakeFiles/djayvo_render.dir/tools/cli/main.cpp.o
+[ 62%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/remix_main.cpp.o
+[ 66%] Building CXX object CMakeFiles/djayvo_tests.dir/core/tests/tests.cpp.o
+[ 70%] Building CXX object CMakeFiles/djayvo_remix_tests.dir/core/tests/remix_tests.cpp.o
+[ 75%] Linking CXX executable djayvo_render
+[ 75%] Built target djayvo_render
+[ 79%] Building C object CMakeFiles/djayvo_c_smoke.dir/core/tests/c_api_smoke.c.o
+[ 83%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/plan_import.cpp.o
+[ 87%] Linking CXX executable djayvo_c_smoke
+[ 87%] Built target djayvo_c_smoke
+[ 91%] Linking CXX executable djayvo_tests
+[ 91%] Built target djayvo_tests
+[ 95%] Linking CXX executable djayvo_remix
+[ 95%] Built target djayvo_remix
+[100%] Linking CXX executable djayvo_remix_tests
+[100%] Built target djayvo_remix_tests
+Internal ctest changing into directory: /work/creative-strategies/build
+Test project /work/creative-strategies/build
+      Start  1: core
+ 1/10 Test  #1: core .............................   Passed    0.34 sec
+      Start  2: remix_core
+ 2/10 Test  #2: remix_core .......................   Passed    4.98 sec
+      Start  3: c_abi
+ 3/10 Test  #3: c_abi ............................   Passed    0.35 sec
+      Start  4: acoustic_assets
+ 4/10 Test  #4: acoustic_assets ..................   Passed    0.44 sec
+      Start  5: electronic_assets
+ 5/10 Test  #5: electronic_assets ................   Passed    0.07 sec
+      Start  6: wav_integration
+ 6/10 Test  #6: wav_integration ..................   Passed    0.53 sec
+      Start  7: remix_integration
+ 7/10 Test  #7: remix_integration ................   Passed    3.59 sec
+      Start  8: tooling
+ 8/10 Test  #8: tooling ..........................   Passed    1.28 sec
+      Start  9: evaluation_preparation
+ 9/10 Test  #9: evaluation_preparation ...........   Passed   13.57 sec
+      Start 10: plan_import
+10/10 Test #10: plan_import ......................   Passed    4.63 sec
+
+100% tests passed, 0 tests failed out of 10
+
+Total Test time (real) =  29.77 sec

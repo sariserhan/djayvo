@@ -7,7 +7,12 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
-Latest local engine work: [Funk composition and web integration](funk.md).
+Latest local engine work: [Call-response, hybrid and recent-composition rejection](creative-strategies.md).
+CLI styles call_response/hybrid, C ABI 7/8 and web directions are implemented.
+M5/Linux release, 80 exact WAVs, seven-style WASM and full browser flows pass.
+Private review: renders/creative-strategies-20261018/review/index.html. Listening
+NOT RUN. Fresh smoke reference: renders/arrangement-linux/creative-strategies-20261018/fixture.
+Previous local engine work: [Funk composition and web integration](funk.md).
 Choose Funk in the local web studio or CLI `--style funk` (C ABI 6). Shared
 seeded syncopation, short chord stabs and phrase-derived responses preserve two
 clean hooks. Native M5/Linux, 50 exact WAVs, five-style WASM and full browser

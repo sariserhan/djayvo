@@ -1,0 +1,52 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "gate": "PASS",
+    "sessions": [
+      {
+        "style": "call_response",
+        "seed": 3652861352,
+        "key": "30f3e88afca7b339342e53574a65fe54461af46fbe18113aefc3514afd53eb34"
+      },
+      {
+        "style": "hybrid",
+        "seed": 2795972475,
+        "key": "e179ba981f3701ff902bdc44d4cbe2191254e1b43898484b1d9f210f39fca157"
+      }
+    ],
+    "retry": {
+      "first_seed": 4123,
+      "selected_seed": 3581773502,
+      "attempts": 2
+    },
+    "errors": [],
+    "requests": 42,
+    "output": "renders/creative-strategies-20261018/ui-chromium-Xakyr0"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "gate": "PASS",
+    "sessions": [
+      {
+        "style": "hybrid",
+        "seed": 3245877598,
+        "key": "52b008d0a08979b8206c33e1065389f1f25a513cab3223ef9700290ba2feeadb"
+      },
+      {
+        "style": "call_response",
+        "seed": 2588412630,
+        "key": "1ea7f8d0b57756772a97f1eb4a85f78c554790638b393e2eb67e1a243a60de7f"
+      }
+    ],
+    "retry": {
+      "first_seed": 4123,
+      "selected_seed": 3581773502,
+      "attempts": 2
+    },
+    "errors": [],
+    "requests": 42,
+    "output": "renders/creative-strategies-20261018/ui-webkit-9GC8kT"
+  }
+]

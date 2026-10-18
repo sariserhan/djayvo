@@ -1,0 +1,7 @@
+PASS: webkit /Users/serhansari/Documents/projects/djayvo/renders/web-webkit-engine-LXut2H [
+  { style: 'three', seconds: 1.337, artifacts: 12 },
+  { style: 'club', seconds: 0.424, artifacts: 4 },
+  { style: 'funk', seconds: 0.394, artifacts: 4 },
+  { style: 'call_response', seconds: 0.422, artifacts: 4 },
+  { style: 'hybrid', seconds: 0.449, artifacts: 4 }
+]
