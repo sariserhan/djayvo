@@ -13,6 +13,7 @@ const char* instrument_name(Instrument instrument) {
     case Instrument::piano: return "piano";
     case Instrument::bass: return "bass";
     case Instrument::drums: return "drums";
+    case Instrument::guitar: return "guitar";
     }
     throw std::invalid_argument("unsupported instrument");
 }
@@ -99,6 +100,8 @@ void validate(const PerformancePlan& p) {
     std::size_t count = 0;
     for (const auto& track : p.tracks) {
         instrument_name(track.instrument);
+        if (track.instrument==Instrument::guitar && track.electronic)
+            throw std::invalid_argument("guitar has no electronic sound bank");
         if (!std::isfinite(track.gain_db) || track.gain_db < -60 || track.gain_db > 12 ||
             !std::isfinite(track.pan) || std::abs(track.pan) > 1)
             throw std::invalid_argument("invalid gain or pan");
@@ -121,6 +124,9 @@ void validate(const PerformancePlan& p) {
                 n.duration > bar * p.bars - n.start || n.pitch < 21 || n.pitch > 108 ||
                 n.velocity < 1 || n.velocity > 127)
                 throw std::invalid_argument("note outside time/pitch/velocity bounds");
+            if ((n.muted && track.instrument!=Instrument::guitar) ||
+                (track.instrument==Instrument::guitar && (n.pitch<40 || n.pitch>79)))
+                throw std::invalid_argument("guitar articulation or pitch outside recorded range");
             if (track.instrument == Instrument::drums &&
                 n.pitch != 36 && n.pitch != 38 && n.pitch != 42 && n.pitch != 46)
                 throw std::invalid_argument("drum map: 36 kick, 38 snare, 42 closed hat, 46 open hat");
@@ -136,8 +142,9 @@ void write_score(const PerformancePlan& p, const std::string& path) {
     std::ofstream out(path);
     out.imbue(std::locale::classic());
     out << std::setprecision(17);
+    const bool guitar=std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return t.instrument==Instrument::guitar;});
     const bool timeline=!p.tempo_changes.empty() || std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return !t.automation.empty();});
-    out << "{\n  \"schema_version\": \""<<(timeline?"1.1-m0a":"1.0-m0a")<<"\",\n  \"seed\": " << p.seed
+    out << "{\n  \"schema_version\": \""<<(guitar?"1.2-m0a":timeline?"1.1-m0a":"1.0-m0a")<<"\",\n  \"seed\": " << p.seed
         << ",\n  \"source_asset_id\": null,\n  \"sample_rate\": " << p.sample_rate
         << ",\n  \"ticks_per_quarter\": " << ticks_per_quarter
         << ",\n  \"tempo_milli_bpm\": " << p.tempo_milli_bpm
@@ -175,7 +182,9 @@ void write_score(const PerformancePlan& p, const std::string& path) {
         for (std::size_t j = 0; j < t.notes.size(); ++j) {
             const auto& n = t.notes[j];
             out << (j ? "," : "") << "\n      {\"start_tick\": " << n.start << ", \"duration_ticks\": "
-                << n.duration << ", \"note\": " << n.pitch << ", \"velocity\": " << n.velocity << "}";
+                << n.duration << ", \"note\": " << n.pitch << ", \"velocity\": " << n.velocity;
+            if (n.muted) out<<", \"muted\": true";
+            out<<"}";
         }
         out << "\n    ]}";
     }

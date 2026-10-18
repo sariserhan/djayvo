@@ -10,7 +10,7 @@ using Tick = std::int64_t;
 constexpr Tick ticks_per_quarter = 960;
 constexpr std::size_t max_voices = 128;
 
-enum class Instrument { piano, bass, drums };
+enum class Instrument { piano, bass, drums, guitar };
 const char* instrument_name(Instrument instrument);
 
 struct Note {
@@ -18,6 +18,7 @@ struct Note {
     Tick duration = ticks_per_quarter;
     int pitch = 60;
     int velocity = 96; // MIDI 1..127; use note duration for note-off
+    bool muted = false; // recorded guitar staccato attack
 };
 struct MixPoint { Tick tick = 0; double gain_db = -9, pan = 0; };
 struct TempoChange { Tick tick = 0; std::uint32_t tempo_milli_bpm = 100000; };

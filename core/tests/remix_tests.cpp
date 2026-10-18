@@ -321,7 +321,19 @@ void funk_composition() {
             if (n.pitch==36) check(std::any_of(bass.begin(),bass.end(),[&](const auto& b){return b.start==n.start;}),
                                   "funk kick no longer locks to the bass");
         }
-        for (const auto& n:p.music.tracks[0].notes) if (n.start>=7680 && n.start<30720 && n.duration<=240) ++short_chords;
+        for (const auto& track:p.music.tracks) if (track.instrument==djayvo::Instrument::guitar)
+            for (const auto& n:track.notes) if (n.start>=7680 && n.start<30720 && n.duration<=240 && n.muted) ++short_chords;
+        const auto& guitar=p.music.tracks[3];
+        check(guitar.instrument==djayvo::Instrument::guitar && guitar.notes.size()%3==0,"guitar strums missing");
+        bool up=false,down=false,normal=false,muted=false;
+        for (std::size_t i=0;i<guitar.notes.size();i+=3) {
+            const auto& a=guitar.notes[i];const auto& b=guitar.notes[i+1];const auto& c=guitar.notes[i+2];
+            check(b.start-a.start==24 && c.start-b.start==24,"guitar strings strike simultaneously");
+            check(a.start+a.duration==b.start+b.duration && b.start+b.duration==c.start+c.duration,"strum muting is not coordinated");
+            up|=a.pitch>b.pitch && b.pitch>c.pitch;down|=a.pitch<b.pitch && b.pitch<c.pitch;
+            normal|=!a.muted;muted|=a.muted;
+        }
+        check(up && down && normal && muted,"guitar lacks strum direction or attack articulation");
         check(offbeat_bass>=12 && ghosts>=6 && short_chords>=36,"funk lost syncopation, ghost notes or stabs");
         check(shape(p)==shape(djayvo::make_remix(a,features,djayvo::Strategy::funk,seed,true,false)),"funk is not seed repeatable");
         for (auto other:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club})
@@ -443,7 +455,7 @@ void stem_identity() {
         }
         const auto full=render(p,a,257);
         auto sum=render(p,a,113,true);
-        for(int solo=0;solo<3;++solo) {
+        for(int solo=0;solo<=static_cast<int>(djayvo::Instrument::guitar);++solo) {
             const auto stem=render(p,a,113,false,solo);
             for(std::size_t i=0;i<sum.size();++i)sum[i]+=stem[i];
         }

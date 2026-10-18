@@ -1,0 +1,340 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "gate": "PASS",
+    "players": [
+      {
+        "name": "owner-funk-4123 mix",
+        "duration": 32,
+        "seek": 10
+      },
+      {
+        "name": "owner-funk-4123 before",
+        "duration": 32,
+        "seek": 10.00012
+      },
+      {
+        "name": "owner-funk-4123 guitar",
+        "duration": 32,
+        "seek": 10.000089
+      },
+      {
+        "name": "owner-funk-4123 voice",
+        "duration": 32,
+        "seek": 10.000134
+      },
+      {
+        "name": "owner-funk-4124 mix",
+        "duration": 30.965521,
+        "seek": 10.000075
+      },
+      {
+        "name": "owner-funk-4124 before",
+        "duration": 30.965521,
+        "seek": 10.000069
+      },
+      {
+        "name": "owner-funk-4124 guitar",
+        "duration": 30.965521,
+        "seek": 10.00005
+      },
+      {
+        "name": "owner-funk-4124 voice",
+        "duration": 30.965521,
+        "seek": 10.000042
+      },
+      {
+        "name": "owner-funk-4125 mix",
+        "duration": 30.965521,
+        "seek": 10.000081
+      },
+      {
+        "name": "owner-funk-4125 before",
+        "duration": 30.965521,
+        "seek": 10.000076
+      },
+      {
+        "name": "owner-funk-4125 guitar",
+        "duration": 30.965521,
+        "seek": 10.000044
+      },
+      {
+        "name": "owner-funk-4125 voice",
+        "duration": 30.965521,
+        "seek": 10.001649
+      },
+      {
+        "name": "owner-funk-4126 mix",
+        "duration": 30.965521,
+        "seek": 10.000081
+      },
+      {
+        "name": "owner-funk-4126 before",
+        "duration": 30.965521,
+        "seek": 10.00005
+      },
+      {
+        "name": "owner-funk-4126 guitar",
+        "duration": 30.965521,
+        "seek": 10.00005
+      },
+      {
+        "name": "owner-funk-4126 voice",
+        "duration": 30.965521,
+        "seek": 10.000053
+      },
+      {
+        "name": "owner-hybrid-4123 mix",
+        "duration": 36.285708,
+        "seek": 10.000065
+      },
+      {
+        "name": "owner-hybrid-4123 before",
+        "duration": 36.285708,
+        "seek": 10.003944
+      },
+      {
+        "name": "owner-hybrid-4123 guitar",
+        "duration": 36.285708,
+        "seek": 10.000054
+      },
+      {
+        "name": "owner-hybrid-4123 voice",
+        "duration": 36.285708,
+        "seek": 10.000053
+      },
+      {
+        "name": "owner-hybrid-4124 mix",
+        "duration": 35.103458,
+        "seek": 10.000034
+      },
+      {
+        "name": "owner-hybrid-4124 before",
+        "duration": 35.103458,
+        "seek": 10.00001
+      },
+      {
+        "name": "owner-hybrid-4124 guitar",
+        "duration": 35.103458,
+        "seek": 10.000049
+      },
+      {
+        "name": "owner-hybrid-4124 voice",
+        "duration": 35.103458,
+        "seek": 10.00006
+      },
+      {
+        "name": "owner-hybrid-4125 mix",
+        "duration": 35.103458,
+        "seek": 10.00005
+      },
+      {
+        "name": "owner-hybrid-4125 before",
+        "duration": 35.103458,
+        "seek": 10.000067
+      },
+      {
+        "name": "owner-hybrid-4125 guitar",
+        "duration": 35.103458,
+        "seek": 10.000048
+      },
+      {
+        "name": "owner-hybrid-4125 voice",
+        "duration": 35.103458,
+        "seek": 10.000052
+      },
+      {
+        "name": "owner-hybrid-4126 mix",
+        "duration": 35.103458,
+        "seek": 10.000039
+      },
+      {
+        "name": "owner-hybrid-4126 before",
+        "duration": 35.103458,
+        "seek": 10.000021
+      },
+      {
+        "name": "owner-hybrid-4126 guitar",
+        "duration": 35.103458,
+        "seek": 10.000061
+      },
+      {
+        "name": "owner-hybrid-4126 voice",
+        "duration": 35.103458,
+        "seek": 10.000064
+      }
+    ],
+    "errors": [],
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "gate": "PASS",
+    "players": [
+      {
+        "name": "owner-funk-4123 mix",
+        "duration": 32,
+        "seek": 10.00110124067578
+      },
+      {
+        "name": "owner-funk-4123 before",
+        "duration": 32,
+        "seek": 10.008594307277235
+      },
+      {
+        "name": "owner-funk-4123 guitar",
+        "duration": 32,
+        "seek": 10.000902932777535
+      },
+      {
+        "name": "owner-funk-4123 voice",
+        "duration": 32,
+        "seek": 10.000864886445925
+      },
+      {
+        "name": "owner-funk-4124 mix",
+        "duration": 30.965520833333333,
+        "seek": 10.00082864111755
+      },
+      {
+        "name": "owner-funk-4124 before",
+        "duration": 30.965520833333333,
+        "seek": 10.000808078679256
+      },
+      {
+        "name": "owner-funk-4124 guitar",
+        "duration": 30.965520833333333,
+        "seek": 10.009515633588308
+      },
+      {
+        "name": "owner-funk-4124 voice",
+        "duration": 30.965520833333333,
+        "seek": 10.000790886449977
+      },
+      {
+        "name": "owner-funk-4125 mix",
+        "duration": 30.965520833333333,
+        "seek": 10.000756229099352
+      },
+      {
+        "name": "owner-funk-4125 before",
+        "duration": 30.965520833333333,
+        "seek": 10.001812270769733
+      },
+      {
+        "name": "owner-funk-4125 guitar",
+        "duration": 30.965520833333333,
+        "seek": 10.008730884102988
+      },
+      {
+        "name": "owner-funk-4125 voice",
+        "duration": 30.965520833333333,
+        "seek": 10.008549840713385
+      },
+      {
+        "name": "owner-funk-4126 mix",
+        "duration": 30.965520833333333,
+        "seek": 10.008826175122522
+      },
+      {
+        "name": "owner-funk-4126 before",
+        "duration": 30.965520833333333,
+        "seek": 10.001214157353388
+      },
+      {
+        "name": "owner-funk-4126 guitar",
+        "duration": 30.965520833333333,
+        "seek": 10.00020272443362
+      },
+      {
+        "name": "owner-funk-4126 voice",
+        "duration": 30.965520833333333,
+        "seek": 10.000165828678291
+      },
+      {
+        "name": "owner-hybrid-4123 mix",
+        "duration": 36.28570833333333,
+        "seek": 10.000144245335832
+      },
+      {
+        "name": "owner-hybrid-4123 before",
+        "duration": 36.28570833333333,
+        "seek": 10.000215953667066
+      },
+      {
+        "name": "owner-hybrid-4123 guitar",
+        "duration": 36.28570833333333,
+        "seek": 10.0001505370019
+      },
+      {
+        "name": "owner-hybrid-4123 voice",
+        "duration": 36.28570833333333,
+        "seek": 10.000239703673287
+      },
+      {
+        "name": "owner-hybrid-4124 mix",
+        "duration": 35.103458333333336,
+        "seek": 10.00023901106033
+      },
+      {
+        "name": "owner-hybrid-4124 before",
+        "duration": 35.103458333333336,
+        "seek": 10.000285157351755
+      },
+      {
+        "name": "owner-hybrid-4124 guitar",
+        "duration": 35.103458333333336,
+        "seek": 10.000212067097891
+      },
+      {
+        "name": "owner-hybrid-4124 voice",
+        "duration": 35.103458333333336,
+        "seek": 10.00014882866526
+      },
+      {
+        "name": "owner-hybrid-4125 mix",
+        "duration": 35.103458333333336,
+        "seek": 10.000169120336068
+      },
+      {
+        "name": "owner-hybrid-4125 before",
+        "duration": 35.103458333333336,
+        "seek": 10.00014831936278
+      },
+      {
+        "name": "owner-hybrid-4125 guitar",
+        "duration": 35.103458333333336,
+        "seek": 10.000131432781927
+      },
+      {
+        "name": "owner-hybrid-4125 voice",
+        "duration": 35.103458333333336,
+        "seek": 10.000262495334027
+      },
+      {
+        "name": "owner-hybrid-4126 mix",
+        "duration": 35.103458333333336,
+        "seek": 10.001100120338378
+      },
+      {
+        "name": "owner-hybrid-4126 before",
+        "duration": 35.103458333333336,
+        "seek": 10.000148282342707
+      },
+      {
+        "name": "owner-hybrid-4126 guitar",
+        "duration": 35.103458333333336,
+        "seek": 10.000191520768567
+      },
+      {
+        "name": "owner-hybrid-4126 voice",
+        "duration": 35.103458333333336,
+        "seek": 10.000116192095447
+      }
+    ],
+    "errors": [],
+    "human_listening": "NOT RUN"
+  }
+]

@@ -10,7 +10,18 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest creative continuation, 2026-10-18: [Call-response, hybrid and repeat checking](creative-strategies.md).
+Latest instrument continuation, 2026-10-18: [Recorded guitar and articulated strums](guitar.md).
+78 pinned CC0 note recordings provide normal/staccato, two normal dynamics and
+alternate takes; funk/hybrid now use alternating strums. Plans, strict import,
+validation, stems, completion verification and bundled notices include guitar.
+**M5/Linux release 11/11, 90 exact cross-OS WAVs, 30 unchanged other-style WAVs,
+unchanged owner voice stems, seven-style WASM and full browser flow: PASS.**
+Final M5 ASan/UBSan: **PASS**, 11/11 suites (461.89 s).
+Eight matched before/after pairs are prepared. **Listening: NOT RUN; full spec:
+PARTIAL.** Organ/pad/lead and later effects/quality/release gates remain open.
+No cloud use, reference-track sampling, model, deployment or phone execution.
+
+Previous creative continuation, 2026-10-18: [Call-response, hybrid and repeat checking](creative-strategies.md).
 Both new directions, strict plan replay and local web persistence are implemented.
 **M5/Linux release 10/10, actual Mac smoke, 80 exact cross-OS WAVs, 30 preserved
 legacy WAVs, seven styles in Node/Chromium/WebKit, seven web unit groups and full

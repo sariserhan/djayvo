@@ -95,8 +95,8 @@ struct RemixView: View {
                             Text("Record and import only sounds you have permission to use. Get permission from recognizable speakers before recording or sharing them. Take special care with children's voices and private information.")
                             Text("Sessions stay in the app until you delete them or uninstall it. Save marks a favorite; every completed session already stays in your library. Share exports only the selected WAV through an app you choose. Copies you share are outside Djayvo's control.")
                             Text("Instrument credits").font(.headline)
-                            Text("Acoustic notes and drums: VSCO 2 CE and VCSL, Versilian Studios / Sam Gossner, Ivy Audio / Simon Dalzell and contributors. Used under CC0. Electronic sounds and arrangements are original Djayvo material.")
-                            ForEach(["VSCO-2-CE-LICENSE", "VCSL-LICENSE"], id: \.self) { name in
+                            Text("Acoustic notes and drums: VSCO 2 CE and VCSL, Versilian Studios / Sam Gossner, Ivy Audio / Simon Dalzell and contributors. Electric guitar: Brian Wood / Karoryfer Lecolds, Black And Green Guitars. Used under CC0. Electronic sounds and arrangements are original Djayvo material.")
+                            ForEach(["VSCO-2-CE-LICENSE", "VCSL-LICENSE", "BLACK-AND-GREEN-GUITARS-CC0"], id: \.self) { name in
                                 if let url = Bundle.main.url(forResource: name, withExtension: "txt", subdirectory: "licenses"), let notice = try? String(contentsOf: url, encoding: .utf8) {
                                     DisclosureGroup(name) { Text(notice).font(.caption).textSelection(.enabled) }
                                 }

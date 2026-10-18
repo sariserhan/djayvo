@@ -6,7 +6,7 @@
   "additionalProperties": false,
   "required": ["schema_version", "seed", "source_asset_id", "sample_rate", "ticks_per_quarter", "tempo_milli_bpm", "time_signature", "target_bars", "strategy", "tail_ms", "mix", "sections", "tracks"],
   "properties": {
-    "schema_version": {"enum": ["1.0-m0a", "1.1-m0a"]},
+    "schema_version": {"enum": ["1.0-m0a", "1.1-m0a", "1.2-m0a"]},
     "seed": {"type": "integer", "minimum": 0, "maximum": 4294967295},
     "source_asset_id": {"type": "null"},
     "sample_rate": {"type": "integer", "minimum": 8000, "maximum": 192000},
@@ -43,21 +43,21 @@
         "type": "object", "additionalProperties": false,
         "required": ["instrument", "gain_db", "pan", "events"],
         "properties": {
-          "instrument": {"enum": ["piano", "bass", "drums"]},
+          "instrument": {"enum": ["piano", "bass", "drums", "guitar"]},
           "automation": {"type": "array", "minItems": 1, "maxItems": 128, "items": {"type": "object", "additionalProperties": false, "required": ["start_tick", "gain_db", "pan"], "properties": {"start_tick": {"type": "integer", "minimum": 0}, "gain_db": {"type": "number", "minimum": -60, "maximum": 12}, "pan": {"type": "number", "minimum": -1, "maximum": 1}}}, "allOf": [{"prefixItems": [{"properties": {"start_tick": {"const": 0}}}]}]},
           "sound": {"enum": ["acoustic", "electronic"]},
           "gain_db": {"type": "number", "minimum": -60, "maximum": 12},
           "pan": {"type": "number", "minimum": -1, "maximum": 1},
           "events": {"type": "array", "maxItems": 100000, "items": {"$ref": "#/$defs/note"}}
         },
-        "allOf": [{
+        "allOf": [{"if": {"properties": {"instrument": {"const": "guitar"}}}, "then": {"properties": {"sound": {"const": "acoustic"}, "events": {"items": {"properties": {"note": {"minimum": 40, "maximum": 79}}}}}}, "else": {"properties": {"events": {"items": {"properties": {"muted": {"const": false}}}}}}}, {
           "if": {"properties": {"instrument": {"const": "drums"}}},
           "then": {"properties": {"events": {"items": {"properties": {"note": {"enum": [36, 38, 42, 46]}}}}}}
         }]
       }
     }
   },
-  "allOf": [{"if": {"properties": {"schema_version": {"enum": ["1.0-m0a"]}}}, "then": {"not": {"required": ["tempo_changes"]}, "properties": {"tracks": {"items": {"not": {"required": ["automation"]}}}}}}],
+  "allOf": [{"if": {"properties": {"schema_version": {"enum": ["1.0-m0a"]}}}, "then": {"not": {"required": ["tempo_changes"]}, "properties": {"tracks": {"items": {"not": {"required": ["automation"]}}}}}}, {"if": {"properties": {"schema_version": {"enum": ["1.0-m0a", "1.1-m0a"]}}}, "then": {"properties": {"tracks": {"items": {"properties": {"instrument": {"enum": ["piano", "bass", "drums"]}, "events": {"items": {"not": {"required": ["muted"]}}}}}}}}}],
   "$defs": {
     "note": {
       "type": "object", "additionalProperties": false,
@@ -66,7 +66,8 @@
         "start_tick": {"type": "integer", "minimum": 0},
         "duration_ticks": {"type": "integer", "minimum": 1},
         "note": {"type": "integer", "minimum": 21, "maximum": 108},
-        "velocity": {"type": "integer", "minimum": 1, "maximum": 127}
+        "velocity": {"type": "integer", "minimum": 1, "maximum": 127},
+        "muted": {"type": "boolean"}
       }
     }
   }

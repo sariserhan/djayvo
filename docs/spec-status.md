@@ -11,7 +11,7 @@ paused. [TODO](../TODO.md) tracks individual past/future work and evidence links
 | §1 Instant Remix product | PARTIAL | Record/import, trim, three takes, regeneration, play/save/share implemented; human recognizability, meaningful audible diversity and production acceptance remain |
 | §2 portable hardware workflow | PASS | Actual M5 and Linux arm64 execution; isolated environments; original physical Intel rerun remains NOT RUN |
 | §3 portable engine and clock | PASS | C++17, deterministic integer-frame scheduling, bounded polyphony, offline WAV/stems, source provenance and cancellation |
-| §3.1 full instrument/effect breadth | PARTIAL | Sampled piano/bass/drums, electronic palette, bounded independent voice pitch/time and finite tempo echoes; guitar strum/muting, organ, dedicated pad/lead roles, feedback delay/reverb remain unimplemented; tempo maps and track mix automation now implemented; transformed-voice listening remains open |
+| §3.1 full instrument/effect breadth | PARTIAL | Sampled piano/bass/drums, electronic palette, bounded independent voice pitch/time and finite tempo echoes; recorded guitar strum/muting now implemented; organ, dedicated pad/lead roles, feedback delay/reverb remain unimplemented; tempo maps and track mix automation now implemented; transformed-voice listening remains open |
 | §3.2 input analysis | PARTIAL | Bounded decoding/resampling, energy/onset/pitch heuristics and pause-aware crops; reliable word timing, semantic selection and optional classifier/transcriber modules remain unimplemented |
 | §3.3–3.4 plans and creative direction | PARTIAL | Rule grammars with seed-selected hip-hop and syncopated funk, developed returns and input-timed responses, typed native plans, JSON export and now strict offline import with explicit fallback; standalone hybrid/call-response and bounded recent-structure rejection implemented; learned direction/ranking, provider retry policy and quality comparisons remain NOT RUN |
 | §4 musical quality and creativity | PARTIAL | Informal owner improvement feedback and matched controls; diverse blinded comparison, perceptual novelty and target thresholds remain NOT RUN |
@@ -42,7 +42,10 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
-Latest local engine work: [Call-response, hybrid and recent-composition rejection](creative-strategies.md).
+Latest local engine work: [Recorded guitar and articulated strums](guitar.md).
+90 exact M5/Linux WAVs and seven browser styles pass; eight matched owner pairs
+are ready. Guitar realism/acceptance NOT RUN.
+Previous local engine work: [Call-response, hybrid and recent-composition rejection](creative-strategies.md).
 80 exact M5/Linux WAVs, seven browser styles and retry/persistence flows pass.
 Eight private owner takes are ready; listening NOT RUN.
 Previous local engine work: [Funk composition and web integration](funk.md).

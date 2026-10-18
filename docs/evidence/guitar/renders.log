@@ -1,0 +1,44 @@
+PASS: renders/guitar-20261018/owner-funk-4123.funk.wav
+PASS: complete export renders/guitar-20261018/owner-funk-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/owner-funk-4124.funk.wav
+PASS: complete export renders/guitar-20261018/owner-funk-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/owner-funk-4125.funk.wav
+PASS: complete export renders/guitar-20261018/owner-funk-4125.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/owner-funk-4126.funk.wav
+PASS: complete export renders/guitar-20261018/owner-funk-4126.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/owner-hybrid-4123.hybrid.wav
+PASS: complete export renders/guitar-20261018/owner-hybrid-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/owner-hybrid-4124.hybrid.wav
+PASS: complete export renders/guitar-20261018/owner-hybrid-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/owner-hybrid-4125.hybrid.wav
+PASS: complete export renders/guitar-20261018/owner-hybrid-4125.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/owner-hybrid-4126.hybrid.wav
+PASS: complete export renders/guitar-20261018/owner-hybrid-4126.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/fixture.hiphop.wav
+PASS: renders/guitar-20261018/fixture.reggae.wav
+PASS: renders/guitar-20261018/fixture.experimental.wav
+PASS: complete export renders/guitar-20261018/fixture.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/club.club.wav
+PASS: complete export renders/guitar-20261018/club.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/funk.funk.wav
+PASS: complete export renders/guitar-20261018/funk.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/baseline.baseline.wav
+PASS: complete export renders/guitar-20261018/baseline.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/call_response.call_response.wav
+PASS: complete export renders/guitar-20261018/call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/guitar-20261018/hybrid.hybrid.wav
+PASS: complete export renders/guitar-20261018/hybrid.complete.json
+Listening/recognizability: NOT RUN

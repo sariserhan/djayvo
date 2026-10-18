@@ -133,6 +133,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     Track piano{Instrument::piano,-10,-0.20,{}};
     Track bass{Instrument::bass,-8,0,{}};
     Track drums{Instrument::drums,-9,0.08,{}};
+    Track guitar{Instrument::guitar,-12,0.22,{}};
     if (club) {
         piano.electronic=bass.electronic=drums.electronic=true;
         piano.gain_db=-12;piano.pan=-0.30;bass.gain_db=-7;drums.gain_db=-3;drums.pan=0;
@@ -197,8 +198,11 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         previous_chord=voicing;
         auto chord = [&](Tick start,Tick duration,int strength) {
             for (std::size_t n=0;n<voicing.size();++n) {
-                const Tick roll=static_cast<Tick>(n)*12;
-                piano.notes.push_back({base+start+roll,duration-roll,voicing[n],velocity(strength+(n==2?4:-3))});
+                const bool strum=funk_bar && !intro && !breakdown;
+                const Tick roll=static_cast<Tick>(n)*(strum?24:12);
+                const auto string=strum && (static_cast<unsigned>(b)+seed)%2U?voicing.size()-1-n:n;
+                auto& notes=strum?guitar.notes:piano.notes;
+                notes.push_back({base+start+roll,duration-roll,voicing[string],velocity(strength+(n==2?4:-3)),strum && duration<=q/2});
             }
         };
         auto bass_note = [&](Tick start,Tick duration,int interval,int strength) {
@@ -365,6 +369,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     }
     r.vocals=std::move(spaced);
     p.tracks={piano,bass,drums};
+    if (!guitar.notes.empty()) p.tracks.push_back(std::move(guitar));
     validate(r,source);
     return r;
 }

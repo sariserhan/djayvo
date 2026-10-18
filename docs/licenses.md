@@ -145,3 +145,15 @@ linked nor bundled. The committed Xcode project builds without XcodeGen or any
 package download. Actual Xcode/SDK/device versions and validation boundaries are
 in [the iOS report](ios-instant-remix.md). This inventory is not final release
 rights or App Store approval.
+
+## Recorded electric guitar
+
+[Recorded guitar implementation and evidence](guitar.md) adds 78 single-note
+recordings by Brian Wood / Karoryfer Lecolds, pinned to the Black And Green
+Guitars repository commit `b3b3249d37dc977a1a297bd2dc053e6d9b6b805c`.
+The repository's CC0 license permits commercial modification/redistribution.
+`assets/manifests/guitar-v1.json` carries per-source hashes and prepared PCM
+metadata; `assets/licenses/BLACK-AND-GREEN-GUITARS-CC0.txt` retains the full
+notice. No Sforzando code/plugin is bundled. `prepare_guitar_bank.py` reuses the
+existing standard-library PCM preparation; `verify_guitar_assets.py` audits the
+compiled bank offline. Djayvo's own outbound license remains unselected.

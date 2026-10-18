@@ -13,25 +13,27 @@ struct InstrumentSample {
     const std::int16_t* pcm;
     std::size_t frames;
     std::uint32_t rate;
+    bool muted = false;
 };
 #include "acoustic_bank.inc"
 #include "electronic_bank.inc"
-const InstrumentSample& select_sample(Instrument instrument,int pitch,int velocity,std::uint32_t seed,bool electronic) noexcept {
-    const int layer=!electronic && instrument==Instrument::piano?(velocity<=55?55:velocity<=95?95:127):127;
+#include "guitar_bank.inc"
+const InstrumentSample& select_sample(Instrument instrument,int pitch,int velocity,std::uint32_t seed,bool electronic,bool muted) noexcept {
+    const int layer=instrument==Instrument::guitar?(muted?127:velocity<=84?84:127):!electronic && instrument==Instrument::piano?(velocity<=55?55:velocity<=95?95:127):127;
     const unsigned take=(instrument==Instrument::bass || (electronic && instrument==Instrument::piano))?0:seed%2U;
     const InstrumentSample* best=nullptr;
-    const auto* bank=electronic?electronic_samples:samples;
-    const auto size=electronic?sizeof(electronic_samples)/sizeof(*electronic_samples):sizeof(samples)/sizeof(*samples);
+    const auto* bank=instrument==Instrument::guitar?guitar_samples:electronic?electronic_samples:samples;
+    const auto size=instrument==Instrument::guitar?sizeof(guitar_samples)/sizeof(*guitar_samples):electronic?sizeof(electronic_samples)/sizeof(*electronic_samples):sizeof(samples)/sizeof(*samples);
     for (std::size_t i=0;i<size;++i) {
         const auto& sample=bank[i];
-        if (sample.instrument!=instrument || sample.velocity_max!=layer || sample.take!=take) continue;
+        if (sample.instrument!=instrument || sample.velocity_max!=layer || sample.take!=take || sample.muted!=muted) continue;
         if (!best || std::abs(sample.root_midi-pitch)<std::abs(best->root_midi-pitch)) best=&sample;
     }
     return *best; // Every validated instrument has entries in the compiled bank.
 }
 }
 std::uint32_t release_frames(Instrument instrument,std::uint32_t rate) {
-    const double seconds=instrument==Instrument::piano?0.30:instrument==Instrument::bass?0.16:0.18;
+    const double seconds=instrument==Instrument::piano?0.30:instrument==Instrument::bass?0.16:instrument==Instrument::guitar?0.12:0.18;
     return static_cast<std::uint32_t>(std::llround(seconds*rate));
 }
 void Voice::start(const Event& e,std::uint32_t rate) noexcept {
@@ -39,7 +41,7 @@ void Voice::start(const Event& e,std::uint32_t rate) noexcept {
     instrument_=e.instrument;pitch_=e.pitch;id_=e.note_id;rate_=rate;
     automation_=e.automation;
     release_length_=release_frames(instrument_,rate);
-    const auto& sample=select_sample(instrument_,pitch_,e.velocity,e.noise_seed,e.electronic);
+    const auto& sample=select_sample(instrument_,pitch_,e.velocity,e.noise_seed,e.electronic,e.muted);
     sample_=sample.pcm;sample_frames_=sample.frames;sample_position_=0;
     sample_step_=static_cast<double>(sample.rate)/rate;
     if (instrument_!=Instrument::drums) sample_step_*=std::exp2((pitch_-sample.root_midi)/12.0);
@@ -48,6 +50,7 @@ void Voice::start(const Event& e,std::uint32_t rate) noexcept {
     // shortcut: discrete recorded layers; assess boundary jumps before adding crossfades.
     const double brightness=e.velocity/127.0;
     const double cutoff_hz=instrument_==Instrument::piano?1600+6400*brightness:
+                           instrument_==Instrument::guitar?1800+6000*brightness:
                            instrument_==Instrument::bass?1200+3500*brightness:2500+8000*brightness;
     tone_=0;tone_alpha_=1-std::exp(-2*pi*std::min(cutoff_hz,rate*0.45)/rate);
     left_gain_=e.left_gain;right_gain_=e.right_gain;

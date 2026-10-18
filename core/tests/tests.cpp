@@ -236,6 +236,32 @@ void instruments() {
           "silent drum voice");
     check(kick != snare && snare != hat && hat != open, "drum sounds identical");
 }
+void guitar_articulation() {
+    const auto note=[](int pitch,int velocity,unsigned seed,bool muted) {
+        djayvo::Event e;e.instrument=djayvo::Instrument::guitar;e.pitch=pitch;e.velocity=velocity;e.noise_seed=seed;e.muted=muted;
+        djayvo::Voice v;v.start(e,16000);std::vector<float> out(16000);
+        for (auto& x:out) {x=v.next();check(std::isfinite(x),"nonfinite guitar voice");}
+        return out;
+    };
+    for (int pitch=40;pitch<=79;++pitch) {
+        const auto normal=note(pitch,80,1,false),mute=note(pitch,80,1,true);
+        check(energy(normal)>0 && energy(mute)>0 && normal!=mute,"guitar attacks missing");
+        check(normal==note(pitch,80,1,false),"guitar not repeatable");
+        check(normal!=note(pitch,80,0,false),"guitar alternate take missing");
+        check(normal!=note(pitch,100,1,false),"guitar dynamics missing");
+        check(std::all_of(mute.begin()+14400,mute.end(),[](float x){return x==0;}),"staccato tail did not end");
+    }
+    auto p=single();p.tracks[0].instrument=djayvo::Instrument::guitar;p.tracks[0].notes[0].pitch=60;
+    p.tracks[0].notes[0].muted=true;
+    auto schedule=djayvo::compile(p);djayvo::Renderer renderer(schedule,113);
+    float buffer[226];const auto before=allocations.load();
+    while(!renderer.finished()) renderer.process(buffer,113);
+    check(allocations.load()==before,"guitar allocates during audio processing");
+    for (int pitch:{39,80}) {auto bad=p;bad.tracks[0].notes[0].pitch=pitch;rejects([&]{djayvo::compile(bad);});}
+    auto bad=p;bad.tracks[0].electronic=true;rejects([&]{djayvo::compile(bad);});
+    bad=p;bad.tracks[0].instrument=djayvo::Instrument::piano;rejects([&]{djayvo::compile(bad);});
+    schedule.events[0].instrument=static_cast<djayvo::Instrument>(99);rejects([&]{djayvo::Renderer invalid(schedule);});
+}
 void sample_articulation() {
     const auto note=[](djayvo::Instrument instrument,int pitch,int velocity,std::uint32_t seed) {
         djayvo::Event e;e.instrument=instrument;e.pitch=pitch;e.velocity=velocity;e.noise_seed=seed;
@@ -357,6 +383,7 @@ int main() {
         {"sample onsets, ordering, note-off and release", scheduling},
         {"seed and block-size determinism", deterministic},
         {"instrument frequency, octave, velocity and drum output", instruments},
+        {"recorded guitar pitches, attacks, layers, takes, limits and allocation-free processing", guitar_articulation},
         {"recorded piano dynamics and seeded piano/drum takes", sample_articulation},
         {"pan, gain, finite audio and overload ceiling", mixing},
         {"plan bounds, polyphony, silence and invalid requests", validation},

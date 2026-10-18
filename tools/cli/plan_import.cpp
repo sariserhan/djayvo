@@ -167,7 +167,8 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
     j.keys({"schema_version","seed","source_asset_id","sample_rate","source","tempo_milli_bpm",
             "ticks_per_quarter","time_signature","target_bars","tail_ms","strategy","key","mix",
             "analysis","sections","voice_clips","voice_events","tracks"},{"tempo_changes"});
-    const bool timeline=j.at("schema_version").string()=="1.3-remix";
+    const bool guitar=j.at("schema_version").string()=="1.4-remix";
+    const bool timeline=guitar || j.at("schema_version").string()=="1.3-remix";
     if (!timeline && j.has("tempo_changes")) reject("tempo changes require plan version 1.3");
     const bool echoes=timeline || j.at("schema_version").string()=="1.2-remix";
     const bool transforms=echoes || j.at("schema_version").string()=="1.1-remix";
@@ -237,6 +238,7 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
         if (name=="piano") track.instrument=Instrument::piano;
         else if (name=="bass") track.instrument=Instrument::bass;
         else if (name=="drums") track.instrument=Instrument::drums;
+        else if (name=="guitar" && guitar) track.instrument=Instrument::guitar;
         else reject("unsupported instrument/asset");
         track.gain_db=t.at("gain_db").number();track.pan=t.at("pan").number();
         if (t.has("automation")) for (const auto& point:t.at("automation").array(1,128)) {
@@ -250,9 +252,11 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
         }
         for (const auto& e:t.at("events").array(0,100000)) {
             if (++notes>100000) reject("plan event budget exceeded");
-            e.keys({"start_tick","duration_ticks","note","velocity"});
+            e.keys({"start_tick","duration_ticks","note","velocity"},{"muted"});
+            if (e.has("muted") && !guitar) reject("guitar articulation requires plan version 1.4");
             track.notes.push_back({e.at("start_tick").integer(),e.at("duration_ticks").integer(),
                                   static_cast<int>(e.at("note").integer(108)),static_cast<int>(e.at("velocity").integer(127))});
+            if (e.has("muted")) track.notes.back().muted=e.at("muted").boolean();
             const auto& note=track.notes.back();
             const int degree=((note.pitch-r.tonic_midi)%12+12)%12;
             // The current minor-key contract permits short chromatic passing notes.

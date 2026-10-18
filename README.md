@@ -13,7 +13,8 @@ Track past work, open issues and future milestones in [TODO.md](TODO.md).
 The [complete specification ledger](docs/spec-status.md) records remaining code
 and evidence gates; overall completion is **PARTIAL**.
 
-Latest local engine work: [Call-response, hybrid and recent-composition checks](docs/creative-strategies.md).
+Latest local engine work: [Recorded guitar and articulated strums](docs/guitar.md).
+Previous local engine work: [Call-response, hybrid and recent-composition checks](docs/creative-strategies.md).
 Previous local engine work: [Funk composition, web integration and owner comparisons](docs/funk.md).
 Previous engine work: [tempo maps and mix automation](docs/timeline.md).
 Previous arrangement work: [hip-hop composition variety](docs/hiphop-diversity.md).

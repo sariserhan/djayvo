@@ -1,0 +1,27 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac-sanitize
+      Start  1: core
+ 1/11 Test  #1: core .............................   Passed   16.79 sec
+      Start  2: remix_core
+ 2/11 Test  #2: remix_core .......................   Passed  119.91 sec
+      Start  3: c_abi
+ 3/11 Test  #3: c_abi ............................   Passed   13.52 sec
+      Start  4: acoustic_assets
+ 4/11 Test  #4: acoustic_assets ..................   Passed    0.56 sec
+      Start  5: guitar_assets
+ 5/11 Test  #5: guitar_assets ....................   Passed    0.49 sec
+      Start  6: electronic_assets
+ 6/11 Test  #6: electronic_assets ................   Passed    0.10 sec
+      Start  7: wav_integration
+ 7/11 Test  #7: wav_integration ..................   Passed    8.35 sec
+      Start  8: remix_integration
+ 8/11 Test  #8: remix_integration ................   Passed   69.39 sec
+      Start  9: tooling
+ 9/11 Test  #9: tooling ..........................   Passed    1.24 sec
+      Start 10: evaluation_preparation
+10/11 Test #10: evaluation_preparation ...........   Passed   91.79 sec
+      Start 11: plan_import
+11/11 Test #11: plan_import ......................   Passed  139.73 sec
+
+100% tests passed out of 11
+
+Total Test time (real) = 461.89 sec

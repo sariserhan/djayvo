@@ -19,6 +19,7 @@ struct Event {
     std::uint32_t noise_seed = 1;
     bool electronic = false;
     int automation = -1;
+    bool muted = false;
 };
 struct MixFrame { std::uint64_t frame = 0; float left = 1, right = 1; };
 struct Schedule {

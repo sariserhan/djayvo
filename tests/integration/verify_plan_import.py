@@ -43,6 +43,29 @@ def main(renderer):
             replay=verify_export(root/('replay-'+style))
             assert original['artifacts']==replay['artifacts'], 'replay changed events, PCM or score'
             assert replay['planning']=={'mode':'imported','candidate_sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
+        guitar_plan=plans['funk']
+        assert guitar_plan['schema_version']=='1.4-remix'
+        guitar_track=next(t for t in guitar_plan['tracks'] if t['instrument']=='guitar')
+        assert any(e.get('muted') for e in guitar_track['events'])
+        assert (root/'rules-funk.funk.guitar.wav').is_file()
+        for name,edit in (
+            ('guitar-old-version',lambda p:p.update(schema_version='1.3-remix')),
+            ('guitar-pitch',lambda p:next(t for t in p['tracks'] if t['instrument']=='guitar')['events'][0].update(note=80)),
+            ('guitar-bank',lambda p:next(t for t in p['tracks'] if t['instrument']=='guitar').update(sound='electronic')),
+            ('guitar-articulation-type',lambda p:next(t for t in p['tracks'] if t['instrument']=='guitar')['events'][0].update(muted=1)),
+            ('piano-muted',lambda p:p['tracks'][0]['events'][0].update(muted=True)),
+        ):
+            bad=copy.deepcopy(guitar_plan);edit(bad);path=root/(name+'.candidate.json');path.write_text(json.dumps(bad))
+            # Candidate itself uses a different prefix from the rejected export.
+            run('rejected-'+name,('--style','funk','--plan',str(path)),success=False)
+        marker=root/'rules-funk.complete.json';original_marker=marker.read_text()
+        incomplete=json.loads(original_marker)
+        incomplete['artifacts']=[a for a in incomplete['artifacts'] if not a['suffix'].endswith('.guitar.wav')]
+        marker.write_text(json.dumps(incomplete))
+        try:verify_export(root/'rules-funk')
+        except ValueError:pass
+        else:raise AssertionError('missing guitar stem accepted')
+        marker.write_text(original_marker)
         base=plans['hiphop']
         sparse=copy.deepcopy(base)
         selected=add_echoes(sparse,480)

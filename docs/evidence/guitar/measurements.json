@@ -1,0 +1,1325 @@
+{
+  "portability": {
+    "owner-funk-4123.funk": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner-funk-4124.funk": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1486345,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner-funk-4125.funk": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1486345,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner-funk-4126.funk": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1486345,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner-hybrid-4123.hybrid": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner-hybrid-4124.hybrid": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1684966,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner-hybrid-4125.hybrid": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1684966,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner-hybrid-4126.hybrid": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1684966,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "fixture.hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "fixture.reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "fixture.experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "club.club": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "funk.funk": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "baseline.baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "call_response.call_response": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "hybrid.hybrid": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "waveforms": {
+    "owner-funk-4123.funk.wav": {
+      "sha256": "c54ec056706aaa4a129e53220d8cba690b233c3574d60a4dac253db774205093",
+      "frames": 1536000,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4123.funk.piano.wav": {
+      "sha256": "dc6445c1e49f3803b1b378eb140477799c50d2cf5fbae157ddb92ef3f7369e7b",
+      "frames": 1536000,
+      "sample_peak": 0.0872802734375,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4123.funk.bass.wav": {
+      "sha256": "5ecdd938e7d06b1bf1476100479a2c2140ba2fe663cf371f2f0cc218db0bfede",
+      "frames": 1536000,
+      "sample_peak": 0.19720458984375,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4123.funk.drums.wav": {
+      "sha256": "773594354c0517e6a6e5b05fb62868b1cfd412bdd1716aed062c1514599efcd7",
+      "frames": 1536000,
+      "sample_peak": 0.24517822265625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4123.funk.vocals.wav": {
+      "sha256": "7de1286226cf7925740c82849aa3e6e6d060841005b40fee583bec58f7c94f50",
+      "frames": 1536000,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4123.funk.guitar.wav": {
+      "sha256": "dbe6232c9e70ec71e48534f7ea37fca16d8af9ffe30cfb4575426d3c663e96ff",
+      "frames": 1536000,
+      "sample_peak": 0.186431884765625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4124.funk.wav": {
+      "sha256": "2b3d1b7687fb96ab0c969239cdaa6998ac11a83c76d08fe9f64680e2fa6df3df",
+      "frames": 1486345,
+      "sample_peak": 0.422576904296875,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4124.funk.piano.wav": {
+      "sha256": "80806db46b0949fbc6062fae3075a49f848986fac47b3787d661d31a386baa65",
+      "frames": 1486345,
+      "sample_peak": 0.126373291015625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4124.funk.bass.wav": {
+      "sha256": "a06007102fa7c6e51b847c611fecf1a1adddfda31f3d530437475f115fdb1113",
+      "frames": 1486345,
+      "sample_peak": 0.194000244140625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4124.funk.drums.wav": {
+      "sha256": "3cd0f269953180759279bd9423a5e9b836cb8e08352bbc6fa586b5751a6c8c5e",
+      "frames": 1486345,
+      "sample_peak": 0.223052978515625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4124.funk.vocals.wav": {
+      "sha256": "2c1796b30e89e6c125f73f78c1ae6f3170b9f75980e6f56a3edc5b0a8a08105d",
+      "frames": 1486345,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4124.funk.guitar.wav": {
+      "sha256": "6012927ea16245b7a44d73f813d8e4bb679a49c02ba72365301c9f134e60c1e4",
+      "frames": 1486345,
+      "sample_peak": 0.131805419921875,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4125.funk.wav": {
+      "sha256": "008c9df6d11e412e811f3ee90c3b357f7e11ad37e935f1fec7f2eaa2fb6dce5a",
+      "frames": 1486345,
+      "sample_peak": 0.397735595703125,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4125.funk.piano.wav": {
+      "sha256": "052e4ecd648d6109f4a9eb61d7ba3f4d0606a46ed80b08a36cd4b6b8dd6b627e",
+      "frames": 1486345,
+      "sample_peak": 0.131378173828125,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4125.funk.bass.wav": {
+      "sha256": "0df025c87bd7bcd4ca2ad4e2784c3be1c3042e90da65791873eda4832e19db6a",
+      "frames": 1486345,
+      "sample_peak": 0.197998046875,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4125.funk.drums.wav": {
+      "sha256": "174f61a77661e14e4979b5b1cfe77c9a354c6955f71f4718c4d363be3cf1cec3",
+      "frames": 1486345,
+      "sample_peak": 0.22650146484375,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4125.funk.vocals.wav": {
+      "sha256": "73c95b7cfbde6eee987b34c7809d0beb529cdbc3c1af898e4ee0f7438d0fa5fa",
+      "frames": 1486345,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4125.funk.guitar.wav": {
+      "sha256": "ba4df7df5cb382ebddbf446fe7e87c21af091e81be6838ab2f1967a37293f462",
+      "frames": 1486345,
+      "sample_peak": 0.210601806640625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4126.funk.wav": {
+      "sha256": "c8aaf88a0d16f766e97d0684ff17e70570d1929d90ee4f96213df6dc841897e0",
+      "frames": 1486345,
+      "sample_peak": 0.425537109375,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4126.funk.piano.wav": {
+      "sha256": "f9a6ed01ceb961ba0a7719bb60d801f855d184d2baeadeacf8c613be839d345f",
+      "frames": 1486345,
+      "sample_peak": 0.093048095703125,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4126.funk.bass.wav": {
+      "sha256": "833827077b2ccfda5fc24c3d4a0d1cdf15c63e08103903423a3ee87d94b7a078",
+      "frames": 1486345,
+      "sample_peak": 0.19775390625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4126.funk.drums.wav": {
+      "sha256": "efb62eecf35c74b9fabd5005e118c981a208eaac3797a630bb282a35098e2a28",
+      "frames": 1486345,
+      "sample_peak": 0.2379150390625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4126.funk.vocals.wav": {
+      "sha256": "619a778e2ac60f945ae2e7ca19671741f05f25e7c387a0cda96e72726f2dfd33",
+      "frames": 1486345,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "owner-funk-4126.funk.guitar.wav": {
+      "sha256": "44b3d16618fd62b28d23f270d1e768bda2c4ff795f363f9c42b67c1458baa567",
+      "frames": 1486345,
+      "sample_peak": 0.19329833984375,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4123.hybrid.wav": {
+      "sha256": "71501e4f277edd551e64fa5fe415ecd81cd61e24174155214a22fdb3a800c6d9",
+      "frames": 1741714,
+      "sample_peak": 0.48504638671875,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4123.hybrid.piano.wav": {
+      "sha256": "593a09c1ad4ed8c3ffcfcb21adf73ce48bf5b7a8b2d69cb8c0e1f7be828b83fc",
+      "frames": 1741714,
+      "sample_peak": 0.266937255859375,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4123.hybrid.bass.wav": {
+      "sha256": "0d5b25a1d80f31ef7f4db3c2d1c464907caa593bb0ed2ededa0ad22315a084e7",
+      "frames": 1741714,
+      "sample_peak": 0.19207763671875,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4123.hybrid.drums.wav": {
+      "sha256": "69588f226e86295e32eaad4aa01f746327905b355deec449b427996ce6b2339f",
+      "frames": 1741714,
+      "sample_peak": 0.25152587890625,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4123.hybrid.vocals.wav": {
+      "sha256": "106880344889bcbc5077f72f4e7aa1a3b476bd6d28664d597b9963ec4d5e77ef",
+      "frames": 1741714,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4123.hybrid.guitar.wav": {
+      "sha256": "12bc5cc56e643432ac02dbb3dd98cb073a5bf8fd5065df891a6bfd49cc086559",
+      "frames": 1741714,
+      "sample_peak": 0.0849609375,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4124.hybrid.wav": {
+      "sha256": "276812f0cb26571a234fcc6ec02be2324b1df588f1617b6da39f73c45e2f8191",
+      "frames": 1684966,
+      "sample_peak": 0.421051025390625,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4124.hybrid.piano.wav": {
+      "sha256": "dcf09b9061fd34264847368a8f887481316ed286b3ee506a8631f3d7cc0004a8",
+      "frames": 1684966,
+      "sample_peak": 0.293853759765625,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4124.hybrid.bass.wav": {
+      "sha256": "68327ce61aa33b8dd6c0e71256bdfaa437f0971e083137cca08fdebf46764cc6",
+      "frames": 1684966,
+      "sample_peak": 0.189483642578125,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4124.hybrid.drums.wav": {
+      "sha256": "27a0dfdc3c6f2226136656e430dd0b71232dd6b9f78a5940c06d08020f6c63c5",
+      "frames": 1684966,
+      "sample_peak": 0.259063720703125,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4124.hybrid.vocals.wav": {
+      "sha256": "fb4d67e3d169f29cc95f9a9efce70fbc5b6a2eae80c206cb2b86d213b880f489",
+      "frames": 1684966,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4124.hybrid.guitar.wav": {
+      "sha256": "fc8efb4fb53ab7ed41dd3b742b9f12a0479ef087d6b8879a834017b563cd16f0",
+      "frames": 1684966,
+      "sample_peak": 0.16693115234375,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4125.hybrid.wav": {
+      "sha256": "e48ed4e79ec9c114488d8270b684844f60f2ec0759d48e11e79fac6601f0dceb",
+      "frames": 1684966,
+      "sample_peak": 0.429656982421875,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4125.hybrid.piano.wav": {
+      "sha256": "54d6f81d2d77d45f0e36d48220cfaecef463a539c379d063a79f101a49394fef",
+      "frames": 1684966,
+      "sample_peak": 0.295562744140625,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4125.hybrid.bass.wav": {
+      "sha256": "a3aca09613c0781648f8a19c3272aead304173c8e0ceca2788fc6800200b854f",
+      "frames": 1684966,
+      "sample_peak": 0.19598388671875,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4125.hybrid.drums.wav": {
+      "sha256": "d27af8f012b30d4fe1ea7681b8555a074797bf6d551ef0e4fc1f6cdb78fda0bd",
+      "frames": 1684966,
+      "sample_peak": 0.232757568359375,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4125.hybrid.vocals.wav": {
+      "sha256": "95cc7d2c7c14af99520dc73655747c32a519b12293f9f5b2eb6aaaf9c9425774",
+      "frames": 1684966,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4125.hybrid.guitar.wav": {
+      "sha256": "aeeada3a0365fe6276d5ecff02d147a490186546698eac0d3d2ca378d5063c4e",
+      "frames": 1684966,
+      "sample_peak": 0.09222412109375,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4126.hybrid.wav": {
+      "sha256": "0f041cdc0b5c4a867fc71880a2f07b22fc8f6175415b17e5c8d4f05907c82e5c",
+      "frames": 1684966,
+      "sample_peak": 0.52685546875,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4126.hybrid.piano.wav": {
+      "sha256": "636d54f98a4dae00277b9b7ea454d3233dca10ebe6667bc0b700a1fba5e4d915",
+      "frames": 1684966,
+      "sample_peak": 0.292205810546875,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4126.hybrid.bass.wav": {
+      "sha256": "839db25410cee8a51cb78098378fa16d9e64f981995eaf47766c687132e79a12",
+      "frames": 1684966,
+      "sample_peak": 0.2017822265625,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4126.hybrid.drums.wav": {
+      "sha256": "db4b2b05e06c4d7dbc151d8dbf4ea0ce87aa9af0a777046a1f0c2229a066ffe6",
+      "frames": 1684966,
+      "sample_peak": 0.245941162109375,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4126.hybrid.vocals.wav": {
+      "sha256": "7854fc7554e75a6cb405c9fc3d9fdac6c45b532471a897d75003c5ec1ec41847",
+      "frames": 1684966,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "owner-hybrid-4126.hybrid.guitar.wav": {
+      "sha256": "50ff983afb5329ef202cde7d4d0fb4a18f8c6a3dce6cc2cc2ba12d9b8aa95d5a",
+      "frames": 1684966,
+      "sample_peak": 0.08642578125,
+      "final_100ms_silent": true
+    },
+    "fixture.hiphop.wav": {
+      "sha256": "0fe9d9715326d4c9a284825657d35421ef5c8a86d0b966927a95c2b798e71eac",
+      "frames": 1536000,
+      "sample_peak": 0.403167724609375,
+      "final_100ms_silent": true
+    },
+    "fixture.hiphop.piano.wav": {
+      "sha256": "f177460eb5cfdbc88aeefae009580ecfcf1a7a05dbf92cac60a4ec87408095a0",
+      "frames": 1536000,
+      "sample_peak": 0.2186279296875,
+      "final_100ms_silent": true
+    },
+    "fixture.hiphop.bass.wav": {
+      "sha256": "a307f8858a74392306072d01b21bc80f8d158bbea2249059e963c9ce089e8dc8",
+      "frames": 1536000,
+      "sample_peak": 0.185760498046875,
+      "final_100ms_silent": true
+    },
+    "fixture.hiphop.drums.wav": {
+      "sha256": "fdca4b284ab5833593c637c0ba28e513dc3df6e7ddb96d628a3c20f856e0274f",
+      "frames": 1536000,
+      "sample_peak": 0.266357421875,
+      "final_100ms_silent": true
+    },
+    "fixture.hiphop.vocals.wav": {
+      "sha256": "60bce3d2949fcc5e90027b9f3288d5241a0901666ac221483c9344b8c92283b1",
+      "frames": 1536000,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "fixture.reggae.wav": {
+      "sha256": "8166dbb8076959e898e37c2e8f4b393f6be80db487c5c6d0bef561fe6f84b15f",
+      "frames": 1536000,
+      "sample_peak": 0.41009521484375,
+      "final_100ms_silent": true
+    },
+    "fixture.reggae.piano.wav": {
+      "sha256": "469666bd77f465b89d2a1fdfe122aaefacc9085b1a3a04b768fe005cf0c05ca3",
+      "frames": 1536000,
+      "sample_peak": 0.23931884765625,
+      "final_100ms_silent": true
+    },
+    "fixture.reggae.bass.wav": {
+      "sha256": "76b1abaed06df37b9c81381f314ba5acb9b1185223100bf685b87b534bd5bfc8",
+      "frames": 1536000,
+      "sample_peak": 0.186248779296875,
+      "final_100ms_silent": true
+    },
+    "fixture.reggae.drums.wav": {
+      "sha256": "88c0ef3cbdce37e29b2a36d902bc53b291e01a4678c623d383719895a19a7d0e",
+      "frames": 1536000,
+      "sample_peak": 0.255096435546875,
+      "final_100ms_silent": true
+    },
+    "fixture.reggae.vocals.wav": {
+      "sha256": "10df48377a6a40e298cde6b2b5f58a66bae724370c795ac0741042f728bc4f63",
+      "frames": 1536000,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "fixture.experimental.wav": {
+      "sha256": "49443b1fbec7060d441c09b9300bd7c98f299798107132c03aac1881a04f692e",
+      "frames": 1582452,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "fixture.experimental.piano.wav": {
+      "sha256": "95a512ad52e3faabf79fdfbb8955dc45318013db6e7c14adcab5afb8e7922a1f",
+      "frames": 1582452,
+      "sample_peak": 0.233062744140625,
+      "final_100ms_silent": true
+    },
+    "fixture.experimental.bass.wav": {
+      "sha256": "554f5c65ee8f484e8e3ed8b92b0b1a1ae16234687140258e88364f259cc52082",
+      "frames": 1582452,
+      "sample_peak": 0.19989013671875,
+      "final_100ms_silent": true
+    },
+    "fixture.experimental.drums.wav": {
+      "sha256": "690db5cc92d0a4bdc6f41d24bca3b37672682b3ae72bb55692c9333c0508d01f",
+      "frames": 1582452,
+      "sample_peak": 0.25201416015625,
+      "final_100ms_silent": true
+    },
+    "fixture.experimental.vocals.wav": {
+      "sha256": "091317632bb1313538eb53ada75a11d5ee615fbbd022ac36585cd782594714d6",
+      "frames": 1582452,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "club.club.wav": {
+      "sha256": "14f75f4dccb67fec4bbc11bc7f540a30a6bc548f03cca6024f097238cf858d42",
+      "frames": 1741714,
+      "sample_peak": 0.6177978515625,
+      "final_100ms_silent": true
+    },
+    "club.club.piano.wav": {
+      "sha256": "7a800f1c90b59fef828b9ebd9c64c388407a96ca91e8b4e91fb4dee0d48817a3",
+      "frames": 1741714,
+      "sample_peak": 0.23486328125,
+      "final_100ms_silent": true
+    },
+    "club.club.bass.wav": {
+      "sha256": "35b0a31ffa63d2a66f29a2a7de77f16a444fc4ceb766d3dc4a324053756db35d",
+      "frames": 1741714,
+      "sample_peak": 0.253021240234375,
+      "final_100ms_silent": true
+    },
+    "club.club.drums.wav": {
+      "sha256": "8f70711f4796032eb715a69b9dd460f8d549bab98188bb31f0cf3bbd58bec411",
+      "frames": 1741714,
+      "sample_peak": 0.620758056640625,
+      "final_100ms_silent": true
+    },
+    "club.club.vocals.wav": {
+      "sha256": "340f0abac6da0874ed59539b68cfbb7f309239bcd466ffeabc5f3921433d38e8",
+      "frames": 1741714,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "funk.funk.wav": {
+      "sha256": "c468a6bfce0ddb5916ffcd4a1d05e2cda6e1951bf6439923a44b836e86014e2b",
+      "frames": 1536000,
+      "sample_peak": 0.4024658203125,
+      "final_100ms_silent": true
+    },
+    "funk.funk.piano.wav": {
+      "sha256": "e25b2cb850dca7c1ee54bde32847afb39c51d2dfcb188682b2b33b267bccc38f",
+      "frames": 1536000,
+      "sample_peak": 0.095367431640625,
+      "final_100ms_silent": true
+    },
+    "funk.funk.bass.wav": {
+      "sha256": "7551e10df9dc121df5e9ba2c08cd8f206f0a98228427b5c537ed3a7539adb196",
+      "frames": 1536000,
+      "sample_peak": 0.197113037109375,
+      "final_100ms_silent": true
+    },
+    "funk.funk.drums.wav": {
+      "sha256": "07baf4245d8161bef72c893485cd236dcc55e894e656ed16ed95b75eefeef9ae",
+      "frames": 1536000,
+      "sample_peak": 0.24517822265625,
+      "final_100ms_silent": true
+    },
+    "funk.funk.vocals.wav": {
+      "sha256": "722e9be206a495f8b2cf5505961aca41f32f1faa20802d3f4cac992f10ef1cb9",
+      "frames": 1536000,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "funk.funk.guitar.wav": {
+      "sha256": "fbdfc5a5ab53fa42ee5c6fdd31ce671b199ccb39b651ec9d7aa6eaf6bc2408e4",
+      "frames": 1536000,
+      "sample_peak": 0.18963623046875,
+      "final_100ms_silent": true
+    },
+    "baseline.baseline.wav": {
+      "sha256": "d10fdde7ee540dfc926ae3b3fd77da701fa37ef24c95e19aa099b6606a22e9cf",
+      "frames": 1536000,
+      "sample_peak": 0.421630859375,
+      "final_100ms_silent": true
+    },
+    "baseline.baseline.piano.wav": {
+      "sha256": "49e37e9a8438b663c4a8d71962f6aa5ffbf96476fde2c760cf2d6e6062a17133",
+      "frames": 1536000,
+      "sample_peak": 0.2608642578125,
+      "final_100ms_silent": true
+    },
+    "baseline.baseline.bass.wav": {
+      "sha256": "9ab2532c6d6ff1c9a7c54654d29c94644faf6e4b4b8c79342814233f8b6b0d2a",
+      "frames": 1536000,
+      "sample_peak": 0.18524169921875,
+      "final_100ms_silent": true
+    },
+    "baseline.baseline.drums.wav": {
+      "sha256": "6f333c838857d0c2d8f68d43ca42803f1c64fb0e3c6eb49eb1c90691e74a1e34",
+      "frames": 1536000,
+      "sample_peak": 0.20703125,
+      "final_100ms_silent": true
+    },
+    "baseline.baseline.vocals.wav": {
+      "sha256": "e6ee39aac6056ffbfe0c1804ac0fcc36270549a1468576206e17883d52e68730",
+      "frames": 1536000,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "call_response.call_response.wav": {
+      "sha256": "589af0d5a291f7b4c199b303c1393b7f9f471a6c89d11cd876f1793d11952ef9",
+      "frames": 1741714,
+      "sample_peak": 0.400543212890625,
+      "final_100ms_silent": true
+    },
+    "call_response.call_response.piano.wav": {
+      "sha256": "683c4c547e97e2c828199aa14bd1db3961a8e98a831ae82e4753ad1645c72396",
+      "frames": 1741714,
+      "sample_peak": 0.228515625,
+      "final_100ms_silent": true
+    },
+    "call_response.call_response.bass.wav": {
+      "sha256": "a43fa35ea35376b8120810aae92135deb069fd1771c8c1334b4bed73e01f6661",
+      "frames": 1741714,
+      "sample_peak": 0.1646728515625,
+      "final_100ms_silent": true
+    },
+    "call_response.call_response.drums.wav": {
+      "sha256": "4b9d420dc466a5c172572ca1e448a723acda581f48ae42f44584de78eeaa4f09",
+      "frames": 1741714,
+      "sample_peak": 0.20306396484375,
+      "final_100ms_silent": true
+    },
+    "call_response.call_response.vocals.wav": {
+      "sha256": "56b4bf9360a8f1024a5f7dea0bd66723d5880d76c9965edebe5f687263768dab",
+      "frames": 1741714,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "hybrid.hybrid.wav": {
+      "sha256": "481f41a3a7ba6632e8afc6996d3ca67f9d19178e82646ce51cc4f11c029647a6",
+      "frames": 1741714,
+      "sample_peak": 0.410369873046875,
+      "final_100ms_silent": true
+    },
+    "hybrid.hybrid.piano.wav": {
+      "sha256": "e9de46a8e25f4b21cc824e1d9efee85efd65485719c518889872d2de38db954f",
+      "frames": 1741714,
+      "sample_peak": 0.2581787109375,
+      "final_100ms_silent": true
+    },
+    "hybrid.hybrid.bass.wav": {
+      "sha256": "713b1d2787eef3b6e5553d22c6c1ab1ab2227bac9707998cdb45ee3dd8bd6f2c",
+      "frames": 1741714,
+      "sample_peak": 0.1927490234375,
+      "final_100ms_silent": true
+    },
+    "hybrid.hybrid.drums.wav": {
+      "sha256": "2249bedccc0b8c3c7c3b9ba8d892bc2d06721fd618fcef48298a4dbd1813c725",
+      "frames": 1741714,
+      "sample_peak": 0.25152587890625,
+      "final_100ms_silent": true
+    },
+    "hybrid.hybrid.vocals.wav": {
+      "sha256": "21278899420045d29d0b8b761e67d758512a9d3c5a664efae00ba8bd1e71cc5a",
+      "frames": 1741714,
+      "sample_peak": 0.40045166015625,
+      "final_100ms_silent": true
+    },
+    "hybrid.hybrid.guitar.wav": {
+      "sha256": "7ff8068d96f2d9e5d37eac74e1ef03d702b4a74a8bf79023a419c13e29520cac",
+      "frames": 1741714,
+      "sample_peak": 0.09820556640625,
+      "final_100ms_silent": true
+    }
+  },
+  "owner_changes": {
+    "owner-funk-4123": {
+      "frames": 1536000,
+      "tempo_milli_bpm": 112000,
+      "clean_hooks": [
+        {
+          "start_frame": 0,
+          "frames": 233376,
+          "maximum_pcm_error": 2.4150396117361694e-05
+        },
+        {
+          "start_frame": 822857,
+          "frames": 233376,
+          "maximum_pcm_error": 2.3642339509799548e-05
+        }
+      ],
+      "comparison": "same absolute common-prefix frames against seed 4123, no time alignment",
+      "common_prefix_frames": 1536000,
+      "maximum_pcm_difference": 0.0,
+      "rms_pcm_difference": 0.0
+    },
+    "owner-funk-4124": {
+      "frames": 1486345,
+      "tempo_milli_bpm": 116000,
+      "clean_hooks": [
+        {
+          "start_frame": 198621,
+          "frames": 233376,
+          "maximum_pcm_error": 2.4150396117361694e-05
+        },
+        {
+          "start_frame": 794483,
+          "frames": 233376,
+          "maximum_pcm_error": 2.3642339509799548e-05
+        }
+      ],
+      "comparison": "same absolute common-prefix frames against seed 4123, no time alignment",
+      "common_prefix_frames": 1486345,
+      "maximum_pcm_difference": 0.48779296875,
+      "rms_pcm_difference": 0.06397452765818314
+    },
+    "owner-funk-4125": {
+      "frames": 1486345,
+      "tempo_milli_bpm": 116000,
+      "clean_hooks": [
+        {
+          "start_frame": 198621,
+          "frames": 233376,
+          "maximum_pcm_error": 2.4150396117361694e-05
+        },
+        {
+          "start_frame": 794483,
+          "frames": 233376,
+          "maximum_pcm_error": 2.3642339509799548e-05
+        }
+      ],
+      "comparison": "same absolute common-prefix frames against seed 4123, no time alignment",
+      "common_prefix_frames": 1486345,
+      "maximum_pcm_difference": 0.508056640625,
+      "rms_pcm_difference": 0.06496551746547095
+    },
+    "owner-funk-4126": {
+      "frames": 1486345,
+      "tempo_milli_bpm": 116000,
+      "clean_hooks": [
+        {
+          "start_frame": 0,
+          "frames": 233376,
+          "maximum_pcm_error": 2.4150396117361694e-05
+        },
+        {
+          "start_frame": 794483,
+          "frames": 233376,
+          "maximum_pcm_error": 2.3642339509799548e-05
+        }
+      ],
+      "comparison": "same absolute common-prefix frames against seed 4123, no time alignment",
+      "common_prefix_frames": 1486345,
+      "maximum_pcm_difference": 0.44384765625,
+      "rms_pcm_difference": 0.060265156855491324
+    },
+    "owner-hybrid-4123": {
+      "frames": 1741714,
+      "tempo_milli_bpm": 112000,
+      "clean_hooks": [
+        {
+          "start_frame": 205714,
+          "frames": 233376,
+          "maximum_pcm_error": 2.4150396117361694e-05
+        },
+        {
+          "start_frame": 1028571,
+          "frames": 233376,
+          "maximum_pcm_error": 2.3642339509799548e-05
+        }
+      ],
+      "comparison": "same absolute common-prefix frames against seed 4123, no time alignment",
+      "common_prefix_frames": 1536000,
+      "maximum_pcm_difference": 0.498504638671875,
+      "rms_pcm_difference": 0.060312410035864135
+    },
+    "owner-hybrid-4124": {
+      "frames": 1684966,
+      "tempo_milli_bpm": 116000,
+      "clean_hooks": [
+        {
+          "start_frame": 0,
+          "frames": 233376,
+          "maximum_pcm_error": 2.4150396117361694e-05
+        },
+        {
+          "start_frame": 993103,
+          "frames": 233376,
+          "maximum_pcm_error": 2.3642339509799548e-05
+        }
+      ],
+      "comparison": "same absolute common-prefix frames against seed 4123, no time alignment",
+      "common_prefix_frames": 1536000,
+      "maximum_pcm_difference": 0.47869873046875,
+      "rms_pcm_difference": 0.06222878373016249
+    },
+    "owner-hybrid-4125": {
+      "frames": 1684966,
+      "tempo_milli_bpm": 116000,
+      "clean_hooks": [
+        {
+          "start_frame": 198621,
+          "frames": 233376,
+          "maximum_pcm_error": 2.4150396117361694e-05
+        },
+        {
+          "start_frame": 993103,
+          "frames": 233376,
+          "maximum_pcm_error": 2.3642339509799548e-05
+        }
+      ],
+      "comparison": "same absolute common-prefix frames against seed 4123, no time alignment",
+      "common_prefix_frames": 1536000,
+      "maximum_pcm_difference": 0.499359130859375,
+      "rms_pcm_difference": 0.06598055862961816
+    },
+    "owner-hybrid-4126": {
+      "frames": 1684966,
+      "tempo_milli_bpm": 116000,
+      "clean_hooks": [
+        {
+          "start_frame": 198621,
+          "frames": 233376,
+          "maximum_pcm_error": 2.4150396117361694e-05
+        },
+        {
+          "start_frame": 993103,
+          "frames": 233376,
+          "maximum_pcm_error": 2.3642339509799548e-05
+        }
+      ],
+      "comparison": "same absolute common-prefix frames against seed 4123, no time alignment",
+      "common_prefix_frames": 1536000,
+      "maximum_pcm_difference": 0.5277099609375,
+      "rms_pcm_difference": 0.0657297146457824
+    }
+  },
+  "matched_review": {
+    "owner-funk-4123": {
+      "original": {
+        "lufs": -23.7,
+        "true_peak_dbfs": -7.9
+      },
+      "gain_db": 1.6999999999999993,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -6.2
+      },
+      "sha256": "cfa6c127aaef0e487bd4d419221eebbeac3a5d0f1c4968447dfe3d0dccbc08f1",
+      "before": {
+        "source": "renders/funk-20261018/owner-4123.funk.wav",
+        "original": {
+          "lufs": -23.2,
+          "true_peak_dbfs": -7.9
+        },
+        "matched": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -6.7
+        }
+      }
+    },
+    "owner-funk-4124": {
+      "original": {
+        "lufs": -23.7,
+        "true_peak_dbfs": -7.5
+      },
+      "gain_db": 1.6999999999999993,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.8
+      },
+      "sha256": "f4c1f32e627a7e09075a380efe20ef3b8dccc4cfcc23e3d1ad23727c10349dac",
+      "before": {
+        "source": "renders/funk-20261018/owner-4124.funk.wav",
+        "original": {
+          "lufs": -23.2,
+          "true_peak_dbfs": -7.7
+        },
+        "matched": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -6.5
+        }
+      }
+    },
+    "owner-funk-4125": {
+      "original": {
+        "lufs": -23.7,
+        "true_peak_dbfs": -7.9
+      },
+      "gain_db": 1.6999999999999993,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -6.2
+      },
+      "sha256": "3ca3572643d9ae7aaa7200421c53df5abbada7c50bf1d4b78edb0d56ba3159c0",
+      "before": {
+        "source": "renders/funk-20261018/owner-4125.funk.wav",
+        "original": {
+          "lufs": -23.2,
+          "true_peak_dbfs": -8.0
+        },
+        "matched": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -6.8
+        }
+      }
+    },
+    "owner-funk-4126": {
+      "original": {
+        "lufs": -23.8,
+        "true_peak_dbfs": -7.4
+      },
+      "gain_db": 1.8000000000000007,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.6
+      },
+      "sha256": "0751bf84d30e8b66038481eeb833a54a2d186c13e9038377023d37a1fbb6ab21",
+      "before": {
+        "source": "renders/funk-20261018/owner-4126.funk.wav",
+        "original": {
+          "lufs": -23.3,
+          "true_peak_dbfs": -7.2
+        },
+        "matched": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -5.9
+        }
+      }
+    },
+    "owner-hybrid-4123": {
+      "original": {
+        "lufs": -23.4,
+        "true_peak_dbfs": -6.3
+      },
+      "gain_db": 1.3999999999999986,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -4.9
+      },
+      "sha256": "ccce32c3e67f93e9aba86cb6a10ebd389e485bd06fde35adb4839e7d685032ec",
+      "before": {
+        "source": "renders/creative-strategies-20261018/owner-hybrid-4123.hybrid.wav",
+        "original": {
+          "lufs": -23.4,
+          "true_peak_dbfs": -6.3
+        },
+        "matched": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -4.9
+        }
+      }
+    },
+    "owner-hybrid-4124": {
+      "original": {
+        "lufs": -23.5,
+        "true_peak_dbfs": -7.5
+      },
+      "gain_db": 1.5,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -6.0
+      },
+      "sha256": "0b75cdf07628c0ff47a51d490307f7e9abc461481c34757fd96e7a88768303cd",
+      "before": {
+        "source": "renders/creative-strategies-20261018/owner-hybrid-4124.hybrid.wav",
+        "original": {
+          "lufs": -23.4,
+          "true_peak_dbfs": -7.4
+        },
+        "matched": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -6.0
+        }
+      }
+    },
+    "owner-hybrid-4125": {
+      "original": {
+        "lufs": -23.7,
+        "true_peak_dbfs": -7.3
+      },
+      "gain_db": 1.6999999999999993,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.6
+      },
+      "sha256": "ffca5253924a26c290956f3711d086d30273d81b1f9d2850eb1b0194c837d45c",
+      "before": {
+        "source": "renders/creative-strategies-20261018/owner-hybrid-4125.hybrid.wav",
+        "original": {
+          "lufs": -23.5,
+          "true_peak_dbfs": -7.1
+        },
+        "matched": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -5.6
+        }
+      }
+    },
+    "owner-hybrid-4126": {
+      "original": {
+        "lufs": -23.6,
+        "true_peak_dbfs": -5.6
+      },
+      "gain_db": 1.6000000000000014,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -4.0
+      },
+      "sha256": "92b9b7db685cb6d7933763c065a5efd3feefe3c1e090a6e16f801c82cb2f57ed",
+      "before": {
+        "source": "renders/creative-strategies-20261018/owner-hybrid-4126.hybrid.wav",
+        "original": {
+          "lufs": -23.5,
+          "true_peak_dbfs": -6.0
+        },
+        "matched": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -4.5
+        }
+      }
+    }
+  },
+  "owner_distinct_instrumental_bodies": 8,
+  "wasm": {
+    "node": {
+      "hiphop": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "reggae": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "experimental": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1582452,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "club": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "funk": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "call_response": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "hybrid": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "chromium": {
+      "hiphop": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "reggae": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "experimental": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1582452,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "club": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "funk": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "call_response": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "hybrid": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    },
+    "webkit": {
+      "hiphop": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "reggae": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "experimental": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1582452,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "club": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "funk": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "call_response": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      },
+      "hybrid": {
+        "status": "PASS",
+        "sample_rate": 48000,
+        "frames": 1741714,
+        "event_frames": "PASS",
+        "plan_decisions": "PASS",
+        "maximum_pcm_error": 0.0,
+        "rms_pcm_error": 0.0,
+        "byte_identical_wav": true
+      }
+    }
+  },
+  "unchanged_legacy_wavs": 30,
+  "cross_platform_identical_wavs": 90,
+  "preserved_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "guitar_revision": {
+    "owner-funk-4123": {
+      "max_pcm_difference": 0.2506103515625,
+      "rms_pcm_difference": 0.01911180374942115,
+      "vocal_stem_unchanged": true
+    },
+    "owner-funk-4124": {
+      "max_pcm_difference": 0.23577880859375,
+      "rms_pcm_difference": 0.01764180078623392,
+      "vocal_stem_unchanged": true
+    },
+    "owner-funk-4125": {
+      "max_pcm_difference": 0.296112060546875,
+      "rms_pcm_difference": 0.01807103062479545,
+      "vocal_stem_unchanged": true
+    },
+    "owner-funk-4126": {
+      "max_pcm_difference": 0.24859619140625,
+      "rms_pcm_difference": 0.019438409901494157,
+      "vocal_stem_unchanged": true
+    },
+    "owner-hybrid-4123": {
+      "max_pcm_difference": 0.255645751953125,
+      "rms_pcm_difference": 0.010082908624003272,
+      "vocal_stem_unchanged": true
+    },
+    "owner-hybrid-4124": {
+      "max_pcm_difference": 0.2564697265625,
+      "rms_pcm_difference": 0.014703990438227923,
+      "vocal_stem_unchanged": true
+    },
+    "owner-hybrid-4125": {
+      "max_pcm_difference": 0.2579345703125,
+      "rms_pcm_difference": 0.013091705012506172,
+      "vocal_stem_unchanged": true
+    },
+    "owner-hybrid-4126": {
+      "max_pcm_difference": 0.220428466796875,
+      "rms_pcm_difference": 0.010851715085608012,
+      "vocal_stem_unchanged": true
+    }
+  },
+  "human_listening": "NOT RUN",
+  "production_quality": "PARTIAL",
+  "cloud_calls": 0
+}

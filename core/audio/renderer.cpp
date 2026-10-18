@@ -56,9 +56,9 @@ Schedule compile(const PerformancePlan& p) {
             if (off <= on) throw std::invalid_argument("note shorter than a sample");
             if (p.kick_duck_db<0 && track.instrument==Instrument::drums && n.pitch==36) s.kick_frames.push_back(on);
             s.events.push_back({on, EventKind::note_on, id, track.instrument, n.pitch, n.velocity,
-                                left, right, mix_seed(p.seed, id),track.electronic,automation});
+                                left, right, mix_seed(p.seed, id),track.electronic,automation,n.muted});
             s.events.push_back({off, EventKind::note_off, id, track.instrument, n.pitch, 0,
-                                left, right, 1,track.electronic,automation});
+                                left, right, 1,track.electronic,automation,n.muted});
             // Voice is reclaimable on the sample AFTER its final release sample.
             const auto end = off + release_frames(track.instrument, p.sample_rate) + 1;
             if (end > s.total_frames) throw std::invalid_argument("tail truncates an instrument release");
@@ -108,6 +108,10 @@ Renderer::Renderer(Schedule schedule, std::size_t max_block)
     automation_positions_.resize(schedule_.automation.size());
     automation_gains_.resize(schedule_.automation.size());
     for (const auto& e : schedule_.events) {
+        instrument_name(e.instrument);
+        if ((e.muted && e.instrument!=Instrument::guitar) ||
+            (e.instrument==Instrument::guitar && (e.electronic || e.pitch<40 || e.pitch>79)))
+            throw std::invalid_argument("invalid compiled guitar event");
         if (e.frame >= schedule_.total_frames || !std::isfinite(e.left_gain) || !std::isfinite(e.right_gain) ||
             e.automation < -1 || (e.automation>=0 && static_cast<std::size_t>(e.automation)>=schedule_.automation.size()))
             throw std::invalid_argument("invalid compiled event");

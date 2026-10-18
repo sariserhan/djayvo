@@ -10,7 +10,7 @@ def verify():
     bundle = ROOT / 'dist/web'
     expected = {p.name for pattern in ('*.html', '*.css', '*.js') for p in (ROOT / 'apps/web').glob(pattern)}
     expected |= {'engine/djayvo_web.mjs', 'engine/djayvo_web.wasm',
-                 'licenses/VSCO-2-CE-LICENSE.txt', 'licenses/VCSL-LICENSE.txt', 'licenses/EMSCRIPTEN-LICENSE.txt'}
+                 'licenses/VSCO-2-CE-LICENSE.txt', 'licenses/VCSL-LICENSE.txt', 'licenses/BLACK-AND-GREEN-GUITARS-CC0.txt', 'licenses/EMSCRIPTEN-LICENSE.txt'}
     actual = {str(p.relative_to(bundle)) for p in bundle.rglob('*') if p.is_file()}
     assert actual == expected, f'Unexpected or missing public files: {actual ^ expected}'
     assert not any(p.is_symlink() for p in bundle.rglob('*')), 'Bundle must not link outside itself'

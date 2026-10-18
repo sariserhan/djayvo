@@ -39,7 +39,11 @@ void remix_file(const std::string& input,const std::string& output,const std::ve
         validate(plans.back(),source);
         const auto style=std::string(".")+strategy_name(s);
         for (const auto* extension:{".wav",".score.json",".report.json",".events.tsv"}) suffixes.push_back(style+extension);
-        if (stems) for (const auto* stem:{"piano","bass","drums","vocals"}) suffixes.push_back(style+"."+stem+".wav");
+        if (stems) {
+            for (const auto* stem:{"piano","bass","drums","vocals"}) suffixes.push_back(style+"."+stem+".wav");
+            if (std::any_of(plans.back().music.tracks.begin(),plans.back().music.tracks.end(),[](const Track& t){return t.instrument==Instrument::guitar;}))
+                suffixes.push_back(style+".guitar.wav");
+        }
     }
     suffixes.push_back(".complete.json");
     for (const auto& suffix:suffixes) {

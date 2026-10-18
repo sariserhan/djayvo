@@ -1,0 +1,18 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^djayvo-guitar-\d+\.wav$/. Input:
+
+'djayvo-funk-3093240505.wav'
+
+    at file:///Users/serhansari/Documents/projects/djayvo/docs/evidence/guitar/browser-check.mjs:46:12 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'djayvo-funk-3093240505.wav',
+  expected: /^djayvo-guitar-\d+\.wav$/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

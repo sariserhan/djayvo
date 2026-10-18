@@ -1,0 +1,25 @@
+{
+  "gate": "PASS",
+  "file_count": 13,
+  "bytes": 14344799,
+  "private_audio_and_test_files_absent": "PASS",
+  "license_notices": "PASS",
+  "wasm_sha256": "ddc4b49538b288bd72f20e5769a57a391bcde12837e35c87e179d459c8b674ec",
+  "wasm_bytes": 14135362,
+  "files": {
+    "app.js": "e6d9ca09ffca38ae49b473fec07acd9dffe987fc08b92819584d980e3682ea5d",
+    "audio.js": "5d991784eeed98d68ea707dfc695e0a7ba3e91df239b3159a692fb52c69f103b",
+    "engine-worker.js": "b5f8b9e00d54147026a066a06140fe5ad5fdb451b56c91e619c2dd54f35fb393",
+    "engine/djayvo_web.mjs": "14be8cdf33996f15b106ae4917f5de7063b304f7b8ae0ca8785c1cfe27cb06da",
+    "engine/djayvo_web.wasm": "ddc4b49538b288bd72f20e5769a57a391bcde12837e35c87e179d459c8b674ec",
+    "index.html": "969461a29b15f4103e3f9afaa71e39fddce75e9ce1feb0439c64a0b75831947b",
+    "library.js": "93f4e2e76697dab4bd274d27e49f3404710dfe956ff15f137fc9830dc6cd9292",
+    "licenses/BLACK-AND-GREEN-GUITARS-CC0.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "licenses/EMSCRIPTEN-LICENSE.txt": "4e932924ae86904c2ec1e8916953fb516707871b74bf05733161b0ec4772db26",
+    "licenses/VCSL-LICENSE.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "licenses/VSCO-2-CE-LICENSE.txt": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673",
+    "novelty.js": "5da73cf66ce20a15a4e13fbd8c4babc1605a7da52d768f8544ebb4a40bcd7f32",
+    "style.css": "c942e0cebe81192b43b5e647eac861f00b19d43c930c7b1f081446a6007d57b4"
+  },
+  "public_release": "NOT RUN"
+}

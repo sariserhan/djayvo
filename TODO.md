@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [Call-response, hybrid and recent-composition checks](docs/creative-strategies.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [Recorded guitar and articulated strums](docs/guitar.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -87,6 +87,11 @@ listening data, device observations, model prerequisites and release approval
 are not supplied by this instruction. The master remains unchanged.
 
 ## Next: review the current music
+
+Latest [recorded guitar comparisons](renders/guitar-20261018/review/index.html):
+eight matched before/after pairs, isolated guitar and unchanged voice stems.
+Technical gates PASS; listening NOT RUN.
+
 
 Latest [eight call-response/hybrid mixes](renders/creative-strategies-20261018/review/index.html)
 are loudness matched with voice stems. Technical gates PASS; listening NOT RUN.
@@ -267,8 +272,9 @@ is needed. Prioritize by recorded listening defects and product requirements.
   explicitly requested deterministic fallback. Five-style round trips, 50 rejected
   candidates and preserved actual owner audio verified. [Evidence](docs/plan-import.md).
 - [ ] **E12 — PARTIAL:** Tempo maps and track gain/pan automation implemented,
-  with opt-in native/CLI plans and cross-platform tests. Articulated guitar, organ
-  and dedicated pad/lead roles remain unimplemented. Independent pitch/time and
+  with opt-in native/CLI plans and cross-platform tests. Recorded guitar with up/down strums, normal/staccato attacks, two dynamics and
+  alternate takes is implemented across plans/stems/web. Organ and dedicated
+  pad/lead roles remain unimplemented. [Guitar evidence](docs/guitar.md). Independent pitch/time and
   expanded effects remain under E03/E04. [Timeline evidence](docs/timeline.md).
   Do not call the engine feature-complete.
 
@@ -379,3 +385,6 @@ table and [progress](docs/progress.md) together; do not invent scores or dates.
 - 2026-10-18: Added call-response and hybrid across native/CLI/C ABI/web contracts;
   local recent-composition rejection, 80 exact cross-OS WAVs and seven-style
   browser agreement. [Evidence](docs/creative-strategies.md).
+
+- 2026-10-18: Added recorded CC0 guitar, strum/staccato planning, versioned
+  import/export/stems and bundled notices. [Evidence](docs/guitar.md).

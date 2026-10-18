@@ -1,0 +1,7 @@
+PASS: webkit /Users/serhansari/Documents/projects/djayvo/renders/web-webkit-engine-T3K3aO [
+  { style: 'three', seconds: 1.576, artifacts: 12 },
+  { style: 'club', seconds: 0.508, artifacts: 4 },
+  { style: 'funk', seconds: 0.471, artifacts: 4 },
+  { style: 'call_response', seconds: 0.664, artifacts: 4 },
+  { style: 'hybrid', seconds: 0.884, artifacts: 4 }
+]

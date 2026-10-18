@@ -1,0 +1,11 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+    Start  1: core
+1/3 Test  #1: core .............................   Passed    0.97 sec
+    Start  2: remix_core
+2/3 Test  #2: remix_core .......................   Passed    5.58 sec
+    Start 11: plan_import
+3/3 Test #11: plan_import ......................   Passed    5.18 sec
+
+100% tests passed out of 3
+
+Total Test time (real) =  11.74 sec
