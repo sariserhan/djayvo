@@ -1,0 +1,24 @@
+{
+  "label": "djayvo-style-training-20261018",
+  "offer": {
+    "id": 55841541,
+    "gpu_name": "RTX 3090",
+    "gpu_ram": 24576,
+    "num_gpus": 1,
+    "cpu_ram": 32102,
+    "geolocation": "Michigan, US",
+    "reliability": 0.998037,
+    "dph_total": 0.33629629629629626,
+    "storage_cost": 0.2666666666666666,
+    "inet_down_cost": 0.0026041666666666665,
+    "inet_up_cost": 0.00390625,
+    "hourly_with_60gb_disk": 0.35851851851851846,
+    "reserved_lease_plus_transfer": 1.107662037037037
+  },
+  "starting_credit": 9.9081871581,
+  "started_at": 1792363484.0050828,
+  "deadline": 1792370684.0050838,
+  "budget_usd": 10,
+  "disk_gb": 60,
+  "id": 56629930
+}

@@ -14,8 +14,10 @@ Latest model preparation, 2026-10-18: [Style-adapter pilot](style-training-pilot
 Owner confirmed x/y/z training permission. **PASS:** hash-bound attestation,
 18 local 30-second candidates, seven safeguards, exact repeated decode and
 original/master preservation. **PARTIAL:** dataset readiness and rights ledger.
-**NOT RUN:** content/label/session review, GPU training, independent comparison
-and quality acceptance. No rental/upload or production gate advancement.
+Owner then approved one bounded research rental and M1 exception. **FAIL:** SSH
+access on that instance. **PASS:** verified rental/key cleanup and local research
+tooling checks. Observed debit $0.03334. **NOT RUN:** upload, model setup, training,
+content/label/session review and quality comparison; no production advancement.
 
 Latest engine work, 2026-10-18: [Source phrase development](source-motif.md).
 Call & Response preserves chronological source rhythm/energy accents in two-bar

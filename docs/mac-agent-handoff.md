@@ -8,9 +8,12 @@ complete master specification. Never modify the master; its SHA-256 is
 **Current priority, 2026-10-18: music quality research and remaining local web implementation; hosted infrastructure and phone work paused.**
 Latest model preparation: [Style-adapter pilot](style-training-pilot.md).
 Owner confirmed training permission for x/y/z. Local candidate preparation PASS;
-review/labels and actual training NOT RUN. Do not repeat the permission question
-about training rights already answered; cloud transfer, a new bounded rental and
-an explicit research-only M1 exception are still unapproved. Originals preserved.
+the owner also approved one $10/two-hour GPU trial, reference-excerpt upload and
+a research-only M1 exception. See the authorization receipt; do not request these
+approvals again. The single approved rental failed SSH access and was deleted;
+cleanup verified, observed debit $0.03334. No upload or training occurred. A
+replacement rental needs approval because the approved count was one. The M1
+research exception and reference rights are recorded; originals preserved.
 
 Latest engine work: [Source phrase development](source-motif.md). Call & Response
 now gives the source rhythm/energy accents a two-bar instrumental answer and

@@ -18,6 +18,7 @@ STATE = WORK / "trial-state.json"
 LABEL = "djayvo-music-trial-20261018"
 DISK_GB = 60
 LEASE_SECONDS = 5400
+HOURLY_CEILING = 0.75
 
 
 def api(path, method="GET", data=None):
@@ -44,7 +45,7 @@ def api(path, method="GET", data=None):
     )
     with urllib.request.urlopen(request, timeout=25) as response:
         result = json.load(response)
-    if result.get("success") is False:
+    if isinstance(result, dict) and result.get("success") is False:
         # Provider messages may echo request values; do not log them.
         raise RuntimeError("Vast rejected request: " + path)
     return result
@@ -75,11 +76,11 @@ def quote(offer):
     # Reserve 60 GB in each direction, even though this small batch needs far less.
     reserved = hourly * LEASE_SECONDS / 3600 + 60 * (
         float(offer["inet_down_cost"]) + float(offer["inet_up_cost"]))
-    if hourly > 0.75 or reserved > 6:
+    if hourly > HOURLY_CEILING or reserved > 6:
         raise ValueError("Offer exceeds trial price ceiling")
     if offer.get("num_gpus") != 1 or offer.get("gpu_ram", 0) < 24000:
         raise ValueError("Trial requires one GPU with at least 24 GB")
-    return {"hourly_with_60gb_disk": hourly, "reserved_90min_plus_transfer": reserved}
+    return {"hourly_with_60gb_disk": hourly, "reserved_lease_plus_transfer": reserved}
 
 
 def offers():
@@ -101,7 +102,7 @@ def offers():
             "id", "gpu_name", "gpu_ram", "num_gpus", "cpu_ram", "geolocation",
             "reliability", "dph_total", "storage_cost", "inet_down_cost", "inet_up_cost")},
             **prices})
-    return sorted(valid, key=lambda o: o["reserved_90min_plus_transfer"])
+    return sorted(valid, key=lambda o: o["reserved_lease_plus_transfer"])
 
 
 def write_state(state):
@@ -159,10 +160,18 @@ def watch():
 
 
 def main():
+    global WORK, STATE, LABEL, LEASE_SECONDS, HOURLY_CEILING
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=["status", "offers", "rent", "destroy", "watch"])
     parser.add_argument("--offer", type=int)
+    parser.add_argument("--training", action="store_true", help="Approved separate two-hour style-adapter trial")
     args = parser.parse_args()
+    if args.training:
+        WORK = ROOT / "build-style-training"
+        STATE = WORK / "trial-state.json"
+        LABEL = "djayvo-style-training-20261018"
+        LEASE_SECONDS = 7200
+        HOURLY_CEILING = 0.50
     WORK.mkdir(exist_ok=True)
     if args.action == "status":
         account = api("v0/users/current")
@@ -185,7 +194,11 @@ def main():
         account = api("v0/users/current")
         if float(account.get("credit", 0)) < 7:
             raise RuntimeError("Insufficient credit for reserved trial budget")
-        offer = next((o for o in offers() if o["id"] == args.offer), None)
+        available = offers()
+        offer = next((o for o in available if o["id"] == args.offer), None)
+        if args.training and args.offer is None:
+            offer = next((o for o in available if o["gpu_name"] == "RTX 3090" and
+                          o["geolocation"].endswith(", US")), None)
         if offer is None:
             raise RuntimeError("Selected offer is unavailable or outside limits")
         state = {"label": LABEL, "offer": offer, "starting_credit": float(account["credit"]),
@@ -193,7 +206,8 @@ def main():
                  "budget_usd": 10, "disk_gb": DISK_GB}
         write_state(state)  # Prevent duplicate rental if the create response is lost.
         with (WORK / "watchdog.log").open("a") as log:
-            subprocess.Popen(["caffeinate", "-i", sys.executable, str(Path(__file__).resolve()), "watch"],
+            subprocess.Popen(["caffeinate", "-i", sys.executable, str(Path(__file__).resolve()), "watch"] +
+                             (["--training"] if args.training else []),
                              stdout=log, stderr=log, stdin=subprocess.DEVNULL, start_new_session=True)
         # The watchdog also reconciles by unique label if this response is lost.
         result = api("v0/asks/" + str(offer["id"]), "PUT", {

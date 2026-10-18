@@ -1,5 +1,6 @@
 """Price-boundary regressions; no network requests or rentals."""
 import importlib.util
+import io
 from pathlib import Path
 import unittest
 from unittest.mock import patch
@@ -16,7 +17,18 @@ class PriceBounds(unittest.TestCase):
 
     def test_includes_storage_and_both_transfer_directions(self):
         quote = trial.quote(self.offer)
-        self.assertAlmostEqual(quote["reserved_90min_plus_transfer"], .325 + 1.2)
+        self.assertAlmostEqual(quote["reserved_lease_plus_transfer"], .325 + 1.2)
+
+    def test_account_key_list_response(self):
+        with patch.dict(trial.os.environ, {"VASTAI_KEY": "test-only"}), patch.object(
+                trial.urllib.request, "urlopen", return_value=io.StringIO('[{"id": 123}]')):
+            self.assertEqual(trial.api('v0/ssh'), [{"id": 123}])
+
+    def test_training_lease_and_stricter_hourly_ceiling(self):
+        with patch.object(trial, "LEASE_SECONDS", 7200), patch.object(trial, "HOURLY_CEILING", .5):
+            self.assertAlmostEqual(trial.quote(self.offer)["reserved_lease_plus_transfer"], 2 * (.2 + 60 * .2 / 720) + 1.2)
+            with self.assertRaises(ValueError):
+                trial.quote({**self.offer, "dph_total": .49})
 
     def test_rejects_missing_nonfinite_and_negative_costs(self):
         for key in ("dph_total", "storage_cost", "inet_down_cost", "inet_up_cost"):

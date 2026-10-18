@@ -9,8 +9,9 @@ remain paused. Remaining local web implementation is authorized.
 
 Latest model preparation: [Style-adapter pilot](style-training-pilot.md)
 **PARTIAL**. Owner-confirmed x/y/z training permission and local extraction
-**PASS**; reviewed dataset, research exception, bounded cloud trial and learned
-quality evidence remain open. Actual training **NOT RUN**; master unchanged.
+**PASS**. Owner approved a bounded research exception; single-rental SSH access
+**FAIL**, cleanup **PASS**. Actual training and learned quality evidence **NOT RUN**;
+reviewed dataset remains incomplete and master unchanged.
 
 Latest engine change: [Source phrase development](source-motif.md) **PASS**
 technically: chronological rhythm, source accents and two-bar Call & Response

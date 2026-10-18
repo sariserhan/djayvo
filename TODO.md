@@ -66,8 +66,10 @@ closes that task only; it does not automatically pass its parent milestone.
 - [ ] **C07 — PARTIAL:** [Style-adapter pilot](docs/style-training-pilot.md):
   owner-confirmed x/y/z training permission recorded; 18 local candidate excerpts,
   hash-bound provenance, provisional file split and seven safeguards PASS.
-  Content/label/session review, research-hold exception, new GPU budget/cloud
-  transfer authorization, actual training and blinded comparison remain open.
+  Owner approved the new $10/two-hour GPU trial, reference-excerpt upload and
+  research-only M1 exception. Single rental SSH access FAIL; cleanup PASS, observed
+  debit $0.03334. No uploads or training. Local comparison tooling/tests PASS;
+  actual training and human content/session/quality review remain open.
 
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,

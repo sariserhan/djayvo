@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-18",
+  "question": "Do you approve that research trial, including uploading the reference excerpts and a research-only exception to the M1 hold?",
+  "response_verbatim": "yes",
+  "budget_usd": 10,
+  "maximum_lifetime_seconds": 7200,
+  "maximum_hourly_compute_and_disk_usd": 0.5,
+  "maximum_instances": 1,
+  "upload_scope": "Approved x/y/z reference excerpts only; no owner microphone recordings, credentials or repository",
+  "research_exception": "Adapter research permitted before M1 completion; production and quality gates unchanged"
+}
