@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Reproduce the 2026-10-17 local reference measurements; run from repo root.
 
-Requires the three owner-supplied MP3s in Downloads and the acoustic-v1 renders.
+Defaults to the three owner-supplied MP3s and acoustic-v1 renders. To analyze a
+new reference, pass --input FILE --output NEW_DIRECTORY; existing outputs refuse
+replacement in this mode.
 This is a fixed evidence snapshot, not a music annotation or listening tool.
 """
 from pathlib import Path
-import subprocess, json, hashlib, re
+import subprocess, json, hashlib, re, argparse
 import numpy as np
 from scipy import signal, ndimage
 import matplotlib
@@ -28,15 +30,28 @@ check_f, _, check_z = signal.stft(np.sin(2*np.pi*80*np.arange(22050)/22050), fs=
 check_power = np.abs(check_z)**2
 assert check_power[(check_f >= 20) & (check_f < 150)].sum()/check_power.sum() > .99
 
-out=Path('renders/reference-analysis')
-out.mkdir(exist_ok=True)
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--input', type=Path)
+parser.add_argument('--output', type=Path)
+args = parser.parse_args()
+if bool(args.input) != bool(args.output):
+    parser.error('--input and --output must be supplied together')
+if args.input and not args.input.is_file():
+    parser.error('input must be an existing audio file')
+if args.output and args.output.exists():
+    parser.error('output must be a new directory; existing evidence is preserved')
+out=args.output or Path('renders/reference-analysis')
+out.mkdir(parents=True, exist_ok=not bool(args.output))
 paths={'down':Path.home()/'Downloads/down.mp3','question':Path.home()/'Downloads/question.mp3',
        'blood_club':Path.home()/'Downloads/blood_club.mp3',
        'djayvo_hiphop':Path('renders/voice-acoustic-v1/remix.hiphop.wav'),
        'djayvo_reggae':Path('renders/voice-acoustic-v1/remix.reggae.wav'),
        'djayvo_experimental':Path('renders/voice-acoustic-v1/remix.experimental.wav')}
+if args.input:
+    paths={args.input.stem:args.input}
 summary={}
-fig,axes=plt.subplots(3,3,figsize=(16,12),constrained_layout=True)
+rows=min(3,len(paths))
+fig,axes=plt.subplots(rows,3,figsize=(16,4*rows),constrained_layout=True,squeeze=False)
 for number,(name,path) in enumerate(paths.items()):
     blob=subprocess.check_output(['ffmpeg','-v','error','-i',str(path),'-f','f32le','-ac','2','-ar','22050','-'])
     stereo=np.frombuffer(blob,dtype='<f4').reshape(-1,2).astype(np.float64)
@@ -101,7 +116,7 @@ for number,(name,path) in enumerate(paths.items()):
      'mono_bass_20_150hz_energy_fraction':round(float(bands[0].sum()/bands.sum()),3),
      'pulse_candidates_not_confirmed_tempo':candidates,'change_candidates':changes,'ten_second_windows':windows}
     summary[name]=result
-    if number<3:
+    if number<rows:
         ax=axes[number]
         ax[0].plot(lt,level,color='#1864ab',lw=.8);ax[0].set(title=f'{name}: level',ylabel='Quarter-second RMS (dBFS)',ylim=(-50,0),xlabel='Seconds')
         for change in changes:
