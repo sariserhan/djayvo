@@ -1,0 +1,8 @@
+PASS: renders/voice-review2/remix.hiphop.wav
+PASS: renders/voice-review2/remix.reggae.wav
+PASS: renders/voice-review2/remix.experimental.wav
+Listening/recognizability: NOT RUN
+PASS: renders/voice-review2-block113/remix.hiphop.wav
+PASS: renders/voice-review2-block113/remix.reggae.wav
+PASS: renders/voice-review2-block113/remix.experimental.wav
+Listening/recognizability: NOT RUN

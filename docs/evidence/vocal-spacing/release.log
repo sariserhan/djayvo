@@ -1,0 +1,30 @@
+[  4%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/remix.cpp.o
+[  8%] Linking CXX static library libdjayvo_core.a
+[ 56%] Built target djayvo_core
+[ 69%] Linking CXX executable djayvo_remix
+[ 69%] Linking CXX executable djayvo_tests
+[ 69%] Linking CXX executable djayvo_render
+[ 73%] Linking CXX executable djayvo_remix_tests
+[ 91%] Built target djayvo_tests
+[ 91%] Built target djayvo_remix_tests
+[ 91%] Built target djayvo_remix
+[ 91%] Built target djayvo_render
+[ 95%] Linking CXX executable djayvo_c_smoke
+[100%] Built target djayvo_c_smoke
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+    Start 1: core
+1/6 Test #1: core .............................   Passed    0.68 sec
+    Start 2: remix_core
+2/6 Test #2: remix_core .......................   Passed    0.61 sec
+    Start 3: c_abi
+3/6 Test #3: c_abi ............................   Passed    0.24 sec
+    Start 4: wav_integration
+4/6 Test #4: wav_integration ..................   Passed    1.07 sec
+    Start 5: remix_integration
+5/6 Test #5: remix_integration ................   Passed    2.36 sec
+    Start 6: tooling
+6/6 Test #6: tooling ..........................   Passed    0.40 sec
+
+100% tests passed out of 6
+
+Total Test time (real) =   5.38 sec

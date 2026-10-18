@@ -1,0 +1,67 @@
+{
+  "scope": "Vocal-spacing revision on actual M5; one consented owner source, seed 4123",
+  "owner_feedback": {
+    "status": "PARTIAL",
+    "observation": "there are some awkard parts but as a start it is okay, we can continue",
+    "styles_and_timestamps": "not specified",
+    "setup": "not specified"
+  },
+  "comparisons": {
+    "hiphop": {
+      "before": {
+        "chops": 14,
+        "duplicate_starts": 0,
+        "chops_over_clean_hooks": 3
+      },
+      "after": {
+        "chops": 11,
+        "duplicate_starts": 0,
+        "chops_over_clean_hooks": 0
+      },
+      "instrument_event_frames": "PASS",
+      "intentional_revision_maximum_pcm_difference": 0.239593505859375,
+      "intentional_revision_rms_pcm_difference": 0.009924928840352116
+    },
+    "reggae": {
+      "before": {
+        "chops": 11,
+        "duplicate_starts": 7,
+        "chops_over_clean_hooks": 3
+      },
+      "after": {
+        "chops": 3,
+        "duplicate_starts": 0,
+        "chops_over_clean_hooks": 0
+      },
+      "instrument_event_frames": "PASS",
+      "intentional_revision_maximum_pcm_difference": 0.29833984375,
+      "intentional_revision_rms_pcm_difference": 0.010759121029489938
+    },
+    "experimental": {
+      "before": {
+        "chops": 38,
+        "duplicate_starts": 0,
+        "chops_over_clean_hooks": 9
+      },
+      "after": {
+        "chops": 29,
+        "duplicate_starts": 0,
+        "chops_over_clean_hooks": 0
+      },
+      "instrument_event_frames": "PASS",
+      "intentional_revision_maximum_pcm_difference": 0.295745849609375,
+      "intentional_revision_rms_pcm_difference": 0.011527336536250314
+    }
+  },
+  "gates": {
+    "duplicate_chop_starts": "PASS",
+    "clean_hook_vocal_isolation": "PASS",
+    "unchanged_instrument_frames": "PASS",
+    "decoded_15_wav_bounds": "PASS",
+    "block_size_determinism": "PASS",
+    "revised_human_listening": "NOT RUN",
+    "current_revision_linux_mac_comparison": "NOT RUN",
+    "m1_blinded_quality": "NOT RUN",
+    "overall_m0": "PARTIAL"
+  }
+}

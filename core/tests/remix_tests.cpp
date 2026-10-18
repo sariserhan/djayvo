@@ -118,6 +118,45 @@ void validation() {
     absent=analysis;absent.pitch_hz=std::numeric_limits<double>::infinity();
     rejects([&]{djayvo::make_remix(a,absent,djayvo::Strategy::hiphop,0,true,false);});
 }
+void vocal_spacing() {
+    for (const int seconds : {2,3,5}) {
+        auto a=source();a.mono.resize(static_cast<std::size_t>(a.sample_rate)*seconds);
+        a.original_frames=a.mono.size();
+        auto analysis=djayvo::analyze(a);
+        // These distinct onsets collapse onto one reggae offbeat.
+        analysis.onsets={800,1600,2400,3200,4000,4800};
+        for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental}) {
+            auto p=djayvo::make_remix(a,analysis,style,4123,true,false);
+            const auto start=[&](const djayvo::VocalEvent& e) {
+                return djayvo::tick_to_frame(e.start,a.sample_rate,p.music.tempo_milli_bpm);
+            };
+            const auto end=[&](const djayvo::VocalEvent& e) {
+                const auto& clip=p.clips[e.clip];
+                return start(e)+static_cast<std::uint64_t>(std::ceil(static_cast<double>(clip.end-clip.begin)/e.rate));
+            };
+            std::vector<std::uint64_t> starts;
+            for (const auto& e:p.vocals) if (!e.clean) {
+                check(std::find(starts.begin(),starts.end(),start(e))==starts.end(),"chops stack at the same frame");
+                starts.push_back(start(e));
+                for (const auto& clean:p.vocals) if (clean.clean)
+                    check(end(e)<=start(clean) || start(e)>=end(clean),"chop masks a clean hook");
+            }
+            check(!starts.empty(),"spacing removed every creative chop");
+            check(std::count_if(p.vocals.begin(),p.vocals.end(),[](const auto& e){return e.clean;})==2,
+                  "spacing removed a clean hook");
+            // Check the actual vocal stem through both full-source hooks, including
+            // a five-second source that extends beyond the two-bar introduction.
+            const auto vocals=render(p,a,257,true);
+            for (const auto& e:p.vocals) if (e.clean) {
+                const auto& clip=p.clips[e.clip];
+                const double gain=std::pow(10.0,e.gain_db/20)*p.analysis.normalization_gain*std::sqrt(0.5);
+                for (auto i=clip.begin+100;i+100<clip.end;++i)
+                    check(std::abs(vocals[(start(e)+i-clip.begin)*2]-a.mono[i]*gain)<1e-6,
+                          "clean hook stem contains another vocal");
+            }
+        }
+    }
+}
 void no_allocations() {
     const auto a=source();const auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::experimental,4123,true,false);
     djayvo::RemixRenderer r(p,a,512);float buffer[1024]{};
@@ -132,6 +171,7 @@ int main() {
         {"resampling duration, identity, round-trip and antialias",resampling},
         {"clean hook preservation, deterministic styles, finite bounded output",preservation},
         {"consent, crop, transform, polyphony and duration rejection",validation},
+        {"quantized chop spacing and both clean hooks at 2/3/5 seconds",vocal_spacing},
         {"allocation-free sample and instrument processing",no_allocations}};
     int failures=0;
     for(const auto& t:tests)try{t.second();std::cout<<"PASS: "<<t.first<<'\n';}

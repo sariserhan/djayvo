@@ -166,6 +166,32 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
                 piano.notes.push_back({base+motif[m],q/4,r.tonic_midi+24+minor[(m+static_cast<std::size_t>(b))%7],velocity(71)});
         }
     }
+    // Quantization can collapse several source onsets onto the same offbeat.
+    // Keep the first call there, and reserve the complete clean-hook intervals
+    // before choosing chops (long inputs can extend beyond their starting bar).
+    const auto interval = [&](const VocalEvent& event) {
+        const auto& clip=r.clips[event.clip];
+        const auto start=tick_to_frame(event.start,p.sample_rate,p.tempo_milli_bpm);
+        const auto length=static_cast<std::uint64_t>(std::ceil(static_cast<double>(clip.end-clip.begin)/event.rate));
+        return std::make_pair(start,start+length);
+    };
+    std::vector<std::pair<std::uint64_t,std::uint64_t>> clean_intervals;
+    for (const auto& event:r.vocals)
+        if (event.clean) clean_intervals.push_back(interval(event));
+    std::vector<VocalEvent> spaced;
+    std::vector<std::uint64_t> chop_starts;
+    for (const auto& event:r.vocals) {
+        const auto span=interval(event);
+        if (!event.clean) {
+            if (std::find(chop_starts.begin(),chop_starts.end(),span.first)!=chop_starts.end()) continue;
+            if (std::any_of(clean_intervals.begin(),clean_intervals.end(),[&](const auto& clean) {
+                return span.first<clean.second && clean.first<span.second;
+            })) continue;
+            chop_starts.push_back(span.first);
+        }
+        spaced.push_back(event);
+    }
+    r.vocals=std::move(spaced);
     p.tracks={piano,bass,drums};
     validate(r,source);
     return r;
