@@ -17,6 +17,9 @@ from verify_export import verify_export
 SEEDS = (4123, 4124, 4125)
 STYLES = ('hiphop', 'reggae', 'experimental')
 KINDS = ('speech', 'syllabic_speech', 'laughter', 'claps', 'noise', 'silence', 'synthetic_control')
+LICENSES = {'CC-BY-4.0': 'https://creativecommons.org/licenses/by/4.0/',
+            'CC0-1.0': 'https://creativecommons.org/publicdomain/zero/1.0/',
+            'PD-author': 'https://commons.wikimedia.org/wiki/Template:PD-author'}
 REPO = Path(__file__).resolve().parents[1]
 
 
@@ -62,8 +65,8 @@ def load_manifest(path):
             raise ValueError('explicit local consent, review scope and permission evidence required')
         license_info = clip.get('license')
         if license_info is not None and (not isinstance(license_info, dict) or
-                license_info.get('id') != 'CC-BY-4.0' or
-                license_info.get('url') != 'https://creativecommons.org/licenses/by/4.0/' or
+                not isinstance(license_info.get('id'), str) or license_info['id'] not in LICENSES or
+                license_info.get('url') != LICENSES[license_info['id']] or
                 not isinstance(license_info.get('attribution'), str) or
                 not 1 <= len(license_info['attribution'].strip()) <= 4000):
             raise ValueError('licensed evaluation sources require supported license and attribution')
@@ -168,6 +171,9 @@ def run_batch(manifest_path, output, renderer):
                         notice = clip['license']
                         (folder/'blinded/listener/ATTRIBUTION.txt').write_text(
                             notice['attribution']+'\n'+notice['id']+'\n'+notice['url']+'\n')
+                        page = folder/'blinded/listener/index.html'
+                        page.write_text(page.read_text().replace('<h1>Djayvo listening review</h1>',
+                            '<h1>Djayvo listening review</h1><p><a href="ATTRIBUTION.txt">Source credits and permissions</a></p>'))
                     row['packet'] = 'PASS'; row['block_id'] = key['block_id']
                 except (ValueError, OSError) as error:
                     row['packet'] = 'FAIL'; row['packet_error'] = str(error)

@@ -97,6 +97,18 @@ def prepare(prefix, output, source_path, seed=4123, baseline_prefix=None, allow_
         "Use 1=poor through 5=excellent; use yes/no for recognition, share and technical failure.\n"
         "Do not inspect the organizer key until responses are complete. No ratings are prefilled.\n"
         "Keep recordings and responses local unless the participants permit sharing.\n")
+    players = '<h2>Source</h2><audio controls preload="metadata" aria-label="Source" src="source.wav"></audio>'
+    for i, code in enumerate(key['codes']):
+        label = chr(65+i)
+        players += f'<h2>Candidate {label}</h2><p>{code}</p><audio controls preload="metadata" aria-label="Candidate {label}" src="{code}.wav"></audio>'
+    (listener/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1"><title>Djayvo listening review</title>'
+        '<style>body{max-width:760px;margin:32px auto;padding:0 20px;font:18px/1.5 system-ui;background:#151515;color:#eee}'
+        'audio{width:100%}a{color:#8cceff}p{overflow-wrap:anywhere}</style><h1>Djayvo listening review</h1>'
+        '<p>Listen to the source, then all candidates in a randomized order. No quality ratings have been supplied.</p>'
+        '<p><a href="INSTRUCTIONS.txt">Instructions</a> · <a download href="responses.csv">Blank ratings</a> · '
+        '<a download href="pairs.csv">Blank comparisons</a></p>'+players+
+        '<script>document.addEventListener("play",e=>{document.querySelectorAll("audio").forEach(a=>{if(a!==e.target)a.pause()})},true)</script></html>')
     return key
 
 

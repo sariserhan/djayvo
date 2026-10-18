@@ -10,7 +10,7 @@ import tempfile
 import wave
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]/'scripts'))
 from make_fixture import make_signal
-from prepare_evaluation import load_manifest, readiness, run_batch
+from prepare_evaluation import LICENSES, load_manifest, readiness, run_batch
 
 
 def rejects(action):
@@ -52,6 +52,9 @@ def main():
         manifest['clips'][0]['license'] = {'id': 'CC-BY-4.0',
             'url': 'https://creativecommons.org/licenses/by/4.0/',
             'attribution': 'Test attribution for original procedural fixture; no third-party audio.'}
+        for name,url in LICENSES.items():
+            candidate=copy.deepcopy(manifest);candidate['clips'][0]['license'].update(id=name,url=url);save(candidate)
+            assert load_manifest(path)['clips'][0]['license']['id']==name
         save(manifest)
         report = run_batch(path, root/'batch', args.renderer)
         assert report['status'] == 'PASS' and report['formal_quality'] == 'NOT RUN'
@@ -64,6 +67,9 @@ def main():
         for row in signals:
             notice = root/'batch/signal'/str(row['seed'])/'blinded/listener/ATTRIBUTION.txt'
             assert manifest['clips'][0]['license']['attribution'] in notice.read_text()
+            page = notice.with_name('index.html').read_text()
+            assert page.count('<audio ')==5 and 'ATTRIBUTION.txt' in page and 'responses.csv' in page
+            assert all(style not in page for style in ('hiphop','reggae','experimental','baseline','organizer-key'))
         assert all(r['expected_rejection'] == 'PASS' for r in report['records'] if r['kind'] == 'silence')
         frozen = (root/'batch/freeze.json').read_bytes()
         rejects(lambda: run_batch(path, root/'batch', args.renderer))

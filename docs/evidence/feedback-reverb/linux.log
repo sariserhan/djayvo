@@ -10,7 +10,7 @@
 -- Check for working CXX compiler: /usr/bin/c++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Found Python3: /usr/bin/python3 (found suitable version "3.11.2", minimum required is "3.9") found components: Interpreter 
+-- Found Python3: /usr/bin/python3 (found suitable version "3.11.2", minimum required is "3.9") found components: Interpreter
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /work/reverb/build
