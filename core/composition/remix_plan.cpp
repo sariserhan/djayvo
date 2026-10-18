@@ -21,6 +21,7 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
         if (!std::isfinite(x) || std::abs(x)>1) throw std::invalid_argument("invalid source PCM");
     if (!std::isfinite(r.analysis.normalization_gain) || r.analysis.normalization_gain <= 0 ||
         r.analysis.normalization_gain > 4 || r.tonic_midi < 48 || r.tonic_midi > 71 ||
+        !std::isfinite(r.instrument_room_mix) || r.instrument_room_mix<0 || r.instrument_room_mix>0.35 ||
         r.clips.empty() || r.clips.size()>64 || r.vocals.empty() || r.vocals.size()>1024)
         throw std::invalid_argument("invalid clip/event/analysis limits");
     if (!std::isfinite(r.analysis.peak) || !std::isfinite(r.analysis.rms) ||
@@ -67,7 +68,13 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
         voices+=boundary.second;
         if (voices>16) throw std::invalid_argument("more than 16 overlapping sample voices");
     }
-    compile(r.music); // instrument event budget / polyphony / release coverage
+    const auto schedule=compile(r.music); // instrument event budget / polyphony / release coverage
+    if (r.instrument_room_mix>0) {
+        const auto room_tail=static_cast<std::uint64_t>(source.sample_rate)*213/1000+1;
+        for (const auto& e:schedule.events) if (e.kind==EventKind::note_off)
+            if (e.frame+release_frames(e.instrument,source.sample_rate)+room_tail>schedule.total_frames)
+                throw std::invalid_argument("tail truncates instrument room reflections");
+    }
 }
 
 void write_score(const RemixPlan& r, const AudioBuffer& source, const std::string& path) {
@@ -85,7 +92,7 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
        <<",\n  \"tail_ms\": "<<p.tail_ms<<",\n  \"strategy\": \""<<strategy_name(r.strategy)
        <<"\",\n  \"key\": {\"tonic_midi\": "<<r.tonic_midi<<", \"mode\": \"minor\"},\n"
        <<"  \"mix\": {\"master_target_peak_dbfs\": "<<p.ceiling_dbfs
-       <<", \"clean_hook_instrument_duck_db\": -16.4781748189},\n"
+       <<", \"clean_hook_instrument_duck_db\": -16.4781748189, \"instrument_room_mix\": "<<r.instrument_room_mix<<"},\n"
        <<"  \"analysis\": {\"peak\": "<<r.analysis.peak<<", \"rms\": "<<r.analysis.rms
        <<", \"normalization_gain\": "<<r.analysis.normalization_gain
        <<", \"pitch_hz\": "<<r.analysis.pitch_hz<<", \"pitch_confidence\": "<<r.analysis.pitch_confidence

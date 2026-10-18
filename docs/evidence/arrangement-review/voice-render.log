@@ -1,0 +1,4 @@
+PASS: renders/voice-arrangement-v2/remix.hiphop.wav
+PASS: renders/voice-arrangement-v2/remix.reggae.wav
+PASS: renders/voice-arrangement-v2/remix.experimental.wav
+Listening/recognizability: NOT RUN

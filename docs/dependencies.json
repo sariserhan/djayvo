@@ -392,5 +392,12 @@
       "role": "preinstalled Python schema-verification tool/dependency; not linked/bundled",
       "notice_files": []
     }
-  ]
+  ],
+  "optional_mac_reference_analysis": {
+    "environment": ".venv-analysis",
+    "packages": "evidence/arrangement-review/analysis-packages.json",
+    "pins": "evidence/arrangement-review/analysis-requirements.txt",
+    "ffmpeg": "9.0.2, existing local executable; not linked or bundled",
+    "runtime_dependency": false
+  }
 }

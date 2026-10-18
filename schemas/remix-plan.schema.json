@@ -103,6 +103,12 @@
         },
         "clean_hook_instrument_duck_db": {
           "const": -16.4781748189
+        },
+        "instrument_room_mix": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.35,
+          "default": 0
         }
       }
     },

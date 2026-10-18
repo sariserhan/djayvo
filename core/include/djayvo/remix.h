@@ -40,6 +40,7 @@ struct RemixPlan {
     bool synthetic_source = false;
     bool consent_confirmed = false;
     int tonic_midi = 57;
+    double instrument_room_mix = 0; // optional, dry vocals; finite early reflections
     InputAnalysis analysis;
     std::vector<Region> clips;
     std::vector<VocalEvent> vocals;
@@ -72,6 +73,11 @@ private:
     const AudioBuffer& source_;
     std::vector<Trigger> triggers_;
     std::vector<float> music_buffer_;
+    std::vector<double> room_buffer_;
+    std::array<std::size_t,4> room_taps_{};
+    std::size_t room_cursor_ = 0;
+    double room_mix_ = 0, room_low_ = 0, room_high_ = 0;
+    double room_low_alpha_ = 0, room_high_alpha_ = 0;
     std::size_t block_;
     std::uint64_t cursor_ = 0, total_frames_ = 0;
     double ceiling_ = 0.89;

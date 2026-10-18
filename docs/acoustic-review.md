@@ -1,5 +1,9 @@
 # Acoustic instruments and varied openings
 
+This is the earlier acoustic checkpoint. The subsequent
+[arrangement review](arrangement-review.md) supersedes its current-code test and
+portability status, adds new renders, and still leaves human listening NOT RUN.
+
 2026-10-17, America/New_York. The owner reports that experimental is the most
 awkward style, all instruments sound artificial/game-like, and the full recording
 need not always start the piece. Overall listening is **PARTIAL**, not a quality

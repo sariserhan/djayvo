@@ -29,7 +29,7 @@ def structural_plan(score):
     # separately. Decisions and timing, including the selected key, must agree.
     return {key: score[key] for key in ("schema_version", "seed", "source_asset_id", "sample_rate",
             "tempo_milli_bpm", "ticks_per_quarter", "time_signature", "target_bars", "tail_ms",
-            "strategy", "key", "sections", "voice_clips", "voice_events", "tracks")}
+            "strategy", "key", "mix", "sections", "voice_clips", "voice_events", "tracks")}
 
 
 def compare(reference, candidate):

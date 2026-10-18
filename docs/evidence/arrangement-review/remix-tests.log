@@ -1,0 +1,10 @@
+PASS: SHA-256 known vectors
+PASS: energy/onset/phrase/pitch analysis and silence
+PASS: resampling duration, identity, round-trip and antialias
+PASS: clean hook preservation, deterministic styles, finite bounded output
+PASS: consent, crop, transform, polyphony and duration rejection
+PASS: quantized chop spacing and both clean hooks at 2/3/5 seconds
+PASS: seeded clean, instrumental and fragment openings
+PASS: subtraction and return across styles and seeds
+PASS: instrument room timing, stereo, dry speech and finite tail
+PASS: allocation-free sample and instrument processing

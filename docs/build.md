@@ -1,7 +1,9 @@
 # Reproducible builds
 
 The continuation adds `djayvo_remix`, C-ABI smoke tests, and a total of **six**
-CTest suites. For the current engine and exact Mac checkpoint, also read
+CTest suites in the original continuation, now **seven** including asset integrity.
+Current native M5 release/sanitizer and Linux arm64 runs pass all seven; see
+[arrangement-review.md](arrangement-review.md). For the current engine, also read
 [remix-architecture.md](remix-architecture.md) and
 [mac-agent-handoff.md](mac-agent-handoff.md).
 
@@ -48,8 +50,8 @@ cmake --build build-sanitize --parallel 4
 ctest --test-dir build-sanitize --output-on-failure
 ```
 
-On macOS, use Xcode's C++ toolchain and a CMake installation. These commands are
-provided for the later portability checkpoint; **they were not run here**:
+On macOS, use Xcode's C++ toolchain and a CMake installation. The actual M5
+checkpoint is now complete; the following commands are also available for M0a:
 
 ```sh
 cmake -S . -B build-mac -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=arm64
@@ -63,8 +65,8 @@ afplay renders/m0a-mac.wav
 For M0d compare score JSON, onset/offset frame calculations, output duration,
 test results, peak/RMS, and decoded waveform error between machines. Do not use
 different WAV hashes alone as evidence of a portability failure. The source has
-no architecture-specific intrinsics or OS dependencies. No actual macOS/iOS
-build or device test is claimed.
+no architecture-specific intrinsics or OS dependencies. Actual macOS execution
+is recorded; iPhone/device testing remains NOT RUN.
 
 After intentionally changing a score or synthesis formula, re-render and update
 hashes/measurements alongside a reviewed evidence report. The immutable baseline

@@ -88,3 +88,13 @@ An additional schema conformance check used the already installed MIT-licensed
 `jsonschema` 4.19.2 and its installed Python dependencies. Their exact versions
 and declared licenses are recorded under `optional_schema_check`; no packages
 were installed for that check, and they are not engine/CTest dependencies.
+
+The later Mac reference/arrangement analysis uses a separate `.venv-analysis`
+with NumPy, SciPy, Matplotlib and jsonschema plus their Python dependencies.
+Exact versions and installed license metadata are in
+`evidence/arrangement-review/analysis-packages.json` and the adjacent requirements
+file. Existing FFmpeg 9.0.2 decodes the owner's reference MP3s and measures loudness.
+These tools remain local developer utilities; none is linked or bundled into the
+C++ engine. Reference music stays private and is used only for analysis/audition,
+not instrument sampling, training or distribution. The new Linux container's
+actual compiler/runtime environment is recorded in `evidence/arrangement-review/`.

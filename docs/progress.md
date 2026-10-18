@@ -5,7 +5,15 @@ per-step approval, then requested a Mac handoff after finishing Linux work. The
 master specification is unchanged. The original M0a record is
 [m0a-report.md](m0a-report.md), with its initial Git commit `02d0e18`.
 
-**Current Apple M5 technical checks: PASS. Overall M0: PARTIAL.** M0b/M0c
+**Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
+The latest [arrangement revision](arrangement-review.md) implements real breaks
+and returns, nearby chord inversions, softer-note tone filtering, instrumental
+early reflections, and 80 ms vocal clearance. M5 release/sanitizer and Linux
+release each pass 7/7 suites; fresh Linux/Mac plans/events and all 15 fixture WAVs
+match exactly. Nine new voice mixes, stems, baseline and a level-matched review
+page are ready. New musical-quality listening remains **NOT RUN**.
+
+Earlier acoustic checkpoint (superseded technically by the revision above): M0b/M0c
 code and three complete recordings exist. Both the supplied synthetic speech
 and one owner-consented human recording now render successfully. Human-recording
 listening is **PARTIAL**: the owner accepts it as a start but reports awkward
@@ -21,8 +29,8 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 
 | Gate | Status | Evidence |
 | --- | --- | --- |
-| Linux release build | PASS | Original M0 baseline; acoustic revision NOT RUN on Linux |
-| C++ unit tests | PASS | Current Mac: 9 foundation + 8 remix test groups |
+| Linux release build | PASS | Current aarch64 Debian 12 container, GCC 12.2; physical Intel rerun NOT RUN |
+| C++ unit tests | PASS | Current Mac/Linux: 9 foundation + 10 remix test groups |
 | C ABI | PASS | Source compiled as C calls a real render; error bounds/ABI checked |
 | End-to-end tests | PASS | Current Mac: CTest 7/7 including asset integrity |
 | ASan/UBSan | PASS | Current Mac: same seven suites, no findings |
@@ -33,8 +41,8 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Source-driven arrangement | PASS | Changed input rhythm changes chops and melodic response |
 | Three independent strategies | PASS | Different tempi, bass/drum/piano grammars and vocal treatment at the same seed |
 | Crop/event validation | PASS | No out-of-source reads; clean hook, overlap, release, duration and numeric constraints |
-| Master and stem output | PASS | Three 20–40 s masters, four non-silent stems each, score/frame trace/report |
-| Audio bounds/headroom | PASS | Independent decoding of all 16 master/stem/control WAVs; zero full-scale samples; finite engine output; silent final 100 ms |
+| Master and stem output | PASS | Nine 20–40 s mixes across three seeds, twelve seed-4123 stems and a baseline; score/frame trace/report |
+| Audio bounds/headroom | PASS | Independent decoding of all 22 new master/stem/control WAVs; zero full-scale samples; finite engine output; silent final 100 ms |
 | Determinism | PASS | 48 kHz speech remixes byte-identical at 512/113 blocks; 16 kHz integration repeats too |
 | Formal export schemas | PASS | Preinstalled jsonschema 4.19.2 validates M0a/all remix exports; rejects recorded-kind without consent |
 | Dependencies/assets | PASS | No third-party DSP runtime; 14 pinned CC0 acoustic samples, notices and hashes; speech tool inventoried |
@@ -43,7 +51,7 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Human speech recognition by listeners | NOT RUN | No actual listener observations |
 | Owner listening | PARTIAL | Awkward experimental passages; all styles sound game-like; varied openings requested |
 | Revised vocal spacing on M5 | PASS | Release + sanitizer CTest 6/6; duplicate chop starts and clean-hook overlaps removed; `evidence/vocal-spacing/` |
-| Revised arrangement Linux/Mac comparison | NOT RUN | Prior M0d proof covers the original revision |
+| Revised arrangement Linux/Mac comparison | PASS | Current Linux arm64 versus native M5: exact plans/events and 15 byte-identical WAVs |
 | M0d Apple M5 execution | PASS | Native arm64 release and ASan/UBSan 6/6 each; exact plans/event frames and byte-identical Linux/Mac masters; [evidence](evidence/m0d/report.json) |
 | M1 blinded quality gate | NOT RUN | Synthetic pilot only; requires diverse consented sources and reviewers |
 | M2 GPU/model benchmark | NOT RUN | Quality baseline and actual model measurements remain missing |
@@ -111,11 +119,12 @@ real recordings, pass `--consent` only with permission to process that input.
 
 ## Owner reference analysis
 
-The owner supplied `down.mp3` and `question.mp3` in Downloads. Full-file signal
-analysis and five level-matched audition files are **PASS**; interpretation is
+The owner supplied `down.mp3`, `question.mp3` and `blood_club.mp3` in Downloads.
+Full-file signal analysis and 15 current level-matched audition files are **PASS**; interpretation is
 **PARTIAL**, and direct listening is **NOT RUN** because this session cannot hear
 audio. Strong section-to-section bass/level/width changes suggest arrangement
-contrast deserves attention alongside timbre. No engine changes or training were
+contrast deserves attention alongside timbre. The resulting engine changes are
+documented in [arrangement-review.md](arrangement-review.md); no training was
 performed. See [reference-analysis.md](reference-analysis.md) for measurements,
 selected timestamps, reproduction, and the local audition package.
 
@@ -124,8 +133,9 @@ selected timestamps, reproduction, and the local audition package.
 The acoustic bank is small, mono, single-layer and sample-based; no listener has
 yet rated its realism. No formal perceptual evaluation exists. Analysis is energy/onset/autocorrelation DSP with
 no word boundaries or reliable semantic labels. Pitch may have octave errors.
-Varispeed couples pitch/time and can alias; independent pitch/time stretching,
-reverb/delay, tempo maps, external JSON import, and automatic fallback from an AI
+Varispeed couples pitch/time and can alias (current generated chops use rate 1).
+Finite instrumental early reflections exist; independent pitch/time stretching,
+feedback reverb/delay, tempo maps, external JSON import, and automatic fallback from an AI
 plan are absent. Silence is explicitly rejected. Mixing is fixed per grammar,
 with smooth clean-hook ducking; the soft-knee stage can color overloads.
 

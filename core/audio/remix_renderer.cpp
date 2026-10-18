@@ -25,6 +25,15 @@ RemixRenderer::RemixRenderer(const RemixPlan& p,const AudioBuffer& source,std::s
       music_buffer_(block*2),block_(block),vocals_only_(vocals_only),instrumental_only_(solo!=-1) {
     const auto schedule=compile(p.music);
     total_frames_=schedule.total_frames; ceiling_=schedule.ceiling;
+    room_mix_=vocals_only?0:p.instrument_room_mix;
+    if (room_mix_>0) {
+        const std::array<unsigned,4> milliseconds{{31,47,73,113}};
+        for (std::size_t i=0;i<room_taps_.size();++i)
+            room_taps_[i]=static_cast<std::size_t>(p.music.sample_rate)*milliseconds[i]/1000;
+        room_buffer_.resize(room_taps_.back()+1);
+        room_low_alpha_=1-std::exp(-6.283185307179586*300/p.music.sample_rate);
+        room_high_alpha_=1-std::exp(-6.283185307179586*std::min(4500.0,p.music.sample_rate*0.4)/p.music.sample_rate);
+    }
     for (const auto& event : p.vocals) {
         const auto& clip=p.clips[event.clip];
         const double gain=std::pow(10.0,event.gain_db/20)*p.analysis.normalization_gain;
@@ -62,8 +71,23 @@ std::size_t RemixRenderer::process(float* stereo,std::size_t requested) noexcept
             const double sample=(source_.mono[index]*(1-fraction)+source_.mono[next]*fraction)*envelope;
             voice_left+=sample*t.gain_left; voice_right+=sample*t.gain_right;
         }
-        const double channels[2]={voice_left+(vocals_only_?0:music_buffer_[i*2]*duck),
-                                  voice_right+(vocals_only_?0:music_buffer_[i*2+1]*duck)};
+        double room_left=0,room_right=0;
+        if (room_mix_>0) {
+            const double send=(music_buffer_[i*2]+music_buffer_[i*2+1])*0.5;
+            room_low_+=room_low_alpha_*(send-room_low_);
+            room_high_+=room_high_alpha_*(send-room_low_-room_high_);
+            if (std::abs(room_low_)<1e-12) room_low_=0;
+            if (std::abs(room_high_)<1e-12) room_high_=0;
+            room_buffer_[room_cursor_]=room_high_;
+            const auto tap=[&](std::size_t n) {
+                return room_buffer_[(room_cursor_+room_buffer_.size()-room_taps_[n])%room_buffer_.size()];
+            };
+            room_left=room_mix_*(tap(0)+0.5*tap(2));
+            room_right=room_mix_*(tap(1)+0.5*tap(3));
+            room_cursor_=(room_cursor_+1)%room_buffer_.size();
+        }
+        const double channels[2]={voice_left+(vocals_only_?0:(music_buffer_[i*2]+room_left)*duck),
+                                  voice_right+(vocals_only_?0:(music_buffer_[i*2+1]+room_right)*duck)};
         for (std::size_t c=0;c<2;++c) {
             double x=channels[c];
             if (!std::isfinite(x)) {++stats_.nonfinite_samples;x=0;}

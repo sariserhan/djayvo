@@ -1,0 +1,143 @@
+[
+  {
+    "name": "attrs",
+    "version": "26.1.0",
+    "declared_license": "MIT",
+    "license_classifiers": [],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "contourpy",
+    "version": "1.4.0",
+    "declared_license": "BSD-3-Clause",
+    "license_classifiers": [],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "cycler",
+    "version": "0.12.1",
+    "declared_license": "Copyright (c) 2015, matplotlib project",
+    "license_classifiers": [
+      "License :: OSI Approved :: BSD License"
+    ],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "fonttools",
+    "version": "4.67.0",
+    "declared_license": "MIT",
+    "license_classifiers": [],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "jsonschema",
+    "version": "4.19.2",
+    "declared_license": "MIT",
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "jsonschema-specifications",
+    "version": "2025.9.1",
+    "declared_license": "MIT",
+    "license_classifiers": [],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "kiwisolver",
+    "version": "1.5.1",
+    "declared_license": "=========================",
+    "license_classifiers": [
+      "License :: OSI Approved :: BSD License"
+    ],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "matplotlib",
+    "version": "3.11.2",
+    "declared_license": "License agreement for matplotlib versions 1.3.0 and later",
+    "license_classifiers": [
+      "License :: OSI Approved :: Python Software Foundation License"
+    ],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "numpy",
+    "version": "2.5.4",
+    "declared_license": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+    "license_classifiers": [],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "packaging",
+    "version": "26.3",
+    "declared_license": "Apache-2.0 OR BSD-2-Clause",
+    "license_classifiers": [],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "pillow",
+    "version": "13.0.0",
+    "declared_license": "MIT-CMU",
+    "license_classifiers": [],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "pip",
+    "version": "26.2.1",
+    "declared_license": "MIT",
+    "license_classifiers": [],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "pyparsing",
+    "version": "3.3.3",
+    "declared_license": "MIT",
+    "license_classifiers": [],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "python-dateutil",
+    "version": "2.9.0.post0",
+    "declared_license": "Dual License",
+    "license_classifiers": [
+      "License :: OSI Approved :: BSD License",
+      "License :: OSI Approved :: Apache Software License"
+    ],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "referencing",
+    "version": "0.37.0",
+    "declared_license": "MIT",
+    "license_classifiers": [],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "rpds-py",
+    "version": "2026.9.1",
+    "declared_license": "MIT",
+    "license_classifiers": [],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "scipy",
+    "version": "1.18.1",
+    "declared_license": "Copyright (c) 2001-2002 Enthought, Inc. 2003, SciPy Developers.",
+    "license_classifiers": [
+      "License :: OSI Approved :: BSD License"
+    ],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  },
+  {
+    "name": "six",
+    "version": "1.17.0",
+    "declared_license": "MIT",
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "role": "isolated local analysis/schema tool; not linked or redistributed with engine"
+  }
+]

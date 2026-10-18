@@ -36,6 +36,11 @@ void Voice::start(const Event& e,std::uint32_t rate) noexcept {
     if (instrument_!=Instrument::drums) sample_step_*=std::exp2((pitch_-sample.root_midi)/12.0);
     // Small deterministic performance-level variation, never oscillator noise.
     velocity_=std::pow(e.velocity/127.0,1.45)*(0.97+(e.noise_seed%7U)*0.01);
+    // shortcut: single-layer samples; replace filtering with velocity layers if listening warrants it.
+    const double brightness=e.velocity/127.0;
+    const double cutoff_hz=instrument_==Instrument::piano?1600+6400*brightness:
+                           instrument_==Instrument::bass?1200+3500*brightness:2500+8000*brightness;
+    tone_=0;tone_alpha_=1-std::exp(-2*pi*std::min(cutoff_hz,rate*0.45)/rate);
     left_gain_=e.left_gain;right_gain_=e.right_gain;
     // Precompute short windowed-sinc fractional-delay kernels at note start.
     // A lower cutoff when reading faster suppresses downsampling aliases.
@@ -68,12 +73,13 @@ float Voice::next() noexcept {
         if (frame>=0 && static_cast<std::uint64_t>(frame)<sample_frames_)
             sound+=sample_[frame]*interpolation_[phase][static_cast<std::size_t>(tap)]/32768.0;
     }
+    tone_+=tone_alpha_*(sound-tone_);
     double envelope=std::min(1.0,static_cast<double>(age_)/(rate_*0.001));
     if (released_) {
         envelope*=0.5*(1+std::cos(pi*release_age_/release_length_));
         ++release_age_;
     }
     ++age_;sample_position_+=sample_step_;
-    return static_cast<float>(sound*envelope*velocity_);
+    return static_cast<float>(tone_*envelope*velocity_);
 }
 } // namespace djayvo

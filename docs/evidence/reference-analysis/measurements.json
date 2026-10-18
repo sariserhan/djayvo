@@ -459,6 +459,624 @@
       }
     ]
   },
+  "blood_club": {
+    "file": "blood_club.mp3",
+    "sha256": "12cad3d3b5d66383d69207630d09d66d5203d963ab48d0f0ade7d1ee32672188",
+    "duration_seconds": 634.067,
+    "integrated_lufs": -11.6,
+    "loudness_range_lu": 4.5,
+    "true_peak_dbfs": 1.6,
+    "rms_dbfs": -12.64,
+    "rms_p10_p90_dbfs": [
+      -18.04,
+      -10.65
+    ],
+    "side_to_mid_db": -8.03,
+    "stereo_correlation": 0.73,
+    "mono_bass_20_150hz_energy_fraction": 0.757,
+    "pulse_candidates_not_confirmed_tempo": [
+      {
+        "bpm": 140.45,
+        "correlation": 0.579
+      },
+      {
+        "bpm": 70.67,
+        "correlation": 0.446
+      },
+      {
+        "bpm": 93.74,
+        "correlation": 0.439
+      },
+      {
+        "bpm": 56.71,
+        "correlation": 0.368
+      },
+      {
+        "bpm": 189.15,
+        "correlation": 0.188
+      },
+      {
+        "bpm": 113.04,
+        "correlation": 0.158
+      }
+    ],
+    "change_candidates": [
+      {
+        "seconds": 2.27,
+        "contrast_score": 5.74,
+        "rms_before_dbfs": -21.29,
+        "rms_after_dbfs": -16.25
+      },
+      {
+        "seconds": 107.48,
+        "contrast_score": 3.98,
+        "rms_before_dbfs": -16.55,
+        "rms_after_dbfs": -12.36
+      },
+      {
+        "seconds": 309.42,
+        "contrast_score": 3.76,
+        "rms_before_dbfs": -20.32,
+        "rms_after_dbfs": -12.67
+      },
+      {
+        "seconds": 370.49,
+        "contrast_score": 4.01,
+        "rms_before_dbfs": -12.4,
+        "rms_after_dbfs": -21.37
+      },
+      {
+        "seconds": 390.79,
+        "contrast_score": 4.17,
+        "rms_before_dbfs": -12.19,
+        "rms_after_dbfs": -21.09
+      },
+      {
+        "seconds": 402.93,
+        "contrast_score": 3.58,
+        "rms_before_dbfs": -17.84,
+        "rms_after_dbfs": -15.68
+      },
+      {
+        "seconds": 431.28,
+        "contrast_score": 4.31,
+        "rms_before_dbfs": -11.64,
+        "rms_after_dbfs": -17.38
+      },
+      {
+        "seconds": 579.49,
+        "contrast_score": 4.46,
+        "rms_before_dbfs": -15.15,
+        "rms_after_dbfs": -16.32
+      },
+      {
+        "seconds": 585.88,
+        "contrast_score": 5.12,
+        "rms_before_dbfs": -18.31,
+        "rms_after_dbfs": -12.48
+      },
+      {
+        "seconds": 631.92,
+        "contrast_score": 14.31,
+        "rms_before_dbfs": -18.16,
+        "rms_after_dbfs": -35.07
+      }
+    ],
+    "ten_second_windows": [
+      {
+        "start": 0,
+        "end": 10,
+        "rms_dbfs": -15.69,
+        "bass_fraction": 0.913,
+        "upper_fraction": 0.007,
+        "side_to_mid_db": -12.22
+      },
+      {
+        "start": 10,
+        "end": 20,
+        "rms_dbfs": -15.22,
+        "bass_fraction": 0.889,
+        "upper_fraction": 0.007,
+        "side_to_mid_db": -10.31
+      },
+      {
+        "start": 20,
+        "end": 30,
+        "rms_dbfs": -14.82,
+        "bass_fraction": 0.891,
+        "upper_fraction": 0.009,
+        "side_to_mid_db": -10.65
+      },
+      {
+        "start": 30,
+        "end": 40,
+        "rms_dbfs": -11.65,
+        "bass_fraction": 0.932,
+        "upper_fraction": 0.006,
+        "side_to_mid_db": -11.25
+      },
+      {
+        "start": 40,
+        "end": 50,
+        "rms_dbfs": -10.79,
+        "bass_fraction": 0.924,
+        "upper_fraction": 0.008,
+        "side_to_mid_db": -10.55
+      },
+      {
+        "start": 50,
+        "end": 60,
+        "rms_dbfs": -11.31,
+        "bass_fraction": 0.814,
+        "upper_fraction": 0.014,
+        "side_to_mid_db": -10.97
+      },
+      {
+        "start": 60,
+        "end": 70,
+        "rms_dbfs": -10.95,
+        "bass_fraction": 0.907,
+        "upper_fraction": 0.008,
+        "side_to_mid_db": -11.68
+      },
+      {
+        "start": 70,
+        "end": 80,
+        "rms_dbfs": -10.9,
+        "bass_fraction": 0.882,
+        "upper_fraction": 0.008,
+        "side_to_mid_db": -9.65
+      },
+      {
+        "start": 80,
+        "end": 90,
+        "rms_dbfs": -12.98,
+        "bass_fraction": 0.773,
+        "upper_fraction": 0.012,
+        "side_to_mid_db": -6.88
+      },
+      {
+        "start": 90,
+        "end": 100,
+        "rms_dbfs": -12.66,
+        "bass_fraction": 0.89,
+        "upper_fraction": 0.009,
+        "side_to_mid_db": -10.17
+      },
+      {
+        "start": 100,
+        "end": 110,
+        "rms_dbfs": -12.71,
+        "bass_fraction": 0.869,
+        "upper_fraction": 0.018,
+        "side_to_mid_db": -11.15
+      },
+      {
+        "start": 110,
+        "end": 120,
+        "rms_dbfs": -11.49,
+        "bass_fraction": 0.84,
+        "upper_fraction": 0.023,
+        "side_to_mid_db": -11.31
+      },
+      {
+        "start": 120,
+        "end": 130,
+        "rms_dbfs": -11.79,
+        "bass_fraction": 0.818,
+        "upper_fraction": 0.022,
+        "side_to_mid_db": -10.51
+      },
+      {
+        "start": 130,
+        "end": 140,
+        "rms_dbfs": -11.78,
+        "bass_fraction": 0.775,
+        "upper_fraction": 0.04,
+        "side_to_mid_db": -10.8
+      },
+      {
+        "start": 140,
+        "end": 150,
+        "rms_dbfs": -11.89,
+        "bass_fraction": 0.729,
+        "upper_fraction": 0.124,
+        "side_to_mid_db": -9.74
+      },
+      {
+        "start": 150,
+        "end": 160,
+        "rms_dbfs": -11.89,
+        "bass_fraction": 0.846,
+        "upper_fraction": 0.02,
+        "side_to_mid_db": -8.61
+      },
+      {
+        "start": 160,
+        "end": 170,
+        "rms_dbfs": -11.49,
+        "bass_fraction": 0.909,
+        "upper_fraction": 0.015,
+        "side_to_mid_db": -13.51
+      },
+      {
+        "start": 170,
+        "end": 180,
+        "rms_dbfs": -11.81,
+        "bass_fraction": 0.87,
+        "upper_fraction": 0.021,
+        "side_to_mid_db": -12.7
+      },
+      {
+        "start": 180,
+        "end": 190,
+        "rms_dbfs": -11.59,
+        "bass_fraction": 0.861,
+        "upper_fraction": 0.021,
+        "side_to_mid_db": -10.89
+      },
+      {
+        "start": 190,
+        "end": 200,
+        "rms_dbfs": -11.84,
+        "bass_fraction": 0.827,
+        "upper_fraction": 0.02,
+        "side_to_mid_db": -9.37
+      },
+      {
+        "start": 200,
+        "end": 210,
+        "rms_dbfs": -17.79,
+        "bass_fraction": 0.372,
+        "upper_fraction": 0.057,
+        "side_to_mid_db": -4.09
+      },
+      {
+        "start": 210,
+        "end": 220,
+        "rms_dbfs": -17.72,
+        "bass_fraction": 0.039,
+        "upper_fraction": 0.101,
+        "side_to_mid_db": -2.05
+      },
+      {
+        "start": 220,
+        "end": 230,
+        "rms_dbfs": -17.02,
+        "bass_fraction": 0.141,
+        "upper_fraction": 0.105,
+        "side_to_mid_db": -1.94
+      },
+      {
+        "start": 230,
+        "end": 240,
+        "rms_dbfs": -15.63,
+        "bass_fraction": 0.411,
+        "upper_fraction": 0.094,
+        "side_to_mid_db": -4.8
+      },
+      {
+        "start": 240,
+        "end": 250,
+        "rms_dbfs": -11.27,
+        "bass_fraction": 0.841,
+        "upper_fraction": 0.023,
+        "side_to_mid_db": -8.55
+      },
+      {
+        "start": 250,
+        "end": 260,
+        "rms_dbfs": -12.3,
+        "bass_fraction": 0.764,
+        "upper_fraction": 0.035,
+        "side_to_mid_db": -3.9
+      },
+      {
+        "start": 260,
+        "end": 270,
+        "rms_dbfs": -12.19,
+        "bass_fraction": 0.864,
+        "upper_fraction": 0.029,
+        "side_to_mid_db": -2.17
+      },
+      {
+        "start": 270,
+        "end": 280,
+        "rms_dbfs": -12.06,
+        "bass_fraction": 0.808,
+        "upper_fraction": 0.046,
+        "side_to_mid_db": -2.91
+      },
+      {
+        "start": 280,
+        "end": 290,
+        "rms_dbfs": -12.33,
+        "bass_fraction": 0.584,
+        "upper_fraction": 0.077,
+        "side_to_mid_db": -2.7
+      },
+      {
+        "start": 290,
+        "end": 300,
+        "rms_dbfs": -12.13,
+        "bass_fraction": 0.653,
+        "upper_fraction": 0.069,
+        "side_to_mid_db": -3.2
+      },
+      {
+        "start": 300,
+        "end": 310,
+        "rms_dbfs": -14.68,
+        "bass_fraction": 0.426,
+        "upper_fraction": 0.097,
+        "side_to_mid_db": -2.48
+      },
+      {
+        "start": 310,
+        "end": 320,
+        "rms_dbfs": -12.29,
+        "bass_fraction": 0.671,
+        "upper_fraction": 0.066,
+        "side_to_mid_db": -2.27
+      },
+      {
+        "start": 320,
+        "end": 330,
+        "rms_dbfs": -12.07,
+        "bass_fraction": 0.702,
+        "upper_fraction": 0.053,
+        "side_to_mid_db": -3.49
+      },
+      {
+        "start": 330,
+        "end": 340,
+        "rms_dbfs": -12.33,
+        "bass_fraction": 0.575,
+        "upper_fraction": 0.081,
+        "side_to_mid_db": -2.73
+      },
+      {
+        "start": 340,
+        "end": 350,
+        "rms_dbfs": -11.98,
+        "bass_fraction": 0.684,
+        "upper_fraction": 0.073,
+        "side_to_mid_db": -3.71
+      },
+      {
+        "start": 350,
+        "end": 360,
+        "rms_dbfs": -12.28,
+        "bass_fraction": 0.58,
+        "upper_fraction": 0.095,
+        "side_to_mid_db": -2.96
+      },
+      {
+        "start": 360,
+        "end": 370,
+        "rms_dbfs": -12.17,
+        "bass_fraction": 0.662,
+        "upper_fraction": 0.068,
+        "side_to_mid_db": -3.66
+      },
+      {
+        "start": 370,
+        "end": 380,
+        "rms_dbfs": -16.15,
+        "bass_fraction": 0.521,
+        "upper_fraction": 0.113,
+        "side_to_mid_db": -2.0
+      },
+      {
+        "start": 380,
+        "end": 390,
+        "rms_dbfs": -12.19,
+        "bass_fraction": 0.865,
+        "upper_fraction": 0.045,
+        "side_to_mid_db": -2.72
+      },
+      {
+        "start": 390,
+        "end": 400,
+        "rms_dbfs": -19.19,
+        "bass_fraction": 0.331,
+        "upper_fraction": 0.141,
+        "side_to_mid_db": -2.21
+      },
+      {
+        "start": 400,
+        "end": 410,
+        "rms_dbfs": -14.24,
+        "bass_fraction": 0.71,
+        "upper_fraction": 0.098,
+        "side_to_mid_db": -14.29
+      },
+      {
+        "start": 410,
+        "end": 420,
+        "rms_dbfs": -11.22,
+        "bass_fraction": 0.832,
+        "upper_fraction": 0.059,
+        "side_to_mid_db": -17.88
+      },
+      {
+        "start": 420,
+        "end": 430,
+        "rms_dbfs": -11.04,
+        "bass_fraction": 0.819,
+        "upper_fraction": 0.059,
+        "side_to_mid_db": -18.02
+      },
+      {
+        "start": 430,
+        "end": 440,
+        "rms_dbfs": -16.57,
+        "bass_fraction": 0.363,
+        "upper_fraction": 0.259,
+        "side_to_mid_db": -8.0
+      },
+      {
+        "start": 440,
+        "end": 450,
+        "rms_dbfs": -15.24,
+        "bass_fraction": 0.56,
+        "upper_fraction": 0.171,
+        "side_to_mid_db": -8.89
+      },
+      {
+        "start": 450,
+        "end": 460,
+        "rms_dbfs": -13.4,
+        "bass_fraction": 0.71,
+        "upper_fraction": 0.11,
+        "side_to_mid_db": -10.44
+      },
+      {
+        "start": 460,
+        "end": 470,
+        "rms_dbfs": -10.92,
+        "bass_fraction": 0.825,
+        "upper_fraction": 0.061,
+        "side_to_mid_db": -14.19
+      },
+      {
+        "start": 470,
+        "end": 480,
+        "rms_dbfs": -10.9,
+        "bass_fraction": 0.761,
+        "upper_fraction": 0.073,
+        "side_to_mid_db": -14.63
+      },
+      {
+        "start": 480,
+        "end": 490,
+        "rms_dbfs": -11.2,
+        "bass_fraction": 0.734,
+        "upper_fraction": 0.083,
+        "side_to_mid_db": -13.66
+      },
+      {
+        "start": 490,
+        "end": 500,
+        "rms_dbfs": -11.92,
+        "bass_fraction": 0.688,
+        "upper_fraction": 0.111,
+        "side_to_mid_db": -13.44
+      },
+      {
+        "start": 500,
+        "end": 510,
+        "rms_dbfs": -11.29,
+        "bass_fraction": 0.75,
+        "upper_fraction": 0.087,
+        "side_to_mid_db": -12.63
+      },
+      {
+        "start": 510,
+        "end": 520,
+        "rms_dbfs": -15.55,
+        "bass_fraction": 0.312,
+        "upper_fraction": 0.359,
+        "side_to_mid_db": -8.72
+      },
+      {
+        "start": 520,
+        "end": 530,
+        "rms_dbfs": -12.68,
+        "bass_fraction": 0.681,
+        "upper_fraction": 0.171,
+        "side_to_mid_db": -13.5
+      },
+      {
+        "start": 530,
+        "end": 540,
+        "rms_dbfs": -11.69,
+        "bass_fraction": 0.868,
+        "upper_fraction": 0.049,
+        "side_to_mid_db": -20.44
+      },
+      {
+        "start": 540,
+        "end": 550,
+        "rms_dbfs": -11.53,
+        "bass_fraction": 0.791,
+        "upper_fraction": 0.064,
+        "side_to_mid_db": -21.2
+      },
+      {
+        "start": 550,
+        "end": 560,
+        "rms_dbfs": -15.31,
+        "bass_fraction": 0.379,
+        "upper_fraction": 0.224,
+        "side_to_mid_db": -10.56
+      },
+      {
+        "start": 560,
+        "end": 570,
+        "rms_dbfs": -14.95,
+        "bass_fraction": 0.294,
+        "upper_fraction": 0.188,
+        "side_to_mid_db": -6.77
+      },
+      {
+        "start": 570,
+        "end": 580,
+        "rms_dbfs": -13.24,
+        "bass_fraction": 0.481,
+        "upper_fraction": 0.197,
+        "side_to_mid_db": -7.84
+      },
+      {
+        "start": 580,
+        "end": 590,
+        "rms_dbfs": -14.23,
+        "bass_fraction": 0.657,
+        "upper_fraction": 0.089,
+        "side_to_mid_db": -7.61
+      },
+      {
+        "start": 590,
+        "end": 600,
+        "rms_dbfs": -12.01,
+        "bass_fraction": 0.84,
+        "upper_fraction": 0.065,
+        "side_to_mid_db": -12.42
+      },
+      {
+        "start": 600,
+        "end": 610,
+        "rms_dbfs": -11.5,
+        "bass_fraction": 0.793,
+        "upper_fraction": 0.107,
+        "side_to_mid_db": -12.62
+      },
+      {
+        "start": 610,
+        "end": 620,
+        "rms_dbfs": -12.53,
+        "bass_fraction": 0.684,
+        "upper_fraction": 0.185,
+        "side_to_mid_db": -14.28
+      },
+      {
+        "start": 620,
+        "end": 630,
+        "rms_dbfs": -14.93,
+        "bass_fraction": 0.601,
+        "upper_fraction": 0.224,
+        "side_to_mid_db": -28.42
+      },
+      {
+        "start": 630,
+        "end": 634.07,
+        "rms_dbfs": -20.1,
+        "bass_fraction": 0.241,
+        "upper_fraction": 0.472,
+        "side_to_mid_db": -12.93
+      }
+    ]
+  },
   "djayvo_hiphop": {
     "file": "remix.hiphop.wav",
     "sha256": "69fcb6cfad5ea15c3d0bad8301ec148e7f96c384b4b0883c9a36047915540b10",

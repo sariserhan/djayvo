@@ -1,0 +1,20 @@
+{
+  "hiphop": {
+    "same_timeline_frames": 1536000,
+    "maximum_absolute_pcm_difference": 0.576629638671875,
+    "rms_pcm_difference": 0.041919617476441545,
+    "expected_change": "New composition, articulation, gains and room; not a portability comparison"
+  },
+  "reggae": {
+    "same_timeline_frames": 1536000,
+    "maximum_absolute_pcm_difference": 0.40802001953125,
+    "rms_pcm_difference": 0.04034733460615948,
+    "expected_change": "New composition, articulation, gains and room; not a portability comparison"
+  },
+  "experimental": {
+    "same_timeline_frames": 1582452,
+    "maximum_absolute_pcm_difference": 0.4991455078125,
+    "rms_pcm_difference": 0.04997420893239608,
+    "expected_change": "New composition, articulation, gains and room; not a portability comparison"
+  }
+}

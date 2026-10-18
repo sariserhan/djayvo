@@ -151,7 +151,14 @@ void instruments() {
         check(harmonic(octave, 2 * fundamental) >
               8 * magnitude(octave, p.sample_rate, fundamental, 1600, 4096), "octave transposition broken");
         p.tracks[0].notes[0].velocity = 40;
-        check(energy(render(p)) < energy(octave) * 0.2, "velocity not audible in energy");
+        const auto soft=render(p);
+        check(energy(soft) < energy(octave) * 0.2, "velocity not audible in energy");
+        const auto brightness=[](const std::vector<float>& signal) {
+            double differences=0;
+            for (std::size_t i=2;i<signal.size();i+=2) differences+=std::pow(signal[i]-signal[i-2],2);
+            return differences/energy(signal);
+        };
+        check(brightness(soft)<brightness(octave),"soft notes are not darker after level normalization");
     }
     const auto kick = render(single(djayvo::Instrument::drums, 36));
     const auto snare = render(single(djayvo::Instrument::drums, 38));

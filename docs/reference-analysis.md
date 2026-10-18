@@ -1,8 +1,8 @@
 # Owner-supplied reference analysis
 
 2026-10-17. The owner selected all parts of the linked tracks and supplied
-`~/Downloads/down.mp3` and `~/Downloads/question.mp3`. Both were analyzed locally
-in full. Blood Club was not supplied locally or analyzed here. Original audio is
+`~/Downloads/down.mp3`, `question.mp3`, and subsequently `blood_club.mp3`. All
+three were analyzed locally in full. Original audio is
 unchanged and remains outside Git.
 
 **Overall: PARTIAL. Signal measurements: PASS. Direct listening: NOT RUN.** This
@@ -14,7 +14,8 @@ Timestamps below describe measured changes, not heard song sections.
 | --- | --- | --- | --- | --- |
 | down.mp3 | 2:23.80 | 131 or 65.5 BPM | -5.3 LUFS | 4.7 LU |
 | question.mp3 | 2:35.32 | 157 or 79 BPM | -5.7 LUFS | 6.1 LU |
-| Current Djayvo acoustic masters | 32–32.97 s | Score tempi remain authoritative | -24.8 to -23.9 LUFS | 5.5–9.4 LU |
+| blood_club.mp3 | 10:34.07 | 140 or 71 BPM | -11.6 LUFS | 4.5 LU |
+| Previous Djayvo acoustic masters | 32–32.97 s | Score tempi remain authoritative | -24.8 to -23.9 LUFS | 5.5–9.4 LU |
 
 Onset autocorrelation has half/double-time and other metrical ambiguities; these
 are not verified beat grids. Results describe the supplied MP3 encodings, not
@@ -34,7 +35,15 @@ and 81% at 2:00–2:10. Side/mid energy is -7 dB at 0:40–0:50 versus -15 dB at
 1:00–1:10: more relative side energy in the earlier passage. Width changes with
 the arrangement; continuously widening every part would not reproduce this.
 
-**Djayvo:** current hip-hop bass fractions are 54%, 58%, 55% across its active
+**Blood Club:** the supplied file is the full 10:34 performance. Its overall
+side/mid energy is -8 dB, with large changes over time. Low-band energy falls to
+4% at 3:30–3:40 and returns to 84% at 4:00–4:10; RMS rises from -17.72 to -11.27
+dBFS between those windows. This supplies another measurable example of removing
+and restoring low-frequency weight. The selected 3:20–4:10 excerpt preserves
+that contrast. No particular instrument, vocal technique or section name is
+inferred from those numbers.
+
+**Djayvo acoustic-v1:** hip-hop bass fractions are 54%, 58%, 55% across its active
 ten-second windows; reggae has 50%, 49%, 50%; experimental has 62%, 74%, 58%.
 Substantial low-frequency energy already exists. A blanket bass boost is not
 supported by this comparison. Overall side/mid energy is -19 to -20 dB in Djayvo
@@ -56,11 +65,14 @@ These are design hypotheses informed by measurements and owner feedback:
 5. Retain varied openings and two protected complete speech phrases. Place short
    responses in deliberate gaps; these measurements cannot assess intelligibility.
 
-No engine changes, training or reference-audio incorporation occurred here.
+No training or reference-audio incorporation occurred. Subsequent engine changes
+and validation are recorded separately in [arrangement-review.md](arrangement-review.md).
 
 ## Audition package
 
-Local folder: `renders/reference-analysis/listening/`.
+Initial five-file folder: `renders/reference-analysis/listening/`. The newer
+15-file page at `renders/voice-arrangement-v2/review/index.html` also includes
+Blood Club and the revised/previous Djayvo comparisons.
 
 - `down-018-062.wav`: 0:18–1:02, covering the first strong arrival and retreat.
 - `question-046-090.wav`: 0:46–1:30, covering the lift, reduction and recovery.
@@ -71,7 +83,7 @@ limiting; internal contrast is preserved. True peaks range from -15.8 to -8.1 dB
 This is an informal reference comparison, not a blinded quality trial. Playback
 and listener scores are not claimed.
 
-The supplied MP3s decode above full scale (true peaks +4.6/+4.3 dBFS), so their
+The supplied MP3s decode above full scale (true peaks +4.6/+4.3/+1.6 dBFS), so their
 loudness is not a mastering target. Attenuation precedes PCM output. An initial
 excerpt check failed by 0.6 LU because measurement preceded output-side trimming.
 Trimming now occurs inside the filter chain before measurement and gain; all five
@@ -105,14 +117,14 @@ independently remeasured.
 
 | Gate | Status | Evidence / limitation |
 | --- | --- | --- |
-| Both supplied files analyzed in full | PASS | Hashes, durations, measurements |
+| All three supplied files analyzed in full | PASS | Hashes, durations, measurements |
 | Reproducible signal metrics | PASS | Snapshot, versions, numerical self-checks |
 | Level-matched audition preparation | PASS | Five files at -25.0 LUFS, peaks below -1 dBFS |
 | Reference interpretation | PARTIAL | Measured structure and design hypotheses |
 | Direct listening / timbre / harmony / vocal edits | NOT RUN | Audio perception unavailable here |
-| Blood Club | NOT RUN | No local audio supplied |
+| Blood Club signal analysis | PASS | Full 634.067 seconds measured; direct listening NOT RUN |
 | Revised Djayvo human quality gate | NOT RUN | No new listener ratings |
-| Current engine Linux/Mac comparison | NOT RUN | No new engine or cross-OS run here |
+| Current engine Linux/Mac comparison | PASS | Subsequent arrangement revision: exact plans/events and 15 matching WAVs |
 
 Historical M5 build/sanitizer results remain in [acoustic-review.md](acoustic-review.md).
 They were not rerun for this analysis-only change. The master spec is unchanged.

@@ -8,6 +8,17 @@ cd "$(dirname "$0")/.."
 command -v cmake >/dev/null
 command -v python3 >/dev/null
 PYTHON=${DJAYVO_PYTHON:-$(command -v python3)}
+REFERENCE=${DJAYVO_REFERENCE_PREFIX:-renders/m0/remix}
+OUTPUT=${DJAYVO_OUTPUT_DIR:-renders/mac-$(date +%Y%m%d-%H%M%S)}
+if [ -e "$OUTPUT" ]; then
+    echo "FAIL: output directory already exists; preserving recordings: $OUTPUT" >&2
+    exit 1
+fi
+for style in hiphop reggae experimental; do
+    test -f "$REFERENCE.$style.wav"
+    test -f "$REFERENCE.$style.score.json"
+    test -f "$REFERENCE.$style.events.tsv"
+done
 test -f renders/fixtures/synthetic-speech.wav
 "$PYTHON" - <<'PY'
 import hashlib
@@ -21,8 +32,10 @@ PY
 cmake -S . -B build-mac -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=arm64 -DBUILD_TESTING=ON -DPython3_EXECUTABLE="$PYTHON"
 cmake --build build-mac --parallel 4
 ctest --test-dir build-mac --output-on-failure
-./build-mac/djayvo_remix --input renders/fixtures/synthetic-speech.wav --synthetic-fixture --output renders/mac/remix --style all --stems
-"$PYTHON" - <<'PY'
+mkdir -p "$(dirname "$OUTPUT")"
+mkdir "$OUTPUT"
+./build-mac/djayvo_remix --input renders/fixtures/synthetic-speech.wav --synthetic-fixture --output "$OUTPUT/remix" --style all --stems
+"$PYTHON" - "$OUTPUT" <<'PY'
 import json, platform, subprocess, sys
 from pathlib import Path
 def command(*args):
@@ -41,7 +54,7 @@ result = {'system': platform.system(), 'machine': platform.machine(),
           'cmake': command('cmake', '--version').splitlines()[0],
           'python': sys.version, 'python_executable': sys.executable,
           'renderer_binary': command('file', 'build-mac/djayvo_remix')}
-Path('renders/mac/environment.json').write_text(json.dumps(result, indent=2) + '\n')
+Path(sys.argv[1], 'environment.json').write_text(json.dumps(result, indent=2) + '\n')
 PY
-"$PYTHON" scripts/compare_portability.py --reference renders/m0/remix --candidate renders/mac/remix --candidate-metadata renders/mac/environment.json --report renders/mac/portability-report.json
+"$PYTHON" scripts/compare_portability.py --reference "$REFERENCE" --candidate "$OUTPUT/remix" --candidate-metadata "$OUTPUT/environment.json" --report "$OUTPUT/portability-report.json"
 echo 'Audition the three Mac renders and record real listening observations separately.'

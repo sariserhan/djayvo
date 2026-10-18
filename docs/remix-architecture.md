@@ -27,10 +27,12 @@ unassessed.
 | --- | --- | --- | --- |
 | Hip-hop | 96 BPM, 12 bars | Swung hats, backbeat, syncopated bass, held minor chords | Sparse source-derived chops and call/response |
 | Reggae | 80 BPM, 10 bars | Offbeat chord stabs, one-drop drums, different bass rhythm | Offbeat sample responses |
-| Experimental | 124 BPM, 16 bars | Broken sixteenth-note percussion, slower arpeggiation, syncopated bass | Sparse motifs and one-semitone coupled-speed variants |
+| Experimental | 124 BPM, 16 bars | Half-time backbeat, chord responses, longer syncopated bass | Sparse original-speed vocal motifs |
 | Baseline control | 96 BPM, 12 bars | Fixed original four-bar instrumental loop repeated three times | Full source at fixed positions, no derived motifs |
 
-The three strategies have intro, groove, break, and finale sections. Source
+The three strategies have intro, groove, break, return, and ending sections.
+The break removes bass/drums, and the return varies responses/fills. Piano triads
+use nearby inversions, staggered attacks and two-note responses. Source
 onsets determine crops and quantized melodic-response rhythms; a confident
 coarse pitch estimate chooses the tonic. Harmony is i–VI–iv–i in minor. Grammars
 differ at a common seed; seed changes alone are not treated as new strategies.
@@ -44,7 +46,8 @@ small near-zero region and playback applies 3 ms edge fades. Clean statements
 smoothly duck instruments to 15% (-16.48 dB) over 10 ms. If a source exceeds the
 experimental intro, ducking continues into the instrumental entrance. Generated
 chops are excluded from both full clean intervals; quantization cannot place
-two chops at the same frame. Other chops use pan and small rate changes. The
+two chops at the same frame. All generated chops leave 80 ms breathing room
+around one another and clean hooks, and retain original speed. The
 renderer still supports reverse and rates 0.5–2. Rate changes couple pitch and duration;
 **independent time stretch/pitch shift is not implemented**. Linear interpolation
 for varispeed can alias transformed high frequencies. Clean hooks are untransformed.
@@ -55,6 +58,14 @@ validation caps sample overlap at 16, events at 1024, clips at 64, and retains t
 128-instrument-voice cap. The final ceiling is -1 dBFS. All source events must end
 by the musical endpoint; the release tail follows it. Baseline instruments and
 voice positions are independent of source rhythmic analysis.
+
+`mix.instrument_room_mix` optionally adds four finite instrumental reflections
+with band-limited sends; it defaults to zero and is validated in [0,0.35].
+Vocals never feed this effect, and both dry/wet instruments follow hook ducking.
+Ring buffers are allocated at construction. Release coverage reserves the longest
+113 ms reflection plus 100 ms filter settling. No feedback reverb is implemented.
+Velocity-dependent filtering gives softer sampled notes a darker tone; the bank
+still has only one recorded velocity layer. See [arrangement-review.md](arrangement-review.md).
 
 Stems share the master timeline and ducking. Each is quantized/mastered
 separately: rounding/nonlinearity mean their sum need not exactly reproduce the

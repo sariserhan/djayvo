@@ -40,8 +40,8 @@ djayvo::AudioBuffer source() {
     }
     return a;
 }
-std::vector<float> render(const djayvo::RemixPlan& p,const djayvo::AudioBuffer& a,std::size_t block=512,bool vocals=false) {
-    djayvo::RemixRenderer r(p,a,block,vocals);
+std::vector<float> render(const djayvo::RemixPlan& p,const djayvo::AudioBuffer& a,std::size_t block=512,bool vocals=false,int solo=-1) {
+    djayvo::RemixRenderer r(p,a,block,vocals,solo);
     std::vector<float> all;all.reserve(static_cast<std::size_t>(djayvo::compile(p.music).total_frames)*2);
     std::vector<float> scratch(block*2);
     while(!r.finished()) {
@@ -113,6 +113,12 @@ void validation() {
     bad=p;bad.vocals.assign(17,p.vocals[0]);rejects([&]{djayvo::validate(bad,a);});
     bad=p;bad.vocals[0].start=djayvo::ticks_per_bar(p.music)*p.music.bars-1;rejects([&]{djayvo::validate(bad,a);});
     bad=p;bad.vocals[0].rate=std::numeric_limits<double>::quiet_NaN();rejects([&]{djayvo::validate(bad,a);});
+    for (double mix:{-0.01,0.36,std::numeric_limits<double>::quiet_NaN()}) {
+        bad=p;bad.instrument_room_mix=mix;rejects([&]{djayvo::validate(bad,a);});
+    }
+    bad=p;bad.music.tail_ms=500;
+    bad.music.tracks[0].notes={{djayvo::ticks_per_bar(bad.music)*bad.music.bars-960,960,60,70}};
+    rejects([&]{djayvo::validate(bad,a);});
     auto absent=analysis;absent.phrases.clear();rejects([&]{djayvo::make_remix(a,absent,djayvo::Strategy::hiphop,0,true,false);});
     auto invalid_rate=a;invalid_rate.sample_rate=0;
     rejects([&]{djayvo::make_remix(invalid_rate,analysis,djayvo::Strategy::hiphop,0,true,false);});
@@ -140,7 +146,11 @@ void vocal_spacing() {
                 check(std::find(starts.begin(),starts.end(),start(e))==starts.end(),"chops stack at the same frame");
                 starts.push_back(start(e));
                 for (const auto& clean:p.vocals) if (clean.clean)
-                    check(end(e)<=start(clean) || start(e)>=end(clean),"chop masks a clean hook");
+                    check(end(e)+a.sample_rate*80/1000<=start(clean) || start(e)>=end(clean)+a.sample_rate*80/1000,
+                          "chop masks a clean hook or its breathing space");
+                for (const auto& other:p.vocals) if (!other.clean && &other!=&e)
+                    check(end(e)+a.sample_rate*80/1000<=start(other) || start(e)>=end(other)+a.sample_rate*80/1000,
+                          "creative chops overlap or leave no breathing space");
             }
             check(!starts.empty(),"spacing removed every creative chop");
             check(std::count_if(p.vocals.begin(),p.vocals.end(),[](const auto& e){return e.clean;})==2,
@@ -186,6 +196,50 @@ void no_allocations() {
     while(!r.finished()) r.process(buffer,512);
     const auto after=allocations.load();check(before==after,"sample render allocated memory");
 }
+void arrangement_contrast() {
+    const auto a=source();const auto analysis=djayvo::analyze(a);
+    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental})
+        for (std::uint32_t seed:{0U,4123U,4124U,4125U,4294967295U}) {
+            const auto p=djayvo::make_remix(a,analysis,style,seed,true,false);
+            const auto bar=djayvo::ticks_per_bar(p.music);
+            const auto rest=std::find_if(p.music.sections.begin(),p.music.sections.end(),[](const auto& s){return s.name=="break";});
+            const auto arrival=std::find_if(p.music.sections.begin(),p.music.sections.end(),[](const auto& s){return s.name=="return";});
+            check(rest!=p.music.sections.end() && arrival!=p.music.sections.end(),"arrangement lacks contrast sections");
+            for (std::size_t t=1;t<3;++t) {
+                int returning=0;
+                for (const auto& n:p.music.tracks[t].notes) {
+                    check(n.start<rest->start_bar*bar || n.start>=(rest->start_bar+rest->bars)*bar,
+                          "rhythm section plays through the break");
+                    if (n.start>=arrival->start_bar*bar && n.start<(arrival->start_bar+arrival->bars)*bar) ++returning;
+                }
+                check(returning>=3,"rhythm section does not return");
+            }
+            for (const auto& n:p.music.tracks[0].notes) {
+                check(n.pitch>=48 && n.pitch<=79,"piano escaped its intended register");
+                check(n.duration>0,"rolled chord has an invalid note length");
+            }
+            for (const auto& v:p.vocals) check(v.rate==1 && !v.reverse,"planner alters speech pitch/time");
+        }
+}
+void room_processing() {
+    const auto a=source();auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+    for (auto& track:p.music.tracks) track.notes.clear();
+    p.music.tracks[0].pan=0;p.music.tracks[0].notes={{0,960,60,90}};
+    p.instrument_room_mix=0;
+    const auto dry=render(p,a,257,false,0),dry_voice=render(p,a,257,true);
+    p.instrument_room_mix=0.35;
+    const auto wet=render(p,a,257,false,0);
+    check(wet==render(p,a,113,false,0),"room depends on block boundaries");
+    check(dry_voice==render(p,a,113,true),"instrument room altered vocal stem");
+    double side=0;
+    for (std::size_t i=0;i<wet.size();i+=2) {
+        check(dry[i]==dry[i+1],"centered dry instrument is not mono");
+        side+=std::pow(wet[i]-wet[i+1],2);
+        if (i/2<a.sample_rate*31/1000) check(wet[i]==dry[i] && wet[i+1]==dry[i+1],"reflection arrives before its delay");
+        if (i/2>2*a.sample_rate) check(wet[i]==0 && wet[i+1]==0,"room has a stuck or excessive tail");
+    }
+    check(side>0.001,"room does not create stereo reflections");
+}
 }
 int main() {
     const std::vector<std::pair<const char*,std::function<void()>>> tests{
@@ -195,6 +249,8 @@ int main() {
         {"consent, crop, transform, polyphony and duration rejection",validation},
         {"quantized chop spacing and both clean hooks at 2/3/5 seconds",vocal_spacing},
         {"seeded clean, instrumental and fragment openings",varied_openings},
+        {"subtraction and return across styles and seeds",arrangement_contrast},
+        {"instrument room timing, stereo, dry speech and finite tail",room_processing},
         {"allocation-free sample and instrument processing",no_allocations}};
     int failures=0;
     for(const auto& t:tests)try{t.second();std::cout<<"PASS: "<<t.first<<'\n';}

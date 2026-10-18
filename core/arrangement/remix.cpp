@@ -54,8 +54,10 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     p.sample_rate=source.sample_rate; p.seed=seed;
     p.tempo_milli_bpm = strategy == Strategy::hiphop ? 96000U : strategy == Strategy::reggae ? 80000U : 124000U;
     p.bars = strategy == Strategy::hiphop ? 12 : strategy == Strategy::reggae ? 10 : 16;
-    // End two bars early: full clean hook, progressively busier motif, break, ending.
-    p.sections={{"intro",0,2},{"groove",2,p.bars-6},{"break",p.bars-4,2},{"finale",p.bars-2,2}};
+    const int break_bar=p.bars-6, return_bar=p.bars-4;
+    p.sections={{"intro",0,2},{"groove",2,break_bar-2},{"break",break_bar,2},
+                {"return",return_bar,3},{"ending",p.bars-1,1}};
+    r.instrument_room_mix=strategy==Strategy::reggae?0.24:0.18;
     if (a.pitch_hz > 0 && a.pitch_confidence >= 0.65) {
         const int midi = static_cast<int>(std::llround(69 + 12*std::log2(a.pitch_hz/440)));
         r.tonic_midi = 60 + ((midi % 12 + 12) % 12);
@@ -89,11 +91,11 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         rng ^= rng<<13U; rng ^= rng>>17U; rng ^= rng<<5U;
         return base + static_cast<int>(rng % 11U)-5;
     };
-    Track piano{Instrument::piano,-13,-0.28,{}};
-    Track bass{Instrument::bass,-10,0,{}};
-    Track drums{Instrument::drums,-13,0.18,{}};
+    Track piano{Instrument::piano,-10,-0.20,{}};
+    Track bass{Instrument::bass,-8,0,{}};
+    Track drums{Instrument::drums,-9,0.08,{}};
     const std::array<int,4> progression{{0,-4,-7,0}}; // i, VI, iv, i in minor
-    const std::array<int,7> minor{{0,2,3,5,7,8,10}};
+    std::array<int,3> previous_chord{{55,60,64}};
     std::vector<Tick> motif;
     for (auto onset : a.onsets) {
         const auto t = source_tick(onset,p) % bar_ticks;
@@ -104,14 +106,31 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     std::sort(motif.begin(),motif.end());
     for (int b=opening==0?2:0; b<p.bars; ++b) {
         const Tick base=b*bar_ticks;
-        const bool breakdown=b>=p.bars-4 && b<p.bars-2;
+        const bool intro=b<2;
+        const bool breakdown=b>=break_bar && b<return_bar;
+        const bool returning=b>=return_bar;
         const bool last=b==p.bars-1;
-        const int step=progression[static_cast<std::size_t>((std::max(2,b)-2)%4)];
+        const int step=last?0:progression[static_cast<std::size_t>((std::max(2,b)-2)%4)];
         const int root=r.tonic_midi+step;
         const bool major=step==-4;
+        // Choose a nearby inversion so each chord voice moves a short distance.
+        std::array<int,3> voicing{{root,root+(major?4:3),root+7}};
+        int best_distance=1000;
+        for (int inversion=0;inversion<3;++inversion) for (int octave=-1;octave<=1;++octave) {
+            std::array<int,3> candidate{{root+12*octave,root+(major?4:3)+12*octave,root+7+12*octave}};
+            for (int n=0;n<inversion;++n) candidate[static_cast<std::size_t>(n)]+=12;
+            std::sort(candidate.begin(),candidate.end());
+            if (candidate.front()<48 || candidate.back()>79) continue;
+            int distance=0;
+            for (std::size_t n=0;n<3;++n) distance+=std::abs(candidate[n]-previous_chord[n]);
+            if (distance<best_distance) {best_distance=distance;voicing=candidate;}
+        }
+        previous_chord=voicing;
         auto chord = [&](Tick start,Tick duration,int strength) {
-            for (int n : {root,root+(major?4:3),root+7,root+(major?11:10)})
-                piano.notes.push_back({base+start,duration,n,velocity(strength)});
+            for (std::size_t n=0;n<voicing.size();++n) {
+                const Tick roll=static_cast<Tick>(n)*12;
+                piano.notes.push_back({base+start+roll,duration-roll,voicing[n],velocity(strength+(n==2?4:-3))});
+            }
         };
         auto bass_note = [&](Tick start,Tick duration,int interval,int strength) {
             bass.notes.push_back({base+start,duration,root-24+interval,velocity(strength)});
@@ -119,14 +138,17 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         auto drum = [&](Tick start,int pitch,int strength,Tick duration=240) {
             drums.notes.push_back({base+start,duration,pitch,velocity(strength)});
         };
-        if (strategy==Strategy::hiphop) {
+        if (intro || breakdown) {
+            chord(0,3*q,intro?55:48);
+            if (intro && b==1) drum(3*q,42,42,120);
+        } else if (strategy==Strategy::hiphop) {
             chord(0,last?3*q:3*q/2,76);
             if (!breakdown && !last) chord(5*q/2,q/2,60);
             bass_note(0,last?3*q:3*q/4,0,102);
             if (!last && !breakdown) { bass_note(7*q/4,q/2,7,80); bass_note(5*q/2,q,12,87); }
             drum(0,36,110); if (!last) drum(9*q/4,36,92);
             if (!last) { drum(q,38,100); drum(3*q,38,106); }
-            if (!breakdown && !last)
+            if (!last)
                 for (int h=0;h<8;++h) drum(h*q/2+(h%2?q/12:0),42,h%2?48:70,120);
         } else if (strategy==Strategy::reggae) {
             if (last) chord(0,3*q,77);
@@ -139,38 +161,37 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
                 for (int h=0;h<8;++h) drum(h*q/2, h==7?46:42,h%2?74:48,120);
         } else {
             if (last) chord(0,3*q,80);
-            else if (!breakdown) {
-                for (int n=0;n<4;++n) {
-                    const int interval=minor[static_cast<std::size_t>((n*2+b)%7)];
-                    piano.notes.push_back({base+n*q,3*q/4,r.tonic_midi+interval,velocity(n%3?64:83)});
-                }
-            }
-            bass_note(0,last?3*q:q/3,0,108);
-            if (!last && !breakdown)
-                for (int n : {3,6,10,13}) bass_note(n*q/4,q/4,n%2?12:7,85);
+            else { chord(q/2,q,68); if (returning) chord(3*q,q/2,58); }
+            bass_note(0,last?3*q:5*q/4,0,108);
+            if (!last) bass_note(11*q/4,3*q/4,returning?7:0,88);
             drum(0,36,113);
-            if (!last && !breakdown) { drum(7*q/4,36,98); drum(5*q/2,38,107); }
-            if (!last && !breakdown)
-                for (int h=0;h<16;++h) if ((h+b)%3) drum(h*q/4,42,h%4?45:79,90);
+            if (!last) { drum(returning?13*q/4:7*q/4,36,98); drum(2*q,38,107); }
+            if (!last)
+                for (int h=0;h<8;++h) if (returning || h%2==0) drum(h*q/2,42,h%2?45:72,120);
         }
+        if (!intro && !breakdown && !last && (b+1==break_bar || b+1==p.bars-1)) {
+            drum(7*q/2,38,56); drum(15*q/4,38,72);
+        }
+        if (returning && !last && b%2==static_cast<int>(seed%2U)) drum(7*q/2,46,60,q/4);
         // Phrase-derived call/response, not a continuous voice-over backing loop.
-        if (b>=2 && !last && b%2==0) {
-            const std::size_t count=breakdown?2:std::min<std::size_t>(motif.size(),strategy==Strategy::experimental?4:3);
+        if (b>=2 && !breakdown && !last && b%2==0) {
+            const std::size_t count=std::min<std::size_t>(motif.size(),returning?3:2);
             for (std::size_t m=0;m<count;++m) {
                 const auto clip=1+(m+static_cast<std::size_t>(b))%(r.clips.size()-1);
                 Tick offset=motif[m%motif.size()];
                 if (strategy==Strategy::reggae) offset=(offset/q)*q+q/2;
                 if (strategy==Strategy::experimental) offset=(static_cast<Tick>(m)*3*q/4)%bar_ticks;
-                const double rate=strategy==Strategy::experimental ? (m%3==0?0.9438743127:m%3==1?1.0594630944:1.0) : 1.0;
-                r.vocals.push_back({base+offset,clip,-7,rate,false,
+                r.vocals.push_back({base+offset,clip,-7,1,false,
                                     m%2?0.25:-0.25,false});
             }
         }
-        if (b==p.bars-3) r.vocals.push_back({base,0,-4,1,false,0,true});
+        if (b==break_bar) r.vocals.push_back({base,0,-4,1,false,0,true});
         // Input rhythm also determines melodic response on alternating bars.
-        if (!breakdown && !last && b%2==1) {
-            for (std::size_t m=0;m<std::min<std::size_t>(motif.size(),4);++m)
-                piano.notes.push_back({base+motif[m],q/2,r.tonic_midi+12+minor[(m+static_cast<std::size_t>(b))%7],velocity(71)});
+        if (!intro && !breakdown && !last && b%2==1) {
+            for (std::size_t m=0;m<std::min<std::size_t>(motif.size(),2);++m) {
+                const int note=voicing[(m+(returning?1U:0U))%3];
+                piano.notes.push_back({base+motif[m],3*q/4,note+(note<67?12:0),velocity(65)});
+            }
         }
     }
     // Quantization can collapse several source onsets onto the same offbeat.
@@ -186,15 +207,18 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     for (const auto& event:r.vocals)
         if (event.clean) clean_intervals.push_back(interval(event));
     std::vector<VocalEvent> spaced;
-    std::vector<std::uint64_t> chop_starts;
+    std::vector<std::pair<std::uint64_t,std::uint64_t>> chop_intervals;
+    const auto breath=source.sample_rate*80ULL/1000;
     for (const auto& event:r.vocals) {
         const auto span=interval(event);
         if (!event.clean) {
-            if (std::find(chop_starts.begin(),chop_starts.end(),span.first)!=chop_starts.end()) continue;
-            if (std::any_of(clean_intervals.begin(),clean_intervals.end(),[&](const auto& clean) {
-                return span.first<clean.second && clean.first<span.second;
+            if (std::any_of(chop_intervals.begin(),chop_intervals.end(),[&](const auto& chop) {
+                return span.first<chop.second+breath && chop.first<span.second+breath;
             })) continue;
-            chop_starts.push_back(span.first);
+            if (std::any_of(clean_intervals.begin(),clean_intervals.end(),[&](const auto& clean) {
+                return span.first<clean.second+breath && clean.first<span.second+breath;
+            })) continue;
+            chop_intervals.push_back(span);
         }
         spaced.push_back(event);
     }
@@ -205,7 +229,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
 }
 RemixPlan make_baseline(const AudioBuffer& source,const InputAnalysis& a,std::uint32_t seed,bool synthetic,bool consent) {
     auto r=make_remix(source,a,Strategy::hiphop,seed,synthetic,consent);
-    r.strategy=Strategy::baseline;r.tonic_midi=57;
+    r.strategy=Strategy::baseline;r.tonic_midi=57;r.instrument_room_mix=0;
     auto loop=make_demo(0); // fixed original four-bar loop, independent of input and requested seed
     r.music=loop;r.music.seed=seed;r.music.sample_rate=source.sample_rate;r.music.tempo_milli_bpm=96000;
     r.music.bars=12;r.music.sections={{"intro",0,2},{"groove",2,8},{"ending",10,2}};

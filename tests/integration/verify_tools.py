@@ -34,6 +34,7 @@ def main():
         plan = {"schema_version": "1.0-remix", "seed": 4123, "source_asset_id": f"sha256:{digest}",
                 "sample_rate": 8000, "tempo_milli_bpm": 96000, "ticks_per_quarter": 960,
                 "time_signature": [4, 4], "target_bars": 8, "tail_ms": 2000,
+                "mix": {"instrument_room_mix": 0.18},
                 "key": {"tonic_midi": 57, "mode": "minor"}, "sections": [], "voice_clips": [],
                 "voice_events": [{"start_tick": 0}], "tracks": [], "source": {"kind": "synthetic"}}
         prefix = root / "test"
@@ -58,6 +59,11 @@ def main():
         assert compare(a, b)["maximum_pcm_error"] == 0
         changed = json.loads(Path(str(b) + ".score.json").read_text())
         changed["voice_events"][0]["start_tick"] += 1
+        Path(str(b) + ".score.json").write_text(json.dumps(changed))
+        rejects(lambda: compare(a, b))
+        shutil.copyfile(str(a) + ".score.json", str(b) + ".score.json")
+        changed = json.loads(Path(str(b) + ".score.json").read_text())
+        changed["mix"]["instrument_room_mix"] = 0.24
         Path(str(b) + ".score.json").write_text(json.dumps(changed))
         rejects(lambda: compare(a, b))
         shutil.copyfile(str(a) + ".score.json", str(b) + ".score.json")

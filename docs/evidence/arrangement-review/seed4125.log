@@ -1,0 +1,4 @@
+PASS: renders/voice-arrangement-v2/seed4125.hiphop.wav
+PASS: renders/voice-arrangement-v2/seed4125.reggae.wav
+PASS: renders/voice-arrangement-v2/seed4125.experimental.wav
+Listening/recognizability: NOT RUN

@@ -12,10 +12,18 @@ handoff below is retained as historical context. Human quality remains **NOT RUN
 
 Subsequent owner feedback is **PARTIAL** and led to an
 [acoustic/arrangement revision](acoustic-review.md), tested natively on M5.
-The transferred Linux references belong to the older engine. Before using them
-for a new portability claim, render matching references from the current code
-on Linux; current-revision cross-OS comparison is **NOT RUN**. Preserve the old
+The transferred Linux references belong to the older engine. A subsequent
+[arrangement revision](arrangement-review.md) has fresh **PASS** results against
+actual Linux arm64 execution in an isolated local VM/container: exact plans/events
+and 15 identical WAVs. Native M5 release and sanitizer suites pass 7/7 each.
+This does not rerun the original physical Intel machine. Preserve the old
 references and the owner's recordings. Read `docs/progress.md` for current gates.
+
+For this revision, run the smoke test with `DJAYVO_REFERENCE_PREFIX=renders/arrangement-linux/remix`
+and a new `DJAYVO_OUTPUT_DIR`. The script now rejects existing output directories;
+its default is timestamped. Do not compare the revised music to historical M0
+renders as a portability test. All unchanged instructions below describe the
+original transfer/checkpoint.
 
 ## Current state
 

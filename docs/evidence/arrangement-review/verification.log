@@ -1,0 +1,102 @@
+{
+  "gates": {
+    "decoded_audio_bounds_and_tails": "PASS",
+    "two_clean_hooks_each_style": "PASS",
+    "rhythm_subtraction_and_return": "PASS",
+    "schema_and_room_limits": "PASS",
+    "linux_arm64_vs_native_m5": "PASS",
+    "block_512_vs_113": "PASS",
+    "master_spec_and_supplied_fixture_unchanged": "PASS",
+    "smoke_overwrite_guard": "PASS",
+    "human_listening": "NOT RUN",
+    "formal_quality": "NOT RUN",
+    "native_m5_release": "PASS",
+    "native_m5_sanitizers": "PASS",
+    "linux_arm64_release": "PASS",
+    "matched_audition_and_browser_controls": "PASS",
+    "original_owner_feedback": "PARTIAL",
+    "original_intel_machine_rerun": "NOT RUN",
+    "iphone_live_ai_and_release": "NOT RUN"
+  },
+  "decoded_files": 22,
+  "schema_validated_scores": 13,
+  "clean_hook_maximum_pcm_errors": {
+    "hiphop": [
+      2.4150396117417205e-05,
+      2.364233950991057e-05
+    ],
+    "reggae": [
+      2.4150396117417205e-05,
+      2.364233950991057e-05
+    ],
+    "experimental": [
+      2.4150396117417205e-05,
+      2.364233950991057e-05
+    ]
+  },
+  "cross_os": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "block_size": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "all_twelve_cross_os_stems_byte_identical": true
+}
