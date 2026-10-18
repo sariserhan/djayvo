@@ -1,0 +1,10 @@
+{
+  "roundtrip_styles": 5,
+  "identical_artifacts": 40,
+  "edited_plan_changes_pcm": "PASS",
+  "rejected_candidates": 50,
+  "explicit_fallback": "PASS",
+  "consent_and_collision": "PASS",
+  "model_inference": "NOT RUN",
+  "listening": "NOT RUN"
+}

@@ -1,0 +1,198 @@
+{
+  "fixture_linux": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "wav_pairs": [
+    {
+      "reference": "renders/plan-import-20261018/remix.hiphop.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/hiphop.hiphop.wav",
+      "sha256": "9df4115378c2ab075a96c3606d436134ae6ae77648816b178f5d148bb0d410aa"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.hiphop.piano.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/hiphop.hiphop.piano.wav",
+      "sha256": "a45be95edb332a0a97d8dc266af77dd7d4c05e9c25649981af9eadbd62e96206"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.hiphop.bass.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/hiphop.hiphop.bass.wav",
+      "sha256": "4872199af1aba5488c728354fc786181b1de66054155140983af71e691cd7921"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.hiphop.drums.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/hiphop.hiphop.drums.wav",
+      "sha256": "106cfb8c20aa76d9f3d8bc4d0ea1e2a497067e7e586f8185f3177c45253bcb90"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.hiphop.vocals.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/hiphop.hiphop.vocals.wav",
+      "sha256": "60bce3d2949fcc5e90027b9f3288d5241a0901666ac221483c9344b8c92283b1"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.reggae.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/reggae.reggae.wav",
+      "sha256": "8166dbb8076959e898e37c2e8f4b393f6be80db487c5c6d0bef561fe6f84b15f"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.reggae.piano.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/reggae.reggae.piano.wav",
+      "sha256": "469666bd77f465b89d2a1fdfe122aaefacc9085b1a3a04b768fe005cf0c05ca3"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.reggae.bass.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/reggae.reggae.bass.wav",
+      "sha256": "76b1abaed06df37b9c81381f314ba5acb9b1185223100bf685b87b534bd5bfc8"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.reggae.drums.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/reggae.reggae.drums.wav",
+      "sha256": "88c0ef3cbdce37e29b2a36d902bc53b291e01a4678c623d383719895a19a7d0e"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.reggae.vocals.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/reggae.reggae.vocals.wav",
+      "sha256": "10df48377a6a40e298cde6b2b5f58a66bae724370c795ac0741042f728bc4f63"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.experimental.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/experimental.experimental.wav",
+      "sha256": "49443b1fbec7060d441c09b9300bd7c98f299798107132c03aac1881a04f692e"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.experimental.piano.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/experimental.experimental.piano.wav",
+      "sha256": "95a512ad52e3faabf79fdfbb8955dc45318013db6e7c14adcab5afb8e7922a1f"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.experimental.bass.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/experimental.experimental.bass.wav",
+      "sha256": "554f5c65ee8f484e8e3ed8b92b0b1a1ae16234687140258e88364f259cc52082"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.experimental.drums.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/experimental.experimental.drums.wav",
+      "sha256": "690db5cc92d0a4bdc6f41d24bca3b37672682b3ae72bb55692c9333c0508d01f"
+    },
+    {
+      "reference": "renders/plan-import-20261018/remix.experimental.vocals.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/experimental.experimental.vocals.wav",
+      "sha256": "091317632bb1313538eb53ada75a11d5ee615fbbd022ac36585cd782594714d6"
+    },
+    {
+      "reference": "renders/plan-import-owner-20261018/replay.club.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/owner.club.wav",
+      "sha256": "1dcf73fa8bf418afce2f68f28647b0ec6064151ee7c0b796db2a4a846e7c9156"
+    },
+    {
+      "reference": "renders/plan-import-owner-20261018/replay.club.piano.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/owner.club.piano.wav",
+      "sha256": "45792bd956c15ec8911ad71a56712f14a9afab18a8bba8a718bafdae512cd383"
+    },
+    {
+      "reference": "renders/plan-import-owner-20261018/replay.club.bass.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/owner.club.bass.wav",
+      "sha256": "32560731e3609b4cdabb1133f8b7ecefb396768e7c565ec4e1ece948cee07589"
+    },
+    {
+      "reference": "renders/plan-import-owner-20261018/replay.club.drums.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/owner.club.drums.wav",
+      "sha256": "4bda052e318daeb18ae82116fd36c298df957bf11388fb2e6c590022e7d264b6"
+    },
+    {
+      "reference": "renders/plan-import-owner-20261018/replay.club.vocals.wav",
+      "candidate": "renders/arrangement-linux/plan-import-20261018/owner.club.vocals.wav",
+      "sha256": "fb628620c3fe7ca18b7f45080680372cbc3625deacf3005193184c7cb3e7ff98"
+    }
+  ],
+  "owner_linux": {
+    "status": "PASS",
+    "sample_rate": 48000,
+    "frames": 1741714,
+    "event_frames": "PASS",
+    "plan_decisions": "PASS",
+    "maximum_pcm_error": 0.0,
+    "rms_pcm_error": 0.0,
+    "byte_identical_wav": true
+  },
+  "owner_previous": {
+    "status": "PASS",
+    "sample_rate": 48000,
+    "frames": 1741714,
+    "event_frames": "PASS",
+    "plan_decisions": "PASS",
+    "maximum_pcm_error": 0.0,
+    "rms_pcm_error": 0.0,
+    "byte_identical_wav": true
+  },
+  "wasm": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "club": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  }
+}

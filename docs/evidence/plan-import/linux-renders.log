@@ -1,0 +1,12 @@
+PASS: /out/plan-import-20261018/hiphop.hiphop.wav
+PASS: complete export /out/plan-import-20261018/hiphop.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/plan-import-20261018/reggae.reggae.wav
+PASS: complete export /out/plan-import-20261018/reggae.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/plan-import-20261018/experimental.experimental.wav
+PASS: complete export /out/plan-import-20261018/experimental.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/plan-import-20261018/owner.club.wav
+PASS: complete export /out/plan-import-20261018/owner.complete.json
+Listening/recognizability: NOT RUN

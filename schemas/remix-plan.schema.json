@@ -1,7 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://djayvo.com/schemas/performance-plan-1.0-remix.json",
-  "title": "Djayvo source-driven offline remix plan (export contract)",
+  "title": "Djayvo source-driven offline remix plan (export and bounded CLI import)",
+  "$comment": "CLI import also enforces document budgets, request/source identity, native temporal/polyphony checks and sustained-note minor-key compatibility. See docs/plan-import.md.",
   "type": "object",
   "additionalProperties": false,
   "required": [

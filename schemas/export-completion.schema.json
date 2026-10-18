@@ -8,6 +8,16 @@
     "schema_version": {"const": "1.0-export"},
     "status": {"const": "complete"},
     "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "planning": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "candidate_sha256"],
+      "properties": {
+        "mode": {"enum": ["imported", "fallback"]},
+        "candidate_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+      },
+      "if": {"properties": {"mode": {"const": "imported"}}},
+      "then": {"properties": {"candidate_sha256": {"type": "string"}}}
+    },
     "artifacts": {
       "type": "array", "minItems": 4, "maxItems": 40,
       "items": {

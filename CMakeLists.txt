@@ -36,7 +36,7 @@ endif()
 
 add_executable(djayvo_render tools/cli/main.cpp)
 target_link_libraries(djayvo_render PRIVATE djayvo_core)
-add_executable(djayvo_remix tools/cli/remix_main.cpp)
+add_executable(djayvo_remix tools/cli/remix_main.cpp tools/cli/plan_import.cpp)
 target_link_libraries(djayvo_remix PRIVATE djayvo_core)
 
 if(EMSCRIPTEN)
@@ -81,5 +81,7 @@ if(BUILD_TESTING)
     add_test(NAME tooling COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_tools.py")
     add_test(NAME evaluation_preparation COMMAND "${Python3_EXECUTABLE}"
       "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_evaluation.py" --renderer "$<TARGET_FILE:djayvo_remix>")
+    add_test(NAME plan_import COMMAND "${Python3_EXECUTABLE}"
+      "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_plan_import.py" --renderer "$<TARGET_FILE:djayvo_remix>")
   endif()
 endif()

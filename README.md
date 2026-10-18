@@ -10,13 +10,19 @@ sampled source events, plus score JSON, frame trace, measurements, and optional
 stems. No model, GPU, paid service, or third-party DSP library is required.
 
 Track past work, open issues and future milestones in [TODO.md](TODO.md).
+The [complete specification ledger](docs/spec-status.md) records remaining code
+and evidence gates; overall completion is **PARTIAL**.
+
+Latest local engine work: [validated JSON plan replay and fallback](docs/plan-import.md).
+Latest creative research: [selective voice over GPU instrumentals](docs/voice-research.md).
+Music quality is the current priority; infrastructure and phone work are paused.
 
 Latest website work: [Next.js accounts foundation](apps/site/README.md), with
 Better Auth email/password, Neon-compatible Postgres schema and Resend adapter.
 Local account/browser checks pass; live cloud services remain unconfigured.
 Run it at http://localhost:3000 using the linked setup instructions.
 
-**Current priority: [Djayvo web](apps/web/README.md).** Record/import, trim,
+**Selected product platform: [Djayvo web](apps/web/README.md).** Record/import, trim,
 generate three takes or club, play, save locally and download WAVs in the browser.
 The shared engine runs as WebAssembly without uploading audio. Start the existing
 build with `python3 scripts/web_serve.py`, then open http://localhost:4173.
@@ -29,7 +35,7 @@ saved sessions, WAV sharing and deletion. [iOS evidence](docs/ios-instant-remix.
 separates simulator results, unsigned device compilation and physical-device gates.
 The mobile integration fixed a worker-stack overflow in the shared voice pool.
 
-Latest musical work: [club refinement v8](docs/club-refinement.md), covering
+Previous native musical work: [club refinement v8](docs/club-refinement.md), covering
 bass/drum tone and balance, transitions and longer pause-ended vocal crops.
 [Compare previous/new locally](renders/voice-club-v8/review/index.html).
 Corrected stems preserve the same instrument takes as the master. Nine M5/Linux

@@ -94,9 +94,11 @@ analysis, key, sections, instruments, clips, and source events. No original path
 filename, transcript, or human identity is exported. A clip's
 `[start_frame,end_frame)` uses **processed source frames**. Original position is
 `processed_frame * original_rate / sample_rate`, rounded/bounded as needed.
-There is no external JSON importer. Native validation checks temporal, numeric,
+The [offline CLI importer](plan-import.md) now reads this contract with bounded
+parsing, request/source identity checks and explicit rule fallback. App/C ABI
+entry points continue to use their default rule planners. Native validation checks temporal, numeric,
 source/consent, overlap, clean-hook, and duration relationships beyond structural
-JSON Schema. This is not yet a model-generated-plan boundary.
+JSON Schema. The importer adds a limited tonal policy; no model provider is connected.
 
 `core/audio/remix_file.cpp` is the shared CLI/C-ABI pipeline. It validates all
 requested plans and refuses existing outputs, including symlinks, stems and

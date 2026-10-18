@@ -9,13 +9,20 @@
 namespace djayvo {
 void remix_file(const std::string& input,const std::string& output,const std::vector<Strategy>& strategies,
                  std::uint32_t rate,std::uint32_t seed,std::size_t block,bool synthetic,bool consent,bool stems,
-                 const RenderControl& control) {
+                 const RenderControl& control,const PlanImport* imported) {
     namespace fs=std::filesystem;
     const auto destination=fs::path(output);
     if (input.empty() || output.empty() || destination.filename().empty() ||
         destination.filename()=="." || destination.filename()==".." || synthetic==consent || !block || block>65536 ||
         strategies.empty() || strategies.size()>5)
         throw std::invalid_argument("supply bounded options and exactly one source permission kind");
+    if (imported && (strategies.size()!=1 ||
+        (!imported->candidate_sha256.empty() && (imported->candidate_sha256.size()!=64 ||
+         imported->candidate_sha256.find_first_not_of("0123456789abcdef")!=std::string::npos)) ||
+        (imported->plan && (imported->candidate_sha256.empty() || imported->plan->strategy!=strategies[0] ||
+         imported->plan->music.sample_rate!=rate || imported->plan->music.seed!=seed ||
+         imported->plan->synthetic_source!=synthetic || imported->plan->consent_confirmed!=consent))))
+        throw std::invalid_argument("import receipt does not match render request");
     control.check();
     const auto original=read_wav(input);
     if (original.original_frames<original.original_rate*2ULL || original.original_frames>original.original_rate*5ULL)
@@ -28,7 +35,8 @@ void remix_file(const std::string& input,const std::string& output,const std::ve
     for (auto s:strategies) {
         if (std::any_of(plans.begin(),plans.end(),[s](const auto& p){return p.strategy==s;}))
             throw std::invalid_argument("duplicate export strategy");
-        plans.push_back(make_remix(source,analysis,s,seed,synthetic,consent));
+        plans.push_back(imported && imported->plan?*imported->plan:make_remix(source,analysis,s,seed,synthetic,consent));
+        validate(plans.back(),source);
         const auto style=std::string(".")+strategy_name(s);
         for (const auto* extension:{".wav",".score.json",".report.json",".events.tsv"}) suffixes.push_back(style+extension);
         if (stems) for (const auto* stem:{"piano","bass","drums","vocals"}) suffixes.push_back(style+"."+stem+".wav");
@@ -59,7 +67,14 @@ void remix_file(const std::string& input,const std::string& output,const std::ve
         std::ofstream complete(staged(suffixes.size()-1));
         complete.imbue(std::locale::classic());
         complete<<"{\n  \"schema_version\": \"1.0-export\",\n  \"status\": \"complete\",\n  \"source_sha256\": \""
-                <<source.sha256<<"\",\n  \"artifacts\": [\n";
+                <<source.sha256<<"\"";
+        if (imported) {
+            complete<<",\n  \"planning\": {\"mode\": \""<<(imported->plan?"imported":"fallback")<<"\", \"candidate_sha256\": ";
+            if (imported->candidate_sha256.empty()) complete<<"null";
+            else complete<<'"'<<imported->candidate_sha256<<'"';
+            complete<<'}';
+        }
+        complete<<",\n  \"artifacts\": [\n";
         for (std::size_t i=0;i+1<suffixes.size();++i) {
             control.check();
             std::ifstream file(staged(i),std::ios::binary);

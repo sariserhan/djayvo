@@ -98,8 +98,13 @@ struct RenderControl {
 void render_remix(const RemixPlan& plan, const AudioBuffer& source,
                    const std::string& prefix, std::size_t block = 512, bool stems = false,
                    const RenderControl& control = {});
+// Optional offline plan receipt. A null plan records an explicit rule fallback.
+struct PlanImport {
+    const RemixPlan* plan = nullptr;
+    std::string candidate_sha256;
+};
 void remix_file(const std::string& input, const std::string& output,
                  const std::vector<Strategy>& strategies, std::uint32_t rate,
                  std::uint32_t seed, std::size_t block, bool synthetic, bool consent, bool stems,
-                 const RenderControl& control = {});
+                 const RenderControl& control = {}, const PlanImport* imported = nullptr);
 } // namespace djayvo

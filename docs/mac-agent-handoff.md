@@ -7,6 +7,12 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
+Latest local prerequisite: [validated plan import/fallback](plan-import.md).
+The CLI can replay or edit existing scores with explicit consent and bounded
+validation. M5/Linux release tests pass 10/10; 20 cross-platform WAVs and event
+traces match exactly. This does not connect a model or waive the quality hold.
+Use [the full specification ledger](spec-status.md) to distinguish missing code
+from missing human/device/release evidence.
 The bounded Vast rental was destroyed after verified retrieval. Six new local
 voice arrangements and matched controls are ready for listening. Owner says GPU
 clips are improving and requests context-dependent voice; new voice-mix listening

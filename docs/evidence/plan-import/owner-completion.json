@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0-export",
+  "status": "complete",
+  "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+  "planning": {"mode": "imported", "candidate_sha256": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4"},
+  "artifacts": [
+    {"suffix": ".club.wav", "bytes": 6966900, "sha256": "1dcf73fa8bf418afce2f68f28647b0ec6064151ee7c0b796db2a4a846e7c9156"},
+    {"suffix": ".club.score.json", "bytes": 19425, "sha256": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4"},
+    {"suffix": ".club.report.json", "bytes": 695, "sha256": "9428a21f6210aa3c3e1a6cea8d8fc3e006ed3b8c0cc2e689ab9317f4dace2feb"},
+    {"suffix": ".club.events.tsv", "bytes": 10145, "sha256": "d9f36a3ad293ae554215f490d2c2738aa8fbf1076c026b97ee12634643b6aaac"},
+    {"suffix": ".club.piano.wav", "bytes": 6966900, "sha256": "45792bd956c15ec8911ad71a56712f14a9afab18a8bba8a718bafdae512cd383"},
+    {"suffix": ".club.bass.wav", "bytes": 6966900, "sha256": "32560731e3609b4cdabb1133f8b7ecefb396768e7c565ec4e1ece948cee07589"},
+    {"suffix": ".club.drums.wav", "bytes": 6966900, "sha256": "4bda052e318daeb18ae82116fd36c298df957bf11388fb2e6c590022e7d264b6"},
+    {"suffix": ".club.vocals.wav", "bytes": 6966900, "sha256": "fb628620c3fe7ca18b7f45080680372cbc3625deacf3005193184c7cb3e7ff98"}
+  ]
+}

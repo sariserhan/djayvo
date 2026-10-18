@@ -1,0 +1,8 @@
+{
+  "validator": "jsonschema",
+  "version": "4.19.2",
+  "scores": 9,
+  "completion_records": 7,
+  "malformed_receipts": "PASS",
+  "status": "PASS"
+}

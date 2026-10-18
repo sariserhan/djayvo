@@ -1,0 +1,4 @@
+PASS: WASM consent, corrupt input, three styles and club [
+  { style: 'three', seconds: 1.662734875, memory_bytes: null },
+  { style: 'club', seconds: 0.5987487079999998, memory_bytes: null }
+]

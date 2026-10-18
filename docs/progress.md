@@ -10,6 +10,18 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest engineering continuation, 2026-10-18: [offline plan import and fallback](plan-import.md).
+The CLI accepts bounded `1.0-remix` JSON with explicit caller consent and matching
+source/request identity, native musical/sample limits and a limited tonal check.
+Malformed plans fail by default; opt-in fallback records the decision and runs
+the same rule planner. **Five-style exact round trip, 50 rejected candidates,
+actual owner replay, M5/Linux release and M5 sanitizer tests (10/10 each), 20 identical cross-OS
+WAVs and WASM regressions: PASS.** No model, cloud call, new quality result or
+public deployment. Source freezing includes the new CLI header. M2 is **PARTIAL
+for this offline prerequisite only**; model integration/benchmark stays **NOT RUN**
+behind M1. [Full specification status](spec-status.md) explicitly records remaining
+features as well as missing listening/device/release evidence.
+
 Latest local research, 2026-10-18: [selective voice over GPU instrumentals](voice-research.md).
 Owner reports the instrumentals are “getting better” and requests human voice
 sometimes, with context-dependent creative choices. Six club/hip-hop arrangements
@@ -217,7 +229,7 @@ the current app is documented above. AI models, training and live mode remain ab
 | Revised arrangement Linux/Mac comparison | PASS | Prior v8 fixture/owner: 27 exact WAVs; current stack-fix rerun: 15 exact fixture WAVs, exact plans/events; actual phone/Mac: three exact masters |
 | M0d Apple M5 execution | PASS | Native arm64 release and ASan/UBSan 6/6 each; exact plans/event frames and byte-identical Linux/Mac masters; [evidence](evidence/m0d/report.json) |
 | M1 blinded quality gate | NOT RUN | Frozen one-owner pilot prepared; requires diverse cleared sources and actual blinded reviewers |
-| M2 constrained director benchmark | NOT RUN | Quality baseline and director benchmark remain missing; separate [pretrained music trial](cloud-music-trial.md) has actual GPU timing/memory evidence |
+| M2 constrained director | PARTIAL | Offline import/fallback prerequisite PASS; quality baseline and model director benchmark NOT RUN; separate [pretrained trial](cloud-music-trial.md) has GPU timing/memory evidence |
 | M3 iPhone/device | PARTIAL | Native app, simulator flows and six actual iPhone integration tests; current limitations in [iOS evidence](ios-instant-remix.md) |
 | M4 live work | PARTIAL | [Research protocol](live-research-protocol.md) defined; implementation/real-time measurements NOT RUN |
 | M5 production preparation | PARTIAL | [Privacy/release preparation](release-readiness.md); publication/monetization NOT RUN |
@@ -300,8 +312,9 @@ No formal perceptual evaluation exists. Analysis is energy/onset/autocorrelation
 no word boundaries or reliable semantic labels. Pitch may have octave errors.
 Varispeed couples pitch/time and can alias (current generated chops use rate 1).
 Finite instrumental early reflections exist; independent pitch/time stretching,
-feedback reverb/delay, tempo maps, external JSON import, and automatic fallback from an AI
-plan are absent. Silence is explicitly rejected. Mixing is fixed per grammar,
+feedback reverb/delay and tempo maps are absent. Offline CLI JSON import and
+explicit rule fallback are now implemented; provider-connected AI planning is
+absent. Silence is explicitly rejected. Mixing is fixed per grammar,
 with smooth clean-hook ducking; the soft-knee stage can color overloads.
 
 WAV is PCM16 without dither, capped by RIFF size. Stems preserve master event IDs and instrument takes. Independent quantization

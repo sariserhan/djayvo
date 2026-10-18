@@ -15,6 +15,15 @@ def verify_export(prefix, required_styles=()):
     if (not isinstance(record, dict) or record.get('schema_version') != '1.0-export' or
             record.get('status') != 'complete' or not re.fullmatch('[0-9a-f]{64}', str(record.get('source_sha256', '')))):
         raise ValueError('invalid export completion metadata')
+    if 'planning' in record:
+        planning = record['planning']
+        if (not isinstance(planning, dict) or set(planning) != {'mode', 'candidate_sha256'} or
+                planning['mode'] not in ('imported', 'fallback') or
+                not (planning['mode'] == 'fallback' and planning['candidate_sha256'] is None) and
+                not isinstance(planning['candidate_sha256'], str)):
+            raise ValueError('invalid plan selection receipt')
+        if planning['candidate_sha256'] is not None and not re.fullmatch('[0-9a-f]{64}', planning['candidate_sha256']):
+            raise ValueError('invalid candidate plan hash')
     artifacts = record.get('artifacts')
     if not isinstance(artifacts, list) or not 4 <= len(artifacts) <= 40:
         raise ValueError('invalid export artifact count')

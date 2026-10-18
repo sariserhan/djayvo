@@ -1,8 +1,10 @@
 #include "djayvo/remix.h"
+#include "plan_import.h"
 #include <charconv>
 #include <csignal>
 #include <filesystem>
 #include <iostream>
+#include <optional>
 #include <stdexcept>
 
 namespace {
@@ -18,9 +20,9 @@ std::uint32_t number(const std::string& text) {
 }
 int main(int argc,char** argv) {
     try {
-        std::string input,output="renders/remix",style="all";
+        std::string input,output="renders/remix",style="all",plan_path;
         std::uint32_t rate=48000,seed=4123,block=512;
-        bool consent=false,synthetic=false,stems=false;
+        bool consent=false,synthetic=false,stems=false,fallback=false;
         for (int i=1;i<argc;++i) {
             const std::string arg=argv[i];
             if (arg=="--help") {
@@ -28,6 +30,9 @@ int main(int argc,char** argv) {
                          <<"[--consent | --synthetic-fixture] [--output PREFIX] "
                          <<"[--style all|hiphop|reggae|experimental|baseline|club] [--stems] "
                          <<"[--seed UINT32] [--sample-rate 8000..192000] [--block-size 1..65536]\n"
+                         <<"[--plan FILE [--plan-fallback]] imports one bounded 1.0-remix score.\n"
+                         <<"Plan requires one --style and matching seed/rate/source; no model is invoked.\n"
+                         <<"Invalid plans fail unless --plan-fallback explicitly selects the rule planner.\n"
                          <<"--consent confirms permission to process the supplied recording locally.\n"
                          <<"--synthetic-fixture is only for generated non-person recordings.\n"
                          <<"Choose a new output prefix; existing files are never replaced.\n"
@@ -37,6 +42,7 @@ int main(int argc,char** argv) {
             if (arg=="--consent") {consent=true;continue;}
             if (arg=="--synthetic-fixture") {synthetic=true;continue;}
             if (arg=="--stems") {stems=true;continue;}
+            if (arg=="--plan-fallback") {fallback=true;continue;}
             if (i+1>=argc) throw std::invalid_argument("missing value for "+arg);
             const std::string value=argv[++i];
             if (arg=="--input") input=value;
@@ -45,6 +51,7 @@ int main(int argc,char** argv) {
             else if (arg=="--seed") seed=number(value);
             else if (arg=="--sample-rate") rate=number(value);
             else if (arg=="--block-size") block=number(value);
+            else if (arg=="--plan") plan_path=value;
             else throw std::invalid_argument("unknown option: "+arg);
         }
         if (input.empty() || output.empty() || (!consent && !synthetic) || (consent && synthetic))
@@ -56,8 +63,25 @@ int main(int argc,char** argv) {
         if (style=="baseline") strategies.push_back(djayvo::Strategy::baseline);
         if (style=="club") strategies.push_back(djayvo::Strategy::club);
         if (strategies.empty()) throw std::invalid_argument("unknown style");
+        if ((fallback && plan_path.empty()) || (!plan_path.empty() && strategies.size()!=1))
+            throw std::invalid_argument("plan import requires one explicit style; fallback requires --plan");
         std::signal(SIGINT,interrupt);std::signal(SIGTERM,interrupt);
-        djayvo::remix_file(input,output,strategies,rate,seed,block,synthetic,consent,stems,{cancelled,nullptr});
+        std::optional<djayvo::RemixPlan> plan;
+        djayvo::PlanImport receipt;
+        if (!plan_path.empty()) {
+            const auto source=djayvo::resample(djayvo::read_wav(input),rate);
+            try {
+                const auto text=read_plan_document(plan_path);
+                receipt.candidate_sha256=djayvo::sha256(std::vector<std::uint8_t>(text.begin(),text.end()));
+                plan=import_plan(text,source,strategies[0],seed,synthetic,consent);
+                receipt.plan=&*plan;
+            } catch (const std::invalid_argument& e) {
+                if (!fallback) throw;
+                std::cerr<<"PARTIAL: candidate plan rejected ("<<e.what()<<"); using deterministic rule fallback\n";
+            }
+        }
+        djayvo::remix_file(input,output,strategies,rate,seed,block,synthetic,consent,stems,{cancelled,nullptr},
+                          plan_path.empty()?nullptr:&receipt);
         for (const auto strategy:strategies)
             std::cout<<"PASS: "<<output<<'.'<<djayvo::strategy_name(strategy)<<".wav\n";
         std::cout<<"PASS: complete export "<<output<<".complete.json\nListening/recognizability: NOT RUN\n";

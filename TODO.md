@@ -1,9 +1,11 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [selective voice research](docs/voice-research.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [validated plan replay/fallback](docs/plan-import.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
+The [specification completion ledger](docs/spec-status.md) lists unfinished code
+as well as missing quality/device/release evidence. Overall specification: **PARTIAL**.
 The [master specification](ai_improvisational_musician_master_spec_v1.md) remains
 the source of truth and is not modified by this tracker.
 
@@ -16,7 +18,7 @@ the source of truth and is not modified by this tracker.
 | M0c — three musical strategies | PARTIAL | Owner accepts the current prototype as a start; production quality and formal listening remain open |
 | M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact club plans/events and 12 matching club WAVs; prior styles preserved |
 | M1 — musical quality baseline | NOT RUN | Frozen one-source/three-seed pilot and distinct blind packets prepared; diverse sources and formal human evaluation missing |
-| M2 — AI director benchmarks | NOT RUN | Quality baseline and constrained director remain open; separate pretrained music feasibility trial measured |
+| M2 — AI director benchmarks | PARTIAL | Offline import/fallback prerequisite complete; model integration and benchmark remain NOT RUN behind M1; separate pretrained feasibility trial measured |
 | M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
 | W0 — browser Instant Remix | PARTIAL | Local WebAssembly app and Chromium/WebKit technical flows pass; physical browser microphone and owner web listening remain open |
 | M4 — live improvisation | PARTIAL | Research protocol and provisional budgets prepared; live implementation and hardware measurements NOT RUN |
@@ -192,6 +194,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P27 | PASS | Release bundle audit, privacy manifest/notices, policy draft, release checklist and live feasibility protocol prepared; implementation does not close launch gates | [Readiness](docs/release-readiness.md) |
 | [x] | P28 | PASS | Bounded RTX 3090 pretrained music trial: ten clips, timings/memory, retrieval and verified rental deletion | `f0e95d0` · [Trial](docs/cloud-music-trial.md) |
 | [x] | P29 | PASS | Local selective-voice research: six arrangements, controls/stems, matched review page, six tests and Chromium/WebKit playback | [Evidence](docs/voice-research.md) |
+| [x] | P30 | PASS | Strict offline JSON plan replay, explicit deterministic fallback, completion receipts, adversarial tests and actual M5/Linux/WASM comparisons | [Evidence](docs/plan-import.md) |
 
 ## Engineering backlog
 
@@ -233,6 +236,13 @@ is needed. Prioritize by recorded listening defects and product requirements.
   Filter compiled events with original IDs, retaining kick ducking. New float
   reconstruction regression and real four-style PCM checks pass; old masters
   remain unchanged, and earlier stems are preserved as historical files.
+- [x] **E11 — PASS:** Read bounded `1.0-remix` plans in the offline CLI, verify
+  caller/source/permission and native constraints, replay exact events, and record
+  explicitly requested deterministic fallback. Five-style round trips, 50 rejected
+  candidates and preserved actual owner audio verified. [Evidence](docs/plan-import.md).
+- [ ] **E12 — NOT RUN:** Remaining master-spec engine breadth: articulated guitar,
+  organ and dedicated pad/lead roles, tempo/automation maps. Independent pitch/time
+  and expanded effects remain under E03/E04. Do not call the engine feature-complete.
 
 ## M1: formal musical-quality evaluation
 
@@ -266,13 +276,15 @@ The master specification places M1–M5 behind evidence gates. Continuing withou
 per-step pauses does not supply missing listener/device evidence or authorize
 paid infrastructure, training on reference tracks, publishing or charging users.
 
-### M2: constrained AI direction — NOT RUN
+### M2: constrained AI direction — PARTIAL (offline prerequisite only; quality hold remains)
 
 - [ ] **A01 — NOT RUN:** After the quality baseline, review candidate model/code
   licenses and benchmark actual M5 latency, memory, GPU use and CPU fallback in a
   separate environment; keep `~/mlx-env` unchanged.
-- [ ] **A02 — NOT RUN:** Add typed plan ingestion, strict validation, bounded
-  retries and deterministic fallback; keep model calls outside audio processing.
+- [ ] **A02 — PARTIAL:** Typed offline plan ingestion, strict validation and explicit
+  deterministic fallback now pass. No model is called; provider integration,
+  timeout/cost/retry policy and measured model schema-valid rate remain NOT RUN.
+  The importer makes one bounded attempt with zero retries. [Contract](docs/plan-import.md).
 - [ ] **A03 — NOT RUN:** Compare model-directed arrangements with the rule engine
   in a blinded trial. Advance only with measured benefit and bounded cost.
 - [ ] **A04 — NOT RUN:** Consider learned action ranking only with cleared,

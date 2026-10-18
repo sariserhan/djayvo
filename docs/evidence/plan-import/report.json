@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-18",
+  "mac_release": "PASS",
+  "mac_sanitizers": "PASS",
+  "linux_arm64_release": "PASS",
+  "suites_per_platform": 10,
+  "plan_import": {
+    "roundtrip_styles": 5,
+    "identical_artifacts": 40,
+    "edited_plan_changes_pcm": "PASS",
+    "rejected_candidates": 50,
+    "explicit_fallback": "PASS",
+    "consent_and_collision": "PASS",
+    "model_inference": "NOT RUN",
+    "listening": "NOT RUN"
+  },
+  "matching_cross_platform_wavs": 20,
+  "maximum_pcm_difference": 0,
+  "rms_pcm_difference": 0,
+  "event_frame_agreement": "PASS",
+  "schema_validation": "PASS",
+  "webassembly": "PASS",
+  "master_fixture_owner_preservation": "PASS",
+  "preserved_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "third_party_runtime_dependencies_added": false,
+  "model_calls": 0,
+  "cloud_spend_this_step": 0,
+  "musical_quality": "NOT RUN",
+  "physical_intel_linux": "NOT RUN",
+  "new_phone_checks": "NOT RUN",
+  "production_release": "NOT RUN",
+  "overall_specification": "PARTIAL"
+}

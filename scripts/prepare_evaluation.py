@@ -98,7 +98,8 @@ def run_batch(manifest_path, output, renderer):
     except (OSError, subprocess.CalledProcessError):
         commit = None  # Source archives/minimal build containers may not have Git.
     engine_sources = [REPO/'CMakeLists.txt', *sorted((REPO/'core').rglob('*.cpp')),
-                      *sorted((REPO/'core').rglob('*.h')), *sorted((REPO/'tools/cli').glob('*.cpp'))]
+                      *sorted((REPO/'core').rglob('*.h')), *sorted((REPO/'tools/cli').glob('*.cpp')),
+                      *sorted((REPO/'tools/cli').glob('*.h'))]
     freeze = {'schema_version': '1.0-evaluation', 'created_utc': datetime.now(timezone.utc).isoformat(),
               'repository_commit': commit, 'renderer_sha256': engine_hash, 'rubric_sha256': digest(rubric),
               'engine_source_sha256': digest(b''.join(str(p.relative_to(REPO)).encode()+b'\0'+p.read_bytes()+b'\0' for p in engine_sources)),
