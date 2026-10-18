@@ -1,0 +1,744 @@
+{
+  "down": {
+    "file": "down.mp3",
+    "sha256": "f10a3fa3cf773a85b04458747d7a46de7d7f621bf7ab732785ad3038212a2d12",
+    "duration_seconds": 143.799,
+    "integrated_lufs": -5.3,
+    "loudness_range_lu": 4.7,
+    "true_peak_dbfs": 4.6,
+    "rms_dbfs": -7.39,
+    "rms_p10_p90_dbfs": [
+      -14.53,
+      -4.44
+    ],
+    "side_to_mid_db": -12.23,
+    "stereo_correlation": 0.887,
+    "mono_bass_20_150hz_energy_fraction": 0.535,
+    "pulse_candidates_not_confirmed_tempo": [
+      {
+        "bpm": 130.99,
+        "correlation": 0.52
+      },
+      {
+        "bpm": 65.5,
+        "correlation": 0.451
+      },
+      {
+        "bpm": 87.46,
+        "correlation": 0.224
+      },
+      {
+        "bpm": 101.6,
+        "correlation": 0.138
+      },
+      {
+        "bpm": 78.65,
+        "correlation": 0.135
+      },
+      {
+        "bpm": 177.07,
+        "correlation": 0.132
+      }
+    ],
+    "change_candidates": [
+      {
+        "seconds": 4.0,
+        "contrast_score": 3.19,
+        "rms_before_dbfs": -24.38,
+        "rms_after_dbfs": -18.79
+      },
+      {
+        "seconds": 10.13,
+        "contrast_score": 3.83,
+        "rms_before_dbfs": -18.07,
+        "rms_after_dbfs": -13.67
+      },
+      {
+        "seconds": 23.72,
+        "contrast_score": 2.72,
+        "rms_before_dbfs": -12.05,
+        "rms_after_dbfs": -7.61
+      },
+      {
+        "seconds": 54.7,
+        "contrast_score": 2.33,
+        "rms_before_dbfs": -6.0,
+        "rms_after_dbfs": -11.9
+      },
+      {
+        "seconds": 67.04,
+        "contrast_score": 1.21,
+        "rms_before_dbfs": -9.5,
+        "rms_after_dbfs": -11.37
+      },
+      {
+        "seconds": 80.5,
+        "contrast_score": 1.22,
+        "rms_before_dbfs": -9.69,
+        "rms_after_dbfs": -9.5
+      },
+      {
+        "seconds": 97.0,
+        "contrast_score": 2.8,
+        "rms_before_dbfs": -11.15,
+        "rms_after_dbfs": -7.02
+      },
+      {
+        "seconds": 119.28,
+        "contrast_score": 0.97,
+        "rms_before_dbfs": -5.72,
+        "rms_after_dbfs": -4.81
+      },
+      {
+        "seconds": 127.98,
+        "contrast_score": 2.29,
+        "rms_before_dbfs": -6.13,
+        "rms_after_dbfs": -11.06
+      },
+      {
+        "seconds": 141.71,
+        "contrast_score": 11.22,
+        "rms_before_dbfs": -11.58,
+        "rms_after_dbfs": -37.42
+      }
+    ],
+    "ten_second_windows": [
+      {
+        "start": 0,
+        "end": 10,
+        "rms_dbfs": -16.81,
+        "bass_fraction": 0.01,
+        "upper_fraction": 0.005,
+        "side_to_mid_db": -20.53
+      },
+      {
+        "start": 10,
+        "end": 20,
+        "rms_dbfs": -10.26,
+        "bass_fraction": 0.382,
+        "upper_fraction": 0.079,
+        "side_to_mid_db": -12.85
+      },
+      {
+        "start": 20,
+        "end": 30,
+        "rms_dbfs": -7.09,
+        "bass_fraction": 0.61,
+        "upper_fraction": 0.035,
+        "side_to_mid_db": -13.41
+      },
+      {
+        "start": 30,
+        "end": 40,
+        "rms_dbfs": -5.03,
+        "bass_fraction": 0.681,
+        "upper_fraction": 0.033,
+        "side_to_mid_db": -13.43
+      },
+      {
+        "start": 40,
+        "end": 50,
+        "rms_dbfs": -4.9,
+        "bass_fraction": 0.673,
+        "upper_fraction": 0.034,
+        "side_to_mid_db": -13.42
+      },
+      {
+        "start": 50,
+        "end": 60,
+        "rms_dbfs": -7.47,
+        "bass_fraction": 0.515,
+        "upper_fraction": 0.055,
+        "side_to_mid_db": -9.08
+      },
+      {
+        "start": 60,
+        "end": 70,
+        "rms_dbfs": -10.04,
+        "bass_fraction": 0.188,
+        "upper_fraction": 0.098,
+        "side_to_mid_db": -8.77
+      },
+      {
+        "start": 70,
+        "end": 80,
+        "rms_dbfs": -8.97,
+        "bass_fraction": 0.132,
+        "upper_fraction": 0.137,
+        "side_to_mid_db": -13.65
+      },
+      {
+        "start": 80,
+        "end": 90,
+        "rms_dbfs": -9.55,
+        "bass_fraction": 0.142,
+        "upper_fraction": 0.118,
+        "side_to_mid_db": -11.45
+      },
+      {
+        "start": 90,
+        "end": 100,
+        "rms_dbfs": -8.65,
+        "bass_fraction": 0.434,
+        "upper_fraction": 0.066,
+        "side_to_mid_db": -11.44
+      },
+      {
+        "start": 100,
+        "end": 110,
+        "rms_dbfs": -4.83,
+        "bass_fraction": 0.684,
+        "upper_fraction": 0.029,
+        "side_to_mid_db": -14.14
+      },
+      {
+        "start": 110,
+        "end": 120,
+        "rms_dbfs": -5.03,
+        "bass_fraction": 0.695,
+        "upper_fraction": 0.031,
+        "side_to_mid_db": -14.44
+      },
+      {
+        "start": 120,
+        "end": 130,
+        "rms_dbfs": -5.88,
+        "bass_fraction": 0.617,
+        "upper_fraction": 0.034,
+        "side_to_mid_db": -12.63
+      },
+      {
+        "start": 130,
+        "end": 140,
+        "rms_dbfs": -9.62,
+        "bass_fraction": 0.003,
+        "upper_fraction": 0.079,
+        "side_to_mid_db": -7.86
+      },
+      {
+        "start": 140,
+        "end": 143.8,
+        "rms_dbfs": -14.07,
+        "bass_fraction": 0.001,
+        "upper_fraction": 0.069,
+        "side_to_mid_db": -7.16
+      }
+    ]
+  },
+  "question": {
+    "file": "question.mp3",
+    "sha256": "e830e315e59e111ef09f6436483f094c9b2e6ed8c86273ebc13021fdea98b9e8",
+    "duration_seconds": 155.317,
+    "integrated_lufs": -5.7,
+    "loudness_range_lu": 6.1,
+    "true_peak_dbfs": 4.3,
+    "rms_dbfs": -7.08,
+    "rms_p10_p90_dbfs": [
+      -14.27,
+      -4.66
+    ],
+    "side_to_mid_db": -13.13,
+    "stereo_correlation": 0.907,
+    "mono_bass_20_150hz_energy_fraction": 0.689,
+    "pulse_candidates_not_confirmed_tempo": [
+      {
+        "bpm": 157.37,
+        "correlation": 0.514
+      },
+      {
+        "bpm": 78.98,
+        "correlation": 0.392
+      },
+      {
+        "bpm": 105.02,
+        "correlation": 0.248
+      },
+      {
+        "bpm": 63.37,
+        "correlation": 0.234
+      },
+      {
+        "bpm": 91.48,
+        "correlation": 0.114
+      },
+      {
+        "bpm": 69.71,
+        "correlation": 0.109
+      }
+    ],
+    "change_candidates": [
+      {
+        "seconds": 6.68,
+        "contrast_score": 3.1,
+        "rms_before_dbfs": -18.48,
+        "rms_after_dbfs": -11.76
+      },
+      {
+        "seconds": 15.68,
+        "contrast_score": 1.48,
+        "rms_before_dbfs": -6.14,
+        "rms_after_dbfs": -7.61
+      },
+      {
+        "seconds": 38.41,
+        "contrast_score": 2.01,
+        "rms_before_dbfs": -12.29,
+        "rms_after_dbfs": -9.89
+      },
+      {
+        "seconds": 51.48,
+        "contrast_score": 1.71,
+        "rms_before_dbfs": -10.55,
+        "rms_after_dbfs": -9.32
+      },
+      {
+        "seconds": 58.11,
+        "contrast_score": 3.19,
+        "rms_before_dbfs": -10.75,
+        "rms_after_dbfs": -5.5
+      },
+      {
+        "seconds": 82.44,
+        "contrast_score": 1.77,
+        "rms_before_dbfs": -10.96,
+        "rms_after_dbfs": -16.25
+      },
+      {
+        "seconds": 93.03,
+        "contrast_score": 1.06,
+        "rms_before_dbfs": -5.67,
+        "rms_after_dbfs": -5.04
+      },
+      {
+        "seconds": 112.83,
+        "contrast_score": 1.18,
+        "rms_before_dbfs": -7.23,
+        "rms_after_dbfs": -5.13
+      },
+      {
+        "seconds": 138.16,
+        "contrast_score": 1.63,
+        "rms_before_dbfs": -8.26,
+        "rms_after_dbfs": -10.71
+      },
+      {
+        "seconds": 152.08,
+        "contrast_score": 10.79,
+        "rms_before_dbfs": -25.76,
+        "rms_after_dbfs": -55.51
+      }
+    ],
+    "ten_second_windows": [
+      {
+        "start": 0,
+        "end": 10,
+        "rms_dbfs": -12.04,
+        "bass_fraction": 0.194,
+        "upper_fraction": 0.059,
+        "side_to_mid_db": -21.8
+      },
+      {
+        "start": 10,
+        "end": 20,
+        "rms_dbfs": -6.91,
+        "bass_fraction": 0.532,
+        "upper_fraction": 0.035,
+        "side_to_mid_db": -17.92
+      },
+      {
+        "start": 20,
+        "end": 30,
+        "rms_dbfs": -7.08,
+        "bass_fraction": 0.61,
+        "upper_fraction": 0.044,
+        "side_to_mid_db": -14.6
+      },
+      {
+        "start": 30,
+        "end": 40,
+        "rms_dbfs": -9.12,
+        "bass_fraction": 0.542,
+        "upper_fraction": 0.056,
+        "side_to_mid_db": -10.51
+      },
+      {
+        "start": 40,
+        "end": 50,
+        "rms_dbfs": -9.57,
+        "bass_fraction": 0.391,
+        "upper_fraction": 0.07,
+        "side_to_mid_db": -6.96
+      },
+      {
+        "start": 50,
+        "end": 60,
+        "rms_dbfs": -7.98,
+        "bass_fraction": 0.562,
+        "upper_fraction": 0.055,
+        "side_to_mid_db": -10.35
+      },
+      {
+        "start": 60,
+        "end": 70,
+        "rms_dbfs": -5.52,
+        "bass_fraction": 0.757,
+        "upper_fraction": 0.046,
+        "side_to_mid_db": -14.87
+      },
+      {
+        "start": 70,
+        "end": 80,
+        "rms_dbfs": -5.2,
+        "bass_fraction": 0.786,
+        "upper_fraction": 0.041,
+        "side_to_mid_db": -13.95
+      },
+      {
+        "start": 80,
+        "end": 90,
+        "rms_dbfs": -10.47,
+        "bass_fraction": 0.654,
+        "upper_fraction": 0.054,
+        "side_to_mid_db": -10.14
+      },
+      {
+        "start": 90,
+        "end": 100,
+        "rms_dbfs": -5.19,
+        "bass_fraction": 0.764,
+        "upper_fraction": 0.027,
+        "side_to_mid_db": -12.02
+      },
+      {
+        "start": 100,
+        "end": 110,
+        "rms_dbfs": -5.27,
+        "bass_fraction": 0.73,
+        "upper_fraction": 0.022,
+        "side_to_mid_db": -12.6
+      },
+      {
+        "start": 110,
+        "end": 120,
+        "rms_dbfs": -5.5,
+        "bass_fraction": 0.762,
+        "upper_fraction": 0.033,
+        "side_to_mid_db": -15.08
+      },
+      {
+        "start": 120,
+        "end": 130,
+        "rms_dbfs": -5.14,
+        "bass_fraction": 0.812,
+        "upper_fraction": 0.029,
+        "side_to_mid_db": -14.45
+      },
+      {
+        "start": 130,
+        "end": 140,
+        "rms_dbfs": -6.28,
+        "bass_fraction": 0.8,
+        "upper_fraction": 0.024,
+        "side_to_mid_db": -15.74
+      },
+      {
+        "start": 140,
+        "end": 150,
+        "rms_dbfs": -10.47,
+        "bass_fraction": 0.486,
+        "upper_fraction": 0.07,
+        "side_to_mid_db": -17.0
+      },
+      {
+        "start": 150,
+        "end": 155.32,
+        "rms_dbfs": -28.18,
+        "bass_fraction": 0.279,
+        "upper_fraction": 0.001,
+        "side_to_mid_db": -21.63
+      }
+    ]
+  },
+  "djayvo_hiphop": {
+    "file": "remix.hiphop.wav",
+    "sha256": "69fcb6cfad5ea15c3d0bad8301ec148e7f96c384b4b0883c9a36047915540b10",
+    "duration_seconds": 32.0,
+    "integrated_lufs": -24.6,
+    "loudness_range_lu": 9.4,
+    "true_peak_dbfs": -7.8,
+    "rms_dbfs": -28.62,
+    "rms_p10_p90_dbfs": [
+      -47.43,
+      -23.19
+    ],
+    "side_to_mid_db": -19.71,
+    "stereo_correlation": 0.98,
+    "mono_bass_20_150hz_energy_fraction": 0.555,
+    "pulse_candidates_not_confirmed_tempo": [
+      {
+        "bpm": 64.17,
+        "correlation": 0.407
+      },
+      {
+        "bpm": 96.01,
+        "correlation": 0.354
+      },
+      {
+        "bpm": 77.06,
+        "correlation": 0.202
+      },
+      {
+        "bpm": 127.64,
+        "correlation": 0.073
+      },
+      {
+        "bpm": 140.47,
+        "correlation": 0.068
+      }
+    ],
+    "change_candidates": [
+      {
+        "seconds": 4.99,
+        "contrast_score": 0.83,
+        "rms_before_dbfs": -34.97,
+        "rms_after_dbfs": -33.12
+      },
+      {
+        "seconds": 11.48,
+        "contrast_score": 0.91,
+        "rms_before_dbfs": -35.79,
+        "rms_after_dbfs": -34.12
+      },
+      {
+        "seconds": 20.23,
+        "contrast_score": 2.63,
+        "rms_before_dbfs": -32.67,
+        "rms_after_dbfs": -36.77
+      },
+      {
+        "seconds": 29.85,
+        "contrast_score": 6.74,
+        "rms_before_dbfs": -43.45,
+        "rms_after_dbfs": -150.0
+      }
+    ],
+    "ten_second_windows": [
+      {
+        "start": 0,
+        "end": 10,
+        "rms_dbfs": -27.74,
+        "bass_fraction": 0.536,
+        "upper_fraction": 0.076,
+        "side_to_mid_db": -23.03
+      },
+      {
+        "start": 10,
+        "end": 20,
+        "rms_dbfs": -28.87,
+        "bass_fraction": 0.582,
+        "upper_fraction": 0.068,
+        "side_to_mid_db": -16.87
+      },
+      {
+        "start": 20,
+        "end": 30,
+        "rms_dbfs": -28.49,
+        "bass_fraction": 0.552,
+        "upper_fraction": 0.066,
+        "side_to_mid_db": -20.67
+      },
+      {
+        "start": 30,
+        "end": 32.0,
+        "rms_dbfs": null,
+        "bass_fraction": null,
+        "upper_fraction": null,
+        "side_to_mid_db": null
+      }
+    ]
+  },
+  "djayvo_reggae": {
+    "file": "remix.reggae.wav",
+    "sha256": "9b77c61991d18058f9cf6fad98f8e3c21f20635b8d1ab21b7d608d04b334a08d",
+    "duration_seconds": 32.0,
+    "integrated_lufs": -24.8,
+    "loudness_range_lu": 7.1,
+    "true_peak_dbfs": -7.9,
+    "rms_dbfs": -28.74,
+    "rms_p10_p90_dbfs": [
+      -45.94,
+      -24.95
+    ],
+    "side_to_mid_db": -19.37,
+    "stereo_correlation": 0.98,
+    "mono_bass_20_150hz_energy_fraction": 0.498,
+    "pulse_candidates_not_confirmed_tempo": [
+      {
+        "bpm": 79.85,
+        "correlation": 0.567
+      },
+      {
+        "bpm": 160.09,
+        "correlation": 0.312
+      },
+      {
+        "bpm": 64.41,
+        "correlation": 0.228
+      },
+      {
+        "bpm": 106.15,
+        "correlation": 0.113
+      }
+    ],
+    "change_candidates": [
+      {
+        "seconds": 10.12,
+        "contrast_score": 1.24,
+        "rms_before_dbfs": -32.91,
+        "rms_after_dbfs": -36.21
+      },
+      {
+        "seconds": 20.96,
+        "contrast_score": 1.79,
+        "rms_before_dbfs": -30.97,
+        "rms_after_dbfs": -33.41
+      },
+      {
+        "seconds": 28.85,
+        "contrast_score": 7.21,
+        "rms_before_dbfs": -38.76,
+        "rms_after_dbfs": -104.62
+      }
+    ],
+    "ten_second_windows": [
+      {
+        "start": 0,
+        "end": 10,
+        "rms_dbfs": -27.2,
+        "bass_fraction": 0.499,
+        "upper_fraction": 0.07,
+        "side_to_mid_db": -21.16
+      },
+      {
+        "start": 10,
+        "end": 20,
+        "rms_dbfs": -29.73,
+        "bass_fraction": 0.493,
+        "upper_fraction": 0.043,
+        "side_to_mid_db": -16.05
+      },
+      {
+        "start": 20,
+        "end": 30,
+        "rms_dbfs": -28.82,
+        "bass_fraction": 0.502,
+        "upper_fraction": 0.073,
+        "side_to_mid_db": -21.76
+      },
+      {
+        "start": 30,
+        "end": 32.0,
+        "rms_dbfs": null,
+        "bass_fraction": null,
+        "upper_fraction": null,
+        "side_to_mid_db": null
+      }
+    ]
+  },
+  "djayvo_experimental": {
+    "file": "remix.experimental.wav",
+    "sha256": "11f1ca979bcab417bad08cbdbb1baf74453fb5c3d82454a9e9a8c1e199f490e3",
+    "duration_seconds": 32.968,
+    "integrated_lufs": -23.9,
+    "loudness_range_lu": 5.5,
+    "true_peak_dbfs": -7.9,
+    "rms_dbfs": -27.34,
+    "rms_p10_p90_dbfs": [
+      -35.21,
+      -22.74
+    ],
+    "side_to_mid_db": -19.28,
+    "stereo_correlation": 0.977,
+    "mono_bass_20_150hz_energy_fraction": 0.647,
+    "pulse_candidates_not_confirmed_tempo": [
+      {
+        "bpm": 82.64,
+        "correlation": 0.359
+      },
+      {
+        "bpm": 62.4,
+        "correlation": 0.348
+      },
+      {
+        "bpm": 165.68,
+        "correlation": 0.344
+      },
+      {
+        "bpm": 70.49,
+        "correlation": 0.277
+      },
+      {
+        "bpm": 123.08,
+        "correlation": 0.249
+      },
+      {
+        "bpm": 105.7,
+        "correlation": 0.16
+      }
+    ],
+    "change_candidates": [
+      {
+        "seconds": 2.05,
+        "contrast_score": 1.16,
+        "rms_before_dbfs": -39.46,
+        "rms_after_dbfs": -32.27
+      },
+      {
+        "seconds": 22.86,
+        "contrast_score": 5.19,
+        "rms_before_dbfs": -30.24,
+        "rms_after_dbfs": -73.03
+      },
+      {
+        "seconds": 29.82,
+        "contrast_score": 6.99,
+        "rms_before_dbfs": -36.82,
+        "rms_after_dbfs": -91.5
+      }
+    ],
+    "ten_second_windows": [
+      {
+        "start": 0,
+        "end": 10,
+        "rms_dbfs": -26.8,
+        "bass_fraction": 0.624,
+        "upper_fraction": 0.084,
+        "side_to_mid_db": -22.55
+      },
+      {
+        "start": 10,
+        "end": 20,
+        "rms_dbfs": -26.83,
+        "bass_fraction": 0.735,
+        "upper_fraction": 0.043,
+        "side_to_mid_db": -17.14
+      },
+      {
+        "start": 20,
+        "end": 30,
+        "rms_dbfs": -27.19,
+        "bass_fraction": 0.577,
+        "upper_fraction": 0.056,
+        "side_to_mid_db": -19.78
+      },
+      {
+        "start": 30,
+        "end": 32.97,
+        "rms_dbfs": -50.12,
+        "bass_fraction": 0.149,
+        "upper_fraction": 0.001,
+        "side_to_mid_db": -13.7
+      }
+    ]
+  }
+}

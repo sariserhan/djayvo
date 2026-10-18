@@ -1,0 +1,47 @@
+[
+  {
+    "file": "down-018-062.wav",
+    "source": "down.mp3",
+    "start_seconds": 18,
+    "duration_seconds": 44,
+    "constant_gain_db": -20.2,
+    "lufs": -25.0,
+    "true_peak_dbfs": -15.8
+  },
+  {
+    "file": "question-046-090.wav",
+    "source": "question.mp3",
+    "start_seconds": 46,
+    "duration_seconds": 44,
+    "constant_gain_db": -19.1,
+    "lufs": -25.0,
+    "true_peak_dbfs": -15.1
+  },
+  {
+    "file": "djayvo-hiphop.wav",
+    "source": "remix.hiphop.wav",
+    "start_seconds": 0,
+    "duration_seconds": null,
+    "constant_gain_db": -0.4,
+    "lufs": -25.0,
+    "true_peak_dbfs": -8.2
+  },
+  {
+    "file": "djayvo-reggae.wav",
+    "source": "remix.reggae.wav",
+    "start_seconds": 0,
+    "duration_seconds": null,
+    "constant_gain_db": -0.2,
+    "lufs": -25.0,
+    "true_peak_dbfs": -8.1
+  },
+  {
+    "file": "djayvo-experimental.wav",
+    "source": "remix.experimental.wav",
+    "start_seconds": 0,
+    "duration_seconds": null,
+    "constant_gain_db": -1.1,
+    "lufs": -25.0,
+    "true_peak_dbfs": -9.0
+  }
+]

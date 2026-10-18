@@ -109,6 +109,16 @@ history and the Linux reference masters. See
 with `python3 scripts/make_fixture.py`; the speech generator is optional. For
 real recordings, pass `--consent` only with permission to process that input.
 
+## Owner reference analysis
+
+The owner supplied `down.mp3` and `question.mp3` in Downloads. Full-file signal
+analysis and five level-matched audition files are **PASS**; interpretation is
+**PARTIAL**, and direct listening is **NOT RUN** because this session cannot hear
+audio. Strong section-to-section bass/level/width changes suggest arrangement
+contrast deserves attention alongside timbre. No engine changes or training were
+performed. See [reference-analysis.md](reference-analysis.md) for measurements,
+selected timestamps, reproduction, and the local audition package.
+
 ## Remaining limitations
 
 The acoustic bank is small, mono, single-layer and sample-based; no listener has
