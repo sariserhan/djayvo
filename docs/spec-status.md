@@ -43,6 +43,10 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
+Latest lifecycle fixes: [Catalogue recovery](catalogue-withdrawal.md).
+Playlist slot recovery, withdrawn-report queue filtering, stale-review rejection
+and displayed-report-only resolution pass local database/browser checks. Actual
+moderation operations, rights review and hosted behavior remain NOT RUN.
 Latest maintenance: [Expired-auth cleanup](auth-cleanup.md).
 Bounded expiry deletion, indexes and local usage checks PASS. Live scheduling,
 Neon compute/transfer, overload and production retention remain NOT RUN.

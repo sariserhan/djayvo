@@ -8,12 +8,14 @@ const key=(id:string, master=false) => `${master?'masters':'uploads'}/${id}.wav`
 
 export class PrivateAudio {
   constructor(private pool:Pool, public store:AudioStore) {}
-  async locked<T>(owner:string, action:(db:PoolClient)=>Promise<T>, reservation=false) {
+  async locked<T>(owner:string|string[], action:(db:PoolClient)=>Promise<T>, reservation=false) {
     const db=await this.pool.connect();
     try {
       await db.query('BEGIN');
       if (reservation) await db.query('SELECT pg_advisory_xact_lock(90418274)');
-      if (!(await db.query('SELECT id FROM "user" WHERE id=$1 FOR UPDATE',[owner])).rowCount) throw new AudioError('Sign in required.',401);
+      const owners=[...new Set(Array.isArray(owner)?owner:[owner])];
+      // Stable order prevents reciprocal-report deadlocks; foreign-key reads remain compatible.
+      if (!owners.length || (await db.query('SELECT id FROM "user" WHERE id=ANY($1::text[]) ORDER BY id FOR NO KEY UPDATE',[owners])).rowCount!==owners.length) throw new AudioError('Sign in required.',401);
       const result=await action(db); await db.query('COMMIT'); return result;
     } catch(error) { await db.query('ROLLBACK'); throw error; }
     finally { db.release(); }

@@ -10,6 +10,14 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest local lifecycle fixes, 2026-10-18: [Catalogue recovery](catalogue-withdrawal.md).
+Unavailable playlist entries are removable without exposing former metadata;
+withdrawn reports stay archived; new reports invalidate stale decisions; reviews
+resolve only their displayed ten concerns. **PASS:** 33 unit/integration checks,
+22 catalogue browser checks, 20 account regression checks, build/types/bundle.
+No DSP/audio changes. Live providers, human listening and phone **NOT RUN**;
+W11/full specification **PARTIAL**. Test content remains synthetic and local.
+
 Latest local maintenance, 2026-10-18: [Expired-auth cleanup](auth-cleanup.md).
 Target-guarded batches remove expired sessions/verification records, skip locked
 rows and preserve active accounts. Migration 0005 adds expiry indexes. **PASS:**

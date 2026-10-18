@@ -91,7 +91,12 @@ records a decision/note. `/catalogue` shows only approved, available mixes.
 Owners can withdraw without losing the private original. Editing a submission
 requires a new review. Signed-in listeners can report concerns and keep private
 playlists (20 lists, 100 tracks each). Reports enter the local review queue; no
-notification or moderation response-time guarantee is configured.
+notification or moderation response-time guarantee is configured. New reports
+invalidate an already loaded review; refresh before deciding. A decision resolves
+only the displayed ten concerns. Unseen concerns remain retained for further
+review. Withdrawing hides the queue entry but preserves concerns for resubmission.
+Unavailable playlist entries show a generic placeholder with a removal control;
+removing one frees capacity without exposing the former track metadata.
 
 The player survives client navigation between site pages, including filters and
 playlists. Entering the standalone studio or reloading the page resets it. Public

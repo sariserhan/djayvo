@@ -69,6 +69,62 @@ test('isolated catalogue: explicit publication, revision-bound review and privat
       assert.deepEqual((await audio.playback('owner',id)).data,wav);
       assert.equal((await catalogue.queue()).length,0);
     });
+    await t.test('a new report invalidates a loaded review so unseen concerns cannot be resolved',async()=>{
+      await catalogue.submit('owner',id,submission);
+      const pending=(await catalogue.queue())[0];
+      await catalogue.review('reviewer',id,'approved','Synthetic workflow',pending.revision);
+      await catalogue.report('listener',id,'First concern');
+      const loaded=(await catalogue.queue())[0];
+      await catalogue.report('listener',id,'Updated concern after reviewer loaded');
+      await assert.rejects(catalogue.review('reviewer',id,'approved','Stale screen',loaded.revision),/changed/);
+      const fresh=(await catalogue.queue())[0];
+      assert.deepEqual(fresh.reasons,['Updated concern after reviewer loaded']);
+      await catalogue.review('reviewer',id,'approved','Reviewed current concern',fresh.revision);
+      assert.equal((await catalogue.queue()).length,0);
+    });
+    await t.test('review resolves only the displayed ten reports and invalidates the old screen',async()=>{
+      for(let i=0;i<11;i++){
+        const reporter='batch-reporter-'+i;
+        await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[reporter,reporter+'@example.com']);
+        await catalogue.report(reporter,id,'Batch concern '+i);
+      }
+      const loaded=(await catalogue.queue())[0];assert.equal(loaded.reports,11);assert.equal(loaded.reasons.length,10);
+      await catalogue.review('reviewer',id,'approved','Read ten displayed concerns',loaded.revision);
+      const remaining=(await catalogue.queue())[0];assert.equal(remaining.reports,1);assert.equal(remaining.reasons.length,1);
+      assert.ok(!loaded.reasons.includes(remaining.reasons[0]));
+      await assert.rejects(catalogue.review('reviewer',id,'approved','Repeat stale review',loaded.revision),/changed/);
+      await catalogue.review('reviewer',id,'approved','Read final concern',remaining.revision);
+      assert.equal((await catalogue.queue()).length,0);
+      await pool.query(`DELETE FROM "user" WHERE id LIKE 'batch-reporter-%'`);
+    });
+    await t.test('reciprocal reports serialize without deadlocks and stay visible after concurrent review',async()=>{
+      const other=await audio.reserve('listener',input(wav));await audio.localUpload('listener',other.id,wav);await audio.finalize('listener',other.id);
+      await catalogue.submit('listener',other.id,submission);
+      const queued=(await catalogue.queue()).find(t=>t.id===other.id);
+      await catalogue.review('reviewer',other.id,'approved','Synthetic workflow',queued.revision);
+      await Promise.all([catalogue.report('listener',id,'Reciprocal A'),catalogue.report('owner',other.id,'Reciprocal B')]);
+      const loaded=(await catalogue.queue()).find(t=>t.id===id);
+      const result=await Promise.allSettled([
+        catalogue.review('reviewer',id,'approved','Concurrent review',loaded.revision),
+        catalogue.report('reviewer',id,'New reviewer concern')
+      ]);
+      assert.equal(result[1].status,'fulfilled');
+      if(result[0].status==='rejected')assert.match(String(result[0].reason),/changed/);
+      assert.ok((await catalogue.queue()).find(t=>t.id===id).reasons.includes('New reviewer concern'));
+      for(const row of await catalogue.queue())await catalogue.review('reviewer',row.id,'approved','Fresh synthetic review',row.revision);
+      await audio.remove('listener',other.id);
+    });
+    await t.test('reported withdrawal leaves the actionable queue without erasing report history',async()=>{
+      await catalogue.submit('owner',id,submission);
+      const pending=(await catalogue.queue())[0];
+      await catalogue.review('reviewer',id,'approved','Synthetic workflow',pending.revision);
+      await catalogue.report('listener',id,'Retain this concern if resubmitted');
+      await catalogue.withdraw('owner',id);
+      assert.equal((await catalogue.queue()).length,0);
+      assert.equal((await pool.query('SELECT resolved FROM catalogue_reports WHERE track_id=$1',[id])).rows[0].resolved,false);
+      await catalogue.submit('owner',id,submission);
+      assert.deepEqual((await catalogue.queue())[0].reasons,['Retain this concern if resubmitted']);
+    });
     await t.test('withdrawal wins against concurrent approval and owner deletion prevents public access',async()=>{
       await catalogue.submit('owner',id,submission);let row=(await catalogue.queue())[0];
       await Promise.allSettled([catalogue.review('reviewer',id,'approved','race fixture',row.revision),catalogue.withdraw('owner',id)]);
@@ -97,9 +153,15 @@ test('isolated catalogue: explicit publication, revision-bound review and privat
       await pool.query('INSERT INTO playlist_items(playlist_id,track_id) SELECT $1,id FROM tracks WHERE id=ANY($2::uuid[])',[list.id,tracks.slice(0,100).map(t=>t.id)]);
       await catalogue.changePlaylist('listener',list.id,tracks[0].id);
       await assert.rejects(catalogue.changePlaylist('listener',list.id,tracks[100].id),/full/);
-      await catalogue.changePlaylist('listener',list.id,tracks[0].id,true);
+      await catalogue.withdraw('reviewer',tracks[0].id);
+      const partial=await catalogue.playlist('listener',list.id);
+      assert.equal(partial.tracks.length,99);
+      assert.deepEqual(partial.unavailable,[{id:tracks[0].id}]);
+      await assert.rejects(catalogue.changePlaylist('owner',list.id,tracks[0].id,true),/not found/);
+      await catalogue.changePlaylist('listener',list.id,partial.unavailable[0].id,true);
       await catalogue.changePlaylist('listener',list.id,tracks[100].id);
       assert.equal((await catalogue.playlist('listener',list.id)).tracks.length,100);
+      assert.deepEqual((await catalogue.playlist('listener',list.id)).unavailable,[]);
     });
   }finally{await pool.end();await admin.query(`DROP DATABASE "${name}" WITH (FORCE)`);await admin.end();await rm(dir,{recursive:true,force:true});}
 });

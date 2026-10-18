@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "browser": "webkit",
+  "browser_version": "26.5",
+  "node": "v22.23.1",
+  "checks": [
+    {
+      "name": "private mix excluded from public metadata/audio; ordinary accounts cannot review",
+      "status": "PASS"
+    },
+    {
+      "name": "separate public-listening consent is required; pending submission stays private",
+      "status": "PASS"
+    },
+    {
+      "name": "authorized distinct reviewer confirmation publishes only explicit public fields and identical audio",
+      "status": "PASS"
+    },
+    {
+      "name": "catalogue filters, track page and persistent player work across client navigation at desktop/mobile sizes",
+      "status": "PASS"
+    },
+    {
+      "name": "private playlist create/add/list and cross-account denial work through authenticated routes",
+      "status": "PASS"
+    },
+    {
+      "name": "new reports invalidate stale review screens without silently resolving unseen concerns",
+      "status": "PASS"
+    },
+    {
+      "name": "review decisions resolve only the displayed ten concerns and keep unseen reports pending",
+      "status": "PASS"
+    },
+    {
+      "name": "unavailable playlist entries expose no private metadata and can be removed at desktop/mobile sizes",
+      "status": "PASS"
+    },
+    {
+      "name": "report/reject revokes public audio and playlist availability while preserving the private original",
+      "status": "PASS"
+    },
+    {
+      "name": "owner withdrawal and mutation-origin checks preserve privacy without deleting account audio",
+      "status": "PASS"
+    },
+    {
+      "name": "no application console errors, runtime exceptions or blank/error screens",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "captureWarnings": [],
+  "expectedValidationErrors": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "public_audio_byte_difference": 0,
+  "human_review": "NOT RUN - synthetic workflow decisions only",
+  "live_providers": "NOT RUN"
+}

@@ -1,0 +1,12 @@
+Evidence: /Users/serhansari/Documents/projects/djayvo/renders/catalogue-browser-JmFmFu
+PASS: private mix excluded from public metadata/audio; ordinary accounts cannot review
+PASS: separate public-listening consent is required; pending submission stays private
+PASS: authorized distinct reviewer confirmation publishes only explicit public fields and identical audio
+PASS: catalogue filters, track page and persistent player work across client navigation at desktop/mobile sizes
+PASS: private playlist create/add/list and cross-account denial work through authenticated routes
+PASS: new reports invalidate stale review screens without silently resolving unseen concerns
+PASS: review decisions resolve only the displayed ten concerns and keep unseen reports pending
+PASS: unavailable playlist entries expose no private metadata and can be removed at desktop/mobile sizes
+PASS: report/reject revokes public audio and playlist availability while preserving the private original
+PASS: owner withdrawal and mutation-origin checks preserve privacy without deleting account audio
+PASS: no application console errors, runtime exceptions or blank/error screens

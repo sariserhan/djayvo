@@ -1,0 +1,20 @@
+Evidence: /Users/serhansari/Documents/projects/djayvo/renders/catalogue-browser-GtUW6m
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+429 !== 200
+
+    at signup (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/catalogue-browser.mjs:28:116)
+    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/catalogue-browser.mjs:36:11 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 429,
+  expected: 200,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

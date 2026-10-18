@@ -1,0 +1,114 @@
+TAP version 13
+# Subtest: isolated catalogue: explicit publication, revision-bound review and private playlists
+    # Subtest: private and pending tracks never enter public metadata or audio
+    ok 1 - private and pending tracks never enter public metadata or audio
+      ---
+      duration_ms: 3.000083
+      type: 'test'
+      ...
+    # Subtest: self review and stale revisions fail; explicit review exposes only public fields
+    ok 2 - self review and stale revisions fail; explicit review exposes only public fields
+      ---
+      duration_ms: 4.912459
+      type: 'test'
+      ...
+    # Subtest: playlists isolate owners, preserve ordering, deduplicate and cannot add private tracks
+    ok 3 - playlists isolate owners, preserve ordering, deduplicate and cannot add private tracks
+      ---
+      duration_ms: 5.286292
+      type: 'test'
+      ...
+    # Subtest: reports reopen moderation; rejection removes public audio and playlist playback without deleting the private master
+    ok 4 - reports reopen moderation; rejection removes public audio and playlist playback without deleting the private master
+      ---
+      duration_ms: 4.062667
+      type: 'test'
+      ...
+    # Subtest: reported withdrawal leaves the actionable queue without erasing report history
+    not ok 5 - reported withdrawal leaves the actionable queue without erasing report history
+      ---
+      duration_ms: 3.817375
+      type: 'test'
+      location: '/Users/serhansari/Documents/projects/djayvo/apps/site/tests/catalogue.test.ts:1:5136'
+      failureType: 'testCodeFailure'
+      error: |-
+        Expected values to be strictly equal:
+        
+        1 !== 0
+        
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected: 0
+      actual: 1
+      operator: 'strictEqual'
+      stack: |-
+        TestContext.<anonymous> (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/catalogue.test.ts:78:14)
+        process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async TestContext.<anonymous> (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/catalogue.test.ts:72:5)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+      ...
+    # Subtest: withdrawal wins against concurrent approval and owner deletion prevents public access
+    ok 6 - withdrawal wins against concurrent approval and owner deletion prevents public access
+      ---
+      duration_ms: 8.909417
+      type: 'test'
+      ...
+    # Subtest: playlist count limits survive concurrent creates; deletion is scoped
+    ok 7 - playlist count limits survive concurrent creates; deletion is scoped
+      ---
+      duration_ms: 7.520084
+      type: 'test'
+      ...
+    # Subtest: catalogue cursor pages are disjoint and full-playlist retries stay idempotent
+    not ok 8 - catalogue cursor pages are disjoint and full-playlist retries stay idempotent
+      ---
+      duration_ms: 170.621041
+      type: 'test'
+      location: '/Users/serhansari/Documents/projects/djayvo/apps/site/tests/catalogue.test.ts:1:7005'
+      failureType: 'testCodeFailure'
+      error: |-
+        Expected values to be strictly deep-equal:
+        + actual - expected
+        
+        + undefined
+        - [
+        -   {
+        -     id: '074caf18-9b81-4373-9671-a2313f5d5517'
+        -   }
+        - ]
+        
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected:
+        0:
+          id: '074caf18-9b81-4373-9671-a2313f5d5517'
+      operator: 'deepStrictEqual'
+      stack: |-
+        TestContext.<anonymous> (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/catalogue.test.ts:114:14)
+        process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async TestContext.<anonymous> (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/catalogue.test.ts:97:5)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+      ...
+    1..8
+not ok 1 - isolated catalogue: explicit publication, revision-bound review and private playlists
+  ---
+  duration_ms: 339.487209
+  type: 'test'
+  location: '/Users/serhansari/Documents/projects/djayvo/apps/site/tests/catalogue.test.ts:1:524'
+  failureType: 'subtestsFailed'
+  error: '2 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..1
+# tests 9
+# suites 0
+# pass 6
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 498.407833

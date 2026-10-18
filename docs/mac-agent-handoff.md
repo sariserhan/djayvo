@@ -6,6 +6,11 @@ complete master specification. Never modify the master; its SHA-256 is
 `389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2`.
 
 **Current priority, 2026-10-18: music quality research and remaining local web implementation; hosted infrastructure and phone work paused.**
+Latest local lifecycle fixes: [Catalogue recovery](catalogue-withdrawal.md).
+Generic unavailable entries can be removed; archived reports return on resubmit;
+new concerns invalidate stale reviews and unseen report batches remain pending.
+33 database/unit and 42 browser checks PASS. No new schema or audio changes.
+Hosted publication, actual permission review and quality evidence remain open.
 Latest local web work: [Reviewed catalogue and playlists](reviewed-catalogue.md).
 Local database migrations through 0005 are applied. Private audio, separate
 submission/review, catalogue search, persistent player and private playlists work

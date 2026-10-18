@@ -11,6 +11,8 @@ export default async function Playlist({params}:{params:Promise<{id:string}>}) {
   let list;try{list=await catalogue.playlist(session.user.id,(await params).id);}catch{notFound();}
   return <section><Link href="/playlists">All playlists</Link><h1>{list.title}</h1><p>Private to your account.</p><PlaylistRemove id={list.id}/>
     <ul className="catalogue-list">{list.tracks.map(track=><li key={track.id}><div><Link href={`/catalogue/${track.id}`}><h2>{track.title}</h2></Link><p>{track.artist}</p></div><PlayTrack track={track} queue={list.tracks}/><PlaylistRemove id={list.id} track={track.id}/></li>)}</ul>
+    {list.unavailable.length>0&&<><h2>Unavailable tracks</h2><p>These tracks are no longer available for public listening. Remove them to free space in your playlist.</p>
+      <ul className="catalogue-list">{list.unavailable.map(item=><li key={item.id}><span>Unavailable track</span><PlaylistRemove id={list.id} track={item.id}/></li>)}</ul></>}
     {!list.tracks.length&&<p>No available tracks in this playlist.</p>}
   </section>;
 }

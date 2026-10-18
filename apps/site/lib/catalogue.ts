@@ -61,10 +61,10 @@ export class Catalogue {
   }
   async queue() {
     return (await this.pool.query(`SELECT ${publicFields},c.state,c.updated_at,c.revision,
-      ARRAY(SELECT reason FROM catalogue_reports r WHERE r.track_id=t.id AND NOT r.resolved ORDER BY r.created_at LIMIT 10) AS reasons,
+      ARRAY(SELECT reason FROM catalogue_reports r WHERE r.track_id=t.id AND NOT r.resolved ORDER BY r.created_at,r.reporter_id LIMIT 10) AS reasons,
       (SELECT count(*)::int FROM catalogue_reports r WHERE r.track_id=t.id AND NOT r.resolved) AS reports
       FROM catalogue_submissions c JOIN tracks t ON t.id=c.track_id JOIN track_assets a ON a.track_id=t.id
-      WHERE t.deleted_at IS NULL AND a.state='ready' AND (c.state='submitted' OR EXISTS(SELECT 1 FROM catalogue_reports r WHERE r.track_id=t.id AND NOT r.resolved))
+      WHERE t.deleted_at IS NULL AND a.state='ready' AND c.state IN ('submitted','approved') AND (c.state='submitted' OR EXISTS(SELECT 1 FROM catalogue_reports r WHERE r.track_id=t.id AND NOT r.resolved))
       ORDER BY c.updated_at,t.id LIMIT 50`)).rows;
   }
   async review(reviewer:string,id:string,decision:unknown,note:unknown,revision:unknown) {
@@ -78,16 +78,22 @@ export class Catalogue {
       const row=(await db.query(`SELECT c.state,c.revision FROM catalogue_submissions c JOIN tracks t ON t.id=c.track_id JOIN track_assets a ON a.track_id=t.id
         WHERE t.id=$1 AND t.deleted_at IS NULL AND a.state='ready'`,[id])).rows[0];
       if(!row || row.revision!==revision || !['submitted','approved'].includes(row.state))throw new AudioError('Submission changed or is no longer reviewable. Reload the queue.',409);
-      await db.query('UPDATE catalogue_submissions SET state=$2,reviewer_id=$3,reviewed_at=now(),updated_at=now(),review_note=$4 WHERE track_id=$1',[id,decision,reviewer,reason]);
+      await db.query('UPDATE catalogue_submissions SET state=$2,reviewer_id=$3,reviewed_at=now(),updated_at=now(),review_note=$4,revision=gen_random_uuid() WHERE track_id=$1',[id,decision,reviewer,reason]);
       await db.query('INSERT INTO catalogue_reviews(track_id,revision,reviewer_id,decision,note) VALUES($1,$2,$3,$4,$5)',[id,revision,reviewer,decision,reason]);
-      await db.query('UPDATE catalogue_reports SET resolved=true WHERE track_id=$1',[id]);
+      await db.query(`UPDATE catalogue_reports SET resolved=true WHERE track_id=$1 AND reporter_id IN (
+        SELECT reporter_id FROM catalogue_reports WHERE track_id=$1 AND NOT resolved ORDER BY created_at,reporter_id LIMIT 10
+      )`,[id]);
     });return {state:decision};
   }
   async report(reporter:string,id:string,reason:unknown) {
     const message=text(reason,500,true);await this.track(id);
-    await this.audio.locked(reporter,async db=>{
+    const owner=(await this.pool.query('SELECT owner_id FROM tracks WHERE id=$1',[id])).rows[0]?.owner_id;
+    if(!owner)throw new AudioError('Track not found.',404);
+    await this.audio.locked([reporter,owner],async db=>{
+      await this.track(id,db);
       const count=(await db.query("SELECT count(*)::int n FROM catalogue_reports WHERE reporter_id=$1 AND created_at>now()-interval '24 hours'",[reporter])).rows[0].n;
       if(count>=10)throw new AudioError('Report limit reached. Try again later.',429);
+      await db.query('UPDATE catalogue_submissions SET revision=gen_random_uuid() WHERE track_id=$1',[id]);
       await db.query(`INSERT INTO catalogue_reports(track_id,reporter_id,reason) VALUES($1,$2,$3)
         ON CONFLICT(track_id,reporter_id) DO UPDATE SET reason=$3,resolved=false,created_at=now()`,[id,reporter,message]);
     });return {reported:true};
@@ -104,10 +110,15 @@ export class Catalogue {
   async playlist(owner:string,id:string) {
     uuid(id);const playlist=(await this.pool.query<{id:string;title:string}>('SELECT id,title FROM playlists WHERE id=$1 AND owner_id=$2',[id,owner])).rows[0];
     if(!playlist)throw new AudioError('Playlist not found.',404);
-    const tracks=(await this.pool.query<PublicTrack>(`SELECT ${publicFields} FROM playlist_items i JOIN tracks t ON t.id=i.track_id
-      JOIN catalogue_submissions c ON c.track_id=t.id JOIN track_assets a ON a.track_id=t.id
-      WHERE i.playlist_id=$1 AND c.state='approved' AND t.deleted_at IS NULL AND a.state='ready' ORDER BY i.added_at,t.id LIMIT 100`,[id])).rows;
-    return {...playlist,tracks};
+    const items=(await this.pool.query<{id:string;track:PublicTrack|null}>(`SELECT i.track_id AS id,
+      CASE WHEN c.state='approved' AND t.deleted_at IS NULL AND a.state='ready' THEN
+        json_build_object('id',t.id,'title',t.title,'strategy',t.strategy,'duration_ms',t.duration_ms,
+          'artist',c.artist,'description',c.description,'mood',c.mood) END AS track
+      FROM playlist_items i JOIN tracks t ON t.id=i.track_id
+      LEFT JOIN catalogue_submissions c ON c.track_id=t.id LEFT JOIN track_assets a ON a.track_id=t.id
+      WHERE i.playlist_id=$1 ORDER BY i.added_at,t.id LIMIT 100`,[id])).rows;
+    return {...playlist,tracks:items.flatMap(item=>item.track?[item.track]:[]),
+      unavailable:items.filter(item=>!item.track).map(({id})=>({id}))};
   }
   async changePlaylist(owner:string,id:string,track:string|undefined,remove=false) {
     uuid(id);if(track)uuid(track);
