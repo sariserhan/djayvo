@@ -16,6 +16,7 @@ from compare_portability import compare, load_audio
 from make_fixture import make_signal
 from prepare_listening import prepare
 from verify_export import verify_export
+from verify_listening_summary import main as verify_listening_summary
 
 
 def rejects(function):
@@ -27,6 +28,7 @@ def rejects(function):
 
 
 def main():
+    verify_listening_summary()
     with tempfile.TemporaryDirectory(prefix="djayvo-tools-") as folder:
         root = Path(folder)
         source = root / "source.wav"
