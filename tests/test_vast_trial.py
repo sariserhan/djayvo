@@ -24,6 +24,29 @@ class PriceBounds(unittest.TestCase):
                 trial.urllib.request, "urlopen", return_value=io.StringIO('[{"id": 123}]')):
             self.assertEqual(trial.api('v0/ssh'), [{"id": 123}])
 
+    def test_retry_keeps_original_budget_anchor_and_requires_cleanup(self):
+        previous = {"starting_credit": 9.9, "destroy_requested_at": 123}
+        self.assertEqual(trial.retry_credit({"credit": 9.8}, previous), 9.9)
+        for credit in (2.8, float("nan")):
+            with self.assertRaises(RuntimeError):
+                trial.retry_credit({"credit": credit}, previous)
+        with self.assertRaises(RuntimeError):
+            trial.retry_credit({"credit": 9.8}, {"starting_credit": 9.9})
+
+    def test_inherited_key_is_not_attached_twice(self):
+        with patch.object(trial, "api", return_value={"ssh_keys": '[{"public_key":"ssh-ed25519 abc account-comment"}]'}) as api:
+            trial.attach_key(42, 'ssh-ed25519 abc local-comment')
+            api.assert_called_once_with('v0/instances/42/ssh')
+
+    def test_missing_key_is_attached_and_invalid_response_rejected(self):
+        with patch.object(trial, "api", return_value={"ssh_keys": []}) as api:
+            trial.attach_key(42, 'ssh-ed25519 abc')
+            self.assertEqual(api.call_count, 2)
+            api.assert_called_with('v0/instances/42/ssh', 'POST', {'ssh_key': 'ssh-ed25519 abc'})
+        with patch.object(trial, "api", return_value={"ssh_keys": {}}):
+            with self.assertRaises(RuntimeError):
+                trial.attach_key(42, 'ssh-ed25519 abc')
+
     def test_training_lease_and_stricter_hourly_ceiling(self):
         with patch.object(trial, "LEASE_SECONDS", 7200), patch.object(trial, "HOURLY_CEILING", .5):
             self.assertAlmostEqual(trial.quote(self.offer)["reserved_lease_plus_transfer"], 2 * (.2 + 60 * .2 / 720) + 1.2)

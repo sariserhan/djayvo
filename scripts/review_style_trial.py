@@ -30,6 +30,13 @@ def main():
         if stats['full_scale_samples'] or stats['duration_seconds'] != 30:
             raise ValueError('Clipped or truncated output')
         original[case['file']] = loudness(path)
+    repeat = report['repeat_control']
+    repeated = ROOT / 'base-repeat-bass-a.wav'
+    if repeat['file'] != repeated.name or hashlib.sha256(repeated.read_bytes()).hexdigest() != repeat['sha256']:
+        raise ValueError('Repeat control transfer checksum mismatch')
+    repeat_delta = difference(ROOT / 'base-bass-a.wav', repeated)
+    if repeat_delta['maximum_pcm_difference'] != 0:
+        raise ValueError('Base repeat differs; adapter attribution needs investigation')
     target = min(-22, *(v['lufs'] - v['true_peak_dbfs'] - 2 for v in original.values()))
     review = ROOT.parent / 'review'
     review.mkdir()  # Preserve earlier listening files and blind allocation.
@@ -69,7 +76,7 @@ document.addEventListener('play',e=>{if(e.target.tagName==='AUDIO')document.quer
     if page.count('<audio ') != 8:
         raise ValueError('Incomplete listening page')
     (review / 'index.html').write_text(page)
-    result = {'technical': 'PASS', 'target_lufs': target, 'original': original,
+    result = {'technical': 'PASS', 'base_repeat': repeat_delta, 'target_lufs': target, 'original': original,
               'review': measurements, 'differences': differences, 'human_listening': 'NOT RUN',
               'event_frame_agreement': 'NOT RUN: audio model emits no engine event trace'}
     Path('docs/evidence/style-training/output-measurements.json').write_text(json.dumps(result, indent=2) + '\n')

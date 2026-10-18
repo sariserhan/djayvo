@@ -1,0 +1,33 @@
+{
+  "gate": "PARTIAL",
+  "accepted_ids": [
+    "x-01",
+    "x-02",
+    "x-06",
+    "y-04",
+    "y-05"
+  ],
+  "seconds": 150,
+  "human_content_review": "NOT RUN",
+  "machine_labeling": "PASS: twelve corrected files processed; detailed predictions unverified and unstable",
+  "caption_policy": {
+    "genre_ratio": 0,
+    "human_content_review": "NOT RUN",
+    "caption_source": "Broad research conditioning only; detailed machine genre, language, tempo, key and lyrics discarded",
+    "instrumental_status": "unknown",
+    "scope": "Approved bounded feasibility trial only"
+  },
+  "excluded": {
+    "x-03": "Spoken dialogue flagged in both passes",
+    "x-04": "Spoken introduction flagged in both passes",
+    "x-05": "Spoken content flagged in refreshed pass",
+    "y-01": "Acoustic/rock predictions outside this limited bass-oriented trial, both unverified",
+    "y-02": "Conflicting dialogue/instrumental predictions; excluded conservatively",
+    "y-03": "Spoken introduction/dialogue flagged",
+    "y-06": "Spoken dialogue flagged in refreshed pass"
+  },
+  "holdout_uploaded": false,
+  "training_manifest_sha256": "0e97cffde4b291845ad31ec2db18e46f9f3d11920bdaa6632ad2115ceb3811a6",
+  "label_receipt_sha256": "f09d54d0cc01aa4f02f06b6b53761b1450013dab359c68750c6baff535923572",
+  "limitation": "Five correlated excerpts from two files are a feasibility dataset, not evidence of independent generalization or production quality"
+}

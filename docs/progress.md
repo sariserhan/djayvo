@@ -10,14 +10,18 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest model preparation, 2026-10-18: [Style-adapter pilot](style-training-pilot.md).
-Owner confirmed x/y/z training permission. **PASS:** hash-bound attestation,
-18 local 30-second candidates, seven safeguards, exact repeated decode and
-original/master preservation. **PARTIAL:** dataset readiness and rights ledger.
-Owner then approved one bounded research rental and M1 exception. **FAIL:** SSH
-access on that instance. **PASS:** verified rental/key cleanup and local research
-tooling checks. Observed debit $0.03334. **NOT RUN:** upload, model setup, training,
-content/label/session review and quality comparison; no production advancement.
+Latest model research, 2026-10-18: [Completed adapter trial](style-training-retry.md).
+**PASS:** owner-approved replacement GPU, corrected decode headroom, five selected
+clips preprocessed, 250 optimizer steps, finite/nonzero adapter, nine retrieved
+WAVs, exact base repeat, four changed level-matched pairs, two-browser playback
+and rental/key cleanup. Review: http://127.0.0.1:4193/review/ . Observed combined
+cost $0.193221; final billing **PARTIAL**. **PARTIAL:** provisional dataset/content
+readiness; automatic detailed labels were inconsistent and discarded. **NOT RUN:**
+human quality, independent holdout, copying assessment, learned source-response
+behavior and production advancement. C07/full specification remain **PARTIAL**.
+Master, original references, initial candidates, supplied fixture and owner voice
+are preserved; z and owner microphone audio stayed local. Initial host SSH
+**FAIL** and recovered training path errors remain in the evidence.
 
 Latest engine work, 2026-10-18: [Source phrase development](source-motif.md).
 Call & Response preserves chronological source rhythm/energy accents in two-bar

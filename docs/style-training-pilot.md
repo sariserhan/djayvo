@@ -1,9 +1,12 @@
 # Style adaptation pilot
 
-2026-10-18. **Local preparation PASS; GPU access FAIL; training NOT RUN.**
+2026-10-18. **Current result: replacement GPU training PASS; quality NOT RUN.**
+See the [completed replacement trial](style-training-retry.md) for the trained
+adapter, four private listening pairs, cleanup and combined cost. The sections
+below retain the preparation and first-attempt state as historical evidence.
 
 
-## Approved trial outcome
+## First approved trial outcome
 
 The owner approved one $10/two-hour rental, reference-excerpt upload and a
 research-only exception to M1. The single actual rental failed before model setup:
@@ -34,7 +37,10 @@ key was deleted and its absence verified. Local connection retries were stopped;
 the new local key files were removed. Existing keys were preserved.
 Observed credit changed from $9.9081871581 to $9.8748471893: **$0.0333399688**.
 This is an observed debit, not a final invoice. No replacement rental was created
-under the one-instance authorization.
+under the initial one-instance authorization. The owner later approved one
+replacement with “yes try”; see the [replacement authorization](evidence/style-training/retry-authorization.json).
+Both attempts share the original $10 ceiling. The replacement excludes the
+previous host location and uses a separate state/label and direct SSH launch mode.
 
 [Trial result](evidence/style-training/trial-result.json),
 [rental receipt](evidence/style-training/rental.json),
@@ -133,7 +139,7 @@ was prepared, but model labeling and content review were NOT RUN. These checks
 would provide only provisional review, not human or musical-quality validation. No generated transcript is treated as verified lyrics. Session-level
 holdout independence remains unverified; z audio stays local and out of training.
 
-## Evidence and gates
+## First-attempt evidence and gates (historical)
 
 | Gate | Status | Evidence / remaining work |
 | --- | --- | --- |

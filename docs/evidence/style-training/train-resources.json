@@ -1,0 +1,6 @@
+{
+  "seconds": 83.23602695000591,
+  "peak_allocated_gib": 4.665655612945557,
+  "peak_reserved_gib": 4.703125,
+  "training_status": "Requires separate checkpoint and step verification"
+}

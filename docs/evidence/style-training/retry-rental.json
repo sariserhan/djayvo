@@ -1,0 +1,29 @@
+{
+  "label": "djayvo-style-training-20261018-retry",
+  "offer": {
+    "id": 53535521,
+    "machine_id": 5314,
+    "host_id": 42512,
+    "gpu_name": "RTX 3090",
+    "gpu_ram": 24576,
+    "num_gpus": 1,
+    "cpu_ram": 42228,
+    "geolocation": "Oklahoma, US",
+    "reliability": 0.996655,
+    "dph_total": 0.2396296296296296,
+    "storage_cost": 0.2666666666666666,
+    "inet_down_cost": 0.00527084,
+    "inet_up_cost": 0.005239586666666666,
+    "hourly_with_60gb_disk": 0.26185185185185184,
+    "reserved_lease_plus_transfer": 1.1543293037037037
+  },
+  "starting_credit": 9.9081871581,
+  "credit_before_this_attempt": 9.8734509594,
+  "started_at": 1792364421.689613,
+  "deadline": 1792371621.689614,
+  "budget_usd": 10,
+  "disk_gb": 60,
+  "unavailable_offer_id": 52272575,
+  "id": 56631623,
+  "destroy_requested_at": 1792365786.4740212
+}

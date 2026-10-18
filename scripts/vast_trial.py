@@ -99,7 +99,7 @@ def offers():
         except ValueError:
             continue
         valid.append({**{k: offer[k] for k in (
-            "id", "gpu_name", "gpu_ram", "num_gpus", "cpu_ram", "geolocation",
+            "id", "machine_id", "host_id", "gpu_name", "gpu_ram", "num_gpus", "cpu_ram", "geolocation",
             "reliability", "dph_total", "storage_cost", "inet_down_cost", "inet_up_cost")},
             **prices})
     return sorted(valid, key=lambda o: o["reserved_lease_plus_transfer"])
@@ -110,6 +110,27 @@ def write_state(state):
     temporary.write_text(json.dumps(state, indent=2) + "\n")
     temporary.chmod(0o600)
     temporary.replace(STATE)
+
+
+def retry_credit(account, previous):
+    if not previous.get("destroy_requested_at"):
+        raise RuntimeError("Previous trial has no cleanup receipt")
+    credit = float(account["credit"])
+    anchor = float(previous["starting_credit"])
+    if not math.isfinite(credit) or not math.isfinite(anchor) or anchor - credit >= 7:
+        raise RuntimeError("Combined trial budget is unavailable")
+    return anchor
+
+
+def attach_key(instance_id, public_key):
+    path = "v0/instances/" + str(instance_id) + "/ssh"
+    keys = api(path)["ssh_keys"]
+    keys = json.loads(keys) if isinstance(keys, str) else keys
+    if not isinstance(keys, list) or any(not isinstance(k, dict) for k in keys):
+        raise RuntimeError("Unexpected attached-key response")
+    # Account keys are inherited on creation; attaching them twice is rejected.
+    if not any(k.get("public_key", "").split()[:2] == public_key.split()[:2] for k in keys):
+        api(path, "POST", {"ssh_key": public_key})
 
 
 def destroy(state):
@@ -165,11 +186,12 @@ def main():
     parser.add_argument("action", choices=["status", "offers", "rent", "destroy", "watch"])
     parser.add_argument("--offer", type=int)
     parser.add_argument("--training", action="store_true", help="Approved separate two-hour style-adapter trial")
+    parser.add_argument("--training-retry", action="store_true", help="Approved single replacement, sharing the original budget")
     args = parser.parse_args()
-    if args.training:
-        WORK = ROOT / "build-style-training"
+    if args.training or args.training_retry:
+        WORK = ROOT / ("build-style-training-retry" if args.training_retry else "build-style-training")
         STATE = WORK / "trial-state.json"
-        LABEL = "djayvo-style-training-20261018"
+        LABEL = "djayvo-style-training-20261018" + ("-retry" if args.training_retry else "")
         LEASE_SECONDS = 7200
         HOURLY_CEILING = 0.50
     WORK.mkdir(exist_ok=True)
@@ -195,29 +217,36 @@ def main():
         if float(account.get("credit", 0)) < 7:
             raise RuntimeError("Insufficient credit for reserved trial budget")
         available = offers()
+        starting_credit = float(account["credit"])
+        if args.training_retry:
+            previous = json.loads((ROOT / "build-style-training/trial-state.json").read_text())
+            starting_credit = retry_credit(account, previous)
+            # Excluding the entire previous location also excludes its physical host.
+            available = [o for o in available if o["geolocation"] != previous["offer"]["geolocation"]]
         offer = next((o for o in available if o["id"] == args.offer), None)
-        if args.training and args.offer is None:
+        if (args.training or args.training_retry) and args.offer is None:
             offer = next((o for o in available if o["gpu_name"] == "RTX 3090" and
                           o["geolocation"].endswith(", US")), None)
         if offer is None:
             raise RuntimeError("Selected offer is unavailable or outside limits")
-        state = {"label": LABEL, "offer": offer, "starting_credit": float(account["credit"]),
+        state = {"label": LABEL, "offer": offer, "starting_credit": starting_credit,
+                 "credit_before_this_attempt": float(account["credit"]),
                  "started_at": time.time(), "deadline": time.time() + LEASE_SECONDS,
                  "budget_usd": 10, "disk_gb": DISK_GB}
         write_state(state)  # Prevent duplicate rental if the create response is lost.
         with (WORK / "watchdog.log").open("a") as log:
             subprocess.Popen(["caffeinate", "-i", sys.executable, str(Path(__file__).resolve()), "watch"] +
-                             (["--training"] if args.training else []),
+                             (["--training-retry"] if args.training_retry else ["--training"] if args.training else []),
                              stdout=log, stderr=log, stdin=subprocess.DEVNULL, start_new_session=True)
         # The watchdog also reconciles by unique label if this response is lost.
         result = api("v0/asks/" + str(offer["id"]), "PUT", {
             "image": "pytorch/pytorch@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca", "disk": DISK_GB,
-            "label": LABEL, "runtype": "ssh", "target_state": "running", "cancel_unavail": True,
+            "label": LABEL, "runtype": "ssh_direct" if args.training_retry else "ssh", "target_state": "running", "cancel_unavail": True,
         })
         state["id"] = result["new_contract"]
         write_state(state)
         try:
-            api("v0/instances/" + str(state["id"]) + "/ssh", "POST", {"ssh_key": public_key})
+            attach_key(state["id"], public_key)
         except Exception:
             destroy(state)
             raise

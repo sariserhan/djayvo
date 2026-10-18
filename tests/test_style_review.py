@@ -36,7 +36,11 @@ class ReviewFlow(unittest.TestCase):
                             wav.writeframes(stereo.tobytes())
                     cases.append({'mode': mode, 'name': name, 'file': path.name,
                                   'caption': '<synthetic & test>', 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()})
-            (results / 'comparison.json').write_text(json.dumps({'cases': cases}))
+            repeated = results / 'base-repeat-bass-a.wav'
+            repeated.write_bytes((results / 'base-bass-a.wav').read_bytes())
+            report = {'cases': cases, 'repeat_control': {'file': repeated.name,
+                      'sha256': hashlib.sha256(repeated.read_bytes()).hexdigest()}}
+            (results / 'comparison.json').write_text(json.dumps(report))
             previous = Path.cwd()
             try:
                 os.chdir(root)
@@ -51,6 +55,11 @@ class ReviewFlow(unittest.TestCase):
                     self.assertEqual(measured['human_listening'], 'NOT RUN')
                     self.assertTrue(all(abs(row['lufs'] - measured['target_lufs']) <= .2 for row in measured['review']))
                     with self.assertRaises(FileExistsError):
+                        review.main()
+                    repeated.write_bytes((results / 'adapter-bass-a.wav').read_bytes())
+                    report['repeat_control']['sha256'] = hashlib.sha256(repeated.read_bytes()).hexdigest()
+                    (results / 'comparison.json').write_text(json.dumps(report))
+                    with self.assertRaisesRegex(ValueError, 'Base repeat differs'):
                         review.main()
                     path = results / cases[0]['file']
                     path.write_bytes(b'corrupt')

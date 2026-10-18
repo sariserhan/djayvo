@@ -1,0 +1,19 @@
+{
+  "training": "PASS",
+  "epochs": 50,
+  "optimizer_steps": 250,
+  "tensor_count": 384,
+  "parameter_count": 11010048,
+  "lora_B_tensor_count": 192,
+  "all_lora_B_tensors_nonzero": true,
+  "all_finite": true,
+  "adapter_sha256": "7a05d7f882259550a34bfb14547793d2d511d92ff0c1898f60e09f221634b6d0",
+  "bytes": 22069696,
+  "resources": {
+    "seconds": 83.23602695000591,
+    "peak_allocated_gib": 4.665655612945557,
+    "peak_reserved_gib": 4.703125,
+    "training_status": "Requires separate checkpoint and step verification"
+  },
+  "quality": "NOT RUN"
+}

@@ -6,14 +6,20 @@ complete master specification. Never modify the master; its SHA-256 is
 `389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2`.
 
 **Current priority, 2026-10-18: music quality research and remaining local web implementation; hosted infrastructure and phone work paused.**
-Latest model preparation: [Style-adapter pilot](style-training-pilot.md).
-Owner confirmed training permission for x/y/z. Local candidate preparation PASS;
-the owner also approved one $10/two-hour GPU trial, reference-excerpt upload and
-a research-only M1 exception. See the authorization receipt; do not request these
-approvals again. The single approved rental failed SSH access and was deleted;
-cleanup verified, observed debit $0.03334. No upload or training occurred. A
-replacement rental needs approval because the approved count was one. The M1
-research exception and reference rights are recorded; originals preserved.
+Latest model research: [Completed adapter trial](style-training-retry.md).
+The owner approved one replacement with “yes try”, sharing the original $10
+ceiling. Actual RTX 3090 training PASS: five provisional x/y clips, 250 steps,
+verified adapter and nine WAVs. Four concealed, level-matched pairs are at
+http://127.0.0.1:4193/review/ ; restart with the report's server command. Both
+rentals are deleted and temporary keys removed; observed combined debit $0.193221,
+final invoice NOT RUN. Do not create another rental under these spent instance
+approvals. The original and replacement state directories remain separate.
+Dataset readiness PARTIAL: detailed machine captions were inconsistent, so
+training used a broad caption and no guessed lyrics/tempo/key. Decode headroom
+was fixed in fresh copies; old recordings, originals, master and fixture remain
+unchanged. z and microphone audio stayed local. Human listening, copying checks,
+independent holdout validity, source-conditioned learning and production gates
+remain NOT RUN. Private results/checkpoint: `renders/style-training-20261018/results`.
 
 Latest engine work: [Source phrase development](source-motif.md). Call & Response
 now gives the source rhythm/energy accents a two-bar instrumental answer and

@@ -1,0 +1,7 @@
+test_verified_pairs_matching_and_preservation (test_style_review.ReviewFlow.test_verified_pairs_matching_and_preservation) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 14.117s
+
+OK
+PASS: eight retrieved WAVs, four changed pairs, loudness-matched review; listening NOT RUN

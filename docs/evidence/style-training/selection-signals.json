@@ -1,0 +1,66 @@
+{
+  "method": "Whole-window power on mono audio resampled to 8 kHz; this is not musical or speech classification",
+  "holdout_used": false,
+  "samples": [
+    {
+      "id": "x-01",
+      "rms": 0.12901929323547567,
+      "low_frequency_share_20_150_over_20_3900": 0.7037738705814143
+    },
+    {
+      "id": "x-02",
+      "rms": 0.17533445537483705,
+      "low_frequency_share_20_150_over_20_3900": 0.7378930569753819
+    },
+    {
+      "id": "x-03",
+      "rms": 0.07713392816968073,
+      "low_frequency_share_20_150_over_20_3900": 0.5542072756991767
+    },
+    {
+      "id": "x-04",
+      "rms": 0.033568567881520475,
+      "low_frequency_share_20_150_over_20_3900": 0.12906033073922726
+    },
+    {
+      "id": "x-05",
+      "rms": 0.1229754001634804,
+      "low_frequency_share_20_150_over_20_3900": 0.48484318896180495
+    },
+    {
+      "id": "x-06",
+      "rms": 0.09412267148073558,
+      "low_frequency_share_20_150_over_20_3900": 0.339373746783879
+    },
+    {
+      "id": "y-01",
+      "rms": 0.16106601068730325,
+      "low_frequency_share_20_150_over_20_3900": 0.4417447709027865
+    },
+    {
+      "id": "y-02",
+      "rms": 0.12243799913474512,
+      "low_frequency_share_20_150_over_20_3900": 0.4621336249036268
+    },
+    {
+      "id": "y-03",
+      "rms": 0.07035300297746938,
+      "low_frequency_share_20_150_over_20_3900": 0.3429439514289946
+    },
+    {
+      "id": "y-04",
+      "rms": 0.1556540892644776,
+      "low_frequency_share_20_150_over_20_3900": 0.49371734012044644
+    },
+    {
+      "id": "y-05",
+      "rms": 0.14194237563398518,
+      "low_frequency_share_20_150_over_20_3900": 0.5508946031347884
+    },
+    {
+      "id": "y-06",
+      "rms": 0.06922930686763236,
+      "low_frequency_share_20_150_over_20_3900": 0.31993073673831895
+    }
+  ]
+}

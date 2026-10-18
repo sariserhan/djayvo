@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Prepare local review candidates, never an automatically accepted training set."""
 import argparse
+from array import array
 import csv
 import hashlib
 import json
@@ -20,6 +21,24 @@ def windows(duration):
         raise ValueError('Expected a 190–3600 second reference recording')
     # shortcut: evenly spaced windows need content review before musical cropping.
     return [round(5 + n * (duration - 40) / 5, 3) for n in range(6)]
+
+
+def extract(path, start, destination):
+    # These references decode above full scale; attenuate before PCM16 conversion.
+    subprocess.run(['ffmpeg', '-v', 'error', '-nostdin', '-n', '-i', str(path),
+                    '-ss', str(start), '-t', '30', '-map', '0:a:0', '-vn',
+                    '-map_metadata', '-1', '-ar', '48000', '-ac', '2',
+                    '-af', 'volume=-6dB', '-c:a', 'pcm_s16le', str(destination)],
+                   check=True, timeout=120)
+    with wave.open(str(destination), 'rb') as wav:
+        if (wav.getframerate(), wav.getnchannels(), wav.getsampwidth(), wav.getnframes()) != (48000, 2, 2, 1440000):
+            raise ValueError('Unexpected candidate WAV format or length')
+        pcm = array('h', wav.readframes(wav.getnframes()))
+        import sys
+        if sys.byteorder != 'little':
+            pcm.byteswap()
+        if min(pcm) <= -32768 or max(pcm) >= 32767:
+            raise ValueError('Candidate still reaches full scale after headroom attenuation')
 
 
 def prepare(ledger_path, source_dir, output):
@@ -49,17 +68,11 @@ def prepare(ledger_path, source_dir, output):
         for n, start in enumerate(starts):
             name = f"{source['id']}-{n + 1:02d}"
             destination = output / (name + '.wav')
-            subprocess.run(['ffmpeg', '-v', 'error', '-nostdin', '-n', '-i', str(path),
-                            '-ss', str(start), '-t', '30', '-map', '0:a:0', '-vn',
-                            '-map_metadata', '-1', '-ar', '48000', '-ac', '2',
-                            '-c:a', 'pcm_s16le', str(destination)], check=True, timeout=120)
-            with wave.open(str(destination), 'rb') as wav:
-                if (wav.getframerate(), wav.getnchannels(), wav.getsampwidth(), wav.getnframes()) != (48000, 2, 2, 1440000):
-                    raise ValueError('Unexpected candidate WAV format or length')
+            extract(path, start, destination)
             rows.append({'id': name, 'file': destination.name, 'sha256': digest(destination),
                          'source_id': source['id'], 'source_sha256': source['sha256'],
                          'source_duration_seconds': duration, 'start_seconds': start,
-                         'duration_seconds': 30, 'split': source['split'],
+                         'duration_seconds': 30, 'gain_db': -6, 'split': source['split'],
                          'review_status': 'NOT RUN', 'training_eligible': False})
         if digest(path) != source['sha256']:
             raise ValueError('Source changed during preparation')

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "deleted_account_key_id": 1604470,
+  "remaining_instances": 0,
+  "unrelated_keys_preserved": true,
+  "checked_at_utc": "2026-10-18T23:27:24.261567+00:00",
+  "final_account_status": {
+    "credit": 9.7149660355,
+    "total_spend": -0.28503396450000007,
+    "autobill_amount": null,
+    "instances": []
+  },
+  "watchdog_processes_exited": true,
+  "local_trial_key_files_removed": true
+}

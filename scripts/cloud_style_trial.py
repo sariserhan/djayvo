@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 import time
 
-OUT = Path('/workspace/style-results')
+OUT = Path('/workspace/ace-step/style-results')
 INPUT = Path('/workspace/style-input')
 
 
@@ -59,6 +59,8 @@ def label():
         audio, rate = sf.read(path, dtype='float32', always_2d=True)
         if rate != 48000 or audio.shape != (1440000, 2) or not np.isfinite(audio).all():
             raise ValueError('Invalid candidate audio')
+        if np.any(audio <= -1) or np.any(audio >= 32767 / 32768):
+            raise ValueError('Full-scale candidate; correct decode headroom before labeling')
         torch.manual_seed(51018)
         started = time.monotonic()
         codes = dit.convert_src_audio_to_codes(str(path))
@@ -86,10 +88,11 @@ def preprocess():
             raise ValueError('Unapproved training path')
         if sample.get('review_status') != 'provisional_machine_review' or not sample.get('caption'):
             raise ValueError('Missing provisional review')
-    if Path('/workspace/style-tensors').exists():
+    tensors = Path.cwd() / 'style-tensors'
+    if tensors.exists():
         raise ValueError('Refusing to mix an existing tensor dataset')
     started = time.monotonic()
-    result = preprocess_audio_files(audio_dir=None, output_dir='/workspace/style-tensors',
+    result = preprocess_audio_files(audio_dir=None, output_dir=str(tensors),
         checkpoint_dir=str(Path.cwd() / 'checkpoints'), variant='turbo', max_duration=30,
         dataset_json=str(INPUT / 'accepted.json'), device='cuda', precision='bf16')
     result['seconds'] = time.monotonic() - started
@@ -119,7 +122,7 @@ def compare(adapter):
         raise RuntimeError(status)
     report = {'quality': 'NOT RUN', 'gpu': torch.cuda.get_device_name(), 'torch': torch.__version__,
               'cuda': torch.version.cuda, 'adapter': adapter, 'cases': []}
-    for mode in ('base', 'adapter'):
+    for mode in ('base', 'base-repeat', 'adapter'):
         if mode == 'adapter':
             status = dit.load_lora(adapter)
             if '✅' not in status:
@@ -129,7 +132,7 @@ def compare(adapter):
                 raise RuntimeError('Adapter scale was not applied: ' + scale_status)
             report['adapter_load_status'] = status
             report['adapter_scale_status'] = scale_status
-        for name, bpm, seed, caption in cases:
+        for name, bpm, seed, caption in (cases[:1] if mode == 'base-repeat' else cases):
             random.seed(seed)
             np.random.seed(seed)
             torch.manual_seed(seed)
@@ -154,10 +157,19 @@ def compare(adapter):
                 raise ValueError('Silent or full-scale output')
             path = OUT / f'{mode}-{name}.wav'
             sf.write(path, audio, rate, subtype='PCM_16')
-            report['cases'].append({'mode': mode, 'name': name, 'seed': seed, 'bpm': bpm,
+            receipt = {'mode': mode, 'name': name, 'seed': seed, 'bpm': bpm,
                 'caption': caption, 'file': path.name, 'sha256': digest(path), 'peak': peak,
                 'rms': float(np.sqrt(np.mean(audio ** 2))), 'seconds': time.monotonic() - started,
-                'peak_allocated_gib': torch.cuda.max_memory_allocated() / 2 ** 30})
+                'peak_allocated_gib': torch.cuda.max_memory_allocated() / 2 ** 30}
+            if mode == 'base-repeat':
+                original, _ = sf.read(OUT / 'base-bass-a.wav', dtype='int16')
+                repeated, _ = sf.read(path, dtype='int16')
+                receipt['pcm_exact'] = bool(np.array_equal(original, repeated))
+                report['repeat_control'] = receipt
+                if not receipt['pcm_exact']:
+                    raise ValueError('Base repeat differs; adapter attribution needs investigation')
+            else:
+                report['cases'].append(receipt)
             save('comparison.json', report)
             print('RENDERED', mode, name, flush=True)
 

@@ -1,0 +1,106 @@
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+2026-10-18 23:18:56.363 | WARNING  | acestep.training.trainer:<module>:40 - bitsandbytes not installed. Using standard AdamW.
+/workspace/ace-step/acestep/training_v2/ui/prompt_helpers.py:36: SyntaxWarning: invalid escape sequence '\c'
+  """Convert a path string to use the native OS separator for display.
+2026-10-18 23:18:56 [INFO] acestep.training_v2.cli.config_builder: [Side-Step] num_workers=0 -- forcing persistent_workers=False
+2026-10-18 23:18:56 [INFO] acestep.training_v2.cli.config_builder: [Side-Step] num_workers=0 -- forcing prefetch_factor=0
+ ░▒▓███████▓▒░▒▓█▓▒░▒▓███████▓▒░░▒▓████████▓▒░░▒▓███████▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓███████▓▒░
+░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░
+░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░
+ ░▒▓██████▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░  ░▒▓██████▓▒░   ░▒▓█▓▒░   ░▒▓██████▓▒░ ░▒▓███████▓▒░
+       ░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░
+       ░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░
+░▒▓███████▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓████████▓▒░▒▓███████▓▒░   ░▒▓█▓▒░   ░▒▓████████▓▒░▒▓█▓▒░
+  "Refactoring the Prometheus experience."
+  Side-Step v2.0.0 -- Adapter Fine-Tuning CLI (LoRA + LoKR)
+  Standalone: github.com/koda-dernet/Side-Step
+  Mode   : fixed (corrected timesteps + CFG dropout)
+  Stack  : Python 3.12.3 | PyTorch 2.10.0+cu128 | CUDA 12.8 | bf16
+  GPU    : NVIDIA GeForce RTX 3090  (23.6 GiB)
+
+============================================================
+  Training Configuration
+============================================================
+
+  [Model]
+    Model variant........... turbo
+    Checkpoint dir.......... ./checkpoints
+    Dataset dir............. /workspace/style-tensors
+
+  [Device]
+    Device.................. cuda *
+    Precision............... bf16 *
+
+  [LoRA]
+    Rank (r)................ 16 *
+    Alpha................... 32 *
+    Dropout................. 0.1
+    Target modules.......... q_proj, k_proj, v_proj, o_proj
+    Bias.................... none
+
+  [Training]
+    Learning rate........... 1.0e-04
+    Batch size.............. 1
+    Grad accumulation....... 1 *
+    Effective batch......... 1
+    Max epochs.............. 2 *
+    Warmup steps............ 10 *
+    Weight decay............ 0.01
+[INFO] Loading model from checkpoints/acestep-v15-turbo (variant=turbo, dtype=torch.bfloat16)
+    Max grad norm........... 1
+    Seed.................... 51018 *
+
+  [Corrected Training]
+    CFG dropout ratio....... 0.15
+    Timestep mu............. -0.4
+    Timestep sigma.......... 1
+    Data proportion......... 0.5
+
+  [Checkpointing]
+    Output dir.............. /workspace/style-results/probe *
+    Save every N epochs..... 1 *
+    Resume from............. (auto)
+
+  [Logging]
+    TensorBoard dir......... (auto)
+    Log every N steps....... 1 *
+    Grad norms every N steps 50
+
+============================================================
+  (* = non-default value)
+============================================================
+
+[INFO] Loading model (variant=turbo, device=cuda)
+2026-10-18 23:18:56 [INFO] acestep.training_v2.model_loader: [INFO] Loading model from checkpoints/acestep-v15-turbo (variant=turbo, dtype=torch.bfloat16)
+[OK] Model loaded with attn_implementation=sdpa
+2026-10-18 23:18:57 [INFO] acestep.training_v2.model_loader: [OK] Model on cuda (torch.bfloat16), all params frozen
+2026-10-18 23:18:58.178 | INFO     | acestep.training.lora_injection:inject_lora_into_dit:232 - LoRA injected into DiT decoder:
+2026-10-18 23:18:58.178 | INFO     | acestep.training.lora_injection:inject_lora_into_dit:233 -   Total parameters: 2,404,882,566
+2026-10-18 23:18:58.178 | INFO     | acestep.training.lora_injection:inject_lora_into_dit:234 -   Trainable parameters: 11,010,048 (0.46%)
+2026-10-18 23:18:58.178 | INFO     | acestep.training.lora_injection:inject_lora_into_dit:237 -   LoRA rank: 16, alpha: 32
+2026-10-18 23:18:58 [INFO] acestep.training_v2.fixed_lora_module: [OK] LoRA injected: 11,010,048 trainable params
+[FAIL] Training failed: Path escapes safe root: '/workspace/style-tensors' (resolved to '/workspace/style-tensors', root='/workspace/ace-step')
+2026-10-18 23:18:58 [ERROR] acestep.training_v2.trainer_fixed: Training failed
+Traceback (most recent call last):
+  File "/workspace/ace-step/acestep/training_v2/trainer_fixed.py", line 156, in train
+    data_module.setup("fit")
+  File "/workspace/ace-step/acestep/training/data_module.py", line 266, in setup
+    full_dataset = PreprocessedTensorDataset(self.tensor_dir)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/ace-step/acestep/training/data_module.py", line 57, in __init__
+    validated_dir = safe_path(tensor_dir)
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/ace-step/acestep/training/path_safety.py", line 88, in safe_path
+    raise ValueError(
+ValueError: Path escapes safe root: '/workspace/style-tensors' (resolved to '/workspace/style-tensors', root='/workspace/ace-step')
+
+============================================================
+  TRAINING FAILED -- 0 steps executed
+  Check sidestep.log for the full error traceback.
+============================================================
+
+
+real	0m8.366s
+user	0m7.032s
+sys	0m1.831s

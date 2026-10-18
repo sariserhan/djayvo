@@ -2,6 +2,9 @@ import importlib.util
 import json
 from pathlib import Path
 import tempfile
+import subprocess
+import wave
+from array import array
 import unittest
 
 spec = importlib.util.spec_from_file_location('candidates', Path(__file__).resolve().parents[1] / 'scripts/prepare_style_candidates.py')
@@ -62,6 +65,18 @@ class CandidateTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'fresh'):
             candidates.prepare(self.ledger, self.root, self.output)
         self.assertEqual(marker.read_bytes(), b'preserve')
+
+    def test_float_overshoot_is_attenuated_before_pcm_conversion(self):
+        source = self.root / 'overshoot.wav'
+        subprocess.run(['ffmpeg', '-v', 'error', '-f', 'lavfi', '-i',
+                        'aevalsrc=1.5*sin(2*PI*440*t):s=48000:d=30',
+                        '-c:a', 'pcm_f32le', str(source)], check=True)
+        output = self.root / 'headroom.wav'
+        candidates.extract(source, 0, output)
+        with wave.open(str(output), 'rb') as wav:
+            pcm = array('h', wav.readframes(wav.getnframes()))
+        self.assertLess(max(pcm), 26000)
+        self.assertGreater(max(pcm), 17000)
 
 
 if __name__ == '__main__':

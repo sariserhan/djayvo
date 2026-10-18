@@ -1,0 +1,138 @@
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+2026-10-18 23:19:29.134 | WARNING  | acestep.training.trainer:<module>:40 - bitsandbytes not installed. Using standard AdamW.
+2026-10-18 23:19:29 [INFO] acestep.training_v2.cli.config_builder: [Side-Step] num_workers=0 -- forcing persistent_workers=False
+2026-10-18 23:19:29 [INFO] acestep.training_v2.cli.config_builder: [Side-Step] num_workers=0 -- forcing prefetch_factor=0
+ ░▒▓███████▓▒░▒▓█▓▒░▒▓███████▓▒░░▒▓████████▓▒░░▒▓███████▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓███████▓▒░
+░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░
+░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░
+ ░▒▓██████▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░  ░▒▓██████▓▒░   ░▒▓█▓▒░   ░▒▓██████▓▒░ ░▒▓███████▓▒░
+       ░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░
+       ░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░
+░▒▓███████▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓████████▓▒░▒▓███████▓▒░   ░▒▓█▓▒░   ░▒▓████████▓▒░▒▓█▓▒░
+  "Sidestepping the spaghetti code."
+  Side-Step v2.0.0 -- Adapter Fine-Tuning CLI (LoRA + LoKR)
+  Standalone: github.com/koda-dernet/Side-Step
+  Mode   : fixed (corrected timesteps + CFG dropout)
+  Stack  : Python 3.12.3 | PyTorch 2.10.0+cu128 | CUDA 12.8 | bf16
+  GPU    : NVIDIA GeForce RTX 3090  (23.6 GiB)
+
+============================================================
+  Training Configuration
+============================================================
+
+  [Model]
+    Model variant........... turbo
+    Checkpoint dir.......... ./checkpoints
+    Dataset dir............. /workspace/ace-step/style-tensors
+
+  [Device]
+    Device.................. cuda *
+    Precision............... bf16 *
+
+  [LoRA]
+    Rank (r)................ 16 *
+    Alpha................... 32 *
+    Dropout................. 0.1
+    Target modules.......... q_proj, k_proj, v_proj, o_proj
+[INFO] Loading model from checkpoints/acestep-v15-turbo (variant=turbo, dtype=torch.bfloat16)
+    Bias.................... none
+
+  [Training]
+    Learning rate........... 1.0e-04
+    Batch size.............. 1
+    Grad accumulation....... 1 *
+    Effective batch......... 1
+    Max epochs.............. 2 *
+    Warmup steps............ 10 *
+    Weight decay............ 0.01
+    Max grad norm........... 1
+    Seed.................... 51018 *
+
+  [Corrected Training]
+    CFG dropout ratio....... 0.15
+    Timestep mu............. -0.4
+    Timestep sigma.......... 1
+    Data proportion......... 0.5
+
+  [Checkpointing]
+    Output dir.............. /workspace/ace-step/style-results/probe-v2 *
+    Save every N epochs..... 1 *
+    Resume from............. (auto)
+
+  [Logging]
+    TensorBoard dir......... (auto)
+    Log every N steps....... 1 *
+    Grad norms every N steps 50
+
+============================================================
+  (* = non-default value)
+============================================================
+
+[INFO] Loading model (variant=turbo, device=cuda)
+2026-10-18 23:19:29 [INFO] acestep.training_v2.model_loader: [INFO] Loading model from checkpoints/acestep-v15-turbo (variant=turbo, dtype=torch.bfloat16)
+[OK] Model loaded with attn_implementation=sdpa
+2026-10-18 23:19:30 [INFO] acestep.training_v2.model_loader: [OK] Model on cuda (torch.bfloat16), all params frozen
+[OK] Loaded 5 preprocessed samples
+2026-10-18 23:19:30.804 | INFO     | acestep.training.lora_injection:inject_lora_into_dit:232 - LoRA injected into DiT decoder:
+2026-10-18 23:19:30.804 | INFO     | acestep.training.lora_injection:inject_lora_into_dit:233 -   Total parameters: 2,404,882,566
+2026-10-18 23:19:30.804 | INFO     | acestep.training.lora_injection:inject_lora_into_dit:234 -   Trainable parameters: 11,010,048 (0.46%)
+2026-10-18 23:19:30.804 | INFO     | acestep.training.lora_injection:inject_lora_into_dit:237 -   LoRA rank: 16, alpha: 32
+2026-10-18 23:19:30 [INFO] acestep.training_v2.fixed_lora_module: [OK] LoRA injected: 11,010,048 trainable params
+2026-10-18 23:19:30.804 | INFO     | acestep.training.data_module:__init__:90 - PreprocessedTensorDataset: 5 samples from /workspace/ace-step/style-tensors
+INFO: Using bfloat16 Automatic Mixed Precision (AMP)
+2026-10-18 23:19:30 [INFO] lightning.pytorch.utilities.rank_zero: Using bfloat16 Automatic Mixed Precision (AMP)
+[INFO] Starting training (devices: 1, strategy: auto, precision: bf16-mixed)
+2026-10-18 23:19:30 [INFO] acestep.training_v2.tensorboard_utils: [OK] TensorBoard logger initialised at /workspace/ace-step/style-results/probe-v2/runs
+[INFO] Training 11,010,048 parameters
+[INFO] Optimizer: adamw
+[INFO] Scheduler: constant_with_warmup
+[INFO] Gradient checkpointing enabled (use_cache=False, input_grads=False)
+2026-10-18 23:19:30 [INFO] acestep.training_v2.optim: [Side-Step] Using AdamW optimizer
+2026-10-18 23:19:30.823 | INFO     | acestep.training.lora_injection:_safe_enable_input_require_grads:50 - Skipping enable_input_require_grads for decoder: get_input_embeddings is not implemented (expected for DiT)
+Epoch 1/2, Step 1, Loss: 4.2522
+Epoch 1/2, Step 2, Loss: 4.3288
+Epoch 1/2, Step 3, Loss: 1.9884
+Epoch 1/2, Step 4, Loss: 3.1440
+Epoch 1/2, Step 5, Loss: 3.9965
+[OK] Epoch 1/2 in 2.2s, Loss: 3.5420
+2026-10-18 23:19:33 [INFO] acestep.training_v2.trainer_helpers: [OK] LoRA adapter saved to /workspace/ace-step/style-results/probe-v2/checkpoints/epoch_1_loss_3.5420
+[OK] Checkpoint saved at epoch 1
+2026-10-18 23:19:33 [INFO] acestep.training_v2.trainer_helpers: Training checkpoint saved to /workspace/ace-step/style-results/probe-v2/checkpoints/epoch_1_loss_3.5420 (epoch 1, step 5)
+Epoch 2/2, Step 6, Loss: 1.8561
+Epoch 2/2, Step 7, Loss: 2.8167
+Epoch 2/2, Step 8, Loss: 2.2838
+Epoch 2/2, Step 9, Loss: 1.7717
+Epoch 2/2, Step 10, Loss: 1.2556
+[OK] Epoch 2/2 in 1.6s, Loss: 1.9968
+2026-10-18 23:19:34 [INFO] acestep.training_v2.trainer_helpers: [OK] LoRA adapter saved to /workspace/ace-step/style-results/probe-v2/checkpoints/epoch_2_loss_1.9968
+[OK] Checkpoint saved at epoch 2
+2026-10-18 23:19:34 [INFO] acestep.training_v2.trainer_helpers: Training checkpoint saved to /workspace/ace-step/style-results/probe-v2/checkpoints/epoch_2_loss_1.9968 (epoch 2, step 10)
+2026-10-18 23:19:34 [INFO] acestep.training_v2.trainer_helpers: [OK] LoRA adapter saved to /workspace/ace-step/style-results/probe-v2/final
+2026-10-18 23:19:35 [INFO] acestep.training_v2.trainer_helpers: [OK] Adapter verified: 11,010,048 params, 11,010,048 non-zero (100.0%), max|w|=0.023193
+[OK] Training complete! LoRA saved to /workspace/ace-step/style-results/probe-v2/final
+     For inference, set your LoRA path to: /workspace/ace-step/style-results/probe-v2/final
+
+============================================================
+  Training Complete
+============================================================
+  Total time .......... 4s
+  Epochs .............. 0 / 2
+  Total steps ......... 10
+  Loss ................ 4.2522 -> 1.2556
+  Best loss ........... 1.2556
+  Peak VRAM ........... 4.7 GiB
+
+  Saved Checkpoints:
+    Epoch    1  Loss: 3.5420
+    Epoch    2  Loss: 1.9968
+
+  Output dir .......... /workspace/ace-step/style-results/probe-v2
+  Final weights ....... /workspace/ace-step/style-results/probe-v2/final  (21.1 MiB)
+  TensorBoard ......... /workspace/ace-step/style-results/probe-v2/runs
+============================================================
+
+
+real	0m12.545s
+user	0m10.938s
+sys	0m2.373s

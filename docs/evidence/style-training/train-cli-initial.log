@@ -1,0 +1,10 @@
+Welcome to vast.ai. If authentication fails, try again after a few seconds, and double check your ssh key.
+Have fun!
+2026-10-18 23:18:37.418 | WARNING  | acestep.training.trainer:<module>:40 - bitsandbytes not installed. Using standard AdamW.
+[1musage: train.py [0m[1m[[0m[1m-h[0m[1m][0m[1m [0m[1m[[0m[1m--plain[0m[1m][0m[1m [0m[1m[[0m[1m--yes[0m[1m][0m[1m [0m[1m{[0m[1mvanilla,fixed,estimate[0m[1m}[0m[1m [0m[1;33m...[0m
+
+train.py: error: unrecognized arguments: --plain --yes
+
+real	0m6.219s
+user	0m5.584s
+sys	0m1.099s

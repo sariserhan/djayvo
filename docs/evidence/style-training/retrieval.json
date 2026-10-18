@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "archive": {
+    "files": 27,
+    "bytes": 124214644,
+    "sha256": "715140dbc3b8bca31bdbd72157d46f6b0da126c624aa8801e6688399dacf1651"
+  },
+  "verified_files": 27,
+  "training_manifest_exact": true
+}

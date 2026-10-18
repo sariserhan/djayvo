@@ -1,0 +1,15 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: [{"url":"blob:http://127.0.0.1:4193/edfdd054-c4a3-43f5-8915-f6bda9bc5663","method":"GET"},{"url":"blob:http://127.0.0.1:4193/383e893f-cf8f-485d-97f8-ba1de2d7b59f","method":"GET"},{"url":"blob:http://127.0.0.1:4193/d173ace2-459a-4c6a-ade4-c8e289165307","method":"GET"},{"url":"blob:http://127.0.0.1:4193/2c925430-84a2-4746-867a-944c619cd2cb","method":"GET"},{"url":"blob:http://127.0.0.1:4193/ea697acb-d92a-4811-9542-dd54ae8effd2","method":"GET"},{"url":"blob:http://127.0.0.1:4193/cc9321af-e5c9-481b-8125-e8612cad0e8d","method":"GET"},{"url":"blob:http://127.0.0.1:4193/d28f2cf5-72a6-48c8-9f9a-926b8109231b","method":"GET"},{"url":"blob:http://127.0.0.1:4193/fbe303c0-5e42-422a-96b4-8c86911e7968","method":"GET"},{"url":"blob:http://127.0.0.1:4193/77a01288-90df-4c58-b4c2-39a163b08349","method":"GET"},{"url":"blob:http://127.0.0.1:4193/fb3ebf7e-45cd-4d38-b0ff-ba4e9c12a862","method":"GET"},{"url":"blob:http://127.0.0.1:4193/f17749f4-6052-4a07-b374-3942911a8f58","method":"GET"},{"url":"blob:http://127.0.0.1:4193/4c0cae8f-e002-402f-a80d-35c65ba3dc59","method":"GET"},{"url":"blob:http://127.0.0.1:4193/8b23f0ae-12f3-415c-8e07-8b45591a26d0","method":"GET"},{"url":"blob:http://127.0.0.1:4193/f17f16ff-6440-48c8-b0e4-79d3a7417444","method":"GET"},{"url":"blob:http://127.0.0.1:4193/e6c8eba2-442b-4e1f-8236-6d080c7049ef","method":"GET"},{"url":"blob:http://127.0.0.1:4193/f8d170c5-b39d-48b7-b79c-5843456d28f0","method":"GET"}]
+    at file:///Users/serhansari/Documents/projects/djayvo/docs/evidence/style-training/review-check.mjs:45:5 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

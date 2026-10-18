@@ -1,7 +1,7 @@
 # Djayvo development tracker
 
 Last updated: 2026-10-18 (America/New_York). Latest implementation: [source phrase development](docs/source-motif.md).
-Latest research: [x/y/z reference analysis and source-led improvisation direction](docs/reference-xyz-analysis.md).
+Latest research: [completed bounded style-adapter trial](docs/style-training-retry.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -19,7 +19,7 @@ the source of truth and is not modified by this tracker.
 | M0c — three musical strategies | PARTIAL | Owner accepts the current prototype as a start; production quality and formal listening remain open |
 | M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact plans/events and 45 matching hip-hop/fixture WAVs; voice and other styles preserved |
 | M1 — musical quality baseline | NOT RUN | Licensed multi-source cohort and blind packet workflow prepared; formal human evaluation missing |
-| M2 — AI director benchmarks | PARTIAL | Offline import/fallback prerequisite complete; model integration and benchmark remain NOT RUN behind M1; separate pretrained feasibility trial measured |
+| M2 — AI director benchmarks | PARTIAL | Offline import/fallback prerequisite complete; model integration and benchmark remain NOT RUN behind M1; separately authorized pretrained and style-adapter feasibility trials measured |
 | M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
 | W0 — browser Instant Remix | PARTIAL | Local WebAssembly app and Chromium/WebKit/Firefox technical flows pass; physical browser microphone and owner web listening remain open |
 | M4 — live improvisation | PARTIAL | Research protocol and provisional budgets prepared; live implementation and hardware measurements NOT RUN |
@@ -63,13 +63,21 @@ closes that task only; it does not automatically pass its parent milestone.
   adaptive form/voice roles, expressive pitch contours and reference-level quality
   remain open; reference measurements do not establish listening or training rights.
 
-- [ ] **C07 — PARTIAL:** [Style-adapter pilot](docs/style-training-pilot.md):
-  owner-confirmed x/y/z training permission recorded; 18 local candidate excerpts,
-  hash-bound provenance, provisional file split and seven safeguards PASS.
-  Owner approved the new $10/two-hour GPU trial, reference-excerpt upload and
-  research-only M1 exception. Single rental SSH access FAIL; cleanup PASS, observed
-  debit $0.03334. No uploads or training. Local comparison tooling/tests PASS;
-  actual training and human content/session/quality review remain open.
+- [ ] **C07 — PARTIAL:** [Style-adapter trial](docs/style-training-retry.md):
+  owner-authorized replacement completed actual RTX 3090 training (250 steps),
+  verified adapter/checkpoint, exact base repeat, four changed matched pairs and
+  two-browser review. Decode headroom corrected in fresh copies; 25 local checks
+  PASS. Both rentals/key cleanup PASS; observed combined debit $0.193221, final
+  invoice NOT RUN. Dataset is five provisional excerpts, not a verified corpus;
+  formal quality and production advancement remain open.
+- [ ] **C08 — NOT RUN:** Audition [four concealed adapter comparisons](http://127.0.0.1:4193/review/)
+  for musicality, reference direction, voice artifacts, groove, development and
+  endings. Record pair/version/timestamps; waveform differences are not quality.
+- [ ] **C09 — NOT RUN:** Curate verified musical windows, captions and session
+  groups from the permissioned references; independently evaluate copying and
+  generalization. Detailed automatic captions proved unstable. Source-to-response
+  learning also needs appropriate paired examples; a style adapter does not
+  implement that behavior. Further paid rentals need separate authorization.
 
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,
@@ -260,6 +268,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P53 | PASS | Local blinded rating form, frozen-packet/hash/scope protection, compatible CSV exports and two-browser checks; original 483 rows remain blank, human listening NOT RUN | [Evidence](docs/listening-review.md) |
 | [x] | P54 | PASS | Full-file x/y/z signal measurements, plots, unchanged source hashes and seven CLI/repeatability checks; direct listening NOT RUN | [Evidence](docs/reference-xyz-analysis.md) |
 | [x] | P55 | PASS | Two-bar source-derived Call & Response answers, accent response and developed returns; 65 exact cross-OS WAVs, 21 WASM comparisons, old-score replay and four private matched pairs | [Evidence](docs/source-motif.md) |
+| [x] | P56 | PASS | Bounded RTX 3090 adapter pilot: corrected decode headroom, five provisional clips, 250 training steps, verified checkpoint, exact base repeat, four changed matched pairs, two-browser playback and rental/key cleanup; musical quality NOT RUN | [Evidence](docs/style-training-retry.md) |
 
 ## Engineering backlog
 
@@ -376,8 +385,8 @@ paid infrastructure, training on reference tracks, publishing or charging users.
   in a blinded trial. Advance only with measured benefit and bounded cost.
 - [ ] **A04 — NOT RUN:** Consider learned action ranking only with cleared,
   opt-in data and speaker/phrase/session holdouts. The owner subsequently confirmed
-  x/y/z training permission; C07 tracks a separate proposed adapter pilot. This
-  does not waive M1 or establish distribution rights.
+  x/y/z training permission; C07 records the completed research-only adapter
+  trial. It does not advance production M1/M2 or establish distribution rights.
 
 ### M3: iPhone Instant Remix — PARTIAL
 
