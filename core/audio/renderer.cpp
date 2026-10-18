@@ -31,7 +31,7 @@ Schedule compile(const PerformancePlan& p) {
     Schedule s;
     s.sample_rate = p.sample_rate;
     s.kick_duck_db = p.kick_duck_db;
-    s.music_frames = tick_to_frame(ticks_per_bar(p) * p.bars, p.sample_rate, p.tempo_milli_bpm);
+    s.music_frames = tick_to_frame(ticks_per_bar(p) * p.bars, p);
     s.total_frames = s.music_frames + (static_cast<std::uint64_t>(p.tail_ms) * p.sample_rate + 500) / 1000;
     s.ceiling = std::pow(10.0, p.ceiling_dbfs / 20.0);
     std::vector<std::pair<std::uint64_t, int>> occupancy;
@@ -40,15 +40,25 @@ Schedule compile(const PerformancePlan& p) {
         const double gain = std::pow(10.0, track.gain_db / 20.0);
         const float left = static_cast<float>(gain * std::cos((track.pan + 1.0) * pi / 4.0));
         const float right = static_cast<float>(gain * std::sin((track.pan + 1.0) * pi / 4.0));
+        int automation=-1;
+        if (!track.automation.empty()) {
+            automation=static_cast<int>(s.automation.size());s.automation.emplace_back();
+            for (const auto& point:track.automation) {
+                const auto amplitude=std::pow(10.0,point.gain_db/20);
+                s.automation.back().push_back({tick_to_frame(point.tick,p),
+                    static_cast<float>(amplitude*std::cos((point.pan+1)*pi/4)),
+                    static_cast<float>(amplitude*std::sin((point.pan+1)*pi/4))});
+            }
+        }
         for (const auto& n : track.notes) {
-            const auto on = tick_to_frame(n.start, p.sample_rate, p.tempo_milli_bpm);
-            const auto off = tick_to_frame(n.start + n.duration, p.sample_rate, p.tempo_milli_bpm);
+            const auto on = tick_to_frame(n.start, p);
+            const auto off = tick_to_frame(n.start + n.duration, p);
             if (off <= on) throw std::invalid_argument("note shorter than a sample");
             if (p.kick_duck_db<0 && track.instrument==Instrument::drums && n.pitch==36) s.kick_frames.push_back(on);
             s.events.push_back({on, EventKind::note_on, id, track.instrument, n.pitch, n.velocity,
-                                left, right, mix_seed(p.seed, id),track.electronic});
+                                left, right, mix_seed(p.seed, id),track.electronic,automation});
             s.events.push_back({off, EventKind::note_off, id, track.instrument, n.pitch, 0,
-                                left, right, 1,track.electronic});
+                                left, right, 1,track.electronic,automation});
             // Voice is reclaimable on the sample AFTER its final release sample.
             const auto end = off + release_frames(track.instrument, p.sample_rate) + 1;
             if (end > s.total_frames) throw std::invalid_argument("tail truncates an instrument release");
@@ -83,8 +93,23 @@ Renderer::Renderer(Schedule schedule, std::size_t max_block)
     duck_minimum_=std::pow(10.0,schedule_.kick_duck_db/20);
     duck_attack_=1-std::exp(-1.0/(schedule_.sample_rate*0.002));
     duck_release_=1-std::exp(-1.0/(schedule_.sample_rate*0.100));
+    if (schedule_.automation.size()>32) throw std::invalid_argument("compiled automation budget exceeded");
+    for (const auto& points:schedule_.automation) {
+        if (points.empty() || points.size()>128 || points.front().frame!=0)
+            throw std::invalid_argument("invalid compiled mix automation");
+        for (std::size_t i=0;i<points.size();++i) {
+            const auto& point=points[i];
+            if (point.frame>schedule_.music_frames || !std::isfinite(point.left) || !std::isfinite(point.right) ||
+                point.left<0 || point.right<0 || point.left>4 || point.right>4 ||
+                (i && (point.frame<=points[i-1].frame || point.frame-points[i-1].frame<schedule_.sample_rate/200U)))
+                throw std::invalid_argument("invalid compiled mix point");
+        }
+    }
+    automation_positions_.resize(schedule_.automation.size());
+    automation_gains_.resize(schedule_.automation.size());
     for (const auto& e : schedule_.events) {
-        if (e.frame >= schedule_.total_frames || !std::isfinite(e.left_gain) || !std::isfinite(e.right_gain))
+        if (e.frame >= schedule_.total_frames || !std::isfinite(e.left_gain) || !std::isfinite(e.right_gain) ||
+            e.automation < -1 || (e.automation>=0 && static_cast<std::size_t>(e.automation)>=schedule_.automation.size()))
             throw std::invalid_argument("invalid compiled event");
     }
 }
@@ -94,6 +119,14 @@ std::size_t Renderer::process(float* stereo, std::size_t requested) noexcept {
     const auto count = static_cast<std::size_t>(std::min<std::uint64_t>(requested, schedule_.total_frames - cursor_));
     std::fill(stereo, stereo + requested * 2, 0.0F);
     for (std::size_t i = 0; i < count; ++i, ++cursor_) {
+        for (std::size_t track=0;track<schedule_.automation.size();++track) {
+            const auto& points=schedule_.automation[track];auto& index=automation_positions_[track];
+            while (index+1<points.size() && points[index+1].frame<=cursor_) ++index;
+            const auto& a=points[index];const auto& b=points[std::min(index+1,points.size()-1)];
+            const double fraction=a.frame==b.frame?0:static_cast<double>(cursor_-a.frame)/static_cast<double>(b.frame-a.frame);
+            automation_gains_[track]={{static_cast<float>(a.left+(b.left-a.left)*fraction),
+                                      static_cast<float>(a.right+(b.right-a.right)*fraction)}};
+        }
         while (next_kick_<schedule_.kick_frames.size() && schedule_.kick_frames[next_kick_]==cursor_) {
             duck_hold_=schedule_.sample_rate/50U; ++next_kick_;
         }
@@ -117,7 +150,11 @@ std::size_t Renderer::process(float* stereo, std::size_t requested) noexcept {
         for (auto& v : voices_) {
             if (!v.active()) continue;
             const float x = v.next()*static_cast<float>(v.instrument()==Instrument::drums?1:duck_gain_);
-            left += x * v.left_gain(); right += x * v.right_gain();
+            if (v.automation()<0) {left += x * v.left_gain(); right += x * v.right_gain();}
+            else {
+                const auto& gain=automation_gains_[static_cast<std::size_t>(v.automation())];
+                left+=x*gain[0];right+=x*gain[1];
+            }
         }
         const double channels[2] = {left, right};
         for (std::size_t c = 0; c < 2; ++c) {

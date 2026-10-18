@@ -1,0 +1,20 @@
+PASS: /out/timeline-20261018/control.hiphop.wav
+PASS: complete export /out/timeline-20261018/control.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/timeline-20261018/tempo.hiphop.wav
+PASS: complete export /out/timeline-20261018/tempo.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/timeline-20261018/mix.hiphop.wav
+PASS: complete export /out/timeline-20261018/mix.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/timeline-20261018/combined.hiphop.wav
+PASS: complete export /out/timeline-20261018/combined.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/timeline-20261018/fixture.hiphop.wav
+PASS: /out/timeline-20261018/fixture.reggae.wav
+PASS: /out/timeline-20261018/fixture.experimental.wav
+PASS: complete export /out/timeline-20261018/fixture.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/timeline-20261018/club.club.wav
+PASS: complete export /out/timeline-20261018/club.complete.json
+Listening/recognizability: NOT RUN

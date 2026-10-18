@@ -19,12 +19,15 @@ struct Note {
     int pitch = 60;
     int velocity = 96; // MIDI 1..127; use note duration for note-off
 };
+struct MixPoint { Tick tick = 0; double gain_db = -9, pan = 0; };
+struct TempoChange { Tick tick = 0; std::uint32_t tempo_milli_bpm = 100000; };
 struct Track {
     Instrument instrument = Instrument::piano;
     double gain_db = -9.0;
     double pan = 0.0; // -1 left .. +1 right, constant-power law
     std::vector<Note> notes;
     bool electronic = false;
+    std::vector<MixPoint> automation{}; // absolute gain/pan; first point at 0 matches track
 };
 struct Section {
     std::string name;
@@ -43,12 +46,15 @@ struct PerformancePlan {
     std::vector<Section> sections;
     std::vector<Track> tracks;
     double kick_duck_db = 0;
+    std::vector<TempoChange> tempo_changes{}; // strictly ordered changes after tick 0
 };
 
 // Round absolute rational tick positions to nearest frame (ties upward).
 // Does not accumulate rounded durations. Throws on invalid/overflowing input.
 std::uint64_t tick_to_frame(Tick tick, std::uint32_t sample_rate,
                             std::uint32_t tempo_milli_bpm);
+// Tempo segments retain 32 fractional frame bits; round only the absolute result.
+std::uint64_t tick_to_frame(Tick tick, const PerformancePlan& plan);
 Tick ticks_per_bar(const PerformancePlan& plan);
 void validate(const PerformancePlan& plan);
 void write_score(const PerformancePlan& plan, const std::string& path);

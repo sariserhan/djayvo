@@ -37,6 +37,7 @@ std::uint32_t release_frames(Instrument instrument,std::uint32_t rate) {
 void Voice::start(const Event& e,std::uint32_t rate) noexcept {
     active_=true;released_=false;age_=0;release_age_=0;
     instrument_=e.instrument;pitch_=e.pitch;id_=e.note_id;rate_=rate;
+    automation_=e.automation;
     release_length_=release_frames(instrument_,rate);
     const auto& sample=select_sample(instrument_,pitch_,e.velocity,e.noise_seed,e.electronic);
     sample_=sample.pcm;sample_frames_=sample.frames;sample_position_=0;

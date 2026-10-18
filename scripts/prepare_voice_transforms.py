@@ -12,9 +12,23 @@ import time
 from verify_export import verify_export
 
 
+def frame_at(plan, tick):
+    rate=plan['sample_rate'];tempo=plan['tempo_milli_bpm']
+    if not plan.get('tempo_changes'):
+        return (tick*rate*60000+960*tempo//2)//(960*tempo)
+    whole=fraction=start=0
+    for change in [*plan['tempo_changes'], {'start_tick':tick,'tempo_milli_bpm':tempo}]:
+        end=min(tick,change['start_tick']);denominator=960*tempo
+        frames,remainder=divmod((end-start)*rate*60000,denominator)
+        whole+=frames;fraction+=((remainder<<32)+denominator-1)//denominator
+        if end==tick:break
+        start=end;tempo=change['tempo_milli_bpm']
+    return whole+((fraction+(1<<31))>>32)
+
+
 def add_echoes(plan, interval):
-    rate=plan['sample_rate'];denominator=960*plan['tempo_milli_bpm']
-    frame=lambda tick:(tick*rate*60000+denominator//2)//denominator
+    rate=plan['sample_rate']
+    frame=lambda tick:frame_at(plan,tick)
     def duration(event):
         clip=plan['voice_clips'][event['clip_id']]
         return math.ceil((clip['end_frame']-clip['start_frame'])*event.get('time_stretch',1)/event['rate'])
@@ -32,7 +46,7 @@ def add_echoes(plan, interval):
         selected.append(event['start_tick']);last=start
         if len(selected)==3:break
     if not selected:raise ValueError('no fragment has room for this echo treatment')
-    plan['schema_version']='1.2-remix'
+    if plan['schema_version']!='1.3-remix':plan['schema_version']='1.2-remix'
     return selected
 
 
@@ -57,7 +71,7 @@ def prepare(renderer, source, plan_path, output, echo=False):
     for name, pitch, stretch, interval in cases:
         candidate = copy.deepcopy(plan)
         if pitch or stretch != 1:
-            candidate['schema_version'] = '1.1-remix'
+            if candidate['schema_version']!='1.3-remix':candidate['schema_version'] = '1.1-remix'
             for event in candidate['voice_events']:
                 if not event['clean']:
                     event.update(pitch_semitones=pitch, time_stretch=stretch)

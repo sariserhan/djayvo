@@ -10,6 +10,17 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest timeline continuation, 2026-10-18: [tempo maps and mix automation](timeline.md).
+Native scheduling, voice/echo timing, stems, versioned export/import, schemas and
+Python preparation now share the new timeline. **M5/Linux release 10/10, WASM
+12 core groups plus four default styles, 90 invalid-plan cases, 40 exact cross-OS
+WAVs, 25 unchanged legacy WAVs and Chromium/WebKit playback: PASS.**
+Four private comparisons are ready. **Human listening: NOT RUN; E12 and full
+specification: PARTIAL.** Default app arrangements are unchanged. No model, cloud
+call, phone work or deployment. The current smoke reference is
+`renders/arrangement-linux/timeline-20261018/fixture`. **Final M5 ASan/UBSan
+10/10 and the actual Mac smoke script: PASS.**
+
 Latest arrangement continuation, 2026-10-18: [hip-hop composition variety](hiphop-diversity.md).
 The previous engine fails the new structural regression: seeds share one harmonic
 cycle. The revised shared planner selects chord/rhythm/swing choices and develops
@@ -19,7 +30,7 @@ and matched browser audition: PASS.** Final-source M5 ASan/UBSan also passes
 10/10 suites. Four owner pairs are ready; **new listening: NOT RUN;
 E13 and production quality: PARTIAL.** No learned director, cloud call, phone
 work or publication. The immutable master, supplied fixture and owner source
-remain unchanged. Current smoke reference is
+remain unchanged. This phase used smoke reference
 `renders/arrangement-linux/hiphop-diversity-20261018/fixture`.
 
 Latest effect continuation, 2026-10-18: [selective tempo echo](vocal-echo.md).

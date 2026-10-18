@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [hip-hop composition variety](docs/hiphop-diversity.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [tempo maps and track mix automation](docs/timeline.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -204,6 +204,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P31 | PASS | Independent voice pitch/duration controls, bounded 1.1 import/export, preserved clean hooks, owner comparisons and fixed 32-bit resampling overflow | [Evidence](docs/voice-transforms.md) |
 | [x] | P32 | PASS | Bounded tempo echo with clean-hook clearance, stereo decay, 1.2 plan import/export, private owner comparisons and actual M5/Linux/WASM checks | [Evidence](docs/vocal-echo.md) |
 | [x] | P33 | PASS | Hip-hop harmonic/rhythmic seed variety, recurring phrases and developed returns; 64-seed structural audit, four owner comparisons, exact M5/Linux/WASM agreement | [Evidence](docs/hiphop-diversity.md) |
+| [x] | P34 | PASS | Shared tempo maps and gain/pan automation; native/import/schema/echo/stem contracts, 40 exact M5/Linux WAVs, four private comparisons | [Evidence](docs/timeline.md) |
 
 ## Engineering backlog
 
@@ -225,9 +226,10 @@ is needed. Prioritize by recorded listening defects and product requirements.
   default generated chops still use original speed. [Evidence](docs/voice-transforms.md).
 - [ ] **E04 — PARTIAL:** Expand expressive mixing/effects when justified by
   listening. Early reflections, hook/kick ducking and opt-in three-repeat tempo
-  echoes exist. Clean-hook clearance, bounded tails, exact cross-OS PCM and local
-  comparisons checked. Echo listening, continuous feedback/reverb and richer
-  automation remain open. [Evidence](docs/vocal-echo.md).
+  echoes and track gain/pan automation exist. Clean-hook clearance, bounded tails,
+  exact cross-OS PCM and local comparisons checked. Human acceptance and
+  continuous feedback/reverb remain open. [Echo evidence](docs/vocal-echo.md);
+  [automation evidence](docs/timeline.md).
 - [x] **E05 — PASS:** CLI/C ABI exports stage files, preserve existing paths,
   publish a verified completion marker last and support cancellation. Actual
   SIGINT/SIGKILL and collision tests pass. Abrupt kills may leave incomplete
@@ -254,9 +256,11 @@ is needed. Prioritize by recorded listening defects and product requirements.
   caller/source/permission and native constraints, replay exact events, and record
   explicitly requested deterministic fallback. Five-style round trips, 50 rejected
   candidates and preserved actual owner audio verified. [Evidence](docs/plan-import.md).
-- [ ] **E12 — NOT RUN:** Remaining master-spec engine breadth: articulated guitar,
-  organ and dedicated pad/lead roles, tempo/automation maps. Independent pitch/time
-  and expanded effects remain under E03/E04. Do not call the engine feature-complete.
+- [ ] **E12 — PARTIAL:** Tempo maps and track gain/pan automation implemented,
+  with opt-in native/CLI plans and cross-platform tests. Articulated guitar, organ
+  and dedicated pad/lead roles remain unimplemented. Independent pitch/time and
+  expanded effects remain under E03/E04. [Timeline evidence](docs/timeline.md).
+  Do not call the engine feature-complete.
 
 - [ ] **E13 — PARTIAL:** Hip-hop structural variety implemented: four chord cycles,
   four coordinated rhythm choices, three swing amounts and return development.

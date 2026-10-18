@@ -1,0 +1,20 @@
+PASS: SHA-256 known vectors
+PASS: energy/onset/phrase/pitch analysis and silence
+PASS: resampling duration, identity, round-trip and antialias
+PASS: clean hook preservation, deterministic styles, finite bounded output
+PASS: consent, crop, transform, polyphony and duration rejection
+PASS: quantized chop spacing and both clean hooks at 2/3/5 seconds
+PASS: seeded clean, instrumental and fragment openings
+Hip-hop 64-seed audit: 4 harmonic cycles, 12 drum shapes, 48 four-bar instrumental shapes
+PASS: hiphop harmonic/rhythmic seed diversity, recurring motifs and developed returns
+PASS: pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates
+PASS: subtraction and return across styles and seeds
+PASS: instrument room timing, stereo, dry speech and finite tail
+PASS: independent voice pitch/time, four rates, exact duration/reverse, bounds and no callback allocation
+PASS: tempo echo timing, stereo decay, bounded tails, hook clearance and callback safety
+PASS: club form, input-driven bass, electronic palette and stem-consistent kick ducking
+PASS: stem identity and linear mix reconstruction including room and ducking
+PASS: tempo-map source preservation and echo timing across tempo changes
+PASS: club pause selection, deduplication, bounded fallback and transition accents
+PASS: cancel/render/publication rollback, concurrent destinations and stale-lock preservation
+PASS: allocation-free sample and instrument processing

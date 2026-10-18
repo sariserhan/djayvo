@@ -18,7 +18,9 @@ struct Event {
     float right_gain = 1.0F;
     std::uint32_t noise_seed = 1;
     bool electronic = false;
+    int automation = -1;
 };
+struct MixFrame { std::uint64_t frame = 0; float left = 1, right = 1; };
 struct Schedule {
     std::uint32_t sample_rate = 48000;
     std::uint64_t music_frames = 0;
@@ -27,6 +29,7 @@ struct Schedule {
     std::vector<Event> events;
     double kick_duck_db = 0;
     std::vector<std::uint64_t> kick_frames;
+    std::vector<std::vector<MixFrame>> automation;
 };
 Schedule compile(const PerformancePlan& plan);
 std::uint32_t release_frames(Instrument instrument, std::uint32_t sample_rate);
@@ -41,11 +44,13 @@ public:
     float next() noexcept;
     float left_gain() const noexcept { return left_gain_; }
     float right_gain() const noexcept { return right_gain_; }
+    int automation() const noexcept { return automation_; }
 private:
     bool active_ = false;
     bool released_ = false;
     Instrument instrument_ = Instrument::piano;
     int pitch_ = 60;
+    int automation_ = -1;
     std::uint32_t id_ = 0, rate_ = 48000, release_length_ = 1;
     std::uint64_t age_ = 0;
     std::uint32_t release_age_ = 0;
@@ -80,6 +85,8 @@ private:
     std::uint64_t cursor_ = 0, voice_overflows_ = 0;
     // The interpolation tables exceed mobile worker stacks; allocate once at construction.
     std::vector<Voice> voices_;
+    std::vector<std::size_t> automation_positions_;
+    std::vector<std::array<float,2>> automation_gains_;
     AudioStats stats_{};
     std::array<float, 2> previous_{};
     double duck_gain_ = 1, duck_minimum_ = 1, duck_attack_ = 1, duck_release_ = 1;

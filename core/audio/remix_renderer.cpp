@@ -89,7 +89,7 @@ RemixRenderer::RemixRenderer(const RemixPlan& p,const AudioBuffer& source,std::s
         const auto& clip=p.clips[event.clip];
         const double gain=std::pow(10.0,event.gain_db/20)*p.analysis.normalization_gain;
         constexpr double pi=3.14159265358979323846;
-        triggers_.push_back({tick_to_frame(event.start,p.music.sample_rate,p.music.tempo_milli_bpm),
+        triggers_.push_back({tick_to_frame(event.start,p.music),
             vocal_frames(event,clip),
             clip.begin,clip.end,event.rate,
             gain*std::cos((event.pan+1)*pi/4),gain*std::sin((event.pan+1)*pi/4),event.reverse,event.clean});
@@ -109,7 +109,7 @@ RemixRenderer::RemixRenderer(const RemixPlan& p,const AudioBuffer& source,std::s
             auto echo=triggers_.back();
             double send=std::pow(10.0,event.echo_gain_db/20);
             for (int repeat=1;repeat<=3;++repeat) {
-                echo.start=tick_to_frame(event.start+repeat*event.echo_ticks,p.music.sample_rate,p.music.tempo_milli_bpm);
+                echo.start=tick_to_frame(event.start+repeat*event.echo_ticks,p.music);
                 const double pan=repeat%2?0.45:-0.45;
                 echo.gain_left=gain*send*std::cos((pan+1)*pi/4);
                 echo.gain_right=gain*send*std::sin((pan+1)*pi/4);

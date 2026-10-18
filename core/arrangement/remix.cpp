@@ -277,7 +277,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     // before choosing chops (long inputs can extend beyond their starting bar).
     const auto interval = [&](const VocalEvent& event) {
         const auto& clip=r.clips[event.clip];
-        const auto start=tick_to_frame(event.start,p.sample_rate,p.tempo_milli_bpm);
+        const auto start=tick_to_frame(event.start,p);
         const auto length=static_cast<std::uint64_t>(std::ceil(static_cast<double>(clip.end-clip.begin)/event.rate));
         return std::make_pair(start,start+length);
     };

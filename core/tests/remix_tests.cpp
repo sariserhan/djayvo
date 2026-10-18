@@ -352,6 +352,11 @@ void stem_identity() {
         auto p=djayvo::make_remix(a,djayvo::analyze(a),style,4123,true,false);
         // Stay below the nonlinear master stages so the stems must sum to the mix.
         for (auto& track:p.music.tracks) track.gain_db-=18;
+        if (style==djayvo::Strategy::hiphop) {
+            p.music.tempo_changes={{15360,100000}};
+            for (auto& track:p.music.tracks)
+                track.automation={{0,track.gain_db,track.pan},{15360,track.gain_db-6,0.7},{30720,track.gain_db,-0.7}};
+        }
         const auto full=render(p,a,257);
         auto sum=render(p,a,113,true);
         for(int solo=0;solo<3;++solo) {
@@ -361,6 +366,28 @@ void stem_identity() {
         for(std::size_t i=0;i<sum.size();++i)
             check(std::abs(sum[i]-full[i])<2e-7,"stem export changes the instrument performance");
     }
+}
+void timeline_voice() {
+    const auto a=source();auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+    p.music.tempo_changes={{15360,100000}};
+    p.vocals={{30720,0,-3,1,false,0,true},{14880,1,-8,1,false,0,false,0,1,720,-12}};
+    const auto voice=render(p,a,257,true);
+    const std::uint64_t start=156800; // 4 bars at 96 BPM + 4 bars at 100 BPM, 8 kHz
+    const double gain=std::pow(10.0,-3.0/20)*p.analysis.normalization_gain*std::sqrt(0.5);
+    for (std::size_t i=100;i+100<a.mono.size();++i)
+        check(std::abs(voice[(start+i)*2]-a.mono[i]*gain)<1e-6,"tempo map mistimes or changes clean source hook");
+    const auto event=p.vocals.back();p.vocals.back().echo_ticks=0;
+    for (int repeat=1;repeat<=3;++repeat) {
+        auto echo=event;echo.echo_ticks=0;echo.start+=repeat*720;
+        echo.gain_db+=-12+(repeat-1)*20*std::log10(0.35);echo.pan=repeat%2?0.45:-0.45;
+        // Compare before the third echo, whose gain is below the dry-event floor.
+        if (echo.gain_db>=-30) p.vocals.push_back(echo);
+    }
+    // Check each audible repeat against its dry trigger, including the tempo boundary.
+    const auto explicit_echoes=render(p,a,113,true);
+    const auto last=djayvo::tick_to_frame(event.start+3*720,p.music);
+    for (std::size_t i=0;i<last*2;++i)
+        check(std::abs(voice[i]-explicit_echoes[i])<1e-7,"echo uses the wrong tempo segment");
 }
 void export_transactions() {
     namespace fs=std::filesystem;
@@ -601,6 +628,7 @@ int main() {
         {"tempo echo timing, stereo decay, bounded tails, hook clearance and callback safety",vocal_echo},
         {"club form, input-driven bass, electronic palette and stem-consistent kick ducking",club_direction},
         {"stem identity and linear mix reconstruction including room and ducking",stem_identity},
+        {"tempo-map source preservation and echo timing across tempo changes",timeline_voice},
         {"club pause selection, deduplication, bounded fallback and transition accents",club_phrasing},
         {"cancel/render/publication rollback, concurrent destinations and stale-lock preservation",export_transactions},
         {"allocation-free sample and instrument processing",no_allocations}};

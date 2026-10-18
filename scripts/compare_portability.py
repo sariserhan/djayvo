@@ -27,9 +27,11 @@ def load_audio(path):
 def structural_plan(score):
     # Platform-libm differences in estimated pitch/confidence/gain are measured
     # separately. Decisions and timing, including the selected key, must agree.
-    return {key: score[key] for key in ("schema_version", "seed", "source_asset_id", "sample_rate",
+    result = {key: score[key] for key in ("schema_version", "seed", "source_asset_id", "sample_rate",
             "tempo_milli_bpm", "ticks_per_quarter", "time_signature", "target_bars", "tail_ms",
             "strategy", "key", "mix", "sections", "voice_clips", "voice_events", "tracks")}
+    result['tempo_changes'] = score.get('tempo_changes', [])
+    return result
 
 
 def compare(reference, candidate):

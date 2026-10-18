@@ -1,0 +1,25 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+      Start  1: core
+ 1/10 Test  #1: core .............................   Passed    0.33 sec
+      Start  2: remix_core
+ 2/10 Test  #2: remix_core .......................   Passed    3.90 sec
+      Start  3: c_abi
+ 3/10 Test  #3: c_abi ............................   Passed    0.14 sec
+      Start  4: acoustic_assets
+ 4/10 Test  #4: acoustic_assets ..................   Passed    0.67 sec
+      Start  5: electronic_assets
+ 5/10 Test  #5: electronic_assets ................   Passed    0.08 sec
+      Start  6: wav_integration
+ 6/10 Test  #6: wav_integration ..................   Passed    0.58 sec
+      Start  7: remix_integration
+ 7/10 Test  #7: remix_integration ................   Passed    3.69 sec
+      Start  8: tooling
+ 8/10 Test  #8: tooling ..........................   Passed    1.17 sec
+      Start  9: evaluation_preparation
+ 9/10 Test  #9: evaluation_preparation ...........   Passed   12.53 sec
+      Start 10: plan_import
+10/10 Test #10: plan_import ......................   Passed    2.92 sec
+
+100% tests passed out of 10
+
+Total Test time (real) =  26.03 sec

@@ -42,7 +42,7 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
         if (clip.begin >= clip.end || clip.end > source.mono.size() ||
             !std::isfinite(clip.confidence) || clip.confidence<0 || clip.confidence>1)
             throw std::invalid_argument("clip exceeds source bounds");
-    const auto music_end=tick_to_frame(ticks_per_bar(r.music)*r.music.bars,source.sample_rate,r.music.tempo_milli_bpm);
+    const auto music_end=tick_to_frame(ticks_per_bar(r.music)*r.music.bars,r.music);
     const auto total=music_end+static_cast<std::uint64_t>(r.music.tail_ms)*source.sample_rate/1000;
     if (total < source.sample_rate*20ULL || total > source.sample_rate*40ULL)
         throw std::invalid_argument("remix must be 20..40 seconds");
@@ -61,7 +61,7 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
             !std::isfinite(e.echo_gain_db) || e.echo_gain_db< -24 || e.echo_gain_db> -6)
             throw std::invalid_argument("invalid vocal event");
         const auto& clip=r.clips[e.clip];
-        const auto begin=tick_to_frame(e.start,source.sample_rate,r.music.tempo_milli_bpm);
+        const auto begin=tick_to_frame(e.start,r.music);
         const auto frames=vocal_frames(e,clip);
         if (e.pitch_semitones!=0 || e.time_stretch!=1) {
             transformed_frames+=frames;
@@ -79,7 +79,7 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
         }
         occupancy.emplace_back(begin,1); occupancy.emplace_back(begin+frames,-1);
         if (e.echo_ticks) for (int repeat=1;repeat<=3;++repeat) {
-            const auto start=tick_to_frame(e.start+repeat*e.echo_ticks,source.sample_rate,r.music.tempo_milli_bpm);
+            const auto start=tick_to_frame(e.start+repeat*e.echo_ticks,r.music);
             if (start+frames+source.sample_rate/10>total)
                 throw std::invalid_argument("tail truncates vocal echo");
             echoes.emplace_back(start,start+frames);
@@ -114,7 +114,8 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
         return e.pitch_semitones!=0 || e.time_stretch!=1;
     });
     const bool echoes=std::any_of(r.vocals.begin(),r.vocals.end(),[](const VocalEvent& e){return e.echo_ticks!=0;});
-    out<<"{\n  \"schema_version\": \""<<(echoes?"1.2-remix":transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
+    const bool timeline=!p.tempo_changes.empty() || std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return !t.automation.empty();});
+    out<<"{\n  \"schema_version\": \""<<(timeline?"1.3-remix":echoes?"1.2-remix":transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
        <<",\n  \"source_asset_id\": \"sha256:"<<source.sha256<<"\",\n  \"sample_rate\": "<<p.sample_rate
        <<",\n  \"source\": {\"sha256\": \""<<source.sha256<<"\", \"original_rate\": "<<source.original_rate
        <<", \"original_frames\": "<<source.original_frames<<", \"processed_frames\": "<<source.mono.size()
@@ -159,12 +160,25 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
         if (e.echo_ticks) out<<", \"echo_ticks\": "<<e.echo_ticks<<", \"echo_gain_db\": "<<e.echo_gain_db;
         out<<"}";
     }
-    out<<"\n  ],\n  \"tracks\": [";
+    out<<"\n  ]";
+    if (!p.tempo_changes.empty()) {
+        out<<",\n  \"tempo_changes\": [";
+        for (std::size_t i=0;i<p.tempo_changes.size();++i)
+            out<<(i?",":"")<<"{\"start_tick\": "<<p.tempo_changes[i].tick<<", \"tempo_milli_bpm\": "<<p.tempo_changes[i].tempo_milli_bpm<<"}";
+        out<<"]";
+    }
+    out<<",\n  \"tracks\": [";
     for (std::size_t i=0;i<p.tracks.size();++i) {
         const auto& t=p.tracks[i];
         out<<(i?",":"")<<"\n    {\"instrument\": \""<<instrument_name(t.instrument)<<"\", \"gain_db\": "<<t.gain_db
            <<", \"pan\": "<<t.pan;
         if (t.electronic) out<<", \"sound\": \"electronic\"";
+        if (!t.automation.empty()) {
+            out<<", \"automation\": [";
+            for (std::size_t j=0;j<t.automation.size();++j)
+                out<<(j?",":"")<<"{\"start_tick\": "<<t.automation[j].tick<<", \"gain_db\": "<<t.automation[j].gain_db<<", \"pan\": "<<t.automation[j].pan<<"}";
+            out<<"]";
+        }
         out<<", \"events\": [";
         for (std::size_t j=0;j<t.notes.size();++j) {
             const auto& n=t.notes[j];

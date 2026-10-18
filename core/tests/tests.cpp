@@ -89,6 +89,68 @@ void timing() {
     rejects([] { djayvo::tick_to_frame(-1, 48000, 100000); });
     rejects([] { djayvo::tick_to_frame(std::numeric_limits<djayvo::Tick>::max(), 192000, 30000); });
 }
+void tempo_maps() {
+    auto p=single();p.bars=256;p.numerator=16;p.denominator=2;p.tempo_milli_bpm=137123;
+    p.sections={{"test",0,256}};
+    for (int i=1;i<=64;++i) p.tempo_changes.push_back({i*100003,static_cast<std::uint32_t>(70001+i*1277)});
+    // Independent exact Fraction sum of all 65 segments, rounded once.
+    const std::uint32_t rates[]={8000,44100,48000,192000};
+    const std::uint64_t expected[]={34958516,192708817,209751093,839004373};
+    for (std::size_t i=0;i<4;++i) {
+        p.sample_rate=rates[i];djayvo::validate(p);
+        check(djayvo::tick_to_frame(7864320,p)==expected[i],"tempo map accumulated rounding drift");
+    }
+    p=single();p.sample_rate=48000;p.tempo_milli_bpm=120000;p.tempo_changes={{960,90000},{1920,150000}};
+    p.tracks[0].notes={{960,1440,69,90}};
+    const auto schedule=djayvo::compile(p);
+    check(schedule.events[0].frame==24000 && schedule.events[1].frame==65600,"note spanning tempo boundary is mistimed");
+    check(djayvo::tick_to_frame(1920,p)==56000,"tempo change boundary moved");
+    check(render(p,113)==render(p,257),"tempo map depends on process block");
+    p=single();p.sample_rate=8000;p.tempo_milli_bpm=300000;
+    for (int i=1;i<=64;++i) p.tempo_changes.push_back({i,300000});
+    for (djayvo::Tick tick=0;tick<=3840;++tick)
+        check(djayvo::tick_to_frame(tick,p)==djayvo::tick_to_frame(tick,8000,300000),"redundant tempo changes alter the clock");
+    for (const auto changes:std::vector<std::vector<djayvo::TempoChange>>{
+            {{0,96000}},{{3840,96000}},{{100,96000},{100,96000}},{{100,96000},{99,96000}},{{100,29999}},{{100,300001}}}) {
+        p.tempo_changes=changes;rejects([&]{djayvo::compile(p);});
+    }
+    p.tempo_changes.assign(65,{1,96000});rejects([&]{djayvo::compile(p);});
+    p.tempo_changes={{960,90000}};
+    rejects([&]{djayvo::tick_to_frame(-1,p);});
+    rejects([&]{djayvo::tick_to_frame(std::numeric_limits<djayvo::Tick>::max(),p);});
+}
+void mix_automation() {
+    auto p=single();p.tempo_milli_bpm=120000;p.tracks[0].gain_db=-20;
+    p.tracks[0].notes={{0,2880,60,90}};
+    const auto dry=render(p);
+    p.tracks[0].pan=-1;
+    p.tracks[0].automation={{0,-20,-1},{960,-20,1},{1920,-26,0}};
+    auto schedule=djayvo::compile(p);
+    const auto audio=render(schedule);
+    check(audio==render(schedule,113),"automation depends on process block");
+    for (std::size_t frame=0;frame<audio.size()/2;++frame) {
+        const double t=static_cast<double>(frame)/8000;
+        const double center=std::pow(10.0,-6.0/20)*std::sqrt(0.5);
+        const double left=t<1?1-t:t<2?(t-1)*center:center;
+        const double right=t<1?t:t<2?1+(t-1)*(center-1):center;
+        check(std::abs(audio[frame*2]-dry[frame*2]*std::sqrt(2.0)*left)<1e-7 &&
+              std::abs(audio[frame*2+1]-dry[frame*2]*std::sqrt(2.0)*right)<1e-7,"mix ramp differs from independent envelope");
+    }
+    djayvo::Renderer renderer(schedule,257);std::vector<float> scratch(514);
+    const auto before=allocations.load();
+    while (!renderer.finished()) renderer.process(scratch.data(),257);
+    check(allocations.load()==before,"automation allocates during render callback");
+    for (const auto points:std::vector<std::vector<djayvo::MixPoint>>{
+            {{1,-20,-1}},{{0,-19,-1}},{{0,-20,0}},{{0,-20,-1},{1,-20,0}},
+            {{0,-20,-1},{960,13,0}},{{0,-20,-1},{960,-20,1.1}},{{0,-20,-1},{3841,-20,0}},
+            {{0,-20,-1},{960,-20,0},{960,-20,0}},{{0,-20,-1},{960,std::numeric_limits<double>::quiet_NaN(),0}}}) {
+        p.tracks[0].automation=points;rejects([&]{djayvo::compile(p);});
+    }
+    p.tracks[0].automation.assign(129,{0,-20,-1});rejects([&]{djayvo::compile(p);});
+    auto bad=schedule;bad.events[0].automation=1;rejects([&]{djayvo::Renderer r(bad);});
+    bad=schedule;bad.automation[0][1].frame=1;rejects([&]{djayvo::Renderer r(bad);});
+    bad=schedule;bad.automation[0][0].left=std::numeric_limits<float>::infinity();rejects([&]{djayvo::Renderer r(bad);});
+}
 void scheduling() {
     auto p = single();
     p.tracks[0].notes.push_back({1097, 960, 72, 90});
@@ -290,6 +352,8 @@ void wav_errors() {
 int main() {
     const std::vector<std::pair<const char*, std::function<void()>>> tests{
         {"rational timing and long-render drift", timing},
+        {"tempo maps: four-rate rational oracle, crossing notes, bounds and block identity", tempo_maps},
+        {"mix automation: stereo/level oracle, release tails, bounds and allocation-free processing", mix_automation},
         {"sample onsets, ordering, note-off and release", scheduling},
         {"seed and block-size determinism", deterministic},
         {"instrument frequency, octave, velocity and drum output", instruments},

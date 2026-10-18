@@ -2,6 +2,8 @@
 """Exercise the real offline CLI boundary; no model or listening results implied."""
 import argparse
 import copy
+import csv
+from fractions import Fraction
 import hashlib
 import json
 from pathlib import Path
@@ -12,7 +14,7 @@ import tempfile
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]/'scripts'))
 from make_fixture import make_signal
 from verify_export import verify_export
-from prepare_voice_transforms import add_echoes
+from prepare_voice_transforms import add_echoes, frame_at
 
 
 def main(renderer):
@@ -112,6 +114,63 @@ def main(renderer):
         item=copy.deepcopy(echo);item['voice_events'][1]['echo_ticks']=480;transform_invalid.append(json.dumps(item))
         item=copy.deepcopy(echo);item['voice_events'][1]['start_tick']=960;transform_invalid.append(json.dumps(item))
 
+        timeline=copy.deepcopy(base);timeline['schema_version']='1.3-remix'
+        timeline['tempo_changes']=[{'start_tick':30720,'tempo_milli_bpm':100000}]
+        track=timeline['tracks'][0]
+        track['automation']=[{'start_tick':0,'gain_db':track['gain_db'],'pan':track['pan']},
+                             {'start_tick':15360,'gain_db':-24,'pan':0.6},
+                             {'start_tick':30720,'gain_db':-10,'pan':-0.2},
+                             {'start_tick':46080,'gain_db':-30,'pan':0}]
+        hook=copy.deepcopy(next(e for e in timeline['voice_events'] if e['clean']));hook['start_tick']=0
+        fragment=copy.deepcopy(next(e for e in timeline['voice_events'] if not e['clean']))
+        fragment.update(start_tick=30240,pitch_semitones=2,time_stretch=1.1,echo_ticks=720,echo_gain_db=-12)
+        timeline['voice_events']=[hook,fragment]
+        candidate.write_text(json.dumps(timeline));run('timeline',('--plan',str(candidate),'--stems'))
+        exported=root/'timeline.hiphop.score.json'
+        assert json.loads(exported.read_text())==timeline
+        run('timeline-replay',('--plan',str(exported),'--stems','--block-size','113'))
+        assert verify_export(root/'timeline')['artifacts']==verify_export(root/'timeline-replay')['artifacts']
+        def frame(tick):
+            total=Fraction(0);start=0;tempo=timeline['tempo_milli_bpm']
+            for change in timeline['tempo_changes']:
+                if change['start_tick']>=tick:break
+                total+=Fraction((change['start_tick']-start)*8000*60000,960*tempo)
+                start=change['start_tick'];tempo=change['tempo_milli_bpm']
+            total+=Fraction((tick-start)*8000*60000,960*tempo)
+            return (2*total.numerator+total.denominator)//(2*total.denominator)
+        notes=[e for t in timeline['tracks'] for e in t['events']]
+        with (root/'timeline.hiphop.events.tsv').open() as f:
+            for e in csv.DictReader(f,delimiter='\t'):
+                n=notes[int(e['id'])]
+                tick=n['start_tick']+(n['duration_ticks'] if e['kind']=='off' else 0)
+                assert int(e['frame'])==frame(tick),'tempo map event differs from rational oracle'
+        assert json.loads((root/'timeline.hiphop.report.json').read_text())['music_frames']==frame(46080)
+        for tick in (0,1,30719,30720,30721,46080,48000):
+            assert frame_at(timeline,tick)==frame(tick)
+        sparse_timeline=copy.deepcopy(base);sparse_timeline['schema_version']='1.3-remix'
+        sparse_timeline['tempo_changes']=timeline['tempo_changes']
+        assert add_echoes(sparse_timeline,480) and sparse_timeline['schema_version']=='1.3-remix'
+        candidate.write_text(json.dumps(sparse_timeline));run('timeline-sparse-echo',('--plan',str(candidate)))
+        for path,value in [
+                (('schema_version',),'1.2-remix'),(('tempo_changes',),[]),
+                (('tempo_changes',0,'start_tick'),0),(('tempo_changes',0,'start_tick'),46080),
+                (('tempo_changes',0,'tempo_milli_bpm'),29999),(('tempo_changes',0,'tempo_milli_bpm'),300001),
+                (('tempo_changes',0,'start_tick'),1.5),(('tempo_changes',0,'tempo_milli_bpm'),True),
+                (('tracks',0,'automation'),[]),(('tracks',0,'automation',0,'start_tick'),1),
+                (('tracks',0,'automation',0,'gain_db'),-9),(('tracks',0,'automation',0,'pan'),0),
+                (('tracks',0,'automation',1,'start_tick'),1),(('tracks',0,'automation',1,'pan'),1.1),
+                (('tracks',0,'automation',1,'gain_db'),float('nan')),
+                (('tracks',0,'automation',1,'unsupported'),'download')]:
+            item=copy.deepcopy(timeline);cursor=item
+            for key in path[:-1]:cursor=cursor[key]
+            cursor[path[-1]]=value;transform_invalid.append(json.dumps(item))
+        for field,value in [('tempo_changes',[timeline['tempo_changes'][0]]*65),
+                            ('tempo_changes',[timeline['tempo_changes'][0]]*2)]:
+            item=copy.deepcopy(timeline);item[field]=value;transform_invalid.append(json.dumps(item))
+        item=copy.deepcopy(timeline);item['tracks'][0]['automation']*=33;transform_invalid.append(json.dumps(item))
+        item=copy.deepcopy(timeline);del item['tempo_changes'];item['schema_version']='1.0-remix'
+        transform_invalid.append(json.dumps(item))
+
         mutations=[
             ('schema_version','future'),('seed',4124),('sample_rate',48000),('strategy','reggae'),
             ('ticks_per_quarter',480),('source_asset_id','sha256:'+'0'*64),('tempo_milli_bpm',float('nan')),
@@ -179,6 +238,7 @@ def main(renderer):
         print(json.dumps({'roundtrip_styles':5,'identical_artifacts':40,'edited_plan_changes_pcm':'PASS',
                           'independent_transform_replay_and_instrument_stems':'PASS',
                           'tempo_echo_replay_and_instrument_stems':'PASS',
+                          'tempo_map_mix_automation_roundtrip_and_rational_frames':'PASS',
                           'rejected_candidates':len(invalid),'explicit_fallback':'PASS','consent_and_collision':'PASS',
                           'model_inference':'NOT RUN','listening':'NOT RUN'},indent=2))
 

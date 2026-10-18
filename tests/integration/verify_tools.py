@@ -59,6 +59,11 @@ def main():
             shutil.copyfile(str(a) + extension, str(b) + extension)
         assert compare(a, b)["maximum_pcm_error"] == 0
         changed = json.loads(Path(str(b) + ".score.json").read_text())
+        changed['tempo_changes'] = [{'start_tick': 960, 'tempo_milli_bpm': 120000}]
+        Path(str(b) + ".score.json").write_text(json.dumps(changed))
+        rejects(lambda: compare(a, b))
+        shutil.copyfile(str(a) + ".score.json", str(b) + ".score.json")
+        changed = json.loads(Path(str(b) + ".score.json").read_text())
         changed["voice_events"][0]["start_tick"] += 1
         Path(str(b) + ".score.json").write_text(json.dumps(changed))
         rejects(lambda: compare(a, b))

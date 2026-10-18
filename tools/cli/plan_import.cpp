@@ -166,8 +166,10 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
     const auto j=Parser(text).run();
     j.keys({"schema_version","seed","source_asset_id","sample_rate","source","tempo_milli_bpm",
             "ticks_per_quarter","time_signature","target_bars","tail_ms","strategy","key","mix",
-            "analysis","sections","voice_clips","voice_events","tracks"});
-    const bool echoes=j.at("schema_version").string()=="1.2-remix";
+            "analysis","sections","voice_clips","voice_events","tracks"},{"tempo_changes"});
+    const bool timeline=j.at("schema_version").string()=="1.3-remix";
+    if (!timeline && j.has("tempo_changes")) reject("tempo changes require plan version 1.3");
+    const bool echoes=timeline || j.at("schema_version").string()=="1.2-remix";
     const bool transforms=echoes || j.at("schema_version").string()=="1.1-remix";
     if ((!transforms && j.at("schema_version").string()!="1.0-remix") || j.at("ticks_per_quarter").integer()!=960 ||
         j.at("strategy").string()!=strategy_name(strategy) || j.at("seed").integer()!=seed ||
@@ -182,6 +184,10 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
     RemixPlan r;r.source_sha256=source.sha256;r.synthetic_source=synthetic;r.consent_confirmed=consent;r.strategy=strategy;
     auto& p=r.music;p.seed=seed;p.sample_rate=source.sample_rate;
     p.tempo_milli_bpm=j.at("tempo_milli_bpm").integer(300000);
+    if (j.has("tempo_changes")) for (const auto& change:j.at("tempo_changes").array(1,64)) {
+        change.keys({"start_tick","tempo_milli_bpm"});
+        p.tempo_changes.push_back({change.at("start_tick").integer(),change.at("tempo_milli_bpm").integer(300000)});
+    }
     const auto& signature=j.at("time_signature").array(2,2);
     p.numerator=static_cast<int>(signature[0].integer(16));p.denominator=static_cast<int>(signature[1].integer(16));
     p.bars=static_cast<int>(j.at("target_bars").integer(256));p.tail_ms=j.at("tail_ms").integer(10000);
@@ -225,13 +231,18 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
     }
     std::size_t notes=0;
     for (const auto& t:j.at("tracks").array(1,32)) {
-        t.keys({"instrument","gain_db","pan","events"},{"sound"});
+        t.keys({"instrument","gain_db","pan","events"},{"sound","automation"});
+        if (!timeline && t.has("automation")) reject("mix automation requires plan version 1.3");
         Track track;const auto& name=t.at("instrument").string();
         if (name=="piano") track.instrument=Instrument::piano;
         else if (name=="bass") track.instrument=Instrument::bass;
         else if (name=="drums") track.instrument=Instrument::drums;
         else reject("unsupported instrument/asset");
         track.gain_db=t.at("gain_db").number();track.pan=t.at("pan").number();
+        if (t.has("automation")) for (const auto& point:t.at("automation").array(1,128)) {
+            point.keys({"start_tick","gain_db","pan"});
+            track.automation.push_back({point.at("start_tick").integer(),point.at("gain_db").number(),point.at("pan").number()});
+        }
         if (t.has("sound")) {
             const auto& sound=t.at("sound").string();
             if (sound!="acoustic" && sound!="electronic") reject("unsupported sound bank");

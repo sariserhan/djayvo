@@ -7,11 +7,19 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
-Latest local engine work: [hip-hop composition variety](hiphop-diversity.md).
+Latest local engine work: [tempo maps and mix automation](timeline.md).
+Optional 1.3-remix plans support step tempo changes and smooth instrument gain/pan
+movement. Notes, vocals, echoes and stems share timing. M5/Linux release, 40 exact
+WAVs, schema/import and WASM core checks pass. Four private comparisons:
+`renders/timeline-20261018/review/index.html`. New listening remains NOT RUN;
+default app generation is unchanged. Current smoke reference:
+`renders/arrangement-linux/timeline-20261018/fixture`, with a fresh output directory.
+Final M5 ASan/UBSan 10/10 and actual Mac smoke: PASS; see the linked report.
+Previous local engine work: [hip-hop composition variety](hiphop-diversity.md).
 Default hip-hop now varies harmony, coordinated rhythms and swing by seed.
 Four matched owner pairs: `renders/hiphop-diversity-20261018/review/index.html`.
 M5/Linux release, exact 45-WAV portability, preserved voice and four-style WASM
-checks pass; human acceptance remains NOT RUN. Current smoke reference:
+checks pass; human acceptance remains NOT RUN. That phase used smoke reference:
 `renders/arrangement-linux/hiphop-diversity-20261018/fixture`; use a fresh output
 directory. Old hip-hop scores replay exactly, but regeneration uses the new
 arranger. Other style outputs are unchanged. Final M5 sanitizer tests pass 10/10.

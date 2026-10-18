@@ -1,0 +1,60 @@
+Checking chromium
+Checking webkit
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/djayvo/renders/timeline-20261018/review/index.html",
+    "players": 8,
+    "durations_seconds": [
+      32,
+      32.15872916666667
+    ],
+    "play_seek_pause_exclusivity": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "/tmp/djayvo-timeline-chromium-desktop.png",
+      "/tmp/djayvo-timeline-chromium-mobile.png"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/djayvo/renders/timeline-20261018/review/index.html",
+    "players": 8,
+    "durations_seconds": [
+      32,
+      32.15872916666667
+    ],
+    "play_seek_pause_exclusivity": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "/tmp/djayvo-timeline-webkit-desktop.png",
+      "/tmp/djayvo-timeline-webkit-mobile.png"
+    ]
+  }
+]
