@@ -21,7 +21,7 @@ extern "C" int djayvo_render_file_cancellable(const DjayvoRenderOptions* options
     try {
         if (!options || options->struct_size!=sizeof(DjayvoRenderOptions) ||
             options->abi_version!=DJAYVO_ABI_VERSION || !options->input_path || !options->output_prefix ||
-            options->strategy>4 || (options->flags & ~(DJAYVO_CONSENT|DJAYVO_SYNTHETIC_FIXTURE|DJAYVO_STEMS)))
+            options->strategy>5 || (options->flags & ~(DJAYVO_CONSENT|DJAYVO_SYNTHETIC_FIXTURE|DJAYVO_STEMS)))
             throw std::invalid_argument("invalid Djayvo ABI options");
         std::vector<djayvo::Strategy> strategies;
         if (options->strategy==0) strategies={djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental};

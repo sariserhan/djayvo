@@ -9,7 +9,23 @@ master specification is unchanged. The original M0a record is
 [m0a-report.md](m0a-report.md), with its initial Git commit `02d0e18`.
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
-Latest continuation: [reproducible evaluation preparation](evaluation-batch.md).
+
+Latest musical continuation: [original electronic club direction](club-direction.md).
+The new explicit `club` strategy adds 14 original electronic one-shots, kick
+ducking, a 140 BPM build/drop/break/return and three differently opened
+36-second owner mixes. Nine suites pass on M5 release/sanitizers and Linux arm64
+(10 foundation + 13 remix groups), with final metadata regressions also passing.
+Four club masters/eight stems match byte-for-byte across OSes; plans/event frames
+agree exactly. All 15 checked v4 owner WAVs remain unchanged. Both full voice
+hooks match within 0.0000242 PCM error. Eight matched local players have passed
+muted browser playback; this supplies no listening evidence.
+
+**Club listening/reference similarity: NOT RUN. Production quality: PARTIAL.**
+Master specification, supplied speech fixture and original recordings remain
+unchanged. The v4 frozen pilot is historical; it does not evaluate club. See
+[the current report](evidence/club-direction/report.json) and [tracker](../TODO.md).
+
+Previous continuation: [reproducible evaluation preparation](evaluation-batch.md).
 Eight suites pass on M5 release/sanitizers and Linux arm64. A frozen local pilot
 contains one owner source × three styles × three seeds, three baselines and
 three blind packets. Distinct block/answer IDs prevent different seeds from
@@ -75,10 +91,10 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Gate | Status | Evidence |
 | --- | --- | --- |
 | Linux release build | PASS | Current aarch64 Debian 12 container, GCC 12.2; physical Intel rerun NOT RUN |
-| C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 12 remix test groups |
+| C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 13 remix test groups |
 | C ABI | PASS | Compiled-C render, bounded errors, ABI and additive cancellation/retry checked |
-| End-to-end tests | PASS | Current Mac/Linux: CTest 8/8 including asset integrity and evaluation preparation |
-| ASan/UBSan | PASS | Current Mac: same eight suites, no findings |
+| End-to-end tests | PASS | Current Mac/Linux: CTest 9/9 including both asset banks and evaluation preparation |
+| ASan/UBSan | PASS | Current Mac: nine suites plus final export/C ABI regression, no findings |
 | Evaluation preparation | PASS | Frozen actual one-source/three-seed pilot; nine unchanged candidate WAVs, distinct codes and blank ratings |
 | Dataset/preregistration | PARTIAL | Owner has no additional clips; diverse cohort and reviewer assignments missing |
 | Input decoding/bounds | PASS | PCM16/24/32, float32 and validated extensible variants; original owner WAV accepted; corruption/layout/precision/padding rejected |
@@ -97,7 +113,7 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Audio bounds/headroom | PASS | Independent decoding of all 22 new master/stem/control WAVs; zero full-scale samples; finite engine output; silent final 100 ms |
 | Determinism | PASS | 48 kHz speech remixes byte-identical at 512/113 blocks; 16 kHz integration repeats too |
 | Formal export schemas | PASS | Preinstalled jsonschema 4.19.2 validates M0a/all remix exports; rejects recorded-kind without consent |
-| Dependencies/assets | PASS | No third-party DSP runtime; 53 pinned CC0 acoustic recordings, notices and hashes; speech tool inventoried |
+| Dependencies/assets | PASS | No third-party DSP runtime; 53 pinned CC0 acoustic recordings plus 14 original electronic one-shots; notices/hashes retained |
 | Master specification | PASS | Original SHA-256 unchanged |
 | Consented human recording technical render | PASS | One owner-supplied 4.862 s source; three masters and 12 stems decoded; [trial](voice-trial.md) |
 | Human speech recognition by listeners | NOT RUN | No actual listener observations |

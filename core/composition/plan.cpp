@@ -42,7 +42,8 @@ void validate(const PerformancePlan& p) {
     tick_to_frame(0, p.sample_rate, p.tempo_milli_bpm);
     const Tick bar = ticks_per_bar(p);
     if (p.bars < 1 || p.bars > 256 || p.tail_ms < 500 || p.tail_ms > 10000 ||
-        !std::isfinite(p.ceiling_dbfs) || p.ceiling_dbfs > -0.1 || p.ceiling_dbfs < -24.0)
+        !std::isfinite(p.ceiling_dbfs) || p.ceiling_dbfs > -0.1 || p.ceiling_dbfs < -24.0 ||
+        !std::isfinite(p.kick_duck_db) || p.kick_duck_db>0 || p.kick_duck_db < -12)
         throw std::invalid_argument("invalid duration, tail, or mix ceiling");
     int next_bar = 0;
     for (const auto& s : p.sections) {
@@ -89,7 +90,9 @@ void write_score(const PerformancePlan& p, const std::string& path) {
         << ",\n  \"time_signature\": [" << p.numerator << ", " << p.denominator
         << "],\n  \"target_bars\": " << p.bars
         << ",\n  \"strategy\": \"m0a_four_bar\",\n  \"tail_ms\": " << p.tail_ms
-        << ",\n  \"mix\": {\"master_target_peak_dbfs\": " << p.ceiling_dbfs << "},\n  \"sections\": [";
+        << ",\n  \"mix\": {\"master_target_peak_dbfs\": " << p.ceiling_dbfs;
+    if (p.kick_duck_db!=0) out<<", \"kick_duck_db\": "<<p.kick_duck_db;
+    out << "},\n  \"sections\": [";
     for (std::size_t i = 0; i < p.sections.size(); ++i) {
         const auto& s = p.sections[i];
         out << (i ? "," : "") << "\n    {\"name\": \"" << s.name << "\", \"start_bar\": "
@@ -99,7 +102,9 @@ void write_score(const PerformancePlan& p, const std::string& path) {
     for (std::size_t i = 0; i < p.tracks.size(); ++i) {
         const auto& t = p.tracks[i];
         out << (i ? "," : "") << "\n    {\"instrument\": \"" << instrument_name(t.instrument)
-            << "\", \"gain_db\": " << t.gain_db << ", \"pan\": " << t.pan << ", \"events\": [";
+            << "\", \"gain_db\": " << t.gain_db << ", \"pan\": " << t.pan;
+        if (t.electronic) out<<", \"sound\": \"electronic\"";
+        out<<", \"events\": [";
         for (std::size_t j = 0; j < t.notes.size(); ++j) {
             const auto& n = t.notes[j];
             out << (j ? "," : "") << "\n      {\"start_tick\": " << n.start << ", \"duration_ticks\": "

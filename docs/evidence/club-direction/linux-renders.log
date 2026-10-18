@@ -1,0 +1,32 @@
+[  4%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/wav.cpp.o
+[  8%] Linking CXX static library libdjayvo_core.a
+[ 56%] Built target djayvo_core
+[ 60%] Linking CXX executable djayvo_render
+[ 65%] Linking CXX executable djayvo_remix
+[ 69%] Linking CXX executable djayvo_tests
+[ 73%] Linking CXX executable djayvo_remix_tests
+[ 78%] Built target djayvo_tests
+[ 82%] Built target djayvo_remix
+[ 86%] Built target djayvo_render
+[ 91%] Built target djayvo_remix_tests
+[ 95%] Linking CXX executable djayvo_c_smoke
+[100%] Built target djayvo_c_smoke
+Internal ctest changing into directory: /work/build
+Test project /work/build
+    Start 7: remix_integration
+1/1 Test #7: remix_integration ................   Passed    4.21 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   4.21 sec
+PASS: /out/club-v7/legacy.hiphop.wav
+PASS: /out/club-v7/legacy.reggae.wav
+PASS: /out/club-v7/legacy.experimental.wav
+PASS: complete export /out/club-v7/legacy.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/club-v7/fixture.club.wav
+PASS: complete export /out/club-v7/fixture.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/club-v7/owner.club.wav
+PASS: complete export /out/club-v7/owner.complete.json
+Listening/recognizability: NOT RUN

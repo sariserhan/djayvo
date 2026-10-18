@@ -1,0 +1,714 @@
+{
+  "gates": {
+    "m5_execution": "PASS",
+    "linux_arm64_execution": "PASS",
+    "native_release_suites": "PASS",
+    "asan_ubsan_suites": "PASS",
+    "linux_release_suites": "PASS",
+    "audition_playback": "PASS",
+    "plans_and_event_frames": "PASS",
+    "waveform_comparison": "PASS",
+    "original_styles_preserved": "PASS",
+    "bounds_and_clean_hooks": "PASS",
+    "schemas_and_export_hashes": "PASS",
+    "protected_inputs_unchanged": "PASS",
+    "club_listening": "NOT RUN",
+    "reference_style_similarity": "NOT RUN",
+    "production_quality": "PARTIAL",
+    "formal_m1": "NOT RUN",
+    "iphone": "NOT RUN",
+    "release": "NOT RUN"
+  },
+  "environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "cpu_brand": "Apple M5",
+    "memory_bytes": 17179869184,
+    "cpu_cores": 10,
+    "macos_version": "26.7.1",
+    "macos_build": "25G241",
+    "kernel_release": "25.6.0",
+    "xcode": "Xcode 27.1\nBuild version 27A9275",
+    "developer_directory": "/Applications/Xcode.app/Contents/Developer",
+    "sdk_version": "27.0",
+    "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "cmake": "cmake version 4.4.2",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "python_executable": "/Users/serhansari/Documents/projects/djayvo/.venv-build/bin/python",
+    "renderer_binary": "build-mac/djayvo_remix: Mach-O 64-bit executable arm64"
+  },
+  "comparisons": {
+    "owner": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "fixture": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "seed4124": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "seed4125": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "block113": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "legacy-fixture-hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "legacy-fixture-reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "legacy-fixture-experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "stem_comparisons": {
+    "owner.piano": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner.bass": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner.drums": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner.vocals": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "fixture.piano": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "fixture.bass": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "fixture.drums": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "fixture.vocals": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "block113.piano": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "block113.bass": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "block113.drums": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "block113.vocals": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "legacy_regression": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "hiphop.piano": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "hiphop.bass": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "hiphop.drums": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "hiphop.vocals": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae.piano": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae.bass": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae.drums": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae.vocals": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental.piano": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental.bass": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental.drums": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental.vocals": {
+      "status": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "measurements": {
+    "remix.club.bass.wav": {
+      "file": "renders/voice-club-v7/final/remix.club.bass.wav",
+      "sha256": "d4026c8d2cd52d2cf0e03bf17b377186b7c4a8ea45161bed972e28fe4ba5cf6e",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.4002685546875,
+      "peak_dbfs": -7.952970539247806,
+      "rms_dbfs_left": -19.425618555576186,
+      "rms_dbfs_right": -19.631562633579435,
+      "dc_left": 0.0005554362730118148,
+      "dc_right": 0.000555426986575347,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 498860,
+      "last_nonzero_frame": 1617376,
+      "max_adjacent_sample_step": 0.04400634765625,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.club.vocals.wav": {
+      "file": "renders/voice-club-v7/final/remix.club.vocals.wav",
+      "sha256": "2d3b1dc781e05f7598c895adbf77a7b91f1044dcb2ba9c930edc10922a6ed0dc",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.40045166015625,
+      "peak_dbfs": -7.9489980307687444,
+      "rms_dbfs_left": -31.127711704778417,
+      "rms_dbfs_right": -31.01404145909575,
+      "dc_left": -6.798565094992275e-06,
+      "dc_right": -6.602796501302022e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 2,
+      "last_nonzero_frame": 1552301,
+      "max_adjacent_sample_step": 0.30535888671875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.club.wav": {
+      "file": "renders/voice-club-v7/final/remix.club.wav",
+      "sha256": "b4b045e6148234db0a3a94d08fcc53b97a6c047cd9a9204a9c73427aaf862334",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.59857177734375,
+      "peak_dbfs": -4.457675279914106,
+      "rms_dbfs_left": -18.46770846879712,
+      "rms_dbfs_right": -18.670040769905413,
+      "dc_left": 0.0006325839221809666,
+      "dc_right": 0.0006331642894170538,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 2,
+      "last_nonzero_frame": 1623889,
+      "max_adjacent_sample_step": 0.30535888671875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "fixture.club.bass.wav": {
+      "file": "renders/voice-club-v7/final/fixture.club.bass.wav",
+      "sha256": "0f51fbd8cbc0a2273ff63bf82e3f57856d81ed044d90e3036eabede5de6e96b6",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.336456298828125,
+      "peak_dbfs": -9.461426736396835,
+      "rms_dbfs_left": -19.784007836395723,
+      "rms_dbfs_right": -19.964849147005758,
+      "dc_left": 0.000516785195788773,
+      "dc_right": 0.0005167873859860531,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 498860,
+      "last_nonzero_frame": 1617415,
+      "max_adjacent_sample_step": 0.040557861328125,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "fixture.club.piano.wav": {
+      "file": "renders/voice-club-v7/final/fixture.club.piano.wav",
+      "sha256": "7956072b93dbb23cd88657ec4a542428a1a25723239681014720679f454e1da4",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.16253662109375,
+      "peak_dbfs": -15.780975457135911,
+      "rms_dbfs_left": -36.272160574101,
+      "rms_dbfs_right": -40.529739256251816,
+      "dc_left": -1.213229120585383e-06,
+      "dc_right": -7.386571739192686e-07,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 12,
+      "last_nonzero_frame": 1623806,
+      "max_adjacent_sample_step": 0.00775146484375,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "fixture.club.drums.wav": {
+      "file": "renders/voice-club-v7/final/fixture.club.drums.wav",
+      "sha256": "089943e9a4eebcb8169285a2f99cd16d685c931c8b81bf19194cdef7ac3c84af",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.49066162109375,
+      "peak_dbfs": -6.184358212668362,
+      "rms_dbfs_left": -27.057243230449576,
+      "rms_dbfs_right": -26.937528702280233,
+      "dc_left": 8.431791702495537e-05,
+      "dc_right": 8.4325223523082e-05,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 329145,
+      "last_nonzero_frame": 1582079,
+      "max_adjacent_sample_step": 0.274505615234375,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "seed4124.club.wav": {
+      "file": "renders/voice-club-v7/final/seed4124.club.wav",
+      "sha256": "29e86c02b95a1d8a1723073ff72863a90dfa607e7c40e8d605e494e15d892335",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.53497314453125,
+      "peak_dbfs": -5.43336037731846,
+      "rms_dbfs_left": -18.545483014971502,
+      "rms_dbfs_right": -18.743372366342697,
+      "dc_left": 0.0006222009503035695,
+      "dc_right": 0.0006228190064544538,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 3,
+      "last_nonzero_frame": 1623883,
+      "max_adjacent_sample_step": 0.30535888671875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "seed4125.club.wav": {
+      "file": "renders/voice-club-v7/final/seed4125.club.wav",
+      "sha256": "f075285c214f2e524107a33759e3e2db6350944d80cc4b29ded9dbd996e1c409",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.55133056640625,
+      "peak_dbfs": -5.1717585812663,
+      "rms_dbfs_left": -18.434285806190353,
+      "rms_dbfs_right": -18.633736003159328,
+      "dc_left": 0.0006332333770000593,
+      "dc_right": 0.0006338416561102849,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 16,
+      "last_nonzero_frame": 1623889,
+      "max_adjacent_sample_step": 0.30535888671875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "fixture.club.wav": {
+      "file": "renders/voice-club-v7/final/fixture.club.wav",
+      "sha256": "4da03fb51cae96af04c7c6867bfec610989452e7d4ff7f8c2de567a857feca91",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.514129638671875,
+      "peak_dbfs": -5.778547181923374,
+      "rms_dbfs_left": -18.83238321800244,
+      "rms_dbfs_right": -19.015546069288046,
+      "dc_left": 0.0006891638141668118,
+      "dc_right": 0.0006924669120105521,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 2,
+      "last_nonzero_frame": 1623806,
+      "max_adjacent_sample_step": 0.2515869140625,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "fixture.club.vocals.wav": {
+      "file": "renders/voice-club-v7/final/fixture.club.vocals.wav",
+      "sha256": "55158a816d5caeb35e8beb4d243e73408e52b178d2b76003a87b8cd8aaa39d75",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.40045166015625,
+      "peak_dbfs": -7.9489980307687444,
+      "rms_dbfs_left": -32.81613799596683,
+      "rms_dbfs_right": -32.83044676239722,
+      "dc_left": 8.844978551951016e-05,
+      "dc_right": 9.126911258800777e-05,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 2,
+      "last_nonzero_frame": 1551267,
+      "max_adjacent_sample_step": 0.1346435546875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.club.piano.wav": {
+      "file": "renders/voice-club-v7/final/remix.club.piano.wav",
+      "sha256": "99342569775b33581718b201d5766d15875550832595a29e6f01ad80e5927d69",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.173583984375,
+      "peak_dbfs": -15.20980694476016,
+      "rms_dbfs_left": -36.59438214684102,
+      "rms_dbfs_right": -41.0752382718405,
+      "dc_left": -1.0382411186893342e-06,
+      "dc_right": -6.538877783877692e-07,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 16,
+      "last_nonzero_frame": 1623889,
+      "max_adjacent_sample_step": 0.009124755859375,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.club.drums.wav": {
+      "file": "renders/voice-club-v7/final/remix.club.drums.wav",
+      "sha256": "ae96912abaf76496f15b2d60b20ad4775b89fb0bac09f1604a716a04956cdfcd",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.49066162109375,
+      "peak_dbfs": -6.184358212668362,
+      "rms_dbfs_left": -27.063175024722206,
+      "rms_dbfs_right": -26.94328071923223,
+      "dc_left": 8.451053173456219e-05,
+      "dc_right": 8.451916987263516e-05,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 329147,
+      "last_nonzero_frame": 1582079,
+      "max_adjacent_sample_step": 0.274505615234375,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    }
+  },
+  "sections": [
+    {
+      "name": "intro",
+      "start_bar": 0,
+      "bars": 2,
+      "start_seconds": 0.0,
+      "rms_dbfs": -31.26369514306603,
+      "mono_20_150hz_energy_fraction": 0.2433652596524691
+    },
+    {
+      "name": "build",
+      "start_bar": 2,
+      "bars": 4,
+      "start_seconds": 3.4285625,
+      "rms_dbfs": -27.364332380496514,
+      "mono_20_150hz_energy_fraction": 0.42420984545536833
+    },
+    {
+      "name": "drop",
+      "start_bar": 6,
+      "bars": 4,
+      "start_seconds": 10.285708333333334,
+      "rms_dbfs": -15.452337325540135,
+      "mono_20_150hz_energy_fraction": 0.9071159142574802
+    },
+    {
+      "name": "break",
+      "start_bar": 10,
+      "bars": 4,
+      "start_seconds": 17.142854166666666,
+      "rms_dbfs": -28.43213410726375,
+      "mono_20_150hz_energy_fraction": 0.4306377685958403
+    },
+    {
+      "name": "return",
+      "start_bar": 14,
+      "bars": 5,
+      "start_seconds": 24.0,
+      "rms_dbfs": -15.270227360634,
+      "mono_20_150hz_energy_fraction": 0.8968810392785043
+    },
+    {
+      "name": "ending",
+      "start_bar": 19,
+      "bars": 1,
+      "start_seconds": 32.5714375,
+      "rms_dbfs": -17.635962101048484,
+      "mono_20_150hz_energy_fraction": 0.9300911456967771
+    }
+  ],
+  "clean_hook_maximum_pcm_errors": [
+    2.4150396117417205e-05,
+    2.364233950991057e-05
+  ],
+  "exports": [
+    {
+      "prefix": "renders/voice-club-v7/final/remix",
+      "status": "PASS",
+      "artifacts": 8
+    },
+    {
+      "prefix": "renders/voice-club-v7/final/seed4124",
+      "status": "PASS",
+      "artifacts": 4
+    },
+    {
+      "prefix": "renders/voice-club-v7/final/seed4125",
+      "status": "PASS",
+      "artifacts": 4
+    },
+    {
+      "prefix": "renders/voice-club-v7/final/block113",
+      "status": "PASS",
+      "artifacts": 8
+    },
+    {
+      "prefix": "renders/voice-club-v7/final/fixture",
+      "status": "PASS",
+      "artifacts": 8
+    },
+    {
+      "prefix": "renders/voice-club-v7/final/legacy",
+      "status": "PASS",
+      "artifacts": 24
+    },
+    {
+      "prefix": "renders/arrangement-linux/club-v7/owner",
+      "status": "PASS",
+      "artifacts": 8
+    },
+    {
+      "prefix": "renders/arrangement-linux/club-v7/seed4124",
+      "status": "PASS",
+      "artifacts": 4
+    },
+    {
+      "prefix": "renders/arrangement-linux/club-v7/seed4125",
+      "status": "PASS",
+      "artifacts": 4
+    },
+    {
+      "prefix": "renders/arrangement-linux/club-v7/fixture",
+      "status": "PASS",
+      "artifacts": 8
+    },
+    {
+      "prefix": "renders/arrangement-linux/club-v7/legacy",
+      "status": "PASS",
+      "artifacts": 24
+    }
+  ],
+  "protected_input_hashes": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/djayvo-my-voice.m4a": "24059b23a8a9b6f0de55b5854feee81675c31cbf92b305ce5dac5052a0547ec4",
+    "/Users/serhansari/Downloads/blood_club.mp3": "12cad3d3b5d66383d69207630d09d66d5203d963ab48d0f0ade7d1ee32672188"
+  },
+  "engine_binary_sha256": "7dfb65446f746b5e00a0793019b9620168ba4fa6f16f4a5e932037a3fd8a10af",
+  "instrument_manifest_sha256": "2d94ee1f82b81723e6d50d087ef18445d03a4dadd78c79ced83913669b9c3311",
+  "verification_logs": [
+    "mac-smoke.log",
+    "linux-tests.log",
+    "sanitizer-tests.log",
+    "sanitizer-final-tests.log"
+  ],
+  "source_file_sha256": {
+    "core/arrangement/demo.cpp": "0f2080bf64010ebd9a8591039b8aa51be7c48502f9a9b2f51e16b8cf5624a641",
+    "core/arrangement/remix.cpp": "2ebb39ba5a431d4425ca6f97cbd25a33fa095bd80fdc367477c8db1230d18652",
+    "core/audio/c_api.cpp": "f150ca1c36a7a7500381a230465d03391a874b8ec3e13c2cc5af98789ece9004",
+    "core/audio/input.cpp": "f733d2ab9de7ec813450bbc2e85bf211bd6ec5b16c49a49e3bff051d6bb1a5f4",
+    "core/audio/remix_file.cpp": "0f30ffa6e8ae53d76da1a5348d6952bc0a5cce01adbf335f97120a77d919965c",
+    "core/audio/remix_renderer.cpp": "3563ea0c027a5e6e9bcdf5a0e9a52928d2da315b6d54d8c9099c4e5a36ea8873",
+    "core/audio/renderer.cpp": "2f44ccc0de5211dfe795080e01f82252fc933b2e3fb66cd851b0bb742df8aef0",
+    "core/audio/wav.cpp": "881712285a1b98cc7fc82c2abd0da8de06a334ca8ad0bbc4f34676cc1eada22a",
+    "core/composition/analysis.cpp": "2b9407dd03618f51fd68d0de93e90b0163c01fc94501a1eebc32932b135bec33",
+    "core/composition/plan.cpp": "2baec6d0e0684f6b77a852f34e280eb7e337fe7ed8cb857697d3bae196772abd",
+    "core/composition/remix_plan.cpp": "156bac4fd5c6f92c0280e77b1f25b6ab16f60edbe6a9b1118332a46ef1a18446",
+    "core/include/djayvo/audio.h": "1b2941dcf4f6bd99f6a07869ea236363ac3b32870c154a3131a00ffc99570cc5",
+    "core/include/djayvo/djayvo_c.h": "6a36ecf56b06fbeb1bb203fe9a70404d96b5fc6887b0defbbaf38a1d8755f7e5",
+    "core/include/djayvo/music.h": "43ee1ff5045681256e301489a4caea1f0eabf8335cd9293bb1319bd839d532e1",
+    "core/include/djayvo/remix.h": "851d19fde47e111cb21a72120b557b178c298ab2dca19c19e6a8bdd21326be5e",
+    "core/instruments/acoustic_bank.inc": "1e20b09ce6f9c34d71a83aaae0467229b9f6e1b15468796cb7d1ea6ea8a785d0",
+    "core/instruments/electronic_bank.inc": "143927d6185fa7629886f228680dc59d289e8d00d8a598d01e9f60dc977c74eb",
+    "core/instruments/voice.cpp": "77fc3fc75928195c797570a64a671b2637fe12a9f84c7996cbe1d75081d837e1",
+    "core/tests/c_api_smoke.c": "63bac79e659e1d312f73ff368a2c2e9247600cde0c57749e55201e57ce9999a7",
+    "core/tests/remix_tests.cpp": "d8c3b2f65fb195f3461e7ba02eb3396f99c02330b63393d52bfddfe618fa5575",
+    "core/tests/tests.cpp": "6bbc6895ffe19b6524c9d6c53d54b67fb5a4d85e4ea75d2bfa25e4f6f903bfd9",
+    "schemas/export-completion.schema.json": "d49464b04da5c656f1042d624d79b782185d009f1c947ed8dfdf5aa45d2d26db",
+    "schemas/performance-plan.schema.json": "184c71d685639a6f5eee7aaad344dd7b763eb5bb331f8e51854c84655c58dbfc",
+    "schemas/remix-plan.schema.json": "b93db9b9ed11164e1cc8cfe08e0522068675133ad2f642db8db7669e798fe74a",
+    "scripts/benchmark_render.py": "59227af9a082cc95aa5b2f50be4289cd773c73faaa0c447fa56a2fce48451820",
+    "scripts/compare_portability.py": "7b0d4cefaaeaaa60cc36d2a81ba843a23c9f3b895e8a8c65ed4387ed42d727bf",
+    "scripts/inspect_wav.py": "5c97e4ec3acd159af6d3e6b38ac32ee4b16d8c82239063da00ba509b7b31a74e",
+    "scripts/make_fixture.py": "10370a739568bb2b1f1fab7264da4b35e65e3add31f4dbc7c35783c1c9e1cc5d",
+    "scripts/package_handoff.py": "3255041c539bd9a1006215db6aff46f7c94141bb3327ffdcef4a5de98d8c3696",
+    "scripts/prepare_acoustic_bank.py": "73a6ef5b388ae0ee69e3a63f02e46ad701cd42010063bb2995f2525d81074f5e",
+    "scripts/prepare_electronic_bank.py": "cc6fcff8cf52cffa6b6fad2862258ba7406f988740590d49b2dc75715de6ee3d",
+    "scripts/prepare_evaluation.py": "300d19fade061dd904427c645bc988bcb0f03358d3c9457cc77530e701363b51",
+    "scripts/prepare_listening.py": "305b789608326f8dfcb476eeb9bd40b75c32fc0fd678bed2eafc2fe1311bef1c",
+    "scripts/remix_recording.py": "306104ef93cfcf24e66f2764b05380f8bf3ce4ebf96ba59b5f72ade6a73fb19c",
+    "scripts/verify_acoustic_assets.py": "d49da342b67a618bda4080ae1d4622acb46086aa9b990acf62378c95284cd755",
+    "scripts/verify_electronic_assets.py": "b37f9c4cdba96c1d0ec1bf0cf143fa403d8e73f89a2c99e324833ed10c7c69e0",
+    "scripts/verify_export.py": "8737880a75dfbeb553d1beb198c800d6798654728ac74a954929da938824fa6d",
+    "tests/integration/verify_evaluation.py": "287331824f55c7f263416688d85a2301e6e56059a982d4a90e1d2a13e8aa786c",
+    "tests/integration/verify_recording.py": "b6d9c6b2063444836330499f99015a564f1477d2c86dc5e7c06948d5d66cfe6b",
+    "tests/integration/verify_remix.py": "2ece2ea33352341565e6daa822ece8f1f685f0c4017ea6cf4cecc79735e724a0",
+    "tests/integration/verify_render.py": "0be2d55147c672223c047f5ab35d00155490b3bc04cd1eda892201192ef62a5a",
+    "tests/integration/verify_tools.py": "d7de762afc07982f37a48fe3564e7147f059fb2dbea1ccd037cccc765cf37f18",
+    "tools/cli/main.cpp": "36a2f80ff4087d99f2eedfff095e234f88952f925d84191fe2ec3259a386e7da",
+    "tools/cli/remix_main.cpp": "3f10be675c4529d1299e89fda290ba6e1e907846416712e5cb344050901cf679"
+  }
+}

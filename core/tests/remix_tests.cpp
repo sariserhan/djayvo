@@ -93,7 +93,7 @@ void preservation() {
     for(std::size_t i=100;i<a.mono.size()-100;++i)
         check(std::abs(vocals[(hook+i)*2]-a.mono[i]*gain)<1e-6,"clean hook was changed beyond gain/edge fades");
     const auto frames=djayvo::compile(p.music).total_frames;
-    for(auto strategy:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental}) {
+    for(auto strategy:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club}) {
         auto plan=djayvo::make_remix(a,djayvo::analyze(a),strategy,4123,true,false);
         const auto audio=render(plan,a,512);
         check(audio==render(plan,a,113),"remix depends on block size");
@@ -119,6 +119,9 @@ void validation() {
     for (double mix:{-0.01,0.36,std::numeric_limits<double>::quiet_NaN()}) {
         bad=p;bad.instrument_room_mix=mix;rejects([&]{djayvo::validate(bad,a);});
     }
+    for (double duck:{-12.01,0.01,std::numeric_limits<double>::quiet_NaN()}) {
+        bad=p;bad.music.kick_duck_db=duck;rejects([&]{djayvo::validate(bad,a);});
+    }
     bad=p;bad.music.tail_ms=500;
     bad.music.tracks[0].notes={{djayvo::ticks_per_bar(bad.music)*bad.music.bars-960,960,60,70}};
     rejects([&]{djayvo::validate(bad,a);});
@@ -135,7 +138,7 @@ void vocal_spacing() {
         auto analysis=djayvo::analyze(a);
         // These distinct onsets collapse onto one reggae offbeat.
         analysis.onsets={800,1600,2400,3200,4000,4800};
-        for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental}) {
+        for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club}) {
             auto p=djayvo::make_remix(a,analysis,style,4123,true,false);
             const auto start=[&](const djayvo::VocalEvent& e) {
                 return djayvo::tick_to_frame(e.start,a.sample_rate,p.music.tempo_milli_bpm);
@@ -173,7 +176,7 @@ void vocal_spacing() {
 }
 void varied_openings() {
     const auto a=source();const auto analysis=djayvo::analyze(a);
-    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental}) {
+    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club}) {
         bool clean_first=false,instrument_first=false,chop_first=false;
         for (std::uint32_t seed=4123;seed<4126;++seed) {
             const auto p=djayvo::make_remix(a,analysis,style,seed,true,false);
@@ -222,11 +225,41 @@ void pause_aware_chops() {
     }
 }
 void no_allocations() {
-    const auto a=source();const auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::experimental,4123,true,false);
-    djayvo::RemixRenderer r(p,a,512);float buffer[1024]{};
-    const auto before=allocations.load();
-    while(!r.finished()) r.process(buffer,512);
-    const auto after=allocations.load();check(before==after,"sample render allocated memory");
+    const auto a=source();
+    for (auto style:{djayvo::Strategy::experimental,djayvo::Strategy::club}) {
+        const auto p=djayvo::make_remix(a,djayvo::analyze(a),style,4123,true,false);
+        djayvo::RemixRenderer r(p,a,512);float buffer[1024]{};
+        const auto before=allocations.load();
+        while(!r.finished()) r.process(buffer,512);
+        const auto after=allocations.load();check(before==after,"sample render allocated memory");
+    }
+}
+void club_direction() {
+    const auto a=source();auto features=djayvo::analyze(a);
+    auto p=djayvo::make_remix(a,features,djayvo::Strategy::club,4123,true,false);
+    const auto bar=djayvo::ticks_per_bar(p.music);
+    check(p.music.tempo_milli_bpm==140000 && p.music.bars==20,"club tempo/form wrong");
+    check(p.music.sections.size()==6 && p.music.sections[2].name=="drop","club lacks build/drop form");
+    for (const auto& t:p.music.tracks) check(t.electronic,"club selected acoustic palette");
+    for (const auto& n:p.music.tracks[1].notes)
+        check((n.start>=6*bar && n.start<10*bar) || n.start>=14*bar,"bass masks build/break");
+    auto altered=features;altered.onsets={800,1700,2600};
+    auto other=djayvo::make_remix(a,altered,djayvo::Strategy::club,4123,true,false);
+    bool rhythm_changed=false;
+    const auto& bass=p.music.tracks[1].notes;
+    const auto& other_bass=other.music.tracks[1].notes;
+    check(bass.size()==other_bass.size(),"unexpected club note-count change");
+    for (std::size_t i=0;i<bass.size();++i) rhythm_changed|=bass[i].start!=other_bass[i].start;
+    check(rhythm_changed,"club bass ignores source rhythm");
+    auto dry=p;dry.music.kick_duck_db=0;
+    const auto ducked=render(p,a,257,false,1),unducked=render(dry,a,257,false,1);
+    double duck_energy=0,dry_energy=0;
+    for(std::size_t i=0;i<ducked.size();++i) {duck_energy+=ducked[i]*ducked[i];dry_energy+=unducked[i]*unducked[i];}
+    check(duck_energy<dry_energy*.99 && duck_energy>dry_energy*.2,"bass solo lost kick envelope or excessive ducking");
+    check(render(p,a,257,false,2)==render(dry,a,257,false,2),"kick envelope altered drums");
+    check(render(p,a,257,true)==render(dry,a,257,true),"kick envelope altered speech");
+    auto acoustic=p;for(auto& t:acoustic.music.tracks)t.electronic=false;
+    check(render(p,a,257,false,1)!=render(acoustic,a,257,false,1),"electronic palette has no effect");
 }
 void export_transactions() {
     namespace fs=std::filesystem;
@@ -327,6 +360,7 @@ int main() {
         {"pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates",pause_aware_chops},
         {"subtraction and return across styles and seeds",arrangement_contrast},
         {"instrument room timing, stereo, dry speech and finite tail",room_processing},
+        {"club form, input-driven bass, electronic palette and stem-consistent kick ducking",club_direction},
         {"cancel/render/publication rollback, concurrent destinations and stale-lock preservation",export_transactions},
         {"allocation-free sample and instrument processing",no_allocations}};
     int failures=0;

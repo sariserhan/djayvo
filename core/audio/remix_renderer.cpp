@@ -13,7 +13,10 @@ Schedule selected_schedule(const RemixPlan& plan,const AudioBuffer& source,bool 
     auto music=plan.music;
     for (auto& track : music.tracks)
         if (vocals_only || (solo>=0 && static_cast<int>(track.instrument)!=solo)) track.notes.clear();
-    return compile(music);
+    auto schedule=compile(music);
+    // Solo stems retain the full arrangement's kick-driven gain envelope.
+    if (music.kick_duck_db<0) schedule.kick_frames=compile(plan.music).kick_frames;
+    return schedule;
 }
 double limiter(double x,double ceiling) noexcept {
     const double knee=0.8*ceiling;

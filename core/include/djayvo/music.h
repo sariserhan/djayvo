@@ -24,6 +24,7 @@ struct Track {
     double gain_db = -9.0;
     double pan = 0.0; // -1 left .. +1 right, constant-power law
     std::vector<Note> notes;
+    bool electronic = false;
 };
 struct Section {
     std::string name;
@@ -41,6 +42,7 @@ struct PerformancePlan {
     double ceiling_dbfs = -1.0;
     std::vector<Section> sections;
     std::vector<Track> tracks;
+    double kick_duck_db = 0;
 };
 
 // Round absolute rational tick positions to nearest frame (ties upward).

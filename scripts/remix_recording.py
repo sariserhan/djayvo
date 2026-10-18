@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Convert a consented local M4A/WAV and render three mixes into a fresh folder.
+"""Convert a consented local M4A/WAV and render mixes into a fresh folder.
 
 Optional developer workflow: uses installed FFmpeg/ffprobe, never uploads audio.
 The portable renderer itself continues to depend only on C++17.
@@ -15,9 +15,12 @@ import wave
 from verify_export import verify_export
 
 
-def remix_recording(source, output, renderer, consent=False, seed=4123):
+def remix_recording(source, output, renderer, consent=False, seed=4123, style="all"):
     if not consent:
         raise ValueError('explicit consent is required before processing a recording')
+    if style not in ('all','hiphop','reggae','experimental','club'):
+        raise ValueError('unknown remix style')
+    styles=('hiphop','reggae','experimental') if style=='all' else (style,)
     source, output, renderer = Path(source).resolve(), Path(output).absolute(), Path(renderer).resolve()
     if source.suffix.lower() not in ('.m4a', '.wav') or not source.is_file() or not 44 <= source.stat().st_size <= 32*1024*1024:
         raise ValueError('supply a local M4A/WAV no larger than 32 MiB')
@@ -57,19 +60,19 @@ def remix_recording(source, output, renderer, consent=False, seed=4123):
             raise ValueError('original changed during conversion; retry from a stable recording')
         provenance={'source_sha256':original_hash,'converted_sha256':hashlib.sha256(converted.read_bytes()).hexdigest(),
                     'consent_confirmed':True,'processing':'local','input_duration_seconds':duration,
-                    'output_frames':frames,'sample_rate':48000,'channels':2,'seed':seed,
+                    'output_frames':frames,'sample_rate':48000,'channels':2,'seed':seed,'style':style,
                     'ffmpeg':subprocess.check_output([ffmpeg,'-version'],text=True).splitlines()[0]}
         (output/'source-provenance.json').write_text(json.dumps(provenance,indent=2)+'\n')
-        run=subprocess.run([str(renderer),'--input',str(converted),'--consent','--style','all','--stems',
+        run=subprocess.run([str(renderer),'--input',str(converted),'--consent','--style',style,'--stems',
                             '--seed',str(seed),'--output',str(output/'remix')],capture_output=True,text=True,timeout=180)
         (output/'render.log').write_text(run.stdout+run.stderr)
         if run.returncode:
             raise ValueError('renderer did not complete; see render.log; original and converted source are retained')
-        verify_export(output/'remix',('hiphop','reggae','experimental'))
-        cards=''.join(f'<section><h2>{style.capitalize()}</h2><audio controls preload="metadata" src="remix.{style}.wav"></audio><p><a href="remix.{style}.wav" download>Save WAV</a></p></section>' for style in ('hiphop','reggae','experimental'))
+        verify_export(output/'remix',styles)
+        cards=''.join(f'<section><h2>{style.capitalize()}</h2><audio controls preload="metadata" src="remix.{style}.wav"></audio><p><a href="remix.{style}.wav" download>Save WAV</a></p></section>' for style in styles)
         page='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Djayvo · your recording</title><style>body{font:18px/1.5 system-ui;max-width:780px;margin:40px auto;padding:0 20px;background:#f4f1eb;color:#242c29}section{background:white;padding:20px;margin:18px 0;border-radius:12px}audio{width:100%}a{color:#175b46}</style>
-<h1>Your recording, three mixes</h1><p>Listen for a recognizable voice, groove and natural instrument sound. Technical checks do not establish musical quality. Playback starts only when you press play.</p>'''+cards+'''<script>document.addEventListener('play',e=>{if(e.target.tagName==='AUDIO')document.querySelectorAll('audio').forEach(a=>{if(a!==e.target)a.pause()})},true)</script></html>'''
+<h1>Your recording, remixed</h1><p>Listen for a recognizable voice, groove and natural instrument sound. Technical checks do not establish musical quality. Playback starts only when you press play.</p>'''+cards+'''<script>document.addEventListener('play',e=>{if(e.target.tagName==='AUDIO')document.querySelectorAll('audio').forEach(a=>{if(a!==e.target)a.pause()})},true)</script></html>'''
         (output/'index.html').write_text(page)
         (output/'session.json').write_text(json.dumps({'status':'complete','input':'source-provenance.json','export':'remix.complete.json','listening':'NOT RUN'},indent=2)+'\n')
         return output/'index.html'
@@ -84,9 +87,10 @@ if __name__=='__main__':
     parser.add_argument('--renderer',type=Path,default=Path('build-mac/djayvo_remix'))
     parser.add_argument('--consent',action='store_true')
     parser.add_argument('--seed',type=int,default=4123)
+    parser.add_argument('--style',choices=('all','hiphop','reggae','experimental','club'),default='all')
     args=parser.parse_args()
     try:
-        page=remix_recording(args.input,args.output_directory,args.renderer,args.consent,args.seed)
+        page=remix_recording(args.input,args.output_directory,args.renderer,args.consent,args.seed,args.style)
     except (ValueError,OSError,subprocess.SubprocessError) as error:
         raise SystemExit('FAIL: '+str(error))
     print(f'PASS: complete local recording session: {page}')

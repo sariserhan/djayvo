@@ -1,0 +1,9 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac-sanitize
+    Start 3: c_abi
+1/2 Test #3: c_abi ............................   Passed    3.41 sec
+    Start 7: remix_integration
+2/2 Test #7: remix_integration ................   Passed   45.06 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =  48.46 sec

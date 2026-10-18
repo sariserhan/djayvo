@@ -23,7 +23,7 @@ struct InputAnalysis {
     std::vector<std::uint64_t> onsets;
 };
 InputAnalysis analyze(const AudioBuffer& source);
-enum class Strategy { hiphop, reggae, experimental, baseline };
+enum class Strategy { hiphop, reggae, experimental, baseline, club };
 const char* strategy_name(Strategy strategy);
 struct VocalEvent {
     Tick start = 0;

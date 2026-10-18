@@ -1,0 +1,63 @@
+{
+  "human_listening": "NOT RUN",
+  "media_decode_seek_and_muted_playback": "PASS",
+  "one_at_a_time": "PASS",
+  "players": [
+    {
+      "currentTime": 10.117054,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Club · voice fragment opening",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.114552,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Club · full voice opening",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.114527,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Club · instrumental opening",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.114731,
+      "duration": 32.96775,
+      "error": null,
+      "label": "Previous experimental mix",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.115203,
+      "duration": 50,
+      "error": null,
+      "label": "Blood Club · reference 3:20–4:10",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.11457,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Electronic bass · isolated",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.114389,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Electronic drums · isolated",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.116014,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Chord texture · isolated",
+      "status": "PASS"
+    }
+  ]
+}

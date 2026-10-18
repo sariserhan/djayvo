@@ -16,6 +16,7 @@ import wave
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
 from inspect_wav import inspect
+from verify_export import verify_export
 from make_fixture import make_signal
 
 
@@ -108,6 +109,20 @@ def verify(args):
     assert control["tracks"] == shifted_control["tracks"]
     assert control["strategy"] == "baseline" and all(e["clean"] for e in control["voice_events"])
     gates["input_independent_repeated_loop_comparison_control"] = "PASS"
+
+    run("club", options=("--style", "club", "--stems"))
+    run("club-repeat", options=("--style", "club", "--block-size", "113"))
+    verify_export(args.output/'club', ('club',))
+    club=json.loads((args.output/'club.club.score.json').read_text())
+    assert json.loads((args.output/'club.club.report.json').read_text())['instrument_bank']=='electronic-v1'
+    assert club['strategy']=='club' and club['mix']['kick_duck_db']==-7
+    assert all(t['sound']=='electronic' for t in club['tracks'])
+    assert pcm(args.output/'club.club.wav')==pcm(args.output/'club-repeat.club.wav')
+    for suffix in ('','.piano','.bass','.drums','.vocals'):
+        measured=inspect(args.output/f'club.club{suffix}.wav')
+        assert 20<=measured['duration_seconds']<=40 and measured['full_scale_samples']==0
+        assert measured['last_100ms_peak']==0 and any(pcm(args.output/f'club.club{suffix}.wav'))
+    gates['club_cli_contract_stems_bounds_and_block_determinism']='PASS'
 
     def container(payload, codec, channels, bits, extra=b""):
         block = channels * bits // 8

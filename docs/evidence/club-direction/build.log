@@ -1,0 +1,13 @@
+[  4%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/remix.cpp.o
+[  8%] Linking CXX static library libdjayvo_core.a
+[ 56%] Built target djayvo_core
+[ 69%] Linking CXX executable djayvo_tests
+[ 69%] Linking CXX executable djayvo_remix
+[ 69%] Linking CXX executable djayvo_render
+[ 73%] Linking CXX executable djayvo_remix_tests
+[ 91%] Built target djayvo_tests
+[ 91%] Built target djayvo_remix_tests
+[ 91%] Built target djayvo_remix
+[ 91%] Built target djayvo_render
+[ 95%] Linking CXX executable djayvo_c_smoke
+[100%] Built target djayvo_c_smoke

@@ -1,0 +1,9 @@
+PASS: renders/voice-club-v7/remix.club.wav
+PASS: complete export renders/voice-club-v7/remix.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/voice-club-v7/seed4124.club.wav
+PASS: complete export renders/voice-club-v7/seed4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/voice-club-v7/seed4125.club.wav
+PASS: complete export renders/voice-club-v7/seed4125.complete.json
+Listening/recognizability: NOT RUN

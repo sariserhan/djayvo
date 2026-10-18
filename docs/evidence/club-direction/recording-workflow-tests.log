@@ -1,0 +1,2 @@
+PASS: actual M4A decode/render, consent, completion hashes, three default players and one club player, existing-directory/input preservation and corrupt-input rejection
+NOT RUN: human listening; this is an original procedural test signal

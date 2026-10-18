@@ -17,6 +17,7 @@ struct Event {
     float left_gain = 1.0F;
     float right_gain = 1.0F;
     std::uint32_t noise_seed = 1;
+    bool electronic = false;
 };
 struct Schedule {
     std::uint32_t sample_rate = 48000;
@@ -24,6 +25,8 @@ struct Schedule {
     std::uint64_t total_frames = 0;
     double ceiling = 0.891250938;
     std::vector<Event> events;
+    double kick_duck_db = 0;
+    std::vector<std::uint64_t> kick_frames;
 };
 Schedule compile(const PerformancePlan& plan);
 std::uint32_t release_frames(Instrument instrument, std::uint32_t sample_rate);
@@ -32,6 +35,7 @@ class Voice {
 public:
     bool active() const noexcept { return active_; }
     std::uint32_t id() const noexcept { return id_; }
+    Instrument instrument() const noexcept { return instrument_; }
     void start(const Event& event, std::uint32_t sample_rate) noexcept;
     void stop() noexcept;
     float next() noexcept;
@@ -72,11 +76,13 @@ public:
     std::uint64_t voice_overflows() const noexcept { return voice_overflows_; }
 private:
     Schedule schedule_;
-    std::size_t max_block_ = 512, next_event_ = 0;
+    std::size_t max_block_ = 512, next_event_ = 0, next_kick_ = 0;
     std::uint64_t cursor_ = 0, voice_overflows_ = 0;
     std::array<Voice, max_voices> voices_{};
     AudioStats stats_{};
     std::array<float, 2> previous_{};
+    double duck_gain_ = 1, duck_minimum_ = 1, duck_attack_ = 1, duck_release_ = 1;
+    std::uint64_t duck_hold_ = 0;
 };
 
 // Streaming PCM16 stereo RIFF/WAVE. No platform codecs or implicit dither.

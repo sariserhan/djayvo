@@ -92,8 +92,9 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
        <<",\n  \"tail_ms\": "<<p.tail_ms<<",\n  \"strategy\": \""<<strategy_name(r.strategy)
        <<"\",\n  \"key\": {\"tonic_midi\": "<<r.tonic_midi<<", \"mode\": \"minor\"},\n"
        <<"  \"mix\": {\"master_target_peak_dbfs\": "<<p.ceiling_dbfs
-       <<", \"clean_hook_instrument_duck_db\": -16.4781748189, \"instrument_room_mix\": "<<r.instrument_room_mix<<"},\n"
-       <<"  \"analysis\": {\"peak\": "<<r.analysis.peak<<", \"rms\": "<<r.analysis.rms
+       <<", \"clean_hook_instrument_duck_db\": -16.4781748189, \"instrument_room_mix\": "<<r.instrument_room_mix;
+    if (p.kick_duck_db!=0) out<<", \"kick_duck_db\": "<<p.kick_duck_db;
+    out<<"},\n  \"analysis\": {\"peak\": "<<r.analysis.peak<<", \"rms\": "<<r.analysis.rms
        <<", \"normalization_gain\": "<<r.analysis.normalization_gain
        <<", \"pitch_hz\": "<<r.analysis.pitch_hz<<", \"pitch_confidence\": "<<r.analysis.pitch_confidence
        <<", \"onsets\": [";
@@ -125,7 +126,9 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
     for (std::size_t i=0;i<p.tracks.size();++i) {
         const auto& t=p.tracks[i];
         out<<(i?",":"")<<"\n    {\"instrument\": \""<<instrument_name(t.instrument)<<"\", \"gain_db\": "<<t.gain_db
-           <<", \"pan\": "<<t.pan<<", \"events\": [";
+           <<", \"pan\": "<<t.pan;
+        if (t.electronic) out<<", \"sound\": \"electronic\"";
+        out<<", \"events\": [";
         for (std::size_t j=0;j<t.notes.size();++j) {
             const auto& n=t.notes[j];
             out<<(j?",":"")<<"\n      {\"start_tick\": "<<n.start<<", \"duration_ticks\": "<<n.duration

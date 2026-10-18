@@ -53,6 +53,8 @@ if(BUILD_TESTING)
   if(Python3_Interpreter_FOUND)
     add_test(NAME acoustic_assets COMMAND "${Python3_EXECUTABLE}"
       "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_acoustic_assets.py")
+    add_test(NAME electronic_assets COMMAND "${Python3_EXECUTABLE}"
+      "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_electronic_assets.py")
     add_test(NAME wav_integration COMMAND "${Python3_EXECUTABLE}"
       "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_render.py"
       --renderer "$<TARGET_FILE:djayvo_render>"

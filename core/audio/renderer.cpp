@@ -30,6 +30,7 @@ Schedule compile(const PerformancePlan& p) {
     validate(p);
     Schedule s;
     s.sample_rate = p.sample_rate;
+    s.kick_duck_db = p.kick_duck_db;
     s.music_frames = tick_to_frame(ticks_per_bar(p) * p.bars, p.sample_rate, p.tempo_milli_bpm);
     s.total_frames = s.music_frames + (static_cast<std::uint64_t>(p.tail_ms) * p.sample_rate + 500) / 1000;
     s.ceiling = std::pow(10.0, p.ceiling_dbfs / 20.0);
@@ -43,10 +44,11 @@ Schedule compile(const PerformancePlan& p) {
             const auto on = tick_to_frame(n.start, p.sample_rate, p.tempo_milli_bpm);
             const auto off = tick_to_frame(n.start + n.duration, p.sample_rate, p.tempo_milli_bpm);
             if (off <= on) throw std::invalid_argument("note shorter than a sample");
+            if (p.kick_duck_db<0 && track.instrument==Instrument::drums && n.pitch==36) s.kick_frames.push_back(on);
             s.events.push_back({on, EventKind::note_on, id, track.instrument, n.pitch, n.velocity,
-                                left, right, mix_seed(p.seed, id)});
+                                left, right, mix_seed(p.seed, id),track.electronic});
             s.events.push_back({off, EventKind::note_off, id, track.instrument, n.pitch, 0,
-                                left, right, 1});
+                                left, right, 1,track.electronic});
             // Voice is reclaimable on the sample AFTER its final release sample.
             const auto end = off + release_frames(track.instrument, p.sample_rate) + 1;
             if (end > s.total_frames) throw std::invalid_argument("tail truncates an instrument release");
@@ -63,6 +65,7 @@ Schedule compile(const PerformancePlan& p) {
             throw std::invalid_argument("plan exceeds 128 simultaneous voices including releases");
     }
     std::sort(s.events.begin(), s.events.end(), before);
+    std::sort(s.kick_frames.begin(),s.kick_frames.end());
     return s;
 }
 
@@ -71,9 +74,15 @@ Renderer::Renderer(Schedule schedule, std::size_t max_block)
     if (max_block == 0 || max_block > 65536 || schedule_.sample_rate < 8000 ||
         schedule_.sample_rate > 192000 || schedule_.total_frames == 0 ||
         schedule_.music_frames > schedule_.total_frames || !std::isfinite(schedule_.ceiling) ||
-        schedule_.ceiling <= 0 || schedule_.ceiling >= 1 ||
-        !std::is_sorted(schedule_.events.begin(), schedule_.events.end(), before))
+        schedule_.ceiling <= 0 || schedule_.ceiling >= 1 || !std::isfinite(schedule_.kick_duck_db) ||
+        schedule_.kick_duck_db>0 || schedule_.kick_duck_db < -12 ||
+        !std::is_sorted(schedule_.events.begin(), schedule_.events.end(), before) ||
+        !std::is_sorted(schedule_.kick_frames.begin(),schedule_.kick_frames.end()) ||
+        (!schedule_.kick_frames.empty() && schedule_.kick_frames.back()>=schedule_.total_frames))
         throw std::invalid_argument("invalid compiled schedule or block size");
+    duck_minimum_=std::pow(10.0,schedule_.kick_duck_db/20);
+    duck_attack_=1-std::exp(-1.0/(schedule_.sample_rate*0.002));
+    duck_release_=1-std::exp(-1.0/(schedule_.sample_rate*0.100));
     for (const auto& e : schedule_.events) {
         if (e.frame >= schedule_.total_frames || !std::isfinite(e.left_gain) || !std::isfinite(e.right_gain))
             throw std::invalid_argument("invalid compiled event");
@@ -85,6 +94,9 @@ std::size_t Renderer::process(float* stereo, std::size_t requested) noexcept {
     const auto count = static_cast<std::size_t>(std::min<std::uint64_t>(requested, schedule_.total_frames - cursor_));
     std::fill(stereo, stereo + requested * 2, 0.0F);
     for (std::size_t i = 0; i < count; ++i, ++cursor_) {
+        while (next_kick_<schedule_.kick_frames.size() && schedule_.kick_frames[next_kick_]==cursor_) {
+            duck_hold_=schedule_.sample_rate/50U; ++next_kick_;
+        }
         while (next_event_ < schedule_.events.size() && schedule_.events[next_event_].frame == cursor_) {
             const auto& e = schedule_.events[next_event_++];
             if (e.kind == EventKind::note_off) {
@@ -98,9 +110,13 @@ std::size_t Renderer::process(float* stereo, std::size_t requested) noexcept {
             }
         }
         double left = 0, right = 0;
+        if (schedule_.kick_duck_db<0) {
+            duck_gain_+=(duck_hold_?duck_attack_:duck_release_)*((duck_hold_?duck_minimum_:1)-duck_gain_);
+            if (duck_hold_) --duck_hold_;
+        }
         for (auto& v : voices_) {
             if (!v.active()) continue;
-            const float x = v.next();
+            const float x = v.next()*static_cast<float>(v.instrument()==Instrument::drums?1:duck_gain_);
             left += x * v.left_gain(); right += x * v.right_gain();
         }
         const double channels[2] = {left, right};

@@ -16,14 +16,14 @@ def verify_export(prefix, required_styles=()):
             record.get('status') != 'complete' or not re.fullmatch('[0-9a-f]{64}', str(record.get('source_sha256', '')))):
         raise ValueError('invalid export completion metadata')
     artifacts = record.get('artifacts')
-    if not isinstance(artifacts, list) or not 4 <= len(artifacts) <= 32:
+    if not isinstance(artifacts, list) or not 4 <= len(artifacts) <= 40:
         raise ValueError('invalid export artifact count')
     suffixes = set()
     for item in artifacts:
         if not isinstance(item, dict):
             raise ValueError('invalid export artifact')
         suffix = item.get('suffix', '')
-        if (not isinstance(suffix, str) or not re.fullmatch(r'\.(hiphop|reggae|experimental|baseline)\.(wav|score\.json|report\.json|events\.tsv|piano\.wav|bass\.wav|drums\.wav|vocals\.wav)', suffix)
+        if (not isinstance(suffix, str) or not re.fullmatch(r'\.(hiphop|reggae|experimental|baseline|club)\.(wav|score\.json|report\.json|events\.tsv|piano\.wav|bass\.wav|drums\.wav|vocals\.wav)', suffix)
                 or suffix in suffixes or type(item.get('bytes')) is not int or not 0 < item['bytes'] <= 64*1024*1024):
             raise ValueError('invalid/duplicate artifact path or size')
         suffixes.add(suffix)

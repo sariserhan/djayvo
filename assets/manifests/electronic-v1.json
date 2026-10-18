@@ -1,0 +1,152 @@
+{
+  "name": "Djayvo original electronic palette v1",
+  "source": "Original equations and seeded noise in scripts/prepare_electronic_bank.py",
+  "reference_audio_used": false,
+  "third_party_sound_assets": false,
+  "rights": "Original project material; follows the project outbound license",
+  "generator_sha256": "cc6fcff8cf52cffa6b6fad2862258ba7406f988740590d49b2dc75715de6ee3d",
+  "generated_file": "core/instruments/electronic_bank.inc",
+  "generated_sha256": "143927d6185fa7629886f228680dc59d289e8d00d8a598d01e9f60dc977c74eb",
+  "samples": [
+    {
+      "id": "electronic_piano_48_0",
+      "instrument": "piano",
+      "root_midi": 48,
+      "velocity_max": 127,
+      "take": 0,
+      "sample_rate": 24000,
+      "frames": 76800,
+      "pcm_sha256": "840131fe53a8ea9b876c6563beea57eb32f1d5dddf5267d02b01ff2016ebe7d2"
+    },
+    {
+      "id": "electronic_piano_60_0",
+      "instrument": "piano",
+      "root_midi": 60,
+      "velocity_max": 127,
+      "take": 0,
+      "sample_rate": 24000,
+      "frames": 76800,
+      "pcm_sha256": "26c1308deb0a4483c834ea1af4e10e682ddb4fc4ec944c153f2abab34ecee5bc"
+    },
+    {
+      "id": "electronic_piano_72_0",
+      "instrument": "piano",
+      "root_midi": 72,
+      "velocity_max": 127,
+      "take": 0,
+      "sample_rate": 24000,
+      "frames": 76800,
+      "pcm_sha256": "d312b8a2108464734a0e2e70990c5e8b8ff214eb8df682efb6155015a5fe16ea"
+    },
+    {
+      "id": "electronic_bass_36_0",
+      "instrument": "bass",
+      "root_midi": 36,
+      "velocity_max": 127,
+      "take": 0,
+      "sample_rate": 24000,
+      "frames": 76800,
+      "pcm_sha256": "feda9172563dde7332c8a3a417af346056e85053fff95ceb42cd5b8e81935fd5"
+    },
+    {
+      "id": "electronic_bass_43_0",
+      "instrument": "bass",
+      "root_midi": 43,
+      "velocity_max": 127,
+      "take": 0,
+      "sample_rate": 24000,
+      "frames": 76800,
+      "pcm_sha256": "e81b9697c09b6783c14905910eb896a0f86e6de21417148b09f885c1730b3992"
+    },
+    {
+      "id": "electronic_bass_48_0",
+      "instrument": "bass",
+      "root_midi": 48,
+      "velocity_max": 127,
+      "take": 0,
+      "sample_rate": 24000,
+      "frames": 76800,
+      "pcm_sha256": "6e1af810acb7192047858e83bc9479a7a3fb77f285dcbf1221a3fe3dd0efdced"
+    },
+    {
+      "id": "electronic_drums_36_0",
+      "instrument": "drums",
+      "root_midi": 36,
+      "velocity_max": 127,
+      "take": 0,
+      "sample_rate": 24000,
+      "frames": 16800,
+      "pcm_sha256": "0de2a6458d909c7ddf3b2fd3bfe5a8a481f6e1add9f93f207df597714fe74203"
+    },
+    {
+      "id": "electronic_drums_36_1",
+      "instrument": "drums",
+      "root_midi": 36,
+      "velocity_max": 127,
+      "take": 1,
+      "sample_rate": 24000,
+      "frames": 16800,
+      "pcm_sha256": "f9ff2d9906953d5ce83b1702da301943ac89dcf35bc949f2e39ffb00d4e86a81"
+    },
+    {
+      "id": "electronic_drums_38_0",
+      "instrument": "drums",
+      "root_midi": 38,
+      "velocity_max": 127,
+      "take": 0,
+      "sample_rate": 24000,
+      "frames": 12000,
+      "pcm_sha256": "94610ad1f678e63326be8de4e4831668e63b6e5f0b28996122a59a90a249ed31"
+    },
+    {
+      "id": "electronic_drums_38_1",
+      "instrument": "drums",
+      "root_midi": 38,
+      "velocity_max": 127,
+      "take": 1,
+      "sample_rate": 24000,
+      "frames": 12000,
+      "pcm_sha256": "02a2959900a08d259d900b56887020ebb709f7c5709892bb86bbbaa31e643944"
+    },
+    {
+      "id": "electronic_drums_42_0",
+      "instrument": "drums",
+      "root_midi": 42,
+      "velocity_max": 127,
+      "take": 0,
+      "sample_rate": 24000,
+      "frames": 3840,
+      "pcm_sha256": "ea4b68caf8b7c4e6e3e658100062da188de95cfb26e1471a1cebdd95066369c8"
+    },
+    {
+      "id": "electronic_drums_42_1",
+      "instrument": "drums",
+      "root_midi": 42,
+      "velocity_max": 127,
+      "take": 1,
+      "sample_rate": 24000,
+      "frames": 3840,
+      "pcm_sha256": "e91c4f6bb76b5564264bd5d91631d85b79e6528133f77296c912af48885cde58"
+    },
+    {
+      "id": "electronic_drums_46_0",
+      "instrument": "drums",
+      "root_midi": 46,
+      "velocity_max": 127,
+      "take": 0,
+      "sample_rate": 24000,
+      "frames": 14400,
+      "pcm_sha256": "eb69f4ddddd9ae8a30800a56fba5cab36de4558ac4f42aa95b2da328ff724e64"
+    },
+    {
+      "id": "electronic_drums_46_1",
+      "instrument": "drums",
+      "root_midi": 46,
+      "velocity_max": 127,
+      "take": 1,
+      "sample_rate": 24000,
+      "frames": 14400,
+      "pcm_sha256": "1b85ae72aeb339e5edf0948fbb091f74bbbfc18dc0c2d08ddbc65ebd4c7012b7"
+    }
+  ]
+}

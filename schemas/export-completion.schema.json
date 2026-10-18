@@ -9,12 +9,12 @@
     "status": {"const": "complete"},
     "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "artifacts": {
-      "type": "array", "minItems": 4, "maxItems": 32,
+      "type": "array", "minItems": 4, "maxItems": 40,
       "items": {
         "type": "object", "additionalProperties": false,
         "required": ["suffix", "bytes", "sha256"],
         "properties": {
-          "suffix": {"type": "string", "pattern": "^\\.(hiphop|reggae|experimental|baseline)\\.(wav|score\\.json|report\\.json|events\\.tsv|piano\\.wav|bass\\.wav|drums\\.wav|vocals\\.wav)$"},
+          "suffix": {"type": "string", "pattern": "^\\.(hiphop|reggae|experimental|baseline|club)\\.(wav|score\\.json|report\\.json|events\\.tsv|piano\\.wav|bass\\.wav|drums\\.wav|vocals\\.wav)$"},
           "bytes": {"type": "integer", "minimum": 1, "maximum": 67108864},
           "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
         }

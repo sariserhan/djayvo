@@ -35,6 +35,9 @@ def main():
         except FileExistsError:pass
         else:raise AssertionError('existing recording session replaced')
         assert snapshot=={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in page.parent.iterdir() if p.is_file()}
+        club=remix_recording(encoded,root/'club',args.renderer,True,style='club')
+        assert club.read_text().count('<audio ')==1
+        assert len(verify_export(club.parent/'remix',('club',))['artifacts'])==8
         assert hashlib.sha256(encoded.read_bytes()).hexdigest()==before
         empty=root/'existing-empty';empty.mkdir()
         try:remix_recording(encoded,empty,args.renderer,True)
@@ -45,7 +48,7 @@ def main():
         except subprocess.CalledProcessError:pass
         else:raise AssertionError('invalid M4A accepted')
         assert not (root/'bad-output').exists()
-    print('PASS: actual M4A decode/render, consent, completion hashes, three players, existing-directory/input preservation and corrupt-input rejection')
+    print('PASS: actual M4A decode/render, consent, completion hashes, three default players and one club player, existing-directory/input preservation and corrupt-input rejection')
     print('NOT RUN: human listening; this is an original procedural test signal')
 
 

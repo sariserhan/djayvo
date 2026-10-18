@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-17 (America/New_York). Latest implementation: [reproducible evaluation preparation](docs/evaluation-batch.md).
+Last updated: 2026-10-17 (America/New_York). Latest implementation: [original electronic club direction](docs/club-direction.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -14,7 +14,7 @@ the source of truth and is not modified by this tracker.
 | M0a — offline foundation | PASS | Portable engine, instruments, timing, WAV and automated tests |
 | M0b — own sound into music | PARTIAL | Consented voice renders; formal recognizability observations missing |
 | M0c — three musical strategies | PARTIAL | Owner accepts the current prototype as a start; production quality and formal listening remain open |
-| M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact current plans/events and 18 matching WAVs |
+| M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact club plans/events and 12 matching club WAVs; prior styles preserved |
 | M1 — musical quality baseline | NOT RUN | Frozen one-source/three-seed pilot and distinct blind packets prepared; diverse sources and formal human evaluation missing |
 | M2 — AI director benchmarks | NOT RUN | Depends on quality baseline and measured model feasibility |
 | M3 — iPhone Instant Remix | NOT RUN | Portable C ABI exists; app and actual device validation remain |
@@ -27,6 +27,13 @@ criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
 ## Next: review the current music
+
+New [club listening page](renders/voice-club-v7/review/index.html): three original
+36-second electronic arrangements, matched reference/previous mix and isolated
+instruments. Drops at 0:10 and 0:24. **Club listening: NOT RUN.** The latest
+request is production-level quality in the direction of Blood Club; the new
+palette/form are implemented, without claiming reference similarity or production
+acceptance. [Evidence and limits](docs/club-direction.md).
 
 Local [listening page](renders/voice-articulation-v4/review/index.html): v3/v4 pairs
 and six alternate-seed mixes plus isolated piano/drum comparisons at matched
@@ -62,10 +69,13 @@ and evaluation across diverse consented inputs.
   feel intentional across seeds 4123–4125. Code coverage is not listening evidence.
 - [ ] **N05 — NOT RUN:** Rate whether the original speech remains recognizable
   in each style. Waveform preservation passes, but intelligibility is unmeasured.
-- [ ] **N06 — PARTIAL:** Production-quality continuation now includes pause-aware
-  vocal endings and recorded instrument layers/takes, nine fresh mixes and
-  matched v3/v4 comparisons. Prior audio is retained; the owner accepts v4
-  piano/drums. Formal quality, recognizability and diverse-input listening remain.
+- [ ] **N06 — PARTIAL:** New original club palette, kick ducking, build/drop/break/
+  return, three varied openings and matched Blood Club comparison are implemented.
+  V4 piano/drums have prior owner acceptance; club listening/reference similarity,
+  formal quality, recognizability and diverse-input listening remain open.
+- [ ] **N07 — NOT RUN:** Audition club bass balance, drum impact, texture, voice
+  clarity and transitions at 0:10/0:17/0:24; record exact version/timestamp and
+  desired change before claiming this meets the requested production direction.
 
 Record against [instrument articulation v4](docs/instrument-articulation.md), with the exact
 filename/seed, timestamp, observation, desired change and eventual evidence.
@@ -74,7 +84,7 @@ Do not close N02–N05 merely because another implementation is committed.
 ## Completed development
 
 Entries follow implementation order. Historical results apply to their revision;
-current platform results are in [the workflow report](docs/evidence/workflow-hardening/report.json).
+current platform results are in [the club report](docs/evidence/club-direction/report.json).
 The [evaluation preparation report](docs/evidence/evaluation-preparation/report.json)
 adds an eighth passing suite and confirms the unchanged renderer/audio.
 
@@ -102,6 +112,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P20 | PASS | 33 offline timing/RSS trials; current M5/Linux release and M5 sanitizers; 18 identical cross-OS WAVs | [Benchmark](docs/evidence/workflow-hardening/benchmark.json) |
 | [x] | P21 | PASS | Pinned Linux/macOS CI matrix and cross-OS comparison recipe prepared and locally checked; hosted execution remains open | [Workflow](.github/workflows/core.yml) |
 | [x] | P22 | PASS | Frozen consent/hash/rubric batch, three seeds, retained failure counts, distinct answer codes, actual owner pilot and eighth M5/Linux test suite | [Evaluation preparation](docs/evaluation-batch.md) |
+| [x] | P23 | PASS | Original 14-sample electronic bank, club form and source-driven bass, stem-consistent kick ducking, CLI/C ABI/import/schema/CI support; nine M5/Linux suites, exact WAVs and eight-player comparison | [Club evidence](docs/club-direction.md) |
 
 ## Engineering backlog
 
@@ -110,15 +121,15 @@ is needed. Prioritize by recorded listening defects and product requirements.
 
 - [ ] **E01 — PARTIAL:** V4 implements three recorded piano dynamics and two
   seeded piano/drum takes from the pinned cleared libraries. Evaluate realism,
-  layer transitions and repeated hits; bass layers, longer tails and suitable
-  electronic timbres remain candidates requiring evidence.
+  layer transitions and repeated hits. Bass layers and longer acoustic tails
+  remain candidates. The new electronic club palette needs listening assessment.
 - [ ] **E02 — PARTIAL:** Improve phrase/chop selection if N03/N05 show cut words.
   V3 adds sustained low-energy endings and attack pre-roll with a bounded fallback;
   reliable word boundaries, semantic selection and listening acceptance remain open.
 - [ ] **E03 — NOT RUN:** Evaluate independent pitch/time transformation with
   transient and intelligibility checks. Current generated chops use original speed.
 - [ ] **E04 — PARTIAL:** Expand expressive mixing/effects when justified by
-  listening. Early reflections and hook ducking exist; feedback delay/reverb and
+  listening. Early reflections, hook ducking and stem-consistent kick ducking exist; feedback delay/reverb and
   richer automation do not.
 - [x] **E05 — PASS:** CLI/C ABI exports stage files, preserve existing paths,
   publish a verified completion marker last and support cancellation. Actual

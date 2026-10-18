@@ -13,7 +13,7 @@ extern "C" {
 
 /* Stable scalar options; initialize struct_size and abi_version explicitly.
  * All strings/buffers are caller-owned and valid for the synchronous call.
- * strategy: 0 all three, 1 hiphop, 2 reggae, 3 experimental, 4 baseline.
+ * strategy: 0 original three, 1 hiphop, 2 reggae, 3 experimental, 4 baseline, 5 club.
  * Call on a worker thread: this is an offline operation, not an audio callback.
  */
 typedef struct DjayvoRenderOptions {

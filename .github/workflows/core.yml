@@ -33,6 +33,8 @@ jobs:
           python3 scripts/make_fixture.py --output build-ci/control/source.wav
           ./build-ci/djayvo_remix --input build-ci/control/source.wav --synthetic-fixture --output build-ci/control/remix --style all
           python3 scripts/verify_export.py build-ci/control/remix
+          ./build-ci/djayvo_remix --input build-ci/control/source.wav --synthetic-fixture --output build-ci/control/club --style club
+          python3 scripts/verify_export.py build-ci/control/club
           uname -a > build-ci/control/toolchain.txt
           c++ --version >> build-ci/control/toolchain.txt
           cmake --version >> build-ci/control/toolchain.txt
@@ -61,10 +63,13 @@ jobs:
           python3 scripts/verify_export.py comparison/control-ubuntu-24.04/remix
           python3 scripts/verify_export.py comparison/control-macos-15/remix
           python3 scripts/compare_portability.py --reference comparison/control-ubuntu-24.04/remix --candidate comparison/control-macos-15/remix --report comparison/report.json
+          python3 scripts/verify_export.py comparison/control-ubuntu-24.04/club
+          python3 scripts/verify_export.py comparison/control-macos-15/club
+          python3 scripts/compare_portability.py --styles club --reference comparison/control-ubuntu-24.04/club --candidate comparison/control-macos-15/club --report comparison/club-report.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: platform-comparison
-          path: comparison/report.json
+          path: comparison/*report.json
           retention-days: 7
           if-no-files-found: warn

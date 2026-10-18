@@ -1,0 +1,120 @@
+[
+  {
+    "command": [
+      "build-mac/djayvo_remix",
+      "--input",
+      "renders/voice-20261017-221411/source-pcm.wav",
+      "--consent",
+      "--style",
+      "club",
+      "--seed",
+      "4123",
+      "--block-size",
+      "512",
+      "--output",
+      "renders/voice-club-v7/final/remix",
+      "--stems"
+    ],
+    "seconds": 0.8660684589995071,
+    "stdout": "PASS: renders/voice-club-v7/final/remix.club.wav\nPASS: complete export renders/voice-club-v7/final/remix.complete.json\nListening/recognizability: NOT RUN\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "build-mac/djayvo_remix",
+      "--input",
+      "renders/voice-20261017-221411/source-pcm.wav",
+      "--consent",
+      "--style",
+      "club",
+      "--seed",
+      "4124",
+      "--block-size",
+      "512",
+      "--output",
+      "renders/voice-club-v7/final/seed4124"
+    ],
+    "seconds": 0.21396258299864712,
+    "stdout": "PASS: renders/voice-club-v7/final/seed4124.club.wav\nPASS: complete export renders/voice-club-v7/final/seed4124.complete.json\nListening/recognizability: NOT RUN\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "build-mac/djayvo_remix",
+      "--input",
+      "renders/voice-20261017-221411/source-pcm.wav",
+      "--consent",
+      "--style",
+      "club",
+      "--seed",
+      "4125",
+      "--block-size",
+      "512",
+      "--output",
+      "renders/voice-club-v7/final/seed4125"
+    ],
+    "seconds": 0.21739195899863262,
+    "stdout": "PASS: renders/voice-club-v7/final/seed4125.club.wav\nPASS: complete export renders/voice-club-v7/final/seed4125.complete.json\nListening/recognizability: NOT RUN\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "build-mac/djayvo_remix",
+      "--input",
+      "renders/voice-20261017-221411/source-pcm.wav",
+      "--consent",
+      "--style",
+      "club",
+      "--seed",
+      "4123",
+      "--block-size",
+      "113",
+      "--output",
+      "renders/voice-club-v7/final/block113",
+      "--stems"
+    ],
+    "seconds": 0.9062557089964685,
+    "stdout": "PASS: renders/voice-club-v7/final/block113.club.wav\nPASS: complete export renders/voice-club-v7/final/block113.complete.json\nListening/recognizability: NOT RUN\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "build-mac/djayvo_remix",
+      "--input",
+      "renders/fixtures/synthetic-speech.wav",
+      "--synthetic-fixture",
+      "--style",
+      "club",
+      "--seed",
+      "4123",
+      "--block-size",
+      "512",
+      "--output",
+      "renders/voice-club-v7/final/fixture",
+      "--stems"
+    ],
+    "seconds": 0.9325159170002735,
+    "stdout": "PASS: renders/voice-club-v7/final/fixture.club.wav\nPASS: complete export renders/voice-club-v7/final/fixture.complete.json\nListening/recognizability: NOT RUN\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "build-mac/djayvo_remix",
+      "--input",
+      "renders/voice-20261017-221411/source-pcm.wav",
+      "--consent",
+      "--style",
+      "all",
+      "--seed",
+      "4123",
+      "--block-size",
+      "512",
+      "--output",
+      "renders/voice-club-v7/final/legacy",
+      "--stems"
+    ],
+    "seconds": 2.424824459001684,
+    "stdout": "PASS: renders/voice-club-v7/final/legacy.hiphop.wav\nPASS: renders/voice-club-v7/final/legacy.reggae.wav\nPASS: renders/voice-club-v7/final/legacy.experimental.wav\nPASS: complete export renders/voice-club-v7/final/legacy.complete.json\nListening/recognizability: NOT RUN\n",
+    "stderr": ""
+  }
+]

@@ -65,6 +65,16 @@ this milestone does not select an open-source license for Djayvo. Third-party
 dependency licenses do not impose a new public source-code grant on this project
 under the recorded build arrangement.
 
+## Original electronic palette
+
+`assets/manifests/electronic-v1.json` inventories 14 original 24 kHz PCM16
+one-shots generated from project equations and seeded noise. The generator
+`scripts/prepare_electronic_bank.py` never reads reference music or downloaded
+samples. Compiled bank, per-sample PCM and generator hashes are checked by
+`scripts/verify_electronic_assets.py`. This is original project material under
+the same unselected project-wide outbound license, not a CC0 third-party grant.
+No new runtime dependency or training material is introduced.
+
 ## Optional synthetic-speech fixture tool
 
 Continuation work used **eSpeak NG 1.52.0** as a separate local developer

@@ -80,7 +80,8 @@
         "hiphop",
         "reggae",
         "experimental",
-        "baseline"
+        "baseline",
+        "club"
       ]
     },
     "tail_ms": {
@@ -109,6 +110,11 @@
           "minimum": 0,
           "maximum": 0.35,
           "default": 0
+        },
+        "kick_duck_db": {
+          "type": "number",
+          "minimum": -12,
+          "maximum": 0
         }
       }
     },
@@ -179,6 +185,12 @@
             "items": {
               "$ref": "#/$defs/note"
             }
+          },
+          "sound": {
+            "enum": [
+              "acoustic",
+              "electronic"
+            ]
           }
         },
         "allOf": [

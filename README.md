@@ -5,15 +5,23 @@
 Djayvo turns short recordings into source-driven musical performances. The
 portable C++17 prototype loads a 2–5 s WAV, finds energetic phrases and onsets,
 preserves a clean hook, and renders three original 20–40 s arrangements:
-hip-hop, reggae, and experimental. Each has independent piano, bass, drums, and
+hip-hop, reggae, and experimental, plus an explicit electronic club strategy. Each has independent piano, bass, drums, and
 sampled source events, plus score JSON, frame trace, measurements, and optional
 stems. No model, GPU, paid service, or third-party DSP library is required.
 
 Track past work, open issues and future milestones in [TODO.md](TODO.md).
 
-**Current M5 and Linux arm64 technical checks: PASS. M0 overall: PARTIAL.** The owner has
+Latest musical work: [original club direction](docs/club-direction.md), with
+bass-led drops, electronic drums, chord textures and three different openings.
+[Listen locally](renders/voice-club-v7/review/index.html). Use `--style club`
+(C ABI strategy 5); `all` keeps the original three styles. Nine M5/Linux test
+suites pass, and the new cross-OS WAVs match exactly. Listening to this revision
+is **NOT RUN**, and production quality remains **PARTIAL**.
+
+
+**M0 overall: PARTIAL.** Earlier acoustic development: the owner has
 auditioned a consented source and requested less game-like instruments and more
-creative openings. The current revision uses 53 cleared instrument recordings,
+creative openings. The acoustic strategies use 53 cleared instrument recordings,
 including three piano dynamics and alternate piano/drum takes, plus varied
 openings, section breaks and pause-aware vocal crops. Owner review is **PARTIAL**:
 fine as a start, with production quality still to improve. The owner specifically
@@ -29,7 +37,7 @@ Linux and 33 offline benchmark renders pass; hosted CI execution is **NOT RUN**.
 
 [Evaluation preparation](docs/evaluation-batch.md) now freezes a consent/source
 ledger and engine/rubric hashes, renders three seeds and creates distinct blinded
-packets. Eight M5/Linux test suites pass. The actual one-source pilot is complete;
+packets. At that checkpoint eight M5/Linux test suites passed. The actual one-source pilot is complete;
 the diverse dataset and independent human listening remain missing.
 
 ```sh

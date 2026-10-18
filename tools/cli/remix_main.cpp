@@ -26,7 +26,7 @@ int main(int argc,char** argv) {
             if (arg=="--help") {
                 std::cout<<"Djayvo offline source-driven remix\nUsage: djayvo_remix --input FILE "
                          <<"[--consent | --synthetic-fixture] [--output PREFIX] "
-                         <<"[--style all|hiphop|reggae|experimental|baseline] [--stems] "
+                         <<"[--style all|hiphop|reggae|experimental|baseline|club] [--stems] "
                          <<"[--seed UINT32] [--sample-rate 8000..192000] [--block-size 1..65536]\n"
                          <<"--consent confirms permission to process the supplied recording locally.\n"
                          <<"--synthetic-fixture is only for generated non-person recordings.\n"
@@ -54,6 +54,7 @@ int main(int argc,char** argv) {
         for (auto s : {djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental})
             if (style=="all" || style==djayvo::strategy_name(s)) strategies.push_back(s);
         if (style=="baseline") strategies.push_back(djayvo::Strategy::baseline);
+        if (style=="club") strategies.push_back(djayvo::Strategy::club);
         if (strategies.empty()) throw std::invalid_argument("unknown style");
         std::signal(SIGINT,interrupt);std::signal(SIGTERM,interrupt);
         djayvo::remix_file(input,output,strategies,rate,seed,block,synthetic,consent,stems,{cancelled,nullptr});

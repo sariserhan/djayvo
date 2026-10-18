@@ -14,7 +14,7 @@ void remix_file(const std::string& input,const std::string& output,const std::ve
     const auto destination=fs::path(output);
     if (input.empty() || output.empty() || destination.filename().empty() ||
         destination.filename()=="." || destination.filename()==".." || synthetic==consent || !block || block>65536 ||
-        strategies.empty() || strategies.size()>4)
+        strategies.empty() || strategies.size()>5)
         throw std::invalid_argument("supply bounded options and exactly one source permission kind");
     control.check();
     const auto original=read_wav(input);

@@ -406,5 +406,12 @@
     "pins": "evidence/arrangement-review/analysis-requirements.txt",
     "ffmpeg": "9.0.2, existing local executable; not linked or bundled",
     "runtime_dependency": false
+  },
+  "original_electronic_assets": {
+    "manifest": "assets/manifests/electronic-v1.json",
+    "samples": 14,
+    "source": "Original project equations and seeded noise",
+    "reference_audio_used": false,
+    "third_party_runtime_dependency": false
   }
 }

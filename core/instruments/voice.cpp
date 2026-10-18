@@ -15,11 +15,15 @@ struct InstrumentSample {
     std::uint32_t rate;
 };
 #include "acoustic_bank.inc"
-const InstrumentSample& select_sample(Instrument instrument,int pitch,int velocity,std::uint32_t seed) noexcept {
-    const int layer=instrument==Instrument::piano?(velocity<=55?55:velocity<=95?95:127):127;
-    const unsigned take=instrument==Instrument::bass?0:seed%2U;
+#include "electronic_bank.inc"
+const InstrumentSample& select_sample(Instrument instrument,int pitch,int velocity,std::uint32_t seed,bool electronic) noexcept {
+    const int layer=!electronic && instrument==Instrument::piano?(velocity<=55?55:velocity<=95?95:127):127;
+    const unsigned take=(instrument==Instrument::bass || (electronic && instrument==Instrument::piano))?0:seed%2U;
     const InstrumentSample* best=nullptr;
-    for (const auto& sample:samples) {
+    const auto* bank=electronic?electronic_samples:samples;
+    const auto size=electronic?sizeof(electronic_samples)/sizeof(*electronic_samples):sizeof(samples)/sizeof(*samples);
+    for (std::size_t i=0;i<size;++i) {
+        const auto& sample=bank[i];
         if (sample.instrument!=instrument || sample.velocity_max!=layer || sample.take!=take) continue;
         if (!best || std::abs(sample.root_midi-pitch)<std::abs(best->root_midi-pitch)) best=&sample;
     }
@@ -34,7 +38,7 @@ void Voice::start(const Event& e,std::uint32_t rate) noexcept {
     active_=true;released_=false;age_=0;release_age_=0;
     instrument_=e.instrument;pitch_=e.pitch;id_=e.note_id;rate_=rate;
     release_length_=release_frames(instrument_,rate);
-    const auto& sample=select_sample(instrument_,pitch_,e.velocity,e.noise_seed);
+    const auto& sample=select_sample(instrument_,pitch_,e.velocity,e.noise_seed,e.electronic);
     sample_=sample.pcm;sample_frames_=sample.frames;sample_position_=0;
     sample_step_=static_cast<double>(sample.rate)/rate;
     if (instrument_!=Instrument::drums) sample_step_*=std::exp2((pitch_-sample.root_midi)/12.0);

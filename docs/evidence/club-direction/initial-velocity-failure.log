@@ -1,0 +1,43 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+    Start 1: core
+1/9 Test #1: core .............................   Passed    0.52 sec
+    Start 2: remix_core
+2/9 Test #2: remix_core .......................***Failed    0.76 sec
+PASS: SHA-256 known vectors
+PASS: energy/onset/phrase/pitch analysis and silence
+PASS: resampling duration, identity, round-trip and antialias
+FAIL: clean hook preservation, deterministic styles, finite bounded output: note outside time/pitch/velocity bounds
+PASS: consent, crop, transform, polyphony and duration rejection
+FAIL: quantized chop spacing and both clean hooks at 2/3/5 seconds: note outside time/pitch/velocity bounds
+FAIL: seeded clean, instrumental and fragment openings: note outside time/pitch/velocity bounds
+PASS: pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates
+PASS: subtraction and return across styles and seeds
+PASS: instrument room timing, stereo, dry speech and finite tail
+FAIL: club form, input-driven bass, electronic palette and stem-consistent kick ducking: note outside time/pitch/velocity bounds
+PASS: cancel/render/publication rollback, concurrent destinations and stale-lock preservation
+FAIL: allocation-free sample and instrument processing: note outside time/pitch/velocity bounds
+
+    Start 3: c_abi
+3/9 Test #3: c_abi ............................***Failed    0.28 sec
+FAIL: note outside time/pitch/velocity bounds
+
+    Start 4: acoustic_assets
+4/9 Test #4: acoustic_assets ..................   Passed    0.40 sec
+    Start 5: electronic_assets
+5/9 Test #5: electronic_assets ................   Passed    0.08 sec
+    Start 6: wav_integration
+6/9 Test #6: wav_integration ..................   Passed    0.75 sec
+    Start 7: remix_integration
+7/9 Test #7: remix_integration ................   Passed    2.53 sec
+    Start 8: tooling
+8/9 Test #8: tooling ..........................   Passed    1.04 sec
+    Start 9: evaluation_preparation
+9/9 Test #9: evaluation_preparation ...........   Passed   11.65 sec
+
+78% tests passed, 2 tests failed out of 9
+
+Total Test time (real) =  18.01 sec
+
+The following tests FAILED:
+	  2 - remix_core (Failed)
+	  3 - c_abi (Failed)

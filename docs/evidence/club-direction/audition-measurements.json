@@ -1,0 +1,122 @@
+[
+  {
+    "source": "renders/voice-club-v7/final/remix.club.wav",
+    "source_sha256": "b4b045e6148234db0a3a94d08fcc53b97a6c047cd9a9204a9c73427aaf862334",
+    "file": "club-main.wav",
+    "sha256": "6a03454bcbb27424fcd7d41adff4b37907778fd1931f955f562e2ab667f8974e",
+    "original": {
+      "lufs": -15.9,
+      "true_peak_dbfs": -4.5
+    },
+    "gain_db": -6.1,
+    "matched": {
+      "lufs": -22.0,
+      "true_peak_dbfs": -10.6
+    }
+  },
+  {
+    "source": "renders/voice-club-v7/final/seed4124.club.wav",
+    "source_sha256": "29e86c02b95a1d8a1723073ff72863a90dfa607e7c40e8d605e494e15d892335",
+    "file": "club-alt-1.wav",
+    "sha256": "548e1afdbd371baf6645382df073510c62119ce2837ced4ac3264373adf0dca8",
+    "original": {
+      "lufs": -15.9,
+      "true_peak_dbfs": -5.4
+    },
+    "gain_db": -6.1,
+    "matched": {
+      "lufs": -22.0,
+      "true_peak_dbfs": -11.5
+    }
+  },
+  {
+    "source": "renders/voice-club-v7/final/seed4125.club.wav",
+    "source_sha256": "f075285c214f2e524107a33759e3e2db6350944d80cc4b29ded9dbd996e1c409",
+    "file": "club-alt-2.wav",
+    "sha256": "b0fe661bf9127246fe3494dd94b5e69d8c25b2f8b510956a3a5c7f01df7e3441",
+    "original": {
+      "lufs": -15.8,
+      "true_peak_dbfs": -5.2
+    },
+    "gain_db": -6.199999999999999,
+    "matched": {
+      "lufs": -22.0,
+      "true_peak_dbfs": -11.4
+    }
+  },
+  {
+    "source": "renders/voice-articulation-v4/remix.experimental.wav",
+    "source_sha256": "c8429c23165c6c2e703dcab2931facd6b316e89a737e90116a8ef6cfa00ac75f",
+    "file": "previous.wav",
+    "sha256": "11bd664e5c75846fa2e7d55cd499aedf16168ac20016334489bff93728d04378",
+    "original": {
+      "lufs": -24.0,
+      "true_peak_dbfs": -6.9
+    },
+    "gain_db": 2.0,
+    "matched": {
+      "lufs": -22.0,
+      "true_peak_dbfs": -4.9
+    }
+  },
+  {
+    "source": "renders/voice-arrangement-v2/review/reference-blood.wav",
+    "source_sha256": "abafbe338772124066719693007ffe6592adb8f9313103fddfe872ee582a211d",
+    "file": "reference.wav",
+    "sha256": "102033aa15410704af11fc3c61d30606df665c88afc5aa81062394328590f3cd",
+    "original": {
+      "lufs": -25.0,
+      "true_peak_dbfs": -11.5
+    },
+    "gain_db": 3.0,
+    "matched": {
+      "lufs": -22.0,
+      "true_peak_dbfs": -8.5
+    }
+  },
+  {
+    "source": "renders/voice-club-v7/final/remix.club.bass.wav",
+    "source_sha256": "d4026c8d2cd52d2cf0e03bf17b377186b7c4a8ea45161bed972e28fe4ba5cf6e",
+    "file": "bass.wav",
+    "sha256": "249c487e945fdf9e61aca62f8ec6aa5376a0816eb3de5cad2991814f01b7a4dd",
+    "original": {
+      "lufs": -15.8,
+      "true_peak_dbfs": -8.0
+    },
+    "gain_db": -6.199999999999999,
+    "matched": {
+      "lufs": -22.0,
+      "true_peak_dbfs": -14.2
+    }
+  },
+  {
+    "source": "renders/voice-club-v7/final/remix.club.drums.wav",
+    "source_sha256": "ae96912abaf76496f15b2d60b20ad4775b89fb0bac09f1604a716a04956cdfcd",
+    "file": "drums.wav",
+    "sha256": "5c122b090b6920c32731f8dfdf1afc4ceaeefcaf269028fd2a5669ef6801e846",
+    "original": {
+      "lufs": -22.5,
+      "true_peak_dbfs": -6.2
+    },
+    "gain_db": 0.5,
+    "matched": {
+      "lufs": -22.0,
+      "true_peak_dbfs": -5.7
+    }
+  },
+  {
+    "source": "renders/voice-club-v7/final/remix.club.piano.wav",
+    "source_sha256": "99342569775b33581718b201d5766d15875550832595a29e6f01ad80e5927d69",
+    "file": "piano.wav",
+    "sha256": "7a9ee7e29c7ebbf8f37b4bc7e3df9575dc84d670d2e82cba618ef0f923b44a0a",
+    "original": {
+      "lufs": -30.5,
+      "true_peak_dbfs": -15.2
+    },
+    "gain_db": 8.5,
+    "matched": {
+      "lufs": -22.0,
+      "true_peak_dbfs": -6.7
+    }
+  }
+]
