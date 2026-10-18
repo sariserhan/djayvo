@@ -1,0 +1,12 @@
+PASS: /out/vocal-echo-20261018/control.club.wav
+PASS: complete export /out/vocal-echo-20261018/control.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/vocal-echo-20261018/eighth-echo.club.wav
+PASS: complete export /out/vocal-echo-20261018/eighth-echo.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/vocal-echo-20261018/dotted-echo.club.wav
+PASS: complete export /out/vocal-echo-20261018/dotted-echo.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/vocal-echo-20261018/pitched-echo.club.wav
+PASS: complete export /out/vocal-echo-20261018/pitched-echo.complete.json
+Listening/recognizability: NOT RUN

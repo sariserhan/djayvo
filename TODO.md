@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [independent voice pitch/timing](docs/voice-transforms.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [selective tempo echo](docs/vocal-echo.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -16,7 +16,7 @@ the source of truth and is not modified by this tracker.
 | M0a — offline foundation | PASS | Portable engine, instruments, timing, WAV and automated tests |
 | M0b — own sound into music | PARTIAL | Consented voice renders; formal recognizability observations missing |
 | M0c — three musical strategies | PARTIAL | Owner accepts the current prototype as a start; production quality and formal listening remain open |
-| M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact club plans/events and 12 matching club WAVs; prior styles preserved |
+| M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact echo plans/events and 25 matching owner WAVs; prior styles preserved |
 | M1 — musical quality baseline | NOT RUN | Frozen one-source/three-seed pilot and distinct blind packets prepared; diverse sources and formal human evaluation missing |
 | M2 — AI director benchmarks | PARTIAL | Offline import/fallback prerequisite complete; model integration and benchmark remain NOT RUN behind M1; separate pretrained feasibility trial measured |
 | M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
@@ -196,6 +196,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P29 | PASS | Local selective-voice research: six arrangements, controls/stems, matched review page, six tests and Chromium/WebKit playback | [Evidence](docs/voice-research.md) |
 | [x] | P30 | PASS | Strict offline JSON plan replay, explicit deterministic fallback, completion receipts, adversarial tests and actual M5/Linux/WASM comparisons | [Evidence](docs/plan-import.md) |
 | [x] | P31 | PASS | Independent voice pitch/duration controls, bounded 1.1 import/export, preserved clean hooks, owner comparisons and fixed 32-bit resampling overflow | [Evidence](docs/voice-transforms.md) |
+| [x] | P32 | PASS | Bounded tempo echo with clean-hook clearance, stereo decay, 1.2 plan import/export, private owner comparisons and actual M5/Linux/WASM checks | [Evidence](docs/vocal-echo.md) |
 
 ## Engineering backlog
 
@@ -216,8 +217,10 @@ is needed. Prioritize by recorded listening defects and product requirements.
   preservation, diverse transient/word clarity and human acceptance remain open;
   default generated chops still use original speed. [Evidence](docs/voice-transforms.md).
 - [ ] **E04 — PARTIAL:** Expand expressive mixing/effects when justified by
-  listening. Early reflections, hook ducking and stem-consistent kick ducking exist; feedback delay/reverb and
-  richer automation do not.
+  listening. Early reflections, hook/kick ducking and opt-in three-repeat tempo
+  echoes exist. Clean-hook clearance, bounded tails, exact cross-OS PCM and local
+  comparisons checked. Echo listening, continuous feedback/reverb and richer
+  automation remain open. [Evidence](docs/vocal-echo.md).
 - [x] **E05 — PASS:** CLI/C ABI exports stage files, preserve existing paths,
   publish a verified completion marker last and support cancellation. Actual
   SIGINT/SIGKILL and collision tests pass. Abrupt kills may leave incomplete

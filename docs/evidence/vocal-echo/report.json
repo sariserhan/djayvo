@@ -1,0 +1,157 @@
+{
+  "date": "2026-10-18",
+  "overall_specification": "PARTIAL",
+  "E04": "PARTIAL",
+  "mac_release": {
+    "status": "PASS",
+    "suites": 10
+  },
+  "linux_arm64_release": {
+    "status": "PASS",
+    "suites": 10
+  },
+  "mac_sanitizers": {
+    "status": "PASS",
+    "suites": 10
+  },
+  "echo_signal_checks": {
+    "status": "PASS",
+    "rate_tempo_interval_cases": 8,
+    "maximum_error_vs_independent_repeats": 1e-07,
+    "callback_allocations": 0
+  },
+  "plan_import": {
+    "roundtrip_styles": 5,
+    "identical_artifacts": 40,
+    "edited_plan_changes_pcm": "PASS",
+    "independent_transform_replay_and_instrument_stems": "PASS",
+    "tempo_echo_replay_and_instrument_stems": "PASS",
+    "rejected_candidates": 70,
+    "explicit_fallback": "PASS",
+    "consent_and_collision": "PASS",
+    "model_inference": "NOT RUN",
+    "listening": "NOT RUN"
+  },
+  "schema": {
+    "status": "PASS",
+    "valid_plans": 19,
+    "invalid_plans_rejected": 5
+  },
+  "cross_platform_identical_owner_wavs": 25,
+  "maximum_cross_platform_pcm_error": 0,
+  "rms_cross_platform_pcm_error": 0,
+  "instrument_event_frames": "PASS",
+  "echo_frames_from_matching_plans": "PASS",
+  "clean_hooks": "PASS",
+  "previous_wavs_preserved": 25,
+  "tail_probe": {
+    "status": "PASS",
+    "music_end_frame": 1645714,
+    "post_music_voice_peak": 0.03509521484375,
+    "final_100ms_silent": true
+  },
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "wasm_default_four_styles": "PASS",
+  "browser": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "status": "PASS",
+      "url": "file:///Users/serhansari/Documents/projects/djayvo/renders/vocal-echo-20261018/index.html",
+      "players": 8,
+      "durations_seconds": 36.28570833333333,
+      "play_seek_pause_exclusivity": "PASS",
+      "no_autoplay": "PASS",
+      "errors": [],
+      "layouts": [
+        {
+          "width": 375,
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "overflow": false
+        }
+      ],
+      "screenshots": [
+        "/tmp/djayvo-echo-chromium-desktop.png",
+        "/tmp/djayvo-echo-chromium-mobile.png"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "status": "PASS",
+      "url": "file:///Users/serhansari/Documents/projects/djayvo/renders/vocal-echo-20261018/index.html",
+      "players": 8,
+      "durations_seconds": 36.28570833333333,
+      "play_seek_pause_exclusivity": "PASS",
+      "no_autoplay": "PASS",
+      "errors": [],
+      "layouts": [
+        {
+          "width": 375,
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "overflow": false
+        }
+      ],
+      "screenshots": [
+        "/tmp/djayvo-echo-webkit-desktop.png",
+        "/tmp/djayvo-echo-webkit-mobile.png"
+      ]
+    }
+  ],
+  "preparation": {
+    "consent_required": "PASS",
+    "existing_recordings_preserved": "PASS",
+    "legacy_1_1_owner_pcm_score_events": "PASS",
+    "identical_legacy_1_1_wavs": 5
+  },
+  "new_listening": "NOT RUN",
+  "continuous_feedback_and_reverb": "NOT RUN",
+  "default_app_echo_selection": "NOT RUN",
+  "new_phone_checks": "NOT RUN",
+  "production_release": "NOT RUN",
+  "learned_director": "NOT RUN",
+  "cloud_calls": 0,
+  "paid_services_used": false,
+  "third_party_runtime_dependencies_added": false,
+  "render_timings_single_observations": {
+    "control": 0.7993432499933988,
+    "eighth-echo": 0.7965544579928974,
+    "dotted-echo": 0.8108125409926288,
+    "pitched-echo": 0.8365168750024168
+  },
+  "source_files_sha256": {
+    "core/arrangement/remix.cpp": "311e1078a7cc4497341a51f186d929ec012e42c46ab3a65208cfdbba3bbf56d1",
+    "core/arrangement/demo.cpp": "0f2080bf64010ebd9a8591039b8aa51be7c48502f9a9b2f51e16b8cf5624a641",
+    "core/tests/remix_tests.cpp": "945c8e468374ad00d26dcb24c2697de5af4bea944c942dfc3fe767020ccc773d",
+    "core/tests/tests.cpp": "8521b1f0ace7df1c42574641702258ddd2cee40f6971423a5d9cda1a18c9da3f",
+    "core/composition/analysis.cpp": "2b9407dd03618f51fd68d0de93e90b0163c01fc94501a1eebc32932b135bec33",
+    "core/composition/remix_plan.cpp": "ee76a21b56eae8a1c3a8aec9e2630ac6692060445854c00d7881e14ea9fd57f9",
+    "core/composition/plan.cpp": "2baec6d0e0684f6b77a852f34e280eb7e337fe7ed8cb857697d3bae196772abd",
+    "core/instruments/voice.cpp": "77fc3fc75928195c797570a64a671b2637fe12a9f84c7996cbe1d75081d837e1",
+    "core/audio/input.cpp": "6b1303698c3fb331ae1e8276eb7756dce2e93b963f1b0a0e8e0e094d41f5671c",
+    "core/audio/remix_renderer.cpp": "c9cda7967708bb900cf94d80e786c2e1c5ccb1a572486b8652a626271fc3f678",
+    "core/audio/c_api.cpp": "f150ca1c36a7a7500381a230465d03391a874b8ec3e13c2cc5af98789ece9004",
+    "core/audio/remix_file.cpp": "1c84928b6d303acc4f2c99e0e27668b96bc734242fb4439da450b2212ed00875",
+    "core/audio/wav.cpp": "e74a43ca3452c3c9bad3226c88da0b8b4fe3b7a6d4bf6ac0eb84613d20bbeea9",
+    "core/audio/renderer.cpp": "74aed20d54e698d6d8250933c7badaf128830819d021e9f119c2edda5e4eac94",
+    "core/audio/resample_pcm.h": "85766a9a8f9b07564f1c882ac937cd719cdbbab3d307bbf65ea47d80dcf288c2",
+    "core/include/djayvo/music.h": "43ee1ff5045681256e301489a4caea1f0eabf8335cd9293bb1319bd839d532e1",
+    "core/include/djayvo/remix.h": "f53d1af181bcf8681cdf0ac1e3c4cce7f86991f6dd451f5527e0ddbd69087ab9",
+    "core/include/djayvo/audio.h": "32d3603f325e4fa15490dd2af2e04a9ba0055f5de572d9763d603113125aa63a",
+    "core/include/djayvo/djayvo_c.h": "6a36ecf56b06fbeb1bb203fe9a70404d96b5fc6887b0defbbaf38a1d8755f7e5",
+    "tools/cli/plan_import.cpp": "2ce6e8c1b49d11f78b2c9d3fe6dc7c6504ff372f83de804352a76b31099abc7c",
+    "tools/cli/main.cpp": "36a2f80ff4087d99f2eedfff095e234f88952f925d84191fe2ec3259a386e7da",
+    "tools/cli/remix_main.cpp": "ef2813abcd1e06628ca95f9b0081576009fe694552e9cecf25e472c8e3a11755",
+    "tools/cli/plan_import.h": "be91a842a917719ac941e3ccdfc264c971af22fa19c62dd2ac333921e5f665b3"
+  }
+}

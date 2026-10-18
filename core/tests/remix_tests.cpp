@@ -470,6 +470,67 @@ void independent_voice() {
         check(std::all_of(silent.begin(),silent.end(),[](float x){return x==0;}),"silent crop gained noise or read outside crop");
     }
 }
+void vocal_echo() {
+    for (const unsigned rate:{8000U,48000U}) for (const unsigned tempo:{96000U,123457U}) {
+        auto a=djayvo::resample(source(),rate);
+        auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+        p.music.tempo_milli_bpm=tempo;
+        for (auto& track:p.music.tracks) track.notes.clear();
+        p.analysis.normalization_gain=1;
+        p.clips={{0,a.mono.size(),1},{0,rate/5,1}};
+        p.vocals={{0,1,0,1,false,0,false,2,1.1},{9600,0,-6,1,false,0,true}};
+        const auto capture=[&](const djayvo::RemixPlan& plan,std::size_t block) {
+            djayvo::RemixRenderer renderer(plan,a,block,true);
+            std::vector<float> result(rate*3*2),buffer(block*2);
+            const auto before=allocations.load();
+            std::size_t offset=0;
+            while (offset<result.size()/2) {
+                const auto n=renderer.process(buffer.data(),std::min(block,result.size()/2-offset));
+                check(n>0,"echo renderer stalled");
+                std::copy_n(buffer.begin(),n*2,result.begin()+static_cast<std::ptrdiff_t>(offset*2));offset+=n;
+            }
+            check(allocations.load()==before,"echo callback allocates");
+            check(renderer.stats().nonfinite_samples==0,"echo output is nonfinite");
+            return result;
+        };
+        const auto dry=capture(p,257);
+        for (djayvo::Tick interval:{120,960}) {
+            p.vocals[0].echo_ticks=interval;p.vocals[0].echo_gain_db=-6;
+            const auto actual=capture(p,257);
+            check(actual==capture(p,113),"echo timing depends on block size");
+            auto explicit_plan=p;explicit_plan.vocals[0].echo_ticks=0;
+            for (int repeat=1;repeat<=3;++repeat) {
+                auto e=explicit_plan.vocals[0];e.start+=repeat*interval;
+                e.gain_db=-6+20*std::log10(0.35)*(repeat-1);e.pan=repeat%2?0.45:-0.45;
+                explicit_plan.vocals.push_back(e);
+            }
+            const auto expected=capture(explicit_plan,113);
+            double change=0;
+            for (std::size_t i=0;i<actual.size();++i) {
+                check(std::abs(actual[i]-expected[i])<1e-7,"echo differs from independent timed/attenuated repeats");
+                change+=std::abs(actual[i]-dry[i]);
+            }
+            check(change>0.1,"echo treatment has no effect");
+            const auto end=djayvo::tick_to_frame(interval*3,rate,tempo)+djayvo::vocal_frames(p.vocals[0],p.clips[1]);
+            for (auto i=end*2;i<actual.size();++i) check(actual[static_cast<std::size_t>(i)]==0,"echo has an unbounded tail");
+        }
+        auto bad=p;bad.vocals[0].echo_ticks=119;rejects([&]{djayvo::validate(bad,a);});
+        bad=p;bad.vocals[0].echo_ticks=961;rejects([&]{djayvo::validate(bad,a);});
+        bad=p;bad.vocals[0].echo_ticks=-1;rejects([&]{djayvo::validate(bad,a);});
+        for (double gain:{-24.1,-5.9,std::numeric_limits<double>::quiet_NaN()}) {
+            bad=p;bad.vocals[0].echo_gain_db=gain;rejects([&]{djayvo::validate(bad,a);});
+        }
+        bad=p;bad.vocals[1].echo_ticks=480;rejects([&]{djayvo::validate(bad,a);});
+        bad=p;bad.vocals[1].start=1920;rejects([&]{djayvo::validate(bad,a);});
+        bad=p;bad.music.tail_ms=500;bad.vocals[0].start=djayvo::ticks_per_bar(p.music)*p.music.bars-960;
+        rejects([&]{djayvo::validate(bad,a);});
+        bad=p;bad.clips[1].end=rate;bad.vocals.insert(bad.vocals.end(),5,p.vocals[0]);
+        for (auto& e:bad.vocals) if (!e.clean) e.echo_ticks=120;
+        rejects([&]{djayvo::validate(bad,a);});
+        bad=p;bad.clips[1].end=1;bad.vocals[0].pitch_semitones=0;bad.vocals[0].time_stretch=1;
+        bad.vocals.insert(bad.vocals.end(),256,bad.vocals[0]);rejects([&]{djayvo::validate(bad,a);});
+    }
+}
 }
 int main() {
     const std::vector<std::pair<const char*,std::function<void()>>> tests{
@@ -483,6 +544,7 @@ int main() {
         {"subtraction and return across styles and seeds",arrangement_contrast},
         {"instrument room timing, stereo, dry speech and finite tail",room_processing},
         {"independent voice pitch/time, four rates, exact duration/reverse, bounds and no callback allocation",independent_voice},
+        {"tempo echo timing, stereo decay, bounded tails, hook clearance and callback safety",vocal_echo},
         {"club form, input-driven bass, electronic palette and stem-consistent kick ducking",club_direction},
         {"stem identity and linear mix reconstruction including room and ducking",stem_identity},
         {"club pause selection, deduplication, bounded fallback and transition accents",club_phrasing},

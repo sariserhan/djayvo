@@ -113,3 +113,7 @@ specification is unchanged. Replayed audio is not a new listening-quality result
 Subsequent extension: [bounded independent voice pitch/time](voice-transforms.md)
 adds `1.1-remix` fields with clean-hook/work limits. Legacy exports remain 1.0;
 the current integration suite rejects 59 candidates and includes transformed replay.
+
+[Version 1.2 tempo echo](vocal-echo.md) adds optional bounded repeat controls.
+The current integration suite rejects 70 invalid candidates and checks echo replay,
+stem identity, clean-hook protection and sparse comparison selection.

@@ -10,6 +10,17 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest effect continuation, 2026-10-18: [selective tempo echo](vocal-echo.md).
+Optional 1.2 plans add three fading stereo repeats to selected fragments, with
+native clean-hook clearance, compiled voice limits and finite-tail checks.
+**Mac/Linux release and M5 sanitizer 10/10 each, 70 invalid-plan cases, 25 exact cross-OS owner WAVs,
+unchanged clean hooks, default WASM and Chromium/WebKit playback: PASS.**
+Four private comparisons are ready. This is a finite repeat effect, not a
+continuous feedback/reverb implementation or learned creative judgment.
+**E04: PARTIAL; new human listening and production acceptance: NOT RUN.**
+The master, supplied fixture and owner source are unchanged; no cloud call or
+publication. Detailed sanitizer results and versions are in the linked evidence.
+
 Latest engine continuation, 2026-10-18: [independent voice pitch and timing](voice-transforms.md).
 Bounded 1.1 plans, offline cached transforms and four private owner comparisons
 are implemented. **Four-rate technical tests, strict import/schema limits, exact
@@ -209,10 +220,10 @@ the current app is documented above. AI models, training and live mode remain ab
 | Gate | Status | Evidence |
 | --- | --- | --- |
 | Linux release build | PASS | Current aarch64 Debian 12 container, GCC 12.2; physical Intel rerun NOT RUN |
-| C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 16 remix test groups |
+| C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 17 remix test groups |
 | C ABI | PASS | Compiled-C render, bounded errors, ABI and additive cancellation/retry checked |
 | End-to-end tests | PASS | Current Mac/Linux: CTest 10/10 including both asset banks, evaluation preparation and plan import |
-| ASan/UBSan | PASS | Current Mac: ten suites plus 3/3 affected checks after the frame-count fix, no findings |
+| ASan/UBSan | PASS | Current echo revision: ten suites, no findings |
 | Evaluation preparation | PASS | Frozen actual one-source/three-seed pilot; nine unchanged candidate WAVs, distinct codes and blank ratings |
 | Dataset/preregistration | PARTIAL | Owner has no additional clips; diverse cohort and reviewer assignments missing |
 | Input decoding/bounds | PASS | PCM16/24/32, float32 and validated extensible variants; original owner WAV accepted; corruption/layout/precision/padding rejected |
@@ -322,8 +333,8 @@ and drums, but there are no formal ratings of realism or layer transitions.
 No formal perceptual evaluation exists. Analysis is energy/onset/autocorrelation DSP with sustained quiet-boundary selection but
 no word boundaries or reliable semantic labels. Pitch may have octave errors.
 Varispeed couples pitch/time and can alias (current generated chops use rate 1).
-Finite instrumental early reflections and bounded independent pitch/time transforms
-exist. The latter are opt-in through 1.1 plans, without formant correction or
+Finite instrumental early reflections, bounded independent pitch/time transforms
+and opt-in three-repeat tempo echoes exist. The latter are opt-in through 1.1 plans, without formant correction or
 human acceptance; feedback reverb/delay and tempo maps are absent. Offline CLI JSON import and
 explicit rule fallback are now implemented; provider-connected AI planning is
 absent. Silence is explicitly rejected. Mixing is fixed per grammar,

@@ -1,0 +1,818 @@
+{
+  "portability": {
+    "control": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "eighth-echo": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "dotted-echo": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "pitched-echo": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "tail-probe": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "changed_waveforms": {
+    "control": {
+      "max_error_vs_control": 0.0,
+      "rms_error_vs_control": 0.0
+    },
+    "eighth-echo": {
+      "max_error_vs_control": 0.065643310546875,
+      "rms_error_vs_control": 0.003856995198377108
+    },
+    "dotted-echo": {
+      "max_error_vs_control": 0.069305419921875,
+      "rms_error_vs_control": 0.003997258578338467
+    },
+    "pitched-echo": {
+      "max_error_vs_control": 0.46435546875,
+      "rms_error_vs_control": 0.03453478922969
+    },
+    "tail-probe": {
+      "max_error_vs_control": 0.2861328125,
+      "rms_error_vs_control": 0.007011823677142493
+    }
+  },
+  "clean_hooks": {
+    "control": {
+      "status": "PASS",
+      "maximum_pcm_error_vs_control": 0
+    },
+    "eighth-echo": {
+      "status": "PASS",
+      "maximum_pcm_error_vs_control": 0
+    },
+    "dotted-echo": {
+      "status": "PASS",
+      "maximum_pcm_error_vs_control": 0
+    },
+    "pitched-echo": {
+      "status": "PASS",
+      "maximum_pcm_error_vs_control": 0
+    },
+    "tail-probe": {
+      "status": "PASS",
+      "maximum_pcm_error_vs_control": 0
+    }
+  },
+  "waveforms": {
+    "control.club.wav": {
+      "sha256": "1dcf73fa8bf418afce2f68f28647b0ec6064151ee7c0b796db2a4a846e7c9156",
+      "frames": 1741714,
+      "peak": 0.642608642578125,
+      "full_scale_samples": 0
+    },
+    "control.club.piano.wav": {
+      "sha256": "45792bd956c15ec8911ad71a56712f14a9afab18a8bba8a718bafdae512cd383",
+      "frames": 1741714,
+      "peak": 0.241241455078125,
+      "full_scale_samples": 0
+    },
+    "control.club.bass.wav": {
+      "sha256": "32560731e3609b4cdabb1133f8b7ecefb396768e7c565ec4e1ece948cee07589",
+      "frames": 1741714,
+      "peak": 0.355682373046875,
+      "full_scale_samples": 0
+    },
+    "control.club.drums.wav": {
+      "sha256": "4bda052e318daeb18ae82116fd36c298df957bf11388fb2e6c590022e7d264b6",
+      "frames": 1741714,
+      "peak": 0.620758056640625,
+      "full_scale_samples": 0
+    },
+    "control.club.vocals.wav": {
+      "sha256": "fb628620c3fe7ca18b7f45080680372cbc3625deacf3005193184c7cb3e7ff98",
+      "frames": 1741714,
+      "peak": 0.40045166015625,
+      "full_scale_samples": 0
+    },
+    "eighth-echo.club.wav": {
+      "sha256": "b79bf202c7a14f027dfbd59f90d778c98add968c864d77dfed3ebc181931248c",
+      "frames": 1741714,
+      "peak": 0.640838623046875,
+      "full_scale_samples": 0
+    },
+    "eighth-echo.club.piano.wav": {
+      "sha256": "45792bd956c15ec8911ad71a56712f14a9afab18a8bba8a718bafdae512cd383",
+      "frames": 1741714,
+      "peak": 0.241241455078125,
+      "full_scale_samples": 0
+    },
+    "eighth-echo.club.bass.wav": {
+      "sha256": "32560731e3609b4cdabb1133f8b7ecefb396768e7c565ec4e1ece948cee07589",
+      "frames": 1741714,
+      "peak": 0.355682373046875,
+      "full_scale_samples": 0
+    },
+    "eighth-echo.club.drums.wav": {
+      "sha256": "4bda052e318daeb18ae82116fd36c298df957bf11388fb2e6c590022e7d264b6",
+      "frames": 1741714,
+      "peak": 0.620758056640625,
+      "full_scale_samples": 0
+    },
+    "eighth-echo.club.vocals.wav": {
+      "sha256": "81f352e6369b5361eccb83cc09d9bfaec3c861c5435580db0b190ef4a41d2785",
+      "frames": 1741714,
+      "peak": 0.40045166015625,
+      "full_scale_samples": 0
+    },
+    "dotted-echo.club.wav": {
+      "sha256": "8eb898ab73d4aa2c3e1ed45edca3ce691478661f39442afb963d4a20fe8bfc1b",
+      "frames": 1741714,
+      "peak": 0.644805908203125,
+      "full_scale_samples": 0
+    },
+    "dotted-echo.club.piano.wav": {
+      "sha256": "45792bd956c15ec8911ad71a56712f14a9afab18a8bba8a718bafdae512cd383",
+      "frames": 1741714,
+      "peak": 0.241241455078125,
+      "full_scale_samples": 0
+    },
+    "dotted-echo.club.bass.wav": {
+      "sha256": "32560731e3609b4cdabb1133f8b7ecefb396768e7c565ec4e1ece948cee07589",
+      "frames": 1741714,
+      "peak": 0.355682373046875,
+      "full_scale_samples": 0
+    },
+    "dotted-echo.club.drums.wav": {
+      "sha256": "4bda052e318daeb18ae82116fd36c298df957bf11388fb2e6c590022e7d264b6",
+      "frames": 1741714,
+      "peak": 0.620758056640625,
+      "full_scale_samples": 0
+    },
+    "dotted-echo.club.vocals.wav": {
+      "sha256": "9090a789094e8bb43113fe85ebd2750269a164fc19721883f08ef4d133b34da9",
+      "frames": 1741714,
+      "peak": 0.40045166015625,
+      "full_scale_samples": 0
+    },
+    "pitched-echo.club.wav": {
+      "sha256": "059ec3c0949dbc860b0da451c1833c4c65be56146183579ade7fbcd9587b2df1",
+      "frames": 1741714,
+      "peak": 0.63494873046875,
+      "full_scale_samples": 0
+    },
+    "pitched-echo.club.piano.wav": {
+      "sha256": "45792bd956c15ec8911ad71a56712f14a9afab18a8bba8a718bafdae512cd383",
+      "frames": 1741714,
+      "peak": 0.241241455078125,
+      "full_scale_samples": 0
+    },
+    "pitched-echo.club.bass.wav": {
+      "sha256": "32560731e3609b4cdabb1133f8b7ecefb396768e7c565ec4e1ece948cee07589",
+      "frames": 1741714,
+      "peak": 0.355682373046875,
+      "full_scale_samples": 0
+    },
+    "pitched-echo.club.drums.wav": {
+      "sha256": "4bda052e318daeb18ae82116fd36c298df957bf11388fb2e6c590022e7d264b6",
+      "frames": 1741714,
+      "peak": 0.620758056640625,
+      "full_scale_samples": 0
+    },
+    "pitched-echo.club.vocals.wav": {
+      "sha256": "8d72dc4851d8ed64b55789e645e737800083843364a14fd89323165a66cd795d",
+      "frames": 1741714,
+      "peak": 0.40045166015625,
+      "full_scale_samples": 0
+    },
+    "tail-probe.club.wav": {
+      "sha256": "5f9e422cd49bf5ca680d6074e6f8b120875436b87f14cef01c9b6fd4d22b3523",
+      "frames": 1741714,
+      "peak": 0.62188720703125,
+      "full_scale_samples": 0
+    },
+    "tail-probe.club.piano.wav": {
+      "sha256": "45792bd956c15ec8911ad71a56712f14a9afab18a8bba8a718bafdae512cd383",
+      "frames": 1741714,
+      "peak": 0.241241455078125,
+      "full_scale_samples": 0
+    },
+    "tail-probe.club.bass.wav": {
+      "sha256": "32560731e3609b4cdabb1133f8b7ecefb396768e7c565ec4e1ece948cee07589",
+      "frames": 1741714,
+      "peak": 0.355682373046875,
+      "full_scale_samples": 0
+    },
+    "tail-probe.club.drums.wav": {
+      "sha256": "4bda052e318daeb18ae82116fd36c298df957bf11388fb2e6c590022e7d264b6",
+      "frames": 1741714,
+      "peak": 0.620758056640625,
+      "full_scale_samples": 0
+    },
+    "tail-probe.club.vocals.wav": {
+      "sha256": "6e44ebeff257971d0e0a8a40a5fde2e983ad96c7a5c8ac5e3e87185657a7dfdd",
+      "frames": 1741714,
+      "peak": 0.40045166015625,
+      "full_scale_samples": 0
+    }
+  },
+  "voice_frames": {
+    "control": [
+      {
+        "start": 164571,
+        "end": 397947,
+        "clean": true
+      },
+      {
+        "start": 0,
+        "end": 29629,
+        "clean": false
+      },
+      {
+        "start": 509143,
+        "end": 533913,
+        "clean": false
+      },
+      {
+        "start": 550286,
+        "end": 577448,
+        "clean": false
+      },
+      {
+        "start": 673714,
+        "end": 703343,
+        "clean": false
+      },
+      {
+        "start": 714857,
+        "end": 745811,
+        "clean": false
+      },
+      {
+        "start": 822857,
+        "end": 1056233,
+        "clean": true
+      },
+      {
+        "start": 1167429,
+        "end": 1192199,
+        "clean": false
+      },
+      {
+        "start": 1208571,
+        "end": 1235733,
+        "clean": false
+      },
+      {
+        "start": 1332000,
+        "end": 1361629,
+        "clean": false
+      },
+      {
+        "start": 1373143,
+        "end": 1404097,
+        "clean": false
+      },
+      {
+        "start": 1496571,
+        "end": 1521341,
+        "clean": false
+      },
+      {
+        "start": 1537714,
+        "end": 1564876,
+        "clean": false
+      }
+    ],
+    "eighth-echo": [
+      {
+        "start": 164571,
+        "end": 397947,
+        "clean": true
+      },
+      {
+        "start": 0,
+        "end": 29629,
+        "clean": false
+      },
+      {
+        "start": 509143,
+        "end": 533913,
+        "clean": false
+      },
+      {
+        "start": 550286,
+        "end": 577448,
+        "clean": false
+      },
+      {
+        "start": 673714,
+        "end": 703343,
+        "clean": false
+      },
+      {
+        "start": 714857,
+        "end": 745811,
+        "clean": false
+      },
+      {
+        "start": 822857,
+        "end": 1056233,
+        "clean": true
+      },
+      {
+        "start": 1167429,
+        "end": 1192199,
+        "clean": false
+      },
+      {
+        "start": 1208571,
+        "end": 1235733,
+        "clean": false
+      },
+      {
+        "start": 1332000,
+        "end": 1361629,
+        "clean": false
+      },
+      {
+        "start": 1373143,
+        "end": 1404097,
+        "clean": false
+      },
+      {
+        "start": 1496571,
+        "end": 1521341,
+        "clean": false
+      },
+      {
+        "start": 1537714,
+        "end": 1564876,
+        "clean": false
+      }
+    ],
+    "dotted-echo": [
+      {
+        "start": 164571,
+        "end": 397947,
+        "clean": true
+      },
+      {
+        "start": 0,
+        "end": 29629,
+        "clean": false
+      },
+      {
+        "start": 509143,
+        "end": 533913,
+        "clean": false
+      },
+      {
+        "start": 550286,
+        "end": 577448,
+        "clean": false
+      },
+      {
+        "start": 673714,
+        "end": 703343,
+        "clean": false
+      },
+      {
+        "start": 714857,
+        "end": 745811,
+        "clean": false
+      },
+      {
+        "start": 822857,
+        "end": 1056233,
+        "clean": true
+      },
+      {
+        "start": 1167429,
+        "end": 1192199,
+        "clean": false
+      },
+      {
+        "start": 1208571,
+        "end": 1235733,
+        "clean": false
+      },
+      {
+        "start": 1332000,
+        "end": 1361629,
+        "clean": false
+      },
+      {
+        "start": 1373143,
+        "end": 1404097,
+        "clean": false
+      },
+      {
+        "start": 1496571,
+        "end": 1521341,
+        "clean": false
+      },
+      {
+        "start": 1537714,
+        "end": 1564876,
+        "clean": false
+      }
+    ],
+    "pitched-echo": [
+      {
+        "start": 164571,
+        "end": 397947,
+        "clean": true
+      },
+      {
+        "start": 0,
+        "end": 29629,
+        "clean": false
+      },
+      {
+        "start": 509143,
+        "end": 533913,
+        "clean": false
+      },
+      {
+        "start": 550286,
+        "end": 577448,
+        "clean": false
+      },
+      {
+        "start": 673714,
+        "end": 703343,
+        "clean": false
+      },
+      {
+        "start": 714857,
+        "end": 745811,
+        "clean": false
+      },
+      {
+        "start": 822857,
+        "end": 1056233,
+        "clean": true
+      },
+      {
+        "start": 1167429,
+        "end": 1192199,
+        "clean": false
+      },
+      {
+        "start": 1208571,
+        "end": 1235733,
+        "clean": false
+      },
+      {
+        "start": 1332000,
+        "end": 1361629,
+        "clean": false
+      },
+      {
+        "start": 1373143,
+        "end": 1404097,
+        "clean": false
+      },
+      {
+        "start": 1496571,
+        "end": 1521341,
+        "clean": false
+      },
+      {
+        "start": 1537714,
+        "end": 1564876,
+        "clean": false
+      }
+    ],
+    "tail-probe": [
+      {
+        "start": 164571,
+        "end": 397947,
+        "clean": true
+      },
+      {
+        "start": 0,
+        "end": 29629,
+        "clean": false
+      },
+      {
+        "start": 509143,
+        "end": 533913,
+        "clean": false
+      },
+      {
+        "start": 550286,
+        "end": 577448,
+        "clean": false
+      },
+      {
+        "start": 673714,
+        "end": 703343,
+        "clean": false
+      },
+      {
+        "start": 714857,
+        "end": 745811,
+        "clean": false
+      },
+      {
+        "start": 822857,
+        "end": 1056233,
+        "clean": true
+      },
+      {
+        "start": 1167429,
+        "end": 1192199,
+        "clean": false
+      },
+      {
+        "start": 1208571,
+        "end": 1235733,
+        "clean": false
+      },
+      {
+        "start": 1332000,
+        "end": 1361629,
+        "clean": false
+      },
+      {
+        "start": 1373143,
+        "end": 1404097,
+        "clean": false
+      },
+      {
+        "start": 1496571,
+        "end": 1521341,
+        "clean": false
+      },
+      {
+        "start": 1604571,
+        "end": 1631733,
+        "clean": false
+      }
+    ]
+  },
+  "echo_frames": {
+    "control": [],
+    "eighth-echo": [
+      {
+        "start": 519429,
+        "end": 544199,
+        "repeat": 1
+      },
+      {
+        "start": 529714,
+        "end": 554484,
+        "repeat": 2
+      },
+      {
+        "start": 540000,
+        "end": 564770,
+        "repeat": 3
+      },
+      {
+        "start": 1177714,
+        "end": 1202484,
+        "repeat": 1
+      },
+      {
+        "start": 1188000,
+        "end": 1212770,
+        "repeat": 2
+      },
+      {
+        "start": 1198286,
+        "end": 1223056,
+        "repeat": 3
+      },
+      {
+        "start": 1506857,
+        "end": 1531627,
+        "repeat": 1
+      },
+      {
+        "start": 1517143,
+        "end": 1541913,
+        "repeat": 2
+      },
+      {
+        "start": 1527429,
+        "end": 1552199,
+        "repeat": 3
+      }
+    ],
+    "dotted-echo": [
+      {
+        "start": 524571,
+        "end": 549341,
+        "repeat": 1
+      },
+      {
+        "start": 540000,
+        "end": 564770,
+        "repeat": 2
+      },
+      {
+        "start": 555429,
+        "end": 580199,
+        "repeat": 3
+      },
+      {
+        "start": 1182857,
+        "end": 1207627,
+        "repeat": 1
+      },
+      {
+        "start": 1198286,
+        "end": 1223056,
+        "repeat": 2
+      },
+      {
+        "start": 1213714,
+        "end": 1238484,
+        "repeat": 3
+      },
+      {
+        "start": 1512000,
+        "end": 1536770,
+        "repeat": 1
+      },
+      {
+        "start": 1527429,
+        "end": 1552199,
+        "repeat": 2
+      },
+      {
+        "start": 1542857,
+        "end": 1567627,
+        "repeat": 3
+      }
+    ],
+    "pitched-echo": [
+      {
+        "start": 519429,
+        "end": 544199,
+        "repeat": 1
+      },
+      {
+        "start": 529714,
+        "end": 554484,
+        "repeat": 2
+      },
+      {
+        "start": 540000,
+        "end": 564770,
+        "repeat": 3
+      },
+      {
+        "start": 1177714,
+        "end": 1202484,
+        "repeat": 1
+      },
+      {
+        "start": 1188000,
+        "end": 1212770,
+        "repeat": 2
+      },
+      {
+        "start": 1198286,
+        "end": 1223056,
+        "repeat": 3
+      },
+      {
+        "start": 1506857,
+        "end": 1531627,
+        "repeat": 1
+      },
+      {
+        "start": 1517143,
+        "end": 1541913,
+        "repeat": 2
+      },
+      {
+        "start": 1527429,
+        "end": 1552199,
+        "repeat": 3
+      }
+    ],
+    "tail-probe": [
+      {
+        "start": 1625143,
+        "end": 1652305,
+        "repeat": 1
+      },
+      {
+        "start": 1645714,
+        "end": 1672876,
+        "repeat": 2
+      },
+      {
+        "start": 1666286,
+        "end": 1693448,
+        "repeat": 3
+      }
+    ]
+  },
+  "tail_probe": {
+    "status": "PASS",
+    "music_end_frame": 1645714,
+    "post_music_voice_peak": 0.03509521484375,
+    "final_100ms_silent": true
+  },
+  "wasm_default": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "club": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "schema": {
+    "status": "PASS",
+    "valid_plans": 19,
+    "invalid_plans_rejected": 5
+  },
+  "preserved": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "render_timings": {
+    "control": 0.7993432499933988,
+    "eighth-echo": 0.7965544579928974,
+    "dotted-echo": 0.8108125409926288,
+    "pitched-echo": 0.8365168750024168
+  },
+  "cross_platform_identical_wavs": 25,
+  "preserved_legacy_wavs": 20,
+  "echo_listening": "NOT RUN",
+  "formant_preservation": "NOT RUN",
+  "production_quality": "PARTIAL",
+  "cloud_calls": 0
+}

@@ -35,6 +35,8 @@ struct VocalEvent {
     bool clean = false;
     double pitch_semitones = 0; // independent transform, rate must remain 1
     double time_stretch = 1; // output duration / source duration
+    Tick echo_ticks = 0; // 0 disables; otherwise three tempo-aligned repeats
+    double echo_gain_db = -12; // first echo; successive echoes multiply by 0.35
 };
 // Call only after validating the event and crop bounds.
 std::uint64_t vocal_frames(const VocalEvent& event, const Region& clip);

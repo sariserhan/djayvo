@@ -29,7 +29,8 @@
     "schema_version": {
       "enum": [
         "1.0-remix",
-        "1.1-remix"
+        "1.1-remix",
+        "1.2-remix"
       ]
     },
     "seed": {
@@ -476,6 +477,25 @@
             "minimum": 0.8,
             "maximum": 1.25,
             "default": 1
+          },
+          "echo_ticks": {
+            "type": "integer",
+            "anyOf": [
+              {
+                "const": 0
+              },
+              {
+                "minimum": 120,
+                "maximum": 960
+              }
+            ],
+            "default": 0
+          },
+          "echo_gain_db": {
+            "type": "number",
+            "minimum": -24,
+            "maximum": -6,
+            "default": -12
           }
         },
         "allOf": [
@@ -503,6 +523,9 @@
                 },
                 "time_stretch": {
                   "const": 1
+                },
+                "echo_ticks": {
+                  "const": 0
                 }
               }
             }
@@ -604,6 +627,40 @@
                   {
                     "required": [
                       "time_stretch"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "enum": [
+              "1.0-remix",
+              "1.1-remix"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "voice_events": {
+            "items": {
+              "not": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "echo_ticks"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "echo_gain_db"
                     ]
                   }
                 ]

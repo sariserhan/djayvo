@@ -59,6 +59,8 @@ optional [independent pitch/time transforms](voice-transforms.md) use cached
 windowed-sinc/WSOLA preparation with strict bounds in 1.1 plans. Linear interpolation
 for legacy varispeed can alias transformed high frequencies. Clean hooks are untransformed.
 Formant preservation and human acceptance of the new treatment remain open.
+[Version 1.2 tempo echoes](vocal-echo.md) reuse prepared triggers with three fading
+stereo repeats, 80 ms clean-hook clearance and a bounded tail. Defaults stay dry.
 
 `RemixRenderer` precompiles triggers, reads immutable samples, and uses the M0a
 instrument clock. Processing has no observed allocations, locks, or I/O. Native
@@ -90,7 +92,7 @@ master. The complete master is authoritative.
 
 ## Plan and integration contract
 
-`schemas/remix-plan.schema.json` defines `1.0-remix` and opt-in transformed `1.1-remix` exports: original file
+`schemas/remix-plan.schema.json` defines `1.0-remix`, opt-in transformed `1.1-remix` and echo-enabled `1.2-remix` exports: original file
 hash/rate/frame count, synthetic/recorded kind and consent, processed length,
 analysis, key, sections, instruments, clips, and source events. No original path,
 filename, transcript, or human identity is exported. A clip's

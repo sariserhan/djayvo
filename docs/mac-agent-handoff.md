@@ -7,7 +7,11 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
-Latest local engine work: [independent voice pitch/time](voice-transforms.md).
+Latest local engine work: [selective tempo echo](vocal-echo.md).
+Version 1.2 adds optional bounded echoes; 25 Mac/Linux owner WAVs agree exactly,
+with clean hooks unchanged. Private review: `renders/vocal-echo-20261018/index.html`.
+Human acceptance remains NOT RUN; apps still select dry default voice treatment.
+Previous local engine work: [independent voice pitch/time](voice-transforms.md).
 Four owner comparisons are ready at `renders/voice-transforms-20261018/index.html`.
 Technical cross-platform and clean-hook checks pass; listening remains NOT RUN.
 Default plans remain 1.0/original-speed; opt-in transforms use 1.1. The shared

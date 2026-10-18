@@ -1,0 +1,54 @@
+Checking chromium
+Checking webkit
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/djayvo/renders/vocal-echo-20261018/index.html",
+    "players": 8,
+    "durations_seconds": 36.28570833333333,
+    "play_seek_pause_exclusivity": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "/tmp/djayvo-echo-chromium-desktop.png",
+      "/tmp/djayvo-echo-chromium-mobile.png"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/djayvo/renders/vocal-echo-20261018/index.html",
+    "players": 8,
+    "durations_seconds": 36.28570833333333,
+    "play_seek_pause_exclusivity": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "/tmp/djayvo-echo-webkit-desktop.png",
+      "/tmp/djayvo-echo-webkit-mobile.png"
+    ]
+  }
+]

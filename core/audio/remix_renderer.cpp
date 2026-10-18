@@ -105,6 +105,17 @@ RemixRenderer::RemixRenderer(const RemixPlan& p,const AudioBuffer& source,std::s
             trigger.transformed=static_cast<int>(it-transformed_.begin());
             trigger.source_begin=0;trigger.source_end=it->pcm.size();trigger.rate=1;
         }
+        if (!instrumental_only_ && event.echo_ticks) {
+            auto echo=triggers_.back();
+            double send=std::pow(10.0,event.echo_gain_db/20);
+            for (int repeat=1;repeat<=3;++repeat) {
+                echo.start=tick_to_frame(event.start+repeat*event.echo_ticks,p.music.sample_rate,p.music.tempo_milli_bpm);
+                const double pan=repeat%2?0.45:-0.45;
+                echo.gain_left=gain*send*std::cos((pan+1)*pi/4);
+                echo.gain_right=gain*send*std::sin((pan+1)*pi/4);
+                triggers_.push_back(echo);send*=0.35;
+            }
+        }
     }
     std::stable_sort(triggers_.begin(),triggers_.end(),[](const Trigger& a,const Trigger& b){return a.start<b.start;});
 }

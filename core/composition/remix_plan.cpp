@@ -50,12 +50,15 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
     std::uint64_t transformed_frames=0;
     unsigned transformed_events=0;
     std::vector<std::pair<std::uint64_t,int>> occupancy;
+    std::vector<std::pair<std::uint64_t,std::uint64_t>> hooks,echoes;
     for (const auto& e : r.vocals) {
         if (e.start<0 || e.start>=ticks_per_bar(r.music)*r.music.bars || e.clip>=r.clips.size() ||
             !std::isfinite(e.gain_db) || e.gain_db < -30 || e.gain_db>0 ||
             !std::isfinite(e.pan) || std::abs(e.pan)>1 || !std::isfinite(e.rate) || e.rate<0.5 || e.rate>2 ||
             !std::isfinite(e.pitch_semitones) || std::abs(e.pitch_semitones)>4 ||
-            !std::isfinite(e.time_stretch) || e.time_stretch<0.8 || e.time_stretch>1.25)
+            !std::isfinite(e.time_stretch) || e.time_stretch<0.8 || e.time_stretch>1.25 ||
+            (e.echo_ticks!=0 && (e.echo_ticks<120 || e.echo_ticks>960)) ||
+            !std::isfinite(e.echo_gain_db) || e.echo_gain_db< -24 || e.echo_gain_db> -6)
             throw std::invalid_argument("invalid vocal event");
         const auto& clip=r.clips[e.clip];
         const auto begin=tick_to_frame(e.start,source.sample_rate,r.music.tempo_milli_bpm);
@@ -69,13 +72,26 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
         if (frames>music_end || begin>music_end-frames)
             throw std::invalid_argument("vocal event runs beyond music boundary");
         if (e.clean) {
-            if (e.rate!=1 || e.pitch_semitones!=0 || e.time_stretch!=1 || e.reverse || e.pan!=0 || clip.end-clip.begin < source.sample_rate/2)
+            if (e.rate!=1 || e.pitch_semitones!=0 || e.time_stretch!=1 || e.echo_ticks!=0 || e.reverse || e.pan!=0 || clip.end-clip.begin < source.sample_rate/2)
                 throw std::invalid_argument("clean hook must be forward, unpitched, centered and >=500 ms");
             clean=true;
+            hooks.emplace_back(begin,begin+frames);
         }
         occupancy.emplace_back(begin,1); occupancy.emplace_back(begin+frames,-1);
+        if (e.echo_ticks) for (int repeat=1;repeat<=3;++repeat) {
+            const auto start=tick_to_frame(e.start+repeat*e.echo_ticks,source.sample_rate,r.music.tempo_milli_bpm);
+            if (start+frames+source.sample_rate/10>total)
+                throw std::invalid_argument("tail truncates vocal echo");
+            echoes.emplace_back(start,start+frames);
+            occupancy.emplace_back(start,1);occupancy.emplace_back(start+frames,-1);
+        }
     }
     if (!clean) throw std::invalid_argument("at least one clean recognizable hook is required");
+    if (occupancy.size()>2048) throw std::invalid_argument("compiled vocal trigger budget exceeded");
+    const auto breath=source.sample_rate*80ULL/1000;
+    for (const auto& echo:echoes) for (const auto& hook:hooks)
+        if (echo.second+breath>hook.first && echo.first<hook.second+breath)
+            throw std::invalid_argument("vocal echo overlaps clean hook clearance");
     std::sort(occupancy.begin(),occupancy.end()); int voices=0;
     for (const auto& boundary : occupancy) {
         voices+=boundary.second;
@@ -97,7 +113,8 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
     const bool transforms=std::any_of(r.vocals.begin(),r.vocals.end(),[](const VocalEvent& e){
         return e.pitch_semitones!=0 || e.time_stretch!=1;
     });
-    out<<"{\n  \"schema_version\": \""<<(transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
+    const bool echoes=std::any_of(r.vocals.begin(),r.vocals.end(),[](const VocalEvent& e){return e.echo_ticks!=0;});
+    out<<"{\n  \"schema_version\": \""<<(echoes?"1.2-remix":transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
        <<",\n  \"source_asset_id\": \"sha256:"<<source.sha256<<"\",\n  \"sample_rate\": "<<p.sample_rate
        <<",\n  \"source\": {\"sha256\": \""<<source.sha256<<"\", \"original_rate\": "<<source.original_rate
        <<", \"original_frames\": "<<source.original_frames<<", \"processed_frames\": "<<source.mono.size()
@@ -139,6 +156,7 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
            <<", \"pan\": "<<e.pan<<", \"clean\": "<<(e.clean?"true":"false");
         if (e.pitch_semitones!=0 || e.time_stretch!=1)
             out<<", \"pitch_semitones\": "<<e.pitch_semitones<<", \"time_stretch\": "<<e.time_stretch;
+        if (e.echo_ticks) out<<", \"echo_ticks\": "<<e.echo_ticks<<", \"echo_gain_db\": "<<e.echo_gain_db;
         out<<"}";
     }
     out<<"\n  ],\n  \"tracks\": [";

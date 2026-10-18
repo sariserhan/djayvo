@@ -12,6 +12,7 @@ import tempfile
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]/'scripts'))
 from make_fixture import make_signal
 from verify_export import verify_export
+from prepare_voice_transforms import add_echoes
 
 
 def main(renderer):
@@ -41,7 +42,17 @@ def main(renderer):
             assert original['artifacts']==replay['artifacts'], 'replay changed events, PCM or score'
             assert replay['planning']=={'mode':'imported','candidate_sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
         base=plans['hiphop']
+        sparse=copy.deepcopy(base)
+        selected=add_echoes(sparse,480)
+        assert 1<=len(selected)<=3
+        assert [e for e in sparse['voice_events'] if e['clean']]==[e for e in base['voice_events'] if e['clean']]
+        assert all(not e.get('echo_ticks') for e in base['voice_events'])
+        empty=copy.deepcopy(base);empty['voice_events']=[e for e in empty['voice_events'] if e['clean']]
+        try:add_echoes(empty,480)
+        except ValueError:pass
+        else:raise AssertionError('echo selector accepted a plan with no fragments')
         candidate=root/'candidate.json'
+        candidate.write_text(json.dumps(sparse));run('sparse-echo',('--plan',str(candidate)))
         edited=copy.deepcopy(base)
         edited['tracks'][0]['events'][0]['velocity']=max(1,edited['tracks'][0]['events'][0]['velocity']-20)
         candidate.write_text(json.dumps(edited))
@@ -77,6 +88,29 @@ def main(renderer):
         item=copy.deepcopy(transformed)
         next(e for e in item['voice_events'] if e['clean'])['pitch_semitones']=1
         transform_invalid.append(json.dumps(item))
+
+        echo=copy.deepcopy(transformed)
+        fragment=next(e for e in echo['voice_events'] if not e['clean'])
+        hook=next(e for e in echo['voice_events'] if e['clean'])
+        fragment['start_tick']=0;hook['start_tick']=9600
+        echo['voice_events']=[fragment,hook]
+        candidate.write_text(json.dumps(echo));run('echo-control',('--plan',str(candidate),'--stems'))
+        echo['schema_version']='1.2-remix';fragment.update(echo_ticks=480,echo_gain_db=-12)
+        candidate.write_text(json.dumps(echo));run('echo',('--plan',str(candidate),'--stems'))
+        exported=root/'echo.hiphop.score.json'
+        assert json.loads(exported.read_text())==echo
+        run('echo-replay',('--plan',str(exported),'--stems','--block-size','113'))
+        assert verify_export(root/'echo')['artifacts']==verify_export(root/'echo-replay')['artifacts']
+        assert (root/'echo.hiphop.wav').read_bytes()!=(root/'echo-control.hiphop.wav').read_bytes()
+        for instrument in ('piano','bass','drums'):
+            assert (root/f'echo.hiphop.{instrument}.wav').read_bytes()==(root/f'echo-control.hiphop.{instrument}.wav').read_bytes()
+        for key,value in [('echo_ticks',119),('echo_ticks',961),('echo_ticks',480.5),('echo_ticks',True),
+                          ('echo_gain_db',-24.1),('echo_gain_db',-5.9),('echo_gain_db','-12')]:
+            item=copy.deepcopy(echo);item['voice_events'][0][key]=value;transform_invalid.append(json.dumps(item))
+        for version in ('1.0-remix','1.1-remix'):
+            item=copy.deepcopy(echo);item['schema_version']=version;transform_invalid.append(json.dumps(item))
+        item=copy.deepcopy(echo);item['voice_events'][1]['echo_ticks']=480;transform_invalid.append(json.dumps(item))
+        item=copy.deepcopy(echo);item['voice_events'][1]['start_tick']=960;transform_invalid.append(json.dumps(item))
 
         mutations=[
             ('schema_version','future'),('seed',4124),('sample_rate',48000),('strategy','reggae'),
@@ -144,6 +178,7 @@ def main(renderer):
         else:raise AssertionError('invalid selection receipt accepted')
         print(json.dumps({'roundtrip_styles':5,'identical_artifacts':40,'edited_plan_changes_pcm':'PASS',
                           'independent_transform_replay_and_instrument_stems':'PASS',
+                          'tempo_echo_replay_and_instrument_stems':'PASS',
                           'rejected_candidates':len(invalid),'explicit_fallback':'PASS','consent_and_collision':'PASS',
                           'model_inference':'NOT RUN','listening':'NOT RUN'},indent=2))
 

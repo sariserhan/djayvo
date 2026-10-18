@@ -1,0 +1,46 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+      Start  1: core
+ 1/10 Test  #1: core .............................   Passed    0.55 sec
+      Start  2: remix_core
+ 2/10 Test  #2: remix_core .......................***Failed    2.77 sec
+PASS: SHA-256 known vectors
+PASS: energy/onset/phrase/pitch analysis and silence
+PASS: resampling duration, identity, round-trip and antialias
+PASS: clean hook preservation, deterministic styles, finite bounded output
+PASS: consent, crop, transform, polyphony and duration rejection
+PASS: quantized chop spacing and both clean hooks at 2/3/5 seconds
+PASS: seeded clean, instrumental and fragment openings
+PASS: pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates
+PASS: subtraction and return across styles and seeds
+PASS: instrument room timing, stereo, dry speech and finite tail
+PASS: independent voice pitch/time, four rates, exact duration/reverse, bounds and no callback allocation
+FAIL: tempo echo timing, stereo decay, bounded tails, hook clearance and callback safety: invalid remix accepted
+PASS: club form, input-driven bass, electronic palette and stem-consistent kick ducking
+PASS: stem identity and linear mix reconstruction including room and ducking
+PASS: club pause selection, deduplication, bounded fallback and transition accents
+PASS: cancel/render/publication rollback, concurrent destinations and stale-lock preservation
+PASS: allocation-free sample and instrument processing
+
+      Start  3: c_abi
+ 3/10 Test  #3: c_abi ............................   Passed    0.42 sec
+      Start  4: acoustic_assets
+ 4/10 Test  #4: acoustic_assets ..................   Passed    0.47 sec
+      Start  5: electronic_assets
+ 5/10 Test  #5: electronic_assets ................   Passed    0.08 sec
+      Start  6: wav_integration
+ 6/10 Test  #6: wav_integration ..................   Passed    0.87 sec
+      Start  7: remix_integration
+ 7/10 Test  #7: remix_integration ................   Passed    3.74 sec
+      Start  8: tooling
+ 8/10 Test  #8: tooling ..........................   Passed    1.11 sec
+      Start  9: evaluation_preparation
+ 9/10 Test  #9: evaluation_preparation ...........   Passed   11.98 sec
+      Start 10: plan_import
+10/10 Test #10: plan_import ......................   Passed    2.42 sec
+
+90% tests passed, 1 tests failed out of 10
+
+Total Test time (real) =  24.41 sec
+
+The following tests FAILED:
+	  2 - remix_core (Failed)
