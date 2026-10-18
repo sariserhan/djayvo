@@ -1,0 +1,22 @@
+{
+  "autoplay": false,
+  "decoded_players": 12,
+  "durations": [
+    32,
+    32,
+    32,
+    32,
+    32.96775,
+    32.96775,
+    32,
+    32,
+    32.96775,
+    32,
+    32,
+    32.96775
+  ],
+  "exclusive_playback": true,
+  "listening": "NOT RUN",
+  "muted_playback_time": 0.163406,
+  "status": "PASS"
+}

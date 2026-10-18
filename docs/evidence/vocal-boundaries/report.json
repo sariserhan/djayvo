@@ -1,0 +1,701 @@
+{
+  "gates": {
+    "native_m5_release": "PASS",
+    "native_m5_sanitizers": "PASS",
+    "linux_arm64_release": "PASS",
+    "plans_event_frames_and_waveforms": "PASS",
+    "block_size_512_113": "PASS",
+    "originals_unchanged": "PASS",
+    "clean_hooks_and_unchanged_instrument_stems": "PASS",
+    "decoded_audio_and_schema": "PASS",
+    "matched_audition_preparation": "PASS",
+    "browser_playback": "PASS",
+    "word_boundaries": "PARTIAL",
+    "v3_human_listening": "NOT RUN",
+    "formal_quality": "NOT RUN",
+    "physical_intel_rerun": "NOT RUN",
+    "iphone_ai_live_release": "NOT RUN"
+  },
+  "decoded_wavs": 21,
+  "cross_os": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner_hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner_reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "owner_experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "blocks": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "clean_hook_max_errors": {
+    "hiphop": [
+      2.4150396117417205e-05,
+      2.364233950991057e-05
+    ],
+    "reggae": [
+      2.4150396117417205e-05,
+      2.364233950991057e-05
+    ],
+    "experimental": [
+      2.4150396117417205e-05,
+      2.364233950991057e-05
+    ]
+  },
+  "previous_revision_waveform_differences": {
+    "hiphop": {
+      "maximum_pcm_error": 0.339874267578125,
+      "rms_pcm_error": 0.018384286099876718
+    },
+    "reggae": {
+      "maximum_pcm_error": 0.2821044921875,
+      "rms_pcm_error": 0.012364096173739021
+    },
+    "experimental": {
+      "maximum_pcm_error": 0.397796630859375,
+      "rms_pcm_error": 0.0148591040619429
+    }
+  },
+  "candidate_boundary_metrics": {
+    "arrangement-v2": {
+      "candidates": [
+        {
+          "duration_ms": 250.91666666666666,
+          "end_window_rms": 0.05990017386271854,
+          "boundary_confidence": 0.6
+        },
+        {
+          "duration_ms": 250.875,
+          "end_window_rms": 0.05153215886958242,
+          "boundary_confidence": 0.6
+        },
+        {
+          "duration_ms": 249.64583333333334,
+          "end_window_rms": 0.05606161413555816,
+          "boundary_confidence": 0.6
+        },
+        {
+          "duration_ms": 251.10416666666666,
+          "end_window_rms": 0.004514194289477796,
+          "boundary_confidence": 0.6
+        },
+        {
+          "duration_ms": 251.1875,
+          "end_window_rms": 0.04370935123102273,
+          "boundary_confidence": 0.6
+        },
+        {
+          "duration_ms": 250.10416666666666,
+          "end_window_rms": 0.04012637514842121,
+          "boundary_confidence": 0.6
+        },
+        {
+          "duration_ms": 248.875,
+          "end_window_rms": 0.030623580812329083,
+          "boundary_confidence": 0.6
+        },
+        {
+          "duration_ms": 250.91666666666666,
+          "end_window_rms": 0.015424710256396768,
+          "boundary_confidence": 0.6
+        },
+        {
+          "duration_ms": 248.3125,
+          "end_window_rms": 0.0023173660562919272,
+          "boundary_confidence": 0.6
+        },
+        {
+          "duration_ms": 249.58333333333334,
+          "end_window_rms": 0.08319191802634904,
+          "boundary_confidence": 0.6
+        },
+        {
+          "duration_ms": 249.52083333333334,
+          "end_window_rms": 0.034409933436745914,
+          "boundary_confidence": 0.6
+        },
+        {
+          "duration_ms": 249.89583333333334,
+          "end_window_rms": 0.05170415092346062,
+          "boundary_confidence": 0.6
+        }
+      ],
+      "mean_end_window_rms": 0.03945962725402952
+    },
+    "boundaries-v3": {
+      "candidates": [
+        {
+          "duration_ms": 250.14583333333334,
+          "end_window_rms": 0.05615427281687324,
+          "boundary_confidence": 0.3
+        },
+        {
+          "duration_ms": 426.25,
+          "end_window_rms": 0.01061379168481026,
+          "boundary_confidence": 0.65
+        },
+        {
+          "duration_ms": 334.8125,
+          "end_window_rms": 0.01061379168481026,
+          "boundary_confidence": 0.65
+        },
+        {
+          "duration_ms": 235.02083333333334,
+          "end_window_rms": 0.01061379168481026,
+          "boundary_confidence": 0.65
+        },
+        {
+          "duration_ms": 133.5,
+          "end_window_rms": 0.0061262864687123015,
+          "boundary_confidence": 0.65
+        },
+        {
+          "duration_ms": 251.04166666666666,
+          "end_window_rms": 0.040308499220692476,
+          "boundary_confidence": 0.3
+        },
+        {
+          "duration_ms": 445.7708333333333,
+          "end_window_rms": 0.006581508663955137,
+          "boundary_confidence": 0.65
+        },
+        {
+          "duration_ms": 303.9791666666667,
+          "end_window_rms": 0.006581508663955137,
+          "boundary_confidence": 0.65
+        },
+        {
+          "duration_ms": 235.9375,
+          "end_window_rms": 0.005109723693410086,
+          "boundary_confidence": 0.65
+        },
+        {
+          "duration_ms": 516.0416666666666,
+          "end_window_rms": 0.011449298140603487,
+          "boundary_confidence": 0.65
+        },
+        {
+          "duration_ms": 413.0625,
+          "end_window_rms": 0.011449298140603487,
+          "boundary_confidence": 0.65
+        },
+        {
+          "duration_ms": 322.75,
+          "end_window_rms": 0.011449298140603487,
+          "boundary_confidence": 0.65
+        }
+      ],
+      "mean_end_window_rms": 0.015587589083653305
+    }
+  },
+  "measurements": {
+    "remix.hiphop.wav": {
+      "file": "renders/voice-boundaries-v3/remix.hiphop.wav",
+      "sha256": "758fee45ae3c91588effe1296e61210e32f953ae53f9ff5004a155c17f046a04",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.4822998046875,
+      "peak_dbfs": -6.333658279006186,
+      "rms_dbfs_left": -27.454306430012654,
+      "rms_dbfs_right": -27.887707244214482,
+      "dc_left": 6.838758786519368e-06,
+      "dc_right": 6.730198860168457e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 12,
+      "last_nonzero_frame": 1428520,
+      "max_adjacent_sample_step": 0.3048095703125,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "seed4124.hiphop.wav": {
+      "file": "renders/voice-boundaries-v3/seed4124.hiphop.wav",
+      "sha256": "61264d945e2bcc1cd75c7aac4f90622ddc1bb0fa7f1c21c130f07e35010a1200",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.481964111328125,
+      "peak_dbfs": -6.339705991756045,
+      "rms_dbfs_left": -27.305980111298503,
+      "rms_dbfs_right": -27.72559290502511,
+      "dc_left": 6.344834963480632e-06,
+      "dc_right": 6.233056386311849e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 2,
+      "last_nonzero_frame": 1428520,
+      "max_adjacent_sample_step": 0.3046875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.reggae.bass.wav": {
+      "file": "renders/voice-boundaries-v3/remix.reggae.bass.wav",
+      "sha256": "8c4eacf93e1957c78cdae3593b26fa4a0f22ac88aebc225dae90caf8598e5103",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.185882568359375,
+      "peak_dbfs": -14.615226709165935,
+      "rms_dbfs_left": -34.95243024102267,
+      "rms_dbfs_right": -34.89877813830446,
+      "dc_left": -3.2947460810343425e-07,
+      "dc_right": -3.3428271611531576e-07,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 288006,
+      "last_nonzero_frame": 1362102,
+      "max_adjacent_sample_step": 0.003265380859375,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "seed4125.reggae.wav": {
+      "file": "renders/voice-boundaries-v3/seed4125.reggae.wav",
+      "sha256": "d78e2923fd2ecbbeb853ba99448605a35c0757793c2154a7ebd92589a45959bb",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.39874267578125,
+      "peak_dbfs": -7.9861456221184834,
+      "rms_dbfs_left": -28.133463929115436,
+      "rms_dbfs_right": -28.890255189566204,
+      "dc_left": 3.3191839853922526e-06,
+      "dc_right": 2.045134703318278e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 12,
+      "last_nonzero_frame": 1422506,
+      "max_adjacent_sample_step": 0.305084228515625,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "seed4125.hiphop.wav": {
+      "file": "renders/voice-boundaries-v3/seed4125.hiphop.wav",
+      "sha256": "2e15d22378e7c2170ef7748348469f2368884e6fc6eec0fa52554cbaed012ab8",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.527069091796875,
+      "peak_dbfs": -5.56264901569843,
+      "rms_dbfs_left": -26.693100862818145,
+      "rms_dbfs_right": -27.14568644233479,
+      "dc_left": 5.6316653887430826e-06,
+      "dc_right": 6.239175796508789e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 3,
+      "last_nonzero_frame": 1428521,
+      "max_adjacent_sample_step": 0.30535888671875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.experimental.wav": {
+      "file": "renders/voice-boundaries-v3/remix.experimental.wav",
+      "sha256": "04b84e4270403faa46ba83f983164a7b34128a919de88f3025ac53f436e68b8c",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "duration_seconds": 32.96775,
+      "peak_linear": 0.447967529296875,
+      "peak_dbfs": -6.975069289602345,
+      "rms_dbfs_left": -26.789888602503915,
+      "rms_dbfs_right": -27.107115175969252,
+      "dc_left": 4.809851194587971e-06,
+      "dc_right": 5.1539340665526505e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 3,
+      "last_nonzero_frame": 1481865,
+      "max_adjacent_sample_step": 0.30535888671875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.hiphop.bass.wav": {
+      "file": "renders/voice-boundaries-v3/remix.hiphop.bass.wav",
+      "sha256": "806d39014d3d467bed2df82ea16d6fb3ef11cc3bbce68fc5a1f3a2cedd977528",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.190643310546875,
+      "peak_dbfs": -14.395568580273924,
+      "rms_dbfs_left": -33.83828197612898,
+      "rms_dbfs_right": -33.873247070106764,
+      "dc_left": -7.786750793457031e-07,
+      "dc_right": -7.945696512858073e-07,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 240006,
+      "last_nonzero_frame": 1384914,
+      "max_adjacent_sample_step": 0.0030517578125,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.hiphop.vocals.wav": {
+      "file": "renders/voice-boundaries-v3/remix.hiphop.vocals.wav",
+      "sha256": "9e9c439c823c1aecbbfe6ef2e9b10f93ee86a06233bf9dddbb3579c0920a800d",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.40045166015625,
+      "peak_dbfs": -7.9489980307687444,
+      "rms_dbfs_left": -30.90983092452136,
+      "rms_dbfs_right": -30.7500907137737,
+      "dc_left": -2.0531415939331053e-06,
+      "dc_right": -1.7246206601460776e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 240003,
+      "last_nonzero_frame": 1260490,
+      "max_adjacent_sample_step": 0.30535888671875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.hiphop.drums.wav": {
+      "file": "renders/voice-boundaries-v3/remix.hiphop.drums.wav",
+      "sha256": "298dc4fd7672b4092f2a9d733d6acf83c5c00e02b1829a6f0f018f56590189b1",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.243743896484375,
+      "peak_dbfs": -12.26132501054493,
+      "rms_dbfs_left": -38.558430167252354,
+      "rms_dbfs_right": -37.37558608945681,
+      "dc_left": 5.390048027038575e-06,
+      "dc_right": 6.13244374593099e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 210010,
+      "last_nonzero_frame": 1340357,
+      "max_adjacent_sample_step": 0.048736572265625,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.hiphop.piano.wav": {
+      "file": "renders/voice-boundaries-v3/remix.hiphop.piano.wav",
+      "sha256": "e63641f3a6e646d775cba19cc5de6d35480aeec16621015788de11c195938211",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.231353759765625,
+      "peak_dbfs": -12.714468766402815,
+      "rms_dbfs_left": -33.87208772258411,
+      "rms_dbfs_right": -37.60909347805194,
+      "dc_left": 4.260063171386718e-06,
+      "dc_right": 3.103355566660563e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 12,
+      "last_nonzero_frame": 1428520,
+      "max_adjacent_sample_step": 0.024627685546875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "seed4125.experimental.wav": {
+      "file": "renders/voice-boundaries-v3/seed4125.experimental.wav",
+      "sha256": "a0b6d8802fc81a2130cb19c832f7534c22bd62a7347d554398fa71494830e188",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "duration_seconds": 32.96775,
+      "peak_linear": 0.4310302734375,
+      "peak_dbfs": -7.309844521373169,
+      "rms_dbfs_left": -27.142331291183194,
+      "rms_dbfs_right": -27.490255211874608,
+      "dc_left": 3.0080734429464527e-06,
+      "dc_right": 3.3655015311088424e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 2,
+      "last_nonzero_frame": 1481865,
+      "max_adjacent_sample_step": 0.30535888671875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.reggae.vocals.wav": {
+      "file": "renders/voice-boundaries-v3/remix.reggae.vocals.wav",
+      "sha256": "69bbb168ad24780ed883bbf108836d4e41dfb68c7e000e5f71a483f40a7b7c9b",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.40045166015625,
+      "peak_dbfs": -7.9489980307687444,
+      "rms_dbfs_left": -31.281176698799477,
+      "rms_dbfs_right": -31.330658080894572,
+      "dc_left": -5.380729834238688e-06,
+      "dc_right": -5.409618218739828e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 2,
+      "last_nonzero_frame": 1217321,
+      "max_adjacent_sample_step": 0.30535888671875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.experimental.piano.wav": {
+      "file": "renders/voice-boundaries-v3/remix.experimental.piano.wav",
+      "sha256": "6a9fe8001b87f43f36c8fde2630a8f6cac1407fa680f7fde49759a5ce9882b01",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "duration_seconds": 32.96775,
+      "peak_linear": 0.1939697265625,
+      "peak_dbfs": -14.24532092848752,
+      "rms_dbfs_left": -34.27176074118063,
+      "rms_dbfs_right": -37.935859918421116,
+      "dc_left": 4.016775080549442e-06,
+      "dc_right": 2.9029895078867323e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 197441,
+      "last_nonzero_frame": 1481865,
+      "max_adjacent_sample_step": 0.0203857421875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.reggae.piano.wav": {
+      "file": "renders/voice-boundaries-v3/remix.reggae.piano.wav",
+      "sha256": "4b941d8480d1311624889a23e1529bf0c3cd320b153d64218a8e928de7911ce0",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.223541259765625,
+      "peak_dbfs": -13.012846118671417,
+      "rms_dbfs_left": -33.51312146740474,
+      "rms_dbfs_right": -37.18270801991181,
+      "dc_left": 5.826274553934733e-06,
+      "dc_right": 4.242459932963053e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 12,
+      "last_nonzero_frame": 1422507,
+      "max_adjacent_sample_step": 0.023651123046875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.reggae.drums.wav": {
+      "file": "renders/voice-boundaries-v3/remix.reggae.drums.wav",
+      "sha256": "74bd339bffd65fcf2e98c0eff54ff67ca249ee9ccf136b659b932242d89d3176",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.249969482421875,
+      "peak_dbfs": -12.042260180541895,
+      "rms_dbfs_left": -41.22578184944625,
+      "rms_dbfs_right": -40.029034052832856,
+      "dc_left": 2.6032527287801107e-06,
+      "dc_right": 2.9790202776590983e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 252010,
+      "last_nonzero_frame": 1317926,
+      "max_adjacent_sample_step": 0.072296142578125,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.experimental.drums.wav": {
+      "file": "renders/voice-boundaries-v3/remix.experimental.drums.wav",
+      "sha256": "6264e3d1ff2975f3467e3c67a591ed3d4e490468411356b71bc9111d0ae4e43d",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "duration_seconds": 32.96775,
+      "peak_linear": 0.251190185546875,
+      "peak_dbfs": -11.999946665424783,
+      "rms_dbfs_left": -36.028365283513054,
+      "rms_dbfs_right": -34.82471920483078,
+      "dc_left": 9.187236387393187e-06,
+      "dc_right": 1.0424156649972637e-05,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 185815,
+      "last_nonzero_frame": 1412123,
+      "max_adjacent_sample_step": 0.051788330078125,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.experimental.vocals.wav": {
+      "file": "renders/voice-boundaries-v3/remix.experimental.vocals.wav",
+      "sha256": "a80a7842e756702e590c9671f0cefbcab8359fe59d1d0b400dd5c4b6399fc7ff",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "duration_seconds": 32.96775,
+      "peak_linear": 0.40045166015625,
+      "peak_dbfs": -7.9489980307687444,
+      "rms_dbfs_left": -31.100223527337633,
+      "rms_dbfs_right": -31.101778982792393,
+      "dc_left": -6.002473824788603e-06,
+      "dc_right": -5.788468240762595e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 3,
+      "last_nonzero_frame": 1341889,
+      "max_adjacent_sample_step": 0.30535888671875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.reggae.wav": {
+      "file": "renders/voice-boundaries-v3/remix.reggae.wav",
+      "sha256": "14b1150c5639ca3a15f9f920d31911398ba8cede754af596244f82c69505342b",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.39892578125,
+      "peak_dbfs": -7.982157915427553,
+      "rms_dbfs_left": -27.98415817496812,
+      "rms_dbfs_right": -28.68657930965419,
+      "dc_left": 2.681891123453776e-06,
+      "dc_right": 1.433571179707845e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 2,
+      "last_nonzero_frame": 1422507,
+      "max_adjacent_sample_step": 0.305084228515625,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "remix.experimental.bass.wav": {
+      "file": "renders/voice-boundaries-v3/remix.experimental.bass.wav",
+      "sha256": "db966c889ecd5caa7ffadaf722cb7d529eb07bf9682ccbef6b755154fe099f02",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "duration_seconds": 32.96775,
+      "peak_linear": 0.2049560546875,
+      "peak_dbfs": -13.766784949874136,
+      "rms_dbfs_left": -31.69048446423426,
+      "rms_dbfs_right": -31.76621715893924,
+      "dc_left": -2.4189361458021317e-06,
+      "dc_right": -2.4420009992305454e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 185817,
+      "last_nonzero_frame": 1458465,
+      "max_adjacent_sample_step": 0.003265380859375,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "seed4124.experimental.wav": {
+      "file": "renders/voice-boundaries-v3/seed4124.experimental.wav",
+      "sha256": "54062c2264400af1835d173774a8c0a1e24ae8d57ac57ed438454d360b9d2217",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "duration_seconds": 32.96775,
+      "peak_linear": 0.441375732421875,
+      "peak_dbfs": -7.10383097514097,
+      "rms_dbfs_left": -27.281060144046407,
+      "rms_dbfs_right": -27.63569702470373,
+      "dc_left": 3.5428849105691673e-06,
+      "dc_right": 3.9211600777918544e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 12,
+      "last_nonzero_frame": 1481865,
+      "max_adjacent_sample_step": 0.305328369140625,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "seed4124.reggae.wav": {
+      "file": "renders/voice-boundaries-v3/seed4124.reggae.wav",
+      "sha256": "fcea6f81a8cf1c55f13b450290823dd6699f441a08158a20904dc558ed48d87c",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.40045166015625,
+      "peak_dbfs": -7.9489980307687444,
+      "rms_dbfs_left": -27.344756656972677,
+      "rms_dbfs_right": -28.143471921317776,
+      "dc_left": 2.8849442799886068e-06,
+      "dc_right": 2.2838513056437176e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 3,
+      "last_nonzero_frame": 1422507,
+      "max_adjacent_sample_step": 0.30535888671875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    }
+  },
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  }
+}

@@ -189,6 +189,35 @@ void varied_openings() {
         check(clean_first && instrument_first && chop_first,"seeds do not vary the opening treatment");
     }
 }
+void pause_aware_chops() {
+    for (const unsigned rate:{8000U,44100U,48000U,192000U}) {
+        auto a=source();a.sample_rate=a.original_rate=rate;
+        a.mono.assign(3*rate,0);a.original_frames=a.mono.size();
+        for (std::size_t i=rate/10;i<rate*47/100;++i)
+            if (i<rate*3/10 || i>=rate*31/100)
+                a.mono[i]=static_cast<float>(0.3*std::sin(6.283185307179586*220*i/rate));
+        auto features=djayvo::analyze(a);features.onsets={rate/10};
+        auto p=djayvo::make_remix(a,features,djayvo::Strategy::experimental,4123,true,false);
+        check(p.clips.size()==2,"single onset did not produce one chop");
+        const auto clip=p.clips[1];
+        check(clip.begin<=rate/10 && clip.begin>=rate*88/1000,"chop loses attack or excessive pre-roll");
+        check(clip.end>=rate*47/100 && clip.end<=rate/2,"chop cuts active speech before its nearby pause");
+        features.onsets.clear();
+        p=djayvo::make_remix(a,features,djayvo::Strategy::experimental,4123,true,false);
+        check(p.clips[1].end>=rate*47/100 && p.clips[1].end<=features.phrases[0].end,
+              "phrase fallback ignores the quiet boundary or exceeds its region");
+        std::fill(a.mono.begin(),a.mono.end(),0.2f);
+        features=djayvo::analyze(a);features.onsets={rate/10,a.mono.size()-1};
+        p=djayvo::make_remix(a,features,djayvo::Strategy::experimental,4123,true,false);
+        check(p.clips.size()==2,"near-EOF onset creates a tiny or invalid chop");
+        check(p.clips[1].end-p.clips[1].begin<=rate*260/1000,
+              "unbroken sound creates an excessive chop instead of bounded fallback");
+        check(p.clips[1].confidence<clip.confidence,"fallback claims the same boundary confidence as a pause");
+        features.onsets.clear();features.phrases={{rate,rate+1,0.2}};
+        p=djayvo::make_remix(a,features,djayvo::Strategy::experimental,4123,true,false);
+        check(p.clips[1].begin==rate && p.clips[1].end==rate+1,"tiny fallback region escapes its bounds");
+    }
+}
 void no_allocations() {
     const auto a=source();const auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::experimental,4123,true,false);
     djayvo::RemixRenderer r(p,a,512);float buffer[1024]{};
@@ -249,6 +278,7 @@ int main() {
         {"consent, crop, transform, polyphony and duration rejection",validation},
         {"quantized chop spacing and both clean hooks at 2/3/5 seconds",vocal_spacing},
         {"seeded clean, instrumental and fragment openings",varied_openings},
+        {"pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates",pause_aware_chops},
         {"subtraction and return across styles and seeds",arrangement_contrast},
         {"instrument room timing, stereo, dry speech and finite tail",room_processing},
         {"allocation-free sample and instrument processing",no_allocations}};

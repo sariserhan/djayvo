@@ -41,8 +41,11 @@ Timbres now use a small pinned CC0 acoustic bank; see [acoustic-review.md](acous
 Every plan plays the whole source forward at rate 1 twice. The first statement
 starts at tick zero or after a two-bar instrumental/fragment introduction,
 chosen deterministically by style and seed. The second occurs later. This protects an intelligible opportunity, but
-cannot prove human recognizability. Crops stay in bounds; chop edges search a
-small near-zero region and playback applies 3 ms edge fades. Clean statements
+cannot prove human recognizability. Crops stay in bounds; the planner retains
+about 10 ms of attack pre-roll and searches up to 600 ms for a sustained 20 ms
+energy valley after the first 120 ms. Without one, it uses a lower-confidence
+250 ms fallback. This is not word segmentation; see [boundary evidence](vocal-boundaries.md).
+Edges search a small near-zero region and playback applies 3 ms fades. Clean statements
 smoothly duck instruments to 15% (-16.48 dB) over 10 ms. If a source exceeds the
 experimental intro, ducking continues into the instrumental entrance. Generated
 chops are excluded from both full clean intervals; quantization cannot place

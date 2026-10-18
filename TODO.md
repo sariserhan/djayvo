@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-17 (America/New_York). Latest implementation: `2260689`.
+Last updated: 2026-10-17 (America/New_York). Latest implementation: [vocal boundaries v3](docs/vocal-boundaries.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -14,7 +14,7 @@ the source of truth and is not modified by this tracker.
 | M0a — offline foundation | PASS | Portable engine, instruments, timing, WAV and automated tests |
 | M0b — own sound into music | PARTIAL | Consented voice renders; formal recognizability observations missing |
 | M0c — three musical strategies | PARTIAL | Owner accepts the current prototype as a start; production quality and formal listening remain open |
-| M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact current plans/events and 15 matching WAVs |
+| M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact current plans/events and 18 matching WAVs |
 | M1 — musical quality baseline | NOT RUN | Protocol, fixed-loop control and pilot prepared; formal human evaluation missing |
 | M2 — AI director benchmarks | NOT RUN | Depends on quality baseline and measured model feasibility |
 | M3 — iPhone Instant Remix | NOT RUN | Portable C ABI exists; app and actual device validation remain |
@@ -28,8 +28,9 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## Next: review the current music
 
-Local [listening page](renders/voice-arrangement-v2/review/index.html): previous/new
-pairs, six alternate-seed mixes, and three reference excerpts at matched levels.
+Local [listening page](renders/voice-boundaries-v3/review/index.html): v2/v3 pairs
+and six alternate-seed mixes at matched levels. Earlier reference auditions
+remain linked. V3 listening: **NOT RUN**.
 Audio links work in this checkout; private recordings are intentionally absent
 from Git and will not appear in a remote repository viewer.
 
@@ -55,17 +56,18 @@ and evaluation across diverse consented inputs.
   feel intentional across seeds 4123–4125. Code coverage is not listening evidence.
 - [ ] **N05 — NOT RUN:** Rate whether the original speech remains recognizable
   in each style. Waveform preservation passes, but intelligibility is unmeasured.
-- [ ] **N06 — NOT RUN:** Turn new feedback into focused fixes, rerender to a new
-  directory, compare at matched levels, and retain the previous audio.
+- [ ] **N06 — PARTIAL:** Production-quality continuation now includes pause-aware
+  vocal endings, nine fresh mixes and matched v2/v3 comparisons. Prior audio is
+  retained; actual listening to the new crop behavior remains NOT RUN.
 
-Record against [arrangement review v2](docs/arrangement-review.md), with the exact
+Record against [vocal boundaries v3](docs/vocal-boundaries.md), with the exact
 filename/seed, timestamp, observation, desired change and eventual evidence.
 Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
 
 Entries follow implementation order. Historical results apply to their revision;
-current platform results are in [the v2 report](docs/evidence/arrangement-review/report.json).
+current platform results are in [the v3 report](docs/evidence/vocal-boundaries/report.json).
 
 | Done | ID | Status | Development | Commit / evidence |
 | --- | --- | --- | --- | --- |
@@ -84,6 +86,7 @@ current platform results are in [the v2 report](docs/evidence/arrangement-review
 | [x] | P13 | PASS | Nine new owner-voice mixes, twelve stems, a baseline, 15-file review page and browser playback checks | `2260689` · [audio/browser evidence](docs/arrangement-review.md) |
 | [x] | P14 | PASS | Shuffled baseline comparison tools, blank ratings and preregistered evaluation protocol | [Protocol](docs/evaluation-protocol.md) · [pilot preparation](docs/evidence/arrangement-review/listening-preparation.log) |
 | [x] | P15 | PASS | Smoke-test overwrite protection and comparison of mix settings | `2260689` · [verification](docs/evidence/arrangement-review/report.json) |
+| [x] | P16 | PASS | Pause-aware vocal crop endings and attack pre-roll, four-rate regression, fresh M5/Linux validation and nine voice mixes | [v3 evidence](docs/vocal-boundaries.md) |
 
 ## Engineering backlog
 
@@ -94,7 +97,8 @@ is needed. Prioritize by recorded listening defects and product requirements.
   fails: multiple velocity layers, repeated-hit variation, longer natural tails,
   and suitable electronic timbres. Verify asset rights before adding any bank.
 - [ ] **E02 — PARTIAL:** Improve phrase/chop selection if N03/N05 show cut words.
-  Onset/near-zero slicing exists; reliable word boundaries and semantic selection do not.
+  V3 adds sustained low-energy endings and attack pre-roll with a bounded fallback;
+  reliable word boundaries, semantic selection and listening acceptance remain open.
 - [ ] **E03 — NOT RUN:** Evaluate independent pitch/time transformation with
   transient and intelligibility checks. Current generated chops use original speed.
 - [ ] **E04 — PARTIAL:** Expand expressive mixing/effects when justified by

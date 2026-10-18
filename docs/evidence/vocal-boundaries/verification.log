@@ -1,0 +1,37 @@
+{
+  "gates": {
+    "native_m5_release": "PASS",
+    "native_m5_sanitizers": "PASS",
+    "linux_arm64_release": "PASS",
+    "plans_event_frames_and_waveforms": "PASS",
+    "block_size_512_113": "PASS",
+    "originals_unchanged": "PASS",
+    "clean_hooks_and_unchanged_instrument_stems": "PASS",
+    "decoded_audio_and_schema": "PASS",
+    "matched_audition_preparation": "PASS",
+    "browser_playback": "PASS",
+    "word_boundaries": "PARTIAL",
+    "v3_human_listening": "NOT RUN",
+    "formal_quality": "NOT RUN",
+    "physical_intel_rerun": "NOT RUN",
+    "iphone_ai_live_release": "NOT RUN"
+  },
+  "boundary_mean_rms": {
+    "arrangement-v2": 0.03945962725402952,
+    "boundaries-v3": 0.015587589083653305
+  },
+  "differences": {
+    "hiphop": {
+      "maximum_pcm_error": 0.339874267578125,
+      "rms_pcm_error": 0.018384286099876718
+    },
+    "reggae": {
+      "maximum_pcm_error": 0.2821044921875,
+      "rms_pcm_error": 0.012364096173739021
+    },
+    "experimental": {
+      "maximum_pcm_error": 0.397796630859375,
+      "rms_pcm_error": 0.0148591040619429
+    }
+  }
+}

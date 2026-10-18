@@ -30,6 +30,25 @@ std::uint64_t near_zero(const AudioBuffer& source, std::uint64_t frame) {
         if (std::abs(source.mono[static_cast<std::size_t>(i)]) < std::abs(source.mono[static_cast<std::size_t>(best)])) best=i;
     return best;
 }
+Region chop_region(const AudioBuffer& source, std::uint64_t onset, std::uint64_t limit) {
+    const auto hop=source.sample_rate/100U;
+    const auto begin=near_zero(source,onset>hop?onset-hop:0);
+    const auto stop=std::min<std::uint64_t>(limit,onset+60ULL*hop);
+    double peak_power=0;
+    unsigned quiet=0;
+    for (auto frame=onset;frame+hop<=stop;frame+=hop) {
+        double power=0;
+        for (auto i=frame;i<frame+hop;++i) power+=static_cast<double>(source.mono[i])*source.mono[i];
+        power/=hop;
+        peak_power=std::max(peak_power,power);
+        // Require a sustained energy valley, not a single waveform zero crossing.
+        quiet=frame>=onset+12ULL*hop && peak_power>0 && power<peak_power*0.0225?quiet+1:0;
+        if (quiet==2) return {begin,near_zero(source,frame-hop/2),0.65};
+    }
+    // shortcut: energy is not a word boundary; retain a bounded, lower-confidence
+    // crop without a pause until semantic boundaries have listening evidence.
+    return {begin,near_zero(source,std::min<std::uint64_t>(limit-1,begin+source.sample_rate/4U)),0.3};
+}
 }
 RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy strategy,
                      std::uint32_t seed, bool synthetic, bool consent) {
@@ -64,16 +83,17 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     }
     // Entire source survives unpitched and forward. Edge fades are only 3 ms.
     r.clips.push_back({0,source.mono.size(),1.0});
-    const auto chop_length = source.sample_rate / 4U;
     for (auto onset : a.onsets) {
         if (r.clips.size() >= 13) break;
-        const auto begin = near_zero(source,onset);
-        const auto end = near_zero(source,std::min<std::uint64_t>(source.mono.size()-1,begin+chop_length));
-        if (end > begin + source.sample_rate/25U) r.clips.push_back({begin,end,0.6});
+        const auto clip=chop_region(source,onset,source.mono.size());
+        if (clip.end > clip.begin + source.sample_rate/25U) r.clips.push_back(clip);
     }
     if (r.clips.size() == 1) {
         for (const auto& phrase : a.phrases) {
-            r.clips.push_back({phrase.begin,std::min<std::uint64_t>(phrase.end,phrase.begin+chop_length),phrase.confidence});
+            auto clip=chop_region(source,phrase.begin,phrase.end);
+            clip.begin=phrase.begin;
+            clip.end=std::clamp(clip.end,phrase.begin+1,phrase.end);
+            r.clips.push_back(clip);
             if (r.clips.size() == 5) break;
         }
     }
