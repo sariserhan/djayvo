@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "count": 15,
+  "waveforms": [
+    {
+      "file": "remix.experimental.bass.wav",
+      "sha256": "554f5c65ee8f484e8e3ed8b92b0b1a1ae16234687140258e88364f259cc52082",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.experimental.drums.wav",
+      "sha256": "690db5cc92d0a4bdc6f41d24bca3b37672682b3ae72bb55692c9333c0508d01f",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.experimental.piano.wav",
+      "sha256": "95a512ad52e3faabf79fdfbb8955dc45318013db6e7c14adcab5afb8e7922a1f",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.experimental.vocals.wav",
+      "sha256": "091317632bb1313538eb53ada75a11d5ee615fbbd022ac36585cd782594714d6",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.experimental.wav",
+      "sha256": "49443b1fbec7060d441c09b9300bd7c98f299798107132c03aac1881a04f692e",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.hiphop.bass.wav",
+      "sha256": "4872199af1aba5488c728354fc786181b1de66054155140983af71e691cd7921",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.hiphop.drums.wav",
+      "sha256": "106cfb8c20aa76d9f3d8bc4d0ea1e2a497067e7e586f8185f3177c45253bcb90",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.hiphop.piano.wav",
+      "sha256": "a45be95edb332a0a97d8dc266af77dd7d4c05e9c25649981af9eadbd62e96206",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.hiphop.vocals.wav",
+      "sha256": "60bce3d2949fcc5e90027b9f3288d5241a0901666ac221483c9344b8c92283b1",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.hiphop.wav",
+      "sha256": "9df4115378c2ab075a96c3606d436134ae6ae77648816b178f5d148bb0d410aa",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.reggae.bass.wav",
+      "sha256": "76b1abaed06df37b9c81381f314ba5acb9b1185223100bf685b87b534bd5bfc8",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.reggae.drums.wav",
+      "sha256": "88c0ef3cbdce37e29b2a36d902bc53b291e01a4678c623d383719895a19a7d0e",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.reggae.piano.wav",
+      "sha256": "469666bd77f465b89d2a1fdfe122aaefacc9085b1a3a04b768fe005cf0c05ca3",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.reggae.vocals.wav",
+      "sha256": "10df48377a6a40e298cde6b2b5f58a66bae724370c795ac0741042f728bc4f63",
+      "byte_identical": true
+    },
+    {
+      "file": "remix.reggae.wav",
+      "sha256": "8166dbb8076959e898e37c2e8f4b393f6be80db487c5c6d0bef561fe6f84b15f",
+      "byte_identical": true
+    }
+  ]
+}

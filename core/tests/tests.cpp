@@ -260,6 +260,7 @@ void rates_and_meter() {
     }
 }
 void no_render_allocations() {
+    static_assert(sizeof(djayvo::Renderer) < 65536, "renderer must fit a mobile worker stack");
     auto p = djayvo::make_demo(); p.sample_rate = 8000;
     djayvo::Renderer r(djayvo::compile(p), 512);
     float buffer[1024]{};

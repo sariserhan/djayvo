@@ -78,7 +78,8 @@ private:
     Schedule schedule_;
     std::size_t max_block_ = 512, next_event_ = 0, next_kick_ = 0;
     std::uint64_t cursor_ = 0, voice_overflows_ = 0;
-    std::array<Voice, max_voices> voices_{};
+    // The interpolation tables exceed mobile worker stacks; allocate once at construction.
+    std::vector<Voice> voices_;
     AudioStats stats_{};
     std::array<float, 2> previous_{};
     double duck_gain_ = 1, duck_minimum_ = 1, duck_attack_ = 1, duck_release_ = 1;

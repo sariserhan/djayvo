@@ -70,7 +70,7 @@ Schedule compile(const PerformancePlan& p) {
 }
 
 Renderer::Renderer(Schedule schedule, std::size_t max_block)
-    : schedule_(std::move(schedule)), max_block_(max_block) {
+    : schedule_(std::move(schedule)), max_block_(max_block), voices_(max_voices) {
     if (max_block == 0 || max_block > 65536 || schedule_.sample_rate < 8000 ||
         schedule_.sample_rate > 192000 || schedule_.total_frames == 0 ||
         schedule_.music_frames > schedule_.total_frames || !std::isfinite(schedule_.ceiling) ||
