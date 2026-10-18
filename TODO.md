@@ -29,6 +29,16 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## Current product work
 
+- [x] **C01 — PASS:** Ran the owner-authorized $10 pretrained music experiment
+  on one Vast RTX 3090: ten successful 30-second hip-hop/club takes, pinned
+  timing/memory/waveform evidence, verified retrieval and deletion. Observed
+  debit about $0.09; final invoice reconciliation remains **PARTIAL**.
+  [Trial report](docs/cloud-music-trial.md). No cloud voice upload, training,
+  production integration or M1/M2 gate closure is implied.
+- [ ] **C02 — NOT RUN:** [Owner audition of the cloud trial](renders/cloud-trial-20261018/review/index.html): instrument realism,
+  groove, perceived variety, transitions and endings. Stable Audio comparison
+  additionally requires gated model access and terms acceptance.
+
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,
 with private generation plus a reviewed public catalogue. Keep the database free;

@@ -1,0 +1,348 @@
+{
+  "files": [
+    {
+      "name": "hiphop-seed-4123",
+      "technical": {
+        "file": "renders/cloud-trial-20261018/hiphop-seed-4123.wav",
+        "sha256": "8cb2bf63bb45bab4445c1aa973e86969124489e143e23d27c3a6389b7c10d813",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "duration_seconds": 30.0,
+        "peak_linear": 0.891265869140625,
+        "peak_dbfs": -0.9998544876801003,
+        "rms_dbfs_left": -18.62219618246484,
+        "rms_dbfs_right": -18.911049226823483,
+        "dc_left": 0.0011386301464504666,
+        "dc_right": 0.0015752327177259657,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 0,
+        "last_nonzero_frame": 1439999,
+        "max_adjacent_sample_step": 0.497161865234375,
+        "last_100ms_peak": 0.002197265625,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "original": {
+        "lufs": -16.7,
+        "true_peak_dbfs": -1.0
+      },
+      "gain_db": -5.300000000000001,
+      "review": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -6.3
+      }
+    },
+    {
+      "name": "hiphop-seed-4124",
+      "technical": {
+        "file": "renders/cloud-trial-20261018/hiphop-seed-4124.wav",
+        "sha256": "86fc97b409b86fcdfc1efb8438a28b6847b2f0d645410e3097078614b45fb930",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "duration_seconds": 30.0,
+        "peak_linear": 0.891265869140625,
+        "peak_dbfs": -0.9998544876801003,
+        "rms_dbfs_left": -19.11484204884685,
+        "rms_dbfs_right": -20.204152370805282,
+        "dc_left": 0.0006507557974921332,
+        "dc_right": 0.0014526965247260199,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 0,
+        "last_nonzero_frame": 1439999,
+        "max_adjacent_sample_step": 0.61907958984375,
+        "last_100ms_peak": 0.002166748046875,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "original": {
+        "lufs": -17.8,
+        "true_peak_dbfs": -0.3
+      },
+      "gain_db": -4.199999999999999,
+      "review": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -4.5
+      }
+    },
+    {
+      "name": "hiphop-seed-4125",
+      "technical": {
+        "file": "renders/cloud-trial-20261018/hiphop-seed-4125.wav",
+        "sha256": "4eda97e2aecc3d2186318646f3d6049c419c1b1063c3d7fcd3a82044016b55a6",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "duration_seconds": 30.0,
+        "peak_linear": 0.891265869140625,
+        "peak_dbfs": -0.9998544876801003,
+        "rms_dbfs_left": -18.436255279380312,
+        "rms_dbfs_right": -19.227570400783602,
+        "dc_left": 0.0008099395328097874,
+        "dc_right": 0.0013702895694308811,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 0,
+        "last_nonzero_frame": 1439999,
+        "max_adjacent_sample_step": 0.498870849609375,
+        "last_100ms_peak": 0.002227783203125,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "original": {
+        "lufs": -17.4,
+        "true_peak_dbfs": -1.0
+      },
+      "gain_db": -4.600000000000001,
+      "review": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.6
+      }
+    },
+    {
+      "name": "hiphop-repeat-4123",
+      "technical": {
+        "file": "renders/cloud-trial-20261018/hiphop-repeat-4123.wav",
+        "sha256": "8cb2bf63bb45bab4445c1aa973e86969124489e143e23d27c3a6389b7c10d813",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "duration_seconds": 30.0,
+        "peak_linear": 0.891265869140625,
+        "peak_dbfs": -0.9998544876801003,
+        "rms_dbfs_left": -18.62219618246484,
+        "rms_dbfs_right": -18.911049226823483,
+        "dc_left": 0.0011386301464504666,
+        "dc_right": 0.0015752327177259657,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 0,
+        "last_nonzero_frame": 1439999,
+        "max_adjacent_sample_step": 0.497161865234375,
+        "last_100ms_peak": 0.002197265625,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "original": {
+        "lufs": -16.7,
+        "true_peak_dbfs": -1.0
+      },
+      "gain_db": -5.300000000000001,
+      "review": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -6.3
+      }
+    },
+    {
+      "name": "hiphop-jazz",
+      "technical": {
+        "file": "renders/cloud-trial-20261018/hiphop-jazz.wav",
+        "sha256": "d90fc05c83932fbf358a46e47c51d23b8d9083269bc7b7bb44aad409dcb55c2e",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "duration_seconds": 30.0,
+        "peak_linear": 0.891265869140625,
+        "peak_dbfs": -0.9998544876801003,
+        "rms_dbfs_left": -15.72470419655956,
+        "rms_dbfs_right": -16.184520053921357,
+        "dc_left": 0.0012264170540703667,
+        "dc_right": 0.002282410282558865,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 0,
+        "last_nonzero_frame": 1439999,
+        "max_adjacent_sample_step": 0.362274169921875,
+        "last_100ms_peak": 0.002532958984375,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "original": {
+        "lufs": -14.4,
+        "true_peak_dbfs": -1.0
+      },
+      "gain_db": -7.6,
+      "review": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -8.6
+      }
+    },
+    {
+      "name": "hiphop-halftime",
+      "technical": {
+        "file": "renders/cloud-trial-20261018/hiphop-halftime.wav",
+        "sha256": "5c268048b41a0692f61410776615c7bf176ec098e5b82aa9ef946a14e0678a67",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "duration_seconds": 30.0,
+        "peak_linear": 0.891265869140625,
+        "peak_dbfs": -0.9998544876801003,
+        "rms_dbfs_left": -15.964378439358686,
+        "rms_dbfs_right": -16.25554274587337,
+        "dc_left": 0.0014957100338406032,
+        "dc_right": 0.0021274736828274196,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 0,
+        "last_nonzero_frame": 1439999,
+        "max_adjacent_sample_step": 0.25225830078125,
+        "last_100ms_peak": 0.002838134765625,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "original": {
+        "lufs": -14.4,
+        "true_peak_dbfs": -1.0
+      },
+      "gain_db": -7.6,
+      "review": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -8.6
+      }
+    },
+    {
+      "name": "club-seed-7441",
+      "technical": {
+        "file": "renders/cloud-trial-20261018/club-seed-7441.wav",
+        "sha256": "7d26706f5d0ed0ad597e8013832e20b9e3d3ecd425794d32737c3ffb320d56e6",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "duration_seconds": 30.0,
+        "peak_linear": 0.891265869140625,
+        "peak_dbfs": -0.9998544876801003,
+        "rms_dbfs_left": -23.238848275349614,
+        "rms_dbfs_right": -23.316708895790637,
+        "dc_left": 0.0011300937440660264,
+        "dc_right": 0.0013346046447753907,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 0,
+        "last_nonzero_frame": 1439999,
+        "max_adjacent_sample_step": 0.663787841796875,
+        "last_100ms_peak": 0.00201416015625,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "original": {
+        "lufs": -20.8,
+        "true_peak_dbfs": -1.0
+      },
+      "gain_db": -1.1999999999999993,
+      "review": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -2.2
+      }
+    },
+    {
+      "name": "club-seed-7442",
+      "technical": {
+        "file": "renders/cloud-trial-20261018/club-seed-7442.wav",
+        "sha256": "6364941f915eda32d1b287a81734d8539d45887181bceffacaea26d62a718964",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "duration_seconds": 30.0,
+        "peak_linear": 0.891265869140625,
+        "peak_dbfs": -0.9998544876801003,
+        "rms_dbfs_left": -19.70979346504731,
+        "rms_dbfs_right": -20.29574074373749,
+        "dc_left": 0.0013734365463256835,
+        "dc_right": 0.0017828338623046875,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 0,
+        "last_nonzero_frame": 1439999,
+        "max_adjacent_sample_step": 0.59759521484375,
+        "last_100ms_peak": 0.002227783203125,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "original": {
+        "lufs": -18.6,
+        "true_peak_dbfs": -0.9
+      },
+      "gain_db": -3.3999999999999986,
+      "review": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -4.3
+      }
+    },
+    {
+      "name": "hiphop-lm-4123",
+      "technical": {
+        "file": "renders/cloud-trial-20261018/hiphop-lm-4123.wav",
+        "sha256": "76375cfb91fef88d37a941b8be97fc731e11ed3c11f3d7f9af49cb2c317fd8ac",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "duration_seconds": 30.0,
+        "peak_linear": 0.891265869140625,
+        "peak_dbfs": -0.9998544876801003,
+        "rms_dbfs_left": -16.993165346480158,
+        "rms_dbfs_right": -17.14370014807492,
+        "dc_left": 0.0015628137800428603,
+        "dc_right": 0.002157414478725857,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 0,
+        "last_nonzero_frame": 1439999,
+        "max_adjacent_sample_step": 0.322021484375,
+        "last_100ms_peak": 0.002716064453125,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "original": {
+        "lufs": -15.7,
+        "true_peak_dbfs": -0.9
+      },
+      "gain_db": -6.300000000000001,
+      "review": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -7.2
+      }
+    },
+    {
+      "name": "club-lm-7441",
+      "technical": {
+        "file": "renders/cloud-trial-20261018/club-lm-7441.wav",
+        "sha256": "6d9291747a70a9238fe88105fb8a2493cec64427222f02ca434f3b7719b3312c",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "duration_seconds": 30.0,
+        "peak_linear": 0.891265869140625,
+        "peak_dbfs": -0.9998544876801003,
+        "rms_dbfs_left": -17.311704075476815,
+        "rms_dbfs_right": -17.462241963168438,
+        "dc_left": 0.0021713560740152997,
+        "dc_right": 0.00257437932756212,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 0,
+        "last_nonzero_frame": 1439999,
+        "max_adjacent_sample_step": 0.783966064453125,
+        "last_100ms_peak": 0.002410888671875,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "original": {
+        "lufs": -16.0,
+        "true_peak_dbfs": -0.9
+      },
+      "gain_db": -6.0,
+      "review": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -6.9
+      }
+    }
+  ],
+  "comparisons": {
+    "hiphop-seed-4123 vs hiphop-repeat-4123": {
+      "maximum_pcm_difference": 0.0,
+      "rms_pcm_difference": 0.0,
+      "equal_sample_fraction": 1.0
+    },
+    "hiphop-seed-4123 vs hiphop-seed-4124": {
+      "maximum_pcm_difference": 1.2869873046875,
+      "rms_pcm_difference": 0.15593518356100375,
+      "equal_sample_fraction": 0.007057291666666667
+    },
+    "hiphop-seed-4123 vs hiphop-seed-4125": {
+      "maximum_pcm_difference": 1.103729248046875,
+      "rms_pcm_difference": 0.1610958499270888,
+      "equal_sample_fraction": 0.00873125
+    },
+    "club-seed-7441 vs club-seed-7442": {
+      "maximum_pcm_difference": 0.9053955078125,
+      "rms_pcm_difference": 0.12093807021551495,
+      "equal_sample_fraction": 0.006102430555555555
+    }
+  },
+  "listening_gate": "NOT RUN",
+  "event_frame_agreement": "NOT RUN: audio model emits no engine event trace"
+}

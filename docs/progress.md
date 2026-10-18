@@ -10,6 +10,19 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest separate model research, 2026-10-18: the owner-funded, $10-bounded
+[Vast music trial](cloud-music-trial.md) ran ACE-Step 1.5 on one RTX 3090.
+**GPU execution, ten 30-second outputs, verified retrieval, waveform checks and
+rental cleanup: PASS.** Warm direct generation took 2.447–2.492 s; the two
+planning-LM cases took 23.189/26.344 s. The same-seed repeat is byte-identical;
+other seeds produce measured waveform differences, not proven musical variety.
+Observed debit is about $0.09; final invoice reconciliation is **PARTIAL**.
+**Listening, Stable Audio comparison, cloud speech processing, production
+integration and M1/M2 advancement: NOT RUN.** Only original text briefs left
+the machine; the master, supplied fixture, owner source and Mac ML environment
+remain unchanged. C01/C02 in the tracker separate technical completion from
+the outstanding human evaluation.
+
 Latest web implementation, 2026-10-18: [accounts foundation](web-accounts.md)
 adds the Next.js shell, Better Auth email/password, verification/reset via a
 Resend adapter, generated auth migrations and owner-scoped private track metadata.

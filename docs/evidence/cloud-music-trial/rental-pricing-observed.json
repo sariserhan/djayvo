@@ -1,0 +1,23 @@
+{
+  "captured_at": 1792342250.367232,
+  "disk_bw": 1289.6,
+  "disk_name": "nvme",
+  "disk_space": 60.0,
+  "disk_usage": 26.0,
+  "disk_util": 26.0,
+  "dlperf_per_dphtotal": 222.83173041460657,
+  "dph_base": 0.16,
+  "dph_total": 0.19333333333333333,
+  "flops_per_dphtotal": 182.41324137931034,
+  "inet_down": 955.6,
+  "inet_down_billed": 14155776.0,
+  "inet_down_cost": 0.0026041666666666665,
+  "inet_up": 904.1,
+  "inet_up_billed": 117760.0,
+  "inet_up_cost": 0.0026041666666666665,
+  "internet_down_cost_per_tb": 2.6666666666666665,
+  "internet_up_cost_per_tb": 2.6666666666666665,
+  "storage_cost": 0.39999999999999997,
+  "storage_total_cost": 0.033333333333333326,
+  "vram_costperhour": 7.866753472222222e-06
+}

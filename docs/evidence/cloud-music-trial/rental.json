@@ -1,0 +1,28 @@
+{
+  "captured_at": 1792342403.388365,
+  "rental_seconds_until_delete_request": 1316.1976070404053,
+  "authorized_budget_usd": 10,
+  "starting_credit": 10.0,
+  "ending_credit_observed": 9.9123176021,
+  "observed_debit_usd": 0.0876823979000001,
+  "automatic_topup": null,
+  "active_instances": 0,
+  "cleanup_gate": "PASS",
+  "final_invoice_verified": false,
+  "quote": {
+    "id": 44133018,
+    "gpu_name": "RTX 3090",
+    "gpu_ram": 24576,
+    "num_gpus": 1,
+    "cpu_ram": 32224,
+    "geolocation": "United States, US",
+    "reliability": 0.9949925,
+    "dph_total": 0.16444444444444445,
+    "storage_cost": 0.39999999999999997,
+    "inet_down_cost": 0.0026041666666666665,
+    "inet_up_cost": 0.0026041666666666665,
+    "hourly_with_60gb_disk": 0.19777777777777777,
+    "reserved_90min_plus_transfer": 0.6091666666666666
+  },
+  "note": "Credit observation after verified destruction, not a final invoice; billing may lag."
+}

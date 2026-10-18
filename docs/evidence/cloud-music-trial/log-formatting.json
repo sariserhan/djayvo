@@ -1,0 +1,29 @@
+{
+  "note": "Carriage-return progress lines converted to LF; trailing whitespace removed. Original command logs retained in ignored build-cloud/.",
+  "files": {
+    "setup-final.log": {
+      "original_sha256": "5745fcd61bab00107b818de2208c78bb20b91e3400d29cf45f446aee50b12cc8",
+      "committed_sha256": "7c8d2608a384707e51a04ffa482e4b4afa7e89db82415753735ef9ce2ea2f4be"
+    },
+    "setup-retry.log": {
+      "original_sha256": "2162355b073cabab436f0ac7ce4b58f86f8aaf2fb6df57d6c966cf47b6eb00de",
+      "committed_sha256": "efcc70c6dbd1d35fc6da2689bb0b65ce3378f0f7448d8020e47af8868d44bbee"
+    },
+    "waveform-tests.log": {
+      "original_sha256": "d10ffbd9f0faa72cd6837063279524e199b59fbc3d035051302a1e8dbc4b36ad",
+      "committed_sha256": "d10ffbd9f0faa72cd6837063279524e199b59fbc3d035051302a1e8dbc4b36ad"
+    },
+    "setup.log": {
+      "original_sha256": "e17d638e447fefb5e6869dd8a40b9e14bd0d909ef692d7c0fe52a3d0c66e80aa",
+      "committed_sha256": "dd91a314404fd8ebf9b86be6742fc3d6ac6da7795e3a5aafbd3d61bf61b5ec49"
+    },
+    "batch.log": {
+      "original_sha256": "c1122da02c7bf6ad764753b7a7fde6ddd6f6da3768fa9e5c56c3c7db831adbba",
+      "committed_sha256": "93f05e4f4339ca041ee28633c1762a1890f2a41ac0e1a413ccad6cdca7749951"
+    },
+    "controller-tests.log": {
+      "original_sha256": "c6b9b1f09add0403cc07e90bfdf272129b1ddfa2f8f7675ea8218862f2516371",
+      "committed_sha256": "c6b9b1f09add0403cc07e90bfdf272129b1ddfa2f8f7675ea8218862f2516371"
+    }
+  }
+}
