@@ -1,0 +1,374 @@
+{
+  "status": "PASS",
+  "scope": "offline CLI including import/planning/render/I/O/completion hashing; three repetitions; no warmup exclusion",
+  "system": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "renderer_sha256": "5efed2fe22066fe91383fea1894cbdaa101ee4d2fad42a1c46c2a6046ac121f3",
+  "live_device_performance": "NOT RUN",
+  "quality": "NOT RUN",
+  "cases": [
+    {
+      "source": "owner",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "style": "hiphop",
+      "sample_rate": 48000,
+      "block_size": 512,
+      "stems": false,
+      "trials": [
+        {
+          "wall_seconds": 0.1735803340015991,
+          "cpu_seconds": 0.172186,
+          "peak_rss_bytes": 32686080,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 184.3526813337345
+        },
+        {
+          "wall_seconds": 0.17132595799921546,
+          "cpu_seconds": 0.170282,
+          "peak_rss_bytes": 32686080,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 186.7784682117262
+        },
+        {
+          "wall_seconds": 0.17056412499732687,
+          "cpu_seconds": 0.16936199999999998,
+          "peak_rss_bytes": 32636928,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 187.6127233701783
+        }
+      ],
+      "median_wall_seconds": 0.17132595799921546,
+      "maximum_peak_rss_bytes": 32686080
+    },
+    {
+      "source": "owner",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "style": "reggae",
+      "sample_rate": 48000,
+      "block_size": 512,
+      "stems": false,
+      "trials": [
+        {
+          "wall_seconds": 0.1709926249968703,
+          "cpu_seconds": 0.166518,
+          "peak_rss_bytes": 32718848,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 187.14257413491197
+        },
+        {
+          "wall_seconds": 0.16769420800119406,
+          "cpu_seconds": 0.16261799999999998,
+          "peak_rss_bytes": 32702464,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 190.8235256388351
+        },
+        {
+          "wall_seconds": 0.20449550000193994,
+          "cpu_seconds": 0.182084,
+          "peak_rss_bytes": 32718848,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 156.48266098616563
+        }
+      ],
+      "median_wall_seconds": 0.1709926249968703,
+      "maximum_peak_rss_bytes": 32718848
+    },
+    {
+      "source": "owner",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "style": "experimental",
+      "sample_rate": 48000,
+      "block_size": 512,
+      "stems": false,
+      "trials": [
+        {
+          "wall_seconds": 0.17287066599965328,
+          "cpu_seconds": 0.169277,
+          "peak_rss_bytes": 32882688,
+          "master_audio_seconds": 32.96775,
+          "audio_seconds_per_wall_second": 190.70760102275608
+        },
+        {
+          "wall_seconds": 0.17554116700193845,
+          "cpu_seconds": 0.169131,
+          "peak_rss_bytes": 32833536,
+          "master_audio_seconds": 32.96775,
+          "audio_seconds_per_wall_second": 187.8063736447414
+        },
+        {
+          "wall_seconds": 0.17346979200010537,
+          "cpu_seconds": 0.16746899999999998,
+          "peak_rss_bytes": 32849920,
+          "master_audio_seconds": 32.96775,
+          "audio_seconds_per_wall_second": 190.04893947172067
+        }
+      ],
+      "median_wall_seconds": 0.17346979200010537,
+      "maximum_peak_rss_bytes": 32882688
+    },
+    {
+      "source": "signal-2",
+      "source_sha256": "d6f6c8371e37882baf6066eb555171f89483e607c1f9a2b5784ffceed215adc0",
+      "style": "hiphop",
+      "sample_rate": 48000,
+      "block_size": 512,
+      "stems": false,
+      "trials": [
+        {
+          "wall_seconds": 0.19931850000284612,
+          "cpu_seconds": 0.193462,
+          "peak_rss_bytes": 31358976,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 160.54706411869978
+        },
+        {
+          "wall_seconds": 0.19738200000210782,
+          "cpu_seconds": 0.19231199999999998,
+          "peak_rss_bytes": 31309824,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 162.12217932566432
+        },
+        {
+          "wall_seconds": 0.19689425000251504,
+          "cpu_seconds": 0.19094899999999998,
+          "peak_rss_bytes": 31309824,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 162.5237913224548
+        }
+      ],
+      "median_wall_seconds": 0.19738200000210782,
+      "maximum_peak_rss_bytes": 31358976
+    },
+    {
+      "source": "signal-2",
+      "source_sha256": "d6f6c8371e37882baf6066eb555171f89483e607c1f9a2b5784ffceed215adc0",
+      "style": "reggae",
+      "sample_rate": 48000,
+      "block_size": 512,
+      "stems": false,
+      "trials": [
+        {
+          "wall_seconds": 0.1904929579977761,
+          "cpu_seconds": 0.18480799999999997,
+          "peak_rss_bytes": 31440896,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 167.98521234771096
+        },
+        {
+          "wall_seconds": 0.20064745899799163,
+          "cpu_seconds": 0.184295,
+          "peak_rss_bytes": 31440896,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 159.48370420340237
+        },
+        {
+          "wall_seconds": 0.18533479100005934,
+          "cpu_seconds": 0.184021,
+          "peak_rss_bytes": 31424512,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 172.66051250997853
+        }
+      ],
+      "median_wall_seconds": 0.1904929579977761,
+      "maximum_peak_rss_bytes": 31440896
+    },
+    {
+      "source": "signal-2",
+      "source_sha256": "d6f6c8371e37882baf6066eb555171f89483e607c1f9a2b5784ffceed215adc0",
+      "style": "experimental",
+      "sample_rate": 48000,
+      "block_size": 512,
+      "stems": false,
+      "trials": [
+        {
+          "wall_seconds": 0.18907787499847473,
+          "cpu_seconds": 0.18776299999999999,
+          "peak_rss_bytes": 31604736,
+          "master_audio_seconds": 32.96775,
+          "audio_seconds_per_wall_second": 174.36069661913615
+        },
+        {
+          "wall_seconds": 0.19021137500021723,
+          "cpu_seconds": 0.18896,
+          "peak_rss_bytes": 31604736,
+          "master_audio_seconds": 32.96775,
+          "audio_seconds_per_wall_second": 173.32165334466643
+        },
+        {
+          "wall_seconds": 0.1926322090002941,
+          "cpu_seconds": 0.189017,
+          "peak_rss_bytes": 31588352,
+          "master_audio_seconds": 32.96775,
+          "audio_seconds_per_wall_second": 171.14349760662128
+        }
+      ],
+      "median_wall_seconds": 0.19021137500021723,
+      "maximum_peak_rss_bytes": 31604736
+    },
+    {
+      "source": "signal-5",
+      "source_sha256": "84d038fd2a62dd08e8deabc2954023515d62492730b057524bcd272a17c3e68a",
+      "style": "hiphop",
+      "sample_rate": 48000,
+      "block_size": 512,
+      "stems": false,
+      "trials": [
+        {
+          "wall_seconds": 0.2301324170002772,
+          "cpu_seconds": 0.22883199999999998,
+          "peak_rss_bytes": 32178176,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 139.05037985135948
+        },
+        {
+          "wall_seconds": 0.23139520800032187,
+          "cpu_seconds": 0.22995899999999997,
+          "peak_rss_bytes": 32227328,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 138.29154145644836
+        },
+        {
+          "wall_seconds": 0.2314301250007702,
+          "cpu_seconds": 0.22707499999999997,
+          "peak_rss_bytes": 32227328,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 138.27067673187966
+        }
+      ],
+      "median_wall_seconds": 0.23139520800032187,
+      "maximum_peak_rss_bytes": 32227328
+    },
+    {
+      "source": "signal-5",
+      "source_sha256": "84d038fd2a62dd08e8deabc2954023515d62492730b057524bcd272a17c3e68a",
+      "style": "reggae",
+      "sample_rate": 48000,
+      "block_size": 512,
+      "stems": false,
+      "trials": [
+        {
+          "wall_seconds": 0.22111516699806089,
+          "cpu_seconds": 0.21936599999999998,
+          "peak_rss_bytes": 32325632,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 144.72096344381762
+        },
+        {
+          "wall_seconds": 0.2240227500005858,
+          "cpu_seconds": 0.22006399999999998,
+          "peak_rss_bytes": 32276480,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 142.84263540161132
+        },
+        {
+          "wall_seconds": 0.2257179999978689,
+          "cpu_seconds": 0.224075,
+          "peak_rss_bytes": 32309248,
+          "master_audio_seconds": 32.0,
+          "audio_seconds_per_wall_second": 141.7698189790009
+        }
+      ],
+      "median_wall_seconds": 0.2240227500005858,
+      "maximum_peak_rss_bytes": 32325632
+    },
+    {
+      "source": "signal-5",
+      "source_sha256": "84d038fd2a62dd08e8deabc2954023515d62492730b057524bcd272a17c3e68a",
+      "style": "experimental",
+      "sample_rate": 48000,
+      "block_size": 512,
+      "stems": false,
+      "trials": [
+        {
+          "wall_seconds": 0.22740183300265926,
+          "cpu_seconds": 0.223959,
+          "peak_rss_bytes": 32473088,
+          "master_audio_seconds": 32.96775,
+          "audio_seconds_per_wall_second": 144.97574432310964
+        },
+        {
+          "wall_seconds": 0.22797366599843372,
+          "cpu_seconds": 0.22393,
+          "peak_rss_bytes": 32505856,
+          "master_audio_seconds": 32.96775,
+          "audio_seconds_per_wall_second": 144.6120974350893
+        },
+        {
+          "wall_seconds": 0.22554733300057705,
+          "cpu_seconds": 0.222072,
+          "peak_rss_bytes": 32456704,
+          "master_audio_seconds": 32.96775,
+          "audio_seconds_per_wall_second": 146.16776692241206
+        }
+      ],
+      "median_wall_seconds": 0.22740183300265926,
+      "maximum_peak_rss_bytes": 32505856
+    },
+    {
+      "source": "owner",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "style": "experimental",
+      "sample_rate": 192000,
+      "block_size": 113,
+      "stems": false,
+      "trials": [
+        {
+          "wall_seconds": 0.8878510419999657,
+          "cpu_seconds": 0.875429,
+          "peak_rss_bytes": 118325248,
+          "master_audio_seconds": 32.96773958333333,
+          "audio_seconds_per_wall_second": 37.13206160018744
+        },
+        {
+          "wall_seconds": 0.8888504589995136,
+          "cpu_seconds": 0.8733019999999999,
+          "peak_rss_bytes": 118358016,
+          "master_audio_seconds": 32.96773958333333,
+          "audio_seconds_per_wall_second": 37.09031057984904
+        },
+        {
+          "wall_seconds": 0.8925041660004354,
+          "cpu_seconds": 0.8795559999999999,
+          "peak_rss_bytes": 118358016,
+          "master_audio_seconds": 32.96773958333333,
+          "audio_seconds_per_wall_second": 36.93847136991095
+        }
+      ],
+      "median_wall_seconds": 0.8888504589995136,
+      "maximum_peak_rss_bytes": 118358016
+    },
+    {
+      "source": "owner",
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "style": "all",
+      "sample_rate": 48000,
+      "block_size": 512,
+      "stems": true,
+      "trials": [
+        {
+          "wall_seconds": 2.078847542001313,
+          "cpu_seconds": 2.010628,
+          "peak_rss_bytes": 41336832,
+          "master_audio_seconds": 96.96775,
+          "audio_seconds_per_wall_second": 46.64495497666407
+        },
+        {
+          "wall_seconds": 2.049357667001459,
+          "cpu_seconds": 1.989787,
+          "peak_rss_bytes": 40108032,
+          "master_audio_seconds": 96.96775,
+          "audio_seconds_per_wall_second": 47.31616718807287
+        },
+        {
+          "wall_seconds": 2.0072521670008427,
+          "cpu_seconds": 1.9846089999999998,
+          "peak_rss_bytes": 40140800,
+          "master_audio_seconds": 96.96775,
+          "audio_seconds_per_wall_second": 48.30870360692418
+        }
+      ],
+      "median_wall_seconds": 2.049357667001459,
+      "maximum_peak_rss_bytes": 41336832
+    }
+  ]
+}

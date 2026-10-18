@@ -1,0 +1,5 @@
+PASS: renders/recording-workflow-v5/control.baseline.wav
+PASS: complete export renders/recording-workflow-v5/control.complete.json
+Listening/recognizability: NOT RUN
+PASS: blinded pilot assets prepared in renders/recording-workflow-v5/blind-pilot/listener
+NOT RUN: human listening and M1 quality gate

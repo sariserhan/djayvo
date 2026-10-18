@@ -15,6 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
 from compare_portability import compare, load_audio
 from make_fixture import make_signal
 from prepare_listening import prepare
+from verify_export import verify_export
 
 
 def rejects(function):
@@ -74,6 +75,16 @@ def main():
             f.setparams((2, 2, 8000, 0, "NONE", "not compressed"))
             f.writeframes(bytes(176000 * 4))
         rejects(lambda: compare(a, b))
+        rejects(lambda: prepare(prefix, root / "incomplete", source))
+        artifacts=[]
+        for style in ('hiphop','reggae','experimental','baseline'):
+            Path(str(prefix)+f'.{style}.report.json').write_text('{}')
+            for ext in ('wav','score.json','report.json','events.tsv'):
+                suffix=f'.{style}.{ext}';data=Path(str(prefix)+suffix).read_bytes()
+                artifacts.append({'suffix':suffix,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+        completion={'schema_version':'1.0-export','status':'complete','source_sha256':digest,'artifacts':artifacts}
+        marker=Path(str(prefix)+'.complete.json');marker.write_text(json.dumps(completion))
+        assert len(verify_export(prefix)['artifacts'])==16
         key = prepare(prefix, root / "pilot", source)
         assert key["quality_gate"] == "NOT RUN" and len(key["codes"]) == 4
         assert hashlib.sha256((root / "pilot/listener/source.wav").read_bytes()).hexdigest() == digest
@@ -91,6 +102,11 @@ def main():
             pairs = list(csv.DictReader(f))
         assert len(pairs) == 3 and all(r["preferred_code_or_tie"] == "" for r in pairs)
         rejects(lambda: prepare(prefix, root / "pilot", source))
+        changed=json.loads(marker.read_text());changed['artifacts'][0]['suffix']='../../outside.wav'
+        marker.write_text(json.dumps(changed));rejects(lambda: verify_export(prefix))
+        marker.write_text(json.dumps(completion))
+        report=Path(str(prefix)+'.hiphop.report.json');report.write_text('[]')
+        rejects(lambda: verify_export(prefix))
         print("PASS: comparison equality, changed decision/frame/audio rejection, blind codes, RMS matching, source hash and empty responses")
         print("NOT RUN: human observations and actual Mac execution")
 

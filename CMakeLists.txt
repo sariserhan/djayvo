@@ -48,7 +48,7 @@ if(BUILD_TESTING)
   add_test(NAME remix_core COMMAND djayvo_remix_tests)
   add_executable(djayvo_c_smoke core/tests/c_api_smoke.c)
   target_link_libraries(djayvo_c_smoke PRIVATE djayvo_core)
-  add_test(NAME c_abi COMMAND djayvo_c_smoke "${CMAKE_CURRENT_BINARY_DIR}/c-api-input.wav" "${CMAKE_CURRENT_BINARY_DIR}/c-api-render")
+  add_test(NAME c_abi COMMAND djayvo_c_smoke "${CMAKE_CURRENT_BINARY_DIR}/c-api-input.wav" "${CMAKE_CURRENT_BINARY_DIR}/c-api-safe-render")
   find_package(Python3 3.9 COMPONENTS Interpreter)
   if(Python3_Interpreter_FOUND)
     add_test(NAME acoustic_assets COMMAND "${Python3_EXECUTABLE}"

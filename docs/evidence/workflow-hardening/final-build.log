@@ -1,0 +1,14 @@
+[ 56%] Built target djayvo_core
+[ 65%] Built target djayvo_remix_tests
+[ 78%] Built target djayvo_tests
+[ 78%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/remix_main.cpp.o
+[ 86%] Built target djayvo_render
+[ 95%] Built target djayvo_c_smoke
+[100%] Linking CXX executable djayvo_remix
+[100%] Built target djayvo_remix
+Djayvo offline source-driven remix
+Usage: djayvo_remix --input FILE [--consent | --synthetic-fixture] [--output PREFIX] [--style all|hiphop|reggae|experimental|baseline] [--stems] [--seed UINT32] [--sample-rate 8000..192000] [--block-size 1..65536]
+--consent confirms permission to process the supplied recording locally.
+--synthetic-fixture is only for generated non-person recordings.
+Choose a new output prefix; existing files are never replaced.
+Ctrl-C cancels safely. Require PREFIX.complete.json before consuming an export.

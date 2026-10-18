@@ -1,0 +1,5 @@
+PASS: renders/workflow-extensible-v5/remix.hiphop.wav
+PASS: renders/workflow-extensible-v5/remix.reggae.wav
+PASS: renders/workflow-extensible-v5/remix.experimental.wav
+PASS: complete export renders/workflow-extensible-v5/remix.complete.json
+Listening/recognizability: NOT RUN

@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-17 (America/New_York). Latest implementation: [instrument articulation v4](docs/instrument-articulation.md).
+Last updated: 2026-10-17 (America/New_York). Latest implementation: [safe exports and recording workflow](docs/workflow-hardening.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -31,12 +31,17 @@ closes that task only; it does not automatically pass its parent milestone.
 Local [listening page](renders/voice-articulation-v4/review/index.html): v3/v4 pairs
 and six alternate-seed mixes plus isolated piano/drum comparisons at matched
 levels. Earlier reference auditions
-remain linked. V4 listening: **NOT RUN**.
+remain linked. V4 piano/drum feedback: **PASS** (informal owner acceptance).
+The [one-command recording session](renders/recording-workflow-v5/index.html)
+provides three mixes and downloads; its new conversion has not received a
+separate listening assessment.
 Audio links work in this checkout; private recordings are intentionally absent
 from Git and will not appear in a remote repository viewer.
 
-Latest owner feedback (2026-10-17): “for now they are okay but we have to improve
-in a production quality but as a start they are fine.” **Owner review: PARTIAL.**
+Latest owner feedback (2026-10-17): “they are fine,” in response to the v4
+piano/drum comparison question. Prior overall feedback: “for now they are okay
+but we have to improve in a production quality but as a start they are fine.”
+**Overall owner review: PARTIAL.**
 This accepts the prototype as a starting point. It does not establish per-style,
 per-seed or production-quality acceptance. The next quality priorities remain
 instrument realism/articulation, coherent arrangements, clean vocal treatment
@@ -46,11 +51,10 @@ and evaluation across diverse consented inputs.
   of all three new styles. Record timestamps and
   separate judgments for instrument sound, groove, coherence, ending and enjoyment.
   Owner supplies observations; development work records and acts on them.
-- [ ] **N02 — PARTIAL:** Resolve the reported artificial/game-like instrument
-  sound. Acoustic samples, articulation and room treatment are implemented;
-  v4 adds three recorded piano dynamics and two piano/drum takes. Instrument
-  realism still needs specific listening assessment despite general
-  prototype acceptance.
+- [x] **N02 — PASS:** The reported piano/drum concern has informal owner
+  acceptance on v4: “they are fine.” Acoustic samples, three piano dynamics,
+  alternate takes and room treatment are implemented. Production realism and
+  diverse-input assessment remain open under E01/M1; no rating was invented.
 - [ ] **N03 — PARTIAL:** Resolve experimental's awkward passages. Fewer melody
   notes, longer bass notes and better-spaced chops are implemented; listen for
   remaining problems before closing this issue.
@@ -60,7 +64,8 @@ and evaluation across diverse consented inputs.
   in each style. Waveform preservation passes, but intelligibility is unmeasured.
 - [ ] **N06 — PARTIAL:** Production-quality continuation now includes pause-aware
   vocal endings and recorded instrument layers/takes, nine fresh mixes and
-  matched v3/v4 comparisons. Prior audio is retained; v4 listening remains NOT RUN.
+  matched v3/v4 comparisons. Prior audio is retained; the owner accepts v4
+  piano/drums. Formal quality, recognizability and diverse-input listening remain.
 
 Record against [instrument articulation v4](docs/instrument-articulation.md), with the exact
 filename/seed, timestamp, observation, desired change and eventual evidence.
@@ -69,7 +74,7 @@ Do not close N02–N05 merely because another implementation is committed.
 ## Completed development
 
 Entries follow implementation order. Historical results apply to their revision;
-current platform results are in [the v4 report](docs/evidence/instrument-articulation/report.json).
+current platform results are in [the workflow report](docs/evidence/workflow-hardening/report.json).
 
 | Done | ID | Status | Development | Commit / evidence |
 | --- | --- | --- | --- | --- |
@@ -90,6 +95,10 @@ current platform results are in [the v4 report](docs/evidence/instrument-articul
 | [x] | P15 | PASS | Smoke-test overwrite protection and comparison of mix settings | `2260689` · [verification](docs/evidence/arrangement-review/report.json) |
 | [x] | P16 | PASS | Pause-aware vocal crop endings and attack pre-roll, four-rate regression, fresh M5/Linux validation and nine voice mixes | [v3 evidence](docs/vocal-boundaries.md) |
 | [x] | P17 | PASS | Three recorded piano dynamics, two piano/drum takes, 53 pinned samples, release-test identity fix, fresh M5/Linux checks and matched comparison | [v4 evidence](docs/instrument-articulation.md) |
+| [x] | P18 | PASS | Exclusive staged exports, completion hashes, C ABI/CLI cancellation, collision/interrupt tests and extensible WAV decoding | [Workflow evidence](docs/workflow-hardening.md) |
+| [x] | P19 | PASS | Actual consented M4A conversion, three-style/stem workflow, browser playback and separate-prefix blind pilot | [Workflow evidence](docs/evidence/workflow-hardening/report.json) |
+| [x] | P20 | PASS | 33 offline timing/RSS trials; current M5/Linux release and M5 sanitizers; 18 identical cross-OS WAVs | [Benchmark](docs/evidence/workflow-hardening/benchmark.json) |
+| [x] | P21 | PASS | Pinned Linux/macOS CI matrix and cross-OS comparison recipe prepared and locally checked; hosted execution remains open | [Workflow](.github/workflows/core.yml) |
 
 ## Engineering backlog
 
@@ -108,18 +117,23 @@ is needed. Prioritize by recorded listening defects and product requirements.
 - [ ] **E04 — PARTIAL:** Expand expressive mixing/effects when justified by
   listening. Early reflections and hook ducking exist; feedback delay/reverb and
   richer automation do not.
-- [ ] **E05 — NOT RUN:** Make multi-file exports transactional/cancellable so an
-  interrupted export cannot leave an apparently complete result set.
-- [ ] **E06 — PARTIAL:** Improve the import experience for actual recordings.
-  PCM WAV is supported; the owner's M4A required external local conversion, and
-  WAVE_FORMAT_EXTENSIBLE required repacking.
+- [x] **E05 — PASS:** CLI/C ABI exports stage files, preserve existing paths,
+  publish a verified completion marker last and support cancellation. Actual
+  SIGINT/SIGKILL and collision tests pass. Abrupt kills may leave incomplete
+  files/`.partial`; consumers must verify completion. Power-loss durability and
+  automatic recovery are not claimed. [Contract](docs/workflow-hardening.md).
+- [x] **E06 — PASS:** Native extensible WAV works without repacking; a local
+  consented M4A/WAV script converts, renders and builds a listening page. Actual
+  owner M4A and integration tests pass. Optional installed FFmpeg is required;
+  this is a desktop developer workflow, not the future iPhone UI.
 - [ ] **E07 — NOT RUN:** Validate this revision on the original physical Intel
   Linux machine when available. Current cross-OS PASS covers Linux arm64 on M5.
-- [ ] **E08 — NOT RUN:** Add Linux/macOS CI when runner access is available,
-  retaining fixture integrity, asset checks, C ABI and deterministic comparisons.
-- [ ] **E09 — PARTIAL:** Measure render time and memory across realistic source
-  and event loads. Allocation-free processing passes; real-time/device performance
-  certification remains absent.
+- [ ] **E08 — PARTIAL:** Linux/macOS release/sanitizer matrix, asset/C ABI tests
+  and procedural-control comparison are committed and locally verified. Hosted
+  execution is **NOT RUN**; no push or runner result is claimed.
+- [x] **E09 — PASS:** Measure representative offline time/memory: 11 source/style/
+  rate/stem cases × 3 trials, each export verified. [Results](docs/evidence/workflow-hardening/benchmark.json).
+  Worst-case/live/iPhone performance remains separately open under I04/L01/L03.
 
 ## M1: formal musical-quality evaluation
 

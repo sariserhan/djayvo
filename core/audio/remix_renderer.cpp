@@ -106,13 +106,16 @@ std::size_t RemixRenderer::process(float* stereo,std::size_t requested) noexcept
     return count;
 }
 
-void render_remix(const RemixPlan& p,const AudioBuffer& source,const std::string& prefix,std::size_t block,bool stems) {
+void render_remix(const RemixPlan& p,const AudioBuffer& source,const std::string& prefix,std::size_t block,bool stems,
+                  const RenderControl& control) {
     const auto schedule=compile(p.music);
     const auto render=[&](const std::string& path,bool vocals,int solo) {
+        control.check();
         RemixRenderer renderer(p,source,block,vocals,solo);
         WavWriter writer(path,p.music.sample_rate,schedule.total_frames);
         std::vector<float> buffer(block*2);
         while (!renderer.finished()) {
+            control.check();
             const auto count=renderer.process(buffer.data(),block);
             if (!count) throw std::runtime_error("remix render stalled");
             writer.write(buffer.data(),count);

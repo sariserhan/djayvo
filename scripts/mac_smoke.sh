@@ -35,6 +35,7 @@ ctest --test-dir build-mac --output-on-failure
 mkdir -p "$(dirname "$OUTPUT")"
 mkdir "$OUTPUT"
 ./build-mac/djayvo_remix --input renders/fixtures/synthetic-speech.wav --synthetic-fixture --output "$OUTPUT/remix" --style all --stems
+"$PYTHON" scripts/verify_export.py "$OUTPUT/remix"
 "$PYTHON" - "$OUTPUT" <<'PY'
 import json, platform, subprocess, sys
 from pathlib import Path

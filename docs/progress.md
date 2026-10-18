@@ -9,14 +9,32 @@ master specification is unchanged. The original M0a record is
 [m0a-report.md](m0a-report.md), with its initial Git commit `02d0e18`.
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
+The latest [workflow revision](workflow-hardening.md) adds cancellable exports
+with completion hashes and collision protection, native extensible WAV import,
+and one-command local M4A conversion/render/listening preparation. Seven suites
+pass on M5 release/sanitizers and Linux arm64 (10 foundation + 12 remix groups).
+Current plans/event frames match exactly; six masters and twelve fixture stems
+are byte-identical. Fifteen owner WAVs also exactly preserve v4 audio. All 33
+representative offline benchmark renders pass. CI configuration and local recipe
+checks are **PASS**; hosted CI is **NOT RUN**. See the
+[current report](evidence/workflow-hardening/report.json).
+
+The owner replied “they are fine” to the specific v4 piano/drum comparison
+question: **PASS** informal feedback received/accepted; production realism is
+**PARTIAL**, and formal M1 evaluation is **NOT RUN**. There are no invented
+per-style scores, timestamps or recognition observations. The new M4A session
+page has three browser-tested players; its listening remains **NOT RUN**.
+
+Previous musical checkpoint:
 The latest [instrument articulation revision](instrument-articulation.md) adds
 three recorded piano dynamics and two takes per piano pitch/drum hit: 53 pinned
 CC0 recordings. M5 release/sanitizer and Linux release each pass 7/7 suites
 (10 foundation + 11 remix groups). Fresh fixture/owner plans and event frames
 match; six masters and twelve fixture stems are byte-identical across Linux/M5.
 Nine voice mixes, twelve stems, a new baseline and a sixteen-file matched
-comparison page are ready. V4 listening is **NOT RUN**; instrument realism and
-production quality remain **PARTIAL**. See the [v4 report](evidence/instrument-articulation/report.json).
+comparison page are ready. At that checkpoint v4 listening was **NOT RUN**;
+the subsequent owner feedback is recorded above. Instrument realism and
+production quality remain **PARTIAL**. See the historical [v4 report](evidence/instrument-articulation/report.json).
 
 The previous [vocal boundary revision](vocal-boundaries.md) adds sustained quiet
 endings and attack pre-roll with a bounded fallback. Its code and all earlier
@@ -44,11 +62,16 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Gate | Status | Evidence |
 | --- | --- | --- |
 | Linux release build | PASS | Current aarch64 Debian 12 container, GCC 12.2; physical Intel rerun NOT RUN |
-| C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 11 remix test groups |
-| C ABI | PASS | Source compiled as C calls a real render; error bounds/ABI checked |
+| C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 12 remix test groups |
+| C ABI | PASS | Compiled-C render, bounded errors, ABI and additive cancellation/retry checked |
 | End-to-end tests | PASS | Current Mac: CTest 7/7 including asset integrity |
 | ASan/UBSan | PASS | Current Mac: same seven suites, no findings |
-| Input decoding/bounds | PASS | PCM16/24/32 and float32, mono/stereo, odd chunks; corruption, NaN, silence, duration and permission rejection |
+| Input decoding/bounds | PASS | PCM16/24/32, float32 and validated extensible variants; original owner WAV accepted; corruption/layout/precision/padding rejected |
+| Safe export/cancellation | PASS | Complete marker/hashes, exclusive publication, rollback, real SIGINT/SIGKILL, existing files/symlinks and stale locks preserved |
+| Local M4A workflow | PASS | Actual owner input converted locally; three mixes/twelve stems, provenance and browser page; source unchanged |
+| Offline performance | PASS | 33 verified renders across 11 representative cases; [trials](evidence/workflow-hardening/benchmark.json) |
+| CI preparation | PASS | Pinned four-job build matrix and local cross-OS control; no private audio uploaded |
+| Hosted CI execution | NOT RUN | Workflow remains local; no hosted run/push |
 | Resampling | PASS | Identity, duration, round trip, above-Nyquist rejection |
 | Analysis controls | PASS | Energy, phrases, onsets, coarse tone pitch; not a speech-recognition claim |
 | Clean hook preservation | PASS | Source waveform retained within gain/edge-fade/PCM tolerances |
@@ -145,8 +168,9 @@ selected timestamps, reproduction, and the local audition package.
 ## Remaining limitations
 
 The acoustic bank is mono and sample-based, with discrete piano layers and
-seeded piano/drum takes; bass remains single-layer. No listener has yet rated
-v4 realism or its layer transitions. No formal perceptual evaluation exists. Analysis is energy/onset/autocorrelation DSP with sustained quiet-boundary selection but
+seeded piano/drum takes; bass remains single-layer. The owner accepts v4 piano
+and drums, but there are no formal ratings of realism or layer transitions.
+No formal perceptual evaluation exists. Analysis is energy/onset/autocorrelation DSP with sustained quiet-boundary selection but
 no word boundaries or reliable semantic labels. Pitch may have octave errors.
 Varispeed couples pitch/time and can alias (current generated chops use rate 1).
 Finite instrumental early reflections exist; independent pitch/time stretching,
@@ -156,8 +180,9 @@ with smooth clean-hook ducking; the soft-knee stage can color overloads.
 
 WAV is PCM16 without dither, capped by RIFF size. Stems do not promise exact
 master reconstruction. The renderer is allocation-free in tests but not a live
-device certification. Exports are synchronous, not transactional/cancellable;
-run the C ABI off the UI/audio thread. Public C++ buffers are caller-owned and
+device certification. Exports are synchronous and cancellable, with staged
+publication and a completion marker; power-loss durability is not certified.
+Run the C ABI off the UI/audio thread. Public C++ buffers are caller-owned and
 must remain immutable during rendering. No live, battery, device route/session,
 or privacy UI behavior is claimed.
 

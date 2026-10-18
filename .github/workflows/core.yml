@@ -1,0 +1,70 @@
+name: Portable core
+"on":
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: core-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+        sanitizers: ['OFF', 'ON']
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Configure and build
+        run: |
+          cmake -S . -B build-ci -DCMAKE_BUILD_TYPE=RelWithDebInfo -DDJAYVO_SANITIZERS=${{ matrix.sanitizers }} -DPython3_EXECUTABLE="$(command -v python3)"
+          cmake --build build-ci --parallel 3
+      - name: Test
+        run: ctest --test-dir build-ci --output-on-failure
+      - name: Render independent CI control
+        if: matrix.sanitizers == 'OFF'
+        run: |
+          python3 scripts/make_fixture.py --output build-ci/control/source.wav
+          ./build-ci/djayvo_remix --input build-ci/control/source.wav --synthetic-fixture --output build-ci/control/remix --style all
+          python3 scripts/verify_export.py build-ci/control/remix
+          uname -a > build-ci/control/toolchain.txt
+          c++ --version >> build-ci/control/toolchain.txt
+          cmake --version >> build-ci/control/toolchain.txt
+          python3 --version >> build-ci/control/toolchain.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: matrix.sanitizers == 'OFF'
+        with:
+          name: control-${{ matrix.os }}
+          path: build-ci/control/
+          retention-days: 7
+          if-no-files-found: error
+  compare:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: control-*
+          path: comparison/
+      - name: Verify and compare plans, frames and PCM
+        run: |
+          python3 scripts/verify_export.py comparison/control-ubuntu-24.04/remix
+          python3 scripts/verify_export.py comparison/control-macos-15/remix
+          python3 scripts/compare_portability.py --reference comparison/control-ubuntu-24.04/remix --candidate comparison/control-macos-15/remix --report comparison/report.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: platform-comparison
+          path: comparison/report.json
+          retention-days: 7
+          if-no-files-found: warn

@@ -9,6 +9,9 @@ from pathlib import Path
 import struct
 import subprocess
 import sys
+import tempfile
+import signal
+import time
 import wave
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
@@ -24,12 +27,7 @@ def pcm(path):
         return result
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--renderer", type=Path, required=True)
-    parser.add_argument("--output", type=Path, required=True)
-    args = parser.parse_args()
-    args.output.mkdir(parents=True, exist_ok=True)
+def verify(args):
     fixture = args.output / "synthetic.wav"
     make_signal(fixture)
     executable = str(args.renderer.resolve())
@@ -130,6 +128,22 @@ def main():
         path.write_bytes(container(payload, codec, channels, bits, b"JUNK\x01\x00\x00\x00x\x00"))
         run(f"format-{codec}-{bits}", path, ("--style", "hiphop", "--sample-rate", "8000"))
     gates["pcm24_pcm32_float32_stereo_and_odd_metadata_chunk"] = "PASS"
+    def extensible(payload, codec=1, channels=1, bits=16, valid=None, mask=0, guid_tail=None):
+        block = channels*bits//8
+        tail = guid_tail if guid_tail is not None else bytes.fromhex('00001000800000aa00389b71')
+        fmt = struct.pack('<HHIIHHHHII', 0xfffe, channels, 16000, 16000*block, block, bits,
+                          22, bits if valid is None else valid, mask, codec)+tail
+        body = b'WAVEfmt '+struct.pack('<I',len(fmt))+fmt+b'data'+struct.pack('<I',len(payload))+payload
+        return b'RIFF'+struct.pack('<I',len(body))+body
+    little = source_pcm.tobytes() if sys.byteorder=='little' else b''.join(struct.pack('<h',v) for v in source_pcm)
+    for name, data in (
+        ('pcm16', extensible(little)),
+        ('pcm24-in-32', extensible(b''.join(struct.pack('<i',v*65536) for v in source_pcm),bits=32,valid=24)),
+        ('float32', extensible(b''.join(struct.pack('<f',v/32768) for v in source_pcm),codec=3,bits=32))):
+        path=args.output/f'ext-{name}.wav';path.write_bytes(data)
+        run(f'ext-{name}',path,('--style','hiphop'))
+        assert pcm(args.output/f'ext-{name}.hiphop.wav')==pcm(args.output/'three.hiphop.wav')
+    gates['extensible_pcm_float_and_left_aligned_precision'] = 'PASS'
     invalids = {
         "truncated": fixture.read_bytes()[:-1],
         "silence": container(bytes(16000 * 3 * 2), 1, 1, 16),
@@ -137,6 +151,12 @@ def main():
         "unsupported": container(bytes(16000 * 3 * 2), 7, 1, 16),
         "short": container(bytes(1000 * 2), 1, 1, 16),
         "chunk-overflow": fixture.read_bytes()[:40] + b"\xff\xff\xff\xff" + fixture.read_bytes()[44:],
+        "ext-guid": extensible(little,guid_tail=bytes(12)),
+        "ext-codec": extensible(little,codec=7),
+        "ext-layout": extensible(little,mask=3),
+        "ext-valid": extensible(little,valid=17),
+        "ext-padding": extensible(b''.join(struct.pack('<i',v*65536+1) for v in source_pcm),bits=32,valid=24),
+        "ext-short": container(little,0xfffe,1,16),
     }
     for name, payload in invalids.items():
         path = args.output / f"bad-{name}.wav"
@@ -158,15 +178,60 @@ def main():
     os.link(fixture, link)
     run("hardlink", options=("--style", "hiphop"), success=False)
     gates["source_not_overwritten_including_stems_and_hardlinks"] = "PASS"
+    before=hashlib.sha256((args.output/'three.hiphop.wav').read_bytes()).hexdigest()
+    run('three',options=('--style','all','--stems'),success=False)
+    assert hashlib.sha256((args.output/'three.hiphop.wav').read_bytes()).hexdigest()==before
+    completion=json.loads((args.output/'three.complete.json').read_text())
+    assert completion['status']=='complete' and len(completion['artifacts'])==24
+    for item in completion['artifacts']:
+        data=(args.output/('three'+item['suffix'])).read_bytes()
+        assert len(data)==item['bytes'] and hashlib.sha256(data).hexdigest()==item['sha256']
+    assert not list(args.output.glob('*.partial'))
+    gates['exclusive_export_completion_manifest_and_original_preservation']='PASS'
+    for name, interruption in (('cancelled',signal.SIGINT),('interrupted',signal.SIGKILL)):
+        prefix=args.output/name
+        process=subprocess.Popen([executable,'--input',str(fixture),'--synthetic-fixture','--output',str(prefix),
+                                  '--sample-rate','192000','--style','all','--stems'],stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+        staging=Path(str(prefix)+'.partial')
+        try:
+            deadline=time.monotonic()+30
+            while time.monotonic()<deadline:
+                path=staging/'export.hiphop.wav'
+                if path.exists() and path.stat().st_size>100000:break
+                assert process.poll() is None,'renderer exited before interruption test'
+                time.sleep(.005)
+            else:raise AssertionError('staged render did not become ready')
+            process.send_signal(interruption)
+            stdout,stderr=process.communicate(timeout=30)
+            assert process.returncode==(130 if interruption==signal.SIGINT else -signal.SIGKILL),(stdout,stderr)
+            assert not Path(str(prefix)+'.complete.json').exists() and not Path(str(prefix)+'.hiphop.wav').exists()
+            assert staging.exists()==(interruption==signal.SIGKILL)
+            if interruption==signal.SIGKILL:
+                run(name,success=False)
+                assert staging.exists(),'retry removed an interrupted export'
+        finally:
+            if process.poll() is None:process.kill();process.communicate()
+    gates['actual_sigint_cleanup_and_sigkill_incomplete_export_preservation']='PASS'
     gates["human_recording_and_recognizability"] = "NOT RUN"
     gates["human_musical_quality_and_audible_style_difference"] = "NOT RUN"
     gates["apple_m5_portability"] = "NOT RUN"
     result = {"project": "Djayvo", "milestones": ["M0b", "M0c"], "fixture": "original procedural signal",
               "gates": gates, "measurements": measurements, "maximum_clean_hook_pcm_error": max(errors)}
-    (args.output / "validation.json").write_text(json.dumps(result, indent=2) + "\n")
+    (args.evidence / "validation.json").write_text(json.dumps(result, indent=2) + "\n")
     for name, status in gates.items():
         print(f"{status}: {name}")
 
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--renderer", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    args.output.mkdir(parents=True, exist_ok=True)
+    args.evidence = args.output
+    with tempfile.TemporaryDirectory(prefix="run-", dir=args.output) as temporary:
+        args.output = Path(temporary)
+        verify(args)
 
 if __name__ == "__main__":
     main()

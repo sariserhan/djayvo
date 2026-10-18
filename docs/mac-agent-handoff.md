@@ -21,9 +21,16 @@ references and the owner's recordings. Read `docs/progress.md` for current gates
 
 Current v4 adds recorded piano dynamics and alternate piano/drum takes. See
 [instrument-articulation.md](instrument-articulation.md): fresh M5/Linux checks
-are **PASS**, with 18 matching WAVs; v4 listening remains **NOT RUN**.
+are **PASS**, with 18 matching WAVs. The owner subsequently replied “they are
+fine” about v4 piano/drums; formal quality is still **NOT RUN**.
 
-For this revision, run the smoke test with `DJAYVO_REFERENCE_PREFIX=renders/arrangement-linux/articulation-v4/remix`
+The current [workflow revision](workflow-hardening.md) adds safe/cancellable
+exports, extensible WAV import and a consented M4A workflow. M5/Linux and M5
+sanitizer suites pass 7/7 each (22 native test groups); 18 cross-OS WAVs and
+all 15 previous v4 owner WAVs match exactly. The [tracker](../TODO.md) records
+completed work and the remaining listening/device/hosted-CI gates.
+
+For this revision, run the smoke test with `DJAYVO_REFERENCE_PREFIX=renders/arrangement-linux/workflow-v5/remix`
 and a new `DJAYVO_OUTPUT_DIR`. The script now rejects existing output directories;
 its default is timestamped. Do not compare the revised music to historical M0
 renders as a portability test. All unchanged instructions below describe the

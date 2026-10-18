@@ -5,6 +5,7 @@
 
 static void u16(FILE* f, uint16_t n) {fputc(n & 255u,f);fputc((n >> 8u) & 255u,f);}
 static void u32(FILE* f, uint32_t n) {u16(f,(uint16_t)n);u16(f,(uint16_t)(n >> 16u));}
+static int cancel(void* context) {int* calls=(int*)context;return ++*calls>32;}
 int main(int argc, char** argv) {
     char error[128];
     DjayvoRenderOptions options={0};
@@ -29,8 +30,16 @@ int main(int argc, char** argv) {
     options.abi_version=2;
     if(djayvo_render_file(&options,error,sizeof(error))!=1) return 7;
     options.abi_version=DJAYVO_ABI_VERSION;
+    int calls=0;
+    if(djayvo_render_file_cancellable(&options,cancel,&calls,error,sizeof(error))!=4 || calls!=33) return 10;
     if(djayvo_render_file(&options,error,sizeof(error))!=0) {fprintf(stderr,"FAIL: %s\n",error);return 8;}
     if(error[0]!='\0') return 9;
-    puts("PASS: C compiler, ABI version, bounded errors, exception containment and actual offline remix");
+    if(djayvo_render_file(&options,error,sizeof(error))!=1) return 11;
+    const char* suffixes[]={".hiphop.wav",".hiphop.score.json",".hiphop.report.json",".hiphop.events.tsv",".complete.json"};
+    for(unsigned i=0;i<5;++i) {
+        char path[4096];
+        if(snprintf(path,sizeof(path),"%s%s",argv[2],suffixes[i])>=(int)sizeof(path) || remove(path)) return 12;
+    }
+    puts("PASS: stable C ABI, bounded errors, cancellation, exclusive complete export and actual offline remix");
     return 0;
 }

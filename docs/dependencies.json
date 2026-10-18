@@ -393,6 +393,13 @@
       "notice_files": []
     }
   ],
+  "optional_local_recording_import": {
+    "tools": "FFmpeg and ffprobe 9.0.2, existing local executables",
+    "role": "local consented M4A/WAV conversion and integration tests",
+    "linked_into_engine": false,
+    "bundled": false,
+    "evidence": "evidence/workflow-hardening/report.json"
+  },
   "optional_mac_reference_analysis": {
     "environment": ".venv-analysis",
     "packages": "evidence/arrangement-review/analysis-packages.json",

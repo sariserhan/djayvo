@@ -2,7 +2,10 @@
 #include <algorithm>
 #include <atomic>
 #include <cmath>
+#include <chrono>
 #include <cstdlib>
+#include <filesystem>
+#include <fstream>
 #include <functional>
 #include <iostream>
 #include <limits>
@@ -225,6 +228,49 @@ void no_allocations() {
     while(!r.finished()) r.process(buffer,512);
     const auto after=allocations.load();check(before==after,"sample render allocated memory");
 }
+void export_transactions() {
+    namespace fs=std::filesystem;
+    const auto root=fs::temp_directory_path()/("djayvo-export-"+std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()));
+    check(fs::create_directory(root),"could not reserve export test directory");
+    try {
+        const auto input=root/"source.wav";
+        const auto a=source();std::vector<float> stereo;
+        for (auto x:a.mono) {stereo.push_back(x);stereo.push_back(x);}
+        djayvo::WavWriter writer(input.string(),a.sample_rate,a.mono.size());
+        writer.write(stereo.data(),a.mono.size());writer.close();
+        struct Context {std::string prefix;int mode;int checks=0;bool injected=false;};
+        const auto callback=+[](void* opaque)->int {
+            auto& c=*static_cast<Context*>(opaque);++c.checks;
+            if (c.mode==0) return c.checks==40;
+            if (c.mode==1) return fs::exists(c.prefix+".hiphop.wav");
+            if (!c.injected && fs::exists(fs::path(c.prefix+".partial")/"export.experimental.events.tsv")) {
+                std::ofstream obstacle(c.prefix+".reggae.wav");obstacle<<"preserve me";obstacle.close();
+                check(static_cast<bool>(obstacle),"cannot inject publication collision");c.injected=true;
+            }
+            return 0;
+        };
+        for (int mode=0;mode<3;++mode) {
+            Context c{(root/("case"+std::to_string(mode))).string(),mode};
+            bool rejected=false;
+            try {djayvo::remix_file(input.string(),c.prefix,{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,
+                 djayvo::Strategy::experimental},8000,4123,257,true,false,false,{callback,&c});}
+            catch (const djayvo::RenderCancelled&) {check(mode<2,"collision misreported as cancellation");rejected=true;}
+            catch (const fs::filesystem_error&) {check(mode==2,"unexpected publication I/O failure");rejected=true;}
+            check(rejected,"cancelled/colliding export succeeded");
+            check(!fs::exists(c.prefix+".complete.json") && !fs::exists(c.prefix+".partial"),"failed export left a completion marker or staging files");
+            check(!fs::exists(c.prefix+".hiphop.wav"),"publication rollback left an earlier master");
+            if (mode==2) {std::ifstream file(c.prefix+".reggae.wav");std::string text;std::getline(file,text);
+                check(c.injected && text=="preserve me","publication replaced a competing file");}
+        }
+        const auto locked=(root/"locked").string();fs::create_directory(locked+".partial");
+        rejects([&]{djayvo::remix_file(input.string(),locked,{djayvo::Strategy::hiphop},8000,1,257,true,false,false);});
+        check(fs::exists(locked+".partial"),"removed another export's lock");
+        const auto linked=(root/"linked").string();fs::create_symlink(root/"missing.wav",linked+".hiphop.wav");
+        rejects([&]{djayvo::remix_file(input.string(),linked,{djayvo::Strategy::hiphop},8000,1,257,true,false,false);});
+        check(fs::is_symlink(fs::symlink_status(linked+".hiphop.wav")),"removed an existing dangling symlink");
+    } catch (...) {fs::remove_all(root);throw;}
+    fs::remove_all(root);
+}
 void arrangement_contrast() {
     const auto a=source();const auto analysis=djayvo::analyze(a);
     for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental})
@@ -281,6 +327,7 @@ int main() {
         {"pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates",pause_aware_chops},
         {"subtraction and return across styles and seeds",arrangement_contrast},
         {"instrument room timing, stereo, dry speech and finite tail",room_processing},
+        {"cancel/render/publication rollback, concurrent destinations and stale-lock preservation",export_transactions},
         {"allocation-free sample and instrument processing",no_allocations}};
     int failures=0;
     for(const auto& t:tests)try{t.second();std::cout<<"PASS: "<<t.first<<'\n';}

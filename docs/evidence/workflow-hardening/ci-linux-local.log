@@ -1,0 +1,20 @@
+{
+  "kind": "original_procedural_signal",
+  "is_human_recording": false,
+  "microphone_used": false,
+  "text": null,
+  "creator": "Djayvo synthetic fixture generator",
+  "sha256": "6531e2794da1ca5dd91451c8f71e2692d128dd39c03600ba80d5ce72f242fe36",
+  "duration_seconds": 3.0,
+  "tool_version": null,
+  "tool_linked_into_engine": false,
+  "rights_note": "Original input text/signal; local synthetic test output. No human speaker or cloned identity.",
+  "tool_license": "Original project code",
+  "license_source": null
+}
+PASS: /out/workflow-v5/ci/remix.hiphop.wav
+PASS: /out/workflow-v5/ci/remix.reggae.wav
+PASS: /out/workflow-v5/ci/remix.experimental.wav
+PASS: complete export /out/workflow-v5/ci/remix.complete.json
+Listening/recognizability: NOT RUN
+PASS: 12 complete, unchanged export artifacts

@@ -16,11 +16,16 @@ auditioned a consented source and requested less game-like instruments and more
 creative openings. The current revision uses 53 cleared instrument recordings,
 including three piano dynamics and alternate piano/drum takes, plus varied
 openings, section breaks and pause-aware vocal crops. Owner review is **PARTIAL**:
-fine as a start, with production quality still to improve. V4 listening and
-formal evaluation are **NOT RUN**. Fresh Linux/M5 plans and event frames match;
+fine as a start, with production quality still to improve. The owner specifically
+reports v4 piano/drums “are fine”; formal evaluation is **NOT RUN**. Fresh Linux/M5 plans and event frames match;
 six masters and twelve fixture stems are byte-identical. See
 [instrument revision](docs/instrument-articulation.md), [current evidence](docs/progress.md)
 and [Mac agent handoff](docs/mac-agent-handoff.md).
+
+The [local recording workflow](docs/workflow-hardening.md) now converts a consented
+M4A/WAV, renders all three styles/stems and creates a listening page in a fresh
+folder. Exports are cancellable and include verified completion records. M5,
+Linux and 33 offline benchmark renders pass; hosted CI execution is **NOT RUN**.
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
@@ -39,6 +44,10 @@ python3 scripts/make_fixture.py --output renders/fixtures/signal.wav
 generated non-person input; it must not claim consent for human audio. Processing
 is local, with no recording, upload, or telemetry service. Original files are
 unchanged, including protection against output/source aliases.
+Choose a fresh output prefix for every run: existing exports are never replaced.
+Check `PREFIX.complete.json` with `python3 scripts/verify_export.py PREFIX` before
+consuming files. Ctrl-C cancels the CLI; interrupted `.partial` folders are
+preserved if the process is killed before it can clean up.
 
 Prepared speech demonstration:
 

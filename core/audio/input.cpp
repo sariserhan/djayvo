@@ -74,14 +74,14 @@ AudioBuffer read_wav(const std::string& path) {
     if (!file || !tag(bytes,0,"RIFF") || !tag(bytes,8,"WAVE") ||
         static_cast<std::uint64_t>(u32(bytes,4)) + 8 != bytes.size())
         throw std::invalid_argument("invalid/truncated RIFF WAV");
-    std::size_t format = 0, data = 0, data_size = 0;
+    std::size_t format = 0, format_size = 0, data = 0, data_size = 0;
     for (std::size_t pos = 12; pos < bytes.size();) {
         if (bytes.size() - pos < 8) throw std::invalid_argument("truncated WAV chunk header");
         const auto size = static_cast<std::size_t>(u32(bytes,pos+4));
         if (size > bytes.size() - pos - 8) throw std::invalid_argument("truncated WAV chunk");
         if (tag(bytes,pos,"fmt ")) {
             if (format || size < 16) throw std::invalid_argument("invalid/duplicate format chunk");
-            format = pos + 8;
+            format = pos + 8; format_size = size;
         }
         if (tag(bytes,pos,"data")) {
             if (data) throw std::invalid_argument("duplicate data chunk");
@@ -94,7 +94,22 @@ AudioBuffer read_wav(const std::string& path) {
         }
     }
     if (!format || !data) throw std::invalid_argument("missing format/data chunk");
-    const auto codec = u16(bytes,format), channels = u16(bytes,format+2), bits = u16(bytes,format+14);
+    auto codec = u16(bytes,format);
+    const auto channels = u16(bytes,format+2), bits = u16(bytes,format+14);
+    auto valid_bits = bits;
+    if (codec == 0xfffe) {
+        const std::uint8_t guid_tail[12]={0,0,0x10,0,0x80,0,0,0xaa,0,0x38,0x9b,0x71};
+        if (format_size<40 || u16(bytes,format+16)<22 || u16(bytes,format+16)>format_size-18 ||
+            std::memcmp(bytes.data()+format+28,guid_tail,sizeof(guid_tail))!=0 ||
+            (u32(bytes,format+24)!=1 && u32(bytes,format+24)!=3))
+            throw std::invalid_argument("unsupported/truncated extensible WAV format");
+        codec=static_cast<std::uint16_t>(u32(bytes,format+24));
+        valid_bits=u16(bytes,format+18);
+        const auto mask=u32(bytes,format+20);
+        if (!valid_bits || valid_bits>bits || (codec==3 && valid_bits!=32) ||
+            (mask && !((channels==1 && (mask==1 || mask==4)) || (channels==2 && mask==3))))
+            throw std::invalid_argument("unsupported extensible WAV precision/channel layout");
+    }
     const auto rate = u32(bytes,format+4);
     if ((channels != 1 && channels != 2) || rate < 8000 || rate > 192000 ||
         !((codec == 1 && (bits == 16 || bits == 24 || bits == 32)) || (codec == 3 && bits == 32)))
@@ -117,6 +132,8 @@ AudioBuffer read_wav(const std::string& path) {
             const auto pos = data + i * stride + c * width;
             std::uint32_t raw = 0;
             for (unsigned j = 0; j < width; ++j) raw |= static_cast<std::uint32_t>(bytes[pos+j]) << (8U*j);
+            if (codec==1 && valid_bits<bits && (raw & ((1U << (bits-valid_bits))-1U)))
+                throw std::invalid_argument("extensible PCM padding bits must be zero");
             double value = 0;
             if (codec == 3) {
                 float x = 0; std::memcpy(&x,&raw,sizeof(x)); value = x;

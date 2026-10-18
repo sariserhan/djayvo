@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Djayvo completed export",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "source_sha256", "artifacts"],
+  "properties": {
+    "schema_version": {"const": "1.0-export"},
+    "status": {"const": "complete"},
+    "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "artifacts": {
+      "type": "array", "minItems": 4, "maxItems": 32,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["suffix", "bytes", "sha256"],
+        "properties": {
+          "suffix": {"type": "string", "pattern": "^\\.(hiphop|reggae|experimental|baseline)\\.(wav|score\\.json|report\\.json|events\\.tsv|piano\\.wav|bass\\.wav|drums\\.wav|vocals\\.wav)$"},
+          "bytes": {"type": "integer", "minimum": 1, "maximum": 67108864},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,14 @@
 #include "djayvo/remix.h"
 #include <charconv>
+#include <csignal>
 #include <filesystem>
 #include <iostream>
 #include <stdexcept>
 
 namespace {
+volatile std::sig_atomic_t interrupted=0;
+void interrupt(int) { interrupted=1; }
+int cancelled(void*) { return interrupted!=0; }
 std::uint32_t number(const std::string& text) {
     std::uint32_t result=0;
     const auto p=std::from_chars(text.data(),text.data()+text.size(),result);
@@ -25,7 +29,9 @@ int main(int argc,char** argv) {
                          <<"[--style all|hiphop|reggae|experimental|baseline] [--stems] "
                          <<"[--seed UINT32] [--sample-rate 8000..192000] [--block-size 1..65536]\n"
                          <<"--consent confirms permission to process the supplied recording locally.\n"
-                         <<"--synthetic-fixture is only for generated non-person recordings.\n";
+                         <<"--synthetic-fixture is only for generated non-person recordings.\n"
+                         <<"Choose a new output prefix; existing files are never replaced.\n"
+                         <<"Ctrl-C cancels safely. Require PREFIX.complete.json before consuming an export.\n";
                 return 0;
             }
             if (arg=="--consent") {consent=true;continue;}
@@ -49,10 +55,12 @@ int main(int argc,char** argv) {
             if (style=="all" || style==djayvo::strategy_name(s)) strategies.push_back(s);
         if (style=="baseline") strategies.push_back(djayvo::Strategy::baseline);
         if (strategies.empty()) throw std::invalid_argument("unknown style");
-        djayvo::remix_file(input,output,strategies,rate,seed,block,synthetic,consent,stems);
+        std::signal(SIGINT,interrupt);std::signal(SIGTERM,interrupt);
+        djayvo::remix_file(input,output,strategies,rate,seed,block,synthetic,consent,stems,{cancelled,nullptr});
         for (const auto strategy:strategies)
             std::cout<<"PASS: "<<output<<'.'<<djayvo::strategy_name(strategy)<<".wav\n";
-        std::cout<<"Listening/recognizability: NOT RUN\n";
+        std::cout<<"PASS: complete export "<<output<<".complete.json\nListening/recognizability: NOT RUN\n";
         return 0;
-    } catch (const std::exception& e) {std::cerr<<"FAIL: "<<e.what()<<'\n';return 1;}
+    } catch (const djayvo::RenderCancelled& e) {std::cerr<<"PARTIAL: "<<e.what()<<'\n';return 130;}
+      catch (const std::exception& e) {std::cerr<<"FAIL: "<<e.what()<<'\n';return 1;}
 }

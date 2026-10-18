@@ -1,0 +1,34 @@
+{
+  "gates": {
+    "native_m5_release": "PASS",
+    "native_m5_sanitizers": "PASS",
+    "linux_arm64_release": "PASS",
+    "plans_event_frames_and_waveforms": "PASS",
+    "block_size_512_113": "PASS",
+    "preserved_v4_audio": "PASS",
+    "protected_inputs": "PASS",
+    "complete_export_hashes_and_schemas": "PASS",
+    "cancel_collision_and_interruption": "PASS",
+    "extensible_wav": "PASS",
+    "local_m4a_workflow": "PASS",
+    "decoded_audio": "PASS",
+    "browser_playback": "PASS",
+    "blinded_pilot_preparation": "PASS",
+    "offline_benchmark": "PASS",
+    "ci_local_recipe": "PASS",
+    "hosted_ci": "NOT RUN",
+    "owner_v4_piano_drums_feedback": "PASS",
+    "production_instrument_realism": "PARTIAL",
+    "formal_quality": "NOT RUN",
+    "physical_intel_rerun": "NOT RUN",
+    "iphone_ai_live_release": "NOT RUN"
+  },
+  "conversion": {
+    "status": "PASS",
+    "frames": 233376,
+    "duration_seconds": 4.862,
+    "maximum_pcm_difference_from_afconvert": 0.01385498046875,
+    "rms_pcm_difference_from_afconvert": 0.0005458714055945863,
+    "note": "Decoder comparison, not an asserted cross-platform equivalence tolerance."
+  }
+}

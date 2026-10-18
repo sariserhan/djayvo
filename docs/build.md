@@ -3,7 +3,7 @@
 The continuation adds `djayvo_remix`, C-ABI smoke tests, and a total of **six**
 CTest suites in the original continuation, now **seven** including asset integrity.
 Current native M5 release/sanitizer and Linux arm64 runs pass all seven; see
-[arrangement-review.md](arrangement-review.md). For the current engine, also read
+[workflow-hardening.md](workflow-hardening.md). For the current engine, also read
 [remix-architecture.md](remix-architecture.md) and
 [mac-agent-handoff.md](mac-agent-handoff.md).
 
@@ -12,6 +12,13 @@ Python 3.14.4, glibc 2.43. Project requirements are CMake >=3.20, C++17, and
 Python >=3.9 for the integration test. No Python package is needed for tests.
 If Python is absent, CMake builds the engine/unit test but omits integration;
 that is a partial validation, not a full M0a test run.
+
+That x86_64 environment is the original checkpoint. Current validation uses
+native M5 and Debian 12 aarch64 (GCC 12.2/CMake 3.25.1). Hardware/toolchain records
+are linked in [the current report](workflow-hardening.md). The committed
+Linux/macOS CI matrix is prepared; hosted execution is **NOT RUN**.
+Optional actual-M4A integration requires installed FFmpeg/ffprobe:
+`python3 tests/integration/verify_recording.py --renderer build-mac/djayvo_remix`.
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release

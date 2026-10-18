@@ -6,6 +6,9 @@ follows. Unblinded owner feedback on the first voice trial is now **PARTIAL**:
 awkward experimental passages, game-like instruments, and a request for varied
 openings. See [acoustic-review.md](acoustic-review.md) for the response. This is
 not a completed rubric or blinded trial; formal M1 gates remain **NOT RUN**.
+The owner subsequently accepted v4 piano/drums (“they are fine”); this informal
+feedback is recorded in [the current report](workflow-hardening.md), not as
+completed blinded ratings.
 
 Current status: **NOT RUN**. No human observations or musical-quality scores have
 been collected. Signal checks demonstrate a valid recording, not enjoyable music.
@@ -39,12 +42,14 @@ strategies derive note/chop timing from input. Render and prepare one block:
 
 ```sh
 ./build/djayvo_remix --input SOURCE.wav --consent --output renders/trial/remix --style all --stems
-./build/djayvo_remix --input SOURCE.wav --consent --output renders/trial/remix --style baseline
-python3 scripts/prepare_listening.py --renders renders/trial/remix --source SOURCE.wav --output renders/trial/blinded --seed 4123
+./build/djayvo_remix --input SOURCE.wav --consent --output renders/trial/control --style baseline
+python3 scripts/prepare_listening.py --renders renders/trial/remix --baseline-renders renders/trial/control --source SOURCE.wav --output renders/trial/blinded --seed 4123
 ```
 
 For generated non-person fixtures, substitute `--synthetic-fixture` explicitly.
-Do not rerun packaging over existing response files; choose a new directory.
+Use fresh export prefixes and do not rerun packaging over existing response files.
+Preparation verifies completion records/hashes; use `--legacy-export` explicitly
+only for retained historical exports that predate completion markers.
 Only give `listener/` to reviewers. The organizer key must remain concealed until
 responses are locked. Candidates are matched to one common full-file RMS target
 with headroom; this is not perceptual LUFS matching. Codecs/metadata do not expose

@@ -33,6 +33,15 @@ typedef struct DjayvoRenderOptions {
  * No C++ exception crosses this boundary. No memory is returned to the caller.
  */
 int djayvo_render_file(const DjayvoRenderOptions* options, char* error, size_t capacity);
+/* Additive ABI: callback runs on the calling worker between render blocks and
+ * publication steps. Return nonzero to cancel (result 4). Never throw from it.
+ * Context remains caller-owned. A cancelled operation publishes no complete set.
+ * Existing destinations are never replaced. Require PREFIX.complete.json before
+ * consuming a new export; interruption may leave PREFIX.partial without it.
+ */
+typedef int (*DjayvoCancelCheck)(void* context);
+int djayvo_render_file_cancellable(const DjayvoRenderOptions* options,
+    DjayvoCancelCheck cancelled, void* context, char* error, size_t capacity);
 uint32_t djayvo_abi_version(void);
 
 #ifdef __cplusplus

@@ -5,6 +5,12 @@ realism: PARTIAL. V4 listening and formal quality: NOT RUN. Overall M0: PARTIAL.
 This continues the owner's request to improve the artificial/game-like sound;
 it does not establish that the complaint is resolved.
 
+Subsequent owner feedback: “they are fine,” responding specifically to the v4
+piano/drum comparison. **PASS** informal acceptance; **PARTIAL** production
+realism; **NOT RUN** formal evaluation. The checkpoint evidence below retains
+its original status. The [workflow follow-up](workflow-hardening.md) records
+this observation and verifies that all fifteen v4 owner WAVs remain unchanged.
+
 ## What changed
 
 The former bank reused one recording per pitch/hit. The current bank contains

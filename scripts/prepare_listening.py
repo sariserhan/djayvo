@@ -11,16 +11,21 @@ import random
 import shutil
 import sys
 import wave
+from verify_export import verify_export
 
 
-def prepare(prefix, output, source_path, seed=4123):
+def prepare(prefix, output, source_path, seed=4123, baseline_prefix=None, allow_legacy=False):
+    if not allow_legacy:
+        verify_export(prefix, ('hiphop', 'reggae', 'experimental'))
+        verify_export(baseline_prefix or prefix, ('baseline',))
     output = Path(output)
     if output.exists() and any(output.iterdir()):
         raise ValueError("choose an empty listening directory to preserve existing responses")
     listener = output / "listener"
     audio, plans = {}, {}
     for style in ("hiphop", "reggae", "experimental", "baseline"):
-        path = Path(str(prefix) + "." + style + ".wav")
+        selected = baseline_prefix if style=='baseline' and baseline_prefix else prefix
+        path = Path(str(selected) + "." + style + ".wav")
         with wave.open(str(path), "rb") as f:
             if f.getsampwidth() != 2 or f.getnchannels() != 2:
                 raise ValueError("expected stereo PCM16")
@@ -35,7 +40,7 @@ def prepare(prefix, output, source_path, seed=4123):
         if rms == 0:
             raise ValueError("silent trial file")
         audio[style] = (rate, samples, rms, peak)
-        plans[style] = json.loads(Path(str(prefix) + "." + style + ".score.json").read_text())
+        plans[style] = json.loads(Path(str(selected) + "." + style + ".score.json").read_text())
     source_ids = {p["source_asset_id"] for p in plans.values()}
     if len(source_ids) != 1:
         raise ValueError("all trial outputs must come from the same input")
@@ -94,7 +99,9 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=4123)
+    parser.add_argument("--baseline-renders", type=Path, help="separate completed baseline export prefix")
+    parser.add_argument("--legacy-export", action="store_true", help="explicitly accept retained exports predating completion records")
     args = parser.parse_args()
-    result = prepare(args.renders, args.output, args.source, args.seed)
+    result = prepare(args.renders, args.output, args.source, args.seed, args.baseline_renders, args.legacy_export)
     print(f"PASS: blinded pilot assets prepared in {args.output / 'listener'}")
     print("NOT RUN: human listening and M1 quality gate")

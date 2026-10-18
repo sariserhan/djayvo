@@ -4,7 +4,9 @@
 bytes. It accepts mono/stereo PCM16/24/32 and IEEE float32 at 8–192 kHz; rejects
 malformed chunks, inconsistent headers, invalid channels, nonfinite/out-of-range
 PCM, files over 32 MiB, and audio over 15 s. The remix entry point requires
-**2–5 s**. Unsupported codecs fail explicitly. Stereo is averaged to mono;
+**2–5 s**. WAVE_FORMAT_EXTENSIBLE accepts these same PCM/float subtypes with
+validated extension, channel layout and valid-bit/padding fields. Unsupported
+codecs fail explicitly. Stereo is averaged to mono;
 opposite-phase content can cancel and be rejected as quiet.
 
 `resample()` uses a normalized Hann-windowed sinc kernel, a 0.94 transition-band
@@ -68,8 +70,9 @@ with band-limited sends; it defaults to zero and is validated in [0,0.35].
 Vocals never feed this effect, and both dry/wet instruments follow hook ducking.
 Ring buffers are allocated at construction. Release coverage reserves the longest
 113 ms reflection plus 100 ms filter settling. No feedback reverb is implemented.
-Velocity-dependent filtering gives softer sampled notes a darker tone; the bank
-still has only one recorded velocity layer. See [arrangement-review.md](arrangement-review.md).
+Velocity-dependent filtering gives softer sampled notes a darker tone; piano now
+has three recorded dynamics, while bass remains single-layer. See
+[instrument-articulation.md](instrument-articulation.md).
 
 Stems share the master timeline and ducking. Each is quantized/mastered
 separately: rounding/nonlinearity mean their sum need not exactly reproduce the
@@ -88,12 +91,17 @@ source/consent, overlap, clean-hook, and duration relationships beyond structura
 JSON Schema. This is not yet a model-generated-plan boundary.
 
 `core/audio/remix_file.cpp` is the shared CLI/C-ABI pipeline. It validates all
-requested plans and checks every output alias before writing, including hard
-links, symlinks, stems, and metadata. I/O failure returns failure; a partial file
-is not an accepted export. Writes are not transactional/cancellable yet.
+requested plans and refuses existing outputs, including symlinks, stems and
+metadata. It reserves `PREFIX.partial`, renders/hashes there, publishes with
+exclusive hard links and commits `PREFIX.complete.json` last. Failure/cancellation
+rolls back only its own files; hard kills can leave an incomplete set. Consumers
+must verify the completion marker. The low-level renderer remains a direct-write
+helper. See [the contract and recovery limits](workflow-hardening.md).
 
 `core/include/djayvo/djayvo_c.h` exposes ABI version 1 with caller-owned C strings,
 fixed-width options, bounded error text, and contained C++ exceptions. A test
-compiled as C performs a real offline render. Calls are synchronous and belong
+compiled as C performs cancellation, retry and a real offline render. The additive
+`djayvo_render_file_cancellable` callback API returns 4 on cancellation without
+changing the version-1 options. Calls are synchronous and belong
 on a worker thread. No iPhone UI, audio session, capture, or device-performance
 result has been implemented or claimed.

@@ -1,6 +1,7 @@
 #pragma once
 #include "djayvo/audio.h"
 #include <memory>
+#include <stdexcept>
 
 namespace djayvo {
 struct AudioBuffer {
@@ -85,9 +86,20 @@ private:
     AudioStats stats_{};
     float previous_[2]{};
 };
+struct RenderCancelled : std::runtime_error {
+    RenderCancelled() : std::runtime_error("render cancelled") {}
+};
+struct RenderControl {
+    int (*cancelled)(void*) = nullptr;
+    void* context = nullptr;
+    void check() const { if (cancelled && cancelled(context)) throw RenderCancelled(); }
+};
+// Low-level writer; remix_file provides exclusive publication and completion metadata.
 void render_remix(const RemixPlan& plan, const AudioBuffer& source,
-                   const std::string& prefix, std::size_t block = 512, bool stems = false);
+                   const std::string& prefix, std::size_t block = 512, bool stems = false,
+                   const RenderControl& control = {});
 void remix_file(const std::string& input, const std::string& output,
                  const std::vector<Strategy>& strategies, std::uint32_t rate,
-                 std::uint32_t seed, std::size_t block, bool synthetic, bool consent, bool stems);
+                 std::uint32_t seed, std::size_t block, bool synthetic, bool consent, bool stems,
+                 const RenderControl& control = {});
 } // namespace djayvo

@@ -1,0 +1,22 @@
+{
+  "all_players_media_api": true,
+  "automation_note": "Second native shadow-control click did not start playback through agent-browser; verified media playback and exclusivity via HTMLMediaElement.play.",
+  "decoded_players": 3,
+  "durations": [
+    32,
+    32,
+    32.96775
+  ],
+  "exclusive_playback": true,
+  "first_player_native_button": true,
+  "human_listening": "NOT RUN",
+  "muted_automation": true,
+  "no_autoplay": true,
+  "playback_times": [
+    0.160027,
+    0.161154,
+    0.161511
+  ],
+  "played_players": 3,
+  "status": "PASS"
+}
