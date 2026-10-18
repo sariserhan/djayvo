@@ -14,4 +14,5 @@ const html = await readFile(index, 'utf8');
 const original = '<a href="#mixes">Your mixes</a>';
 if (!html.includes(original)) throw new Error('Studio navigation changed; review the integration.');
 await writeFile(index, html.replace(original, '<a href="/account">Account</a>'));
+execFileSync('python3', ['scripts/build_offline.py', fileURLToPath(target)], { cwd: root, stdio: 'pipe' });
 console.log('Prepared the audited browser studio and engine.');

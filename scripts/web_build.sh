@@ -19,4 +19,5 @@ for notice in libc/musl/COPYRIGHT libcxx/LICENSE.TXT libcxxabi/LICENSE.TXT libun
   printf '\n\nBundled runtime notice: %s\n\n' "$notice" >> dist/web/licenses/EMSCRIPTEN-LICENSE.txt
   cat "$EMSDK_PATH/upstream/emscripten/system/lib/$notice" >> dist/web/licenses/EMSCRIPTEN-LICENSE.txt
 done
+python3 scripts/build_offline.py dist/web
 printf '%s\n' 'Built dist/web. Start with: python3 scripts/web_serve.py'

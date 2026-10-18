@@ -8,7 +8,12 @@ Open **http://localhost:4173** while `python3 scripts/web_serve.py` is running.
 [Build/run instructions](../apps/web/README.md), [tracker](../TODO.md),
 [machine evidence](evidence/web-instant-remix/report.json).
 
-Latest continuation: [Browser recovery and Firefox](web-recovery.md).
+Latest continuation: [Optional offline studio](offline-studio.md).
+Privacy & credits now provides opt-in offline storage and scoped removal.
+Verified downloads and waiting updates keep saved mixes intact. Three-engine
+server-disconnection checks pass; installable/mobile/deployed evidence remains open.
+
+Previous continuation: [Browser recovery and Firefox](web-recovery.md).
 Malformed sessions are withheld without hiding healthy mixes. All seven styles
 now have Firefox/native agreement, and Chromium/WebKit/Firefox workflow checks
 pass. The original checkpoint below retains its dated counts and scope.

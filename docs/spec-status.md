@@ -42,7 +42,11 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
-Latest: [Browser recovery and Firefox validation](web-recovery.md).
+Latest: [Optional offline studio](offline-studio.md).
+The user can retain the app/engine for offline creation and remove that cache
+without deleting mixes. Bounded verified caches and lifecycle checks pass; this
+does not close installation, hosting, human-quality or release gates.
+Previous: [Browser recovery and Firefox validation](web-recovery.md).
 Healthy sessions survive malformed stored entries, all three browser workflows
 pass, and seven Firefox/native renders agree exactly. Human quality and release
 remain open.

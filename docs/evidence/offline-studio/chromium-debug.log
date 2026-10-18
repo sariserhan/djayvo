@@ -1,0 +1,35 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/web-chromium-offline-xoxo1O
+PASS: no cache or registration before opt-in; ordinary local generation works
+PASS: corrupt download rejects installation and removes partial cache without touching mixes
+PASS: complete app/engine cache serves only its allowlist under /studio/; account/API responses are excluded
+PASS: offline reload/import/three-take generation/play/seek/download succeed with no server requests
+PASS: failed update retains the complete old studio and all saved music
+PASS: successful update waits while the old studio remains open; no forced reload or mixed assets
+DEBUG [{"cache":"djayvo-studio:http://127.0.0.1:54443/studio/:00e6eacdcd8bac460333f8ab4f2978bdc2351aa19ed238d8f92a76cd035b5e62","clients":[]},{"cache":"djayvo-studio:http://127.0.0.1:54443/studio/:00e6eacdcd8bac460333f8ab4f2978bdc2351aa19ed238d8f92a76cd035b5e62","active":"activated","clients":["http://127.0.0.1:54443/studio/index.html"]},{"cache":"djayvo-studio:http://127.0.0.1:54443/studio/:4a08c23a28496b67b376d3a43e3670c49263a25f0e59adc57f6a43caa0010ebf","active":"activated","clients":[]},{"cache":"djayvo-studio:http://127.0.0.1:54443/studio/:4a08c23a28496b67b376d3a43e3670c49263a25f0e59adc57f6a43caa0010ebf","active":"activated","clients":[]}]
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
+    'djayvo-studio:http://127.0.0.1:54443/studio/:00e6eacdcd8bac460333f8ab4f2978bdc2351aa19ed238d8f92a76cd035b5e62',
+-   'djayvo-studio:http://127.0.0.1:54443/studio/:4a08c23a28496b67b376d3a43e3670c49263a25f0e59adc57f6a43caa0010ebf'
+  ]
+
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/web/tests/offline.mjs:160:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'djayvo-studio:http://127.0.0.1:54443/studio/:00e6eacdcd8bac460333f8ab4f2978bdc2351aa19ed238d8f92a76cd035b5e62'
+  ],
+  expected: [
+    'djayvo-studio:http://127.0.0.1:54443/studio/:00e6eacdcd8bac460333f8ab4f2978bdc2351aa19ed238d8f92a76cd035b5e62',
+    'djayvo-studio:http://127.0.0.1:54443/studio/:4a08c23a28496b67b376d3a43e3670c49263a25f0e59adc57f6a43caa0010ebf'
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

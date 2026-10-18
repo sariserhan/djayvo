@@ -1,0 +1,10 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/web-webkit-offline-XKWVXw
+PASS: no cache or registration before opt-in; ordinary local generation works
+PASS: corrupt download rejects installation and removes partial cache without touching mixes
+PASS: complete app/engine cache serves only its allowlist under /studio/; account/API responses are excluded
+PASS: offline reload/import/three-take generation/play/seek/download succeed with no server requests
+PASS: failed update retains the complete old studio and all saved music
+PASS: successful update waits while the old studio remains open; no forced reload or mixed assets
+PASS: repeated pending updates retain complete active/waiting caches; storage stays bounded
+PASS: update activates after closing studio tabs; old owned cache removed, unrelated cache and mixes retained
+PASS: explicit removal unregisters only studio/cache and preserves every mix and unrelated cache

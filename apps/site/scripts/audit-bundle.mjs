@@ -1,3 +1,5 @@
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile, readdir, stat } from 'node:fs/promises';
@@ -21,9 +23,10 @@ for (const path of sourceFiles) {
   const before = await readFile(new URL(path, source));
   const after = await readFile(new URL(path, publicRoot));
   if (path === 'index.html') assert.equal(after.toString(), before.toString().replace('<a href="#mixes">Your mixes</a>', '<a href="/account">Account</a>'));
-  else assert.ok(before.equals(after), `Studio asset changed: ${path}`);
+  else if (path !== 'service-worker.js') assert.ok(before.equals(after), `Studio asset changed: ${path}`);
 }
+execFileSync('python3', ['scripts/build_offline.py', fileURLToPath(publicRoot), '--check'], { cwd: fileURLToPath(new URL('../../../', import.meta.url)), stdio: 'pipe' });
 console.log(JSON.stringify({ status: 'PASS', client_files_checked: count, server_secrets_absent: 'PASS',
-  studio_assets_unchanged_except_account_link: 'PASS',
+  studio_assets_unchanged_except_account_link_and_offline_hashes: 'PASS',
   wasm_sha256: createHash('sha256').update(await readFile(new URL('engine/djayvo_web.wasm', publicRoot))).digest('hex'),
 }, null, 2));

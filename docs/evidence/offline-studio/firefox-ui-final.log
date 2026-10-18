@@ -1,0 +1,19 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/web-firefox-ui-sY6Shy
+PASS: page identity, content, no overlay, consent required
+PASS: privacy dialog keyboard dismissal
+PASS: file import and exact two-second decimal trim
+PASS: cancel leaves no partial library session
+PASS: three real WAV mixes, muted playback advances and pauses previous player
+PASS: download contains a real WAV
+PASS: library persists; original input and consent do not persist
+PASS: club generation and fresh seed retain previous mixes
+PASS: funk generates, survives reload and deletes without losing earlier mixes
+PASS: call_response generates, survives reload and deletes without losing earlier mixes
+PASS: hybrid generates, survives reload and deletes without losing earlier mixes
+PASS: mobile layout and scoped delete confirmation
+PASS: corrupt import rejected without damaging mixes
+PASS: malformed saved entries are withheld without hiding healthy playable mixes or deleting damaged data
+PASS: tampered session withheld and preserved for recovery
+PASS: explicit delete-all also removes withheld data
+PASS: transactional ten-session bound without eviction
+PASS: same-origin GET requests only; no application console or page errors

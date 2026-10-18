@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-18",
+  "offline_lifecycle": {
+    "chromium": {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "mount": "/studio/",
+      "checks": 9,
+      "status": "PASS"
+    },
+    "webkit": {
+      "browser": "webkit",
+      "version": "26.5",
+      "mount": "/studio/",
+      "checks": 9,
+      "status": "PASS"
+    },
+    "firefox": {
+      "browser": "firefox",
+      "version": "151.0",
+      "mount": "/studio/",
+      "checks": 9,
+      "status": "PASS"
+    },
+    "root-chromium": {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "mount": "/",
+      "checks": 5,
+      "status": "PASS"
+    }
+  },
+  "unit_tests": {
+    "status": "PASS",
+    "passed": 12
+  },
+  "environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "cpu": "Apple M5",
+    "macos": "26.7.1",
+    "os_build": "25G241",
+    "node": "v22.23.1",
+    "playwright": "1.61.1"
+  },
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "engine_wasm_sha256": "6ba7bc68a0237018dfde3a84e4e28036d045b1899e8c98d811166ccfca3c3354",
+  "native_render_rerun": "NOT RUN; no C++ or WASM changes",
+  "browser_plugin": "Required execution runtime unavailable; repository disposable Playwright fallback",
+  "physical_microphone": "NOT RUN",
+  "human_listening": "NOT RUN",
+  "public_hosting": "NOT RUN",
+  "home_screen_installation": "NOT RUN",
+  "full_specification": "PARTIAL",
+  "ordinary_browser_regression": {
+    "chromium": {
+      "status": "PASS",
+      "checks": 20,
+      "console_errors": []
+    },
+    "webkit": {
+      "status": "PASS",
+      "checks": 18,
+      "console_errors": []
+    },
+    "firefox": {
+      "status": "PASS",
+      "checks": 18,
+      "console_errors": []
+    }
+  },
+  "audio_cleanup": {
+    "status": "PASS",
+    "before_attached_url_revocations": 2,
+    "after_attached_url_revocations": 0
+  },
+  "status": "PASS"
+}

@@ -1,6 +1,7 @@
 """Audit the static build for expected files and bundled notices, not release approval."""
 import hashlib
 import json
+from build_offline import worker_source
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -9,14 +10,15 @@ ROOT = Path(__file__).resolve().parents[1]
 def verify():
     bundle = ROOT / 'dist/web'
     expected = {p.name for pattern in ('*.html', '*.css', '*.js') for p in (ROOT / 'apps/web').glob(pattern)}
-    expected |= {'engine/djayvo_web.mjs', 'engine/djayvo_web.wasm',
+    expected |= {'service-worker.js', 'engine/djayvo_web.mjs', 'engine/djayvo_web.wasm',
                  'licenses/VSCO-2-CE-LICENSE.txt', 'licenses/VCSL-LICENSE.txt', 'licenses/BLACK-AND-GREEN-GUITARS-CC0.txt', 'licenses/EMSCRIPTEN-LICENSE.txt'}
     actual = {str(p.relative_to(bundle)) for p in bundle.rglob('*') if p.is_file()}
     assert actual == expected, f'Unexpected or missing public files: {actual ^ expected}'
     assert not any(p.is_symlink() for p in bundle.rglob('*')), 'Bundle must not link outside itself'
     for name in expected:
-        if '/' not in name:
+        if '/' not in name and name != 'service-worker.js':
             assert (bundle / name).read_bytes() == (ROOT / 'apps/web' / name).read_bytes(), f'Stale file: {name}'
+    assert (bundle / 'service-worker.js').read_text() == worker_source(bundle), 'Stale offline worker'
     wasm = (bundle / 'engine/djayvo_web.wasm').read_bytes()
     assert wasm[:4] == b'\0asm'
     assert len(wasm) < 16 * 1024 * 1024

@@ -1,0 +1,27 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/web-chromium-offline-STjga9
+PASS: no cache or registration before opt-in; ordinary local generation works
+PASS: corrupt download rejects installation and removes partial cache without touching mixes
+PASS: complete app/engine cache controls only /studio/; account/API responses are excluded
+PASS: offline reload/import/three-take generation/play/seek/download succeed with no server requests
+PASS: failed update retains the complete old studio and all saved music
+PASS: successful update waits while the old studio remains open; no forced reload or mixed assets
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'Made here. Kept here.'
+- 'Offline update test.'
+
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/web/tests/offline.mjs:147:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'Made here. Kept here.',
+  expected: 'Offline update test.',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

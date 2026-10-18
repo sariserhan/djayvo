@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [browser recovery and Firefox validation](docs/web-recovery.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [optional offline studio and audio cleanup](docs/offline-studio.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -77,7 +77,7 @@ The current web deliverable and evidence are in [web Instant Remix](docs/web-ins
 - [x] **W04 — PASS:** Reproducible build, isolated local server, public-file/notice audit, native regression checks and committed browser/portability evidence.
 - [ ] **W05 — NOT RUN:** Owner browser microphone and audible playback on the actual preferred browser; headphone/device switching and browser background behavior on real hardware. Fake microphone automation is not this gate.
 - [ ] **W06 — NOT RUN:** Owner listening to web mixes, especially experimental/club/funk, and the already-required diverse blinded M1 cohort. No musical-quality inference from identical WAVs.
-- [ ] **W07 — PARTIAL:** Firefox 151.0 full workflow and seven exact native/Firefox styles PASS; installed Safari and mobile browser hardware coverage remain NOT RUN; public HTTPS hosting, installable/offline caching and release approval. No deployment is authorized or performed in this web pass. [Firefox/recovery evidence](docs/web-recovery.md).
+- [ ] **W07 — PARTIAL:** Firefox 151.0 full workflow and seven exact native/Firefox styles PASS; installed Safari and mobile browser hardware coverage remain NOT RUN; optional offline caching now PASS; home-screen installation, public HTTPS hosting and release approval remain NOT RUN. No deployment is authorized or performed in this web pass. [Offline evidence](docs/offline-studio.md); [Firefox/recovery evidence](docs/web-recovery.md).
 
 [Native app and validation](docs/ios-instant-remix.md),
 [release readiness](docs/release-readiness.md), and
@@ -232,6 +232,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P42 | PASS | Accept short energetic transients with bounded context; commit `6912218`; M5/Linux regression checks | [Evidence](docs/licensed-evaluation.md) |
 | [x] | P43 | PASS | Licensed 23-source technical cohort, 276 mixes, 69 blank review packets, 92 exact cross-OS WAVs; listener summary tool commit `e798f8b` | [Evidence](docs/licensed-evaluation.md) |
 | [x] | P44 | PASS | Preserve healthy mixes when a stored session is malformed; explicit browser selection, fresh artifacts, 56 browser checks and seven exact Firefox/native WAVs | [Evidence](docs/web-recovery.md) |
+| [x] | P45 | PASS | Opt-in offline studio with verified bounded caches, safe waiting updates/removal, root/site integration and player cleanup before URL revocation | [Evidence](docs/offline-studio.md) |
 
 ## Engineering backlog
 

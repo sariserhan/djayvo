@@ -16,6 +16,14 @@ const browser = await engine.launch(kind === 'chromium' ? {
   args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream', `--use-file-for-fake-audio-capture=${fixture}`],
 } : {});
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true });
+await context.addInitScript(() => {
+  const revoke = URL.revokeObjectURL.bind(URL);
+  URL.revokeObjectURL = url => {
+    if ([...document.querySelectorAll('audio')].some(audio => audio.getAttribute('src') === url))
+      console.error('Audio URL revoked before detaching its player');
+    revoke(url);
+  };
+});
 const page = await context.newPage();
 const errors = [], requests = [], checks = [], toolingWarnings = [];
 let takingScreenshot = false;

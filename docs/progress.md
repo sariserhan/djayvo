@@ -10,7 +10,16 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest web continuation, 2026-10-18: [Browser recovery and Firefox validation](web-recovery.md).
+Latest web continuation, 2026-10-18: [Optional offline studio](offline-studio.md).
+Explicit offline storage now verifies a bounded public bundle; account/API/audio
+requests stay outside the cache. Corrupt installation/update, waiting activation,
+cache bounds and removal preserve saved mixes. **PASS:** 32 offline checks across
+root/site scopes, 56 ordinary browser checks, 12 unit tests and public bundle
+audits. WebKit resource cleanup now detaches players before revoking audio URLs.
+**NOT RUN:** physical microphone, home-screen installation, human listening and
+release. Full specification: **PARTIAL**; C++/WASM unchanged.
+
+Previous web continuation, 2026-10-18: [Browser recovery and Firefox validation](web-recovery.md).
 Malformed stored entries no longer hide healthy mixes; damaged data is retained
 until explicit deletion. **PASS:** ten JavaScript tests, 20 Chromium / 18 WebKit /
 18 Firefox workflow checks, all seven Firefox/native WAVs and event frames exact

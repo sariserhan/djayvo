@@ -1,3 +1,4 @@
+import './offline.js';
 import { compositionKey } from './novelty.js';
 import { decodeAudio, encodeWav, RATE } from './audio.js';
 import { loadSessions, saveSession, deleteSession, deleteAllSessions, verifySession, MAX_SESSIONS } from './library.js';
@@ -27,6 +28,9 @@ function update() {
 function pauseAll(except) {
   document.querySelectorAll('audio').forEach(audio => { if (audio !== except) audio.pause(); });
 }
+function detachAudio(audio) {
+  audio.pause(); audio.removeAttribute('src'); audio.load();
+}
 document.addEventListener('play', event => { if (event.target instanceof HTMLAudioElement) pauseAll(event.target); }, true);
 
 function drawWaveform() {
@@ -55,7 +59,7 @@ function selection() {
   $('start-value').textContent = `${start.toFixed(2)} s`;
   $('end-value').textContent = `${end.toFixed(2)} s`;
   $('trim-start').value = start; $('trim-end').value = end;
-  if (previewURL) URL.revokeObjectURL(previewURL);
+  if (previewURL) { detachAudio($('preview')); URL.revokeObjectURL(previewURL); }
   previewURL = URL.createObjectURL(new Blob([encodeWav(samples, start, end)], { type: 'audio/wav' }));
   $('preview').src = previewURL;
   drawWaveform();
@@ -95,8 +99,9 @@ $('file').onchange = () => {
 };
 $('clear-source').onclick = () => {
   pauseAll(); samples = undefined;
+  detachAudio($('preview'));
   if (previewURL) URL.revokeObjectURL(previewURL);
-  previewURL = undefined; $('preview').removeAttribute('src'); $('preview').load();
+  previewURL = undefined;
   $('trim').hidden = true; $('source-description').textContent = '2–5 seconds · stays on this device';
   say('Add your recording to begin.'); drawWaveform(); update();
 };
@@ -226,7 +231,8 @@ function element(tag, text, className) {
   const node = document.createElement(tag); if (text) node.textContent = text; if (className) node.className = className; return node;
 }
 function renderLibrary() {
-  pauseAll(); urls.forEach(url => URL.revokeObjectURL(url)); urls = [];
+  pauseAll(); $('library').querySelectorAll('audio').forEach(detachAudio);
+  urls.forEach(url => URL.revokeObjectURL(url)); urls = [];
   $('library').replaceChildren();
   $('library-count').textContent = sessions.length ? `${sessions.filter(s => !s.unsaved).length} / ${MAX_SESSIONS} sessions` : '';
   if (!sessions.length) {

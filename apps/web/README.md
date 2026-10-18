@@ -27,6 +27,17 @@ The untrimmed input is never persisted. No library upload or cross-device sync.
 Clearing browser data, private browsing, quota eviction or changing hostname/port
 can make the library unavailable. Download important mixes.
 
+## Offline use
+
+In **Privacy & credits**, select **Keep studio available offline** while connected,
+then reopen the studio. App files and instruments are verified and saved; audio,
+account pages and API responses are excluded from this cache. Offline creation
+needs no account. Updates wait until all studio tabs close. **Remove offline
+studio** removes only the cached app; saved mixes stay in the separate library.
+Browser storage eviction can remove either; download important music. This is
+offline caching, not a home-screen installation or public-hosting claim.
+[Implementation and evidence](../../docs/offline-studio.md).
+
 ## Isolated build tools
 
 The existing checkout and `~/mlx-env` are not modified by SDK setup. The SDK is a
@@ -76,6 +87,9 @@ DJAYVO_BROWSER=firefox npm --prefix apps/web run test:browser
 node apps/web/tests/browser-render.mjs
 DJAYVO_BROWSER=webkit node apps/web/tests/browser-render.mjs
 DJAYVO_BROWSER=firefox node apps/web/tests/browser-render.mjs
+# Offline tests start their own disposable server; repeat with webkit/firefox:
+DJAYVO_BROWSER=chromium node apps/web/tests/offline.mjs
+DJAYVO_BROWSER=chromium DJAYVO_OFFLINE_ROOT=1 node apps/web/tests/offline.mjs
 ```
 
 Browser names are explicit: `chromium`, `webkit`, or `firefox`; unknown values
@@ -103,8 +117,9 @@ failure history and gates.
 The local server binds only `127.0.0.1:4173`. It does not expose your Mac to the
 network. Public hosting is **NOT RUN**. A future static host must serve `.wasm`
 as `application/wasm`, use HTTPS for recording, and supply the security headers in
-`scripts/web_serve.py`. No server-side audio processing is needed. Installation,
-service-worker offline caching, sign-in, billing and public sharing are deferred.
+`scripts/web_serve.py`. No server-side audio processing is needed. Home-screen installation, billing and public sharing remain deferred. Optional
+offline caching is implemented; the separate site shell has local account code
+with live infrastructure still paused.
 WebKit automation is not installed Safari/iPhone hardware validation. Physical
 browser microphone, device routes, battery and formal listening remain open.
 

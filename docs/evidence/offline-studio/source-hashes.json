@@ -1,0 +1,15 @@
+{
+  "apps/web/app.js": "eeab7ae79be271fab8613d19d6759f3608e6fbcb5013d351777627dee56e4125",
+  "apps/web/index.html": "0e4c4110b3d3b490cefb27b73bdc8e33c93c700dc817c8b2c3f5464b845da019",
+  "apps/web/offline.js": "fb682625e62b90681b5bcf7b635ba7e4d33547dc5a7349f5b55ef9b8c1dbc9e2",
+  "scripts/service-worker.js": "1ee37b74bfda4d5bcec327e3cd596b1f3da8d6d979c6f923f37b55bbef038a31",
+  "scripts/build_offline.py": "adddabdd6d0c0b85354029371360aee1f14c7085f2d224c3ffc4b50b8bb2632f",
+  "scripts/web_build.sh": "76b8fb6176edeadbd3374db1e6db8f59944e71884dc318683718be1b4929eff1",
+  "scripts/verify_web_bundle.py": "1e7d678f587b8b0491b39114b4e0227ad942daf72d797f65befe657d7b9765e9",
+  "apps/site/scripts/prepare-studio.mjs": "575c3063683db9b82db01222e3059fc1fcf31bbdacd52f9116d55a77c0b6f4e0",
+  "apps/site/scripts/audit-bundle.mjs": "7d38b59dced53167033006f28be064b117e65d76192048b14eea00c2b3084343",
+  "apps/web/tests/browser.mjs": "12b9580e098f99e0dd17a337b17d701a603edf976fe6568b001b1c9925a11577",
+  "apps/web/tests/offline.mjs": "7e59b0500ccb5714d87728bfed868aaa27cfc16f9066f1af5f215dd49be99484",
+  "apps/web/tests/offline-build.test.js": "28a895a15385788f827e6be4b56cece3ff894f893eb0956a0d6a71bcf46bc97d",
+  "apps/web/tests/offline-cache.test.js": "e411666840ff15e8f8ae7be5e6d5e1f28a5cd8d8228f140131ff8255c82261e0"
+}

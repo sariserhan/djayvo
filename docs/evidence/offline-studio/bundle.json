@@ -1,0 +1,27 @@
+{
+  "gate": "PASS",
+  "file_count": 15,
+  "bytes": 14362112,
+  "private_audio_and_test_files_absent": "PASS",
+  "license_notices": "PASS",
+  "wasm_sha256": "6ba7bc68a0237018dfde3a84e4e28036d045b1899e8c98d811166ccfca3c3354",
+  "wasm_bytes": 14143278,
+  "files": {
+    "app.js": "eeab7ae79be271fab8613d19d6759f3608e6fbcb5013d351777627dee56e4125",
+    "audio.js": "5d991784eeed98d68ea707dfc695e0a7ba3e91df239b3159a692fb52c69f103b",
+    "engine-worker.js": "b5f8b9e00d54147026a066a06140fe5ad5fdb451b56c91e619c2dd54f35fb393",
+    "engine/djayvo_web.mjs": "ee13f517a4e86f22442cff039ffa6321c8e1e73cf5170268f3a68eb2b4bccd3c",
+    "engine/djayvo_web.wasm": "6ba7bc68a0237018dfde3a84e4e28036d045b1899e8c98d811166ccfca3c3354",
+    "index.html": "0e4c4110b3d3b490cefb27b73bdc8e33c93c700dc817c8b2c3f5464b845da019",
+    "library.js": "4b5883df2f47927196a0fa692c3a6df4a5442317c2693c59f4b37425b26b5b02",
+    "licenses/BLACK-AND-GREEN-GUITARS-CC0.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "licenses/EMSCRIPTEN-LICENSE.txt": "4e932924ae86904c2ec1e8916953fb516707871b74bf05733161b0ec4772db26",
+    "licenses/VCSL-LICENSE.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "licenses/VSCO-2-CE-LICENSE.txt": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673",
+    "novelty.js": "8aa6113f3249df76eb0cdad6149668426da577e60d19fecfa18a5f61fed00807",
+    "offline.js": "fb682625e62b90681b5bcf7b635ba7e4d33547dc5a7349f5b55ef9b8c1dbc9e2",
+    "service-worker.js": "082feae53322275577d912b5c036df07a1ac2c81e01c9c68bc0ded1e9e876441",
+    "style.css": "c942e0cebe81192b43b5e647eac861f00b19d43c930c7b1f081446a6007d57b4"
+  },
+  "public_release": "NOT RUN"
+}
