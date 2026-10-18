@@ -6,12 +6,19 @@ complete master specification. Never modify the master; its SHA-256 is
 `389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2`.
 
 **Current priority, 2026-10-18: music quality research and remaining local web implementation; hosted infrastructure and phone work paused.**
+Latest engine work: [Source phrase development](source-motif.md). Call & Response
+now gives the source rhythm/energy accents a two-bar instrumental answer and
+developed return. Four owner pairs are at http://127.0.0.1:4192/review/ ; use the
+report's loopback server command to restart, preserving all recordings. Native
+release, Linux and browser agreement PASS. Owner says After feels “More connected”
+(informal listening PARTIAL); formal/reference quality NOT RUN.
+Other styles and old saved-score replay remain exact. C06 remains PARTIAL.
 Latest owner direction: develop original music from the input phrase, with
 selective voice and instrumental motif development. [x/y/z reference report](reference-xyz-analysis.md)
 contains complete signal measurements and code-grounded planner limitations.
 Seven CLI/repeatability checks PASS; direct listening NOT RUN. Do not describe
 measured boundaries as heard musical transitions. Original Downloads MP3s stay
-unchanged/outside Git. C06 tracks the next source-led engine/evaluation work;
+unchanged/outside Git. C06 tracks remaining source-led engine/evaluation work;
 the master and frozen listening cohort remain unchanged.
 Latest evaluation tool: [Blinded listening form](listening-review.md).
 A verified copy of one licensed cohort block is served at http://127.0.0.1:4191

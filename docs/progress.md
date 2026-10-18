@@ -10,6 +10,16 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest engine work, 2026-10-18: [Source phrase development](source-motif.md).
+Call & Response preserves chronological source rhythm/energy accents in two-bar
+answers and develops the return, leaving more vocal space. **PASS:** M5/Linux
+14/14 release suites each, 65 exact cross-OS WAVs, 21 native/WASM comparisons,
+five old-score replays, seven unchanged styles and two-browser review playback.
+Four private matched pairs: http://127.0.0.1:4192/review/ . Owner reports After
+feels “More connected” (**PARTIAL** informal listening); formal/reference quality
+**NOT RUN**, C06/full specification **PARTIAL**. Sanitizer details remain
+in the linked report. Master, existing recordings and frozen cohort preserved.
+
 Latest owner reference research, 2026-10-18: [x/y/z analysis](reference-xyz-analysis.md).
 Full-file signal measurements, four CLI safeguards and three exact measurement
 reruns **PASS**. Direct listening **NOT RUN**. The owner's requested direction

@@ -1,0 +1,33 @@
+PASS: renders/source-motif-20261018/before/audio/owner-4123.call_response.wav
+PASS: complete export renders/source-motif-20261018/before/audio/owner-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/source-motif-20261018/before/audio/owner-4124.call_response.wav
+PASS: complete export renders/source-motif-20261018/before/audio/owner-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/source-motif-20261018/before/audio/owner-4125.call_response.wav
+PASS: complete export renders/source-motif-20261018/before/audio/owner-4125.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/source-motif-20261018/before/audio/owner-4126.call_response.wav
+PASS: complete export renders/source-motif-20261018/before/audio/owner-4126.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/source-motif-20261018/before/audio/fixture.hiphop.wav
+PASS: renders/source-motif-20261018/before/audio/fixture.reggae.wav
+PASS: renders/source-motif-20261018/before/audio/fixture.experimental.wav
+PASS: complete export renders/source-motif-20261018/before/audio/fixture.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/source-motif-20261018/before/audio/club.club.wav
+PASS: complete export renders/source-motif-20261018/before/audio/club.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/source-motif-20261018/before/audio/funk.funk.wav
+PASS: complete export renders/source-motif-20261018/before/audio/funk.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/source-motif-20261018/before/audio/baseline.baseline.wav
+PASS: complete export renders/source-motif-20261018/before/audio/baseline.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/source-motif-20261018/before/audio/call_response.call_response.wav
+PASS: complete export renders/source-motif-20261018/before/audio/call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/source-motif-20261018/before/audio/hybrid.hybrid.wav
+PASS: complete export renders/source-motif-20261018/before/audio/hybrid.complete.json
+Listening/recognizability: NOT RUN
+PASS: 10 exports in renders/source-motif-20261018/before/audio

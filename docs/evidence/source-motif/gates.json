@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-18",
+  "overall": "PARTIAL",
+  "implementation": "PASS",
+  "mac_release": "PASS",
+  "linux_arm64_release": "PASS",
+  "mac_smoke": "PASS",
+  "sanitizers": "PASS",
+  "source_influence_regression": "PASS",
+  "cross_platform_wavs": {
+    "status": "PASS",
+    "count": 65,
+    "maximum_pcm_error": 0,
+    "rms_pcm_error": 0,
+    "plan_and_event_pairs": 12
+  },
+  "old_score_replay": {
+    "status": "PASS",
+    "plans": 5,
+    "wavs": 25
+  },
+  "unchanged_styles": {
+    "status": "PASS",
+    "styles": 7,
+    "wavs": 40
+  },
+  "web_engine_comparisons": {
+    "status": "PASS",
+    "count": 21
+  },
+  "chromium_product_flow": {
+    "status": "PASS",
+    "checks": 21
+  },
+  "review_browser_flow": {
+    "status": "PASS",
+    "browsers": [
+      "chromium",
+      "webkit"
+    ],
+    "players_per_browser": 20
+  },
+  "human_listening": "PARTIAL",
+  "reference_quality": "NOT RUN",
+  "learned_director": "NOT RUN",
+  "production_release": "NOT RUN",
+  "phone": "NOT RUN",
+  "cloud_calls": 0,
+  "formal_listening": "NOT RUN",
+  "owner_observation": "More connected"
+}

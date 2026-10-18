@@ -1,0 +1,6 @@
+{
+  "build-mac/djayvo_remix": "f4da816a67e5f8ba3c62fc9a92c039ffebdccf4929a19b66ddf9774252831140",
+  "build-mac/libdjayvo_core.a": "f73f6af3b664bdaa6091671aecb07d0c34848f911d3e6d1ff17d1ba70a3a22b6",
+  "build-mac-sanitize/djayvo_remix_tests": "ab2eb68de10fea577c049df80cc5a80802ea5ee081ad62def505e705b709a862",
+  "build-web/djayvo_web.wasm": "0a36ac0dd77b81c3730fe0d4489266bef8d08f4ff643c85d1f73934a0f41550a"
+}

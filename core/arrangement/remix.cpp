@@ -25,6 +25,40 @@ Tick source_tick(std::uint64_t frame, const PerformancePlan& p) {
     // Input rhythm becomes a reproducible sixteenth-note motif.
     return static_cast<Tick>(std::llround(tick / 240.0)) * 240;
 }
+struct PhraseNote { Tick start; int accent; };
+std::vector<PhraseNote> source_phrase(const AudioBuffer& source,const InputAnalysis& a,const PerformancePlan& p) {
+    auto onsets=a.onsets;
+    std::sort(onsets.begin(),onsets.end());
+    onsets.erase(std::unique(onsets.begin(),onsets.end()),onsets.end());
+    const auto q=ticks_per_quarter;
+    if (onsets.empty()) return {{0,72},{3*q/2,64},{5*q/2,76}};
+    const auto span=source_tick(onsets.back()-onsets.front(),p);
+    const double scale=std::min(1.0,static_cast<double>(2*ticks_per_bar(p)-q)/static_cast<double>(std::max<Tick>(1,span)));
+    const auto count=std::min<std::size_t>(8,onsets.size());
+    std::vector<std::pair<Tick,double>> attacks;
+    double strongest=0;
+    for (std::size_t m=0;m<count;++m) {
+        const auto onset=onsets[count==1?0:m*(onsets.size()-1)/(count-1)];
+        const auto end=std::min<std::uint64_t>(source.mono.size(),onset+source.sample_rate*80ULL/1000);
+        double power=0,mean=0;
+        for (auto i=onset;i<end;++i) {
+            const double value=source.mono[static_cast<std::size_t>(i)];
+            if (!std::isfinite(value)) throw std::invalid_argument("nonfinite source accent");
+            power+=value*value;mean+=value;
+        }
+        mean/=static_cast<double>(end-onset);
+        power=std::max(0.0,power/static_cast<double>(end-onset)-mean*mean);
+        strongest=std::max(strongest,power);
+        const auto tick=static_cast<Tick>(std::llround(static_cast<double>(source_tick(onset-onsets.front(),p))*scale/240.0))*240;
+        if (!attacks.empty() && attacks.back().first==tick) attacks.back().second=std::max(attacks.back().second,power);
+        else attacks.emplace_back(tick,power);
+    }
+    std::vector<PhraseNote> phrase;
+    // shortcut: attack energy is an accent proxy; replace only after expressive listening evidence.
+    for (const auto& attack:attacks)
+        phrase.push_back({attack.first,strongest>0?55+static_cast<int>(std::lround(30*std::sqrt(attack.second/strongest))):72});
+    return phrase;
+}
 std::uint64_t near_zero(const AudioBuffer& source, std::uint64_t frame) {
     const auto radius = source.sample_rate / 500U;
     const auto lo = frame > radius ? frame-radius : 0;
@@ -172,6 +206,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     }
     if (motif.empty()) motif={0,3*q/2,5*q/2};
     std::sort(motif.begin(),motif.end());
+    const auto phrase=dialogue?source_phrase(source,a,p):std::vector<PhraseNote>{};
     for (int b=club?0:opening==0?2:0; b<p.bars; ++b) {
         const Tick base=b*bar_ticks;
         const bool intro=b<2;
@@ -253,16 +288,21 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
                 const auto breath=source.sample_rate/5U;
                 const bool full_call=(bar_frame>=first_call && bar_frame<first_call+source.mono.size()+breath) ||
                                      (bar_frame>=second_call && bar_frame<second_call+source.mono.size()+breath);
-                bass_note(0,3*q/2,0,full_call?65:94);
+                const int answer_start=b-((b+3)%4);
+                const bool answer=(b%4==1 || b%4==2) && answer_start>=2 &&
+                    ((answer_start+1<break_bar) || (answer_start>=return_bar && answer_start+1<p.bars-1));
+                bass_note(0,answer?q/3:3*q/2,0,full_call?65:94);
                 drum(0,36,full_call?65:102);drum(2*q,38,full_call?42:86);
-                if (!full_call && b%2==1) {
-                    chord(q/2,q/2,55);
-                    for (std::size_t m=0;m<std::min<std::size_t>(motif.size(),4);++m) {
-                        const auto offset=std::min<Tick>(3*q,motif[m]);
+                if (!full_call && answer) {
+                    for (std::size_t m=0;m<phrase.size();++m) {
+                        const auto position=phrase[m].start+(returning?q/2:0);
+                        if (position/bar_ticks!=b-answer_start) continue;
+                        const auto offset=position%bar_ticks;
                         const auto note=voicing[(m+(returning?1U:0U)+groove)%3];
-                        piano.notes.push_back({base+offset,q/3,note+(note<67?12:0),velocity(returning?80:72)});
+                        piano.notes.push_back({base+offset,q/3,note+(note<67?12:0),velocity(phrase[m].accent+(returning?4:0))});
+                        if (returning && phrase[m].accent>=72 && offset>=q/2)
+                            bass_note(offset,q/4,m%2?7:0,phrase[m].accent+10);
                     }
-                    bass_note(5*q/2,q/2,7,78);
                     for (int h=0;h<8;++h) drum(h*q/2+(h%2?swing:0),42,h%2?39:58,120);
                 }
             }
@@ -323,7 +363,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         }
         if (!club && returning && !last && b%2==static_cast<int>(seed%2U)) drum(7*q/2,46,60,q/4);
         // Phrase-derived call/response, not a continuous voice-over backing loop.
-        if (b>=2 && !build && !breakdown && !last && b%2==0) {
+        if (b>=2 && !build && !breakdown && !last && b%2==0 && (!dialogue || b%4==0)) {
             const std::size_t count=std::min<std::size_t>(motif.size(),dialogue?1:returning && !club?3:2);
             for (std::size_t m=0;m<count;++m) {
                 const auto clip=1+(m+static_cast<std::size_t>(b))%(r.clips.size()-1);

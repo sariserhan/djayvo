@@ -1,0 +1,27 @@
+{
+  "rendered_source_sha256": "7a6980689191386f63f9f1577b4954a980e6690d712d1a570ec5259b7d11ca84",
+  "final_source_sha256": "e7d9e8c85daa09a339a76245e8236cd8453091445ec98d6f654eba75b2857ca9",
+  "binaries": {
+    "build-mac/djayvo_remix": {
+      "before": "f4da816a67e5f8ba3c62fc9a92c039ffebdccf4929a19b66ddf9774252831140",
+      "after": "f4da816a67e5f8ba3c62fc9a92c039ffebdccf4929a19b66ddf9774252831140",
+      "identical": true
+    },
+    "build-web/djayvo_web.wasm": {
+      "before": "0a36ac0dd77b81c3730fe0d4489266bef8d08f4ff643c85d1f73934a0f41550a",
+      "after": "0a36ac0dd77b81c3730fe0d4489266bef8d08f4ff643c85d1f73934a0f41550a",
+      "identical": true
+    },
+    "build-mac-sanitize/djayvo_remix_tests": {
+      "before": "ab2eb68de10fea577c049df80cc5a80802ea5ee081ad62def505e705b709a862",
+      "after": "1c997b10e8713c3fb31abfe35332b40b7f04d8b9bc2b299da755624410336b72",
+      "identical": false
+    }
+  },
+  "final_sanitizer_remix_suite": {
+    "status": "PASS",
+    "tests": 1,
+    "seconds": 119.4,
+    "log": "sanitizer-tests-final.log"
+  }
+}

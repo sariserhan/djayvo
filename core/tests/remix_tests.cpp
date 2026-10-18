@@ -341,6 +341,54 @@ void dialogue_hybrid_composition() {
               shape(djayvo::make_remix(a,changed,style,4123,true,false)),"new grammar ignores input rhythm");
     }
 }
+void source_phrase_development() {
+    auto a=source();std::fill(a.mono.begin(),a.mono.end(),0);
+    const std::vector<std::uint64_t> attacks{800,3200,8400,13600,19600};
+    for (std::size_t m=0;m<attacks.size();++m) for (std::uint64_t i=0;i<640;++i)
+        a.mono[attacks[m]+i]=static_cast<float>((m%2?0.1:0.3)*std::sin(6.283185307179586*220*i/a.sample_rate));
+    auto features=djayvo::analyze(a);features.onsets=attacks;
+    const auto plan=[&](const djayvo::AudioBuffer& input,const djayvo::InputAnalysis& f) {
+        return djayvo::make_remix(input,f,djayvo::Strategy::call_response,4123,true,false);
+    };
+    using Phrase=std::vector<std::tuple<djayvo::Tick,djayvo::Tick,int,int>>;
+    const auto phrase=[](const djayvo::RemixPlan& p,int first) {
+        Phrase notes;const auto bar=djayvo::ticks_per_bar(p.music);
+        for (const auto& n:p.music.tracks[0].notes)
+            if(n.start>=first*bar && n.start<(first+2)*bar)
+                notes.emplace_back(n.start-first*bar,n.duration,n.pitch,n.velocity);
+        return notes;
+    };
+    const auto p=plan(a,features);const auto bar=djayvo::ticks_per_bar(p.music);
+    const auto answer=phrase(p,5);
+    check(answer.size()==attacks.size(),"answer loses source attacks");
+    check(std::get<0>(answer.back())>=bar,"answer folds the later source accents into one bar");
+    check(answer!=phrase(p,13),"return does not develop the source idea");
+    auto accented=a;
+    for (std::size_t m=0;m<attacks.size();++m) for (std::uint64_t i=0;i<640;++i)
+        accented.mono[attacks[m]+i]*=m%2?3.0F:1.0F/3.0F;
+    const auto changed=phrase(plan(accented,features),5);
+    check(changed.size()==answer.size(),"source accent changes alter the number of notes");
+    check(std::get<3>(answer[0])>std::get<3>(answer[1]) && std::get<3>(changed[0])<std::get<3>(changed[1]),
+          "instrument accents ignore the source accent pattern");
+    auto shifted=a;std::fill(shifted.mono.begin(),shifted.mono.end(),0);
+    std::copy(a.mono.begin(),a.mono.end()-800,shifted.mono.begin()+800);
+    auto later=features;for(auto& onset:later.onsets)onset+=800;
+    check(answer==phrase(plan(shifted,later),5),"leading silence changes the instrumental phrase");
+    auto reordered=features;std::reverse(reordered.onsets.begin(),reordered.onsets.end());
+    reordered.onsets.push_back(attacks[0]);
+    check(answer==phrase(plan(a,reordered),5),"unordered or duplicated onsets change the instrumental phrase");
+    auto rhythm=features;rhythm.onsets[3]+=1200;
+    check(answer!=phrase(plan(a,rhythm),5),"late source rhythm does not affect the answer");
+    for(const auto first:{5,13}) for(const auto& note:phrase(p,first)) {
+        const auto start=djayvo::tick_to_frame(first*bar+std::get<0>(note),p.music);
+        const auto end=djayvo::tick_to_frame(first*bar+std::get<0>(note)+std::get<1>(note),p.music);
+        for(const auto& e:p.vocals) {
+            const auto call=djayvo::tick_to_frame(e.start,p.music);
+            check(end<=call || start>=call+djayvo::vocal_frames(e,p.clips[e.clip])+a.sample_rate*80/1000,
+                  "source-derived answer overlaps the voice");
+        }
+    }
+}
 void funk_composition() {
     const auto a=source();const auto features=djayvo::analyze(a);
     using Shape=std::vector<std::tuple<int,djayvo::Tick,djayvo::Tick,int>>;
@@ -814,6 +862,7 @@ int main() {
         {"hiphop harmonic/rhythmic seed diversity, recurring motifs and developed returns",hiphop_composition},
         {"reggae/experimental/club harmony, rhythm and form variety across 192 seeds",remaining_style_diversity},
         {"call-response turn taking, hybrid transitions and 128 seed structures",dialogue_hybrid_composition},
+        {"source phrase order, accents, silence invariance and developed instrumental answers",source_phrase_development},
         {"funk syncopation, bass/kick lock, ghost notes, seed variety and input response",funk_composition},
         {"pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates",pause_aware_chops},
         {"subtraction and return across styles and seeds",arrangement_contrast},

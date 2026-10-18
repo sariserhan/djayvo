@@ -8,6 +8,12 @@ lyric, melody, source-to-music transformation or perceived quality is identified
 from these measurements. No file was uploaded, sampled into a remix or
 used for training. The original files remain outside Git and unchanged.
 
+The owner subsequently confirmed these three recordings as the style/quality
+target. The [first source-phrase implementation](source-motif.md) addresses
+chronological rhythm and energy accents in Call & Response; it does not establish
+perceived similarity or reference-level quality. The gap analysis below records
+the earlier `ec2f968` baseline; remaining work is tracked as C06.
+
 ## What the files establish
 
 All three are 48 kHz stereo MP3s. Measurements cover the entire decoded files.

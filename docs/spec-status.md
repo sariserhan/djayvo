@@ -7,9 +7,15 @@ The web is the selected product platform; phone and hosted infrastructure work
 remain paused. Remaining local web implementation is authorized.
 [TODO](../TODO.md) tracks individual past/future work and evidence links.
 
+Latest engine change: [Source phrase development](source-motif.md) **PASS**
+technically: chronological rhythm, source accents and two-bar Call & Response
+answers/returns. Owner reports “More connected” on four labeled comparisons
+(informal listening PARTIAL); reference-level quality and
+general contextual development remain **NOT RUN**. C06 remains **PARTIAL**.
+
 Latest research: [x/y/z reference measurements](reference-xyz-analysis.md) **PASS**;
 direct listening **NOT RUN**. Owner emphasizes source-led musical development.
-Current rules provide onset responses but no general contextual development of
+Current rules provide phrase responses but no general contextual development of
 a source motif; C06 remains **PARTIAL**, with new engine work/evaluation open.
 
 | Master area | Status | Implemented / remaining |

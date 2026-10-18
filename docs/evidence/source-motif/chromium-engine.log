@@ -1,0 +1,7 @@
+PASS: chromium /Users/serhansari/Documents/projects/djayvo/renders/web-chromium-engine-5JbyOB [
+  { style: 'three', seconds: 2.5865, artifacts: 12 },
+  { style: 'club', seconds: 1.7835999999940395, artifacts: 4 },
+  { style: 'funk', seconds: 1.3587999999970197, artifacts: 4 },
+  { style: 'call_response', seconds: 1.4345999999940395, artifacts: 4 },
+  { style: 'hybrid', seconds: 1.6447999999970198, artifacts: 4 }
+]

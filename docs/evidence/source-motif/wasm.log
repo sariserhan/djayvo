@@ -1,0 +1,14 @@
+{"input_rate":44100,"input_frames":132300,"result":""}
+PASS: 44.1 kHz input retains three seconds in 32-bit WebAssembly
+PASS: constant offset rejected after resampling without publishing WASM mixes
+PASS: WASM consent, corrupt input, three styles, club, funk, call-response and hybrid /Users/serhansari/Documents/projects/djayvo/renders/web-wasm-CXCgpT [
+  { style: 'three', seconds: 3.6529242909999997, memory_bytes: null },
+  { style: 'club', seconds: 1.391254958, memory_bytes: null },
+  { style: 'funk', seconds: 0.8569726250000004, memory_bytes: null },
+  {
+    style: 'call_response',
+    seconds: 0.9126812919999993,
+    memory_bytes: null
+  },
+  { style: 'hybrid', seconds: 0.9427613329999994, memory_bytes: null }
+]
