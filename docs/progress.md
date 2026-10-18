@@ -10,6 +10,14 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest local maintenance, 2026-10-18: [Expired-auth cleanup](auth-cleanup.md).
+Target-guarded batches remove expired sessions/verification records, skip locked
+rows and preserve active accounts. Migration 0005 adds expiry indexes. **PASS:**
+29 unit/integration checks, build/types, local migration and guarded execution;
+local database is 8,821,783 bytes with no user accounts or saved tracks after
+fixture cleanup. **NOT RUN:** hosted scheduling/provider capacity and cost proof.
+W09/full specification remain **PARTIAL**.
+
 Latest local web implementation, 2026-10-18: [Reviewed catalogue and playlists](reviewed-catalogue.md).
 Separate publication consent, revision-bound independent review, search/filtering,
 track pages, persistent player, private playlists and report/withdrawal controls

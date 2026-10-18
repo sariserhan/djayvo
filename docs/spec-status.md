@@ -43,7 +43,10 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
-Latest: [Reviewed catalogue and playlists](reviewed-catalogue.md).
+Latest maintenance: [Expired-auth cleanup](auth-cleanup.md).
+Bounded expiry deletion, indexes and local usage checks PASS. Live scheduling,
+Neon compute/transfer, overload and production retention remain NOT RUN.
+Latest product implementation: [Reviewed catalogue and playlists](reviewed-catalogue.md).
 Local submission/review, public-only queries, persistent playback and private
 playlists pass database and two-browser checks. Test approvals are synthetic and
 removed; real permissions, musical quality, live publication and moderation

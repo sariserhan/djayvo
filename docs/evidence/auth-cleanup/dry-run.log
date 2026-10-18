@@ -1,0 +1,1 @@
+Review target: 127.0.0.1:55439/djayvo_local. Set DJAYVO_CLEANUP_TARGET to that value and pass --apply to remove expired sessions and verification records.

@@ -7,13 +7,17 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research and remaining local web implementation; hosted infrastructure and phone work paused.**
 Latest local web work: [Reviewed catalogue and playlists](reviewed-catalogue.md).
-Local database migrations through 0004 are applied. Private audio, separate
+Local database migrations through 0005 are applied. Private audio, separate
 submission/review, catalogue search, persistent player and private playlists work
 at localhost:3000 with Node 22. Tests: 28 unit/integration, 16 catalogue browser
 and 20 account regression checks PASS. Test users/approvals removed; no actual
 reviewers configured. Hosted catalogue and R2 remain disabled; provider validation,
 cleanup scheduling, moderation operations and new listening remain open. Read the
 site README before migrations/cleanup; never print `.env.local` credentials.
+Latest local maintenance: [Expired-auth cleanup](auth-cleanup.md).
+Target-guarded 500-row batches, expiry indexes and usage counts added; 29 checks
+PASS, active accounts preserved. Scheduling remains NOT RUN.
+Catalogue implementation commit: `b43410e`.
 Previous: [Private account audio](private-account-audio.md), commit `f5d2fd7`.
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
 Latest research: [Optional-tool input validation](research-input-validation.md).

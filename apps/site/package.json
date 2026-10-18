@@ -21,7 +21,8 @@
     "test:catalogue-browser": "node --import tsx tests/catalogue-browser.mjs",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:usage": "tsx scripts/usage.ts",
-    "audio:cleanup": "tsx scripts/cleanup-audio.ts"
+    "audio:cleanup": "tsx scripts/cleanup-audio.ts",
+    "auth:cleanup": "tsx scripts/cleanup-auth.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1152.0",

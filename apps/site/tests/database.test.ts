@@ -13,6 +13,7 @@ import { authOptions } from '../lib/auth-options';
 import { readConfig } from '../lib/config';
 import { migrate } from '../lib/migrations';
 import { listTracks } from '../lib/library';
+import { cleanupAuth } from '../lib/auth-cleanup';
 
 test('isolated Postgres account lifecycle, schema safety and owner isolation', async t => {
   const base = readConfig();
@@ -27,7 +28,7 @@ test('isolated Postgres account lifecycle, schema safety and owner isolation', a
   const pool = createPool(config.databaseURL);
   try {
     await t.test('migrations apply once and match pinned Better Auth configuration', async () => {
-      assert.equal((await migrate(pool)).length, 4);
+      assert.equal((await migrate(pool)).length, 5);
       assert.deepEqual(await migrate(pool), []);
       const planned = await getMigrations(authOptions(config, pool));
       assert.deepEqual(planned.toBeCreated, []);
@@ -45,6 +46,32 @@ test('isolated Postgres account lifecycle, schema safety and owner isolation', a
       await rm(join(migrations, '9999_failure.sql'));
       await writeFile(join(migrations, '0002_tracks.sql'), '-- changed');
       await assert.rejects(migrate(pool, directory), /Applied migration changed/);
+    });
+    await t.test('expired auth cleanup is bounded, retryable and preserves active records and accounts', async () => {
+      await pool.query(`INSERT INTO "user"(id,name,email,"emailVerified") VALUES('cleanup-user','Test','cleanup@example.com',true)`);
+      await pool.query(`INSERT INTO session(id,token,"userId","expiresAt","updatedAt")
+        SELECT 'old-session-'||n,'old-token-'||n,'cleanup-user',now()-interval '1 hour',now() FROM generate_series(1,1001) n`);
+      await pool.query(`INSERT INTO verification(id,identifier,value,"expiresAt")
+        SELECT 'old-code-'||n,'cleanup-test','synthetic',now()-interval '1 hour' FROM generate_series(1,1001) n`);
+      await pool.query(`INSERT INTO session(id,token,"userId","expiresAt","updatedAt") VALUES('active-session','active-token','cleanup-user',now()+interval '1 day',now())`);
+      await pool.query(`INSERT INTO verification(id,identifier,value,"expiresAt") VALUES('active-code','cleanup-test','synthetic',now()+interval '1 day')`);
+      const locked=await pool.connect();
+      try {
+        await locked.query('BEGIN');
+        await locked.query(`SELECT id FROM session WHERE id='old-session-1' FOR UPDATE`);
+        assert.deepEqual(await cleanupAuth(pool),{session:500,verification:500});
+        assert.equal((await pool.query(`SELECT count(*)::int n FROM session WHERE id='old-session-1'`)).rows[0].n,1);
+        await locked.query('COMMIT');
+      } finally {locked.release();}
+      const concurrent=await Promise.all([cleanupAuth(pool),cleanupAuth(pool)]);
+      assert.equal(concurrent.reduce((n,r)=>n+r.session,0),501);
+      assert.equal(concurrent.reduce((n,r)=>n+r.verification,0),501);
+      assert.deepEqual(await cleanupAuth(pool),{session:0,verification:0});
+      assert.deepEqual((await pool.query('SELECT id FROM session')).rows,[{id:'active-session'}]);
+      assert.deepEqual((await pool.query('SELECT id FROM verification')).rows,[{id:'active-code'}]);
+      assert.equal((await pool.query(`SELECT count(*)::int n FROM "user" WHERE id='cleanup-user'`)).rows[0].n,1);
+      await pool.query(`DELETE FROM "user" WHERE id='cleanup-user'`);
+      await pool.query(`DELETE FROM verification WHERE id='active-code'`);
     });
     const auth = betterAuth(authOptions(config, pool));
     const password = 'Djayvo-local-test-password-719';

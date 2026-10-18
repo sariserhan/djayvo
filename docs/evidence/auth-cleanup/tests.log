@@ -1,0 +1,198 @@
+TAP version 13
+# Subtest: private save validates consent, bounded metadata and canonical metadata-free PCM
+ok 1 - private save validates consent, bounded metadata and canonical metadata-free PCM
+  ---
+  duration_ms: 140.577792
+  type: 'test'
+  ...
+# Subtest: storage is opt-in, local files cannot be hosted, R2 grants bind content length and type
+ok 2 - storage is opt-in, local files cannot be hosted, R2 grants bind content length and type
+  ---
+  duration_ms: 12.59575
+  type: 'test'
+  ...
+# Subtest: isolated catalogue: explicit publication, revision-bound review and private playlists
+    # Subtest: private and pending tracks never enter public metadata or audio
+    ok 1 - private and pending tracks never enter public metadata or audio
+      ---
+      duration_ms: 3.752791
+      type: 'test'
+      ...
+    # Subtest: self review and stale revisions fail; explicit review exposes only public fields
+    ok 2 - self review and stale revisions fail; explicit review exposes only public fields
+      ---
+      duration_ms: 5.781709
+      type: 'test'
+      ...
+    # Subtest: playlists isolate owners, preserve ordering, deduplicate and cannot add private tracks
+    ok 3 - playlists isolate owners, preserve ordering, deduplicate and cannot add private tracks
+      ---
+      duration_ms: 5.036125
+      type: 'test'
+      ...
+    # Subtest: reports reopen moderation; rejection removes public audio and playlist playback without deleting the private master
+    ok 4 - reports reopen moderation; rejection removes public audio and playlist playback without deleting the private master
+      ---
+      duration_ms: 4.493542
+      type: 'test'
+      ...
+    # Subtest: withdrawal wins against concurrent approval and owner deletion prevents public access
+    ok 5 - withdrawal wins against concurrent approval and owner deletion prevents public access
+      ---
+      duration_ms: 9.400417
+      type: 'test'
+      ...
+    # Subtest: playlist count limits survive concurrent creates; deletion is scoped
+    ok 6 - playlist count limits survive concurrent creates; deletion is scoped
+      ---
+      duration_ms: 8.6895
+      type: 'test'
+      ...
+    # Subtest: catalogue cursor pages are disjoint and full-playlist retries stay idempotent
+    ok 7 - catalogue cursor pages are disjoint and full-playlist retries stay idempotent
+      ---
+      duration_ms: 204.565708
+      type: 'test'
+      ...
+    1..7
+ok 3 - isolated catalogue: explicit publication, revision-bound review and private playlists
+  ---
+  duration_ms: 450.969208
+  type: 'test'
+  ...
+# Subtest: account configuration fails closed and forbids hosted development mail
+ok 4 - account configuration fails closed and forbids hosted development mail
+  ---
+  duration_ms: 0.791042
+  type: 'test'
+  ...
+# Subtest: Resend request uses server credentials, timeout and deterministic retry identity
+ok 5 - Resend request uses server credentials, timeout and deterministic retry identity
+  ---
+  duration_ms: 10.573875
+  type: 'test'
+  ...
+# Subtest: auth body limit measures real streamed bytes rather than trusting Content-Length
+ok 6 - auth body limit measures real streamed bytes rather than trusting Content-Length
+  ---
+  duration_ms: 3.258791
+  type: 'test'
+  ...
+# 2026-10-18T21:56:25.546Z WARN [Better Auth]: Field lastRequest in table rateLimit has a different type in the database. Expected number but got int8.
+# Subtest: isolated Postgres account lifecycle, schema safety and owner isolation
+    # Subtest: migrations apply once and match pinned Better Auth configuration
+    ok 1 - migrations apply once and match pinned Better Auth configuration
+      ---
+      duration_ms: 28.973917
+      type: 'test'
+      ...
+    # Subtest: failed migration rolls back and changed applied SQL is rejected
+    ok 2 - failed migration rolls back and changed applied SQL is rejected
+      ---
+      duration_ms: 11.021042
+      type: 'test'
+      ...
+    # Subtest: expired auth cleanup is bounded, retryable and preserves active records and accounts
+    ok 3 - expired auth cleanup is bounded, retryable and preserves active records and accounts
+      ---
+      duration_ms: 16.5035
+      type: 'test'
+      ...
+# 2026-10-18T21:56:25.754Z ERROR [Better Auth]: Invalid origin: https://other.example
+# 2026-10-18T21:56:25.756Z ERROR [Better Auth]: Invalid redirectURL: https://other.example/
+    # Subtest: unverified accounts cannot sign in; verification and origin checks work
+    ok 4 - unverified accounts cannot sign in; verification and origin checks work
+      ---
+      duration_ms: 181.632584
+      type: 'test'
+      ...
+# 2026-10-18T21:56:25.825Z WARN [Better Auth]: Rate limiting could not determine a client IP and is falling back to a single shared per-path bucket. Ensure your runtime forwards a trusted client IP header, then set `advanced.ipAddress.ipAddressHeaders` or `advanced.ipAddress.trustedProxies` so the address can be resolved.
+    # Subtest: session cookies are validated; library pages isolate owners including cursor ties
+    ok 5 - session cookies are validated; library pages isolate owners including cursor ties
+      ---
+      duration_ms: 7.391041
+      type: 'test'
+      ...
+# 2026-10-18T21:56:26.062Z WARN [Better Auth]: Invalid password
+    # Subtest: password reset revokes sessions; reset tokens cannot be replayed
+    ok 6 - password reset revokes sessions; reset tokens cannot be replayed
+      ---
+      duration_ms: 130.102958
+      type: 'test'
+      ...
+    # Subtest: sign-out and expiration revoke access; password hashes are not plaintext
+    ok 7 - sign-out and expiration revoke access; password hashes are not plaintext
+      ---
+      duration_ms: 44.163833
+      type: 'test'
+      ...
+# 2026-10-18T21:56:26.151Z WARN [Better Auth]: Reset Password: User not found
+# 2026-10-18T21:56:26.152Z WARN [Better Auth]: Reset Password: User not found
+# 2026-10-18T21:56:26.154Z WARN [Better Auth]: Reset Password: User not found
+# 2026-10-18T21:56:26.168Z WARN [Better Auth]: Reset Password: User not found
+# 2026-10-18T21:56:26.169Z WARN [Better Auth]: Reset Password: User not found
+# 2026-10-18T21:56:26.169Z WARN [Better Auth]: Reset Password: User not found
+    # Subtest: database-backed rate limits survive multiple auth instances
+    ok 8 - database-backed rate limits survive multiple auth instances
+      ---
+      duration_ms: 20.235125
+      type: 'test'
+      ...
+    1..8
+ok 7 - isolated Postgres account lifecycle, schema safety and owner isolation
+  ---
+  duration_ms: 709.909917
+  type: 'test'
+  ...
+# Subtest: real isolated Postgres and disk: private audio lifecycle and recovery
+    # Subtest: explicit reservation, retry identity, owner binding and unavailable pending audio
+    ok 1 - explicit reservation, retry identity, owner binding and unavailable pending audio
+      ---
+      duration_ms: 5.123792
+      type: 'test'
+      ...
+    # Subtest: finalization recovers from object write before SQL failure; retry and replay cannot change final bytes
+    ok 2 - finalization recovers from object write before SQL failure; retry and replay cannot change final bytes
+      ---
+      duration_ms: 40.938083
+      type: 'test'
+      ...
+    # Subtest: concurrent quota reservations cannot oversubscribe owner or global byte allowance
+    ok 3 - concurrent quota reservations cannot oversubscribe owner or global byte allowance
+      ---
+      duration_ms: 26.067209
+      type: 'test'
+      ...
+    # Subtest: delete hides immediately, waits out grants, retains retry records and releases quota only after cleanup
+    ok 4 - delete hides immediately, waits out grants, retains retry records and releases quota only after cleanup
+      ---
+      duration_ms: 4.271167
+      type: 'test'
+      ...
+    # Subtest: expiry prevents uploads, abandoned reservation cleanup and ready staging cleanup are bounded
+    ok 5 - expiry prevents uploads, abandoned reservation cleanup and ready staging cleanup are bounded
+      ---
+      duration_ms: 32.945084
+      type: 'test'
+      ...
+    # Subtest: daily attempt budgets include deleted reservations
+    ok 6 - daily attempt budgets include deleted reservations
+      ---
+      duration_ms: 3.762333
+      type: 'test'
+      ...
+    1..6
+ok 8 - real isolated Postgres and disk: private audio lifecycle and recovery
+  ---
+  duration_ms: 397.083167
+  type: 'test'
+  ...
+1..8
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1133.800583

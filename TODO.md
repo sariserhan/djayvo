@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [reviewed catalogue and playlists](docs/reviewed-catalogue.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [expired-auth cleanup](docs/auth-cleanup.md); [catalogue and playlists](docs/reviewed-catalogue.md) in `b43410e`.
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -62,7 +62,7 @@ Resend for account email. [Local implementation/evidence](docs/web-accounts.md)
 now exists; cloud resources remain unconfigured.
 
 - [x] **W08 — PASS:** Document hosting/auth/database/object-storage boundaries, private save/public submission separation, logical model and upload/deletion lifecycle.
-- [ ] **W09 — PARTIAL:** Next.js shell, Better Auth email/password, Resend adapter, generated auth schema, private metadata queries, migration safeguards and local Postgres/browser tests implemented. Live Neon/Resend, preview/production isolation, expired-auth cleanup, database compute/transfer budgets and overload limits remain. [Evidence](docs/web-accounts.md).
+- [ ] **W09 — PARTIAL:** Next.js shell, Better Auth email/password, Resend adapter, generated auth schema, private metadata queries, migration safeguards and local Postgres/browser tests and bounded expired-auth cleanup implemented. Live Neon/Resend, preview/production isolation, cleanup scheduling, database compute/transfer budgets and overload limits remain. [Account evidence](docs/web-accounts.md); [cleanup evidence](docs/auth-cleanup.md).
 - [ ] **W10 — PARTIAL:** Explicit private save, checksum/WAV validation, all seven strategies, atomic quotas, owner-scoped playback/download, retryable deletion and bounded cleanup implemented. Local Postgres/files, 20 unit/integration checks and ten workflows in each Chromium/WebKit pass. R2 adapter and signed-request contract exist but live R2/CORS/lifecycle, late-write reconciliation, hosted cleanup scheduling and cost/overload validation remain NOT RUN. [Evidence](docs/private-account-audio.md).
 - [ ] **W11 — PARTIAL:** Local submission/revision review, filters/search, track pages, persistent player, private playlists, reports and withdrawal implemented; 28 unit/integration checks and 16 catalogue browser checks PASS. Hosted publication, actual permission/quality review and moderation operations remain NOT RUN. [Evidence](docs/reviewed-catalogue.md).
 
@@ -238,6 +238,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P48 | PASS | Reject constant offsets and empty decoded speech in optional research tools; 11 unit tests plus crop integration, 42 unchanged comparison WAVs, six exact event plans and unchanged M5 model estimates; accuracy/listening remain open | [Evidence](docs/research-input-validation.md) |
 | [x] | P49 | PASS | Local private account audio: explicit voice-storage consent, verified save/play/seek/download/remove, PostgreSQL quota/crash/retry tests and 20 browser checks; live R2 remains NOT RUN | [Evidence](docs/private-account-audio.md) |
 | [x] | P50 | PASS | Local reviewed catalogue and private playlists: explicit public consent, distinct reviewer, privacy/revocation tests, responsive persistent player and two-browser account regressions | [Evidence](docs/reviewed-catalogue.md) |
+| [x] | P51 | PASS | Bounded expired-auth cleanup: expiry indexes, target guard, active-account preservation, locked-row/concurrent retry tests and local usage counts | [Evidence](docs/auth-cleanup.md) |
 
 ## Engineering backlog
 

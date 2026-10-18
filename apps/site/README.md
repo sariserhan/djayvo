@@ -190,8 +190,8 @@ fixture without regenerating it. They never send real email. Do not target a
 shared or hosted database with the tests.
 
 `db:usage` reports actual database bytes and row counts, not a monthly compute or
-transfer forecast. Monitor Neon separately for those limits. Periodic expired-auth
-cleanup, signup/storage budgets and overload behavior remain release work. Free
+transfer forecast. Monitor Neon separately for those limits. A bounded expired-auth cleanup command is available; scheduling, signup/storage
+budgets and overload behavior remain release work. Free
 database operation is a bounded-use target; R2, Vercel and Resend budgets are separate.
 
 Security checks cover unverified/expired/forged/revoked sessions, other-owner
@@ -203,3 +203,25 @@ Public submissions require separate consent and approval by a distinct, verified
 reviewer. Hosted publication remains disabled until its release checks pass.
 
 Evidence and exact limits: [web accounts report](../../docs/web-accounts.md).
+
+
+### Expired account records
+
+Migration `0005_auth_expiry.sql` indexes expiry scans. The following guarded job
+removes at most 500 expired sessions and 500 expired verification/reset records
+per invocation, skipping locked rows. Active sessions, account identities,
+password credentials, tracks and recordings are retained. A failed run is safe
+to retry; counts contain no tokens or email addresses.
+
+```sh
+npm run auth:cleanup  # target preview; no deletion
+DJAYVO_CLEANUP_TARGET=127.0.0.1:55439/djayvo_local npm run auth:cleanup -- --apply
+npm run db:usage
+```
+
+Use the exact intended target for each environment. Run additional bounded jobs
+if expired counts remain; scheduling/alerts are not configured. Better Auth owns
+its rate-limit row pruning; this job does not alter active limiter counters or
+remove unverified accounts. Ordinary Postgres deletion permits space reuse and
+does not guarantee a smaller database file, provider bill or backup erasure.
+See [cleanup evidence](../../docs/auth-cleanup.md).
