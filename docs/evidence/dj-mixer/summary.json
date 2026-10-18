@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/x.mp3": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+    "/Users/serhansari/Downloads/y.mp3": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+    "/Users/serhansari/Downloads/z.mp3": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63"
+  },
+  "wasm_sha256": "0a36ac0dd77b81c3730fe0d4489266bef8d08f4ff643c85d1f73934a0f41550a",
+  "unchanged_wasm_vs_source_motif": "PASS",
+  "site_integration": "PASS: /studio/index.html link opens /studio/dj.html and consent enables controls after local server restart",
+  "browser_runtime": "In-app browser skill available but Node REPL js callable tool absent after two discovery passes; reused authorized project Playwright workflow",
+  "context7": "Resolve/query tools absent; official MDN Web Audio documentation used",
+  "physical_audio_latency": "NOT RUN",
+  "linux_dj_browser": "NOT RUN",
+  "human_listening": "NOT RUN",
+  "offline_venue_reliability": "NOT RUN",
+  "hardware": "Apple M5 Mac17,3 10 CPU cores 16 GB; macOS 26.7.1 (25G241)",
+  "node": "22.23.1",
+  "playwright": "1.61.1",
+  "previous_bundle": "docs/evidence/source-motif/web-bundle-final.log"
+}

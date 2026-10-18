@@ -1,11 +1,11 @@
 # Djayvo development tracker
 
-**Current authorization — 2026-10-18:** The owner's revised direction supersedes
-prior continuation permissions. M0a is technically complete; stop for its review.
-Do not begin or resume W0, W1 or any later implementation without explicit new
-authorization. Preserve existing later work and historical evidence. See the
-[web-studio addendum](docs/web-studio-addendum.md); its future components do not
-expand M0a or change the master specification.
+**Current authorization — 2026-10-18:** After the M0a review stop, the owner said
+“okaycontinue”. The next local DJ-studio increment is authorized: two playable
+decks and manual mixing. See [mixer evidence](docs/dj-mixer.md) and the
+[web-studio addendum](docs/web-studio-addendum.md). M0a and the master remain
+unchanged; this does not pass musical-quality, live/venue or production gates,
+or authorize new paid compute or deployment. Preserve earlier work/evidence.
 
 
 Last updated: 2026-10-18 (America/New_York). Latest implementation: [source phrase development](docs/source-motif.md).
@@ -38,7 +38,23 @@ work or evidence is missing. `FAIL` means a performed check did not meet its
 criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
-## Existing product work — paused pending scope authorization
+## DJ studio development
+
+- [x] **DJ01 — PASS:** [Manual two-deck foundation](docs/dj-mixer.md): actual local
+  playback, seek/levels/crossfader/master, stereo meter, permission and unload,
+  failed-replacement preservation, interruption recovery and prepared offline
+  reload. 16 unit checks, 26 DJ browser checks and 40 voice regressions PASS.
+- [ ] **DJ02 — NOT RUN:** Shared sample-frame transport with AudioWorklet,
+  tempo/beat/harmonic context and synchronized Deck C preparation. Keep the
+  validated director/engine boundary; no sample-level AI control.
+- [ ] **DJ03 — NOT RUN:** Capture a consented phrase while Deck A continues,
+  create a source-driven performance, then manually or automatically mix Deck C
+  with safe failure and manual override. Current workspaces remain separate.
+- [ ] **DJ04 — NOT RUN:** Actual Linux/Apple browser sessions, measured latency,
+  long-session glitch checks, cue/device routing, offline preparation/recovery
+  and human musical evaluation. Cached-page tests do not pass venue readiness.
+
+## Existing product work — DJ increment active; other tracks paused
 
 - [x] **C01 — PASS:** Ran the owner-authorized $10 pretrained music experiment
   on one Vast RTX 3090: ten successful 30-second hip-hop/club takes, pinned
@@ -282,6 +298,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P56 | PASS | Bounded RTX 3090 adapter pilot: corrected decode headroom, five provisional clips, 250 training steps, verified checkpoint, exact base repeat, four changed matched pairs, two-browser playback and rental/key cleanup; musical quality NOT RUN | [Evidence](docs/style-training-retry.md) |
 | [x] | P57 | PASS | Local calibrated waveform diagnostics: 40 training-excerpt pairs, internal repetition, same-brief seed comparison, three tests and preserved artifacts; perceptual novelty and musical quality NOT RUN | [Evidence](docs/style-waveform-diagnostics.md) |
 | [x] | P58 | PASS | Document revised improviser/DJ-studio direction separately, preserve M0a scope and master, verify existing playable demo and stop later implementation pending review | [Addendum](docs/web-studio-addendum.md) · [Receipt](docs/evidence/web-studio-direction/review.json) |
+| [x] | P59 | PASS | Two local DJ decks and real manual mixing, stereo metering, consent/failure handling and disconnected-server playback; 16 unit, 26 DJ browser and 40 voice regression checks | [Evidence](docs/dj-mixer.md) |
 
 ## Engineering backlog
 

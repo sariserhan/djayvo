@@ -1,0 +1,23 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/dj-webkit-nPsIgA
+PASS: page identity, nonblank content, consent gating
+PASS: real offline stereo PCM: A/B endpoints, center, channel mute, master mute
+PASS: two media decks advance independently; active-track replacement blocked; actual mix signal present
+PASS: real media output follows crossfader, channel level and master silence
+PASS: pause/seek one deck and reject corrupt replacement while other deck continues
+PASS: desktop and mobile controls render without horizontal overflow
+PASS: pause-all and audio-context interruption require explicit resume
+PASS: revoking permission stops and detaches both decks
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.reload: WebKit encountered an internal error
+Call log:
+[2m  - waiting for navigation until "load"[22m
+
+    at /Users/serhansari/Documents/projects/djayvo/apps/web/tests/dj.mjs:163:14 {
+  log: [ '  - waiting for navigation until "load"' ],
+  name: 'Error'
+}
+
+Node.js v22.23.1

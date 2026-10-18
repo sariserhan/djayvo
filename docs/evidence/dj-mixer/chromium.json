@@ -1,0 +1,127 @@
+{
+  "status": "PASS",
+  "browser": "chromium",
+  "version": "149.0.7827.55",
+  "checks": [
+    {
+      "name": "page identity, nonblank content, consent gating",
+      "status": "PASS"
+    },
+    {
+      "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+      "status": "PASS"
+    },
+    {
+      "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+      "status": "PASS"
+    },
+    {
+      "name": "real media output follows crossfader, channel level and master silence",
+      "status": "PASS"
+    },
+    {
+      "name": "pause/seek one deck and reject corrupt replacement while other deck continues",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop and mobile controls render without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "pause-all and audio-context interruption require explicit resume",
+      "status": "PASS"
+    },
+    {
+      "name": "opposite-polarity stereo remains visible on output meter despite mono cancellation",
+      "status": "PASS"
+    },
+    {
+      "name": "revoking permission stops and detaches both decks",
+      "status": "PASS"
+    },
+    {
+      "name": "prepared app reloads with server disconnected and plays newly selected local audio",
+      "status": "PASS"
+    },
+    {
+      "name": "unload releases the deck source",
+      "status": "PASS"
+    },
+    {
+      "name": "failed graph initialization stays silent on repeated Play; no unprocessed fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "no upload/external request, URL-release errors or app console errors",
+      "status": "PASS"
+    }
+  ],
+  "signalEvidence": [
+    {
+      "crossfade": 0,
+      "levels": [
+        1,
+        1
+      ],
+      "master": 1,
+      "expected": 0.2,
+      "maxError": 2.980232227667301e-9
+    },
+    {
+      "crossfade": 1,
+      "levels": [
+        1,
+        1
+      ],
+      "master": 1,
+      "expected": -0.4,
+      "maxError": 5.960464455334602e-9
+    },
+    {
+      "crossfade": 0.5,
+      "levels": [
+        1,
+        1
+      ],
+      "master": 1,
+      "expected": -0.1,
+      "maxError": 1.4901161138336505e-9
+    },
+    {
+      "crossfade": 0.5,
+      "levels": [
+        0,
+        1
+      ],
+      "master": 1,
+      "expected": -0.2,
+      "maxError": 2.980232227667301e-9
+    },
+    {
+      "crossfade": 0.5,
+      "levels": [
+        1,
+        1
+      ],
+      "master": 0,
+      "expected": 0,
+      "maxError": 0
+    }
+  ],
+  "audioContext": {
+    "sampleRate": 48000,
+    "baseLatency": 0.005333333333333333,
+    "outputLatency": 0.024,
+    "note": "Browser-reported values, not hardware latency measurements"
+  },
+  "actualMedia": {
+    "aPeak": 0.150004580616951,
+    "channelSilent": 0,
+    "masterSilent": 0
+  },
+  "errors": [],
+  "warnings": [],
+  "humanListening": "NOT RUN",
+  "physicalDeviceLatency": "NOT RUN",
+  "offlineVenueReliability": "NOT RUN"
+}

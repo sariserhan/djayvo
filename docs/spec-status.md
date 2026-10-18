@@ -1,19 +1,19 @@
 # Specification completion ledger
 
-**Current authorization — 2026-10-18:** The owner's revised direction supersedes
-prior continuation permissions. M0a is technically complete; stop for its review.
-Do not begin or resume W0, W1 or any later implementation without explicit new
-authorization. Preserve existing later work and historical evidence. See the
-[web-studio addendum](web-studio-addendum.md); its future components do not
-expand M0a or change the master specification.
+**Current authorization — 2026-10-18:** After the M0a review stop, the owner said
+“okaycontinue”. The next local DJ-studio increment is authorized: two playable
+decks and manual mixing. See [mixer evidence](dj-mixer.md) and the
+[web-studio addendum](web-studio-addendum.md). M0a and the master remain
+unchanged; this does not pass musical-quality, live/venue or production gates,
+or authorize new paid compute or deployment. Preserve earlier work/evidence.
 
 
 Audited 2026-10-18 against the complete, unchanged master specification and the
 owner's later instructions. **Overall specification: PARTIAL.** Continuing
 implementation does not waive formal quality evidence or authorize publication.
 The web is the selected product platform; phone and hosted infrastructure work
-remain paused. Earlier local implementation authorization is superseded by
-the M0a review stop above.
+remain paused. Earlier broad implementation authorization is bounded by
+the current local DJ increment above.
 [TODO](../TODO.md) tracks individual past/future work and evidence links.
 
 Latest local follow-up: [Waveform diagnostics](style-waveform-diagnostics.md).

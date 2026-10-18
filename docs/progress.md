@@ -1,11 +1,11 @@
 # Djayvo: M0 continuation evidence
 
-**Current authorization — 2026-10-18:** The owner's revised direction supersedes
-prior continuation permissions. M0a is technically complete; stop for its review.
-Do not begin or resume W0, W1 or any later implementation without explicit new
-authorization. Preserve existing later work and historical evidence. See the
-[web-studio addendum](web-studio-addendum.md); its future components do not
-expand M0a or change the master specification.
+**Current authorization — 2026-10-18:** After the M0a review stop, the owner said
+“okaycontinue”. The next local DJ-studio increment is authorized: two playable
+decks and manual mixing. See [mixer evidence](dj-mixer.md) and the
+[web-studio addendum](web-studio-addendum.md). M0a and the master remain
+unchanged; this does not pass musical-quality, live/venue or production gates,
+or authorize new paid compute or deployment. Preserve earlier work/evidence.
 
 
 For completed development, open tasks and future milestones, use the

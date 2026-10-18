@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101211">
+  <title>Djayvo — DJ workspace</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./dj.css">
+  <script type="module" src="./dj.js"></script>
+</head>
+<body>
+  <a class="skip" href="#dj">Skip to mixer</a>
+  <header><div class="header-inner"><a class="brand" href="./">djayvo</a><nav aria-label="Main"><a href="./">Voice studio</a><a href="#session-notes">Session notes</a></nav></div></header>
+  <main id="dj">
+    <div class="dj-heading"><div><p class="eyebrow">LOCAL SESSION / MANUAL MIXING</p><h1>Find the next move.</h1><p class="intro">Two tracks. One blend. Your music stays here.</p></div><span class="prototype">DJ workspace · preview</span></div>
+    <label class="consent"><input type="checkbox" id="music-rights"><span>I have permission to play and mix these tracks.</span></label>
+    <div class="decks">
+      <section class="deck" aria-labelledby="deck-a-title">
+        <div class="section-heading"><h2 id="deck-a-title">Deck A</h2><span class="deck-state" id="state-a">Empty</span></div>
+        <p class="track-name" id="name-a">Choose your opening track</p>
+        <label class="file-label">Load track A<input type="file" id="file-a" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
+        <audio id="audio-a" preload="auto" hidden></audio>
+        <label class="seek-label" for="seek-a">Position <output id="time-a">0:00 / 0:00</output></label><input id="seek-a" type="range" min="0" max="0" step="0.1" value="0" disabled>
+        <div class="capture-actions"><button id="play-a" class="primary" disabled>Play A</button><button id="clear-a" class="secondary" disabled>Unload A</button></div>
+        <label class="level-label" for="level-a">Channel A level <output id="level-value-a">100%</output></label><input id="level-a" type="range" min="0" max="1" step="0.01" value="1" disabled>
+        <p class="deck-error" id="error-a" role="alert"></p>
+      </section>
+      <section class="deck" aria-labelledby="deck-b-title">
+        <div class="section-heading"><h2 id="deck-b-title">Deck B</h2><span class="deck-state" id="state-b">Empty</span></div>
+        <p class="track-name" id="name-b">Choose what comes next</p>
+        <label class="file-label">Load track B<input type="file" id="file-b" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
+        <audio id="audio-b" preload="auto" hidden></audio>
+        <label class="seek-label" for="seek-b">Position <output id="time-b">0:00 / 0:00</output></label><input id="seek-b" type="range" min="0" max="0" step="0.1" value="0" disabled>
+        <div class="capture-actions"><button id="play-b" class="primary" disabled>Play B</button><button id="clear-b" class="secondary" disabled>Unload B</button></div>
+        <label class="level-label" for="level-b">Channel B level <output id="level-value-b">100%</output></label><input id="level-b" type="range" min="0" max="1" step="0.01" value="1" disabled>
+        <p class="deck-error" id="error-b" role="alert"></p>
+      </section>
+    </div>
+    <section class="mix-bus" aria-labelledby="blend-title">
+      <div class="blend"><h2 id="blend-title">The blend</h2><label for="crossfade">Crossfader <output id="blend-value">A 100% · B 0%</output></label><input id="crossfade" type="range" min="0" max="1" step="0.01" value="0" disabled><div class="ends" aria-hidden="true"><span>A</span><span>B</span></div></div>
+      <div class="master"><label for="master">Master level <output id="master-value">75%</output></label><input id="master" type="range" min="0" max="1" step="0.01" value="0.75" disabled><label for="output-meter">Output peak</label><meter id="output-meter" min="0" max="1" value="0">0</meter><output id="peak">Silent</output></div>
+      <button id="pause-all" class="secondary" disabled>Pause both decks</button>
+    </section>
+    <p id="mixer-status" role="status">Confirm your music permissions to load tracks.</p>
+    <section id="session-notes"><h2>Before you play</h2><p>Tracks stay in this tab and are not uploaded or saved. Load local files up to 100 MB and 20 minutes. Pause a deck before replacing its track. Unchecking permission unloads both tracks.</p><p>For offline use, save the app in <a href="./">Voice studio → Privacy &amp; credits</a>, reopen this workspace, then load your local tracks. Reloading clears the decks. Keep the page open and your device awake; background playback and venue reliability have not been validated.</p><p>This preview provides manual playback and blending. Beat sync, headphone cueing, microphone capture and the AI performance channel are still to come. Opening the voice studio ends this session.</p></section>
+    <footer>Made here. Mixed here.</footer>
+  </main>
+  <noscript>Djayvo needs JavaScript and Web Audio for mixing.</noscript>
+</body>
+</html>

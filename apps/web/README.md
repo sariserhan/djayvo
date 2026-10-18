@@ -27,6 +27,21 @@ The untrimmed input is never persisted. No library upload or cross-device sync.
 Clearing browser data, private browsing, quota eviction or changing hostname/port
 can make the library unavailable. Download important mixes.
 
+## DJ workspace preview
+
+Open [DJ workspace](http://localhost:4173/dj.html), also linked from the studio.
+Confirm permission for your music, load local tracks into A and B, then use
+independent play/pause, seeking, channel levels, crossfader and master. Tracks
+stay in this tab and are not saved or uploaded. Unchecking permission unloads
+both decks. The pages are separate; opening Voice studio ends the DJ session.
+
+The existing offline preparation includes the DJ page. Reopen it after saving
+app assets, then select local tracks; reload clears the decks. This is manual
+mixing, with no beat sync, cue routing or AI Deck C yet. See
+[checks and limits](../../docs/dj-mixer.md). Run the dedicated checks with
+`node apps/web/tests/dj.mjs` (from the root), then the same command with
+`DJAYVO_BROWSER=webkit`. They start their own temporary server.
+
 ## Offline use
 
 In **Privacy & credits**, select **Keep studio available offline** while connected,

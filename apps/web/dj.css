@@ -1,0 +1,32 @@
+.dj-heading { display: flex; justify-content: space-between; align-items: start; gap: 24px; padding-top: 40px; }
+.dj-heading h1 { font-size: clamp(36px, 4vw, 56px); }
+.eyebrow { color: var(--lime); font-size: 12px; letter-spacing: 2px; margin-bottom: 16px; }
+.prototype { color: var(--muted); border: 1px solid var(--line); border-radius: 20px; padding: 6px 12px; font-size: 13px; white-space: nowrap; }
+.decks { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.deck { min-width: 0; padding: 24px; border: 1px solid var(--line); border-radius: 10px; background: #191c19; }
+.deck-state { color: var(--lime); font-size: 14px; }
+.track-name { font-size: 20px; overflow-wrap: anywhere; min-height: 60px; padding-top: 14px; }
+.file-label { display: block; color: var(--muted); font-size: 14px; }
+.file-label input { display: block; width: 100%; margin: 8px 0 24px; font-size: 13px; }
+input::file-selector-button { border: 1px solid var(--line); border-radius: 5px; background: #252c24; color: #f0f3eb; padding: 10px; margin-right: 10px; }
+.seek-label, .level-label, .blend label, .master label { display: block; font-size: 14px; color: var(--muted); }
+.seek-label output, .level-label output, .blend output, .master label output { float: right; }
+.level-label { margin-top: 22px; }
+.deck-error { color: #ffb6a6; font-size: 14px; margin: 6px 0 0; }
+.deck-error:empty { display: none; }
+.mix-bus { display: grid; grid-template-columns: 1.3fr 1fr auto; align-items: center; gap: 32px; padding: 26px 0; margin-top: 20px; border-block: 1px solid var(--line); }
+.blend h2 { font-size: 22px; margin-bottom: 16px; }
+.ends { display: flex; justify-content: space-between; color: var(--lime); font-weight: 700; }
+.master meter { width: 75%; height: 15px; accent-color: var(--lime); }
+#peak { font-size: 12px; margin-left: 8px; color: var(--muted); }
+#mixer-status { color: var(--muted); margin-top: 16px; }
+#session-notes { max-width: 850px; margin: 40px 0; color: var(--muted); }
+#session-notes h2 { font-size: 21px; color: #f0f3eb; }
+@media (max-width: 760px) {
+  .dj-heading { flex-direction: column; gap: 0; padding-top: 28px; }
+  .prototype { margin-bottom: 24px; }
+  .decks, .mix-bus { grid-template-columns: 1fr; }
+  .deck { padding: 20px; }
+  .track-name { min-height: 0; }
+  .mix-bus { gap: 22px; }
+}
