@@ -1,5 +1,8 @@
 # Djayvo: M0 continuation evidence
 
+For completed development, open tasks and future milestones, use the
+[development tracker](../TODO.md). This file retains the detailed evidence record.
+
 Recorded 2026-10-17, America/New_York. The owner authorized continuing without
 per-step approval, then requested a Mac handoff after finishing Linux work. The
 master specification is unchanged. The original M0a record is

@@ -9,12 +9,15 @@ hip-hop, reggae, and experimental. Each has independent piano, bass, drums, and
 sampled source events, plus score JSON, frame trace, measurements, and optional
 stems. No model, GPU, paid service, or third-party DSP library is required.
 
-**Current Mac technical checks: PASS. M0 overall: PARTIAL.** The owner has
+Track past work, open issues and future milestones in [TODO.md](TODO.md).
+
+**Current M5 and Linux arm64 technical checks: PASS. M0 overall: PARTIAL.** The owner has
 auditioned a consented source and requested less game-like instruments and more
 creative openings. The new revision uses 14 cleared acoustic note samples and
 seeded full-phrase, instrumental, and fragment openings. New human listening is
-**NOT RUN**. Original Linux/M5 portability passed; the changed engine has not yet
-been rerun on Linux. See [acoustic revision](docs/acoustic-review.md),
+**NOT RUN**. The latest revision adds real breaks/returns, nearby chord inversions,
+softer-note articulation and instrumental reflections. Fresh Linux/M5 plans,
+event frames and all 15 fixture WAVs match exactly. See [arrangement revision](docs/arrangement-review.md),
 [current evidence](docs/progress.md) and [Mac agent handoff](docs/mac-agent-handoff.md).
 
 ```sh

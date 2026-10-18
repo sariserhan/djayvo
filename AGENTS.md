@@ -11,3 +11,8 @@ Keep shared C++17
 free of platform APIs and third-party runtime dependencies. Never equate unit
 test results with human listening validation. Report every gate using PASS,
 PARTIAL, FAIL, or NOT RUN and retain reproducible evidence.
+
+Maintain `TODO.md` as the development tracker. Update relevant tasks, completed
+history and milestone statuses when implementation or evidence changes; link
+the supporting commit/report and keep `docs/progress.md` consistent. Completing
+code does not close tasks that require human listening or real-device evidence.
