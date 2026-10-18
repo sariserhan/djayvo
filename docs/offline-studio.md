@@ -87,6 +87,9 @@ profile is changed.
   The retained `cache-trace.log` shows an incomplete download being rejected.
   Bounded polling now awaits the actual condition; all three engines pass. The
   earlier inference that a *completed* cache had been deleted was not established.
+  One early WebKit attempt waited indefinitely for the wrong terminal state and
+  was terminated during cleanup; its closed-target error remains in
+  `webkit-final.log`. The completed final run is `webkit-release.log`.
 - WebKit's ordinary flow logged `WebKitBlobResource error 1`. The independent
   URL-lifecycle probe established revocation before detachment; cleanup now uses
   the safe order. The failing log and before/after probe are retained.

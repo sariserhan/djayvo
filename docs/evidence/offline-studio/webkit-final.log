@@ -5,3 +5,13 @@ PASS: complete app/engine cache serves only its allowlist under /studio/; accoun
 PASS: offline reload/import/three-take generation/play/seek/download succeed with no server requests
 PASS: failed update retains the complete old studio and all saved music
 PASS: successful update waits while the old studio remains open; no forced reload or mixed assets
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.evaluate: Target page, context or browser has been closed
+    at /Users/serhansari/Documents/projects/djayvo/apps/web/tests/offline.mjs:149:14 {
+  log: []
+}
+
+Node.js v22.23.1
