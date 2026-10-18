@@ -10,6 +10,14 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest local evaluation workflow, 2026-10-18: [Blinded listening form](listening-review.md).
+Verified packet copies now include a private browser questionnaire with blank
+judgments and two compatible CSV downloads. **PASS:** 21 packaging checks, 2/2
+affected CTest suites, ten synthetic browser workflow checks and real licensed
+packet play/seek in Chromium/WebKit. Five audio copies are byte-identical; all
+483 frozen form rows remain blank. Actual observations, M1 and musical quality
+**NOT RUN**; full specification **PARTIAL**. Local ready page: http://127.0.0.1:4191.
+
 Latest local lifecycle fixes, 2026-10-18: [Catalogue recovery](catalogue-withdrawal.md).
 Unavailable playlist entries are removable without exposing former metadata;
 withdrawn reports stay archived; new reports invalidate stale decisions; reviews

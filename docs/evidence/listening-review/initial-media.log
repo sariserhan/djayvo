@@ -1,0 +1,18 @@
+Evidence: /Users/serhansari/Documents/projects/djayvo/renders/listening-ui-browser-bad0ac
+chromium PASS: correct page, five anonymous players, blank judgments, permission scope and incomplete-export denial
+chromium PASS: source/candidate playback works and starting another player pauses the first; muted automation only
+chromium PASS: desktop/mobile controls render without horizontal overflow
+chromium PASS: complete synthetic form exports two valid CSVs; quoted Unicode/newlines survive, spreadsheet formulas are escaped, M1 stays NOT RUN
+chromium PASS: reload is blank; no browser persistence, external requests, page errors or unexpected console errors
+webkit PASS: correct page, five anonymous players, blank judgments, permission scope and incomplete-export denial
+{ errors: [], consoleErrors: [] }
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.evaluate: NotSupportedError: The operation is not supported.
+    at /Users/serhansari/Documents/projects/djayvo/tests/listening_review_browser.mjs:38:20 {
+  log: []
+}
+
+Node.js v22.23.1

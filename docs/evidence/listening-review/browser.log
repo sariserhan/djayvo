@@ -1,0 +1,11 @@
+Evidence: /Users/serhansari/Documents/projects/djayvo/renders/listening-ui-browser-vgkI7C
+chromium PASS: correct page, five anonymous players, blank judgments, permission scope and incomplete-export denial
+chromium PASS: source/candidate playback works and starting another player pauses the first; muted automation only
+chromium PASS: desktop/mobile controls render without horizontal overflow
+chromium PASS: complete synthetic form exports two valid CSVs; quoted Unicode/newlines survive, spreadsheet formulas are escaped, M1 stays NOT RUN
+chromium PASS: reload is blank; no browser persistence, external requests, page errors or unexpected console errors
+webkit PASS: correct page, five anonymous players, blank judgments, permission scope and incomplete-export denial
+webkit PASS: source/candidate playback works and starting another player pauses the first; muted automation only
+webkit PASS: desktop/mobile controls render without horizontal overflow
+webkit PASS: complete synthetic form exports two valid CSVs; quoted Unicode/newlines survive, spreadsheet formulas are escaped, M1 stays NOT RUN
+webkit PASS: reload is blank; no browser persistence, external requests, page errors or unexpected console errors

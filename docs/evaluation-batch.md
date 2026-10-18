@@ -159,3 +159,13 @@ The tool does not infer audible variety, genuine independence, representative
 sampling or release acceptance. Even populated results remain **PARTIAL** pending
 human evidence review, and it never automatically passes M1. The unit checks use
 temporary, explicitly labelled algorithm fixtures, not study observations.
+
+
+## Browser response collection
+
+Use the [local blinded form](listening-review.md) to copy a verified frozen block
+into a fresh listener-only directory. It leaves scores blank and exports the same
+rating/comparison columns accepted above. No response storage or upload occurs;
+listeners must download both files. Existing frozen forms and organizer keys are
+preserved. This improves collection mechanics; it does not supply participants,
+ratings, permission verification or formal M1 acceptance.

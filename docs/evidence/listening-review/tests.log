@@ -1,0 +1,9 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+    Start 11: tooling
+1/2 Test #11: tooling ..........................   Passed    1.13 sec
+    Start 12: listening_review
+2/2 Test #12: listening_review .................   Passed    0.05 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =   1.18 sec

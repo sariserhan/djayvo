@@ -43,6 +43,9 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
+Latest evaluation workflow: [Blinded listening form](listening-review.md).
+Local verified packet copying, blank questionnaire and CSV export PASS; original
+study forms untouched. Actual observations and independent M1 evidence NOT RUN.
 Latest lifecycle fixes: [Catalogue recovery](catalogue-withdrawal.md).
 Playlist slot recovery, withdrawn-report queue filtering, stale-review rejection
 and displayed-report-only resolution pass local database/browser checks. Actual

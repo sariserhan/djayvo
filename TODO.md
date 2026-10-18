@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest fixes: [catalogue withdrawal and moderation recovery](docs/catalogue-withdrawal.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [local blinded listening form](docs/listening-review.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -240,6 +240,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P50 | PASS | Local reviewed catalogue and private playlists: explicit public consent, distinct reviewer, privacy/revocation tests, responsive persistent player and two-browser account regressions | [Evidence](docs/reviewed-catalogue.md) |
 | [x] | P51 | PASS | Bounded expired-auth cleanup: expiry indexes, target guard, active-account preservation, locked-row/concurrent retry tests and local usage counts | [Evidence](docs/auth-cleanup.md) |
 | [x] | P52 | PASS | Recover unavailable playlist slots, keep withdrawn reports out of the actionable queue, reject stale decisions and retain unseen concerns; database/concurrency and two-browser checks | [Evidence](docs/catalogue-withdrawal.md) |
+| [x] | P53 | PASS | Local blinded rating form, frozen-packet/hash/scope protection, compatible CSV exports and two-browser checks; original 483 rows remain blank, human listening NOT RUN | [Evidence](docs/listening-review.md) |
 
 ## Engineering backlog
 
@@ -332,6 +333,8 @@ listeners. Preparation does not pass this milestone. Follow the
   audible strategy variety, zero critical glitches and preference over baseline.
 - [ ] **Q06 — PARTIAL:** Bounded response validator and per-clip summaries with
   uncertainty, style-specific failures and reviewer-ID coverage implemented.
+  A verified local browser questionnaire now exports compatible CSVs without
+  modifying frozen packets or supplying answers. [Form evidence](docs/listening-review.md).
   [Workflow](docs/evaluation-batch.md). Real submissions and M1 evidence review
   remain **NOT RUN**; no ratings are generated.
 

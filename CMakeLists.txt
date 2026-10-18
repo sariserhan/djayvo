@@ -85,6 +85,7 @@ if(BUILD_TESTING)
     add_test(NAME word_timing COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_word_timing.py")
     set_tests_properties(word_timing PROPERTIES WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
     add_test(NAME tooling COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_tools.py")
+    add_test(NAME listening_review COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_listening_review.py")
     add_test(NAME evaluation_preparation COMMAND "${Python3_EXECUTABLE}"
       "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_evaluation.py" --renderer "$<TARGET_FILE:djayvo_remix>")
     add_test(NAME plan_import COMMAND "${Python3_EXECUTABLE}"

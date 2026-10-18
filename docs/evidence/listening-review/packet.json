@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "block_id": "a062955e01693a0b36b9129c",
+  "freeze_sha256": "5b3e202d3c8c87c822cd97a1f1a1166bfabc22f0983191fef5b02295aeefd6be",
+  "review_scope": "independent_reviewers",
+  "audio_sha256": {
+    "source.wav": "8231f9ec1b79bef07f3f2bbd5548c7ab8fff79a1e0bb774eab08507104be2381",
+    "a062955e01693a0b36b9129c-A.wav": "33dac0bbe06d4033cc27cb235243bcef5344d042a98b0184607556f46c396193",
+    "a062955e01693a0b36b9129c-B.wav": "61cc65ad386b72dd22a92243c95b91c683d09ddf3628befcc5e830d692c1fbba",
+    "a062955e01693a0b36b9129c-C.wav": "f8704f916032db6d9895e59929c79f4a27fe224aa6bd5d2d31e33a05575d87f7",
+    "a062955e01693a0b36b9129c-D.wav": "642f9574521803761d70bddd367fe5fefa047b9eaf1894ddba70cddbdddaaef0"
+  },
+  "human_listening": "NOT RUN"
+}

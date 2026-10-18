@@ -6,6 +6,12 @@ complete master specification. Never modify the master; its SHA-256 is
 `389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2`.
 
 **Current priority, 2026-10-18: music quality research and remaining local web implementation; hosted infrastructure and phone work paused.**
+Latest evaluation tool: [Blinded listening form](listening-review.md).
+A verified copy of one licensed cohort block is served at http://127.0.0.1:4191
+from `renders/listening-review-v2-20261018/packet`. No answers are supplied or
+uploaded; two CSV downloads feed the existing summary tool. Packaging and two-
+browser checks PASS; all 483 frozen rows remain blank. Keep organizer keys out
+of the served directory. Formal listening/independence and M1 remain NOT RUN.
 Latest local lifecycle fixes: [Catalogue recovery](catalogue-withdrawal.md).
 Generic unavailable entries can be removed; archived reports return on resubmit;
 new concerns invalidate stale reviews and unseen report batches remain pending.

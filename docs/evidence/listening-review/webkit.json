@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "browser": "webkit",
+  "version": "26.5",
+  "node": "v22.23.1",
+  "checks": [
+    {
+      "name": "correct page, five anonymous players, blank judgments, permission scope and incomplete-export denial",
+      "status": "PASS"
+    },
+    {
+      "name": "source/candidate playback works and starting another player pauses the first; muted automation only",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop/mobile controls render without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "complete synthetic form exports two valid CSVs; quoted Unicode/newlines survive, spreadsheet formulas are escaped, M1 stays NOT RUN",
+      "status": "PASS"
+    },
+    {
+      "name": "reload is blank; no browser persistence, external requests, page errors or unexpected console errors",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "warnings": [
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+  ],
+  "external": [],
+  "human_listening": "NOT RUN",
+  "responses": "Temporary synthetic test only; deleted after validation"
+}

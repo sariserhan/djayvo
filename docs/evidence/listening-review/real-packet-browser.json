@@ -1,0 +1,24 @@
+{
+  "url": "http://127.0.0.1:4191",
+  "checks": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "status": "PASS",
+      "anonymous_players": 5,
+      "play_seek": "PASS - muted automation",
+      "ratings": "NOT RUN - untouched blank form",
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "status": "PASS",
+      "anonymous_players": 5,
+      "play_seek": "PASS - muted automation",
+      "ratings": "NOT RUN - untouched blank form",
+      "errors": []
+    }
+  ],
+  "human_listening": "NOT RUN"
+}

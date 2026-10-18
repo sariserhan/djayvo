@@ -1,0 +1,35 @@
+Evidence: /Users/serhansari/Documents/projects/djayvo/renders/listening-ui-browser-iDMAay
+chromium PASS: correct page, five anonymous players, blank judgments, permission scope and incomplete-export denial
+chromium PASS: source/candidate playback works and starting another player pauses the first; muted automation only
+chromium PASS: desktop/mobile controls render without horizontal overflow
+chromium PASS: complete synthetic form exports two valid CSVs; quoted Unicode/newlines survive, spreadsheet formulas are escaped, M1 stays NOT RUN
+{
+  errors: [],
+  consoleErrors: [
+    'Pattern attribute value [a-zA-Z0-9][a-zA-Z0-9_-]{0,63} is not a valid regular expression: Uncaught SyntaxError: Invalid regular expression: /[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}/v: Invalid character in character class'
+  ]
+}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   'Pattern attribute value [a-zA-Z0-9][a-zA-Z0-9_-]{0,63} is not a valid regular expression: Uncaught SyntaxError: Invalid regular expression: /[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}/v: Invalid character in character class'
++ ]
+- []
+
+    at file:///Users/serhansari/Documents/projects/djayvo/tests/listening_review_browser.mjs:61:72 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'Pattern attribute value [a-zA-Z0-9][a-zA-Z0-9_-]{0,63} is not a valid regular expression: Uncaught SyntaxError: Invalid regular expression: /[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}/v: Invalid character in character class'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1
