@@ -1,0 +1,19 @@
+{
+  "master_sha256": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+  "fixture_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+  "owner_source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+  "preservation": "PASS",
+  "local_vm": "stopped after validation",
+  "public_release": "NOT RUN",
+  "paid_services_used": false,
+  "model_training": false,
+  "audio_upload": false,
+  "m5_release_suites": "13/13 PASS",
+  "linux_release_suites": "13/13 PASS",
+  "m5_sanitizer_suites": "13/13 PASS",
+  "sanitizer_seconds": 633.11,
+  "technical_cohort": "PASS",
+  "human_listening": "NOT RUN",
+  "production_quality": "PARTIAL",
+  "master_specification_completion": "PARTIAL"
+}

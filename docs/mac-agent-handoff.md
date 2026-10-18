@@ -7,7 +7,10 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
-Latest: [Reverb](feedback-reverb.md) and [optional word timing](word-timing.md).
+Latest: [Licensed multi-source cohort and transient fix](licensed-evaluation.md).
+Use the validated cohort and retained failures described there; independent
+listening remains NOT RUN. Private owner sources retain their original scope.
+Previous: [Reverb](feedback-reverb.md) and [optional word timing](word-timing.md).
 Private reviews: renders/feedback-reverb-20261018/review/index.html and
 renders/word-timing-20261018/review/index.html. Technical checks PASS; model
 fixture agreement FAIL; new listening/word-boundary accuracy NOT RUN.

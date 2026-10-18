@@ -10,7 +10,21 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest effects/analysis continuation, 2026-10-18: [Reverb](feedback-reverb.md) and
+Latest evaluation continuation, 2026-10-18: [Licensed multi-source evaluation](licensed-evaluation.md).
+Twenty distinct public-license speech speakers, three public-domain non-speech
+recordings and a separate synthetic silence control are acquired with hashes
+and attribution. The wider test found rejection of energetic short transients;
+commit `6912218` adds bounded context without changing ordinary speech decisions.
+M5/Linux 13-suite release checks and seven-direction browser/native comparisons
+**PASS**. The corrected cohort has 276 mixes and 69 blank blinded packets, 69/69 accepted
+attempts per style, plus three expected synthetic-silence rejections. All 92
+first-seed M5/Linux mixes/events agree exactly (max/RMS PCM error 0); retained
+before-fix counts were 66/69 per style. Full M5 ASan/UBSan **PASS**, 13/13 (633.11 s); actual Mac smoke 13/13
+(44.99 s). Summary-tool tests pass on M5/Linux; all 483 real packet form rows are
+blank and ignored. Independent listening, word-boundary accuracy and formal M1 remain
+**NOT RUN**; production/full specification remain **PARTIAL**.
+
+Previous effects/analysis continuation, 2026-10-18: [Reverb](feedback-reverb.md) and
 [optional word timing](word-timing.md). **PASS:** M5/Linux current release 13/13,
 actual Mac smoke, 91 exact cross-platform WAVs/events, unchanged default/vocal
 controls and browser playback. **PASS:** M5 ASan/UBSan 12/12 (480.40 s; snapshot

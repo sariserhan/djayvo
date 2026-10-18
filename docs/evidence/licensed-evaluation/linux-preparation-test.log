@@ -1,0 +1,8 @@
+Internal ctest changing into directory: /work/reverb/build
+Test project /work/reverb/build
+    Start 12: evaluation_preparation
+1/1 Test #12: evaluation_preparation ...........   Passed   12.62 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =  12.62 sec

@@ -175,3 +175,12 @@ model hashes, dependency locks and retained MIT notices under `ai/analysis/licen
 No model or analysis runtime is linked/bundled with the app. Transitive tool
 redistribution requires a separate review if bundling is proposed. Original
 feedback-reverb DSP adds no external runtime dependency or sampled asset.
+
+## Local licensed evaluation cohort
+
+[The cohort ledger](licensed-evaluation.md) records LibriSpeech CC BY 4.0 source
+hashes and full attribution, plus two CC0 recordings and one author-dedicated
+public-domain recording from Wikimedia Commons. Notices accompany each local
+listener packet. License permission is not represented as individual study
+consent. These inputs, derived audio and model weights are not app assets, not
+committed and not published; public sharing and training remain unauthorized.

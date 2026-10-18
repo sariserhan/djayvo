@@ -1,0 +1,112 @@
+{
+  "status": "FAIL",
+  "scope": "technical batch preparation only",
+  "dataset_readiness": {
+    "status": "PARTIAL",
+    "real_clips": 23,
+    "speech_clips": 20,
+    "missing": [
+      "silence coverage"
+    ],
+    "note": "Ledger declarations only; consent authenticity and reviewer independence require human verification."
+  },
+  "per_style_technical_counts": {
+    "hiphop": {
+      "accepted": 66,
+      "attempted": 69
+    },
+    "reggae": {
+      "accepted": 66,
+      "attempted": 69
+    },
+    "experimental": {
+      "accepted": 66,
+      "attempted": 69
+    }
+  },
+  "preregistration": "PARTIAL",
+  "human_listening": "NOT RUN",
+  "formal_quality": "NOT RUN",
+  "freeze_sha256": "be5ae2b54653babf6d05ab8ff841777774a2dc5859f15e7ce93bc505234de183",
+  "failed_records": [
+    {
+      "clip_id": "commons-noise",
+      "kind": "noise",
+      "source_kind": "recorded",
+      "seed": 4123,
+      "review_scope": "independent_reviewers",
+      "styles": {
+        "hiphop": {
+          "status": "FAIL",
+          "error": "render exit 1; see all.log"
+        },
+        "reggae": {
+          "status": "FAIL",
+          "error": "render exit 1; see all.log"
+        },
+        "experimental": {
+          "status": "FAIL",
+          "error": "render exit 1; see all.log"
+        }
+      },
+      "baseline": {
+        "status": "FAIL",
+        "error": "render exit 1; see baseline.log"
+      },
+      "packet": "NOT RUN"
+    },
+    {
+      "clip_id": "commons-noise",
+      "kind": "noise",
+      "source_kind": "recorded",
+      "seed": 4124,
+      "review_scope": "independent_reviewers",
+      "styles": {
+        "hiphop": {
+          "status": "FAIL",
+          "error": "render exit 1; see all.log"
+        },
+        "reggae": {
+          "status": "FAIL",
+          "error": "render exit 1; see all.log"
+        },
+        "experimental": {
+          "status": "FAIL",
+          "error": "render exit 1; see all.log"
+        }
+      },
+      "baseline": {
+        "status": "FAIL",
+        "error": "render exit 1; see baseline.log"
+      },
+      "packet": "NOT RUN"
+    },
+    {
+      "clip_id": "commons-noise",
+      "kind": "noise",
+      "source_kind": "recorded",
+      "seed": 4125,
+      "review_scope": "independent_reviewers",
+      "styles": {
+        "hiphop": {
+          "status": "FAIL",
+          "error": "render exit 1; see all.log"
+        },
+        "reggae": {
+          "status": "FAIL",
+          "error": "render exit 1; see all.log"
+        },
+        "experimental": {
+          "status": "FAIL",
+          "error": "render exit 1; see all.log"
+        }
+      },
+      "baseline": {
+        "status": "FAIL",
+        "error": "render exit 1; see baseline.log"
+      },
+      "packet": "NOT RUN"
+    }
+  ],
+  "retained_report": "renders/licensed-evaluation-batch-final-20261018/report.json"
+}

@@ -1,0 +1,928 @@
+{
+  "status": "PASS",
+  "mix_wavs": 92,
+  "scope": "one seed, 23 recorded inputs, three styles plus baseline",
+  "comparisons": {
+    "ls-2277-149896-0026:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2277-149896-0026:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2277-149896-0026:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2277-149896-0026:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2035-147960-0013:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2035-147960-0013:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2035-147960-0013:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2035-147960-0013:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2086-149220-0047:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2086-149220-0047:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2086-149220-0047:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2086-149220-0047:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-7976-110124-0019:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-7976-110124-0019:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-7976-110124-0019:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-7976-110124-0019:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1988-147956-0018:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1988-147956-0018:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1988-147956-0018:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1988-147956-0018:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-777-126732-0074:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-777-126732-0074:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-777-126732-0074:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-777-126732-0074:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-84-121123-0012:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-84-121123-0012:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-84-121123-0012:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-84-121123-0012:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1673-143397-0009:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1673-143397-0009:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1673-143397-0009:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1673-143397-0009:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-8297-275156-0004:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-8297-275156-0004:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-8297-275156-0004:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-8297-275156-0004:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-5536-43358-0016:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-5536-43358-0016:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-5536-43358-0016:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-5536-43358-0016:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6345-93302-0019:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6345-93302-0019:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6345-93302-0019:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6345-93302-0019:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6295-244435-0035:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6295-244435-0035:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6295-244435-0035:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6295-244435-0035:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6313-66125-0024:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6313-66125-0024:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6313-66125-0024:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6313-66125-0024:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-5338-284437-0012:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-5338-284437-0012:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-5338-284437-0012:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-5338-284437-0012:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6319-57405-0007:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6319-57405-0007:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6319-57405-0007:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-6319-57405-0007:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1993-147965-0001:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1993-147965-0001:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1993-147965-0001:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1993-147965-0001:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2078-142845-0042:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2078-142845-0042:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2078-142845-0042:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2078-142845-0042:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1272-128104-0001:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1272-128104-0001:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1272-128104-0001:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-1272-128104-0001:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-174-50561-0018:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-174-50561-0018:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-174-50561-0018:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-174-50561-0018:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2803-161169-0002:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2803-161169-0002:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2803-161169-0002:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "ls-2803-161169-0002:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-laughter:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-laughter:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-laughter:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-laughter:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-claps:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-claps:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-claps:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-claps:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-noise:hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-noise:reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-noise:experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "commons-noise:baseline": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "human_listening": "NOT RUN"
+}

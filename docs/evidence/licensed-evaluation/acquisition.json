@@ -1,0 +1,454 @@
+{
+  "schema_version": "1.0-evaluation",
+  "purpose": "Local technical and blinded listening evaluation; no training or publication",
+  "dataset_url": "https://www.openslr.org/12/",
+  "archive": {
+    "url": "https://www.openslr.org/resources/12/dev-clean.tar.gz",
+    "bytes": 337926286,
+    "md5": "42e2234ba48799c1f50f24a7926300a1",
+    "sha256": "76f87d090650617fca0cac8f88b9416e0ebf80350acb97b343a85fa903728ab3"
+  },
+  "selection": "First complete 2\u20135 second utterance for each of the first 20 eligible distinct speakers in pinned tar order; no musical outcome selection",
+  "clips": [
+    {
+      "id": "ls-2277-149896-0026",
+      "session_id": "ls-2277-149896",
+      "speaker_id": "ls-2277",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-2277-149896-0026.wav",
+      "sha256": "8231f9ec1b79bef07f3f2bbd5548c7ab8fff79a1e0bb774eab08507104be2381",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 2277-149896-0026. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 2277-149896-0026. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/2277/149896/2277-149896-0026.flac",
+      "original_flac_sha256": "3909a6c5ae93112518681fcbf0a74df43615a4f88bd6d5cd788775255296e3f6",
+      "seconds": 4.92
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "session_id": "ls-2035-147960",
+      "speaker_id": "ls-2035",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-2035-147960-0013.wav",
+      "sha256": "34f8bd54fce8acc9047e742f4246451e23ccfad02057042b6ebf78033d09052a",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 2035-147960-0013. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 2035-147960-0013. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/2035/147960/2035-147960-0013.flac",
+      "original_flac_sha256": "fcf1e6ad98e5bb0cf6ce7149431e5b196ae8be93996bd93a0093005a7c919f92",
+      "seconds": 2.675
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "session_id": "ls-2086-149220",
+      "speaker_id": "ls-2086",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-2086-149220-0047.wav",
+      "sha256": "3f0f6fc7e6b89bbef1a49a3296dc652f3a21c9a99112409a883c69a3549040e6",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 2086-149220-0047. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 2086-149220-0047. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/2086/149220/2086-149220-0047.flac",
+      "original_flac_sha256": "5b89ce36a228b0cd4344e241bb9e6efdc4e9128d285e00977768311338312257",
+      "seconds": 3.92
+    },
+    {
+      "id": "ls-7976-110124-0019",
+      "session_id": "ls-7976-110124",
+      "speaker_id": "ls-7976",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-7976-110124-0019.wav",
+      "sha256": "2ed043dcd5bd38725e8953450536ab574ac905f2561759735c671c9ec5d810e9",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 7976-110124-0019. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 7976-110124-0019. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/7976/110124/7976-110124-0019.flac",
+      "original_flac_sha256": "b648262c37ce709ffa7ee16c020748ecdd8034bbaf56c58a25e409791e96516c",
+      "seconds": 2.745
+    },
+    {
+      "id": "ls-1988-147956-0018",
+      "session_id": "ls-1988-147956",
+      "speaker_id": "ls-1988",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-1988-147956-0018.wav",
+      "sha256": "ebb2e7c8202c076a4fe971eb479060c10279c2284eab4454b5548cf2b54a48b6",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 1988-147956-0018. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 1988-147956-0018. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/1988/147956/1988-147956-0018.flac",
+      "original_flac_sha256": "fe499ecece8b6bbddd05dd86f022da8c5eb9cbd619fb86dbfe54a7e5c9fb3a18",
+      "seconds": 3.535
+    },
+    {
+      "id": "ls-777-126732-0074",
+      "session_id": "ls-777-126732",
+      "speaker_id": "ls-777",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-777-126732-0074.wav",
+      "sha256": "cda3670191027b8924af322ecb0c4641b4bc12161ba85a8f503c9d9357afd2e7",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 777-126732-0074. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 777-126732-0074. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/777/126732/777-126732-0074.flac",
+      "original_flac_sha256": "ab33484c777bde4c28548e996d5f955c40155b260efe3991495555ae551ed3f9",
+      "seconds": 3.48
+    },
+    {
+      "id": "ls-84-121123-0012",
+      "session_id": "ls-84-121123",
+      "speaker_id": "ls-84",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-84-121123-0012.wav",
+      "sha256": "196ce28738282c266cfc2b878a73fd2962d9f040c7a51bca71d3e321765417b4",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 84-121123-0012. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 84-121123-0012. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/84/121123/84-121123-0012.flac",
+      "original_flac_sha256": "b8b2682f6d8e8daa29bd0d54e2506bf9ebb91d96eb03c9f38d415ef08813aab8",
+      "seconds": 2.56
+    },
+    {
+      "id": "ls-1673-143397-0009",
+      "session_id": "ls-1673-143397",
+      "speaker_id": "ls-1673",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-1673-143397-0009.wav",
+      "sha256": "e484954b0ece6fb48554db0b5e4c1057b4f897fd9894e961b7d9003dc17ab5f4",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 1673-143397-0009. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 1673-143397-0009. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/1673/143397/1673-143397-0009.flac",
+      "original_flac_sha256": "43e88adcc1655c806d36e4e39abec00503120dc2b4dd9c3a06b5aa08734a8085",
+      "seconds": 3.6
+    },
+    {
+      "id": "ls-8297-275156-0004",
+      "session_id": "ls-8297-275156",
+      "speaker_id": "ls-8297",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-8297-275156-0004.wav",
+      "sha256": "c6fb718a25254b04ce567a541edbe19e78a16ddb69e7f8a1a06395db07afdf24",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 8297-275156-0004. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 8297-275156-0004. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/8297/275156/8297-275156-0004.flac",
+      "original_flac_sha256": "cfb9462b410d8bf4dd78371387b56b0bfb1025d4c227f2874dca3d4aec20dc44",
+      "seconds": 3.28
+    },
+    {
+      "id": "ls-5536-43358-0016",
+      "session_id": "ls-5536-43358",
+      "speaker_id": "ls-5536",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-5536-43358-0016.wav",
+      "sha256": "7d8d3ad3121d37e77e06a8e24529d30904ba750fd64b63ce3ad3a3ae94185c21",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 5536-43358-0016. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 5536-43358-0016. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/5536/43358/5536-43358-0016.flac",
+      "original_flac_sha256": "703b02cfa6cea683a4b3ebd2f43c4e329d1c5d8a301b19945292e3ade1224cba",
+      "seconds": 2.425
+    },
+    {
+      "id": "ls-6345-93302-0019",
+      "session_id": "ls-6345-93302",
+      "speaker_id": "ls-6345",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-6345-93302-0019.wav",
+      "sha256": "f9e02e782e5b8e474d372721673c503080ca3da563386ee95a345c9136c17f9b",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 6345-93302-0019. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 6345-93302-0019. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/6345/93302/6345-93302-0019.flac",
+      "original_flac_sha256": "e90846105a552d2cd80ff55051c5ce35aa860695fa55d238dbbee877b9f1b0fe",
+      "seconds": 3.815
+    },
+    {
+      "id": "ls-6295-244435-0035",
+      "session_id": "ls-6295-244435",
+      "speaker_id": "ls-6295",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-6295-244435-0035.wav",
+      "sha256": "d6cdac0794ba8986b8fa24095d07e513b31a97dced5ab489457255e0ce678917",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 6295-244435-0035. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 6295-244435-0035. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/6295/244435/6295-244435-0035.flac",
+      "original_flac_sha256": "daeab7267b978da22a2277c37b792245afb554332ba05d5da5cf9b200c3f0c4c",
+      "seconds": 3.195
+    },
+    {
+      "id": "ls-6313-66125-0024",
+      "session_id": "ls-6313-66125",
+      "speaker_id": "ls-6313",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-6313-66125-0024.wav",
+      "sha256": "675ff14f578ef8faf4f07e075badc4e208c1e8aeb06d196097c8e748e6020e86",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 6313-66125-0024. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 6313-66125-0024. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/6313/66125/6313-66125-0024.flac",
+      "original_flac_sha256": "c217dd82409d62ded109991931012b2c03c8042396b8941b6ee6164a04201736",
+      "seconds": 4.41
+    },
+    {
+      "id": "ls-5338-284437-0012",
+      "session_id": "ls-5338-284437",
+      "speaker_id": "ls-5338",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-5338-284437-0012.wav",
+      "sha256": "3c3099c53ec62d34d2c2a36aa115fa8f0ecb42530f0393aa992427884f41420f",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 5338-284437-0012. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 5338-284437-0012. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/5338/284437/5338-284437-0012.flac",
+      "original_flac_sha256": "ccf6741a87e6a0f90bac4b220004212612425280d41eaf1d471522426d3e11a2",
+      "seconds": 3.025
+    },
+    {
+      "id": "ls-6319-57405-0007",
+      "session_id": "ls-6319-57405",
+      "speaker_id": "ls-6319",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-6319-57405-0007.wav",
+      "sha256": "cfe32fc11ff14284a46311c0173f0cb491d70618fa262b32f775bf277c614071",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 6319-57405-0007. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 6319-57405-0007. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/6319/57405/6319-57405-0007.flac",
+      "original_flac_sha256": "b837e1cedaec36b326c86ea791135f95fa1b5f18c3d1f5d92306b86610e0bfac",
+      "seconds": 3.505
+    },
+    {
+      "id": "ls-1993-147965-0001",
+      "session_id": "ls-1993-147965",
+      "speaker_id": "ls-1993",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-1993-147965-0001.wav",
+      "sha256": "950a0d7da0eee8c3432c7f46f0a5f3435dc942b5a5096a21acddee703993e803",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 1993-147965-0001. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 1993-147965-0001. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/1993/147965/1993-147965-0001.flac",
+      "original_flac_sha256": "bc9a8e3e53bf142a4b1c15145d75c637aa42d13711ae3736d2eb5a568d8684f3",
+      "seconds": 2.685
+    },
+    {
+      "id": "ls-2078-142845-0042",
+      "session_id": "ls-2078-142845",
+      "speaker_id": "ls-2078",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-2078-142845-0042.wav",
+      "sha256": "350525cd9ebaf9532e52db69c0cda0a7545d38cb31df65d430c481aff85de5ef",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 2078-142845-0042. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 2078-142845-0042. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/2078/142845/2078-142845-0042.flac",
+      "original_flac_sha256": "c3e269f4257f0ea0b78488472c98c65ae355372a31f9fcf601b8c4f5f42caa3a",
+      "seconds": 4.23
+    },
+    {
+      "id": "ls-1272-128104-0001",
+      "session_id": "ls-1272-128104",
+      "speaker_id": "ls-1272",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-1272-128104-0001.wav",
+      "sha256": "86f4d398b91c99d38568efa94a0f9604a0edaa15bd675d90e556852ec598c914",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 1272-128104-0001. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 1272-128104-0001. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/1272/128104/1272-128104-0001.flac",
+      "original_flac_sha256": "46a9d58622b4675b29564da2d9ba73e702241c5fa969f12c387cad4aa984276a",
+      "seconds": 4.815
+    },
+    {
+      "id": "ls-174-50561-0018",
+      "session_id": "ls-174-50561",
+      "speaker_id": "ls-174",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-174-50561-0018.wav",
+      "sha256": "6349836704f0a618b536b4fa1453266b09de57e20785cf8574c5597233d630b9",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 174-50561-0018. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 174-50561-0018. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/174/50561/174-50561-0018.flac",
+      "original_flac_sha256": "2b9bd5b5511aa95ce26166586a656fd17c3dbeb4f75812708eae71a41001314c",
+      "seconds": 2.12
+    },
+    {
+      "id": "ls-2803-161169-0002",
+      "session_id": "ls-2803-161169",
+      "speaker_id": "ls-2803",
+      "kind": "speech",
+      "source_kind": "recorded",
+      "path": "sources/ls-2803-161169-0002.wav",
+      "sha256": "acae153a8d9547a67a1a22d69c0998f848bf90c27457936f2d98771f019de693",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public dataset license, not individual study consent: LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 2803-161169-0002. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 2803-161169-0002. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+      },
+      "archive_member": "LibriSpeech/dev-clean/2803/161169/2803-161169-0002.flac",
+      "original_flac_sha256": "d05778efbfca7b87cf81b154eca136461382b92f2bf1bd8aed252d8a9d92f25b",
+      "seconds": 4.91
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+PASS: renders/transient-validation-20261018/mix.hiphop.wav
+PASS: renders/transient-validation-20261018/mix.reggae.wav
+PASS: renders/transient-validation-20261018/mix.experimental.wav
+PASS: complete export renders/transient-validation-20261018/mix.complete.json
+Listening/recognizability: NOT RUN

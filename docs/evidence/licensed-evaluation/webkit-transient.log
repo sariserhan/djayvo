@@ -1,0 +1,7 @@
+PASS: webkit /Users/serhansari/Documents/projects/djayvo/renders/web-webkit-transient-NV4J4y [
+  { style: 'three', seconds: 2.495, artifacts: 12 },
+  { style: 'club', seconds: 1.088, artifacts: 4 },
+  { style: 'funk', seconds: 0.723, artifacts: 4 },
+  { style: 'call_response', seconds: 0.707, artifacts: 4 },
+  { style: 'hybrid', seconds: 0.828, artifacts: 4 }
+]

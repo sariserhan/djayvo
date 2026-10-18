@@ -1,0 +1,72 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "players": [
+      {
+        "label": "Source",
+        "duration": 4.92,
+        "seek": 2.460243
+      },
+      {
+        "label": "Candidate A",
+        "duration": 32,
+        "seek": 16.000115
+      },
+      {
+        "label": "Candidate B",
+        "duration": 32,
+        "seek": 16.000054
+      },
+      {
+        "label": "Candidate C",
+        "duration": 32.96775,
+        "seek": 16.484057
+      },
+      {
+        "label": "Candidate D",
+        "duration": 32,
+        "seek": 16.000102
+      }
+    ],
+    "errors": [],
+    "viewport": "390x844",
+    "listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "players": [
+      {
+        "label": "Source",
+        "duration": 4.92,
+        "seek": 2.460439865689259
+      },
+      {
+        "label": "Candidate A",
+        "duration": 32,
+        "seek": 16.000348407353158
+      },
+      {
+        "label": "Candidate B",
+        "duration": 32,
+        "seek": 16.000332756782882
+      },
+      {
+        "label": "Candidate C",
+        "duration": 32.96775,
+        "seek": 16.484140787006357
+      },
+      {
+        "label": "Candidate D",
+        "duration": 32,
+        "seek": 16.000195340122445
+      }
+    ],
+    "errors": [],
+    "viewport": "390x844",
+    "listening": "NOT RUN"
+  }
+]

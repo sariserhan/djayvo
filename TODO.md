@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [Reverb](docs/feedback-reverb.md) and [optional offline word timing](docs/word-timing.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [multi-source evaluation and transient-input fix](docs/licensed-evaluation.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -17,7 +17,7 @@ the source of truth and is not modified by this tracker.
 | M0b — own sound into music | PARTIAL | Consented voice renders; formal recognizability observations missing |
 | M0c — three musical strategies | PARTIAL | Owner accepts the current prototype as a start; production quality and formal listening remain open |
 | M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact plans/events and 45 matching hip-hop/fixture WAVs; voice and other styles preserved |
-| M1 — musical quality baseline | NOT RUN | Frozen one-source/three-seed pilot and distinct blind packets prepared; diverse sources and formal human evaluation missing |
+| M1 — musical quality baseline | NOT RUN | Licensed multi-source cohort and blind packet workflow prepared; formal human evaluation missing |
 | M2 — AI director benchmarks | PARTIAL | Offline import/fallback prerequisite complete; model integration and benchmark remain NOT RUN behind M1; separate pretrained feasibility trial measured |
 | M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
 | W0 — browser Instant Remix | PARTIAL | Local WebAssembly app and Chromium/WebKit technical flows pass; physical browser microphone and owner web listening remain open |
@@ -226,8 +226,11 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P36 | PASS | Call-response/hybrid, recent-structure rejection, native/browser contracts and private review; commit `a09220e` | [Evidence](docs/creative-strategies.md) |
 | [x] | P37 | PASS | Recorded CC0 guitar, alternating strum/staccato, versioned import/stems and notices; commit `8fbdfbb` | [Evidence](docs/guitar.md) |
 | [x] | P38 | PASS | Organ/pad/lead, wider harmony/groove, eight-attempt history checks, 93 exact cross-OS WAVs and 42 old-score replay WAVs | [Evidence](docs/sustained-instruments.md) |
-| [x] | P39 | PASS | Bounded opt-in instrument feedback reverb; 91 exact M5/Linux WAVs, native/import/stem tests | [Evidence](docs/feedback-reverb.md) |
-| [x] | P40 | PASS | Optional local CPU word-time/crop tools and schema-preserving voice transforms; accuracy/listening remain open | [Evidence](docs/word-timing.md) |
+| [x] | P39 | PASS | Bounded opt-in instrument feedback reverb; 91 exact M5/Linux WAVs, native/import/stem tests; commit `ceaf0b9` | [Evidence](docs/feedback-reverb.md) |
+| [x] | P40 | PASS | Optional local CPU word-time/crop tools and schema-preserving voice transforms; commit `ceaf0b9`; accuracy/listening remain open | [Evidence](docs/word-timing.md) |
+| [x] | P41 | PASS | Preserve licensed evaluation credits and add anonymous listening pages; commit `0a078b3` | [Evidence](docs/licensed-evaluation.md) |
+| [x] | P42 | PASS | Accept short energetic transients with bounded context; commit `6912218`; M5/Linux regression checks | [Evidence](docs/licensed-evaluation.md) |
+| [x] | P43 | PASS | Licensed 23-source technical cohort, 276 mixes, 69 blank review packets, 92 exact cross-OS WAVs; listener summary tool commit `e798f8b` | [Evidence](docs/licensed-evaluation.md) |
 
 ## Engineering backlog
 
@@ -303,24 +306,25 @@ listeners. Preparation does not pass this milestone. Follow the
 [evaluation protocol](docs/evaluation-protocol.md); retain per-style failures.
 
 - [ ] **Q01 — PARTIAL:** Engine/source/binary/preparation/rubric hashes, technical
-  rules and seed schedule frozen for the one-source pilot. Final cohort and
-  actual reviewer assignment are still missing. [Preparation](docs/evaluation-batch.md).
-- [ ] **Q02 — PARTIAL:** One owner-consented source is inventoried with owner-only
-  review scope. Owner previously confirmed no additional clips were available; the later phone
-  smoke recording is not added to this frozen cohort or granted independent-review
-  permission. Collect 20–50 diverse cleared clips, including multiple
-  speakers/sessions, speech, laughter, claps, noise and silence controls. Keep
-  permission records and raw audio local; separate speech and non-speech results.
-- [ ] **Q03 — PARTIAL:** Actual pilot: one source × three styles × three seeds,
-  plus three baselines; 3/3 technical exports per style. Batch tool retains
-  failed attempts and expected silence controls. Full diverse dataset is absent.
+  rules and seed schedule frozen for the licensed cohort. Actual reviewer
+  assignment remains missing. [Cohort](docs/licensed-evaluation.md).
+- [ ] **Q02 — PARTIAL:** Twenty public-license speech sources from distinct speaker
+  IDs, three public-domain non-speech recordings and one synthetic silence control
+  acquired with attribution and hashes. Recorded quiet-input coverage and human
+  category verification remain. The owner recording keeps its owner-only scope.
+- [x] **Q03 — PASS:** Corrected 23-recorded-source, three-seed technical cohort:
+  69/69 exports per style, 276 mix WAVs and 69 blank blinded packets; three expected
+  synthetic-silence rejections. Before-fix failures remain in the record. This
+  closes technical preparation only. [Evidence](docs/licensed-evaluation.md).
 - [ ] **Q04 — NOT RUN:** Run randomized, blinded comparisons with the fixed-loop
   baseline and at least three independent reviewers per eligible block.
 - [ ] **Q05 — NOT RUN:** Assess the provisional targets: >=85% technically usable,
   >=90% speech recognition, >=70% enjoyment ratings >=4/5, >=30% share intention,
   audible strategy variety, zero critical glitches and preference over baseline.
-- [ ] **Q06 — NOT RUN:** Aggregate per clip, report uncertainty and each style's
-  failures, fix demonstrated problems and review whether M1 can pass.
+- [ ] **Q06 — PARTIAL:** Bounded response validator and per-clip summaries with
+  uncertainty, style-specific failures and reviewer-ID coverage implemented.
+  [Workflow](docs/evaluation-batch.md). Real submissions and M1 evidence review
+  remain **NOT RUN**; no ratings are generated.
 
 ## Later milestones
 

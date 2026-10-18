@@ -6,7 +6,7 @@ release approval and does not remove the master specification's quality gates.
 
 | Gate | Status | Evidence or remaining action |
 | --- | --- | --- |
-| Original/cleared instruments | PASS | 53 pinned CC0 acoustic samples, 14 original electronic samples; existing offline asset audits; full notices bundled and visible in app |
+| Original/cleared instruments | PASS | 53 pinned CC0 piano/bass/drum samples, 78 pinned CC0 guitar recordings, 14 original electronic samples and original sustained voices; existing offline asset audits; full notices bundled and visible in app |
 | Reference/private material exclusion | PASS | App sources only include the original core bank; Release excludes the Debug speech fixture; private recordings/reference music remain under ignored paths |
 | Local privacy implementation | PARTIAL | Opt-in recording, visible capture state, no network SDK, backup exclusion, local deletion, WAV-only sharing and privacy manifest implemented; owner Release recording/playback passed; route/interruptions and fuller permission checks remain |
 | Public privacy/support material | PARTIAL | [Policy draft](privacy-policy-draft.md) prepared; owner entity/contact/public URL/effective date and review remain |

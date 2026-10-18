@@ -1,0 +1,7 @@
+{
+  "status": "PARTIAL",
+  "reason": "Stopped before listening to retain the exact supplied LibriSpeech copyright notice in every packet. Replacement uses a fresh output directory; prior files preserved.",
+  "completed_packet_count": 6,
+  "replacement": "renders/licensed-evaluation-batch-final-20261018",
+  "human_listening": "NOT RUN"
+}

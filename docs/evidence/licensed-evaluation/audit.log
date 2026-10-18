@@ -1,0 +1,36 @@
+{
+  "technical_batch": "PASS",
+  "dataset_readiness": {
+    "status": "PARTIAL",
+    "real_clips": 23,
+    "speech_clips": 20,
+    "missing": [
+      "silence coverage"
+    ],
+    "note": "Ledger declarations only; consent authenticity and reviewer independence require human verification."
+  },
+  "repository_commit": "6912218706fc66e00be4b01e06a7c4b06e74bfc7",
+  "freeze_sha256": "5b3e202d3c8c87c822cd97a1f1a1166bfabc22f0983191fef5b02295aeefd6be",
+  "source_clips": 24,
+  "rendered_mix_wavs": 276,
+  "blind_packets": 69,
+  "human_ratings": 0,
+  "per_style_technical_counts": {
+    "hiphop": {
+      "accepted": 69,
+      "attempted": 69
+    },
+    "reggae": {
+      "accepted": 69,
+      "attempted": 69
+    },
+    "experimental": {
+      "accepted": 69,
+      "attempted": 69
+    }
+  },
+  "shape_scope": "Three fixed seeds; four-bar event structures normalized by tonic, ignoring instrument/voice/velocity/take. Not perceptual novelty.",
+  "listening": "NOT RUN",
+  "production_quality": "PARTIAL",
+  "attribution_and_blank_forms": "PASS"
+}

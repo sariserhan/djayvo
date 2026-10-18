@@ -1,0 +1,16 @@
+PASS: renders/transient-validation-20261018/baseline.baseline.wav
+PASS: complete export renders/transient-validation-20261018/baseline.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/transient-validation-20261018/club.club.wav
+PASS: complete export renders/transient-validation-20261018/club.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/transient-validation-20261018/funk.funk.wav
+PASS: complete export renders/transient-validation-20261018/funk.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/transient-validation-20261018/call_response.call_response.wav
+PASS: complete export renders/transient-validation-20261018/call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/transient-validation-20261018/hybrid.hybrid.wav
+PASS: complete export renders/transient-validation-20261018/hybrid.complete.json
+Listening/recognizability: NOT RUN
+PASS: recorded click now renders in all seven directions and baseline

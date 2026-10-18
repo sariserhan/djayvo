@@ -25,7 +25,11 @@ Previous arrangement work: [hip-hop composition variety](docs/hiphop-diversity.m
 Previous effects work: [selective tempo echo and private comparisons](docs/vocal-echo.md),
 building on [independent voice pitch/timing](docs/voice-transforms.md),
 using [validated JSON plan replay and fallback](docs/plan-import.md).
-Latest effects/analysis: [bounded instrument reverb](docs/feedback-reverb.md) and
+Latest quality work: [licensed multi-source evaluation and transient fix](docs/licensed-evaluation.md).
+The broader recorded-input test exposed a real rejection, now fixed. Independent
+listening and production quality remain open.
+
+Previous effects/analysis: [bounded instrument reverb](docs/feedback-reverb.md) and
 [optional offline word timing](docs/word-timing.md). Technical execution passes;
 model estimates can vary by platform and musical listening remains open.
 
@@ -78,7 +82,8 @@ Linux and 33 offline benchmark renders pass; hosted CI execution is **NOT RUN**.
 [Evaluation preparation](docs/evaluation-batch.md) now freezes a consent/source
 ledger and engine/rubric hashes, renders three seeds and creates distinct blinded
 packets. At that checkpoint eight M5/Linux test suites passed. The actual one-source pilot is complete;
-the diverse dataset and independent human listening remain missing.
+the licensed multi-source continuation is now prepared; independent human listening
+and remaining source coverage/verification are still missing.
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release

@@ -5,6 +5,12 @@ Formal listening and M1 quality: NOT RUN.** The owner confirmed that no addition
 consented clips are available. Only the existing owner recording was used for
 the actual pilot; no new speaker, consent, reviewer or rating was invented.
 
+2026-10-18 continuation: [licensed multi-source evaluation](licensed-evaluation.md)
+adds 20 public-license speech speakers, three public-domain non-speech recordings
+and an explicitly synthetic silence control. Credits and local anonymous-player
+pages are preserved in each packet. Model timing and native crop research remain
+separate from the frozen listening comparison. Human ratings are still **NOT RUN**.
+
 `scripts/prepare_evaluation.py` freezes the source ledger, source and renderer
 hashes, engine source hash, available Git revision, exact rubric and preparation
 script hashes before rendering. It copies inputs into a new private folder,
@@ -120,3 +126,36 @@ including at least ten speech clips across speakers/sessions, coverage of other
 sound categories, and at least three independent reviewers per block. The
 tool reports missing prerequisites but cannot authenticate consent, establish
 reviewer independence, supply observations or approve production quality.
+
+## Summarize submitted listening forms
+
+`scripts/summarize_listening.py` validates submitted CSVs against the frozen
+block/clip/candidate keys. It rejects unknown codes, duplicate judgments,
+incomplete/non-numeric ratings, invalid pairings and comparisons lacking matching
+candidate/baseline ratings. Input CSVs are never edited. Notes may contain quoted
+newlines. Files are bounded to 1 MiB and total parsed rows to 60,000.
+
+```sh
+python3 scripts/summarize_listening.py --batch renders/licensed-evaluation-validated-20261018 --ratings /path/to/completed/responses.csv --pairs /path/to/completed/pairs.csv --output /fresh/listening-summary.json
+```
+
+Repeat `--ratings` and `--pairs` for more submitted files. Use consistent opaque
+listener IDs; three distinct IDs alone do not prove reviewer independence.
+An omitted or wholly blank form supplies no observations and produces **NOT RUN**,
+not a zero score. Partially completed individual rows are rejected rather than
+filled in. The current real cohort has no submitted ratings.
+
+Each style is reported separately, retaining the batch's technical attempt
+counts. First average each metric across that source's seeds/reviewers; then
+average source means equally. Recognition excludes non-speech. Enjoyment also
+reports the fraction of ratings at least 4/5. Paired decisions require a strict
+majority of all that source's votes for candidate or baseline; otherwise the
+source is a tie. Ties are retained and are not candidate wins. Descriptive 95%
+percentile bootstrap intervals use 2,000 deterministic source-clip resamples;
+a single clip gets no interval. Sample sizes and complete-reviewer-ID coverage
+remain visible. Raw judgments remain in the hashed source CSVs.
+
+The tool does not infer audible variety, genuine independence, representative
+sampling or release acceptance. Even populated results remain **PARTIAL** pending
+human evidence review, and it never automatically passes M1. The unit checks use
+temporary, explicitly labelled algorithm fixtures, not study observations.

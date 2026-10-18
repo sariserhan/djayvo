@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0-evaluation",
+  "purpose": "Local evaluation only; no training or publication",
+  "clips": [
+    {
+      "id": "commons-laughter",
+      "session_id": "commons-laughter",
+      "kind": "laughter",
+      "source_kind": "recorded",
+      "path": "/Users/serhansari/Documents/projects/djayvo/renders/licensed-nonspeech-20261018/laughter.wav",
+      "sha256": "23fef28e98c10cd2c6704b53de1b35a3087622d7007a74db2685e90c1a8b793c",
+      "original_sha256": "80f89cd08424627448036e090eaddc72298075a3533c9b9f465778a622f4071d",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Laughter%28s%29.ogg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Laughter(s).ogg",
+      "source_description_category": "laughter",
+      "category_human_verification": "NOT RUN",
+      "crop_start_seconds": 0,
+      "seconds": 3.0,
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public-domain declaration, not individual study consent: Laughter(s).ogg by sagetyrtle. Source and rights notice: https://commons.wikimedia.org/wiki/File:Laughter(s).ogg . CC0-1.0: https://creativecommons.org/publicdomain/zero/1.0/ . Modified: first 3.000000 seconds decoded to PCM16 mono 16 kHz; evaluation remixes slice/mix the recording. No endorsement implied."
+      },
+      "license": {
+        "id": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attribution": "Laughter(s).ogg by sagetyrtle. Source and rights notice: https://commons.wikimedia.org/wiki/File:Laughter(s).ogg . CC0-1.0: https://creativecommons.org/publicdomain/zero/1.0/ . Modified: first 3.000000 seconds decoded to PCM16 mono 16 kHz; evaluation remixes slice/mix the recording. No endorsement implied."
+      }
+    },
+    {
+      "id": "commons-claps",
+      "session_id": "commons-claps",
+      "kind": "claps",
+      "source_kind": "recorded",
+      "path": "/Users/serhansari/Documents/projects/djayvo/renders/licensed-nonspeech-20261018/claps.wav",
+      "sha256": "f2f17c1ee7d272806548f4d4d0b53524312cc9fd97a4bf2273e66d640b30caf1",
+      "original_sha256": "9f117453621c3e3921a3ce61d281a51e59a3cf9cd1c2559e8ce489230f1c4e65",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Clapping_hurray.ogg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Clapping_hurray.ogg",
+      "source_description_category": "claps",
+      "category_human_verification": "NOT RUN",
+      "crop_start_seconds": 0,
+      "seconds": 2.9954375,
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public-domain declaration, not individual study consent: Clapping_hurray.ogg by starlite (metadata: Zack and friends). Source and rights notice: https://commons.wikimedia.org/wiki/File:Clapping_hurray.ogg . PD-author: https://commons.wikimedia.org/wiki/Template:PD-author . Modified: first 2.995437 seconds decoded to PCM16 mono 16 kHz; evaluation remixes slice/mix the recording. No endorsement implied."
+      },
+      "license": {
+        "id": "PD-author",
+        "url": "https://commons.wikimedia.org/wiki/Template:PD-author",
+        "attribution": "Clapping_hurray.ogg by starlite (metadata: Zack and friends). Source and rights notice: https://commons.wikimedia.org/wiki/File:Clapping_hurray.ogg . PD-author: https://commons.wikimedia.org/wiki/Template:PD-author . Modified: first 2.995437 seconds decoded to PCM16 mono 16 kHz; evaluation remixes slice/mix the recording. No endorsement implied."
+      }
+    },
+    {
+      "id": "commons-noise",
+      "session_id": "commons-noise",
+      "kind": "noise",
+      "source_kind": "recorded",
+      "path": "/Users/serhansari/Documents/projects/djayvo/renders/licensed-nonspeech-20261018/noise.wav",
+      "sha256": "b69aebac7083c65ca95edfb8a2b7e91bedbd34e71af6890b3d9aa5dfb4001eba",
+      "original_sha256": "109abfa5f24bd0b37c96398baa79956d2f3ed64fa110dc5845151c7ade49fb47",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Clicker_sound.ogg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Clicker_sound.ogg",
+      "source_description_category": "noise",
+      "category_human_verification": "NOT RUN",
+      "crop_start_seconds": 0,
+      "seconds": 2.3205625,
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Public-domain declaration, not individual study consent: Clicker_sound.ogg by Maddy. Source and rights notice: https://commons.wikimedia.org/wiki/File:Clicker_sound.ogg . CC0-1.0: https://creativecommons.org/publicdomain/zero/1.0/ . Modified: first 2.320562 seconds decoded to PCM16 mono 16 kHz; evaluation remixes slice/mix the recording. No endorsement implied."
+      },
+      "license": {
+        "id": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attribution": "Clicker_sound.ogg by Maddy. Source and rights notice: https://commons.wikimedia.org/wiki/File:Clicker_sound.ogg . CC0-1.0: https://creativecommons.org/publicdomain/zero/1.0/ . Modified: first 2.320562 seconds decoded to PCM16 mono 16 kHz; evaluation remixes slice/mix the recording. No endorsement implied."
+      }
+    },
+    {
+      "id": "procedural-silence",
+      "session_id": "procedural-control",
+      "kind": "silence",
+      "source_kind": "synthetic",
+      "path": "/Users/serhansari/Documents/projects/djayvo/renders/licensed-nonspeech-20261018/silence.wav",
+      "sha256": "d303811b8c84619667cd0501342f84ec6cbe69f7aa3856dcf52fabda374c92b8",
+      "consent": {
+        "local_processing": true,
+        "review_scope": "independent_reviewers",
+        "evidence": "Original procedural silence control; no human recording."
+      }
+    }
+  ]
+}

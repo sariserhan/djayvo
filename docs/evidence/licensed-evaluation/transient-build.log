@@ -1,0 +1,46 @@
+-- The C compiler identification is AppleClang 21.0.0.21000334
+-- The CXX compiler identification is AppleClang 21.0.0.21000334
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python3: /Users/serhansari/Documents/projects/djayvo/.venv-build/bin/python (found suitable version "3.14.6", minimum required is "3.9") found components: Interpreter
+-- Configuring done (1.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-transients
+[  8%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/plan.cpp.o
+[  8%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/remix.cpp.o
+[ 12%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/demo.cpp.o
+[ 16%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/analysis.cpp.o
+[ 25%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/remix_plan.cpp.o
+[ 25%] Building CXX object CMakeFiles/djayvo_core.dir/core/instruments/voice.cpp.o
+[ 29%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/renderer.cpp.o
+[ 33%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/input.cpp.o
+[ 37%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_renderer.cpp.o
+[ 41%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_file.cpp.o
+[ 45%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/c_api.cpp.o
+[ 50%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/wav.cpp.o
+[ 54%] Linking CXX static library libdjayvo_core.a
+[ 54%] Built target djayvo_core
+[ 58%] Building CXX object CMakeFiles/djayvo_tests.dir/core/tests/tests.cpp.o
+[ 62%] Building CXX object CMakeFiles/djayvo_render.dir/tools/cli/main.cpp.o
+[ 66%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/remix_main.cpp.o
+[ 70%] Building CXX object CMakeFiles/djayvo_remix_tests.dir/core/tests/remix_tests.cpp.o
+[ 75%] Linking CXX executable djayvo_render
+[ 79%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/plan_import.cpp.o
+[ 79%] Built target djayvo_render
+[ 83%] Building C object CMakeFiles/djayvo_c_smoke.dir/core/tests/c_api_smoke.c.o
+[ 87%] Linking CXX executable djayvo_c_smoke
+[ 87%] Built target djayvo_c_smoke
+[ 91%] Linking CXX executable djayvo_tests
+[ 91%] Built target djayvo_tests
+[ 95%] Linking CXX executable djayvo_remix
+[ 95%] Built target djayvo_remix
+[100%] Linking CXX executable djayvo_remix_tests
+[100%] Built target djayvo_remix_tests

@@ -1,0 +1,550 @@
+{
+  "status": "PASS",
+  "proposals": [
+    {
+      "clip_id": "ls-2277-149896-0026",
+      "style": "hiphop",
+      "changed_clips": 4,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2277-149896-0026",
+      "style": "reggae",
+      "changed_clips": 3,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2277-149896-0026",
+      "style": "experimental",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2035-147960-0013",
+      "style": "hiphop",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2035-147960-0013",
+      "style": "reggae",
+      "changed_clips": 4,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2035-147960-0013",
+      "style": "experimental",
+      "changed_clips": 5,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2086-149220-0047",
+      "style": "hiphop",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2086-149220-0047",
+      "style": "reggae",
+      "changed_clips": 4,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2086-149220-0047",
+      "style": "experimental",
+      "changed_clips": 6,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-7976-110124-0019",
+      "style": "hiphop",
+      "changed_clips": 3,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-7976-110124-0019",
+      "style": "reggae",
+      "changed_clips": 4,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-7976-110124-0019",
+      "style": "experimental",
+      "changed_clips": 6,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-1988-147956-0018",
+      "style": "hiphop",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-1988-147956-0018",
+      "style": "reggae",
+      "changed_clips": 3,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-1988-147956-0018",
+      "style": "experimental",
+      "changed_clips": 3,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-777-126732-0074",
+      "style": "hiphop",
+      "changed_clips": 3,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-777-126732-0074",
+      "style": "reggae",
+      "changed_clips": 4,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-777-126732-0074",
+      "style": "experimental",
+      "changed_clips": 5,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-84-121123-0012",
+      "style": "hiphop",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-84-121123-0012",
+      "style": "reggae",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-84-121123-0012",
+      "style": "experimental",
+      "changed_clips": 3,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-1673-143397-0009",
+      "style": "hiphop",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-1673-143397-0009",
+      "style": "reggae",
+      "changed_clips": 5,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-1673-143397-0009",
+      "style": "experimental",
+      "changed_clips": 6,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-8297-275156-0004",
+      "style": "hiphop",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-8297-275156-0004",
+      "style": "reggae",
+      "changed_clips": 3,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-8297-275156-0004",
+      "style": "experimental",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-5536-43358-0016",
+      "style": "hiphop",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-5536-43358-0016",
+      "style": "reggae",
+      "changed_clips": 0,
+      "native_validation": "NOT RUN",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "UNCHANGED"
+    },
+    {
+      "clip_id": "ls-5536-43358-0016",
+      "style": "experimental",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-6345-93302-0019",
+      "style": "hiphop",
+      "changed_clips": 3,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-6345-93302-0019",
+      "style": "reggae",
+      "changed_clips": 3,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-6345-93302-0019",
+      "style": "experimental",
+      "changed_clips": 4,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-6295-244435-0035",
+      "style": "hiphop",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-6295-244435-0035",
+      "style": "reggae",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-6295-244435-0035",
+      "style": "experimental",
+      "changed_clips": 0,
+      "native_validation": "NOT RUN",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "UNCHANGED"
+    },
+    {
+      "clip_id": "ls-6313-66125-0024",
+      "style": "hiphop",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-6313-66125-0024",
+      "style": "reggae",
+      "changed_clips": 4,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-6313-66125-0024",
+      "style": "experimental",
+      "changed_clips": 6,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-5338-284437-0012",
+      "style": "hiphop",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-5338-284437-0012",
+      "style": "reggae",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-5338-284437-0012",
+      "style": "experimental",
+      "changed_clips": 4,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-6319-57405-0007",
+      "style": "hiphop",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-6319-57405-0007",
+      "style": "reggae",
+      "changed_clips": 4,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-6319-57405-0007",
+      "style": "experimental",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-1993-147965-0001",
+      "style": "hiphop",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-1993-147965-0001",
+      "style": "reggae",
+      "changed_clips": 4,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-1993-147965-0001",
+      "style": "experimental",
+      "changed_clips": 3,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2078-142845-0042",
+      "style": "hiphop",
+      "changed_clips": 0,
+      "native_validation": "NOT RUN",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "UNCHANGED"
+    },
+    {
+      "clip_id": "ls-2078-142845-0042",
+      "style": "reggae",
+      "changed_clips": 0,
+      "native_validation": "NOT RUN",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "UNCHANGED"
+    },
+    {
+      "clip_id": "ls-2078-142845-0042",
+      "style": "experimental",
+      "changed_clips": 0,
+      "native_validation": "NOT RUN",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "UNCHANGED"
+    },
+    {
+      "clip_id": "ls-1272-128104-0001",
+      "style": "hiphop",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-1272-128104-0001",
+      "style": "reggae",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-1272-128104-0001",
+      "style": "experimental",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-174-50561-0018",
+      "style": "hiphop",
+      "changed_clips": 0,
+      "native_validation": "NOT RUN",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "UNCHANGED"
+    },
+    {
+      "clip_id": "ls-174-50561-0018",
+      "style": "reggae",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-174-50561-0018",
+      "style": "experimental",
+      "changed_clips": 1,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2803-161169-0002",
+      "style": "hiphop",
+      "changed_clips": 2,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2803-161169-0002",
+      "style": "reggae",
+      "changed_clips": 3,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    },
+    {
+      "clip_id": "ls-2803-161169-0002",
+      "style": "experimental",
+      "changed_clips": 5,
+      "native_validation": "PASS",
+      "word_accuracy": "NOT RUN",
+      "listening": "NOT RUN",
+      "result": "PROPOSED"
+    }
+  ],
+  "unchanged_fallbacks": 6,
+  "native_validated": 54,
+  "scope": "Optional proposals from Linux first-seed plans replayed on M5; original frozen listening cohort unchanged",
+  "word_accuracy": "NOT RUN",
+  "musical_quality": "NOT RUN"
+}

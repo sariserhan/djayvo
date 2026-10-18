@@ -1,0 +1,39 @@
+{
+  "commons-laughter": {
+    "source_kind": "recorded",
+    "declared_category": "laughter",
+    "execution": "PASS",
+    "human_category_check": "NOT RUN",
+    "estimated_words": 0,
+    "language_probability": 0.5798743367195129,
+    "high_confidence_words": 0,
+    "inference_seconds": 0.26987862499663606
+  },
+  "commons-claps": {
+    "source_kind": "recorded",
+    "declared_category": "claps",
+    "execution": "PASS",
+    "human_category_check": "NOT RUN",
+    "estimated_words": 0,
+    "language_probability": 0.4391770660877228,
+    "high_confidence_words": 0,
+    "inference_seconds": 0.2721368749917019
+  },
+  "commons-noise": {
+    "source_kind": "recorded",
+    "declared_category": "noise",
+    "execution": "PASS",
+    "human_category_check": "NOT RUN",
+    "estimated_words": 0,
+    "language_probability": 0.39243876934051514,
+    "high_confidence_words": 0,
+    "inference_seconds": 0.2555836670071585
+  },
+  "procedural-silence": {
+    "source_kind": "synthetic",
+    "declared_category": "silence",
+    "execution": "PASS",
+    "human_category_check": "NOT RUN",
+    "expected_rejection": "PASS"
+  }
+}
