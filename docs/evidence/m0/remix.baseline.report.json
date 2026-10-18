@@ -1,0 +1,23 @@
+{
+  "project": "Djayvo",
+  "milestone": "M1-control",
+  "technical_render": "PASS",
+  "listening_validation": "NOT RUN",
+  "macos_portability": "NOT RUN",
+  "seed": 4123,
+  "sample_rate": 48000,
+  "music_frames": 1440000,
+  "total_frames": 1536000,
+  "duration_seconds": 32,
+  "events": 582,
+  "peak_linear": 0.474033176899,
+  "peak_dbfs": -6.48382523234,
+  "pre_limiter_peak_linear": 0.474033176899,
+  "ceiling_dbfs": -1,
+  "rms_dbfs_left": -23.7026189497,
+  "rms_dbfs_right": -24.3421399167,
+  "max_adjacent_sample_step": 0.222251087427,
+  "limited_samples": 0,
+  "nonfinite_samples": 0,
+  "loudness_method": "unweighted RMS; not integrated LUFS"
+}

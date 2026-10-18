@@ -1,0 +1,137 @@
+Start testing: Oct 18 01:36 UTC
+----------------------------------------------------------
+1/6 Testing: core
+1/6 Test: core
+Command: "/home/ssari/projects/djayvo/build/djayvo_tests"
+Directory: /home/ssari/projects/djayvo/build
+"core" start time: Oct 18 01:36 UTC
+Output:
+----------------------------------------------------------
+PASS: rational timing and long-render drift
+PASS: sample onsets, ordering, note-off and release
+PASS: seed and block-size determinism
+PASS: instrument frequency, octave, velocity and drum output
+PASS: pan, gain, finite audio and overload ceiling
+PASS: plan bounds, polyphony, silence and invalid requests
+PASS: configurable sample rates and 7/8 meter
+PASS: allocation-free processing
+PASS: WAV bounds, nonfinite and incomplete writes
+PASS: 9/9 test groups
+<end of output>
+Test time =   1.42 sec
+----------------------------------------------------------
+Test Passed.
+"core" end time: Oct 18 01:36 UTC
+"core" time elapsed: 00:00:01
+----------------------------------------------------------
+
+2/6 Testing: remix_core
+2/6 Test: remix_core
+Command: "/home/ssari/projects/djayvo/build/djayvo_remix_tests"
+Directory: /home/ssari/projects/djayvo/build
+"remix_core" start time: Oct 18 01:36 UTC
+Output:
+----------------------------------------------------------
+PASS: SHA-256 known vectors
+PASS: energy/onset/phrase/pitch analysis and silence
+PASS: resampling duration, identity, round-trip and antialias
+PASS: clean hook preservation, deterministic styles, finite bounded output
+PASS: consent, crop, transform, polyphony and duration rejection
+PASS: allocation-free sample and instrument processing
+<end of output>
+Test time =   0.99 sec
+----------------------------------------------------------
+Test Passed.
+"remix_core" end time: Oct 18 01:36 UTC
+"remix_core" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/6 Testing: c_abi
+3/6 Test: c_abi
+Command: "/home/ssari/projects/djayvo/build/djayvo_c_smoke" "/home/ssari/projects/djayvo/build/c-api-input.wav" "/home/ssari/projects/djayvo/build/c-api-render"
+Directory: /home/ssari/projects/djayvo/build
+"c_abi" start time: Oct 18 01:36 UTC
+Output:
+----------------------------------------------------------
+PASS: C compiler, ABI version, bounded errors, exception containment and actual offline remix
+<end of output>
+Test time =   0.33 sec
+----------------------------------------------------------
+Test Passed.
+"c_abi" end time: Oct 18 01:36 UTC
+"c_abi" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/6 Testing: wav_integration
+4/6 Test: wav_integration
+Command: "/usr/bin/python3.14" "/home/ssari/projects/djayvo/tests/integration/verify_render.py" "--renderer" "/home/ssari/projects/djayvo/build/djayvo_render" "--output" "/home/ssari/projects/djayvo/build/integration"
+Directory: /home/ssari/projects/djayvo/build
+"wav_integration" start time: Oct 18 01:36 UTC
+Output:
+----------------------------------------------------------
+PASS: score_contract_and_independent_tracks
+PASS: independent_duration_and_pcm_decode
+PASS: decoded_audio_headroom_balance_dc_and_tail
+PASS: same_seed_and_block_size_wav_sha256
+PASS: different_seed_changes_output
+PASS: 44100hz_end_to_end
+PASS: invalid_cli_and_unwritable_destination
+NOT RUN: human_listening
+NOT RUN: macos_portability
+Evidence: /home/ssari/projects/djayvo/build/integration/validation.json
+<end of output>
+Test time =   2.07 sec
+----------------------------------------------------------
+Test Passed.
+"wav_integration" end time: Oct 18 01:36 UTC
+"wav_integration" time elapsed: 00:00:02
+----------------------------------------------------------
+
+5/6 Testing: remix_integration
+5/6 Test: remix_integration
+Command: "/usr/bin/python3.14" "/home/ssari/projects/djayvo/tests/integration/verify_remix.py" "--renderer" "/home/ssari/projects/djayvo/build/djayvo_remix" "--output" "/home/ssari/projects/djayvo/build/remix-integration"
+Directory: /home/ssari/projects/djayvo/build
+"remix_integration" start time: Oct 18 01:36 UTC
+Output:
+----------------------------------------------------------
+PASS: three_complete_decoded_20_to_40_second_remixes
+PASS: same_source_sha256_and_bounded_sample_clips
+PASS: stereo_instrument_and_vocal_stems
+PASS: same_seed_different_block_wav_determinism
+PASS: all_styles_clipping_and_final_tail
+PASS: clean_hook_matches_original_waveform_with_gain_and_edge_fades
+PASS: independently_distinct_rhythm_and_arrangement_strategies
+PASS: changed_input_rhythm_changes_chops_and_instrument_response
+PASS: input_independent_repeated_loop_comparison_control
+PASS: pcm24_pcm32_float32_stereo_and_odd_metadata_chunk
+PASS: silence_corruption_nan_format_duration_and_permission_rejections
+PASS: source_not_overwritten_including_stems_and_hardlinks
+NOT RUN: human_recording_and_recognizability
+NOT RUN: human_musical_quality_and_audible_style_difference
+NOT RUN: apple_m5_portability
+<end of output>
+Test time =   5.87 sec
+----------------------------------------------------------
+Test Passed.
+"remix_integration" end time: Oct 18 01:36 UTC
+"remix_integration" time elapsed: 00:00:05
+----------------------------------------------------------
+
+6/6 Testing: tooling
+6/6 Test: tooling
+Command: "/usr/bin/python3.14" "/home/ssari/projects/djayvo/tests/integration/verify_tools.py"
+Directory: /home/ssari/projects/djayvo/build
+"tooling" start time: Oct 18 01:36 UTC
+Output:
+----------------------------------------------------------
+PASS: comparison equality, changed decision/frame/audio rejection, blind codes, RMS matching, source hash and empty responses
+NOT RUN: human observations and actual Mac execution
+<end of output>
+Test time =   0.53 sec
+----------------------------------------------------------
+Test Passed.
+"tooling" end time: Oct 18 01:36 UTC
+"tooling" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 18 01:36 UTC

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(Djayvo VERSION 0.1.0 LANGUAGES CXX)
+project(Djayvo VERSION 0.2.0 LANGUAGES C CXX)
 
 option(DJAYVO_SANITIZERS "Enable address and undefined-behavior sanitizers" OFF)
 include(CTest)
@@ -7,8 +7,15 @@ include(CTest)
 add_library(djayvo_core STATIC
   core/composition/plan.cpp
   core/arrangement/demo.cpp
+  core/arrangement/remix.cpp
+  core/composition/analysis.cpp
+  core/composition/remix_plan.cpp
   core/instruments/voice.cpp
   core/audio/renderer.cpp
+  core/audio/input.cpp
+  core/audio/remix_renderer.cpp
+  core/audio/remix_file.cpp
+  core/audio/c_api.cpp
   core/audio/wav.cpp)
 target_include_directories(djayvo_core PUBLIC core/include)
 target_compile_features(djayvo_core PUBLIC cxx_std_17)
@@ -29,16 +36,29 @@ endif()
 
 add_executable(djayvo_render tools/cli/main.cpp)
 target_link_libraries(djayvo_render PRIVATE djayvo_core)
+add_executable(djayvo_remix tools/cli/remix_main.cpp)
+target_link_libraries(djayvo_remix PRIVATE djayvo_core)
 
 if(BUILD_TESTING)
   add_executable(djayvo_tests core/tests/tests.cpp)
   target_link_libraries(djayvo_tests PRIVATE djayvo_core)
   add_test(NAME core COMMAND djayvo_tests)
+  add_executable(djayvo_remix_tests core/tests/remix_tests.cpp)
+  target_link_libraries(djayvo_remix_tests PRIVATE djayvo_core)
+  add_test(NAME remix_core COMMAND djayvo_remix_tests)
+  add_executable(djayvo_c_smoke core/tests/c_api_smoke.c)
+  target_link_libraries(djayvo_c_smoke PRIVATE djayvo_core)
+  add_test(NAME c_abi COMMAND djayvo_c_smoke "${CMAKE_CURRENT_BINARY_DIR}/c-api-input.wav" "${CMAKE_CURRENT_BINARY_DIR}/c-api-render")
   find_package(Python3 3.9 COMPONENTS Interpreter)
   if(Python3_Interpreter_FOUND)
     add_test(NAME wav_integration COMMAND "${Python3_EXECUTABLE}"
       "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_render.py"
       --renderer "$<TARGET_FILE:djayvo_render>"
       --output "${CMAKE_CURRENT_BINARY_DIR}/integration")
+    add_test(NAME remix_integration COMMAND "${Python3_EXECUTABLE}"
+      "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_remix.py"
+      --renderer "$<TARGET_FILE:djayvo_remix>"
+      --output "${CMAKE_CURRENT_BINARY_DIR}/remix-integration")
+    add_test(NAME tooling COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_tools.py")
   endif()
 endif()

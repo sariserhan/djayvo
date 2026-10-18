@@ -1,5 +1,8 @@
 # M0a architecture
 
+This records the M0a foundation. The implemented source-remix/C-ABI extension is
+documented in [remix-architecture.md](remix-architecture.md).
+
 The C++17 static library `djayvo_core` has three layers. `core/arrangement/`
 constructs the original demonstration as a native `PerformancePlan`;
 `core/composition/` defines and validates musical content and exports score JSON;
@@ -89,7 +92,7 @@ statistics. Engine report peaks/RMS cover the complete export including tail;
 `scripts/inspect_wav.py` independently measures the decoded PCM. RMS is not LUFS.
 Reports use finite -300 dBFS as the silence floor.
 
-Future iOS integration can wrap the native plan/renderer through a narrow
-Objective-C++ or C ABI; Swift must use this clock. No wrapper or UI has been
-implemented. File writing is separate from sample processing, so future Apple
+The extension now provides an offline C ABI. Future iOS integration can use it
+through a narrow Apple wrapper; Swift must use this clock. No Apple-specific
+wrapper or UI is implemented. File writing is separate from sample processing, so Apple
 audio buffers can consume the same float output without a WAV round trip.

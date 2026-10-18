@@ -2,36 +2,50 @@
 
 **Say anything. Make music.**
 
-Djayvo will turn short recordings of speech, laughter, and everyday sounds into
-original musical performances. This repository currently implements **M0a only**:
-a portable offline instrument engine and an original four-bar piano, bass, and
-drum composition. Vocal remixing, AI, live input, and iPhone UI are later work.
+Djayvo turns short recordings into source-driven musical performances. The
+portable C++17 prototype loads a 2–5 s WAV, finds energetic phrases and onsets,
+preserves a clean hook, and renders three original 20–40 s arrangements:
+hip-hop, reggae, and experimental. Each has independent piano, bass, drums, and
+sampled source events, plus score JSON, frame trace, measurements, and optional
+stems. No model, GPU, paid service, or third-party DSP library is required.
 
-M0a technical validation: **PASS** on Linux. Human listening: **NOT RUN**.
-macOS/Apple Silicon execution: **NOT RUN**. Overall review status: **PARTIAL**
-until the recording is auditioned. See [the evidence report](docs/progress.md).
-
-Build with CMake >=3.20, a C++17 compiler, and Make or Ninja. Python >=3.9 is used
-only for independent integration verification. There are no third-party engine
-libraries, downloaded sound assets, paid services, or GPU requirements.
+**Linux technical checks: PASS. M0 overall: PARTIAL.** The demonstration uses
+labeled synthetic speech. Human recording/recognizability, musical-quality
+evaluation, and actual Apple M5 execution remain **NOT RUN**. See
+[current evidence](docs/progress.md) and [Mac agent handoff](docs/mac-agent-handoff.md).
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel 4
 ctest --test-dir build --output-on-failure
-./build/djayvo_render --output renders/m0a --seed 4123
-python3 scripts/inspect_wav.py renders/m0a.wav --report renders/m0a.decoded.json
+
+# Original procedural test input; no external tools needed.
+python3 scripts/make_fixture.py --output renders/fixtures/signal.wav
+./build/djayvo_remix --input renders/fixtures/signal.wav --synthetic-fixture --output renders/demo/remix --style all --stems
+
+# A recording you have permission to process locally:
+./build/djayvo_remix --input /path/to/your-recording.wav --consent --output renders/my-remix --style all --stems
 ```
 
-The renderer creates `renders/m0a.wav`, `renders/m0a.score.json`, and
-`renders/m0a.report.json`. The WAV is 48 kHz, stereo PCM16: **9.6 s music + 2 s
-release tail = 11.6 s**. Open it in any WAV player; on macOS use
-`afplay renders/m0a.wav`. The four sections are intro, groove, variation, ending;
-the harmonic progression is Am9, Fmaj7, G6, Am9. Tracks have independent rhythms,
-velocities, gains, and pans. Seed changes give small deterministic variations,
-not different composition strategies.
+`--consent` confirms permission for that recording. `--synthetic-fixture` labels
+generated non-person input; it must not claim consent for human audio. Processing
+is local, with no recording, upload, or telemetry service. Original files are
+unchanged, including protection against output/source aliases.
 
-If CMake is absent, install the tested build tool in an isolated environment:
+Prepared speech demonstration:
+
+- `renders/fixtures/synthetic-speech.wav` — original synthetic input
+- `renders/m0/remix.hiphop.wav` — 96 BPM, 32 s
+- `renders/m0/remix.reggae.wav` — 80 BPM, 32 s
+- `renders/m0/remix.experimental.wav` — 124 BPM, 32.97 s
+
+Each prefix also has `.piano.wav`, `.bass.wav`, `.drums.wav`, `.vocals.wav`,
+`.score.json`, `.report.json`, and `.events.tsv`. `--style baseline` creates an
+original fixed-loop control for listening comparisons. `renders/listening-pilot/`
+contains level-matched anonymous candidates and blank response forms. These are
+preparation artifacts, not listening results.
+
+If CMake is missing, isolate the tested tool without touching an ML environment:
 
 ```sh
 python3 -m venv .venv-build
@@ -39,12 +53,14 @@ python3 -m venv .venv-build
 export PATH="$PWD/.venv-build/bin:$PATH"
 ```
 
-This Linux run used `/tmp/djayvo-build-tools` for that environment. No existing
-MLX/Python environment was changed. Build details and macOS commands are in
-[docs/build.md](docs/build.md); design and license records are in
-[docs/architecture.md](docs/architecture.md) and [docs/licenses.md](docs/licenses.md).
+This workstation's CMake is `/tmp/djayvo-build-tools/bin/cmake`. The C interface
+is `core/include/djayvo/djayvo_c.h`. Python >=3.9 is only for developer tools and
+tests. The optional speech-fixture generator uses an external eSpeak NG
+executable, which is not linked into Djayvo.
 
-Generated audio/build directories are ignored by Git. Small score, measurement,
-hash, and test-log evidence is retained in `docs/evidence/`. The original
-`ai_improvisational_musician_master_spec_v1.md` is unchanged and remains the source
-of truth, with Djayvo taking precedence as the product name.
+[Build commands](docs/build.md) · [Architecture](docs/architecture.md) ·
+[Remix contract and limitations](docs/remix-architecture.md) ·
+[Licenses](docs/licenses.md) · [Evaluation protocol](docs/evaluation-protocol.md)
+
+Audio, builds, and transfer bundles are ignored by Git; small score, measurement,
+hash, and log evidence is committed. The master specification remains unchanged.

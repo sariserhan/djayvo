@@ -95,5 +95,294 @@
     }
   },
   "macos_runtime_inventory": "NOT RUN",
-  "project_outbound_license": "Not selected; no public license grant"
+  "project_outbound_license": "Not selected; no public license grant",
+  "optional_fixture_tool": {
+    "name": "eSpeak NG",
+    "upstream_version": "1.52.0",
+    "package_version": "1.52.0+dfsg-5build1",
+    "license": "GPL-3.0-or-later and package component notices",
+    "source": "https://github.com/espeak-ng/espeak-ng",
+    "linked_into_engine": false,
+    "bundled": false,
+    "system_packages_installed": false,
+    "packages": [
+      {
+        "metadata": "Package: espeak-ng-data\nVersion: 1.52.0+dfsg-5build1",
+        "file": "espeak-ng-data_1.52.0+dfsg-5build1_amd64.deb",
+        "sha256": "8304ebf2260a5cf16394625a9b6bfc7cea6c29cc30e55d4cfa0e85da0d3cf56a",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/espeak-ng-data/copyright",
+          "sha256": "bf721eede49d50f84bd2c50f96888629ced572b66ad4087c7a224c4a5e1193bb"
+        }
+      },
+      {
+        "metadata": "Package: espeak-ng\nVersion: 1.52.0+dfsg-5build1",
+        "file": "espeak-ng_1.52.0+dfsg-5build1_amd64.deb",
+        "sha256": "01ed5ada622dd0f3eef34f6cd545a6be9ece8a8a6b58b70a552dc12b4852454c",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/espeak-ng/copyright",
+          "sha256": "bf721eede49d50f84bd2c50f96888629ced572b66ad4087c7a224c4a5e1193bb"
+        }
+      },
+      {
+        "metadata": "Package: libapparmor1\nVersion: 5.0.2-0ubuntu1~26.04.1",
+        "file": "libapparmor1_5.0.2-0ubuntu1~26.04.1_amd64.deb",
+        "sha256": "50570ebe581bbfeead4403571b75ee275955c6bcbd1b4bf342228772549162b9",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libapparmor1/copyright",
+          "sha256": "52b7cf37d674ca47296cf6270a95ecda0ecbef976cc090d702acbd741e36b3b4"
+        }
+      },
+      {
+        "metadata": "Package: libasyncns0\nVersion: 0.8-7",
+        "file": "libasyncns0_0.8-7_amd64.deb",
+        "sha256": "952ea8a8d01a4fe98ff8379553a7a3764492897464c2684105f76ebb6b19939a",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libasyncns0/copyright",
+          "sha256": "4c55303121812a3a9364b196eef70313e40235d2d1f590e93d45443dc73accf1"
+        }
+      },
+      {
+        "metadata": "Package: libbsd0\nVersion: 0.12.2-2build2",
+        "file": "libbsd0_0.12.2-2build2_amd64.deb",
+        "sha256": "62019928a6baeaba8d12d2d4cb7c1e4c9a9550a1eb4541b8de0cacfeae1d09e3",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libbsd0/copyright",
+          "sha256": "47eaa031b1741a33a93e7cc8909bfe153acaec7ddff12e4dc7377d0e2ec10e91"
+        }
+      },
+      {
+        "metadata": "Package: libespeak-ng1\nVersion: 1.52.0+dfsg-5build1",
+        "file": "libespeak-ng1_1.52.0+dfsg-5build1_amd64.deb",
+        "sha256": "73f01703f367560ca5f4acad10d00058ac103a0db46cf0a722e1eec8de2b7251",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libespeak-ng1/copyright",
+          "sha256": "bf721eede49d50f84bd2c50f96888629ced572b66ad4087c7a224c4a5e1193bb"
+        }
+      },
+      {
+        "metadata": "Package: libflac14\nVersion: 1.5.0+ds-5",
+        "file": "libflac14_1.5.0+ds-5_amd64.deb",
+        "sha256": "ea6cbd9399a646b073d36d8d33444f39f9f1dd63f5fa8cd18906573f51cc305b",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libflac14/copyright",
+          "sha256": "74f04017cc1845b98a2582f0b6a666524bcf7e61083f7c5e2f4298017ce875bc"
+        }
+      },
+      {
+        "metadata": "Package: libmd0\nVersion: 1.1.0-2build4",
+        "file": "libmd0_1.1.0-2build4_amd64.deb",
+        "sha256": "da684bb562e167721ae38366586aaee0b4cc580b9ee6d0220128b15ef9c5be75",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libmd0/copyright",
+          "sha256": "4365ef6255ad553fce69dd4bc0e093472c5d0e41b8ea493a545cc926ce171aa6"
+        }
+      },
+      {
+        "metadata": "Package: libmp3lame0\nVersion: 3.101~svn6525+dfsg-2ubuntu0.1",
+        "file": "libmp3lame0_3.101~svn6525+dfsg-2ubuntu0.1_amd64.deb",
+        "sha256": "bc765461943344b160f208572c296360011a9aa14ca886fac5865dac4ba8730c",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libmp3lame0/copyright",
+          "sha256": "0e4b0e56bb8e5b72a5d3af0629b617c9d78c2c8fb42a722f4b0a0d9bb3cac202"
+        }
+      },
+      {
+        "metadata": "Package: libmpg123-0t64\nVersion: 1.33.3-2",
+        "file": "libmpg123-0t64_1.33.3-2_amd64.deb",
+        "sha256": "5bb06d8890eecd357da520a21e592a93267bb4b48a4f8946d6d67c366f511bbd",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libmpg123-0t64/copyright",
+          "sha256": "96a8ad2037ec07953ee02ea7f9c56710e403d7d01be33500e9cd05d900998b7a"
+        }
+      },
+      {
+        "metadata": "Package: libogg0\nVersion: 1.3.6-2",
+        "file": "libogg0_1.3.6-2_amd64.deb",
+        "sha256": "9d62d5e64a55ecfc17a7aeb00a5ca5fdf095bd68c1c397146c81867bec35c31f",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libogg0/copyright",
+          "sha256": "e2436f126bda43a69b367287d9b3db08efd128f9a9576240bc9bbe0c86b031c8"
+        }
+      },
+      {
+        "metadata": "Package: libopus0\nVersion: 1.6.1-1",
+        "file": "libopus0_1.6.1-1_amd64.deb",
+        "sha256": "395f9e1bf29b804e42471e225976d69355c220bbfe469cb4ed387d36184b9bcc",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libopus0/copyright",
+          "sha256": "1580efdb9c8b11bc06510021d948c89dfee78c7eb9bd6d1ac5eb3ebdcbd82d29"
+        }
+      },
+      {
+        "metadata": "Package: libpcaudio0\nVersion: 1.3-1build1",
+        "file": "libpcaudio0_1.3-1build1_amd64.deb",
+        "sha256": "8b34341737d4c3ff830620413f11d9e2add1d049a47e475d4f97169a1bb2a705",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libpcaudio0/copyright",
+          "sha256": "05fdc049b7fb1b6f1f7013e5c68d0ddff2447cb5afcc215fb8c09155169bc41b"
+        }
+      },
+      {
+        "metadata": "Package: libpulse0\nVersion: 1:17.0+dfsg1-2ubuntu4",
+        "file": "libpulse0_1%3a17.0+dfsg1-2ubuntu4_amd64.deb",
+        "sha256": "d2998fcca587cb21447302a551bfaa6caa7052e7f00a1b041adf4237dd65e4a3",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libpulse0/copyright",
+          "sha256": "aff3f1d729168de06e34d940dc493cc305a6e4a6278f1ac38ee52ec0f69e342c"
+        }
+      },
+      {
+        "metadata": "Package: libsndfile1\nVersion: 1.2.2-4",
+        "file": "libsndfile1_1.2.2-4_amd64.deb",
+        "sha256": "678c7e95dea924d1ebe6c59879009dc3e7b61491bc32bd63bea200487d60a454",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libsndfile1/copyright",
+          "sha256": "66706015979e7ecb0ddfd155c00c5f70d0b69a5f7aa78481ee8ce31e3bf2139a"
+        }
+      },
+      {
+        "metadata": "Package: libsonic0\nVersion: 0.2.0-13build2",
+        "file": "libsonic0_0.2.0-13build2_amd64.deb",
+        "sha256": "29b13ed4a03146b042e9b36d2db981f8522e40363e1bbd692a4c0a351eb3d33f",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libsonic0/copyright",
+          "sha256": "c69b1356c1cd6695efdb5562f09e748e89dde311f3b8bf7beb030f46fa09e548"
+        }
+      },
+      {
+        "metadata": "Package: libsystemd0\nVersion: 259.5-0ubuntu3.4",
+        "file": "libsystemd0_259.5-0ubuntu3.4_amd64.deb",
+        "sha256": "d14d911e893527ee8d75855289bd180f94676607177aeae46946093584b493ce",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libsystemd0/copyright",
+          "sha256": "0fff813dc14e7c0a6d2bfba748ed17485fedb768b7fc9702b15261e81cfd357f"
+        }
+      },
+      {
+        "metadata": "Package: libvorbis0a\nVersion: 1.3.7-3build2",
+        "file": "libvorbis0a_1.3.7-3build2_amd64.deb",
+        "sha256": "e8577fd985c3a2bc61212be338207cc2a95e7d6892acaeccb3d455da13e4a480",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libvorbis0a/copyright",
+          "sha256": "47badad9f7f750f92cd12f44db08b6937e5b4d47935ba1cc60de0ea3a2adff9b"
+        }
+      },
+      {
+        "metadata": "Package: libvorbisenc2\nVersion: 1.3.7-3build2",
+        "file": "libvorbisenc2_1.3.7-3build2_amd64.deb",
+        "sha256": "b4230d0064eee971727b204e3d0644a4deb4a3d882eaac2304d379e7a5439f2a",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libvorbisenc2/copyright",
+          "sha256": "47badad9f7f750f92cd12f44db08b6937e5b4d47935ba1cc60de0ea3a2adff9b"
+        }
+      },
+      {
+        "metadata": "Package: libx11-6\nVersion: 2:1.8.13-1ubuntu0.1",
+        "file": "libx11-6_2%3a1.8.13-1ubuntu0.1_amd64.deb",
+        "sha256": "495363a728a03c9a9eee73439ec15a6ea78d6ec544a696c2e97dc5f3559547ae",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libx11-6/copyright",
+          "sha256": "0b380a7fd5b2228f26e9585e56f14812efd3350f3df307507d2bc055dfd8de3e"
+        }
+      },
+      {
+        "metadata": "Package: libx11-xcb1\nVersion: 2:1.8.13-1ubuntu0.1",
+        "file": "libx11-xcb1_2%3a1.8.13-1ubuntu0.1_amd64.deb",
+        "sha256": "23d0a8c5d8be6dc1ca39d5ea66c139ee56ab20116f11bae586e0dc1685682578",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libx11-xcb1/copyright",
+          "sha256": "0b380a7fd5b2228f26e9585e56f14812efd3350f3df307507d2bc055dfd8de3e"
+        }
+      },
+      {
+        "metadata": "Package: libxau6\nVersion: 1:1.0.11-1build2",
+        "file": "libxau6_1%3a1.0.11-1build2_amd64.deb",
+        "sha256": "6c0b2dd4654db30449754e6e1adf84a34d8a8d7dddeb75f8c9c463ad86645274",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libxau6/copyright",
+          "sha256": "118dd263a7b91c8f21c489f949bf13281dff9e766deea92b829dac4dce66601a"
+        }
+      },
+      {
+        "metadata": "Package: libxcb1\nVersion: 1.17.0-2ubuntu1",
+        "file": "libxcb1_1.17.0-2ubuntu1_amd64.deb",
+        "sha256": "069e64705e4a5721a223b4d22643bbaeaa63a6efbb56ebd3d7c4a31c4a26fa1c",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libxcb1/copyright",
+          "sha256": "4f7cb9db6bf6542f5417e3d674c780d3a5fd12291a54d63054fb576ee0cfae80"
+        }
+      },
+      {
+        "metadata": "Package: libxdmcp6\nVersion: 1:1.1.5-2",
+        "file": "libxdmcp6_1%3a1.1.5-2_amd64.deb",
+        "sha256": "d5d51e67063ff11e81698d8ee90bab5af763dc0a793929f33712bb74e7633768",
+        "role": "optional external developer fixture environment; not linked/bundled",
+        "license_notice": {
+          "path": "/tmp/djayvo-speech-tools/root/usr/share/doc/libxdmcp6/copyright",
+          "sha256": "aceaa93ea2bb08890d7f91987ecf6a03814309470c819c56fe79f7698e45ef53"
+        }
+      }
+    ]
+  },
+  "optional_schema_check": [
+    {
+      "name": "jsonschema",
+      "version": "4.19.2",
+      "license": "MIT",
+      "role": "preinstalled Python schema-verification tool/dependency; not linked/bundled",
+      "notice_files": []
+    },
+    {
+      "name": "attrs",
+      "version": "25.4.0",
+      "license": "MIT",
+      "role": "preinstalled Python schema-verification tool/dependency; not linked/bundled",
+      "notice_files": []
+    },
+    {
+      "name": "jsonschema-specifications",
+      "version": "2023.12.1",
+      "license": "MIT",
+      "role": "preinstalled Python schema-verification tool/dependency; not linked/bundled",
+      "notice_files": []
+    },
+    {
+      "name": "referencing",
+      "version": "0.36.2",
+      "license": "MIT",
+      "role": "preinstalled Python schema-verification tool/dependency; not linked/bundled",
+      "notice_files": []
+    },
+    {
+      "name": "rpds-py",
+      "version": "0.27.1",
+      "license": "MIT",
+      "role": "preinstalled Python schema-verification tool/dependency; not linked/bundled",
+      "notice_files": []
+    }
+  ]
 }

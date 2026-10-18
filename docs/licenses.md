@@ -8,7 +8,7 @@ The inventory is machine-readable in `dependencies.json`.
 
 | Component | Observed version | Role | License / distribution consequence |
 | --- | --- | --- | --- |
-| Original Djayvo engine, composition, and procedural voices | 0.1.0 | Project source | New project code; no third-party code license or sample attribution. No project-wide outbound license selected. |
+| Original Djayvo engine, composition, and procedural voices | 0.2.0 | Project source | New project code; no third-party code license or sample attribution. No project-wide outbound license selected. |
 | GCC/G++ | 15.2.0 | Build tool | GPL-3.0-or-later; compiler is not shipped with Djayvo. |
 | libstdc++, libgcc | GCC 15 toolchain | Linux system runtime, dynamically linked | GPL-3.0-or-later WITH GCC-exception-3.1; installed exception explicitly covers eligible proprietary independent modules. Runtime itself is not redistributed here. |
 | glibc, libm, dynamic loader | 2.43 | Linux system runtime, dynamically linked | LGPL-2.1-or-later and component notices in installed package copyright. No libc binaries are bundled. |
@@ -38,3 +38,28 @@ Original project code and generated composition have not been published, and
 this milestone does not select an open-source license for Djayvo. Third-party
 dependency licenses do not impose a new public source-code grant on this project
 under the recorded build arrangement.
+
+## Optional synthetic-speech fixture tool
+
+Continuation work used **eSpeak NG 1.52.0** as a separate local developer
+executable to generate original project text. Upstream identifies its software
+license as [GPL-3.0-or-later](https://github.com/espeak-ng/espeak-ng#license-information).
+The [license text](https://espeak.sourceforge.net/license.html) distinguishes
+running a program from conveying it and treats output according to its content.
+No executable, library, voice data, source code, or dictionary is linked into
+Djayvo or included in the transfer. It includes the local synthetic WAV and
+provenance, not a human recording or cloned voice. This is a developer fixture;
+production voice assets have not been selected. `scripts/make_fixture.py` also
+provides original procedural signals with **no external generator requirement**.
+
+Exact-version Ubuntu `.deb` packages were extracted under
+`/tmp/djayvo-speech-tools`, without installing/changing system packages. Package
+and notice hashes are recorded under `optional_fixture_tool` in
+`dependencies.json`. These are developer tools only; Djayvo still links only
+system C/C++ runtime/math libraries. Synthetic metadata is in
+`assets/manifests/m0-remix.json`. No human dataset/training rights are inferred.
+
+An additional schema conformance check used the already installed MIT-licensed
+`jsonschema` 4.19.2 and its installed Python dependencies. Their exact versions
+and declared licenses are recorded under `optional_schema_check`; no packages
+were installed for that check, and they are not engine/CTest dependencies.

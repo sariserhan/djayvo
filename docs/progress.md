@@ -1,109 +1,121 @@
-# M0a evidence and review
+# Djayvo: M0 continuation evidence
 
-Recorded **2026-10-17, America/New_York**, in
-`/home/ssari/projects/djayvo`. The repository initially contained only the master
-specification. It was read completely before implementation. A local Git
-repository named `djayvo` was initialized; no remote was created or contacted.
+Recorded 2026-10-17, America/New_York. The owner authorized continuing without
+per-step approval, then requested a Mac handoff after finishing Linux work. The
+master specification is unchanged. The original M0a record is
+[m0a-report.md](m0a-report.md), with its initial Git commit `02d0e18`.
 
-**M0a technical result: PASS. Overall review status: PARTIAL.** The code, automated
-tests, and actual WAV are ready for review; human listening has not been done.
-This is not a musical-quality approval. Work stops at M0a.
+**Linux implementation/technical checks: PASS. Overall M0: PARTIAL.** M0b/M0c
+code and three complete recordings exist. The demonstrated input is synthetic
+speech; actual human-recording quality/recognizability and actual Apple M5
+execution remain **NOT RUN**. M1 evaluation tools and a pilot are ready, without
+claiming human evidence. No iPhone UI, AI model, training, or live mode was built.
 
-| Validation gate | Status | Actual evidence |
+| Gate | Status | Evidence |
 | --- | --- | --- |
-| Linux release build | PASS | GCC 15.2.0, CMake 3.31.6; library, renderer and tests built |
-| C++ unit tests | PASS | 9/9 groups in `evidence/release-tests.log` |
-| End-to-end WAV integration | PASS | Independent Python decode, score checks, CLI failure checks; CTest 2/2 overall |
-| AddressSanitizer / UndefinedBehaviorSanitizer | PASS | Debug build; same CTest suites 2/2; no reported sanitizer findings |
-| Musical timing and long-render drift | PASS | 100001 rational-grid points beyond 24 h within half a frame; exact onset checks |
-| Note-off / release / polyphony | PASS | Scheduled onsets, ending silence, overlapping unisons, 128-voice boundary and rejection above it |
-| Instrument audio correctness | PASS | Piano/bass frequency and octave checks, velocity energy, nonzero distinct drum sounds |
-| Headroom and clipping | PASS | Overload limiter test; decoded demo peak -5.87654 dBFS; zero full-scale PCM samples |
-| Deterministic reproduction | PASS | Same seed and executable: byte-identical WAV across 512/257 blocks; C++ float equality across 1/257/4096 blocks |
-| Configurable rate/block/meter | PASS | C++ 8/44.1/48/96/192 kHz and 7/8; separate end-to-end 44.1 kHz render |
-| Processing-path allocation check | PASS | No observed C++ heap allocations during a complete render |
-| Dependency/license/source inventory | PASS | No third-party DSP or imported audio; exact local tool/runtime notices inventoried |
-| Master specification unchanged | PASS | SHA-256 matches the pre-implementation baseline |
-| Human listening and musical quality | NOT RUN | No listener observations collected |
-| macOS / Apple Silicon build and output | NOT RUN | Linux environment only; reproduction instructions provided |
-| iPhone/device integration | NOT RUN | Outside M0a; no UI or wrapper implemented |
-| Cross-platform byte-identical synthesis | NOT RUN | Not promised; libm/compiler floating-point differences may occur |
+| Linux release build | PASS | Portable C++17 library, two CLIs, C ABI |
+| C++ unit tests | PASS | 9 foundation + 6 remix test groups |
+| C ABI | PASS | Source compiled as C calls a real render; error bounds/ABI checked |
+| End-to-end tests | PASS | Original WAV, remix integration, comparison/listening tools; CTest 6/6 |
+| ASan/UBSan | PASS | Same six suites; final run has no findings |
+| Input decoding/bounds | PASS | PCM16/24/32 and float32, mono/stereo, odd chunks; corruption, NaN, silence, duration and permission rejection |
+| Resampling | PASS | Identity, duration, round trip, above-Nyquist rejection |
+| Analysis controls | PASS | Energy, phrases, onsets, coarse tone pitch; not a speech-recognition claim |
+| Clean hook preservation | PASS | Source waveform retained within gain/edge-fade/PCM tolerances |
+| Source-driven arrangement | PASS | Changed input rhythm changes chops and melodic response |
+| Three independent strategies | PASS | Different tempi, bass/drum/piano grammars and vocal treatment at the same seed |
+| Crop/event validation | PASS | No out-of-source reads; clean hook, overlap, release, duration and numeric constraints |
+| Master and stem output | PASS | Three 20–40 s masters, four non-silent stems each, score/frame trace/report |
+| Audio bounds/headroom | PASS | Independent decoding of all 16 master/stem/control WAVs; zero full-scale samples; finite engine output; silent final 100 ms |
+| Determinism | PASS | 48 kHz speech remixes byte-identical at 512/113 blocks; 16 kHz integration repeats too |
+| Formal export schemas | PASS | Preinstalled jsonschema 4.19.2 validates M0a/all remix exports; rejects recorded-kind without consent |
+| Dependencies/assets | PASS | No third-party DSP runtime; procedural instruments; optional external speech tool inventoried |
+| Master specification | PASS | Original SHA-256 unchanged |
+| Human recording / recognition | NOT RUN | No consented human fixture supplied |
+| Human enjoyment, realism, audible variety | NOT RUN | No actual listener observations |
+| M0d Apple M5 execution | NOT RUN | Mac handoff/bundle and exact comparison script prepared |
+| M1 blinded quality gate | NOT RUN | Synthetic pilot only; requires diverse consented sources and reviewers |
+| M2 GPU/model benchmark | NOT RUN | Missing quality baseline and Mac execution |
+| M3 iPhone/device | NOT RUN | Portable C ABI ready; no device/UI work claimed |
+| M4 live latency | NOT RUN | No real-time input/device measurements |
+| M5 production release | NOT RUN | No publication or monetization |
 
-The machine-readable summary is [evidence/report.json](evidence/report.json).
-Raw [release](evidence/release-tests.log) and
-[sanitizer](evidence/sanitizer-tests.log) logs retain the actual test output.
-The [integration evidence](evidence/integration-validation.json) includes
-independent measurements and 35 piano, 15 bass, and 47 drum notes (194 note-on/off
-events total). All named gates use PASS, PARTIAL, FAIL, or NOT RUN.
+The first sanitizer pass exposed a test-harness allocation/deallocation mismatch:
+the allocation counter replaced throwing `new` but omitted the nothrow form used
+by `stable_sort`. Matching overloads fixed it; checks were not disabled. The
+initial failing log is retained as `evidence/m0/sanitizer-initial-failure.log`.
+Final [release](evidence/m0/release-tests.log) and
+[sanitizer](evidence/m0/sanitizer-tests.log) logs supersede that run.
 
-## Output and measured audio
+## Recordings and measurements
 
-Audition `renders/m0a.wav` (local generated artifact; excluded from Git). Score
-and report are `renders/m0a.score.json` and `renders/m0a.report.json`. Small copies
-of the [score](evidence/m0a.score.json) and
-[engine report](evidence/m0a.report.json) are retained in Git. The code is in
-`core/`, with the executable in `build/djayvo_render`.
+Original input: `renders/fixtures/synthetic-speech.wav`, generated from the original
+project phrase, 3.21129 s at mono 22.05 kHz. It is explicitly **not a person’s
+recording**. Input SHA-256:
+`c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e`.
 
-| Measurement | Decoded WAV result |
-| --- | --- |
-| Encoding | Stereo, signed PCM16, 48 kHz |
-| Musical duration | Four 4/4 bars at 100 BPM = 9.6 s |
-| Export duration | 11.6 s / 556800 frames including 2 s tail |
-| File size | 2227244 bytes |
-| Sample peak | 0.5083618164 / -5.87654 dBFS |
-| RMS left / right | -22.80873 / -23.70774 dBFS, including tail |
-| Full-scale PCM samples | 0 |
-| Engine nonfinite samples | 0 |
-| Demo limiter-affected samples | 0 |
-| Final 100 ms peak | 0 |
-| Maximum adjacent-sample step | 0.22265625 (includes intentional percussion noise transients) |
+| Master | BPM | Duration | Decoded sample peak | RMS L / R, dBFS |
+| --- | --- | --- | --- | --- |
+| `renders/m0/remix.hiphop.wav` | 96 | 32.000 s | -7.02432 dBFS | -25.98990 / -26.80066 |
+| `renders/m0/remix.reggae.wav` | 80 | 32.000 s | -6.74673 dBFS | -26.00094 / -27.09516 |
+| `renders/m0/remix.experimental.wav` | 124 | 32.96775 s | -7.05592 dBFS | -25.08490 / -25.64241 |
 
-WAV SHA-256:
-`e183a5a2e009e29a54e9d7e61c22b47a3648d34c8b232797fc9cc2aa9afeaaee`.
-Hashes and sizes are in [evidence/artifacts.json](evidence/artifacts.json);
-independent PCM statistics are in [evidence/m0a.decoded.json](evidence/m0a.decoded.json).
-The mastering ceiling is -1 dBFS; no normalization is applied, and the demo
-retains headroom. RMS values are not integrated LUFS or true-peak measurements.
+All are stereo PCM16 at 48 kHz, including two-second release space. None reaches
+the master limiter’s knee. RMS includes the tail and is not integrated LUFS or
+true peak. Full source is heard from the beginning, then cropped/arranged calls
+and instrumental responses enter. Per strategy, `.piano.wav`, `.bass.wav`,
+`.drums.wav`, and `.vocals.wav` share the exact timeline. Each also has
+`.score.json`, `.events.tsv`, and `.report.json`.
 
-## Reproduction
+`renders/m0/remix.baseline.wav` is the repeated original-loop comparison control.
+`renders/listening-pilot/listener/` contains four anonymized, RMS-matched WAVs,
+the source, blank ratings, and pairwise comparisons. Organizer keys stay outside
+the listener folder. No listener IDs or ratings have been invented.
 
-The tested CMake was installed in an isolated `/tmp` virtual environment because
-the workstation lacked CMake. With CMake on PATH, run from the repository root:
+[Decoded measurements](evidence/m0/decoded-audio.json),
+[all artifact hashes](evidence/m0/artifacts.json),
+[48 kHz comparison self-test](evidence/m0/linux-comparison-selftest.json),
+[integration evidence](evidence/m0/integration-validation.json),
+[schema check](evidence/m0/schema-validation.json), and
+[machine-readable gates](evidence/m0/report.json) retain the observations. The
+Linux comparison explicitly leaves the Apple M5 gate NOT RUN.
+
+## Reproduction and next machine
+
+With CMake on PATH (here: `export PATH="/tmp/djayvo-build-tools/bin:$PATH"`):
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel 4
 ctest --test-dir build --output-on-failure
-./build/djayvo_render --output renders/m0a --seed 4123
-python3 scripts/inspect_wav.py renders/m0a.wav --report renders/m0a.decoded.json
+./build/djayvo_remix --input renders/fixtures/synthetic-speech.wav --synthetic-fixture --output renders/m0/remix --style all --stems
 ```
 
-Use `/tmp/djayvo-build-tools/bin/cmake` and
-`/tmp/djayvo-build-tools/bin/ctest` in this workspace if PATH has not been set.
-See [build.md](build.md) for installation, sanitizers, explicit integration
-verification, and the unexecuted Mac commands. [architecture.md](architecture.md)
-defines timing, synthesis, schema, mixer, and future integration boundaries;
-[licenses.md](licenses.md), [dependencies.json](dependencies.json), and
-`assets/manifests/m0a.json` record dependencies and source provenance.
+The prepared synthetic input travels in `dist/djayvo-mac-handoff.tar.gz` with Git
+history and the Linux reference masters. See
+[mac-agent-handoff.md](mac-agent-handoff.md) for verified transfer and
+`sh scripts/mac_smoke.sh`. A self-contained signal fixture can also be recreated
+with `python3 scripts/make_fixture.py`; the speech generator is optional. For
+real recordings, pass `--consent` only with permission to process that input.
 
-## Known limitations and next steps
+## Remaining limitations
 
-Instruments are basic procedural approximations; acoustic realism, timbral
-balance, groove, and enjoyment are unassessed. The arrangement is short and fixed
-in structure; seed changes alter dynamics/noise, not strategy. There is no input
-WAV loader, vocal transformation, AI, external score importer, tempo map, MIDI-file
-import/export, sample-rate conversion, effects chain, stems, or UI. An 8 kHz plan
-cannot use pitches beyond the synthesis bandwidth. Voice count is capped at 128;
-excess plans fail validation. WAV export uses PCM16 without dither and has the
-RIFF size limit. The memoryless limiter can change timbre when overloaded.
-Actual playback-device behavior, perceptual clicks, LUFS/true peak, mobile CPU,
-and macOS numerical differences have not been evaluated. A processing-path
-allocation check is not a live-audio certification.
+Timbres are basic synthetic approximations. No acoustic instrument library or
+perceptual evaluation exists. Analysis is energy/onset/autocorrelation DSP with
+no word boundaries or reliable semantic labels. Pitch may have octave errors.
+Varispeed couples pitch/time and can alias; independent pitch/time stretching,
+reverb/delay, tempo maps, external JSON import, and automatic fallback from an AI
+plan are absent. Silence is explicitly rejected. Mixing is fixed per grammar,
+with smooth clean-hook ducking; the soft-knee stage can color overloads.
 
-Recommended next action is human audition using
-[evaluation-protocol.md](evaluation-protocol.md) and review of these limitations.
-After review and explicit authorization, M0b should load a consented 2–5 s WAV,
-preserve a recognizable crop, and render the first 20–40 s vocal arrangement.
-Schedule the real Mac portability checkpoint early before the core expands.
-M0c, AI work, and iPhone UI remain unstarted. No further milestone is authorized
-by completing this one.
+WAV is PCM16 without dither, capped by RIFF size. Stems do not promise exact
+master reconstruction. The renderer is allocation-free in tests but not a live
+device certification. Exports are synchronous, not transactional/cancellable;
+run the C ABI off the UI/audio thread. Public C++ buffers are caller-owned and
+must remain immutable during rendering. No live, battery, device route/session,
+or privacy UI behavior is claimed.
+
+Next: execute the actual M5 checkpoint, audition, collect consented source clips,
+and use the preregistered [evaluation protocol](evaluation-protocol.md) to find
+musical defects. Improve from those observations before model experiments. The
+handoff carries all work needed to continue without per-step permission pauses.

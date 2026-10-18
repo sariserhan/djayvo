@@ -1,0 +1,43 @@
+{
+  "recorded_at": "2026-10-17T21:38:35.095430-04:00",
+  "project": "Djayvo",
+  "scope": "M0 continuation and M1 evaluation preparation",
+  "overall_status": "PARTIAL",
+  "gates": {
+    "linux_release_build": "PASS",
+    "ctest_release_6_suites": "PASS",
+    "ctest_asan_ubsan_6_suites": "PASS",
+    "input_decoding_validation": "PASS",
+    "sample_rate_conversion": "PASS",
+    "onset_phrase_pitch_analysis_on_synthetic_controls": "PASS",
+    "clean_hook_waveform_preservation": "PASS",
+    "source_crop_bounds": "PASS",
+    "three_distinct_plan_grammars": "PASS",
+    "same_build_seed_block_determinism": "PASS",
+    "clipping_and_finite_audio": "PASS",
+    "four_stems_per_strategy": "PASS",
+    "c_abi_offline_render": "PASS",
+    "comparison_and_blinded_packaging_tools": "PASS",
+    "human_recording_validation": "NOT RUN",
+    "human_listening_recognizability_and_quality": "NOT RUN",
+    "apple_m5_execution": "NOT RUN",
+    "m1_blinded_quality_baseline": "NOT RUN",
+    "m2_gpu_ai_benchmark": "NOT RUN",
+    "m3_ios_device": "NOT RUN",
+    "m4_live_latency": "NOT RUN",
+    "m5_production_release": "NOT RUN",
+    "formal_json_export_schemas": "PASS",
+    "default_48khz_speech_fixture_reproduction": "PASS"
+  },
+  "test_groups": {
+    "original_cpp": 9,
+    "remix_cpp": 6,
+    "c_abi": 1,
+    "python_suites": 3
+  },
+  "fixture_kind": "synthetic speech, not a human recording",
+  "resolved_test_failure": "Allocation-counting harness omitted nothrow new replacement used by stable_sort. Added matching overloads; sanitizers rerun without disabling checks.",
+  "initial_failure_log": "sanitizer-initial-failure.log",
+  "release_log": "release-tests.log",
+  "sanitizer_log": "sanitizer-tests.log"
+}

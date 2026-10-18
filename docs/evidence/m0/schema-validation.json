@@ -1,0 +1,13 @@
+{
+  "validator": "jsonschema",
+  "version": "4.19.2",
+  "results": {
+    "renders/m0a.score.json": "PASS",
+    "renders/m0/remix.reggae.score.json": "PASS",
+    "renders/m0/remix.hiphop.score.json": "PASS",
+    "renders/m0/remix.experimental.score.json": "PASS",
+    "renders/m0/remix.baseline.score.json": "PASS",
+    "recorded_input_without_consent_rejected": "PASS"
+  },
+  "role": "preinstalled optional development check; not required by engine or CTest"
+}

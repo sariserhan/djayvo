@@ -87,5 +87,5 @@ private:
     std::uint64_t expected_ = 0, written_ = 0;
 };
 void write_report(const AudioStats& stats, const PerformancePlan& plan,
-                  const Schedule& schedule, const std::string& path);
+                  const Schedule& schedule, const std::string& path, const char* milestone = "M0a");
 } // namespace djayvo

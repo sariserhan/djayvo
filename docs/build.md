@@ -1,5 +1,10 @@
 # Reproducible builds
 
+The continuation adds `djayvo_remix`, C-ABI smoke tests, and a total of **six**
+CTest suites. For the current engine and exact Mac checkpoint, also read
+[remix-architecture.md](remix-architecture.md) and
+[mac-agent-handoff.md](mac-agent-handoff.md).
+
 Validated Linux environment: x86_64, GCC/G++ 15.2.0, CMake 3.31.6, GNU Make 4.4.1,
 Python 3.14.4, glibc 2.43. Project requirements are CMake >=3.20, C++17, and
 Python >=3.9 for the integration test. No Python package is needed for tests.

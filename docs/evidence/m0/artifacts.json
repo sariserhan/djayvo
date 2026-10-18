@@ -1,0 +1,122 @@
+{
+  "renders/m0/remix.baseline.events.tsv": {
+    "sha256": "347ab463bf8b54051423280342495355822872db6b13feb8b018b1aca8d9a085",
+    "bytes": 15017
+  },
+  "renders/m0/remix.baseline.report.json": {
+    "sha256": "c72d7352e15114e5066d900d3d48f49206627c0a169d5e8411e64553ad48e4d1",
+    "bytes": 651
+  },
+  "renders/m0/remix.baseline.score.json": {
+    "sha256": "0676214b63361146d133581387ccb60b7f4c5dd7ceaf0051cc0f23941f2a0178",
+    "bytes": 26508
+  },
+  "renders/m0/remix.baseline.wav": {
+    "sha256": "8546ba7be74a217a580b9745d65c4f6a4382c336ebc7500e6b8896c94697ca3c",
+    "bytes": 6144044
+  },
+  "renders/m0/remix.experimental.bass.wav": {
+    "sha256": "4b1b0cef19b49899e223ebc044d6fd195f17a3d5499b7e4b20e1d6d04c342cf8",
+    "bytes": 6329852
+  },
+  "renders/m0/remix.experimental.drums.wav": {
+    "sha256": "4266c9f8c1f7454301c3442b7e055640ee59ba5c1e8e6a0e3489eb5ef2cd5d39",
+    "bytes": 6329852
+  },
+  "renders/m0/remix.experimental.events.tsv": {
+    "sha256": "67260a1f5f49923dee8def3204c7dec7ef86bfafa405c997632c8e4ac057b527",
+    "bytes": 16742
+  },
+  "renders/m0/remix.experimental.piano.wav": {
+    "sha256": "540e6692c85613827692f6fd806ed438fd8fc4a2c48cf287adfb09d82d70065e",
+    "bytes": 6329852
+  },
+  "renders/m0/remix.experimental.report.json": {
+    "sha256": "5f2183d86ddd4599d34335a6b8995711b5a6023111a76a8304153c595a5407d5",
+    "bytes": 654
+  },
+  "renders/m0/remix.experimental.score.json": {
+    "sha256": "6af6668137622f765d71745ebde4727d73681ecccca61291a61c818559a00e2a",
+    "bytes": 33410
+  },
+  "renders/m0/remix.experimental.vocals.wav": {
+    "sha256": "6f5d7b71549c597aa271c4f0b986b74a9448bc9a8cb802f26abb5ddd574704aa",
+    "bytes": 6329852
+  },
+  "renders/m0/remix.experimental.wav": {
+    "sha256": "3a9447ea9634b2b06d0887ba74c8d3f69dce10d21db202b3dd8d96ea3bfdf5ce",
+    "bytes": 6329852
+  },
+  "renders/m0/remix.hiphop.bass.wav": {
+    "sha256": "8665061d47dcae996c5bd962f5677806c049be6dbf9578a9114d4ac672bedf53",
+    "bytes": 6144044
+  },
+  "renders/m0/remix.hiphop.drums.wav": {
+    "sha256": "51067dc712823efe459638fe3fee4dc751f325e3e8b2dcce86a297714d2bfd9f",
+    "bytes": 6144044
+  },
+  "renders/m0/remix.hiphop.events.tsv": {
+    "sha256": "a097bdd1fc30e4a69c95e4fbf23d0dc2cedb3a29ad2b611e1b31f09c7e653bf3",
+    "bytes": 10135
+  },
+  "renders/m0/remix.hiphop.piano.wav": {
+    "sha256": "86fa5905766eb5cc9927a5e1b77ccba015fc0574dfd2022f653b0cab3f09297b",
+    "bytes": 6144044
+  },
+  "renders/m0/remix.hiphop.report.json": {
+    "sha256": "1ff6a70e45a462d110130d130e1b740f04a50bd643c63154f1e3eaa9d2d25b20",
+    "bytes": 647
+  },
+  "renders/m0/remix.hiphop.score.json": {
+    "sha256": "574d0cf13f425d41b28d72b1192a284c35d7042653717437745504b0fe0b70ca",
+    "bytes": 20579
+  },
+  "renders/m0/remix.hiphop.vocals.wav": {
+    "sha256": "75c88c1220f966a0edeefd23b1e3c7b8a165905341f942adf040d43306a54163",
+    "bytes": 6144044
+  },
+  "renders/m0/remix.hiphop.wav": {
+    "sha256": "a0db82b211698c1285884eb11cf232ed0e94bd7ad90a502c6f4fd891d41cf2d3",
+    "bytes": 6144044
+  },
+  "renders/m0/remix.reggae.bass.wav": {
+    "sha256": "8a2e3857241fa6c3684a7b7575c1f5e529c6d78ff12bd4c743c17e7fe4b27327",
+    "bytes": 6144044
+  },
+  "renders/m0/remix.reggae.drums.wav": {
+    "sha256": "999ba52b43402e84cef1c5583b8cc801c62bfe161c2c5055bd94922b19407b4c",
+    "bytes": 6144044
+  },
+  "renders/m0/remix.reggae.events.tsv": {
+    "sha256": "9bf89ad3ad98ffa231eb13cbb2134543fecb9620899187080f429f359ba5ca00",
+    "bytes": 10353
+  },
+  "renders/m0/remix.reggae.piano.wav": {
+    "sha256": "14f9adc0708c9793fd5d1a4a98387477bf6a83aa8dca4625799f62ac9efc088f",
+    "bytes": 6144044
+  },
+  "renders/m0/remix.reggae.report.json": {
+    "sha256": "e4a2b4fe4c3f4251ac34defc2ec4b5f8837ba1c87681f2e6f7a2be9eb85f8cfa",
+    "bytes": 647
+  },
+  "renders/m0/remix.reggae.score.json": {
+    "sha256": "83d10d1f01d8e36ff9d6f4427d917f6f6a7d7803294ca359e3f63d84b127bc00",
+    "bytes": 20492
+  },
+  "renders/m0/remix.reggae.vocals.wav": {
+    "sha256": "b67886301c6603f43b4e45b3069ff8cda646768f39f8442720fda22a13c8d54c",
+    "bytes": 6144044
+  },
+  "renders/m0/remix.reggae.wav": {
+    "sha256": "28e9cad577d21a11fe205647a5db9b6e3e39799cd0093ca1ee84dc60833676cc",
+    "bytes": 6144044
+  },
+  "renders/fixtures/synthetic-speech.wav": {
+    "sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "bytes": 141662
+  },
+  "renders/fixtures/synthetic-speech.provenance.json": {
+    "sha256": "cc6e23826b5b8f36bc2a9203e66d61b7e750795cb3f2f4c06cf300d35c7c6129",
+    "bytes": 747
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-10-17T21:38:07.569722-04:00",
+  "platform": "Linux x86_64 GCC 15.2.0 Release",
+  "conditions": "local repeated render, filesystem/cache warm; not a device or GPU benchmark",
+  "runs": [
+    {
+      "styles": "all",
+      "stems": true,
+      "elapsed_seconds": 8.215965245850384,
+      "command": [
+        "build/djayvo_remix",
+        "--input",
+        "renders/fixtures/synthetic-speech.wav",
+        "--synthetic-fixture",
+        "--output",
+        "renders/m0/remix",
+        "--style",
+        "all",
+        "--stems"
+      ]
+    },
+    {
+      "styles": "baseline",
+      "stems": false,
+      "elapsed_seconds": 1.6148483185097575,
+      "command": [
+        "build/djayvo_remix",
+        "--input",
+        "renders/fixtures/synthetic-speech.wav",
+        "--synthetic-fixture",
+        "--output",
+        "renders/m0/remix",
+        "--style",
+        "baseline"
+      ]
+    }
+  ],
+  "child_peak_rss_kib": 17944,
+  "artifact_hashes_reproduced": "PASS"
+}

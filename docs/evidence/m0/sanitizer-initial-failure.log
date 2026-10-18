@@ -1,0 +1,142 @@
+Start testing: Oct 18 01:26 UTC
+----------------------------------------------------------
+1/4 Testing: core
+1/4 Test: core
+Command: "/home/ssari/projects/djayvo/build-sanitize/djayvo_tests"
+Directory: /home/ssari/projects/djayvo/build-sanitize
+"core" start time: Oct 18 01:26 UTC
+Output:
+----------------------------------------------------------
+PASS: rational timing and long-render drift
+PASS: sample onsets, ordering, note-off and release
+PASS: seed and block-size determinism
+PASS: instrument frequency, octave, velocity and drum output
+PASS: pan, gain, finite audio and overload ceiling
+PASS: plan bounds, polyphony, silence and invalid requests
+PASS: configurable sample rates and 7/8 meter
+PASS: allocation-free processing
+PASS: WAV bounds, nonfinite and incomplete writes
+PASS: 9/9 test groups
+<end of output>
+Test time =   4.47 sec
+----------------------------------------------------------
+Test Passed.
+"core" end time: Oct 18 01:26 UTC
+"core" time elapsed: 00:00:04
+----------------------------------------------------------
+
+2/4 Testing: remix_core
+2/4 Test: remix_core
+Command: "/home/ssari/projects/djayvo/build-sanitize/djayvo_remix_tests"
+Directory: /home/ssari/projects/djayvo/build-sanitize
+"remix_core" start time: Oct 18 01:26 UTC
+Output:
+----------------------------------------------------------
+=================================================================
+==3697288==ERROR: AddressSanitizer: alloc-dealloc-mismatch (operator new vs free) on 0x74fe6c7e1480
+    #0 0x77ae6e52a3ff in free ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:51
+    #1 0x57bf7704612c in operator delete(void*, unsigned long) /home/ssari/projects/djayvo/core/tests/remix_tests.cpp:21
+    #2 0x57bf77135be8 in void std::__detail::__return_temporary_buffer<djayvo::RemixRenderer::Trigger>(djayvo::RemixRenderer::Trigger*, unsigned long) /usr/include/c++/15/bits/stl_tempbuf.h:118
+    #3 0x57bf77134f73 in std::_Temporary_buffer<__gnu_cxx::__normal_iterator<djayvo::RemixRenderer::Trigger*, std::vector<djayvo::RemixRenderer::Trigger, std::allocator<djayvo::RemixRenderer::Trigger> > >, djayvo::RemixRenderer::Trigger>::_Impl::~_Impl() /usr/include/c++/15/bits/stl_tempbuf.h:216
+    #4 0x57bf77133ea0 in std::_Temporary_buffer<__gnu_cxx::__normal_iterator<djayvo::RemixRenderer::Trigger*, std::vector<djayvo::RemixRenderer::Trigger, std::allocator<djayvo::RemixRenderer::Trigger> > >, djayvo::RemixRenderer::Trigger>::~_Temporary_buffer() /usr/include/c++/15/bits/stl_tempbuf.h:250
+    #5 0x57bf771250f5 in __stable_sort<__gnu_cxx::__normal_iterator<djayvo::RemixRenderer::Trigger*, std::vector<djayvo::RemixRenderer::Trigger> >, __gnu_cxx::__ops::_Iter_comp_iter<djayvo::RemixRenderer::RemixRenderer(const djayvo::RemixPlan&, const djayvo::AudioBuffer&, std::size_t, bool, int)::<lambda(const djayvo::RemixRenderer::Trigger&, const djayvo::RemixRenderer::Trigger&)> > > /usr/include/c++/15/bits/stl_algo.h:5039
+    #6 0x57bf771247cb in stable_sort<__gnu_cxx::__normal_iterator<djayvo::RemixRenderer::Trigger*, std::vector<djayvo::RemixRenderer::Trigger> >, djayvo::RemixRenderer::RemixRenderer(const djayvo::RemixPlan&, const djayvo::AudioBuffer&, std::size_t, bool, int)::<lambda(const djayvo::RemixRenderer::Trigger&, const djayvo::RemixRenderer::Trigger&)> > /usr/include/c++/15/bits/stl_algo.h:5108
+    #7 0x57bf7711d786 in djayvo::RemixRenderer::RemixRenderer(djayvo::RemixPlan const&, djayvo::AudioBuffer const&, unsigned long, bool, int) /home/ssari/projects/djayvo/core/audio/remix_renderer.cpp:37
+    #8 0x57bf77046c00 in render /home/ssari/projects/djayvo/core/tests/remix_tests.cpp:40
+    #9 0x57bf77049786 in preservation /home/ssari/projects/djayvo/core/tests/remix_tests.cpp:83
+    #10 0x57bf77084104 in void std::__invoke_impl<void, void (*&)()>(std::__invoke_other, void (*&)()) /usr/include/c++/15/bits/invoke.h:63
+    #11 0x57bf7707f6c3 in std::enable_if<is_invocable_r_v<void, void (*&)()>, void>::type std::__invoke_r<void, void (*&)()>(void (*&)()) /usr/include/c++/15/bits/invoke.h:113
+    #12 0x57bf770767aa in std::_Function_handler<void (), void (*)()>::_M_invoke(std::_Any_data const&) /usr/include/c++/15/bits/std_function.h:292
+    #13 0x57bf77065c96 in std::function<void ()>::operator()() const /usr/include/c++/15/bits/std_function.h:593
+    #14 0x57bf7704d694 in main /home/ssari/projects/djayvo/core/tests/remix_tests.cpp:129
+    #15 0x77ae6d42a600  (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a600) (BuildId: 066527e430a32768d82741e00b81eebb1a872294)
+    #16 0x77ae6d42a717 in __libc_start_main (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a717) (BuildId: 066527e430a32768d82741e00b81eebb1a872294)
+    #17 0x57bf77045f64 in _start (/home/ssari/projects/djayvo/build-sanitize/djayvo_remix_tests+0x23ef64) (BuildId: dc1ff9f9ce04aeee7503fc48bb0fb73adef63274)
+
+0x74fe6c7e1480 is located 0 bytes inside of 512-byte region [0x74fe6c7e1480,0x74fe6c7e1680)
+allocated by thread T0 here:
+    #0 0x77ae6e52ca4f in operator new(unsigned long, std::nothrow_t const&) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:114
+    #1 0x57bf77137167 in djayvo::RemixRenderer::Trigger* std::__detail::__get_temporary_buffer<djayvo::RemixRenderer::Trigger>(long) /usr/include/c++/15/bits/stl_tempbuf.h:94
+    #2 0x57bf771359c8 in std::pair<djayvo::RemixRenderer::Trigger*, long> std::get_temporary_buffer<djayvo::RemixRenderer::Trigger>(long) /usr/include/c++/15/bits/stl_tempbuf.h:152
+    #3 0x57bf77134d6e in std::_Temporary_buffer<__gnu_cxx::__normal_iterator<djayvo::RemixRenderer::Trigger*, std::vector<djayvo::RemixRenderer::Trigger, std::allocator<djayvo::RemixRenderer::Trigger> > >, djayvo::RemixRenderer::Trigger>::_Impl::_Impl(long) /usr/include/c++/15/bits/stl_tempbuf.h:209
+    #4 0x57bf77133ad6 in std::_Temporary_buffer<__gnu_cxx::__normal_iterator<djayvo::RemixRenderer::Trigger*, std::vector<djayvo::RemixRenderer::Trigger, std::allocator<djayvo::RemixRenderer::Trigger> > >, djayvo::RemixRenderer::Trigger>::_Temporary_buffer(__gnu_cxx::__normal_iterator<djayvo::RemixRenderer::Trigger*, std::vector<djayvo::RemixRenderer::Trigger, std::allocator<djayvo::RemixRenderer::Trigger> > >, long) /usr/include/c++/15/bits/stl_tempbuf.h:324
+    #5 0x57bf77124e60 in __stable_sort<__gnu_cxx::__normal_iterator<djayvo::RemixRenderer::Trigger*, std::vector<djayvo::RemixRenderer::Trigger> >, __gnu_cxx::__ops::_Iter_comp_iter<djayvo::RemixRenderer::RemixRenderer(const djayvo::RemixPlan&, const djayvo::AudioBuffer&, std::size_t, bool, int)::<lambda(const djayvo::RemixRenderer::Trigger&, const djayvo::RemixRenderer::Trigger&)> > > /usr/include/c++/15/bits/stl_algo.h:5025
+    #6 0x57bf771247cb in stable_sort<__gnu_cxx::__normal_iterator<djayvo::RemixRenderer::Trigger*, std::vector<djayvo::RemixRenderer::Trigger> >, djayvo::RemixRenderer::RemixRenderer(const djayvo::RemixPlan&, const djayvo::AudioBuffer&, std::size_t, bool, int)::<lambda(const djayvo::RemixRenderer::Trigger&, const djayvo::RemixRenderer::Trigger&)> > /usr/include/c++/15/bits/stl_algo.h:5108
+    #7 0x57bf7711d786 in djayvo::RemixRenderer::RemixRenderer(djayvo::RemixPlan const&, djayvo::AudioBuffer const&, unsigned long, bool, int) /home/ssari/projects/djayvo/core/audio/remix_renderer.cpp:37
+    #8 0x57bf77046c00 in render /home/ssari/projects/djayvo/core/tests/remix_tests.cpp:40
+    #9 0x57bf77049786 in preservation /home/ssari/projects/djayvo/core/tests/remix_tests.cpp:83
+    #10 0x57bf77084104 in void std::__invoke_impl<void, void (*&)()>(std::__invoke_other, void (*&)()) /usr/include/c++/15/bits/invoke.h:63
+    #11 0x57bf7707f6c3 in std::enable_if<is_invocable_r_v<void, void (*&)()>, void>::type std::__invoke_r<void, void (*&)()>(void (*&)()) /usr/include/c++/15/bits/invoke.h:113
+    #12 0x57bf770767aa in std::_Function_handler<void (), void (*)()>::_M_invoke(std::_Any_data const&) /usr/include/c++/15/bits/std_function.h:292
+    #13 0x57bf77065c96 in std::function<void ()>::operator()() const /usr/include/c++/15/bits/std_function.h:593
+    #14 0x57bf7704d694 in main /home/ssari/projects/djayvo/core/tests/remix_tests.cpp:129
+    #15 0x77ae6d42a600  (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a600) (BuildId: 066527e430a32768d82741e00b81eebb1a872294)
+    #16 0x77ae6d42a717 in __libc_start_main (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a717) (BuildId: 066527e430a32768d82741e00b81eebb1a872294)
+    #17 0x57bf77045f64 in _start (/home/ssari/projects/djayvo/build-sanitize/djayvo_remix_tests+0x23ef64) (BuildId: dc1ff9f9ce04aeee7503fc48bb0fb73adef63274)
+
+SUMMARY: AddressSanitizer: alloc-dealloc-mismatch /home/ssari/projects/djayvo/core/tests/remix_tests.cpp:21 in operator delete(void*, unsigned long)
+==3697288==HINT: if you don't care about these errors you may set ASAN_OPTIONS=alloc_dealloc_mismatch=0
+==3697288==ABORTING
+<end of output>
+Test time =   0.85 sec
+----------------------------------------------------------
+Test Failed.
+"remix_core" end time: Oct 18 01:26 UTC
+"remix_core" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/4 Testing: wav_integration
+3/4 Test: wav_integration
+Command: "/usr/bin/python3.14" "/home/ssari/projects/djayvo/tests/integration/verify_render.py" "--renderer" "/home/ssari/projects/djayvo/build-sanitize/djayvo_render" "--output" "/home/ssari/projects/djayvo/build-sanitize/integration"
+Directory: /home/ssari/projects/djayvo/build-sanitize
+"wav_integration" start time: Oct 18 01:26 UTC
+Output:
+----------------------------------------------------------
+PASS: score_contract_and_independent_tracks
+PASS: independent_duration_and_pcm_decode
+PASS: decoded_audio_headroom_balance_dc_and_tail
+PASS: same_seed_and_block_size_wav_sha256
+PASS: different_seed_changes_output
+PASS: 44100hz_end_to_end
+PASS: invalid_cli_and_unwritable_destination
+NOT RUN: human_listening
+NOT RUN: macos_portability
+Evidence: /home/ssari/projects/djayvo/build-sanitize/integration/validation.json
+<end of output>
+Test time =   4.39 sec
+----------------------------------------------------------
+Test Passed.
+"wav_integration" end time: Oct 18 01:26 UTC
+"wav_integration" time elapsed: 00:00:04
+----------------------------------------------------------
+
+4/4 Testing: remix_integration
+4/4 Test: remix_integration
+Command: "/usr/bin/python3.14" "/home/ssari/projects/djayvo/tests/integration/verify_remix.py" "--renderer" "/home/ssari/projects/djayvo/build-sanitize/djayvo_remix" "--output" "/home/ssari/projects/djayvo/build-sanitize/remix-integration"
+Directory: /home/ssari/projects/djayvo/build-sanitize
+"remix_integration" start time: Oct 18 01:26 UTC
+Output:
+----------------------------------------------------------
+PASS: three_complete_decoded_20_to_40_second_remixes
+PASS: same_source_sha256_and_bounded_sample_clips
+PASS: stereo_instrument_and_vocal_stems
+PASS: same_seed_different_block_wav_determinism
+PASS: all_styles_clipping_and_final_tail
+PASS: clean_hook_matches_original_waveform_with_gain_and_edge_fades
+PASS: independently_distinct_rhythm_and_arrangement_strategies
+PASS: changed_input_rhythm_changes_chops_and_instrument_response
+PASS: pcm24_pcm32_float32_stereo_and_odd_metadata_chunk
+PASS: silence_corruption_nan_format_duration_and_permission_rejections
+PASS: source_not_overwritten_including_stems_and_hardlinks
+NOT RUN: human_recording_and_recognizability
+NOT RUN: human_musical_quality_and_audible_style_difference
+NOT RUN: apple_m5_portability
+<end of output>
+Test time =  19.57 sec
+----------------------------------------------------------
+Test Passed.
+"remix_integration" end time: Oct 18 01:26 UTC
+"remix_integration" time elapsed: 00:00:19
+----------------------------------------------------------
+
+End testing: Oct 18 01:26 UTC

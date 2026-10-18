@@ -1,5 +1,9 @@
 # M0a listening review
 
+The foundation rubric below remains useful. The continuation now also supplies
+three source-driven arrangements and a prepared synthetic pilot; the M1 protocol
+follows. Human observation gates remain **NOT RUN**.
+
 Current status: **NOT RUN**. No human observations or musical-quality scores have
 been collected. Signal checks demonstrate a valid recording, not enjoyable music.
 
@@ -18,3 +22,64 @@ PARTIAL, FAIL, or NOT RUN with actual comments. A single audition can guide M0a
 review but cannot establish blinded musical-quality or enjoyment claims. The
 larger voice-remix comparison protocol belongs to later authorized milestones;
 there are no recordings, recognizable speech, or baseline-remix claims in M0a.
+
+## Prepared pilot and M1 preregistration
+
+Preparation status: **PASS** for tools/assets; M1 evidence status: **PARTIAL**.
+Actual human observations: **NOT RUN**. The synthetic fixture is not part of an
+eligible human speech dataset and cannot establish speech recognizability.
+
+The comparison control is an original four-bar instrumental arrangement repeated
+three times with full source at fixed positions. It represents the voice-over-
+fixed-beat baseline; it is not a downloaded commercial loop. The three candidate
+strategies derive note/chop timing from input. Render and prepare one block:
+
+```sh
+./build/djayvo_remix --input SOURCE.wav --consent --output renders/trial/remix --style all --stems
+./build/djayvo_remix --input SOURCE.wav --consent --output renders/trial/remix --style baseline
+python3 scripts/prepare_listening.py --renders renders/trial/remix --source SOURCE.wav --output renders/trial/blinded --seed 4123
+```
+
+For generated non-person fixtures, substitute `--synthetic-fixture` explicitly.
+Do not rerun packaging over existing response files; choose a new directory.
+Only give `listener/` to reviewers. The organizer key must remain concealed until
+responses are locked. Candidates are matched to one common full-file RMS target
+with headroom; this is not perceptual LUFS matching. Codecs/metadata do not expose
+strategy names, although genre itself is intentionally audible. The original
+source is included for recognition judgments. Files remain local by default.
+
+Before collecting scores, freeze this rubric, engine commit, fixture hashes,
+seed schedule, and technical acceptance criteria. Collect 20–50 diverse clips
+with documented permission for analysis/sampling and the intended review use:
+speech, syllabic speech, laughter, claps, noise, and silence/control. Include at
+least ten speech/syllabic clips from multiple speakers/sessions. Do not use
+unauthorized recordings. Render each eligible clip with the three strategies
+and three fixed seeds (4123, 4124, 4125); balance review blocks to avoid fatigue.
+Keep non-speech results separate from speech recognition. Silence should reject
+with a clear error and is an expected input-validation control, not music.
+
+Seek at least three independent reviewers per eligible block. Randomize coded
+candidate order and control side in paired comparisons. Record 1–5 ratings for
+groove, coherence, originality and enjoyment; yes/no for recognizability,
+share-worthiness and technical failure. Then compare each candidate with the
+control in `pairs.csv`, selecting a preferred code or tie. Do not substitute
+synthetic ratings, an AI judge, or a developer's signal inspection for listeners.
+
+Predeclared provisional gates from the master specification:
+
+| Gate | Rule | Current status |
+| --- | --- | --- |
+| Technically usable | >=85% of eligible energetic-input attempts export valid finite, bounded audio | NOT RUN on the human dataset |
+| Recognizability | >=90% yes on speech-containing accepted outputs | NOT RUN |
+| Enjoyment | >=70% ratings >=4/5 | NOT RUN |
+| Share intention | >=30% yes | NOT RUN |
+| Variety | Three independently arranged outputs; real reviewers confirm audible differences | PARTIAL — structures tested, listening missing |
+| Critical glitches/clipping | Zero in accepted outputs | PARTIAL — synthetic technical checks only |
+| Improvement over control | More than half of paired per-clip majority judgments prefer a custom candidate; report ties and each style separately | NOT RUN |
+
+Aggregate per clip first to avoid treating repeated seeds/reviewers as unrelated
+sources. Retain per-style failures and individual judgments; do not conceal a
+failed style behind an overall average. Report sample sizes and uncertainty;
+these thresholds are provisional product gates, not established user research.
+Keep M1 open until actual evidence is reviewed. Refine timbre, groove, or phrase
+selection from observed defects before model work or larger training proposals.

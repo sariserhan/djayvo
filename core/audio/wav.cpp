@@ -52,14 +52,14 @@ void WavWriter::close() {
     if (stream_.fail()) throw std::runtime_error("WAV close failed");
 }
 
-void write_report(const AudioStats& a, const PerformancePlan& p, const Schedule& s, const std::string& path) {
+void write_report(const AudioStats& a, const PerformancePlan& p, const Schedule& s, const std::string& path, const char* milestone) {
     std::ofstream out(path);
     out.imbue(std::locale::classic());
     out << std::setprecision(12);
     const double left = a.frames ? std::sqrt(a.square_sum_left / static_cast<double>(a.frames)) : 0;
     const double right = a.frames ? std::sqrt(a.square_sum_right / static_cast<double>(a.frames)) : 0;
     const bool accepted = a.frames == s.total_frames && a.nonfinite_samples == 0 && a.peak <= s.ceiling + 1e-7;
-    out << "{\n  \"project\": \"Djayvo\",\n  \"milestone\": \"M0a\",\n  \"technical_render\": \""
+    out << "{\n  \"project\": \"Djayvo\",\n  \"milestone\": \"" << milestone << "\",\n  \"technical_render\": \""
         << (accepted ? "PASS" : "FAIL") << "\",\n  \"listening_validation\": \"NOT RUN\",\n"
         << "  \"macos_portability\": \"NOT RUN\",\n  \"seed\": " << p.seed
         << ",\n  \"sample_rate\": " << s.sample_rate << ",\n  \"music_frames\": " << s.music_frames

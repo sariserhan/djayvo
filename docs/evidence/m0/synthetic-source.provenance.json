@@ -1,0 +1,14 @@
+{
+  "kind": "synthetic_speech",
+  "is_human_recording": false,
+  "microphone_used": false,
+  "text": "Say anything. Make music. This is Djayvo.",
+  "creator": "Djayvo synthetic fixture generator",
+  "sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+  "duration_seconds": 3.2112925170068025,
+  "tool_version": "eSpeak NG text-to-speech: 1.52.0  Data at: /usr/lib/x86_64-linux-gnu/espeak-ng-data",
+  "tool_linked_into_engine": false,
+  "rights_note": "Original input text/signal; local synthetic test output. No human speaker or cloned identity.",
+  "tool_license": "GPL-3.0-or-later (eSpeak NG); optional external developer executable",
+  "license_source": "https://github.com/espeak-ng/espeak-ng#license-information"
+}
