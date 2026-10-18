@@ -7,7 +7,15 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
-Latest local engine work: [selective tempo echo](vocal-echo.md).
+Latest local engine work: [hip-hop composition variety](hiphop-diversity.md).
+Default hip-hop now varies harmony, coordinated rhythms and swing by seed.
+Four matched owner pairs: `renders/hiphop-diversity-20261018/review/index.html`.
+M5/Linux release, exact 45-WAV portability, preserved voice and four-style WASM
+checks pass; human acceptance remains NOT RUN. Current smoke reference:
+`renders/arrangement-linux/hiphop-diversity-20261018/fixture`; use a fresh output
+directory. Old hip-hop scores replay exactly, but regeneration uses the new
+arranger. Other style outputs are unchanged. Final M5 sanitizer tests pass 10/10.
+Previous local engine work: [selective tempo echo](vocal-echo.md).
 Version 1.2 adds optional bounded echoes; 25 Mac/Linux owner WAVs agree exactly,
 with clean hooks unchanged. Private review: `renders/vocal-echo-20261018/index.html`.
 Human acceptance remains NOT RUN; apps still select dry default voice treatment.

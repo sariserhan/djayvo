@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-18",
+  "base_revision": "26d2b1f",
+  "scope": "Shared rule-planner hip-hop harmony, coordinated groove and return development",
+  "gates": {
+    "previous_defect_reproduced": "PASS",
+    "mac_release": "PASS",
+    "linux_arm64_release": "PASS",
+    "m5_smoke": "PASS",
+    "final_m5_sanitizers": "PASS",
+    "cross_platform_audio": "PASS",
+    "voice_preservation": "PASS",
+    "old_score_replay": "PASS",
+    "wasm": "PASS",
+    "private_bundle": "PASS",
+    "audition_browser": "PASS",
+    "perceptual_variety": "NOT RUN",
+    "human_listening": "NOT RUN",
+    "learned_contextual_direction": "NOT RUN",
+    "production_quality": "PARTIAL",
+    "whole_specification": "PARTIAL",
+    "physical_intel_rerun": "NOT RUN",
+    "phone_checks": "NOT RUN",
+    "deployment": "NOT RUN"
+  },
+  "native_suites": {
+    "mac_release": 10,
+    "linux_release": 10,
+    "remix_groups": 18,
+    "m5_sanitizers": 10
+  },
+  "structural_audit": {
+    "seeds": 64,
+    "harmonic_cycles": 4,
+    "drum_shapes": 12,
+    "instrumental_four_bar_shapes": 48,
+    "excluded": [
+      "voice",
+      "intro events",
+      "velocity",
+      "sample take"
+    ],
+    "adjacent_seed_drum_patterns_differ": true,
+    "quality_inference": false
+  },
+  "cross_platform": {
+    "wav_count": 45,
+    "maximum_pcm_difference": 0,
+    "rms_pcm_difference": 0,
+    "plan_decisions": "PASS",
+    "instrument_event_frames": "PASS",
+    "voice_events": "PASS"
+  },
+  "owner_comparison": {
+    "seeds": [
+      4123,
+      4124,
+      4125,
+      4126
+    ],
+    "before_body_shapes": 1,
+    "after_body_shapes": 4,
+    "voice_stems_identical": true,
+    "review_players": 8,
+    "loudness_lufs": -22,
+    "blinded": false
+  },
+  "old_score_replay": {
+    "status": "PASS",
+    "identical_artifacts": 8,
+    "identical_wavs": 5,
+    "planning": {
+      "mode": "imported",
+      "candidate_sha256": "516e064077b82fec1665a64484c3ccefb08d6719b4814ddd36670098cab7cb5b"
+    }
+  },
+  "unchanged_styles": {
+    "status": "PASS",
+    "styles": [
+      "reggae",
+      "experimental",
+      "club",
+      "baseline"
+    ],
+    "identical_wavs": 20
+  },
+  "preserved_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "environment": {
+    "mac": {
+      "system": "Darwin",
+      "machine": "arm64",
+      "cpu_brand": "Apple M5",
+      "memory_bytes": 17179869184,
+      "cpu_cores": 10,
+      "macos_version": "26.7.1",
+      "macos_build": "25G241",
+      "kernel_release": "25.6.0",
+      "xcode": "Xcode 27.1\nBuild version 27A9275",
+      "developer_directory": "/Applications/Xcode.app/Contents/Developer",
+      "sdk_version": "27.0",
+      "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+      "cmake": "cmake version 4.4.2",
+      "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+      "python_executable": "/Users/serhansari/Documents/projects/djayvo/.venv-build/bin/python",
+      "renderer_binary": "build-mac/djayvo_remix: Mach-O 64-bit executable arm64"
+    },
+    "linux": "linux-environment.log",
+    "node": "v22.23.1",
+    "emscripten": "6.0.1",
+    "browsers": [
+      {
+        "browser": "chromium",
+        "version": "149.0.7827.55",
+        "status": "PASS"
+      },
+      {
+        "browser": "webkit",
+        "version": "26.5",
+        "status": "PASS"
+      }
+    ]
+  },
+  "cloud_calls": 0,
+  "cloud_spend": 0,
+  "publication": false,
+  "limits": [
+    "Finite rule combinations may repeat; not a learned director.",
+    "Scores do not measure perceived novelty or musical quality.",
+    "Private owner source is not cleared for independent reviewer distribution.",
+    "Broader instrument/effect roles and formal specification gates remain open.",
+    "Apps use random seeds; integer-seed groove rotation is not cross-session duplicate detection."
+  ],
+  "sanitizer_seconds": 307.09
+}

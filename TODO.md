@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [selective tempo echo](docs/vocal-echo.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [hip-hop composition variety](docs/hiphop-diversity.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -16,7 +16,7 @@ the source of truth and is not modified by this tracker.
 | M0a — offline foundation | PASS | Portable engine, instruments, timing, WAV and automated tests |
 | M0b — own sound into music | PARTIAL | Consented voice renders; formal recognizability observations missing |
 | M0c — three musical strategies | PARTIAL | Owner accepts the current prototype as a start; production quality and formal listening remain open |
-| M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact echo plans/events and 25 matching owner WAVs; prior styles preserved |
+| M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact plans/events and 45 matching hip-hop/fixture WAVs; voice and other styles preserved |
 | M1 — musical quality baseline | NOT RUN | Frozen one-source/three-seed pilot and distinct blind packets prepared; diverse sources and formal human evaluation missing |
 | M2 — AI director benchmarks | PARTIAL | Offline import/fallback prerequisite complete; model integration and benchmark remain NOT RUN behind M1; separate pretrained feasibility trial measured |
 | M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
@@ -87,6 +87,12 @@ listening data, device observations, model prerequisites and release approval
 are not supplied by this instruction. The master remains unchanged.
 
 ## Next: review the current music
+
+Latest [hip-hop before/after pairs](renders/hiphop-diversity-20261018/review/index.html):
+four seeds at matched loudness. Hip-hop now varies chord cycles, coordinated
+bass/kick/chord rhythms and swing, with recurring phrases and developed returns.
+**Technical variety: PASS; perceived variety and new listening: NOT RUN.**
+This is a bounded rule bank; combinations can repeat. [Evidence](docs/hiphop-diversity.md).
 
 Latest [voice and instrumental comparisons](renders/voice-research-20261018/review/index.html):
 six 30-second club/hip-hop arrangements, matched repeating-voice controls and
@@ -197,6 +203,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P30 | PASS | Strict offline JSON plan replay, explicit deterministic fallback, completion receipts, adversarial tests and actual M5/Linux/WASM comparisons | [Evidence](docs/plan-import.md) |
 | [x] | P31 | PASS | Independent voice pitch/duration controls, bounded 1.1 import/export, preserved clean hooks, owner comparisons and fixed 32-bit resampling overflow | [Evidence](docs/voice-transforms.md) |
 | [x] | P32 | PASS | Bounded tempo echo with clean-hook clearance, stereo decay, 1.2 plan import/export, private owner comparisons and actual M5/Linux/WASM checks | [Evidence](docs/vocal-echo.md) |
+| [x] | P33 | PASS | Hip-hop harmonic/rhythmic seed variety, recurring phrases and developed returns; 64-seed structural audit, four owner comparisons, exact M5/Linux/WASM agreement | [Evidence](docs/hiphop-diversity.md) |
 
 ## Engineering backlog
 
@@ -250,6 +257,12 @@ is needed. Prioritize by recorded listening defects and product requirements.
 - [ ] **E12 — NOT RUN:** Remaining master-spec engine breadth: articulated guitar,
   organ and dedicated pad/lead roles, tempo/automation maps. Independent pitch/time
   and expanded effects remain under E03/E04. Do not call the engine feature-complete.
+
+- [ ] **E13 — PARTIAL:** Hip-hop structural variety implemented: four chord cycles,
+  four coordinated rhythm choices, three swing amounts and return development.
+  Adjacent seeds vary rhythm; 64-seed audit and matched owner comparisons pass
+  technical checks. Perceived variety, filtering against recent takes, broader
+  styles and learned contextual direction remain open; finite combinations can repeat. [Evidence](docs/hiphop-diversity.md).
 
 ## M1: formal musical-quality evaluation
 

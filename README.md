@@ -13,7 +13,8 @@ Track past work, open issues and future milestones in [TODO.md](TODO.md).
 The [complete specification ledger](docs/spec-status.md) records remaining code
 and evidence gates; overall completion is **PARTIAL**.
 
-Latest local engine work: [selective tempo echo and private comparisons](docs/vocal-echo.md),
+Latest local engine work: [hip-hop composition variety and matched owner comparisons](docs/hiphop-diversity.md).
+Previous effects work: [selective tempo echo and private comparisons](docs/vocal-echo.md),
 building on [independent voice pitch/timing](docs/voice-transforms.md),
 using [validated JSON plan replay and fallback](docs/plan-import.md).
 Latest creative research: [selective voice over GPU instrumentals](docs/voice-research.md).

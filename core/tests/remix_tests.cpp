@@ -10,7 +10,9 @@
 #include <iostream>
 #include <limits>
 #include <new>
+#include <set>
 #include <stdexcept>
+#include <tuple>
 
 namespace { std::atomic<std::size_t> allocations{0}; }
 void* operator new(std::size_t n) {
@@ -195,6 +197,57 @@ void varied_openings() {
             check(p.clips[clean.clip].begin==0 && p.clips[clean.clip].end==a.mono.size(),"opening lost the full clean phrase");
         }
         check(clean_first && instrument_first && chop_first,"seeds do not vary the opening treatment");
+    }
+}
+void hiphop_composition() {
+    const auto a=source();const auto features=djayvo::analyze(a);
+    using Shape=std::vector<std::tuple<int,djayvo::Tick,djayvo::Tick,int>>;
+    const auto shape=[](const djayvo::RemixPlan& p,int first,int bars,int instrument=-1) {
+        Shape result;const auto bar=djayvo::ticks_per_bar(p.music);
+        for (const auto& track:p.music.tracks) {
+            if (instrument>=0 && static_cast<int>(track.instrument)!=instrument) continue;
+            for (const auto& note:track.notes)
+                if (note.start>=first*bar && note.start<(first+bars)*bar)
+                    result.emplace_back(static_cast<int>(track.instrument),note.start-first*bar,note.duration,note.pitch);
+        }
+        std::sort(result.begin(),result.end());return result;
+    };
+    std::set<Shape> compositions,grooves;
+    std::set<std::vector<int>> harmonies;
+    Shape previous_groove;
+    for (std::uint32_t seed=0;seed<64;++seed) {
+        const auto p=djayvo::make_remix(a,features,djayvo::Strategy::hiphop,seed,true,false);
+        const auto bar=djayvo::ticks_per_bar(p.music);
+        compositions.insert(shape(p,2,4));
+        const auto groove=shape(p,2,1,static_cast<int>(djayvo::Instrument::drums));
+        check(groove!=previous_groove,"adjacent hiphop seeds repeat the same drum rhythm");
+        grooves.insert(groove);previous_groove=groove;
+        std::vector<int> roots;
+        for (const auto& track:p.music.tracks) for (const auto& note:track.notes) {
+            if (track.instrument==djayvo::Instrument::bass && note.start>=2*bar && note.start<6*bar && note.start%bar==0)
+                roots.push_back(note.pitch);
+            if (track.instrument!=djayvo::Instrument::drums) {
+                const int degree=(note.pitch-p.tonic_midi+120)%12;
+                check(degree==0 || degree==2 || degree==3 || degree==5 || degree==7 || degree==8 || degree==10,
+                      "hiphop harmony escaped natural minor");
+            }
+        }
+        harmonies.insert(roots);
+        check(shape(p,2,1,static_cast<int>(djayvo::Instrument::drums))==shape(p,4,1,static_cast<int>(djayvo::Instrument::drums)),
+              "hiphop groove does not recur within the phrase");
+        check(shape(p,3,1)!=shape(p,9,1),"hiphop return lacks a developed response");
+        check(shape(p,2,4)==shape(djayvo::make_remix(a,features,djayvo::Strategy::hiphop,seed,true,false),2,4),
+              "hiphop composition is not repeatable");
+    }
+    // Ignore velocity, sample take, voice and intro: they cannot satisfy structural variety.
+    std::cout<<"Hip-hop 64-seed audit: "<<harmonies.size()<<" harmonic cycles, "<<grooves.size()
+             <<" drum shapes, "<<compositions.size()<<" four-bar instrumental shapes\n";
+    check(harmonies.size()>=4,"hiphop seeds share one harmonic cycle");
+    check(grooves.size()>=4,"hiphop seeds share one drum rhythm");
+    check(compositions.size()>=12,"hiphop seeds do not vary the musical body");
+    for (const auto seed:{0U,4294967295U}) {
+        const auto p=djayvo::make_remix(a,features,djayvo::Strategy::hiphop,seed,true,false);
+        check(render(p,a,113)==render(p,a,257),"hiphop edge seed render depends on block size");
     }
 }
 void pause_aware_chops() {
@@ -540,6 +593,7 @@ int main() {
         {"consent, crop, transform, polyphony and duration rejection",validation},
         {"quantized chop spacing and both clean hooks at 2/3/5 seconds",vocal_spacing},
         {"seeded clean, instrumental and fragment openings",varied_openings},
+        {"hiphop harmonic/rhythmic seed diversity, recurring motifs and developed returns",hiphop_composition},
         {"pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates",pause_aware_chops},
         {"subtraction and return across styles and seeds",arrangement_contrast},
         {"instrument room timing, stereo, dry speech and finite tail",room_processing},

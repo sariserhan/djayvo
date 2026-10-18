@@ -10,6 +10,18 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest arrangement continuation, 2026-10-18: [hip-hop composition variety](hiphop-diversity.md).
+The previous engine fails the new structural regression: seeds share one harmonic
+cycle. The revised shared planner selects chord/rhythm/swing choices and develops
+the return. **M5/Linux release 10/10, 64-seed structural audit, 45 identical cross-OS
+WAVs, unchanged voice/other styles, old-score replay, four-style WASM agreement
+and matched browser audition: PASS.** Final-source M5 ASan/UBSan also passes
+10/10 suites. Four owner pairs are ready; **new listening: NOT RUN;
+E13 and production quality: PARTIAL.** No learned director, cloud call, phone
+work or publication. The immutable master, supplied fixture and owner source
+remain unchanged. Current smoke reference is
+`renders/arrangement-linux/hiphop-diversity-20261018/fixture`.
+
 Latest effect continuation, 2026-10-18: [selective tempo echo](vocal-echo.md).
 Optional 1.2 plans add three fading stereo repeats to selected fragments, with
 native clean-hook clearance, compiled voice limits and finite-tail checks.
@@ -334,7 +346,7 @@ No formal perceptual evaluation exists. Analysis is energy/onset/autocorrelation
 no word boundaries or reliable semantic labels. Pitch may have octave errors.
 Varispeed couples pitch/time and can alias (current generated chops use rate 1).
 Finite instrumental early reflections, bounded independent pitch/time transforms
-and opt-in three-repeat tempo echoes exist. The latter are opt-in through 1.1 plans, without formant correction or
+and opt-in three-repeat tempo echoes exist. Transforms use opt-in 1.1 plans and echoes use 1.2, without formant correction or
 human acceptance; feedback reverb/delay and tempo maps are absent. Offline CLI JSON import and
 explicit rule fallback are now implemented; provider-connected AI planning is
 absent. Silence is explicitly rejected. Mixing is fixed per grammar,

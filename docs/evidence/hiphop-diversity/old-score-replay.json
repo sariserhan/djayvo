@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "identical_artifacts": 8,
+  "identical_wavs": 5,
+  "planning": {
+    "mode": "imported",
+    "candidate_sha256": "516e064077b82fec1665a64484c3ccefb08d6719b4814ddd36670098cab7cb5b"
+  }
+}

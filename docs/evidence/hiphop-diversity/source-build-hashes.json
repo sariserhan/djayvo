@@ -1,0 +1,6 @@
+{
+  "core/arrangement/remix.cpp": "219fc176a91c03eb66ea6088e0b2204af8145c7af343807035eb63d94ecb6b3c",
+  "core/tests/remix_tests.cpp": "758766ee2715bec0d57fed9f633fb212c60f58247fe8923e4c4abd4dd87288e5",
+  "build-mac/djayvo_remix": "7b0590d6e6a64da8ac9fa042d8fad2ff814f6cc280bf6c595a8ff3545e2649b3",
+  "build-web/djayvo_web.wasm": "cc50ab8c1a79aff94765ec30a7489d4bcb8f7fb8b8342cf1261fa75ff49312ff"
+}

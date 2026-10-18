@@ -1,0 +1,100 @@
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-mac
+[ 54%] Built target djayvo_core
+[ 62%] Built target djayvo_render
+[ 70%] Built target djayvo_tests
+[ 79%] Built target djayvo_remix_tests
+[ 91%] Built target djayvo_remix
+[100%] Built target djayvo_c_smoke
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+      Start  1: core
+ 1/10 Test  #1: core .............................   Passed    0.35 sec
+      Start  2: remix_core
+ 2/10 Test  #2: remix_core .......................   Passed    3.90 sec
+      Start  3: c_abi
+ 3/10 Test  #3: c_abi ............................   Passed    0.17 sec
+      Start  4: acoustic_assets
+ 4/10 Test  #4: acoustic_assets ..................   Passed    0.54 sec
+      Start  5: electronic_assets
+ 5/10 Test  #5: electronic_assets ................   Passed    0.10 sec
+      Start  6: wav_integration
+ 6/10 Test  #6: wav_integration ..................   Passed    0.67 sec
+      Start  7: remix_integration
+ 7/10 Test  #7: remix_integration ................   Passed    3.97 sec
+      Start  8: tooling
+ 8/10 Test  #8: tooling ..........................   Passed    1.25 sec
+      Start  9: evaluation_preparation
+ 9/10 Test  #9: evaluation_preparation ...........   Passed   14.18 sec
+      Start 10: plan_import
+10/10 Test #10: plan_import ......................   Passed    2.97 sec
+
+100% tests passed out of 10
+
+Total Test time (real) =  28.09 sec
+PASS: renders/hiphop-diversity-smoke-20261018/remix.hiphop.wav
+PASS: renders/hiphop-diversity-smoke-20261018/remix.reggae.wav
+PASS: renders/hiphop-diversity-smoke-20261018/remix.experimental.wav
+PASS: complete export renders/hiphop-diversity-smoke-20261018/remix.complete.json
+Listening/recognizability: NOT RUN
+PASS: 24 complete, unchanged export artifacts
+{
+  "comparisons": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "candidate_environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "cpu_brand": "Apple M5",
+    "memory_bytes": 17179869184,
+    "cpu_cores": 10,
+    "macos_version": "26.7.1",
+    "macos_build": "25G241",
+    "kernel_release": "25.6.0",
+    "xcode": "Xcode 27.1\nBuild version 27A9275",
+    "developer_directory": "/Applications/Xcode.app/Contents/Developer",
+    "sdk_version": "27.0",
+    "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "cmake": "cmake version 4.4.2",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "python_executable": "/Users/serhansari/Documents/projects/djayvo/.venv-build/bin/python",
+    "renderer_binary": "build-mac/djayvo_remix: Mach-O 64-bit executable arm64"
+  },
+  "comparison_gate": "PASS",
+  "apple_m5_gate": "PASS",
+  "tolerances": {
+    "maximum_pcm_error": 0.001,
+    "rms_pcm_error": 0.0001
+  },
+  "listening_gate": "NOT RUN"
+}
+Audition the three Mac renders and record real listening observations separately.

@@ -1,0 +1,206 @@
+{
+  "after-4123.hiphop.score.json": {
+    "status": "PASS",
+    "source": "derived from exact score tick clock and crop duration; instrument frames are in events.tsv",
+    "events": [
+      {
+        "begin_frame": 240000,
+        "end_frame": 473376,
+        "clean": true
+      },
+      {
+        "begin_frame": 480000,
+        "end_frame": 486408,
+        "clean": false
+      },
+      {
+        "begin_frame": 525000,
+        "end_frame": 537050,
+        "clean": false
+      },
+      {
+        "begin_frame": 720000,
+        "end_frame": 953376,
+        "clean": true
+      },
+      {
+        "begin_frame": 960000,
+        "end_frame": 971325,
+        "clean": false
+      },
+      {
+        "begin_frame": 1005000,
+        "end_frame": 1029770,
+        "clean": false
+      },
+      {
+        "begin_frame": 1200000,
+        "end_frame": 1219827,
+        "clean": false
+      },
+      {
+        "begin_frame": 1245000,
+        "end_frame": 1260492,
+        "clean": false
+      }
+    ]
+  },
+  "after-4124.hiphop.score.json": {
+    "status": "PASS",
+    "source": "derived from exact score tick clock and crop duration; instrument frames are in events.tsv",
+    "events": [
+      {
+        "begin_frame": 240000,
+        "end_frame": 473376,
+        "clean": true
+      },
+      {
+        "begin_frame": 0,
+        "end_frame": 12007,
+        "clean": false
+      },
+      {
+        "begin_frame": 45000,
+        "end_frame": 65460,
+        "clean": false
+      },
+      {
+        "begin_frame": 480000,
+        "end_frame": 486408,
+        "clean": false
+      },
+      {
+        "begin_frame": 525000,
+        "end_frame": 537050,
+        "clean": false
+      },
+      {
+        "begin_frame": 720000,
+        "end_frame": 953376,
+        "clean": true
+      },
+      {
+        "begin_frame": 960000,
+        "end_frame": 971325,
+        "clean": false
+      },
+      {
+        "begin_frame": 1005000,
+        "end_frame": 1029770,
+        "clean": false
+      },
+      {
+        "begin_frame": 1200000,
+        "end_frame": 1219827,
+        "clean": false
+      },
+      {
+        "begin_frame": 1245000,
+        "end_frame": 1260492,
+        "clean": false
+      }
+    ]
+  },
+  "after-4125.hiphop.score.json": {
+    "status": "PASS",
+    "source": "derived from exact score tick clock and crop duration; instrument frames are in events.tsv",
+    "events": [
+      {
+        "begin_frame": 0,
+        "end_frame": 233376,
+        "clean": true
+      },
+      {
+        "begin_frame": 240000,
+        "end_frame": 256071,
+        "clean": false
+      },
+      {
+        "begin_frame": 285000,
+        "end_frame": 296281,
+        "clean": false
+      },
+      {
+        "begin_frame": 480000,
+        "end_frame": 486408,
+        "clean": false
+      },
+      {
+        "begin_frame": 525000,
+        "end_frame": 537050,
+        "clean": false
+      },
+      {
+        "begin_frame": 720000,
+        "end_frame": 953376,
+        "clean": true
+      },
+      {
+        "begin_frame": 960000,
+        "end_frame": 971325,
+        "clean": false
+      },
+      {
+        "begin_frame": 1005000,
+        "end_frame": 1029770,
+        "clean": false
+      },
+      {
+        "begin_frame": 1200000,
+        "end_frame": 1219827,
+        "clean": false
+      },
+      {
+        "begin_frame": 1245000,
+        "end_frame": 1260492,
+        "clean": false
+      }
+    ]
+  },
+  "after-4126.hiphop.score.json": {
+    "status": "PASS",
+    "source": "derived from exact score tick clock and crop duration; instrument frames are in events.tsv",
+    "events": [
+      {
+        "begin_frame": 240000,
+        "end_frame": 473376,
+        "clean": true
+      },
+      {
+        "begin_frame": 480000,
+        "end_frame": 486408,
+        "clean": false
+      },
+      {
+        "begin_frame": 525000,
+        "end_frame": 537050,
+        "clean": false
+      },
+      {
+        "begin_frame": 720000,
+        "end_frame": 953376,
+        "clean": true
+      },
+      {
+        "begin_frame": 960000,
+        "end_frame": 971325,
+        "clean": false
+      },
+      {
+        "begin_frame": 1005000,
+        "end_frame": 1029770,
+        "clean": false
+      },
+      {
+        "begin_frame": 1200000,
+        "end_frame": 1219827,
+        "clean": false
+      },
+      {
+        "begin_frame": 1245000,
+        "end_frame": 1260492,
+        "clean": false
+      }
+    ]
+  }
+}

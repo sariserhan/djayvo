@@ -131,7 +131,19 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         piano.gain_db=-12;piano.pan=-0.30;bass.gain_db=-7;drums.gain_db=-3;drums.pan=0;
         r.instrument_room_mix=.28;
     }
-    const std::array<int,4> progression{{0,-4,-7,0}}; // i, VI, iv, i in minor
+    // Choose a coherent phrase once; velocity draws must not change its harmony/rhythm.
+    std::uint32_t composition=seed^0x83d2e7a1U;
+    composition^=composition<<13U;composition^=composition>>17U;composition^=composition<<5U;
+    const std::array<std::array<int,4>,4> hiphop_progressions{{
+        {{0,-4,-7,0}},{{0,-7,-4,-2}},{{0,-2,-4,-7}},{{0,-4,-2,0}}}};
+    const auto harmony=(composition>>4U)%4U,groove=seed%4U;
+    const auto progression=strategy==Strategy::hiphop?hiphop_progressions[harmony]:hiphop_progressions[0];
+    const Tick swing=std::array<Tick,3>{{q/24,q/12,q/8}}[(composition>>20U)%3U];
+    const Tick chord_length=std::array<Tick,4>{{3*q/2,q,2*q,3*q/4}}[groove];
+    const Tick chord_reply=std::array<Tick,4>{{5*q/2,7*q/4,3*q,9*q/4}}[groove];
+    const Tick kick_reply=std::array<Tick,4>{{9*q/4,7*q/4,11*q/4,3*q}}[groove];
+    const Tick bass_pickup=std::array<Tick,4>{{7*q/4,3*q/2,9*q/4,5*q/4}}[groove];
+    const Tick bass_reply=std::array<Tick,4>{{5*q/2,11*q/4,3*q,5*q/2}}[groove];
     std::array<int,3> previous_chord{{55,60,64}};
     std::vector<Tick> motif;
     for (auto onset : a.onsets) {
@@ -148,9 +160,11 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         const bool breakdown=b>=break_bar && b<return_bar;
         const bool returning=b>=return_bar;
         const bool last=b==p.bars-1;
-        const int step=last?0:club?(b%4<2?0:-4):progression[static_cast<std::size_t>((std::max(2,b)-2)%4)];
+        const int phrase_start=strategy==Strategy::hiphop && returning?return_bar:2;
+        const auto phrase_bar=static_cast<std::size_t>((std::max(phrase_start,b)-phrase_start)%4);
+        const int step=last?0:club?(b%4<2?0:-4):progression[phrase_bar];
         const int root=r.tonic_midi+step;
-        const bool major=step==-4;
+        const bool major=step==-4 || step==-2;
         // Choose a nearby inversion so each chord voice moves a short distance.
         std::array<int,3> voicing{{root,root+(major?4:3),root+7}};
         int best_distance=1000;
@@ -202,14 +216,17 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
             chord(0,3*q,intro?55:48);
             if (intro && b==1) drum(3*q,42,42,120);
         } else if (strategy==Strategy::hiphop) {
-            chord(0,last?3*q:3*q/2,76);
-            if (!breakdown && !last) chord(5*q/2,q/2,60);
+            chord(0,last?3*q:chord_length,76);
+            if (!last) chord(chord_reply,q/2,returning?68:60);
             bass_note(0,last?3*q:3*q/4,0,102);
-            if (!last && !breakdown) { bass_note(7*q/4,q/2,7,80); bass_note(5*q/2,q,12,87); }
-            drum(0,36,110); if (!last) drum(9*q/4,36,92);
+            if (!last) { bass_note(bass_pickup,q/2,7,80); bass_note(bass_reply,q,returning && b%2?7:12,87); }
+            drum(0,36,110); if (!last) drum(kick_reply+(returning && b%2?q/4:0),36,92);
             if (!last) { drum(q,38,100); drum(3*q,38,106); }
-            if (!last)
-                for (int h=0;h<8;++h) drum(h*q/2+(h%2?q/12:0),42,h%2?48:70,120);
+            if (!last) {
+                for (int h=0;h<8;++h)
+                    if (groove!=3 || returning || h%4!=1) drum(h*q/2+(h%2?swing:0),42,h%2?48:70,120);
+                if (returning && b%2) {drum(13*q/4,42,42,120);drum(15*q/4,42,50,120);}
+            }
         } else if (strategy==Strategy::reggae) {
             if (last) chord(0,3*q,77);
             else for (int beat=0;beat<4;++beat) chord(beat*q+q/2,q/5,beat%2?69:77);
