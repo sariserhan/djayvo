@@ -4,7 +4,15 @@
 without per-step approval. This revision addresses the reported awkward
 experimental style, artificial instrument sound and repetitive openings, using
 the measured references as arrangement guidance. **Technical gates: PASS.
-Overall musical quality: PARTIAL; new listening observations: NOT RUN.**
+Overall musical quality and owner review: PARTIAL; formal evaluation: NOT RUN.**
+
+Subsequent owner feedback on 2026-10-17: “for now they are okay but we have to
+improve in a production quality but as a start they are fine.” This is provisional
+acceptance of the current prototype. No specific files, seeds, timestamps or
+individual quality ratings were supplied; it does not establish that all nine
+mixes were auditioned or that instrument realism is accepted. Production quality
+remains an explicit development goal. Automated evidence below retains the
+listening status at the time those checks ran.
 
 ## Implemented
 
@@ -96,7 +104,8 @@ the changed composition and sound processing, not portability errors.
 | Review files and browser controls | PASS | 15 matched files; muted browser playback check |
 | Reference signal analysis | PASS | All three supplied files, including 10:34 Blood Club |
 | Original owner listening | PARTIAL | Accepted as a start, with reported defects |
-| New listening / instrument realism | NOT RUN | Requires actual listener observations |
+| Current owner listening | PARTIAL | Prototype accepted as a start; production quality still needs improvement |
+| Specific instrument realism / per-style ratings | NOT RUN | No individual ratings or defect timestamps supplied |
 | Formal M1 quality / recognition | NOT RUN | No invented ratings; diverse-source trial missing |
 | Original Intel Linux rerun / iPhone / live / AI / release | NOT RUN | No corresponding execution or quality prerequisites |
 

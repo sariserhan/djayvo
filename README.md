@@ -14,8 +14,9 @@ Track past work, open issues and future milestones in [TODO.md](TODO.md).
 **Current M5 and Linux arm64 technical checks: PASS. M0 overall: PARTIAL.** The owner has
 auditioned a consented source and requested less game-like instruments and more
 creative openings. The new revision uses 14 cleared acoustic note samples and
-seeded full-phrase, instrumental, and fragment openings. New human listening is
-**NOT RUN**. The latest revision adds real breaks/returns, nearby chord inversions,
+seeded full-phrase, instrumental, and fragment openings. Latest owner review is
+**PARTIAL**: fine as a start, with production quality still to improve. Formal
+listening evaluation is **NOT RUN**. The latest revision adds real breaks/returns, nearby chord inversions,
 softer-note articulation and instrumental reflections. Fresh Linux/M5 plans,
 event frames and all 15 fixture WAVs match exactly. See [arrangement revision](docs/arrangement-review.md),
 [current evidence](docs/progress.md) and [Mac agent handoff](docs/mac-agent-handoff.md).

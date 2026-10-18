@@ -13,7 +13,7 @@ the source of truth and is not modified by this tracker.
 | --- | --- | --- |
 | M0a — offline foundation | PASS | Portable engine, instruments, timing, WAV and automated tests |
 | M0b — own sound into music | PARTIAL | Consented voice renders; formal recognizability observations missing |
-| M0c — three musical strategies | PARTIAL | Three distinct arrangements implemented; latest listening not done |
+| M0c — three musical strategies | PARTIAL | Owner accepts the current prototype as a start; production quality and formal listening remain open |
 | M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact current plans/events and 15 matching WAVs |
 | M1 — musical quality baseline | NOT RUN | Protocol, fixed-loop control and pilot prepared; formal human evaluation missing |
 | M2 — AI director benchmarks | NOT RUN | Depends on quality baseline and measured model feasibility |
@@ -33,12 +33,21 @@ pairs, six alternate-seed mixes, and three reference excerpts at matched levels.
 Audio links work in this checkout; private recordings are intentionally absent
 from Git and will not appear in a remote repository viewer.
 
-- [ ] **N01 — NOT RUN:** Listen to all three new styles. Record timestamps and
+Latest owner feedback (2026-10-17): “for now they are okay but we have to improve
+in a production quality but as a start they are fine.” **Owner review: PARTIAL.**
+This accepts the prototype as a starting point. It does not establish per-style,
+per-seed or production-quality acceptance. The next quality priorities remain
+instrument realism/articulation, coherent arrangements, clean vocal treatment
+and evaluation across diverse consented inputs.
+
+- [ ] **N01 — PARTIAL:** General prototype feedback received. Complete the review
+  of all three new styles. Record timestamps and
   separate judgments for instrument sound, groove, coherence, ending and enjoyment.
   Owner supplies observations; development work records and acts on them.
 - [ ] **N02 — PARTIAL:** Resolve the reported artificial/game-like instrument
   sound. Acoustic samples, articulation and room treatment are implemented;
-  the owner has not yet accepted the new result.
+  instrument realism still needs specific listening assessment despite general
+  prototype acceptance.
 - [ ] **N03 — PARTIAL:** Resolve experimental's awkward passages. Fewer melody
   notes, longer bass notes and better-spaced chops are implemented; listen for
   remaining problems before closing this issue.

@@ -14,7 +14,9 @@ and returns, nearby chord inversions, softer-note tone filtering, instrumental
 early reflections, and 80 ms vocal clearance. M5 release/sanitizer and Linux
 release each pass 7/7 suites; fresh Linux/Mac plans/events and all 15 fixture WAVs
 match exactly. Nine new voice mixes, stems, baseline and a level-matched review
-page are ready. New musical-quality listening remains **NOT RUN**.
+page are ready. Current owner listening is **PARTIAL**: the owner says the results
+are fine as a start but must improve to production quality. Specific per-style
+ratings and the formal musical-quality evaluation remain **NOT RUN**.
 
 Earlier acoustic checkpoint (superseded technically by the revision above): M0b/M0c
 code and three complete recordings exist. Both the supplied synthetic speech
@@ -52,7 +54,7 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Master specification | PASS | Original SHA-256 unchanged |
 | Consented human recording technical render | PASS | One owner-supplied 4.862 s source; three masters and 12 stems decoded; [trial](voice-trial.md) |
 | Human speech recognition by listeners | NOT RUN | No actual listener observations |
-| Owner listening | PARTIAL | Awkward experimental passages; all styles sound game-like; varied openings requested |
+| Owner listening | PARTIAL | Latest prototype accepted as a start; production quality remains open. Earlier concerns: awkward experimental passages, game-like timbres and repetitive openings |
 | Revised vocal spacing on M5 | PASS | Release + sanitizer CTest 6/6; duplicate chop starts and clean-hook overlaps removed; `evidence/vocal-spacing/` |
 | Revised arrangement Linux/Mac comparison | PASS | Current Linux arm64 versus native M5: exact plans/events and 15 byte-identical WAVs |
 | M0d Apple M5 execution | PASS | Native arm64 release and ASan/UBSan 6/6 each; exact plans/event frames and byte-identical Linux/Mac masters; [evidence](evidence/m0d/report.json) |
