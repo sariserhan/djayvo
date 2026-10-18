@@ -33,7 +33,7 @@ def main():
                 raise ValueError(f"reference hash mismatch: {relative}")
             files.append(path)
     bundle = output.parent / "djayvo-history.bundle"
-    subprocess.run(["git", "bundle", "create", str(bundle), "--all"], cwd=root, check=True)
+    subprocess.run(["git", "bundle", "create", str(bundle), "main"], cwd=root, check=True)
     with tarfile.open(output, "w:gz") as archive:
         archive.add(bundle, arcname="djayvo-transfer/repository.bundle")
         archive.add(root / "docs/mac-agent-handoff.md", arcname="djayvo-transfer/MAC_HANDOFF.md")

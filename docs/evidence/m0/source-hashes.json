@@ -26,7 +26,7 @@
   "scripts/inspect_wav.py": "5c97e4ec3acd159af6d3e6b38ac32ee4b16d8c82239063da00ba509b7b31a74e",
   "scripts/mac_smoke.sh": "28f025ed073ea5a5a6715cfda284262c7b61c1c4a3a8e7d3abf8791d1a4d1c29",
   "scripts/make_fixture.py": "10370a739568bb2b1f1fab7264da4b35e65e3add31f4dbc7c35783c1c9e1cc5d",
-  "scripts/package_handoff.py": "a8e180329cba63c18ff4e1cbeec5ab7c5e478d414317f2c65c264e9b325dd49a",
+  "scripts/package_handoff.py": "3255041c539bd9a1006215db6aff46f7c94141bb3327ffdcef4a5de98d8c3696",
   "scripts/prepare_listening.py": "8ca7c28008a34a12b56cc3018f96fbee0b92b94678107cb531457c9046f03ee1",
   "tests/integration/verify_remix.py": "bc5c245934ac4c6523e22c119fd6ababdf8a6a4c117ad02fb96c2bc596450f60",
   "tests/integration/verify_render.py": "0be2d55147c672223c047f5ab35d00155490b3bc04cd1eda892201192ef62a5a",

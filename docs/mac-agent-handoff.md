@@ -35,7 +35,7 @@ WAVs/scores/reports/frame traces. Audio stays outside Git. After transferring:
 ```sh
 shasum -a 256 -c djayvo-mac-handoff.tar.gz.sha256
 tar -xzf djayvo-mac-handoff.tar.gz
-git clone djayvo-transfer/repository.bundle djayvo
+git clone --branch main djayvo-transfer/repository.bundle djayvo
 cp -R djayvo-transfer/renders djayvo/renders
 cd djayvo
 ```
