@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [iOS Instant Remix](docs/ios-instant-remix.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [browser Instant Remix](docs/web-instant-remix.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -18,6 +18,7 @@ the source of truth and is not modified by this tracker.
 | M1 — musical quality baseline | NOT RUN | Frozen one-source/three-seed pilot and distinct blind packets prepared; diverse sources and formal human evaluation missing |
 | M2 — AI director benchmarks | NOT RUN | Depends on quality baseline and measured model feasibility |
 | M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
+| W0 — browser Instant Remix | PARTIAL | Local WebAssembly app and Chromium/WebKit technical flows pass; physical browser microphone and owner web listening remain open |
 | M4 — live improvisation | PARTIAL | Research protocol and provisional budgets prepared; live implementation and hardware measurements NOT RUN |
 | M5 — production and monetization | PARTIAL | Local privacy controls, bundled rights notices and release preparation exist; beta, demand, public policy details and release approval remain |
 
@@ -27,6 +28,19 @@ criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
 ## Current product work
+
+The owner changed priority to “first lets make it web version of this” on
+2026-10-18. **Phone work is paused by owner request.** Existing phone results and
+unresolved device gates are preserved; this change does not mark them passed.
+The current web deliverable and evidence are in [web Instant Remix](docs/web-instant-remix.md).
+
+- [x] **W01 — PASS:** Compile the shared engine to WebAssembly in an isolated SDK; preserve the master, fixture and owner source. Four browser styles match native Mac plans/events/WAVs exactly in Chromium and WebKit.
+- [x] **W02 — PASS:** Consent, browser recording/import, waveform/2–5 s trim, three takes/club, regeneration, cancellation, playback, WAV downloads and responsive desktop/mobile layout implemented and automated flows checked.
+- [x] **W03 — PASS:** Atomic local library, integrity verification, explicit scoped/all deletion, quota handling and ten-session limit. WebKit byte-buffer storage compatibility fixed. Original inputs are not persisted or uploaded.
+- [x] **W04 — PASS:** Reproducible build, isolated local server, public-file/notice audit, native regression checks and committed browser/portability evidence.
+- [ ] **W05 — NOT RUN:** Owner browser microphone and audible playback on the actual preferred browser; headphone/device switching and browser background behavior on real hardware. Fake microphone automation is not this gate.
+- [ ] **W06 — NOT RUN:** Owner listening to web mixes, especially experimental/club, and the already-required diverse blinded M1 cohort. No musical-quality inference from identical WAVs.
+- [ ] **W07 — NOT RUN:** Firefox, installed Safari and mobile browser hardware coverage; public HTTPS hosting, installable/offline caching and release approval. No deployment is authorized or performed in this web pass.
 
 [Native app and validation](docs/ios-instant-remix.md),
 [release readiness](docs/release-readiness.md), and

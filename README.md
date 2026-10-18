@@ -11,6 +11,13 @@ stems. No model, GPU, paid service, or third-party DSP library is required.
 
 Track past work, open issues and future milestones in [TODO.md](TODO.md).
 
+**Current priority: [Djayvo web](apps/web/README.md).** Record/import, trim,
+generate three takes or club, play, save locally and download WAVs in the browser.
+The shared engine runs as WebAssembly without uploading audio. Start the existing
+build with `python3 scripts/web_serve.py`, then open http://localhost:4173.
+[Web checks and limits](docs/web-instant-remix.md). Phone work is paused at the
+owner's request; previous device evidence remains available below.
+
 Native [iPhone/iPad Instant Remix](apps/ios/README.md) now implements consent,
 record/import, waveform trimming, three mixes, a club option, replay/regeneration,
 saved sessions, WAV sharing and deletion. [iOS evidence](docs/ios-instant-remix.md)

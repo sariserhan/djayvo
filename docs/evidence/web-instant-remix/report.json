@@ -1,0 +1,159 @@
+{
+  "date": "2026-10-18",
+  "timezone": "America/New_York",
+  "base_commit": "8febc95",
+  "scope": "Owner requested web first; further phone work paused. Local static app, no public deployment.",
+  "gates": {
+    "web_build": "PASS",
+    "native_tests": "PASS",
+    "native_sanitizers": "PASS",
+    "javascript_audio_tests": "PASS",
+    "wasm_boundary_tests": "PASS",
+    "chromium_ui": "PASS",
+    "webkit_ui": "PASS",
+    "fake_microphone": "PASS",
+    "physical_browser_microphone": "NOT RUN",
+    "browser_native_event_frames": "PASS",
+    "browser_native_waveforms": "PASS",
+    "local_persistence_integrity_deletion": "PASS",
+    "network_privacy_observed": "PASS",
+    "bundle_and_notices": "PASS",
+    "visual_desktop_mobile": "PASS",
+    "assistive_technology": "PARTIAL",
+    "browser_hardware_coverage": "PARTIAL",
+    "human_web_listening": "NOT RUN",
+    "formal_m1_listening": "NOT RUN",
+    "production_quality": "PARTIAL",
+    "public_deployment": "NOT RUN",
+    "phone_followup": "NOT RUN"
+  },
+  "test_counts": {
+    "native_suites": 9,
+    "sanitizer_suites": 9,
+    "javascript_tests": 2,
+    "chromium_checks": 16,
+    "webkit_checks": 14
+  },
+  "audio_comparison": {
+    "styles": [
+      "hiphop",
+      "reggae",
+      "experimental",
+      "club"
+    ],
+    "browser_engines": [
+      "chromium",
+      "webkit"
+    ],
+    "byte_identical_wavs": 8,
+    "event_frame_agreement": "exact",
+    "musical_plan_agreement": "exact",
+    "maximum_pcm_error": 0,
+    "rms_pcm_error": 0,
+    "reference_three": "renders/mac-20261018-014651/remix",
+    "reference_club": "renders/web-validation/native-final/club"
+  },
+  "environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "cpu_brand": "Apple M5",
+    "memory_bytes": 17179869184,
+    "cpu_cores": 10,
+    "macos_version": "26.7.1",
+    "macos_build": "25G241",
+    "kernel_release": "25.6.0",
+    "xcode": "Xcode 27.1\nBuild version 27A9275",
+    "developer_directory": "/Applications/Xcode.app/Contents/Developer",
+    "sdk_version": "27.0",
+    "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "cmake": "cmake version 4.4.2",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "python_executable": "/Users/serhansari/Documents/projects/djayvo/.venv-build/bin/python",
+    "renderer_binary": "build-mac/djayvo_remix: Mach-O 64-bit executable arm64"
+  },
+  "web_toolchain": {
+    "emscripten": "6.0.1",
+    "emscripten_commit": "25e4e8d6550d392ba9e0c2936bce7cf41ee47cc0",
+    "emsdk_checkout": "1c9a998ee5dd2e38aec0c5abbf23dffdb8f10d57",
+    "node": "22.23.1",
+    "playwright": "1.61.1",
+    "chromium": "149.0.7827.55",
+    "webkit": "26.5"
+  },
+  "timing_scope": "One worker trial per style group/browser; includes module load and result preparation, excludes test artifact disk write; not p95.",
+  "timings": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "results": [
+        {
+          "style": "three",
+          "seconds": 1.44460000000149,
+          "artifacts": 12
+        },
+        {
+          "style": "club",
+          "seconds": 0.9437000000029803,
+          "artifacts": 4
+        }
+      ]
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "results": [
+        {
+          "style": "three",
+          "seconds": 1.031,
+          "artifacts": 12
+        },
+        {
+          "style": "club",
+          "seconds": 0.393,
+          "artifacts": 4
+        }
+      ]
+    }
+  ],
+  "browser_route": "Playwright fallback: Browser plugin required Node REPL tool unavailable on discovery.",
+  "failure_history": [
+    {
+      "status": "FAIL",
+      "check": "initial WebKit Blob IndexedDB save",
+      "error": "UnknownError: Error preparing Blob/File data to be stored in object store",
+      "resolution": "ArrayBuffer persistence; current Chromium/WebKit flows PASS"
+    },
+    {
+      "status": "FAIL",
+      "check": "unconfigured native smoke against historical M0 reference",
+      "resolution": "Use documented current Linux reference; current smoke PASS; failed report retained"
+    },
+    {
+      "status": "PARTIAL",
+      "check": "WebKit screenshot tooling",
+      "detail": "Three screenshot-only inline stylesheet CSP warnings; application console errors zero; strict CSP preserved"
+    }
+  ],
+  "preserved_hashes": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "audible_playback_claim": false,
+  "musical_quality_claim": false,
+  "raw_or_private_audio_committed": false,
+  "static_server_checks": {
+    "wasm_mime": "PASS",
+    "csp": "PASS",
+    "repository_path_isolation": "PASS",
+    "directory_listing_disabled": "PASS",
+    "unexpected_bundle_file_rejected": "PASS"
+  },
+  "limits": [
+    "Physical browser microphone, audible owner playback and headphone routes NOT RUN",
+    "WebKit automation is not installed Safari or iPhone validation",
+    "No full VoiceOver, browser peak-memory, battery, thermal or slow-device benchmark",
+    "Browser storage may be cleared or evicted; download important mixes",
+    "No service-worker offline install, hosting or release approval"
+  ]
+}

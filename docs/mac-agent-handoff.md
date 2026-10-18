@@ -5,6 +5,20 @@ and asked to finish Linux work, then move to the Mac. Read `AGENTS.md` and the
 complete master specification. Never modify the master; its SHA-256 is
 `389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2`.
 
+**Current priority, 2026-10-18: web first; phone work paused by the owner.**
+Read [web Instant Remix](web-instant-remix.md) and [web run instructions](../apps/web/README.md).
+The local app is served at http://localhost:4173 by `python3 scripts/web_serve.py`.
+Build with `sh scripts/web_build.sh`; the isolated SDK is `build-web-tools/emsdk`
+(6.0.1), with no change to `~/mlx-env`. Browser and Node WASM outputs match native
+Mac masters/event frames for hiphop/reggae/experimental/club; current human web
+listening and physical browser microphone gates are NOT RUN. WebKit persistence
+uses byte buffers because its ephemeral context rejected IndexedDB Blobs. Keep
+all recordings in `renders/`, outside the static bundle. No deployment was done.
+The exact unconfigured Mac smoke command still compares historical M0 artifacts;
+use `DJAYVO_REFERENCE_PREFIX=renders/arrangement-linux/ios-core-v9/remix` for the
+current engine, as documented below. The stale-reference failure and corrected
+successful run are both retained in the web evidence.
+
 Update 2026-10-17: actual Apple M5 portability is **PASS**. See
 [mac-portability.md](mac-portability.md) for the completed run, exact environment,
 reproduction commands, and listening/recording next steps. The original Linux

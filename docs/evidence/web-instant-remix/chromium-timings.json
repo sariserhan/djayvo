@@ -1,0 +1,16 @@
+{
+  "browser": "chromium",
+  "version": "149.0.7827.55",
+  "results": [
+    {
+      "style": "three",
+      "seconds": 1.44460000000149,
+      "artifacts": 12
+    },
+    {
+      "style": "club",
+      "seconds": 0.9437000000029803,
+      "artifacts": 4
+    }
+  ]
+}

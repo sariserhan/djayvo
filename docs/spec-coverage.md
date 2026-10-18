@@ -5,6 +5,11 @@ expands local implementation scope; it does not turn absent measurements into
 passed gates. This map prevents a working app from being mistaken for completion
 of every research and release requirement.
 
+The owner's subsequent web-first request pauses phone work and adds the
+[browser Instant Remix](web-instant-remix.md) surface. Its technical gates pass;
+overall browser acceptance is PARTIAL. This is an authorized platform addition,
+not a change to the immutable master or the formal listening/model/release gates.
+
 | Master area | Status | Implemented / remaining |
 | --- | --- | --- |
 | 1: Instant Remix product | PARTIAL | Actual source-driven 20–40 s music, three strategies, club option and native local flow; formal recognition/enjoyment/share-worthiness missing |

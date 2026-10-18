@@ -10,6 +10,17 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest priority change, 2026-10-18: the owner requested the web version first
+and paused further phone work. [Browser Instant Remix](web-instant-remix.md) now
+implements local capture/import, trim, three takes/club, playback, regeneration,
+atomic browser persistence, WAV download and confirmed deletion. The same engine
+runs as WebAssembly in a worker. Chromium and WebKit generate all four styles with
+exact native-Mac plan/event agreement and zero waveform differences. Automated
+desktop/mobile flows pass; fake microphone automation is separate from physical
+capture and listening. The supplied fixture, owner PCM and master hashes remain
+unchanged. **Web technical checks: PASS. Overall web acceptance: PARTIAL.**
+No public deployment, new quality cohort, learned AI or production-quality claim.
+
 Latest continuation, 2026-10-18: [native iOS Instant Remix](ios-instant-remix.md).
 The app adds consented capture/import, trim, worker rendering, three styles/club,
 playback, regeneration, persistent favorites, WAV sharing and scoped deletion.

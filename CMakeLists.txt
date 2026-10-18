@@ -39,6 +39,21 @@ target_link_libraries(djayvo_render PRIVATE djayvo_core)
 add_executable(djayvo_remix tools/cli/remix_main.cpp)
 target_link_libraries(djayvo_remix PRIVATE djayvo_core)
 
+if(EMSCRIPTEN)
+  # Browser isolation replaces filesystem publication; the shared DSP is unchanged.
+  target_compile_options(djayvo_core PRIVATE -fexceptions)
+  add_executable(djayvo_web apps/web/bridge.cpp)
+  target_link_libraries(djayvo_web PRIVATE djayvo_core)
+  target_compile_options(djayvo_web PRIVATE -fexceptions)
+  target_link_options(djayvo_web PRIVATE
+    -fexceptions --no-entry
+    "-sEXPORTED_FUNCTIONS=['_djayvo_web_render']"
+    "-sEXPORTED_RUNTIME_METHODS=['ccall','FS']"
+    -sMODULARIZE=1 -sEXPORT_ES6=1 -sENVIRONMENT=web,worker,node
+    -sALLOW_MEMORY_GROWTH=1 -sMAXIMUM_MEMORY=536870912 -sSTACK_SIZE=2097152)
+  set_target_properties(djayvo_web PROPERTIES SUFFIX ".mjs")
+endif()
+
 if(BUILD_TESTING)
   add_executable(djayvo_tests core/tests/tests.cpp)
   target_link_libraries(djayvo_tests PRIVATE djayvo_core)

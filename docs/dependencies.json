@@ -438,5 +438,22 @@
     "notice_file": "/opt/homebrew/Cellar/xcodegen/2.46.0/LICENSE",
     "linked": false,
     "bundled": false
+  },
+  "web_application": {
+    "engine": "shared C++17 compiled to WebAssembly",
+    "frontend_runtime_dependencies": [],
+    "emscripten_version": "6.0.1",
+    "emscripten_commit": "25e4e8d6550d392ba9e0c2936bce7cf41ee47cc0",
+    "emsdk_checkout": "1c9a998ee5dd2e38aec0c5abbf23dffdb8f10d57",
+    "runtime_notices": "dist/web/licenses/EMSCRIPTEN-LICENSE.txt includes Emscripten, musl, libc++, libc++abi, libunwind, compiler-rt",
+    "sample_notices": "assets/licenses; copied unchanged into dist/web/licenses",
+    "development_only": {
+      "playwright": "1.61.1",
+      "license": "Apache-2.0",
+      "lockfile": "apps/web/package-lock.json",
+      "browser_binaries_shipped": false
+    },
+    "evidence": "evidence/web-instant-remix/",
+    "public_deployment": "NOT RUN"
   }
 }

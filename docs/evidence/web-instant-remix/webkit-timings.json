@@ -1,0 +1,16 @@
+{
+  "browser": "webkit",
+  "version": "26.5",
+  "results": [
+    {
+      "style": "three",
+      "seconds": 1.031,
+      "artifacts": 12
+    },
+    {
+      "style": "club",
+      "seconds": 0.393,
+      "artifacts": 4
+    }
+  ]
+}

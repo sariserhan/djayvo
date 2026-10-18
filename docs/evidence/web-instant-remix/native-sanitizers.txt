@@ -1,0 +1,39 @@
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-mac-sanitize
+[  4%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/input.cpp.o
+[  8%] Linking CXX static library libdjayvo_core.a
+[ 56%] Built target djayvo_core
+[ 60%] Linking CXX executable djayvo_render
+[ 69%] Linking CXX executable djayvo_tests
+[ 69%] Linking CXX executable djayvo_remix
+[ 73%] Linking CXX executable djayvo_remix_tests
+[ 78%] Built target djayvo_render
+[ 91%] Built target djayvo_remix_tests
+[ 91%] Built target djayvo_remix
+[ 91%] Built target djayvo_tests
+[ 95%] Linking CXX executable djayvo_c_smoke
+[100%] Built target djayvo_c_smoke
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac-sanitize
+    Start 1: core
+1/9 Test #1: core .............................   Passed   10.36 sec
+    Start 2: remix_core
+2/9 Test #2: remix_core .......................   Passed   43.87 sec
+    Start 3: c_abi
+3/9 Test #3: c_abi ............................   Passed    4.62 sec
+    Start 4: acoustic_assets
+4/9 Test #4: acoustic_assets ..................   Passed    0.44 sec
+    Start 5: electronic_assets
+5/9 Test #5: electronic_assets ................   Passed    0.08 sec
+    Start 6: wav_integration
+6/9 Test #6: wav_integration ..................   Passed    7.30 sec
+    Start 7: remix_integration
+7/9 Test #7: remix_integration ................   Passed   63.10 sec
+    Start 8: tooling
+8/9 Test #8: tooling ..........................   Passed    1.14 sec
+    Start 9: evaluation_preparation
+9/9 Test #9: evaluation_preparation ...........   Passed   85.82 sec
+
+100% tests passed out of 9
+
+Total Test time (real) = 216.72 sec

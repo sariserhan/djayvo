@@ -1,5 +1,14 @@
 # Dependencies, licenses, and asset provenance
 
+Web target (2026-10-18): Emscripten 6.0.1 compiles the shared core; its MIT/NCSA
+notice plus bundled musl, libc++, libc++abi, libunwind and compiler-rt notices are
+copied into `dist/web/licenses/EMSCRIPTEN-LICENSE.txt`. Sample notices are copied
+unchanged. Browser UI has no third-party runtime package. Playwright 1.61.1
+(Apache-2.0) and its browser binaries are developer-only and are not bundled.
+See [web evidence](web-instant-remix.md), the pinned `apps/web/package-lock.json`
+and `docs/dependencies.json`. Project outbound licensing/public release remains
+unselected; this inventory does not grant a public distribution license.
+
 M0a engine dependencies: **only the platform C/C++ standard runtime and math
 library**. No DSP framework, codec library, sampler library, SoundFont, model,
 cloud service, or paid component is linked. The current revision embeds a small

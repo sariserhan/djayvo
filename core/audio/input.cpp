@@ -70,7 +70,7 @@ AudioBuffer read_wav(const std::string& path) {
     const auto length = file.tellg();
     if (length < 44 || length > 32 * 1024 * 1024) throw std::invalid_argument("WAV file size outside limits");
     std::vector<std::uint8_t> bytes(static_cast<std::size_t>(length));
-    file.seekg(0); file.read(reinterpret_cast<char*>(bytes.data()), length);
+    file.seekg(0); file.read(reinterpret_cast<char*>(bytes.data()), static_cast<std::streamsize>(length));
     if (!file || !tag(bytes,0,"RIFF") || !tag(bytes,8,"WAVE") ||
         static_cast<std::uint64_t>(u32(bytes,4)) + 8 != bytes.size())
         throw std::invalid_argument("invalid/truncated RIFF WAV");

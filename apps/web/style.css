@@ -1,0 +1,98 @@
+:root { color-scheme: dark; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #f0f3eb; background: #101211; font-synthesis: none; --muted: #a5aca2; --lime: #c3ef69; --line: #303830; }
+* { box-sizing: border-box; }
+body { margin: 0; font-size: 16px; line-height: 1.5; }
+button, input { font: inherit; }
+button, a, input { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
+a { color: inherit; text-underline-offset: 4px; }
+button { cursor: pointer; border: 0; }
+button:disabled { cursor: not-allowed; opacity: .45; }
+:focus-visible { outline: 3px solid var(--lime); outline-offset: 5px; }
+[hidden] { display: none !important; }
+.sr-only, .skip:not(:focus) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.skip:focus { position: fixed; z-index: 10; padding: 12px; background: #101211; }
+header { border-bottom: 1px solid var(--line); }
+.header-inner, main { max-width: 1440px; margin: auto; padding-inline: 80px; }
+.header-inner { height: 80px; display: flex; align-items: center; justify-content: space-between; }
+.brand { font-size: 36px; font-weight: 800; letter-spacing: -1.6px; text-decoration: none; }
+nav { display: flex; align-items: center; gap: 40px; }
+nav a { text-decoration: none; }
+.text-button { background: none; color: inherit; padding: 6px 0; }
+.text-button:hover, nav a:hover { color: var(--lime); }
+.studio-grid { display: grid; grid-template-columns: 1.58fr 1fr; gap: 36px; padding-top: 38px; }
+h1 { font-size: clamp(44px, 5.4vw, 70px); letter-spacing: -2.8px; line-height: 1.02; margin: 0 0 18px; font-weight: 780; }
+h2 { font-size: 28px; line-height: 1.2; letter-spacing: -.8px; margin: 0; }
+h3 { margin-bottom: 8px; }
+p { margin: 8px 0 16px; }
+.intro { font-size: 21px; color: var(--muted); margin-bottom: 22px; }
+.muted { color: var(--muted); }
+.recorder { background: #191c19; border: 1px solid var(--line); border-radius: 9px; padding: 24px 28px; }
+.recorder p { margin: 4px 0 0; }
+#waveform { display: block; width: 100%; height: 80px; margin: 10px 0; }
+.consent { display: flex; align-items: flex-start; gap: 12px; color: var(--muted); margin-bottom: 20px; cursor: pointer; }
+input[type=checkbox], input[type=radio] { accent-color: var(--lime); flex-shrink: 0; width: 21px; height: 21px; margin: 2px 0; }
+.capture-actions { display: flex; gap: 16px; }
+.capture-actions > button { flex: 1; }
+.primary, .secondary, .danger { min-height: 54px; border-radius: 7px; padding: 12px 20px; font-weight: 650; }
+.primary { background: var(--lime); color: #101510; }
+.primary:hover:not(:disabled) { background: #d6ff88; }
+.primary:disabled { background: #373c37; color: #b5bab2; opacity: 1; }
+.secondary { background: transparent; color: #f0f3eb; border: 1px solid #a5aca2; }
+.secondary:hover:not(:disabled) { background: #252c24; }
+.danger { background: #eca798; color: #23110c; }
+.capture-actions span { margin-right: 9px; }
+.direction { padding-top: 136px; }
+.direction h2 { margin-bottom: 20px; }
+fieldset { padding: 0; border: 0; margin: 0; min-width: 0; }
+.style-choice { display: flex; align-items: center; gap: 24px; border: 1px solid var(--line); border-radius: 9px; padding: 20px; margin-bottom: 14px; cursor: pointer; }
+.style-choice:has(input:checked) { border-color: var(--lime); background: #191e15; }
+.style-choice strong { display: block; font-size: 21px; font-weight: 600; }
+.style-choice small { display: block; font-size: 16px; color: var(--muted); margin-top: 2px; }
+.generate { width: 100%; margin-top: 12px; }
+#cancel { width: 100%; margin-top: 12px; }
+#status { margin-top: 12px; }
+#error { color: #ffb6a6; }
+#capture-status:empty, #storage-note:empty { display: none; }
+#capture-status:not(:empty) { padding-top: 10px; }
+#trim { padding-bottom: 18px; }
+.trim-controls { display: flex; gap: 20px; }
+.trim-controls label { width: 50%; font-size: 14px; color: var(--muted); }
+.trim-controls output { float: right; }
+input[type=range] { width: 100%; accent-color: var(--lime); min-height: 32px; }
+audio { display: block; width: 100%; margin: 8px 0; height: 42px; }
+#clear-source { font-size: 14px; color: var(--muted); }
+#mixes { margin-top: 34px; padding-top: 24px; border-top: 1px solid var(--line); scroll-margin-top: 20px; }
+.section-heading, .session-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.empty { text-align: center; padding: 30px 0 44px; }
+.empty p { margin-bottom: 2px; font-size: 20px; }
+.session { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.session h3 { margin: 0; font-size: 18px; }
+.session-heading p { font-size: 13px; margin: 2px 0 10px; }
+.track { display: grid; grid-template-columns: 110px 1fr auto; gap: 20px; align-items: center; padding: 8px 0; }
+.download { font-size: 14px; color: var(--lime); white-space: nowrap; }
+footer { border-top: 1px solid var(--line); padding: 18px 0 26px; color: var(--muted); font-size: 14px; }
+dialog { max-width: 620px; width: calc(100% - 32px); max-height: 85vh; overflow: auto; border: 1px solid var(--line); border-radius: 12px; padding: 28px; background: #191c19; color: #f0f3eb; }
+dialog::backdrop { background: #000b; }
+.dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
+dialog p, dialog li { color: #c6ccc2; }
+@media (max-width: 760px) {
+  .header-inner, main { padding-inline: 20px; }
+  .header-inner { height: 72px; }
+  .brand { font-size: 30px; }
+  nav { gap: 16px; font-size: 13px; }
+  .studio-grid { grid-template-columns: 1fr; gap: 28px; padding-top: 30px; }
+  h1 { font-size: clamp(43px, 9vw, 62px); letter-spacing: -1.8px; }
+  .intro { font-size: 17px; }
+  .recorder { padding: 20px; }
+  h2 { font-size: 25px; }
+  .direction { padding-top: 0; }
+  .style-choice { padding: 16px; gap: 16px; }
+  .primary, .secondary, .danger { padding: 12px; font-size: 15px; }
+  .capture-actions { gap: 10px; }
+  .track { grid-template-columns: 1fr auto; gap: 2px 14px; }
+  .track audio { grid-column: 1 / -1; grid-row: 2; }
+  .empty { padding: 36px 10px; }
+  .consent { font-size: 14px; }
+  .capture-actions span { margin-right: 4px; }
+}
+@media (prefers-reduced-motion: no-preference) { button, a, .style-choice { transition: background-color .15s, color .15s; } }
