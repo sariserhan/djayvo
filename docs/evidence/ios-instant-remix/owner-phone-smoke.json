@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-18",
+  "timezone": "America/New_York",
+  "app_commit": "de10563",
+  "device": "physical iPhone 14 Pro, iOS 27.0.1 (24A446)",
+  "configuration": "Locally development-signed Release 0.3.0 (1)",
+  "device_connection": {
+    "status": "PASS",
+    "transport": "wired",
+    "paired": true,
+    "developer_mode": "enabled",
+    "ddi_services_available": true
+  },
+  "release_launch": {
+    "status": "PASS",
+    "basis": "devicectl launch succeeded; captured physical screen visually inspected showing Djayvo home, consent off and Record/Import disabled"
+  },
+  "owner_report": "Recording, generation and playback work",
+  "manual_record_generate_play": {
+    "status": "PASS",
+    "basis": "owner-observed Release behavior on their own speech; no unattended capture started by the agent",
+    "playback_scope": "Owner confirmed playback; specific style and every-style playback were not reported"
+  },
+  "session_metadata": {
+    "status": "PASS",
+    "styles": [
+      "hiphop",
+      "reggae",
+      "experimental"
+    ],
+    "generation_seconds": 1.8301105416658174,
+    "saved_favorite": false,
+    "completion_status": "complete",
+    "completion_artifact_count": 12,
+    "scope": "Session and completion JSON copied from normal app library; exact three-style artifact suffix set checked. Raw recording and WAVs were not downloaded; no independent host-side hash verification of these phone audio bytes."
+  },
+  "generation_timing_scope": "One real owner Release session, not a percentile, repeated-load benchmark or performance acceptance gate",
+  "ui_automation": {
+    "status": "FAIL",
+    "owner_report": "No prompt or switch available",
+    "root_cause": "Unresolved; timeout alone does not prove missing authorization. Developer Mode and DDI are already enabled. No further identical retry or security-setting change performed."
+  },
+  "musical_quality": "NOT RUN",
+  "recognizability": "NOT RUN",
+  "physical_routes_interruptions": "NOT RUN",
+  "battery_thermal": "NOT RUN",
+  "manual_save_relaunch_share": "NOT RUN",
+  "formal_evaluation": "New owner phone smoke recording is not added to the frozen M1 cohort or granted independent-review/training permission",
+  "private_evidence": "Raw device identifiers, session IDs, completion/source hashes and phone screenshot stay under ignored renders/ios-validation/."
+}

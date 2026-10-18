@@ -80,13 +80,14 @@ the microphone permission prompt after the denial check.
 | iPhone simulator functional tests | PASS | Completed full smoke: 10/10 tests, including generation/playback/save/relaunch/share/deletion, large text and microphone denial; final physical six-test rerun covers exact two-second trims; final three-test simulator UI rerun also passes |
 | iPad simulator flow | PASS | Generation, playback, favorite, relaunch and share-sheet presentation; one completed UI test |
 | Physical iPhone integration | PASS | iPhone 14 Pro, six tests: worker generation, deterministic club, cancellation, persistence, tamper checks and input bounds |
-| Physical UI automation | FAIL | Two attempts timed out enabling automation before UI tests began; engine integration passes separately; no app UI failure inferred |
+| Physical UI automation | FAIL | Two initialization timeouts; owner reports no prompt/switch. Developer Mode/DDI are enabled; exact cause remains unresolved. Release launch/manual flow pass separately |
 | Physical optimized timing/CPU/memory | PASS | Three measured trials after warmup: 1.812–1.846 s for all three styles; CPU 1.797–1.807 s; peak physical memory 52,611–55,953 kB |
 | Native record/import UI implementation | PASS | Consent, microphone prompt, bounded capture/import/trim, error and lifecycle handling implemented |
-| Physical microphone/routes/lifecycle | NOT RUN | No ambient recording started; actual capture, headphones/Bluetooth, calls, lock and Settings revocation need device observations |
+| Physical microphone/generation/playback | PASS | Owner reports “Recording, generation and playback work” in the installed Release app; metadata confirms all three styles completed in 1.830 s |
+| Physical routes/interruptions/lifecycle | NOT RUN | Headphones/Bluetooth, calls, background/lock and Settings revocation remain unobserved |
 | Static Release bundle | PASS | Unsigned and locally development-signed Release builds audited; notices, privacy, icon and absence of Debug/private audio checked; injected WAV negative test rejected |
 | Signed Release installation | PASS | Installed as an update on the actual phone, preserving its library |
-| Signed Release launch attempt | FAIL | CoreDevice request denied because the phone locked again; no Release UI execution inferred |
+| Signed Release launch/home screen | PASS | Follow-up launch succeeded and physical screen visually inspected; earlier locked-device failure retained |
 | Accessibility | PARTIAL | Dynamic Type, labels and large-text simulator privacy test; full VoiceOver/contrast/touch/device review missing |
 | Persistent data/privacy behavior | PARTIAL | Verified engine/library recovery/deletion and simulator flow; external share destination/low storage/power loss not certified |
 | Hosted CI | NOT RUN | Recipe committed locally; no push or hosted result |
@@ -187,8 +188,19 @@ consent, beta, hardware-route or release evidence has been invented.
 ## Review on your own phone
 
 The locally signed Release build is installed on the iPhone and contains no
-test speech or private references. Automatic launch was denied when the phone
-locked again; open it yourself after unlocking.
+test speech or private references. The follow-up launch and physical home-screen
+inspection passed. The owner then confirmed “Recording, generation and playback
+work.” Normal app metadata confirms hip-hop, reggae and experimental completed
+in **1.830110542 seconds** with 12 published artifacts. This single Release
+observation does not establish a performance distribution or musical quality.
+Raw audio stays on the phone; only session/completion metadata was copied.
+[Follow-up evidence](evidence/ios-instant-remix/owner-phone-smoke.json).
+
+The owner reports no UI-automation prompt or switch. Current inspection confirms
+Developer Mode enabled, DDI services available and a wired paired connection.
+The XCTest initialization failure remains unresolved; it must not be relabeled
+as missing authorization without evidence. Normal app use does not require
+resolving that test-runner failure.
 To try your own speech, open Djayvo, confirm that you have permission, tap Record,
 allow microphone access and speak for 2–5 seconds. Capture stops at five seconds.
 Choose Make Music or Make a club mix, then play each result. Share opens the
@@ -201,3 +213,10 @@ For the existing Blood Club direction comparison on the Mac, use the preserved
 [v7/v8 listening page](../renders/voice-club-v8/review/index.html). Reference
 tracks are for local analysis/audition only; none is sampled, trained on or
 shipped. Earlier owner acceptance applies to the earlier prototype/v4 instruments.
+
+
+Remaining manual device checks are **NOT RUN**: save a favorite and verify it
+after relaunch; share a WAV to Files and play that copy; create/play a club mix;
+check background/lock, interruptions and audio routes. Perform these with sounds
+you have permission to use. The successful owner smoke recording has not been
+added to the frozen formal evaluation cohort or granted broader review rights.

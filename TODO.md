@@ -17,7 +17,7 @@ the source of truth and is not modified by this tracker.
 | M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact club plans/events and 12 matching club WAVs; prior styles preserved |
 | M1 — musical quality baseline | NOT RUN | Frozen one-source/three-seed pilot and distinct blind packets prepared; diverse sources and formal human evaluation missing |
 | M2 — AI director benchmarks | NOT RUN | Depends on quality baseline and measured model feasibility |
-| M3 — iPhone Instant Remix | PARTIAL | Native app installed; six phone tests, measured CPU/memory/timing and simulator flow pass; physical UI authorization, microphone/routes and production acceptance remain |
+| M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
 | M4 — live improvisation | PARTIAL | Research protocol and provisional budgets prepared; live implementation and hardware measurements NOT RUN |
 | M5 — production and monetization | PARTIAL | Local privacy controls, bundled rights notices and release preparation exist; beta, demand, public policy details and release approval remain |
 
@@ -186,7 +186,9 @@ listeners. Preparation does not pass this milestone. Follow the
   rules and seed schedule frozen for the one-source pilot. Final cohort and
   actual reviewer assignment are still missing. [Preparation](docs/evaluation-batch.md).
 - [ ] **Q02 — PARTIAL:** One owner-consented source is inventoried with owner-only
-  review scope. Owner confirmed no additional clips are available. Collect 20–50 diverse cleared clips, including multiple
+  review scope. Owner previously confirmed no additional clips were available; the later phone
+  smoke recording is not added to this frozen cohort or granted independent-review
+  permission. Collect 20–50 diverse cleared clips, including multiple
   speakers/sessions, speech, laughter, claps, noise and silence controls. Keep
   permission records and raw audio local; separate speech and non-speech results.
 - [ ] **Q03 — PARTIAL:** Actual pilot: one source × three styles × three seeds,
@@ -228,8 +230,10 @@ paid infrastructure, training on reference tracks, publishing or charging users.
   Fix the oversized inline voice pool exposed by the mobile worker stack.
 - [ ] **I03 — PARTIAL:** Final simulator consent, denied microphone fallback, playback,
   persistence, sharing/deletion and large-text checks pass. Physical UI automation
-  failed to enable twice; the installed Release app launch was blocked by device lock. Complete real microphone,
-  interruption, route, headphone/speaker and lifecycle validation on hardware.
+  failed to enable twice; owner sees no prompt/switch despite enabled Developer Mode.
+  Follow-up Release launch and owner recording/generation/playback pass; three
+  styles completed in 1.830 s. Complete interruption, route, headphone/speaker,
+  save/share/relaunch and lifecycle validation on hardware.
 - [ ] **I04 — PARTIAL:** Six physical iPhone integration tests and three optimized timing/CPU/memory trials pass;
   [current device results](docs/ios-instant-remix.md) distinguish real execution
   from simulator checks. Sustained CPU, memory, battery/thermal and codec assessment remain.

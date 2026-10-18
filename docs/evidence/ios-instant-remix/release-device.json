@@ -4,10 +4,16 @@
   "bundle_audit": "PASS",
   "installed_on": "physical iPhone 14 Pro",
   "install": "PASS",
-  "launch": "FAIL",
-  "failure_domain": "com.apple.dt.CoreDeviceError",
-  "failure_code": 10002,
-  "underlying_reason": "FBSOpenApplicationErrorDomain 7: device locked",
-  "microphone_started": false,
-  "public_distribution": "NOT RUN"
+  "launch": "PASS",
+  "public_distribution": "NOT RUN",
+  "previous_launch_attempt": {
+    "status": "FAIL",
+    "failure_domain": "com.apple.dt.CoreDeviceError",
+    "failure_code": 10002,
+    "underlying_reason": "FBSOpenApplicationErrorDomain 7: device locked"
+  },
+  "release_home_visual_check": "PASS",
+  "owner_record_generate_play": "PASS",
+  "agent_started_microphone": false,
+  "followup_evidence": "owner-phone-smoke.json"
 }

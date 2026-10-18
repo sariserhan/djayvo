@@ -70,11 +70,13 @@
     "physical_phone_ui_automation": {
       "status": "FAIL",
       "attempts": 2,
-      "reason": "Timed out enabling automation before UI tests began; no product UI failure inferred"
+      "reason": "Timed out enabling automation before UI tests began. Owner sees no prompt or switch; Developer Mode and DDI confirmed enabled. Root cause unresolved."
     },
     "physical_microphone_routes_interruptions": {
-      "status": "NOT RUN",
-      "reason": "No ambient microphone capture started; manual consented device session still needed"
+      "status": "PARTIAL",
+      "record_generate_play": "PASS (owner observation)",
+      "routes_interruptions": "NOT RUN",
+      "reason": "No headphone/Bluetooth/call/background/lock behavior or every-style listening inferred from successful capture/playback"
     },
     "release_bundle": {
       "status": "PASS",
@@ -85,11 +87,12 @@
       ]
     },
     "release_device_install_launch": {
-      "status": "PARTIAL",
+      "status": "PASS",
       "install": "PASS",
-      "launch": "FAIL",
-      "reason": "Signed Release installed successfully; CoreDevice launch was denied because the phone locked again. No Release UI execution claimed.",
-      "evidence": "release-device.json"
+      "launch": "PASS",
+      "release_home_visual_check": "PASS",
+      "evidence": "owner-phone-smoke.json",
+      "previous_locked_launch": "FAIL, retained in release-device.json"
     },
     "accessibility": {
       "status": "PARTIAL",
@@ -130,6 +133,11 @@
     },
     "master_and_recordings_preserved": {
       "status": "PASS"
+    },
+    "physical_microphone_record_generate_play": {
+      "status": "PASS",
+      "basis": "Owner reported Recording, generation and playback work; normal Release session metadata confirms all three styles completed",
+      "evidence": "owner-phone-smoke.json"
     }
   },
   "failure_history": [
@@ -161,7 +169,7 @@
       "status": "FAIL",
       "run": "physical-ui and physical-final",
       "observation": "UI automation initialization timed out twice; six integration tests passed separately",
-      "resolution": "Device-side automation authorization requested, not bypassed"
+      "resolution": "Still FAIL: owner reports no prompt or switch. Developer Mode/DDI enabled; root cause unresolved. Separate signed Release launch and owner recording/generation/playback now PASS."
     }
   ],
   "preserved_sha256": {
@@ -170,5 +178,6 @@
     "owner_pcm_recording": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
   },
   "privacy": "No private WAV/reference music, device identifier or signing credential committed. All comparison audio is synthetic. No training, sampling of references, upload or publication.",
-  "raw_evidence": "renders/ios-validation/ (ignored local logs, xcresult bundles and audio)"
+  "raw_evidence": "renders/ios-validation/ (ignored local logs, xcresult bundles and audio)",
+  "followup": "owner-phone-smoke.json"
 }

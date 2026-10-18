@@ -57,6 +57,11 @@ M3 is **PARTIAL**: the SwiftUI app and worker C ABI are implemented, six integra
 tests passed on the physical iPhone 14 Pro, and ten simulator tests passed.
 Three optimized phone trials average 1.828 s for three styles; peak physical
 memory is at most 55,953 kB. Phone/Mac WAVs, scores and events agree exactly.
+The signed Release app now launches on the phone. The owner confirms recording,
+generation and playback work; normal-library metadata records three completed
+styles in 1.830 s. XCTest UI initialization still fails despite enabled Developer
+Mode/DDI; the owner sees no prompt or switch. Do not repeat missing-toggle advice
+or assume authorization is the proven cause. See the owner-phone-smoke evidence.
 Read the linked gate ledger for exact UI/performance attempts and remaining
 microphone/routes/battery/accessibility evidence. A real worker stack overflow
 was fixed with a construction-time heap voice pool; M5 release/sanitizer and

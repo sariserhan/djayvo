@@ -20,14 +20,17 @@ Simulator and physical iPhone/Mac comparisons also have three byte-identical
 masters each, with exact plans/event frames and zero PCM error.
 Six final integration tests passed on the actual iPhone 14 Pro, including exact
 two-second decimal trim regressions. A ten-test simulator smoke and final
-three-test UI rerun pass; the signed Release build is installed, while automatic
-Release launch was denied by the device lock. The iPad simulator
+three-test UI rerun pass. A follow-up signed Release launch and physical home-screen
+inspection pass. The owner confirms recording, generation and playback work;
+normal app metadata shows three styles completed in 1.830 s. Earlier locked
+launch and UI-automation initialization failures are retained. The iPad simulator
 completed its generation/playback/save/relaunch/share flow. Physical UI automation
 failed to enable in two attempts. Three optimized phone trials average 1.828 s
 for all three styles with peak physical memory at most 55,953 kB. Exact attempts and evidence are
 in the [iOS gate ledger](ios-instant-remix.md). **M3: PARTIAL.**
-No M1/model/live/release gate is closed by this implementation. The owner has
-supplied no additional consented sources or independent listening panel.
+Formal M1/model/live/public-release gates remain open. The new owner phone smoke
+recording is not part of the frozen formal evaluation cohort; a diverse cleared
+cohort and independent listening panel are still missing.
 
 Previous continuation, 2026-10-18: [club refinement v8](club-refinement.md).
 The owner requested all three areas: bass/drums, transitions and vocal clarity.

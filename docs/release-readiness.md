@@ -8,7 +8,7 @@ release approval and does not remove the master specification's quality gates.
 | --- | --- | --- |
 | Original/cleared instruments | PASS | 53 pinned CC0 acoustic samples, 14 original electronic samples; existing offline asset audits; full notices bundled and visible in app |
 | Reference/private material exclusion | PASS | App sources only include the original core bank; Release excludes the Debug speech fixture; private recordings/reference music remain under ignored paths |
-| Local privacy implementation | PARTIAL | Opt-in recording, visible capture state, no network SDK, backup exclusion, local deletion, WAV-only sharing and privacy manifest implemented; physical permission/route checks remain |
+| Local privacy implementation | PARTIAL | Opt-in recording, visible capture state, no network SDK, backup exclusion, local deletion, WAV-only sharing and privacy manifest implemented; owner Release recording/playback passed; route/interruptions and fuller permission checks remain |
 | Public privacy/support material | PARTIAL | [Policy draft](privacy-policy-draft.md) prepared; owner entity/contact/public URL/effective date and review remain |
 | iOS compilation and tests | PARTIAL | [Current run](ios-instant-remix.md); physical device, supported-OS matrix, accessibility and sustained tests are distinct gates |
 | Content/share safeguards | PARTIAL | Permission affirmation and share reminder; no hosted feed/accounts/uploads. Public content moderation/report/removal obligations need product/legal/App Review review before release or community features |
