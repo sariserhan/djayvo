@@ -6,8 +6,10 @@ master specification is unchanged. The original M0a record is
 [m0a-report.md](m0a-report.md), with its initial Git commit `02d0e18`.
 
 **Linux and Apple M5 technical checks: PASS. Overall M0: PARTIAL.** M0b/M0c
-code and three complete recordings exist. The demonstrated input is synthetic
-speech; actual human-recording quality/recognizability remains **NOT RUN**.
+code and three complete recordings exist. Both the supplied synthetic speech
+and one owner-consented human recording now render successfully. Human-recording
+quality/recognizability remains **NOT RUN**; the owner has not submitted listening
+observations. See [voice-trial.md](voice-trial.md) for the private local trial.
 Actual Apple M5 execution is now **PASS**, with the local results in
 [mac-portability.md](mac-portability.md). M1 evaluation tools and a pilot are ready, without
 claiming human evidence. No iPhone UI, AI model, training, or live mode was built.
@@ -32,7 +34,8 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Formal export schemas | PASS | Preinstalled jsonschema 4.19.2 validates M0a/all remix exports; rejects recorded-kind without consent |
 | Dependencies/assets | PASS | No third-party DSP runtime; procedural instruments; optional external speech tool inventoried |
 | Master specification | PASS | Original SHA-256 unchanged |
-| Human recording / recognition | NOT RUN | No consented human fixture supplied |
+| Consented human recording technical render | PASS | One owner-supplied 4.862 s source; three masters and 12 stems decoded; [trial](voice-trial.md) |
+| Human speech recognition by listeners | NOT RUN | No actual listener observations |
 | Human enjoyment, realism, audible variety | NOT RUN | No actual listener observations |
 | M0d Apple M5 execution | PASS | Native arm64 release and ASan/UBSan 6/6 each; exact plans/event frames and byte-identical Linux/Mac masters; [evidence](evidence/m0d/report.json) |
 | M1 blinded quality gate | NOT RUN | Synthetic pilot only; requires diverse consented sources and reviewers |
