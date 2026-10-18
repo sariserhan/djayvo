@@ -5,7 +5,15 @@ and asked to finish Linux work, then move to the Mac. Read `AGENTS.md` and the
 complete master specification. Never modify the master; its SHA-256 is
 `389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2`.
 
-**Current priority, 2026-10-18: web first; phone work paused by the owner.**
+**Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
+Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
+The bounded Vast rental was destroyed after verified retrieval. Six new local
+voice arrangements and matched controls are ready for listening. Owner says GPU
+clips are improving and requests context-dependent voice; new voice-mix listening
+is NOT RUN. Do not confuse the local heuristic with a learned director or close
+formal M1/M2 gates. Preserve existing recordings and keep speech local.
+
+Web remains the selected product platform:
 Read [web Instant Remix](web-instant-remix.md) and [web run instructions](../apps/web/README.md).
 The local app is served at http://localhost:4173 by `python3 scripts/web_serve.py`.
 Build with `sh scripts/web_build.sh`; the isolated SDK is `build-web-tools/emsdk`

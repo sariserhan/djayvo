@@ -1,0 +1,54 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/djayvo/renders/voice-research-20261018/review/index.html",
+    "players": 18,
+    "durations_seconds": 30,
+    "play_seek_pause_exclusivity": "PASS",
+    "notes_download": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "/tmp/djayvo-voice-chromium-desktop.png",
+      "/tmp/djayvo-voice-chromium-mobile.png"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/djayvo/renders/voice-research-20261018/review/index.html",
+    "players": 18,
+    "durations_seconds": 30,
+    "play_seek_pause_exclusivity": "PASS",
+    "notes_download": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "/tmp/djayvo-voice-webkit-desktop.png",
+      "/tmp/djayvo-voice-webkit-mobile.png"
+    ]
+  }
+]

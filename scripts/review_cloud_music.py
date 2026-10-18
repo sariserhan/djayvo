@@ -18,7 +18,7 @@ EVIDENCE = Path("docs/evidence/cloud-music-trial")
 
 def loudness(path):
     run = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(path), "-af", "ebur128=peak=true",
-                          "-f", "null", "-"], capture_output=True, text=True, check=True)
+                          "-f", "null", "-"], capture_output=True, text=True, check=True, timeout=30)
     summary = run.stderr[run.stderr.rfind("Summary:"):]
     return {key: float(re.search(pattern, summary).group(1)) for key, pattern in (
         ("lufs", r"I:\s+([-\d.]+) LUFS"), ("true_peak_dbfs", r"Peak:\s+([-\d.]+) dBFS"))}

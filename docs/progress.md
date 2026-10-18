@@ -10,6 +10,19 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest local research, 2026-10-18: [selective voice over GPU instrumentals](voice-research.md).
+Owner reports the instrumentals are “getting better” and requests human voice
+sometimes, with context-dependent creative choices. Six club/hip-hop arrangements
+now combine the existing consented source with retrieved beds, leaving roughly
+75–78% of their scheduled duration without voice events. Controls, stems and
+matched instrumental-only playback accompany them. **Source fidelity, exact
+event/WAV repeatability, six regression tests and Chromium/WebKit playback: PASS.**
+This uses local energy/grid heuristics, not learned musical judgment. **Prior
+GPU owner feedback: PARTIAL; new mix listening, beat alignment, word clarity and
+formal quality: NOT RUN.** No new rental, cloud voice transfer, training or app
+integration. Master/fixture/owner source hashes are unchanged. C03–C05 track
+technical delivery and the remaining creative-quality work separately.
+
 Latest separate model research, 2026-10-18: the owner-funded, $10-bounded
 [Vast music trial](cloud-music-trial.md) ran ACE-Step 1.5 on one RTX 3090.
 **GPU execution, ten 30-second outputs, verified retrieval, waveform checks and
@@ -17,7 +30,8 @@ rental cleanup: PASS.** Warm direct generation took 2.447–2.492 s; the two
 planning-LM cases took 23.189/26.344 s. The same-seed repeat is byte-identical;
 other seeds produce measured waveform differences, not proven musical variety.
 Observed debit is about $0.09; final invoice reconciliation is **PARTIAL**.
-**Listening, Stable Audio comparison, cloud speech processing, production
+**GPU owner listening: PARTIAL** (informal “getting better” feedback); **formal
+listening, Stable Audio comparison, cloud speech processing, production
 integration and M1/M2 advancement: NOT RUN.** Only original text briefs left
 the machine; the master, supplied fixture, owner source and Mac ML environment
 remain unchanged. C01/C02 in the tracker separate technical completion from
@@ -203,7 +217,7 @@ the current app is documented above. AI models, training and live mode remain ab
 | Revised arrangement Linux/Mac comparison | PASS | Prior v8 fixture/owner: 27 exact WAVs; current stack-fix rerun: 15 exact fixture WAVs, exact plans/events; actual phone/Mac: three exact masters |
 | M0d Apple M5 execution | PASS | Native arm64 release and ASan/UBSan 6/6 each; exact plans/event frames and byte-identical Linux/Mac masters; [evidence](evidence/m0d/report.json) |
 | M1 blinded quality gate | NOT RUN | Frozen one-owner pilot prepared; requires diverse cleared sources and actual blinded reviewers |
-| M2 GPU/model benchmark | NOT RUN | Quality baseline and actual model measurements remain missing |
+| M2 constrained director benchmark | NOT RUN | Quality baseline and director benchmark remain missing; separate [pretrained music trial](cloud-music-trial.md) has actual GPU timing/memory evidence |
 | M3 iPhone/device | PARTIAL | Native app, simulator flows and six actual iPhone integration tests; current limitations in [iOS evidence](ios-instant-remix.md) |
 | M4 live work | PARTIAL | [Research protocol](live-research-protocol.md) defined; implementation/real-time measurements NOT RUN |
 | M5 production preparation | PARTIAL | [Privacy/release preparation](release-readiness.md); publication/monetization NOT RUN |

@@ -1,0 +1,1409 @@
+{
+  "processing": "local",
+  "research_only": true,
+  "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+  "python": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "numpy": "2.5.4",
+  "listening_gate": "NOT RUN",
+  "cases": [
+    {
+      "name": "club-seed-7441",
+      "plan": {
+        "schema_version": 1,
+        "research_only": true,
+        "processing": "local",
+        "consent_confirmed": true,
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "bed_sha256": "7d26706f5d0ed0ad597e8013832e20b9e3d3ecd425794d32737c3ffb320d56e6",
+        "crop_metadata_sha256": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "bpm_requested": 140,
+        "beat_alignment_gate": "NOT RUN",
+        "seed": 7441,
+        "arrangement": "instrumental-first",
+        "source_gain": 1.8649787268312183,
+        "bed_gain": 0.7292997774353707,
+        "shared_master_gain": 1.0,
+        "voice_edge_fade_frames": 480,
+        "clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 46965,
+            "end_frame": 76594,
+            "confidence": 0.65
+          },
+          {
+            "id": 2,
+            "start_frame": 82077,
+            "end_frame": 113031,
+            "confidence": 0.65
+          },
+          {
+            "id": 3,
+            "start_frame": 118947,
+            "end_frame": 143717,
+            "confidence": 0.65
+          },
+          {
+            "id": 4,
+            "start_frame": 136767,
+            "end_frame": 163929,
+            "confidence": 0.65
+          }
+        ],
+        "events": [
+          {
+            "start_frame": 288000,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 562519,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 624233,
+            "clip_id": 4,
+            "clean": false,
+            "gain": 0.8
+          },
+          {
+            "start_frame": 706519,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.65
+          }
+        ],
+        "control_events": [
+          {
+            "start_frame": 0,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 329143,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 658286,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 987429,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          }
+        ],
+        "listening_gate": "NOT RUN",
+        "artifacts": {
+          "mix.wav": "8b1202869ff88b855fe25f471803815dcff11cc41a9a49d712afa8924e4ff6ae",
+          "backing.wav": "f79585b1871725b27894890784c10590fa54acd21f353e0ef28a337c6da67cf4",
+          "voice.wav": "fd4bb8d606d20a2d82969a9fdd5ff85ef7e2713af7263961231c2281b85f2fa3",
+          "control.wav": "b8b497283eb030e8595a2d51cdd93f8fd1876a756a6f7447d244b7764177e61c"
+        }
+      },
+      "measurements": {
+        "mix.wav": {
+          "file": "renders/voice-research-20261018/club-seed-7441/mix.wav",
+          "sha256": "8b1202869ff88b855fe25f471803815dcff11cc41a9a49d712afa8924e4ff6ae",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.578887939453125,
+          "peak_dbfs": -4.7481099685367445,
+          "rms_dbfs_left": -25.362648049158544,
+          "rms_dbfs_right": -25.42327906534668,
+          "dc_left": 0.000709235594007704,
+          "dc_right": 0.0008316916783650717,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438841,
+          "max_adjacent_sample_step": 0.484100341796875,
+          "last_100ms_peak": 0.00018310546875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "backing.wav": {
+          "file": "renders/voice-research-20261018/club-seed-7441/backing.wav",
+          "sha256": "f79585b1871725b27894890784c10590fa54acd21f353e0ef28a337c6da67cf4",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.578887939453125,
+          "peak_dbfs": -4.7481099685367445,
+          "rms_dbfs_left": -26.932255416404054,
+          "rms_dbfs_right": -27.019076722572095,
+          "dc_left": 0.0007133832295735677,
+          "dc_right": 0.0008358380423651801,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438841,
+          "max_adjacent_sample_step": 0.484100341796875,
+          "last_100ms_peak": 0.00018310546875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "voice.wav": {
+          "file": "renders/voice-research-20261018/club-seed-7441/voice.wav",
+          "sha256": "fd4bb8d606d20a2d82969a9fdd5ff85ef7e2713af7263961231c2281b85f2fa3",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.492034912109375,
+          "peak_dbfs": -6.160081619509327,
+          "rms_dbfs_left": -30.546270424817603,
+          "rms_dbfs_right": -30.546270424817603,
+          "dc_left": -4.105313618977864e-06,
+          "dc_right": -4.105313618977864e-06,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 288025,
+          "last_nonzero_frame": 736130,
+          "max_adjacent_sample_step": 0.37518310546875,
+          "last_100ms_peak": 0.0,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "control.wav": {
+          "file": "renders/voice-research-20261018/club-seed-7441/control.wav",
+          "sha256": "b8b497283eb030e8595a2d51cdd93f8fd1876a756a6f7447d244b7764177e61c",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.745574951171875,
+          "peak_dbfs": -2.5501738250603783,
+          "rms_dbfs_left": -23.065185873087945,
+          "rms_dbfs_right": -23.10376307831653,
+          "dc_left": 0.0008059515423244901,
+          "dc_right": 0.0009564082251654731,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438841,
+          "max_adjacent_sample_step": 0.474609375,
+          "last_100ms_peak": 0.00018310546875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        }
+      },
+      "loudness": {
+        "arranged": {
+          "lufs": -22.4,
+          "true_peak_dbfs": -4.7
+        },
+        "control": {
+          "lufs": -19.7,
+          "true_peak_dbfs": -2.6
+        },
+        "instrumental": {
+          "lufs": -20.8,
+          "true_peak_dbfs": -1.0
+        }
+      },
+      "matched": {
+        "A": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -4.9,
+          "sha256": "af62e2121ef03197d12a48fc7c2516c0bace88de812d2abad70f55be6ca9d936",
+          "gain_db": -2.3000000000000007
+        },
+        "B": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -4.3,
+          "sha256": "12e700798ea03485aeb4a3dbf0045a5f1377184bcf3d10e0879116f448e7a4c8",
+          "gain_db": 0.3999999999999986
+        },
+        "instrumental": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -2.2,
+          "sha256": "d7c5664a5b3a0725a39ce1ca03334e4b464ff4c9e2389d1b430af9c02fec1dfa",
+          "gain_db": -1.1999999999999993
+        }
+      },
+      "first_voice_event_seconds": 6.0,
+      "voice_event_fraction": 0.22208055555555556,
+      "clean_hook_maximum_pcm_error": 1.5224440525873906e-05,
+      "stem_reconstruction_maximum_pcm_error": 3.0517578125e-05
+    },
+    {
+      "name": "club-seed-7442",
+      "plan": {
+        "schema_version": 1,
+        "research_only": true,
+        "processing": "local",
+        "consent_confirmed": true,
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "bed_sha256": "6364941f915eda32d1b287a81734d8539d45887181bceffacaea26d62a718964",
+        "crop_metadata_sha256": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "bpm_requested": 140,
+        "beat_alignment_gate": "NOT RUN",
+        "seed": 7442,
+        "arrangement": "fragment-pickup",
+        "source_gain": 1.8649787268312183,
+        "bed_gain": 0.7292997774353707,
+        "shared_master_gain": 1.0,
+        "voice_edge_fade_frames": 480,
+        "clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 46965,
+            "end_frame": 76594,
+            "confidence": 0.65
+          },
+          {
+            "id": 2,
+            "start_frame": 82077,
+            "end_frame": 113031,
+            "confidence": 0.65
+          },
+          {
+            "id": 3,
+            "start_frame": 118947,
+            "end_frame": 143717,
+            "confidence": 0.65
+          },
+          {
+            "id": 4,
+            "start_frame": 136767,
+            "end_frame": 163929,
+            "confidence": 0.65
+          }
+        ],
+        "events": [
+          {
+            "start_frame": 10286,
+            "clip_id": 3,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 246857,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 521376,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.8
+          },
+          {
+            "start_frame": 583090,
+            "clip_id": 3,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 665376,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.8
+          }
+        ],
+        "control_events": [
+          {
+            "start_frame": 0,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 329143,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 658286,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 987429,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          }
+        ],
+        "listening_gate": "NOT RUN",
+        "artifacts": {
+          "mix.wav": "ab026f4cbe3feb3b1f276eaaf1b0e07abcb9305e5a3481c8b2d65e46b68b3399",
+          "backing.wav": "22729859e27e733d507fe1b147f4dd0cd872c5b4dca0f90f02e4d00de30a4cbe",
+          "voice.wav": "4ce4c011554eab7c5f948104312a935842984db0de7fca448482f70618b73f81",
+          "control.wav": "efde0aac51f210fe68dd70083df445ce30682dc7aa4a1d0384bb0977bfa56661"
+        }
+      },
+      "measurements": {
+        "mix.wav": {
+          "file": "renders/voice-research-20261018/club-seed-7442/mix.wav",
+          "sha256": "ab026f4cbe3feb3b1f276eaaf1b0e07abcb9305e5a3481c8b2d65e46b68b3399",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.649993896484375,
+          "peak_dbfs": -3.7418144282383166,
+          "rms_dbfs_left": -22.432941513374587,
+          "rms_dbfs_right": -22.929885790243475,
+          "dc_left": 0.0008277488708496093,
+          "dc_right": 0.0010820363998413087,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438877,
+          "max_adjacent_sample_step": 0.435821533203125,
+          "last_100ms_peak": 0.000213623046875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "backing.wav": {
+          "file": "renders/voice-research-20261018/club-seed-7442/backing.wav",
+          "sha256": "22729859e27e733d507fe1b147f4dd0cd872c5b4dca0f90f02e4d00de30a4cbe",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.649993896484375,
+          "peak_dbfs": -3.7418144282383166,
+          "rms_dbfs_left": -23.397610617097293,
+          "rms_dbfs_right": -24.024971093971903,
+          "dc_left": 0.0008321741104125977,
+          "dc_right": 0.001086461024814182,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438877,
+          "max_adjacent_sample_step": 0.435821533203125,
+          "last_100ms_peak": 0.000213623046875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "voice.wav": {
+          "file": "renders/voice-research-20261018/club-seed-7442/voice.wav",
+          "sha256": "4ce4c011554eab7c5f948104312a935842984db0de7fca448482f70618b73f81",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.492034912109375,
+          "peak_dbfs": -6.160081619509327,
+          "rms_dbfs_left": -29.43796572017135,
+          "rms_dbfs_right": -29.43796572017135,
+          "dc_left": -4.373296101888021e-06,
+          "dc_right": -4.373296101888021e-06,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 10299,
+          "last_nonzero_frame": 694987,
+          "max_adjacent_sample_step": 0.37518310546875,
+          "last_100ms_peak": 0.0,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "control.wav": {
+          "file": "renders/voice-research-20261018/club-seed-7442/control.wav",
+          "sha256": "efde0aac51f210fe68dd70083df445ce30682dc7aa4a1d0384bb0977bfa56661",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.705657958984375,
+          "peak_dbfs": -3.0281151155364796,
+          "rms_dbfs_left": -20.930320968828347,
+          "rms_dbfs_right": -21.333380186992986,
+          "dc_left": 0.0009829943339029947,
+          "dc_right": 0.0012831220414903429,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438877,
+          "max_adjacent_sample_step": 0.435821533203125,
+          "last_100ms_peak": 0.000213623046875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        }
+      },
+      "loudness": {
+        "arranged": {
+          "lufs": -20.5,
+          "true_peak_dbfs": -3.7
+        },
+        "control": {
+          "lufs": -19.1,
+          "true_peak_dbfs": -2.8
+        },
+        "instrumental": {
+          "lufs": -18.6,
+          "true_peak_dbfs": -0.9
+        }
+      },
+      "matched": {
+        "A": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -5.2,
+          "sha256": "dceea2196891848c456f6a1eefc5a14fab74e8bff84a4a18bc9d05a67655d95b",
+          "gain_db": -1.5
+        },
+        "B": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -5.7,
+          "sha256": "76f99df30606558458886c35285924d0df6b0106c42925ff779379d10a3d65a7",
+          "gain_db": -2.8999999999999986
+        },
+        "instrumental": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -4.3,
+          "sha256": "6d053d93129c68287e43e0b36e970bf20f73e3bcd1546e5a682d004104e9e947",
+          "gain_db": -3.3999999999999986
+        }
+      },
+      "first_voice_event_seconds": 0.21429166666666666,
+      "voice_event_fraction": 0.23762083333333334,
+      "clean_hook_maximum_pcm_error": 1.5224440525873906e-05,
+      "stem_reconstruction_maximum_pcm_error": 3.0517578125e-05
+    },
+    {
+      "name": "club-lm-7441",
+      "plan": {
+        "schema_version": 1,
+        "research_only": true,
+        "processing": "local",
+        "consent_confirmed": true,
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "bed_sha256": "6d9291747a70a9238fe88105fb8a2493cec64427222f02ca434f3b7719b3312c",
+        "crop_metadata_sha256": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "bpm_requested": 140,
+        "beat_alignment_gate": "NOT RUN",
+        "seed": 7441,
+        "arrangement": "late-hook",
+        "source_gain": 1.8649787268312183,
+        "bed_gain": 0.5921149504805092,
+        "shared_master_gain": 1.0,
+        "voice_edge_fade_frames": 480,
+        "clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 46965,
+            "end_frame": 76594,
+            "confidence": 0.65
+          },
+          {
+            "id": 2,
+            "start_frame": 82077,
+            "end_frame": 113031,
+            "confidence": 0.65
+          },
+          {
+            "id": 3,
+            "start_frame": 118947,
+            "end_frame": 143717,
+            "confidence": 0.65
+          },
+          {
+            "id": 4,
+            "start_frame": 136767,
+            "end_frame": 163929,
+            "confidence": 0.65
+          }
+        ],
+        "events": [
+          {
+            "start_frame": 329143,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 603662,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 665376,
+            "clip_id": 4,
+            "clean": false,
+            "gain": 0.8
+          },
+          {
+            "start_frame": 747662,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.65
+          }
+        ],
+        "control_events": [
+          {
+            "start_frame": 0,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 329143,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 658286,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 987429,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          }
+        ],
+        "listening_gate": "NOT RUN",
+        "artifacts": {
+          "mix.wav": "21efc40f276603939bbee74718a8896c1f91a3270723cfbce9f65b5ac1e2984b",
+          "backing.wav": "1628cf540e8c2a2961ca68831e8df329ba289b85fefa4b2f597dba32ec07bd41",
+          "voice.wav": "c5cf85a49fc75dee5cc3b8b627efa6a0094c614930e93d936e3298b01963ad56",
+          "control.wav": "8db5f1e6c093a9fd18954cc4f3c28d733f888cf0612819360659710901aa57f8"
+        }
+      },
+      "measurements": {
+        "mix.wav": {
+          "file": "renders/voice-research-20261018/club-lm-7441/mix.wav",
+          "sha256": "21efc40f276603939bbee74718a8896c1f91a3270723cfbce9f65b5ac1e2984b",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.527740478515625,
+          "peak_dbfs": -5.551591869659605,
+          "rms_dbfs_left": -21.876678481918262,
+          "rms_dbfs_right": -21.956771324974568,
+          "dc_left": 0.0012034153832329645,
+          "dc_right": 0.001375532955593533,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438665,
+          "max_adjacent_sample_step": 0.464202880859375,
+          "last_100ms_peak": 0.000152587890625,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "backing.wav": {
+          "file": "renders/voice-research-20261018/club-lm-7441/backing.wav",
+          "sha256": "1628cf540e8c2a2961ca68831e8df329ba289b85fefa4b2f597dba32ec07bd41",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.527740478515625,
+          "peak_dbfs": -5.551591869659605,
+          "rms_dbfs_left": -22.50825013194023,
+          "rms_dbfs_right": -22.599750315864014,
+          "dc_left": 0.0012075697580973307,
+          "dc_right": 0.0013796929253472223,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438665,
+          "max_adjacent_sample_step": 0.464202880859375,
+          "last_100ms_peak": 0.000152587890625,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "voice.wav": {
+          "file": "renders/voice-research-20261018/club-lm-7441/voice.wav",
+          "sha256": "c5cf85a49fc75dee5cc3b8b627efa6a0094c614930e93d936e3298b01963ad56",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.492034912109375,
+          "peak_dbfs": -6.160081619509327,
+          "rms_dbfs_left": -30.546270424817603,
+          "rms_dbfs_right": -30.546270424817603,
+          "dc_left": -4.105313618977864e-06,
+          "dc_right": -4.105313618977864e-06,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 329168,
+          "last_nonzero_frame": 777273,
+          "max_adjacent_sample_step": 0.37518310546875,
+          "last_100ms_peak": 0.0,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "control.wav": {
+          "file": "renders/voice-research-20261018/club-lm-7441/control.wav",
+          "sha256": "8db5f1e6c093a9fd18954cc4f3c28d733f888cf0612819360659710901aa57f8",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.704376220703125,
+          "peak_dbfs": -3.043906279300624,
+          "rms_dbfs_left": -20.4830744794784,
+          "rms_dbfs_right": -20.590911038302554,
+          "dc_left": 0.0012685235553317599,
+          "dc_right": 0.0015082028494940863,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438665,
+          "max_adjacent_sample_step": 0.464202880859375,
+          "last_100ms_peak": 0.000152587890625,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        }
+      },
+      "loudness": {
+        "arranged": {
+          "lufs": -20.3,
+          "true_peak_dbfs": -5.5
+        },
+        "control": {
+          "lufs": -18.3,
+          "true_peak_dbfs": -3.0
+        },
+        "instrumental": {
+          "lufs": -16.0,
+          "true_peak_dbfs": -0.9
+        }
+      },
+      "matched": {
+        "A": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -7.2,
+          "sha256": "a919b44a0fe7b00a3b287879de06bf7e4203360b7848a1304bf8f430ef721fc0",
+          "gain_db": -1.6999999999999993
+        },
+        "B": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -6.7,
+          "sha256": "881c674415f256dd48754a81b4404bcfd0a4140102e9b021d004250a0c5e1830",
+          "gain_db": -3.6999999999999993
+        },
+        "instrumental": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -6.9,
+          "sha256": "46e5fddd765649c222d6b3cacf8e384786a765feb2b5468c3bcd514005589d61",
+          "gain_db": -6.0
+        }
+      },
+      "first_voice_event_seconds": 6.857145833333333,
+      "voice_event_fraction": 0.22208055555555556,
+      "clean_hook_maximum_pcm_error": 1.5224440525873906e-05,
+      "stem_reconstruction_maximum_pcm_error": 3.0517578125e-05
+    },
+    {
+      "name": "hiphop-seed-4123",
+      "plan": {
+        "schema_version": 1,
+        "research_only": true,
+        "processing": "local",
+        "consent_confirmed": true,
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "bed_sha256": "8cb2bf63bb45bab4445c1aa973e86969124489e143e23d27c3a6389b7c10d813",
+        "crop_metadata_sha256": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "bpm_requested": 92,
+        "beat_alignment_gate": "NOT RUN",
+        "seed": 4123,
+        "arrangement": "instrumental-first",
+        "source_gain": 1.8649787268312183,
+        "bed_gain": 0.6939066829771664,
+        "shared_master_gain": 1.0,
+        "voice_edge_fade_frames": 480,
+        "clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 46965,
+            "end_frame": 76594,
+            "confidence": 0.65
+          },
+          {
+            "id": 2,
+            "start_frame": 82077,
+            "end_frame": 113031,
+            "confidence": 0.65
+          },
+          {
+            "id": 3,
+            "start_frame": 118947,
+            "end_frame": 143717,
+            "confidence": 0.65
+          },
+          {
+            "id": 4,
+            "start_frame": 136767,
+            "end_frame": 163929,
+            "confidence": 0.65
+          }
+        ],
+        "events": [
+          {
+            "start_frame": 250435,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 546420,
+            "clip_id": 2,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 640333,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.8
+          },
+          {
+            "start_frame": 765550,
+            "clip_id": 2,
+            "clean": false,
+            "gain": 0.65
+          }
+        ],
+        "control_events": [
+          {
+            "start_frame": 0,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 500870,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 1001740,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          }
+        ],
+        "listening_gate": "NOT RUN",
+        "artifacts": {
+          "mix.wav": "ad546978b31d1b11a20a2b22346eec9ff4212d93a78c35061d2c01b86e335ddd",
+          "backing.wav": "4670f0e0131915cf2d1907373f006f646524449100efb90b0ce55d442c466264",
+          "voice.wav": "428b45f2d20a82b7c23c07380dfb9624075ceac45ed5e7935e3dd283e35f9f50",
+          "control.wav": "4e050d3308f9b5d93cb6177842fdd0ca9d9822c663ce48ced2fa27d80bcf9bae"
+        }
+      },
+      "measurements": {
+        "mix.wav": {
+          "file": "renders/voice-research-20261018/hiphop-seed-4123/mix.wav",
+          "sha256": "ad546978b31d1b11a20a2b22346eec9ff4212d93a78c35061d2c01b86e335ddd",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.61846923828125,
+          "peak_dbfs": -4.173637932886239,
+          "rms_dbfs_left": -22.6061932566732,
+          "rms_dbfs_right": -22.854943242804715,
+          "dc_left": 0.0006384763717651367,
+          "dc_right": 0.0008897443559434679,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438887,
+          "max_adjacent_sample_step": 0.374847412109375,
+          "last_100ms_peak": 0.00018310546875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "backing.wav": {
+          "file": "renders/voice-research-20261018/hiphop-seed-4123/backing.wav",
+          "sha256": "4670f0e0131915cf2d1907373f006f646524449100efb90b0ce55d442c466264",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.61846923828125,
+          "peak_dbfs": -4.173637932886239,
+          "rms_dbfs_left": -23.332803114688833,
+          "rms_dbfs_right": -23.626607410659798,
+          "dc_left": 0.0006428580390082466,
+          "dc_right": 0.000894128057691786,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438887,
+          "max_adjacent_sample_step": 0.345001220703125,
+          "last_100ms_peak": 0.00018310546875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "voice.wav": {
+          "file": "renders/voice-research-20261018/hiphop-seed-4123/voice.wav",
+          "sha256": "428b45f2d20a82b7c23c07380dfb9624075ceac45ed5e7935e3dd283e35f9f50",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.492034912109375,
+          "peak_dbfs": -6.160081619509327,
+          "rms_dbfs_left": -30.72927751263761,
+          "rms_dbfs_right": -30.72927751263761,
+          "dc_left": -4.348458184136285e-06,
+          "dc_right": -4.348458184136285e-06,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 250460,
+          "last_nonzero_frame": 796472,
+          "max_adjacent_sample_step": 0.37518310546875,
+          "last_100ms_peak": 0.0,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "control.wav": {
+          "file": "renders/voice-research-20261018/hiphop-seed-4123/control.wav",
+          "sha256": "4e050d3308f9b5d93cb6177842fdd0ca9d9822c663ce48ced2fa27d80bcf9bae",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.786224365234375,
+          "peak_dbfs": -2.0890700288667112,
+          "rms_dbfs_left": -20.73645056953766,
+          "rms_dbfs_right": -20.95966265866133,
+          "dc_left": 0.0007753772311740451,
+          "dc_right": 0.0010794767591688367,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438887,
+          "max_adjacent_sample_step": 0.37603759765625,
+          "last_100ms_peak": 0.00018310546875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        }
+      },
+      "loudness": {
+        "arranged": {
+          "lufs": -20.1,
+          "true_peak_dbfs": -4.2
+        },
+        "control": {
+          "lufs": -18.5,
+          "true_peak_dbfs": -2.1
+        },
+        "instrumental": {
+          "lufs": -16.7,
+          "true_peak_dbfs": -1.0
+        }
+      },
+      "matched": {
+        "A": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -6.1,
+          "sha256": "9c307fc7fc5d0a5d8a9bb9fae0e95e17d12185bac7bc92789d5d5585b93fdc91",
+          "gain_db": -1.8999999999999986
+        },
+        "B": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -5.6,
+          "sha256": "32420420a0da28e88cbb6af4f679aa24157d4a525786a7355fdb5b10085f4884",
+          "gain_db": -3.5
+        },
+        "instrumental": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -6.3,
+          "sha256": "4c296ce964a62e3625123333a295e9b0b945bdbc60d1e5aa3c3b459491797718",
+          "gain_db": -5.300000000000001
+        }
+      },
+      "first_voice_event_seconds": 5.217395833333334,
+      "voice_event_fraction": 0.22563402777777777,
+      "clean_hook_maximum_pcm_error": 1.5224440525873906e-05,
+      "stem_reconstruction_maximum_pcm_error": 3.0517578125e-05
+    },
+    {
+      "name": "hiphop-jazz",
+      "plan": {
+        "schema_version": 1,
+        "research_only": true,
+        "processing": "local",
+        "consent_confirmed": true,
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "bed_sha256": "d90fc05c83932fbf358a46e47c51d23b8d9083269bc7b7bb44aad409dcb55c2e",
+        "crop_metadata_sha256": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "bpm_requested": 86,
+        "beat_alignment_gate": "NOT RUN",
+        "seed": 5221,
+        "arrangement": "fragment-pickup",
+        "source_gain": 1.8649787268312183,
+        "bed_gain": 0.5017835990254266,
+        "shared_master_gain": 1.0,
+        "voice_edge_fade_frames": 480,
+        "clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 46965,
+            "end_frame": 76594,
+            "confidence": 0.65
+          },
+          {
+            "id": 2,
+            "start_frame": 82077,
+            "end_frame": 113031,
+            "confidence": 0.65
+          },
+          {
+            "id": 3,
+            "start_frame": 118947,
+            "end_frame": 143717,
+            "confidence": 0.65
+          },
+          {
+            "id": 4,
+            "start_frame": 136767,
+            "end_frame": 163929,
+            "confidence": 0.65
+          }
+        ],
+        "events": [
+          {
+            "start_frame": 16744,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 200930,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 501283,
+            "clip_id": 2,
+            "clean": false,
+            "gain": 0.8
+          },
+          {
+            "start_frame": 601748,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 735701,
+            "clip_id": 2,
+            "clean": false,
+            "gain": 0.8
+          }
+        ],
+        "control_events": [
+          {
+            "start_frame": 0,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 535814,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 1071628,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          }
+        ],
+        "listening_gate": "NOT RUN",
+        "artifacts": {
+          "mix.wav": "161ab4c7c617e333e70b1d2762155bf2b78bf63afb519498bf05316a9344f295",
+          "backing.wav": "45a9884a240f151ae04246b3690abac27e987c81b13c40f1bb098b3064c72c07",
+          "voice.wav": "318469f51ab24690906937b6495d19f216e9474af02612177e440c5ca63c2373",
+          "control.wav": "c07c4f297afdb6127a73225e44b16245fb0d635a2e0489a28302b28724fac176"
+        }
+      },
+      "measurements": {
+        "mix.wav": {
+          "file": "renders/voice-research-20261018/hiphop-jazz/mix.wav",
+          "sha256": "161ab4c7c617e333e70b1d2762155bf2b78bf63afb519498bf05316a9344f295",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.48876953125,
+          "peak_dbfs": -6.21791749648949,
+          "rms_dbfs_left": -22.036233201435934,
+          "rms_dbfs_right": -22.445292229148215,
+          "dc_left": 0.0005029072655571832,
+          "dc_right": 0.0009508777618408203,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438766,
+          "max_adjacent_sample_step": 0.37506103515625,
+          "last_100ms_peak": 0.000152587890625,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "backing.wav": {
+          "file": "renders/voice-research-20261018/hiphop-jazz/backing.wav",
+          "sha256": "45a9884a240f151ae04246b3690abac27e987c81b13c40f1bb098b3064c72c07",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.447235107421875,
+          "peak_dbfs": -6.989282243705272,
+          "rms_dbfs_left": -22.736763998831915,
+          "rms_dbfs_right": -23.220515935806233,
+          "dc_left": 0.0005076300938924153,
+          "dc_right": 0.0009555983225504557,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438766,
+          "max_adjacent_sample_step": 0.167144775390625,
+          "last_100ms_peak": 0.000152587890625,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "voice.wav": {
+          "file": "renders/voice-research-20261018/hiphop-jazz/voice.wav",
+          "sha256": "318469f51ab24690906937b6495d19f216e9474af02612177e440c5ca63c2373",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.492034912109375,
+          "peak_dbfs": -6.160081619509327,
+          "rms_dbfs_left": -30.293254641045934,
+          "rms_dbfs_right": -30.293254641045934,
+          "dc_left": -4.6701219346788195e-06,
+          "dc_right": -4.6701219346788195e-06,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 16758,
+          "last_nonzero_frame": 766623,
+          "max_adjacent_sample_step": 0.37518310546875,
+          "last_100ms_peak": 0.0,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "control.wav": {
+          "file": "renders/voice-research-20261018/hiphop-jazz/control.wav",
+          "sha256": "c07c4f297afdb6127a73225e44b16245fb0d635a2e0489a28302b28724fac176",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.6461181640625,
+          "peak_dbfs": -3.7937609928097538,
+          "rms_dbfs_left": -20.688045128665227,
+          "rms_dbfs_right": -21.043373677831067,
+          "dc_left": 0.0006016215006510417,
+          "dc_right": 0.0011327864752875435,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438766,
+          "max_adjacent_sample_step": 0.383544921875,
+          "last_100ms_peak": 0.000152587890625,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        }
+      },
+      "loudness": {
+        "arranged": {
+          "lufs": -20.2,
+          "true_peak_dbfs": -6.2
+        },
+        "control": {
+          "lufs": -18.7,
+          "true_peak_dbfs": -3.8
+        },
+        "instrumental": {
+          "lufs": -14.4,
+          "true_peak_dbfs": -1.0
+        }
+      },
+      "matched": {
+        "A": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -7.1,
+          "sha256": "79447e9968aec49291c677e5489b5b7f6bc2ef20f5f3a3ce18669f1842fda572",
+          "gain_db": -3.3000000000000007
+        },
+        "B": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -8.0,
+          "sha256": "5fd213daeb7637ac97cee3feff1c191390827b257c350c092e26818e98ed9fe4",
+          "gain_db": -1.8000000000000007
+        },
+        "instrumental": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -8.6,
+          "sha256": "5aa44c31ffcf61f0ee655d185a5b9c41da0c8a0a6cb1f88eefdb5b694b4d3990",
+          "gain_db": -7.6
+        }
+      },
+      "first_voice_event_seconds": 0.34883333333333333,
+      "voice_event_fraction": 0.24620972222222223,
+      "clean_hook_maximum_pcm_error": 1.5224440525873906e-05,
+      "stem_reconstruction_maximum_pcm_error": 3.0517578125e-05
+    },
+    {
+      "name": "hiphop-lm-4123",
+      "plan": {
+        "schema_version": 1,
+        "research_only": true,
+        "processing": "local",
+        "consent_confirmed": true,
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "bed_sha256": "76375cfb91fef88d37a941b8be97fc731e11ed3c11f3d7f9af49cb2c317fd8ac",
+        "crop_metadata_sha256": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "bpm_requested": 92,
+        "beat_alignment_gate": "NOT RUN",
+        "seed": 4123,
+        "arrangement": "late-hook",
+        "source_gain": 1.8649787268312183,
+        "bed_gain": 0.5707934943573385,
+        "shared_master_gain": 1.0,
+        "voice_edge_fade_frames": 480,
+        "clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 46965,
+            "end_frame": 76594,
+            "confidence": 0.65
+          },
+          {
+            "id": 2,
+            "start_frame": 82077,
+            "end_frame": 113031,
+            "confidence": 0.65
+          },
+          {
+            "id": 3,
+            "start_frame": 118947,
+            "end_frame": 143717,
+            "confidence": 0.65
+          },
+          {
+            "id": 4,
+            "start_frame": 136767,
+            "end_frame": 163929,
+            "confidence": 0.65
+          }
+        ],
+        "events": [
+          {
+            "start_frame": 375652,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 671637,
+            "clip_id": 2,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 765550,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.8
+          },
+          {
+            "start_frame": 890767,
+            "clip_id": 2,
+            "clean": false,
+            "gain": 0.65
+          }
+        ],
+        "control_events": [
+          {
+            "start_frame": 0,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 500870,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 1001740,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          }
+        ],
+        "listening_gate": "NOT RUN",
+        "artifacts": {
+          "mix.wav": "8ceab893089c9aa2354ed0d96e7aa1eda4ef606f73c9a550274c74f5cbfe3052",
+          "backing.wav": "18b8d6b705021bf425caf825998c5bf96c8ea4d14869409f1cbc24d801abdd10",
+          "voice.wav": "d43b2a1c651a0cfcca5245b3feba2f8760829431d3e85d25330d088639bab3ba",
+          "control.wav": "943a548541ec7501496e70e513f91f45e8df0dda921df2d94093b3c9d8be8027"
+        }
+      },
+      "measurements": {
+        "mix.wav": {
+          "file": "renders/voice-research-20261018/hiphop-lm-4123/mix.wav",
+          "sha256": "8ceab893089c9aa2354ed0d96e7aa1eda4ef606f73c9a550274c74f5cbfe3052",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.569000244140625,
+          "peak_dbfs": -4.8977509452478385,
+          "rms_dbfs_left": -22.314229740023084,
+          "rms_dbfs_right": -22.445638154112846,
+          "dc_left": 0.0007468470679389106,
+          "dc_right": 0.001036326026916504,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438806,
+          "max_adjacent_sample_step": 0.374786376953125,
+          "last_100ms_peak": 0.000152587890625,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "backing.wav": {
+          "file": "renders/voice-research-20261018/hiphop-lm-4123/backing.wav",
+          "sha256": "18b8d6b705021bf425caf825998c5bf96c8ea4d14869409f1cbc24d801abdd10",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.50872802734375,
+          "peak_dbfs": -5.870286702634252,
+          "rms_dbfs_left": -23.00002392807148,
+          "rms_dbfs_right": -23.15398618463959,
+          "dc_left": 0.0007512364705403646,
+          "dc_right": 0.0010407187991672091,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438806,
+          "max_adjacent_sample_step": 0.1624755859375,
+          "last_100ms_peak": 0.000152587890625,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "voice.wav": {
+          "file": "renders/voice-research-20261018/hiphop-lm-4123/voice.wav",
+          "sha256": "d43b2a1c651a0cfcca5245b3feba2f8760829431d3e85d25330d088639bab3ba",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.492034912109375,
+          "peak_dbfs": -6.160081619509327,
+          "rms_dbfs_left": -30.72927751263761,
+          "rms_dbfs_right": -30.72927751263761,
+          "dc_left": -4.348458184136285e-06,
+          "dc_right": -4.348458184136285e-06,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 375677,
+          "last_nonzero_frame": 921689,
+          "max_adjacent_sample_step": 0.37518310546875,
+          "last_100ms_peak": 0.0,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "control.wav": {
+          "file": "renders/voice-research-20261018/hiphop-lm-4123/control.wav",
+          "sha256": "943a548541ec7501496e70e513f91f45e8df0dda921df2d94093b3c9d8be8027",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.70196533203125,
+          "peak_dbfs": -3.0736867169283633,
+          "rms_dbfs_left": -20.76270915851495,
+          "rms_dbfs_right": -20.88048181834199,
+          "dc_left": 0.0008778457217746311,
+          "dc_right": 0.0012185147603352865,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438806,
+          "max_adjacent_sample_step": 0.376922607421875,
+          "last_100ms_peak": 0.000152587890625,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        }
+      },
+      "loudness": {
+        "arranged": {
+          "lufs": -20.4,
+          "true_peak_dbfs": -4.9
+        },
+        "control": {
+          "lufs": -18.8,
+          "true_peak_dbfs": -3.0
+        },
+        "instrumental": {
+          "lufs": -15.7,
+          "true_peak_dbfs": -0.9
+        }
+      },
+      "matched": {
+        "A": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -6.5,
+          "sha256": "c29d165d20d95b677662e03f040550975a28130f921366759c937689112289b8",
+          "gain_db": -1.6000000000000014
+        },
+        "B": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -6.2,
+          "sha256": "e0e11723de9440e615b05a4b98a92e7497bf06e7f049bbd8cbb137ef04ff07d3",
+          "gain_db": -3.1999999999999993
+        },
+        "instrumental": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -7.2,
+          "sha256": "5fd6954cba5741fce8faef640f4f8814b05589ad346a7b43e89d3694ec52fb07",
+          "gain_db": -6.300000000000001
+        }
+      },
+      "first_voice_event_seconds": 7.826083333333333,
+      "voice_event_fraction": 0.22563402777777777,
+      "clean_hook_maximum_pcm_error": 1.5224440525873906e-05,
+      "stem_reconstruction_maximum_pcm_error": 3.0517578125e-05
+    }
+  ],
+  "determinism": {
+    "status": "PASS",
+    "events_identical": true,
+    "four_wav_hashes_identical": true,
+    "maximum_pcm_difference": 0,
+    "rms_pcm_difference": 0
+  }
+}

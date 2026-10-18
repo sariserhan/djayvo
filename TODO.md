@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [web accounts foundation](docs/web-accounts.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [selective voice research](docs/voice-research.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -16,7 +16,7 @@ the source of truth and is not modified by this tracker.
 | M0c — three musical strategies | PARTIAL | Owner accepts the current prototype as a start; production quality and formal listening remain open |
 | M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact club plans/events and 12 matching club WAVs; prior styles preserved |
 | M1 — musical quality baseline | NOT RUN | Frozen one-source/three-seed pilot and distinct blind packets prepared; diverse sources and formal human evaluation missing |
-| M2 — AI director benchmarks | NOT RUN | Depends on quality baseline and measured model feasibility |
+| M2 — AI director benchmarks | NOT RUN | Quality baseline and constrained director remain open; separate pretrained music feasibility trial measured |
 | M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
 | W0 — browser Instant Remix | PARTIAL | Local WebAssembly app and Chromium/WebKit technical flows pass; physical browser microphone and owner web listening remain open |
 | M4 — live improvisation | PARTIAL | Research protocol and provisional budgets prepared; live implementation and hardware measurements NOT RUN |
@@ -35,9 +35,22 @@ closes that task only; it does not automatically pass its parent milestone.
   debit about $0.09; final invoice reconciliation remains **PARTIAL**.
   [Trial report](docs/cloud-music-trial.md). No cloud voice upload, training,
   production integration or M1/M2 gate closure is implied.
-- [ ] **C02 — NOT RUN:** [Owner audition of the cloud trial](renders/cloud-trial-20261018/review/index.html): instrument realism,
-  groove, perceived variety, transitions and endings. Stable Audio comparison
-  additionally requires gated model access and terms acceptance.
+- [ ] **C02 — PARTIAL:** [Owner audition of the cloud trial](renders/cloud-trial-20261018/review/index.html): owner says clips are
+  “getting better” and requests occasional, context-dependent human voice.
+  Formal realism, groove, variety, transitions and endings ratings remain missing.
+  Stable Audio comparison requires gated model access and terms acceptance.
+- [x] **C03 — PASS:** Six local selective-voice arrangements over retrieved club/hip-hop
+  beds, six repeating-voice controls, stems and 18 matched audition files. Source
+  fidelity, event/WAV repeatability, export safeguards and two-browser playback
+  checked. [Evidence](docs/voice-research.md). Rule-based research; no cloud speech
+  processing, new rental, training or production AI integration.
+- [ ] **C04 — NOT RUN:** [Audition the selective-voice comparisons](renders/voice-research-20261018/review/index.html)
+  for natural entrances, intelligibility, groove and enough instrumental space.
+  Record timestamps; technical checks do not establish musical quality.
+- [ ] **C05 — NOT RUN:** Learned contextual arrangement and perceptual novelty:
+  verified phrase/beat placement, varied musical development and appropriate
+  voice presence. Requires quality evidence before production AI integration;
+  current energy/grid heuristics do not satisfy this gate.
 
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,
@@ -72,6 +85,13 @@ listening data, device observations, model prerequisites and release approval
 are not supplied by this instruction. The master remains unchanged.
 
 ## Next: review the current music
+
+Latest [voice and instrumental comparisons](renders/voice-research-20261018/review/index.html):
+six 30-second club/hip-hop arrangements, matched repeating-voice controls and
+instrumental-only options. Owner requests performer-level craft and selective
+human voice; this is a quality target, not an artist-imitation or cloning task.
+**Local technical checks: PASS; new voice-mix listening: NOT RUN.**
+[Research evidence and limitations](docs/voice-research.md).
 
 Latest [v7/v8 listening comparison](renders/voice-club-v8/review/index.html):
 three before/after pairs plus bass/drum/voice pairs and the reference. The owner
@@ -170,6 +190,8 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P25 | PASS | Native Instant Remix app: consent, record/import, waveform/trim, worker C ABI, three styles/club, replay/regeneration, saved sessions, WAV sharing/deletion and verified recovery | [iOS evidence](docs/ios-instant-remix.md) |
 | [x] | P26 | PASS | Fix mobile worker stack overflow by allocating the fixed voice pool at construction; retain allocation-free processing and unchanged PCM/events | `394743f` · [iOS evidence](docs/ios-instant-remix.md) |
 | [x] | P27 | PASS | Release bundle audit, privacy manifest/notices, policy draft, release checklist and live feasibility protocol prepared; implementation does not close launch gates | [Readiness](docs/release-readiness.md) |
+| [x] | P28 | PASS | Bounded RTX 3090 pretrained music trial: ten clips, timings/memory, retrieval and verified rental deletion | `f0e95d0` · [Trial](docs/cloud-music-trial.md) |
+| [x] | P29 | PASS | Local selective-voice research: six arrangements, controls/stems, matched review page, six tests and Chromium/WebKit playback | [Evidence](docs/voice-research.md) |
 
 ## Engineering backlog
 
