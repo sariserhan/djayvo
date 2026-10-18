@@ -46,9 +46,18 @@ InputAnalysis analyze(const AudioBuffer& source) {
             (a.onsets.empty() || i * hop - a.onsets.back() >= source.sample_rate * 8U / 100U))
             a.onsets.push_back(i * hop);
     }
+    const auto strongest = static_cast<std::size_t>(std::max_element(envelope.begin(),envelope.end()) - envelope.begin());
+    // Short claps/clicks need context padding when every energetic region is below the phrase minimum.
+    if (a.phrases.empty() && !a.onsets.empty() && maximum>threshold) {
+        const auto length=std::min(source.mono.size(),static_cast<std::size_t>(source.sample_rate)/5);
+        if (length>=source.sample_rate/12) {
+            const auto attack=strongest*hop;
+            const auto begin=std::min(attack>2*hop?attack-2*hop:0,source.mono.size()-length);
+            a.phrases.push_back({begin,begin+length,0.4});
+        }
+    }
     if (a.phrases.empty()) throw std::invalid_argument("no usable energetic source region");
     // Coarse autocorrelation on one energetic window, deliberately model-free.
-    const auto strongest = static_cast<std::size_t>(std::max_element(envelope.begin(),envelope.end()) - envelope.begin());
     const auto stride = std::max(1U, source.sample_rate / 8000U);
     const double analysis_rate = static_cast<double>(source.sample_rate) / stride;
     const auto window = std::min<std::size_t>(static_cast<std::size_t>(analysis_rate * 0.12), source.mono.size() / stride);

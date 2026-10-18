@@ -68,6 +68,21 @@ void analysis() {
     check(x.pitch_hz>210 && x.pitch_hz<230 && x.pitch_confidence>0.8,"pitch estimate wrong for clean tone");
     auto silence=a;std::fill(silence.mono.begin(),silence.mono.end(),0);rejects([&]{djayvo::analyze(silence);});
     silence.mono[5]=std::numeric_limits<float>::infinity();rejects([&]{djayvo::analyze(silence);});
+    for (const auto rate:{8000U,16000U,48000U,192000U}) {
+        for (const auto attack:{0U,rate,rate*3U-1U}) {
+            auto transient=a;transient.sample_rate=transient.original_rate=rate;
+            transient.original_frames=rate*3U;transient.mono.assign(rate*3U,0);
+            const auto length=rate/1000;
+            const auto begin=std::min(attack,rate*3U-length);
+            for (auto i=begin;i<begin+length;++i) transient.mono[i]=(i%2?0.7F:-0.7F);
+            const auto features=djayvo::analyze(transient);
+            check(features.phrases.size()==1 && features.phrases[0].begin<=begin &&
+                  features.phrases[0].end>=begin+length && features.phrases[0].end<=transient.mono.size(),
+                  "short transient lost or padded outside source");
+            const auto plan=djayvo::make_remix(transient,features,djayvo::Strategy::hiphop,4123,true,false);
+            djayvo::validate(plan,transient);
+        }
+    }
 }
 void resampling() {
     auto a=source(); const auto same=djayvo::resample(a,8000);
