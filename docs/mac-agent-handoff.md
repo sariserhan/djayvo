@@ -37,12 +37,20 @@ available; formal dataset/reviewer prerequisites remain missing. Preserve the
 private ledger and recordings under `renders/`; owner-only permission is not
 independent-review permission.
 
-Latest musical continuation: [original club direction](club-direction.md).
+Previous musical continuation: [original club direction](club-direction.md).
 Nine suites pass on M5 release/sanitizers and actual Linux arm64. New club
 masters/stems match exactly across systems; 15 prior v4 owner WAVs are unchanged.
 Use `--style club` explicitly; C ABI strategy 5. The private eight-player review
 is `renders/voice-club-v7/review/index.html`. Club listening is **NOT RUN** and
 production quality is **PARTIAL**. No additional consented clips are available.
+
+Latest continuation: [club refinement v8](club-refinement.md). All three requested
+areas are implemented, and solo stems now retain the master's sample-take IDs.
+Nine suites pass on M5 release/sanitizers and Linux arm64 (25 native groups).
+Current club/fixture WAVs match across systems; original-style masters are
+unchanged, while corrected stems intentionally differ. Latest local review:
+`renders/voice-club-v8/review/index.html`. Human listening is **NOT RUN**.
+Current Linux smoke reference: `renders/arrangement-linux/club-v8/legacy`.
 
 For the previous workflow checkpoint, run the smoke test with `DJAYVO_REFERENCE_PREFIX=renders/arrangement-linux/workflow-v5/remix`
 and a new `DJAYVO_OUTPUT_DIR`. The script now rejects existing output directories;

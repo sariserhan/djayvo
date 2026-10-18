@@ -11,13 +11,13 @@ stems. No model, GPU, paid service, or third-party DSP library is required.
 
 Track past work, open issues and future milestones in [TODO.md](TODO.md).
 
-Latest musical work: [original club direction](docs/club-direction.md), with
-bass-led drops, electronic drums, chord textures and three different openings.
-[Listen locally](renders/voice-club-v7/review/index.html). Use `--style club`
-(C ABI strategy 5); `all` keeps the original three styles. Nine M5/Linux test
-suites pass, and the new cross-OS WAVs match exactly. Listening to this revision
-is **NOT RUN**, and production quality remains **PARTIAL**.
-
+Latest musical work: [club refinement v8](docs/club-refinement.md), covering
+bass/drum tone and balance, transitions and longer pause-ended vocal crops.
+[Compare previous/new locally](renders/voice-club-v8/review/index.html).
+Corrected stems preserve the same instrument takes as the master. Nine M5/Linux
+suites pass, including a new stem reconstruction regression; current cross-OS
+WAVs match exactly. Listening is **NOT RUN**, production quality **PARTIAL**.
+Use `--style club` (C ABI strategy 5); `all` keeps the original three styles.
 
 **M0 overall: PARTIAL.** Earlier acoustic development: the owner has
 auditioned a consented source and requested less game-like instruments and more

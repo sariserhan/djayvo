@@ -60,7 +60,7 @@ void write_report(const AudioStats& a, const PerformancePlan& p, const Schedule&
     const double right = a.frames ? std::sqrt(a.square_sum_right / static_cast<double>(a.frames)) : 0;
     bool acoustic=false,electronic=false;
     for (const auto& track:p.tracks) {acoustic|=!track.electronic;electronic|=track.electronic;}
-    const char* bank=electronic?(acoustic?"acoustic-v1+electronic-v1":"electronic-v1"):"acoustic-v1";
+    const char* bank=electronic?(acoustic?"acoustic-v1+electronic-v2":"electronic-v2"):"acoustic-v1";
     const bool accepted = a.frames == s.total_frames && a.nonfinite_samples == 0 && a.peak <= s.ceiling + 1e-7;
     out << "{\n  \"project\": \"Djayvo\",\n  \"milestone\": \"" << milestone << "\",\n  \"technical_render\": \""
         << (accepted ? "PASS" : "FAIL") << "\",\n  \"listening_validation\": \"NOT RUN\",\n"

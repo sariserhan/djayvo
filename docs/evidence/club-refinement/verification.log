@@ -1,0 +1,77 @@
+{
+  "gates": {
+    "m5_execution": "PASS",
+    "linux_arm64_execution": "PASS",
+    "native_release_suites": "PASS",
+    "asan_ubsan_suites": "PASS",
+    "linux_release_suites": "PASS",
+    "audition_playback": "PASS",
+    "plans_and_event_frames": "PASS",
+    "waveform_comparison": "PASS",
+    "original_style_masters_preserved": "PASS",
+    "stem_identity_and_reconstruction": "PASS",
+    "bounds_and_clean_hooks": "PASS",
+    "schemas_and_export_hashes": "PASS",
+    "protected_inputs_unchanged": "PASS",
+    "club_listening": "NOT RUN",
+    "reference_style_similarity": "NOT RUN",
+    "production_quality": "PARTIAL",
+    "formal_m1": "NOT RUN",
+    "iphone": "NOT RUN",
+    "release": "NOT RUN"
+  },
+  "sections": [
+    {
+      "name": "intro",
+      "start_bar": 0,
+      "bars": 2,
+      "start_seconds": 0.0,
+      "rms_dbfs": -29.957301893364345,
+      "mono_20_150hz_energy_fraction": 0.2045028899718435
+    },
+    {
+      "name": "build",
+      "start_bar": 2,
+      "bars": 4,
+      "start_seconds": 3.4285625,
+      "rms_dbfs": -27.204300244103315,
+      "mono_20_150hz_energy_fraction": 0.4113192971462099
+    },
+    {
+      "name": "drop",
+      "start_bar": 6,
+      "bars": 4,
+      "start_seconds": 10.285708333333334,
+      "rms_dbfs": -18.614046599241696,
+      "mono_20_150hz_energy_fraction": 0.7752374785077333
+    },
+    {
+      "name": "break",
+      "start_bar": 10,
+      "bars": 4,
+      "start_seconds": 17.142854166666666,
+      "rms_dbfs": -28.277171053978098,
+      "mono_20_150hz_energy_fraction": 0.4176801246908695
+    },
+    {
+      "name": "return",
+      "start_bar": 14,
+      "bars": 5,
+      "start_seconds": 24.0,
+      "rms_dbfs": -18.510749397438005,
+      "mono_20_150hz_energy_fraction": 0.7401193784843263
+    },
+    {
+      "name": "ending",
+      "start_bar": 19,
+      "bars": 1,
+      "start_seconds": 32.5714375,
+      "rms_dbfs": -21.961930339399714,
+      "mono_20_150hz_energy_fraction": 0.7560422866058993
+    }
+  ],
+  "clean_hook_maximum_pcm_errors": [
+    2.4150396117417205e-05,
+    2.364233950991057e-05
+  ]
+}

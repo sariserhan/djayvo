@@ -408,7 +408,7 @@
     "runtime_dependency": false
   },
   "original_electronic_assets": {
-    "manifest": "assets/manifests/electronic-v1.json",
+    "manifest": "assets/manifests/electronic-v2.json",
     "samples": 14,
     "source": "Original project equations and seeded noise",
     "reference_audio_used": false,

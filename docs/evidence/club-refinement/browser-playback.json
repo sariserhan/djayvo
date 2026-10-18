@@ -1,0 +1,98 @@
+{
+  "human_listening": "NOT RUN",
+  "media_decode_seek_and_muted_playback": "PASS",
+  "one_at_a_time": "PASS",
+  "players": [
+    {
+      "currentTime": 10.114712,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Previous · fragment opening",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.113906,
+      "duration": 36.285708,
+      "error": null,
+      "label": "New · fragment opening",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.115218,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Previous · full voice opening",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.114413,
+      "duration": 36.285708,
+      "error": null,
+      "label": "New · full voice opening",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.114836,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Previous · instrumental opening",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.11546,
+      "duration": 36.285708,
+      "error": null,
+      "label": "New · instrumental opening",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.114295,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Bass · previous export",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.116087,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Bass · new export",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.11446,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Drums · previous export",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.115702,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Drums · new export",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.115395,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Voice · previous export",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.11366,
+      "duration": 36.285708,
+      "error": null,
+      "label": "Voice · new export",
+      "status": "PASS"
+    },
+    {
+      "currentTime": 10.114885,
+      "duration": 50,
+      "error": null,
+      "label": "Blood Club · reference 3:20–4:10",
+      "status": "PASS"
+    }
+  ]
+}

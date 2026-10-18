@@ -114,7 +114,7 @@ def verify(args):
     run("club-repeat", options=("--style", "club", "--block-size", "113"))
     verify_export(args.output/'club', ('club',))
     club=json.loads((args.output/'club.club.score.json').read_text())
-    assert json.loads((args.output/'club.club.report.json').read_text())['instrument_bank']=='electronic-v1'
+    assert json.loads((args.output/'club.club.report.json').read_text())['instrument_bank']=='electronic-v2'
     assert club['strategy']=='club' and club['mix']['kick_duck_db']==-7
     assert all(t['sound']=='electronic' for t in club['tracks'])
     assert pcm(args.output/'club.club.wav')==pcm(args.output/'club-repeat.club.wav')

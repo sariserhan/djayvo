@@ -74,7 +74,15 @@ Velocity-dependent filtering gives softer sampled notes a darker tone; piano now
 has three recorded dynamics, while bass remains single-layer. See
 [instrument-articulation.md](instrument-articulation.md).
 
-Stems share the master timeline and ducking. Each is quantized/mastered
+The explicit `club` strategy uses an original electronic palette with kick-driven
+instrument ducking and a build/drop/break/return form. Its crop search extends to
+900 ms, prefers sustained pauses and rejects substantially overlapping crops;
+no-pause fallback is bounded near 450 ms. See [club refinement](club-refinement.md).
+
+Stems filter the full compiled schedule, preserving note IDs and sample-take
+seeds as well as the master timeline and ducking. Compiling filtered tracks would
+renumber notes and change the performance; regression tests prevent this.
+Each stem is quantized/mastered
 separately: rounding/nonlinearity mean their sum need not exactly reproduce the
 master. The complete master is authoritative.
 

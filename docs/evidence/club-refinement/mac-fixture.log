@@ -1,0 +1,5 @@
+PASS: renders/voice-club-v8/mac-fixture/remix.hiphop.wav
+PASS: renders/voice-club-v8/mac-fixture/remix.reggae.wav
+PASS: renders/voice-club-v8/mac-fixture/remix.experimental.wav
+PASS: complete export renders/voice-club-v8/mac-fixture/remix.complete.json
+Listening/recognizability: NOT RUN

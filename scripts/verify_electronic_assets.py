@@ -8,7 +8,7 @@ import re
 import sys
 
 root=Path(__file__).resolve().parents[1]
-manifest=json.loads((root/'assets/manifests/electronic-v1.json').read_text())
+manifest=json.loads((root/'assets/manifests/electronic-v2.json').read_text())
 bank=(root/manifest['generated_file']).read_bytes()
 assert hashlib.sha256(bank).hexdigest()==manifest['generated_sha256']
 assert hashlib.sha256((root/'scripts/prepare_electronic_bank.py').read_bytes()).hexdigest()==manifest['generator_sha256']

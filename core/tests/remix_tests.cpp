@@ -261,6 +261,52 @@ void club_direction() {
     auto acoustic=p;for(auto& t:acoustic.music.tracks)t.electronic=false;
     check(render(p,a,257,false,1)!=render(acoustic,a,257,false,1),"electronic palette has no effect");
 }
+void club_phrasing() {
+    for (unsigned rate:{8000U,48000U}) {
+        auto a=source();a.sample_rate=a.original_rate=rate;
+        a.mono.assign(3*rate,0);a.original_frames=a.mono.size();
+        for(std::size_t i=rate/10;i<rate*8/10;++i)
+            a.mono[i]=static_cast<float>(.3*std::sin(6.283185307179586*220*i/rate));
+        auto features=djayvo::analyze(a);features.onsets={rate/10,rate*3/10,rate/2};
+        auto p=djayvo::make_remix(a,features,djayvo::Strategy::club,4123,true,false);
+        check(p.clips.size()==2,"club retained several overlapping slices of the same phrase");
+        check(p.clips[1].end>=rate*8/10 && p.clips[1].end<rate*85/100 && p.clips[1].confidence==.65,
+              "club crops an active long phrase before the available pause");
+        std::fill(a.mono.begin(),a.mono.end(),.2f);
+        features=djayvo::analyze(a);
+        p=djayvo::make_remix(a,features,djayvo::Strategy::club,4123,true,false);
+        check(p.clips.size()>=2 && p.clips[1].confidence==.3 && p.clips[1].end-p.clips[1].begin<=rate*46/100,
+              "no-pause club fallback is absent, excessive or overconfident");
+    }
+    const auto a=source();
+    for(std::uint32_t seed:{0U,4123U,4124U,4125U,4294967295U}) {
+        const auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::club,seed,true,false);
+        const auto bar=djayvo::ticks_per_bar(p.music),q=djayvo::ticks_per_quarter;
+        for(const auto& n:p.music.tracks[2].notes)
+            check(n.start<5*bar+3*q || n.start>=6*bar,"build leaves no beat of anticipation before the drop");
+        for(int b=14;b<19;++b) {
+            int hats=0;
+            for(const auto& n:p.music.tracks[2].notes)if(n.pitch==46 && n.start>=b*bar && n.start<(b+1)*bar)++hats;
+            check(hats==1,"return doubles its open-hat accent");
+        }
+    }
+}
+void stem_identity() {
+    const auto a=source();
+    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club}) {
+        auto p=djayvo::make_remix(a,djayvo::analyze(a),style,4123,true,false);
+        // Stay below the nonlinear master stages so the stems must sum to the mix.
+        for (auto& track:p.music.tracks) track.gain_db-=18;
+        const auto full=render(p,a,257);
+        auto sum=render(p,a,113,true);
+        for(int solo=0;solo<3;++solo) {
+            const auto stem=render(p,a,113,false,solo);
+            for(std::size_t i=0;i<sum.size();++i)sum[i]+=stem[i];
+        }
+        for(std::size_t i=0;i<sum.size();++i)
+            check(std::abs(sum[i]-full[i])<2e-7,"stem export changes the instrument performance");
+    }
+}
 void export_transactions() {
     namespace fs=std::filesystem;
     const auto root=fs::temp_directory_path()/("djayvo-export-"+std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()));
@@ -361,6 +407,8 @@ int main() {
         {"subtraction and return across styles and seeds",arrangement_contrast},
         {"instrument room timing, stereo, dry speech and finite tail",room_processing},
         {"club form, input-driven bass, electronic palette and stem-consistent kick ducking",club_direction},
+        {"stem identity and linear mix reconstruction including room and ducking",stem_identity},
+        {"club pause selection, deduplication, bounded fallback and transition accents",club_phrasing},
         {"cancel/render/publication rollback, concurrent destinations and stale-lock preservation",export_transactions},
         {"allocation-free sample and instrument processing",no_allocations}};
     int failures=0;

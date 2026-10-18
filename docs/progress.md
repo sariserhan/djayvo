@@ -10,7 +10,21 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest musical continuation: [original electronic club direction](club-direction.md).
+Latest continuation, 2026-10-18: [club refinement v8](club-refinement.md).
+The owner requested all three areas: bass/drums, transitions and vocal clarity.
+The electronic bank and balance are revised, build/return accents changed, and
+club selects longer pause-ended crops without near-duplicate overlap. Both full
+voice statements remain. A confirmed stem-export bug is fixed: instrument takes
+now match the master's event IDs. New four-style exports reconstruct within two
+PCM16 steps when no limiting engages; previous three-style masters are unchanged.
+Nine suites pass on M5 release/sanitizers and actual Linux arm64 (10 foundation +
+15 remix groups). Current club and legacy fixture plans/event frames agree,
+with byte-identical cross-OS WAVs. The private thirteen-player v7/v8 comparison
+passes muted browser playback. No hearing or listener judgment is inferred.
+**Bass/drum, transition and vocal listening: NOT RUN. Production quality: PARTIAL.**
+See [current measurements](evidence/club-refinement/report.json).
+
+Previous musical continuation: [original electronic club direction](club-direction.md).
 The new explicit `club` strategy adds 14 original electronic one-shots, kick
 ducking, a 140 BPM build/drop/break/return and three differently opened
 36-second owner mixes. Nine suites pass on M5 release/sanitizers and Linux arm64
@@ -91,10 +105,10 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Gate | Status | Evidence |
 | --- | --- | --- |
 | Linux release build | PASS | Current aarch64 Debian 12 container, GCC 12.2; physical Intel rerun NOT RUN |
-| C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 13 remix test groups |
+| C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 15 remix test groups |
 | C ABI | PASS | Compiled-C render, bounded errors, ABI and additive cancellation/retry checked |
 | End-to-end tests | PASS | Current Mac/Linux: CTest 9/9 including both asset banks and evaluation preparation |
-| ASan/UBSan | PASS | Current Mac: nine suites plus final export/C ABI regression, no findings |
+| ASan/UBSan | PASS | Current Mac: nine suites, no findings |
 | Evaluation preparation | PASS | Frozen actual one-source/three-seed pilot; nine unchanged candidate WAVs, distinct codes and blank ratings |
 | Dataset/preregistration | PARTIAL | Owner has no additional clips; diverse cohort and reviewer assignments missing |
 | Input decoding/bounds | PASS | PCM16/24/32, float32 and validated extensible variants; original owner WAV accepted; corruption/layout/precision/padding rejected |
@@ -109,19 +123,19 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Source-driven arrangement | PASS | Changed input rhythm changes chops and melodic response |
 | Three independent strategies | PASS | Different tempi, bass/drum/piano grammars and vocal treatment at the same seed |
 | Crop/event validation | PASS | No out-of-source reads; clean hook, overlap, release, duration and numeric constraints |
-| Master and stem output | PASS | Nine new 20–40 s mixes across three seeds and twelve seed-4123 stems; new current-bank baseline; score/frame trace/report |
-| Audio bounds/headroom | PASS | Independent decoding of all 22 new master/stem/control WAVs; zero full-scale samples; finite engine output; silent final 100 ms |
+| Master and stem output | PASS | Current v8: three 36-second owner mixes, four owner stems, fixture master/stems, score/frame trace/report |
+| Audio bounds/headroom | PASS | Current club: 12 decoded master/stem WAVs; zero full-scale samples, finite engine output, silent final 100 ms |
 | Determinism | PASS | 48 kHz speech remixes byte-identical at 512/113 blocks; 16 kHz integration repeats too |
 | Formal export schemas | PASS | Preinstalled jsonschema 4.19.2 validates M0a/all remix exports; rejects recorded-kind without consent |
 | Dependencies/assets | PASS | No third-party DSP runtime; 53 pinned CC0 acoustic recordings plus 14 original electronic one-shots; notices/hashes retained |
 | Master specification | PASS | Original SHA-256 unchanged |
 | Consented human recording technical render | PASS | One owner-supplied 4.862 s source; three masters and 12 stems decoded; [trial](voice-trial.md) |
 | Human speech recognition by listeners | NOT RUN | No actual listener observations |
-| Owner listening | PARTIAL | Latest prototype accepted as a start; production quality remains open. Earlier concerns: awkward experimental passages, game-like timbres and repetitive openings |
+| Owner listening | PARTIAL | Earlier prototype accepted as a start; club v7/v8 listening NOT RUN; production quality remains open. Earlier concerns: awkward experimental passages, game-like timbres and repetitive openings |
 | Revised vocal spacing on M5 | PASS | Release + sanitizer CTest 6/6; duplicate chop starts and clean-hook overlaps removed; `evidence/vocal-spacing/` |
-| Revised arrangement Linux/Mac comparison | PASS | Current Linux arm64 versus native M5: exact fixture/owner plans/events and 18 byte-identical WAVs |
+| Revised arrangement Linux/Mac comparison | PASS | Current Linux arm64 versus native M5: exact fixture/owner plans/events and 27 byte-identical WAVs |
 | M0d Apple M5 execution | PASS | Native arm64 release and ASan/UBSan 6/6 each; exact plans/event frames and byte-identical Linux/Mac masters; [evidence](evidence/m0d/report.json) |
-| M1 blinded quality gate | NOT RUN | Synthetic pilot only; requires diverse consented sources and reviewers |
+| M1 blinded quality gate | NOT RUN | Frozen one-owner pilot prepared; requires diverse cleared sources and actual blinded reviewers |
 | M2 GPU/model benchmark | NOT RUN | Quality baseline and actual model measurements remain missing |
 | M3 iPhone/device | NOT RUN | Portable C ABI ready; no device/UI work claimed |
 | M4 live latency | NOT RUN | No real-time input/device measurements |
@@ -209,8 +223,8 @@ feedback reverb/delay, tempo maps, external JSON import, and automatic fallback 
 plan are absent. Silence is explicitly rejected. Mixing is fixed per grammar,
 with smooth clean-hook ducking; the soft-knee stage can color overloads.
 
-WAV is PCM16 without dither, capped by RIFF size. Stems do not promise exact
-master reconstruction. The renderer is allocation-free in tests but not a live
+WAV is PCM16 without dither, capped by RIFF size. Stems preserve master event IDs and instrument takes. Independent quantization
+and nonlinear processing still prevent a promise of exact master reconstruction. The renderer is allocation-free in tests but not a live
 device certification. Exports are synchronous and cancellable, with staged
 publication and a completion marker; power-loss durability is not certified.
 Run the C ABI off the UI/audio thread. Public C++ buffers are caller-owned and

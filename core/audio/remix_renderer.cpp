@@ -10,12 +10,11 @@ namespace {
 Schedule selected_schedule(const RemixPlan& plan,const AudioBuffer& source,bool vocals_only,int solo) {
     validate(plan,source);
     if (solo < -2 || solo > 2) throw std::invalid_argument("invalid instrument stem");
-    auto music=plan.music;
-    for (auto& track : music.tracks)
-        if (vocals_only || (solo>=0 && static_cast<int>(track.instrument)!=solo)) track.notes.clear();
-    auto schedule=compile(music);
-    // Solo stems retain the full arrangement's kick-driven gain envelope.
-    if (music.kick_duck_db<0) schedule.kick_frames=compile(plan.music).kick_frames;
+    auto schedule=compile(plan.music);
+    // Filter after compilation: IDs select sample takes and must match the master.
+    schedule.events.erase(std::remove_if(schedule.events.begin(),schedule.events.end(),[&](const Event& event) {
+        return vocals_only || (solo>=0 && static_cast<int>(event.instrument)!=solo);
+    }),schedule.events.end());
     return schedule;
 }
 double limiter(double x,double ceiling) noexcept {

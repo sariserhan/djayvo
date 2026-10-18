@@ -67,13 +67,14 @@ under the recorded build arrangement.
 
 ## Original electronic palette
 
-`assets/manifests/electronic-v1.json` inventories 14 original 24 kHz PCM16
+`assets/manifests/electronic-v2.json` inventories 14 original 24 kHz PCM16
 one-shots generated from project equations and seeded noise. The generator
 `scripts/prepare_electronic_bank.py` never reads reference music or downloaded
 samples. Compiled bank, per-sample PCM and generator hashes are checked by
 `scripts/verify_electronic_assets.py`. This is original project material under
 the same unselected project-wide outbound license, not a CC0 third-party grant.
-No new runtime dependency or training material is introduced.
+No new runtime dependency or training material is introduced. The v1 manifest
+is retained as history; its matching bank and generator are in commit `651fe96`.
 
 ## Optional synthetic-speech fixture tool
 

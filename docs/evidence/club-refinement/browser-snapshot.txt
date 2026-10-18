@@ -1,0 +1,83 @@
+- heading "More shape. More room for your voice." [level=1, ref=e1]
+- heading "Previous · fragment opening" [level=2, ref=e3]
+- button "play" [ref=e19]
+- slider "audio time scrubber" [ref=e20]: 0
+- slider "volume" [ref=e58]: 100
+- button "mute" [ref=e59]
+- button "show more media controls" [ref=e21]
+- heading "New · fragment opening" [level=2, ref=e4]
+- button "play" [ref=e22]
+- slider "audio time scrubber" [ref=e23]: 0
+- slider "volume" [ref=e60]: 100
+- button "mute" [ref=e61]
+- button "show more media controls" [ref=e24]
+- link "Save original mix" [ref=e5]
+- heading "Previous · full voice opening" [level=2, ref=e6]
+- button "play" [ref=e25]
+- slider "audio time scrubber" [ref=e26]: 0
+- slider "volume" [ref=e62]: 100
+- button "mute" [ref=e63]
+- button "show more media controls" [ref=e27]
+- heading "New · full voice opening" [level=2, ref=e7]
+- button "play" [ref=e28]
+- slider "audio time scrubber" [ref=e29]: 0
+- slider "volume" [ref=e64]: 100
+- button "mute" [ref=e65]
+- button "show more media controls" [ref=e30]
+- link "Save original mix" [ref=e8]
+- heading "Previous · instrumental opening" [level=2, ref=e9]
+- button "play" [ref=e31]
+- slider "audio time scrubber" [ref=e32]: 0
+- slider "volume" [ref=e66]: 100
+- button "mute" [ref=e67]
+- button "show more media controls" [ref=e33]
+- heading "New · instrumental opening" [level=2, ref=e10]
+- button "play" [ref=e34]
+- slider "audio time scrubber" [ref=e35]: 0
+- slider "volume" [ref=e68]: 100
+- button "mute" [ref=e69]
+- button "show more media controls" [ref=e36]
+- link "Save original mix" [ref=e11]
+- heading "Bass · previous export" [level=2, ref=e12]
+- button "play" [ref=e37]
+- slider "audio time scrubber" [ref=e38]: 0
+- slider "volume" [ref=e70]: 100
+- button "mute" [ref=e71]
+- button "show more media controls" [ref=e39]
+- heading "Bass · new export" [level=2, ref=e13]
+- button "play" [ref=e40]
+- slider "audio time scrubber" [ref=e41]: 0
+- slider "volume" [ref=e72]: 100
+- button "mute" [ref=e73]
+- button "show more media controls" [ref=e42]
+- heading "Drums · previous export" [level=2, ref=e14]
+- button "play" [ref=e43]
+- slider "audio time scrubber" [ref=e44]: 0
+- slider "volume" [ref=e74]: 100
+- button "mute" [ref=e75]
+- button "show more media controls" [ref=e45]
+- heading "Drums · new export" [level=2, ref=e15]
+- button "play" [ref=e46]
+- slider "audio time scrubber" [ref=e47]: 0
+- slider "volume" [ref=e76]: 100
+- button "mute" [ref=e77]
+- button "show more media controls" [ref=e48]
+- heading "Voice · previous export" [level=2, ref=e16]
+- button "play" [ref=e49]
+- slider "audio time scrubber" [ref=e50]: 0
+- slider "volume" [ref=e78]: 100
+- button "mute" [ref=e79]
+- button "show more media controls" [ref=e51]
+- heading "Voice · new export" [level=2, ref=e17]
+- button "play" [ref=e52]
+- slider "audio time scrubber" [ref=e53]: 0
+- slider "volume" [ref=e80]: 100
+- button "mute" [ref=e81]
+- button "show more media controls" [ref=e54]
+- heading "Blood Club · reference 3:20–4:10" [level=2, ref=e18]
+- button "play" [ref=e55]
+- slider "audio time scrubber" [ref=e56]: 0
+- slider "volume" [ref=e82]: 100
+- button "mute" [ref=e83]
+- button "show more media controls" [ref=e57]
+- link "Earlier instrument comparison" [ref=e2]

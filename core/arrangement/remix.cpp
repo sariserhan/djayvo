@@ -31,10 +31,10 @@ std::uint64_t near_zero(const AudioBuffer& source, std::uint64_t frame) {
         if (std::abs(source.mono[static_cast<std::size_t>(i)]) < std::abs(source.mono[static_cast<std::size_t>(best)])) best=i;
     return best;
 }
-Region chop_region(const AudioBuffer& source, std::uint64_t onset, std::uint64_t limit) {
+Region chop_region(const AudioBuffer& source, std::uint64_t onset, std::uint64_t limit, bool extended=false) {
     const auto hop=source.sample_rate/100U;
     const auto begin=near_zero(source,onset>hop?onset-hop:0);
-    const auto stop=std::min<std::uint64_t>(limit,onset+60ULL*hop);
+    const auto stop=std::min<std::uint64_t>(limit,onset+(extended?90ULL:60ULL)*hop);
     double peak_power=0;
     unsigned quiet=0;
     for (auto frame=onset;frame+hop<=stop;frame+=hop) {
@@ -48,7 +48,7 @@ Region chop_region(const AudioBuffer& source, std::uint64_t onset, std::uint64_t
     }
     // shortcut: energy is not a word boundary; retain a bounded, lower-confidence
     // crop without a pause until semantic boundaries have listening evidence.
-    return {begin,near_zero(source,std::min<std::uint64_t>(limit-1,begin+source.sample_rate/4U)),0.3};
+    return {begin,near_zero(source,std::min<std::uint64_t>(limit-1,begin+source.sample_rate*(extended?450ULL:250ULL)/1000U)),0.3};
 }
 }
 RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy strategy,
@@ -89,12 +89,20 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     r.clips.push_back({0,source.mono.size(),1.0});
     for (auto onset : a.onsets) {
         if (r.clips.size() >= 13) break;
-        const auto clip=chop_region(source,onset,source.mono.size());
+        const auto clip=chop_region(source,onset,source.mono.size(),club);
+        if (club) {
+            if (clip.confidence<0.65) continue;
+            const bool duplicate=std::any_of(r.clips.begin()+1,r.clips.end(),[&](const Region& other) {
+                const auto begin=std::max(clip.begin,other.begin),end=std::min(clip.end,other.end);
+                return end>begin && (end-begin)*2>=std::min(clip.end-clip.begin,other.end-other.begin);
+            });
+            if (duplicate) continue;
+        }
         if (clip.end > clip.begin + source.sample_rate/25U) r.clips.push_back(clip);
     }
     if (r.clips.size() == 1) {
         for (const auto& phrase : a.phrases) {
-            auto clip=chop_region(source,phrase.begin,phrase.end);
+            auto clip=chop_region(source,phrase.begin,phrase.end,club);
             clip.begin=phrase.begin;
             clip.end=std::clamp(clip.end,phrase.begin+1,phrase.end);
             r.clips.push_back(clip);
@@ -120,7 +128,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     Track drums{Instrument::drums,-9,0.08,{}};
     if (club) {
         piano.electronic=bass.electronic=drums.electronic=true;
-        piano.gain_db=-15;piano.pan=-0.30;bass.gain_db=-4;drums.gain_db=-5;drums.pan=0;
+        piano.gain_db=-12;piano.pan=-0.30;bass.gain_db=-7;drums.gain_db=-3;drums.pan=0;
         r.instrument_room_mix=.28;
     }
     const std::array<int,4> progression{{0,-4,-7,0}}; // i, VI, iv, i in minor
@@ -171,20 +179,22 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         if (club && (intro || build || breakdown)) {
             if (b%2==0) chord(0,bar_ticks-q/4,breakdown?60:54);
             if (build && b>=4) {
-                for (int h=0;h<8;++h) drum(h*q/2,42,h%2?38:50,120);
-                if (b==5) for (int h=0;h<4;++h) drum(2*q+h*q/2,38,48+h*10,120);
+                for (int h=0;h<(b==5?6:8);++h) drum(h*q/2,42,(h%2?38:50)+(b-4)*8,120);
+                // Accelerate, then leave the last beat free of new hits before the drop.
+                if (b==5) for (int h=0;h<3;++h) drum(2*q+h*q/4,38,60+h*12,120);
             }
-            if (b==13) {drum(3*q,42,50);drum(7*q/2,38,65);}
+            if (b==13) {drum(2*q,38,52);drum(3*q,42,56);drum(13*q/4,38,68,120);}
         } else if (club) {
             if (last) {chord(0,2*q,70);bass_note(0,2*q,0,100);drum(0,36,115);}
             else {
                 if (b%2==0) chord(q/2,3*q/4,68);
                 if (returning && b%2) chord(5*q/2,q/2,74);
-                bass_note(q/4,3*q/4,0,118);
-                bass_note(5*q/4,q/2,0,103);
+                const bool answering=(b+static_cast<int>(seed%2U))%2!=0;
+                bass_note(q/4,answering?q/2:q,0,118);
+                bass_note(answering?3*q/2:5*q/4,answering?q/4:q/2,0,103);
                 const Tick reply=9*q/4+motif[static_cast<std::size_t>(b)%motif.size()]%q/2;
                 bass_note(reply,3*q/4,returning && b%2?7:0,112);
-                drum(0,36,123);drum(b%2?7*q/4:13*q/4,36,109);drum(2*q,38,118);
+                drum(0,36,123,q/2);drum(b%2?7*q/4:13*q/4,36,109,q/2);drum(2*q,38,118,q/2);
                 for (int h=0;h<8;++h) drum(h*q/2+(h%2?q/24:0),h==7 && returning?46:42,h%2?54:72,120);
                 if (returning && b%2) {drum(13*q/4,42,42,80);drum(15*q/4,42,48,80);}
             }
@@ -222,7 +232,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         if (!intro && !build && !breakdown && !last && (b+1==break_bar || b+1==p.bars-1)) {
             drum(7*q/2,38,56); drum(15*q/4,38,72);
         }
-        if (returning && !last && b%2==static_cast<int>(seed%2U)) drum(7*q/2,46,60,q/4);
+        if (!club && returning && !last && b%2==static_cast<int>(seed%2U)) drum(7*q/2,46,60,q/4);
         // Phrase-derived call/response, not a continuous voice-over backing loop.
         if (b>=2 && !build && !breakdown && !last && b%2==0) {
             const std::size_t count=std::min<std::size_t>(motif.size(),returning && !club?3:2);
@@ -232,7 +242,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
                 if (strategy==Strategy::reggae) offset=(offset/q)*q+q/2;
                 if (strategy==Strategy::experimental) offset=(static_cast<Tick>(m)*3*q/4)%bar_ticks;
                 if (club) offset=(m?11*q/4:3*q/4);
-                r.vocals.push_back({base+offset,clip,-7,1,false,
+                r.vocals.push_back({base+offset,clip,club?-5.0:-7.0,1,false,
                                     m%2?0.25:-0.25,false});
             }
         }

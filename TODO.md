@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-17 (America/New_York). Latest implementation: [original electronic club direction](docs/club-direction.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [club refinement](docs/club-refinement.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -28,6 +28,14 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## Next: review the current music
 
+Latest [v7/v8 listening comparison](renders/voice-club-v8/review/index.html):
+three before/after pairs plus bass/drum/voice pairs and the reference. The owner
+requested all three improvement areas; that is not an acceptance rating. Bass
+balance/harmonics, drum impact/decay, transitions and pause-ended vocal selection
+are implemented. Stem exports now preserve the master's instrument takes.
+**V8 listening: NOT RUN; production quality: PARTIAL.**
+[Current evidence](docs/club-refinement.md).
+
 New [club listening page](renders/voice-club-v7/review/index.html): three original
 36-second electronic arrangements, matched reference/previous mix and isolated
 instruments. Drops at 0:10 and 0:24. **Club listening: NOT RUN.** The latest
@@ -45,7 +53,7 @@ separate listening assessment.
 Audio links work in this checkout; private recordings are intentionally absent
 from Git and will not appear in a remote repository viewer.
 
-Latest owner feedback (2026-10-17): “they are fine,” in response to the v4
+Latest listening feedback (2026-10-17): “they are fine,” in response to the v4
 piano/drum comparison question. Prior overall feedback: “for now they are okay
 but we have to improve in a production quality but as a start they are fine.”
 **Overall owner review: PARTIAL.**
@@ -69,22 +77,22 @@ and evaluation across diverse consented inputs.
   feel intentional across seeds 4123–4125. Code coverage is not listening evidence.
 - [ ] **N05 — NOT RUN:** Rate whether the original speech remains recognizable
   in each style. Waveform preservation passes, but intelligibility is unmeasured.
-- [ ] **N06 — PARTIAL:** New original club palette, kick ducking, build/drop/break/
-  return, three varied openings and matched Blood Club comparison are implemented.
+- [ ] **N06 — PARTIAL:** Club v8 adds bass harmonics, revised drum balance/decay,
+  build/return accents, longer deduplicated voice fragments and matched comparisons.
   V4 piano/drums have prior owner acceptance; club listening/reference similarity,
   formal quality, recognizability and diverse-input listening remain open.
-- [ ] **N07 — NOT RUN:** Audition club bass balance, drum impact, texture, voice
+- [ ] **N07 — NOT RUN:** Audition v8 club bass balance, drum impact, texture, voice
   clarity and transitions at 0:10/0:17/0:24; record exact version/timestamp and
   desired change before claiming this meets the requested production direction.
 
-Record against [instrument articulation v4](docs/instrument-articulation.md), with the exact
+Record against [club v8](docs/club-refinement.md) or the relevant prior revision, with the exact
 filename/seed, timestamp, observation, desired change and eventual evidence.
 Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
 
 Entries follow implementation order. Historical results apply to their revision;
-current platform results are in [the club report](docs/evidence/club-direction/report.json).
+current platform results are in [the refinement report](docs/evidence/club-refinement/report.json).
 The [evaluation preparation report](docs/evidence/evaluation-preparation/report.json)
 adds an eighth passing suite and confirms the unchanged renderer/audio.
 
@@ -113,6 +121,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P21 | PASS | Pinned Linux/macOS CI matrix and cross-OS comparison recipe prepared and locally checked; hosted execution remains open | [Workflow](.github/workflows/core.yml) |
 | [x] | P22 | PASS | Frozen consent/hash/rubric batch, three seeds, retained failure counts, distinct answer codes, actual owner pilot and eighth M5/Linux test suite | [Evaluation preparation](docs/evaluation-batch.md) |
 | [x] | P23 | PASS | Original 14-sample electronic bank, club form and source-driven bass, stem-consistent kick ducking, CLI/C ABI/import/schema/CI support; nine M5/Linux suites, exact WAVs and eight-player comparison | [Club evidence](docs/club-direction.md) |
+| [x] | P24 | PASS | Club v8 bass/drum revision, transition accents, pause-ended deduplicated crops; corrected stem take identity; nine M5/Linux suites, current portability and 13-player comparison | [Refinement evidence](docs/club-refinement.md) |
 
 ## Engineering backlog
 
@@ -124,7 +133,8 @@ is needed. Prioritize by recorded listening defects and product requirements.
   layer transitions and repeated hits. Bass layers and longer acoustic tails
   remain candidates. The new electronic club palette needs listening assessment.
 - [ ] **E02 — PARTIAL:** Improve phrase/chop selection if N03/N05 show cut words.
-  V3 adds sustained low-energy endings and attack pre-roll with a bounded fallback;
+  V3 adds sustained low-energy endings and attack pre-roll. Club v8 extends
+  the pause search, deduplicates overlapping candidates and prefers pause-ended crops;
   reliable word boundaries, semantic selection and listening acceptance remain open.
 - [ ] **E03 — NOT RUN:** Evaluate independent pitch/time transformation with
   transient and intelligibility checks. Current generated chops use original speed.
@@ -148,6 +158,11 @@ is needed. Prioritize by recorded listening defects and product requirements.
 - [x] **E09 — PASS:** Measure representative offline time/memory: 11 source/style/
   rate/stem cases × 3 trials, each export verified. [Results](docs/evidence/workflow-hardening/benchmark.json).
   Worst-case/live/iPhone performance remains separately open under I04/L01/L03.
+
+- [x] **E10 — PASS:** Fix solo-export renumbering that changed sample takes/gains.
+  Filter compiled events with original IDs, retaining kick ducking. New float
+  reconstruction regression and real four-style PCM checks pass; old masters
+  remain unchanged, and earlier stems are preserved as historical files.
 
 ## M1: formal musical-quality evaluation
 
