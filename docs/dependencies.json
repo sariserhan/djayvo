@@ -1,0 +1,99 @@
+{
+  "project": "Djayvo",
+  "third_party_engine_libraries": [],
+  "downloaded_sound_assets": [],
+  "components": [
+    {
+      "name": "GCC/G++",
+      "version": "15.2.0",
+      "role": "build tool",
+      "license": "GPL-3.0-or-later",
+      "notice": "gcc",
+      "bundled": false
+    },
+    {
+      "name": "libstdc++ and libgcc",
+      "version": "15.2.0 toolchain",
+      "role": "dynamic Linux system runtime",
+      "license": "GPL-3.0-or-later WITH GCC-exception-3.1",
+      "notice": "gcc",
+      "bundled": false
+    },
+    {
+      "name": "glibc / libm / loader",
+      "version": "2.43",
+      "role": "dynamic Linux system runtime",
+      "license": "LGPL-2.1-or-later and component notices",
+      "notice": "glibc",
+      "bundled": false
+    },
+    {
+      "name": "CMake",
+      "version": "3.31.6",
+      "role": "build/test tool",
+      "license": "BSD-3-Clause; wheel Apache-2.0 / BSD-3-Clause; bundled component notices",
+      "notice": "cmake",
+      "bundled": false
+    },
+    {
+      "name": "GNU Make",
+      "version": "4.4.1",
+      "role": "build tool",
+      "license": "GPL-3.0-or-later",
+      "notice": "make",
+      "bundled": false
+    },
+    {
+      "name": "CPython",
+      "version": "3.14.4",
+      "role": "verification tool",
+      "license": "PSF license stack and component notices",
+      "notice": "python",
+      "bundled": false
+    },
+    {
+      "name": "Git",
+      "version": "2.53.0",
+      "role": "repository tool",
+      "license": "GPL-2.0",
+      "notice": "git",
+      "bundled": false
+    }
+  ],
+  "license_evidence": {
+    "gcc": {
+      "path": "/usr/share/doc/gcc-15-base/copyright",
+      "sha256": "41a2d69df964174fb042b6513e99b72177318e94ca0c29a813e6f3155a9c5048"
+    },
+    "glibc": {
+      "path": "/usr/share/doc/libc6/copyright",
+      "sha256": "c31d10900fdb95d1889005145a2205bb75e3bc018d3ec8265b81364901748e09"
+    },
+    "python": {
+      "path": "/usr/share/doc/python3.14/copyright",
+      "sha256": "f1cbf908e1daa8789b389fdcf17811ed36b675d736b39a103591399861350382"
+    },
+    "cmake": {
+      "path": "/tmp/djayvo-build-tools/lib/python3.14/site-packages/cmake/data/doc/cmake-3.31/Copyright.txt",
+      "sha256": "0676e30827684487aa0ea8f72f01e9460a6320fa34a2888df0ad1dd3e8a06eb8"
+    },
+    "cmake_wheel_apache": {
+      "path": "/tmp/djayvo-build-tools/lib/python3.14/site-packages/cmake-3.31.6.dist-info/licenses/LICENSE_Apache_20",
+      "sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68"
+    },
+    "cmake_wheel_bsd": {
+      "path": "/tmp/djayvo-build-tools/lib/python3.14/site-packages/cmake-3.31.6.dist-info/licenses/LICENSE_BSD_3",
+      "sha256": "a39f63ec8a8e9d63ee8fd85eac9eda615995216eff43c500f68c08d4c922bf3f"
+    },
+    "make": {
+      "path": "/usr/share/doc/make/copyright",
+      "sha256": "2289e44c25c3c55925a9342bb209330c32d21e6f28cc5ce70155dcdd8c4cae86"
+    },
+    "git": {
+      "path": "/usr/share/doc/git/copyright",
+      "sha256": "c60bb8fe022a5f6030d7cc8b98afdd2e2fe84d021e8a2f58e49ab32e176c906d"
+    }
+  },
+  "macos_runtime_inventory": "NOT RUN",
+  "project_outbound_license": "Not selected; no public license grant"
+}

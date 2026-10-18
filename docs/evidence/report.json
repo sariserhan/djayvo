@@ -1,0 +1,29 @@
+{
+  "recorded_at": "2026-10-17T21:07:47.007444-04:00",
+  "timezone": "America/New_York",
+  "project": "Djayvo",
+  "milestone": "M0a",
+  "status": "PARTIAL",
+  "reason": "Technical implementation passed; human listening remains NOT RUN.",
+  "gates": {
+    "linux_release_build": "PASS",
+    "cpp_unit_tests_9_groups": "PASS",
+    "wav_integration": "PASS",
+    "address_undefined_sanitizers": "PASS",
+    "timing": "PASS",
+    "audio_correctness": "PASS",
+    "clipping_ceiling": "PASS",
+    "same_build_determinism": "PASS",
+    "independent_tracks_and_real_wav": "PASS",
+    "dependencies_licenses_and_asset_inventory": "PASS",
+    "specification_unchanged": "PASS",
+    "human_listening": "NOT RUN",
+    "macos_apple_silicon": "NOT RUN",
+    "ios_device_integration": "NOT RUN"
+  },
+  "source_hashes": "source-hashes.json",
+  "artifacts": "artifacts.json",
+  "release_test_log": "release-tests.log",
+  "sanitizer_test_log": "sanitizer-tests.log",
+  "cross_compiler_audio_determinism": "NOT RUN"
+}

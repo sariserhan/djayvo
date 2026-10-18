@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://djayvo.com/schemas/performance-plan-1.0-m0a.json",
+  "title": "Djayvo M0a offline instrumental plan (export contract)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "seed", "source_asset_id", "sample_rate", "ticks_per_quarter", "tempo_milli_bpm", "time_signature", "target_bars", "strategy", "tail_ms", "mix", "sections", "tracks"],
+  "properties": {
+    "schema_version": {"const": "1.0-m0a"},
+    "seed": {"type": "integer", "minimum": 0, "maximum": 4294967295},
+    "source_asset_id": {"type": "null"},
+    "sample_rate": {"type": "integer", "minimum": 8000, "maximum": 192000},
+    "ticks_per_quarter": {"const": 960},
+    "tempo_milli_bpm": {"type": "integer", "minimum": 30000, "maximum": 300000},
+    "time_signature": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "prefixItems": [{"type": "integer", "minimum": 1, "maximum": 16}, {"enum": [2, 4, 8, 16]}]
+    },
+    "target_bars": {"type": "integer", "minimum": 1, "maximum": 256},
+    "strategy": {"const": "m0a_four_bar"},
+    "tail_ms": {"type": "integer", "minimum": 500, "maximum": 10000},
+    "mix": {
+      "type": "object", "additionalProperties": false,
+      "required": ["master_target_peak_dbfs"],
+      "properties": {"master_target_peak_dbfs": {"type": "number", "minimum": -24, "maximum": -0.1}}
+    },
+    "sections": {
+      "type": "array", "minItems": 1, "maxItems": 256,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["name", "start_bar", "bars"],
+        "properties": {
+          "name": {"type": "string", "pattern": "^[a-z_0-9]{1,64}$"},
+          "start_bar": {"type": "integer", "minimum": 0, "maximum": 255},
+          "bars": {"type": "integer", "minimum": 1, "maximum": 256}
+        }
+      }
+    },
+    "tracks": {
+      "type": "array", "minItems": 1, "maxItems": 32,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["instrument", "gain_db", "pan", "events"],
+        "properties": {
+          "instrument": {"enum": ["piano", "bass", "drums"]},
+          "gain_db": {"type": "number", "minimum": -60, "maximum": 12},
+          "pan": {"type": "number", "minimum": -1, "maximum": 1},
+          "events": {"type": "array", "maxItems": 100000, "items": {"$ref": "#/$defs/note"}}
+        },
+        "allOf": [{
+          "if": {"properties": {"instrument": {"const": "drums"}}},
+          "then": {"properties": {"events": {"items": {"properties": {"note": {"enum": [36, 38, 42, 46]}}}}}}
+        }]
+      }
+    }
+  },
+  "$defs": {
+    "note": {
+      "type": "object", "additionalProperties": false,
+      "required": ["start_tick", "duration_ticks", "note", "velocity"],
+      "properties": {
+        "start_tick": {"type": "integer", "minimum": 0},
+        "duration_ticks": {"type": "integer", "minimum": 1},
+        "note": {"type": "integer", "minimum": 21, "maximum": 108},
+        "velocity": {"type": "integer", "minimum": 1, "maximum": 127}
+      }
+    }
+  }
+}

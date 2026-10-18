@@ -1,0 +1,63 @@
+{
+  "project": "Djayvo",
+  "milestone": "M0a",
+  "gates": {
+    "score_contract_and_independent_tracks": "PASS",
+    "independent_duration_and_pcm_decode": "PASS",
+    "decoded_audio_headroom_balance_dc_and_tail": "PASS",
+    "same_seed_and_block_size_wav_sha256": "PASS",
+    "different_seed_changes_output": "PASS",
+    "44100hz_end_to_end": "PASS",
+    "invalid_cli_and_unwritable_destination": "PASS",
+    "human_listening": "NOT RUN",
+    "macos_portability": "NOT RUN"
+  },
+  "decoded_wav": {
+    "file": "/home/ssari/projects/djayvo/build/integration/m0a.wav",
+    "sha256": "e183a5a2e009e29a54e9d7e61c22b47a3648d34c8b232797fc9cc2aa9afeaaee",
+    "format": "PCM16 stereo little-endian",
+    "sample_rate": 48000,
+    "frames": 556800,
+    "duration_seconds": 11.6,
+    "peak_linear": 0.50836181640625,
+    "peak_dbfs": -5.876541544218564,
+    "rms_dbfs_left": -22.808725955690367,
+    "rms_dbfs_right": -23.707743159756344,
+    "dc_left": 0.00023250300308753704,
+    "dc_right": 0.00026310679556309493,
+    "full_scale_samples": 0,
+    "first_nonzero_frame": 1,
+    "last_nonzero_frame": 471037,
+    "max_adjacent_sample_step": 0.22265625,
+    "last_100ms_peak": 0.0,
+    "loudness_method": "unweighted RMS; not integrated LUFS"
+  },
+  "engine_report": {
+    "project": "Djayvo",
+    "milestone": "M0a",
+    "technical_render": "PASS",
+    "listening_validation": "NOT RUN",
+    "macos_portability": "NOT RUN",
+    "seed": 4123,
+    "sample_rate": 48000,
+    "music_frames": 460800,
+    "total_frames": 556800,
+    "duration_seconds": 11.6,
+    "events": 194,
+    "peak_linear": 0.50838214159,
+    "peak_dbfs": -5.87619427428,
+    "pre_limiter_peak_linear": 0.508382115861,
+    "ceiling_dbfs": -1,
+    "rms_dbfs_left": -22.8084601671,
+    "rms_dbfs_right": -23.7074780447,
+    "max_adjacent_sample_step": 0.222658604383,
+    "limited_samples": 0,
+    "nonfinite_samples": 0,
+    "loudness_method": "unweighted RMS; not integrated LUFS"
+  },
+  "notes_per_track": {
+    "piano": 35,
+    "bass": 15,
+    "drums": 47
+  }
+}

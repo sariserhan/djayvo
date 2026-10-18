@@ -1,0 +1,8 @@
+/build*/
+/renders/
+/.venv*/
+__pycache__/
+.DS_Store
+*.wav
+*.a
+*.o

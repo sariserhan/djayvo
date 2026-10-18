@@ -1,0 +1,53 @@
+Start testing: Oct 18 01:05 UTC
+----------------------------------------------------------
+1/2 Testing: core
+1/2 Test: core
+Command: "/home/ssari/projects/djayvo/build/djayvo_tests"
+Directory: /home/ssari/projects/djayvo/build
+"core" start time: Oct 18 01:05 UTC
+Output:
+----------------------------------------------------------
+PASS: rational timing and long-render drift
+PASS: sample onsets, ordering, note-off and release
+PASS: seed and block-size determinism
+PASS: instrument frequency, octave, velocity and drum output
+PASS: pan, gain, finite audio and overload ceiling
+PASS: plan bounds, polyphony, silence and invalid requests
+PASS: configurable sample rates and 7/8 meter
+PASS: allocation-free processing
+PASS: WAV bounds, nonfinite and incomplete writes
+PASS: 9/9 test groups
+<end of output>
+Test time =   1.43 sec
+----------------------------------------------------------
+Test Passed.
+"core" end time: Oct 18 01:05 UTC
+"core" time elapsed: 00:00:01
+----------------------------------------------------------
+
+2/2 Testing: wav_integration
+2/2 Test: wav_integration
+Command: "/usr/bin/python3.14" "/home/ssari/projects/djayvo/tests/integration/verify_render.py" "--renderer" "/home/ssari/projects/djayvo/build/djayvo_render" "--output" "/home/ssari/projects/djayvo/build/integration"
+Directory: /home/ssari/projects/djayvo/build
+"wav_integration" start time: Oct 18 01:05 UTC
+Output:
+----------------------------------------------------------
+PASS: score_contract_and_independent_tracks
+PASS: independent_duration_and_pcm_decode
+PASS: decoded_audio_headroom_balance_dc_and_tail
+PASS: same_seed_and_block_size_wav_sha256
+PASS: different_seed_changes_output
+PASS: 44100hz_end_to_end
+PASS: invalid_cli_and_unwritable_destination
+NOT RUN: human_listening
+NOT RUN: macos_portability
+Evidence: /home/ssari/projects/djayvo/build/integration/validation.json
+<end of output>
+Test time =   1.89 sec
+----------------------------------------------------------
+Test Passed.
+"wav_integration" end time: Oct 18 01:05 UTC
+"wav_integration" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Oct 18 01:05 UTC

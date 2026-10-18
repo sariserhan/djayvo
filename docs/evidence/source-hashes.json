@@ -1,0 +1,16 @@
+{
+  "CMakeLists.txt": "8300fe489bb4993ff5380293b9c2212eed227ac9c1c99148fb4e6e2c0765d90d",
+  "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+  "core/arrangement/demo.cpp": "0f2080bf64010ebd9a8591039b8aa51be7c48502f9a9b2f51e16b8cf5624a641",
+  "core/audio/renderer.cpp": "cc171b30d19c36fbd36562b361c8cea553dd29dc3611793e8be2f3d36b35434e",
+  "core/audio/wav.cpp": "1a28c5b2b9893910c7a4ae7ae18520451597d84b47b08f354cb25e3d5e46ac5f",
+  "core/composition/plan.cpp": "33bf583fbf5e570f7ccb58e0076be3c36f0401ab4510a5e9c32a9641dd4bc7c3",
+  "core/include/djayvo/audio.h": "941745ea3586b4a80eec2e4827b1113f4f49fbe8ac087aacab093cd6179546de",
+  "core/include/djayvo/music.h": "a51a2cc0795699522cfcee1db64ec082b81959485bfecb5650b7521f21c0fc59",
+  "core/instruments/voice.cpp": "6ed9172bb009a92d69bfd8a9dc8eed47cc4c09ac9ccd92255eb546bef667c753",
+  "core/tests/tests.cpp": "3a06ea4679f747879ad6e1dc0de997a446083f384af72f065c2f017ee04ac2e1",
+  "schemas/performance-plan.schema.json": "18f055da12dda91dab1127e66aed32fc324a56d0cfe384f2fb3ea541764eb706",
+  "scripts/inspect_wav.py": "5c97e4ec3acd159af6d3e6b38ac32ee4b16d8c82239063da00ba509b7b31a74e",
+  "tests/integration/verify_render.py": "0be2d55147c672223c047f5ab35d00155490b3bc04cd1eda892201192ef62a5a",
+  "tools/cli/main.cpp": "36a2f80ff4087d99f2eedfff095e234f88952f925d84191fe2ec3259a386e7da"
+}

@@ -1,0 +1,20 @@
+{
+  "file": "renders/m0a.wav",
+  "sha256": "e183a5a2e009e29a54e9d7e61c22b47a3648d34c8b232797fc9cc2aa9afeaaee",
+  "format": "PCM16 stereo little-endian",
+  "sample_rate": 48000,
+  "frames": 556800,
+  "duration_seconds": 11.6,
+  "peak_linear": 0.50836181640625,
+  "peak_dbfs": -5.876541544218564,
+  "rms_dbfs_left": -22.808725955690367,
+  "rms_dbfs_right": -23.707743159756344,
+  "dc_left": 0.00023250300308753704,
+  "dc_right": 0.00026310679556309493,
+  "full_scale_samples": 0,
+  "first_nonzero_frame": 1,
+  "last_nonzero_frame": 471037,
+  "max_adjacent_sample_step": 0.22265625,
+  "last_100ms_peak": 0.0,
+  "loudness_method": "unweighted RMS; not integrated LUFS"
+}

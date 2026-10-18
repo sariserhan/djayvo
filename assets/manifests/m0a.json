@@ -1,0 +1,30 @@
+{
+  "project": "Djayvo",
+  "milestone": "M0a",
+  "imported_audio_files": [],
+  "datasets": [],
+  "models": [],
+  "procedural_sources": [
+    {
+      "id": "procedural-instruments-v1",
+      "source": "core/instruments/voice.cpp",
+      "sha256": "6ed9172bb009a92d69bfd8a9dc8eed47cc4c09ac9ccd92255eb546bef667c753",
+      "creator": "Djayvo M0a implementation",
+      "content": "Original additive piano, harmonic bass, noise/oscillator drums",
+      "license": "Original project code; no third-party sample license",
+      "third_party_attribution": null,
+      "imported_recording": false
+    },
+    {
+      "id": "four-bar-original-v1",
+      "source": "core/arrangement/demo.cpp",
+      "sha256": "0f2080bf64010ebd9a8591039b8aa51be7c48502f9a9b2f51e16b8cf5624a641",
+      "creator": "Djayvo M0a implementation",
+      "content": "Original note events and rhythms; not a sampled performance",
+      "license": "Original project content; no third-party recording license",
+      "third_party_attribution": null,
+      "imported_recording": false
+    }
+  ],
+  "generated_audio_ledger": "docs/evidence/artifacts.json"
+}

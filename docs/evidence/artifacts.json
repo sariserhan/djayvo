@@ -1,0 +1,14 @@
+{
+  "renders/m0a.wav": {
+    "sha256": "e183a5a2e009e29a54e9d7e61c22b47a3648d34c8b232797fc9cc2aa9afeaaee",
+    "bytes": 2227244
+  },
+  "renders/m0a.score.json": {
+    "sha256": "f5cc9640d19b16c8974a3112f1e9b00675b1764b58f760d3b37139c330554f51",
+    "bytes": 8506
+  },
+  "renders/m0a.report.json": {
+    "sha256": "984ecb776f3e2ea959e1ac7c027623b77a4abe5affbe7c9a110ad2c519348536",
+    "bytes": 643
+  }
+}
