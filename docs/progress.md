@@ -5,23 +5,27 @@ per-step approval, then requested a Mac handoff after finishing Linux work. The
 master specification is unchanged. The original M0a record is
 [m0a-report.md](m0a-report.md), with its initial Git commit `02d0e18`.
 
-**Linux and Apple M5 technical checks: PASS. Overall M0: PARTIAL.** M0b/M0c
+**Current Apple M5 technical checks: PASS. Overall M0: PARTIAL.** M0b/M0c
 code and three complete recordings exist. Both the supplied synthetic speech
 and one owner-consented human recording now render successfully. Human-recording
 listening is **PARTIAL**: the owner accepts it as a start but reports awkward
 experimental passages and game-like timbres, and requests more varied openings.
 Recognition ratings remain **NOT RUN**. See [voice-trial.md](voice-trial.md).
+The new [acoustic revision](acoustic-review.md) replaces oscillator instruments
+with cleared note recordings, lowers piano registers, simplifies experimental
+motifs, and varies the opening. Native release and sanitizer CTest are **PASS**
+(7/7 each). Listening to this revision and its Linux/Mac comparison are **NOT RUN**.
 Actual Apple M5 execution is now **PASS**, with the local results in
 [mac-portability.md](mac-portability.md). M1 evaluation tools and a pilot are ready, without
 claiming human evidence. No iPhone UI, AI model, training, or live mode was built.
 
 | Gate | Status | Evidence |
 | --- | --- | --- |
-| Linux release build | PASS | Portable C++17 library, two CLIs, C ABI |
-| C++ unit tests | PASS | 9 foundation + 6 remix test groups |
+| Linux release build | PASS | Original M0 baseline; acoustic revision NOT RUN on Linux |
+| C++ unit tests | PASS | Current Mac: 9 foundation + 8 remix test groups |
 | C ABI | PASS | Source compiled as C calls a real render; error bounds/ABI checked |
-| End-to-end tests | PASS | Original WAV, remix integration, comparison/listening tools; CTest 6/6 |
-| ASan/UBSan | PASS | Same six suites; final run has no findings |
+| End-to-end tests | PASS | Current Mac: CTest 7/7 including asset integrity |
+| ASan/UBSan | PASS | Current Mac: same seven suites, no findings |
 | Input decoding/bounds | PASS | PCM16/24/32 and float32, mono/stereo, odd chunks; corruption, NaN, silence, duration and permission rejection |
 | Resampling | PASS | Identity, duration, round trip, above-Nyquist rejection |
 | Analysis controls | PASS | Energy, phrases, onsets, coarse tone pitch; not a speech-recognition claim |
@@ -33,7 +37,7 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Audio bounds/headroom | PASS | Independent decoding of all 16 master/stem/control WAVs; zero full-scale samples; finite engine output; silent final 100 ms |
 | Determinism | PASS | 48 kHz speech remixes byte-identical at 512/113 blocks; 16 kHz integration repeats too |
 | Formal export schemas | PASS | Preinstalled jsonschema 4.19.2 validates M0a/all remix exports; rejects recorded-kind without consent |
-| Dependencies/assets | PASS | No third-party DSP runtime; procedural instruments; optional external speech tool inventoried |
+| Dependencies/assets | PASS | No third-party DSP runtime; 14 pinned CC0 acoustic samples, notices and hashes; speech tool inventoried |
 | Master specification | PASS | Original SHA-256 unchanged |
 | Consented human recording technical render | PASS | One owner-supplied 4.862 s source; three masters and 12 stems decoded; [trial](voice-trial.md) |
 | Human speech recognition by listeners | NOT RUN | No actual listener observations |
@@ -107,8 +111,8 @@ real recordings, pass `--consent` only with permission to process that input.
 
 ## Remaining limitations
 
-Timbres are basic synthetic approximations. No acoustic instrument library or
-perceptual evaluation exists. Analysis is energy/onset/autocorrelation DSP with
+The acoustic bank is small, mono, single-layer and sample-based; no listener has
+yet rated its realism. No formal perceptual evaluation exists. Analysis is energy/onset/autocorrelation DSP with
 no word boundaries or reliable semantic labels. Pitch may have octave errors.
 Varispeed couples pitch/time and can alias; independent pitch/time stretching,
 reverb/delay, tempo maps, external JSON import, and automatic fallback from an AI

@@ -5,84 +5,75 @@
 namespace djayvo {
 namespace {
 constexpr double pi = 3.14159265358979323846;
-constexpr double tau = 2.0 * pi;
+struct InstrumentSample {
+    Instrument instrument;
+    int root_midi;
+    const std::int16_t* pcm;
+    std::size_t frames;
+    std::uint32_t rate;
+};
+#include "acoustic_bank.inc"
+const InstrumentSample& select_sample(Instrument instrument,int pitch) noexcept {
+    const InstrumentSample* best=nullptr;
+    for (const auto& sample:samples) {
+        if (sample.instrument!=instrument) continue;
+        if (!best || std::abs(sample.root_midi-pitch)<std::abs(best->root_midi-pitch)) best=&sample;
+    }
+    return *best; // Every validated instrument has entries in the compiled bank.
 }
-std::uint32_t release_frames(Instrument instrument, std::uint32_t rate) {
-    const double seconds = instrument == Instrument::piano ? 0.22 :
-                           instrument == Instrument::bass ? 0.10 : 0.08;
-    return static_cast<std::uint32_t>(std::llround(seconds * rate));
 }
-void Voice::start(const Event& e, std::uint32_t rate) noexcept {
-    active_ = true; released_ = false; age_ = 0; release_age_ = 0;
-    instrument_ = e.instrument; pitch_ = e.pitch; id_ = e.note_id; rate_ = rate;
-    release_length_ = release_frames(instrument_, rate);
-    frequency_ = 440.0 * std::exp2((e.pitch - 69) / 12.0);
-    velocity_ = std::pow(e.velocity / 127.0, 1.45);
-    phase_ = 0.0; noise_low_ = 0.0; previous_noise_ = 0.0;
-    rng_ = e.noise_seed == 0 ? 1U : e.noise_seed;
-    left_gain_ = e.left_gain; right_gain_ = e.right_gain;
+std::uint32_t release_frames(Instrument instrument,std::uint32_t rate) {
+    const double seconds=instrument==Instrument::piano?0.30:instrument==Instrument::bass?0.16:0.18;
+    return static_cast<std::uint32_t>(std::llround(seconds*rate));
+}
+void Voice::start(const Event& e,std::uint32_t rate) noexcept {
+    active_=true;released_=false;age_=0;release_age_=0;
+    instrument_=e.instrument;pitch_=e.pitch;id_=e.note_id;rate_=rate;
+    release_length_=release_frames(instrument_,rate);
+    const auto& sample=select_sample(instrument_,pitch_);
+    sample_=sample.pcm;sample_frames_=sample.frames;sample_position_=0;
+    sample_step_=static_cast<double>(sample.rate)/rate;
+    if (instrument_!=Instrument::drums) sample_step_*=std::exp2((pitch_-sample.root_midi)/12.0);
+    // Small deterministic performance-level variation, never oscillator noise.
+    velocity_=std::pow(e.velocity/127.0,1.45)*(0.97+(e.noise_seed%7U)*0.01);
+    left_gain_=e.left_gain;right_gain_=e.right_gain;
+    // Precompute short windowed-sinc fractional-delay kernels at note start.
+    // A lower cutoff when reading faster suppresses downsampling aliases.
+    const double cutoff=0.94*std::min(1.0,1.0/sample_step_);
+    for (std::size_t phase=0;phase<interpolation_.size();++phase) {
+        double total=0;
+        for (int tap=0;tap<16;++tap) {
+            const double distance=static_cast<double>(phase)/64.0-(tap-7);
+            const double x=pi*distance*cutoff;
+            const double value=std::abs(distance)>=8?0:cutoff*(std::abs(x)<1e-12?1:std::sin(x)/x)*
+                               (0.5+0.5*std::cos(pi*distance/8));
+            interpolation_[phase][static_cast<std::size_t>(tap)]=static_cast<float>(value);
+            total+=value;
+        }
+        for (auto& value:interpolation_[phase]) value=static_cast<float>(value/total);
+    }
 }
 void Voice::stop() noexcept {
-    if (!released_) { released_ = true; release_age_ = 0; }
+    if (!released_) {released_=true;release_age_=0;}
 }
 float Voice::next() noexcept {
-    if (!active_) return 0.0F;
-    const double t = static_cast<double>(age_) / rate_;
-    double sound = 0.0;
-    double attack = 0.003;
-    if (instrument_ == Instrument::piano) {
-        // Decaying, mildly inharmonic string modes; velocity controls brightness.
-        for (int h = 1; h <= 7; ++h) {
-            const double ratio = h * std::sqrt(1.0 + 0.00012 * h * h);
-            if (ratio * frequency_ >= 0.45 * rate_) break;
-            const double amplitude = std::pow(0.48 + 0.12 * velocity_, h - 1) / std::sqrt(h);
-            const double decay = std::exp(-t * (1.0 + h * 0.65));
-            sound += amplitude * decay * std::sin(tau * frequency_ * ratio * t);
-        }
-        sound = 0.62 * sound + 0.07 * std::exp(-t * 3) * std::sin(tau * frequency_ * 1.002 * t);
-        attack = 0.004;
-    } else if (instrument_ == Instrument::bass) {
-        if (frequency_ < 0.45 * rate_) sound = 0.78 * std::sin(tau * phase_);
-        if (2 * frequency_ < 0.45 * rate_)
-            sound += 0.19 * std::exp(-t * 5.0) * std::sin(tau * 2.0 * phase_);
-        if (3 * frequency_ < 0.45 * rate_)
-            sound += 0.08 * std::exp(-t * 9.0) * std::sin(tau * 3.0 * phase_);
-        sound *= std::exp(-t * 1.6);
-        attack = 0.006;
-    } else {
-        rng_ ^= rng_ << 13U; rng_ ^= rng_ >> 17U; rng_ ^= rng_ << 5U;
-        const double noise = static_cast<double>(rng_ >> 8U) / 8388608.0 - 1.0;
-        noise_low_ += 0.16 * (noise - noise_low_);
-        const double high = noise - noise_low_;
-        if (pitch_ == 36) {
-            const double kick_phase = tau * (49.0 * t + 2.6 * (1.0 - std::exp(-t / 0.026)));
-            sound = 1.05 * std::exp(-t * 15.0) * std::sin(kick_phase) +
-                    0.10 * std::exp(-t * 180.0) * high;
-            attack = 0.002;
-        } else if (pitch_ == 38) {
-            sound = 0.66 * std::exp(-t * 25.0) * high +
-                    0.30 * std::exp(-t * 32.0) * std::sin(tau * 183.0 * t) +
-                    0.12 * std::exp(-t * 40.0) * std::sin(tau * 337.0 * t);
-            attack = 0.0015;
-        } else {
-            const double decay = pitch_ == 46 ? 12.0 : 68.0;
-            const double metal_a = std::min(4013.0, 0.18 * rate_);
-            const double metal_b = std::min(6121.0, 0.26 * rate_);
-            sound = (0.30 * (noise - previous_noise_) +
-                     0.10 * std::sin(tau * metal_a * t) * std::sin(tau * metal_b * t)) * std::exp(-t * decay);
-            attack = 0.001;
-        }
-        previous_noise_ = noise;
+    if (!active_) return 0;
+    if (sample_position_>=static_cast<double>(sample_frames_) ||
+        (released_ && release_age_>=release_length_)) {active_=false;return 0;}
+    const auto index=static_cast<std::int64_t>(sample_position_);
+    const auto phase=static_cast<std::size_t>(std::llround((sample_position_-static_cast<double>(index))*64));
+    double sound=0;
+    for (int tap=0;tap<16;++tap) {
+        const auto frame=index+tap-7;
+        if (frame>=0 && static_cast<std::uint64_t>(frame)<sample_frames_)
+            sound+=sample_[frame]*interpolation_[phase][static_cast<std::size_t>(tap)]/32768.0;
     }
-    double envelope = std::min(1.0, t / attack);
+    double envelope=std::min(1.0,static_cast<double>(age_)/(rate_*0.001));
     if (released_) {
-        if (release_age_ >= release_length_) { active_ = false; return 0.0F; }
-        envelope *= 0.5 * (1.0 + std::cos(pi * release_age_ / release_length_));
+        envelope*=0.5*(1+std::cos(pi*release_age_/release_length_));
         ++release_age_;
     }
-    ++age_;
-    phase_ += frequency_ / rate_;
-    phase_ -= std::floor(phase_);
-    return static_cast<float>(sound * envelope * velocity_);
+    ++age_;sample_position_+=sample_step_;
+    return static_cast<float>(sound*envelope*velocity_);
 }
 } // namespace djayvo

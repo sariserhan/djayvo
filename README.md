@@ -9,9 +9,12 @@ hip-hop, reggae, and experimental. Each has independent piano, bass, drums, and
 sampled source events, plus score JSON, frame trace, measurements, and optional
 stems. No model, GPU, paid service, or third-party DSP library is required.
 
-**Linux technical checks: PASS. M0 overall: PARTIAL.** The demonstration uses
-labeled synthetic speech. Human recording/recognizability, musical-quality
-evaluation, and actual Apple M5 execution remain **NOT RUN**. See
+**Current Mac technical checks: PASS. M0 overall: PARTIAL.** The owner has
+auditioned a consented source and requested less game-like instruments and more
+creative openings. The new revision uses 14 cleared acoustic note samples and
+seeded full-phrase, instrumental, and fragment openings. New human listening is
+**NOT RUN**. Original Linux/M5 portability passed; the changed engine has not yet
+been rerun on Linux. See [acoustic revision](docs/acoustic-review.md),
 [current evidence](docs/progress.md) and [Mac agent handoff](docs/mac-agent-handoff.md).
 
 ```sh
@@ -53,7 +56,7 @@ python3 -m venv .venv-build
 export PATH="$PWD/.venv-build/bin:$PATH"
 ```
 
-This workstation's CMake is `/tmp/djayvo-build-tools/bin/cmake`. The C interface
+The current Mac uses installed CMake and a separate `.venv-build` Python. The C interface
 is `core/include/djayvo/djayvo_c.h`. Python >=3.9 is only for developer tools and
 tests. The optional speech-fixture generator uses an external eSpeak NG
 executable, which is not linked into Djayvo.
@@ -62,5 +65,6 @@ executable, which is not linked into Djayvo.
 [Remix contract and limitations](docs/remix-architecture.md) ·
 [Licenses](docs/licenses.md) · [Evaluation protocol](docs/evaluation-protocol.md)
 
-Audio, builds, and transfer bundles are ignored by Git; small score, measurement,
-hash, and log evidence is committed. The master specification remains unchanged.
+Private audio, builds, and transfer bundles are ignored by Git. A small pinned
+CC0 instrument bank is compiled into the engine with its license notices,
+provenance, and hashes. The master specification remains unchanged.

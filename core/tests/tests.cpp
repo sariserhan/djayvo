@@ -134,12 +134,21 @@ void instruments() {
         auto p = single(instrument, instrument == djayvo::Instrument::piano ? 69 : 45);
         auto a = render(p);
         const double fundamental = instrument == djayvo::Instrument::piano ? 440.0 : 110.0;
-        const double peak = magnitude(a, p.sample_rate, fundamental, 1600, 4096);
-        check(peak > 10.0, "pitched instrument has no fundamental");
-        check(peak > 8 * magnitude(a, p.sample_rate, fundamental * 1.15, 1600, 4096), "wrong pitch");
+        // Recorded piano may have a stronger second partial than fundamental.
+        // Require a correctly tuned harmonic series rather than a sine-like tone.
+        const auto harmonic = [&](const std::vector<float>& signal,double frequency) {
+            double total=0;
+            for (int h=1;h<=3;++h) total+=magnitude(signal,p.sample_rate,frequency*h,1600,4096)/h;
+            return total;
+        };
+        const double peak=harmonic(a,fundamental);
+        check(peak>10.0,"pitched instrument has no harmonic energy");
+        check(peak>8*harmonic(a,fundamental*1.15),"wrong harmonic pitch");
+        check(magnitude(a,p.sample_rate,fundamental,1600,4096)>
+              8*magnitude(a,p.sample_rate,fundamental*1.15,1600,4096),"wrong fundamental pitch");
         p.tracks[0].notes[0].pitch += 12;
         auto octave = render(p);
-        check(magnitude(octave, p.sample_rate, 2 * fundamental, 1600, 4096) >
+        check(harmonic(octave, 2 * fundamental) >
               8 * magnitude(octave, p.sample_rate, fundamental, 1600, 4096), "octave transposition broken");
         p.tracks[0].notes[0].velocity = 40;
         check(energy(render(p)) < energy(octave) * 0.2, "velocity not audible in energy");

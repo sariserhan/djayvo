@@ -1,8 +1,9 @@
 # Dependencies, licenses, and asset provenance
 
 M0a engine dependencies: **only the platform C/C++ standard runtime and math
-library**. No DSP framework, codec library, sampler library, SoundFont, external
-sample pack, model, cloud service, or paid component is linked or downloaded.
+library**. No DSP framework, codec library, sampler library, SoundFont, model,
+cloud service, or paid component is linked. The current revision embeds a small
+CC0 acoustic sample bank described below; the original M0a inventory is historical.
 No dependency code or system runtime binary is vendored in this repository.
 The inventory is machine-readable in `dependencies.json`.
 
@@ -24,15 +25,39 @@ Library Exception 3.1), `/usr/share/doc/libc6/copyright`,
 wheel `LICENSE_Apache_20` / `LICENSE_BSD_3`. Provenance paths and content hashes are
 in `dependencies.json`. Distribution of these tools/runtimes themselves is outside
 this source-only prototype; their own notices would travel with such packages.
-The future macOS toolchain/runtime inventory is **NOT RUN**, because no Mac build
-was executed. No Apple runtime is included here.
+The actual macOS toolchain is recorded in `evidence/m0d/environment.json`.
+No Apple runtime is included here.
 
-`assets/manifests/m0a.json` records the sound-source inventory: it contains zero
+`assets/manifests/m0a.json` records the original M0a sound-source inventory: it contains zero
 imported audio files. The only sound sources are the original procedural voices;
 their checked-in source hashes are recorded. The melody, chord voicings, and
 rhythm events are authored in `core/arrangement/demo.cpp`; there is no sampled
 third-party performance. Generated WAV hashes live in `docs/evidence/` and the
-audio remains local/ignored by Git. There are no training datasets or voice assets.
+audio remains local/ignored by Git. There are no training datasets. The owner's
+consented source is private local input, not a redistributable voice asset.
+
+## Current acoustic instrument bank
+
+`assets/manifests/acoustic-v1.json` inventories 14 individual note/hit recordings:
+seven upright piano pitches and three pizzicato contrabass pitches from
+[VSCO 2 CE](https://versilian-studios.com/vsco-community/), plus bass drum,
+snare, closed hat, and open hat from
+[VCSL](https://github.com/sgossner/VCSL). Credit: Versilian Studios / Sam Gossner,
+Ivy Audio / Simon Dalzell, and library contributors.
+
+Both repositories' pinned license files declare **CC0-1.0**, including commercial
+reuse, modification and redistribution. Full notices are in `assets/licenses/`.
+VSCO's README requests credit and asks users not to sell the samples directly;
+this project credits the library and uses notes inside an instrument engine.
+No sample resale, artist imitation, reference-track sampling, or training occurs.
+This does not change Djayvo's own source-code license.
+
+Each source URL pins a commit; SHA-256 identifies source bytes and prepared PCM.
+The manifest records root note, crop, mono conversion, windowed-sinc resampling,
+normalization and edge fades. `scripts/prepare_acoustic_bank.py` reproduces the
+22.05 kHz PCM16 bank with standard-library Python; raw downloads remain ignored.
+`scripts/verify_acoustic_assets.py` validates the compiled bank and notices
+offline. The generated immutable C++ data has no third-party runtime dependency.
 
 Original project code and generated composition have not been published, and
 this milestone does not select an open-source license for Djayvo. Third-party

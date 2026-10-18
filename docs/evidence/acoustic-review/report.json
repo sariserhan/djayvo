@@ -1,0 +1,66 @@
+{
+  "engine_base": "b29fb74",
+  "bank_id": "acoustic-v1",
+  "bank_sha256": "7fac83cf1bb41b9e2e695bff5d4b8ef8a1824b873ff854cf07269041a421251c",
+  "sample_count": 14,
+  "embedded_pcm_bytes": 1459434,
+  "gates": {
+    "native_m5_render": "PASS",
+    "license_and_asset_integrity": "PASS",
+    "15_decoded_masters_and_stems": "PASS",
+    "clean_hook_waveform_preservation": "PASS",
+    "seeded_varied_openings": "PASS",
+    "same_build_512_113_determinism": "PASS",
+    "owner_feedback_on_original": "PARTIAL",
+    "new_timbre_listening": "NOT RUN",
+    "new_linux_mac_comparison": "NOT RUN",
+    "m1_blinded_quality": "NOT RUN",
+    "models_training_device_release": "NOT RUN",
+    "overall_m0": "PARTIAL",
+    "release_ctest_7_suites": "PASS",
+    "sanitizer_ctest_7_suites": "PASS"
+  },
+  "metrics": {
+    "hiphop": {
+      "duration_seconds": 32,
+      "first_full_phrase_seconds": 5.0,
+      "opening": "instrumental pickup",
+      "clean_hook_maximum_pcm_error": 2.4150396117417205e-05,
+      "nonfinite_samples": 0,
+      "decoded_peak_dbfs": -7.881085085049891
+    },
+    "reggae": {
+      "duration_seconds": 32,
+      "first_full_phrase_seconds": 6.0,
+      "opening": "vocal fragment",
+      "clean_hook_maximum_pcm_error": 2.4150396117417205e-05,
+      "nonfinite_samples": 0,
+      "decoded_peak_dbfs": -8.006111663332227
+    },
+    "experimental": {
+      "duration_seconds": 32.96775,
+      "first_full_phrase_seconds": 0.0,
+      "opening": "full phrase",
+      "clean_hook_maximum_pcm_error": 2.4150396117417205e-05,
+      "nonfinite_samples": 0,
+      "decoded_peak_dbfs": -7.9489980307687444
+    }
+  },
+  "generation": {
+    "command": [
+      "./build-mac/djayvo_remix",
+      "--input",
+      "renders/voice-20261017-221411/source-pcm.wav",
+      "--consent",
+      "--output",
+      "renders/voice-acoustic-v1/remix",
+      "--style",
+      "all",
+      "--stems"
+    ],
+    "seconds": 1.6948385420000704,
+    "includes": "three masters, twelve stems, score, reports, traces"
+  },
+  "privacy": "Private source, audio, detailed analysis and source hashes remain ignored under renders/.",
+  "master_spec_sha256": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2"
+}

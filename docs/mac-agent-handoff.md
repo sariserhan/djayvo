@@ -10,6 +10,13 @@ Update 2026-10-17: actual Apple M5 portability is **PASS**. See
 reproduction commands, and listening/recording next steps. The original Linux
 handoff below is retained as historical context. Human quality remains **NOT RUN**.
 
+Subsequent owner feedback is **PARTIAL** and led to an
+[acoustic/arrangement revision](acoustic-review.md), tested natively on M5.
+The transferred Linux references belong to the older engine. Before using them
+for a new portability claim, render matching references from the current code
+on Linux; current-revision cross-OS comparison is **NOT RUN**. Preserve the old
+references and the owner's recordings. Read `docs/progress.md` for current gates.
+
 ## Current state
 
 Linux has working C++17 M0a instruments and M0b/M0c source-driven remixing:

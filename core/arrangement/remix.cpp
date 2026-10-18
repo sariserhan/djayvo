@@ -75,8 +75,15 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
             if (r.clips.size() == 5) break;
         }
     }
-    r.vocals.push_back({0,0,-3,1,false,0,true});
     const Tick q = ticks_per_quarter, bar_ticks = ticks_per_bar(p);
+    // The source can be a reveal, not always a spoken preamble. Rotate these
+    // reproducibly across styles and seeds while keeping both clean hooks.
+    const auto opening=(seed%3U+static_cast<unsigned>(strategy))%3U;
+    r.vocals.push_back({opening==0?0:2*bar_ticks,0,-3,1,false,0,true});
+    if (opening==2) {
+        r.vocals.push_back({0,1,-8,1,false,-0.15,false});
+        r.vocals.push_back({3*q/2,std::min<std::size_t>(2,r.clips.size()-1),-9,1,false,0.15,false});
+    }
     std::uint32_t rng = seed ^ 0xd14e29a7U; if (!rng) rng=1;
     const auto velocity = [&rng](int base) {
         rng ^= rng<<13U; rng ^= rng>>17U; rng ^= rng<<5U;
@@ -95,16 +102,16 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     }
     if (motif.empty()) motif={0,3*q/2,5*q/2};
     std::sort(motif.begin(),motif.end());
-    for (int b=2; b<p.bars; ++b) {
+    for (int b=opening==0?2:0; b<p.bars; ++b) {
         const Tick base=b*bar_ticks;
         const bool breakdown=b>=p.bars-4 && b<p.bars-2;
         const bool last=b==p.bars-1;
-        const int step=progression[static_cast<std::size_t>((b-2)%4)];
+        const int step=progression[static_cast<std::size_t>((std::max(2,b)-2)%4)];
         const int root=r.tonic_midi+step;
         const bool major=step==-4;
         auto chord = [&](Tick start,Tick duration,int strength) {
             for (int n : {root,root+(major?4:3),root+7,root+(major?11:10)})
-                piano.notes.push_back({base+start,duration,n+12,velocity(strength)});
+                piano.notes.push_back({base+start,duration,n,velocity(strength)});
         };
         auto bass_note = [&](Tick start,Tick duration,int interval,int strength) {
             bass.notes.push_back({base+start,duration,root-24+interval,velocity(strength)});
@@ -133,9 +140,9 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         } else {
             if (last) chord(0,3*q,80);
             else if (!breakdown) {
-                for (int n=0;n<8;++n) {
+                for (int n=0;n<4;++n) {
                     const int interval=minor[static_cast<std::size_t>((n*2+b)%7)];
-                    piano.notes.push_back({base+n*q/2,q/4,r.tonic_midi+12+interval,velocity(n%3?64:83)});
+                    piano.notes.push_back({base+n*q,3*q/4,r.tonic_midi+interval,velocity(n%3?64:83)});
                 }
             }
             bass_note(0,last?3*q:q/3,0,108);
@@ -147,15 +154,15 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
                 for (int h=0;h<16;++h) if ((h+b)%3) drum(h*q/4,42,h%4?45:79,90);
         }
         // Phrase-derived call/response, not a continuous voice-over backing loop.
-        if (!last && b%2==0) {
-            const std::size_t count=breakdown?2:std::min<std::size_t>(motif.size(),strategy==Strategy::experimental?6:3);
+        if (b>=2 && !last && b%2==0) {
+            const std::size_t count=breakdown?2:std::min<std::size_t>(motif.size(),strategy==Strategy::experimental?4:3);
             for (std::size_t m=0;m<count;++m) {
                 const auto clip=1+(m+static_cast<std::size_t>(b))%(r.clips.size()-1);
                 Tick offset=motif[m%motif.size()];
                 if (strategy==Strategy::reggae) offset=(offset/q)*q+q/2;
                 if (strategy==Strategy::experimental) offset=(static_cast<Tick>(m)*3*q/4)%bar_ticks;
-                const double rate=strategy==Strategy::experimental ? (m%3==0?0.75:m%3==1?1.5:1.0) : 1.0;
-                r.vocals.push_back({base+offset,clip,-7,rate,strategy==Strategy::experimental && m%4==3,
+                const double rate=strategy==Strategy::experimental ? (m%3==0?0.9438743127:m%3==1?1.0594630944:1.0) : 1.0;
+                r.vocals.push_back({base+offset,clip,-7,rate,false,
                                     m%2?0.25:-0.25,false});
             }
         }
@@ -163,7 +170,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         // Input rhythm also determines melodic response on alternating bars.
         if (!breakdown && !last && b%2==1) {
             for (std::size_t m=0;m<std::min<std::size_t>(motif.size(),4);++m)
-                piano.notes.push_back({base+motif[m],q/4,r.tonic_midi+24+minor[(m+static_cast<std::size_t>(b))%7],velocity(71)});
+                piano.notes.push_back({base+motif[m],q/2,r.tonic_midi+12+minor[(m+static_cast<std::size_t>(b))%7],velocity(71)});
         }
     }
     // Quantization can collapse several source onsets onto the same offbeat.

@@ -51,6 +51,8 @@ if(BUILD_TESTING)
   add_test(NAME c_abi COMMAND djayvo_c_smoke "${CMAKE_CURRENT_BINARY_DIR}/c-api-input.wav" "${CMAKE_CURRENT_BINARY_DIR}/c-api-render")
   find_package(Python3 3.9 COMPONENTS Interpreter)
   if(Python3_Interpreter_FOUND)
+    add_test(NAME acoustic_assets COMMAND "${Python3_EXECUTABLE}"
+      "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_acoustic_assets.py")
     add_test(NAME wav_integration COMMAND "${Python3_EXECUTABLE}"
       "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_render.py"
       --renderer "$<TARGET_FILE:djayvo_render>"

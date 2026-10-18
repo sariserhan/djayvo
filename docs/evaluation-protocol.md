@@ -2,7 +2,10 @@
 
 The foundation rubric below remains useful. The continuation now also supplies
 three source-driven arrangements and a prepared synthetic pilot; the M1 protocol
-follows. Human observation gates remain **NOT RUN**.
+follows. Unblinded owner feedback on the first voice trial is now **PARTIAL**:
+awkward experimental passages, game-like instruments, and a request for varied
+openings. See [acoustic-review.md](acoustic-review.md) for the response. This is
+not a completed rubric or blinded trial; formal M1 gates remain **NOT RUN**.
 
 Current status: **NOT RUN**. No human observations or musical-quality scores have
 been collected. Signal checks demonstrate a valid recording, not enjoyable music.

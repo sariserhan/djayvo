@@ -2,6 +2,8 @@
 
 This records the M0a foundation. The implemented source-remix/C-ABI extension is
 documented in [remix-architecture.md](remix-architecture.md).
+The procedural voice description below is historical; current voices use the
+[acoustic bank](acoustic-review.md) with the same clock and fixed voice pool.
 
 The C++17 static library `djayvo_core` has three layers. `core/arrangement/`
 constructs the original demonstration as a native `PerformancePlan`;

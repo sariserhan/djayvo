@@ -1,7 +1,15 @@
 {
   "project": "Djayvo",
   "third_party_engine_libraries": [],
-  "downloaded_sound_assets": [],
+  "downloaded_sound_assets": [
+    {
+      "name": "VSCO 2 CE and VCSL acoustic-v1 subset",
+      "license": "CC0-1.0",
+      "manifest": "assets/manifests/acoustic-v1.json",
+      "runtime_dependency": false,
+      "bundled": "14 transformed PCM instrument notes/hits"
+    }
+  ],
   "components": [
     {
       "name": "GCC/G++",

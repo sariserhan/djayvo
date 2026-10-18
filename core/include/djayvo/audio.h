@@ -42,11 +42,13 @@ private:
     bool released_ = false;
     Instrument instrument_ = Instrument::piano;
     int pitch_ = 60;
-    std::uint32_t id_ = 0, rate_ = 48000, rng_ = 1, release_length_ = 1;
+    std::uint32_t id_ = 0, rate_ = 48000, release_length_ = 1;
     std::uint64_t age_ = 0;
     std::uint32_t release_age_ = 0;
-    double phase_ = 0.0, frequency_ = 440.0, velocity_ = 1.0;
-    double noise_low_ = 0.0, previous_noise_ = 0.0;
+    double velocity_ = 1.0, sample_position_ = 0.0, sample_step_ = 1.0;
+    const std::int16_t* sample_ = nullptr;
+    std::size_t sample_frames_ = 0;
+    std::array<std::array<float,16>,65> interpolation_{};
     float left_gain_ = 1.0F, right_gain_ = 1.0F;
 };
 

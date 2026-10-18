@@ -27,22 +27,25 @@ unassessed.
 | --- | --- | --- | --- |
 | Hip-hop | 96 BPM, 12 bars | Swung hats, backbeat, syncopated bass, held minor chords | Sparse source-derived chops and call/response |
 | Reggae | 80 BPM, 10 bars | Offbeat chord stabs, one-drop drums, different bass rhythm | Offbeat sample responses |
-| Experimental | 124 BPM, 16 bars | Broken sixteenth-note percussion, arpeggiation, syncopated bass | Denser motifs, reverse and coupled-speed variants |
+| Experimental | 124 BPM, 16 bars | Broken sixteenth-note percussion, slower arpeggiation, syncopated bass | Sparse motifs and one-semitone coupled-speed variants |
 | Baseline control | 96 BPM, 12 bars | Fixed original four-bar instrumental loop repeated three times | Full source at fixed positions, no derived motifs |
 
 The three strategies have intro, groove, break, and finale sections. Source
 onsets determine crops and quantized melodic-response rhythms; a confident
 coarse pitch estimate chooses the tonic. Harmony is i–VI–iv–i in minor. Grammars
 differ at a common seed; seed changes alone are not treated as new strategies.
-Timbres are procedural approximations, not acoustic sample-library presets.
+Timbres now use a small pinned CC0 acoustic bank; see [acoustic-review.md](acoustic-review.md).
 
-Every plan plays the whole source forward at rate 1 from tick zero, then makes
-another clean statement later. This protects an intelligible opportunity, but
+Every plan plays the whole source forward at rate 1 twice. The first statement
+starts at tick zero or after a two-bar instrumental/fragment introduction,
+chosen deterministically by style and seed. The second occurs later. This protects an intelligible opportunity, but
 cannot prove human recognizability. Crops stay in bounds; chop edges search a
 small near-zero region and playback applies 3 ms edge fades. Clean statements
 smoothly duck instruments to 15% (-16.48 dB) over 10 ms. If a source exceeds the
-experimental intro, ducking continues into the instrumental entrance. Other chops
-use pan, reverse, and rates 0.5–2. Rate changes couple pitch and duration;
+experimental intro, ducking continues into the instrumental entrance. Generated
+chops are excluded from both full clean intervals; quantization cannot place
+two chops at the same frame. Other chops use pan and small rate changes. The
+renderer still supports reverse and rates 0.5–2. Rate changes couple pitch and duration;
 **independent time stretch/pitch shift is not implemented**. Linear interpolation
 for varispeed can alias transformed high frequencies. Clean hooks are untransformed.
 

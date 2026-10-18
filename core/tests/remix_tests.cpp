@@ -85,9 +85,10 @@ void resampling() {
 void preservation() {
     const auto a=source();auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
     const auto vocals=render(p,a,257,true);
+    const auto hook=djayvo::tick_to_frame(p.vocals[0].start,a.sample_rate,p.music.tempo_milli_bpm);
     const double gain=std::pow(10.0,-3.0/20)*p.analysis.normalization_gain*std::sqrt(0.5);
     for(std::size_t i=100;i<a.mono.size()-100;++i)
-        check(std::abs(vocals[i*2]-a.mono[i]*gain)<1e-6,"clean hook was changed beyond gain/edge fades");
+        check(std::abs(vocals[(hook+i)*2]-a.mono[i]*gain)<1e-6,"clean hook was changed beyond gain/edge fades");
     const auto frames=djayvo::compile(p.music).total_frames;
     for(auto strategy:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental}) {
         auto plan=djayvo::make_remix(a,djayvo::analyze(a),strategy,4123,true,false);
@@ -157,6 +158,27 @@ void vocal_spacing() {
         }
     }
 }
+void varied_openings() {
+    const auto a=source();const auto analysis=djayvo::analyze(a);
+    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental}) {
+        bool clean_first=false,instrument_first=false,chop_first=false;
+        for (std::uint32_t seed=4123;seed<4126;++seed) {
+            const auto p=djayvo::make_remix(a,analysis,style,seed,true,false);
+            const bool clean_at_zero=std::any_of(p.vocals.begin(),p.vocals.end(),[](const auto& e){return e.clean && e.start==0;});
+            const bool chop_at_zero=std::any_of(p.vocals.begin(),p.vocals.end(),[](const auto& e){return !e.clean && e.start==0;});
+            bool instrument_at_zero=false;
+            for (const auto& track:p.music.tracks)
+                for (const auto& note:track.notes) instrument_at_zero|=note.start==0;
+            check(clean_at_zero || instrument_at_zero || chop_at_zero,"varied opening begins with empty silence");
+            clean_first|=clean_at_zero;
+            instrument_first|=!clean_at_zero && !chop_at_zero && instrument_at_zero;
+            chop_first|=chop_at_zero;
+            const auto& clean=*std::find_if(p.vocals.begin(),p.vocals.end(),[](const auto& e){return e.clean;});
+            check(p.clips[clean.clip].begin==0 && p.clips[clean.clip].end==a.mono.size(),"opening lost the full clean phrase");
+        }
+        check(clean_first && instrument_first && chop_first,"seeds do not vary the opening treatment");
+    }
+}
 void no_allocations() {
     const auto a=source();const auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::experimental,4123,true,false);
     djayvo::RemixRenderer r(p,a,512);float buffer[1024]{};
@@ -172,6 +194,7 @@ int main() {
         {"clean hook preservation, deterministic styles, finite bounded output",preservation},
         {"consent, crop, transform, polyphony and duration rejection",validation},
         {"quantized chop spacing and both clean hooks at 2/3/5 seconds",vocal_spacing},
+        {"seeded clean, instrumental and fragment openings",varied_openings},
         {"allocation-free sample and instrument processing",no_allocations}};
     int failures=0;
     for(const auto& t:tests)try{t.second();std::cout<<"PASS: "<<t.first<<'\n';}

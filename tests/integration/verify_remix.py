@@ -63,7 +63,7 @@ def main():
         for clip in clips:
             assert 0 <= clip["start_frame"] < clip["end_frame"] <= score["source"]["processed_frames"]
         clean = [e for e in score["voice_events"] if e["clean"]]
-        assert clean and clean[0]["start_tick"] == 0 and clean[0]["rate"] == 1 and not clean[0]["reverse"]
+        assert clean and clean[0]["rate"] == 1 and not clean[0]["reverse"]
         assert len(score["tracks"]) == 3 and all(t["events"] for t in score["tracks"])
         denominator = score["tempo_milli_bpm"] * 960
         music_frames = (score["target_bars"] * 3840 * 16000 * 60000 + denominator // 2) // denominator
@@ -83,7 +83,10 @@ def main():
     source_pcm = pcm(fixture)
     vocal = pcm(args.output / "three.hiphop.vocals.wav")
     gain = 10 ** (-3 / 20) * plans["hiphop"]["analysis"]["normalization_gain"] * 2 ** -0.5
-    errors = [abs(vocal[2 * i] / 32768 - source_pcm[i] / 32768 * gain)
+    first_hook = next(e for e in plans['hiphop']['voice_events'] if e['clean'])
+    denominator = plans['hiphop']['tempo_milli_bpm'] * 960
+    hook_frame = (first_hook['start_tick'] * 16000 * 60000 + denominator // 2) // denominator
+    errors = [abs(vocal[2 * (hook_frame + i)] / 32768 - source_pcm[i] / 32768 * gain)
               for i in range(100, len(source_pcm) - 100)]
     assert max(errors) < 2 / 32768
     gates["clean_hook_matches_original_waveform_with_gain_and_edge_fades"] = "PASS"

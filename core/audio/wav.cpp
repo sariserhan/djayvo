@@ -61,7 +61,7 @@ void write_report(const AudioStats& a, const PerformancePlan& p, const Schedule&
     const bool accepted = a.frames == s.total_frames && a.nonfinite_samples == 0 && a.peak <= s.ceiling + 1e-7;
     out << "{\n  \"project\": \"Djayvo\",\n  \"milestone\": \"" << milestone << "\",\n  \"technical_render\": \""
         << (accepted ? "PASS" : "FAIL") << "\",\n  \"listening_validation\": \"NOT RUN\",\n"
-        << "  \"macos_portability\": \"NOT RUN\",\n  \"seed\": " << p.seed
+        << "  \"macos_portability\": \"NOT RUN\",\n  \"instrument_bank\": \"acoustic-v1\",\n  \"seed\": " << p.seed
         << ",\n  \"sample_rate\": " << s.sample_rate << ",\n  \"music_frames\": " << s.music_frames
         << ",\n  \"total_frames\": " << a.frames << ",\n  \"duration_seconds\": "
         << static_cast<double>(a.frames) / s.sample_rate
