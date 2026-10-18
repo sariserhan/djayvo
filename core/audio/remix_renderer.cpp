@@ -76,6 +76,13 @@ RemixRenderer::RemixRenderer(const RemixPlan& p,const AudioBuffer& source,std::s
       music_buffer_(block*2),block_(block),vocals_only_(vocals_only),instrumental_only_(solo!=-1) {
     const auto schedule=compile(p.music);
     total_frames_=schedule.total_frames; ceiling_=schedule.ceiling;
+    reverb_mix_=vocals_only?0:p.instrument_reverb_mix;
+    if (reverb_mix_>0) {
+        reverb_=std::make_unique<InstrumentReverb>(p.music.sample_rate);
+        for (const auto& e:schedule.events) if (e.kind==EventKind::note_off)
+            reverb_end_=std::max(reverb_end_,e.frame+release_frames(e.instrument,p.music.sample_rate));
+        reverb_end_+=p.music.sample_rate*1500ULL/1000;
+    }
     room_mix_=vocals_only?0:p.instrument_room_mix;
     if (room_mix_>0) {
         const std::array<unsigned,4> milliseconds{{31,47,73,113}};
@@ -160,6 +167,11 @@ std::size_t RemixRenderer::process(float* stereo,std::size_t requested) noexcept
             room_left=room_mix_*(tap(0)+0.5*tap(2));
             room_right=room_mix_*(tap(1)+0.5*tap(3));
             room_cursor_=(room_cursor_+1)%room_buffer_.size();
+        }
+        if (reverb_ && cursor_<reverb_end_) {
+            const auto wet=reverb_->process((music_buffer_[i*2]+music_buffer_[i*2+1])*0.5);
+            const double tail=std::min(1.0,static_cast<double>(reverb_end_-cursor_-1)/(source_.sample_rate*0.05));
+            room_left+=wet[0]*reverb_mix_*tail;room_right+=wet[1]*reverb_mix_*tail;
         }
         const double channels[2]={voice_left+(vocals_only_?0:(music_buffer_[i*2]+room_left)*duck),
                                   voice_right+(vocals_only_?0:(music_buffer_[i*2+1]+room_right)*duck)};

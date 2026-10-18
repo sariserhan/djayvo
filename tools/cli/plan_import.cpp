@@ -167,7 +167,8 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
     j.keys({"schema_version","seed","source_asset_id","sample_rate","source","tempo_milli_bpm",
             "ticks_per_quarter","time_signature","target_bars","tail_ms","strategy","key","mix",
             "analysis","sections","voice_clips","voice_events","tracks"},{"tempo_changes"});
-    const bool sustained=j.at("schema_version").string()=="1.5-remix";
+    const bool reverb=j.at("schema_version").string()=="1.6-remix";
+    const bool sustained=reverb || j.at("schema_version").string()=="1.5-remix";
     const bool guitar=sustained || j.at("schema_version").string()=="1.4-remix";
     const bool timeline=guitar || j.at("schema_version").string()=="1.3-remix";
     if (!timeline && j.has("tempo_changes")) reject("tempo changes require plan version 1.3");
@@ -197,9 +198,13 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
     r.tonic_midi=static_cast<int>(key.at("tonic_midi").integer(71));
     if (key.at("mode").string()!="minor") reject("unsupported key mode");
     const auto& mix=j.at("mix");
-    mix.keys({"master_target_peak_dbfs","clean_hook_instrument_duck_db"},{"instrument_room_mix","kick_duck_db"});
+    mix.keys({"master_target_peak_dbfs","clean_hook_instrument_duck_db"},{"instrument_room_mix","kick_duck_db","instrument_reverb_mix"});
     if (mix.at("clean_hook_instrument_duck_db").number()!=-16.4781748189) reject("unsupported hook ducking");
     p.ceiling_dbfs=mix.at("master_target_peak_dbfs").number();
+    if (mix.has("instrument_reverb_mix")) {
+        if (!reverb) reject("instrument reverb requires plan version 1.6");
+        r.instrument_reverb_mix=mix.at("instrument_reverb_mix").number();
+    }
     if (mix.has("instrument_room_mix")) r.instrument_room_mix=mix.at("instrument_room_mix").number();
     if (mix.has("kick_duck_db")) p.kick_duck_db=mix.at("kick_duck_db").number();
     const auto& a=j.at("analysis");

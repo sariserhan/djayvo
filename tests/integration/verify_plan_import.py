@@ -76,6 +76,23 @@ def main(renderer):
             candidate=root/'old-synth-version.json';candidate.write_text(json.dumps(bad))
             run('rejected-synth-version-'+style,('--style',style,'--plan',str(candidate)),success=False)
         assert json.loads((root/'rules-funk.funk.report.json').read_text())['instrument_bank']=='acoustic-v1+guitar-v1'
+        reverb=copy.deepcopy(plans['hiphop'])
+        reverb['schema_version']='1.6-remix';reverb['mix']['instrument_reverb_mix']=.2;reverb['tail_ms']=3000
+        candidate=root/'reverb.json';candidate.write_text(json.dumps(reverb))
+        run('reverb',('--plan',str(candidate),'--stems'))
+        run('reverb-replay',('--plan',str(root/'reverb.hiphop.score.json'),'--stems','--block-size','113'))
+        assert verify_export(root/'reverb')['artifacts']==verify_export(root/'reverb-replay')['artifacts']
+        assert json.loads((root/'reverb.hiphop.score.json').read_text())==reverb
+        dry=copy.deepcopy(reverb);del dry['mix']['instrument_reverb_mix'];dry['schema_version']='1.0-remix'
+        candidate.write_text(json.dumps(dry));run('reverb-control',('--plan',str(candidate),'--stems'))
+        assert (root/'reverb.hiphop.wav').read_bytes()!=(root/'reverb-control.hiphop.wav').read_bytes()
+        assert (root/'reverb.hiphop.vocals.wav').read_bytes()==(root/'reverb-control.hiphop.vocals.wav').read_bytes()
+        for name,edit in [('old-version',lambda p:p.update(schema_version='1.5-remix')),
+                          ('gain',lambda p:p['mix'].update(instrument_reverb_mix=.26)),
+                          ('negative',lambda p:p['mix'].update(instrument_reverb_mix=-.1)),
+                          ('tail',lambda p:p.update(tail_ms=500))]:
+            bad=copy.deepcopy(reverb);edit(bad);candidate.write_text(json.dumps(bad))
+            run('rejected-reverb-'+name,('--plan',str(candidate)),success=False)
         base=plans['hiphop']
         sparse=copy.deepcopy(base)
         selected=add_echoes(sparse,480)
@@ -270,6 +287,7 @@ def main(renderer):
         else:raise AssertionError('invalid selection receipt accepted')
         print(json.dumps({'roundtrip_styles':len(plans),'identical_artifacts':identical_artifacts,'edited_plan_changes_pcm':'PASS',
                           'independent_transform_replay_and_instrument_stems':'PASS',
+                          'feedback_reverb_replay_stems_and_clean_voice':'PASS',
                           'tempo_echo_replay_and_instrument_stems':'PASS',
                           'tempo_map_mix_automation_roundtrip_and_rational_frames':'PASS',
                           'rejected_candidates':len(invalid),'explicit_fallback':'PASS','consent_and_collision':'PASS',

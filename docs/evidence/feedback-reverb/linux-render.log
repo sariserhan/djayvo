@@ -1,0 +1,56 @@
+PASS: /out/feedback-reverb-20261018/rules-hiphop.hiphop.wav
+PASS: complete export /out/feedback-reverb-20261018/rules-hiphop.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/hiphop-dry.hiphop.wav
+PASS: complete export /out/feedback-reverb-20261018/hiphop-dry.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/hiphop-wet.hiphop.wav
+PASS: complete export /out/feedback-reverb-20261018/hiphop-wet.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/rules-reggae.reggae.wav
+PASS: complete export /out/feedback-reverb-20261018/rules-reggae.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/reggae-dry.reggae.wav
+PASS: complete export /out/feedback-reverb-20261018/reggae-dry.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/reggae-wet.reggae.wav
+PASS: complete export /out/feedback-reverb-20261018/reggae-wet.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/rules-experimental.experimental.wav
+PASS: complete export /out/feedback-reverb-20261018/rules-experimental.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/experimental-dry.experimental.wav
+PASS: complete export /out/feedback-reverb-20261018/experimental-dry.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/experimental-wet.experimental.wav
+PASS: complete export /out/feedback-reverb-20261018/experimental-wet.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/rules-club.club.wav
+PASS: complete export /out/feedback-reverb-20261018/rules-club.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/club-dry.club.wav
+PASS: complete export /out/feedback-reverb-20261018/club-dry.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/club-wet.club.wav
+PASS: complete export /out/feedback-reverb-20261018/club-wet.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/fixture.hiphop.wav
+PASS: /out/feedback-reverb-20261018/fixture.reggae.wav
+PASS: /out/feedback-reverb-20261018/fixture.experimental.wav
+PASS: complete export /out/feedback-reverb-20261018/fixture.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/club.club.wav
+PASS: complete export /out/feedback-reverb-20261018/club.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/funk.funk.wav
+PASS: complete export /out/feedback-reverb-20261018/funk.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/baseline.baseline.wav
+PASS: complete export /out/feedback-reverb-20261018/baseline.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/call_response.call_response.wav
+PASS: complete export /out/feedback-reverb-20261018/call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/feedback-reverb-20261018/hybrid.hybrid.wav
+PASS: complete export /out/feedback-reverb-20261018/hybrid.complete.json
+Listening/recognizability: NOT RUN

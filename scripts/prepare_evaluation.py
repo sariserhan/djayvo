@@ -60,6 +60,13 @@ def load_manifest(path):
                 consent.get('review_scope') not in ('owner_only', 'independent_reviewers') or
                 not isinstance(consent.get('evidence'), str) or not 1 <= len(consent['evidence'].strip()) <= 2000):
             raise ValueError('explicit local consent, review scope and permission evidence required')
+        license_info = clip.get('license')
+        if license_info is not None and (not isinstance(license_info, dict) or
+                license_info.get('id') != 'CC-BY-4.0' or
+                license_info.get('url') != 'https://creativecommons.org/licenses/by/4.0/' or
+                not isinstance(license_info.get('attribution'), str) or
+                not 1 <= len(license_info['attribution'].strip()) <= 4000):
+            raise ValueError('licensed evaluation sources require supported license and attribution')
         source = (path.parent/clip['path']).resolve()
         if source.suffix.lower() != '.wav' or digest(read_source(source)) != clip.get('sha256'):
             raise ValueError('source WAV/hash mismatch')
@@ -157,6 +164,10 @@ def run_batch(manifest_path, output, renderer):
             if clip['kind'] != 'silence' and all(row['styles'].get(s, {}).get('status') == 'PASS' for s in STYLES) and isinstance(row['baseline'], dict) and row['baseline']['status'] == 'PASS':
                 try:
                     key = prepare(folder/'remix', folder/'blinded', source, seed, folder/'control')
+                    if clip.get('license'):
+                        notice = clip['license']
+                        (folder/'blinded/listener/ATTRIBUTION.txt').write_text(
+                            notice['attribution']+'\n'+notice['id']+'\n'+notice['url']+'\n')
                     row['packet'] = 'PASS'; row['block_id'] = key['block_id']
                 except (ValueError, OSError) as error:
                     row['packet'] = 'FAIL'; row['packet_error'] = str(error)

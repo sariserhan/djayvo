@@ -1,0 +1,2 @@
+{"status": "PASS", "word_estimates": 6, "inference_seconds": 2.1296832799999947, "peak_rss_bytes": 263012352, "timing_accuracy": "NOT RUN", "transcript_saved": false}
+{"status": "PASS", "word_estimates": 6, "inference_seconds": 2.4173338989999706, "peak_rss_bytes": 274169856, "timing_accuracy": "NOT RUN", "transcript_saved": false}

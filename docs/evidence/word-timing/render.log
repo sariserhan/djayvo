@@ -1,0 +1,25 @@
+PASS: renders/word-timing-20261018/hiphop-aligned.hiphop.wav
+PASS: complete export renders/word-timing-20261018/hiphop-aligned.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/word-timing-20261018/hiphop-control.hiphop.wav
+PASS: complete export renders/word-timing-20261018/hiphop-control.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/word-timing-20261018/reggae-aligned.reggae.wav
+PASS: complete export renders/word-timing-20261018/reggae-aligned.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/word-timing-20261018/reggae-control.reggae.wav
+PASS: complete export renders/word-timing-20261018/reggae-control.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/word-timing-20261018/experimental-aligned.experimental.wav
+PASS: complete export renders/word-timing-20261018/experimental-aligned.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/word-timing-20261018/experimental-control.experimental.wav
+PASS: complete export renders/word-timing-20261018/experimental-control.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/word-timing-20261018/club-aligned.club.wav
+PASS: complete export renders/word-timing-20261018/club-aligned.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/word-timing-20261018/club-control.club.wav
+PASS: complete export renders/word-timing-20261018/club-control.complete.json
+Listening/recognizability: NOT RUN
+PASS: four aligned/control owner render pairs; unchanged complete clean hooks and schedule; boundary accuracy NOT RUN

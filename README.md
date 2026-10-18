@@ -25,6 +25,10 @@ Previous arrangement work: [hip-hop composition variety](docs/hiphop-diversity.m
 Previous effects work: [selective tempo echo and private comparisons](docs/vocal-echo.md),
 building on [independent voice pitch/timing](docs/voice-transforms.md),
 using [validated JSON plan replay and fallback](docs/plan-import.md).
+Latest effects/analysis: [bounded instrument reverb](docs/feedback-reverb.md) and
+[optional offline word timing](docs/word-timing.md). Technical execution passes;
+model estimates can vary by platform and musical listening remains open.
+
 Latest creative research: [selective voice over GPU instrumentals](docs/voice-research.md).
 Music quality is the current priority; infrastructure and phone work are paused.
 

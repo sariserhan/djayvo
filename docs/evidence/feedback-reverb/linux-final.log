@@ -1,0 +1,35 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /work/reverb/build
+Internal ctest changing into directory: /work/reverb/build
+Test project /work/reverb/build
+      Start  1: core
+ 1/13 Test  #1: core .............................   Passed    0.56 sec
+      Start  2: remix_core
+ 2/13 Test  #2: remix_core .......................   Passed    8.72 sec
+      Start  3: c_abi
+ 3/13 Test  #3: c_abi ............................   Passed    0.43 sec
+      Start  4: acoustic_assets
+ 4/13 Test  #4: acoustic_assets ..................   Passed    0.53 sec
+      Start  5: sustained_assets
+ 5/13 Test  #5: sustained_assets .................   Passed    0.01 sec
+      Start  6: guitar_assets
+ 6/13 Test  #6: guitar_assets ....................   Passed    0.43 sec
+      Start  7: electronic_assets
+ 7/13 Test  #7: electronic_assets ................   Passed    0.08 sec
+      Start  8: wav_integration
+ 8/13 Test  #8: wav_integration ..................   Passed    0.63 sec
+      Start  9: remix_integration
+ 9/13 Test  #9: remix_integration ................   Passed    4.76 sec
+      Start 10: word_timing
+10/13 Test #10: word_timing ......................   Passed    0.06 sec
+      Start 11: tooling
+11/13 Test #11: tooling ..........................   Passed    1.41 sec
+      Start 12: evaluation_preparation
+12/13 Test #12: evaluation_preparation ...........   Passed   15.91 sec
+      Start 13: plan_import
+13/13 Test #13: plan_import ......................   Passed    5.06 sec
+
+100% tests passed, 0 tests failed out of 13
+
+Total Test time (real) =  38.60 sec

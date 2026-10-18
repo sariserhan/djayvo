@@ -1,0 +1,180 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "gate": "PASS",
+    "players": [
+      {
+        "name": "hiphop aligned",
+        "duration": 32,
+        "seek": 10.000142
+      },
+      {
+        "name": "hiphop control",
+        "duration": 32,
+        "seek": 10.000063
+      },
+      {
+        "name": "hiphop aligned voice",
+        "duration": 32,
+        "seek": 10.000064
+      },
+      {
+        "name": "hiphop control voice",
+        "duration": 32,
+        "seek": 10.000085
+      },
+      {
+        "name": "reggae aligned",
+        "duration": 32,
+        "seek": 10.000055
+      },
+      {
+        "name": "reggae control",
+        "duration": 32,
+        "seek": 10.000089
+      },
+      {
+        "name": "reggae aligned voice",
+        "duration": 32,
+        "seek": 10.000005
+      },
+      {
+        "name": "reggae control voice",
+        "duration": 32,
+        "seek": 10.000009
+      },
+      {
+        "name": "experimental aligned",
+        "duration": 32.96775,
+        "seek": 10.000049
+      },
+      {
+        "name": "experimental control",
+        "duration": 32.96775,
+        "seek": 10.00006
+      },
+      {
+        "name": "experimental aligned voice",
+        "duration": 32.96775,
+        "seek": 10.000046
+      },
+      {
+        "name": "experimental control voice",
+        "duration": 32.96775,
+        "seek": 10.000041
+      },
+      {
+        "name": "club aligned",
+        "duration": 36.285708,
+        "seek": 10.000027
+      },
+      {
+        "name": "club control",
+        "duration": 36.285708,
+        "seek": 10.000027
+      },
+      {
+        "name": "club aligned voice",
+        "duration": 36.285708,
+        "seek": 10.000093
+      },
+      {
+        "name": "club control voice",
+        "duration": 36.285708,
+        "seek": 10.000037
+      }
+    ],
+    "errors": [],
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "gate": "PASS",
+    "players": [
+      {
+        "name": "hiphop aligned",
+        "duration": 32,
+        "seek": 10.001044995340635
+      },
+      {
+        "name": "hiphop control",
+        "duration": 32,
+        "seek": 10.000342620332958
+      },
+      {
+        "name": "hiphop aligned voice",
+        "duration": 32,
+        "seek": 10.00033323376556
+      },
+      {
+        "name": "hiphop control voice",
+        "duration": 32,
+        "seek": 10.00034898375452
+      },
+      {
+        "name": "reggae aligned",
+        "duration": 32,
+        "seek": 10.000362037011655
+      },
+      {
+        "name": "reggae control",
+        "duration": 32,
+        "seek": 10.000324645763612
+      },
+      {
+        "name": "reggae aligned voice",
+        "duration": 32,
+        "seek": 10.000296736019664
+      },
+      {
+        "name": "reggae control voice",
+        "duration": 32,
+        "seek": 10.000310423449264
+      },
+      {
+        "name": "experimental aligned",
+        "duration": 32.96775,
+        "seek": 10.000324407345033
+      },
+      {
+        "name": "experimental control",
+        "duration": 32.96775,
+        "seek": 10.000291474440019
+      },
+      {
+        "name": "experimental aligned voice",
+        "duration": 32.96775,
+        "seek": 10.000244407347054
+      },
+      {
+        "name": "experimental control voice",
+        "duration": 32.96775,
+        "seek": 10.000261745342868
+      },
+      {
+        "name": "club aligned",
+        "duration": 36.28570833333333,
+        "seek": 10.000330828668666
+      },
+      {
+        "name": "club control",
+        "duration": 36.28570833333333,
+        "seek": 10.00027791201137
+      },
+      {
+        "name": "club aligned voice",
+        "duration": 36.28570833333333,
+        "seek": 10.000159682778758
+      },
+      {
+        "name": "club control voice",
+        "duration": 36.28570833333333,
+        "seek": 10.000175615685293
+      }
+    ],
+    "errors": [],
+    "human_listening": "NOT RUN"
+  }
+]

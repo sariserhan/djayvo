@@ -1,0 +1,12 @@
+PASS: renders/word-timing-20261018/versioned-echo/control.reggae.wav
+PASS: complete export renders/word-timing-20261018/versioned-echo/control.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/word-timing-20261018/versioned-echo/eighth-echo.reggae.wav
+PASS: complete export renders/word-timing-20261018/versioned-echo/eighth-echo.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/word-timing-20261018/versioned-echo/dotted-echo.reggae.wav
+PASS: complete export renders/word-timing-20261018/versioned-echo/dotted-echo.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/word-timing-20261018/versioned-echo/pitched-echo.reggae.wav
+PASS: complete export renders/word-timing-20261018/versioned-echo/pitched-echo.complete.json
+Listening/recognizability: NOT RUN

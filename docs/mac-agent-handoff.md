@@ -7,7 +7,11 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
-Latest local engine work: [Sustained instruments and broader arrangement variety](sustained-instruments.md).
+Latest: [Reverb](feedback-reverb.md) and [optional word timing](word-timing.md).
+Private reviews: renders/feedback-reverb-20261018/review/index.html and
+renders/word-timing-20261018/review/index.html. Technical checks PASS; model
+fixture agreement FAIL; new listening/word-boundary accuracy NOT RUN.
+Previous local engine work: [Sustained instruments and broader arrangement variety](sustained-instruments.md).
 Private review: `renders/sustained-instruments-20261018/review/index.html`.
 Listening NOT RUN; production quality PARTIAL.
 Use `renders/arrangement-linux/sustained-instruments-20261018/fixture` as the

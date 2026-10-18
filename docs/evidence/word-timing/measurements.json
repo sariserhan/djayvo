@@ -1,0 +1,163 @@
+{
+  "styles": {
+    "hiphop": {
+      "clean_hooks": [
+        {
+          "frame": 240000,
+          "frames": 233376,
+          "pcm_unchanged": true
+        },
+        {
+          "frame": 720000,
+          "frames": 233376,
+          "pcm_unchanged": true
+        }
+      ],
+      "instrument_stems_and_event_frames": "PASS",
+      "max_pcm_difference": 0.322113037109375,
+      "rms_pcm_difference": 0.01874965309283482,
+      "levels": {
+        "aligned": {
+          "original": {
+            "lufs": -23.2,
+            "true_peak_dbfs": -7.0
+          },
+          "matched": {
+            "lufs": -24.0,
+            "true_peak_dbfs": -7.8
+          }
+        },
+        "control": {
+          "original": {
+            "lufs": -23.3,
+            "true_peak_dbfs": -7.0
+          },
+          "matched": {
+            "lufs": -24.0,
+            "true_peak_dbfs": -7.7
+          }
+        }
+      }
+    },
+    "reggae": {
+      "clean_hooks": [
+        {
+          "frame": 288000,
+          "frames": 233376,
+          "pcm_unchanged": true
+        },
+        {
+          "frame": 576000,
+          "frames": 233376,
+          "pcm_unchanged": true
+        }
+      ],
+      "instrument_stems_and_event_frames": "PASS",
+      "max_pcm_difference": 0.297576904296875,
+      "rms_pcm_difference": 0.0076905130284151335,
+      "levels": {
+        "aligned": {
+          "original": {
+            "lufs": -23.7,
+            "true_peak_dbfs": -7.9
+          },
+          "matched": {
+            "lufs": -24.0,
+            "true_peak_dbfs": -8.2
+          }
+        },
+        "control": {
+          "original": {
+            "lufs": -23.7,
+            "true_peak_dbfs": -7.9
+          },
+          "matched": {
+            "lufs": -24.0,
+            "true_peak_dbfs": -8.2
+          }
+        }
+      }
+    },
+    "experimental": {
+      "clean_hooks": [
+        {
+          "frame": 0,
+          "frames": 233376,
+          "pcm_unchanged": true
+        },
+        {
+          "frame": 929032,
+          "frames": 233376,
+          "pcm_unchanged": true
+        }
+      ],
+      "instrument_stems_and_event_frames": "PASS",
+      "max_pcm_difference": 0.33526611328125,
+      "rms_pcm_difference": 0.015871342847522316,
+      "levels": {
+        "aligned": {
+          "original": {
+            "lufs": -23.8,
+            "true_peak_dbfs": -7.6
+          },
+          "matched": {
+            "lufs": -24.0,
+            "true_peak_dbfs": -7.8
+          }
+        },
+        "control": {
+          "original": {
+            "lufs": -23.8,
+            "true_peak_dbfs": -6.8
+          },
+          "matched": {
+            "lufs": -24.0,
+            "true_peak_dbfs": -7.0
+          }
+        }
+      }
+    },
+    "club": {
+      "clean_hooks": [
+        {
+          "frame": 164571,
+          "frames": 233376,
+          "pcm_unchanged": true
+        },
+        {
+          "frame": 822857,
+          "frames": 233376,
+          "pcm_unchanged": true
+        }
+      ],
+      "instrument_stems_and_event_frames": "PASS",
+      "max_pcm_difference": 0.39935302734375,
+      "rms_pcm_difference": 0.02481415712133822,
+      "levels": {
+        "aligned": {
+          "original": {
+            "lufs": -18.4,
+            "true_peak_dbfs": -4.1
+          },
+          "matched": {
+            "lufs": -24.0,
+            "true_peak_dbfs": -9.7
+          }
+        },
+        "control": {
+          "original": {
+            "lufs": -18.4,
+            "true_peak_dbfs": -4.1
+          },
+          "matched": {
+            "lufs": -24.0,
+            "true_peak_dbfs": -9.7
+          }
+        }
+      }
+    }
+  },
+  "listening": "NOT RUN",
+  "boundary_accuracy": "NOT RUN",
+  "cloud_calls": 0
+}

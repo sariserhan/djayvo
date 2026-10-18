@@ -166,3 +166,12 @@ reference or model is used. `assets/manifests/sustained-v1.json` records the sou
 hash and provenance; `scripts/verify_sustained_assets.py` checks it offline. These
 are deliberately electronic voices, not claims of acoustic instrument realism.
 The project outbound license remains unselected.
+
+## Optional speech timing research
+
+The pinned faster-whisper tiny model and faster-whisper/CTranslate2 run only in
+isolated local analysis environments. [Word timing](word-timing.md) links exact
+model hashes, dependency locks and retained MIT notices under `ai/analysis/licenses`.
+No model or analysis runtime is linked/bundled with the app. Transitive tool
+redistribution requires a separate review if bundling is proposed. Original
+feedback-reverb DSP adds no external runtime dependency or sampled asset.

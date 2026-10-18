@@ -46,7 +46,7 @@ def add_echoes(plan, interval):
         selected.append(event['start_tick']);last=start
         if len(selected)==3:break
     if not selected:raise ValueError('no fragment has room for this echo treatment')
-    if plan['schema_version']!='1.3-remix':plan['schema_version']='1.2-remix'
+    if plan['schema_version'] in ('1.0-remix','1.1-remix'):plan['schema_version']='1.2-remix'
     return selected
 
 
@@ -71,7 +71,7 @@ def prepare(renderer, source, plan_path, output, echo=False):
     for name, pitch, stretch, interval in cases:
         candidate = copy.deepcopy(plan)
         if pitch or stretch != 1:
-            if candidate['schema_version']!='1.3-remix':candidate['schema_version'] = '1.1-remix'
+            if candidate['schema_version']=='1.0-remix':candidate['schema_version'] = '1.1-remix'
             for event in candidate['voice_events']:
                 if not event['clean']:
                     event.update(pitch_semitones=pitch, time_stretch=stretch)

@@ -1,0 +1,12 @@
+PASS: /out/word-timing-20261018/aligned/hiphop.hiphop.wav
+PASS: complete export /out/word-timing-20261018/aligned/hiphop.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/word-timing-20261018/aligned/reggae.reggae.wav
+PASS: complete export /out/word-timing-20261018/aligned/reggae.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/word-timing-20261018/aligned/experimental.experimental.wav
+PASS: complete export /out/word-timing-20261018/aligned/experimental.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/word-timing-20261018/aligned/club.club.wav
+PASS: complete export /out/word-timing-20261018/aligned/club.complete.json
+Listening/recognizability: NOT RUN

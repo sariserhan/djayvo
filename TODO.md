@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [Sustained instruments and broader arrangement variety](docs/sustained-instruments.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [Reverb](docs/feedback-reverb.md) and [optional offline word timing](docs/word-timing.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -226,6 +226,8 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P36 | PASS | Call-response/hybrid, recent-structure rejection, native/browser contracts and private review; commit `a09220e` | [Evidence](docs/creative-strategies.md) |
 | [x] | P37 | PASS | Recorded CC0 guitar, alternating strum/staccato, versioned import/stems and notices; commit `8fbdfbb` | [Evidence](docs/guitar.md) |
 | [x] | P38 | PASS | Organ/pad/lead, wider harmony/groove, eight-attempt history checks, 93 exact cross-OS WAVs and 42 old-score replay WAVs | [Evidence](docs/sustained-instruments.md) |
+| [x] | P39 | PASS | Bounded opt-in instrument feedback reverb; 91 exact M5/Linux WAVs, native/import/stem tests | [Evidence](docs/feedback-reverb.md) |
+| [x] | P40 | PASS | Optional local CPU word-time/crop tools and schema-preserving voice transforms; accuracy/listening remain open | [Evidence](docs/word-timing.md) |
 
 ## Engineering backlog
 
@@ -239,7 +241,7 @@ is needed. Prioritize by recorded listening defects and product requirements.
 - [ ] **E02 — PARTIAL:** Improve phrase/chop selection if N03/N05 show cut words.
   V3 adds sustained low-energy endings and attack pre-roll. Club v8 extends
   the pause search, deduplicates overlapping candidates and prefers pause-ended crops;
-  reliable word boundaries, semantic selection and listening acceptance remain open.
+  optional offline word-time estimates/crop proposals are implemented; reliable boundaries, semantic selection and listening acceptance remain open.
 - [ ] **E03 — PARTIAL:** Independent pitch/time DSP, bounded 1.1 plans, cached
   preparation and four owner comparisons implemented. Four-rate technical checks,
   exact M5/Linux PCM, preserved clean hooks and a three-pulse probe pass. Formant
@@ -248,8 +250,7 @@ is needed. Prioritize by recorded listening defects and product requirements.
 - [ ] **E04 — PARTIAL:** Expand expressive mixing/effects when justified by
   listening. Early reflections, hook/kick ducking and opt-in three-repeat tempo
   echoes and track gain/pan automation exist. Clean-hook clearance, bounded tails,
-  exact cross-OS PCM and local comparisons checked. Human acceptance and
-  continuous feedback/reverb remain open. [Echo evidence](docs/vocal-echo.md);
+  exact cross-OS PCM and local comparisons checked. Bounded instrument feedback reverb is now implemented; human acceptance remains open. [Echo evidence](docs/vocal-echo.md);
   [automation evidence](docs/timeline.md).
 - [x] **E05 — PASS:** CLI/C ABI exports stage files, preserve existing paths,
   publish a verified completion marker last and support cancellation. Actual

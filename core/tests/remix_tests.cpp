@@ -661,6 +661,54 @@ void independent_voice() {
         check(std::all_of(silent.begin(),silent.end(),[](float x){return x==0;}),"silent crop gained noise or read outside crop");
     }
 }
+void instrument_reverb() {
+    for (unsigned rate:{8000U,16000U,48000U,192000U}) {
+        djayvo::InstrumentReverb effect(rate);
+        double early=0,late=0,stereo=0,peak=0;
+        const auto before=allocations.load();
+        for (unsigned i=0;i<rate*3;++i) {
+            const auto wet=effect.process(i==0?1.0:0.0);
+            for (double x:wet) {
+                check(std::isfinite(x),"nonfinite impulse response");
+                if (i<rate*31U/1000) check(x==0,"reverb starts before first delay");
+                if (i<rate/2) early+=x*x;
+                if (i>=rate) late+=x*x;
+                peak=std::max(peak,std::abs(x));
+            }
+            stereo+=std::abs(wet[0]-wet[1]);
+        }
+        check(allocations.load()==before,"reverb allocates in callback");
+        check(early>0.1 && late<early*1e-4 && peak<1 && stereo>0.1,"reverb missing stereo decay or unstable");
+        for (unsigned i=0;i<rate;++i) {
+            const auto wet=effect.process(i%2?1:-1);
+            for (double x:wet) check(std::isfinite(x) && std::abs(x)<3,"reverb feedback grows without bound");
+        }
+    }
+    rejects([]{djayvo::InstrumentReverb invalid(0);});
+    const auto a=source();
+    auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+    p.music.tail_ms=3000;p.instrument_room_mix=0;
+    for (auto& t:p.music.tracks) t.gain_db-=15;
+    const auto dry=render(p,a),voice=render(p,a,257,true);
+    p.instrument_reverb_mix=.25;
+    const auto wet=render(p,a,113);
+    check(wet!=dry && wet==render(p,a,512),"reverb absent or block dependent");
+    check(voice==render(p,a,113,true),"reverb changed dry vocal stem");
+    auto sum=voice;
+    for (int solo=0;solo<3;++solo) {
+        const auto stem=render(p,a,257,false,solo);
+        for (std::size_t i=0;i<sum.size();++i) sum[i]+=stem[i];
+    }
+    for (std::size_t i=0;i<sum.size();++i) check(std::abs(sum[i]-wet[i])<2e-6,"reverb stems lost shared timing or ducking");
+    for (std::size_t i=wet.size()-a.sample_rate/5;i<wet.size();++i) check(wet[i]==0,"reverb leaves truncated final tail");
+    djayvo::RemixRenderer renderer(p,a,113);float buffer[226];const auto before=allocations.load();
+    while(!renderer.finished()) renderer.process(buffer,113);
+    check(allocations.load()==before,"reverb remix allocates in callback");
+    for (double value:{-.01,.251,std::numeric_limits<double>::infinity(),std::numeric_limits<double>::quiet_NaN()}) {
+        auto bad=p;bad.instrument_reverb_mix=value;rejects([&]{djayvo::validate(bad,a);});
+    }
+    p.music.tail_ms=500;rejects([&]{djayvo::validate(p,a);});
+}
 void vocal_echo() {
     for (const unsigned rate:{8000U,48000U}) for (const unsigned tempo:{96000U,123457U}) {
         auto a=djayvo::resample(source(),rate);
@@ -725,6 +773,7 @@ void vocal_echo() {
 }
 int main() {
     const std::vector<std::pair<const char*,std::function<void()>>> tests{
+        {"bounded stereo feedback reverb, clean vocals, stems, tail and allocation-free processing",instrument_reverb},
         {"SHA-256 known vectors",hashes},{"energy/onset/phrase/pitch analysis and silence",analysis},
         {"resampling duration, identity, round-trip and antialias",resampling},
         {"clean hook preservation, deterministic styles, finite bounded output",preservation},

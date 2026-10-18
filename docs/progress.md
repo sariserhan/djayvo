@@ -10,7 +10,17 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest instrument continuation, 2026-10-18: [Sustained instruments and broader arrangement variety](sustained-instruments.md).
+Latest effects/analysis continuation, 2026-10-18: [Reverb](feedback-reverb.md) and
+[optional word timing](word-timing.md). **PASS:** M5/Linux current release 13/13,
+actual Mac smoke, 91 exact cross-platform WAVs/events, unchanged default/vocal
+controls and browser playback. **PASS:** M5 ASan/UBSan 12/12 (480.40 s; snapshot
+before the Python word-timing suite). CPU speech analysis runs locally on M5
+and Linux; owner frame boundaries agree, but synthetic model estimates differ
+(**FAIL** exact model agreement). Crop proposals preserve clean hooks and timing.
+**NOT RUN:** timing accuracy and human listening. **PARTIAL:** production/full
+specification. New tools and model are optional local research, not bundled.
+
+Previous instrument continuation, 2026-10-18: [Sustained instruments and broader arrangement variety](sustained-instruments.md).
 Original organ/pad/lead voices, versioned plans/import/stems, accurate bank reports
 and wider reggae/experimental/club harmony/groove are implemented. **M5 release
 and actual smoke, Linux release, 93 exact cross-platform WAVs, 42 exact saved-score
@@ -394,11 +404,11 @@ The acoustic bank is mono and sample-based, with discrete piano layers and
 seeded piano/drum takes; bass remains single-layer. The owner accepts v4 piano
 and drums, but there are no formal ratings of realism or layer transitions.
 No formal perceptual evaluation exists. Analysis is energy/onset/autocorrelation DSP with sustained quiet-boundary selection but
-no word boundaries or reliable semantic labels. Pitch may have octave errors.
+optional unverified word-time estimates but no reliable semantic labels. Pitch may have octave errors.
 Varispeed couples pitch/time and can alias (current generated chops use rate 1).
 Finite instrumental early reflections, bounded independent pitch/time transforms
 and opt-in three-repeat tempo echoes exist. Transforms use opt-in 1.1 plans and echoes use 1.2, without formant correction or
-human acceptance; feedback reverb/delay remain absent. Tempo maps and mix automation are implemented. Offline CLI JSON import and
+human acceptance; bounded opt-in instrument feedback reverb now exists. Tempo maps and mix automation are implemented. Offline CLI JSON import and
 explicit rule fallback are now implemented; provider-connected AI planning is
 absent. Silence is explicitly rejected. Mixing is fixed per grammar,
 with smooth clean-hook ducking; the soft-knee stage can color overloads.

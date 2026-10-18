@@ -45,6 +45,13 @@ def main():
         rejects(lambda: load_manifest(path))
         bad = copy.deepcopy(manifest);bad['clips'][0].update(kind='speech', speaker_id=None);save(bad)
         rejects(lambda: load_manifest(path))
+        for license_info in ({}, {'id': 'CC-BY-4.0', 'url': 'javascript:bad', 'attribution': 'Test'},
+                             {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/', 'attribution': ' '}):
+            bad = copy.deepcopy(manifest);bad['clips'][0]['license'] = license_info;save(bad)
+            rejects(lambda: load_manifest(path))
+        manifest['clips'][0]['license'] = {'id': 'CC-BY-4.0',
+            'url': 'https://creativecommons.org/licenses/by/4.0/',
+            'attribution': 'Test attribution for original procedural fixture; no third-party audio.'}
         save(manifest)
         report = run_batch(path, root/'batch', args.renderer)
         assert report['status'] == 'PASS' and report['formal_quality'] == 'NOT RUN'
@@ -54,6 +61,9 @@ def main():
         assert len(report['records']) == 6
         signals = [r for r in report['records'] if r['kind'] == 'synthetic_control']
         assert len({r['block_id'] for r in signals}) == 3 and all(r['packet'] == 'PASS' for r in signals)
+        for row in signals:
+            notice = root/'batch/signal'/str(row['seed'])/'blinded/listener/ATTRIBUTION.txt'
+            assert manifest['clips'][0]['license']['attribution'] in notice.read_text()
         assert all(r['expected_rejection'] == 'PASS' for r in report['records'] if r['kind'] == 'silence')
         frozen = (root/'batch/freeze.json').read_bytes()
         rejects(lambda: run_batch(path, root/'batch', args.renderer))

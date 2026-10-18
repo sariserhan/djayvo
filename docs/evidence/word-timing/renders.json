@@ -1,0 +1,202 @@
+{
+  "hiphop": {
+    "changed_clips": 5,
+    "changes": [
+      {
+        "clip_id": 5,
+        "old_frames": [
+          70647,
+          77055
+        ],
+        "new_frames": [
+          61440,
+          79200
+        ],
+        "confidence": 0.9929726123809814
+      },
+      {
+        "clip_id": 6,
+        "old_frames": [
+          82077,
+          94127
+        ],
+        "new_frames": [
+          76800,
+          88800
+        ],
+        "confidence": 0.9978736639022827
+      },
+      {
+        "clip_id": 10,
+        "old_frames": [
+          118947,
+          143717
+        ],
+        "new_frames": [
+          120960,
+          142560
+        ],
+        "confidence": 0.9326359629631042
+      },
+      {
+        "clip_id": 11,
+        "old_frames": [
+          123890,
+          143717
+        ],
+        "new_frames": [
+          120960,
+          142560
+        ],
+        "confidence": 0.9326359629631042
+      },
+      {
+        "clip_id": 12,
+        "old_frames": [
+          128225,
+          143717
+        ],
+        "new_frames": [
+          120960,
+          142560
+        ],
+        "confidence": 0.9326359629631042
+      }
+    ],
+    "native_validation": "PASS",
+    "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "candidate_sha256": "0c0c5dc16eea7484c8c59cc694d8fa6a99f712963e388adc780cf822415e279b",
+    "clean_clips_and_schedule_unchanged": true,
+    "boundary_accuracy": "NOT RUN",
+    "listening": "NOT RUN"
+  },
+  "reggae": {
+    "changed_clips": 2,
+    "changes": [
+      {
+        "clip_id": 2,
+        "old_frames": [
+          56134,
+          76594
+        ],
+        "new_frames": [
+          61440,
+          79200
+        ],
+        "confidence": 0.9929726123809814
+      },
+      {
+        "clip_id": 7,
+        "old_frames": [
+          91634,
+          113031
+        ],
+        "new_frames": [
+          86400,
+          109920
+        ],
+        "confidence": 0.9913339018821716
+      }
+    ],
+    "native_validation": "PASS",
+    "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "candidate_sha256": "bdb7f6e4919a09e50a6ffd63ca4b917a3274750df2539914f0f0a0c6f26449e9",
+    "clean_clips_and_schedule_unchanged": true,
+    "boundary_accuracy": "NOT RUN",
+    "listening": "NOT RUN"
+  },
+  "experimental": {
+    "changed_clips": 4,
+    "changes": [
+      {
+        "clip_id": 3,
+        "old_frames": [
+          60523,
+          76594
+        ],
+        "new_frames": [
+          61440,
+          79200
+        ],
+        "confidence": 0.9929726123809814
+      },
+      {
+        "clip_id": 6,
+        "old_frames": [
+          82077,
+          94127
+        ],
+        "new_frames": [
+          76800,
+          88800
+        ],
+        "confidence": 0.9978736639022827
+      },
+      {
+        "clip_id": 7,
+        "old_frames": [
+          91634,
+          113031
+        ],
+        "new_frames": [
+          86400,
+          109920
+        ],
+        "confidence": 0.9913339018821716
+      },
+      {
+        "clip_id": 10,
+        "old_frames": [
+          118947,
+          143717
+        ],
+        "new_frames": [
+          120960,
+          142560
+        ],
+        "confidence": 0.9326359629631042
+      }
+    ],
+    "native_validation": "PASS",
+    "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "candidate_sha256": "a7437843b6844270c5f697128b87154b1a54fa44f5ab68015ae18af22337130b",
+    "clean_clips_and_schedule_unchanged": true,
+    "boundary_accuracy": "NOT RUN",
+    "listening": "NOT RUN"
+  },
+  "club": {
+    "changed_clips": 2,
+    "changes": [
+      {
+        "clip_id": 2,
+        "old_frames": [
+          82077,
+          113031
+        ],
+        "new_frames": [
+          86400,
+          109920
+        ],
+        "confidence": 0.9913339018821716
+      },
+      {
+        "clip_id": 3,
+        "old_frames": [
+          118947,
+          143717
+        ],
+        "new_frames": [
+          120960,
+          142560
+        ],
+        "confidence": 0.9326359629631042
+      }
+    ],
+    "native_validation": "PASS",
+    "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "candidate_sha256": "ee8e52de00d09c21d035571e41feaf674e65cdc87bfc64eccc88f1ee13fd5eed",
+    "clean_clips_and_schedule_unchanged": true,
+    "boundary_accuracy": "NOT RUN",
+    "listening": "NOT RUN"
+  }
+}

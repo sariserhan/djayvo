@@ -1,5 +1,6 @@
 #pragma once
 #include "djayvo/audio.h"
+#include "djayvo/reverb.h"
 #include <memory>
 #include <stdexcept>
 
@@ -48,6 +49,7 @@ struct RemixPlan {
     bool consent_confirmed = false;
     int tonic_midi = 57;
     double instrument_room_mix = 0; // optional, dry vocals; finite early reflections
+    double instrument_reverb_mix = 0; // optional damped feedback, dry vocals, bounded 1.5 s tail
     InputAnalysis analysis;
     std::vector<Region> clips;
     std::vector<VocalEvent> vocals;
@@ -92,6 +94,9 @@ private:
     std::size_t room_cursor_ = 0;
     double room_mix_ = 0, room_low_ = 0, room_high_ = 0;
     double room_low_alpha_ = 0, room_high_alpha_ = 0;
+    std::unique_ptr<InstrumentReverb> reverb_;
+    double reverb_mix_ = 0;
+    std::uint64_t reverb_end_ = 0;
     std::size_t block_;
     std::uint64_t cursor_ = 0, total_frames_ = 0;
     double ceiling_ = 0.89;

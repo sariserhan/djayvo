@@ -1,0 +1,24 @@
+{
+  "owner": {
+    "mac_words": 6,
+    "linux_words": 6,
+    "same_frame_boundaries": true,
+    "mac_inference_seconds": 0.3073346669989405,
+    "linux_inference_seconds": 2.1296832799999947,
+    "mac_peak_rss_bytes": 413384704,
+    "linux_peak_rss_bytes": 263012352,
+    "confidence_values_exact": false,
+    "accuracy": "NOT RUN"
+  },
+  "fixture": {
+    "mac_words": 7,
+    "linux_words": 6,
+    "same_frame_boundaries": false,
+    "mac_inference_seconds": 0.3237956669909181,
+    "linux_inference_seconds": 2.4173338989999706,
+    "mac_peak_rss_bytes": 411648000,
+    "linux_peak_rss_bytes": 274169856,
+    "confidence_values_exact": false,
+    "accuracy": "NOT RUN"
+  }
+}

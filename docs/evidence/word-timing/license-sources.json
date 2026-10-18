@@ -1,0 +1,10 @@
+{
+  "ctranslate2": {
+    "url": "https://raw.githubusercontent.com/OpenNMT/CTranslate2/v4.8.3/LICENSE",
+    "sha256": "54aa79d9fe3c09e67a16dcd95b9e88676405a6ec174efda31036983cf7672ecb"
+  },
+  "whisper": {
+    "url": "https://raw.githubusercontent.com/openai/whisper/v20250625/LICENSE",
+    "sha256": "b5d65a59060e68c4ff940e1eddfa6f94b2d68fdf58ed7f4dd57721c997e35e9d"
+  }
+}

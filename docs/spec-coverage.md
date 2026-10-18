@@ -15,7 +15,7 @@ not a change to the immutable master or the formal listening/model/release gates
 | 1: Instant Remix product | PARTIAL | Actual source-driven 20–40 s music, three strategies, club option and native local flow; formal recognition/enjoyment/share-worthiness missing |
 | 2: portable hardware work | PASS | Actual M5 and Linux arm64 core execution; original physical Intel rerun remains NOT RUN |
 | 3.1: shared engine | PARTIAL | Deterministic C++17 sampler, piano/bass/drums/electronic bank, voice clips, ducking/room treatment, bounded renderer; guitar/organ articulation and broader instruments/effects remain future work |
-| 3.2: analysis | PARTIAL | Bounds, envelope/onset/pitch/quiet-boundary heuristics and source provenance; word alignment/semantic speech analysis absent |
+| 3.2: analysis | PARTIAL | Bounds, envelope/onset/pitch/quiet-boundary heuristics and source provenance; optional word-time estimates/crop proposals implemented; verified alignment and semantic selection absent |
 | 3.3: director | PARTIAL | Three independent rule grammars plus club and baseline; learned planning/ranking held behind M1 and model feasibility |
 | 3.4: plan contract | PARTIAL | Native types, output schemas and strict native validation; untrusted external JSON/AI-plan import and bounded fallback integration absent |
 | 4: music quality | PARTIAL | Informal prototype acceptance and v4 piano/drum feedback; diverse blinded comparisons and v8 listening missing |

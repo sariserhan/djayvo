@@ -33,7 +33,8 @@
         "1.2-remix",
         "1.3-remix",
         "1.4-remix",
-        "1.5-remix"
+        "1.5-remix",
+        "1.6-remix"
       ]
     },
     "seed": {
@@ -126,6 +127,12 @@
           "type": "number",
           "minimum": -12,
           "maximum": 0
+        },
+        "instrument_reverb_mix": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.25,
+          "default": 0
         }
       }
     },
@@ -908,6 +915,33 @@
                   ]
                 }
               }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "enum": [
+              "1.0-remix",
+              "1.1-remix",
+              "1.2-remix",
+              "1.3-remix",
+              "1.4-remix",
+              "1.5-remix"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "mix": {
+            "not": {
+              "required": [
+                "instrument_reverb_mix"
+              ]
             }
           }
         }

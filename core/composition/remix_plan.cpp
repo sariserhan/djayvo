@@ -25,6 +25,7 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
     if (!std::isfinite(r.analysis.normalization_gain) || r.analysis.normalization_gain <= 0 ||
         r.analysis.normalization_gain > 4 || r.tonic_midi < 48 || r.tonic_midi > 71 ||
         !std::isfinite(r.instrument_room_mix) || r.instrument_room_mix<0 || r.instrument_room_mix>0.35 ||
+        !std::isfinite(r.instrument_reverb_mix) || r.instrument_reverb_mix<0 || r.instrument_reverb_mix>0.25 ||
         r.clips.empty() || r.clips.size()>64 || r.vocals.empty() || r.vocals.size()>1024)
         throw std::invalid_argument("invalid clip/event/analysis limits");
     if (!std::isfinite(r.analysis.peak) || !std::isfinite(r.analysis.rms) ||
@@ -98,6 +99,11 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
         if (voices>16) throw std::invalid_argument("more than 16 overlapping sample voices");
     }
     const auto schedule=compile(r.music); // instrument event budget / polyphony / release coverage
+    if (r.instrument_reverb_mix>0) {
+        for (const auto& e:schedule.events) if (e.kind==EventKind::note_off)
+            if (e.frame+release_frames(e.instrument,source.sample_rate)+source.sample_rate*1600ULL/1000>schedule.total_frames)
+                throw std::invalid_argument("tail truncates instrument reverb");
+    }
     if (r.instrument_room_mix>0) {
         const auto room_tail=static_cast<std::uint64_t>(source.sample_rate)*213/1000+1;
         for (const auto& e:schedule.events) if (e.kind==EventKind::note_off)
@@ -117,7 +123,7 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
     const bool sustained=std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return t.instrument>=Instrument::organ;});
     const bool guitar=std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return t.instrument==Instrument::guitar;});
     const bool timeline=!p.tempo_changes.empty() || std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return !t.automation.empty();});
-    out<<"{\n  \"schema_version\": \""<<(sustained?"1.5-remix":guitar?"1.4-remix":timeline?"1.3-remix":echoes?"1.2-remix":transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
+    out<<"{\n  \"schema_version\": \""<<(r.instrument_reverb_mix>0?"1.6-remix":sustained?"1.5-remix":guitar?"1.4-remix":timeline?"1.3-remix":echoes?"1.2-remix":transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
        <<",\n  \"source_asset_id\": \"sha256:"<<source.sha256<<"\",\n  \"sample_rate\": "<<p.sample_rate
        <<",\n  \"source\": {\"sha256\": \""<<source.sha256<<"\", \"original_rate\": "<<source.original_rate
        <<", \"original_frames\": "<<source.original_frames<<", \"processed_frames\": "<<source.mono.size()
@@ -129,6 +135,7 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
        <<"\",\n  \"key\": {\"tonic_midi\": "<<r.tonic_midi<<", \"mode\": \"minor\"},\n"
        <<"  \"mix\": {\"master_target_peak_dbfs\": "<<p.ceiling_dbfs
        <<", \"clean_hook_instrument_duck_db\": -16.4781748189, \"instrument_room_mix\": "<<r.instrument_room_mix;
+    if (r.instrument_reverb_mix>0) out<<", \"instrument_reverb_mix\": "<<r.instrument_reverb_mix;
     if (p.kick_duck_db!=0) out<<", \"kick_duck_db\": "<<p.kick_duck_db;
     out<<"},\n  \"analysis\": {\"peak\": "<<r.analysis.peak<<", \"rms\": "<<r.analysis.rms
        <<", \"normalization_gain\": "<<r.analysis.normalization_gain
