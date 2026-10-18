@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "seed": 4123,
+  "listening": "NOT RUN",
+  "generation_seconds": 8.855036083333744,
+  "os": "27.0.1",
+  "styles": [
+    "hiphop",
+    "reggae",
+    "experimental"
+  ],
+  "device": "iPhone",
+  "configuration": "Debug, unoptimized development build",
+  "input_kind": "existing synthetic fixture, selected 0-3 seconds",
+  "scope": "single functional-test observation; not a Release benchmark or quality rating"
+}

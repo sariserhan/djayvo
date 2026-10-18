@@ -1,0 +1,16 @@
+Test Suite 'All tests' started at 2026-10-18 01:22:29.004.
+Test Suite 'DjayvoUITests.xctest' started at 2026-10-18 01:22:29.005.
+Test Suite 'FlowTests' started at 2026-10-18 01:22:29.005.
+Test Case '-[DjayvoUITests.FlowTests testConsentRenderPlaybackSaveAndRelaunch]' started.
+Test Case '-[DjayvoUITests.FlowTests testConsentRenderPlaybackSaveAndRelaunch]' passed (67.284 seconds).
+Test Case '-[DjayvoUITests.FlowTests testLargeTextConsentAndPrivacy]' started.
+Test Case '-[DjayvoUITests.FlowTests testLargeTextConsentAndPrivacy]' passed (13.512 seconds).
+Test Case '-[DjayvoUITests.FlowTests testMicrophoneDenialKeepsImportAvailable]' started.
+Test Case '-[DjayvoUITests.FlowTests testMicrophoneDenialKeepsImportAvailable]' passed (11.130 seconds).
+Test Suite 'FlowTests' passed at 2026-10-18 01:24:00.934.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 91.926 (91.929) seconds
+Test Suite 'DjayvoUITests.xctest' passed at 2026-10-18 01:24:00.936.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 91.926 (91.931) seconds
+Test Suite 'All tests' passed at 2026-10-18 01:24:00.936.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 91.926 (91.932) seconds
+** TEST SUCCEEDED **

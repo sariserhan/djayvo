@@ -1,0 +1,4 @@
+Failed test snapshot: consent remained off and fixture import stayed disabled.
+Switch, identifier: 'consentToggle', label: 'I have permission to record and remix this sound.', value: 0
+Button, label: 'Load test clip', Disabled
+Switch, identifier: 'consentToggle'

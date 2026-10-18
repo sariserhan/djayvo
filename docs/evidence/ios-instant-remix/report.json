@@ -1,0 +1,174 @@
+{
+  "recorded_date": "2026-10-18",
+  "timezone": "America/New_York",
+  "product": "Djayvo",
+  "version": "0.3.0",
+  "overall": "PARTIAL",
+  "core_fix_commit": "394743f",
+  "source_snapshot": "source-hashes.json",
+  "gates": {
+    "apple_m5_release": {
+      "status": "PASS",
+      "suites": 9,
+      "evidence": "mac-smoke.log"
+    },
+    "apple_m5_asan_ubsan": {
+      "status": "PASS",
+      "suites": 9,
+      "evidence": "mac-sanitize.log"
+    },
+    "linux_arm64_release": {
+      "status": "PASS",
+      "suites": 9,
+      "evidence": "linux-checks.log"
+    },
+    "cross_os_waveforms": {
+      "status": "PASS",
+      "byte_identical_wavs": 15,
+      "event_frames": "PASS",
+      "plans": "PASS",
+      "maximum_pcm_error": 0,
+      "rms_pcm_error": 0,
+      "evidence": "linux-portability.json"
+    },
+    "simulator_phone_flow": {
+      "status": "PASS",
+      "full_smoke_tests": 10,
+      "evidence": "simulator-verified-summary.json",
+      "final_targeted_ui": "PASS",
+      "final_evidence": "simulator-final-ui-summary.json",
+      "final_input_regressions": "PASS: physical six-test integration includes decimal two-second trims; simulator trim unit also passed"
+    },
+    "simulator_ipad_flow": {
+      "status": "PASS",
+      "tests": 1,
+      "evidence": "ipad-summary.json",
+      "scope": "Generation/playback/favorite/relaunch/share; not a physical iPad"
+    },
+    "physical_phone_integration": {
+      "status": "PASS",
+      "tests": 6,
+      "device": "iPhone 14 Pro, iOS 27.0.1 (24A446)",
+      "evidence": "physical-verified-summary.json"
+    },
+    "physical_phone_mac_portability": {
+      "status": "PASS",
+      "masters": 3,
+      "byte_identical_wavs": 3,
+      "event_frames": "PASS",
+      "plans": "PASS",
+      "maximum_pcm_error": 0,
+      "rms_pcm_error": 0,
+      "evidence": "physical-portability.json"
+    },
+    "physical_phone_metrics": {
+      "status": "PASS",
+      "trials": 3,
+      "configuration": "Optimized Debug development build; not Release",
+      "evidence": "physical-performance.json"
+    },
+    "physical_phone_ui_automation": {
+      "status": "FAIL",
+      "attempts": 2,
+      "reason": "Timed out enabling automation before UI tests began; no product UI failure inferred"
+    },
+    "physical_microphone_routes_interruptions": {
+      "status": "NOT RUN",
+      "reason": "No ambient microphone capture started; manual consented device session still needed"
+    },
+    "release_bundle": {
+      "status": "PASS",
+      "evidence": [
+        "release-bundle.json",
+        "signed-release-bundle.json",
+        "bundle-negative-test.json"
+      ]
+    },
+    "release_device_install_launch": {
+      "status": "PARTIAL",
+      "install": "PASS",
+      "launch": "FAIL",
+      "reason": "Signed Release installed successfully; CoreDevice launch was denied because the phone locked again. No Release UI execution claimed.",
+      "evidence": "release-device.json"
+    },
+    "accessibility": {
+      "status": "PARTIAL",
+      "scope": "Labels/Dynamic Type/large-text simulator privacy test; VoiceOver and complete device review absent"
+    },
+    "storage_privacy": {
+      "status": "PARTIAL",
+      "scope": "Scoped deletion, recovery, bounds, provenance and backup exclusion implemented; physical routes/share destination/low storage/power loss untested"
+    },
+    "formal_m1_listening": {
+      "status": "NOT RUN",
+      "reason": "Only one owner-consented source; no diverse cohort or independent reviewers"
+    },
+    "club_v8_listening": {
+      "status": "NOT RUN"
+    },
+    "production_quality": {
+      "status": "PARTIAL",
+      "reason": "Prototype acceptance only; automated tests do not establish musical quality"
+    },
+    "learned_models": {
+      "status": "NOT RUN"
+    },
+    "live_implementation": {
+      "status": "NOT RUN"
+    },
+    "live_research_protocol": {
+      "status": "PARTIAL"
+    },
+    "battery_thermal_sustained_load": {
+      "status": "NOT RUN"
+    },
+    "hosted_ci": {
+      "status": "NOT RUN"
+    },
+    "public_release_paid_services": {
+      "status": "NOT RUN"
+    },
+    "master_and_recordings_preserved": {
+      "status": "PASS"
+    }
+  },
+  "failure_history": [
+    {
+      "status": "FAIL",
+      "run": "simulator-first",
+      "observation": "SIGBUS in worker rendering with inline voice pool",
+      "resolution": "PASS: construction-time heap pool, worker regression and unchanged PCM"
+    },
+    {
+      "status": "PARTIAL",
+      "run": "simulator-final",
+      "observation": "9 tests logged PASS; Xcode result finalization did not complete; owned process terminated",
+      "resolution": "Later completed 10-test smoke retained"
+    },
+    {
+      "status": "FAIL",
+      "run": "final-smoke",
+      "observation": "New deletion test selected duplicated nested SwiftUI accessibility button",
+      "resolution": "PASS: select first confirmation match and assert session removal"
+    },
+    {
+      "status": "FAIL",
+      "run": "simulator-trim-fix",
+      "observation": "UI consent tap left switch off; app correctly blocked import. Trim, large-text and denial tests passed. Slow diagnostic collection terminated separately.",
+      "resolution": "PASS: target actual nested switch and assert consent state; final three-test UI run completed successfully"
+    },
+    {
+      "status": "FAIL",
+      "run": "physical-ui and physical-final",
+      "observation": "UI automation initialization timed out twice; six integration tests passed separately",
+      "resolution": "Device-side automation authorization requested, not bypassed"
+    }
+  ],
+  "preserved_sha256": {
+    "master_specification": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "supplied_synthetic_fixture": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "owner_pcm_recording": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "privacy": "No private WAV/reference music, device identifier or signing credential committed. All comparison audio is synthetic. No training, sampling of references, upload or publication.",
+  "raw_evidence": "renders/ios-validation/ (ignored local logs, xcresult bundles and audio)"
+}

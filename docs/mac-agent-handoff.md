@@ -44,7 +44,7 @@ Use `--style club` explicitly; C ABI strategy 5. The private eight-player review
 is `renders/voice-club-v7/review/index.html`. Club listening is **NOT RUN** and
 production quality is **PARTIAL**. No additional consented clips are available.
 
-Latest continuation: [club refinement v8](club-refinement.md). All three requested
+Previous musical continuation: [club refinement v8](club-refinement.md). All three requested
 areas are implemented, and solo stems now retain the master's sample-take IDs.
 Nine suites pass on M5 release/sanitizers and Linux arm64 (25 native groups).
 Current club/fixture WAVs match across systems; original-style masters are
@@ -52,13 +52,29 @@ unchanged, while corrected stems intentionally differ. Latest local review:
 `renders/voice-club-v8/review/index.html`. Human listening is **NOT RUN**.
 Current Linux smoke reference: `renders/arrangement-linux/club-v8/legacy`.
 
+Latest continuation: [native iOS Instant Remix](ios-instant-remix.md).
+M3 is **PARTIAL**: the SwiftUI app and worker C ABI are implemented, six integration
+tests passed on the physical iPhone 14 Pro, and ten simulator tests passed.
+Three optimized phone trials average 1.828 s for three styles; peak physical
+memory is at most 55,953 kB. Phone/Mac WAVs, scores and events agree exactly.
+Read the linked gate ledger for exact UI/performance attempts and remaining
+microphone/routes/battery/accessibility evidence. A real worker stack overflow
+was fixed with a construction-time heap voice pool; M5 release/sanitizer and
+Linux release each pass 9/9, with 15 exact fixture WAVs and exact plans/events.
+Current Linux reference: `renders/arrangement-linux/ios-core-v9/remix`.
+Raw iOS evidence is under `renders/ios-validation/`; signed build products and
+private device identifiers are ignored. Do not confuse simulator performance or
+unsigned compilation with device certification. Owner-only music permission
+has not expanded; M1/model/live/release gates remain open. The release checklist,
+policy draft and live protocol are preparation, not approval or measurements.
+
 For the previous workflow checkpoint, run the smoke test with `DJAYVO_REFERENCE_PREFIX=renders/arrangement-linux/workflow-v5/remix`
 and a new `DJAYVO_OUTPUT_DIR`. The script now rejects existing output directories;
 its default is timestamped. Do not compare the revised music to historical M0
 renders as a portability test. All unchanged instructions below describe the
 original transfer/checkpoint.
 
-## Current state
+## Original transfer state (historical)
 
 Linux has working C++17 M0a instruments and M0b/M0c source-driven remixing:
 three grammars, slicing, clean-hook preservation, WAV/stems, score JSON, source

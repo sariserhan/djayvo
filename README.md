@@ -11,6 +11,12 @@ stems. No model, GPU, paid service, or third-party DSP library is required.
 
 Track past work, open issues and future milestones in [TODO.md](TODO.md).
 
+Native [iPhone/iPad Instant Remix](apps/ios/README.md) now implements consent,
+record/import, waveform trimming, three mixes, a club option, replay/regeneration,
+saved sessions, WAV sharing and deletion. [iOS evidence](docs/ios-instant-remix.md)
+separates simulator results, unsigned device compilation and physical-device gates.
+The mobile integration fixed a worker-stack overflow in the shared voice pool.
+
 Latest musical work: [club refinement v8](docs/club-refinement.md), covering
 bass/drum tone and balance, transitions and longer pause-ended vocal crops.
 [Compare previous/new locally](renders/voice-club-v8/review/index.html).

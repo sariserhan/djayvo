@@ -413,5 +413,30 @@
     "source": "Original project equations and seeded noise",
     "reference_audio_used": false,
     "third_party_runtime_dependency": false
+  },
+  "ios_application": {
+    "platform_frameworks": [
+      "SwiftUI",
+      "Foundation",
+      "AVFoundation",
+      "UIKit",
+      "CryptoKit"
+    ],
+    "system_runtime": "Apple libc++ and Swift runtime",
+    "sdk": "iOS 27.1",
+    "deployment_target": "iOS 17.0",
+    "third_party_runtime_dependencies": [],
+    "framework_binaries_vendored": false,
+    "license_scope": "Applicable Apple developer and platform agreements",
+    "asset_notices": "assets/licenses, copied into app bundle",
+    "evidence": "evidence/ios-instant-remix/"
+  },
+  "optional_ios_project_generator": {
+    "name": "XcodeGen",
+    "version": "2.46.0",
+    "license": "MIT",
+    "notice_file": "/opt/homebrew/Cellar/xcodegen/2.46.0/LICENSE",
+    "linked": false,
+    "bundled": false
   }
 }

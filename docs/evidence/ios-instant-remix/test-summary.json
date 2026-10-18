@@ -1,0 +1,40 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "modelName": "iPhone 4",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "passedTests": 6,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Djayvo \u00b7 Built with macOS 26.7.1",
+  "expectedFailures": 0,
+  "failedTests": 0,
+  "finishTime": 1792299641.485,
+  "passedTests": 6,
+  "result": "Passed",
+  "runtimeWarnings": [
+    {
+      "issueType": "Runtime Warning",
+      "message": "    AVAudioSession_iOS.mm:978   This method can lead to UI unresponsiveness if called on the main thread. Consider using the asynchronous activate/deactivate API instead for calls from the main thread."
+    }
+  ],
+  "skippedTests": 0,
+  "startTime": 1792299481.2,
+  "statistics": [],
+  "testFailures": [],
+  "title": "Test - Djayvo",
+  "topInsights": [],
+  "totalTestCount": 6
+}

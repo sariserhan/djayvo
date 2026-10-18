@@ -1,0 +1,45 @@
+{
+  "input_kind": "existing synthetic fixture, selected 0-3 s, seed 4123",
+  "artifacts": {
+    "remix.hiphop.wav": {
+      "bytes": 6144044,
+      "sha256": "cb838601f02a6ae7a5e200ce05c807cf93dc7976ee0225b819f1dfd8213f2bd1"
+    },
+    "remix.experimental.wav": {
+      "bytes": 6329852,
+      "sha256": "d78e5337529c4dbdfd7983dcc3a5a5e43dcffaa6d1c5a765c5d526863ac9c24b"
+    },
+    "remix.hiphop.score.json": {
+      "bytes": 17940,
+      "sha256": "69c9c6ad1b0537516f17bafe38f523d209d258d9e0756aee4e98eb4ad8c414e0"
+    },
+    "source.wav": {
+      "bytes": 136396,
+      "sha256": "852e3dcbb04092f5795cc7de93e74fb7c910305ddd31bad49122bb0632c85cfb"
+    },
+    "remix.hiphop.events.tsv": {
+      "bytes": 9071,
+      "sha256": "f9d23e4ed1d46371a1ea4fd60b29dd310e8523ec945c5ece347681134142ee3b"
+    },
+    "remix.reggae.events.tsv": {
+      "bytes": 7811,
+      "sha256": "e355b5c7fce6d739d23499ceb68655ebb7d38309087abd96cb9c2f02b8389439"
+    },
+    "remix.reggae.score.json": {
+      "bytes": 15887,
+      "sha256": "591b5bae77157767a0edd8b8df1d4fb1c843598415be666bb76723720798d013"
+    },
+    "remix.experimental.score.json": {
+      "bytes": 18771,
+      "sha256": "b9fceed661786a86124abcc2cabcee69e3344893408522292f56a05f365d52c2"
+    },
+    "remix.reggae.wav": {
+      "bytes": 6144044,
+      "sha256": "d318f3fcf7c8ea73cbe2a9f1aa1ec158a4196285fb1c1e5cdba6449f4ffeb936"
+    },
+    "remix.experimental.events.tsv": {
+      "bytes": 9261,
+      "sha256": "53f7442e868ae93cc9f41a8ee12c4758a929121bab56d44f2e8480cbb93e572e"
+    }
+  }
+}

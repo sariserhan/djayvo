@@ -16,3 +16,8 @@ Maintain `TODO.md` as the development tracker. Update relevant tasks, completed
 history and milestone statuses when implementation or evidence changes; link
 the supporting commit/report and keep `docs/progress.md` consistent. Completing
 code does not close tasks that require human listening or real-device evidence.
+
+The owner's 2026-10-18 instruction to finish the specification authorizes the
+remaining local product implementation and release preparation, including M3.
+It does not waive M1 evidence before learned AI, real-device/live gates, or the
+explicit approval required for paid services, publication and monetization.

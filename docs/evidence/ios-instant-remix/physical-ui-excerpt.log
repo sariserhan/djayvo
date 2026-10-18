@@ -1,0 +1,4 @@
+2026-10-18 01:10:19.462026-0400 DjayvoUITests-Runner[1101:60450] [Default] Failed to initialize for UI testing: Error Domain=com.apple.dt.XCTest.XCTFuture Code=1000 "Timed out while enabling automation mode." UserInfo={NSLocalizedDescription=Timed out while enabling automation mode.}
+Testing failed:
+	DjayvoUITests-Runner (1101) encountered an error (The test runner failed to initialize for UI testing. (Underlying Error: Timed out while enabling automation mode.))
+** TEST EXECUTE FAILED **

@@ -1,0 +1,22 @@
+Test Suite 'Selected tests' started at 2026-10-18 01:18:12.319.
+Test Suite 'DjayvoTests.xctest' started at 2026-10-18 01:18:12.319.
+Test Suite 'RemixTests' started at 2026-10-18 01:18:12.319.
+Test Case '-[DjayvoTests.RemixTests testClubAndSameSeedAreDeterministic]' started.
+Test Case '-[DjayvoTests.RemixTests testClubAndSameSeedAreDeterministic]' passed (6.732 seconds).
+Test Case '-[DjayvoTests.RemixTests testConsentCancellationAndIncompleteRecovery]' started.
+Test Case '-[DjayvoTests.RemixTests testConsentCancellationAndIncompleteRecovery]' passed (0.025 seconds).
+Test Case '-[DjayvoTests.RemixTests testInputAndTrimBounds]' started.
+Test Case '-[DjayvoTests.RemixTests testInputAndTrimBounds]' passed (0.078 seconds).
+Test Case '-[DjayvoTests.RemixTests testOversizedAndCorruptImportsAreRejected]' started.
+Test Case '-[DjayvoTests.RemixTests testOversizedAndCorruptImportsAreRejected]' passed (0.002 seconds).
+Test Case '-[DjayvoTests.RemixTests testThreeStylesPersistenceTamperAndDeletion]' started.
+Test Case '-[DjayvoTests.RemixTests testThreeStylesPersistenceTamperAndDeletion]' passed (9.001 seconds).
+Test Case '-[DjayvoTests.RemixTests testWorkerCancellationRemovesUnpublishedFiles]' started.
+Test Case '-[DjayvoTests.RemixTests testWorkerCancellationRemovesUnpublishedFiles]' passed (0.201 seconds).
+Test Suite 'RemixTests' passed at 2026-10-18 01:18:28.359.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 16.038 (16.040) seconds
+Test Suite 'DjayvoTests.xctest' passed at 2026-10-18 01:18:28.359.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 16.038 (16.040) seconds
+Test Suite 'Selected tests' passed at 2026-10-18 01:18:28.359.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 16.038 (16.041) seconds
+** TEST SUCCEEDED **

@@ -1,4 +1,7 @@
-# Future applications
+# Djayvo applications
 
-The shared core is a portable C++17 static library. Desktop/iOS integration and
-iPhone UI have not been started. M0a's executable is in `tools/cli/`.
+[Native iPhone/iPad Instant Remix](ios/README.md) wraps the shared portable C++17
+core in SwiftUI/AVFoundation. Simulator, device and release evidence are tracked
+separately in [the iOS report](../docs/ios-instant-remix.md).
+
+The desktop CLI remains in `tools/cli/`. No desktop GUI or Android app is shipped.

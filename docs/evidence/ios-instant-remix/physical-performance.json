@@ -1,0 +1,86 @@
+{
+  "gate": "PASS",
+  "device": "physical iPhone 14 Pro, iOS 27.0.1 (24A446)",
+  "configuration": "Optimized Debug development build, GCC_OPTIMIZATION_LEVEL=s, SWIFT_OPTIMIZATION_LEVEL=-O; not Release",
+  "input": "existing synthetic speech fixture, selected first 3 seconds, seed 4123",
+  "scope": "Three styles including trim, local export, hash verification and temporary-library cleanup; initial AVFoundation decode occurs outside measured block",
+  "measured_iterations": 3,
+  "warmup_iterations": 1,
+  "statistics": {
+    "Memory Physical": {
+      "unit": "kB",
+      "trials": [
+        -7077.864,
+        3981.288,
+        -4194.28
+      ],
+      "mean": -2430.2853333333333,
+      "median": -4194.28,
+      "minimum": -7077.864,
+      "maximum": 3981.288
+    },
+    "CPU Cycles": {
+      "unit": "kC",
+      "trials": [
+        6345045.383,
+        6323618.059,
+        6341373.243
+      ],
+      "mean": 6336678.8950000005,
+      "median": 6341373.243,
+      "minimum": 6323618.059,
+      "maximum": 6345045.383
+    },
+    "Clock Monotonic Time": {
+      "unit": "s",
+      "trials": [
+        1.845648251,
+        1.8115862710000001,
+        1.827247287
+      ],
+      "mean": 1.8281606030000002,
+      "median": 1.827247287,
+      "minimum": 1.8115862710000001,
+      "maximum": 1.845648251
+    },
+    "CPU Time": {
+      "unit": "s",
+      "trials": [
+        1.806504485,
+        1.797453776,
+        1.801768534
+      ],
+      "mean": 1.8019089316666668,
+      "median": 1.801768534,
+      "minimum": 1.797453776,
+      "maximum": 1.806504485
+    },
+    "CPU Instructions Retired": {
+      "unit": "kI",
+      "trials": [
+        24644048.018,
+        24627435.982,
+        24611698.358
+      ],
+      "mean": 24627727.452666666,
+      "median": 24627435.982,
+      "minimum": 24611698.358,
+      "maximum": 24644048.018
+    },
+    "Memory Peak Physical": {
+      "unit": "kB",
+      "trials": [
+        55953.224,
+        52610.888,
+        52905.8
+      ],
+      "mean": 53823.304000000004,
+      "median": 52905.8,
+      "minimum": 52610.888,
+      "maximum": 55953.224
+    }
+  },
+  "battery_thermal_sustained_latency": "NOT RUN",
+  "production_performance_acceptance": "PARTIAL",
+  "musical_quality": "NOT RUN"
+}

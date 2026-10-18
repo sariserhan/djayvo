@@ -110,3 +110,21 @@ These tools remain local developer utilities; none is linked or bundled into the
 C++ engine. Reference music stays private and is used only for analysis/audition,
 not instrument sampling, training or distribution. The new Linux container's
 actual compiler/runtime environment is recorded in `evidence/arrangement-review/`.
+
+## Native iOS application
+
+The iOS app uses system SwiftUI, Foundation, AVFoundation, UIKit, CryptoKit and
+libc++; Apple SDK/runtime use is governed by the applicable Apple developer and
+platform agreements. No Apple framework binary is vendored. The shared C++17
+engine still uses only standard C++/math APIs. The app bundles the existing full
+CC0 instrument notices and exposes their credits in its privacy sheet. Debug
+alone includes the existing synthetic test WAV; Release excludes it and all
+private/reference audio. The actual Release bundle is inspected by
+`scripts/verify_ios_bundle.py`.
+
+XcodeGen 2.46.0 is a development-only MIT-licensed project generator (installed
+license inspected at `/opt/homebrew/Cellar/xcodegen/2.46.0/LICENSE`); it is neither
+linked nor bundled. The committed Xcode project builds without XcodeGen or any
+package download. Actual Xcode/SDK/device versions and validation boundaries are
+in [the iOS report](ios-instant-remix.md). This inventory is not final release
+rights or App Store approval.

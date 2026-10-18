@@ -1,0 +1,28 @@
+Test Suite 'Selected tests' started at 2026-10-18 01:18:55.298.
+Test Suite 'DjayvoTests.xctest' started at 2026-10-18 01:18:55.299.
+Test Suite 'RemixTests' started at 2026-10-18 01:18:55.299.
+Test Case '-[DjayvoTests.RemixTests testInputAndTrimBounds]' started.
+Test Case '-[DjayvoTests.RemixTests testInputAndTrimBounds]' passed (0.260 seconds).
+Test Suite 'RemixTests' passed at 2026-10-18 01:18:55.561.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.260 (0.262) seconds
+Test Suite 'DjayvoTests.xctest' passed at 2026-10-18 01:18:55.561.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.260 (0.262) seconds
+Test Suite 'Selected tests' passed at 2026-10-18 01:18:55.562.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.260 (0.263) seconds
+Test Suite 'All tests' started at 2026-10-18 01:19:07.005.
+Test Suite 'DjayvoUITests.xctest' started at 2026-10-18 01:19:07.006.
+Test Suite 'FlowTests' started at 2026-10-18 01:19:07.006.
+Test Case '-[DjayvoUITests.FlowTests testConsentRenderPlaybackSaveAndRelaunch]' started.
+<repository>/apps/ios/DjayvoUITests/FlowTests.swift:52: error: -[DjayvoUITests.FlowTests testConsentRenderPlaybackSaveAndRelaunch] : XCTAssertTrue failed
+Test Case '-[DjayvoUITests.FlowTests testConsentRenderPlaybackSaveAndRelaunch]' failed (39.260 seconds).
+Test Case '-[DjayvoUITests.FlowTests testLargeTextConsentAndPrivacy]' started.
+Test Case '-[DjayvoUITests.FlowTests testLargeTextConsentAndPrivacy]' passed (22.222 seconds).
+Test Case '-[DjayvoUITests.FlowTests testMicrophoneDenialKeepsImportAvailable]' started.
+Test Case '-[DjayvoUITests.FlowTests testMicrophoneDenialKeepsImportAvailable]' passed (17.135 seconds).
+Test Suite 'FlowTests' failed at 2026-10-18 01:20:25.639.
+	 Executed 3 tests, with 1 failure (0 unexpected) in 78.617 (78.632) seconds
+Test Suite 'DjayvoUITests.xctest' failed at 2026-10-18 01:20:25.639.
+	 Executed 3 tests, with 1 failure (0 unexpected) in 78.617 (78.633) seconds
+Test Suite 'All tests' failed at 2026-10-18 01:20:25.639.
+	 Executed 3 tests, with 1 failure (0 unexpected) in 78.617 (78.635) seconds
+** TEST FAILED **

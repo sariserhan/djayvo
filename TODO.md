@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [club refinement](docs/club-refinement.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [iOS Instant Remix](docs/ios-instant-remix.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -17,14 +17,23 @@ the source of truth and is not modified by this tracker.
 | M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact club plans/events and 12 matching club WAVs; prior styles preserved |
 | M1 — musical quality baseline | NOT RUN | Frozen one-source/three-seed pilot and distinct blind packets prepared; diverse sources and formal human evaluation missing |
 | M2 — AI director benchmarks | NOT RUN | Depends on quality baseline and measured model feasibility |
-| M3 — iPhone Instant Remix | NOT RUN | Portable C ABI exists; app and actual device validation remain |
-| M4 — live improvisation | NOT RUN | Requires separate real-device latency, audio and capture evidence |
-| M5 — production and monetization | NOT RUN | Requires product, rights, privacy, release and demand evidence |
+| M3 — iPhone Instant Remix | PARTIAL | Native app installed; six phone tests, measured CPU/memory/timing and simulator flow pass; physical UI authorization, microphone/routes and production acceptance remain |
+| M4 — live improvisation | PARTIAL | Research protocol and provisional budgets prepared; live implementation and hardware measurements NOT RUN |
+| M5 — production and monetization | PARTIAL | Local privacy controls, bundled rights notices and release preparation exist; beta, demand, public policy details and release approval remain |
 
 `PASS` means the named deliverable has evidence. `PARTIAL` means some required
 work or evidence is missing. `FAIL` means a performed check did not meet its
 criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
+
+## Current product work
+
+[Native app and validation](docs/ios-instant-remix.md),
+[release readiness](docs/release-readiness.md), and
+[live research gate](docs/live-research-protocol.md) track the 2026-10-18 local
+implementation authorized by “continue finish the spec all the way.” Missing
+listening data, device observations, model prerequisites and release approval
+are not supplied by this instruction. The master remains unchanged.
 
 ## Next: review the current music
 
@@ -122,6 +131,9 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P22 | PASS | Frozen consent/hash/rubric batch, three seeds, retained failure counts, distinct answer codes, actual owner pilot and eighth M5/Linux test suite | [Evaluation preparation](docs/evaluation-batch.md) |
 | [x] | P23 | PASS | Original 14-sample electronic bank, club form and source-driven bass, stem-consistent kick ducking, CLI/C ABI/import/schema/CI support; nine M5/Linux suites, exact WAVs and eight-player comparison | [Club evidence](docs/club-direction.md) |
 | [x] | P24 | PASS | Club v8 bass/drum revision, transition accents, pause-ended deduplicated crops; corrected stem take identity; nine M5/Linux suites, current portability and 13-player comparison | [Refinement evidence](docs/club-refinement.md) |
+| [x] | P25 | PASS | Native Instant Remix app: consent, record/import, waveform/trim, worker C ABI, three styles/club, replay/regeneration, saved sessions, WAV sharing/deletion and verified recovery | [iOS evidence](docs/ios-instant-remix.md) |
+| [x] | P26 | PASS | Fix mobile worker stack overflow by allocating the fixed voice pool at construction; retain allocation-free processing and unchanged PCM/events | `394743f` · [iOS evidence](docs/ios-instant-remix.md) |
+| [x] | P27 | PASS | Release bundle audit, privacy manifest/notices, policy draft, release checklist and live feasibility protocol prepared; implementation does not close launch gates | [Readiness](docs/release-readiness.md) |
 
 ## Engineering backlog
 
@@ -206,30 +218,34 @@ paid infrastructure, training on reference tracks, publishing or charging users.
 - [ ] **A04 — NOT RUN:** Consider learned action ranking only with cleared,
   opt-in data and speaker/phrase/session holdouts. Do not train on the references.
 
-### M3: iPhone Instant Remix — NOT RUN
+### M3: iPhone Instant Remix — PARTIAL
 
-- [ ] **I01 — NOT RUN:** Build the SwiftUI flow: consent → record → waveform/trim
-  → make three mixes → replay/remix again → save/share; no mandatory account.
-- [ ] **I02 — NOT RUN:** Call the existing C ABI from a worker thread, with
-  progress/error/cancellation handling and local deletion.
-- [ ] **I03 — NOT RUN:** Test microphone permissions, recording indicators,
-  interruptions, routes, headphones/speaker behavior and app lifecycle on a real iPhone.
-- [ ] **I04 — NOT RUN:** Measure device CPU, memory, battery and generation time;
-  verify WAV export and assess other codecs before adding them.
+- [x] **I01 — PASS:** Build the SwiftUI consent → record/import → waveform/trim
+  → three mixes/club → replay/remix again → save/share flow. No account or cloud.
+  [Implementation and tests](docs/ios-instant-remix.md).
+- [x] **I02 — PASS:** Existing C ABI runs on a worker with honest indeterminate
+  progress, errors/cancellation, hash-verified recovery and scoped local deletion.
+  Fix the oversized inline voice pool exposed by the mobile worker stack.
+- [ ] **I03 — PARTIAL:** Final simulator consent, denied microphone fallback, playback,
+  persistence, sharing/deletion and large-text checks pass. Physical UI automation
+  failed to enable twice; the installed Release app launch was blocked by device lock. Complete real microphone,
+  interruption, route, headphone/speaker and lifecycle validation on hardware.
+- [ ] **I04 — PARTIAL:** Six physical iPhone integration tests and three optimized timing/CPU/memory trials pass;
+  [current device results](docs/ios-instant-remix.md) distinguish real execution
+  from simulator checks. Sustained CPU, memory, battery/thermal and codec assessment remain.
 
-### M4: live improvisation — NOT RUN
+### M4: live improvisation — PARTIAL
 
-- [ ] **L01 — NOT RUN:** Define real-device latency/glitch acceptance limits.
+- [ ] **L01 — PARTIAL:** [Provisional latency/glitch budgets and measurement protocol](docs/live-research-protocol.md) defined; validate feasibility on real hardware before committing to live mode.
 - [ ] **L02 — NOT RUN:** Implement explicit opt-in capture, phrase buffering and
   bar-boundary scheduling without allocations, blocking or model work in callbacks.
 - [ ] **L03 — NOT RUN:** Test feedback, route changes, interruptions and sustained
   sessions; measure actual end-to-end latency and consent/recording behavior.
 
-### M5: production and monetization — NOT RUN
+### M5: production and monetization — PARTIAL
 
-- [ ] **R01 — NOT RUN:** Complete release asset-rights review, privacy policy,
-  retention/deletion rules and appropriate public-sharing safeguards.
-- [ ] **R02 — NOT RUN:** Run device/beta/App Store readiness checks, collect
+- [ ] **R01 — PARTIAL:** Existing instrument provenance, bundled notices, local privacy/deletion controls, manifest and [policy draft](docs/privacy-policy-draft.md) prepared. Public entity/contact/URL, rights review and sharing-policy acceptance remain.
+- [ ] **R02 — PARTIAL:** [Release preparation](docs/release-readiness.md) and local app checks exist. Complete device/beta/App Store readiness checks, collect
   opt-in crash/performance evidence and measure replay, save/share and retention.
 - [ ] **R03 — NOT RUN:** If paid/cloud generation is pursued, establish explicit
   budgets, timeouts, retries, cost accounting and entitlement limits first.

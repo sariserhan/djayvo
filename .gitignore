@@ -7,3 +7,8 @@ __pycache__/
 *.wav
 *.a
 *.o
+
+# Local Xcode state and signing settings
+xcuserdata/
+*.xcuserstate
+apps/ios/Local.xcconfig

@@ -10,7 +10,26 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest continuation, 2026-10-18: [club refinement v8](club-refinement.md).
+Latest continuation, 2026-10-18: [native iOS Instant Remix](ios-instant-remix.md).
+The app adds consented capture/import, trim, worker rendering, three styles/club,
+playback, regeneration, persistent favorites, WAV sharing and scoped deletion.
+A confirmed mobile worker stack overflow is fixed without changing DSP: the
+voice pool allocates once at construction. Current M5 release/sanitizer and Linux
+arm64 suites pass 9/9 each; 15 WAVs and all compared plans/event frames are exact.
+Simulator and physical iPhone/Mac comparisons also have three byte-identical
+masters each, with exact plans/event frames and zero PCM error.
+Six final integration tests passed on the actual iPhone 14 Pro, including exact
+two-second decimal trim regressions. A ten-test simulator smoke and final
+three-test UI rerun pass; the signed Release build is installed, while automatic
+Release launch was denied by the device lock. The iPad simulator
+completed its generation/playback/save/relaunch/share flow. Physical UI automation
+failed to enable in two attempts. Three optimized phone trials average 1.828 s
+for all three styles with peak physical memory at most 55,953 kB. Exact attempts and evidence are
+in the [iOS gate ledger](ios-instant-remix.md). **M3: PARTIAL.**
+No M1/model/live/release gate is closed by this implementation. The owner has
+supplied no additional consented sources or independent listening panel.
+
+Previous continuation, 2026-10-18: [club refinement v8](club-refinement.md).
 The owner requested all three areas: bass/drums, transitions and vocal clarity.
 The electronic bank and balance are revised, build/return accents changed, and
 club selects longer pause-ended crops without near-duplicate overlap. Both full
@@ -100,7 +119,8 @@ motifs, and varies the opening. Native release and sanitizer CTest are **PASS**
 (7/7 each). Listening to this revision and its Linux/Mac comparison are **NOT RUN**.
 Actual Apple M5 execution is now **PASS**, with the local results in
 [mac-portability.md](mac-portability.md). M1 evaluation tools and a pilot are ready, without
-claiming human evidence. No iPhone UI, AI model, training, or live mode was built.
+claiming human evidence. At that historical checkpoint no iPhone UI existed;
+the current app is documented above. AI models, training and live mode remain absent.
 
 | Gate | Status | Evidence |
 | --- | --- | --- |
@@ -133,13 +153,13 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Human speech recognition by listeners | NOT RUN | No actual listener observations |
 | Owner listening | PARTIAL | Earlier prototype accepted as a start; club v7/v8 listening NOT RUN; production quality remains open. Earlier concerns: awkward experimental passages, game-like timbres and repetitive openings |
 | Revised vocal spacing on M5 | PASS | Release + sanitizer CTest 6/6; duplicate chop starts and clean-hook overlaps removed; `evidence/vocal-spacing/` |
-| Revised arrangement Linux/Mac comparison | PASS | Current Linux arm64 versus native M5: exact fixture/owner plans/events and 27 byte-identical WAVs |
+| Revised arrangement Linux/Mac comparison | PASS | Prior v8 fixture/owner: 27 exact WAVs; current stack-fix rerun: 15 exact fixture WAVs, exact plans/events; actual phone/Mac: three exact masters |
 | M0d Apple M5 execution | PASS | Native arm64 release and ASan/UBSan 6/6 each; exact plans/event frames and byte-identical Linux/Mac masters; [evidence](evidence/m0d/report.json) |
 | M1 blinded quality gate | NOT RUN | Frozen one-owner pilot prepared; requires diverse cleared sources and actual blinded reviewers |
 | M2 GPU/model benchmark | NOT RUN | Quality baseline and actual model measurements remain missing |
-| M3 iPhone/device | NOT RUN | Portable C ABI ready; no device/UI work claimed |
-| M4 live latency | NOT RUN | No real-time input/device measurements |
-| M5 production release | NOT RUN | No publication or monetization |
+| M3 iPhone/device | PARTIAL | Native app, simulator flows and six actual iPhone integration tests; current limitations in [iOS evidence](ios-instant-remix.md) |
+| M4 live work | PARTIAL | [Research protocol](live-research-protocol.md) defined; implementation/real-time measurements NOT RUN |
+| M5 production preparation | PARTIAL | [Privacy/release preparation](release-readiness.md); publication/monetization NOT RUN |
 
 The first sanitizer pass exposed a test-harness allocation/deallocation mismatch:
 the allocation counter replaced throwing `new` but omitted the nothrow form used
@@ -228,8 +248,9 @@ and nonlinear processing still prevent a promise of exact master reconstruction.
 device certification. Exports are synchronous and cancellable, with staged
 publication and a completion marker; power-loss durability is not certified.
 Run the C ABI off the UI/audio thread. Public C++ buffers are caller-owned and
-must remain immutable during rendering. No live, battery, device route/session,
-or privacy UI behavior is claimed.
+must remain immutable during rendering. Current native app/library and simulator
+privacy checks are recorded separately in the iOS report; live, battery and
+physical route/session coverage remain unverified.
 
 Next: audition the validated Mac renders, collect consented source clips,
 and use the preregistered [evaluation protocol](evaluation-protocol.md) to find

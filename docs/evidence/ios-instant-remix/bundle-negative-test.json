@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "test": "Copy actual unsigned Release bundle to temporary directory, inject should-not-ship.wav, call verify_ios_bundle.verify",
+  "result": "Rejected with AssertionError: Test/private audio found in Release",
+  "production_bundle_modified": false
+}

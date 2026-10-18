@@ -1,0 +1,20 @@
+Test Case '-[DjayvoTests.RemixTests testClubAndSameSeedAreDeterministic]' started.
+Test Case '-[DjayvoTests.RemixTests testClubAndSameSeedAreDeterministic]' passed (5.257 seconds).
+Test Case '-[DjayvoTests.RemixTests testConsentCancellationAndIncompleteRecovery]' started.
+Test Case '-[DjayvoTests.RemixTests testConsentCancellationAndIncompleteRecovery]' passed (0.020 seconds).
+Test Case '-[DjayvoTests.RemixTests testInputAndTrimBounds]' started.
+Test Case '-[DjayvoTests.RemixTests testInputAndTrimBounds]' passed (0.028 seconds).
+Test Case '-[DjayvoTests.RemixTests testThreeStylesPersistenceTamperAndDeletion]' started.
+Test Case '-[DjayvoTests.RemixTests testThreeStylesPersistenceTamperAndDeletion]' passed (6.776 seconds).
+Test Case '-[DjayvoUITests.FlowTests testConsentRenderPlaybackSaveAndRelaunch]' started.
+<unknown>:0: error: -[DjayvoUITests.FlowTests testConsentRenderPlaybackSaveAndRelaunch] : com.djayvo.app crashed
+<repository>/apps/ios/DjayvoUITests/FlowTests.swift:17: error: -[DjayvoUITests.FlowTests testConsentRenderPlaybackSaveAndRelaunch] : XCTAssertTrue failed
+<repository>/apps/ios/DjayvoUITests/FlowTests.swift:17: error: -[DjayvoUITests.FlowTests testConsentRenderPlaybackSaveAndRelaunch] : Failed to application com.djayvo.app is not running
+Test Case '-[DjayvoUITests.FlowTests testConsentRenderPlaybackSaveAndRelaunch]' failed (138.161 seconds).
+
+System log termination evidence:
+2026-10-18 00:55:32.311 Df runningboardd[89303:de1db] [com.apple.runningboard:process] Notifying connection [osservice<com.apple.SpringBoard>:89300] that process [app<com.djayvo.app((null))>:90584] exited with context <RBSProcessExitContext| specific, status:<RBSProcessExitStatus| domain:signal(2) code:SIGBUS(10)>>
+2026-10-18 00:55:32.312 Df runningboardd[89303:de1db] [com.apple.runningboard:process] Notifying connection [osservice<com.apple.InputUI>:89925] that process [app<com.djayvo.app((null))>:90584] exited with context <RBSProcessExitContext| specific, status:<RBSProcessExitStatus| domain:signal(2) code:SIGBUS(10)>>
+2026-10-18 00:55:32.312 Df InputUI[89925:df560] [com.apple.FrontBoard:Process] [app<com.djayvo.app>:90584] Process exited: <RBSProcessExitContext| specific, status:<RBSProcessExitStatus| domain:signal(2) code:SIGBUS(10)>>.
+2026-10-18 00:55:32.314 Df SpringBoard[89300:de1ce] [com.apple.FrontBoard:Process] [app<com.djayvo.app>:90584] Process exited: <RBSProcessExitContext| specific, status:<RBSProcessExitStatus| domain:signal(2) code:SIGBUS(10)>>.
+2026-10-18 00:55:32.314 Df SpringBoard[89300:ddd10] [com.apple.SpringBoard:Workspace] Process exited: <FBApplicationProcess: 0x10d708f00; app<com.djayvo.app>:90584(v5505D)> -> <RBSProcessExitContext| specific, status:<RBSProcessExitStatus| domain:signal(2) code:SIGBUS(10)>>
