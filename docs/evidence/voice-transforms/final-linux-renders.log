@@ -1,0 +1,5 @@
+PASS: /out/voice-transforms-20261018/final/remix.hiphop.wav
+PASS: /out/voice-transforms-20261018/final/remix.reggae.wav
+PASS: /out/voice-transforms-20261018/final/remix.experimental.wav
+PASS: complete export /out/voice-transforms-20261018/final/remix.complete.json
+Listening/recognizability: NOT RUN

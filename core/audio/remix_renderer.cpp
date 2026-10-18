@@ -1,4 +1,5 @@
 #include "djayvo/remix.h"
+#include "resample_pcm.h"
 #include <algorithm>
 #include <cmath>
 #include <fstream>
@@ -7,6 +8,54 @@
 
 namespace djayvo {
 namespace {
+std::vector<float> transform_voice(const AudioBuffer& source,const Region& clip,const VocalEvent& event) {
+    const auto* begin=source.mono.data()+clip.begin;
+    const auto length=static_cast<std::size_t>(clip.end-clip.begin);
+    const double pitch=std::pow(2.0,event.pitch_semitones/12);
+    auto input=event.pitch_semitones==0 ? std::vector<float>(begin,begin+length) :
+        detail::resample_pcm(begin,length,1/pitch,static_cast<std::size_t>(std::llround(static_cast<double>(length)/pitch)));
+    const auto frames=static_cast<std::size_t>(vocal_frames(event,clip));
+    if (input.size()==frames) return input;
+    // shortcut: WSOLA does not preserve formants or every transient; upgrade after listening comparisons.
+    const std::size_t window=source.sample_rate*40U/1000, hop=window/2;
+    const std::size_t radius=source.sample_rate*8U/1000, stride=std::max(1U,source.sample_rate/8000);
+    std::vector<float> output(frames);
+    std::copy_n(input.begin(),window,output.begin());
+    std::size_t previous=0;
+    while (previous<frames-window) {
+        const auto position=std::min(previous+hop,frames-window);
+        const auto overlap=previous+window-position;
+        const auto nominal=static_cast<std::size_t>(std::llround(static_cast<double>(position)*
+            static_cast<double>(input.size()-window)/static_cast<double>(frames-window)));
+        auto selected=nominal;
+        if (position!=frames-window) {
+            const auto low=nominal>radius?nominal-radius:0;
+            const auto high=std::min(nominal+radius,input.size()-window);
+            double best=-2;
+            const auto consider=[&](std::size_t candidate) {
+                double dot=0,left=0,right=0;
+                for (std::size_t i=0;i<overlap;i+=stride) {
+                    const double x=output[position+i],y=input[candidate+i];
+                    dot+=x*y;left+=x*x;right+=y*y;
+                }
+                const double score=left*right>1e-20?dot/std::sqrt(left*right):-2;
+                if (score>best+1e-9) {best=score;selected=candidate;}
+            };
+            consider(nominal);
+            for (auto candidate=low;candidate<=high;candidate+=stride) consider(candidate);
+            const auto coarse=selected;
+            for (auto candidate=coarse>stride?std::max(low,coarse-stride):low;
+                 candidate<=std::min(high,coarse+stride);++candidate) consider(candidate);
+        }
+        for (std::size_t i=0;i<window;++i) {
+            const double weight=i<overlap ? 0.5-0.5*std::cos(3.14159265358979323846*
+                static_cast<double>(i)/static_cast<double>(overlap-1)) : 1;
+            output[position+i]=static_cast<float>((1-weight)*output[position+i]+weight*input[selected+i]);
+        }
+        previous=position;
+    }
+    return output;
+}
 Schedule selected_schedule(const RemixPlan& plan,const AudioBuffer& source,bool vocals_only,int solo) {
     validate(plan,source);
     if (solo < -2 || solo > 2) throw std::invalid_argument("invalid instrument stem");
@@ -41,9 +90,21 @@ RemixRenderer::RemixRenderer(const RemixPlan& p,const AudioBuffer& source,std::s
         const double gain=std::pow(10.0,event.gain_db/20)*p.analysis.normalization_gain;
         constexpr double pi=3.14159265358979323846;
         triggers_.push_back({tick_to_frame(event.start,p.music.sample_rate,p.music.tempo_milli_bpm),
-            static_cast<std::uint64_t>(std::ceil(static_cast<double>(clip.end-clip.begin)/event.rate)),
+            vocal_frames(event,clip),
             clip.begin,clip.end,event.rate,
             gain*std::cos((event.pan+1)*pi/4),gain*std::sin((event.pan+1)*pi/4),event.reverse,event.clean});
+        if (!instrumental_only_ && (event.pitch_semitones!=0 || event.time_stretch!=1)) {
+            auto it=std::find_if(transformed_.begin(),transformed_.end(),[&](const TransformedClip& t){
+                return t.clip==event.clip && t.pitch==event.pitch_semitones && t.stretch==event.time_stretch;
+            });
+            if (it==transformed_.end()) {
+                transformed_.push_back({event.clip,event.pitch_semitones,event.time_stretch,transform_voice(source,clip,event)});
+                it=transformed_.end()-1;
+            }
+            auto& trigger=triggers_.back();
+            trigger.transformed=static_cast<int>(it-transformed_.begin());
+            trigger.source_begin=0;trigger.source_end=it->pcm.size();trigger.rate=1;
+        }
     }
     std::stable_sort(triggers_.begin(),triggers_.end(),[](const Trigger& a,const Trigger& b){return a.start<b.start;});
 }
@@ -70,7 +131,8 @@ std::size_t RemixRenderer::process(float* stereo,std::size_t requested) noexcept
             const auto index=static_cast<std::size_t>(bounded);
             const auto next=std::min<std::size_t>(index+1,static_cast<std::size_t>(t.source_end-1));
             const double fraction=bounded-static_cast<double>(index);
-            const double sample=(source_.mono[index]*(1-fraction)+source_.mono[next]*fraction)*envelope;
+            const auto& pcm=t.transformed<0?source_.mono:transformed_[static_cast<std::size_t>(t.transformed)].pcm;
+            const double sample=(pcm[index]*(1-fraction)+pcm[next]*fraction)*envelope;
             voice_left+=sample*t.gain_left; voice_right+=sample*t.gain_right;
         }
         double room_left=0,room_right=0;

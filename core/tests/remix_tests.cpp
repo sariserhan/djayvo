@@ -83,6 +83,8 @@ void resampling() {
     const auto filtered=djayvo::resample(high,8000);double square=0;
     for(std::size_t i=100;i<filtered.mono.size()-100;++i) square+=filtered.mono[i]*filtered.mono[i];
     check(std::sqrt(square/(filtered.mono.size()-200))<0.003,"downsampling aliases above-Nyquist tone");
+    const auto cd_rate=djayvo::resample(a,44100);
+    check(djayvo::resample(cd_rate,48000).mono.size()==144000,"resampling frame numerator overflow");
     rejects([&]{djayvo::resample(a,0);});
 }
 void preservation() {
@@ -394,6 +396,80 @@ void room_processing() {
     }
     check(side>0.001,"room does not create stereo reflections");
 }
+void independent_voice() {
+    for (const unsigned rate:{8000U,44100U,48000U,192000U}) {
+        auto a=source();a.sample_rate=a.original_rate=rate;a.original_frames=rate*3;
+        a.mono.resize(rate*3);
+        for (std::size_t i=0;i<a.mono.size();++i)
+            a.mono[i]=static_cast<float>(0.2*std::sin(6.283185307179586*220*static_cast<double>(i)/rate));
+        auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+        for (auto& track:p.music.tracks) track.notes.clear();
+        p.clips={{0,a.mono.size(),1},{0,rate,1}};
+        p.vocals={{0,1,-6,1,false,0,false},{9600,0,-6,1,false,0,true}};
+        const auto capture=[&](std::size_t block) {
+            djayvo::RemixRenderer renderer(p,a,block,true);
+            const auto frames=djayvo::vocal_frames(p.vocals[0],p.clips[1]);
+            std::vector<float> result(static_cast<std::size_t>(frames+32)*2),buffer(block*2);
+            const auto before=allocations.load();
+            std::size_t offset=0;
+            while (offset<result.size()/2) {
+                const auto n=renderer.process(buffer.data(),std::min(block,result.size()/2-offset));
+                check(n>0,"transformed render stalled");
+                std::copy_n(buffer.begin(),n*2,result.begin()+static_cast<std::ptrdiff_t>(offset*2));offset+=n;
+            }
+            check(allocations.load()==before,"transformed callback allocates");
+            check(renderer.stats().nonfinite_samples==0,"transformed PCM is nonfinite");
+            for (auto i=frames;i<frames+32;++i) check(result[static_cast<std::size_t>(i)*2]==0,"transform overruns its duration");
+            return result;
+        };
+        for (double pitch:{-4.0,0.0,4.0}) for (double stretch:{0.8,1.0,1.25}) {
+            auto& e=p.vocals[0];e.pitch_semitones=pitch;e.time_stretch=stretch;
+            const auto pcm=capture(257);
+            check(pcm==capture(113),"transform depends on block size");
+            const auto frames=djayvo::vocal_frames(e,p.clips[1]);
+            check(frames==static_cast<std::uint64_t>(std::ceil(rate*stretch)),"pitch changed target duration");
+            const auto lo=rate/10,hi=static_cast<unsigned>(frames)-rate/10;
+            unsigned crossings=0;
+            for (auto i=lo+1;i<hi;++i) if (pcm[i*2-2]<=0 && pcm[i*2]>0) ++crossings;
+            const double hz=static_cast<double>(crossings)*rate/(hi-lo);
+            check(std::abs(hz-220*std::pow(2.0,pitch/12))<3,"stretch changed pitch or shift missed target");
+            double peak=0,step=0;
+            for (std::size_t i=2;i<frames*2;i+=2) {
+                peak=std::max(peak,static_cast<double>(std::abs(pcm[i])));
+                step=std::max(step,static_cast<double>(std::abs(pcm[i]-pcm[i-2])));
+            }
+            check(peak>0.02 && peak<0.3 && step<peak*(2*std::sin(3.14159265358979323846*220*std::pow(2.0,pitch/12)/rate)+2.0/(rate*0.003)),"tone has excess gain, discontinuity or dropout");
+            if (pitch==4 && stretch==1.25) {
+                e.reverse=true;const auto reverse=capture(113);e.reverse=false;
+                for (std::size_t i=0;i<frames;++i)
+                    check(pcm[i*2]==reverse[(frames-1-i)*2],"reverse escapes transformed crop");
+            }
+        }
+        auto& e=p.vocals[0];e.pitch_semitones=4;e.time_stretch=0.8;
+        p.clips[1]={0,rate*80ULL/1000,1};capture(113); // minimum crop, highest pitch, shortest duration
+        p.clips[1]={0,1,1};rejects([&]{djayvo::validate(p,a);});
+        p.clips[1]={0,rate,1};
+        for (double pitch:{-4.01,4.01,std::numeric_limits<double>::infinity(),std::numeric_limits<double>::quiet_NaN()}) {
+            e.pitch_semitones=pitch;rejects([&]{djayvo::validate(p,a);});
+        }
+        e.pitch_semitones=0;
+        for (double stretch:{0.79,1.26,std::numeric_limits<double>::infinity(),std::numeric_limits<double>::quiet_NaN()}) {
+            e.time_stretch=stretch;rejects([&]{djayvo::validate(p,a);});
+        }
+        e.time_stretch=1.25;e.rate=1.1;rejects([&]{djayvo::validate(p,a);});
+        e.rate=1;e.clean=true;rejects([&]{djayvo::validate(p,a);});e.clean=false;
+        e.start=djayvo::ticks_per_bar(p.music)*p.music.bars-960;
+        rejects([&]{djayvo::validate(p,a);});e.start=0;
+        auto bad=p;bad.clips[1].end=rate*2;bad.vocals.insert(bad.vocals.end(),8,e);
+        rejects([&]{djayvo::validate(bad,a);}); // 22.5 seconds of transformed PCM exceeds work budget
+        bad=p;bad.clips[1].end=rate*80ULL/1000;
+        for (int i=1;i<33;++i) {auto copy=e;copy.start=i*240;bad.vocals.push_back(copy);}
+        rejects([&]{djayvo::validate(bad,a);});
+        p.clips[1]={rate,rate*2ULL,1};std::fill(a.mono.begin()+rate,a.mono.begin()+rate*2,0);
+        const auto silent=capture(257);
+        check(std::all_of(silent.begin(),silent.end(),[](float x){return x==0;}),"silent crop gained noise or read outside crop");
+    }
+}
 }
 int main() {
     const std::vector<std::pair<const char*,std::function<void()>>> tests{
@@ -406,6 +482,7 @@ int main() {
         {"pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates",pause_aware_chops},
         {"subtraction and return across styles and seeds",arrangement_contrast},
         {"instrument room timing, stereo, dry speech and finite tail",room_processing},
+        {"independent voice pitch/time, four rates, exact duration/reverse, bounds and no callback allocation",independent_voice},
         {"club form, input-driven bass, electronic palette and stem-consistent kick ducking",club_direction},
         {"stem identity and linear mix reconstruction including room and ducking",stem_identity},
         {"club pause selection, deduplication, bounded fallback and transition accents",club_phrasing},

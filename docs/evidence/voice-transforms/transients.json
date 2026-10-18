@@ -1,0 +1,71 @@
+{
+  "probe": "three original Gaussian pulses, 0.4 ms standard deviation; peaks above 20% output peak, groups separated by 5 ms",
+  "cases": [
+    {
+      "case": "control",
+      "detected_pulses": 3,
+      "peak_times_seconds": [
+        0.2,
+        0.5,
+        0.8
+      ],
+      "nominal_times_seconds": [
+        0.2,
+        0.5,
+        0.8
+      ],
+      "maximum_displacement_ms": 0.0,
+      "count_preservation": "PASS"
+    },
+    {
+      "case": "pitch-up",
+      "detected_pulses": 3,
+      "peak_times_seconds": [
+        0.196375,
+        0.49772916666666667,
+        0.7990833333333334
+      ],
+      "nominal_times_seconds": [
+        0.2,
+        0.5,
+        0.8
+      ],
+      "maximum_displacement_ms": 3.625000000000017,
+      "count_preservation": "PASS"
+    },
+    {
+      "case": "longer",
+      "detected_pulses": 3,
+      "peak_times_seconds": [
+        0.22,
+        0.5577916666666667,
+        0.8955625
+      ],
+      "nominal_times_seconds": [
+        0.22400000000000003,
+        0.56,
+        0.8960000000000001
+      ],
+      "maximum_displacement_ms": 4.000000000000031,
+      "count_preservation": "PASS"
+    },
+    {
+      "case": "lower-shorter",
+      "detected_pulses": 3,
+      "peak_times_seconds": [
+        0.18310416666666668,
+        0.45258333333333334,
+        0.7179791666666666
+      ],
+      "nominal_times_seconds": [
+        0.18000000000000002,
+        0.45,
+        0.7200000000000001
+      ],
+      "maximum_displacement_ms": 3.104166666666658,
+      "count_preservation": "PASS"
+    }
+  ],
+  "speech_intelligibility": "NOT RUN",
+  "general_transient_preservation": "PARTIAL"
+}

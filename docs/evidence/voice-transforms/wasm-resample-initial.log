@@ -1,0 +1,21 @@
+{"input_rate":44100,"input_frames":132300,"result":"invalid source analysis"}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'invalid source analysis'
+- ''
+
+    at file:///Users/serhansari/Documents/projects/djayvo/build-cloud/wasm-resample-probe.mjs:12:82 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'invalid source analysis',
+  expected: '',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

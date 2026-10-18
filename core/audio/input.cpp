@@ -1,4 +1,5 @@
 #include "djayvo/remix.h"
+#include "resample_pcm.h"
 #include <algorithm>
 #include <cmath>
 #include <cstring>
@@ -160,28 +161,34 @@ AudioBuffer resample(const AudioBuffer& source, std::uint32_t rate) {
     if (rate == source.sample_rate) return source;
     AudioBuffer out = source;
     out.sample_rate = rate;
-    out.mono.assign((source.mono.size() * rate + source.sample_rate / 2) / source.sample_rate, 0);
+    out.mono = detail::resample_pcm(source.mono.data(),source.mono.size(),static_cast<double>(rate)/source.sample_rate,
+                                  static_cast<std::size_t>((static_cast<std::uint64_t>(source.mono.size())*rate+
+                                                           source.sample_rate/2)/source.sample_rate));
+    return out;
+}
+
+std::vector<float> detail::resample_pcm(const float* source,std::size_t frames,double ratio,std::size_t output_frames) {
+    std::vector<float> out(output_frames);
     constexpr double pi = 3.14159265358979323846;
     // Windowed-sinc low-pass interpolation; wider support for large downsampling ratios.
-    const double ratio = static_cast<double>(rate) / source.sample_rate;
     const double cutoff = 0.94 * std::min(1.0, ratio);
     const int radius = static_cast<int>(std::ceil(24.0 / cutoff));
-    for (std::size_t i = 0; i < out.mono.size(); ++i) {
+    for (std::size_t i = 0; i < out.size(); ++i) {
         const double pos = static_cast<double>(i) / ratio;
         const auto center = static_cast<std::int64_t>(std::floor(pos));
         double sum = 0, weight_sum = 0;
         for (int j = -radius + 1; j <= radius; ++j) {
             const auto index = center + j;
-            if (index < 0 || index >= static_cast<std::int64_t>(source.mono.size())) continue;
+            if (index < 0 || index >= static_cast<std::int64_t>(frames)) continue;
             const double distance = pos - static_cast<double>(index);
             if (std::abs(distance) >= radius) continue;
             const double x = pi * distance * cutoff;
             const double sinc = std::abs(x) < 1e-12 ? 1.0 : std::sin(x) / x;
             const double weight = cutoff * sinc * (0.5 + 0.5 * std::cos(pi * distance / radius));
-            sum += source.mono[static_cast<std::size_t>(index)] * weight;
+            sum += source[static_cast<std::size_t>(index)] * weight;
             weight_sum += weight;
         }
-        out.mono[i] = static_cast<float>(std::clamp(sum / weight_sum, -1.0, 1.0));
+        out[i] = static_cast<float>(std::clamp(sum / weight_sum, -1.0, 1.0));
     }
     return out;
 }

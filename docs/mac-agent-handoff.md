@@ -7,7 +7,12 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
-Latest local prerequisite: [validated plan import/fallback](plan-import.md).
+Latest local engine work: [independent voice pitch/time](voice-transforms.md).
+Four owner comparisons are ready at `renders/voice-transforms-20261018/index.html`.
+Technical cross-platform and clean-hook checks pass; listening remains NOT RUN.
+Default plans remain 1.0/original-speed; opt-in transforms use 1.1. The shared
+resampler also fixes a reproduced 32-bit WASM frame-count overflow.
+Previous local prerequisite: [validated plan import/fallback](plan-import.md).
 The CLI can replay or edit existing scores with explicit consent and bounded
 validation. M5/Linux release tests pass 10/10; 20 cross-platform WAVs and event
 traces match exactly. This does not connect a model or waive the quality hold.

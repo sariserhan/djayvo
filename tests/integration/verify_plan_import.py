@@ -54,12 +54,36 @@ def main(renderer):
         run('escaped',('--plan',str(candidate)))
         assert (root/'escaped.hiphop.wav').read_bytes()==(root/'rules-hiphop.hiphop.wav').read_bytes()
 
+        transformed=copy.deepcopy(base)
+        transformed['schema_version']='1.1-remix'
+        event=next(e for e in transformed['voice_events'] if not e['clean'])
+        event.update(pitch_semitones=3,time_stretch=1.125)
+        candidate.write_text(json.dumps(transformed))
+        run('transformed',('--plan',str(candidate),'--stems'))
+        exported=root/'transformed.hiphop.score.json'
+        assert json.loads(exported.read_text())==transformed
+        run('transform-replay',('--plan',str(exported),'--stems','--block-size','113'))
+        assert verify_export(root/'transformed')['artifacts']==verify_export(root/'transform-replay')['artifacts']
+        assert (root/'transformed.hiphop.wav').read_bytes()!=(root/'rules-hiphop.hiphop.wav').read_bytes()
+        for instrument in ('piano','bass','drums'):
+            assert (root/f'transformed.hiphop.{instrument}.wav').read_bytes()==(root/f'rules-hiphop.hiphop.{instrument}.wav').read_bytes()
+        transform_invalid=[]
+        for key,value in [('pitch_semitones',4.01),('pitch_semitones',None),('pitch_semitones',True),
+                          ('time_stretch',0.79),('time_stretch',1.26),('time_stretch','1.1'),('rate',1.1)]:
+            item=copy.deepcopy(transformed)
+            next(e for e in item['voice_events'] if not e['clean'])[key]=value
+            transform_invalid.append(json.dumps(item))
+        item=copy.deepcopy(transformed);item['schema_version']='1.0-remix';transform_invalid.append(json.dumps(item))
+        item=copy.deepcopy(transformed)
+        next(e for e in item['voice_events'] if e['clean'])['pitch_semitones']=1
+        transform_invalid.append(json.dumps(item))
+
         mutations=[
             ('schema_version','future'),('seed',4124),('sample_rate',48000),('strategy','reggae'),
             ('ticks_per_quarter',480),('source_asset_id','sha256:'+'0'*64),('tempo_milli_bpm',float('nan')),
             ('target_bars',2**60),('target_bars',True),('target_bars',1.5),('target_bars',1),
             ('tracks',[]),('sections',[]),('voice_events',[]),('unsupported_action','network')]
-        invalid=[]
+        invalid=transform_invalid
         for field,value in mutations:
             item=copy.deepcopy(base);item[field]=value;invalid.append(json.dumps(item))
         for field,value in [('sha256','0'*64),('processed_frames',1),('kind','recorded'),('consent_confirmed',True)]:
@@ -119,6 +143,7 @@ def main(renderer):
         except ValueError:pass
         else:raise AssertionError('invalid selection receipt accepted')
         print(json.dumps({'roundtrip_styles':5,'identical_artifacts':40,'edited_plan_changes_pcm':'PASS',
+                          'independent_transform_replay_and_instrument_stems':'PASS',
                           'rejected_candidates':len(invalid),'explicit_fallback':'PASS','consent_and_collision':'PASS',
                           'model_inference':'NOT RUN','listening':'NOT RUN'},indent=2))
 

@@ -3,7 +3,8 @@
 This records the M0a foundation. The implemented source-remix/C-ABI extension is
 documented in [remix-architecture.md](remix-architecture.md).
 The later [offline JSON import/fallback boundary](plan-import.md) supersedes the
-historical no-import limitation for `1.0-remix` plans; `1.0-m0a` remains export-only.
+historical no-import limitation for `1.0-remix` plans (with opt-in
+[1.1 voice transforms](voice-transforms.md)); `1.0-m0a` remains export-only.
 The procedural voice description below is historical; current voices use the
 [acoustic bank](acoustic-review.md) with the same clock and fixed voice pool.
 

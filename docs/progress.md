@@ -10,6 +10,17 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest engine continuation, 2026-10-18: [independent voice pitch and timing](voice-transforms.md).
+Bounded 1.1 plans, offline cached transforms and four private owner comparisons
+are implemented. **Four-rate technical tests, strict import/schema limits, exact
+Mac/Linux event plans and 20 WAVs, unchanged clean hooks, default WASM regressions
+and Chromium/WebKit playback: PASS.** A three-pulse probe retains attacks with
+at most 4 ms displacement; it is not an intelligibility result. A reproduced
+32-bit WASM resampling overflow is fixed. **E03: PARTIAL; human listening and
+production acceptance: NOT RUN.** Default arrangements remain unchanged; no
+model, cloud call, phone work or public deployment. Preserved inputs and versions
+are recorded in the linked evidence.
+
 Latest engineering continuation, 2026-10-18: [offline plan import and fallback](plan-import.md).
 The CLI accepts bounded `1.0-remix` JSON with explicit caller consent and matching
 source/request identity, native musical/sample limits and a limited tonal check.
@@ -198,10 +209,10 @@ the current app is documented above. AI models, training and live mode remain ab
 | Gate | Status | Evidence |
 | --- | --- | --- |
 | Linux release build | PASS | Current aarch64 Debian 12 container, GCC 12.2; physical Intel rerun NOT RUN |
-| C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 15 remix test groups |
+| C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 16 remix test groups |
 | C ABI | PASS | Compiled-C render, bounded errors, ABI and additive cancellation/retry checked |
-| End-to-end tests | PASS | Current Mac/Linux: CTest 9/9 including both asset banks and evaluation preparation |
-| ASan/UBSan | PASS | Current Mac: nine suites, no findings |
+| End-to-end tests | PASS | Current Mac/Linux: CTest 10/10 including both asset banks, evaluation preparation and plan import |
+| ASan/UBSan | PASS | Current Mac: ten suites plus 3/3 affected checks after the frame-count fix, no findings |
 | Evaluation preparation | PASS | Frozen actual one-source/three-seed pilot; nine unchanged candidate WAVs, distinct codes and blank ratings |
 | Dataset/preregistration | PARTIAL | Owner has no additional clips; diverse cohort and reviewer assignments missing |
 | Input decoding/bounds | PASS | PCM16/24/32, float32 and validated extensible variants; original owner WAV accepted; corruption/layout/precision/padding rejected |
@@ -311,8 +322,9 @@ and drums, but there are no formal ratings of realism or layer transitions.
 No formal perceptual evaluation exists. Analysis is energy/onset/autocorrelation DSP with sustained quiet-boundary selection but
 no word boundaries or reliable semantic labels. Pitch may have octave errors.
 Varispeed couples pitch/time and can alias (current generated chops use rate 1).
-Finite instrumental early reflections exist; independent pitch/time stretching,
-feedback reverb/delay and tempo maps are absent. Offline CLI JSON import and
+Finite instrumental early reflections and bounded independent pitch/time transforms
+exist. The latter are opt-in through 1.1 plans, without formant correction or
+human acceptance; feedback reverb/delay and tempo maps are absent. Offline CLI JSON import and
 explicit rule fallback are now implemented; provider-connected AI planning is
 absent. Silence is explicitly rejected. Mixing is fixed per grammar,
 with smooth clean-hook ducking; the soft-knee stage can color overloads.

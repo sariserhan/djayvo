@@ -13,7 +13,8 @@ Track past work, open issues and future milestones in [TODO.md](TODO.md).
 The [complete specification ledger](docs/spec-status.md) records remaining code
 and evidence gates; overall completion is **PARTIAL**.
 
-Latest local engine work: [validated JSON plan replay and fallback](docs/plan-import.md).
+Latest local engine work: [independent voice pitch/timing and private comparisons](docs/voice-transforms.md),
+using [validated JSON plan replay and fallback](docs/plan-import.md).
 Latest creative research: [selective voice over GPU instrumentals](docs/voice-research.md).
 Music quality is the current priority; infrastructure and phone work are paused.
 

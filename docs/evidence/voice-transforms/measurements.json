@@ -1,0 +1,536 @@
+{
+  "portability": {
+    "control": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "pitch-up": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "longer": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "lower-shorter": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "changed_waveforms": {
+    "control": {
+      "max_error_vs_control": 0.0,
+      "rms_error_vs_control": 0.0
+    },
+    "pitch-up": {
+      "max_error_vs_control": 0.46435546875,
+      "rms_error_vs_control": 0.034115961643025
+    },
+    "longer": {
+      "max_error_vs_control": 0.4248046875,
+      "rms_error_vs_control": 0.028065272893475296
+    },
+    "lower-shorter": {
+      "max_error_vs_control": 0.47314453125,
+      "rms_error_vs_control": 0.033675816341930565
+    }
+  },
+  "clean_hooks": {
+    "control": {
+      "status": "PASS",
+      "maximum_pcm_error_vs_control": 0
+    },
+    "pitch-up": {
+      "status": "PASS",
+      "maximum_pcm_error_vs_control": 0
+    },
+    "longer": {
+      "status": "PASS",
+      "maximum_pcm_error_vs_control": 0
+    },
+    "lower-shorter": {
+      "status": "PASS",
+      "maximum_pcm_error_vs_control": 0
+    }
+  },
+  "waveforms": {
+    "control.club.wav": {
+      "sha256": "1dcf73fa8bf418afce2f68f28647b0ec6064151ee7c0b796db2a4a846e7c9156",
+      "frames": 1741714,
+      "peak": 0.642608642578125,
+      "full_scale_samples": 0
+    },
+    "control.club.piano.wav": {
+      "sha256": "45792bd956c15ec8911ad71a56712f14a9afab18a8bba8a718bafdae512cd383",
+      "frames": 1741714,
+      "peak": 0.241241455078125,
+      "full_scale_samples": 0
+    },
+    "control.club.bass.wav": {
+      "sha256": "32560731e3609b4cdabb1133f8b7ecefb396768e7c565ec4e1ece948cee07589",
+      "frames": 1741714,
+      "peak": 0.355682373046875,
+      "full_scale_samples": 0
+    },
+    "control.club.drums.wav": {
+      "sha256": "4bda052e318daeb18ae82116fd36c298df957bf11388fb2e6c590022e7d264b6",
+      "frames": 1741714,
+      "peak": 0.620758056640625,
+      "full_scale_samples": 0
+    },
+    "control.club.vocals.wav": {
+      "sha256": "fb628620c3fe7ca18b7f45080680372cbc3625deacf3005193184c7cb3e7ff98",
+      "frames": 1741714,
+      "peak": 0.40045166015625,
+      "full_scale_samples": 0
+    },
+    "pitch-up.club.wav": {
+      "sha256": "a31d65e35499b0a6d7f1b4782e0a8a22238f2b8cac8cadcda701e8cef2deb756",
+      "frames": 1741714,
+      "peak": 0.63494873046875,
+      "full_scale_samples": 0
+    },
+    "pitch-up.club.piano.wav": {
+      "sha256": "45792bd956c15ec8911ad71a56712f14a9afab18a8bba8a718bafdae512cd383",
+      "frames": 1741714,
+      "peak": 0.241241455078125,
+      "full_scale_samples": 0
+    },
+    "pitch-up.club.bass.wav": {
+      "sha256": "32560731e3609b4cdabb1133f8b7ecefb396768e7c565ec4e1ece948cee07589",
+      "frames": 1741714,
+      "peak": 0.355682373046875,
+      "full_scale_samples": 0
+    },
+    "pitch-up.club.drums.wav": {
+      "sha256": "4bda052e318daeb18ae82116fd36c298df957bf11388fb2e6c590022e7d264b6",
+      "frames": 1741714,
+      "peak": 0.620758056640625,
+      "full_scale_samples": 0
+    },
+    "pitch-up.club.vocals.wav": {
+      "sha256": "ef08b6bbb24c9acbd9f7299979630ce11ed01f2fb543c2766682b7f8a1add18c",
+      "frames": 1741714,
+      "peak": 0.40045166015625,
+      "full_scale_samples": 0
+    },
+    "longer.club.wav": {
+      "sha256": "2189722c8969d83a2a2e5c3886604bd112e709e578b5fad3d0a9c3d29d2a558a",
+      "frames": 1741714,
+      "peak": 0.6475830078125,
+      "full_scale_samples": 0
+    },
+    "longer.club.piano.wav": {
+      "sha256": "45792bd956c15ec8911ad71a56712f14a9afab18a8bba8a718bafdae512cd383",
+      "frames": 1741714,
+      "peak": 0.241241455078125,
+      "full_scale_samples": 0
+    },
+    "longer.club.bass.wav": {
+      "sha256": "32560731e3609b4cdabb1133f8b7ecefb396768e7c565ec4e1ece948cee07589",
+      "frames": 1741714,
+      "peak": 0.355682373046875,
+      "full_scale_samples": 0
+    },
+    "longer.club.drums.wav": {
+      "sha256": "4bda052e318daeb18ae82116fd36c298df957bf11388fb2e6c590022e7d264b6",
+      "frames": 1741714,
+      "peak": 0.620758056640625,
+      "full_scale_samples": 0
+    },
+    "longer.club.vocals.wav": {
+      "sha256": "61f861e48b3543972f6d4974b67a498067d68c2f03dfc6bab8af619e35ab51a0",
+      "frames": 1741714,
+      "peak": 0.40045166015625,
+      "full_scale_samples": 0
+    },
+    "lower-shorter.club.wav": {
+      "sha256": "df3414a5d241adf67e5cdf58f684f0483699690a1da93a4b82cf43a2cd045086",
+      "frames": 1741714,
+      "peak": 0.62188720703125,
+      "full_scale_samples": 0
+    },
+    "lower-shorter.club.piano.wav": {
+      "sha256": "45792bd956c15ec8911ad71a56712f14a9afab18a8bba8a718bafdae512cd383",
+      "frames": 1741714,
+      "peak": 0.241241455078125,
+      "full_scale_samples": 0
+    },
+    "lower-shorter.club.bass.wav": {
+      "sha256": "32560731e3609b4cdabb1133f8b7ecefb396768e7c565ec4e1ece948cee07589",
+      "frames": 1741714,
+      "peak": 0.355682373046875,
+      "full_scale_samples": 0
+    },
+    "lower-shorter.club.drums.wav": {
+      "sha256": "4bda052e318daeb18ae82116fd36c298df957bf11388fb2e6c590022e7d264b6",
+      "frames": 1741714,
+      "peak": 0.620758056640625,
+      "full_scale_samples": 0
+    },
+    "lower-shorter.club.vocals.wav": {
+      "sha256": "567412099e5ba287f2b23465f85e7fdc3eb938cbcfa112896a5b2a4c8d051844",
+      "frames": 1741714,
+      "peak": 0.40045166015625,
+      "full_scale_samples": 0
+    }
+  },
+  "voice_frames": {
+    "control": [
+      {
+        "start": 164571,
+        "end": 397947,
+        "clean": true
+      },
+      {
+        "start": 0,
+        "end": 29629,
+        "clean": false
+      },
+      {
+        "start": 509143,
+        "end": 533913,
+        "clean": false
+      },
+      {
+        "start": 550286,
+        "end": 577448,
+        "clean": false
+      },
+      {
+        "start": 673714,
+        "end": 703343,
+        "clean": false
+      },
+      {
+        "start": 714857,
+        "end": 745811,
+        "clean": false
+      },
+      {
+        "start": 822857,
+        "end": 1056233,
+        "clean": true
+      },
+      {
+        "start": 1167429,
+        "end": 1192199,
+        "clean": false
+      },
+      {
+        "start": 1208571,
+        "end": 1235733,
+        "clean": false
+      },
+      {
+        "start": 1332000,
+        "end": 1361629,
+        "clean": false
+      },
+      {
+        "start": 1373143,
+        "end": 1404097,
+        "clean": false
+      },
+      {
+        "start": 1496571,
+        "end": 1521341,
+        "clean": false
+      },
+      {
+        "start": 1537714,
+        "end": 1564876,
+        "clean": false
+      }
+    ],
+    "pitch-up": [
+      {
+        "start": 164571,
+        "end": 397947,
+        "clean": true
+      },
+      {
+        "start": 0,
+        "end": 29629,
+        "clean": false
+      },
+      {
+        "start": 509143,
+        "end": 533913,
+        "clean": false
+      },
+      {
+        "start": 550286,
+        "end": 577448,
+        "clean": false
+      },
+      {
+        "start": 673714,
+        "end": 703343,
+        "clean": false
+      },
+      {
+        "start": 714857,
+        "end": 745811,
+        "clean": false
+      },
+      {
+        "start": 822857,
+        "end": 1056233,
+        "clean": true
+      },
+      {
+        "start": 1167429,
+        "end": 1192199,
+        "clean": false
+      },
+      {
+        "start": 1208571,
+        "end": 1235733,
+        "clean": false
+      },
+      {
+        "start": 1332000,
+        "end": 1361629,
+        "clean": false
+      },
+      {
+        "start": 1373143,
+        "end": 1404097,
+        "clean": false
+      },
+      {
+        "start": 1496571,
+        "end": 1521341,
+        "clean": false
+      },
+      {
+        "start": 1537714,
+        "end": 1564876,
+        "clean": false
+      }
+    ],
+    "longer": [
+      {
+        "start": 164571,
+        "end": 397947,
+        "clean": true
+      },
+      {
+        "start": 0,
+        "end": 33185,
+        "clean": false
+      },
+      {
+        "start": 509143,
+        "end": 536886,
+        "clean": false
+      },
+      {
+        "start": 550286,
+        "end": 580708,
+        "clean": false
+      },
+      {
+        "start": 673714,
+        "end": 706899,
+        "clean": false
+      },
+      {
+        "start": 714857,
+        "end": 749526,
+        "clean": false
+      },
+      {
+        "start": 822857,
+        "end": 1056233,
+        "clean": true
+      },
+      {
+        "start": 1167429,
+        "end": 1195172,
+        "clean": false
+      },
+      {
+        "start": 1208571,
+        "end": 1238993,
+        "clean": false
+      },
+      {
+        "start": 1332000,
+        "end": 1365185,
+        "clean": false
+      },
+      {
+        "start": 1373143,
+        "end": 1407812,
+        "clean": false
+      },
+      {
+        "start": 1496571,
+        "end": 1524314,
+        "clean": false
+      },
+      {
+        "start": 1537714,
+        "end": 1568136,
+        "clean": false
+      }
+    ],
+    "lower-shorter": [
+      {
+        "start": 164571,
+        "end": 397947,
+        "clean": true
+      },
+      {
+        "start": 0,
+        "end": 26667,
+        "clean": false
+      },
+      {
+        "start": 509143,
+        "end": 531436,
+        "clean": false
+      },
+      {
+        "start": 550286,
+        "end": 574732,
+        "clean": false
+      },
+      {
+        "start": 673714,
+        "end": 700381,
+        "clean": false
+      },
+      {
+        "start": 714857,
+        "end": 742716,
+        "clean": false
+      },
+      {
+        "start": 822857,
+        "end": 1056233,
+        "clean": true
+      },
+      {
+        "start": 1167429,
+        "end": 1189722,
+        "clean": false
+      },
+      {
+        "start": 1208571,
+        "end": 1233017,
+        "clean": false
+      },
+      {
+        "start": 1332000,
+        "end": 1358667,
+        "clean": false
+      },
+      {
+        "start": 1373143,
+        "end": 1401002,
+        "clean": false
+      },
+      {
+        "start": 1496571,
+        "end": 1518864,
+        "clean": false
+      },
+      {
+        "start": 1537714,
+        "end": 1562160,
+        "clean": false
+      }
+    ]
+  },
+  "wasm_default": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "club": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "schema": {
+    "status": "PASS",
+    "valid_plans": 16,
+    "invalid_plans_rejected": 5
+  },
+  "preserved": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "render_timings": {
+    "control": 0.9278029590059305,
+    "pitch-up": 0.9720417920034379,
+    "longer": 0.8319671670033131,
+    "lower-shorter": 0.9217385000083596
+  },
+  "cross_platform_identical_wavs": 20,
+  "preserved_legacy_wavs": 20,
+  "independent_transform_listening": "NOT RUN",
+  "formant_preservation": "NOT RUN",
+  "production_quality": "PARTIAL",
+  "cloud_calls": 0
+}

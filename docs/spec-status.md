@@ -11,7 +11,7 @@ paused. [TODO](../TODO.md) tracks individual past/future work and evidence links
 | §1 Instant Remix product | PARTIAL | Record/import, trim, three takes, regeneration, play/save/share implemented; human recognizability, meaningful audible diversity and production acceptance remain |
 | §2 portable hardware workflow | PASS | Actual M5 and Linux arm64 execution; isolated environments; original physical Intel rerun remains NOT RUN |
 | §3 portable engine and clock | PASS | C++17, deterministic integer-frame scheduling, bounded polyphony, offline WAV/stems, source provenance and cancellation |
-| §3.1 full instrument/effect breadth | PARTIAL | Sampled piano/bass/drums and electronic palette; guitar strum/muting, organ, dedicated pad/lead roles, independent pitch/time stretching, feedback delay/reverb and tempo/automation maps remain unimplemented |
+| §3.1 full instrument/effect breadth | PARTIAL | Sampled piano/bass/drums, electronic palette and bounded independent voice pitch/time; guitar strum/muting, organ, dedicated pad/lead roles, feedback delay/reverb and tempo/automation maps remain unimplemented; transformed-voice listening remains open |
 | §3.2 input analysis | PARTIAL | Bounded decoding/resampling, energy/onset/pitch heuristics and pause-aware crops; reliable word timing, semantic selection and optional classifier/transcriber modules remain unimplemented |
 | §3.3–3.4 plans and creative direction | PARTIAL | Rule grammars, typed native plans, JSON export and now strict offline import with explicit fallback; learned direction/ranking, provider retry policy and quality comparisons remain NOT RUN |
 | §4 musical quality and creativity | PARTIAL | Informal owner improvement feedback and matched controls; diverse blinded comparison, perceptual novelty and target thresholds remain NOT RUN |
@@ -42,7 +42,9 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
-Latest local prerequisite: [plan import/fallback and reproducible evidence](plan-import.md).
+Latest local engine work: [independent voice pitch/time and evidence](voice-transforms.md).
+The default apps keep original-speed fragments pending listening.
+Previous local prerequisite: [plan import/fallback and reproducible evidence](plan-import.md).
 Current technical checks: **PASS**, 10/10 M5 release, M5 sanitizer and Linux arm64
 suites; exact event frames and 20 cross-platform WAVs. These apply to this
 implementation revision and do not close any listening/release gate above.

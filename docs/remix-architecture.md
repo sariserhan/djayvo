@@ -55,8 +55,10 @@ chops are excluded from both full clean intervals; quantization cannot place
 two chops at the same frame. All generated chops leave 80 ms breathing room
 around one another and clean hooks, and retain original speed. The
 renderer still supports reverse and rates 0.5–2. Rate changes couple pitch and duration;
-**independent time stretch/pitch shift is not implemented**. Linear interpolation
-for varispeed can alias transformed high frequencies. Clean hooks are untransformed.
+optional [independent pitch/time transforms](voice-transforms.md) use cached
+windowed-sinc/WSOLA preparation with strict bounds in 1.1 plans. Linear interpolation
+for legacy varispeed can alias transformed high frequencies. Clean hooks are untransformed.
+Formant preservation and human acceptance of the new treatment remain open.
 
 `RemixRenderer` precompiles triggers, reads immutable samples, and uses the M0a
 instrument clock. Processing has no observed allocations, locks, or I/O. Native
@@ -88,7 +90,7 @@ master. The complete master is authoritative.
 
 ## Plan and integration contract
 
-`schemas/remix-plan.schema.json` defines `1.0-remix` exports: original file
+`schemas/remix-plan.schema.json` defines `1.0-remix` and opt-in transformed `1.1-remix` exports: original file
 hash/rate/frame count, synthetic/recorded kind and consent, processed length,
 analysis, key, sections, instruments, clips, and source events. No original path,
 filename, transcript, or human identity is exported. A clip's

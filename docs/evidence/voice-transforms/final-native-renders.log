@@ -1,0 +1,5 @@
+PASS: renders/voice-transforms-20261018/final-native/remix.hiphop.wav
+PASS: renders/voice-transforms-20261018/final-native/remix.reggae.wav
+PASS: renders/voice-transforms-20261018/final-native/remix.experimental.wav
+PASS: complete export renders/voice-transforms-20261018/final-native/remix.complete.json
+Listening/recognizability: NOT RUN

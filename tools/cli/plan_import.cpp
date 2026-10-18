@@ -167,7 +167,8 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
     j.keys({"schema_version","seed","source_asset_id","sample_rate","source","tempo_milli_bpm",
             "ticks_per_quarter","time_signature","target_bars","tail_ms","strategy","key","mix",
             "analysis","sections","voice_clips","voice_events","tracks"});
-    if (j.at("schema_version").string()!="1.0-remix" || j.at("ticks_per_quarter").integer()!=960 ||
+    const bool transforms=j.at("schema_version").string()=="1.1-remix";
+    if ((!transforms && j.at("schema_version").string()!="1.0-remix") || j.at("ticks_per_quarter").integer()!=960 ||
         j.at("strategy").string()!=strategy_name(strategy) || j.at("seed").integer()!=seed ||
         j.at("sample_rate").integer()!=source.sample_rate || j.at("source_asset_id").string()!="sha256:"+source.sha256)
         reject("plan version/source/request mismatch");
@@ -209,9 +210,13 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
         r.clips.push_back({clip.at("start_frame").integer(),clip.at("end_frame").integer(),clip.at("confidence").number()});
     }
     for (const auto& e:j.at("voice_events").array(1,1024)) {
-        e.keys({"start_tick","clip_id","gain_db","rate","reverse","pan","clean"});
+        if (transforms) e.keys({"start_tick","clip_id","gain_db","rate","reverse","pan","clean"},
+                               {"pitch_semitones","time_stretch"});
+        else e.keys({"start_tick","clip_id","gain_db","rate","reverse","pan","clean"});
         r.vocals.push_back({e.at("start_tick").integer(),e.at("clip_id").integer(63),e.at("gain_db").number(),
                             e.at("rate").number(),e.at("reverse").boolean(),e.at("pan").number(),e.at("clean").boolean()});
+        if (e.has("pitch_semitones")) r.vocals.back().pitch_semitones=e.at("pitch_semitones").number();
+        if (e.has("time_stretch")) r.vocals.back().time_stretch=e.at("time_stretch").number();
     }
     std::size_t notes=0;
     for (const auto& t:j.at("tracks").array(1,32)) {

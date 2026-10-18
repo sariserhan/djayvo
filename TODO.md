@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [validated plan replay/fallback](docs/plan-import.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [independent voice pitch/timing](docs/voice-transforms.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -195,6 +195,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P28 | PASS | Bounded RTX 3090 pretrained music trial: ten clips, timings/memory, retrieval and verified rental deletion | `f0e95d0` · [Trial](docs/cloud-music-trial.md) |
 | [x] | P29 | PASS | Local selective-voice research: six arrangements, controls/stems, matched review page, six tests and Chromium/WebKit playback | [Evidence](docs/voice-research.md) |
 | [x] | P30 | PASS | Strict offline JSON plan replay, explicit deterministic fallback, completion receipts, adversarial tests and actual M5/Linux/WASM comparisons | [Evidence](docs/plan-import.md) |
+| [x] | P31 | PASS | Independent voice pitch/duration controls, bounded 1.1 import/export, preserved clean hooks, owner comparisons and fixed 32-bit resampling overflow | [Evidence](docs/voice-transforms.md) |
 
 ## Engineering backlog
 
@@ -209,8 +210,11 @@ is needed. Prioritize by recorded listening defects and product requirements.
   V3 adds sustained low-energy endings and attack pre-roll. Club v8 extends
   the pause search, deduplicates overlapping candidates and prefers pause-ended crops;
   reliable word boundaries, semantic selection and listening acceptance remain open.
-- [ ] **E03 — NOT RUN:** Evaluate independent pitch/time transformation with
-  transient and intelligibility checks. Current generated chops use original speed.
+- [ ] **E03 — PARTIAL:** Independent pitch/time DSP, bounded 1.1 plans, cached
+  preparation and four owner comparisons implemented. Four-rate technical checks,
+  exact M5/Linux PCM, preserved clean hooks and a three-pulse probe pass. Formant
+  preservation, diverse transient/word clarity and human acceptance remain open;
+  default generated chops still use original speed. [Evidence](docs/voice-transforms.md).
 - [ ] **E04 — PARTIAL:** Expand expressive mixing/effects when justified by
   listening. Early reflections, hook ducking and stem-consistent kick ducking exist; feedback delay/reverb and
   richer automation do not.

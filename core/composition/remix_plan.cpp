@@ -7,6 +7,9 @@
 #include <stdexcept>
 
 namespace djayvo {
+std::uint64_t vocal_frames(const VocalEvent& e,const Region& clip) {
+    return static_cast<std::uint64_t>(std::ceil(static_cast<double>(clip.end-clip.begin)*e.time_stretch/e.rate));
+}
 void validate(const RemixPlan& r, const AudioBuffer& source) {
     validate(r.music); strategy_name(r.strategy);
     if (!r.synthetic_source && !r.consent_confirmed)
@@ -44,19 +47,29 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
     if (total < source.sample_rate*20ULL || total > source.sample_rate*40ULL)
         throw std::invalid_argument("remix must be 20..40 seconds");
     bool clean=false;
+    std::uint64_t transformed_frames=0;
+    unsigned transformed_events=0;
     std::vector<std::pair<std::uint64_t,int>> occupancy;
     for (const auto& e : r.vocals) {
         if (e.start<0 || e.start>=ticks_per_bar(r.music)*r.music.bars || e.clip>=r.clips.size() ||
             !std::isfinite(e.gain_db) || e.gain_db < -30 || e.gain_db>0 ||
-            !std::isfinite(e.pan) || std::abs(e.pan)>1 || !std::isfinite(e.rate) || e.rate<0.5 || e.rate>2)
+            !std::isfinite(e.pan) || std::abs(e.pan)>1 || !std::isfinite(e.rate) || e.rate<0.5 || e.rate>2 ||
+            !std::isfinite(e.pitch_semitones) || std::abs(e.pitch_semitones)>4 ||
+            !std::isfinite(e.time_stretch) || e.time_stretch<0.8 || e.time_stretch>1.25)
             throw std::invalid_argument("invalid vocal event");
         const auto& clip=r.clips[e.clip];
         const auto begin=tick_to_frame(e.start,source.sample_rate,r.music.tempo_milli_bpm);
-        const auto frames=static_cast<std::uint64_t>(std::ceil(static_cast<double>(clip.end-clip.begin)/e.rate));
+        const auto frames=vocal_frames(e,clip);
+        if (e.pitch_semitones!=0 || e.time_stretch!=1) {
+            transformed_frames+=frames;
+            if (e.rate!=1 || clip.end-clip.begin<source.sample_rate*80ULL/1000 ||
+                ++transformed_events>32 || transformed_frames>source.sample_rate*20ULL)
+                throw std::invalid_argument("independent voice transform exceeds rate/crop/work budget");
+        }
         if (frames>music_end || begin>music_end-frames)
             throw std::invalid_argument("vocal event runs beyond music boundary");
         if (e.clean) {
-            if (e.rate!=1 || e.reverse || e.pan!=0 || clip.end-clip.begin < source.sample_rate/2)
+            if (e.rate!=1 || e.pitch_semitones!=0 || e.time_stretch!=1 || e.reverse || e.pan!=0 || clip.end-clip.begin < source.sample_rate/2)
                 throw std::invalid_argument("clean hook must be forward, unpitched, centered and >=500 ms");
             clean=true;
         }
@@ -81,7 +94,10 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
     validate(r,source);
     std::ofstream out(path); out.imbue(std::locale::classic()); out<<std::setprecision(17);
     const auto& p=r.music;
-    out<<"{\n  \"schema_version\": \"1.0-remix\",\n  \"seed\": "<<p.seed
+    const bool transforms=std::any_of(r.vocals.begin(),r.vocals.end(),[](const VocalEvent& e){
+        return e.pitch_semitones!=0 || e.time_stretch!=1;
+    });
+    out<<"{\n  \"schema_version\": \""<<(transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
        <<",\n  \"source_asset_id\": \"sha256:"<<source.sha256<<"\",\n  \"sample_rate\": "<<p.sample_rate
        <<",\n  \"source\": {\"sha256\": \""<<source.sha256<<"\", \"original_rate\": "<<source.original_rate
        <<", \"original_frames\": "<<source.original_frames<<", \"processed_frames\": "<<source.mono.size()
@@ -120,7 +136,10 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
         const auto& e=r.vocals[i];
         out<<(i?",":"")<<"\n    {\"start_tick\": "<<e.start<<", \"clip_id\": "<<e.clip
            <<", \"gain_db\": "<<e.gain_db<<", \"rate\": "<<e.rate<<", \"reverse\": "<<(e.reverse?"true":"false")
-           <<", \"pan\": "<<e.pan<<", \"clean\": "<<(e.clean?"true":"false")<<"}";
+           <<", \"pan\": "<<e.pan<<", \"clean\": "<<(e.clean?"true":"false");
+        if (e.pitch_semitones!=0 || e.time_stretch!=1)
+            out<<", \"pitch_semitones\": "<<e.pitch_semitones<<", \"time_stretch\": "<<e.time_stretch;
+        out<<"}";
     }
     out<<"\n  ],\n  \"tracks\": [";
     for (std::size_t i=0;i<p.tracks.size();++i) {

@@ -1,0 +1,3 @@
+PASS: renders/voice-transforms-smoke-20261018/club.club.wav
+PASS: complete export renders/voice-transforms-smoke-20261018/club.complete.json
+Listening/recognizability: NOT RUN

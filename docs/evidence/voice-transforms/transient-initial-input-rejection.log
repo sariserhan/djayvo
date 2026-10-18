@@ -1,0 +1,9 @@
+FAIL: no usable energetic source region
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/docs/evidence/voice-transforms/transient_probe.py", line 19, in <module>
+    subprocess.run([*base_command, '--output', str(root/'rules')], check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['build-mac/djayvo_remix', '--input', 'renders/voice-transforms-20261018/transients/three-pulses.wav', '--synthetic-fixture', '--style', 'hiphop', '--seed', '4123', '--output', 'renders/voice-transforms-20261018/transients/rules']' returned non-zero exit status 1.

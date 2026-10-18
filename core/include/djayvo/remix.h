@@ -33,7 +33,11 @@ struct VocalEvent {
     bool reverse = false;
     double pan = 0;
     bool clean = false;
+    double pitch_semitones = 0; // independent transform, rate must remain 1
+    double time_stretch = 1; // output duration / source duration
 };
+// Call only after validating the event and crop bounds.
+std::uint64_t vocal_frames(const VocalEvent& event, const Region& clip);
 struct RemixPlan {
     PerformancePlan music;
     Strategy strategy = Strategy::hiphop;
@@ -69,10 +73,17 @@ private:
         std::uint64_t start, frames, source_begin, source_end;
         double rate, gain_left, gain_right;
         bool reverse, clean;
+        int transformed = -1;
+    };
+    struct TransformedClip {
+        std::size_t clip;
+        double pitch, stretch;
+        std::vector<float> pcm;
     };
     Renderer music_;
     const AudioBuffer& source_;
     std::vector<Trigger> triggers_;
+    std::vector<TransformedClip> transformed_;
     std::vector<float> music_buffer_;
     std::vector<double> room_buffer_;
     std::array<std::size_t,4> room_taps_{};

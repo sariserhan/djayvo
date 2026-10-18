@@ -1,0 +1,12 @@
+{
+  "cross_platform_identical_wavs": 20,
+  "clean_hooks": "PASS",
+  "schemas": {
+    "status": "PASS",
+    "valid_plans": 16,
+    "invalid_plans_rejected": 5
+  },
+  "default_wasm": "PASS",
+  "legacy_wavs_preserved": 20,
+  "listening": "NOT RUN"
+}

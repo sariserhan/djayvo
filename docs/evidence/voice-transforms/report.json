@@ -1,0 +1,176 @@
+{
+  "date": "2026-10-18",
+  "overall_specification": "PARTIAL",
+  "E03": "PARTIAL",
+  "mac_release": {
+    "status": "PASS",
+    "suites": 10
+  },
+  "linux_arm64_release": {
+    "status": "PASS",
+    "suites": 10
+  },
+  "mac_sanitizers": {
+    "status": "PASS",
+    "full_suites_before_frame_count_fix": 10,
+    "affected_suites_after_fix": 3
+  },
+  "independent_pitch_time": {
+    "status": "PASS",
+    "tone_cases": 36,
+    "sample_rates": [
+      8000,
+      44100,
+      48000,
+      192000
+    ],
+    "pitch_tolerance_hz": 3,
+    "callback_allocations": 0
+  },
+  "plan_import": {
+    "roundtrip_styles": 5,
+    "identical_artifacts": 40,
+    "edited_plan_changes_pcm": "PASS",
+    "independent_transform_replay_and_instrument_stems": "PASS",
+    "rejected_candidates": 59,
+    "explicit_fallback": "PASS",
+    "consent_and_collision": "PASS",
+    "model_inference": "NOT RUN",
+    "listening": "NOT RUN"
+  },
+  "cross_platform_identical_owner_wavs": 20,
+  "final_identical_fixture_wavs": 15,
+  "event_frame_agreement": "PASS",
+  "maximum_cross_platform_pcm_error": 0,
+  "rms_cross_platform_pcm_error": 0,
+  "preserved_previous_wavs": 20,
+  "clean_hook_pcm_error": 0,
+  "schema": {
+    "status": "PASS",
+    "valid_plans": 16,
+    "invalid_plans_rejected": 5
+  },
+  "wasm_44100_resampling_fix": "PASS",
+  "wasm_default_four_styles": "PASS",
+  "audition_page": {
+    "chromium": "PASS",
+    "webkit": "PASS"
+  },
+  "browser_fallback": "Browser plugin listed but required Node REPL js/tool discovery unavailable; existing Playwright used for authorized autonomous validation.",
+  "analytical_pulse_probe": {
+    "probe": "three original Gaussian pulses, 0.4 ms standard deviation; peaks above 20% output peak, groups separated by 5 ms",
+    "cases": [
+      {
+        "case": "control",
+        "detected_pulses": 3,
+        "peak_times_seconds": [
+          0.2,
+          0.5,
+          0.8
+        ],
+        "nominal_times_seconds": [
+          0.2,
+          0.5,
+          0.8
+        ],
+        "maximum_displacement_ms": 0.0,
+        "count_preservation": "PASS"
+      },
+      {
+        "case": "pitch-up",
+        "detected_pulses": 3,
+        "peak_times_seconds": [
+          0.196375,
+          0.49772916666666667,
+          0.7990833333333334
+        ],
+        "nominal_times_seconds": [
+          0.2,
+          0.5,
+          0.8
+        ],
+        "maximum_displacement_ms": 3.625000000000017,
+        "count_preservation": "PASS"
+      },
+      {
+        "case": "longer",
+        "detected_pulses": 3,
+        "peak_times_seconds": [
+          0.22,
+          0.5577916666666667,
+          0.8955625
+        ],
+        "nominal_times_seconds": [
+          0.22400000000000003,
+          0.56,
+          0.8960000000000001
+        ],
+        "maximum_displacement_ms": 4.000000000000031,
+        "count_preservation": "PASS"
+      },
+      {
+        "case": "lower-shorter",
+        "detected_pulses": 3,
+        "peak_times_seconds": [
+          0.18310416666666668,
+          0.45258333333333334,
+          0.7179791666666666
+        ],
+        "nominal_times_seconds": [
+          0.18000000000000002,
+          0.45,
+          0.7200000000000001
+        ],
+        "maximum_displacement_ms": 3.104166666666658,
+        "count_preservation": "PASS"
+      }
+    ],
+    "speech_intelligibility": "NOT RUN",
+    "general_transient_preservation": "PARTIAL"
+  },
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "default_planner_transform_selection": "NOT RUN",
+  "new_voice_listening": "NOT RUN",
+  "formant_correction": "NOT RUN",
+  "new_phone_checks": "NOT RUN",
+  "learned_director": "NOT RUN",
+  "production_release": "NOT RUN",
+  "cloud_calls": 0,
+  "paid_services_used": false,
+  "third_party_runtime_dependencies_added": false,
+  "render_timings_single_observations": {
+    "control": 0.9278029590059305,
+    "pitch-up": 0.9720417920034379,
+    "longer": 0.8319671670033131,
+    "lower-shorter": 0.9217385000083596
+  },
+  "source_files_sha256": {
+    "core/arrangement/remix.cpp": "311e1078a7cc4497341a51f186d929ec012e42c46ab3a65208cfdbba3bbf56d1",
+    "core/arrangement/demo.cpp": "0f2080bf64010ebd9a8591039b8aa51be7c48502f9a9b2f51e16b8cf5624a641",
+    "core/tests/remix_tests.cpp": "f3195362a5562b7af88b3be8e4a330406b61465e5ba4561c845dd19d69127747",
+    "core/tests/tests.cpp": "8521b1f0ace7df1c42574641702258ddd2cee40f6971423a5d9cda1a18c9da3f",
+    "core/composition/analysis.cpp": "2b9407dd03618f51fd68d0de93e90b0163c01fc94501a1eebc32932b135bec33",
+    "core/composition/remix_plan.cpp": "6ac8fe51692d8818c1b699509778a28f4aff88ca599a2ab04613bca662887f73",
+    "core/composition/plan.cpp": "2baec6d0e0684f6b77a852f34e280eb7e337fe7ed8cb857697d3bae196772abd",
+    "core/instruments/voice.cpp": "77fc3fc75928195c797570a64a671b2637fe12a9f84c7996cbe1d75081d837e1",
+    "core/audio/input.cpp": "6b1303698c3fb331ae1e8276eb7756dce2e93b963f1b0a0e8e0e094d41f5671c",
+    "core/audio/remix_renderer.cpp": "0f112cb664afad1f4553a54a31d4f0910ac06499e8c8bf0b44d83432f2e6fc47",
+    "core/audio/c_api.cpp": "f150ca1c36a7a7500381a230465d03391a874b8ec3e13c2cc5af98789ece9004",
+    "core/audio/remix_file.cpp": "1c84928b6d303acc4f2c99e0e27668b96bc734242fb4439da450b2212ed00875",
+    "core/audio/wav.cpp": "e74a43ca3452c3c9bad3226c88da0b8b4fe3b7a6d4bf6ac0eb84613d20bbeea9",
+    "core/audio/renderer.cpp": "74aed20d54e698d6d8250933c7badaf128830819d021e9f119c2edda5e4eac94",
+    "core/audio/resample_pcm.h": "85766a9a8f9b07564f1c882ac937cd719cdbbab3d307bbf65ea47d80dcf288c2",
+    "core/include/djayvo/music.h": "43ee1ff5045681256e301489a4caea1f0eabf8335cd9293bb1319bd839d532e1",
+    "core/include/djayvo/remix.h": "7a72cb791e65adf7031352e14782e02f344aa58c8433179a70e19ccdf67ec54b",
+    "core/include/djayvo/audio.h": "32d3603f325e4fa15490dd2af2e04a9ba0055f5de572d9763d603113125aa63a",
+    "core/include/djayvo/djayvo_c.h": "6a36ecf56b06fbeb1bb203fe9a70404d96b5fc6887b0defbbaf38a1d8755f7e5",
+    "tools/cli/plan_import.cpp": "01da60622716a461c8ee3c0e06311c814fb2c3d2164f6f114f428891b28c1d33",
+    "tools/cli/main.cpp": "36a2f80ff4087d99f2eedfff095e234f88952f925d84191fe2ec3259a386e7da",
+    "tools/cli/remix_main.cpp": "ef2813abcd1e06628ca95f9b0081576009fe694552e9cecf25e472c8e3a11755",
+    "tools/cli/plan_import.h": "be91a842a917719ac941e3ccdfc264c971af22fa19c62dd2ac333921e5f665b3"
+  }
+}

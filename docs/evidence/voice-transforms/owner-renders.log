@@ -1,0 +1,12 @@
+PASS: renders/voice-transforms-20261018/control.club.wav
+PASS: complete export renders/voice-transforms-20261018/control.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/voice-transforms-20261018/pitch-up.club.wav
+PASS: complete export renders/voice-transforms-20261018/pitch-up.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/voice-transforms-20261018/longer.club.wav
+PASS: complete export renders/voice-transforms-20261018/longer.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/voice-transforms-20261018/lower-shorter.club.wav
+PASS: complete export renders/voice-transforms-20261018/lower-shorter.complete.json
+Listening/recognizability: NOT RUN

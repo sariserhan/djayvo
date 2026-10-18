@@ -1,7 +1,7 @@
 # Validated offline plan replay and fallback
 
 2026-10-18. The engine previously wrote JSON scores but could not consume them.
-The CLI now accepts an existing or edited `1.0-remix` score, validates it and
+The CLI accepts an existing or edited `1.0-remix` score, validates it and
 renders the actual proposed notes and voice events through the same C++ clock.
 No model/provider call, training, cloud upload or paid service is involved.
 This completes a local prerequisite for constrained direction; M1/M2 remain open.
@@ -109,3 +109,7 @@ The new private artifacts are under `renders/plan-import-20261018/`,
 `renders/arrangement-linux/plan-import-20261018/`. Existing recordings, old
 renders and the supplied synthetic speech fixture are preserved. The master
 specification is unchanged. Replayed audio is not a new listening-quality result.
+
+Subsequent extension: [bounded independent voice pitch/time](voice-transforms.md)
+adds `1.1-remix` fields with clean-hook/work limits. Legacy exports remain 1.0;
+the current integration suite rejects 59 candidates and includes transformed replay.

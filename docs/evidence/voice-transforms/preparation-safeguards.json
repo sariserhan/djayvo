@@ -1,0 +1,6 @@
+{
+  "explicit_consent_required": "PASS",
+  "source_plan_mismatch_rejected": "PASS",
+  "existing_directory_and_recordings_preserved": "PASS",
+  "preserved_files": 42
+}
