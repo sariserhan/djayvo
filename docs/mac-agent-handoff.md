@@ -7,7 +7,17 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
-Latest local engine work: [tempo maps and mix automation](timeline.md).
+Latest local engine work: [Funk composition and web integration](funk.md).
+Choose Funk in the local web studio or CLI `--style funk` (C ABI 6). Shared
+seeded syncopation, short chord stabs and phrase-derived responses preserve two
+clean hooks. Native M5/Linux, 50 exact WAVs, five-style WASM and full browser
+flows pass. Four matched owner mixes: `renders/funk-20261018/review/index.html`.
+Human listening remains NOT RUN. Final M5 ASan/UBSan passes 10/10 suites.
+For a fresh Mac smoke use `renders/arrangement-linux/funk-20261018/fixture`.
+Existing five strategies are byte-identical; the default three-take set stays
+unchanged. Remote library infrastructure remains paused; add funk to its database
+strategy constraint before enabling cloud saving.
+Previous local engine work: [tempo maps and mix automation](timeline.md).
 Optional 1.3-remix plans support step tempo changes and smooth instrument gain/pan
 movement. Notes, vocals, echoes and stems share timing. M5/Linux release, 40 exact
 WAVs, schema/import and WASM core checks pass. Four private comparisons:

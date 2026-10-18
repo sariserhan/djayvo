@@ -1,0 +1,13 @@
+{
+  "roundtrip_styles": 6,
+  "identical_artifacts": 48,
+  "edited_plan_changes_pcm": "PASS",
+  "independent_transform_replay_and_instrument_stems": "PASS",
+  "tempo_echo_replay_and_instrument_stems": "PASS",
+  "tempo_map_mix_automation_roundtrip_and_rational_frames": "PASS",
+  "rejected_candidates": 90,
+  "explicit_fallback": "PASS",
+  "consent_and_collision": "PASS",
+  "model_inference": "NOT RUN",
+  "listening": "NOT RUN"
+}

@@ -25,14 +25,14 @@ def verify_export(prefix, required_styles=()):
         if planning['candidate_sha256'] is not None and not re.fullmatch('[0-9a-f]{64}', planning['candidate_sha256']):
             raise ValueError('invalid candidate plan hash')
     artifacts = record.get('artifacts')
-    if not isinstance(artifacts, list) or not 4 <= len(artifacts) <= 40:
+    if not isinstance(artifacts, list) or not 4 <= len(artifacts) <= 48:
         raise ValueError('invalid export artifact count')
     suffixes = set()
     for item in artifacts:
         if not isinstance(item, dict):
             raise ValueError('invalid export artifact')
         suffix = item.get('suffix', '')
-        if (not isinstance(suffix, str) or not re.fullmatch(r'\.(hiphop|reggae|experimental|baseline|club)\.(wav|score\.json|report\.json|events\.tsv|piano\.wav|bass\.wav|drums\.wav|vocals\.wav)', suffix)
+        if (not isinstance(suffix, str) or not re.fullmatch(r'\.(hiphop|reggae|experimental|baseline|club|funk)\.(wav|score\.json|report\.json|events\.tsv|piano\.wav|bass\.wav|drums\.wav|vocals\.wav)', suffix)
                 or suffix in suffixes or type(item.get('bytes')) is not int or not 0 < item['bytes'] <= 64*1024*1024):
             raise ValueError('invalid/duplicate artifact path or size')
         suffixes.add(suffix)

@@ -34,7 +34,7 @@ def main(renderer):
             return result
 
         plans={}
-        for style in ('hiphop','reggae','experimental','baseline','club'):
+        for style in ('hiphop','reggae','experimental','baseline','club','funk'):
             run('rules-'+style,('--style',style,'--stems'))
             path=root/f'rules-{style}.{style}.score.json'
             plans[style]=json.loads(path.read_text())
@@ -235,7 +235,7 @@ def main(renderer):
         try:verify_export(root/'fallback')
         except ValueError:pass
         else:raise AssertionError('invalid selection receipt accepted')
-        print(json.dumps({'roundtrip_styles':5,'identical_artifacts':40,'edited_plan_changes_pcm':'PASS',
+        print(json.dumps({'roundtrip_styles':6,'identical_artifacts':48,'edited_plan_changes_pcm':'PASS',
                           'independent_transform_replay_and_instrument_stems':'PASS',
                           'tempo_echo_replay_and_instrument_stems':'PASS',
                           'tempo_map_mix_automation_roundtrip_and_rational_frames':'PASS',

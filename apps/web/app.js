@@ -2,7 +2,7 @@ import { decodeAudio, encodeWav, RATE } from './audio.js';
 import { loadSessions, saveSession, deleteSession, deleteAllSessions, verifySession, MAX_SESSIONS } from './library.js';
 
 const $ = id => document.getElementById(id);
-const names = { hiphop: 'Hip-hop', reggae: 'Reggae', experimental: 'Experimental', club: 'Club' };
+const names = { hiphop: 'Hip-hop', reggae: 'Reggae', experimental: 'Experimental', club: 'Club', funk: 'Funk' };
 let samples, start = 0, end = 0, previewURL, state = 'idle', worker, recorder, stream, recordTimer;
 let operation = 0, recordedAt = 0, sessions = [], urls = [], deleting;
 const say = message => { $('status').textContent = message; };
@@ -189,7 +189,7 @@ $('generate').onclick = () => {
   };
   activeWorker.onmessage = async ({ data }) => {
     if (token !== operation) return;
-    if (data.type === 'rendering') { say(style === 'club' ? 'Building your club mix…' : 'Making three different takes…'); return; }
+    if (data.type === 'rendering') { say(style === 'three' ? 'Making three different takes…' : `Building your ${names[style].toLowerCase()} mix…`); return; }
     clearTimeout(timeout);
     activeWorker.terminate(); worker = undefined;
     if (data.type === 'error') { state = 'idle'; fail(new Error(data.message)); say('Try a different selection or recording.'); update(); return; }
@@ -227,7 +227,7 @@ function renderLibrary() {
   for (const session of sessions) {
     const section = element('article', '', 'session');
     const heading = element('div', '', 'session-heading'), details = element('div');
-    details.append(element('h3', session.style === 'club' ? 'A little after dark' : 'Three sides of your sound'));
+    details.append(element('h3', session.style === 'funk' ? 'Find your pocket' : session.style === 'club' ? 'A little after dark' : 'Three sides of your sound'));
     details.append(element('p', `${new Date(session.created).toLocaleString()} · ${session.unsaved ? 'Not saved — download to keep' : 'Saved in this browser'}`, 'muted'));
     const remove = element('button', 'Delete', 'text-button'); remove.setAttribute('aria-label', 'Delete session');
     remove.onclick = () => { deleting = session; $('delete-title').textContent = 'Delete this session?'; $('delete-confirm').textContent = 'Delete session'; $('delete-dialog').showModal(); $('delete-cancel').focus(); };

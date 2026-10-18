@@ -10,6 +10,16 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest composition continuation, 2026-10-18: [Funk and web integration](funk.md).
+A distinct syncopated grammar now uses the existing sampled instruments, seed
+variation and phrase-timed responses. CLI/C ABI, schemas, completion verification
+and local web generation/save/reload/download support it. **M5/Linux release
+10/10, 64-seed structural checks, 50 exact cross-OS WAVs, 25 unchanged legacy
+WAVs/scores/events, six-style plan replay, five-style WASM and Chromium/WebKit
+user flows: PASS.** Four matched owner mixes are ready; **new listening: NOT RUN;
+full specification: PARTIAL.** Final M5 ASan/UBSan passes 10/10 suites.
+No paid service, audio upload, device work, deployment or new assets.
+
 Latest timeline continuation, 2026-10-18: [tempo maps and mix automation](timeline.md).
 Native scheduling, voice/echo timing, stems, versioned export/import, schemas and
 Python preparation now share the new timeline. **M5/Linux release 10/10, WASM

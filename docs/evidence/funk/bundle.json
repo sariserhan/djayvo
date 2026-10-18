@@ -1,0 +1,23 @@
+{
+  "gate": "PASS",
+  "file_count": 11,
+  "bytes": 8596657,
+  "private_audio_and_test_files_absent": "PASS",
+  "license_notices": "PASS",
+  "wasm_sha256": "1d13e9e2829e8033aafd21fae834da4ae5656e679d390399da3605b3e6a45e78",
+  "wasm_bytes": 8397656,
+  "files": {
+    "app.js": "a3f516fe7a7eddf4cdabab7055914878bf894e22137baa9b155fb223bdf6d574",
+    "audio.js": "5d991784eeed98d68ea707dfc695e0a7ba3e91df239b3159a692fb52c69f103b",
+    "engine-worker.js": "0ae1bd2e4d035caecec37bc15521ea5f6cf80b4f64704d1eb0adb794d57d12ac",
+    "engine/djayvo_web.mjs": "bd64655e3a700ef74594e63fb348e736408cd3a01f7a47a70cb2313e399f6dcc",
+    "engine/djayvo_web.wasm": "1d13e9e2829e8033aafd21fae834da4ae5656e679d390399da3605b3e6a45e78",
+    "index.html": "c749a332cfbf7a3b4b3c3714742791ab685b8d62038a01276f3a53d8f6461acb",
+    "library.js": "3694e1ab26d26ac2032bb85dbece16ea27155c7411cdff941d5d38a49753f033",
+    "licenses/EMSCRIPTEN-LICENSE.txt": "4e932924ae86904c2ec1e8916953fb516707871b74bf05733161b0ec4772db26",
+    "licenses/VCSL-LICENSE.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "licenses/VSCO-2-CE-LICENSE.txt": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673",
+    "style.css": "c942e0cebe81192b43b5e647eac861f00b19d43c930c7b1f081446a6007d57b4"
+  },
+  "public_release": "NOT RUN"
+}

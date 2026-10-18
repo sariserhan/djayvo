@@ -1,0 +1,5 @@
+PASS: webkit /Users/serhansari/Documents/projects/djayvo/renders/web-webkit-engine-2KKtba [
+  { style: 'three', seconds: 1.41, artifacts: 12 },
+  { style: 'club', seconds: 0.468, artifacts: 4 },
+  { style: 'funk', seconds: 0.431, artifacts: 4 }
+]

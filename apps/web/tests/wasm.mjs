@@ -5,22 +5,22 @@ import { fileURLToPath } from 'node:url';
 import createEngine from '../../../build-web/djayvo_web.mjs';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
-const output = path.join(root, 'renders/web-validation/wasm');
-await fs.mkdir(output, { recursive: true });
+const output = await fs.mkdtemp(path.join(root, 'renders/web-wasm-'));
 const input = new Uint8Array(await fs.readFile(path.join(root, 'renders/fixtures/synthetic-speech.wav')));
 const results = [];
-for (const club of [0, 1]) {
+for (const club of [0, 1, 2]) {
   const engine = await createEngine();
   engine.FS.writeFile('/input.wav', input);
   const call = permission => engine.ccall('djayvo_web_render', 'string', ['number', 'number', 'number'], [4123, club, permission]);
   assert.match(call(0), /permission/);
+  assert.match(engine.ccall('djayvo_web_render', 'string', ['number','number','number'], [4123,3,2]), /permission/);
   assert.equal(engine.FS.readdir('/').filter(name => name.startsWith('mix.')).length, 0);
   const started = performance.now();
   assert.equal(call(2), '');
   const files = engine.FS.readdir('/').filter(name => name.startsWith('mix.'));
   assert.equal(files.length, club ? 4 : 12);
   for (const name of files) await fs.writeFile(path.join(output, name), engine.FS.readFile(`/${name}`));
-  results.push({ style: club ? 'club' : 'three', seconds: (performance.now() - started) / 1000, memory_bytes: engine.HEAPU8?.length ?? null });
+  results.push({ style: ['three', 'club', 'funk'][club], seconds: (performance.now() - started) / 1000, memory_bytes: engine.HEAPU8?.length ?? null });
 }
 const broken = await createEngine();
 broken.FS.writeFile('/input.wav', new Uint8Array([1, 2, 3]));
@@ -38,4 +38,4 @@ const plan=JSON.parse(engine.FS.readFile('/mix.club.score.json',{encoding:'utf8'
 assert.equal(plan.source.processed_frames,144000);console.log('PASS: 44.1 kHz input retains three seconds in 32-bit WebAssembly');
 
 await fs.writeFile(path.join(output, 'timings.json'), JSON.stringify(results, null, 2) + '\n');
-console.log('PASS: WASM consent, corrupt input, three styles and club', results);
+console.log('PASS: WASM consent, corrupt input, three styles, club and funk', output, results);

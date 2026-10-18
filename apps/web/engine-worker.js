@@ -4,15 +4,15 @@ self.onmessage = async ({ data }) => {
   try {
     if (data.consent !== true || !(data.wav instanceof ArrayBuffer) || data.wav.byteLength > 1000000
       || !Number.isInteger(data.seed) || data.seed < 0 || data.seed > 0xffffffff
-      || !['three', 'club'].includes(data.style)) throw new Error('Invalid recording or permission.');
+      || !['three', 'club', 'funk'].includes(data.style)) throw new Error('Invalid recording or permission.');
     const engine = await createEngine();
     engine.FS.writeFile('/input.wav', new Uint8Array(data.wav));
     self.postMessage({ type: 'rendering' });
     const error = engine.ccall('djayvo_web_render', 'string', ['number', 'number', 'number'],
-      [data.seed, data.style === 'club' ? 1 : 0, 1]);
+      [data.seed, data.style === 'funk' ? 2 : data.style === 'club' ? 1 : 0, 1]);
     if (error) throw new Error(error);
     const files = [];
-    for (const style of data.style === 'club' ? ['club'] : ['hiphop', 'reggae', 'experimental']) {
+    for (const style of data.style === 'three' ? ['hiphop', 'reggae', 'experimental'] : [data.style]) {
       for (const ext of ['wav', 'score.json', 'report.json', 'events.tsv']) {
         const name = `${style}.${ext}`;
         const bytes = engine.FS.readFile(`/mix.${name}`);

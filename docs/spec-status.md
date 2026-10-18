@@ -13,7 +13,7 @@ paused. [TODO](../TODO.md) tracks individual past/future work and evidence links
 | §3 portable engine and clock | PASS | C++17, deterministic integer-frame scheduling, bounded polyphony, offline WAV/stems, source provenance and cancellation |
 | §3.1 full instrument/effect breadth | PARTIAL | Sampled piano/bass/drums, electronic palette, bounded independent voice pitch/time and finite tempo echoes; guitar strum/muting, organ, dedicated pad/lead roles, feedback delay/reverb remain unimplemented; tempo maps and track mix automation now implemented; transformed-voice listening remains open |
 | §3.2 input analysis | PARTIAL | Bounded decoding/resampling, energy/onset/pitch heuristics and pause-aware crops; reliable word timing, semantic selection and optional classifier/transcriber modules remain unimplemented |
-| §3.3–3.4 plans and creative direction | PARTIAL | Rule grammars with seed-selected hip-hop harmony/rhythm/swing and developed returns, typed native plans, JSON export and now strict offline import with explicit fallback; learned direction/ranking, provider retry policy and quality comparisons remain NOT RUN |
+| §3.3–3.4 plans and creative direction | PARTIAL | Rule grammars with seed-selected hip-hop and syncopated funk, developed returns and input-timed responses, typed native plans, JSON export and now strict offline import with explicit fallback; standalone hybrid/call-response, learned direction/ranking, provider retry policy and quality comparisons remain NOT RUN |
 | §4 musical quality and creativity | PARTIAL | Informal owner improvement feedback and matched controls; diverse blinded comparison, perceptual novelty and target thresholds remain NOT RUN |
 | §5 bundled rights | PASS | Pinned cleared acoustic bank, original electronic bank, asset hashes and notices; no reference-track training or bundled model weights. Future model/catalogue release rights require their own review |
 | §6 model strategy | PARTIAL | Separate bounded RTX 3090 feasibility trial executed and rental removed; M5 constrained-director benchmark, source identity evaluation and formal model-versus-rule listening remain NOT RUN |
@@ -42,7 +42,10 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
-Latest local engine work: [tempo maps and mix automation](timeline.md).
+Latest local engine work: [Funk composition and web integration](funk.md).
+Native/CLI/C ABI/export contracts, five WASM styles, full local browser flow and
+50 exact M5/Linux WAVs pass. Four owner comparisons are ready; listening NOT RUN.
+Previous local engine work: [tempo maps and mix automation](timeline.md).
 Native/import/schema/echo/stem contracts and 40 exact M5/Linux WAVs pass.
 The optional plans are ready for listening; automatic selection remains open.
 Previous local engine work: [hip-hop composition variety and evidence](hiphop-diversity.md).

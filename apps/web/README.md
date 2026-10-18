@@ -12,7 +12,7 @@ python3 scripts/web_serve.py
 ```
 
 Open **http://localhost:4173**. Confirm permission, record about 2–5 seconds or
-import 2–15 seconds (up to 8 MB), trim, choose Three takes or Club, then Make music.
+import 2–15 seconds (up to 8 MB), trim, choose Three takes, Club or Funk, then Make music.
 Play and download the mixes below. Make music again uses a new seed. Capture stops
 automatically after about 4.8 seconds. Leaving the tab stops/discards active capture
 and cancels active generation; it never starts recording on its own.
@@ -53,6 +53,10 @@ the native export layer's hard links. The planner, instruments and DSP are share
 The core's only accompanying change is an explicit bounded stream-size conversion
 for the 32-bit WebAssembly compiler, with unchanged audio behavior.
 
+Latest addition: [Funk implementation, cross-platform comparisons and browser QA](../../docs/funk.md).
+Funk is a separate single-mix option; previous saved sessions remain valid.
+The site studio preparation command copies the same audited engine into Next.
+
 ## Checks
 
 ```sh
@@ -68,14 +72,17 @@ DJAYVO_BROWSER=webkit node apps/web/tests/browser-render.mjs
 ```
 
 Tests import the supplied `renders/fixtures/synthetic-speech.wav`; they do not
-regenerate it or bundle it into the application. Browser tests use disposable
+regenerate it or bundle it into the application. WASM and worker comparison
+runners now print a fresh output directory so historical renders are preserved. Browser tests use disposable
 contexts, never the owner's browser library. Chromium's microphone test uses
 the supplied fixture as a fake device. Muted playback is transport evidence,
 not hearing, musical quality or physical microphone evidence.
 
 `browser-render.mjs` exports actual browser worker results for the existing
 `scripts/compare_portability.py` comparator. Use seed 4123 for native references;
-three styles use `--style all`, club uses `--style club`. See the complete
+three styles use `--style all`, club uses `--style club`, funk uses `--style funk`. The additional funk
+worker and UI checks are in `docs/evidence/funk/wasm-check.mjs` and
+`docs/evidence/funk/browser-check.mjs`; they use fresh evidence directories. See the complete
 [web evidence report](../../docs/web-instant-remix.md) for exact comparisons,
 failure history and gates.
 

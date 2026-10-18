@@ -1,0 +1,17 @@
+{
+  "system": "Darwin",
+  "machine": "arm64",
+  "cpu_brand": "Apple M5",
+  "memory_bytes": 17179869184,
+  "cpu_cores": 10,
+  "macos": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "sdk": "27.0",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+  "cmake": "cmake version 4.4.2\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+  "node": "v22.23.1",
+  "analysis": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]\n{'numpy': '2.5.4', 'jsonschema': '4.19.2'}",
+  "build_python": "Python 3.14.6",
+  "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "linux": "Linux e8f410f9a8c6 6.8.0-117-generic #117-Ubuntu SMP PREEMPT_DYNAMIC Thu May  7 17:26:37 UTC 2026 aarch64 GNU/Linux\nc++ (Debian 12.2.0-14+deb12u1) 12.2.0\nCopyright (C) 2022 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\ncmake version 3.25.1\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\nPython 3.11.2"
+}

@@ -60,7 +60,7 @@ export async function saveSession(session) {
 export async function verifySession(session) {
   if (!session || typeof session.id !== 'string' || !Number.isFinite(session.created)
     || !Array.isArray(session.files) || ![4, 12].includes(session.files.length)) return false;
-  const styles = session.style === 'club' ? ['club'] : session.style === 'three' ? ['hiphop', 'reggae', 'experimental'] : [];
+  const styles = ['club', 'funk'].includes(session.style) ? [session.style] : session.style === 'three' ? ['hiphop', 'reggae', 'experimental'] : [];
   const expected = styles.flatMap(style => ['wav', 'score.json', 'report.json', 'events.tsv'].map(ext => `${style}.${ext}`));
   if (expected.length !== session.files.length) return false;
   for (const name of expected) {

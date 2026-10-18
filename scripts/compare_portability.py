@@ -67,7 +67,7 @@ def main():
     parser.add_argument("--candidate", type=Path, required=True)
     parser.add_argument("--candidate-metadata", type=Path)
     parser.add_argument("--report", type=Path, required=True)
-    parser.add_argument("--styles", nargs="+", choices=("hiphop","reggae","experimental","baseline","club"),
+    parser.add_argument("--styles", nargs="+", choices=("hiphop","reggae","experimental","baseline","club","funk"),
                         default=("hiphop","reggae","experimental"))
     args = parser.parse_args()
     metadata = json.loads(args.candidate_metadata.read_text()) if args.candidate_metadata else {}

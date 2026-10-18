@@ -1,0 +1,5 @@
+PASS: chromium /Users/serhansari/Documents/projects/djayvo/renders/web-chromium-engine-C6DXBZ [
+  { style: 'three', seconds: 1.6029000000059606, artifacts: 12 },
+  { style: 'club', seconds: 1.0552999999970198, artifacts: 4 },
+  { style: 'funk', seconds: 0.923, artifacts: 4 }
+]

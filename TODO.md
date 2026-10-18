@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [tempo maps and track mix automation](docs/timeline.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [Funk composition and web integration](docs/funk.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -63,7 +63,7 @@ now exists; cloud resources remain unconfigured.
 
 - [x] **W08 — PASS:** Document hosting/auth/database/object-storage boundaries, private save/public submission separation, logical model and upload/deletion lifecycle.
 - [ ] **W09 — PARTIAL:** Next.js shell, Better Auth email/password, Resend adapter, generated auth schema, private metadata queries, migration safeguards and local Postgres/browser tests implemented. Live Neon/Resend, preview/production isolation, expired-auth cleanup, database compute/transfer budgets and overload limits remain. [Evidence](docs/web-accounts.md).
-- [ ] **W10 — NOT RUN:** Implement explicit private cloud save, bounded direct uploads, immutable validated assets, quotas and retryable deletion in R2.
+- [ ] **W10 — NOT RUN:** Implement explicit private cloud save, bounded direct uploads, immutable validated assets, quotas and retryable deletion in R2. Extend the remote metadata strategy constraint for Funk before cloud saving is enabled.
 - [ ] **W11 — NOT RUN:** Build reviewed public catalogue, filters/search, track pages, persistent player and private playlists; verify publication consent and no private-data leaks.
 
 The owner changed priority to “first lets make it web version of this” on
@@ -71,12 +71,12 @@ The owner changed priority to “first lets make it web version of this” on
 unresolved device gates are preserved; this change does not mark them passed.
 The current web deliverable and evidence are in [web Instant Remix](docs/web-instant-remix.md).
 
-- [x] **W01 — PASS:** Compile the shared engine to WebAssembly in an isolated SDK; preserve the master, fixture and owner source. Four browser styles match native Mac plans/events/WAVs exactly in Chromium and WebKit.
-- [x] **W02 — PASS:** Consent, browser recording/import, waveform/2–5 s trim, three takes/club, regeneration, cancellation, playback, WAV downloads and responsive desktop/mobile layout implemented and automated flows checked.
+- [x] **W01 — PASS:** Compile the shared engine to WebAssembly in an isolated SDK; preserve the master, fixture and owner source. Five browser styles match native Mac plans/events/WAVs exactly in Chromium and WebKit.
+- [x] **W02 — PASS:** Consent, browser recording/import, waveform/2–5 s trim, three takes/club/funk, regeneration, cancellation, playback, WAV downloads and responsive desktop/mobile layout implemented and automated flows checked.
 - [x] **W03 — PASS:** Atomic local library, integrity verification, explicit scoped/all deletion, quota handling and ten-session limit. WebKit byte-buffer storage compatibility fixed. Original inputs are not persisted or uploaded.
 - [x] **W04 — PASS:** Reproducible build, isolated local server, public-file/notice audit, native regression checks and committed browser/portability evidence.
 - [ ] **W05 — NOT RUN:** Owner browser microphone and audible playback on the actual preferred browser; headphone/device switching and browser background behavior on real hardware. Fake microphone automation is not this gate.
-- [ ] **W06 — NOT RUN:** Owner listening to web mixes, especially experimental/club, and the already-required diverse blinded M1 cohort. No musical-quality inference from identical WAVs.
+- [ ] **W06 — NOT RUN:** Owner listening to web mixes, especially experimental/club/funk, and the already-required diverse blinded M1 cohort. No musical-quality inference from identical WAVs.
 - [ ] **W07 — NOT RUN:** Firefox, installed Safari and mobile browser hardware coverage; public HTTPS hosting, installable/offline caching and release approval. No deployment is authorized or performed in this web pass.
 
 [Native app and validation](docs/ios-instant-remix.md),
@@ -88,7 +88,12 @@ are not supplied by this instruction. The master remains unchanged.
 
 ## Next: review the current music
 
-Latest [hip-hop before/after pairs](renders/hiphop-diversity-20261018/review/index.html):
+Latest [four Funk seeds](renders/funk-20261018/review/index.html): distinct note
+structures, two preserved clean hooks each, loudness-matched mixes and isolated
+voices. Technical checks PASS; human listening NOT RUN. Available in the web
+studio as Funk. [Evidence](docs/funk.md).
+
+Previous [hip-hop before/after pairs](renders/hiphop-diversity-20261018/review/index.html):
 four seeds at matched loudness. Hip-hop now varies chord cycles, coordinated
 bass/kick/chord rhythms and swing, with recurring phrases and developed returns.
 **Technical variety: PASS; perceived variety and new listening: NOT RUN.**
@@ -205,6 +210,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P32 | PASS | Bounded tempo echo with clean-hook clearance, stereo decay, 1.2 plan import/export, private owner comparisons and actual M5/Linux/WASM checks | [Evidence](docs/vocal-echo.md) |
 | [x] | P33 | PASS | Hip-hop harmonic/rhythmic seed variety, recurring phrases and developed returns; 64-seed structural audit, four owner comparisons, exact M5/Linux/WASM agreement | [Evidence](docs/hiphop-diversity.md) |
 | [x] | P34 | PASS | Shared tempo maps and gain/pan automation; native/import/schema/echo/stem contracts, 40 exact M5/Linux WAVs, four private comparisons | [Evidence](docs/timeline.md) |
+| [x] | P35 | PASS | Funk grammar with seed/input variation; CLI/C ABI/schemas/export and web generate/save/play/download; 50 exact M5/Linux WAVs, five WASM styles and four owner comparisons | [Evidence](docs/funk.md) |
 
 ## Engineering backlog
 
@@ -266,7 +272,10 @@ is needed. Prioritize by recorded listening defects and product requirements.
   four coordinated rhythm choices, three swing amounts and return development.
   Adjacent seeds vary rhythm; 64-seed audit and matched owner comparisons pass
   technical checks. Perceived variety, filtering against recent takes, broader
-  styles and learned contextual direction remain open; finite combinations can repeat. [Evidence](docs/hiphop-diversity.md).
+  styles and learned contextual direction remain open; finite combinations can repeat.
+  Funk now adds syncopated bass/kick patterns, short chords and input-timed responses,
+  with full local web support. Standalone hybrid/call-response strategies remain
+  unimplemented. [Hip-hop evidence](docs/hiphop-diversity.md); [Funk evidence](docs/funk.md).
 
 ## M1: formal musical-quality evaluation
 

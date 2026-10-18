@@ -5,20 +5,19 @@ import { chromium, webkit } from 'playwright';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const kind = process.env.DJAYVO_BROWSER || 'chromium';
-const output = path.join(root, 'renders/web-validation', `${kind}-engine`);
-await fs.mkdir(output, { recursive: true });
+const output = await fs.mkdtemp(path.join(root, `renders/web-${kind}-engine-`));
 const browser = await (kind === 'webkit' ? webkit : chromium).launch();
 try {
   const page = await browser.newPage();
   await page.goto('http://localhost:4173');
   await page.exposeFunction('writeArtifact', async (name, base64) => {
-    if (!/^(hiphop|reggae|experimental|club)\.(wav|score\.json|report\.json|events\.tsv)$/.test(name)) throw new Error('Unexpected artifact');
+    if (!/^(hiphop|reggae|experimental|club|funk)\.(wav|score\.json|report\.json|events\.tsv)$/.test(name)) throw new Error('Unexpected artifact');
     await fs.writeFile(path.join(output, `mix.${name}`), Buffer.from(base64, 'base64'));
   });
   const bytes = Array.from(await fs.readFile(path.join(root, 'renders/fixtures/synthetic-speech.wav')));
   const results = await page.evaluate(async input => {
     const results = [];
-    for (const style of ['three', 'club']) {
+    for (const style of ['three', 'club', 'funk']) {
       const started = performance.now();
       await new Promise((resolve, reject) => {
         const worker = new Worker('./engine-worker.js', { type: 'module' });
@@ -43,5 +42,5 @@ try {
     return results;
   }, bytes);
   await fs.writeFile(path.join(output, 'timings.json'), JSON.stringify({ browser: kind, version: browser.version(), results }, null, 2) + '\n');
-  console.log('PASS:', kind, results);
+  console.log('PASS:', kind, output, results);
 } finally { await browser.close(); }

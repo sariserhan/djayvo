@@ -97,7 +97,7 @@ void preservation() {
     for(std::size_t i=100;i<a.mono.size()-100;++i)
         check(std::abs(vocals[(hook+i)*2]-a.mono[i]*gain)<1e-6,"clean hook was changed beyond gain/edge fades");
     const auto frames=djayvo::compile(p.music).total_frames;
-    for(auto strategy:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club}) {
+    for(auto strategy:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club,djayvo::Strategy::funk}) {
         auto plan=djayvo::make_remix(a,djayvo::analyze(a),strategy,4123,true,false);
         const auto audio=render(plan,a,512);
         check(audio==render(plan,a,113),"remix depends on block size");
@@ -142,7 +142,7 @@ void vocal_spacing() {
         auto analysis=djayvo::analyze(a);
         // These distinct onsets collapse onto one reggae offbeat.
         analysis.onsets={800,1600,2400,3200,4000,4800};
-        for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club}) {
+        for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club,djayvo::Strategy::funk}) {
             auto p=djayvo::make_remix(a,analysis,style,4123,true,false);
             const auto start=[&](const djayvo::VocalEvent& e) {
                 return djayvo::tick_to_frame(e.start,a.sample_rate,p.music.tempo_milli_bpm);
@@ -180,7 +180,7 @@ void vocal_spacing() {
 }
 void varied_openings() {
     const auto a=source();const auto analysis=djayvo::analyze(a);
-    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club}) {
+    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club,djayvo::Strategy::funk}) {
         bool clean_first=false,instrument_first=false,chop_first=false;
         for (std::uint32_t seed=4123;seed<4126;++seed) {
             const auto p=djayvo::make_remix(a,analysis,style,seed,true,false);
@@ -250,6 +250,43 @@ void hiphop_composition() {
         check(render(p,a,113)==render(p,a,257),"hiphop edge seed render depends on block size");
     }
 }
+void funk_composition() {
+    const auto a=source();const auto features=djayvo::analyze(a);
+    using Shape=std::vector<std::tuple<int,djayvo::Tick,djayvo::Tick,int>>;
+    const auto shape=[](const djayvo::RemixPlan& p) {
+        Shape result;
+        for (const auto& track:p.music.tracks) for (const auto& n:track.notes)
+            if (n.start>=7680 && n.start<23040)
+                result.emplace_back(static_cast<int>(track.instrument),n.start,n.duration,n.pitch);
+        return result;
+    };
+    std::set<Shape> shapes;
+    std::set<std::uint32_t> tempos;
+    for (std::uint32_t seed=0;seed<64;++seed) {
+        const auto p=djayvo::make_remix(a,features,djayvo::Strategy::funk,seed,true,false);
+        check(p.music.bars==14 && p.music.sections[2].start_bar==8,"funk lost its break/return form");
+        shapes.insert(shape(p));tempos.insert(p.music.tempo_milli_bpm);
+        const auto& bass=p.music.tracks[1].notes;const auto& drums=p.music.tracks[2].notes;
+        int offbeat_bass=0,ghosts=0,short_chords=0;
+        for (const auto& n:bass) if (n.start>=7680 && n.start<30720 && n.start%480!=0) ++offbeat_bass;
+        for (const auto& n:drums) if (n.start>=7680 && n.start<30720) {
+            if (n.pitch==38 && n.velocity<50) ++ghosts;
+            if (n.pitch==36) check(std::any_of(bass.begin(),bass.end(),[&](const auto& b){return b.start==n.start;}),
+                                  "funk kick no longer locks to the bass");
+        }
+        for (const auto& n:p.music.tracks[0].notes) if (n.start>=7680 && n.start<30720 && n.duration<=240) ++short_chords;
+        check(offbeat_bass>=12 && ghosts>=6 && short_chords>=36,"funk lost syncopation, ghost notes or stabs");
+        check(shape(p)==shape(djayvo::make_remix(a,features,djayvo::Strategy::funk,seed,true,false)),"funk is not seed repeatable");
+        for (auto other:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club})
+            check(shape(p)!=shape(djayvo::make_remix(a,features,other,seed,true,false)),"funk copies another strategy");
+    }
+    check(shapes.size()>=12 && tempos.size()==3,"funk seeds only change velocity or sample takes");
+    auto changed=features;changed.onsets={1200,3000,5700};
+    check(shape(djayvo::make_remix(a,features,djayvo::Strategy::funk,4123,true,false))!=
+          shape(djayvo::make_remix(a,changed,djayvo::Strategy::funk,4123,true,false)),"funk melody ignores input rhythm");
+    const auto p=djayvo::make_remix(a,features,djayvo::Strategy::funk,4294967295U,true,false);
+    check(!render(p,a).empty(),"maximum seed failed");
+}
 void pause_aware_chops() {
     for (const unsigned rate:{8000U,44100U,48000U,192000U}) {
         auto a=source();a.sample_rate=a.original_rate=rate;
@@ -281,7 +318,7 @@ void pause_aware_chops() {
 }
 void no_allocations() {
     const auto a=source();
-    for (auto style:{djayvo::Strategy::experimental,djayvo::Strategy::club}) {
+    for (auto style:{djayvo::Strategy::experimental,djayvo::Strategy::club,djayvo::Strategy::funk}) {
         const auto p=djayvo::make_remix(a,djayvo::analyze(a),style,4123,true,false);
         djayvo::RemixRenderer r(p,a,512);float buffer[1024]{};
         const auto before=allocations.load();
@@ -348,7 +385,7 @@ void club_phrasing() {
 }
 void stem_identity() {
     const auto a=source();
-    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club}) {
+    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club,djayvo::Strategy::funk}) {
         auto p=djayvo::make_remix(a,djayvo::analyze(a),style,4123,true,false);
         // Stay below the nonlinear master stages so the stems must sum to the mix.
         for (auto& track:p.music.tracks) track.gain_db-=18;
@@ -434,7 +471,7 @@ void export_transactions() {
 }
 void arrangement_contrast() {
     const auto a=source();const auto analysis=djayvo::analyze(a);
-    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental})
+    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::funk})
         for (std::uint32_t seed:{0U,4123U,4124U,4125U,4294967295U}) {
             const auto p=djayvo::make_remix(a,analysis,style,seed,true,false);
             const auto bar=djayvo::ticks_per_bar(p.music);
@@ -621,6 +658,7 @@ int main() {
         {"quantized chop spacing and both clean hooks at 2/3/5 seconds",vocal_spacing},
         {"seeded clean, instrumental and fragment openings",varied_openings},
         {"hiphop harmonic/rhythmic seed diversity, recurring motifs and developed returns",hiphop_composition},
+        {"funk syncopation, bass/kick lock, ghost notes, seed variety and input response",funk_composition},
         {"pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates",pause_aware_chops},
         {"subtraction and return across styles and seeds",arrangement_contrast},
         {"instrument room timing, stereo, dry speech and finite tail",room_processing},

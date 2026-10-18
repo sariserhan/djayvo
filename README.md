@@ -5,7 +5,7 @@
 Djayvo turns short recordings into source-driven musical performances. The
 portable C++17 prototype loads a 2–5 s WAV, finds energetic phrases and onsets,
 preserves a clean hook, and renders three original 20–40 s arrangements:
-hip-hop, reggae, and experimental, plus an explicit electronic club strategy. Each has independent piano, bass, drums, and
+hip-hop, reggae, and experimental, plus explicit electronic club and syncopated funk strategies. Each has independent piano, bass, drums, and
 sampled source events, plus score JSON, frame trace, measurements, and optional
 stems. No model, GPU, paid service, or third-party DSP library is required.
 
@@ -13,7 +13,8 @@ Track past work, open issues and future milestones in [TODO.md](TODO.md).
 The [complete specification ledger](docs/spec-status.md) records remaining code
 and evidence gates; overall completion is **PARTIAL**.
 
-Latest local engine work: [tempo maps, mix automation and private comparisons](docs/timeline.md).
+Latest local engine work: [Funk composition, web integration and owner comparisons](docs/funk.md).
+Previous engine work: [tempo maps and mix automation](docs/timeline.md).
 Previous arrangement work: [hip-hop composition variety](docs/hiphop-diversity.md).
 Previous effects work: [selective tempo echo and private comparisons](docs/vocal-echo.md),
 building on [independent voice pitch/timing](docs/voice-transforms.md),
@@ -27,7 +28,7 @@ Local account/browser checks pass; live cloud services remain unconfigured.
 Run it at http://localhost:3000 using the linked setup instructions.
 
 **Selected product platform: [Djayvo web](apps/web/README.md).** Record/import, trim,
-generate three takes or club, play, save locally and download WAVs in the browser.
+generate three takes, club or funk, play, save locally and download WAVs in the browser.
 The shared engine runs as WebAssembly without uploading audio. Start the existing
 build with `python3 scripts/web_serve.py`, then open http://localhost:4173.
 [Web checks and limits](docs/web-instant-remix.md). Phone work is paused at the
@@ -45,7 +46,8 @@ bass/drum tone and balance, transitions and longer pause-ended vocal crops.
 Corrected stems preserve the same instrument takes as the master. Nine M5/Linux
 suites pass, including a new stem reconstruction regression; current cross-OS
 WAVs match exactly. Listening is **NOT RUN**, production quality **PARTIAL**.
-Use `--style club` (C ABI strategy 5); `all` keeps the original three styles.
+Use `--style club` (C ABI strategy 5) or `--style funk` (strategy 6);
+`all` keeps the original three styles.
 
 **M0 overall: PARTIAL.** Earlier acoustic development: the owner has
 auditioned a consented source and requested less game-like instruments and more

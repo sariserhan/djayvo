@@ -4,11 +4,11 @@
 // A fresh worker owns its entire in-memory filesystem. Nothing is published to
 // the UI until every style succeeds; terminating that worker cancels the set.
 // MEMFS has no hard links, so the native remix_file publication layer cannot run.
-extern "C" const char* djayvo_web_render(unsigned seed, unsigned club, unsigned permission) {
+extern "C" const char* djayvo_web_render(unsigned seed, unsigned direction, unsigned permission) {
     static std::string error;
     error.clear();
     try {
-        if (club > 1 || (permission != 1 && permission != 2))
+        if (direction > 2 || (permission != 1 && permission != 2))
             throw std::invalid_argument("Confirm permission before making music.");
         const auto original = djayvo::read_wav("/input.wav");
         if (original.original_frames < original.original_rate * 2ULL ||
@@ -16,7 +16,8 @@ extern "C" const char* djayvo_web_render(unsigned seed, unsigned club, unsigned 
             throw std::invalid_argument("Choose a 2–5 second recording.");
         const auto source = djayvo::resample(original, 48000);
         const auto analysis = djayvo::analyze(source);
-        const auto styles = club ? std::vector<djayvo::Strategy>{djayvo::Strategy::club}
+        const auto styles = direction == 2 ? std::vector<djayvo::Strategy>{djayvo::Strategy::funk}
+            : direction == 1 ? std::vector<djayvo::Strategy>{djayvo::Strategy::club}
             : std::vector<djayvo::Strategy>{djayvo::Strategy::hiphop,
                 djayvo::Strategy::reggae, djayvo::Strategy::experimental};
         for (auto style : styles) {

@@ -1,0 +1,7 @@
+{"input_rate":44100,"input_frames":132300,"result":""}
+PASS: 44.1 kHz input retains three seconds in 32-bit WebAssembly
+PASS: WASM consent, corrupt input, three styles, club and funk /Users/serhansari/Documents/projects/djayvo/renders/web-wasm-55TTyU [
+  { style: 'three', seconds: 1.5438624589999999, memory_bytes: null },
+  { style: 'club', seconds: 0.5972088749999999, memory_bytes: null },
+  { style: 'funk', seconds: 0.5934909170000001, memory_bytes: null }
+]

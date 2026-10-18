@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
         char path[4096];
         if(snprintf(path,sizeof(path),"%s%s",argv[2],suffixes[i])>=(int)sizeof(path) || remove(path)) return 12;
     }
-    options.strategy=6;
+    options.strategy=7;
     if(djayvo_render_file(&options,error,sizeof(error))!=1) return 13;
     options.strategy=5;
     if(djayvo_render_file(&options,error,sizeof(error))!=0) {fprintf(stderr,"FAIL: %s\n",error);return 14;}
@@ -48,6 +48,13 @@ int main(int argc, char** argv) {
     for(unsigned i=0;i<5;++i) {
         char path[4096];
         if(snprintf(path,sizeof(path),"%s%s",argv[2],club[i])>=(int)sizeof(path) || remove(path)) return 15;
+    }
+    options.strategy=6;
+    if(djayvo_render_file(&options,error,sizeof(error))!=0) {fprintf(stderr,"FAIL: %s\n",error);return 16;}
+    const char* funk[]={".funk.wav",".funk.score.json",".funk.report.json",".funk.events.tsv",".complete.json"};
+    for(unsigned i=0;i<5;++i) {
+        char path[4096];
+        if(snprintf(path,sizeof(path),"%s%s",argv[2],funk[i])>=(int)sizeof(path) || remove(path)) return 17;
     }
     puts("PASS: stable C ABI, bounded errors, cancellation, exclusive complete export and actual offline remix");
     return 0;

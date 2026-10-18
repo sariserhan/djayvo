@@ -14,7 +14,7 @@ void remix_file(const std::string& input,const std::string& output,const std::ve
     const auto destination=fs::path(output);
     if (input.empty() || output.empty() || destination.filename().empty() ||
         destination.filename()=="." || destination.filename()==".." || synthetic==consent || !block || block>65536 ||
-        strategies.empty() || strategies.size()>5)
+        strategies.empty() || strategies.size()>6)
         throw std::invalid_argument("supply bounded options and exactly one source permission kind");
     if (imported && (strategies.size()!=1 ||
         (!imported->candidate_sha256.empty() && (imported->candidate_sha256.size()!=64 ||
