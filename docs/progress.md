@@ -10,7 +10,16 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest local web implementation, 2026-10-18: [Private account audio](private-account-audio.md).
+Latest local web implementation, 2026-10-18: [Reviewed catalogue and playlists](reviewed-catalogue.md).
+Separate publication consent, revision-bound independent review, search/filtering,
+track pages, persistent player, private playlists and report/withdrawal controls
+are implemented locally. **PASS:** 28 unit/integration checks, 16 catalogue browser
+checks plus 20 account regression flows, build/types/bundle checks. Public WAVs
+match uploaded bytes exactly. **NOT RUN:** actual permission/quality reviews,
+live provider/publication and moderation operations. W11/full spec **PARTIAL**.
+Synthetic test approvals were removed; no owner recording was published.
+
+Previous local web implementation, 2026-10-18: [Private account audio](private-account-audio.md).
 Explicit private saves, validated metadata-free WAVs, quotas, playback/download,
 removal and retryable cleanup now exist. **PASS:** 20 unit/integration checks,
 Node 22 build, Chromium/WebKit ten flows each, byte-identical stored/downloaded

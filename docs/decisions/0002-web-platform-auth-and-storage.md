@@ -234,7 +234,8 @@ caches; auth sign-out/recovery; playback/seek and download in supported browsers
 | Owner choice: Vercel, Better Auth, Neon Free, R2, Next.js, private generation + reviewed catalogue | PASS |
 | Deployment configuration, capacity measurements and budget controls | NOT RUN |
 | Auth/database implementation and integration tests | PARTIAL — local account/Postgres/browser checks pass; live Neon/Resend not run |
-| R2 implementation and integration tests | NOT RUN |
+| R2 implementation and integration tests | PARTIAL — adapter/local storage tests pass; live R2 not run |
+| Reviewed catalogue, player and private playlists | PARTIAL — [local implementation and tests](../reviewed-catalogue.md) pass; hosted publication/moderation not run |
 | Provisioning, paid services, migration and deployment | NOT RUN |
 | Musical quality / production acceptance | PARTIAL — prior gates unchanged |
 

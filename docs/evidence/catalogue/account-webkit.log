@@ -1,0 +1,11 @@
+Evidence: /Users/serhansari/Documents/projects/djayvo/renders/site-validation-O5shZc
+PASS: anonymous consent/import/club generation/playback stay local through Next hosting
+PASS: anonymous and forged-cookie API access denied without caching
+PASS: real browser registration, verification and password sign-in
+PASS: server-rendered library and API exclude another owner; spoofed owner/cursor rejected
+PASS: explicit voice-storage consent, private save, checksum-identical playback/download and byte-range seek
+PASS: responsive private library, cancellation of removal, immediate access revocation and queued cleanup
+PASS: oversized auth body and cross-origin state change denied
+PASS: browser password reset revokes session; new password and sign-out work
+PASS: mobile layout fits; local mix survives account navigation and sign-out
+PASS: no browser runtime exceptions

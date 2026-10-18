@@ -8,7 +8,7 @@ const key=(id:string, master=false) => `${master?'masters':'uploads'}/${id}.wav`
 
 export class PrivateAudio {
   constructor(private pool:Pool, public store:AudioStore) {}
-  private async locked<T>(owner:string, action:(db:PoolClient)=>Promise<T>, reservation=false) {
+  async locked<T>(owner:string, action:(db:PoolClient)=>Promise<T>, reservation=false) {
     const db=await this.pool.connect();
     try {
       await db.query('BEGIN');

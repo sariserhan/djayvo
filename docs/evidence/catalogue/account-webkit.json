@@ -1,0 +1,58 @@
+{
+  "browser": "webkit",
+  "browser_version": "26.5",
+  "node": "v22.23.1",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "anonymous consent/import/club generation/playback stay local through Next hosting",
+      "status": "PASS"
+    },
+    {
+      "name": "anonymous and forged-cookie API access denied without caching",
+      "status": "PASS"
+    },
+    {
+      "name": "real browser registration, verification and password sign-in",
+      "status": "PASS"
+    },
+    {
+      "name": "server-rendered library and API exclude another owner; spoofed owner/cursor rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit voice-storage consent, private save, checksum-identical playback/download and byte-range seek",
+      "status": "PASS"
+    },
+    {
+      "name": "responsive private library, cancellation of removal, immediate access revocation and queued cleanup",
+      "status": "PASS"
+    },
+    {
+      "name": "oversized auth body and cross-origin state change denied",
+      "status": "PASS"
+    },
+    {
+      "name": "browser password reset revokes session; new password and sign-out work",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile layout fits; local mix survives account navigation and sign-out",
+      "status": "PASS"
+    },
+    {
+      "name": "no browser runtime exceptions",
+      "status": "PASS"
+    }
+  ],
+  "live_neon": "NOT RUN",
+  "live_resend": "NOT RUN",
+  "live_r2": "NOT RUN",
+  "physical_microphone": "NOT RUN",
+  "human_listening": "NOT RUN",
+  "errors": [],
+  "consoleErrors": [],
+  "captureWarnings": [
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+  ]
+}

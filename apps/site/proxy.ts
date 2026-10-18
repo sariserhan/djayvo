@@ -15,4 +15,4 @@ export function proxy(request: NextRequest) {
   response.headers.set('Cache-Control', 'private, no-store');
   return response;
 }
-export const config = { matcher: ['/account/:path*', '/library/:path*'] };
+export const config = { matcher: ['/account/:path*', '/library/:path*','/catalogue/:path*','/playlists/:path*','/review/:path*'] };

@@ -16,8 +16,9 @@
     "typecheck": "tsc --noEmit",
     "audit:bundle": "node scripts/audit-bundle.mjs",
     "test": "tsx --test tests/config.test.ts tests/audio.test.ts",
-    "test:integration": "tsx --test tests/database.test.ts tests/private-audio.test.ts",
+    "test:integration": "tsx --test tests/database.test.ts tests/private-audio.test.ts tests/catalogue.test.ts",
     "test:browser": "node tests/browser.mjs",
+    "test:catalogue-browser": "node --import tsx tests/catalogue-browser.mjs",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:usage": "tsx scripts/usage.ts",
     "audio:cleanup": "tsx scripts/cleanup-audio.ts"

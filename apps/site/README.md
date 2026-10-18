@@ -8,7 +8,7 @@ The studio at `/studio/index.html` keeps the existing WebAssembly engine and
 IndexedDB library. Only its built navigation link changes to **Account**. Sign-in
 never imports, uploads or publishes local music. Private account saving, playback
 and removal have a local implementation and an opt-in R2 adapter. The reviewed
-public catalogue remains separate work.
+public catalogue and private playlists are also implemented locally.
 
 ## Run locally
 
@@ -74,6 +74,38 @@ Without the exact target and `--apply`, it only prints the target. Cleanup proce
 up to 50 due records, retaining failures for retry. It waits until the five-minute
 upload grant plus a one-minute margin has elapsed. Scheduling, live lifecycle
 verification and production deletion recovery remain release prerequisites.
+
+### Reviewed catalogue and private playlists
+
+Migration `0004_catalogue.sql` adds separate submissions, revision-bound reviews,
+reports and private playlists. The catalogue is available locally; hosted use
+requires explicit `DJAYVO_CATALOGUE_ENABLED=true` after provider and rights checks.
+Set server-only `DJAYVO_REVIEWER_EMAILS` to verified reviewer emails only when
+assigning that role. It is empty by default. Reviewers cannot approve their own
+mixes. No real reviewer is assigned in this checkout.
+
+Save a finished mix privately first. Open its **Submit this mix for catalogue
+review** form, choose public credit/description/mood and separately confirm public
+listening permission. A reviewer uses `/review`, listens, checks permission and
+records a decision/note. `/catalogue` shows only approved, available mixes.
+Owners can withdraw without losing the private original. Editing a submission
+requires a new review. Signed-in listeners can report concerns and keep private
+playlists (20 lists, 100 tracks each). Reports enter the local review queue; no
+notification or moderation response-time guarantee is configured.
+
+The player survives client navigation between site pages, including filters and
+playlists. Entering the standalone studio or reloading the page resets it. Public
+listening exposes the complete finished WAV; listeners can save it. It grants no
+commercial reuse or model-training permission. Previously downloaded copies and
+issued short-lived links cannot be recalled.
+
+Local browser validation uses synthetic reviewer accounts only. On an isolated
+local test server, temporarily set `DJAYVO_REVIEWER_EMAILS` to
+`catalogue-review-chromium@example.com,catalogue-review-webkit@example.com`, then
+run `npm run test:catalogue-browser` and
+`DJAYVO_BROWSER=webkit npm run test:catalogue-browser` sequentially. Remove that
+temporary allowlist and restart afterward. Never use those accounts in a shared
+or hosted environment. Evidence: [reviewed catalogue](../../docs/reviewed-catalogue.md).
 
 ### R2: disabled until live validation
 
@@ -167,6 +199,7 @@ denial, parameterized queries, stable cursor pagination, cross-origin rejection,
 16 KB auth bodies, password reset replay, concurrent database-backed rate limits,
 and migration retry/rollback. Private responses use `no-store`; account pages use
 nonce-based script CSP. TLS certificate checks remain enabled for Neon.
-There is no reviewer role, publishing endpoint or public catalogue yet.
+Public submissions require separate consent and approval by a distinct, verified
+reviewer. Hosted publication remains disabled until its release checks pass.
 
 Evidence and exact limits: [web accounts report](../../docs/web-accounts.md).

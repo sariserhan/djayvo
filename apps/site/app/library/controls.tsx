@@ -52,7 +52,7 @@ export function TrackControls({id,title}:{id:string;title:string}) {
   const router=useRouter(), [confirm,setConfirm]=useState(false), [busy,setBusy]=useState(false), [error,setError]=useState('');
   return <div className="track-actions"><audio controls preload="none" aria-label={`Play ${title}`} src={`/api/library/${id}/audio`}/>
     <a href={`/api/library/${id}/audio?download=1`} download="djayvo-mix.wav">Download WAV</a>
-    {!confirm ? <button className="secondary" onClick={()=>setConfirm(true)}>Remove from account</button> : <div><p>Remove this saved mix? Your local copy stays on your device.</p>
+    {!confirm ? <button className="secondary" onClick={()=>setConfirm(true)}>Remove from account</button> : <div><p>Remove this saved mix and any catalogue listing? Your local copy stays on your device.</p>
       <button className="danger" disabled={busy} onClick={async()=>{setBusy(true);setError('');try {await result(await fetch(`/api/library/${id}/audio`,{method:'DELETE'}));router.refresh();}catch(e){setError(e instanceof Error?e.message:'Removal failed. Try again.');}finally{setBusy(false);}}}>Confirm removal</button>
       <button className="secondary" disabled={busy} onClick={()=>setConfirm(false)}>Keep mix</button></div>}
     <p role="alert">{error}</p></div>;

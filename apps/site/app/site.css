@@ -19,6 +19,36 @@
 .save-mix .save-consent input { width: 20px; flex-shrink: 0; margin-top: 4px; }
 .track-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 12px; }
 .track-actions audio { width: min(100%, 400px); }
+.header-inner nav { flex-wrap: wrap; justify-content: flex-end; }
+.account-main { padding-bottom: 180px; overflow-wrap: anywhere; }
+.catalogue-filters { display: flex; flex-wrap: wrap; align-items: end; gap: 16px; margin: 32px 0; }
+.catalogue-filters label { display: grid; gap: 8px; }
+.catalogue-filters input, .catalogue-filters select, .account-form select, .account-form textarea { padding: 12px; background: #191c19; color: inherit; border: 1px solid var(--line); border-radius: 7px; max-width: 100%; font: inherit; }
+.account-form textarea { min-height: 100px; resize: vertical; }
+.catalogue-list { list-style: none; padding: 0; }
+.catalogue-list li { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.catalogue-list li > div { flex: 1; min-width: 180px; }
+.catalogue-list h2 { font-size: 24px; margin: 0; }
+.track-detail, .submission .account-form, .library-list .account-form { max-width: 640px; }
+.submission { margin-top: 24px; }
+.submission summary, details summary { cursor: pointer; }
+.account-form .save-consent { display: flex; align-items: flex-start; gap: 12px; }
+.account-form .save-consent input { width: 20px; flex-shrink: 0; margin-top: 4px; }
+.music-player { position: fixed; bottom: 0; left: 0; right: 0; z-index: 10; display: grid; grid-template-columns: minmax(0,1fr) minmax(240px,420px) auto; align-items: center; gap: 16px; padding: 16px 24px; background: #1b241b; border-top: 1px solid var(--line); }
+.music-player[hidden] { display: none; }
+.music-player > div { display: grid; gap: 4px; min-width: 0; }
+.music-player strong, .music-player span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.music-player p { grid-column: 1 / -1; margin: 0; }
+.music-player p:empty { display: none; }
+.music-player audio { max-width: 100%; }
+@media (max-width: 760px) {
+  .header-inner nav { max-width: 70%; gap: 8px 14px; }
+  .catalogue-filters label { width: 100%; }
+  .music-player { grid-template-columns: minmax(0,1fr) auto; gap: 12px; padding: 12px 20px; }
+  .music-player > div { grid-row: 1; grid-column: 1; }
+  .music-player button { grid-row: 1; grid-column: 2; }
+  .music-player audio { grid-row: 2; grid-column: 1 / -1; }
+}
 @media (max-width: 760px) {
   .account-main { padding-top: 40px; }
   .header-inner nav { gap: 14px; }

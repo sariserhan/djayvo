@@ -19,8 +19,8 @@ remain paused. Remaining local web implementation is authorized.
 | §5 bundled rights | PASS | Pinned cleared acoustic bank, original electronic bank, asset hashes and notices; no reference-track training or bundled model weights. Future model/catalogue release rights require their own review |
 | §6 model strategy | PARTIAL | Separate bounded RTX 3090 feasibility trial executed and rental removed; M5 constrained-director benchmark, source identity evaluation and formal model-versus-rule listening remain NOT RUN |
 | §7 iOS | PARTIAL | Native app, simulator and some actual-phone tests, owner capture/playback confirmation; hardware lifecycle/routes, sustained thermal/battery and production release remain open; paused by owner |
-| §8 privacy/trust | PARTIAL | Local consent, validation, no automatic upload, delete and bundle checks; public-sharing moderation/reporting, deployed retention/deletion and final public policy remain unimplemented/unverified |
-| §9 economics | PARTIAL | Local rendering has no per-play provider cost; bounded trial recorded. Production entitlements, credits/payment ledger, storage TTL/quotas and margin validation remain unimplemented; no monetization authorized |
+| §8 privacy/trust | PARTIAL | Local consent, validation, no automatic upload, delete and bundle checks; local explicit submissions, distinct reviewer approval, reports and withdrawal now implemented; deployed moderation operations, retention/deletion and final public policy remain unverified |
+| §9 economics | PARTIAL | Local rendering has no per-play provider cost; bounded trial recorded. Production entitlements, credits/payment ledger, production TTL/budget enforcement and margin validation remain unimplemented; local storage reservations/quotas and cleanup are implemented; no monetization authorized |
 | §10 evaluation/telemetry | PARTIAL | Machine reports, reproducibility, frozen licensed multi-source cohort and blank blinded packets; recorded quiet coverage, human category verification, independent reviewers, human scores and retention/share outcomes missing |
 | §11 repository/builds | PARTIAL | Monorepo, dependency/asset records, local commands and CI configuration; hosted CI execution and hosted release remain NOT RUN |
 
@@ -43,10 +43,15 @@ speaker consent, release approval or artist-level quality are inferred from
 “continue finish the spec.” The owner has already said no additional cleared clips
 are available; repeated requests do not supply that dataset.
 
-Latest: [Private account audio](private-account-audio.md).
+Latest: [Reviewed catalogue and playlists](reviewed-catalogue.md).
+Local submission/review, public-only queries, persistent playback and private
+playlists pass database and two-browser checks. Test approvals are synthetic and
+removed; real permissions, musical quality, live publication and moderation
+operations remain NOT RUN. No commercial/training rights are inferred.
+Previous: [Private account audio](private-account-audio.md).
 Private saves, storage consent, owner-scoped playback/download, quota reservations
 and retryable deletion are locally implemented and tested. Live provider behavior,
-cleanup scheduling, public catalogue and production budgets remain unverified or
+cleanup scheduling, hosted public catalogue and production budgets remain unverified or
 unfinished. Music quality and release gates remain open.
 Previous: [Research input validation](research-input-validation.md).
 Optional voice/speech utilities reject constant offsets and empty decoded speech.

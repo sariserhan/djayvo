@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { accountsConfigured, services } from '../../lib/services';
+import { accountsConfigured, services, isReviewer } from '../../lib/services';
 import { SignOut } from './form';
 
 export const dynamic = 'force-dynamic';
@@ -10,8 +10,9 @@ export default async function Account() {
   if (!session?.user.emailVerified) redirect('/account/sign-in');
   return <section className="account-panel"><h1>Your account.</h1>
     <p>Signed in as {session.user.email}</p>
-    <p>Your recordings and browser mixes remain on this device. Cloud saving and catalogue submissions are coming next.</p>
+    <p>Your recordings and browser mixes remain on this device. Choose a finished mix in the cloud library to save privately or submit separately for catalogue review.</p>
     <div className="account-links"><a href="/">Make music</a><a href="/library">Cloud library</a></div>
+    {isReviewer(session.user)&&<p><a href="/review">Catalogue review</a></p>}
     <hr /><SignOut />
   </section>;
 }
