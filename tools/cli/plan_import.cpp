@@ -167,7 +167,8 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
     j.keys({"schema_version","seed","source_asset_id","sample_rate","source","tempo_milli_bpm",
             "ticks_per_quarter","time_signature","target_bars","tail_ms","strategy","key","mix",
             "analysis","sections","voice_clips","voice_events","tracks"},{"tempo_changes"});
-    const bool guitar=j.at("schema_version").string()=="1.4-remix";
+    const bool sustained=j.at("schema_version").string()=="1.5-remix";
+    const bool guitar=sustained || j.at("schema_version").string()=="1.4-remix";
     const bool timeline=guitar || j.at("schema_version").string()=="1.3-remix";
     if (!timeline && j.has("tempo_changes")) reject("tempo changes require plan version 1.3");
     const bool echoes=timeline || j.at("schema_version").string()=="1.2-remix";
@@ -239,6 +240,9 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
         else if (name=="bass") track.instrument=Instrument::bass;
         else if (name=="drums") track.instrument=Instrument::drums;
         else if (name=="guitar" && guitar) track.instrument=Instrument::guitar;
+        else if (name=="organ" && sustained) track.instrument=Instrument::organ;
+        else if (name=="pad" && sustained) track.instrument=Instrument::pad;
+        else if (name=="lead" && sustained) track.instrument=Instrument::lead;
         else reject("unsupported instrument/asset");
         track.gain_db=t.at("gain_db").number();track.pan=t.at("pan").number();
         if (t.has("automation")) for (const auto& point:t.at("automation").array(1,128)) {

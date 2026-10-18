@@ -8,6 +8,7 @@
 #include <iostream>
 #include <limits>
 #include <new>
+#include <set>
 #include <stdexcept>
 #include <vector>
 
@@ -236,6 +237,35 @@ void instruments() {
           "silent drum voice");
     check(kick != snare && snare != hat && hat != open, "drum sounds identical");
 }
+void sustained_instruments() {
+    std::set<std::vector<float>> timbres;
+    for (auto instrument:{djayvo::Instrument::organ,djayvo::Instrument::pad,djayvo::Instrument::lead}) {
+        auto p=single(instrument,69,96);p.bars=4;p.sections={{"sustain",0,4}};
+        p.tracks[0].notes={{0,9600,69,96}};
+        const auto schedule=djayvo::compile(p);const auto audio=render(schedule,113);
+        check(audio==render(schedule,512),"synth depends on render block size");
+        double sustained=0;
+        for (std::size_t i=4*16000*2;i<5*16000*2;++i) {check(std::isfinite(audio[i]),"nonfinite sustained sample");sustained+=audio[i]*audio[i];}
+        check(sustained>1,"synth stopped before note-off");
+        const auto off=djayvo::tick_to_frame(9600,p);
+        const auto end=off+djayvo::release_frames(instrument,p.sample_rate)+1;
+        for (std::size_t i=static_cast<std::size_t>(end)*2;i<audio.size();++i) check(audio[i]==0,"synth voice stuck after release");
+        check(std::abs(audio[0])<1e-8,"synth attack starts discontinuously");timbres.insert(audio);
+        djayvo::Renderer r(schedule,113);float block[226];const auto before=allocations.load();
+        while(!r.finished())r.process(block,113);
+        check(allocations.load()==before,"synth allocates on audio callback");
+        auto bad=p;bad.tracks[0].electronic=true;rejects([&]{djayvo::compile(bad);});
+        bad=p;bad.tracks[0].notes[0].muted=true;rejects([&]{djayvo::compile(bad);});
+        // At 8 kHz, MIDI 100 has only its fundamental below the harmonic cutoff.
+        auto edge=single(instrument,108,96);edge.sample_rate=9600;
+        check(energy(render(edge))>0,"valid near-cutoff synth note is silent");
+        auto high=single(instrument,100,96);high.sample_rate=8000;high.tracks[0].notes[0].duration=1920;
+        const auto signal=render(high);const double frequency=440*std::exp2(31.0/12);
+        check(magnitude(signal,8000,frequency,4000,2048)>
+              20*magnitude(signal,8000,8000-2*frequency,4000,2048),"above-band harmonic aliases into synth output");
+    }
+    check(timbres.size()==3,"organ, pad and lead share the same waveform");
+}
 void guitar_articulation() {
     const auto note=[](int pitch,int velocity,unsigned seed,bool muted) {
         djayvo::Event e;e.instrument=djayvo::Instrument::guitar;e.pitch=pitch;e.velocity=velocity;e.noise_seed=seed;e.muted=muted;
@@ -383,6 +413,7 @@ int main() {
         {"sample onsets, ordering, note-off and release", scheduling},
         {"seed and block-size determinism", deterministic},
         {"instrument frequency, octave, velocity and drum output", instruments},
+        {"organ/pad/lead sustain, note-off, bandwidth, timbre and allocation-free processing", sustained_instruments},
         {"recorded guitar pitches, attacks, layers, takes, limits and allocation-free processing", guitar_articulation},
         {"recorded piano dynamics and seeded piano/drum takes", sample_articulation},
         {"pan, gain, finite audio and overload ceiling", mixing},

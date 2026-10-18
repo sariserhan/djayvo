@@ -32,7 +32,8 @@
         "1.1-remix",
         "1.2-remix",
         "1.3-remix",
-        "1.4-remix"
+        "1.4-remix",
+        "1.5-remix"
       ]
     },
     "seed": {
@@ -177,7 +178,10 @@
               "piano",
               "bass",
               "drums",
-              "guitar"
+              "guitar",
+              "organ",
+              "pad",
+              "lead"
             ]
           },
           "gain_db": {
@@ -310,6 +314,26 @@
                       }
                     }
                   }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "instrument": {
+                  "enum": [
+                    "organ",
+                    "pad",
+                    "lead"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "sound": {
+                  "const": "acoustic"
                 }
               }
             }
@@ -849,6 +873,39 @@
                       ]
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "enum": [
+              "1.0-remix",
+              "1.1-remix",
+              "1.2-remix",
+              "1.3-remix",
+              "1.4-remix"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "tracks": {
+            "items": {
+              "properties": {
+                "instrument": {
+                  "enum": [
+                    "piano",
+                    "bass",
+                    "drums",
+                    "guitar"
+                  ]
                 }
               }
             }

@@ -25,14 +25,14 @@ def verify_export(prefix, required_styles=()):
         if planning['candidate_sha256'] is not None and not re.fullmatch('[0-9a-f]{64}', planning['candidate_sha256']):
             raise ValueError('invalid candidate plan hash')
     artifacts = record.get('artifacts')
-    if not isinstance(artifacts, list) or not 4 <= len(artifacts) <= 72:
+    if not isinstance(artifacts, list) or not 4 <= len(artifacts) <= 96:
         raise ValueError('invalid export artifact count')
     suffixes = set()
     for item in artifacts:
         if not isinstance(item, dict):
             raise ValueError('invalid export artifact')
         suffix = item.get('suffix', '')
-        if (not isinstance(suffix, str) or not re.fullmatch(r'\.(hiphop|reggae|experimental|baseline|club|funk|call_response|hybrid)\.(wav|score\.json|report\.json|events\.tsv|piano\.wav|bass\.wav|drums\.wav|guitar\.wav|vocals\.wav)', suffix)
+        if (not isinstance(suffix, str) or not re.fullmatch(r'\.(hiphop|reggae|experimental|baseline|club|funk|call_response|hybrid)\.(wav|score\.json|report\.json|events\.tsv|piano\.wav|bass\.wav|drums\.wav|guitar\.wav|organ\.wav|pad\.wav|lead\.wav|vocals\.wav)', suffix)
                 or suffix in suffixes or type(item.get('bytes')) is not int or not 0 < item['bytes'] <= 64*1024*1024):
             raise ValueError('invalid/duplicate artifact path or size')
         suffixes.add(suffix)
@@ -51,10 +51,10 @@ def verify_export(prefix, required_styles=()):
     for style in styles:
         basic = {f'.{style}.{ext}' for ext in ('wav', 'score.json', 'report.json', 'events.tsv')}
         score = json.loads(Path(str(prefix)+f'.{style}.score.json').read_text())
-        guitar=any(t.get('instrument')=='guitar' for t in score.get('tracks',[]))
         stems = {f'.{style}.{stem}.wav' for stem in ('piano', 'bass', 'drums', 'vocals')}
-        if guitar: stems.add(f'.{style}.guitar.wav')
-        elif f'.{style}.guitar.wav' in suffixes: raise ValueError('unexpected guitar stem')
+        for instrument in ('guitar','organ','pad','lead'):
+            if any(t.get('instrument')==instrument for t in score.get('tracks',[])): stems.add(f'.{style}.{instrument}.wav')
+            elif f'.{style}.{instrument}.wav' in suffixes: raise ValueError('unexpected instrument stem')
         if not basic <= suffixes or (suffixes & stems and not stems <= suffixes):
             raise ValueError('incomplete strategy artifact set')
         if score.get('source_asset_id') != 'sha256:'+record['source_sha256']:

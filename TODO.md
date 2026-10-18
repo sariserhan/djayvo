@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [Recorded guitar and articulated strums](docs/guitar.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [Sustained instruments and broader arrangement variety](docs/sustained-instruments.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -88,7 +88,10 @@ are not supplied by this instruction. The master remains unchanged.
 
 ## Next: review the current music
 
-Latest [recorded guitar comparisons](renders/guitar-20261018/review/index.html):
+Latest [instrument and groove comparisons](renders/sustained-instruments-20261018/review/index.html):
+eight matched before/after pairs, isolated instruments and vocals. **Listening NOT RUN.**
+
+Previous [recorded guitar comparisons](renders/guitar-20261018/review/index.html):
 eight matched before/after pairs, isolated guitar and unchanged voice stems.
 Technical gates PASS; listening NOT RUN.
 
@@ -220,6 +223,9 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P33 | PASS | Hip-hop harmonic/rhythmic seed variety, recurring phrases and developed returns; 64-seed structural audit, four owner comparisons, exact M5/Linux/WASM agreement | [Evidence](docs/hiphop-diversity.md) |
 | [x] | P34 | PASS | Shared tempo maps and gain/pan automation; native/import/schema/echo/stem contracts, 40 exact M5/Linux WAVs, four private comparisons | [Evidence](docs/timeline.md) |
 | [x] | P35 | PASS | Funk grammar with seed/input variation; CLI/C ABI/schemas/export and web generate/save/play/download; 50 exact M5/Linux WAVs, five WASM styles and four owner comparisons | [Evidence](docs/funk.md) |
+| [x] | P36 | PASS | Call-response/hybrid, recent-structure rejection, native/browser contracts and private review; commit `a09220e` | [Evidence](docs/creative-strategies.md) |
+| [x] | P37 | PASS | Recorded CC0 guitar, alternating strum/staccato, versioned import/stems and notices; commit `8fbdfbb` | [Evidence](docs/guitar.md) |
+| [x] | P38 | PASS | Organ/pad/lead, wider harmony/groove, eight-attempt history checks, 93 exact cross-OS WAVs and 42 old-score replay WAVs | [Evidence](docs/sustained-instruments.md) |
 
 ## Engineering backlog
 
@@ -273,17 +279,19 @@ is needed. Prioritize by recorded listening defects and product requirements.
   candidates and preserved actual owner audio verified. [Evidence](docs/plan-import.md).
 - [ ] **E12 — PARTIAL:** Tempo maps and track gain/pan automation implemented,
   with opt-in native/CLI plans and cross-platform tests. Recorded guitar with up/down strums, normal/staccato attacks, two dynamics and
-  alternate takes is implemented across plans/stems/web. Organ and dedicated
-  pad/lead roles remain unimplemented. [Guitar evidence](docs/guitar.md). Independent pitch/time and
+  alternate takes is implemented across plans/stems/web. Organ, dedicated pad/lead
+  voices, versioned import and optional stems are now implemented. Their audible
+  quality remains unassessed. [Instrument evidence](docs/sustained-instruments.md). Independent pitch/time and
   expanded effects remain under E03/E04. [Timeline evidence](docs/timeline.md).
   Do not call the engine feature-complete.
 
 - [ ] **E13 — PARTIAL:** All six named Stage A rule directions now exist, plus
   club and the baseline. Hip-hop/funk seed variety, standalone call-response and
   hybrid with phrase-boundary rhythm changes are implemented. The local web
-  worker rejects exact recent instrumental structures with at most four candidate
-  renders, preserving actual selected seeds and previous saved mixes. Native,
-  Linux, browser and input-response checks pass; perceived variety, broader
+  worker rejects exact recent instrumental structures with at most eight candidate
+  renders, ignoring instrument swaps as a source of novelty, preserving actual selected seeds and previous saved mixes. Native,
+  Linux, browser and input-response checks pass. Reggae/experimental/club now vary
+  harmony and groove, with seed-selected later breaks in reggae/experimental; perceived variety, broader
   listening and learned contextual direction remain open. Finite rules can still
   sound similar. [Evidence](docs/creative-strategies.md).
 
@@ -388,3 +396,8 @@ table and [progress](docs/progress.md) together; do not invent scores or dates.
 
 - 2026-10-18: Added recorded CC0 guitar, strum/staccato planning, versioned
   import/export/stems and bundled notices. [Evidence](docs/guitar.md).
+
+- 2026-10-18: Added original organ/pad/lead, richer reggae/experimental/club variation,
+  eight-candidate recent-body rejection, complete stems/import/version contracts
+  and corrected instrument-bank reports. 93 exact cross-OS WAVs and 42 exact
+  old-score replay WAVs; eight matched owner pairs. [Evidence](docs/sustained-instruments.md).

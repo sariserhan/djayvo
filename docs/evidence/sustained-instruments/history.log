@@ -1,0 +1,1 @@
+PASS: 10 consecutive three-take worker requests in each browser, 30 distinct body hashes, bounded retry; perceptual novelty NOT RUN

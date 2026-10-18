@@ -55,7 +55,7 @@ def verify(args):
         assert 20 <= measured["duration_seconds"] <= 40
         assert measured["full_scale_samples"] == 0 and measured["peak_dbfs"] <= -1
         assert measured["last_100ms_peak"] == 0
-        assert score["schema_version"] == "1.0-remix" and score["strategy"] == style
+        assert score["schema_version"] == ("1.0-remix" if style=="hiphop" else "1.5-remix") and score["strategy"] == style
         assert score["source"]["sha256"] == hashlib.sha256(fixture.read_bytes()).hexdigest()
         assert score["source"]["kind"] == "synthetic" and score["source"]["consent_confirmed"] is False
         clips = score["voice_clips"]
@@ -63,17 +63,17 @@ def verify(args):
             assert 0 <= clip["start_frame"] < clip["end_frame"] <= score["source"]["processed_frames"]
         clean = [e for e in score["voice_events"] if e["clean"]]
         assert clean and clean[0]["rate"] == 1 and not clean[0]["reverse"]
-        assert len(score["tracks"]) == 3 and all(t["events"] for t in score["tracks"])
+        assert len(score["tracks"]) == (4 if style=="experimental" else 3) and all(t["events"] for t in score["tracks"])
         denominator = score["tempo_milli_bpm"] * 960
         music_frames = (score["target_bars"] * 3840 * 16000 * 60000 + denominator // 2) // denominator
         assert measured["frames"] == music_frames + score["tail_ms"] * 16
         other = args.output / f"repeat.{style}.wav"
         assert hashlib.sha256(audio_path.read_bytes()).digest() == hashlib.sha256(other.read_bytes()).digest()
-        for stem in ("piano", "bass", "drums", "vocals"):
+        for stem in {"piano", "bass", "drums", "vocals"} | {t["instrument"] for t in score["tracks"]}:
             path = Path(str(prefix) + f".{stem}.wav")
             with wave.open(str(path), "rb") as f:
                 assert f.getnframes() == measured["frames"] and f.getframerate() == 16000
-            assert any(pcm(path)), f"silent {stem} stem"
+            assert any(pcm(path)) == (stem=="vocals" or any(t["instrument"]==stem and t["events"] for t in score["tracks"])), f"incorrect activity in {stem} stem"
     gates["three_complete_decoded_20_to_40_second_remixes"] = "PASS"
     gates["same_source_sha256_and_bounded_sample_clips"] = "PASS"
     gates["stereo_instrument_and_vocal_stems"] = "PASS"
@@ -114,11 +114,11 @@ def verify(args):
     run("club-repeat", options=("--style", "club", "--block-size", "113"))
     verify_export(args.output/'club', ('club',))
     club=json.loads((args.output/'club.club.score.json').read_text())
-    assert json.loads((args.output/'club.club.report.json').read_text())['instrument_bank']=='electronic-v2'
+    assert json.loads((args.output/'club.club.report.json').read_text())['instrument_bank']=='electronic-v2+sustained-v1'
     assert club['strategy']=='club' and club['mix']['kick_duck_db']==-7
-    assert all(t['sound']=='electronic' for t in club['tracks'])
+    assert all(t.get('sound')=='electronic' if t['instrument']!='pad' else 'sound' not in t for t in club['tracks'])
     assert pcm(args.output/'club.club.wav')==pcm(args.output/'club-repeat.club.wav')
-    for suffix in ('','.piano','.bass','.drums','.vocals'):
+    for suffix in ('','.piano','.bass','.drums','.vocals','.pad'):
         measured=inspect(args.output/f'club.club{suffix}.wav')
         assert 20<=measured['duration_seconds']<=40 and measured['full_scale_samples']==0
         assert measured['last_100ms_peak']==0 and any(pcm(args.output/f'club.club{suffix}.wav'))
@@ -197,7 +197,7 @@ def verify(args):
     run('three',options=('--style','all','--stems'),success=False)
     assert hashlib.sha256((args.output/'three.hiphop.wav').read_bytes()).hexdigest()==before
     completion=json.loads((args.output/'three.complete.json').read_text())
-    assert completion['status']=='complete' and len(completion['artifacts'])==24
+    assert completion['status']=='complete' and len(completion['artifacts'])==26
     for item in completion['artifacts']:
         data=(args.output/('three'+item['suffix'])).read_bytes()
         assert len(data)==item['bytes'] and hashlib.sha256(data).hexdigest()==item['sha256']

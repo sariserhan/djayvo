@@ -1,0 +1,7 @@
+PASS: webkit /Users/serhansari/Documents/projects/djayvo/renders/web-webkit-engine-NDNXWy [
+  { style: 'three', seconds: 2.476, artifacts: 12 },
+  { style: 'club', seconds: 2.204, artifacts: 4 },
+  { style: 'funk', seconds: 0.831, artifacts: 4 },
+  { style: 'call_response', seconds: 0.825, artifacts: 4 },
+  { style: 'hybrid', seconds: 0.857, artifacts: 4 }
+]

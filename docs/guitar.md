@@ -102,3 +102,7 @@ The original guitar audition reports still label their bank `acoustic-v1`; the
 score and guitar manifest identify the correct instrument and source hashes.
 The subsequent sustained-instrument work corrects per-render bank reporting;
 these historical reports are retained rather than rewritten.
+
+The follow-up [sustained-instrument revision](sustained-instruments.md) corrects
+new render reports to enumerate every declared instrument bank. Historical
+reports are preserved; scores and pinned asset provenance remain authoritative.

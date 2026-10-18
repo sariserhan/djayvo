@@ -1,0 +1,90 @@
+-- The C compiler identification is GNU 12.2.0
+-- The CXX compiler identification is GNU 12.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python3: /usr/bin/python3 (found suitable version "3.11.2", minimum required is "3.9") found components: Interpreter
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /work/sustained/build
+[  8%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/remix.cpp.o
+[ 12%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/demo.cpp.o
+[ 12%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/plan.cpp.o
+[ 16%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/analysis.cpp.o
+[ 20%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/remix_plan.cpp.o
+[ 25%] Building CXX object CMakeFiles/djayvo_core.dir/core/instruments/voice.cpp.o
+[ 29%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/renderer.cpp.o
+[ 33%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/input.cpp.o
+[ 37%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_renderer.cpp.o
+[ 41%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_file.cpp.o
+[ 45%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/c_api.cpp.o
+[ 50%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/wav.cpp.o
+[ 54%] Linking CXX static library libdjayvo_core.a
+[ 54%] Built target djayvo_core
+[ 58%] Building CXX object CMakeFiles/djayvo_tests.dir/core/tests/tests.cpp.o
+[ 62%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/remix_main.cpp.o
+[ 66%] Building CXX object CMakeFiles/djayvo_render.dir/tools/cli/main.cpp.o
+[ 70%] Building CXX object CMakeFiles/djayvo_remix_tests.dir/core/tests/remix_tests.cpp.o
+[ 75%] Linking CXX executable djayvo_render
+[ 79%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/plan_import.cpp.o
+[ 79%] Built target djayvo_render
+[ 83%] Building C object CMakeFiles/djayvo_c_smoke.dir/core/tests/c_api_smoke.c.o
+[ 87%] Linking CXX executable djayvo_c_smoke
+[ 87%] Built target djayvo_c_smoke
+[ 91%] Linking CXX executable djayvo_tests
+[ 91%] Built target djayvo_tests
+[ 95%] Linking CXX executable djayvo_remix
+[ 95%] Built target djayvo_remix
+[100%] Linking CXX executable djayvo_remix_tests
+[100%] Built target djayvo_remix_tests
+Internal ctest changing into directory: /work/sustained/build
+Test project /work/sustained/build
+      Start  1: core
+ 1/12 Test  #1: core .............................   Passed    0.54 sec
+      Start  2: remix_core
+ 2/12 Test  #2: remix_core .......................   Passed    5.83 sec
+      Start  3: c_abi
+ 3/12 Test  #3: c_abi ............................   Passed    0.42 sec
+      Start  4: acoustic_assets
+ 4/12 Test  #4: acoustic_assets ..................   Passed    0.47 sec
+      Start  5: sustained_assets
+ 5/12 Test  #5: sustained_assets .................   Passed    0.01 sec
+      Start  6: guitar_assets
+ 6/12 Test  #6: guitar_assets ....................   Passed    0.40 sec
+      Start  7: electronic_assets
+ 7/12 Test  #7: electronic_assets ................   Passed    0.08 sec
+      Start  8: wav_integration
+ 8/12 Test  #8: wav_integration ..................   Passed    0.56 sec
+      Start  9: remix_integration
+ 9/12 Test  #9: remix_integration ................***Failed    3.96 sec
+Traceback (most recent call last):
+  File "/work/sustained/tests/integration/verify_remix.py", line 252, in <module>
+    main()
+  File "/work/sustained/tests/integration/verify_remix.py", line 249, in main
+    verify(args)
+  File "/work/sustained/tests/integration/verify_remix.py", line 200, in verify
+    assert completion['status']=='complete' and len(completion['artifacts'])==24
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+      Start 10: tooling
+10/12 Test #10: tooling ..........................   Passed    1.47 sec
+      Start 11: evaluation_preparation
+11/12 Test #11: evaluation_preparation ...........   Passed   16.99 sec
+      Start 12: plan_import
+12/12 Test #12: plan_import ......................   Passed    5.52 sec
+
+92% tests passed, 1 tests failed out of 12
+
+Total Test time (real) =  36.26 sec
+
+The following tests FAILED:
+	  9 - remix_integration (Failed)
+Errors while running CTest

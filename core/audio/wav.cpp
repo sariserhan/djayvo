@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <limits>
 #include <locale>
+#include <set>
 #include <stdexcept>
 
 namespace djayvo {
@@ -58,9 +59,12 @@ void write_report(const AudioStats& a, const PerformancePlan& p, const Schedule&
     out << std::setprecision(12);
     const double left = a.frames ? std::sqrt(a.square_sum_left / static_cast<double>(a.frames)) : 0;
     const double right = a.frames ? std::sqrt(a.square_sum_right / static_cast<double>(a.frames)) : 0;
-    bool acoustic=false,electronic=false;
-    for (const auto& track:p.tracks) {acoustic|=!track.electronic;electronic|=track.electronic;}
-    const char* bank=electronic?(acoustic?"acoustic-v1+electronic-v2":"electronic-v2"):"acoustic-v1";
+    std::set<std::string> banks;
+    for (const auto& track:p.tracks)
+        banks.insert(track.instrument>=Instrument::organ?"sustained-v1":track.instrument==Instrument::guitar?"guitar-v1":
+                     track.electronic?"electronic-v2":"acoustic-v1");
+    std::string bank;
+    for (const auto& name:banks) {if (!bank.empty()) bank+='+';bank+=name;}
     const bool accepted = a.frames == s.total_frames && a.nonfinite_samples == 0 && a.peak <= s.ceiling + 1e-7;
     out << "{\n  \"project\": \"Djayvo\",\n  \"milestone\": \"" << milestone << "\",\n  \"technical_render\": \""
         << (accepted ? "PASS" : "FAIL") << "\",\n  \"listening_validation\": \"NOT RUN\",\n"

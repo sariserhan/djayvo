@@ -10,7 +10,7 @@ using Tick = std::int64_t;
 constexpr Tick ticks_per_quarter = 960;
 constexpr std::size_t max_voices = 128;
 
-enum class Instrument { piano, bass, drums, guitar };
+enum class Instrument { piano, bass, drums, guitar, organ, pad, lead };
 const char* instrument_name(Instrument instrument);
 
 struct Note {

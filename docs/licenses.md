@@ -157,3 +157,12 @@ metadata; `assets/licenses/BLACK-AND-GREEN-GUITARS-CC0.txt` retains the full
 notice. No Sforzando code/plugin is bundled. `prepare_guitar_bank.py` reuses the
 existing standard-library PCM preparation; `verify_guitar_assets.py` audits the
 compiled bank offline. Djayvo's own outbound license remains unselected.
+
+## Original sustained voices
+
+Organ, pad and lead use original additive synthesis, attack/release envelopes
+and per-voice tone filtering in the portable engine. No source recording, artist
+reference or model is used. `assets/manifests/sustained-v1.json` records the source
+hash and provenance; `scripts/verify_sustained_assets.py` checks it offline. These
+are deliberately electronic voices, not claims of acoustic instrument realism.
+The project outbound license remains unselected.

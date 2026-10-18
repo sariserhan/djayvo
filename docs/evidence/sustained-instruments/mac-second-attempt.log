@@ -1,0 +1,46 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+      Start  1: core
+ 1/11 Test  #1: core .............................   Passed    0.71 sec
+      Start  2: remix_core
+ 2/11 Test  #2: remix_core .......................   Passed    4.44 sec
+      Start  3: c_abi
+ 3/11 Test  #3: c_abi ............................   Passed    0.60 sec
+      Start  4: acoustic_assets
+ 4/11 Test  #4: acoustic_assets ..................   Passed    0.44 sec
+      Start  5: guitar_assets
+ 5/11 Test  #5: guitar_assets ....................   Passed    0.37 sec
+      Start  6: electronic_assets
+ 6/11 Test  #6: electronic_assets ................   Passed    0.08 sec
+      Start  7: wav_integration
+ 7/11 Test  #7: wav_integration ..................   Passed    0.93 sec
+      Start  8: remix_integration
+ 8/11 Test  #8: remix_integration ................***Failed    2.51 sec
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/integration/verify_remix.py", line 252, in <module>
+    main()
+    ~~~~^^
+  File "/Users/serhansari/Documents/projects/djayvo/tests/integration/verify_remix.py", line 249, in main
+    verify(args)
+    ~~~~~~^^^^^^
+  File "/Users/serhansari/Documents/projects/djayvo/tests/integration/verify_remix.py", line 119, in verify
+    assert all(t['sound']=='electronic' for t in club['tracks'])
+           ^^^
+  File "/Users/serhansari/Documents/projects/djayvo/tests/integration/verify_remix.py", line 119, in <genexpr>
+    assert all(t['sound']=='electronic' for t in club['tracks'])
+               ~^^^^^^^^^
+KeyError: 'sound'
+
+      Start  9: tooling
+ 9/11 Test  #9: tooling ..........................   Passed    1.05 sec
+      Start 10: evaluation_preparation
+10/11 Test #10: evaluation_preparation ...........   Passed   12.17 sec
+      Start 11: plan_import
+11/11 Test #11: plan_import ......................   Passed    3.95 sec
+
+91% tests passed, 1 tests failed out of 11
+
+Total Test time (real) =  27.25 sec
+
+The following tests FAILED:
+	  8 - remix_integration (Failed)
+Errors while running CTest

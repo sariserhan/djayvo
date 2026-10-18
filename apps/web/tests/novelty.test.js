@@ -8,7 +8,7 @@ const score = () => ({ seed: 1, ticks_per_quarter: 960, time_signature: [4, 4], 
 
 test('composition identity ignores cosmetic changes, ordering and transposition; detects musical changes', async () => {
   const original = score(), key = await compositionKey(original);
-  const changed = score(); changed.seed = 456; changed.tempo_milli_bpm = 100000;
+  const changed = score(); changed.tracks[0].instrument = 'organ'; changed.seed = 456; changed.tempo_milli_bpm = 100000;
   changed.key.tonic_midi += 3; changed.tracks[0].events[0].note += 3;
   changed.tracks[0].events[0].velocity = 100;
   changed.tracks[0].events.push({ start_tick: 0, duration_ticks: 960, note: 70, velocity: 90 });
@@ -31,7 +31,7 @@ test('selection retries only duplicates, records the actual seed and bounds exha
   assert.notEqual(calls[0], calls[1]); assert(calls[1] >= 0 && calls[1] <= 0xffffffff);
   let attempts = 0;
   await assert.rejects(selectFresh(1, recent, async () => { attempts++; return [old]; }), /repeat a recent composition/);
-  assert.equal(attempts, 4);
+  assert.equal(attempts, 8);
   await assert.rejects(selectFresh(1, ['invalid'], async () => assert.fail('rendered invalid history')), /Invalid recent/);
   await assert.rejects(selectFresh(1, Array(31).fill(recent[0]), async () => assert.fail()), /Invalid recent/);
   let first = 0;

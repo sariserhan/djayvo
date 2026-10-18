@@ -1,0 +1,9 @@
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-mac
+[ 54%] Built target djayvo_core
+[ 70%] Built target djayvo_tests
+[ 70%] Built target djayvo_remix_tests
+[ 79%] Built target djayvo_render
+[ 91%] Built target djayvo_remix
+[100%] Built target djayvo_c_smoke

@@ -7,7 +7,12 @@ complete master specification. Never modify the master; its SHA-256 is
 
 **Current priority, 2026-10-18: music quality research; infrastructure and phone work paused by the owner.**
 Read [selective voice research](voice-research.md) and [cloud model trial](cloud-music-trial.md).
-Latest local engine work: [Recorded guitar and articulated strums](guitar.md).
+Latest local engine work: [Sustained instruments and broader arrangement variety](sustained-instruments.md).
+Private review: `renders/sustained-instruments-20261018/review/index.html`.
+Listening NOT RUN; production quality PARTIAL.
+Use `renders/arrangement-linux/sustained-instruments-20261018/fixture` as the
+current default-style smoke reference; older regenerated defaults intentionally differ.
+Previous local engine work: [Recorded guitar and articulated strums](guitar.md).
 Funk/hybrid add recorded guitar with versioned import/stems and bundled notices.
 M5/Linux 11/11, 90 exact WAVs and seven WASM styles pass. Private comparison:
 renders/guitar-20261018/review/index.html. Listening NOT RUN.

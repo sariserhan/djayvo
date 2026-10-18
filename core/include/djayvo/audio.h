@@ -57,6 +57,8 @@ private:
     std::uint32_t release_age_ = 0;
     double velocity_ = 1.0, sample_position_ = 0.0, sample_step_ = 1.0;
     double tone_ = 0, tone_alpha_ = 1;
+    bool synthesized_ = false;
+    double synth_frequency_ = 0, attack_seconds_ = .001;
     const std::int16_t* sample_ = nullptr;
     std::size_t sample_frames_ = 0;
     std::array<std::array<float,16>,65> interpolation_{};

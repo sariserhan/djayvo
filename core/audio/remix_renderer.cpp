@@ -58,7 +58,7 @@ std::vector<float> transform_voice(const AudioBuffer& source,const Region& clip,
 }
 Schedule selected_schedule(const RemixPlan& plan,const AudioBuffer& source,bool vocals_only,int solo) {
     validate(plan,source);
-    if (solo < -2 || solo > static_cast<int>(Instrument::guitar)) throw std::invalid_argument("invalid instrument stem");
+    if (solo < -2 || solo > static_cast<int>(Instrument::lead)) throw std::invalid_argument("invalid instrument stem");
     auto schedule=compile(plan.music);
     // Filter after compilation: IDs select sample takes and must match the master.
     schedule.events.erase(std::remove_if(schedule.events.begin(),schedule.events.end(),[&](const Event& event) {
@@ -204,7 +204,7 @@ void render_remix(const RemixPlan& p,const AudioBuffer& source,const std::string
     const auto stats=render(prefix+".wav",false,-1);
     if (stems) {
         render(prefix+".vocals.wav",true,-1);
-        for (int instrument=0;instrument<=static_cast<int>(Instrument::guitar);++instrument) {
+        for (int instrument=0;instrument<=static_cast<int>(Instrument::lead);++instrument) {
             if (instrument>=3 && std::none_of(p.music.tracks.begin(),p.music.tracks.end(),[&](const Track& t){return static_cast<int>(t.instrument)==instrument;})) continue;
             render(prefix+"."+instrument_name(static_cast<Instrument>(instrument))+".wav",false,instrument);
         }

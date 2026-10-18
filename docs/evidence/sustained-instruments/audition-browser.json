@@ -1,0 +1,340 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "gate": "PASS",
+    "players": [
+      {
+        "name": "owner-reggae-4123 after",
+        "duration": 32,
+        "seek": 10.000197
+      },
+      {
+        "name": "owner-reggae-4123 before",
+        "duration": 32,
+        "seek": 10.000114
+      },
+      {
+        "name": "owner-reggae-4123 organ",
+        "duration": 32,
+        "seek": 10.0001
+      },
+      {
+        "name": "owner-reggae-4123 vocals",
+        "duration": 32,
+        "seek": 10.000076
+      },
+      {
+        "name": "owner-reggae-4124 after",
+        "duration": 32,
+        "seek": 10.00008
+      },
+      {
+        "name": "owner-reggae-4124 before",
+        "duration": 32,
+        "seek": 10.000078
+      },
+      {
+        "name": "owner-reggae-4124 organ",
+        "duration": 32,
+        "seek": 10.000068
+      },
+      {
+        "name": "owner-reggae-4124 vocals",
+        "duration": 32,
+        "seek": 10.000033
+      },
+      {
+        "name": "owner-experimental-4123 after",
+        "duration": 32.96775,
+        "seek": 10.000084
+      },
+      {
+        "name": "owner-experimental-4123 before",
+        "duration": 32.96775,
+        "seek": 10.00014
+      },
+      {
+        "name": "owner-experimental-4123 lead",
+        "duration": 32.96775,
+        "seek": 10.000092
+      },
+      {
+        "name": "owner-experimental-4123 vocals",
+        "duration": 32.96775,
+        "seek": 10.000066
+      },
+      {
+        "name": "owner-experimental-4124 after",
+        "duration": 32.96775,
+        "seek": 10.000058
+      },
+      {
+        "name": "owner-experimental-4124 before",
+        "duration": 32.96775,
+        "seek": 10.000079
+      },
+      {
+        "name": "owner-experimental-4124 lead",
+        "duration": 32.96775,
+        "seek": 10.000065
+      },
+      {
+        "name": "owner-experimental-4124 vocals",
+        "duration": 32.96775,
+        "seek": 10.00015
+      },
+      {
+        "name": "owner-club-4123 after",
+        "duration": 36.285708,
+        "seek": 10.000067
+      },
+      {
+        "name": "owner-club-4123 before",
+        "duration": 36.285708,
+        "seek": 10.000085
+      },
+      {
+        "name": "owner-club-4123 pad",
+        "duration": 36.285708,
+        "seek": 10.00007
+      },
+      {
+        "name": "owner-club-4123 vocals",
+        "duration": 36.285708,
+        "seek": 10.000058
+      },
+      {
+        "name": "owner-club-4124 after",
+        "duration": 36.285708,
+        "seek": 10.000013
+      },
+      {
+        "name": "owner-club-4124 before",
+        "duration": 36.285708,
+        "seek": 10.000052
+      },
+      {
+        "name": "owner-club-4124 pad",
+        "duration": 36.285708,
+        "seek": 10.000022
+      },
+      {
+        "name": "owner-club-4124 vocals",
+        "duration": 36.285708,
+        "seek": 10.000043
+      },
+      {
+        "name": "owner-hybrid-4123 after",
+        "duration": 36.285708,
+        "seek": 10.000038
+      },
+      {
+        "name": "owner-hybrid-4123 before",
+        "duration": 36.285708,
+        "seek": 10.000032
+      },
+      {
+        "name": "owner-hybrid-4123 guitar",
+        "duration": 36.285708,
+        "seek": 10.000051
+      },
+      {
+        "name": "owner-hybrid-4123 vocals",
+        "duration": 36.285708,
+        "seek": 10.000041
+      },
+      {
+        "name": "owner-hybrid-4124 after",
+        "duration": 35.103458,
+        "seek": 10.000045
+      },
+      {
+        "name": "owner-hybrid-4124 before",
+        "duration": 35.103458,
+        "seek": 10
+      },
+      {
+        "name": "owner-hybrid-4124 guitar",
+        "duration": 35.103458,
+        "seek": 10.000053
+      },
+      {
+        "name": "owner-hybrid-4124 vocals",
+        "duration": 35.103458,
+        "seek": 10
+      }
+    ],
+    "errors": [],
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "gate": "PASS",
+    "players": [
+      {
+        "name": "owner-reggae-4123 after",
+        "duration": 32,
+        "seek": 10.001670340134297
+      },
+      {
+        "name": "owner-reggae-4123 before",
+        "duration": 32,
+        "seek": 10.001425740672858
+      },
+      {
+        "name": "owner-reggae-4123 organ",
+        "duration": 32,
+        "seek": 10.001269641099498
+      },
+      {
+        "name": "owner-reggae-4123 vocals",
+        "duration": 32,
+        "seek": 10.001287662002142
+      },
+      {
+        "name": "owner-reggae-4124 after",
+        "duration": 32,
+        "seek": 10.000799330795417
+      },
+      {
+        "name": "owner-reggae-4124 before",
+        "duration": 32,
+        "seek": 10.00124802076607
+      },
+      {
+        "name": "owner-reggae-4124 organ",
+        "duration": 32,
+        "seek": 10.00121518742526
+      },
+      {
+        "name": "owner-reggae-4124 vocals",
+        "duration": 32,
+        "seek": 10.001227812434081
+      },
+      {
+        "name": "owner-experimental-4123 after",
+        "duration": 32.96775,
+        "seek": 10.012398736478644
+      },
+      {
+        "name": "owner-experimental-4123 before",
+        "duration": 32.96775,
+        "seek": 10.011629061380518
+      },
+      {
+        "name": "owner-experimental-4123 lead",
+        "duration": 32.96775,
+        "seek": 10.023738139658235
+      },
+      {
+        "name": "owner-experimental-4123 vocals",
+        "duration": 32.96775,
+        "seek": 10.000283312430838
+      },
+      {
+        "name": "owner-experimental-4124 after",
+        "duration": 32.96775,
+        "seek": 10.000348949004547
+      },
+      {
+        "name": "owner-experimental-4124 before",
+        "duration": 32.96775,
+        "seek": 10.000217699009227
+      },
+      {
+        "name": "owner-experimental-4124 lead",
+        "duration": 32.96775,
+        "seek": 10.00022725679446
+      },
+      {
+        "name": "owner-experimental-4124 vocals",
+        "duration": 32.96775,
+        "seek": 10.000286037000478
+      },
+      {
+        "name": "owner-club-4123 after",
+        "duration": 36.28570833333333,
+        "seek": 10.000359895770089
+      },
+      {
+        "name": "owner-club-4123 before",
+        "duration": 36.28570833333333,
+        "seek": 10.000205122472835
+      },
+      {
+        "name": "owner-club-4123 pad",
+        "duration": 36.28570833333333,
+        "seek": 10.000232032223721
+      },
+      {
+        "name": "owner-club-4123 vocals",
+        "duration": 36.28570833333333,
+        "seek": 10.00017654846306
+      },
+      {
+        "name": "owner-club-4124 after",
+        "duration": 36.28570833333333,
+        "seek": 10.000281256783637
+      },
+      {
+        "name": "owner-club-4124 before",
+        "duration": 36.28570833333333,
+        "seek": 10.000235324012465
+      },
+      {
+        "name": "owner-club-4124 pad",
+        "duration": 36.28570833333333,
+        "seek": 10.000292103315587
+      },
+      {
+        "name": "owner-club-4124 vocals",
+        "duration": 36.28570833333333,
+        "seek": 10.000354074014467
+      },
+      {
+        "name": "owner-hybrid-4123 after",
+        "duration": 36.28570833333333,
+        "seek": 10.000193525425857
+      },
+      {
+        "name": "owner-hybrid-4123 before",
+        "duration": 36.28570833333333,
+        "seek": 10.00025580311194
+      },
+      {
+        "name": "owner-hybrid-4123 guitar",
+        "duration": 36.28570833333333,
+        "seek": 10.000540349443327
+      },
+      {
+        "name": "owner-hybrid-4123 vocals",
+        "duration": 36.28570833333333,
+        "seek": 10.000259965134319
+      },
+      {
+        "name": "owner-hybrid-4124 after",
+        "duration": 35.103458333333336,
+        "seek": 10.000233536993619
+      },
+      {
+        "name": "owner-hybrid-4124 before",
+        "duration": 35.103458333333336,
+        "seek": 10.000208282348467
+      },
+      {
+        "name": "owner-hybrid-4124 guitar",
+        "duration": 35.103458333333336,
+        "seek": 10.00022980311769
+      },
+      {
+        "name": "owner-hybrid-4124 vocals",
+        "duration": 35.103458333333336,
+        "seek": 10.000172953674337
+      }
+    ],
+    "errors": [],
+    "human_listening": "NOT RUN"
+  }
+]

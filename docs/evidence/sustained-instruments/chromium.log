@@ -1,0 +1,7 @@
+PASS: chromium /Users/serhansari/Documents/projects/djayvo/renders/web-chromium-engine-4MATvQ [
+  { style: 'three', seconds: 4.331, artifacts: 12 },
+  { style: 'club', seconds: 2.6917000000029803, artifacts: 4 },
+  { style: 'funk', seconds: 2.144, artifacts: 4 },
+  { style: 'call_response', seconds: 1.9172000000029803, artifacts: 4 },
+  { style: 'hybrid', seconds: 2.0325999999940394, artifacts: 4 }
+]

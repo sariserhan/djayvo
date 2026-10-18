@@ -1,0 +1,24 @@
+[  4%] Building CXX object CMakeFiles/djayvo_core.dir/core/instruments/voice.cpp.o
+[  8%] Linking CXX static library libdjayvo_core.a
+[ 54%] Built target djayvo_core
+[ 58%] Building CXX object CMakeFiles/djayvo_tests.dir/core/tests/tests.cpp.o
+[ 66%] Linking CXX executable djayvo_remix_tests
+[ 66%] Linking CXX executable djayvo_render
+[ 70%] Linking CXX executable djayvo_remix
+[ 75%] Built target djayvo_render
+[ 79%] Built target djayvo_remix_tests
+[ 87%] Built target djayvo_remix
+[ 91%] Linking CXX executable djayvo_c_smoke
+[ 95%] Built target djayvo_c_smoke
+[100%] Linking CXX executable djayvo_tests
+[100%] Built target djayvo_tests
+Internal ctest changing into directory: /work/sustained/build
+Test project /work/sustained/build
+    Start 1: core
+1/2 Test #1: core .............................   Passed    1.00 sec
+    Start 5: sustained_assets
+2/2 Test #5: sustained_assets .................   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   1.02 sec

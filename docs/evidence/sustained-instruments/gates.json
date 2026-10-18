@@ -1,0 +1,22 @@
+{
+  "implementation": "PASS",
+  "m5_release": "PASS",
+  "m5_smoke": "PASS",
+  "linux_arm64_release": "PASS",
+  "waveform_portability": "PASS",
+  "saved_score_replay": "PASS",
+  "browser_engine": "PASS",
+  "browser_workflow": "PASS",
+  "browser_history": "PASS",
+  "private_audition_preparation": "PASS",
+  "listening": "NOT RUN",
+  "physical_browser_microphone": "NOT RUN",
+  "new_ios_execution": "NOT RUN",
+  "public_release": "NOT RUN",
+  "overall_specification": "PARTIAL",
+  "production_quality": "PARTIAL",
+  "cloud_calls": 0,
+  "new_paid_resources": 0,
+  "evidence_report": "docs/sustained-instruments.md",
+  "m5_asan_ubsan": "PASS"
+}

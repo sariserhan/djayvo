@@ -34,6 +34,7 @@ def main(renderer):
             return result
 
         plans={}
+        identical_artifacts=0
         for style in ('hiphop','reggae','experimental','baseline','club','funk','call_response','hybrid'):
             run('rules-'+style,('--style',style,'--stems'))
             path=root/f'rules-{style}.{style}.score.json'
@@ -42,6 +43,7 @@ def main(renderer):
             original=verify_export(root/('rules-'+style))
             replay=verify_export(root/('replay-'+style))
             assert original['artifacts']==replay['artifacts'], 'replay changed events, PCM or score'
+            identical_artifacts+=len(original['artifacts'])
             assert replay['planning']=={'mode':'imported','candidate_sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
         guitar_plan=plans['funk']
         assert guitar_plan['schema_version']=='1.4-remix'
@@ -66,6 +68,14 @@ def main(renderer):
         except ValueError:pass
         else:raise AssertionError('missing guitar stem accepted')
         marker.write_text(original_marker)
+        for style,instrument,bank in [('reggae','organ','acoustic-v1+sustained-v1'),('experimental','lead','acoustic-v1+sustained-v1'),('club','pad','electronic-v2+sustained-v1')]:
+            assert plans[style]['schema_version']=='1.5-remix'
+            assert (root/f'rules-{style}.{style}.{instrument}.wav').is_file()
+            assert json.loads((root/f'rules-{style}.{style}.report.json').read_text())['instrument_bank']==bank
+            bad=copy.deepcopy(plans[style]);bad['schema_version']='1.4-remix'
+            candidate=root/'old-synth-version.json';candidate.write_text(json.dumps(bad))
+            run('rejected-synth-version-'+style,('--style',style,'--plan',str(candidate)),success=False)
+        assert json.loads((root/'rules-funk.funk.report.json').read_text())['instrument_bank']=='acoustic-v1+guitar-v1'
         base=plans['hiphop']
         sparse=copy.deepcopy(base)
         selected=add_echoes(sparse,480)
@@ -258,7 +268,7 @@ def main(renderer):
         try:verify_export(root/'fallback')
         except ValueError:pass
         else:raise AssertionError('invalid selection receipt accepted')
-        print(json.dumps({'roundtrip_styles':6,'identical_artifacts':48,'edited_plan_changes_pcm':'PASS',
+        print(json.dumps({'roundtrip_styles':len(plans),'identical_artifacts':identical_artifacts,'edited_plan_changes_pcm':'PASS',
                           'independent_transform_replay_and_instrument_stems':'PASS',
                           'tempo_echo_replay_and_instrument_stems':'PASS',
                           'tempo_map_mix_automation_roundtrip_and_rational_frames':'PASS',

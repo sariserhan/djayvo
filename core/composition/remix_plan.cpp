@@ -114,9 +114,10 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
         return e.pitch_semitones!=0 || e.time_stretch!=1;
     });
     const bool echoes=std::any_of(r.vocals.begin(),r.vocals.end(),[](const VocalEvent& e){return e.echo_ticks!=0;});
+    const bool sustained=std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return t.instrument>=Instrument::organ;});
     const bool guitar=std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return t.instrument==Instrument::guitar;});
     const bool timeline=!p.tempo_changes.empty() || std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return !t.automation.empty();});
-    out<<"{\n  \"schema_version\": \""<<(guitar?"1.4-remix":timeline?"1.3-remix":echoes?"1.2-remix":transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
+    out<<"{\n  \"schema_version\": \""<<(sustained?"1.5-remix":guitar?"1.4-remix":timeline?"1.3-remix":echoes?"1.2-remix":transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
        <<",\n  \"source_asset_id\": \"sha256:"<<source.sha256<<"\",\n  \"sample_rate\": "<<p.sample_rate
        <<",\n  \"source\": {\"sha256\": \""<<source.sha256<<"\", \"original_rate\": "<<source.original_rate
        <<", \"original_frames\": "<<source.original_frames<<", \"processed_frames\": "<<source.mono.size()

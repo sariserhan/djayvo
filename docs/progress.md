@@ -10,7 +10,17 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest instrument continuation, 2026-10-18: [Recorded guitar and articulated strums](guitar.md).
+Latest instrument continuation, 2026-10-18: [Sustained instruments and broader arrangement variety](sustained-instruments.md).
+Original organ/pad/lead voices, versioned plans/import/stems, accurate bank reports
+and wider reggae/experimental/club harmony/groove are implemented. **M5 release
+and actual smoke, Linux release, 93 exact cross-platform WAVs, 42 exact saved-score
+replay WAVs and seven-style browser agreement: PASS.** Full M5 ASan/UBSan: **PASS**,
+12/12 suites (531.68 s), with final band-edge core/provenance rechecks. Eight matched private
+before/after pairs retain full clean hooks. **Human listening: NOT RUN; production
+and full specification: PARTIAL.** Existing recordings, fixture and master preserved.
+No model, upload, rental, deployment or new phone execution.
+
+Previous instrument continuation, 2026-10-18: [Recorded guitar and articulated strums](guitar.md).
 78 pinned CC0 note recordings provide normal/staccato, two normal dynamics and
 alternate takes; funk/hybrid now use alternating strums. Plans, strict import,
 validation, stems, completion verification and bundled notices include guitar.
@@ -18,7 +28,7 @@ validation, stems, completion verification and bundled notices include guitar.
 unchanged owner voice stems, seven-style WASM and full browser flow: PASS.**
 Final M5 ASan/UBSan: **PASS**, 11/11 suites (461.89 s).
 Eight matched before/after pairs are prepared. **Listening: NOT RUN; full spec:
-PARTIAL.** Organ/pad/lead and later effects/quality/release gates remain open.
+PARTIAL.** At this checkpoint organ/pad/lead remained open; the continuation above implements them. Later effects/quality/release gates remain open.
 No cloud use, reference-track sampling, model, deployment or phone execution.
 
 Previous creative continuation, 2026-10-18: [Call-response, hybrid and repeat checking](creative-strategies.md).
@@ -388,7 +398,7 @@ no word boundaries or reliable semantic labels. Pitch may have octave errors.
 Varispeed couples pitch/time and can alias (current generated chops use rate 1).
 Finite instrumental early reflections, bounded independent pitch/time transforms
 and opt-in three-repeat tempo echoes exist. Transforms use opt-in 1.1 plans and echoes use 1.2, without formant correction or
-human acceptance; feedback reverb/delay and tempo maps are absent. Offline CLI JSON import and
+human acceptance; feedback reverb/delay remain absent. Tempo maps and mix automation are implemented. Offline CLI JSON import and
 explicit rule fallback are now implemented; provider-connected AI planning is
 absent. Silence is explicitly rejected. Mixing is fixed per grammar,
 with smooth clean-hook ducking; the soft-knee stage can color overloads.

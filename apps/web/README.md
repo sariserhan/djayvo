@@ -53,7 +53,10 @@ the native export layer's hard links. The planner, instruments and DSP are share
 The core's only accompanying change is an explicit bounded stream-size conversion
 for the 32-bit WebAssembly compiler, with unchanged audio behavior.
 
-Latest addition: [Recorded guitar, strums, stems and browser QA](../../docs/guitar.md).
+Latest addition: [Organ, pad, lead and broader groove/harmony variation](../../docs/sustained-instruments.md).
+Recent-body comparison ignores instrument swaps and tries at most eight candidates.
+
+Previous addition: [Recorded guitar, strums, stems and browser QA](../../docs/guitar.md).
 Previous addition: [Call-response, hybrid, recent-structure checking and browser QA](../../docs/creative-strategies.md).
 Previous addition: [Funk implementation, cross-platform comparisons and browser QA](../../docs/funk.md).
 Funk is a separate single-mix option; previous saved sessions remain valid.

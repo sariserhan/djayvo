@@ -250,6 +250,21 @@ void hiphop_composition() {
         check(render(p,a,113)==render(p,a,257),"hiphop edge seed render depends on block size");
     }
 }
+void remaining_style_diversity() {
+    const auto a=source();const auto features=djayvo::analyze(a);
+    using Shape=std::vector<std::tuple<int,djayvo::Tick,djayvo::Tick,int>>;
+    for (auto style:{djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club}) {
+        std::set<Shape> shapes;
+        for (std::uint32_t seed=4100;seed<4164;++seed) {
+            const auto p=djayvo::make_remix(a,features,style,seed,true,false);Shape body;
+            for (const auto& t:p.music.tracks) for (const auto& n:t.notes)
+                if(n.start>=2*djayvo::ticks_per_bar(p.music) && n.start<(p.music.bars-1)*djayvo::ticks_per_bar(p.music))
+                    body.emplace_back(static_cast<int>(t.instrument),n.start,n.duration,n.pitch-p.tonic_midi);
+            shapes.insert(body);
+        }
+        check(shapes.size()>=24,"style has too few musical structures for recent-take avoidance");
+    }
+}
 void dialogue_hybrid_composition() {
     auto a=source();a.mono.resize(5*a.sample_rate);a.original_frames=a.mono.size();
     const auto features=djayvo::analyze(a);
@@ -391,7 +406,7 @@ void club_direction() {
     const auto bar=djayvo::ticks_per_bar(p.music);
     check(p.music.tempo_milli_bpm==140000 && p.music.bars==20,"club tempo/form wrong");
     check(p.music.sections.size()==6 && p.music.sections[2].name=="drop","club lacks build/drop form");
-    for (const auto& t:p.music.tracks) check(t.electronic,"club selected acoustic palette");
+    for (const auto& t:p.music.tracks) check(t.electronic || t.instrument==djayvo::Instrument::pad,"club selected acoustic palette");
     for (const auto& n:p.music.tracks[1].notes)
         check((n.start>=6*bar && n.start<10*bar) || n.start>=14*bar,"bass masks build/break");
     auto altered=features;altered.onsets={800,1700,2600};
@@ -455,7 +470,7 @@ void stem_identity() {
         }
         const auto full=render(p,a,257);
         auto sum=render(p,a,113,true);
-        for(int solo=0;solo<=static_cast<int>(djayvo::Instrument::guitar);++solo) {
+        for(int solo=0;solo<=static_cast<int>(djayvo::Instrument::lead);++solo) {
             const auto stem=render(p,a,113,false,solo);
             for(std::size_t i=0;i<sum.size();++i)sum[i]+=stem[i];
         }
@@ -717,6 +732,7 @@ int main() {
         {"quantized chop spacing and both clean hooks at 2/3/5 seconds",vocal_spacing},
         {"seeded clean, instrumental and fragment openings",varied_openings},
         {"hiphop harmonic/rhythmic seed diversity, recurring motifs and developed returns",hiphop_composition},
+        {"reggae/experimental/club harmony, rhythm and form variety across 192 seeds",remaining_style_diversity},
         {"call-response turn taking, hybrid transitions and 128 seed structures",dialogue_hybrid_composition},
         {"funk syncopation, bass/kick lock, ghost notes, seed variety and input response",funk_composition},
         {"pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates",pause_aware_chops},

@@ -1,0 +1,68 @@
+PASS: renders/sustained-instruments-20261018/owner-reggae-4123.reggae.wav
+PASS: complete export renders/sustained-instruments-20261018/owner-reggae-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/owner-reggae-4124.reggae.wav
+PASS: complete export renders/sustained-instruments-20261018/owner-reggae-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/owner-experimental-4123.experimental.wav
+PASS: complete export renders/sustained-instruments-20261018/owner-experimental-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/owner-experimental-4124.experimental.wav
+PASS: complete export renders/sustained-instruments-20261018/owner-experimental-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/owner-club-4123.club.wav
+PASS: complete export renders/sustained-instruments-20261018/owner-club-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/owner-club-4124.club.wav
+PASS: complete export renders/sustained-instruments-20261018/owner-club-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/owner-hybrid-4123.hybrid.wav
+PASS: complete export renders/sustained-instruments-20261018/owner-hybrid-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/owner-hybrid-4124.hybrid.wav
+PASS: complete export renders/sustained-instruments-20261018/owner-hybrid-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/fixture.hiphop.wav
+PASS: renders/sustained-instruments-20261018/fixture.reggae.wav
+PASS: renders/sustained-instruments-20261018/fixture.experimental.wav
+PASS: complete export renders/sustained-instruments-20261018/fixture.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/club.club.wav
+PASS: complete export renders/sustained-instruments-20261018/club.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/funk.funk.wav
+PASS: complete export renders/sustained-instruments-20261018/funk.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/baseline.baseline.wav
+PASS: complete export renders/sustained-instruments-20261018/baseline.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/call_response.call_response.wav
+PASS: complete export renders/sustained-instruments-20261018/call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/hybrid.hybrid.wav
+PASS: complete export renders/sustained-instruments-20261018/hybrid.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/replay-hiphop.hiphop.wav
+PASS: complete export renders/sustained-instruments-20261018/replay-hiphop.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/replay-reggae.reggae.wav
+PASS: complete export renders/sustained-instruments-20261018/replay-reggae.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/replay-experimental.experimental.wav
+PASS: complete export renders/sustained-instruments-20261018/replay-experimental.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/replay-club.club.wav
+PASS: complete export renders/sustained-instruments-20261018/replay-club.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/replay-funk.funk.wav
+PASS: complete export renders/sustained-instruments-20261018/replay-funk.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/replay-baseline.baseline.wav
+PASS: complete export renders/sustained-instruments-20261018/replay-baseline.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/replay-call_response.call_response.wav
+PASS: complete export renders/sustained-instruments-20261018/replay-call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/sustained-instruments-20261018/replay-hybrid.hybrid.wav
+PASS: complete export renders/sustained-instruments-20261018/replay-hybrid.complete.json
+Listening/recognizability: NOT RUN

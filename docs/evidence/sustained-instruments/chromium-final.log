@@ -1,0 +1,7 @@
+PASS: chromium /Users/serhansari/Documents/projects/djayvo/renders/web-chromium-engine-DQxZ1S [
+  { style: 'three', seconds: 4.0002999999970195, artifacts: 12 },
+  { style: 'club', seconds: 2.4847999999970196, artifacts: 4 },
+  { style: 'funk', seconds: 2.137699999988079, artifacts: 4 },
+  { style: 'call_response', seconds: 2.03820000000298, artifacts: 4 },
+  { style: 'hybrid', seconds: 2.0947000000029803, artifacts: 4 }
+]

@@ -1,0 +1,8 @@
+Internal ctest changing into directory: /work/sustained/build
+Test project /work/sustained/build
+    Start 9: remix_integration
+1/1 Test #9: remix_integration ................   Passed    8.91 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   8.92 sec

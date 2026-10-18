@@ -1,0 +1,106 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "url": "http://localhost:4173/",
+    "sessions": [
+      {
+        "style": "club",
+        "seed": 2284948468,
+        "files": 4
+      },
+      {
+        "style": "funk",
+        "seed": 3998386786,
+        "files": 4
+      }
+    ],
+    "checks": [
+      "page identity and content",
+      "consent required",
+      "cancel preserves existing mixes",
+      "real funk generation",
+      "muted playback and seek",
+      "WAV download",
+      "persistent verified library",
+      "source and consent not persisted",
+      "fresh regeneration seed",
+      "scoped deletion preserves previous mixes",
+      "no horizontal overflow",
+      "no uploads or console errors"
+    ],
+    "desktop": [
+      1440,
+      1000
+    ],
+    "layouts": [
+      {
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "errors": [],
+    "warnings": [],
+    "human_listening": "NOT RUN",
+    "physical_microphone": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "url": "http://localhost:4173/",
+    "sessions": [
+      {
+        "style": "club",
+        "seed": 4282898678,
+        "files": 4
+      },
+      {
+        "style": "funk",
+        "seed": 2624375609,
+        "files": 4
+      }
+    ],
+    "checks": [
+      "page identity and content",
+      "consent required",
+      "cancel preserves existing mixes",
+      "real funk generation",
+      "muted playback and seek",
+      "WAV download",
+      "persistent verified library",
+      "source and consent not persisted",
+      "fresh regeneration seed",
+      "scoped deletion preserves previous mixes",
+      "no horizontal overflow",
+      "no uploads or console errors"
+    ],
+    "desktop": [
+      1440,
+      1000
+    ],
+    "layouts": [
+      {
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "errors": [],
+    "warnings": [
+      "Playwright screenshot styling blocked by CSP",
+      "Playwright screenshot styling blocked by CSP",
+      "Playwright screenshot styling blocked by CSP"
+    ],
+    "human_listening": "NOT RUN",
+    "physical_microphone": "NOT RUN"
+  }
+]

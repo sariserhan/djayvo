@@ -5,15 +5,19 @@
 Djayvo turns short recordings into source-driven musical performances. The
 portable C++17 prototype loads a 2–5 s WAV, finds energetic phrases and onsets,
 preserves a clean hook, and renders three original 20–40 s arrangements:
-hip-hop, reggae, and experimental, plus explicit electronic club and syncopated funk strategies. Each has independent piano, bass, drums, and
-sampled source events, plus score JSON, frame trace, measurements, and optional
-stems. No model, GPU, paid service, or third-party DSP library is required.
+hip-hop, reggae, and experimental, plus explicit club, funk, call-response and
+hybrid strategies. Arrangements use sampled piano/bass/drums, recorded guitar,
+original organ/pad/lead voices and source events, with score JSON, frame trace,
+measurements and optional stems. No model, GPU, paid service, or third-party DSP library is required.
 
 Track past work, open issues and future milestones in [TODO.md](TODO.md).
 The [complete specification ledger](docs/spec-status.md) records remaining code
 and evidence gates; overall completion is **PARTIAL**.
 
-Latest local engine work: [Recorded guitar and articulated strums](docs/guitar.md).
+Latest local engine work: [Sustained instruments and broader arrangement variety](docs/sustained-instruments.md).
+Private review: `renders/sustained-instruments-20261018/review/index.html`.
+Listening NOT RUN; production quality PARTIAL.
+Previous local engine work: [Recorded guitar and articulated strums](docs/guitar.md).
 Previous local engine work: [Call-response, hybrid and recent-composition checks](docs/creative-strategies.md).
 Previous local engine work: [Funk composition, web integration and owner comparisons](docs/funk.md).
 Previous engine work: [tempo maps and mix automation](docs/timeline.md).

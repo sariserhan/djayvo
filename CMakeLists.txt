@@ -68,6 +68,8 @@ if(BUILD_TESTING)
   if(Python3_Interpreter_FOUND)
     add_test(NAME acoustic_assets COMMAND "${Python3_EXECUTABLE}"
       "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_acoustic_assets.py")
+    add_test(NAME sustained_assets COMMAND "${Python3_EXECUTABLE}"
+      "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_sustained_assets.py")
     add_test(NAME guitar_assets COMMAND "${Python3_EXECUTABLE}"
       "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify_guitar_assets.py")
     add_test(NAME electronic_assets COMMAND "${Python3_EXECUTABLE}"

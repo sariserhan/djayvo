@@ -110,8 +110,14 @@ Renderer::Renderer(Schedule schedule, std::size_t max_block)
     for (const auto& e : schedule_.events) {
         instrument_name(e.instrument);
         if ((e.muted && e.instrument!=Instrument::guitar) ||
-            (e.instrument==Instrument::guitar && (e.electronic || e.pitch<40 || e.pitch>79)))
-            throw std::invalid_argument("invalid compiled guitar event");
+            (e.instrument>=Instrument::guitar && e.electronic) ||
+            (e.instrument==Instrument::guitar && (e.pitch<40 || e.pitch>79)))
+            throw std::invalid_argument("invalid compiled instrument event");
+        if ((e.kind!=EventKind::note_on && e.kind!=EventKind::note_off) || e.pitch<21 || e.pitch>108 ||
+            (e.kind==EventKind::note_on ? e.velocity<1 || e.velocity>127 : e.velocity!=0) ||
+            (e.instrument==Instrument::drums ? e.pitch!=36 && e.pitch!=38 && e.pitch!=42 && e.pitch!=46 :
+             440*std::exp2((e.pitch-69)/12.0)>=.45*schedule_.sample_rate))
+            throw std::invalid_argument("invalid compiled note");
         if (e.frame >= schedule_.total_frames || !std::isfinite(e.left_gain) || !std::isfinite(e.right_gain) ||
             e.automation < -1 || (e.automation>=0 && static_cast<std::size_t>(e.automation)>=schedule_.automation.size()))
             throw std::invalid_argument("invalid compiled event");

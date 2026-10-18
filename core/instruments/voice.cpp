@@ -1,4 +1,5 @@
 #include "djayvo/audio.h"
+#include "synth.h"
 #include <algorithm>
 #include <cmath>
 
@@ -33,7 +34,7 @@ const InstrumentSample& select_sample(Instrument instrument,int pitch,int veloci
 }
 }
 std::uint32_t release_frames(Instrument instrument,std::uint32_t rate) {
-    const double seconds=instrument==Instrument::piano?0.30:instrument==Instrument::bass?0.16:instrument==Instrument::guitar?0.12:0.18;
+    const double seconds=instrument==Instrument::piano?0.30:instrument==Instrument::bass?0.16:instrument==Instrument::guitar?0.12:instrument==Instrument::pad?0.8:instrument==Instrument::lead?0.12:0.18;
     return static_cast<std::uint32_t>(std::llround(seconds*rate));
 }
 void Voice::start(const Event& e,std::uint32_t rate) noexcept {
@@ -41,6 +42,16 @@ void Voice::start(const Event& e,std::uint32_t rate) noexcept {
     instrument_=e.instrument;pitch_=e.pitch;id_=e.note_id;rate_=rate;
     automation_=e.automation;
     release_length_=release_frames(instrument_,rate);
+    synthesized_=instrument_==Instrument::organ || instrument_==Instrument::pad || instrument_==Instrument::lead;
+    attack_seconds_=instrument_==Instrument::pad?.18:instrument_==Instrument::organ?.005:instrument_==Instrument::lead?.012:.001;
+    if (synthesized_) {
+        synth_frequency_=440*std::exp2((pitch_-69)/12.0);
+        velocity_=std::pow(e.velocity/127.0,1.45);
+        tone_=0;const double cutoff=instrument_==Instrument::pad?1800:instrument_==Instrument::lead?3500:7000;
+        tone_alpha_=1-std::exp(-2*pi*std::min(cutoff,rate*.45)/rate);
+        left_gain_=e.left_gain;right_gain_=e.right_gain;
+        return;
+    }
     const auto& sample=select_sample(instrument_,pitch_,e.velocity,e.noise_seed,e.electronic,e.muted);
     sample_=sample.pcm;sample_frames_=sample.frames;sample_position_=0;
     sample_step_=static_cast<double>(sample.rate)/rate;
@@ -75,18 +86,21 @@ void Voice::stop() noexcept {
 }
 float Voice::next() noexcept {
     if (!active_) return 0;
-    if (sample_position_>=static_cast<double>(sample_frames_) ||
+    if ((!synthesized_ && sample_position_>=static_cast<double>(sample_frames_)) ||
         (released_ && release_age_>=release_length_)) {active_=false;return 0;}
-    const auto index=static_cast<std::int64_t>(sample_position_);
-    const auto phase=static_cast<std::size_t>(std::llround((sample_position_-static_cast<double>(index))*64));
     double sound=0;
-    for (int tap=0;tap<16;++tap) {
-        const auto frame=index+tap-7;
-        if (frame>=0 && static_cast<std::uint64_t>(frame)<sample_frames_)
-            sound+=sample_[frame]*interpolation_[phase][static_cast<std::size_t>(tap)]/32768.0;
+    if (synthesized_) sound=synth_sample(instrument_,static_cast<double>(age_)/rate_,synth_frequency_,rate_);
+    else {
+        const auto index=static_cast<std::int64_t>(sample_position_);
+        const auto phase=static_cast<std::size_t>(std::llround((sample_position_-static_cast<double>(index))*64));
+        for (int tap=0;tap<16;++tap) {
+            const auto frame=index+tap-7;
+            if (frame>=0 && static_cast<std::uint64_t>(frame)<sample_frames_)
+                sound+=sample_[frame]*interpolation_[phase][static_cast<std::size_t>(tap)]/32768.0;
+        }
     }
     tone_+=tone_alpha_*(sound-tone_);
-    double envelope=std::min(1.0,static_cast<double>(age_)/(rate_*0.001));
+    double envelope=std::min(1.0,static_cast<double>(age_)/(rate_*attack_seconds_));
     if (released_) {
         envelope*=0.5*(1+std::cos(pi*release_age_/release_length_));
         ++release_age_;

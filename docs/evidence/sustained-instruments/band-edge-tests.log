@@ -1,0 +1,9 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+    Start 1: core
+1/2 Test #1: core .............................   Passed    1.12 sec
+    Start 5: sustained_assets
+2/2 Test #5: sustained_assets .................   Passed    0.03 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =   1.15 sec
