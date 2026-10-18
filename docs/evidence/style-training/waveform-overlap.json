@@ -1,0 +1,688 @@
+{
+  "diagnostic_execution": "PASS",
+  "copying_and_perceptual_novelty": "PARTIAL",
+  "human_listening": "NOT RUN",
+  "production_acceptance": "NOT RUN",
+  "method": {
+    "rate": 4000,
+    "mono": true,
+    "window_seconds": 2.0,
+    "query_hop_seconds": 1.0,
+    "target_hop_samples": 1,
+    "absolute_centered_correlation_threshold": 0.8,
+    "minimum_centered_rms_dbfs": -80,
+    "limitations": "No pitch/time invariance, stereo-side search, melody/identity test or proof of originality. Short copies and boundary-straddling copies may be missed. Natural musical repetition can correlate."
+  },
+  "calibration": {
+    "status": "PASS",
+    "gain_inverted_dc_shifted_copy": {
+      "correlation": 0.9999999999999835,
+      "target_seconds": 3.03075
+    },
+    "noisy_copy": {
+      "correlation": 0.9869169150237775,
+      "target_seconds": 3.03075
+    },
+    "unrelated_noise": {
+      "correlation": 0.04527552911168208,
+      "target_seconds": 2.08725
+    },
+    "brute_force_agreement_silence_nonfinite_nonoverlap": "PASS"
+  },
+  "training_overlap": [
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "x-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.24572245556711647,
+        "target_seconds": 10.03125
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "x-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 1.0,
+        "correlation": 0.18807352546105974,
+        "target_seconds": 2.75975
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "x-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.18288100798209392,
+        "target_seconds": 18.94425
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "y-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.3176206578434281,
+        "target_seconds": 22.71125
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "y-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 25.0,
+        "correlation": 0.18805957019521605,
+        "target_seconds": 24.13375
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "x-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.26887721514786206,
+        "target_seconds": 18.796
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "x-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.1988156026547481,
+        "target_seconds": 25.8975
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "x-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.2758574465408946,
+        "target_seconds": 16.9455
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "y-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.2123877646726266,
+        "target_seconds": 20.825
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "y-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.2093273145922839,
+        "target_seconds": 10.66875
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "x-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.30943730177310297,
+        "target_seconds": 18.888
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "x-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.2991301525564597,
+        "target_seconds": 3.4985
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "x-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 24.0,
+        "correlation": 0.30399606128974427,
+        "target_seconds": 14.32425
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "y-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.2365881138165521,
+        "target_seconds": 6.83975
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "y-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.21707771432869447,
+        "target_seconds": 10.75125
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "x-01.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.3369938694958287,
+        "target_seconds": 18.88075
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "x-02.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.1912012956701067,
+        "target_seconds": 16.75525
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "x-06.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.2406827513027901,
+        "target_seconds": 17.01675
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "y-04.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.28284355173157477,
+        "target_seconds": 3.86875
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "y-05.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.23449335525234935,
+        "target_seconds": 10.963
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-a.wav",
+      "training_excerpt": "x-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.2524045381841553,
+        "target_seconds": 26.27625
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-a.wav",
+      "training_excerpt": "x-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.19090039498278705,
+        "target_seconds": 11.08
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-a.wav",
+      "training_excerpt": "x-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.19190235310538684,
+        "target_seconds": 15.66025
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-a.wav",
+      "training_excerpt": "y-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.31718508237663506,
+        "target_seconds": 22.66825
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-a.wav",
+      "training_excerpt": "y-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 24.0,
+        "correlation": 0.21733200381062479,
+        "target_seconds": 23.273
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-b.wav",
+      "training_excerpt": "x-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.2693421369087711,
+        "target_seconds": 18.79625
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-b.wav",
+      "training_excerpt": "x-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.1747785128810695,
+        "target_seconds": 25.88875
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-b.wav",
+      "training_excerpt": "x-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.24330587710285925,
+        "target_seconds": 16.946
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-b.wav",
+      "training_excerpt": "y-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.21877771028182083,
+        "target_seconds": 5.97025
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-b.wav",
+      "training_excerpt": "y-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.17940865956800278,
+        "target_seconds": 10.66875
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-funk.wav",
+      "training_excerpt": "x-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.2794304854763063,
+        "target_seconds": 17.82375
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-funk.wav",
+      "training_excerpt": "x-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 25.0,
+        "correlation": 0.3028602029041017,
+        "target_seconds": 3.50625
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-funk.wav",
+      "training_excerpt": "x-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.23598936866239842,
+        "target_seconds": 14.824
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-funk.wav",
+      "training_excerpt": "y-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 2.0,
+        "correlation": 0.23628136364766406,
+        "target_seconds": 22.28525
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-funk.wav",
+      "training_excerpt": "y-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.20329071684942215,
+        "target_seconds": 10.7515
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-hiphop.wav",
+      "training_excerpt": "x-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.3146895288241683,
+        "target_seconds": 18.88
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-hiphop.wav",
+      "training_excerpt": "x-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.22470704631594351,
+        "target_seconds": 16.748
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-hiphop.wav",
+      "training_excerpt": "x-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 1.0,
+        "correlation": 0.3327023955291118,
+        "target_seconds": 16.811
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-hiphop.wav",
+      "training_excerpt": "y-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.24849873231462627,
+        "target_seconds": 4.301
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-hiphop.wav",
+      "training_excerpt": "y-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.22876833611696704,
+        "target_seconds": 10.7515
+      },
+      "flagged_windows": []
+    }
+  ],
+  "within_output_repetition": [
+    {
+      "output": "base-bass-a.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.7711893522489394,
+        "target_seconds": 10.89175
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-bass-b.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.9331244532026153,
+        "target_seconds": 23.5715
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9092977524247329,
+          "target_seconds": 20.5715
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.8503287966660771,
+          "target_seconds": 22.5715
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9331244532026153,
+          "target_seconds": 23.5715
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.8703609424957194,
+          "target_seconds": 19.71425
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.8383903031353289,
+          "target_seconds": 20.7145
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.8616700642969535,
+          "target_seconds": 21.71425
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9223431699231749,
+          "target_seconds": 15.85725
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.9005293701474866,
+          "target_seconds": 16.85725
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.881112488772369,
+          "target_seconds": 17.8575
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.812122318994073,
+          "target_seconds": 18.85725
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.8031073964579242,
+          "target_seconds": 19.85725
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.8346461512819878,
+          "target_seconds": 20.85725
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.8353649616985667,
+          "target_seconds": 22.857
+        }
+      ]
+    },
+    {
+      "output": "base-funk.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.7843545728263505,
+        "target_seconds": 15.5715
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "base-hiphop.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.5389801148259382,
+        "target_seconds": 7.4975
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-a.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 9.0,
+        "correlation": 0.7369898662565532,
+        "target_seconds": 22.7085
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-bass-b.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.8752250007828688,
+        "target_seconds": 16.85725
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.8352664605397557,
+          "target_seconds": 23.5715
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.8281516897477583,
+          "target_seconds": 15.85725
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.8752250007828688,
+          "target_seconds": 16.85725
+        }
+      ]
+    },
+    {
+      "output": "adapter-funk.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 1.0,
+        "correlation": 0.6851887037146709,
+        "target_seconds": 9.5715
+      },
+      "flagged_windows": []
+    },
+    {
+      "output": "adapter-hiphop.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 5.0,
+        "correlation": 0.5675246127502291,
+        "target_seconds": 15.492
+      },
+      "flagged_windows": []
+    }
+  ],
+  "same_brief_different_seed": [
+    {
+      "query": "base-bass-a.wav",
+      "target": "base-bass-b.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.7428721050273035,
+        "target_seconds": 28.0
+      },
+      "flagged_windows": []
+    },
+    {
+      "query": "adapter-bass-a.wav",
+      "target": "adapter-bass-b.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.6815786601419502,
+        "target_seconds": 28.0
+      },
+      "flagged_windows": []
+    }
+  ],
+  "inputs_sha256": {
+    "renders/style-training-20261018/headroom/x-01.wav": "265aeb10f62ae00feb7e0f8098bde8e51f3b3f42be54e33df4be4f496d400cfd",
+    "renders/style-training-20261018/headroom/x-02.wav": "e39ea1acb8328693f4e54f79405cbe789e8f0acb0b7da64c904200bf488e36c6",
+    "renders/style-training-20261018/headroom/x-06.wav": "9b62a3756c59cb3c1ee756edc7bc113a16d8bc0f410b0ff2ad3fc99592a489b3",
+    "renders/style-training-20261018/headroom/y-04.wav": "a36d691110af6ca480ca42df87ba8f6e2f2facd488df340fe34eda5e0f4751c5",
+    "renders/style-training-20261018/headroom/y-05.wav": "a82e9303322bf5353c213ca213674242e58af0cdf704436054486d7b87d6ca90",
+    "renders/style-training-20261018/results/base-bass-a.wav": "cd0429818f5b180aa73f8730912c623de272f916ebd93003ad0a4bbcae61aa38",
+    "renders/style-training-20261018/results/base-bass-b.wav": "23d8b13fde08b9c5004cfe60aa721f9071642fa06e6ae4ffed7741f5032d3595",
+    "renders/style-training-20261018/results/base-funk.wav": "57654380ca0770da8d6624bcd8bfc786503c68f0c99f541a9e7e9a62e7c7b548",
+    "renders/style-training-20261018/results/base-hiphop.wav": "7fa5b9056a219157ff22ca356d585d71892c840d77d36c7c549c24ae1d9de0bf",
+    "renders/style-training-20261018/results/adapter-bass-a.wav": "2101c31d09b81b026a7834840904882a698c27c0e9f71adfa60822a04fa6ad6e",
+    "renders/style-training-20261018/results/adapter-bass-b.wav": "4a54a34d6ff3fdc58fb18928eeac46d761d926bbd7b950361aa9391ca1377992",
+    "renders/style-training-20261018/results/adapter-funk.wav": "16f6a0f7af47e8277aa65f96cf3f6331cbc5764a40a051e84173bc94595c7fd2",
+    "renders/style-training-20261018/results/adapter-hiphop.wav": "b71e5300e7c23fb11ee1cd447cca3d0d6e08aead36783c8a48afd03d8be5e336"
+  },
+  "input_preservation": "PASS",
+  "holdout_z": "NOT RUN: excluded from this diagnostic",
+  "toolchain": {
+    "python": "3.15.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "platform": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "script_sha256": "adc6d13094d507ef47e2fedde12a9e899f0c4a9b97bd09cf7712e13fdcf42eff",
+  "elapsed_seconds": 4.342243417006102
+}

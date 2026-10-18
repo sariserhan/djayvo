@@ -10,6 +10,14 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest local follow-up: [Waveform diagnostics](style-waveform-diagnostics.md).
+**PASS:** calibrated training-excerpt scan (40 pairs; no flags), repetition and
+two-seed measurements, three tests and preserved artifacts. Sixteen repeated
+windows occur in the second bass seed across base/adapter; musical significance
+is unassessed. Copying/variety assessment **PARTIAL**; human quality, independent
+holdout and production **NOT RUN**. Owner “continue” is not a listening rating.
+No new rental or model promotion; concealed review unchanged.
+
 Latest model research, 2026-10-18: [Completed adapter trial](style-training-retry.md).
 **PASS:** owner-approved replacement GPU, corrected decode headroom, five selected
 clips preprocessed, 250 optimizer steps, finite/nonzero adapter, nine retrieved
@@ -17,7 +25,7 @@ WAVs, exact base repeat, four changed level-matched pairs, two-browser playback
 and rental/key cleanup. Review: http://127.0.0.1:4193/review/ . Observed combined
 cost $0.193221; final billing **PARTIAL**. **PARTIAL:** provisional dataset/content
 readiness; automatic detailed labels were inconsistent and discarded. **NOT RUN:**
-human quality, independent holdout, copying assessment, learned source-response
+human quality, independent holdout, learned source-response
 behavior and production advancement. C07/full specification remain **PARTIAL**.
 Master, original references, initial candidates, supplied fixture and owner voice
 are preserved; z and owner microphone audio stayed local. Initial host SSH

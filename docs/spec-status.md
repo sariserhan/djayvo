@@ -7,12 +7,20 @@ The web is the selected product platform; phone and hosted infrastructure work
 remain paused. Remaining local web implementation is authorized.
 [TODO](../TODO.md) tracks individual past/future work and evidence links.
 
+Latest local follow-up: [Waveform diagnostics](style-waveform-diagnostics.md).
+**PASS:** calibrated training-excerpt scan (40 pairs; no flags), repetition and
+two-seed measurements, three tests and preserved artifacts. Sixteen repeated
+windows occur in the second bass seed across base/adapter; musical significance
+is unassessed. Copying/variety assessment **PARTIAL**; human quality, independent
+holdout and production **NOT RUN**. Owner “continue” is not a listening rating.
+No new rental or model promotion; concealed review unchanged.
+
 Latest model research: [Completed style-adapter trial](style-training-retry.md).
 Owner-approved replacement GPU training, verified adapter/checkpoint, exact base
 repeat, four changed matched pairs, two-browser playback and rental/key cleanup
 **PASS**. Observed combined debit $0.193221; final billing **PARTIAL**. Dataset
 readiness remains **PARTIAL**: five provisional excerpts, unstable detailed
-machine labels discarded. Human quality, independent holdout, copying assessment
+machine labels discarded. Human quality, independent holdout, perceptual copying
 and learned source-response behavior **NOT RUN**. The research-only M1 exception
 does not advance production gates; master unchanged. Initial host SSH **FAIL**
 remains in the historical evidence.

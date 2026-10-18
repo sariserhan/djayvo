@@ -1,7 +1,7 @@
 # Djayvo development tracker
 
 Last updated: 2026-10-18 (America/New_York). Latest implementation: [source phrase development](docs/source-motif.md).
-Latest research: [completed bounded style-adapter trial](docs/style-training-retry.md).
+Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -73,9 +73,12 @@ closes that task only; it does not automatically pass its parent milestone.
 - [ ] **C08 — NOT RUN:** Audition [four concealed adapter comparisons](http://127.0.0.1:4193/review/)
   for musicality, reference direction, voice artifacts, groove, development and
   endings. Record pair/version/timestamps; waveform differences are not quality.
-- [ ] **C09 — NOT RUN:** Curate verified musical windows, captions and session
-  groups from the permissioned references; independently evaluate copying and
-  generalization. Detailed automatic captions proved unstable. Source-to-response
+- [ ] **C09 — PARTIAL:** [Local waveform diagnostics](docs/style-waveform-diagnostics.md)
+  PASS: calibrated 40-pair training-excerpt scan, internal repetition and two-seed
+  measurements, three tests and protected-file checks. No training-excerpt flags;
+  repeated windows in both second-seed bass takes need listening review. Curate
+  verified musical windows, captions and session groups; independently evaluate
+  perceptual copying and generalization. Detailed automatic captions proved unstable. Source-to-response
   learning also needs appropriate paired examples; a style adapter does not
   implement that behavior. Further paid rentals need separate authorization.
 
@@ -269,6 +272,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P54 | PASS | Full-file x/y/z signal measurements, plots, unchanged source hashes and seven CLI/repeatability checks; direct listening NOT RUN | [Evidence](docs/reference-xyz-analysis.md) |
 | [x] | P55 | PASS | Two-bar source-derived Call & Response answers, accent response and developed returns; 65 exact cross-OS WAVs, 21 WASM comparisons, old-score replay and four private matched pairs | [Evidence](docs/source-motif.md) |
 | [x] | P56 | PASS | Bounded RTX 3090 adapter pilot: corrected decode headroom, five provisional clips, 250 training steps, verified checkpoint, exact base repeat, four changed matched pairs, two-browser playback and rental/key cleanup; musical quality NOT RUN | [Evidence](docs/style-training-retry.md) |
+| [x] | P57 | PASS | Local calibrated waveform diagnostics: 40 training-excerpt pairs, internal repetition, same-brief seed comparison, three tests and preserved artifacts; perceptual novelty and musical quality NOT RUN | [Evidence](docs/style-waveform-diagnostics.md) |
 
 ## Engineering backlog
 

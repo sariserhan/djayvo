@@ -1,0 +1,11 @@
+test_calibration_and_direct_agreement (test_style_overlap.WaveformOverlap.test_calibration_and_direct_agreement) ... ok
+test_decoded_audio_and_corruption (test_style_overlap.WaveformOverlap.test_decoded_audio_and_corruption) ... [in#0 @ 0xb8cc20000] Error opening input: Invalid data found when processing input
+Error opening input file /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmpbu35vpx4/invalid.wav.
+Error opening input files: Invalid data found when processing input
+ok
+test_existing_evidence_is_preserved (test_style_overlap.WaveformOverlap.test_existing_evidence_is_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.490s
+
+OK

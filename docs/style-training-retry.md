@@ -47,7 +47,8 @@ These decisions are provisional, not verified musical annotations. See
 This small, correlated dataset tests feasibility. Separate files are not proof
 of independent sessions. z was not used for fitting, tuning, early stopping or
 quality assessment. Full content review, phrase-aligned cropping, independent
-holdout validity and memorization assessment remain **NOT RUN**.
+holdout validity remain **NOT RUN**. Subsequent [waveform diagnostics](style-waveform-diagnostics.md)
+make copying assessment **PARTIAL**; perceptual memorization remains **NOT RUN**.
 
 ## Actual execution
 
@@ -162,7 +163,8 @@ not a provider-enforced spending cap. [Result and cleanup](evidence/style-traini
 | Replacement SSH / CUDA / pinned setup | PASS | Real execution before upload |
 | Decode headroom / protected-file preservation | PASS | 18 corrected files; old files and originals unchanged |
 | Dataset content and caption readiness | PARTIAL | Five provisional selections; detailed labels discarded |
-| Independent holdout / copying assessment | NOT RUN | z remains local and unused; session independence unknown |
+| Independent holdout | NOT RUN | z remains local and unused; session independence unknown |
+| Copying assessment | PARTIAL | [Local waveform scan](style-waveform-diagnostics.md) completed; perceptual/transformed reuse unassessed |
 | Tensor preprocessing / optimizer training / checkpoint | PASS | Five tensors, 250 steps, finite nonzero weights |
 | Repeat control / adapter output / transfer | PASS | Exact base repeat, four changed pairs, 27 verified files |
 | Listening page / technical local checks | PASS | Two browser engines; 11 controller, 5 scope, 8 preparation and 1 end-to-end checks |

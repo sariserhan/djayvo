@@ -6,6 +6,14 @@ complete master specification. Never modify the master; its SHA-256 is
 `389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2`.
 
 **Current priority, 2026-10-18: music quality research and remaining local web implementation; hosted infrastructure and phone work paused.**
+Latest local follow-up: [Waveform diagnostics](style-waveform-diagnostics.md).
+**PASS:** calibrated training-excerpt scan (40 pairs; no flags), repetition and
+two-seed measurements, three tests and preserved artifacts. Sixteen repeated
+windows occur in the second bass seed across base/adapter; musical significance
+is unassessed. Copying/variety assessment **PARTIAL**; human quality, independent
+holdout and production **NOT RUN**. Owner “continue” is not a listening rating.
+No new rental or model promotion; concealed review unchanged.
+
 Latest model research: [Completed adapter trial](style-training-retry.md).
 The owner approved one replacement with “yes try”, sharing the original $10
 ceiling. Actual RTX 3090 training PASS: five provisional x/y clips, 250 steps,
@@ -17,7 +25,7 @@ approvals. The original and replacement state directories remain separate.
 Dataset readiness PARTIAL: detailed machine captions were inconsistent, so
 training used a broad caption and no guessed lyrics/tempo/key. Decode headroom
 was fixed in fresh copies; old recordings, originals, master and fixture remain
-unchanged. z and microphone audio stayed local. Human listening, copying checks,
+unchanged. z and microphone audio stayed local. Human listening, perceptual copying checks,
 independent holdout validity, source-conditioned learning and production gates
 remain NOT RUN. Private results/checkpoint: `renders/style-training-20261018/results`.
 
