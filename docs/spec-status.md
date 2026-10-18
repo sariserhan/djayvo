@@ -1,10 +1,19 @@
 # Specification completion ledger
 
+**Current authorization — 2026-10-18:** The owner's revised direction supersedes
+prior continuation permissions. M0a is technically complete; stop for its review.
+Do not begin or resume W0, W1 or any later implementation without explicit new
+authorization. Preserve existing later work and historical evidence. See the
+[web-studio addendum](web-studio-addendum.md); its future components do not
+expand M0a or change the master specification.
+
+
 Audited 2026-10-18 against the complete, unchanged master specification and the
 owner's later instructions. **Overall specification: PARTIAL.** Continuing
 implementation does not waive formal quality evidence or authorize publication.
 The web is the selected product platform; phone and hosted infrastructure work
-remain paused. Remaining local web implementation is authorized.
+remain paused. Earlier local implementation authorization is superseded by
+the M0a review stop above.
 [TODO](../TODO.md) tracks individual past/future work and evidence links.
 
 Latest local follow-up: [Waveform diagnostics](style-waveform-diagnostics.md).

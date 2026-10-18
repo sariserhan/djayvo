@@ -1,5 +1,13 @@
 # Djayvo development tracker
 
+**Current authorization — 2026-10-18:** The owner's revised direction supersedes
+prior continuation permissions. M0a is technically complete; stop for its review.
+Do not begin or resume W0, W1 or any later implementation without explicit new
+authorization. Preserve existing later work and historical evidence. See the
+[web-studio addendum](docs/web-studio-addendum.md); its future components do not
+expand M0a or change the master specification.
+
+
 Last updated: 2026-10-18 (America/New_York). Latest implementation: [source phrase development](docs/source-motif.md).
 Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
@@ -30,7 +38,7 @@ work or evidence is missing. `FAIL` means a performed check did not meet its
 criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
-## Current product work
+## Existing product work — paused pending scope authorization
 
 - [x] **C01 — PASS:** Ran the owner-authorized $10 pretrained music experiment
   on one Vast RTX 3090: ten successful 30-second hip-hop/club takes, pinned
@@ -273,6 +281,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P55 | PASS | Two-bar source-derived Call & Response answers, accent response and developed returns; 65 exact cross-OS WAVs, 21 WASM comparisons, old-score replay and four private matched pairs | [Evidence](docs/source-motif.md) |
 | [x] | P56 | PASS | Bounded RTX 3090 adapter pilot: corrected decode headroom, five provisional clips, 250 training steps, verified checkpoint, exact base repeat, four changed matched pairs, two-browser playback and rental/key cleanup; musical quality NOT RUN | [Evidence](docs/style-training-retry.md) |
 | [x] | P57 | PASS | Local calibrated waveform diagnostics: 40 training-excerpt pairs, internal repetition, same-brief seed comparison, three tests and preserved artifacts; perceptual novelty and musical quality NOT RUN | [Evidence](docs/style-waveform-diagnostics.md) |
+| [x] | P58 | PASS | Document revised improviser/DJ-studio direction separately, preserve M0a scope and master, verify existing playable demo and stop later implementation pending review | [Addendum](docs/web-studio-addendum.md) · [Receipt](docs/evidence/web-studio-direction/review.json) |
 
 ## Engineering backlog
 

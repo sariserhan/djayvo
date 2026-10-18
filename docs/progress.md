@@ -1,5 +1,13 @@
 # Djayvo: M0 continuation evidence
 
+**Current authorization — 2026-10-18:** The owner's revised direction supersedes
+prior continuation permissions. M0a is technically complete; stop for its review.
+Do not begin or resume W0, W1 or any later implementation without explicit new
+authorization. Preserve existing later work and historical evidence. See the
+[web-studio addendum](web-studio-addendum.md); its future components do not
+expand M0a or change the master specification.
+
+
 For completed development, open tasks and future milestones, use the
 [development tracker](../TODO.md). This file retains the detailed evidence record.
 

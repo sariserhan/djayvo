@@ -1,11 +1,19 @@
 # Djayvo: Apple M5 agent handoff
 
-Continue without per-step approval. The owner authorized autonomous continuation
+**Current authorization — 2026-10-18:** The owner's revised direction supersedes
+prior continuation permissions. M0a is technically complete; stop for its review.
+Do not begin or resume W0, W1 or any later implementation without explicit new
+authorization. Preserve existing later work and historical evidence. See the
+[web-studio addendum](web-studio-addendum.md); its future components do not
+expand M0a or change the master specification.
+
+
+Historical authorization (superseded by the review stop above): the owner authorized autonomous continuation
 and asked to finish Linux work, then move to the Mac. Read `AGENTS.md` and the
 complete master specification. Never modify the master; its SHA-256 is
 `389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2`.
 
-**Current priority, 2026-10-18: music quality research and remaining local web implementation; hosted infrastructure and phone work paused.**
+**Prior priority (paused at the current review stop): music quality research and remaining local web implementation. Hosted infrastructure and phone work also remain paused.**
 Latest local follow-up: [Waveform diagnostics](style-waveform-diagnostics.md).
 **PASS:** calibrated training-excerpt scan (40 pairs; no flags), repetition and
 two-seed measurements, three tests and preserved artifacts. Sixteen repeated

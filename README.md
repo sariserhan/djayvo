@@ -1,5 +1,13 @@
 # Djayvo
 
+**Current authorization — 2026-10-18:** The owner's revised direction supersedes
+prior continuation permissions. M0a is technically complete; stop for its review.
+Do not begin or resume W0, W1 or any later implementation without explicit new
+authorization. Preserve existing later work and historical evidence. See the
+[web-studio addendum](docs/web-studio-addendum.md); its future components do not
+expand M0a or change the master specification.
+
+
 **Say anything. Make music.**
 
 Djayvo turns short recordings into source-driven musical performances. The
@@ -34,7 +42,7 @@ Previous effects/analysis: [bounded instrument reverb](docs/feedback-reverb.md) 
 model estimates can vary by platform and musical listening remains open.
 
 Latest creative research: [selective voice over GPU instrumentals](docs/voice-research.md).
-Music quality is the current priority; infrastructure and phone work are paused.
+This research and further implementation are paused at the M0a review stop above.
 
 Latest website work: [Next.js accounts foundation](apps/site/README.md), with
 Better Auth email/password, Neon-compatible Postgres schema and Resend adapter.
