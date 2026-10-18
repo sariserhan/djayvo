@@ -101,6 +101,22 @@ def main():
         with (root / "pilot/listener/pairs.csv").open() as f:
             pairs = list(csv.DictReader(f))
         assert len(pairs) == 3 and all(r["preferred_code_or_tie"] == "" for r in pairs)
+        assert all(r['block_id'] == key['block_id'] for r in rows+pairs)
+        shuffled = prepare(prefix, root / 'reshuffled', source, seed=4124)
+        assert set(key['codes']).isdisjoint(shuffled['codes']), 'different assignments reused answer codes'
+        repeated = prepare(prefix, root / 'repeated', source)
+        assert key == repeated, 'same block/assignment is not reproducible'
+        # A new rendered seed must also get distinct IDs with the same shuffle seed.
+        wav = Path(str(prefix)+'.hiphop.wav')
+        original_wav = wav.read_bytes()
+        raw = bytearray(original_wav);raw[44:46] = (100).to_bytes(2, 'little');wav.write_bytes(raw)
+        changed_audio = prepare(prefix, root / 'changed-audio', source, allow_legacy=True)
+        assert set(key['codes']).isdisjoint(changed_audio['codes'])
+        score = Path(str(prefix)+'.baseline.score.json')
+        original_score = score.read_text()
+        altered = json.loads(original_score);altered['seed'] += 1;score.write_text(json.dumps(altered))
+        rejects(lambda: prepare(prefix, root / 'mixed-seeds', source, allow_legacy=True))
+        wav.write_bytes(original_wav);score.write_text(original_score)
         rejects(lambda: prepare(prefix, root / "pilot", source))
         changed=json.loads(marker.read_text());changed['artifacts'][0]['suffix']='../../outside.wav'
         marker.write_text(json.dumps(changed));rejects(lambda: verify_export(prefix))

@@ -62,5 +62,7 @@ if(BUILD_TESTING)
       --renderer "$<TARGET_FILE:djayvo_remix>"
       --output "${CMAKE_CURRENT_BINARY_DIR}/remix-integration")
     add_test(NAME tooling COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_tools.py")
+    add_test(NAME evaluation_preparation COMMAND "${Python3_EXECUTABLE}"
+      "${CMAKE_CURRENT_SOURCE_DIR}/tests/integration/verify_evaluation.py" --renderer "$<TARGET_FILE:djayvo_remix>")
   endif()
 endif()

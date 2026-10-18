@@ -1,0 +1,30 @@
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-mac
+[ 56%] Built target djayvo_core
+[ 78%] Built target djayvo_render
+[ 82%] Built target djayvo_tests
+[ 82%] Built target djayvo_remix_tests
+[ 91%] Built target djayvo_remix
+[100%] Built target djayvo_c_smoke
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+    Start 1: core
+1/8 Test #1: core .............................   Passed    0.27 sec
+    Start 2: remix_core
+2/8 Test #2: remix_core .......................   Passed    0.64 sec
+    Start 3: c_abi
+3/8 Test #3: c_abi ............................   Passed    0.07 sec
+    Start 4: acoustic_assets
+4/8 Test #4: acoustic_assets ..................   Passed    0.41 sec
+    Start 5: wav_integration
+5/8 Test #5: wav_integration ..................   Passed    0.53 sec
+    Start 6: remix_integration
+6/8 Test #6: remix_integration ................   Passed    2.42 sec
+    Start 7: tooling
+7/8 Test #7: tooling ..........................   Passed    1.08 sec
+    Start 8: evaluation_preparation
+8/8 Test #8: evaluation_preparation ...........   Passed   11.90 sec
+
+100% tests passed out of 8
+
+Total Test time (real) =  17.33 sec

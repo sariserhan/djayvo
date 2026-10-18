@@ -1,0 +1,23 @@
+{
+  "gates": {
+    "m5_release": "PASS",
+    "m5_sanitizers": "PASS",
+    "linux_arm64_release": "PASS",
+    "frozen_batch_preparation": "PASS",
+    "consent_integrity_and_preservation": "PASS",
+    "distinct_reproducible_blocks": "PASS",
+    "owner_technical_pilot": "PASS",
+    "retained_v4_audio_and_events": "PASS",
+    "diverse_dataset": "PARTIAL",
+    "preregistration": "PARTIAL",
+    "formal_human_listening": "NOT RUN",
+    "formal_quality": "NOT RUN",
+    "hosted_ci": "NOT RUN",
+    "physical_intel": "NOT RUN",
+    "ai_iphone_live_release": "NOT RUN"
+  },
+  "sources": 1,
+  "candidate_masters": 9,
+  "baseline_masters": 3,
+  "unique_answer_codes": 12
+}

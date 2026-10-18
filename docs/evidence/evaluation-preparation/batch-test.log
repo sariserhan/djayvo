@@ -1,0 +1,2 @@
+PASS: frozen batch, three seeds, unique blocks, consent/hash/path/duplicate rejection, no overwrite, silence controls, retained failures and honest gates
+NOT RUN: human listening; fixtures are original procedural test data

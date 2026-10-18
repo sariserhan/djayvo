@@ -1,0 +1,5 @@
+Initial container preflight: git -C /src rev-parse HEAD
+sh: 1: git: not found
+Resolved by making repository commit metadata optional in source archives/minimal
+containers. Frozen engine source and binary hashes remain required. No package
+was installed. Actual Linux evaluation tests follow in linux-release.log.

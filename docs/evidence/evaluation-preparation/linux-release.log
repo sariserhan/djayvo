@@ -1,0 +1,33 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /work/build
+[ 56%] Built target djayvo_core
+[ 65%] Built target djayvo_render
+[ 69%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/remix_main.cpp.o
+[ 78%] Built target djayvo_tests
+[ 86%] Built target djayvo_remix_tests
+[ 95%] Built target djayvo_c_smoke
+[100%] Linking CXX executable djayvo_remix
+[100%] Built target djayvo_remix
+Internal ctest changing into directory: /work/build
+Test project /work/build
+    Start 1: core
+1/8 Test #1: core .............................   Passed    0.42 sec
+    Start 2: remix_core
+2/8 Test #2: remix_core .......................   Passed    0.95 sec
+    Start 3: c_abi
+3/8 Test #3: c_abi ............................   Passed    0.09 sec
+    Start 4: acoustic_assets
+4/8 Test #4: acoustic_assets ..................   Passed    0.44 sec
+    Start 5: wav_integration
+5/8 Test #5: wav_integration ..................   Passed    0.55 sec
+    Start 6: remix_integration
+6/8 Test #6: remix_integration ................   Passed    2.76 sec
+    Start 7: tooling
+7/8 Test #7: tooling ..........................   Passed    1.16 sec
+    Start 8: evaluation_preparation
+8/8 Test #8: evaluation_preparation ...........   Passed   13.43 sec
+
+100% tests passed, 0 tests failed out of 8
+
+Total Test time (real) =  19.80 sec

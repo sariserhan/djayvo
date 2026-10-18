@@ -1,9 +1,9 @@
 # Reproducible builds
 
 The continuation adds `djayvo_remix`, C-ABI smoke tests, and a total of **six**
-CTest suites in the original continuation, now **seven** including asset integrity.
-Current native M5 release/sanitizer and Linux arm64 runs pass all seven; see
-[workflow-hardening.md](workflow-hardening.md). For the current engine, also read
+CTest suites in the original continuation, now **eight** including asset integrity
+and evaluation preparation. Current native M5 release/sanitizer and Linux arm64
+runs pass all eight; see [evaluation-batch.md](evaluation-batch.md). For the current engine, also read
 [remix-architecture.md](remix-architecture.md) and
 [mac-agent-handoff.md](mac-agent-handoff.md).
 

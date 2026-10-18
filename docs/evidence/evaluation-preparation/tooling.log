@@ -1,0 +1,2 @@
+PASS: comparison equality, changed decision/frame/audio rejection, blind codes, RMS matching, source hash and empty responses
+NOT RUN: human observations and actual Mac execution

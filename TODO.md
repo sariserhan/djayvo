@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-17 (America/New_York). Latest implementation: [safe exports and recording workflow](docs/workflow-hardening.md).
+Last updated: 2026-10-17 (America/New_York). Latest implementation: [reproducible evaluation preparation](docs/evaluation-batch.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -15,7 +15,7 @@ the source of truth and is not modified by this tracker.
 | M0b — own sound into music | PARTIAL | Consented voice renders; formal recognizability observations missing |
 | M0c — three musical strategies | PARTIAL | Owner accepts the current prototype as a start; production quality and formal listening remain open |
 | M0d — Apple M5 portability | PASS | Native Mac and actual Linux arm64 tests; exact current plans/events and 18 matching WAVs |
-| M1 — musical quality baseline | NOT RUN | Protocol, fixed-loop control and pilot prepared; formal human evaluation missing |
+| M1 — musical quality baseline | NOT RUN | Frozen one-source/three-seed pilot and distinct blind packets prepared; diverse sources and formal human evaluation missing |
 | M2 — AI director benchmarks | NOT RUN | Depends on quality baseline and measured model feasibility |
 | M3 — iPhone Instant Remix | NOT RUN | Portable C ABI exists; app and actual device validation remain |
 | M4 — live improvisation | NOT RUN | Requires separate real-device latency, audio and capture evidence |
@@ -75,6 +75,8 @@ Do not close N02–N05 merely because another implementation is committed.
 
 Entries follow implementation order. Historical results apply to their revision;
 current platform results are in [the workflow report](docs/evidence/workflow-hardening/report.json).
+The [evaluation preparation report](docs/evidence/evaluation-preparation/report.json)
+adds an eighth passing suite and confirms the unchanged renderer/audio.
 
 | Done | ID | Status | Development | Commit / evidence |
 | --- | --- | --- | --- | --- |
@@ -99,6 +101,7 @@ current platform results are in [the workflow report](docs/evidence/workflow-har
 | [x] | P19 | PASS | Actual consented M4A conversion, three-style/stem workflow, browser playback and separate-prefix blind pilot | [Workflow evidence](docs/evidence/workflow-hardening/report.json) |
 | [x] | P20 | PASS | 33 offline timing/RSS trials; current M5/Linux release and M5 sanitizers; 18 identical cross-OS WAVs | [Benchmark](docs/evidence/workflow-hardening/benchmark.json) |
 | [x] | P21 | PASS | Pinned Linux/macOS CI matrix and cross-OS comparison recipe prepared and locally checked; hosted execution remains open | [Workflow](.github/workflows/core.yml) |
+| [x] | P22 | PASS | Frozen consent/hash/rubric batch, three seeds, retained failure counts, distinct answer codes, actual owner pilot and eighth M5/Linux test suite | [Evaluation preparation](docs/evaluation-batch.md) |
 
 ## Engineering backlog
 
@@ -141,13 +144,16 @@ Prerequisites: a reviewable revision, an eligible consented dataset and real
 listeners. Preparation does not pass this milestone. Follow the
 [evaluation protocol](docs/evaluation-protocol.md); retain per-style failures.
 
-- [ ] **Q01 — NOT RUN:** Freeze engine commit, rubric, technical acceptance
-  rules, hashes, seed schedule and reviewer assignment before collecting scores.
-- [ ] **Q02 — NOT RUN:** Collect 20–50 diverse cleared clips, including multiple
+- [ ] **Q01 — PARTIAL:** Engine/source/binary/preparation/rubric hashes, technical
+  rules and seed schedule frozen for the one-source pilot. Final cohort and
+  actual reviewer assignment are still missing. [Preparation](docs/evaluation-batch.md).
+- [ ] **Q02 — PARTIAL:** One owner-consented source is inventoried with owner-only
+  review scope. Owner confirmed no additional clips are available. Collect 20–50 diverse cleared clips, including multiple
   speakers/sessions, speech, laughter, claps, noise and silence controls. Keep
   permission records and raw audio local; separate speech and non-speech results.
-- [ ] **Q03 — NOT RUN:** Render each eligible clip in three styles and three
-  seeds; measure technically usable outputs and record every rejected input.
+- [ ] **Q03 — PARTIAL:** Actual pilot: one source × three styles × three seeds,
+  plus three baselines; 3/3 technical exports per style. Batch tool retains
+  failed attempts and expected silence controls. Full diverse dataset is absent.
 - [ ] **Q04 — NOT RUN:** Run randomized, blinded comparisons with the fixed-loop
   baseline and at least three independent reviewers per eligible block.
 - [ ] **Q05 — NOT RUN:** Assess the provisional targets: >=85% technically usable,

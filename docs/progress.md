@@ -9,6 +9,19 @@ master specification is unchanged. The original M0a record is
 [m0a-report.md](m0a-report.md), with its initial Git commit `02d0e18`.
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
+Latest continuation: [reproducible evaluation preparation](evaluation-batch.md).
+Eight suites pass on M5 release/sanitizers and Linux arm64. A frozen local pilot
+contains one owner source × three styles × three seeds, three baselines and
+three blind packets. Distinct block/answer IDs prevent different seeds from
+reusing response codes. All nine candidate WAVs, plans and event frames match
+retained v4 outputs exactly. No audio-engine algorithm changed.
+
+The owner confirmed no additional consented clips are available. Dataset and
+preregistration are **PARTIAL**; reviewer assignment, formal listening and M1
+quality are **NOT RUN**. Permission remains owner-only. See the
+[current preparation report](evidence/evaluation-preparation/report.json).
+
+Previous engineering checkpoint:
 The latest [workflow revision](workflow-hardening.md) adds cancellable exports
 with completion hashes and collision protection, native extensible WAV import,
 and one-command local M4A conversion/render/listening preparation. Seven suites
@@ -64,8 +77,10 @@ claiming human evidence. No iPhone UI, AI model, training, or live mode was buil
 | Linux release build | PASS | Current aarch64 Debian 12 container, GCC 12.2; physical Intel rerun NOT RUN |
 | C++ unit tests | PASS | Current Mac/Linux: 10 foundation + 12 remix test groups |
 | C ABI | PASS | Compiled-C render, bounded errors, ABI and additive cancellation/retry checked |
-| End-to-end tests | PASS | Current Mac: CTest 7/7 including asset integrity |
-| ASan/UBSan | PASS | Current Mac: same seven suites, no findings |
+| End-to-end tests | PASS | Current Mac/Linux: CTest 8/8 including asset integrity and evaluation preparation |
+| ASan/UBSan | PASS | Current Mac: same eight suites, no findings |
+| Evaluation preparation | PASS | Frozen actual one-source/three-seed pilot; nine unchanged candidate WAVs, distinct codes and blank ratings |
+| Dataset/preregistration | PARTIAL | Owner has no additional clips; diverse cohort and reviewer assignments missing |
 | Input decoding/bounds | PASS | PCM16/24/32, float32 and validated extensible variants; original owner WAV accepted; corruption/layout/precision/padding rejected |
 | Safe export/cancellation | PASS | Complete marker/hashes, exclusive publication, rollback, real SIGINT/SIGKILL, existing files/symlinks and stale locks preserved |
 | Local M4A workflow | PASS | Actual owner input converted locally; three mixes/twelve stems, provenance and browser page; source unchanged |

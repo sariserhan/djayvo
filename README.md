@@ -27,6 +27,11 @@ M4A/WAV, renders all three styles/stems and creates a listening page in a fresh
 folder. Exports are cancellable and include verified completion records. M5,
 Linux and 33 offline benchmark renders pass; hosted CI execution is **NOT RUN**.
 
+[Evaluation preparation](docs/evaluation-batch.md) now freezes a consent/source
+ledger and engine/rubric hashes, renders three seeds and creates distinct blinded
+packets. Eight M5/Linux test suites pass. The actual one-source pilot is complete;
+the diverse dataset and independent human listening remain missing.
+
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel 4

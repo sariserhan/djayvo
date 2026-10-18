@@ -30,6 +30,13 @@ sanitizer suites pass 7/7 each (22 native test groups); 18 cross-OS WAVs and
 all 15 previous v4 owner WAVs match exactly. The [tracker](../TODO.md) records
 completed work and the remaining listening/device/hosted-CI gates.
 
+Latest continuation: [evaluation preparation](evaluation-batch.md), with eight
+passing suites on M5 release/sanitizers and Linux arm64. The renderer is unchanged;
+all nine fresh owner candidates match v4 exactly. Only one consented source is
+available; formal dataset/reviewer prerequisites remain missing. Preserve the
+private ledger and recordings under `renders/`; owner-only permission is not
+independent-review permission.
+
 For this revision, run the smoke test with `DJAYVO_REFERENCE_PREFIX=renders/arrangement-linux/workflow-v5/remix`
 and a new `DJAYVO_OUTPUT_DIR`. The script now rejects existing output directories;
 its default is timestamped. Do not compare the revised music to historical M0

@@ -10,8 +10,9 @@ The owner subsequently accepted v4 piano/drums (“they are fine”); this infor
 feedback is recorded in [the current report](workflow-hardening.md), not as
 completed blinded ratings.
 
-Current status: **NOT RUN**. No human observations or musical-quality scores have
-been collected. Signal checks demonstrate a valid recording, not enjoyable music.
+Formal rubric status: **NOT RUN**. No formal rubric scores have been collected.
+Informal owner feedback is recorded above. Signal checks demonstrate a valid
+recording, not enjoyable music.
 
 Open `renders/m0a.wav` in a WAV player. Start at a comfortable playback volume.
 Listen through the full 11.6 s export (the last 2 s are release space). Record
@@ -55,6 +56,11 @@ responses are locked. Candidates are matched to one common full-file RMS target
 with headroom; this is not perceptual LUFS matching. Codecs/metadata do not expose
 strategy names, although genre itself is intentionally audible. The original
 source is included for recognition judgments. Files remain local by default.
+
+For multiple clips/seeds, use the [batch preparation workflow](evaluation-batch.md).
+It freezes source/permission and engine/rubric hashes, records failed attempts,
+and emits distinct `block_id` values plus blank forms. Readiness checks are not
+listening results. An owner-only pilot cannot authorize independent review.
 
 Before collecting scores, freeze this rubric, engine commit, fixture hashes,
 seed schedule, and technical acceptance criteria. Collect 20–50 diverse clips
