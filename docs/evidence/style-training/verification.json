@@ -1,0 +1,88 @@
+{
+  "checks": [
+    {
+      "id": "x-01",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "x-02",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "x-03",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "x-04",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "x-05",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "x-06",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "y-01",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "y-02",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "y-03",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "y-04",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "y-05",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "y-06",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "z-01",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "z-02",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "z-03",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "z-04",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "z-05",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "z-06",
+      "format_frames_hash": "PASS"
+    },
+    {
+      "id": "x-01 repeated decode",
+      "waveform_byte_identity": "PASS",
+      "maximum_pcm_difference": 0,
+      "rms_pcm_difference": 0
+    }
+  ],
+  "source_preservation": "PASS",
+  "master_preservation": "PASS",
+  "human_content_review": "NOT RUN",
+  "training": "NOT RUN",
+  "python": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers"
+}

@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-18",
+  "scope": "x.mp3, y.mp3 and z.mp3 discussed immediately before the permission confirmation",
+  "owner_statement_verbatim": "okay I agree adn I have a permisson on those downloads",
+  "basis": "Owner confirms permission in response to the explicit model-training-rights question. This is an owner attestation, not an independently reviewed license.",
+  "training_permission": "owner_confirmed",
+  "rights_holder": null,
+  "license_document": null,
+  "cloud_transfer_scope": "not separately established",
+  "raw_audio_distribution": "not established",
+  "adapter_distribution": "not established",
+  "commercial_release": "not established",
+  "retention": "Local research copies retained until owner requests removal; original Downloads files are never deleted by preparation.",
+  "withdrawal": "Exclude affected source hashes and descendants; invalidate affected adapters and rerun training without withdrawn data before further use. No adapter exists yet.",
+  "sources": [
+    {
+      "id": "x",
+      "filename": "x.mp3",
+      "sha256": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+      "split": "train_candidate",
+      "session_id": null,
+      "independent_session_verified": false
+    },
+    {
+      "id": "y",
+      "filename": "y.mp3",
+      "sha256": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+      "split": "train_candidate",
+      "session_id": null,
+      "independent_session_verified": false
+    },
+    {
+      "id": "z",
+      "filename": "z.mp3",
+      "sha256": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63",
+      "split": "holdout_candidate",
+      "session_id": null,
+      "independent_session_verified": false
+    }
+  ]
+}

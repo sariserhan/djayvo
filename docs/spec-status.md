@@ -7,6 +7,11 @@ The web is the selected product platform; phone and hosted infrastructure work
 remain paused. Remaining local web implementation is authorized.
 [TODO](../TODO.md) tracks individual past/future work and evidence links.
 
+Latest model preparation: [Style-adapter pilot](style-training-pilot.md)
+**PARTIAL**. Owner-confirmed x/y/z training permission and local extraction
+**PASS**; reviewed dataset, research exception, bounded cloud trial and learned
+quality evidence remain open. Actual training **NOT RUN**; master unchanged.
+
 Latest engine change: [Source phrase development](source-motif.md) **PASS**
 technically: chronological rhythm, source accents and two-bar Call & Response
 answers/returns. Owner reports “More connected” on four labeled comparisons

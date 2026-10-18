@@ -63,6 +63,12 @@ closes that task only; it does not automatically pass its parent milestone.
   adaptive form/voice roles, expressive pitch contours and reference-level quality
   remain open; reference measurements do not establish listening or training rights.
 
+- [ ] **C07 — PARTIAL:** [Style-adapter pilot](docs/style-training-pilot.md):
+  owner-confirmed x/y/z training permission recorded; 18 local candidate excerpts,
+  hash-bound provenance, provisional file split and seven safeguards PASS.
+  Content/label/session review, research-hold exception, new GPU budget/cloud
+  transfer authorization, actual training and blinded comparison remain open.
+
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,
 with private generation plus a reviewed public catalogue. Keep the database free;
@@ -367,7 +373,9 @@ paid infrastructure, training on reference tracks, publishing or charging users.
 - [ ] **A03 — NOT RUN:** Compare model-directed arrangements with the rule engine
   in a blinded trial. Advance only with measured benefit and bounded cost.
 - [ ] **A04 — NOT RUN:** Consider learned action ranking only with cleared,
-  opt-in data and speaker/phrase/session holdouts. Do not train on the references.
+  opt-in data and speaker/phrase/session holdouts. The owner subsequently confirmed
+  x/y/z training permission; C07 tracks a separate proposed adapter pilot. This
+  does not waive M1 or establish distribution rights.
 
 ### M3: iPhone Instant Remix — PARTIAL
 
