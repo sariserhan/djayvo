@@ -11,6 +11,11 @@ stems. No model, GPU, paid service, or third-party DSP library is required.
 
 Track past work, open issues and future milestones in [TODO.md](TODO.md).
 
+Latest website work: [Next.js accounts foundation](apps/site/README.md), with
+Better Auth email/password, Neon-compatible Postgres schema and Resend adapter.
+Local account/browser checks pass; live cloud services remain unconfigured.
+Run it at http://localhost:3000 using the linked setup instructions.
+
 **Current priority: [Djayvo web](apps/web/README.md).** Record/import, trim,
 generate three takes or club, play, save locally and download WAVs in the browser.
 The shared engine runs as WebAssembly without uploading audio. Start the existing

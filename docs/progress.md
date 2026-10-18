@@ -10,15 +10,25 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
+Latest web implementation, 2026-10-18: [accounts foundation](web-accounts.md)
+adds the Next.js shell, Better Auth email/password, verification/reset via a
+Resend adapter, generated auth migrations and owner-scoped private track metadata.
+**Local build, Postgres lifecycle/security checks, Chromium/WebKit flows and
+bundle audit: PASS. W09: PARTIAL. Live Neon/Resend, R2, catalogue and deployment:
+NOT RUN.** Final tests run on Node 22 with a separate local Postgres cluster and
+captured test email. The existing studio, DSP, supplied speech fixture, master
+and owner's recordings are preserved. No new musical-quality claim.
+
 Latest platform design, 2026-10-18: owner accepted Vercel, Better Auth, the Next.js
 shell, R2 and private generation plus a reviewed public catalogue, then selected
 Neon PostgreSQL Free with no paid database upgrade without approval.
 [ADR 0002](decisions/0002-web-platform-auth-and-storage.md) records relational
 records in Postgres and audio in R2, with explicit cloud save,
 direct transfers, validated immutable assets and separate catalogue approval.
-**Architecture and technology selection: PASS; budget controls, backend integration,
-provisioning and deployment: NOT RUN.** Current app behavior, master and recordings
-are unchanged. Tasks W08–W11 track the next work.
+At the design checkpoint, implementation was NOT RUN; the local account slice
+above supersedes that implementation status. **Architecture/technology selection:
+PASS; hosted integrations, budget validation, provisioning and deployment: NOT RUN.**
+Tasks W08–W11 track the remaining work.
 
 Latest priority change, 2026-10-18: the owner requested the web version first
 and paused further phone work. [Browser Instant Remix](web-instant-remix.md) now

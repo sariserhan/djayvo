@@ -1,6 +1,6 @@
 # Djayvo development tracker
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [browser Instant Remix](docs/web-instant-remix.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [web accounts foundation](docs/web-accounts.md).
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -32,11 +32,12 @@ closes that task only; it does not automatically pass its parent milestone.
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,
 with private generation plus a reviewed public catalogue. Keep the database free;
-no paid upgrade without owner approval. No cloud resources or dependencies have
-been configured by the design work.
+no paid upgrade without owner approval. The owner chose email/password sign-in and
+Resend for account email. [Local implementation/evidence](docs/web-accounts.md)
+now exists; cloud resources remain unconfigured.
 
 - [x] **W08 — PASS:** Document hosting/auth/database/object-storage boundaries, private save/public submission separation, logical model and upload/deletion lifecycle.
-- [ ] **W09 — NOT RUN:** Implement Better Auth and Neon PostgreSQL Free; validate owner isolation, migrations, separate preview/production environments, database size/compute/transfer budgets and graceful limits without a paid upgrade.
+- [ ] **W09 — PARTIAL:** Next.js shell, Better Auth email/password, Resend adapter, generated auth schema, private metadata queries, migration safeguards and local Postgres/browser tests implemented. Live Neon/Resend, preview/production isolation, expired-auth cleanup, database compute/transfer budgets and overload limits remain. [Evidence](docs/web-accounts.md).
 - [ ] **W10 — NOT RUN:** Implement explicit private cloud save, bounded direct uploads, immutable validated assets, quotas and retryable deletion in R2.
 - [ ] **W11 — NOT RUN:** Build reviewed public catalogue, filters/search, track pages, persistent player and private playlists; verify publication consent and no private-data leaks.
 

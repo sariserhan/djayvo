@@ -1,0 +1,32 @@
+
+> djayvo-site@0.1.0 test:integration
+> tsx --test tests/database.test.ts
+
+2026-10-18T06:20:05.318Z WARN [Better Auth]: Field lastRequest in table rateLimit has a different type in the database. Expected number but got int8.
+▶ isolated Postgres account lifecycle, schema safety and owner isolation
+  ✔ migrations apply once and match pinned Better Auth configuration (21.029959ms)
+  ✔ failed migration rolls back and changed applied SQL is rejected (4.383167ms)
+2026-10-18T06:20:05.527Z ERROR [Better Auth]: Invalid origin: https://other.example
+2026-10-18T06:20:05.528Z ERROR [Better Auth]: Invalid redirectURL: https://other.example/
+  ✔ unverified accounts cannot sign in; verification and origin checks work (204.804167ms)
+2026-10-18T06:20:05.580Z WARN [Better Auth]: Rate limiting could not determine a client IP and is falling back to a single shared per-path bucket. Ensure your runtime forwards a trusted client IP header, then set `advanced.ipAddress.ipAddressHeaders` or `advanced.ipAddress.trustedProxies` so the address can be resolved.
+  ✔ session cookies are validated; library pages isolate owners including cursor ties (5.317167ms)
+2026-10-18T06:20:05.834Z WARN [Better Auth]: Invalid password
+  ✔ password reset revokes sessions; reset tokens cannot be replayed (149.910334ms)
+  ✔ sign-out and expiration revoke access; password hashes are not plaintext (50.736917ms)
+2026-10-18T06:20:05.935Z WARN [Better Auth]: Reset Password: User not found
+2026-10-18T06:20:05.936Z WARN [Better Auth]: Reset Password: User not found
+2026-10-18T06:20:05.938Z WARN [Better Auth]: Reset Password: User not found
+2026-10-18T06:20:05.953Z WARN [Better Auth]: Reset Password: User not found
+2026-10-18T06:20:05.954Z WARN [Better Auth]: Reset Password: User not found
+2026-10-18T06:20:05.954Z WARN [Better Auth]: Reset Password: User not found
+  ✔ database-backed rate limits survive multiple auth instances (21.113ms)
+✔ isolated Postgres account lifecycle, schema safety and owner isolation (713.645167ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 978.414708

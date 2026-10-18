@@ -1,5 +1,13 @@
 # Dependencies, licenses, and asset provenance
 
+Website account shell (2026-10-18): Next.js 16.4.2, React/React DOM 19.3.1,
+Better Auth 1.7.10, pg 8.23.1 and server-only 0.0.1 report MIT licenses in their
+installed package metadata. Versions/transitive dependencies are locked in
+`apps/site/package-lock.json`. The Resend integration uses the platform HTTPS
+client without an SDK. These packages are separate from the portable C++ core
+and original static studio. Public distribution still requires the complete
+bundled dependency notices/release audit; no deployment occurs in this slice.
+
 Web target (2026-10-18): Emscripten 6.0.1 compiles the shared core; its MIT/NCSA
 notice plus bundled musl, libc++, libc++abi, libunwind and compiler-rt notices are
 copied into `dist/web/licenses/EMSCRIPTEN-LICENSE.txt`. Sample notices are copied

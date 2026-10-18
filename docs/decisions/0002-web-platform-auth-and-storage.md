@@ -1,13 +1,15 @@
 # ADR 0002: hosted audio platform, authentication and storage
 
-Date: 2026-10-18. **Design deliverable: PASS. Implementation: NOT RUN.**
+Date: 2026-10-18. **Design deliverable: PASS. Implementation: PARTIAL.**
+See [local account implementation and gates](../web-accounts.md).
 
 Owner decisions: Vercel hosting, Better Auth for authentication, Neon PostgreSQL
 on the Free plan, Cloudflare R2 for audio, and private generation plus a reviewed
 public catalogue. The owner accepted Neon after specifying a zero-cost database
 budget. A Next.js application shell is included in the accepted architecture.
-These are selected technologies, not provisioned services or completed
-integrations. No master-spec edits.
+The owner subsequently selected email/password sign-in and Resend for account
+email. Local account implementation exists; hosted services are not provisioned
+or validated. No master-spec edits.
 
 ## Product shape
 
@@ -55,6 +57,7 @@ remains off. Existing M1 musical-quality requirements remain open.
 | --- | --- | --- |
 | Application and API | Vercel; Next.js shell, Node runtime for auth/API | Pages, catalogue queries, session checks, authorized upload/download requests |
 | Authentication | Better Auth in our backend | Sign-in, sessions, provider accounts and verification; records in Postgres |
+| Account email | Resend | Verification and password reset; server-side sending credentials |
 | Application database | Neon PostgreSQL Free | Owners, tracks, object references, tags, playlists, review states, permission and usage records |
 | Audio/object storage | R2 Standard | WAV masters, later compressed previews, waveform files and optional cover images |
 | Generation | Existing browser WASM worker | Reuse portable C++ engine, keep generation off the API request path |
@@ -230,7 +233,8 @@ caches; auth sign-out/recovery; playback/seek and download in supported browsers
 | Current-doc research and reviewable architecture proposal | PASS |
 | Owner choice: Vercel, Better Auth, Neon Free, R2, Next.js, private generation + reviewed catalogue | PASS |
 | Deployment configuration, capacity measurements and budget controls | NOT RUN |
-| Auth/database/R2 implementation and integration tests | NOT RUN |
+| Auth/database implementation and integration tests | PARTIAL — local account/Postgres/browser checks pass; live Neon/Resend not run |
+| R2 implementation and integration tests | NOT RUN |
 | Provisioning, paid services, migration and deployment | NOT RUN |
 | Musical quality / production acceptance | PARTIAL — prior gates unchanged |
 

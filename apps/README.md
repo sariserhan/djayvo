@@ -1,5 +1,10 @@
 # Djayvo applications
 
+[Website and accounts](site/README.md) hosts the existing browser studio inside
+the selected Next.js platform and adds locally tested email/password accounts.
+Neon Free and Resend are selected; hosted integrations, R2 and catalogue remain
+open. See [account evidence](../docs/web-accounts.md).
+
 [Browser Instant Remix](web/README.md) is the current owner-selected priority.
 It runs the shared engine locally through WebAssembly, with browser capture,
 import/trim, three styles or club, playback, persistence and WAV downloads.

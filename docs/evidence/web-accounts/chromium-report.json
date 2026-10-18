@@ -1,0 +1,43 @@
+{
+  "browser": "chromium",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "anonymous consent/import/club generation/playback stay local through Next hosting",
+      "status": "PASS"
+    },
+    {
+      "name": "anonymous and forged-cookie API access denied without caching",
+      "status": "PASS"
+    },
+    {
+      "name": "real browser registration, verification and password sign-in",
+      "status": "PASS"
+    },
+    {
+      "name": "server-rendered library and API exclude another owner; spoofed owner/cursor rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "oversized auth body and cross-origin state change denied",
+      "status": "PASS"
+    },
+    {
+      "name": "browser password reset revokes session; new password and sign-out work",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile layout fits; local mix survives account navigation and sign-out",
+      "status": "PASS"
+    },
+    {
+      "name": "no browser runtime exceptions",
+      "status": "PASS"
+    }
+  ],
+  "live_neon": "NOT RUN",
+  "live_resend": "NOT RUN",
+  "physical_microphone": "NOT RUN",
+  "human_listening": "NOT RUN",
+  "errors": []
+}

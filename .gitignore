@@ -8,6 +8,11 @@ __pycache__/
 *.a
 *.o
 node_modules/
+.env*
+!.env.example
+.next/
+*.tsbuildinfo
+/apps/site/public/studio/
 
 # Local Xcode state and signing settings
 xcuserdata/

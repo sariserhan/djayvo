@@ -1,0 +1,131 @@
+import assert from 'node:assert/strict';
+import { readFile, readdir, mkdir } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
+import { randomUUID } from 'node:crypto';
+import { Pool } from 'pg';
+import { chromium, webkit } from 'playwright';
+
+process.loadEnvFile('.env.local');
+const base = process.env.BETTER_AUTH_URL;
+const dbURL = new URL(process.env.DATABASE_URL);
+assert.ok(['localhost', '127.0.0.1'].includes(dbURL.hostname), 'Browser tests require loopback Postgres.');
+assert.ok(process.env.DJAYVO_LOCAL_OUTBOX, 'Browser tests never send real email.');
+assert.equal(new URL(base).hostname, 'localhost');
+const root = fileURLToPath(new URL('../../../', import.meta.url));
+const output = join(root, 'renders/site-validation');
+await mkdir(output, { recursive: true });
+const pool = new Pool({ connectionString: dbURL.toString() });
+const kind = process.env.DJAYVO_BROWSER || 'chromium';
+const browser = await (kind === 'webkit' ? webkit : chromium).launch();
+const context = await browser.newContext({ viewport: { width: 1440, height: 1000 },
+  extraHTTPHeaders: { 'x-real-ip': `198.51.100.${10 + Math.floor(Math.random() * 200)}` } });
+const page = await context.newPage();
+const errors = [], checks = [], requests = [];
+page.on('pageerror', error => errors.push(error.message));
+context.on('request', request => requests.push({ method: request.method(), url: request.url().split('?')[0] }));
+const check = name => { checks.push({ name, status: 'PASS' }); console.log(`PASS: ${name}`); };
+const email = `browser-${randomUUID()}@example.com`;
+const other = `browser-${randomUUID()}@example.com`;
+const password = 'Djayvo-browser-passphrase-719';
+async function capturedLink(subject) {
+  for (let attempt = 0; attempt < 100; attempt++) {
+    const files = await readdir(process.env.DJAYVO_LOCAL_OUTBOX).catch(() => []);
+    const messages = await Promise.all(files.sort().map(async name => JSON.parse(await readFile(join(process.env.DJAYVO_LOCAL_OUTBOX, name), 'utf8'))));
+    const mail = messages.findLast(item => item.to === email && item.subject.includes(subject));
+    if (mail) return mail.text.match(/https?:\/\/\S+/)[0];
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  throw new Error('Expected email was not captured.');
+}
+async function signIn(pass = password) {
+  await page.goto(`${base}/account/sign-in`);
+  await page.getByLabel('Email', { exact: true }).fill(email);
+  await page.getByLabel('Password', { exact: true }).fill(pass);
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await page.waitForURL(`${base}/account`);
+}
+try {
+  await page.goto(base);
+  await page.waitForURL('**/studio/index.html');
+  assert.equal(await page.locator('#record').isDisabled(), true);
+  await page.locator('#consent').check();
+  await page.locator('#file').setInputFiles(join(root, 'renders/fixtures/synthetic-speech.wav'));
+  await page.waitForFunction(() => !document.querySelector('#generate').disabled);
+  await page.locator('input[value=club]').check();
+  await page.locator('#generate').click();
+  await page.waitForFunction(() => document.querySelectorAll('.track').length === 1, { timeout: 90000 });
+  const audio = page.locator('.track audio');
+  await audio.evaluate(async player => { player.muted = true; await player.play(); });
+  await page.waitForFunction(() => document.querySelector('.track audio').currentTime > 0.1);
+  await audio.evaluate(player => player.pause());
+  assert.ok(!requests.some(request => request.method === 'POST'));
+  await page.screenshot({ path: join(output, `${kind}-studio.png`), fullPage: true });
+  check('anonymous consent/import/club generation/playback stay local through Next hosting');
+  const anon = await context.request.get(`${base}/api/library`);
+  assert.equal(anon.status(), 401);
+  assert.match(anon.headers()['cache-control'], /no-store/);
+  const forged = await context.request.get(`${base}/api/library`, { headers: { cookie: 'better-auth.session_token=forged' } });
+  assert.equal(forged.status(), 401);
+  check('anonymous and forged-cookie API access denied without caching');
+  await page.getByRole('link', { name: 'Account', exact: true }).click();
+  await page.getByRole('link', { name: 'Create account', exact: true }).click();
+  await page.getByLabel('Name', { exact: true }).fill('Local test listener');
+  await page.getByLabel('Email', { exact: true }).fill(email);
+  await page.getByLabel('Password', { exact: true }).fill(password);
+  await page.getByRole('button', { name: 'Create account', exact: true }).click();
+  await page.getByRole('status').filter({ hasText: 'Check your email' }).waitFor();
+  assert.equal((await context.request.get(`${base}/api/library`)).status(), 401);
+  await page.goto(await capturedLink('Verify'));
+  await signIn();
+  await page.getByRole('heading', { name: 'Your account.' }).waitFor();
+  check('real browser registration, verification and password sign-in');
+  const user = (await pool.query('SELECT id FROM "user" WHERE email = $1', [email])).rows[0];
+  await pool.query('INSERT INTO "user" (id, name, email, "emailVerified") VALUES ($1, $2, $3, true)', [other, 'Other listener', other]);
+  await pool.query("INSERT INTO tracks (owner_id, title, strategy, duration_ms) VALUES ($1, 'Your test track', 'club', 36000), ($2, 'Other private track', 'club', 36000)", [user.id, other]);
+  await page.getByRole('link', { name: 'Cloud library', exact: true }).first().click();
+  await page.getByText('Your test track', { exact: true }).waitFor();
+  assert.equal(await page.getByText('Other private track', { exact: true }).count(), 0);
+  const library = await context.request.get(`${base}/api/library`);
+  assert.equal(library.status(), 200);
+  assert.deepEqual((await library.json()).tracks.map(track => track.title), ['Your test track']);
+  assert.equal((await context.request.get(`${base}/api/library?ownerId=${other}`)).status(), 400);
+  assert.equal((await context.request.get(`${base}/api/library?cursor=invalid`)).status(), 400);
+  check('server-rendered library and API exclude another owner; spoofed owner/cursor rejected');
+  const oversized = await context.request.post(`${base}/api/auth/sign-up/email`, { data: { email, name: 'x'.repeat(17000), password }, headers: { origin: base } });
+  assert.equal(oversized.status(), 413);
+  const crossOrigin = await context.request.post(`${base}/api/auth/sign-out`, { data: {}, headers: { origin: 'https://untrusted.example' } });
+  assert.equal(crossOrigin.status(), 403);
+  check('oversized auth body and cross-origin state change denied');
+  await page.goto(`${base}/account/forgot-password`);
+  await page.getByLabel('Email', { exact: true }).fill(email);
+  await page.getByRole('button', { name: 'Send reset link' }).click();
+  await page.getByRole('status').filter({ hasText: 'Check your email' }).waitFor();
+  await page.goto(await capturedLink('Reset'));
+  await page.getByLabel('Password', { exact: true }).fill(`${password}-new`);
+  await page.getByRole('button', { name: 'Update password' }).click();
+  await page.getByRole('status').filter({ hasText: 'Password updated' }).waitFor();
+  assert.equal((await context.request.get(`${base}/api/library`)).status(), 401);
+  await signIn(`${password}-new`);
+  await page.getByRole('button', { name: 'Sign out', exact: true }).click();
+  await page.waitForURL('**/account/sign-in');
+  assert.equal((await context.request.get(`${base}/api/library`)).status(), 401);
+  check('browser password reset revokes session; new password and sign-out work');
+  await page.screenshot({ path: join(output, `${kind}-account-desktop.png`), fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.screenshot({ path: join(output, `${kind}-account-mobile.png`), fullPage: true });
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  await page.getByRole('link', { name: 'Back to the studio', exact: true }).click();
+  await page.waitForFunction(() => document.querySelectorAll('.track').length === 1);
+  assert.equal(await page.locator('#consent').isChecked(), false);
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  check('mobile layout fits; local mix survives account navigation and sign-out');
+  assert.deepEqual(errors, []);
+  check('no browser runtime exceptions');
+  const { writeFile } = await import('node:fs/promises');
+  await writeFile(join(output, `${kind}-report.json`), JSON.stringify({ browser: kind, status: 'PASS', checks,
+    live_neon: 'NOT RUN', live_resend: 'NOT RUN', physical_microphone: 'NOT RUN', human_listening: 'NOT RUN', errors }, null, 2));
+} finally {
+  await pool.query('DELETE FROM "user" WHERE email = ANY($1::text[])', [[email, other]]);
+  await pool.end(); await context.close(); await browser.close();
+}

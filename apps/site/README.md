@@ -1,0 +1,120 @@
+# Djayvo website and accounts
+
+Next.js shell around the existing browser studio, with Better Auth email/password
+accounts and a PostgreSQL private-library foundation. Neon **Free** and Resend are
+the selected hosted providers. No hosted resources have been provisioned.
+
+The studio at `/studio/index.html` keeps the existing WebAssembly engine and
+IndexedDB library. Only its built navigation link changes to **Account**. Sign-in
+never imports, uploads or publishes local music. Cloud saving and the reviewed
+catalogue are not implemented in this slice; there are no pretend upload buttons.
+
+## Run locally
+
+Use Node **22.x**. Dependencies are isolated to this application. If your shell
+and npm select different Node installations, activate Node 22 for both before
+running these commands; the evidence includes an explicit Node 22 build and tests.
+Keep `~/mlx-env` unchanged.
+
+From the repository root, ensure the existing WASM bundle is current:
+
+```sh
+sh scripts/web_build.sh
+cd apps/site
+npm ci
+```
+
+For an isolated local account database, with PostgreSQL tools already installed:
+
+```sh
+node scripts/local-setup.mjs
+DJAYVO_MIGRATION_TARGET=127.0.0.1:55439/djayvo_local npm run db:migrate -- --apply
+npm run dev
+```
+
+Setup refuses to replace `.env.local`, creates a separate password-protected
+loopback cluster on port 55439 under ignored `build-site/`, and captures mail in
+its private outbox. **Do not rerun setup when that environment already exists.**
+The current checkout already has this environment. Open **http://localhost:3000**.
+For an optimized local run, use `npm run build` then `npm start`.
+
+Local verification/reset messages are JSON files in the directory named by
+`DJAYVO_LOCAL_OUTBOX` in `.env.local`. Open the link from your own test message.
+This is development-only, not inbox delivery. Outbox content must never be served
+or committed. Cluster paths are in `build-site/local-postgres.json`; stop/start
+with `pg_ctl -D <data> stop` / `pg_ctl -D <data> -l <run>/postgres.log start`.
+
+Browser storage belongs to an origin. The old `localhost:4173` library is unchanged
+but is separate from `localhost:3000`; no automatic transfer is attempted. Keep
+using 4173 to download older mixes. Neither sign-in nor sign-out deletes local music.
+
+## Hosted configuration — NOT RUN
+
+Use `.env.example` as the names reference, never put secrets into Git or browser
+variables. Configure separate Vercel environments with separate Neon branches and
+auth secrets; do not branch production user data into previews. Use the selected
+Neon Free plan, with no paid upgrade or add-on without owner approval.
+
+- `DATABASE_URL`: Neon pooled Postgres connection for application requests.
+- `DATABASE_MIGRATION_URL`: direct connection, used only by the explicit migration command.
+- `BETTER_AUTH_URL`: exact HTTPS app origin, without paths or wildcard preview hosts.
+- `BETTER_AUTH_SECRET`: unique cryptographically random secret of at least 32 characters.
+- `RESEND_API_KEY`, `EMAIL_FROM`: server-side sending key and verified sender.
+- Unset `DJAYVO_LOCAL_OUTBOX` on hosted environments. Configuration rejects it there.
+
+The Resend adapter uses the HTTPS API directly, with a timeout and idempotency
+key. Next.js `after` retains background email work after the response; failures
+log a generic operational error without addresses, tokens or provider response
+bodies. Users can request another verification/reset link. This is not a durable
+mail queue or proof of delivery. Provider domain setup and real inbox delivery
+must be tested before enabling public registration.
+
+Do not run migrations automatically during a Next.js/Vercel build. First review
+the committed SQL; run `npm run db:migrate` to display the non-secret target.
+Then provide that exact `host[:port]/database` in `DJAYVO_MIGRATION_TARGET` and
+pass `--apply` against the intended isolated environment. Migrations are hashed,
+serialized by a transaction lock and rolled back together on failure. An applied
+file cannot be silently edited. `0001_auth.sql` was generated using Better Auth
+1.7.10 `getMigrations(authOptions(...)).compileMigrations()` on an empty database.
+
+Vercel must receive the audited WASM bundle before `npm run build`. The local
+prepare step deliberately fails if `dist/web` is absent/stale; it never downloads
+an unverified binary. A clean hosted build pipeline for that artifact, production
+environment setup and deployment are still open. Do not claim Git-import deployment
+works yet. For any deployment, select Node 22 and validate the proxy-provided
+client IP used by the rate limiter.
+
+## Checks
+
+```sh
+npm test
+npm run test:integration
+npm run typecheck
+npm run build
+npm run audit:bundle
+npm run db:usage
+# With the app running at the configured localhost:3000 origin:
+npm run test:browser
+DJAYVO_BROWSER=webkit npm run test:browser
+```
+
+Integration tests require the local outbox and loopback Postgres. They create a
+random `djayvo_test_*` database, test real Better Auth and SQL, then drop only that
+database. Browser tests use disposable contexts and synthetic account fixtures,
+delete their account records afterward, and import the supplied synthetic speech
+fixture without regenerating it. They never send real email. Do not target a
+shared or hosted database with the tests.
+
+`db:usage` reports actual database bytes and row counts, not a monthly compute or
+transfer forecast. Monitor Neon separately for those limits. Periodic expired-auth
+cleanup, signup/storage budgets and overload behavior remain release work. Free
+database operation is a bounded-use target; R2, Vercel and Resend budgets are separate.
+
+Security checks cover unverified/expired/forged/revoked sessions, other-owner
+denial, parameterized queries, stable cursor pagination, cross-origin rejection,
+16 KB auth bodies, password reset replay, concurrent database-backed rate limits,
+and migration retry/rollback. Private responses use `no-store`; account pages use
+nonce-based script CSP. TLS certificate checks remain enabled for Neon.
+There is no reviewer role, publishing endpoint or public catalogue yet.
+
+Evidence and exact limits: [web accounts report](../../docs/web-accounts.md).

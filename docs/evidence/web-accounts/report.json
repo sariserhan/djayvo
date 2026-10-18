@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-18",
+  "timezone": "America/New_York",
+  "scope": "Local web accounts foundation; W09 PARTIAL",
+  "environment": {
+    "hardware": "Apple M5",
+    "macOS": "26.7.1",
+    "node_final": "22.23.1",
+    "node_initial_npm": "26.3.0",
+    "postgres": "16.14",
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "better_auth": "1.7.10",
+    "pg": "8.23.1",
+    "typescript": "5.9.3",
+    "playwright": "1.61.1"
+  },
+  "gates": {
+    "production_build": "PASS",
+    "typescript": "PASS",
+    "unit_tests": "PASS",
+    "local_postgres_integration": "PASS",
+    "chromium_flows": "PASS",
+    "webkit_flows": "PASS",
+    "visual_inspection": "PASS",
+    "bundle_audit": "PASS",
+    "master_and_recordings_preserved": "PASS",
+    "neon_free_budget_controls": "PARTIAL",
+    "live_neon": "NOT RUN",
+    "live_resend": "NOT RUN",
+    "r2_sync": "NOT RUN",
+    "reviewed_catalogue": "NOT RUN",
+    "vercel_deployment": "NOT RUN",
+    "new_event_frame_or_pcm_comparison": "NOT RUN",
+    "musical_quality": "PARTIAL"
+  },
+  "counts": {
+    "unit_tests": 3,
+    "postgres_scenarios": 7,
+    "node_test_total_including_parent": 11,
+    "chromium_checks": 8,
+    "webkit_checks": 8
+  },
+  "preserved_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "limitations": [
+    "Local Postgres and captured emails do not prove Neon or Resend integration.",
+    "Browser playback was muted and is not listening evidence.",
+    "No cloud account, paid upgrade, publication or training.",
+    "Hosted WASM artifact build pipeline and budget controls remain open."
+  ]
+}

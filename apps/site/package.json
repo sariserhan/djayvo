@@ -1,0 +1,39 @@
+{
+  "name": "djayvo-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "22.x" },
+  "scripts": {
+    "studio:prepare": "node scripts/prepare-studio.mjs",
+    "predev": "npm run studio:prepare",
+    "dev": "next dev --hostname 127.0.0.1 --port 3000",
+    "prebuild": "npm run studio:prepare",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 3000",
+    "typecheck": "tsc --noEmit",
+    "audit:bundle": "node scripts/audit-bundle.mjs",
+    "test": "tsx --test tests/config.test.ts",
+    "test:integration": "tsx --test tests/database.test.ts",
+    "test:browser": "node tests/browser.mjs",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:usage": "tsx scripts/usage.ts"
+  },
+  "dependencies": {
+    "better-auth": "1.7.10",
+    "next": "16.4.2",
+    "pg": "8.23.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "server-only": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.2.3",
+    "playwright": "1.61.1",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}

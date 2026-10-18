@@ -1,0 +1,43 @@
+
+> djayvo-site@0.1.0 prebuild
+> npm run studio:prepare
+
+
+> djayvo-site@0.1.0 studio:prepare
+> node scripts/prepare-studio.mjs
+
+Prepared the audited browser studio and engine.
+
+> djayvo-site@0.1.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 11ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 427ms
+  Running TypeScript ...
+  Finished TypeScript in 1104ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/4) ...
+  Generating static pages using 9 workers (1/4)
+  Generating static pages using 9 workers (2/4)
+  Generating static pages using 9 workers (3/4)
+✓ Generating static pages using 9 workers (4/4) in 232ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /account
+├ ƒ /account/[action]
+├ ƒ /api/auth/[...all]
+├ ƒ /api/library
+└ ƒ /library
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

@@ -1,0 +1,8 @@
+PASS: anonymous consent/import/club generation/playback stay local through Next hosting
+PASS: anonymous and forged-cookie API access denied without caching
+PASS: real browser registration, verification and password sign-in
+PASS: server-rendered library and API exclude another owner; spoofed owner/cursor rejected
+PASS: oversized auth body and cross-origin state change denied
+PASS: browser password reset revokes session; new password and sign-out work
+PASS: mobile layout fits; local mix survives account navigation and sign-out
+PASS: no browser runtime exceptions
