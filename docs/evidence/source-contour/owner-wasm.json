@@ -1,0 +1,33 @@
+{
+  "node": "v22.23.1",
+  "cases": [
+    {
+      "seed": 4123,
+      "seconds": 1.283903917,
+      "plan_event_frames_pcm": "PASS",
+      "max_pcm_difference": 0,
+      "rms_pcm_difference": 0
+    },
+    {
+      "seed": 4124,
+      "seconds": 0.5363114169999998,
+      "plan_event_frames_pcm": "PASS",
+      "max_pcm_difference": 0,
+      "rms_pcm_difference": 0
+    },
+    {
+      "seed": 4125,
+      "seconds": 0.5195055419999999,
+      "plan_event_frames_pcm": "PASS",
+      "max_pcm_difference": 0,
+      "rms_pcm_difference": 0
+    },
+    {
+      "seed": 4126,
+      "seconds": 0.514629833,
+      "plan_event_frames_pcm": "PASS",
+      "max_pcm_difference": 0,
+      "rms_pcm_difference": 0
+    }
+  ]
+}

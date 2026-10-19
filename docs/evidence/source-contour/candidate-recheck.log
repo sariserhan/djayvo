@@ -1,0 +1,14 @@
+node:internal/fs/promises:858
+  return await PromisePrototypeThen(
+         ^
+
+Error: EEXIST: file already exists, mkdir 'renders/source-contour-20261019/owner-wasm'
+    at async Object.mkdir (node:internal/fs/promises:858:10)
+    at async file:///Users/serhansari/Documents/projects/djayvo/docs/evidence/source-contour/owner-wasm.mjs:5:1 {
+  errno: -17,
+  code: 'EEXIST',
+  syscall: 'mkdir',
+  path: 'renders/source-contour-20261019/owner-wasm'
+}
+
+Node.js v22.23.1

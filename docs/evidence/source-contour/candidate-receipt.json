@@ -1,0 +1,22 @@
+{
+  "base_commit": "50f70793f112b2d79345213e231ac7d23f791349",
+  "candidate_sha256": {
+    "core/arrangement/remix.cpp": "944aea4ff6f810dd1592cc9f1603939dc66a278d8dc87417db5a8994c6f26881",
+    "core/tests/remix_tests.cpp": "3216750e889df68cecbbca24ac3dc3b09a5da1cf694c3d572448c7abd57bc18c",
+    "build-mac/djayvo_remix": "a36d1a6a041017c01b8811fa8e827ec469045bacf8a61e6b0fe562a8b025ca13",
+    "build-mac/libdjayvo_core.a": "e2a844a8befa67e862368af555bbbd01ac096a5ab4109771f96400160726838b",
+    "build-web/djayvo_web.mjs": "ae99a78f24bbd233a428c2f86baac1969a8425987d6ca3e64530a7f0034c5c66",
+    "build-web/djayvo_web.wasm": "e1723af6e2df47464f9f56a6035bbf24e1514d092d7606428b866ca8f1eb24cb"
+  },
+  "owner_feedback": "No clear difference",
+  "promoted_to_studio": false,
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/x.mp3": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+    "/Users/serhansari/Downloads/y.mp3": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+    "/Users/serhansari/Downloads/z.mp3": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63"
+  },
+  "prior_training_artifacts_verified": 27
+}

@@ -12,7 +12,8 @@ new paid compute, publication and monetization still need explicit authorization
 
 
 Last updated: 2026-10-19 (America/New_York). Latest validation: [Linux browser portability](docs/linux-browser.md).
-Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
+Latest research: [source-contour candidate and inconclusive listening](docs/source-contour.md).
+Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
 
 Use this file for past work, open issues and future development. Detailed test
 results belong in [progress](docs/progress.md) and linked evidence reports.
@@ -218,6 +219,14 @@ closes that task only; it does not automatically pass its parent milestone.
   learning also needs appropriate paired examples; a style adapter does not
   implement that behavior. Further paid rentals need separate authorization.
 
+- [ ] **C10 — PARTIAL:** Source-contour research completed with four matched
+  comparisons; actual Mac/Linux 15/15 suites, 65 exact cross-OS WAVs and native/
+  browser agreement PASS. Owner said **“No clear difference”**; audible benefit
+  not established, promotion FAIL. Candidate retained as a patch and playable
+  research artifacts; original studio engine restored. No new model training.
+  Prioritize paired phrase/response examples, reviewed session splits and real
+  preference evidence for C05/C09. [Evidence](docs/source-contour.md).
+
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,
 with private generation plus a reviewed public catalogue. Keep the database free;
@@ -415,6 +424,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P57 | PASS | Local calibrated waveform diagnostics: 40 training-excerpt pairs, internal repetition, same-brief seed comparison, three tests and preserved artifacts; perceptual novelty and musical quality NOT RUN | [Evidence](docs/style-waveform-diagnostics.md) |
 | [x] | P58 | PASS | Document revised improviser/DJ-studio direction separately, preserve M0a scope and master, verify existing playable demo and stop later implementation pending review | [Addendum](docs/web-studio-addendum.md) · [Receipt](docs/evidence/web-studio-direction/review.json) |
 | [x] | P59 | PASS | Two local DJ decks and real manual mixing, stereo metering, consent/failure handling and disconnected-server playback; 16 unit, 26 DJ browser and 40 voice regression checks | [Evidence](docs/dj-mixer.md) |
+| [x] | P60 | PASS | Complete source-contour experiment and cross-platform evidence; record inconclusive owner listening and restore unchanged production engine. Musical benefit not established; candidate not promoted | [Evidence](docs/source-contour.md) |
 
 ## Engineering backlog
 

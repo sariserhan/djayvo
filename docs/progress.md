@@ -11,6 +11,16 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
+Current priority — 2026-10-19: the owner deferred streaming-library integration
+and prioritized musical intelligence and training quality. [Source-contour
+research](source-contour.md) produced four matched pairs and passed Mac/Linux/
+WASM technical checks. Owner response: **“No clear difference.”** Audible-benefit
+promotion **FAIL**; owner listening **PARTIAL**. The candidate patch and audio
+are retained as research; the original engine and local studio were restored.
+New model training and formal quality **NOT RUN**; paired source/response data
+and independent evaluation remain missing. No paid compute or upload occurred.
+
+
 Latest local validation: [Linux browser portability and recording fallback](linux-browser.md).
 **PASS (technical):** Linux ARM64 Chromium prepared session (29 checks), WebKit
 imported-phrase/playback/offline paths (28 checks), explicit unavailable-recording

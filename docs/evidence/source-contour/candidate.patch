@@ -1,0 +1,181 @@
+diff --git a/core/arrangement/remix.cpp b/core/arrangement/remix.cpp
+index 0e53560..966388e 100644
+--- a/core/arrangement/remix.cpp
++++ b/core/arrangement/remix.cpp
+@@ -25,7 +25,46 @@ Tick source_tick(std::uint64_t frame, const PerformancePlan& p) {
+     // Input rhythm becomes a reproducible sixteenth-note motif.
+     return static_cast<Tick>(std::llround(tick / 240.0)) * 240;
+ }
+-struct PhraseNote { Tick start; int accent; };
++// A short, periodic attack can guide a melody; noise must retain the rhythm-only fallback.
++double attack_pitch(const AudioBuffer& source,std::uint64_t onset) {
++    const auto begin=static_cast<std::size_t>(onset); // make_remix validated the source bounds
++    const auto stride=std::max(1U,source.sample_rate/8000U);
++    const double rate=static_cast<double>(source.sample_rate)/stride;
++    const auto count=std::min<std::size_t>(static_cast<std::size_t>(rate*.08),(source.mono.size()-begin)/stride);
++    if (count<static_cast<std::size_t>(rate*.05)) return 0;
++    std::vector<double> samples(count);
++    double mean=0,power=0;
++    for (std::size_t i=0;i<count;++i) {
++        double value=0;
++        for (unsigned j=0;j<stride;++j) value+=source.mono[begin+i*stride+j];
++        samples[i]=value/stride;mean+=samples[i];
++    }
++    mean/=static_cast<double>(count);
++    for (auto& x:samples) {x-=mean;power+=x*x;}
++    if (power/static_cast<double>(count)<.0005*.0005) return 0;
++    const auto low=static_cast<std::size_t>(std::ceil(rate/450)),high=static_cast<std::size_t>(rate/70);
++    std::vector<double> difference(high+1,1);
++    double cumulative=0;
++    for (std::size_t lag=1;lag<=high;++lag) {
++        double square=0;
++        for (std::size_t i=0;i<count/2;++i) {
++            const auto delta=samples[i]-samples[i+lag];square+=delta*delta;
++        }
++        cumulative+=square;
++        difference[lag]=cumulative>0?square*static_cast<double>(lag)/cumulative:1;
++    }
++    // First good minimum avoids choosing an integer multiple of the fundamental period.
++    for (std::size_t lag=2;lag<high;++lag) {
++        if (difference[lag]>=.12) continue;
++        while (lag<high && difference[lag+1]<difference[lag]) ++lag;
++        if (lag<low || lag==high) return 0;
++        const auto curve=difference[lag-1]-2*difference[lag]+difference[lag+1];
++        const auto adjustment=curve>0?std::clamp((difference[lag-1]-difference[lag+1])/(2*curve),-.5,.5):0;
++        return rate/(static_cast<double>(lag)+adjustment);
++    }
++    return 0;
++}
++struct PhraseNote { Tick start; int accent; double pitch=0; int contour=0; };
+ std::vector<PhraseNote> source_phrase(const AudioBuffer& source,const InputAnalysis& a,const PerformancePlan& p) {
+     auto onsets=a.onsets;
+     std::sort(onsets.begin(),onsets.end());
+@@ -35,7 +74,8 @@ std::vector<PhraseNote> source_phrase(const AudioBuffer& source,const InputAnaly
+     const auto span=source_tick(onsets.back()-onsets.front(),p);
+     const double scale=std::min(1.0,static_cast<double>(2*ticks_per_bar(p)-q)/static_cast<double>(std::max<Tick>(1,span)));
+     const auto count=std::min<std::size_t>(8,onsets.size());
+-    std::vector<std::pair<Tick,double>> attacks;
++    struct Attack { Tick tick; double power,pitch; };
++    std::vector<Attack> attacks;
+     double strongest=0;
+     for (std::size_t m=0;m<count;++m) {
+         const auto onset=onsets[count==1?0:m*(onsets.size()-1)/(count-1)];
+@@ -50,13 +90,20 @@ std::vector<PhraseNote> source_phrase(const AudioBuffer& source,const InputAnaly
+         power=std::max(0.0,power/static_cast<double>(end-onset)-mean*mean);
+         strongest=std::max(strongest,power);
+         const auto tick=static_cast<Tick>(std::llround(static_cast<double>(source_tick(onset-onsets.front(),p))*scale/240.0))*240;
+-        if (!attacks.empty() && attacks.back().first==tick) attacks.back().second=std::max(attacks.back().second,power);
+-        else attacks.emplace_back(tick,power);
++        const Attack attack{tick,power,attack_pitch(source,onset)};
++        if (!attacks.empty() && attacks.back().tick==tick) {
++            if (power>attacks.back().power) attacks.back()=attack;
++        } else attacks.push_back(attack);
+     }
+     std::vector<PhraseNote> phrase;
+     // shortcut: attack energy is an accent proxy; replace only after expressive listening evidence.
+-    for (const auto& attack:attacks)
+-        phrase.push_back({attack.first,strongest>0?55+static_cast<int>(std::lround(30*std::sqrt(attack.second/strongest))):72});
++    double anchor=0;
++    for (const auto& attack:attacks) {
++        if (attack.pitch>0 && anchor==0) anchor=attack.pitch;
++        const int contour=attack.pitch>0?std::clamp(static_cast<int>(std::lround(12*std::log2(attack.pitch/anchor))),-7,7):0;
++        phrase.push_back({attack.tick,strongest>0?55+static_cast<int>(std::lround(30*std::sqrt(attack.power/strongest))):72,
++                          attack.pitch,contour});
++    }
+     return phrase;
+ }
+ std::uint64_t near_zero(const AudioBuffer& source, std::uint64_t frame) {
+@@ -309,8 +356,19 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
+                         const auto position=phrase[m].start+(returning?q/2:0);
+                         if (position/bar_ticks!=b-answer_start) continue;
+                         const auto offset=position%bar_ticks;
+-                        const auto note=voicing[(m+(returning?1U:0U)+groove)%3];
+-                        piano.notes.push_back({base+offset,q/3,note+(note<67?12:0),velocity(phrase[m].accent+(returning?4:0))});
++                        auto note=voicing[(m+(returning?1U:0U)+groove)%3];
++                        note+=note<67?12:0;
++                        if (phrase[m].pitch>0) {
++                            const int target=r.tonic_midi+12+phrase[m].contour+(returning?2:0);
++                            int distance=1000;
++                            for (int candidate=60;candidate<=84;++candidate)
++                                if ((candidate-root+120)%12==0 || (candidate-root+120)%12==(major?4:3) ||
++                                    (candidate-root+120)%12==7) {
++                                    const int delta=std::abs(candidate-target);
++                                    if (delta<distance) {distance=delta;note=candidate;}
++                                }
++                        }
++                        piano.notes.push_back({base+offset,q/3,note,velocity(phrase[m].accent+(returning?4:0))});
+                         if (returning && phrase[m].accent>=72 && offset>=q/2)
+                             bass_note(offset,q/4,m%2?7:0,phrase[m].accent+10);
+                     }
+diff --git a/core/tests/remix_tests.cpp b/core/tests/remix_tests.cpp
+index a3ca15d..48b1cb5 100644
+--- a/core/tests/remix_tests.cpp
++++ b/core/tests/remix_tests.cpp
+@@ -434,6 +434,59 @@ void source_phrase_development() {
+         }
+     }
+ }
++void source_pitch_contour() {
++    using Notes=std::vector<int>;
++    const auto pitches=[](const djayvo::RemixPlan& plan) {
++        Notes notes;const auto bar=djayvo::ticks_per_bar(plan.music);
++        for (const auto& note:plan.music.tracks[0].notes)
++            if (note.start>=5*bar && note.start<7*bar) notes.push_back(note.pitch);
++        return notes;
++    };
++    Notes reference;
++    for (unsigned rate:{8000U,44100U,48000U,192000U}) {
++        auto audio=source();audio.sample_rate=rate;audio.mono.assign(rate*3,0);
++        djayvo::InputAnalysis features;features.normalization_gain=1;features.peak=.8;features.rms=.1;
++        features.phrases={{0,rate*3ULL,1}};
++        for (unsigned ms:{100U,400U,900U,1400U,2200U}) features.onsets.push_back(rate*ms/1000U);
++        const auto fill=[&](bool rising,bool harmonics,double gain,double offset) {
++            std::fill(audio.mono.begin(),audio.mono.end(),static_cast<float>(offset));
++            const std::array<double,5> frequencies{{140,180,220,280,350}};
++            for (std::size_t n=0;n<5;++n) for (unsigned i=0;i<rate/10;++i) {
++                const double phase=6.283185307179586*frequencies[rising?n:4-n]*i/rate;
++                audio.mono[features.onsets[n]+i]=static_cast<float>(offset+gain*(harmonics?
++                    .2*std::sin(phase)+.3*std::sin(2*phase)+.15*std::sin(3*phase):.3*std::sin(phase)));
++            }
++        };
++        const auto plan=[&] {return djayvo::make_remix(audio,features,djayvo::Strategy::call_response,4123,true,false);};
++        fill(true,false,1,0);const auto rising=pitches(plan());
++        fill(false,false,1,0);const auto falling=pitches(plan());
++        check(rising.size()==5 && falling.size()==5,"pitch tracking changed the source rhythm");
++        check(rising!=falling,"instrumental melody ignores rising versus falling source pitch");
++        check(rising[0]<rising[3] && falling[0]>falling[3],"melody reverses the voiced contour");
++        if (reference.empty()) reference=rising;
++        check(reference==rising,"contour depends on the source sample rate");
++        fill(true,true,.5,.15);
++        check(pitches(plan())==rising,"harmonics, gain or DC offset change the inferred melody");
++        // Leave a consonant-like, unpitched first attack before the voiced contour.
++        std::fill(audio.mono.begin()+static_cast<std::ptrdiff_t>(features.onsets[0]),
++                  audio.mono.begin()+static_cast<std::ptrdiff_t>(features.onsets[0]+rate/10),.15F);
++        const auto mixed=pitches(plan());check(mixed.size()==5,"unvoiced attacks disappear");
++        check(mixed[1]<mixed[3],"unvoiced attack poisons the melodic anchor");
++        std::uint32_t random=4123;
++        for (auto& sample:audio.mono) {random^=random<<13U;random^=random>>17U;random^=random<<5U;
++            sample=static_cast<float>(static_cast<int>(random%20001)-10000)/50000;}
++        const auto noise=pitches(plan());
++        for (double frequency:{30.,500.,1000.}) {
++            for (std::size_t i=0;i<audio.mono.size();++i)
++                audio.mono[i]=static_cast<float>(.3*std::sin(6.283185307179586*frequency*i/rate));
++            check(pitches(plan())==noise,"out-of-range periodic sound creates a subharmonic melody");
++        }
++        for (auto& sample:audio.mono) sample=.1F; // no measurable local periodicity
++        check(pitches(plan())==noise,"noise receives a spurious pitched melody");
++        features.onsets.back()=audio.mono.size()-1;
++        djayvo::validate(plan(),audio); // insufficient trailing audio must safely fall back
++    }
++}
+ void funk_composition() {
+     const auto a=source();const auto features=djayvo::analyze(a);
+     using Shape=std::vector<std::tuple<int,djayvo::Tick,djayvo::Tick,int>>;
+@@ -909,6 +962,7 @@ int main() {
+         {"reggae/experimental/club harmony, rhythm and form variety across 192 seeds",remaining_style_diversity},
+         {"call-response turn taking, hybrid transitions and 128 seed structures",dialogue_hybrid_composition},
+         {"source phrase order, accents, silence invariance and developed instrumental answers",source_phrase_development},
++        {"source pitch contour, harmonic and rate invariance, unvoiced fallback",source_pitch_contour},
+         {"funk syncopation, bass/kick lock, ghost notes, seed variety and input response",funk_composition},
+         {"pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates",pause_aware_chops},
+         {"subtraction and return across styles and seeds",arrangement_contrast},

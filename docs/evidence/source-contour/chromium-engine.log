@@ -1,0 +1,7 @@
+PASS: chromium /Users/serhansari/Documents/projects/djayvo/renders/web-chromium-engine-SuIRny [
+  { style: 'three', seconds: 2.627, artifacts: 12 },
+  { style: 'club', seconds: 1.7038999999910593, artifacts: 4 },
+  { style: 'funk', seconds: 1.3915999999940396, artifacts: 4 },
+  { style: 'call_response', seconds: 1.4141000000089408, artifacts: 4 },
+  { style: 'hybrid', seconds: 1.5507999999970197, artifacts: 4 }
+]

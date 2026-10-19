@@ -1,0 +1,11 @@
+{
+  "source_restored": {
+    "core/arrangement/remix.cpp": "PASS: identical to starting HEAD",
+    "core/tests/remix_tests.cpp": "PASS: identical to starting HEAD",
+    "djayvo_web.mjs": "ae99a78f24bbd233a428c2f86baac1969a8425987d6ca3e64530a7f0034c5c66",
+    "djayvo_web.wasm": "222ec6f68932543961c74ad32859c69ad34d404f206ac57d969aef9827138728"
+  },
+  "native_binary_identical_to_before": true,
+  "studio_http_3000": "PASS: restored engine served",
+  "candidate_removed_from_default": true
+}

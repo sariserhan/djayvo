@@ -1,0 +1,30 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "players": 20,
+    "pairs": 4,
+    "rangeDelivery": "PASS",
+    "privatePathIsolation": "PASS",
+    "mutedPlaybackSeekAndExclusivity": "PASS",
+    "mobileOverflow": "PASS",
+    "errors": [],
+    "requests": 38,
+    "screenshots": "renders/source-contour-20261019/ui-chromium-6SHrqx"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "players": 20,
+    "pairs": 4,
+    "rangeDelivery": "PASS",
+    "privatePathIsolation": "PASS",
+    "mutedPlaybackSeekAndExclusivity": "PASS",
+    "mobileOverflow": "PASS",
+    "errors": [],
+    "requests": 57,
+    "screenshots": "renders/source-contour-20261019/ui-webkit-LBIH6Y"
+  }
+]
