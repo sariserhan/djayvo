@@ -1,0 +1,35 @@
+{
+  "wallSeconds": 60.015,
+  "sampleRate": 48000,
+  "baseLatency": 0.0026666666666666666,
+  "outputLatency": 0,
+  "playbackStats": null,
+  "outputTimestamp": {
+    "contextTime": 60.00533333333333,
+    "performanceTime": 60669
+  },
+  "startTime": 0,
+  "contextTime": 60.00533333333333,
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15",
+  "engine": {
+    "commands": 1920,
+    "clock": "Date.now",
+    "memoryBytes": 33554432,
+    "active": 0
+  },
+  "capture": {
+    "counterGaps": 0,
+    "timestampGaps": 0,
+    "lastCounter": 2880000
+  },
+  "browser": "webkit",
+  "version": "26.5",
+  "errors": [],
+  "externalRequests": [],
+  "hashes": {
+    "production_processor": "d015a9d934d2741fe72a5dda30e8cd0ff893a95b23fa498ba63a32a4af2e9642",
+    "engine": "6135823549a0204fa4a935c3eb6401099e88a0c8074e1c55142e7400efec8086",
+    "reference_pcm": "c14c9defad68ad811fb1ea9b4e2e4dab43a293c846c67210a8553f34fc2501e0",
+    "event_trace": "fa5df6e8ea62d51f1527d91d2d2da167e59f47a6d8d0f43e7d2df2a6191d6575"
+  }
+}

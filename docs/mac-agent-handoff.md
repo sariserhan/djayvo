@@ -11,7 +11,18 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest actual audio-host evidence — 2026-10-19:
+Latest browser audio-host evidence — 2026-10-19:
+[Production instrument AudioWorklet](worklet-load.md) **PASS (functional scope)**:
+sixty-second Mac/Linux Chromium and WebKit runs, exact native reference PCM,
+all 1,920 command frames, zero captured sample/timestamp gaps. Six captures,
+playable excerpts and 30 Mac / 4 Linux unit checks retained. Coarse timing
+screens **FAIL** (3–13 ms readings versus 2.667 ms); precise deadline/cause
+**PARTIAL**. Chromium underrun snapshots report zero; WebKit API **NOT RUN**.
+Physical latency, full-session/venue and new listening **NOT RUN**. DJ14/DJ17,
+M1 and production remain open. Engine/master/recordings unchanged; isolated
+Linux container removed, VM stopped and default Docker context preserved.
+
+Previous actual audio-host evidence — 2026-10-19:
 [macOS output callback](audio-callback.md) **PASS (bounded technical scope)**:
 60 real seconds on the M5's DisplayPort output route, 5,625 callbacks at 512
 frames/48 kHz, exact offline PCM and command-frame agreement, no sample-time

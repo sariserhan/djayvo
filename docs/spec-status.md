@@ -1,6 +1,17 @@
 # Specification completion ledger
 
-Latest actual audio-host evidence — 2026-10-19:
+Latest browser audio-host evidence — 2026-10-19:
+[Production instrument AudioWorklet](worklet-load.md) **PASS (functional scope)**:
+sixty-second Mac/Linux Chromium and WebKit runs, exact native reference PCM,
+all 1,920 command frames, zero captured sample/timestamp gaps. Six captures,
+playable excerpts and 30 Mac / 4 Linux unit checks retained. Coarse timing
+screens **FAIL** (3–13 ms readings versus 2.667 ms); precise deadline/cause
+**PARTIAL**. Chromium underrun snapshots report zero; WebKit API **NOT RUN**.
+Physical latency, full-session/venue and new listening **NOT RUN**. DJ14/DJ17,
+M1 and production remain open. Engine/master/recordings unchanged; isolated
+Linux container removed, VM stopped and default Docker context preserved.
+
+Previous actual audio-host evidence — 2026-10-19:
 [macOS output callback](audio-callback.md) **PASS (bounded technical scope)**:
 60 real seconds on the M5's DisplayPort output route, 5,625 callbacks at 512
 frames/48 kHz, exact offline PCM and command-frame agreement, no sample-time
@@ -210,7 +221,7 @@ a source motif; C06 remains **PARTIAL**, with new engine work/evaluation open.
 | M1 formal quality baseline | NOT RUN | Licensed cohort prepared; remaining coverage/verification and independent blinded observations required; owner recording stays owner-only |
 | M2 constrained AI director | PARTIAL | Offline import/fallback prerequisite implemented; model integration/benchmark and quality advancement remain NOT RUN behind M1 |
 | M3 device prototype | PARTIAL | Existing implementation and device evidence retained; remaining phone work paused |
-| M4 live improvisation | PARTIAL | Prepared A/C session and live instrument controls implemented; bounded M5 native output-callback validation PASS; full browser scheduling, continuous capture/feedback, actual round-trip latency and battery/venue evidence remain open |
+| M4 live improvisation | PARTIAL | Prepared A/C session and live instrument controls implemented; bounded M5 native callback and Mac/Linux instrument worklet validation PASS, coarse timing screens FAIL; full browser scheduling, continuous capture/feedback, actual round-trip latency and battery/venue evidence remain open |
 | M5 production/monetization | PARTIAL | Release/privacy preparation exists; quality, demand, moderation, infrastructure, economics and release approval remain open |
 
 This ledger exposes unfinished code as well as missing tests. Neither a successful

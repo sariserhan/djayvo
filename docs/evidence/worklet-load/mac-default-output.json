@@ -1,0 +1,9 @@
+[
+  {
+    "_name": "LG Ultra HD",
+    "coreaudio_device_manufacturer": "GSM",
+    "coreaudio_device_output": 2,
+    "coreaudio_device_srate": 48000,
+    "coreaudio_device_transport": "coreaudio_device_type_displayport"
+  }
+]

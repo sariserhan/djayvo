@@ -1,0 +1,21 @@
+{
+  "head": "e2eb9e0d63be6d51c53ee6aedecb68223166b56e",
+  "cpu": "Apple M5",
+  "memory_bytes": "17179869184",
+  "macOS": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+  "node": "v22.23.1",
+  "emscripten": "\"6.0.1\"",
+  "playwright": "1.61.1",
+  "docker_default_context": "desktop-linux",
+  "hashes": {
+    "apps/web/instrument-worklet.js": "d015a9d934d2741fe72a5dda30e8cd0ff893a95b23fa498ba63a32a4af2e9642",
+    "dist/web/engine/djayvo_live.wasm": "6135823549a0204fa4a935c3eb6401099e88a0c8074e1c55142e7400efec8086",
+    "build-mac/libdjayvo_core.a": "affd7a4443724109bae3bbe1dee084aae7c6baaa536a07842abd50b0a3114157",
+    "apps/web/tests/worklet-load.js": "866f5fc47b17e2610209beaa5a160f4a09794d9cc945cbf4c7e6ff815db70500",
+    "apps/web/tests/worklet-capture.js": "5d891d5d6ef57e2a4b4a606818121a0b10bb50b1aef1f930580b608205eb19a5",
+    "apps/web/tests/worklet-load.mjs": "ba6707084cfd0dd7e56b3abfc649303267b7ddca8d786c857aa62c9a5fa1ce45",
+    "apps/web/tests/worklet-capture.test.js": "2e699bb7bcc3268de7bc72af6f95d697ed7d1bac20200955eddb34c5d5004abb"
+  }
+}

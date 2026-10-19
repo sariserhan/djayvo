@@ -45,6 +45,15 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
 
+- [x] **DJ22 — PASS (instrument worklet validation scope):** [Actual browser instrument load](docs/worklet-load.md).
+  Sixty-second runs in Mac/Linux Chromium and WebKit: exact native PCM and all
+  1,920 command frames, no captured sample gaps. 30 Mac unit / 4 Linux probe
+  tests pass; six captures and playable excerpts retained. Coarse timing screens
+  **FAIL** (3–13 ms maxima versus 2.667 ms); precise deadline qualification and
+  cause **PARTIAL**. Chromium underrun snapshots report zero; WebKit API **NOT RUN**.
+  Physical latency, full-session/venue and musical quality **NOT RUN**.
+  This does not close DJ14, DJ17 or DJ20. Production engine unchanged.
+
 - [x] **DJ21 — PASS (bounded native callback scope):** [Actual macOS output callback](docs/audio-callback.md).
   One minute on the M5's LG DisplayPort output route, 512 frames / 48 kHz:
   5,625 callbacks, exact offline PCM and command frames, no sample-time gaps,
@@ -60,8 +69,9 @@ closes that task only; it does not automatically pass its parent milestone.
   focused tests **PASS**. Strict offline no-overrun check **FAIL**: initial Mac,
   first Linux and Node WASM have delays beyond 2.667 ms; reruns are retained,
   not substituted for failures. Cause **PARTIAL**. Native device scheduling is
-  now covered by DJ21 at 512 frames; browser AudioWorklet, physical round-trip latency and venue
-  endurance **NOT RUN**. No engine or musical-quality change is implied.
+  now covered by DJ21 at 512 frames; instrument AudioWorklet execution is covered
+  by DJ22, with coarse timing screens **FAIL**. Physical round-trip latency and
+  venue endurance **NOT RUN**. No engine or musical-quality change is implied.
 
 
 - [x] **DJ19 — PASS (validation and fallback scope):** [Linux browser validation and recording fallback](docs/linux-browser.md).
@@ -503,6 +513,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P67 | PASS | Bound active vocal processing, preserve all comparison audio and event frames, validate dense/echo schedules and measure actual Mac/Linux offline timing | [Evidence](docs/active-vocals.md) |
 | [x] | P68 | PASS | Add reproducible 32-voice native/WASM stress diagnostics, playable output and exact frame/PCM comparison; record timing overruns without closing live gates | [Evidence](docs/live-deadline.md) |
 | [x] | P69 | PASS | Run shared engine in actual M5 default-output callback for 60 seconds, retain exact PCM/events, calibrated timing/continuity checks and bounded native result | [Evidence](docs/audio-callback.md) |
+| [x] | P70 | PASS | Validate production instrument AudioWorklet in Mac/Linux Chromium and WebKit, retain six exact captures and command-frame evidence without hiding timing-screen failures | [Evidence](docs/worklet-load.md) |
 
 ## Engineering backlog
 
@@ -651,7 +662,7 @@ paid infrastructure, training on reference tracks, publishing or charging users.
 
 ### M4: live improvisation — PARTIAL
 
-- [ ] **L01 — PARTIAL:** [Provisional latency/glitch budgets and measurement protocol](docs/live-research-protocol.md) defined; validate feasibility on real hardware before committing to live mode.
+- [ ] **L01 — PARTIAL:** [Provisional latency/glitch budgets and measurement protocol](docs/live-research-protocol.md) defined; bounded [native callback](docs/audio-callback.md) and [browser worklet](docs/worklet-load.md) execution measured. Timing-screen failures, physical round-trip and full-session feasibility remain open.
 - [ ] **L02 — NOT RUN:** Implement explicit opt-in capture, phrase buffering and
   bar-boundary scheduling without allocations, blocking or model work in callbacks.
 - [ ] **L03 — NOT RUN:** Test feedback, route changes, interruptions and sustained

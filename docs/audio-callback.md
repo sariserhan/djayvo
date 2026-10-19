@@ -1,5 +1,10 @@
 # Actual macOS output-callback validation
 
+Subsequent [browser worklet validation](worklet-load.md) adds actual Mac/Linux
+Chromium/WebKit instrument execution. The NOT RUN entries below describe this
+earlier native-only increment; browser timing screens still fail and physical
+latency/venue gates remain open.
+
 2026-10-19. **PASS for this 60-second native output-callback run; live studio
 readiness PARTIAL.** The unchanged shared C++ engine ran in the real macOS
 default-output audio callback on the Apple M5. Speaker output was explicitly
