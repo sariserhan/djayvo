@@ -1,5 +1,7 @@
 # Browser DJ mixer — first working increment
 
+This report records the initial mixer. The newer [console and live instruments](dj-console.md) report supersedes its feature list; initial evidence is retained.
+
 2026-10-18. **Manual mixer technical checks PASS. Professional DJ studio / revised
 workflow PARTIAL.** Following the M0a review stop, the owner said “okaycontinue”.
 This authorizes the next local increment under the

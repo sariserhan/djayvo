@@ -9,13 +9,31 @@ export function createMixer(context) {
   const channels = [context.createGain(), context.createGain()];
   const meter = context.createAnalyser();
   meter.fftSize = 2048;
-  channels.forEach(channel => { channel.gain.value = 0; channel.connect(meter); });
+  const limiter = context.createWaveShaper();
+  const curve = new Float32Array(8193);
+  for (let i = 0; i < curve.length; i++) {
+    const x = i * 2 / (curve.length - 1) - 1;
+    curve[i] = Math.abs(x) <= .8 ? x : Math.sign(x) * (.8 + .2 * Math.tanh((Math.abs(x) - .8) / .2));
+  }
+  limiter.curve = curve;
+  limiter.connect(meter);
+  channels.forEach(channel => { channel.gain.value = 0; channel.connect(limiter); });
+  const strips = channels.map(channel => {
+    const low = context.createBiquadFilter(), mid = context.createBiquadFilter(), high = context.createBiquadFilter();
+    low.type = 'lowshelf'; low.frequency.value = 180;
+    mid.type = 'peaking'; mid.frequency.value = 1200; mid.Q.value = .7;
+    high.type = 'highshelf'; high.frequency.value = 5000;
+    const scope = context.createAnalyser(); scope.fftSize = 2048;
+    low.connect(mid); mid.connect(high); high.connect(scope); scope.connect(channel);
+    return { input: low, eq: [low, mid, high], scope };
+  });
+  const rack = context.createGain(); rack.gain.value = 0; rack.connect(limiter);
   meter.connect(context.destination);
   const split = context.createChannelSplitter(2);
   meter.connect(split);
   const stereoMeters = [context.createAnalyser(), context.createAnalyser()];
   stereoMeters.forEach((node, channel) => { node.fftSize = 2048; split.connect(node, channel); });
-  return { channels, meter, stereoMeters };
+  return { channels, meter, stereoMeters, strips, rack };
 }
 
 export function updateMixer(context, mixer, crossfade, levels, master) {

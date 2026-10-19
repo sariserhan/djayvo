@@ -1,0 +1,108 @@
+import { PATCHES, DRUMS, noteName, playable, createRack } from './instrument-rack.js';
+const $ = id => document.getElementById(id);
+export function attachKeyboard({ graph, context, mixer, levels, masterControls }) {
+  let node, loading = false, nextId = 1, root = 60, sustain = false;
+  const held = new Map(), deferred = new Set(), keys = new Map();
+  const letters = 'awsedftgyhujk';
+  const send = data => node?.port.postMessage(data);
+  const status = message => { $('instrument-status').textContent = message; };
+  const paint = button => button.setAttribute('aria-pressed', String([...held.values()].some(note => note.button === button)));
+  function release(token) {
+    const note = held.get(token); if (!note) return;
+    held.delete(token); paint(note.button);
+    if (sustain) deferred.add(note.id); else send({ type: 'off', id: note.id });
+  }
+  function panic() {
+    send({ type: 'panic' }); held.clear(); deferred.clear(); sustain = false;
+    $('sustain').setAttribute('aria-pressed', 'false');
+    for (const button of document.querySelectorAll('.piano-key,.drum-pad')) button.setAttribute('aria-pressed', 'false');
+  }
+  async function press(token, button, pitch, patch) {
+    if (!node || held.has(token) || button.disabled) return;
+    const note = { id: nextId++, button };
+    if (nextId > 0xffffffff) nextId = 1;
+    held.set(token, note); paint(button);
+    try {
+      if (context().state !== 'running') await context().resume();
+      if (held.get(token) !== note) return;
+      if (context().state !== 'running') throw new Error('Audio is suspended. Tap a key to retry.');
+      send({ type: 'note', id: note.id, patch, pitch, velocity: Number($('velocity').value) });
+    } catch (error) { release(token); status(error.message); }
+  }
+  function bind(button, pitch, patch) {
+    button.disabled = true; button.setAttribute('aria-pressed', 'false');
+    button.onpointerdown = event => {
+      if (event.button !== 0) return;
+      event.preventDefault(); button.focus(); button.setPointerCapture(event.pointerId);
+      press(`pointer-${event.pointerId}`, button, pitch, patch ?? Number($('patch').value));
+    };
+    button.onpointerup = button.onpointercancel = button.onlostpointercapture = event => release(`pointer-${event.pointerId}`);
+    button.onkeydown = event => {
+      if (![' ', 'Enter'].includes(event.key)) return;
+      event.preventDefault(); if (!event.repeat) press(`button-${pitch}-${patch}`, button, pitch, patch ?? Number($('patch').value));
+    };
+    button.onkeyup = event => { if ([' ', 'Enter'].includes(event.key)) { event.preventDefault(); release(`button-${pitch}-${patch}`); } };
+    button.onblur = () => release(`button-${pitch}-${patch}`);
+  }
+  for (const [name, patch] of PATCHES) $('patch').add(new Option(name, patch));
+  for (let pitch = 21; pitch <= 108; pitch++) {
+    const button = document.createElement('button');
+    button.className = `piano-key${[1,3,6,8,10].includes(pitch % 12) ? ' black' : ''}`;
+    button.textContent = noteName(pitch); button.setAttribute('aria-label', noteName(pitch)); button.dataset.pitch = pitch;
+    bind(button, pitch); keys.set(pitch, button); $('keyboard').append(button);
+  }
+  for (const patch of [9, 10]) for (const [name, pitch] of DRUMS) {
+    const button = document.createElement('button'); button.className = 'drum-pad';
+    button.innerHTML = `${name}<small>${patch === 9 ? 'ACOUSTIC' : 'ELECTRONIC'}</small>`;
+    bind(button, pitch, patch); $('drum-pads').append(button);
+  }
+  function availability() {
+    for (const id of ['patch', 'velocity', 'rack-level', 'sustain', 'panic', 'octave-down', 'octave-up']) $(id).disabled = !node;
+    for (const [pitch, button] of keys) button.disabled = !node || !playable(Number($('patch').value), pitch);
+    for (const button of $('drum-pads').children) button.disabled = !node;
+    $('octave-down').disabled ||= root <= 24; $('octave-up').disabled ||= root >= 96;
+  }
+  function octave(delta) {
+    panic(); root = Math.max(24, Math.min(96, root + delta));
+    $('octave-name').textContent = `${noteName(root)}–${noteName(root + 12)}`;
+    const scroller = document.querySelector('.keyboard-scroll'); scroller.scrollLeft = keys.get(root).offsetLeft - $('keyboard').offsetLeft - 10;
+    availability();
+  }
+  window.addEventListener('resize', () => {
+    const scroller = document.querySelector('.keyboard-scroll');
+    scroller.scrollLeft = keys.get(root).offsetLeft - $('keyboard').offsetLeft - 10;
+  });
+  $('load-instruments').onclick = async () => {
+    if (node || loading) return;
+    loading = true; $('load-instruments').disabled = true; status('Preparing the instrument bank…');
+    try {
+      graph(); await context().resume(); node = await createRack(context(), mixer().rack);
+      node.addEventListener('processorerror', () => {
+        panic(); node.disconnect(); node.port.close(); node = null; availability(); masterControls();
+        status('The instrument engine stopped. Your decks remain available. Reload to prepare instruments again.');
+      }, { once: true });
+      node.port.onmessage = ({ data }) => { if (data.type === 'rejected') status('Voice limit reached. Release notes or use All notes off.'); };
+      levels(); availability(); octave(0); masterControls();
+      $('load-instruments').textContent = 'Instruments ready'; status('Ready · 88 keys, nine sounds and two drum kits.');
+    } catch (error) { status(error.message); $('load-instruments').disabled = false; }
+    finally { loading = false; }
+  };
+  $('patch').onchange = () => { panic(); availability(); };
+  $('velocity').oninput = () => { $('velocity-value').textContent = $('velocity').value; };
+  $('rack-level').oninput = levels;
+  $('sustain').onclick = () => {
+    sustain = !sustain; $('sustain').setAttribute('aria-pressed', String(sustain));
+    if (!sustain) { for (const id of deferred) send({ type: 'off', id }); deferred.clear(); }
+  };
+  $('panic').onclick = panic;
+  $('octave-down').onclick = () => octave(-12); $('octave-up').onclick = () => octave(12);
+  window.addEventListener('keydown', event => {
+    if (event.repeat || event.metaKey || event.ctrlKey || event.altKey || /INPUT|SELECT|TEXTAREA/.test(event.target.tagName) || event.target.isContentEditable) return;
+    const index = letters.indexOf(event.key.toLowerCase()); if (event.key.length !== 1 || index < 0) return;
+    event.preventDefault(); const pitch = root + index; press(`key-${event.code}`, keys.get(pitch), pitch, Number($('patch').value));
+  });
+  window.addEventListener('keyup', event => release(`key-${event.code}`));
+  window.addEventListener('blur', panic); window.addEventListener('pagehide', panic);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) panic(); });
+  return { ready: () => !!node, panic };
+}

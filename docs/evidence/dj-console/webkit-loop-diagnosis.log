@@ -1,0 +1,25 @@
+
+> djayvo-web@0.1.0 test:dj
+> node tests/dj.mjs
+
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/dj-webkit-ag0FGO
+PASS: page identity, nonblank content, consent gating
+PASS: real offline stereo PCM: A/B endpoints, center, channel mute, master mute
+PASS: two media decks advance independently; active-track replacement blocked; actual mix signal present
+PASS: real media output follows crossfader, channel level and master silence
+PASS: pause/seek one deck and reject corrupt replacement while other deck continues
+PASS: rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping
+RECOVERY before { time: 0.06595110893249512, rate: 1, paused: false }
+RECOVERY play 0.20744045833998825 0.1499999761581421
+RECOVERY pause/play 0.2851834323228398 0.1499999761581421
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 5000ms exceeded.
+    at /Users/serhansari/Documents/projects/djayvo/apps/web/tests/dj.mjs:200:36 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.1

@@ -1,0 +1,246 @@
+{
+  "status": "PASS",
+  "notes": 88,
+  "patches": 11,
+  "channels": 2,
+  "sampleRate": 48000,
+  "seconds": 22,
+  "events": [
+    {
+      "patch": 0,
+      "noteOnFrame": 0,
+      "noteOffFrame": 23936,
+      "totalFrames": 96000
+    },
+    {
+      "patch": 1,
+      "noteOnFrame": 0,
+      "noteOffFrame": 23936,
+      "totalFrames": 96000
+    },
+    {
+      "patch": 2,
+      "noteOnFrame": 0,
+      "noteOffFrame": 23936,
+      "totalFrames": 96000
+    },
+    {
+      "patch": 3,
+      "noteOnFrame": 0,
+      "noteOffFrame": 23936,
+      "totalFrames": 96000
+    },
+    {
+      "patch": 4,
+      "noteOnFrame": 0,
+      "noteOffFrame": 23936,
+      "totalFrames": 96000
+    },
+    {
+      "patch": 5,
+      "noteOnFrame": 0,
+      "noteOffFrame": 23936,
+      "totalFrames": 96000
+    },
+    {
+      "patch": 6,
+      "noteOnFrame": 0,
+      "noteOffFrame": 23936,
+      "totalFrames": 96000
+    },
+    {
+      "patch": 7,
+      "noteOnFrame": 0,
+      "noteOffFrame": 23936,
+      "totalFrames": 96000
+    },
+    {
+      "patch": 8,
+      "noteOnFrame": 0,
+      "noteOffFrame": 23936,
+      "totalFrames": 96000
+    },
+    {
+      "patch": 9,
+      "noteOnFrame": 0,
+      "noteOffFrame": 23936,
+      "totalFrames": 96000
+    },
+    {
+      "patch": 10,
+      "noteOnFrame": 0,
+      "noteOffFrame": 23936,
+      "totalFrames": 96000
+    }
+  ],
+  "frameAgreement": "PASS: identical explicit frame-zero note-on and frame-23936 note-off program, 96000 frames per patch in native and WASM",
+  "comparisons": [
+    {
+      "platform": "macOS",
+      "patch": 0,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.1272159069776535
+    },
+    {
+      "platform": "macOS",
+      "patch": 1,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.13283602893352509
+    },
+    {
+      "platform": "macOS",
+      "patch": 2,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.12778030335903168
+    },
+    {
+      "platform": "macOS",
+      "patch": 3,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.12700168788433075
+    },
+    {
+      "platform": "macOS",
+      "patch": 4,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.12494415044784546
+    },
+    {
+      "platform": "macOS",
+      "patch": 5,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.12610343098640442
+    },
+    {
+      "platform": "macOS",
+      "patch": 6,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.08072597533464432
+    },
+    {
+      "platform": "macOS",
+      "patch": 7,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.08646968752145767
+    },
+    {
+      "platform": "macOS",
+      "patch": 8,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.11373045295476913
+    },
+    {
+      "platform": "macOS",
+      "patch": 9,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.12845365703105927
+    },
+    {
+      "platform": "macOS",
+      "patch": 10,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.13270018994808197
+    },
+    {
+      "platform": "Linux",
+      "patch": 0,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.1272159069776535
+    },
+    {
+      "platform": "Linux",
+      "patch": 1,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.13283602893352509
+    },
+    {
+      "platform": "Linux",
+      "patch": 2,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.12778030335903168
+    },
+    {
+      "platform": "Linux",
+      "patch": 3,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.12700168788433075
+    },
+    {
+      "platform": "Linux",
+      "patch": 4,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.12494415044784546
+    },
+    {
+      "platform": "Linux",
+      "patch": 5,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.12610343098640442
+    },
+    {
+      "platform": "Linux",
+      "patch": 6,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.08072597533464432
+    },
+    {
+      "platform": "Linux",
+      "patch": 7,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.08646968752145767
+    },
+    {
+      "platform": "Linux",
+      "patch": 8,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.11373045295476913
+    },
+    {
+      "platform": "Linux",
+      "patch": 9,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.12845365703105927
+    },
+    {
+      "platform": "Linux",
+      "patch": 10,
+      "maxAbsoluteDifference": 0,
+      "rmsDifference": 0,
+      "peak": 0.13270018994808197
+    }
+  ],
+  "wasm32VoiceTiming": {
+    "blockFrames": 128,
+    "blockBudgetMs": 2.6666666666666665,
+    "measuredBlocks": 3900,
+    "p50Ms": 0.34820799999999963,
+    "p95Ms": 0.4033329999999751,
+    "p99Ms": 0.5385840000000144,
+    "maxMs": 1.298708999999917,
+    "maxNoteOnMs": 0.04712499999999409,
+    "limitation": "Node WASM compute only; not device, browser scheduling or end-to-end latency"
+  },
+  "humanListening": "NOT RUN",
+  "hardwareLatency": "NOT RUN"
+}

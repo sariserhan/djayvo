@@ -1,11 +1,12 @@
 # Djayvo
 
-**Current authorization — 2026-10-18:** After the M0a review stop, the owner said
-“okaycontinue”. The next local DJ-studio increment is authorized: two playable
-decks and manual mixing. See [mixer evidence](docs/dj-mixer.md) and the
-[web-studio addendum](docs/web-studio-addendum.md). M0a and the master remain
-unchanged; this does not pass musical-quality, live/venue or production gates,
-or authorize new paid compute or deployment. Preserve earlier work/evidence.
+**Current authorization — 2026-10-18:** The owner requested a professional-looking
+DJ console with spinning, controllable decks, a full piano and a broader instrument
+palette. This authorizes the local [console and live instruments](docs/dj-console.md)
+increment after the manual mixer. M0a and the master remain unchanged. Shared
+beat synchronization, AI Deck C, production/venue acceptance, new paid compute
+and deployment are not passed or authorized by this increment. Preserve earlier
+work, recordings and evidence.
 
 
 Read the complete master specification before implementation. Djayvo is the

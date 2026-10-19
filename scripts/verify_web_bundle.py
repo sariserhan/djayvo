@@ -11,7 +11,7 @@ def verify():
     bundle = ROOT / 'dist/web'
     expected = {p.name for pattern in ('*.html', '*.css', '*.js') for p in (ROOT / 'apps/web').glob(pattern)}
     expected |= INSTALL_ASSETS
-    expected |= {'service-worker.js', 'engine/djayvo_web.mjs', 'engine/djayvo_web.wasm',
+    expected |= {'service-worker.js', 'engine/djayvo_web.mjs', 'engine/djayvo_web.wasm', 'engine/djayvo_live.wasm',
                  'licenses/VSCO-2-CE-LICENSE.txt', 'licenses/VCSL-LICENSE.txt', 'licenses/BLACK-AND-GREEN-GUITARS-CC0.txt', 'licenses/EMSCRIPTEN-LICENSE.txt'}
     actual = {str(p.relative_to(bundle)) for p in bundle.rglob('*') if p.is_file()}
     assert actual == expected, f'Unexpected or missing public files: {actual ^ expected}'

@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "browser": "26.5",
+  "cycles": [
+    {
+      "time": 0.20962216667248867,
+      "paused": false,
+      "rate": 1,
+      "peak": 0.1499999761581421
+    },
+    {
+      "time": 0.21333779166161548,
+      "paused": false,
+      "rate": 1,
+      "peak": 0.1499999761581421
+    },
+    {
+      "time": 0.20151479165360797,
+      "paused": false,
+      "rate": 1,
+      "peak": 0.1499999761581421
+    },
+    {
+      "time": 0.2033638749999227,
+      "paused": false,
+      "rate": 1,
+      "peak": 0.1499999761581421
+    },
+    {
+      "time": 0.21297541666717734,
+      "paused": false,
+      "rate": 1,
+      "peak": 0.1499999761581421
+    },
+    {
+      "time": 0.2087982916709734,
+      "paused": false,
+      "rate": 1,
+      "peak": 0.1499999761581421
+    },
+    {
+      "time": 0.36221979165566154,
+      "paused": false,
+      "rate": 1,
+      "peak": 0.1499999761581421
+    },
+    {
+      "time": 0.35448308334161993,
+      "paused": false,
+      "rate": 1,
+      "peak": 0.1499999761581421
+    }
+  ],
+  "explicitPause": "PASS",
+  "invalidBankPreservesDeck": "PASS",
+  "errors": [],
+  "gaplessPlayback": "NOT RUN",
+  "physicalLatency": "NOT RUN"
+}

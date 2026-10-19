@@ -1,0 +1,18 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "route": "/studio/dj.html",
+    "instrumentAudio": "PASS",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "route": "/studio/dj.html",
+    "instrumentAudio": "PASS",
+    "errors": []
+  }
+]

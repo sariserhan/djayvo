@@ -1,14 +1,15 @@
 # Djayvo development tracker
 
-**Current authorization — 2026-10-18:** After the M0a review stop, the owner said
-“okaycontinue”. The next local DJ-studio increment is authorized: two playable
-decks and manual mixing. See [mixer evidence](docs/dj-mixer.md) and the
-[web-studio addendum](docs/web-studio-addendum.md). M0a and the master remain
-unchanged; this does not pass musical-quality, live/venue or production gates,
-or authorize new paid compute or deployment. Preserve earlier work/evidence.
+**Current authorization — 2026-10-18:** The owner requested a professional-looking
+DJ console with spinning, controllable decks, a full piano and a broader instrument
+palette. This authorizes the local [console and live instruments](docs/dj-console.md)
+increment after the manual mixer. M0a and the master remain unchanged. Shared
+beat synchronization, AI Deck C, production/venue acceptance, new paid compute
+and deployment are not passed or authorized by this increment. Preserve earlier
+work, recordings and evidence.
 
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [source phrase development](docs/source-motif.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [performance console and live instruments](docs/dj-console.md).
 Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
 Use this file for past work, open issues and future development. Detailed test
@@ -40,19 +41,31 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
 
+- [x] **DJ05 — PASS (technical):** [Console and live instruments](docs/dj-console.md):
+  rotating/joggable platters, cue/hot cues, ±16% pitch/key lock, manual tempo match,
+  full-track loops, three-band EQ, 88-key piano, nine melodic patches and eight
+  drum pads, sustain/velocity/level/panic. Actual Mac/Linux/WASM and browser audio
+  evidence recorded: 42 DJ browser checks, 18 unit checks, 40 voice regressions,
+  15/15 CTest suites per native platform, sanitizer and bit-identical PCM PASS.
+  Professional/artist-reference quality remains NOT RUN.
+- [ ] **DJ06 — NOT RUN:** Human audition of the new instrument channel, MIDI
+  hardware mapping, audible scratching, beat-sized loops, FX and headphone cue
+  routing; prioritize these with the owner before further implementation.
+
 - [x] **DJ01 — PASS:** [Manual two-deck foundation](docs/dj-mixer.md): actual local
   playback, seek/levels/crossfader/master, stereo meter, permission and unload,
   failed-replacement preservation, interruption recovery and prepared offline
   reload. 16 unit checks, 26 DJ browser checks and 40 voice regressions PASS.
-- [ ] **DJ02 — NOT RUN:** Shared sample-frame transport with AudioWorklet,
+- [ ] **DJ02 — PARTIAL:** Live instrument AudioWorklet and shared C++ voices now work. Shared sample-frame deck transport,
   tempo/beat/harmonic context and synchronized Deck C preparation. Keep the
   validated director/engine boundary; no sample-level AI control.
 - [ ] **DJ03 — NOT RUN:** Capture a consented phrase while Deck A continues,
   create a source-driven performance, then manually or automatically mix Deck C
   with safe failure and manual override. Current workspaces remain separate.
-- [ ] **DJ04 — NOT RUN:** Actual Linux/Apple browser sessions, measured latency,
-  long-session glitch checks, cue/device routing, offline preparation/recovery
-  and human musical evaluation. Cached-page tests do not pass venue readiness.
+- [ ] **DJ04 — PARTIAL:** Automated Apple M5 browser sessions, prepared offline
+  playback, CPU block timing and repeated transport checks PASS. Actual Linux
+  browser, physical latency, long-session glitch checks, cue/device routing and
+  human musical evaluation remain NOT RUN. Cached-page tests do not pass venue readiness.
 
 ## Existing product work — DJ increment active; other tracks paused
 

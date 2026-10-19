@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "scope": "Local performance console and live instrument increment; full studio PARTIAL",
+  "native": {
+    "mac": "15/15 PASS",
+    "linux": "15/15 PASS",
+    "liveAddressUndefinedSanitizers": "PASS"
+  },
+  "unit": "18/18 PASS",
+  "browsers": {
+    "chromium": {
+      "artifacts": "renders/dj-chromium-ch7aRc",
+      "checks": 21,
+      "version": "149.0.7827.55"
+    },
+    "webkit": {
+      "artifacts": "renders/dj-webkit-HATxhB",
+      "checks": 21,
+      "version": "26.5"
+    }
+  },
+  "voiceRegression": {
+    "chromium": "21 PASS",
+    "webkit": "19 PASS"
+  },
+  "pcmAgreement": "PASS: bit-identical macOS/Linux/WASM float PCM, 11 patches x 96000 frames, note-on 0, note-off 23936",
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/x.mp3": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+    "/Users/serhansari/Downloads/y.mp3": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+    "/Users/serhansari/Downloads/z.mp3": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63"
+  },
+  "unchangedVoiceRendererWasm": "PASS",
+  "bundleBytes": 28228807,
+  "node": "v22.23.1",
+  "hardware": "Apple M5, 16 GiB, macOS 26.7.1 (25G241)",
+  "toolchain": "Apple Clang 21.0.0; CMake 4.4.2; Emscripten 6.0.1; Linux arm64 Debian12 GCC12.2 CMake3.25.1",
+  "humanListening": "NOT RUN",
+  "physicalLatency": "NOT RUN",
+  "linuxBrowser": "NOT RUN",
+  "venueEndurance": "NOT RUN",
+  "professionalQuality": "NOT RUN",
+  "fullStudio": "PARTIAL",
+  "publicRelease": "NOT RUN",
+  "artifacts": {
+    "palette": "renders/live-console-20261018/instrument-palette.wav",
+    "pcm": "renders/live-console-20261018/report.json"
+  },
+  "corrections": [
+    "Compressor makeup gain replaced with bounded unity-below-threshold waveshaper",
+    "Short WebKit note taps dispatch immediately when context runs",
+    "320px drum grid corrected",
+    "Full-track repeat uses ended-event restart; active pitch changes pause/set/resume to avoid reproduced WebKit stalls; gaps remain possible",
+    "Late completion of an older play request cannot pause a newer request; deterministic promise regression passes",
+    "Explicit processor error listeners verified with fault injection"
+  ],
+  "toolFallbacks": "Context7 and required in-app browser Node REPL tools unavailable; official MDN references and project Playwright workflow used",
+  "environmentCleanup": "Existing dedicated djayvo Colima profile stopped after tests. Default Colima profile briefly started during discovery, then returned to its original stopped state. Global Docker context unchanged; no new image, dependency, rental or deployment.",
+  "testHarnessNotes": "WebKit page activation stalled after closing an auxiliary test tab; invalid-bank injection was moved to the existing single-page transport stress runner. Offline test now runs without an auxiliary tab and passes with the real server disconnected. Screenshots wait for resized keyboard painting.",
+  "transportStress": "PASS: eight WebKit full-track repeat/pitch/reset cycles, explicit pause, invalid-bank failure with continuing audible signal"
+}

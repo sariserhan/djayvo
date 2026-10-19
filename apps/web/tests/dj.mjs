@@ -29,6 +29,7 @@ await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const origin = `http://127.0.0.1:${server.address().port}`;
 const browser = await { chromium, webkit }[kind].launch();
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+context.setDefaultTimeout(10000);
 const errors = [], requests = [], checks = [], warnings = [];
 let screenshot = false;
 // Silence only the physical test output, downstream of the application's measured mix.
@@ -50,6 +51,10 @@ await context.addInitScript(() => {
       window.testMeter = window.testMeters[0];
       return analyser;
     }
+  };
+  const NativeWorklet = window.AudioWorkletNode;
+  window.AudioWorkletNode = class extends NativeWorklet {
+    constructor(...args) { super(...args); window.testRack = this; }
   };
   const revoke = URL.revokeObjectURL.bind(URL);
   URL.revokeObjectURL = url => {
@@ -98,7 +103,7 @@ let signalEvidence;
 try {
   await page.goto(`${origin}/dj.html`);
   assert.match(await page.title(), /Djayvo — DJ workspace/);
-  await page.getByRole('heading', { name: 'Find the next move.' }).waitFor();
+  await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
   assert.equal(await page.locator('#file-a').isDisabled(), true);
   assert.equal(await page.locator('#play-a').isDisabled(), true);
   check('page identity, nonblank content, consent gating');
@@ -131,8 +136,17 @@ try {
   await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
   await page.locator('#file-b').setInputFiles(b);
   await page.waitForFunction(() => !document.querySelector('#play-b').disabled);
+  await page.evaluate(() => {
+    const audio = document.querySelector('#audio-a'), play = audio.play.bind(audio);
+    audio.play = () => { audio.play = play; return play().then(() => new Promise(resolve => { window.finishOldPlay = resolve; })); };
+  });
   await page.locator('#play-a').click();
-  await page.waitForFunction(() => document.querySelector('#audio-a').currentTime > .2);
+  await page.waitForFunction(() => document.querySelector('#audio-a').currentTime > .2 && !!window.finishOldPlay);
+  await page.locator('#pause-all').click(); await page.locator('#play-a').click();
+  await page.waitForFunction(() => !document.querySelector('#play-a').disabled && !document.querySelector('#audio-a').paused);
+  await page.evaluate(() => window.finishOldPlay()); await page.waitForTimeout(100);
+  assert.equal(await page.locator('#audio-a').evaluate(audio => audio.paused), false);
+  check('late completion of an older play request cannot pause a newer playback request');
   await page.locator('#play-b').click();
   await page.waitForFunction(() => document.querySelector('#audio-b').currentTime > .2);
   assert.equal(await page.locator('#audio-a').evaluate(audio => audio.paused), false);
@@ -158,11 +172,115 @@ try {
   assert.equal(await page.locator('#audio-b').evaluate(audio => audio.paused), false);
   check('pause/seek one deck and reject corrupt replacement while other deck continues');
   await page.locator('#play-a').click();
+  const rotation = await page.locator('#vinyl-a').evaluate(node => node.style.transform);
+  await page.waitForTimeout(200);
+  assert.notEqual(await page.locator('#vinyl-a').evaluate(node => node.style.transform), rotation);
+  await page.locator('#play-a').click();
+  await set('#seek-a', 8); await page.locator('#set-cue-a').click();
+  await set('#seek-a', 15); await page.locator('#cue-a').click();
+  assert.ok(Math.abs(await page.locator('#audio-a').evaluate(a => a.currentTime) - 8) < .2);
+  await page.locator('#hot-a-0').click(); await set('#seek-a', 20); await page.locator('#hot-a-0').click();
+  assert.ok(Math.abs(await page.locator('#audio-a').evaluate(a => a.currentTime) - 8) < .2);
+  await page.locator('#hot-a-0').click({ modifiers: ['Shift'] });
+  assert.match(await page.locator('#hot-a-0').textContent(), /EMPTY/);
+  await page.locator('#jog-a').focus(); await page.keyboard.press('Shift+ArrowRight');
+  assert.ok(Math.abs(await page.locator('#audio-a').evaluate(a => a.currentTime) - 9) < .2);
+  const jog = await page.locator('#jog-a').boundingBox();
+  await page.mouse.move(jog.x + jog.width / 2, jog.y + 10); await page.mouse.down();
+  await page.mouse.move(jog.x + jog.width - 10, jog.y + jog.height / 2, { steps: 8 }); await page.mouse.up();
+  assert.ok(Math.abs(await page.locator('#audio-a').evaluate(a => a.currentTime) - 9.45) < .2);
+  await set('#rate-a', 1.1); assert.equal(await page.locator('#audio-a').evaluate(a => a.playbackRate), 1.1);
+  await page.locator('#rate-reset-a').click();
+  await page.locator('#bpm-a').fill('100'); await page.locator('#bpm-b').fill('110');
+  await page.locator('#match-a').click(); assert.equal(await page.locator('#audio-a').evaluate(a => a.playbackRate), 1.1);
+  await page.locator('#bpm-b').fill('200'); await page.locator('#match-a').click();
+  assert.match(await page.locator('#error-a').textContent(), /exceeds/);
+  await page.locator('#tap-a').click(); await page.waitForTimeout(450); await page.locator('#tap-a').click();
+  assert.ok(Number(await page.locator('#bpm-a').inputValue()) > 40);
+  await page.locator('#keylock-a').uncheck(); assert.equal(await page.locator('#audio-a').evaluate(a => a.preservesPitch), false);
+  await page.locator('#keylock-a').check();
+  await page.locator('#loop-a').click(); assert.equal(await page.locator('#loop-a').getAttribute('aria-pressed'), 'true');
+  await set('#seek-a', 59.9);
+  await page.waitForFunction(() => document.querySelector('#audio-a').currentTime > 59 && !document.querySelector('#audio-a').seeking);
+  await page.locator('#play-a').click();
+  await page.waitForFunction(() => document.querySelector('#audio-a').currentTime < 2 && !document.querySelector('#audio-a').paused && !document.querySelector('#audio-a').seeking);
+  await page.locator('#loop-a').click(); await page.locator('#rate-reset-a').click();
+  check('rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping');
+  await set('#crossfade', 0); await page.waitForTimeout(150);
+  const eqFlat = await (await page.waitForFunction(() => {
+    const values = new Float32Array(testMeter.fftSize); testMeter.getFloatTimeDomainData(values);
+    const level = Math.max(...values.map(Math.abs)); return level > .1 ? level : false;
+  }, null, { timeout: 5000 })).jsonValue();
+  await set('#eq-a-0', -12);
+  await page.waitForFunction(flat => {
+    const values = new Float32Array(testMeter.fftSize); testMeter.getFloatTimeDomainData(values);
+    const level = Math.max(...values.map(Math.abs)); return level > .001 && level < flat * .8;
+  }, eqFlat, { timeout: 5000 });
+  await set('#eq-a-0', 0);
+  check('deck low EQ changes measured output');
+  await page.locator('#load-instruments').click();
+  await page.waitForFunction(() => document.querySelector('#instrument-status').textContent.startsWith('Ready'), null, { timeout: 30000 });
+  assert.equal(await page.locator('#audio-a').evaluate(a => a.paused), false);
+  assert.equal(await page.locator('.piano-key').count(), 88);
+  assert.equal(await page.locator('.drum-pad').count(), 8);
+  await set('#level-a', 0); await set('#level-b', 0); await page.waitForTimeout(200);
+  await page.locator('#patch').selectOption('6'); await page.locator('.keyboard-scroll').focus();
+  await page.keyboard.down('a'); await page.keyboard.down('d'); await page.keyboard.down('g');
+  await page.waitForFunction(() => document.querySelector('#output-meter').value > .001);
+  assert.equal(await page.locator('.piano-key[aria-pressed=true]').count(), 3);
+  await page.keyboard.up('a'); await page.keyboard.up('d'); await page.keyboard.up('g');
+  await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
+  check('live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound');
+  await page.locator('#sustain').click(); await page.locator('.keyboard-scroll').focus();
+  await page.keyboard.press('a'); await page.waitForTimeout(500); assert.ok(await peak() > .001);
+  await set('#master', 0); await page.waitForTimeout(200); assert.ok(await peak() < .0001);
+  await set('#master', .75); await page.waitForTimeout(200); assert.ok(await peak() > .001);
+  await set('#rack-level', 0); await page.waitForTimeout(200); assert.ok(await peak() < .0001);
+  await set('#rack-level', .65); await page.locator('#sustain').click();
+  await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
+  await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('a');
+  await page.waitForTimeout(100); await page.locator('#panic').click(); await page.keyboard.up('a');
+  await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
+  await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('a');
+  await page.evaluate(() => window.dispatchEvent(new Event('blur'))); await page.keyboard.up('a');
+  await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
+  assert.equal(await page.locator('#audio-a').evaluate(a => a.paused), false);
+  check('sustain, instrument/master mute, panic and blur release work without pausing decks');
+  await page.locator('#octave-up').click(); assert.match(await page.locator('#octave-name').textContent(), /C5/);
+  await page.locator('#octave-down').click();
+  await page.locator('#patch').selectOption('4');
+  assert.equal(await page.locator('[data-pitch="21"]').isDisabled(), true);
+  assert.equal(await page.locator('[data-pitch="60"]').isDisabled(), false);
+  await page.locator('#patch').selectOption('0');
+  assert.equal(await page.locator('[data-pitch="21"]').isDisabled(), false);
+  const pad = page.locator('.drum-pad').first(); await pad.scrollIntoViewIfNeeded();
+  const box = await pad.boundingBox(); await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2); await page.mouse.down();
+  await page.waitForTimeout(80); assert.ok(await peak() > .0001); await page.mouse.up();
+  await page.locator('#panic').click();
+  check('octave selection, patch range limits and pointer drum pad generate real audio');
+  await set('#level-a', 1); await set('#level-b', 1); await set('#crossfade', .5);
   await capture('desktop.png');
   await page.setViewportSize({ width: 390, height: 844 });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+  await page.locator('.keyboard-scroll').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(250); // Let the resized horizontal keyboard finish painting.
+  assert.equal(await page.locator('[data-pitch="60"]').evaluate(key => {
+    const r = key.getBoundingClientRect(); return document.elementFromPoint(r.x + r.width / 2, r.bottom - 10) === key;
+  }), true);
   await capture('mobile.png');
-  check('desktop and mobile controls render without horizontal overflow');
+  for (const width of [320, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `overflow at ${width}`);
+  }
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  assert.equal(await page.locator('#vinyl-a').evaluate(node => getComputedStyle(node).transform), 'none');
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  check('desktop, tablet and mobile controls render without horizontal overflow; reduced motion stops platter animation');
+  await page.evaluate(() => window.testRack.dispatchEvent(new Event('processorerror')));
+  await page.waitForFunction(() => document.querySelector('#instrument-status').textContent.includes('engine stopped'));
+  assert.equal(await page.locator('#audio-a').evaluate(audio => audio.paused), false);
+  assert.equal(await page.locator('#patch').isDisabled(), true);
+  check('injected instrument processor failure disables keys and preserves deck playback');
   await page.locator('#pause-all').click();
   assert.equal(await page.locator('audio').evaluateAll(nodes => nodes.every(a => a.paused)), true);
   await page.locator('#play-b').click();
@@ -197,7 +315,7 @@ try {
   await new Promise(resolve => server.close(resolve));
   const requestsBeforeDisconnect = serverRequests.length;
   await page.reload();
-  await page.getByRole('heading', { name: 'Find the next move.' }).waitFor();
+  await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
   await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles(a);
   await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
@@ -210,6 +328,14 @@ try {
   }, null, { timeout: 5000 });
   assert.equal(serverRequests.length, requestsBeforeDisconnect);
   check('prepared app reloads with server disconnected and plays newly selected local audio');
+  await page.locator('#pause-all').click();
+  await page.locator('#load-instruments').click();
+  await page.waitForFunction(() => document.querySelector('#instrument-status').textContent.startsWith('Ready'));
+  await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('a');
+  await page.waitForFunction(() => document.querySelector('#output-meter').value > .001);
+  await page.keyboard.up('a'); await page.locator('#panic').click();
+  assert.equal(serverRequests.length, requestsBeforeDisconnect);
+  check('cached WASM bank and AudioWorklet produce instrument audio with server disconnected');
   await page.locator('#clear-a').click();
   assert.equal(await page.locator('#audio-a').getAttribute('src'), null);
   check('unload releases the deck source');
@@ -233,6 +359,6 @@ try {
     signalEvidence, audioContext: audioContextEvidence, actualMedia: { aPeak, channelSilent, masterSilent }, errors, warnings,
     humanListening: 'NOT RUN', physicalDeviceLatency: 'NOT RUN', offlineVenueReliability: 'NOT RUN' }, null, 2));
 } catch (error) {
-  await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings }, null, 2));
+  await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings, state: await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({ instruments: document.querySelector('#instrument-status').textContent, decks: [...document.querySelectorAll('audio')].map(a => ({time:a.currentTime,paused:a.paused,seeking:a.seeking,ended:a.ended,rate:a.playbackRate,readyState:a.readyState})), meter:document.querySelector('#output-meter').value }))]) }, null, 2));
   throw error;
 } finally { await browser.close(); server.closeAllConnections(); server.close(); }

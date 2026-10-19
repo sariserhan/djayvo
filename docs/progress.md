@@ -1,11 +1,12 @@
 # Djayvo: M0 continuation evidence
 
-**Current authorization — 2026-10-18:** After the M0a review stop, the owner said
-“okaycontinue”. The next local DJ-studio increment is authorized: two playable
-decks and manual mixing. See [mixer evidence](dj-mixer.md) and the
-[web-studio addendum](web-studio-addendum.md). M0a and the master remain
-unchanged; this does not pass musical-quality, live/venue or production gates,
-or authorize new paid compute or deployment. Preserve earlier work/evidence.
+**Current authorization — 2026-10-18:** The owner requested a professional-looking
+DJ console with spinning, controllable decks, a full piano and a broader instrument
+palette. This authorizes the local [console and live instruments](dj-console.md)
+increment after the manual mixer. M0a and the master remain unchanged. Shared
+beat synchronization, AI Deck C, production/venue acceptance, new paid compute
+and deployment are not passed or authorized by this increment. Preserve earlier
+work, recordings and evidence.
 
 
 For completed development, open tasks and future milestones, use the
@@ -18,7 +19,15 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest local follow-up: [Waveform diagnostics](style-waveform-diagnostics.md).
+Latest local implementation: [Performance console and live instruments](dj-console.md).
+**PASS:** 88 piano keys, nine melodic patches/two drum kits, real deck transport,
+EQ, pitch/cue/loop and instrument controls; native Mac/Linux and WASM comparison
+with identical PCM; playable palette retained locally. **PARTIAL:** full DJ/AI
+workflow and live timing. **NOT RUN:** human reference-quality acceptance,
+physical latency, Linux browser, venue endurance and production release.
+The master, supplied speech fixture, owner source and x/y/z originals are unchanged.
+
+Historical local follow-up: [Waveform diagnostics](style-waveform-diagnostics.md).
 **PASS:** calibrated training-excerpt scan (40 pairs; no flags), repetition and
 two-seed measurements, three tests and preserved artifacts. Sixteen repeated
 windows occur in the second bass seed across base/adapter; musical significance

@@ -31,14 +31,19 @@ can make the library unavailable. Download important mixes.
 
 Open [DJ workspace](http://localhost:4173/dj.html), also linked from the studio.
 Confirm permission for your music, load local tracks into A and B, then use
-independent play/pause, seeking, channel levels, crossfader and master. Tracks
+play/pause, platter jogging, pitch/key lock, cue/hot cues, full-track looping,
+manual tempo matching, three-band EQ, channel levels, crossfader and master.
+Enable instruments for an 88-key piano, nine melodic sounds and two drum kits.
+Use mouse/touch or A W S E D F T G Y H U J K for a chromatic octave; octave
+buttons shift this computer-key range. Sustain, velocity, instrument level and
+All notes off operate the shared C++ AudioWorklet engine. Tracks
 stay in this tab and are not saved or uploaded. Unchecking permission unloads
 both decks. The pages are separate; opening Voice studio ends the DJ session.
 
 The existing offline preparation includes the DJ page. Reopen it after saving
 app assets, then select local tracks; reload clears the decks. This is manual
 mixing, with no beat sync, cue routing or AI Deck C yet. See
-[checks and limits](../../docs/dj-mixer.md). Run the dedicated checks with
+[checks and limits](../../docs/dj-console.md). Run the dedicated checks with
 `node apps/web/tests/dj.mjs` (from the root), then the same command with
 `DJAYVO_BROWSER=webkit`. They start their own temporary server.
 

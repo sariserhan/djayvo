@@ -1,10 +1,11 @@
 # Djayvo — web-studio product direction addendum
 
-**Subsequent authorization:** After this review stop the owner said “okaycontinue”.
-The [first manual DJ increment](dj-mixer.md) is now implemented and technically
-validated. The original review-stop wording below records the earlier boundary;
-current scope is the local two-deck foundation, not general later-stage approval.
-All live/quality/venue requirements remain in force.
+**Subsequent authorization:** After the M0a review stop the owner authorized the
+[first manual DJ increment](dj-mixer.md), then explicitly requested spinning,
+controllable decks, full piano keys and more instruments. The
+[console and live instruments increment](dj-console.md) implements that local
+scope. The original review-stop wording below is historical; it is not a blanket
+later-stage approval. All live, quality and venue requirements remain in force.
 
 Owner direction recorded 2026-10-18. This separate addendum preserves the
 [master specification](../ai_improvisational_musician_master_spec_v1.md).

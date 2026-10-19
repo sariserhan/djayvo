@@ -1,50 +1,42 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101211">
-  <title>Djayvo — DJ workspace</title>
-  <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./dj.css">
-  <script type="module" src="./dj.js"></script>
-</head>
-<body>
-  <a class="skip" href="#dj">Skip to mixer</a>
-  <header><div class="header-inner"><a class="brand" href="./">djayvo</a><nav aria-label="Main"><a href="./">Voice studio</a><a href="#session-notes">Session notes</a></nav></div></header>
-  <main id="dj">
-    <div class="dj-heading"><div><p class="eyebrow">LOCAL SESSION / MANUAL MIXING</p><h1>Find the next move.</h1><p class="intro">Two tracks. One blend. Your music stays here.</p></div><span class="prototype">DJ workspace · preview</span></div>
-    <label class="consent"><input type="checkbox" id="music-rights"><span>I have permission to play and mix these tracks.</span></label>
-    <div class="decks">
-      <section class="deck" aria-labelledby="deck-a-title">
-        <div class="section-heading"><h2 id="deck-a-title">Deck A</h2><span class="deck-state" id="state-a">Empty</span></div>
-        <p class="track-name" id="name-a">Choose your opening track</p>
-        <label class="file-label">Load track A<input type="file" id="file-a" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
-        <audio id="audio-a" preload="auto" hidden></audio>
-        <label class="seek-label" for="seek-a">Position <output id="time-a">0:00 / 0:00</output></label><input id="seek-a" type="range" min="0" max="0" step="0.1" value="0" disabled>
-        <div class="capture-actions"><button id="play-a" class="primary" disabled>Play A</button><button id="clear-a" class="secondary" disabled>Unload A</button></div>
-        <label class="level-label" for="level-a">Channel A level <output id="level-value-a">100%</output></label><input id="level-a" type="range" min="0" max="1" step="0.01" value="1" disabled>
-        <p class="deck-error" id="error-a" role="alert"></p>
-      </section>
-      <section class="deck" aria-labelledby="deck-b-title">
-        <div class="section-heading"><h2 id="deck-b-title">Deck B</h2><span class="deck-state" id="state-b">Empty</span></div>
-        <p class="track-name" id="name-b">Choose what comes next</p>
-        <label class="file-label">Load track B<input type="file" id="file-b" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
-        <audio id="audio-b" preload="auto" hidden></audio>
-        <label class="seek-label" for="seek-b">Position <output id="time-b">0:00 / 0:00</output></label><input id="seek-b" type="range" min="0" max="0" step="0.1" value="0" disabled>
-        <div class="capture-actions"><button id="play-b" class="primary" disabled>Play B</button><button id="clear-b" class="secondary" disabled>Unload B</button></div>
-        <label class="level-label" for="level-b">Channel B level <output id="level-value-b">100%</output></label><input id="level-b" type="range" min="0" max="1" step="0.01" value="1" disabled>
-        <p class="deck-error" id="error-b" role="alert"></p>
-      </section>
-    </div>
-    <section class="mix-bus" aria-labelledby="blend-title">
-      <div class="blend"><h2 id="blend-title">The blend</h2><label for="crossfade">Crossfader <output id="blend-value">A 100% · B 0%</output></label><input id="crossfade" type="range" min="0" max="1" step="0.01" value="0" disabled><div class="ends" aria-hidden="true"><span>A</span><span>B</span></div></div>
-      <div class="master"><label for="master">Master level <output id="master-value">75%</output></label><input id="master" type="range" min="0" max="1" step="0.01" value="0.75" disabled><label for="output-meter">Output peak</label><meter id="output-meter" min="0" max="1" value="0">0</meter><output id="peak">Silent</output></div>
-      <button id="pause-all" class="secondary" disabled>Pause both decks</button>
-    </section>
-    <p id="mixer-status" role="status">Confirm your music permissions to load tracks.</p>
-    <section id="session-notes"><h2>Before you play</h2><p>Tracks stay in this tab and are not uploaded or saved. Load local files up to 100 MB and 20 minutes. Pause a deck before replacing its track. Unchecking permission unloads both tracks.</p><p>For offline use, save the app in <a href="./">Voice studio → Privacy &amp; credits</a>, reopen this workspace, then load your local tracks. Reloading clears the decks. Keep the page open and your device awake; background playback and venue reliability have not been validated.</p><p>This preview provides manual playback and blending. Beat sync, headphone cueing, microphone capture and the AI performance channel are still to come. Opening the voice studio ends this session.</p></section>
-    <footer>Made here. Mixed here.</footer>
-  </main>
-  <noscript>Djayvo needs JavaScript and Web Audio for mixing.</noscript>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#10151b"><title>Djayvo — DJ workspace</title><link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./dj.css"><script type="module" src="./dj.js"></script></head>
+<body><a class="skip" href="#dj">Skip to console</a><header><div class="header-inner"><a class="brand" href="./">djayvo<span class="brand-mode"> / PERFORMANCE</span></a><nav aria-label="Main"><a href="./">Voice studio</a><a href="#instruments">Keys &amp; pads</a><a href="#session-notes">Session notes</a></nav></div></header>
+<main id="dj"><div class="console-title"><div><p class="eyebrow">YOUR TRACKS. YOUR HANDS. YOUR NEXT IDEA.</p><h1>Performance studio</h1></div><span class="prototype">Local session · preview</span></div>
+<label class="consent"><input type="checkbox" id="music-rights"><span>I have permission to play and mix the tracks I load.</span></label>
+<div class="console"><section class="deck deck-a" aria-labelledby="deck-a-title">
+ <div class="deck-heading"><h2 id="deck-a-title">DECK A</h2><span class="deck-state" id="state-a">Empty</span><button id="clear-a" class="small-button" disabled>Unload A</button></div>
+ <p class="track-name" id="name-a">Load a track to begin</p>
+ <label class="file-label"><span>Load track A</span><input type="file" id="file-a" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
+ <audio id="audio-a" preload="auto" hidden></audio>
+ <canvas class="deck-scope" id="scope-a" width="650" height="65" aria-label="Deck A live audio scope"></canvas>
+ <div class="position-readout"><output id="time-a">0:00 / 0:00</output><span>ELAPSED / TOTAL</span></div>
+ <input aria-label="Deck A position" id="seek-a" type="range" min="0" max="0" step="0.1" value="0" disabled>
+ <div class="platter-row"><div class="jog" id="jog-a" role="slider" tabindex="0" aria-label="Jog deck A" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-disabled="true"><div class="vinyl" id="vinyl-a"><span class="disc-mark"></span><div class="disc-label"><b>A</b><span>DJAYVO<br>33⅓</span></div><span class="spindle"></span></div></div>
+ <label class="pitch-strip">PITCH<input aria-label="Deck A playback rate" id="rate-a" type="range" min="0.84" max="1.16" step="0.001" value="1" disabled><output id="rate-value-a">+0.0%</output><button id="rate-reset-a" class="small-button" disabled>Reset</button></label></div>
+ <p class="jog-help">Drag platter to seek · arrow keys ±0.1 s</p>
+ <div class="transport"><button id="cue-a" class="cue-button" disabled>Cue</button><button id="set-cue-a" class="small-button" disabled>Set cue</button><button id="play-a" class="play-button" disabled>Play A</button><button id="loop-a" class="small-button" aria-pressed="false" disabled>Track loop</button></div>
+ <div class="tempo-row"><label>TRACK BPM<input id="bpm-a" type="number" min="40" max="240" step="0.1" placeholder="Manual" disabled></label><button id="tap-a" class="small-button" disabled>Tap tempo</button><button id="match-a" class="small-button" disabled>Match B tempo</button><label class="key-lock"><input id="keylock-a" type="checkbox" checked disabled>Key lock</label></div>
+ <div class="eq"><label>Low<output id="eq-a-0-value">0 dB</output><input aria-label="Deck A Low" id="eq-a-0" type="range" min="-12" max="12" step="1" value="0" disabled></label><label>Mid<output id="eq-a-1-value">0 dB</output><input aria-label="Deck A Mid" id="eq-a-1" type="range" min="-12" max="12" step="1" value="0" disabled></label><label>High<output id="eq-a-2-value">0 dB</output><input aria-label="Deck A High" id="eq-a-2" type="range" min="-12" max="12" step="1" value="0" disabled></label></div>
+ <div class="hotcues"><button id="hot-a-0" class="hotcue" disabled aria-label="Deck A hot cue 1, empty">1<small>EMPTY</small></button><button id="hot-a-1" class="hotcue" disabled aria-label="Deck A hot cue 2, empty">2<small>EMPTY</small></button><button id="hot-a-2" class="hotcue" disabled aria-label="Deck A hot cue 3, empty">3<small>EMPTY</small></button><button id="hot-a-3" class="hotcue" disabled aria-label="Deck A hot cue 4, empty">4<small>EMPTY</small></button></div><p class="pad-help">Hot cues: click empty to set · shift-click to clear</p>
+ <label class="level-label" for="level-a">Channel A <output id="level-value-a">100%</output></label><input id="level-a" type="range" min="0" max="1" step="0.01" value="1" disabled>
+ <p class="deck-error" id="error-a" role="alert"></p></section><section class="mix-bus" aria-labelledby="blend-title"><div class="bus-heading"><span class="eyebrow">MASTER</span><h2 id="blend-title">The blend</h2></div><div class="master"><label for="master">Master level <output id="master-value">75%</output></label><input id="master" type="range" min="0" max="1" step="0.01" value="0.75" disabled><label for="output-meter">Stereo sample peak</label><meter id="output-meter" min="0" max="1" value="0">0</meter><output id="peak">Silent</output></div><div class="blend"><label for="crossfade">Crossfader</label><output id="blend-value">A 100% · B 0%</output><input id="crossfade" type="range" min="0" max="1" step="0.01" value="0" disabled><div class="ends" aria-hidden="true"><span>A</span><span>B</span></div></div><button id="pause-all" class="secondary" disabled>Pause both decks</button><div class="bus-note"><b>Make room for the next idea.</b><p>The keyboard has its own channel. Play over either deck, or play on its own.</p></div><p id="mixer-status" role="status">Confirm permission to load music.</p></section><section class="deck deck-b" aria-labelledby="deck-b-title">
+ <div class="deck-heading"><h2 id="deck-b-title">DECK B</h2><span class="deck-state" id="state-b">Empty</span><button id="clear-b" class="small-button" disabled>Unload B</button></div>
+ <p class="track-name" id="name-b">Load a track to begin</p>
+ <label class="file-label"><span>Load track B</span><input type="file" id="file-b" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
+ <audio id="audio-b" preload="auto" hidden></audio>
+ <canvas class="deck-scope" id="scope-b" width="650" height="65" aria-label="Deck B live audio scope"></canvas>
+ <div class="position-readout"><output id="time-b">0:00 / 0:00</output><span>ELAPSED / TOTAL</span></div>
+ <input aria-label="Deck B position" id="seek-b" type="range" min="0" max="0" step="0.1" value="0" disabled>
+ <div class="platter-row"><div class="jog" id="jog-b" role="slider" tabindex="0" aria-label="Jog deck B" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-disabled="true"><div class="vinyl" id="vinyl-b"><span class="disc-mark"></span><div class="disc-label"><b>B</b><span>DJAYVO<br>33⅓</span></div><span class="spindle"></span></div></div>
+ <label class="pitch-strip">PITCH<input aria-label="Deck B playback rate" id="rate-b" type="range" min="0.84" max="1.16" step="0.001" value="1" disabled><output id="rate-value-b">+0.0%</output><button id="rate-reset-b" class="small-button" disabled>Reset</button></label></div>
+ <p class="jog-help">Drag platter to seek · arrow keys ±0.1 s</p>
+ <div class="transport"><button id="cue-b" class="cue-button" disabled>Cue</button><button id="set-cue-b" class="small-button" disabled>Set cue</button><button id="play-b" class="play-button" disabled>Play B</button><button id="loop-b" class="small-button" aria-pressed="false" disabled>Track loop</button></div>
+ <div class="tempo-row"><label>TRACK BPM<input id="bpm-b" type="number" min="40" max="240" step="0.1" placeholder="Manual" disabled></label><button id="tap-b" class="small-button" disabled>Tap tempo</button><button id="match-b" class="small-button" disabled>Match A tempo</button><label class="key-lock"><input id="keylock-b" type="checkbox" checked disabled>Key lock</label></div>
+ <div class="eq"><label>Low<output id="eq-b-0-value">0 dB</output><input aria-label="Deck B Low" id="eq-b-0" type="range" min="-12" max="12" step="1" value="0" disabled></label><label>Mid<output id="eq-b-1-value">0 dB</output><input aria-label="Deck B Mid" id="eq-b-1" type="range" min="-12" max="12" step="1" value="0" disabled></label><label>High<output id="eq-b-2-value">0 dB</output><input aria-label="Deck B High" id="eq-b-2" type="range" min="-12" max="12" step="1" value="0" disabled></label></div>
+ <div class="hotcues"><button id="hot-b-0" class="hotcue" disabled aria-label="Deck B hot cue 1, empty">1<small>EMPTY</small></button><button id="hot-b-1" class="hotcue" disabled aria-label="Deck B hot cue 2, empty">2<small>EMPTY</small></button><button id="hot-b-2" class="hotcue" disabled aria-label="Deck B hot cue 3, empty">3<small>EMPTY</small></button><button id="hot-b-3" class="hotcue" disabled aria-label="Deck B hot cue 4, empty">4<small>EMPTY</small></button></div><p class="pad-help">Hot cues: click empty to set · shift-click to clear</p>
+ <label class="level-label" for="level-b">Channel B <output id="level-value-b">100%</output></label><input id="level-b" type="range" min="0" max="1" step="0.01" value="1" disabled>
+ <p class="deck-error" id="error-b" role="alert"></p></section></div>
+<section id="instruments" aria-labelledby="instrument-title"><div class="instrument-heading"><div><p class="eyebrow">INSTRUMENT CHANNEL</p><h2 id="instrument-title">Keys, bass &amp; beyond.</h2></div><button id="load-instruments" class="primary">Enable instruments</button></div><p id="instrument-status" role="status">Prepare the cleared sound bank, then play with your mouse, touch or computer keyboard.</p>
+<div class="instrument-controls"><label>Sound<select id="patch" disabled></select></label><label>Velocity <output id="velocity-value">100</output><input id="velocity" type="range" min="1" max="127" value="100" disabled></label><label>Instrument level <output id="rack-value">65%</output><input id="rack-level" type="range" min="0" max="1" step="0.01" value="0.65" disabled></label><button id="sustain" class="small-button" aria-pressed="false" disabled>Sustain</button><button id="panic" class="small-button" disabled>All notes off</button></div>
+<div class="keyboard-tools"><div><button id="octave-down" class="small-button" disabled>− Octave</button><output id="octave-name">C4–C5</output><button id="octave-up" class="small-button" disabled>+ Octave</button></div><p>A W S E D F T G Y H U J K · Hold for a note, combine for chords</p></div><div class="keyboard-scroll" tabindex="0" aria-label="88-note keyboard, scroll horizontally"><div id="keyboard" class="keyboard" role="group" aria-label="Piano A0 through C8"></div></div>
+<div class="pad-heading"><h3>Rhythm pads</h3><span>Acoustic &amp; electronic kits · hold to play</span></div><div id="drum-pads" class="drum-pads"></div>
+</section><details id="session-notes"><summary>Session notes, controls &amp; sound credits</summary><p>Local tracks stay in this tab; nothing is uploaded or saved. Files: up to 100 MB / 20 minutes. Pause a deck to replace it. Unchecking permission unloads your tracks; cleared instruments remain available.</p><p>Enter each track’s BPM or tap it manually. Match tempo adjusts playback rate only; it does not align beats. Track loop repeats the complete file and may have a gap. Active pitch changes briefly pause and resume playback. The jog wheels seek through audio; they are not scratch emulation. Cue and hot cues are not quantized.</p><p>The piano covers A0–C8. Guitar keys use the cleared bank’s E2–G5 range. Sustain holds released notes; All notes off releases every voice. Leaving the page or keyboard focus stops held instrument notes.</p><p>Save the app in Voice studio → Privacy &amp; credits for offline preparation, then reopen this workspace and select local tracks. Reload clears decks. Keep your device awake; venue reliability, device latency, headphone cue routing and AI Deck C are not validated.</p><p>Cleared sounds: <a href="./licenses/VSCO-2-CE-LICENSE.txt">VSCO 2 CE</a>, <a href="./licenses/VCSL-LICENSE.txt">VCSL</a> and <a href="./licenses/BLACK-AND-GREEN-GUITARS-CC0.txt">Karoryfer guitar</a> (CC0), plus original Djayvo synths. No reference tracks or performer identities are bundled.</p></details><footer>Made here. Played here.</footer></main><noscript>Enable JavaScript to use the audio console.</noscript></body></html>
