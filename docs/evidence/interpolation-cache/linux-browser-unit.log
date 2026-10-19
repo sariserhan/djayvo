@@ -1,0 +1,12 @@
+✔ worklet capture keeps both channels and every independent frame (2.169984ms)
+✔ stale browser timestamps do not become false missing-sample claims (1.346475ms)
+✔ missing counter samples and altered audio remain detectable (1.679562ms)
+✔ load probe dispatches on/off at exact frames across program boundaries (3.977881ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43.778695

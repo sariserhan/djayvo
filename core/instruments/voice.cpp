@@ -68,6 +68,8 @@ void Voice::start(const Event& e,std::uint32_t rate) noexcept {
     // Precompute short windowed-sinc fractional-delay kernels at note start.
     // A lower cutoff when reading faster suppresses downsampling aliases.
     const double cutoff=0.94*std::min(1.0,1.0/sample_step_);
+    // Reuse only identical coefficients; note state above still resets every time.
+    if (cutoff == interpolation_cutoff_) return;
     for (std::size_t phase=0;phase<interpolation_.size();++phase) {
         double total=0;
         for (int tap=0;tap<16;++tap) {
@@ -80,6 +82,7 @@ void Voice::start(const Event& e,std::uint32_t rate) noexcept {
         }
         for (auto& value:interpolation_[phase]) value=static_cast<float>(value/total);
     }
+    interpolation_cutoff_ = cutoff;
 }
 void Voice::stop() noexcept {
     if (!released_) {released_=true;release_age_=0;}

@@ -1,0 +1,13 @@
+{
+  "head": "321afbbe4620fc1ab3e789f1a20839a8208f730e",
+  "cpu": "Apple M5",
+  "memory_bytes": "17179869184",
+  "macOS": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+  "cmake": "cmake version 4.4.2\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+  "node": "v22.23.1",
+  "emscripten": "6.0.1",
+  "playwright": "1.61.1",
+  "docker_default_context": "desktop-linux"
+}

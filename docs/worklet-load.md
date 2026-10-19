@@ -1,5 +1,10 @@
 # Real-time instrument AudioWorklet validation
 
+Follow-up: [reusing unchanged interpolation coefficients](interpolation-cache.md)
+reduces repeated note-start work and validates four new browser runs with exact
+audio/events. Timing screens still fail. The results below retain the earlier,
+unchanged-engine baseline.
+
 2026-10-19. This increment tests the production instrument worklet and shared
 WASM engine in actual browser audio processing. It adds diagnostics and evidence;
 production DSP, browser controls, recordings and the master specification are

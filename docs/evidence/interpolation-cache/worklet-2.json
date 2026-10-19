@@ -1,0 +1,50 @@
+{
+  "wallSeconds": 60.5185,
+  "sampleRate": 48000,
+  "baseLatency": 0.011625,
+  "outputLatency": 0.032,
+  "playbackStats": {
+    "underrunDuration": 0,
+    "underrunEvents": 0,
+    "totalDuration": 59.7184,
+    "averageLatency": 0.03737,
+    "minimumLatency": 0,
+    "maximumLatency": 0.05975
+  },
+  "outputTimestamp": {
+    "contextTime": 59.975443999999996,
+    "performanceTime": 61218.29999999999
+  },
+  "startTime": 0,
+  "contextTime": 60.010666666666665,
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7827.0 Safari/537.36",
+  "engine": {
+    "commands": 1920,
+    "clock": "Date.now",
+    "memoryBytes": 33554432,
+    "active": 0
+  },
+  "capture": {
+    "counterGaps": 0,
+    "timestampGaps": 0,
+    "lastCounter": 2880000
+  },
+  "browser": "chromium",
+  "version": "149.0.7827.0",
+  "errors": [],
+  "externalRequests": [],
+  "runner": {
+    "node": "v24.17.0",
+    "platform": "linux",
+    "architecture": "arm64"
+  },
+  "hashes": {
+    "production_processor": "d015a9d934d2741fe72a5dda30e8cd0ff893a95b23fa498ba63a32a4af2e9642",
+    "engine": "460c7830ab1c209be9df3bb39ed11e1c543fe10accf4f54271107f7833681623",
+    "reference_pcm": "c14c9defad68ad811fb1ea9b4e2e4dab43a293c846c67210a8553f34fc2501e0",
+    "event_trace": "fa5df6e8ea62d51f1527d91d2d2da167e59f47a6d8d0f43e7d2df2a6191d6575",
+    "probe": "866f5fc47b17e2610209beaa5a160f4a09794d9cc945cbf4c7e6ff815db70500",
+    "capture": "5d891d5d6ef57e2a4b4a606818121a0b10bb50b1aef1f930580b608205eb19a5",
+    "runner": "ba6707084cfd0dd7e56b3abfc649303267b7ddca8d786c857aa62c9a5fa1ce45"
+  }
+}

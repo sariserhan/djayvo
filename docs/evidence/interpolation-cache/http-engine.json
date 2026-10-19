@@ -1,0 +1,26 @@
+[
+  {
+    "url": "http://127.0.0.1:4173/engine/djayvo_live.wasm",
+    "status": "PASS",
+    "sha256": "460c7830ab1c209be9df3bb39ed11e1c543fe10accf4f54271107f7833681623",
+    "expected": "460c7830ab1c209be9df3bb39ed11e1c543fe10accf4f54271107f7833681623"
+  },
+  {
+    "url": "http://127.0.0.1:4173/engine/djayvo_web.wasm",
+    "status": "PASS",
+    "sha256": "b15be8d57aeccd73182b7c541e26227cc483f6ae26fb8a933d43d45a8f449731",
+    "expected": "b15be8d57aeccd73182b7c541e26227cc483f6ae26fb8a933d43d45a8f449731"
+  },
+  {
+    "url": "http://127.0.0.1:3000/studio/engine/djayvo_live.wasm",
+    "status": "PASS",
+    "sha256": "460c7830ab1c209be9df3bb39ed11e1c543fe10accf4f54271107f7833681623",
+    "expected": "460c7830ab1c209be9df3bb39ed11e1c543fe10accf4f54271107f7833681623"
+  },
+  {
+    "url": "http://127.0.0.1:3000/studio/engine/djayvo_web.wasm",
+    "status": "PASS",
+    "sha256": "b15be8d57aeccd73182b7c541e26227cc483f6ae26fb8a933d43d45a8f449731",
+    "expected": "b15be8d57aeccd73182b7c541e26227cc483f6ae26fb8a933d43d45a8f449731"
+  }
+]

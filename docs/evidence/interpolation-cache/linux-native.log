@@ -1,0 +1,196 @@
+time="2026-10-19T17:17:29-04:00" level=info msg="starting colima [profile=djayvo]"
+time="2026-10-19T17:17:29-04:00" level=info msg="runtime: docker"
+time="2026-10-19T17:17:29-04:00" level=info msg="starting ..." context=vm
+time="2026-10-19T17:17:29-04:00" level=info msg="Using the existing instance `colima-djayvo`"
+time="2026-10-19T17:17:29-04:00" level=info msg="Starting the instance `colima-djayvo` with internal VM driver `vz`"
+time="2026-10-19T17:17:30-04:00" level=info msg="[hostagent] hostagent socket created at /Users/serhansari/.colima/_lima/colima-djayvo/ha.sock"
+time="2026-10-19T17:17:30-04:00" level=info msg="[hostagent] Starting VZ (hint: to watch the boot progress, see `/Users/serhansari/.colima/_lima/colima-djayvo/serial*.log`)"
+time="2026-10-19T17:17:30-04:00" level=info msg="[hostagent] Mounting disk `colima-djayvo` on `/mnt/lima-colima-djayvo`"
+time="2026-10-19T17:17:30-04:00" level=info msg="[hostagent] Converting `/Users/serhansari/.colima/_lima/_disks/colima-djayvo/datadisk` (raw) to a raw disk `/Users/serhansari/.colima/_lima/_disks/colima-djayvo/datadisk`"
+time="2026-10-19T17:17:30-04:00" level=info msg="[hostagent] [VZ] - vm state change: running"
+time="2026-10-19T17:17:35-04:00" level=info msg="[hostagent] SSH server does not seem to be running on vsock port, using usernet forwarder"
+time="2026-10-19T17:17:36-04:00" level=info msg="SSH Local Port: 63925"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] Waiting for the essential requirement 1 of 3: `ssh`"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] The essential requirement 1 of 3 is satisfied"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] Waiting for the essential requirement 2 of 3: `user session is ready for ssh`"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] The essential requirement 2 of 3 is satisfied"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] Waiting for the essential requirement 3 of 3: `Explicitly start ssh ControlMaster`"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] The essential requirement 3 of 3 is satisfied"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] Waiting for the guest agent to be running"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] Forwarding `/var/run/docker.sock` (guest) to `/Users/serhansari/.colima/djayvo/docker.sock` (host)"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] Forwarding `/var/run/containerd/containerd.sock` (guest) to `/Users/serhansari/.colima/djayvo/containerd.sock` (host)"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] Guest agent is running"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] Waiting for the final requirement 1 of 1: `boot scripts must have finished`"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] Time sync: guest agent is alive, starting time synchronization"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] Forwarding TCP from 127.0.0.1:53 to 127.0.0.1:53"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] Forwarding `127.0.0.1:53` (guest) to `/tmp/lima-psl-127.0.0.1-53-2004288527/sock` (host)"
+time="2026-10-19T17:17:36-04:00" level=info msg="[hostagent] The final requirement 1 of 1 is satisfied"
+time="2026-10-19T17:17:36-04:00" level=info msg="READY. Run `limactl shell colima-djayvo` to open the shell."
+installing: 386 OK
+installing: amd64 OK
+{
+  "supported": [
+    "linux/arm64",
+    "linux/amd64",
+    "linux/386"
+  ],
+  "emulators": [
+    "python3.12",
+    "qemu-i386",
+    "qemu-x86_64"
+  ]
+}
+time="2026-10-19T17:17:37-04:00" level=info msg="provisioning ..." context=docker
+colima-djayvo
+Successfully created context "colima-djayvo"
+time="2026-10-19T17:17:38-04:00" level=info msg="starting ..." context=docker
+time="2026-10-19T17:17:39-04:00" level=info msg=done
+djayvo-portability
+-- The C compiler identification is GNU 12.2.0
+-- The CXX compiler identification is GNU 12.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python3: /usr/bin/python3 (found suitable version "3.11.2", minimum required is "3.9") found components: Interpreter
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /work/interpolation-cache-20261019
+[  3%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/plan.cpp.o
+[  6%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/demo.cpp.o
+[ 10%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/remix.cpp.o
+[ 13%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/analysis.cpp.o
+[ 16%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/remix_plan.cpp.o
+[ 20%] Building CXX object CMakeFiles/djayvo_core.dir/core/instruments/voice.cpp.o
+[ 23%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/live.cpp.o
+[ 26%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/session.cpp.o
+[ 30%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/renderer.cpp.o
+[ 33%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/input.cpp.o
+[ 36%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_renderer.cpp.o
+[ 40%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_file.cpp.o
+[ 43%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/c_api.cpp.o
+[ 46%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/wav.cpp.o
+[ 50%] Linking CXX static library libdjayvo_core.a
+[ 50%] Built target djayvo_core
+[ 56%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/remix_main.cpp.o
+[ 56%] Building CXX object CMakeFiles/djayvo_render.dir/tools/cli/main.cpp.o
+[ 60%] Linking CXX executable djayvo_render
+[ 60%] Built target djayvo_render
+[ 63%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/plan_import.cpp.o
+[ 66%] Building CXX object CMakeFiles/djayvo_session_render.dir/core/tests/session_render.cpp.o
+[ 70%] Linking CXX executable djayvo_session_render
+[ 70%] Built target djayvo_session_render
+[ 73%] Building CXX object CMakeFiles/djayvo_live_tests.dir/core/tests/live_tests.cpp.o
+[ 76%] Linking CXX executable djayvo_live_tests
+[ 76%] Built target djayvo_live_tests
+[ 80%] Building CXX object CMakeFiles/djayvo_tests.dir/core/tests/tests.cpp.o
+[ 83%] Linking CXX executable djayvo_remix
+[ 83%] Built target djayvo_remix
+[ 86%] Building CXX object CMakeFiles/djayvo_remix_tests.dir/core/tests/remix_tests.cpp.o
+[ 90%] Linking CXX executable djayvo_tests
+[ 90%] Built target djayvo_tests
+[ 93%] Building C object CMakeFiles/djayvo_c_smoke.dir/core/tests/c_api_smoke.c.o
+[ 96%] Linking CXX executable djayvo_c_smoke
+[ 96%] Built target djayvo_c_smoke
+[100%] Linking CXX executable djayvo_remix_tests
+[100%] Built target djayvo_remix_tests
+Internal ctest changing into directory: /work/interpolation-cache-20261019
+Test project /work/interpolation-cache-20261019
+      Start  1: live_instruments
+ 1/15 Test  #1: live_instruments .................   Passed    0.21 sec
+      Start  2: core
+ 2/15 Test  #2: core .............................   Passed    0.52 sec
+      Start  3: remix_core
+ 3/15 Test  #3: remix_core .......................   Passed    5.89 sec
+      Start  4: c_abi
+ 4/15 Test  #4: c_abi ............................   Passed    0.36 sec
+      Start  5: acoustic_assets
+ 5/15 Test  #5: acoustic_assets ..................   Passed    0.42 sec
+      Start  6: sustained_assets
+ 6/15 Test  #6: sustained_assets .................   Passed    0.01 sec
+      Start  7: guitar_assets
+ 7/15 Test  #7: guitar_assets ....................   Passed    0.38 sec
+      Start  8: electronic_assets
+ 8/15 Test  #8: electronic_assets ................   Passed    0.07 sec
+      Start  9: wav_integration
+ 9/15 Test  #9: wav_integration ..................   Passed    0.49 sec
+      Start 10: remix_integration
+10/15 Test #10: remix_integration ................   Passed    3.87 sec
+      Start 11: word_timing
+11/15 Test #11: word_timing ......................   Passed    0.06 sec
+      Start 12: tooling
+12/15 Test #12: tooling ..........................   Passed    1.24 sec
+      Start 13: listening_review
+13/15 Test #13: listening_review .................   Passed    0.03 sec
+      Start 14: evaluation_preparation
+14/15 Test #14: evaluation_preparation ...........   Passed   12.93 sec
+      Start 15: plan_import
+15/15 Test #15: plan_import ......................   Passed    4.57 sec
+
+100% tests passed, 0 tests failed out of 15
+
+Total Test time (real) =  31.07 sec
+PASS 6000 reused/fresh voice comparisons, attack/release and rate/instrument changes
+PASS 6000 reused/fresh voice comparisons, attack/release and rate/instrument changes
+PASS 6000 reused/fresh voice comparisons, attack/release and rate/instrument changes
+PASS 6000 reused/fresh voice comparisons, attack/release and rate/instrument changes
+PASS 6000 reused/fresh voice comparisons, attack/release and rate/instrument changes
+PASS 6000 reused/fresh voice comparisons, attack/release and rate/instrument changes
+PASS: /out/interpolation-cache-20261019/replay/baseline-baseline.baseline.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/baseline-baseline.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/call_response-call_response.call_response.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/call_response-call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/club-club.club.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/club-club.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/dense-hiphop.hiphop.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/dense-hiphop.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/echo-hiphop.hiphop.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/echo-hiphop.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/fixture-experimental.experimental.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/fixture-experimental.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/fixture-hiphop.hiphop.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/fixture-hiphop.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/fixture-reggae.reggae.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/fixture-reggae.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/funk-funk.funk.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/funk-funk.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/hybrid-hybrid.hybrid.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/hybrid-hybrid.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/owner-4123-call_response.call_response.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/owner-4123-call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/owner-4124-call_response.call_response.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/owner-4124-call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/owner-4125-call_response.call_response.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/owner-4125-call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/interpolation-cache-20261019/replay/owner-4126-call_response.call_response.wav
+PASS: complete export /out/interpolation-cache-20261019/replay/owner-4126-call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS 14 saved scores, unchanged event frames and all master/stem WAVs
+Linux e8f410f9a8c6 6.8.0-117-generic #117-Ubuntu SMP PREEMPT_DYNAMIC Thu May  7 17:26:37 UTC 2026 aarch64 GNU/Linux
+c++ (Debian 12.2.0-14+deb12u1) 12.2.0
+Copyright (C) 2022 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+cmake version 3.25.1
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).

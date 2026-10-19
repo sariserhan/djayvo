@@ -62,6 +62,7 @@ private:
     const std::int16_t* sample_ = nullptr;
     std::size_t sample_frames_ = 0;
     std::array<std::array<float,16>,65> interpolation_{};
+    double interpolation_cutoff_ = 0;
     float left_gain_ = 1.0F, right_gain_ = 1.0F;
 };
 

@@ -53,6 +53,8 @@ closes that task only; it does not automatically pass its parent milestone.
   cause **PARTIAL**. Chromium underrun snapshots report zero; WebKit API **NOT RUN**.
   Physical latency, full-session/venue and musical quality **NOT RUN**.
   This does not close DJ14, DJ17 or DJ20. Production engine unchanged.
+  Follow-up E15 validates the optimized engine with four new exact worklet
+  captures; coarse timing screens still **FAIL**.
 
 - [x] **DJ21 — PASS (bounded native callback scope):** [Actual macOS output callback](docs/audio-callback.md).
   One minute on the M5's LG DisplayPort output route, 512 frames / 48 kHz:
@@ -514,6 +516,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P68 | PASS | Add reproducible 32-voice native/WASM stress diagnostics, playable output and exact frame/PCM comparison; record timing overruns without closing live gates | [Evidence](docs/live-deadline.md) |
 | [x] | P69 | PASS | Run shared engine in actual M5 default-output callback for 60 seconds, retain exact PCM/events, calibrated timing/continuity checks and bounded native result | [Evidence](docs/audio-callback.md) |
 | [x] | P70 | PASS | Validate production instrument AudioWorklet in Mac/Linux Chromium and WebKit, retain six exact captures and command-frame evidence without hiding timing-screen failures | [Evidence](docs/worklet-load.md) |
+| [x] | P71 | PASS | Reuse identical per-voice interpolation coefficients, validate exact before/after audio on Mac/Linux/WASM, measure note setup and retain failing browser timing screens | [Evidence](docs/interpolation-cache.md) |
 
 ## Engineering backlog
 
@@ -590,6 +593,15 @@ is needed. Prioritize by recorded listening defects and product requirements.
   offline dense/echo speedups of 2.16–2.39× M5 and 1.90–2.14× Linux; ordinary
   medians slightly slower, so no general speedup claimed. Physical/live latency and new musical quality
   **NOT RUN**; this does not advance M1 or certify venue performance.
+
+- [x] **E15 — PASS (technical):** [Reuse identical interpolation coefficients](docs/interpolation-cache.md).
+  Cache one cutoff per sampled voice; reset all note state and recompute when
+  the cutoff changes. Native Mac/Linux 15/15 suites, sanitizer, 756 regression
+  cases, exact before/after voice probes, 75 unchanged WAVs per platform,
+  11 remix WASM comparisons and four real-time browser captures pass.
+  Repeated note-start work is reduced; cold starts and cache misses still compute
+  the table. Browser timing screens remain **FAIL** (3–8 ms readings); full live
+  qualification **PARTIAL**, physical latency and musical quality **NOT RUN**.
 
 ## M1: formal musical-quality evaluation
 

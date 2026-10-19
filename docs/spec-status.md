@@ -1,6 +1,18 @@
 # Specification completion ledger
 
-Latest browser audio-host evidence — 2026-10-19:
+Latest shared-engine optimization — 2026-10-19:
+[Reuse unchanged interpolation coefficients](interpolation-cache.md) **PASS
+(technical)**: sampled voices reuse only an exactly matching cutoff table,
+reset all note state and recompute on change. Mac/Linux 15/15 suites, sanitizer,
+756 regression cases, exact before/after voice samples, 75 unchanged WAVs per
+platform, 11 remix WASM comparisons and four actual browser captures pass.
+Repeated note setup improves; total stress throughput is similar and cold starts
+still compute coefficients. Browser timing screens **FAIL** (3–8 ms readings);
+precise deadline/outlier cause and production remain **PARTIAL**. Physical
+latency, venue and new listening **NOT RUN**. Updated local bundles audited;
+master/recordings preserved; Linux test services stopped afterward.
+
+Previous browser audio-host evidence — 2026-10-19:
 [Production instrument AudioWorklet](worklet-load.md) **PASS (functional scope)**:
 sixty-second Mac/Linux Chromium and WebKit runs, exact native reference PCM,
 all 1,920 command frames, zero captured sample/timestamp gaps. Six captures,

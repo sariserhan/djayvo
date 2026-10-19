@@ -1,0 +1,41 @@
+[ 10%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/remix_plan.cpp.o
+[ 10%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/remix.cpp.o
+[ 10%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/analysis.cpp.o
+[ 13%] Building CXX object CMakeFiles/djayvo_core.dir/core/instruments/voice.cpp.o
+[ 16%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/live.cpp.o
+[ 20%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/renderer.cpp.o
+In file included from /Users/serhansari/Documents/projects/djayvo/core/audio/live.cpp:3:
+/Users/serhansari/Documents/projects/djayvo/core/audio/../instruments/performance_voices.h:65:42: warning: declaration shadows a field of 'djayvo::MouthFilter' [-Wshadow]
+   65 |         double next(double input, double smoothing) noexcept {
+      |                                          ^
+/Users/serhansari/Documents/projects/djayvo/core/audio/../instruments/performance_voices.h:75:12: note: previous declaration is here
+   75 |     double smoothing = 0;
+      |            ^
+1 warning generated.
+[ 23%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/input.cpp.o
+[ 26%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_renderer.cpp.o
+[ 30%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_file.cpp.o
+[ 33%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/c_api.cpp.o
+[ 36%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/wav.cpp.o
+[ 40%] Linking CXX static library libdjayvo_core.a
+[ 50%] Built target djayvo_core
+[ 53%] Linking CXX executable djayvo_live_tests
+[ 56%] Building CXX object CMakeFiles/djayvo_render.dir/tools/cli/main.cpp.o
+[ 60%] Building CXX object CMakeFiles/djayvo_session_render.dir/core/tests/session_render.cpp.o
+[ 63%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/remix_main.cpp.o
+[ 66%] Built target djayvo_live_tests
+[ 70%] Building CXX object CMakeFiles/djayvo_tests.dir/core/tests/tests.cpp.o
+[ 73%] Linking CXX executable djayvo_session_render
+[ 76%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/plan_import.cpp.o
+[ 80%] Linking CXX executable djayvo_render
+[ 80%] Built target djayvo_session_render
+[ 83%] Building CXX object CMakeFiles/djayvo_remix_tests.dir/core/tests/remix_tests.cpp.o
+[ 83%] Built target djayvo_render
+[ 86%] Linking CXX executable djayvo_c_smoke
+[ 90%] Built target djayvo_c_smoke
+[ 93%] Linking CXX executable djayvo_tests
+[ 93%] Built target djayvo_tests
+[ 96%] Linking CXX executable djayvo_remix
+[ 96%] Built target djayvo_remix
+[100%] Linking CXX executable djayvo_remix_tests
+[100%] Built target djayvo_remix_tests

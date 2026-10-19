@@ -1,0 +1,4 @@
+[ 88%] Built target djayvo_core
+[ 94%] Building CXX object CMakeFiles/djayvo_tests.dir/core/tests/tests.cpp.o
+[100%] Linking CXX executable djayvo_tests
+[100%] Built target djayvo_tests

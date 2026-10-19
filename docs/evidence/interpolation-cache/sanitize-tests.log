@@ -1,0 +1,9 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac-sanitize
+    Start 1: live_instruments
+1/2 Test #1: live_instruments .................   Passed    1.78 sec
+    Start 2: core
+2/2 Test #2: core .............................   Passed   16.46 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =  18.24 sec

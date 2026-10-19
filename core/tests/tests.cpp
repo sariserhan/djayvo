@@ -292,6 +292,37 @@ void guitar_articulation() {
     bad=p;bad.tracks[0].instrument=djayvo::Instrument::piano;rejects([&]{djayvo::compile(bad);});
     schedule.events[0].instrument=static_cast<djayvo::Instrument>(99);rejects([&]{djayvo::Renderer invalid(schedule);});
 }
+void reused_voice() {
+    djayvo::Voice reused;
+    unsigned notes = 0;
+    for (unsigned rate : {8000U, 16000U, 44100U, 48000U, 96000U, 192000U})
+        for (auto instrument : {djayvo::Instrument::piano, djayvo::Instrument::bass,
+                               djayvo::Instrument::guitar, djayvo::Instrument::drums,
+                               djayvo::Instrument::organ, djayvo::Instrument::pad, djayvo::Instrument::lead})
+            for (int pitch : {21, 48, 60, 61, 84, 108})
+                for (unsigned repeat = 0; repeat < 3; ++repeat) {
+                    djayvo::Event event;
+                    event.instrument = instrument; event.pitch = pitch;
+                    if (instrument == djayvo::Instrument::guitar) event.pitch = 40 + pitch % 40;
+                    if (instrument == djayvo::Instrument::drums) event.pitch = repeat == 0 ? 36 : repeat == 1 ? 38 : 46;
+                    event.velocity = repeat == 0 ? 40 : repeat == 1 ? 95 : 127;
+                    event.noise_seed = notes++; event.note_id = notes;
+                    event.muted = instrument == djayvo::Instrument::guitar && repeat == 2;
+                    event.electronic = (instrument == djayvo::Instrument::piano || instrument == djayvo::Instrument::bass ||
+                                        instrument == djayvo::Instrument::drums) && repeat == 2;
+                    event.left_gain = static_cast<float>(repeat) * .25F;
+                    event.right_gain = 1 - event.left_gain; event.automation = static_cast<int>(notes);
+                    djayvo::Voice fresh;
+                    reused.start(event, rate); fresh.start(event, rate);
+                    check(reused.id() == event.note_id && reused.instrument() == instrument &&
+                          reused.left_gain() == event.left_gain && reused.right_gain() == event.right_gain &&
+                          reused.automation() == event.automation, "reused voice kept previous note state");
+                    for (unsigned frame = 0; frame < 1024; ++frame) {
+                        if (frame == 256) { reused.stop(); fresh.stop(); }
+                        check(reused.next() == fresh.next(), "reused voice differs after rate, pitch or instrument change");
+                    }
+                }
+}
 void sample_articulation() {
     const auto note=[](djayvo::Instrument instrument,int pitch,int velocity,std::uint32_t seed) {
         djayvo::Event e;e.instrument=instrument;e.pitch=pitch;e.velocity=velocity;e.noise_seed=seed;
@@ -416,6 +447,7 @@ int main() {
         {"organ/pad/lead sustain, note-off, bandwidth, timbre and allocation-free processing", sustained_instruments},
         {"recorded guitar pitches, attacks, layers, takes, limits and allocation-free processing", guitar_articulation},
         {"recorded piano dynamics and seeded piano/drum takes", sample_articulation},
+        {"reused voice coefficient invalidation and complete note-state reset", reused_voice},
         {"pan, gain, finite audio and overload ceiling", mixing},
         {"plan bounds, polyphony, silence and invalid requests", validation},
         {"configurable sample rates and 7/8 meter", rates_and_meter},
