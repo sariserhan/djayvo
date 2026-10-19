@@ -1,0 +1,1 @@
+Initial Mac WebKit prepared-session run stalled after the unsupported-recording checks, before track preparation. Its failure-state page evaluation was unbounded. Stopped only the owned node PID 75573; retained logs/partial artifacts. The reporter now uses the same two-second bound as the main studio test; retry uses unchanged product code.

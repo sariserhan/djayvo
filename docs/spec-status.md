@@ -1,6 +1,21 @@
 # Specification completion ledger
 
-Latest browser playback reliability — 2026-10-19:
+Latest local-file playback repair — 2026-10-19:
+[Preload, routing and transport transitions](media-preload.md) **PASS (bounded
+technical scope)**: connect before loading, use metadata preload, coalesce pitch
+changes after pause and fade the native input to prevent post-pause effect refill.
+All four Mac/Linux Chromium/WebKit runs pass 43 studio checks; 38 unit checks per
+platform pass. Mac prepared A/C sessions pass 29 checks in each browser after
+isolating the missing-recorder test context; failed setup runs are retained.
+All 34 offline WAVs are byte-identical; echo frames and prepared timing agree
+exactly, with no missing signal frames in the measured A/C sessions. Linux WebKit completes 60 strict restart cycles and 45 local-file
+active-rate cycles. HTTP active-rate control remains **FAIL**; precise native
+cause and historical screenshot-freeze repeatability **PARTIAL**. Physical
+latency, venue and new listening **NOT RUN**. Overall specification/production
+**PARTIAL**. Master, recordings and shared engine unchanged; local bundles
+refreshed and isolated Linux services stopped afterward.
+
+Previous browser playback reliability — 2026-10-19:
 [Bounded manual starts and native-media restart diagnostics](media-restart.md)
 **PASS (recovery scope)**: stuck/never-resolving starts report failure and restore
 controls; cancellation and late-result handling preserve newer playback and the

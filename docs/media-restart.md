@@ -1,5 +1,8 @@
 # Manual deck start recovery and native-media restart investigation
 
+Follow-up: [local-file playback repair](media-preload.md) now passes the full
+Mac/Linux studio regression. The historical failures below remain retained.
+
 2026-10-19, Apple M5 and isolated Linux ARM64 VM. **PASS** for bounded manual
 start failure handling in the tested working browsers. **FAIL** for Linux
 WebKit native-media reliability; exact cause and full production readiness

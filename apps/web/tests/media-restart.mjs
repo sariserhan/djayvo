@@ -10,6 +10,8 @@ import { chromium, webkit } from 'playwright';
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const kind = process.env.DJAYVO_BROWSER || 'webkit';
 assert.ok(['chromium', 'webkit'].includes(kind));
+const preload = process.env.DJAYVO_PRELOAD || 'metadata';
+assert.ok(['auto', 'metadata'].includes(preload));
 const output = await fs.mkdtemp(path.join(root, `renders/media-restart-${kind}-`));
 console.log('Artifacts:', output);
 const rate = 48000, frames = rate * 60, tone = Buffer.alloc(44 + frames * 2);
@@ -41,7 +43,7 @@ const server = createServer((request, response) => {
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const origin = `http://127.0.0.1:${server.address().port}`;
 let browser;
-const report = { browser: kind, runner: { node: process.version, platform: process.platform, architecture: process.arch },
+const report = { browser: kind, preload, runner: { node: process.version, platform: process.platform, architecture: process.arch },
   probe_sha256: crypto.createHash('sha256').update(await fs.readFile(fileURLToPath(import.meta.url))).digest('hex'), cases: [], requests };
 try {
   browser = await { chromium, webkit }[kind].launch(); report.version = browser.version();
@@ -57,11 +59,11 @@ try {
       await page.goto(origin); assert.equal(await page.title(), 'Djayvo media restart diagnostic');
       await page.locator('h1').waitFor();
       if (source === 'input') await page.locator('#file').setInputFiles({ name: 'tone.wav', mimeType: 'audio/wav', buffer: tone });
-      await page.evaluate(async source => {
+      await page.evaluate(async ({ source, preload }) => {
         const a = document.getElementById('audio'); window.a = a; window.events = []; window.restarts = 0;
         const state = () => ({ time: a.currentTime, paused: a.paused, ended: a.ended, seeking: a.seeking,
           ready: a.readyState, rate: a.playbackRate, error: a.error?.message || null });
-        window.state = state;
+        window.state = state; a.preload = preload;
         for (const type of ['loadedmetadata', 'play', 'playing', 'pause', 'seeking', 'seeked', 'ended', 'error'])
           a.addEventListener(type, () => { events.push({ type, ...state() }); if (events.length > 400) events.shift(); });
         const ctx = new AudioContext(); window.ctx = ctx;
@@ -79,7 +81,7 @@ try {
         document.getElementById('play').onclick = async () => {
           try { await ctx.resume(); await a.play(); } catch (e) { window.playError = e.message; }
         };
-      }, source);
+      }, { source, preload });
       await page.locator('#play').click();
       await page.waitForFunction(() => a.currentTime > .05 && peak() > .01, null, { timeout: 5000 });
       await page.evaluate(() => a.pause());
@@ -93,6 +95,7 @@ try {
         await page.waitForFunction(() => a.currentTime > 59 && !a.seeking, null, { timeout: 5000 });
         await page.locator('#play').click();
         await page.waitForFunction(i => restarts > i && a.currentTime > .05 && a.currentTime < 2 && !a.paused && !a.seeking && peak() > .01, i, { timeout: 5000 });
+        assert.equal(await page.evaluate(() => restarts), i + 1, 'One EOF restart per cycle; reject restart storms');
         assert.equal(await page.evaluate(() => a.playbackRate), 1.1);
         await page.evaluate(() => a.pause()); row.iterations++;
       }

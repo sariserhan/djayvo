@@ -1,0 +1,29 @@
+Artifacts: /work/renders/dj-webkit-BpWaaI
+PASS: page identity, nonblank content, consent gating
+PASS: real offline stereo PCM: A/B endpoints, center, channel mute, master mute
+PASS: instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs
+PASS: both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs
+PASS: late completion of an older play request cannot pause a newer playback request
+PASS: two media decks advance independently; active-track replacement blocked; actual mix signal present
+PASS: real media output follows crossfader, channel level and master silence
+PASS: pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects
+PASS: resolved-but-stalled A start reports failure and restores controls while B keeps producing audio
+PASS: Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry
+PASS: rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping
+PASS: rapid active pitch changes keep the latest rate; Pause All and unload cancel the queued resume, then reload plays
+PASS: deck low EQ changes measured output
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: reset cannot revive an old delay buffer
+    at file:///work/apps/web/tests/dj.mjs:327:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.17.0

@@ -42,6 +42,11 @@ All notes off operate the shared C++ AudioWorklet engine. Tracks
 stay in this tab and are not saved or uploaded. Unchecking permission unloads
 both decks. The pages are separate; opening Voice studio ends the DJ session.
 
+Loading prepares a muted mixer; playback still requires Play. Active pitch changes
+briefly pause the deck and apply the latest slider value before resuming. Pause
+All and unload cancel that resume. See the [local-file playback repair and
+remaining limits](../../docs/media-preload.md) for Mac/Linux browser evidence.
+
 The existing offline preparation includes the DJ page. Reopen it after saving
 app assets, then select local tracks; reload clears the decks. This is manual
 mixing outside prepared mode. The new **Deck C** section can prepare a paused A,

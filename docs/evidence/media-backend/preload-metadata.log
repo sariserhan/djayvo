@@ -1,0 +1,202 @@
+Artifacts: /work/renders/media-restart-webkit-FDSlfw
+2026-10-19T21:53:48.977Z pw:browser <launching> /ms-playwright/webkit-2311/pw_run.sh --inspector-pipe --headless --no-startup-window
+2026-10-19T21:53:48.979Z pw:browser <launched> pid=1111
+2026-10-19T21:53:49.017Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:49.017Z pw:browser [pid=1111][err] ** (MiniBrowser:1117): CRITICAL **: 21:53:49.017: WebKitWebView is-controlled-by-automation set but automation is not allowed in the context, falling back to default session.
+2026-10-19T21:53:49.085Z pw:browser [pid=1111][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:53:49.085Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:49.086Z pw:browser [pid=1111][err] libEGL warning: MESA-LOADER: failed to retrieve device information
+2026-10-19T21:53:49.086Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:49.086Z pw:browser [pid=1111][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:53:49.086Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:49.087Z pw:browser [pid=1111][err] MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
+2026-10-19T21:53:49.088Z pw:browser [pid=1111][err] libEGL warning: egl: failed to create dri2 screen
+2026-10-19T21:53:49.182Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:49.182Z pw:browser [pid=1111][err] ** (WPEWebProcess:1130): WARNING **: 21:53:49.182: Unable to get session D-Bus address: Cannot autolaunch D-Bus without X11 $DISPLAY
+2026-10-19T21:53:49.307Z pw:browser [pid=1111][err] 0:00:00.131200620  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc0> duplicate event found 494
+2026-10-19T21:53:49.352Z pw:browser [pid=1111][err] 0:00:00.176167788  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc0> duplicate event found 621
+2026-10-19T21:53:49.379Z pw:browser [pid=1111][err] 0:00:00.201783871  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc1> duplicate event found 1159
+2026-10-19T21:53:49.399Z pw:browser [pid=1111][err] 0:00:00.222833156  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc1> duplicate event found 1297
+2026-10-19T21:53:49.475Z pw:browser [pid=1111][err] 0:00:00.299057847  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc2> duplicate event found 1874
+2026-10-19T21:53:49.494Z pw:browser [pid=1111][err] 0:00:00.317693616  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc2> duplicate event found 2012
+2026-10-19T21:53:49.568Z pw:browser [pid=1111][err] 0:00:00.391924580  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc3> duplicate event found 2591
+2026-10-19T21:53:49.592Z pw:browser [pid=1111][err] 0:00:00.415957308  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc3> duplicate event found 2735
+2026-10-19T21:53:49.665Z pw:browser [pid=1111][err] 0:00:00.488397940  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc4> duplicate event found 3320
+2026-10-19T21:53:49.692Z pw:browser [pid=1111][err] 0:00:00.516245646  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc4> duplicate event found 3461
+2026-10-19T21:53:49.768Z pw:browser [pid=1111][err] 0:00:00.592035672  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc5> duplicate event found 4048
+2026-10-19T21:53:49.792Z pw:browser [pid=1111][err] 0:00:00.615424340  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc5> duplicate event found 4187
+2026-10-19T21:53:49.872Z pw:browser [pid=1111][err] 0:00:00.695998059  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc6> duplicate event found 4760
+2026-10-19T21:53:49.890Z pw:browser [pid=1111][err] 0:00:00.712526133  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc6> duplicate event found 4900
+2026-10-19T21:53:49.952Z pw:browser [pid=1111][err] 0:00:00.776036353  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc7> duplicate event found 5469
+2026-10-19T21:53:49.969Z pw:browser [pid=1111][err] 0:00:00.792783114  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc7> duplicate event found 5609
+2026-10-19T21:53:50.025Z pw:browser [pid=1111][err] 0:00:00.848393967  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc8> duplicate event found 6183
+2026-10-19T21:53:50.034Z pw:browser [pid=1111][err] 0:00:00.857800826  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc8> duplicate event found 6319
+2026-10-19T21:53:50.107Z pw:browser [pid=1111][err] 0:00:00.930495185  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc9> duplicate event found 6900
+2026-10-19T21:53:50.117Z pw:browser [pid=1111][err] 0:00:00.940850044  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc9> duplicate event found 7036
+2026-10-19T21:53:50.188Z pw:browser [pid=1111][err] 0:00:01.012244290  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc10> duplicate event found 7615
+2026-10-19T21:53:50.212Z pw:browser [pid=1111][err] 0:00:01.036163243  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc10> duplicate event found 7756
+2026-10-19T21:53:50.284Z pw:browser [pid=1111][err] 0:00:01.107722046  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc11> duplicate event found 8337
+2026-10-19T21:53:50.312Z pw:browser [pid=1111][err] 0:00:01.135722146  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc11> duplicate event found 8479
+2026-10-19T21:53:50.383Z pw:browser [pid=1111][err] 0:00:01.206967379  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc12> duplicate event found 9063
+2026-10-19T21:53:50.394Z pw:browser [pid=1111][err] 0:00:01.217259315  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc12> duplicate event found 9201
+2026-10-19T21:53:50.450Z pw:browser [pid=1111][err] 0:00:01.273394818  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc13> duplicate event found 9774
+2026-10-19T21:53:50.473Z pw:browser [pid=1111][err] 0:00:01.296909404  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc13> duplicate event found 9916
+2026-10-19T21:53:50.545Z pw:browser [pid=1111][err] 0:00:01.368911703  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc14> duplicate event found 10497
+2026-10-19T21:53:50.571Z pw:browser [pid=1111][err] 0:00:01.392741440  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc14> duplicate event found 10637
+2026-10-19T21:53:50.640Z pw:browser [pid=1111][err] 0:00:01.463800115  1130 0xc5a792a1e320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc15> duplicate event found 11218
+blob PASS 15
+2026-10-19T21:53:50.685Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:50.685Z pw:browser [pid=1111][err] ** (MiniBrowser:1117): CRITICAL **: 21:53:50.684: WebKitWebView is-controlled-by-automation set but automation is not allowed in the context, falling back to default session.
+2026-10-19T21:53:50.768Z pw:browser [pid=1111][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:53:50.768Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:50.768Z pw:browser [pid=1111][err] libEGL warning: MESA-LOADER: failed to retrieve device information
+2026-10-19T21:53:50.768Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:50.768Z pw:browser [pid=1111][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:53:50.768Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:50.773Z pw:browser [pid=1111][err] MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
+2026-10-19T21:53:50.773Z pw:browser [pid=1111][err] libEGL warning: egl: failed to create dri2 screen
+2026-10-19T21:53:50.838Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:50.838Z pw:browser [pid=1111][err] ** (WPEWebProcess:1188): WARNING **: 21:53:50.837: Unable to get session D-Bus address: Cannot autolaunch D-Bus without X11 $DISPLAY
+2026-10-19T21:53:50.909Z pw:browser [pid=1111][err] 0:00:00.075878011  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc0> duplicate event found 480
+2026-10-19T21:53:50.949Z pw:browser [pid=1111][err] 0:00:00.115955661  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc0> duplicate event found 603
+2026-10-19T21:53:50.967Z pw:browser [pid=1111][err] 0:00:00.133575275  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc1> duplicate event found 1135
+2026-10-19T21:53:50.980Z pw:browser [pid=1111][err] 0:00:00.146871139  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc1> duplicate event found 1273
+2026-10-19T21:53:51.043Z pw:browser [pid=1111][err] 0:00:00.210140199  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc2> duplicate event found 1851
+2026-10-19T21:53:51.061Z pw:browser [pid=1111][err] 0:00:00.228447190  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc2> duplicate event found 1990
+2026-10-19T21:53:51.129Z pw:browser [pid=1111][err] 0:00:00.296086493  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc3> duplicate event found 2556
+2026-10-19T21:53:51.145Z pw:browser [pid=1111][err] 0:00:00.312002165  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc3> duplicate event found 2695
+2026-10-19T21:53:51.212Z pw:browser [pid=1111][err] 0:00:00.378669179  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc4> duplicate event found 3274
+2026-10-19T21:53:51.224Z pw:browser [pid=1111][err] 0:00:00.390672907  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc4> duplicate event found 3412
+2026-10-19T21:53:51.296Z pw:browser [pid=1111][err] 0:00:00.463022135  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc5> duplicate event found 3997
+2026-10-19T21:53:51.305Z pw:browser [pid=1111][err] 0:00:00.471939070  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc5> duplicate event found 4131
+2026-10-19T21:53:51.376Z pw:browser [pid=1111][err] 0:00:00.542844055  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc6> duplicate event found 4717
+2026-10-19T21:53:51.386Z pw:browser [pid=1111][err] 0:00:00.553050220  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc6> duplicate event found 4851
+2026-10-19T21:53:51.456Z pw:browser [pid=1111][err] 0:00:00.622772776  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc7> duplicate event found 5422
+2026-10-19T21:53:51.467Z pw:browser [pid=1111][err] 0:00:00.633769963  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc7> duplicate event found 5561
+2026-10-19T21:53:51.535Z pw:browser [pid=1111][err] 0:00:00.702369969  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc8> duplicate event found 6139
+2026-10-19T21:53:51.549Z pw:browser [pid=1111][err] 0:00:00.716145592  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc8> duplicate event found 6279
+2026-10-19T21:53:51.616Z pw:browser [pid=1111][err] 0:00:00.782481413  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc9> duplicate event found 6860
+2026-10-19T21:53:51.630Z pw:browser [pid=1111][err] 0:00:00.797476885  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc9> duplicate event found 6999
+2026-10-19T21:53:51.698Z pw:browser [pid=1111][err] 0:00:00.865203486  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc10> duplicate event found 7578
+2026-10-19T21:53:51.712Z pw:browser [pid=1111][err] 0:00:00.878506861  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc10> duplicate event found 7718
+2026-10-19T21:53:51.779Z pw:browser [pid=1111][err] 0:00:00.945515904  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc11> duplicate event found 8302
+2026-10-19T21:53:51.792Z pw:browser [pid=1111][err] 0:00:00.959208270  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc11> duplicate event found 8438
+2026-10-19T21:53:51.861Z pw:browser [pid=1111][err] 0:00:01.028476122  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc12> duplicate event found 9021
+2026-10-19T21:53:51.873Z pw:browser [pid=1111][err] 0:00:01.040361340  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc12> duplicate event found 9157
+2026-10-19T21:53:51.941Z pw:browser [pid=1111][err] 0:00:01.108343420  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc13> duplicate event found 9736
+2026-10-19T21:53:51.954Z pw:browser [pid=1111][err] 0:00:01.120572417  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc13> duplicate event found 9875
+2026-10-19T21:53:52.025Z pw:browser [pid=1111][err] 0:00:01.192112994  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc14> duplicate event found 10457
+2026-10-19T21:53:52.036Z pw:browser [pid=1111][err] 0:00:01.203109334  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc14> duplicate event found 10593
+2026-10-19T21:53:52.104Z pw:browser [pid=1111][err] 0:00:01.271145989  1188 0xbd008d44c320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc15> duplicate event found 11174
+file PASS 15
+2026-10-19T21:53:52.129Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:52.129Z pw:browser [pid=1111][err] ** (MiniBrowser:1117): CRITICAL **: 21:53:52.128: WebKitWebView is-controlled-by-automation set but automation is not allowed in the context, falling back to default session.
+2026-10-19T21:53:52.174Z pw:browser [pid=1111][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:53:52.174Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:52.174Z pw:browser [pid=1111][err] libEGL warning: MESA-LOADER: failed to retrieve device information
+2026-10-19T21:53:52.174Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:52.174Z pw:browser [pid=1111][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:53:52.174Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:52.176Z pw:browser [pid=1111][err] MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
+2026-10-19T21:53:52.176Z pw:browser [pid=1111][err] libEGL warning: egl: failed to create dri2 screen
+2026-10-19T21:53:52.377Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:52.377Z pw:browser [pid=1111][err] ** (WPEWebProcess:1246): WARNING **: 21:53:52.377: Unable to get session D-Bus address: Cannot autolaunch D-Bus without X11 $DISPLAY
+2026-10-19T21:53:52.395Z pw:browser [pid=1111][err] 0:00:00.021564230  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:52.437Z pw:browser [pid=1111][err] 0:00:00.064111938  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc0> duplicate event found 481
+2026-10-19T21:53:52.477Z pw:browser [pid=1111][err] 0:00:00.104315009  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc0> duplicate event found 600
+2026-10-19T21:53:52.484Z pw:browser [pid=1111][err] 0:00:00.111137572  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:52.495Z pw:browser [pid=1111][err] 0:00:00.122364346  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc1> duplicate event found 1134
+2026-10-19T21:53:52.508Z pw:browser [pid=1111][err] 0:00:00.134656452  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc1> duplicate event found 1273
+2026-10-19T21:53:52.564Z pw:browser [pid=1111][err] 0:00:00.191352407  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:52.576Z pw:browser [pid=1111][err] 0:00:00.203348407  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc2> duplicate event found 1858
+2026-10-19T21:53:52.588Z pw:browser [pid=1111][err] 0:00:00.214994588  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc2> duplicate event found 1993
+2026-10-19T21:53:52.646Z pw:browser [pid=1111][err] 0:00:00.272668077  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:52.657Z pw:browser [pid=1111][err] 0:00:00.283926270  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc3> duplicate event found 2575
+2026-10-19T21:53:52.671Z pw:browser [pid=1111][err] 0:00:00.298144481  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc3> duplicate event found 2713
+2026-10-19T21:53:52.728Z pw:browser [pid=1111][err] 0:00:00.355308514  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:52.738Z pw:browser [pid=1111][err] 0:00:00.365319029  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc4> duplicate event found 3297
+2026-10-19T21:53:52.751Z pw:browser [pid=1111][err] 0:00:00.377880113  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc4> duplicate event found 3432
+2026-10-19T21:53:52.809Z pw:browser [pid=1111][err] 0:00:00.436345995  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:52.822Z pw:browser [pid=1111][err] 0:00:00.448498215  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc5> duplicate event found 4013
+2026-10-19T21:53:52.832Z pw:browser [pid=1111][err] 0:00:00.458654116  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc5> duplicate event found 4151
+2026-10-19T21:53:52.891Z pw:browser [pid=1111][err] 0:00:00.517649205  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:52.903Z pw:browser [pid=1111][err] 0:00:00.530103573  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc6> duplicate event found 4737
+2026-10-19T21:53:52.913Z pw:browser [pid=1111][err] 0:00:00.539906531  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc6> duplicate event found 4871
+2026-10-19T21:53:52.973Z pw:browser [pid=1111][err] 0:00:00.599735684  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:52.985Z pw:browser [pid=1111][err] 0:00:00.612176009  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc7> duplicate event found 5458
+2026-10-19T21:53:52.995Z pw:browser [pid=1111][err] 0:00:00.621722488  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc7> duplicate event found 5592
+2026-10-19T21:53:53.052Z pw:browser [pid=1111][err] 0:00:00.678871149  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:53.065Z pw:browser [pid=1111][err] 0:00:00.691636980  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc8> duplicate event found 6178
+2026-10-19T21:53:53.075Z pw:browser [pid=1111][err] 0:00:00.701572775  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc8> duplicate event found 6313
+2026-10-19T21:53:53.130Z pw:browser [pid=1111][err] 0:00:00.757233052  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:53.138Z pw:browser [pid=1111][err] 0:00:00.765057529  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc9> duplicate event found 6889
+2026-10-19T21:53:53.156Z pw:browser [pid=1111][err] 0:00:00.783092654  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc9> duplicate event found 7032
+2026-10-19T21:53:53.212Z pw:browser [pid=1111][err] 0:00:00.839486734  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:53.223Z pw:browser [pid=1111][err] 0:00:00.850261047  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc10> duplicate event found 7600
+2026-10-19T21:53:53.237Z pw:browser [pid=1111][err] 0:00:00.863838520  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc10> duplicate event found 7740
+2026-10-19T21:53:53.293Z pw:browser [pid=1111][err] 0:00:00.919906076  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:53.305Z pw:browser [pid=1111][err] 0:00:00.932355176  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc11> duplicate event found 8320
+2026-10-19T21:53:53.318Z pw:browser [pid=1111][err] 0:00:00.944647640  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc11> duplicate event found 8459
+2026-10-19T21:53:53.375Z pw:browser [pid=1111][err] 0:00:01.001513420  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:53.387Z pw:browser [pid=1111][err] 0:00:01.012755142  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc12> duplicate event found 9028
+2026-10-19T21:53:53.399Z pw:browser [pid=1111][err] 0:00:01.026015341  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc12> duplicate event found 9167
+2026-10-19T21:53:53.456Z pw:browser [pid=1111][err] 0:00:01.082719027  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:53.468Z pw:browser [pid=1111][err] 0:00:01.094494286  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc13> duplicate event found 9746
+2026-10-19T21:53:53.482Z pw:browser [pid=1111][err] 0:00:01.108844522  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc13> duplicate event found 9886
+2026-10-19T21:53:53.541Z pw:browser [pid=1111][err] 0:00:01.168144394  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:53.552Z pw:browser [pid=1111][err] 0:00:01.178556056  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc14> duplicate event found 10462
+2026-10-19T21:53:53.562Z pw:browser [pid=1111][err] 0:00:01.188956051  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc14> duplicate event found 10597
+2026-10-19T21:53:53.622Z pw:browser [pid=1111][err] 0:00:01.249170988  1246 0xada1ab7fa320 WARN            webkitcommon GStreamerCommon.cpp:345:getStreamIdFromStream:<ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39> Got invalid stream-id from stream: ff2750d67839ce84f1b17f5b4c6eb0e7660d7bca10a9cda83ff5845479f29d39
+2026-10-19T21:53:53.632Z pw:browser [pid=1111][err] 0:00:01.259454307  1246 0xada1ab7fa320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<webkitwebsrc15> duplicate event found 11183
+input PASS 15
+2026-10-19T21:53:53.657Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:53.657Z pw:browser [pid=1111][err] ** (MiniBrowser:1117): CRITICAL **: 21:53:53.657: WebKitWebView is-controlled-by-automation set but automation is not allowed in the context, falling back to default session.
+2026-10-19T21:53:53.716Z pw:browser [pid=1111][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:53:53.716Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:53.716Z pw:browser [pid=1111][err] libEGL warning: MESA-LOADER: failed to retrieve device information
+2026-10-19T21:53:53.716Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:53.716Z pw:browser [pid=1111][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:53:53.716Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:53.718Z pw:browser [pid=1111][err] MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
+2026-10-19T21:53:53.718Z pw:browser [pid=1111][err] libEGL warning: egl: failed to create dri2 screen
+2026-10-19T21:53:53.778Z pw:browser [pid=1111][err] 
+2026-10-19T21:53:53.778Z pw:browser [pid=1111][err] ** (WPEWebProcess:1303): WARNING **: 21:53:53.777: Unable to get session D-Bus address: Cannot autolaunch D-Bus without X11 $DISPLAY
+2026-10-19T21:53:53.850Z pw:browser [pid=1111][err] 0:00:00.077980709  1303 0xc83336a3b320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<source> duplicate event found 540
+2026-10-19T21:53:53.908Z pw:browser [pid=1111][err] 0:00:00.135580458  1303 0xc83336a3b320 WARN                 basesrc gstbasesrc.c:1766:gst_base_src_perform_seek:<source> duplicate event found 673
+2026-10-19T21:53:53.936Z pw:browser [pid=1111][err] 0:00:00.163223479  1303 0xf7c7d0002440 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse1> Error getting 4096 bytes from the sinkpad (dataleft = 5657600)
+2026-10-19T21:53:53.936Z pw:browser [pid=1111][err] 0:00:00.163756809  1303 0xf7c7d0002440 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse1> Error getting 4504 bytes from the sinkpad (dataleft = 5760000)
+2026-10-19T21:53:54.008Z pw:browser [pid=1111][err] 0:00:00.235759472  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer0> Failed to remove temporary file /var/tmp/WebKit-Media-FYNJX3: No such file or directory
+2026-10-19T21:53:54.033Z pw:browser [pid=1111][err] 0:00:00.260841156  1303 0xf7c7d0001840 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse2> Error getting 4096 bytes from the sinkpad (dataleft = 5653504)
+2026-10-19T21:53:54.104Z pw:browser [pid=1111][err] 0:00:00.331120666  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer1> Failed to remove temporary file /var/tmp/WebKit-Media-345GX3: No such file or directory
+2026-10-19T21:53:54.124Z pw:browser [pid=1111][err] 0:00:00.351532203  1303 0xf7c7d0002440 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse3> Error getting 4096 bytes from the sinkpad (dataleft = 5653504)
+2026-10-19T21:53:54.124Z pw:browser [pid=1111][err] 0:00:00.351778219  1303 0xf7c7d0002440 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse3> Error getting 4504 bytes from the sinkpad (dataleft = 5760000)
+2026-10-19T21:53:54.185Z pw:browser [pid=1111][err] 0:00:00.412334785  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer2> Failed to remove temporary file /var/tmp/WebKit-Media-OJQHX3: No such file or directory
+2026-10-19T21:53:54.208Z pw:browser [pid=1111][err] 0:00:00.435398916  1303 0xf7c7d00026d0 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse4> Error getting 4096 bytes from the sinkpad (dataleft = 5579776)
+2026-10-19T21:53:54.266Z pw:browser [pid=1111][err] 0:00:00.493486108  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer3> Failed to remove temporary file /var/tmp/WebKit-Media-TPAFX3: No such file or directory
+2026-10-19T21:53:54.347Z pw:browser [pid=1111][err] 0:00:00.574694018  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer4> Failed to remove temporary file /var/tmp/WebKit-Media-0X5AX3: No such file or directory
+2026-10-19T21:53:54.432Z pw:browser [pid=1111][err] 0:00:00.659376911  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer5> Failed to remove temporary file /var/tmp/WebKit-Media-EXXCX3: No such file or directory
+2026-10-19T21:53:54.460Z pw:browser [pid=1111][err] 0:00:00.687283035  1303 0xf7c7d0001840 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse7> Error getting 4504 bytes from the sinkpad (dataleft = 9600)
+2026-10-19T21:53:54.513Z pw:browser [pid=1111][err] 0:00:00.740608823  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer6> Failed to remove temporary file /var/tmp/WebKit-Media-HAX7W3: No such file or directory
+2026-10-19T21:53:54.577Z pw:browser [pid=1111][err] 0:00:00.804191258  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer7> Failed to remove temporary file /var/tmp/WebKit-Media-8IXRX3: No such file or directory
+2026-10-19T21:53:54.600Z pw:browser [pid=1111][err] 0:00:00.827508907  1303 0xf7c7d0001840 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse9> Error getting 4096 bytes from the sinkpad (dataleft = 5653504)
+2026-10-19T21:53:54.600Z pw:browser [pid=1111][err] 0:00:00.827734505  1303 0xf7c7d0001840 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse9> Error getting 4504 bytes from the sinkpad (dataleft = 5760000)
+2026-10-19T21:53:54.658Z pw:browser [pid=1111][err] 0:00:00.885669978  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer8> Failed to remove temporary file /var/tmp/WebKit-Media-CGORX3: No such file or directory
+2026-10-19T21:53:54.758Z pw:browser [pid=1111][err] 0:00:00.985066317  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer9> Failed to remove temporary file /var/tmp/WebKit-Media-8YHPX3: No such file or directory
+2026-10-19T21:53:54.784Z pw:browser [pid=1111][err] 0:00:01.011653602  1303 0xf7c7d0001840 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse11> Error getting 4096 bytes from the sinkpad (dataleft = 5608448)
+2026-10-19T21:53:54.801Z pw:browser [pid=1111][err] 0:00:01.027970698  1303 0xf7c7d0001840 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse11> Error getting 4504 bytes from the sinkpad (dataleft = 9600)
+2026-10-19T21:53:54.856Z pw:browser [pid=1111][err] 0:00:01.083395919  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer10> Failed to remove temporary file /var/tmp/WebKit-Media-2B2PX3: No such file or directory
+2026-10-19T21:53:54.889Z pw:browser [pid=1111][err] 0:00:01.116413885  1303 0xf7c7d0001d60 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse12> Error getting 4504 bytes from the sinkpad (dataleft = 5760000)
+2026-10-19T21:53:54.900Z pw:browser [pid=1111][err] 0:00:01.127380288  1303 0xf7c7d0001d60 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse12> Error getting 4504 bytes from the sinkpad (dataleft = 9600)
+2026-10-19T21:53:54.951Z pw:browser [pid=1111][err] 0:00:01.178384754  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer11> Failed to remove temporary file /var/tmp/WebKit-Media-6L1NX3: No such file or directory
+2026-10-19T21:53:54.973Z pw:browser [pid=1111][err] 0:00:01.200290099  1303 0xf7c7d0001840 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse13> Error getting 4504 bytes from the sinkpad (dataleft = 5760000)
+2026-10-19T21:53:55.032Z pw:browser [pid=1111][err] 0:00:01.259785834  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer12> Failed to remove temporary file /var/tmp/WebKit-Media-GXTIX3: No such file or directory
+2026-10-19T21:53:55.114Z pw:browser [pid=1111][err] 0:00:01.341183332  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer13> Failed to remove temporary file /var/tmp/WebKit-Media-1I6FX3: No such file or directory
+2026-10-19T21:53:55.139Z pw:browser [pid=1111][err] 0:00:01.366151570  1303 0xf7c7d00026d0 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse15> Error getting 4096 bytes from the sinkpad (dataleft = 5653504)
+2026-10-19T21:53:55.139Z pw:browser [pid=1111][err] 0:00:01.366479758  1303 0xf7c7d00026d0 WARN                wavparse gstwavparse.c:2255:gst_wavparse_stream_data:<wavparse15> Error getting 4504 bytes from the sinkpad (dataleft = 5760000)
+http PASS 15
+2026-10-19T21:53:55.153Z pw:browser [pid=1111] <gracefully close start>
+2026-10-19T21:53:55.156Z pw:browser [pid=1111][err] 0:00:01.383732927  1303 0xc83336a3b320 WARN          downloadbuffer gstdownloadbuffer.c:973:gst_download_buffer_close_temp_location_file:<downloadbuffer14> Failed to remove temporary file /var/tmp/WebKit-Media-PZTDX3: No such file or directory
+2026-10-19T21:53:55.171Z pw:browser [pid=1111] <process did exit: exitCode=0, signal=null>
+2026-10-19T21:53:55.171Z pw:browser [pid=1111] starting temporary directories cleanup
+2026-10-19T21:53:55.172Z pw:browser [pid=1111] finished temporary directories cleanup
+2026-10-19T21:53:55.172Z pw:browser [pid=1111] <gracefully close end>

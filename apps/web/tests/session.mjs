@@ -93,7 +93,9 @@ const capture = async name => { screenshot = true; try { await page.screenshot({
 page.on('request', request => requests.push(request.url()));
 const check = name => { checks.push({ name, status: 'PASS' }); console.log('PASS:', name); };
 try {
-  const unsupported = await context.newPage();
+  // Keep the missing-recorder simulation separate from the full audio session.
+  const unsupported = await browser.newPage();
+  unsupported.setDefaultTimeout(10000);
   await unsupported.addInitScript(() => { window.MediaRecorder = undefined; });
   for (const [file, consent, record, input] of [
     ['index.html', '#consent', '#record', '#import'],
@@ -414,13 +416,13 @@ try {
   check('no uploads, external requests or unexpected runtime errors');
   await fs.writeFile(path.join(output, 'report.json'), JSON.stringify({ status: recordingAvailable ? 'PASS' : 'PARTIAL', recordingAvailable, browser: kind, version: browser.version(), checks, timing, continuity, generationSeconds, heardA, expectedErrors, errors, warnings, physical_microphone: 'NOT RUN', listening: 'NOT RUN' }, null, 2));
 } catch (error) {
-  const state = await page.evaluate(() => ({
+  const state = await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({
     context: window.testAudioContext && { state: testAudioContext.state, time: testAudioContext.currentTime, rate: testAudioContext.sampleRate },
     status: document.getElementById('performance-status').textContent,
     error: document.getElementById('performance-error').textContent,
     meter: document.getElementById('output-meter').value,
     deck: document.getElementById('state-a').textContent
-  })).catch(() => null);
+  })).catch(() => null)]);
   await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ status: 'FAIL', error: error.message, checks, state }, null, 2));
   console.error(await page.locator('#performance-error').innerText().catch(() => 'page unavailable'));
   await page.screenshot({ path: path.join(output, 'failure.png'), timeout: 2000 }).catch(() => {});

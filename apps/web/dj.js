@@ -62,6 +62,7 @@ function clearDeckEchoes() {
 
 function pause(deck) {
   if (deck.id === 'a') session?.stop();
+  deck.mediaGain?.gain.setTargetAtTime(0, context.currentTime, .005);
   deck.revision++; deck.starting = false; deck.playRequested = false; deck.audio.pause(); controls(deck);
 }
 
@@ -86,7 +87,12 @@ function audioGraph() {
   try {
     context = new Audio({ latencyHint: 'interactive' });
     mixer = createMixer(context); meterData = new Float32Array(mixer.meter.fftSize);
-    decks.forEach((deck, index) => context.createMediaElementSource(deck.audio).connect(mixer.strips[index].input));
+    decks.forEach((deck, index) => {
+      // Gate native decoder backlog on pause while preserving already-generated effect tails.
+      deck.mediaGain = context.createGain(); deck.mediaGain.gain.value = 0;
+      context.createMediaElementSource(deck.audio).connect(deck.mediaGain);
+      deck.mediaGain.connect(mixer.strips[index].input);
+    });
   } catch {
     audioFailure = new Error('Mixer could not initialize. Reload this page before trying again.');
     mixer = null; context?.close().catch(() => {});
@@ -117,11 +123,12 @@ async function start(deck) {
       if (revision !== deck.revision || !rights.checked) return;
       if (context.state !== 'running') throw new Error('Audio is suspended. Press Play to try again.');
       if (audio.ended) audio.currentTime = 0;
+      deck.mediaGain.gain.setTargetAtTime(1, context.currentTime, .005);
       await playMedia(audio, () => revision === deck.revision && rights.checked && deck.playRequested);
       if (!rights.checked || !deck.playRequested) audio.pause();
       else if (revision === deck.revision) $('mixer-status').textContent = 'Manual mixing active. Keep this page open and your device awake.';
     } catch (error) {
-      if (revision === deck.revision) { deck.playRequested = false; audio.pause(); $(`error-${id}`).textContent = `Playback could not start: ${error.message}`; }
+      if (revision === deck.revision) { pause(deck); $(`error-${id}`).textContent = `Playback could not start: ${error.message}`; }
     } finally {
       if (revision === deck.revision) deck.starting = false;
       controls(deck);
@@ -148,6 +155,8 @@ for (const deck of decks) {
       validateTrack(file);
       const duration = await trackDuration(file, controller.signal);
       if (revision !== deck.revision || !rights.checked) return;
+      // Connect before preloading: Linux WebKit can stall when rerouting decoded media.
+      audioGraph();
       const previous = deck.url, url = URL.createObjectURL(file);
       audio.removeAttribute('src'); audio.load();
       deck.file = file; deck.url = url; deck.duration = duration; audio.src = url; deck.resetTransport(); deckEffects(deck, true);

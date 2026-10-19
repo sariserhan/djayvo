@@ -1,0 +1,4 @@
+A repeat launcher used mktemp with XXXXXX before a .log suffix on macOS. The first auto and metadata repeat files were created with literal XXXXXX; the second metadata launch did not execute. Only the completed receipts count. The stricter final probe was executed separately.
+A first combined apply_patch failed its test-file context and made no change; the patch was reapplied against the inspected lines.
+Mac process inspection found no retained Playwright MiniBrowser process before the final run. Existing system WebKit processes were left untouched.
+The first summary pass assumed every diagnostic case had a final state. The interrupted HTTP run had only a partial receipt; the summarizer now retains it as PARTIAL and tolerates the absent state. The final summary and waveform assertions then passed.

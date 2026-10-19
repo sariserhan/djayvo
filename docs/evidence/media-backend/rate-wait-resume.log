@@ -1,0 +1,14 @@
+Artifacts: /work/renders/media-restart-webkit-ZTKz2i
+blob PASS 15
+file PASS 15
+input PASS 15
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.evaluate: Target page, context or browser has been closed
+    at /work/renders/variants/rate-wait-resume.mjs:110:28 {
+  log: []
+}
+
+Node.js v24.17.0

@@ -39,6 +39,10 @@ await context.addInitScript(() => {
   const Native = window.AudioContext || window.webkitAudioContext;
   window.AudioContext = class extends Native {
     constructor(options) { super(options); window.testAudioContext = this; }
+    createMediaElementSource(audio) {
+      if (audio.hasAttribute('src')) console.error('Deck source was loaded before connecting the mixer');
+      return super.createMediaElementSource(audio);
+    }
     createAnalyser() {
       const analyser = super.createAnalyser();
       const connect = analyser.connect.bind(analyser);
@@ -109,6 +113,7 @@ try {
   await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
   assert.equal(await page.locator('#file-a').isDisabled(), true);
   assert.equal(await page.locator('#play-a').isDisabled(), true);
+  assert.deepEqual(await page.locator('audio').evaluateAll(nodes => nodes.map(audio => audio.preload)), ['metadata', 'metadata']);
   check('page identity, nonblank content, consent gating');
   signalEvidence = [];
   // Keep each signal experiment small; the combined nested loop triggered a
@@ -261,6 +266,35 @@ try {
   await page.waitForFunction(() => document.querySelector('#audio-a').currentTime > .05 && document.querySelector('#audio-a').currentTime < 2 && !document.querySelector('#audio-a').paused && !document.querySelector('#audio-a').seeking);
   await page.locator('#loop-a').click(); await page.locator('#rate-reset-a').click();
   check('rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping');
+  await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
+  const beforeRate = await page.locator('#audio-a').evaluate(audio => audio.currentTime);
+  await page.evaluate(() => {
+    const rate = document.querySelector('#rate-a');
+    for (const value of ['1.04', '1.08']) { rate.value = value; rate.dispatchEvent(new Event('input')); }
+  });
+  await page.waitForFunction(before => document.querySelector('#audio-a').currentTime > before + .05 && !document.querySelector('#play-a').disabled, beforeRate);
+  assert.equal(await page.locator('#audio-a').evaluate(audio => audio.playbackRate), 1.08);
+  assert.ok(await peak() > .01);
+  await page.evaluate(() => {
+    const rate = document.querySelector('#rate-a'); rate.value = '1.12'; rate.dispatchEvent(new Event('input'));
+    document.querySelector('#pause-all').click();
+  });
+  await page.waitForTimeout(100);
+  assert.deepEqual(await page.locator('audio').evaluateAll(nodes => nodes.map(audio => audio.paused)), [true, true]);
+  await page.locator('#play-a').click(); await page.locator('#play-b').click();
+  await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
+  await page.evaluate(() => {
+    const rate = document.querySelector('#rate-a'); rate.value = '1.06'; rate.dispatchEvent(new Event('input'));
+    document.querySelector('#clear-a').click();
+  });
+  await page.waitForTimeout(100);
+  assert.equal(await page.locator('#audio-a').getAttribute('src'), null);
+  assert.equal(await page.locator('#audio-a').evaluate(audio => audio.paused), true);
+  await page.locator('#file-a').setInputFiles(a);
+  await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
+  await page.locator('#play-a').click();
+  await page.waitForFunction(() => !document.querySelector('#play-a').disabled && document.querySelector('#audio-a').currentTime > .05);
+  check('rapid active pitch changes keep the latest rate; Pause All and unload cancel the queued resume, then reload plays');
   await set('#crossfade', 0); await page.waitForTimeout(150);
   const eqFlat = await (await page.waitForFunction(() => {
     const values = new Float32Array(testMeter.fftSize); testMeter.getFloatTimeDomainData(values);
@@ -498,15 +532,16 @@ try {
   const audioContextEvidence = await page.evaluate(() => ({ sampleRate: testAudioContext.sampleRate, baseLatency: testAudioContext.baseLatency ?? null, outputLatency: testAudioContext.outputLatency ?? null, note: 'Browser-reported values, not hardware latency measurements' }));
   await page.reload();
   await page.locator('#music-rights').check();
-  await page.locator('#file-a').setInputFiles(a);
-  await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
   await page.evaluate(() => { window.AudioContext.prototype.createGain = () => { throw new Error('Injected graph failure'); }; });
   for (let attempt = 0; attempt < 2; attempt++) {
-    await page.locator('#play-a').click();
+    await page.locator('#file-a').setInputFiles(a);
     await page.waitForFunction(() => document.querySelector('#error-a').textContent.includes('Mixer could not initialize'));
+    await page.waitForFunction(() => !document.querySelector('#file-a').disabled);
+    assert.equal(await page.locator('#play-a').isDisabled(), true);
+    assert.equal(await page.locator('#audio-a').getAttribute('src'), null);
     assert.equal(await page.locator('#audio-a').evaluate(audio => audio.paused), true);
   }
-  check('failed graph initialization stays silent on repeated Play; no unprocessed fallback');
+  check('failed graph initialization rejects repeated loads before attaching audio; no unprocessed fallback');
 
   assert.equal(requests.some(r => r.method !== 'GET' || (!r.url.startsWith(`${origin}/`) && !r.url.startsWith(`blob:${origin}/`))), false);
   assert.deepEqual(errors, []);

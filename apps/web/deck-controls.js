@@ -27,17 +27,26 @@ export function tempoRate(own, other, otherRate) {
 }
 export function attachDeck(deck, other, { pause, start, mixer, context }) {
   const { id, audio } = deck, jog = $(`jog-${id}`);
-  let cue = 0, hot = [null, null, null, null], taps = [], drag;
+  let cue = 0, hot = [null, null, null, null], taps = [], drag, pendingRate;
   const error = message => { $(`error-${id}`).textContent = message; };
   const seek = position => { if (deck.url && Number.isFinite(position)) audio.currentTime = Math.max(0, Math.min(deck.duration, position)); };
   const rate = value => {
     // shortcut: pitch changes briefly pause audio; use shared-frame transport for continuous pitch.
-    // WebKit can deadlock when changing rate during active end-of-track playback.
-    const resume = !audio.paused;
-    if (resume) pause(deck);
-    audio.playbackRate = value; $(`rate-${id}`).value = value;
+    $(`rate-${id}`).value = value;
     $(`rate-value-${id}`).textContent = `${value >= 1 ? '+' : ''}${((value - 1) * 100).toFixed(1)}%`;
-    if (resume) start(deck);
+    if (pendingRate?.url === deck.url) { pendingRate.value = value; return; }
+    if (audio.paused) { audio.playbackRate = value; return; }
+    pause(deck);
+    const change = { value, revision: deck.revision, url: deck.url }; pendingRate = change;
+    // Coalesce slider input until pause completes; overlapping native rate seeks can stall WebKit.
+    audio.addEventListener('pause', () => {
+      if (pendingRate !== change) return;
+      pendingRate = null;
+      if (change.url !== deck.url) return;
+      if (!audio.paused) { rate(change.value); return; }
+      audio.playbackRate = change.value;
+      if (change.revision === deck.revision) start(deck);
+    }, { once: true });
   };
   const eq = band => {
     const value = Number($(`eq-${id}-${band}`).value);

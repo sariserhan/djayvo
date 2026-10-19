@@ -1,0 +1,11 @@
+{
+  "sha": "3a7a2fc7cfa015de245a11892a1f059ddc29e7e1",
+  "url": "https://raw.githubusercontent.com/WebKit/WebKit/3a7a2fc7cfa015de245a11892a1f059ddc29e7e1/Source/WebCore/platform/graphics/gstreamer/MediaPlayerPrivateGStreamer.cpp",
+  "sha256": "f919d5660f56fdca7fd3d65639a08c4f47bae2ecd454a48708dc9acf6604ae46",
+  "observed_functions": [
+    "updateDownloadBufferingFlag",
+    "prepareSeek",
+    "didEnd"
+  ],
+  "note": "Current upstream code is contextual evidence, not proof of the code shipped in Playwright WebKit 2311."
+}

@@ -1,0 +1,60 @@
+Artifacts: /work/renders/media-restart-webkit-LenolH
+2026-10-19T21:56:32.532Z pw:browser <launching> /ms-playwright/webkit-2311/pw_run.sh --inspector-pipe --headless --no-startup-window
+2026-10-19T21:56:32.534Z pw:browser <launched> pid=2264
+2026-10-19T21:56:32.578Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:32.578Z pw:browser [pid=2264][err] ** (MiniBrowser:2270): CRITICAL **: 21:56:32.578: WebKitWebView is-controlled-by-automation set but automation is not allowed in the context, falling back to default session.
+2026-10-19T21:56:32.635Z pw:browser [pid=2264][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:56:32.635Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:32.635Z pw:browser [pid=2264][err] libEGL warning: MESA-LOADER: failed to retrieve device information
+2026-10-19T21:56:32.635Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:32.635Z pw:browser [pid=2264][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:56:32.635Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:32.637Z pw:browser [pid=2264][err] MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
+2026-10-19T21:56:32.637Z pw:browser [pid=2264][err] libEGL warning: egl: failed to create dri2 screen
+2026-10-19T21:56:32.727Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:32.727Z pw:browser [pid=2264][err] ** (WPEWebProcess:2283): WARNING **: 21:56:32.727: Unable to get session D-Bus address: Cannot autolaunch D-Bus without X11 $DISPLAY
+blob FAIL 0
+2026-10-19T21:56:37.838Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:37.838Z pw:browser [pid=2264][err] ** (MiniBrowser:2270): CRITICAL **: 21:56:37.836: WebKitWebView is-controlled-by-automation set but automation is not allowed in the context, falling back to default session.
+2026-10-19T21:56:37.902Z pw:browser [pid=2264][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:56:37.902Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:37.902Z pw:browser [pid=2264][err] libEGL warning: MESA-LOADER: failed to retrieve device information
+2026-10-19T21:56:37.902Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:37.902Z pw:browser [pid=2264][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:56:37.902Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:37.904Z pw:browser [pid=2264][err] MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
+2026-10-19T21:56:37.904Z pw:browser [pid=2264][err] libEGL warning: egl: failed to create dri2 screen
+2026-10-19T21:56:37.972Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:37.972Z pw:browser [pid=2264][err] ** (WPEWebProcess:2335): WARNING **: 21:56:37.972: Unable to get session D-Bus address: Cannot autolaunch D-Bus without X11 $DISPLAY
+file FAIL 0
+2026-10-19T21:56:43.081Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:43.082Z pw:browser [pid=2264][err] ** (MiniBrowser:2270): CRITICAL **: 21:56:43.081: WebKitWebView is-controlled-by-automation set but automation is not allowed in the context, falling back to default session.
+2026-10-19T21:56:43.162Z pw:browser [pid=2264][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:56:43.163Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:43.163Z pw:browser [pid=2264][err] libEGL warning: MESA-LOADER: failed to retrieve device information
+2026-10-19T21:56:43.163Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:43.163Z pw:browser [pid=2264][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:56:43.163Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:43.164Z pw:browser [pid=2264][err] MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
+2026-10-19T21:56:43.164Z pw:browser [pid=2264][err] libEGL warning: egl: failed to create dri2 screen
+2026-10-19T21:56:43.466Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:43.466Z pw:browser [pid=2264][err] ** (WPEWebProcess:2390): WARNING **: 21:56:43.465: Unable to get session D-Bus address: Cannot autolaunch D-Bus without X11 $DISPLAY
+input FAIL 0
+2026-10-19T21:56:48.558Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:48.558Z pw:browser [pid=2264][err] ** (MiniBrowser:2270): CRITICAL **: 21:56:48.554: WebKitWebView is-controlled-by-automation set but automation is not allowed in the context, falling back to default session.
+2026-10-19T21:56:48.620Z pw:browser [pid=2264][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:56:48.621Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:48.621Z pw:browser [pid=2264][err] libEGL warning: MESA-LOADER: failed to retrieve device information
+2026-10-19T21:56:48.621Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:48.621Z pw:browser [pid=2264][err] libEGL warning: failed to get driver name for fd -1
+2026-10-19T21:56:48.621Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:48.622Z pw:browser [pid=2264][err] MESA: error: ZINK: vkCreateInstance failed (VK_ERROR_INCOMPATIBLE_DRIVER)
+2026-10-19T21:56:48.622Z pw:browser [pid=2264][err] libEGL warning: egl: failed to create dri2 screen
+2026-10-19T21:56:48.700Z pw:browser [pid=2264][err] 
+2026-10-19T21:56:48.701Z pw:browser [pid=2264][err] ** (WPEWebProcess:2447): WARNING **: 21:56:48.700: Unable to get session D-Bus address: Cannot autolaunch D-Bus without X11 $DISPLAY
+http FAIL 0
+2026-10-19T21:56:53.785Z pw:browser [pid=2264] <gracefully close start>
+2026-10-19T21:56:53.821Z pw:browser [pid=2264] <process did exit: exitCode=0, signal=null>
+2026-10-19T21:56:53.821Z pw:browser [pid=2264] starting temporary directories cleanup
+2026-10-19T21:56:53.823Z pw:browser [pid=2264] finished temporary directories cleanup
+2026-10-19T21:56:53.823Z pw:browser [pid=2264] <gracefully close end>

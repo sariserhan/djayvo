@@ -6,7 +6,8 @@
  <div class="deck-heading"><h2 id="deck-a-title">DECK A</h2><span class="deck-state" id="state-a">Empty</span><button id="clear-a" class="small-button" disabled>Unload A</button></div>
  <p class="track-name" id="name-a">Load a track to begin</p>
  <label class="file-label"><span>Load track A</span><input type="file" id="file-a" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
- <audio id="audio-a" preload="auto" hidden></audio>
+ <!-- Metadata preload avoids the eager-buffering failure reproduced in Linux WebKit. -->
+ <audio id="audio-a" preload="metadata" hidden></audio>
  <canvas class="deck-scope" id="scope-a" width="650" height="65" aria-label="Deck A live audio scope"></canvas>
  <div class="position-readout"><output id="time-a">0:00 / 0:00</output><span>ELAPSED / TOTAL</span></div>
  <input aria-label="Deck A position" id="seek-a" type="range" min="0" max="0" step="0.1" value="0" disabled>
@@ -27,7 +28,7 @@
  <div class="deck-heading"><h2 id="deck-b-title">DECK B</h2><span class="deck-state" id="state-b">Empty</span><button id="clear-b" class="small-button" disabled>Unload B</button></div>
  <p class="track-name" id="name-b">Load a track to begin</p>
  <label class="file-label"><span>Load track B</span><input type="file" id="file-b" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
- <audio id="audio-b" preload="auto" hidden></audio>
+ <audio id="audio-b" preload="metadata" hidden></audio>
  <canvas class="deck-scope" id="scope-b" width="650" height="65" aria-label="Deck B live audio scope"></canvas>
  <div class="position-readout"><output id="time-b">0:00 / 0:00</output><span>ELAPSED / TOTAL</span></div>
  <input aria-label="Deck B position" id="seek-b" type="range" min="0" max="0" step="0.1" value="0" disabled>
