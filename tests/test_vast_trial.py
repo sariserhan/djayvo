@@ -1,6 +1,8 @@
 """Price-boundary regressions; no network requests or rentals."""
 import importlib.util
 import io
+import contextlib
+import tempfile
 from pathlib import Path
 import unittest
 from unittest.mock import patch
@@ -11,6 +13,21 @@ spec.loader.exec_module(trial)
 
 
 class PriceBounds(unittest.TestCase):
+    def test_blood_profile_has_isolated_state_and_two_hour_limit(self):
+        names = ('ROOT', 'WORK', 'STATE', 'LABEL', 'LEASE_SECONDS', 'HOURLY_CEILING')
+        previous = {name: getattr(trial, name) for name in names}
+        try:
+            with tempfile.TemporaryDirectory() as directory, patch.object(trial, 'ROOT', Path(directory)), patch.object(
+                    trial.sys, 'argv', ['vast_trial.py', 'status', '--blood-training']), patch.object(
+                    trial, 'api', return_value={'credit': 10}), patch.object(trial, 'instances', return_value=[]), contextlib.redirect_stdout(io.StringIO()):
+                trial.main()
+                self.assertEqual(trial.STATE, Path(directory) / 'build-blood-training-20261019/trial-state.json')
+                self.assertEqual(trial.LABEL, 'djayvo-blood-training-20261019')
+                self.assertEqual((trial.LEASE_SECONDS, trial.HOURLY_CEILING), (7200, .5))
+        finally:
+            for name, value in previous.items():
+                setattr(trial, name, value)
+
     def setUp(self):
         self.offer = dict(dph_total=.2, storage_cost=.2, inet_down_cost=.01,
                           inet_up_cost=.01, num_gpus=1, gpu_ram=24576)

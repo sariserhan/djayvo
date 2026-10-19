@@ -1,0 +1,227 @@
+2026-10-19 05:46:24.332 | DEBUG    | acestep.core.generation.handler.init_service_memory_basic:_apply_malloc_mmap_threshold:50 - [memory] Set M_MMAP_THRESHOLD=131072 for immediate OS reclaim of large frees
+2026-10-19 05:46:28.266 | WARNING  | acestep.training.trainer:<module>:40 - bitsandbytes not installed. Using standard AdamW.
+2026-10-19 05:46:28.306 | INFO     | acestep.gpu_config:get_gpu_memory_gb:578 - CUDA GPU detected: NVIDIA GeForce RTX 3090 (23.6 GB)
+2026-10-19 05:46:28.435 | INFO     | acestep.core.generation.handler.init_service_loader:_load_main_model_from_checkpoint:174 - [initialize_service] Attempting to load model with attention implementation: sdpa
+2026-10-19 05:46:31.755 | INFO     | acestep.core.generation.handler.lora.lifecycle:add_lora:250 - VRAM before LoRA load: 5.89GB
+2026-10-19 05:46:34.111 | INFO     | acestep.core.generation.handler.lora.lifecycle:add_lora:260 - Base decoder state_dict backed up to CPU (3004.9MB)
+2026-10-19 05:46:34.111 | INFO     | acestep.core.generation.handler.lora.lifecycle:add_lora:268 - Loading LoRA adapter from /workspace/ace-step/blood-results/adapter/checkpoints/epoch_5_loss_1.2063 as 'step80'
+2026-10-19 05:46:34.426 | INFO     | acestep.core.generation.handler.lora.lifecycle:add_lora:286 - VRAM after LoRA load: 5.91GB
+2026-10-19 05:46:34.442 | INFO     | acestep.core.generation.handler.lora.lifecycle:add_lora:304 - LoRA adapter 'step80' loaded from /workspace/ace-step/blood-results/adapter/checkpoints/epoch_5_loss_1.2063 (adapters=['step80'], targets=192)
+2026-10-19 05:46:34.442 | INFO     | acestep.core.generation.handler.lora.controls:set_lora_scale:169 - LoRA scale for 'step80' set to 0.70 (modified=192, by_kind={'set_scale_factor': 192}, skipped={})
+2026-10-19 05:46:34.443 | INFO     | acestep.inference:generate_music:662 - [generate_music] LLM usage decision: thinking=False, use_cot_caption=False, use_cot_language=False, use_cot_metas=False, need_lm_for_cot=False, llm_initialized=False, use_lm=False
+2026-10-19 05:46:34.443 | INFO     | acestep.core.generation.handler.generate_music:generate_music:313 - [generate_music] Turbo model detected: overriding guidance_scale 7.0 -> 1.0 (turbo does not use CFG).
+2026-10-19 05:46:34.451 | INFO     | acestep.core.generation.handler.generate_music:generate_music:329 - [generate_music] Starting generation...
+2026-10-19 05:46:34.451 | INFO     | acestep.core.generation.handler.generate_music:generate_music:332 - [generate_music] Preparing inputs...
+2026-10-19 05:46:34.674 | INFO     | acestep.core.generation.handler.generate_music:_vram_preflight_check:157 - [generate_music] VRAM pre-flight: 17.35 GB free, ~0.80 GB needed (batch=1, duration=30s, mode=turbo).
+2026-10-19 05:46:34.723 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:119 - 
+======================================================================
+2026-10-19 05:46:34.723 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:120 - 🔍 [DEBUG] DiT TEXT ENCODER INPUT (Inference)
+2026-10-19 05:46:34.723 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:121 - ======================================================================
+2026-10-19 05:46:34.723 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:122 - text_prompt:
+# Instruction
+Fill the audio semantic mask based on the given conditions:
+
+# Caption
+Instrumental bass music, 140 BPM, half-time drums, syncopated modulated bass phrases with rests, percussive vocal-like synth textures, call and response between bass and melodic lead. Sparse opening, a developing rhythmic motif, contrasting break, varied return and deliberate ending. No vocals.
+
+# Metas
+- bpm: 140
+- timesignature: N/A
+- keyscale: N/A
+- duration: 30 seconds
+<|endoftext|>
+
+2026-10-19 05:46:34.723 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:123 - ======================================================================
+2026-10-19 05:46:34.723 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:124 - lyrics_text:
+# Languages
+unknown
+
+# Lyric
+[Instrumental]<|endoftext|>
+2026-10-19 05:46:34.723 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:125 - ======================================================================
+
+2026-10-19 05:46:34.743 | INFO     | acestep.core.generation.handler.conditioning_embed:preprocess_batch:110 - [preprocess_batch] Inferring prompt embeddings...
+2026-10-19 05:46:35.090 | INFO     | acestep.core.generation.handler.conditioning_embed:preprocess_batch:113 - [preprocess_batch] Inferring lyric embeddings...
+2026-10-19 05:46:35.144 | INFO     | acestep.core.generation.handler.service_generate_execute:_execute_service_generate_diffusion:173 - [service_generate] Generating audio... (DiT backend: PyTorch (cuda))
+2026-10-19 05:46:35.303 | INFO     | acestep.core.generation.handler.service_generate_execute:_execute_service_generate_diffusion:276 - [service_generate] DiT diffusion via PyTorch (cuda)...
+2026-10-19 05:46:35.334 | INFO     | acestep.models.common.dcw_correction:__init__:98 - [DCW] Active — mode=double, scaler=0.0500, high_scaler=0.0200, wavelet='haar'
+2026-10-19 05:46:35.574 | INFO     | acestep.models.common.dcw_loader:get:84 - [DCW] Built DWT1D for wavelet='haar' (low-pass filter taps=2, device=cuda:0, dtype=torch.bfloat16).
+2026-10-19 05:46:36.021 | INFO     | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:42 - [generate_music] Model generation completed. Decoding latents...
+2026-10-19 05:46:36.022 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:64 - [generate_music] pred_latents: torch.Size([1, 750, 64]), dtype=torch.bfloat16
+2026-10-19 05:46:36.022 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:65 - [generate_music] time_costs: {'encoder_time_cost': 0.025955915451049805, 'diffusion_time_cost': 0.6905174255371094, 'diffusion_per_step_time_cost': 0.08631467819213867, 'total_time_cost': 0.7164733409881592, 'offload_time_cost': 0.0}
+2026-10-19 05:46:36.022 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:127 - [generate_music] Decoding latents with VAE...
+2026-10-19 05:46:36.024 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:136 - [generate_music] Before VAE decode: allocated=5.93GB, max=5.98GB
+2026-10-19 05:46:36.024 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:154 - [generate_music] Effective free VRAM before VAE decode: 17.31 GB
+2026-10-19 05:46:36.024 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:172 - [generate_music] Using tiled VAE decode to reduce VRAM usage...
+2026-10-19 05:46:36.025 | DEBUG    | acestep.core.generation.handler.memory_utils:_get_auto_decode_chunk_size:108 - [_get_auto_decode_chunk_size] Effective free VRAM: 17.31 GB
+2026-10-19 05:46:36.025 | DEBUG    | acestep.core.generation.handler.memory_utils:_should_offload_wav_to_cpu:131 - [_should_offload_wav_to_cpu] Effective free VRAM: 17.31 GB
+2026-10-19 05:46:36.025 | INFO     | acestep.core.generation.handler.vae_decode:tiled_decode:56 - [tiled_decode] chunk_size=384, offload_wav_to_cpu=True, latents_shape=torch.Size([1, 64, 750])
+2026-10-19 05:46:36.286 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:193 - [generate_music] After VAE decode: allocated=6.09GB, max=7.05GB
+2026-10-19 05:46:36.493 | INFO     | acestep.core.generation.handler.generate_music_payload:_build_generate_music_success_payload:38 - [generate_music] VAE decode completed. Preparing audio tensors...
+2026-10-19 05:46:36.493 | INFO     | acestep.core.generation.handler.generate_music_payload:_build_generate_music_success_payload:50 - [generate_music] Done! Generated 1 audio tensors.
+2026-10-19 05:46:36.720 | INFO     | acestep.inference:generate_music:1002 - [Normalization] Audio 0 BEFORE: Peak=1.0000, Target=-1.0dB
+2026-10-19 05:46:36.730 | INFO     | acestep.inference:generate_music:1007 - [Normalization] Audio 0 AFTER: Peak=0.8913
+2026-10-19 05:46:36.835 | DEBUG    | acestep.audio_utils:save_audio:319 - [AudioSaver] Saved audio to /workspace/ace-step/blood-results/raw/step80/bass-a/e3b60b8a-40bf-b46f-7080-1d1334c712cd.wav (wav, 48000Hz)
+RENDERED step80 bass-a
+2026-10-19 05:46:36.890 | INFO     | acestep.inference:generate_music:662 - [generate_music] LLM usage decision: thinking=False, use_cot_caption=False, use_cot_language=False, use_cot_metas=False, need_lm_for_cot=False, llm_initialized=False, use_lm=False
+2026-10-19 05:46:36.890 | INFO     | acestep.core.generation.handler.generate_music:generate_music:313 - [generate_music] Turbo model detected: overriding guidance_scale 7.0 -> 1.0 (turbo does not use CFG).
+2026-10-19 05:46:36.901 | INFO     | acestep.core.generation.handler.generate_music:generate_music:329 - [generate_music] Starting generation...
+2026-10-19 05:46:36.901 | INFO     | acestep.core.generation.handler.generate_music:generate_music:332 - [generate_music] Preparing inputs...
+2026-10-19 05:46:37.109 | INFO     | acestep.core.generation.handler.generate_music:_vram_preflight_check:157 - [generate_music] VRAM pre-flight: 17.16 GB free, ~0.80 GB needed (batch=1, duration=30s, mode=turbo).
+2026-10-19 05:46:37.121 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:119 - 
+======================================================================
+2026-10-19 05:46:37.121 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:120 - 🔍 [DEBUG] DiT TEXT ENCODER INPUT (Inference)
+2026-10-19 05:46:37.121 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:121 - ======================================================================
+2026-10-19 05:46:37.121 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:122 - text_prompt:
+# Instruction
+Fill the audio semantic mask based on the given conditions:
+
+# Caption
+Instrumental bass music, 140 BPM, half-time drums, syncopated modulated bass phrases with rests, percussive vocal-like synth textures, call and response between bass and melodic lead. Sparse opening, a developing rhythmic motif, contrasting break, varied return and deliberate ending. No vocals.
+
+# Metas
+- bpm: 140
+- timesignature: N/A
+- keyscale: N/A
+- duration: 30 seconds
+<|endoftext|>
+
+2026-10-19 05:46:37.121 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:123 - ======================================================================
+2026-10-19 05:46:37.121 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:124 - lyrics_text:
+# Languages
+unknown
+
+# Lyric
+[Instrumental]<|endoftext|>
+2026-10-19 05:46:37.121 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:125 - ======================================================================
+
+2026-10-19 05:46:37.125 | INFO     | acestep.core.generation.handler.conditioning_embed:preprocess_batch:110 - [preprocess_batch] Inferring prompt embeddings...
+2026-10-19 05:46:37.157 | INFO     | acestep.core.generation.handler.conditioning_embed:preprocess_batch:113 - [preprocess_batch] Inferring lyric embeddings...
+2026-10-19 05:46:37.158 | INFO     | acestep.core.generation.handler.service_generate_execute:_execute_service_generate_diffusion:173 - [service_generate] Generating audio... (DiT backend: PyTorch (cuda))
+2026-10-19 05:46:37.183 | INFO     | acestep.core.generation.handler.service_generate_execute:_execute_service_generate_diffusion:276 - [service_generate] DiT diffusion via PyTorch (cuda)...
+2026-10-19 05:46:37.211 | INFO     | acestep.models.common.dcw_correction:__init__:98 - [DCW] Active — mode=double, scaler=0.0500, high_scaler=0.0200, wavelet='haar'
+2026-10-19 05:46:37.711 | INFO     | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:42 - [generate_music] Model generation completed. Decoding latents...
+2026-10-19 05:46:37.712 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:64 - [generate_music] pred_latents: torch.Size([1, 750, 64]), dtype=torch.bfloat16
+2026-10-19 05:46:37.712 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:65 - [generate_music] time_costs: {'encoder_time_cost': 0.024401187896728516, 'diffusion_time_cost': 0.503216028213501, 'diffusion_per_step_time_cost': 0.06290200352668762, 'total_time_cost': 0.5276172161102295, 'offload_time_cost': 0.0}
+2026-10-19 05:46:37.712 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:127 - [generate_music] Decoding latents with VAE...
+2026-10-19 05:46:37.714 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:136 - [generate_music] Before VAE decode: allocated=6.09GB, max=6.14GB
+2026-10-19 05:46:37.714 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:154 - [generate_music] Effective free VRAM before VAE decode: 17.15 GB
+2026-10-19 05:46:37.714 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:172 - [generate_music] Using tiled VAE decode to reduce VRAM usage...
+2026-10-19 05:46:37.715 | DEBUG    | acestep.core.generation.handler.memory_utils:_get_auto_decode_chunk_size:108 - [_get_auto_decode_chunk_size] Effective free VRAM: 17.15 GB
+2026-10-19 05:46:37.715 | DEBUG    | acestep.core.generation.handler.memory_utils:_should_offload_wav_to_cpu:131 - [_should_offload_wav_to_cpu] Effective free VRAM: 17.15 GB
+2026-10-19 05:46:37.715 | INFO     | acestep.core.generation.handler.vae_decode:tiled_decode:56 - [tiled_decode] chunk_size=384, offload_wav_to_cpu=True, latents_shape=torch.Size([1, 64, 750])
+2026-10-19 05:46:37.952 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:193 - [generate_music] After VAE decode: allocated=6.09GB, max=7.05GB
+2026-10-19 05:46:38.151 | INFO     | acestep.core.generation.handler.generate_music_payload:_build_generate_music_success_payload:38 - [generate_music] VAE decode completed. Preparing audio tensors...
+2026-10-19 05:46:38.151 | INFO     | acestep.core.generation.handler.generate_music_payload:_build_generate_music_success_payload:50 - [generate_music] Done! Generated 1 audio tensors.
+2026-10-19 05:46:38.366 | INFO     | acestep.inference:generate_music:1002 - [Normalization] Audio 0 BEFORE: Peak=1.0000, Target=-1.0dB
+2026-10-19 05:46:38.376 | INFO     | acestep.inference:generate_music:1007 - [Normalization] Audio 0 AFTER: Peak=0.8913
+2026-10-19 05:46:38.385 | DEBUG    | acestep.audio_utils:save_audio:319 - [AudioSaver] Saved audio to /workspace/ace-step/blood-results/raw/step80/bass-b/e10ad3f7-f94d-fcd3-88af-b9a6cf56ab0c.wav (wav, 48000Hz)
+RENDERED step80 bass-b
+2026-10-19 05:46:38.442 | INFO     | acestep.inference:generate_music:662 - [generate_music] LLM usage decision: thinking=False, use_cot_caption=False, use_cot_language=False, use_cot_metas=False, need_lm_for_cot=False, llm_initialized=False, use_lm=False
+2026-10-19 05:46:38.443 | INFO     | acestep.core.generation.handler.generate_music:generate_music:313 - [generate_music] Turbo model detected: overriding guidance_scale 7.0 -> 1.0 (turbo does not use CFG).
+2026-10-19 05:46:38.451 | INFO     | acestep.core.generation.handler.generate_music:generate_music:329 - [generate_music] Starting generation...
+2026-10-19 05:46:38.451 | INFO     | acestep.core.generation.handler.generate_music:generate_music:332 - [generate_music] Preparing inputs...
+2026-10-19 05:46:38.654 | INFO     | acestep.core.generation.handler.generate_music:_vram_preflight_check:157 - [generate_music] VRAM pre-flight: 17.16 GB free, ~0.80 GB needed (batch=1, duration=30s, mode=turbo).
+2026-10-19 05:46:38.666 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:119 - 
+======================================================================
+2026-10-19 05:46:38.666 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:120 - 🔍 [DEBUG] DiT TEXT ENCODER INPUT (Inference)
+2026-10-19 05:46:38.666 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:121 - ======================================================================
+2026-10-19 05:46:38.666 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:122 - text_prompt:
+# Instruction
+Fill the audio semantic mask based on the given conditions:
+
+# Caption
+Instrumental funk, 112 BPM, syncopated electric bass, expressive electric piano, muted guitar replies, dry drums with ghost notes. A memorable motif develops across sections, space between phrases, stripped-down break and resolved ending. No vocals.
+
+# Metas
+- bpm: 112
+- timesignature: N/A
+- keyscale: N/A
+- duration: 30 seconds
+<|endoftext|>
+
+2026-10-19 05:46:38.666 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:123 - ======================================================================
+2026-10-19 05:46:38.666 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:124 - lyrics_text:
+# Languages
+unknown
+
+# Lyric
+[Instrumental]<|endoftext|>
+2026-10-19 05:46:38.666 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:125 - ======================================================================
+
+2026-10-19 05:46:38.670 | INFO     | acestep.core.generation.handler.conditioning_embed:preprocess_batch:110 - [preprocess_batch] Inferring prompt embeddings...
+2026-10-19 05:46:38.702 | INFO     | acestep.core.generation.handler.conditioning_embed:preprocess_batch:113 - [preprocess_batch] Inferring lyric embeddings...
+2026-10-19 05:46:38.702 | INFO     | acestep.core.generation.handler.service_generate_execute:_execute_service_generate_diffusion:173 - [service_generate] Generating audio... (DiT backend: PyTorch (cuda))
+2026-10-19 05:46:38.727 | INFO     | acestep.core.generation.handler.service_generate_execute:_execute_service_generate_diffusion:276 - [service_generate] DiT diffusion via PyTorch (cuda)...
+2026-10-19 05:46:38.756 | INFO     | acestep.models.common.dcw_correction:__init__:98 - [DCW] Active — mode=double, scaler=0.0500, high_scaler=0.0200, wavelet='haar'
+2026-10-19 05:46:39.248 | INFO     | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:42 - [generate_music] Model generation completed. Decoding latents...
+2026-10-19 05:46:39.249 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:64 - [generate_music] pred_latents: torch.Size([1, 750, 64]), dtype=torch.bfloat16
+2026-10-19 05:46:39.249 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:65 - [generate_music] time_costs: {'encoder_time_cost': 0.02574634552001953, 'diffusion_time_cost': 0.49513673782348633, 'diffusion_per_step_time_cost': 0.06189209222793579, 'total_time_cost': 0.5208830833435059, 'offload_time_cost': 0.0}
+2026-10-19 05:46:39.250 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:127 - [generate_music] Decoding latents with VAE...
+2026-10-19 05:46:39.252 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:136 - [generate_music] Before VAE decode: allocated=6.09GB, max=6.14GB
+2026-10-19 05:46:39.253 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:154 - [generate_music] Effective free VRAM before VAE decode: 17.15 GB
+2026-10-19 05:46:39.253 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:172 - [generate_music] Using tiled VAE decode to reduce VRAM usage...
+2026-10-19 05:46:39.253 | DEBUG    | acestep.core.generation.handler.memory_utils:_get_auto_decode_chunk_size:108 - [_get_auto_decode_chunk_size] Effective free VRAM: 17.15 GB
+2026-10-19 05:46:39.254 | DEBUG    | acestep.core.generation.handler.memory_utils:_should_offload_wav_to_cpu:131 - [_should_offload_wav_to_cpu] Effective free VRAM: 17.15 GB
+2026-10-19 05:46:39.254 | INFO     | acestep.core.generation.handler.vae_decode:tiled_decode:56 - [tiled_decode] chunk_size=384, offload_wav_to_cpu=True, latents_shape=torch.Size([1, 64, 750])
+2026-10-19 05:46:39.493 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:193 - [generate_music] After VAE decode: allocated=6.09GB, max=7.05GB
+2026-10-19 05:46:39.689 | INFO     | acestep.core.generation.handler.generate_music_payload:_build_generate_music_success_payload:38 - [generate_music] VAE decode completed. Preparing audio tensors...
+2026-10-19 05:46:39.690 | INFO     | acestep.core.generation.handler.generate_music_payload:_build_generate_music_success_payload:50 - [generate_music] Done! Generated 1 audio tensors.
+2026-10-19 05:46:39.921 | INFO     | acestep.inference:generate_music:1002 - [Normalization] Audio 0 BEFORE: Peak=1.0000, Target=-1.0dB
+2026-10-19 05:46:39.932 | INFO     | acestep.inference:generate_music:1007 - [Normalization] Audio 0 AFTER: Peak=0.8913
+2026-10-19 05:46:39.942 | DEBUG    | acestep.audio_utils:save_audio:319 - [AudioSaver] Saved audio to /workspace/ace-step/blood-results/raw/step80/funk/282d255c-ae2a-acb5-a5b4-5ca938302034.wav (wav, 48000Hz)
+RENDERED step80 funk
+2026-10-19 05:46:39.995 | INFO     | acestep.inference:generate_music:662 - [generate_music] LLM usage decision: thinking=False, use_cot_caption=False, use_cot_language=False, use_cot_metas=False, need_lm_for_cot=False, llm_initialized=False, use_lm=False
+2026-10-19 05:46:39.996 | INFO     | acestep.core.generation.handler.generate_music:generate_music:313 - [generate_music] Turbo model detected: overriding guidance_scale 7.0 -> 1.0 (turbo does not use CFG).
+2026-10-19 05:46:40.004 | INFO     | acestep.core.generation.handler.generate_music:generate_music:329 - [generate_music] Starting generation...
+2026-10-19 05:46:40.004 | INFO     | acestep.core.generation.handler.generate_music:generate_music:332 - [generate_music] Preparing inputs...
+2026-10-19 05:46:40.206 | INFO     | acestep.core.generation.handler.generate_music:_vram_preflight_check:157 - [generate_music] VRAM pre-flight: 17.16 GB free, ~0.80 GB needed (batch=1, duration=30s, mode=turbo).
+2026-10-19 05:46:40.218 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:119 - 
+======================================================================
+2026-10-19 05:46:40.218 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:120 - 🔍 [DEBUG] DiT TEXT ENCODER INPUT (Inference)
+2026-10-19 05:46:40.218 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:121 - ======================================================================
+2026-10-19 05:46:40.218 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:122 - text_prompt:
+# Instruction
+Fill the audio semantic mask based on the given conditions:
+
+# Caption
+Instrumental hip hop, 92 BPM, warm electric bass, swung drums, expressive Rhodes and short guitar answers. A short recurring motif, varied drum fills, contrasting middle section and musical ending. No vocals.
+
+# Metas
+- bpm: 92
+- timesignature: N/A
+- keyscale: N/A
+- duration: 30 seconds
+<|endoftext|>
+
+2026-10-19 05:46:40.218 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:123 - ======================================================================
+2026-10-19 05:46:40.218 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:124 - lyrics_text:
+# Languages
+unknown
+
+# Lyric
+[Instrumental]<|endoftext|>
+2026-10-19 05:46:40.218 | INFO     | acestep.core.generation.handler.conditioning_text:_prepare_text_conditioning_inputs:125 - ======================================================================
+
+2026-10-19 05:46:40.222 | INFO     | acestep.core.generation.handler.conditioning_embed:preprocess_batch:110 - [preprocess_batch] Inferring prompt embeddings...
+2026-10-19 05:46:40.253 | INFO     | acestep.core.generation.handler.conditioning_embed:preprocess_batch:113 - [preprocess_batch] Inferring lyric embeddings...
+2026-10-19 05:46:40.253 | INFO     | acestep.core.generation.handler.service_generate_execute:_execute_service_generate_diffusion:173 - [service_generate] Generating audio... (DiT backend: PyTorch (cuda))
+2026-10-19 05:46:40.279 | INFO     | acestep.core.generation.handler.service_generate_execute:_execute_service_generate_diffusion:276 - [service_generate] DiT diffusion via PyTorch (cuda)...
+2026-10-19 05:46:40.307 | INFO     | acestep.models.common.dcw_correction:__init__:98 - [DCW] Active — mode=double, scaler=0.0500, high_scaler=0.0200, wavelet='haar'
+2026-10-19 05:46:40.819 | INFO     | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:42 - [generate_music] Model generation completed. Decoding latents...
+2026-10-19 05:46:40.820 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:64 - [generate_music] pred_latents: torch.Size([1, 750, 64]), dtype=torch.bfloat16
+2026-10-19 05:46:40.820 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_prepare_generate_music_decode_state:65 - [generate_music] time_costs: {'encoder_time_cost': 0.024447202682495117, 'diffusion_time_cost': 0.5149502754211426, 'diffusion_per_step_time_cost': 0.06436878442764282, 'total_time_cost': 0.5393974781036377, 'offload_time_cost': 0.0}
+2026-10-19 05:46:40.821 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:127 - [generate_music] Decoding latents with VAE...
+2026-10-19 05:46:40.823 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:136 - [generate_music] Before VAE decode: allocated=6.09GB, max=6.14GB
+2026-10-19 05:46:40.823 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:154 - [generate_music] Effective free VRAM before VAE decode: 17.15 GB
+2026-10-19 05:46:40.823 | INFO     | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:172 - [generate_music] Using tiled VAE decode to reduce VRAM usage...
+2026-10-19 05:46:40.824 | DEBUG    | acestep.core.generation.handler.memory_utils:_get_auto_decode_chunk_size:108 - [_get_auto_decode_chunk_size] Effective free VRAM: 17.15 GB
+2026-10-19 05:46:40.824 | DEBUG    | acestep.core.generation.handler.memory_utils:_should_offload_wav_to_cpu:131 - [_should_offload_wav_to_cpu] Effective free VRAM: 17.15 GB
+2026-10-19 05:46:40.824 | INFO     | acestep.core.generation.handler.vae_decode:tiled_decode:56 - [tiled_decode] chunk_size=384, offload_wav_to_cpu=True, latents_shape=torch.Size([1, 64, 750])
+2026-10-19 05:46:41.063 | DEBUG    | acestep.core.generation.handler.generate_music_decode:_decode_generate_music_pred_latents:193 - [generate_music] After VAE decode: allocated=6.09GB, max=7.05GB
+2026-10-19 05:46:41.258 | INFO     | acestep.core.generation.handler.generate_music_payload:_build_generate_music_success_payload:38 - [generate_music] VAE decode completed. Preparing audio tensors...
+2026-10-19 05:46:41.258 | INFO     | acestep.core.generation.handler.generate_music_payload:_build_generate_music_success_payload:50 - [generate_music] Done! Generated 1 audio tensors.
+2026-10-19 05:46:41.486 | INFO     | acestep.inference:generate_music:1002 - [Normalization] Audio 0 BEFORE: Peak=1.0000, Target=-1.0dB
+2026-10-19 05:46:41.497 | INFO     | acestep.inference:generate_music:1007 - [Normalization] Audio 0 AFTER: Peak=0.8913
+2026-10-19 05:46:41.508 | DEBUG    | acestep.audio_utils:save_audio:319 - [AudioSaver] Saved audio to /workspace/ace-step/blood-results/raw/step80/hiphop/540e218e-8328-9252-ca1f-4728543b858d.wav (wav, 48000Hz)
+RENDERED step80 hiphop

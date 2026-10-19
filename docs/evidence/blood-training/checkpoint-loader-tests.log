@@ -1,0 +1,11 @@
+test_changed_audio_refused (test_cloud_style_trial.InputScope.test_changed_audio_refused) ... ok
+test_checkpoint_decimal_path_uses_safe_explicit_adapter_name (test_cloud_style_trial.InputScope.test_checkpoint_decimal_path_uses_safe_explicit_adapter_name) ... ok
+test_duplicate_refused (test_cloud_style_trial.InputScope.test_duplicate_refused) ... ok
+test_exact_approved_manifest (test_cloud_style_trial.InputScope.test_exact_approved_manifest) ... ok
+test_holdout_refused (test_cloud_style_trial.InputScope.test_holdout_refused) ... ok
+test_path_escape_refused (test_cloud_style_trial.InputScope.test_path_escape_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.035s
+
+OK

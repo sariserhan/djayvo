@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "gain_inverted_dc_shifted_copy": {
+    "correlation": 0.9999999999999835,
+    "target_seconds": 3.03075
+  },
+  "noisy_copy": {
+    "correlation": 0.9869169150237775,
+    "target_seconds": 3.03075
+  },
+  "unrelated_noise": {
+    "correlation": 0.04527552911168208,
+    "target_seconds": 2.08725
+  },
+  "brute_force_agreement_silence_nonfinite_nonoverlap": "PASS"
+}

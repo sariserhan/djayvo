@@ -1,0 +1,27 @@
+{
+  "label": "djayvo-blood-training-20261019",
+  "offer": {
+    "id": 53535519,
+    "machine_id": 5314,
+    "host_id": 42512,
+    "gpu_name": "RTX 3090",
+    "gpu_ram": 24576,
+    "num_gpus": 1,
+    "cpu_ram": 42228,
+    "geolocation": "Oklahoma, US",
+    "reliability": 0.996661,
+    "dph_total": 0.24962962962962962,
+    "storage_cost": 0.2666666666666666,
+    "inet_down_cost": 0.00527084,
+    "inet_up_cost": 0.005239586666666666,
+    "hourly_with_60gb_disk": 0.27185185185185184,
+    "reserved_lease_plus_transfer": 1.1743293037037037
+  },
+  "starting_credit": 9.7149660355,
+  "credit_before_this_attempt": 9.7149660355,
+  "started_at": 1792388242.601592,
+  "deadline": 1792395442.601593,
+  "budget_usd": 10,
+  "disk_gb": 60,
+  "id": 56677520
+}

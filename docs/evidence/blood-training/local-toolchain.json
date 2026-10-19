@@ -1,0 +1,8 @@
+{
+  "python": "3.15.0",
+  "platform": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+  "cpu": "Apple M5",
+  "ram_bytes": 17179869184,
+  "macos": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241\n",
+  "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers"
+}

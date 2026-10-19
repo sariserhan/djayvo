@@ -1,0 +1,15 @@
+{
+  "rental_deletion": "PASS",
+  "instance_id": 56677520,
+  "active_instance_ids": [],
+  "temporary_account_key_deletion": "PASS",
+  "temporary_local_key_deletion": "PASS",
+  "preexisting_keys_preserved": "PASS",
+  "verified_at": 1792388887.374419,
+  "elapsed_seconds_to_delete_request": 644.1859667301178,
+  "credit_before": 9.7149660355,
+  "credit_after": 9.5956307975,
+  "observed_account_debit_usd": 0.11933523799999968,
+  "final_billing": "PARTIAL: provider billing may settle later; this is the current observed account delta",
+  "budget_usd": 10
+}

@@ -1,0 +1,7 @@
+{
+  "scripts/cloud_music_setup.sh": "019cbe98064c191113620cb687d684b6c50acb55c602e0bbc44ad85d40bb42d4",
+  "scripts/cloud_style_trial.py": "4c57f6598de20bc69e080b73add19bbf06663e463424a21082abb04bf5304c91",
+  "scripts/cloud_blood_trial.py": "029f3f656aa58c22b39e64a295a20d06147ce4f215d5bfd7305066f04af52016",
+  "scripts/cloud_blood_run.sh": "6a06d0d7bf4b2f710e5116d0ac142ae3043a047084d74fd27cd6b7bffd1a04d7",
+  "docs/evidence/blood-training/train-measured.py": "0f04dd47e2034fecd90f39fcbcc169e4dc8428a5e5d6b29e730bae6659ff4dad"
+}

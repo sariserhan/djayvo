@@ -1,0 +1,75 @@
+{
+  "quality": "NOT RUN",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "torch": "2.10.0+cu128",
+  "cuda": "12.8",
+  "adapter": null,
+  "cases": [
+    {
+      "mode": "base",
+      "name": "bass-a",
+      "seed": 7441,
+      "bpm": 140,
+      "caption": "Instrumental bass music, 140 BPM, half-time drums, syncopated modulated bass phrases with rests, percussive vocal-like synth textures, call and response between bass and melodic lead. Sparse opening, a developing rhythmic motif, contrasting break, varied return and deliberate ending. No vocals.",
+      "file": "base-bass-a.wav",
+      "sha256": "cd0429818f5b180aa73f8730912c623de272f916ebd93003ad0a4bbcae61aa38",
+      "peak": 0.891265869140625,
+      "rms": 0.07135899364948273,
+      "seconds": 2.3438721940037794,
+      "peak_allocated_gib": 7.032329559326172
+    },
+    {
+      "mode": "base",
+      "name": "bass-b",
+      "seed": 7442,
+      "bpm": 140,
+      "caption": "Instrumental bass music, 140 BPM, half-time drums, syncopated modulated bass phrases with rests, percussive vocal-like synth textures, call and response between bass and melodic lead. Sparse opening, a developing rhythmic motif, contrasting break, varied return and deliberate ending. No vocals.",
+      "file": "base-bass-b.wav",
+      "sha256": "23d8b13fde08b9c5004cfe60aa721f9071642fa06e6ae4ffed7741f5032d3595",
+      "peak": 0.891265869140625,
+      "rms": 0.1177595779299736,
+      "seconds": 1.4697770309867337,
+      "peak_allocated_gib": 7.032746315002441
+    },
+    {
+      "mode": "base",
+      "name": "funk",
+      "seed": 8123,
+      "bpm": 112,
+      "caption": "Instrumental funk, 112 BPM, syncopated electric bass, expressive electric piano, muted guitar replies, dry drums with ghost notes. A memorable motif develops across sections, space between phrases, stripped-down break and resolved ending. No vocals.",
+      "file": "base-funk.wav",
+      "sha256": "57654380ca0770da8d6624bcd8bfc786503c68f0c99f541a9e7e9a62e7c7b548",
+      "peak": 0.891265869140625,
+      "rms": 0.1510363519191742,
+      "seconds": 1.3302485720487311,
+      "peak_allocated_gib": 7.032675743103027
+    },
+    {
+      "mode": "base",
+      "name": "hiphop",
+      "seed": 9123,
+      "bpm": 92,
+      "caption": "Instrumental hip hop, 92 BPM, warm electric bass, swung drums, expressive Rhodes and short guitar answers. A short recurring motif, varied drum fills, contrasting middle section and musical ending. No vocals.",
+      "file": "base-hiphop.wav",
+      "sha256": "7fa5b9056a219157ff22ca356d585d71892c840d77d36c7c549c24ae1d9de0bf",
+      "peak": 0.891265869140625,
+      "rms": 0.11190234124660492,
+      "seconds": 1.323263079044409,
+      "peak_allocated_gib": 7.03214168548584
+    }
+  ],
+  "repeat_control": {
+    "mode": "base-repeat",
+    "name": "bass-a",
+    "seed": 7441,
+    "bpm": 140,
+    "caption": "Instrumental bass music, 140 BPM, half-time drums, syncopated modulated bass phrases with rests, percussive vocal-like synth textures, call and response between bass and melodic lead. Sparse opening, a developing rhythmic motif, contrasting break, varied return and deliberate ending. No vocals.",
+    "file": "base-repeat-bass-a.wav",
+    "sha256": "cd0429818f5b180aa73f8730912c623de272f916ebd93003ad0a4bbcae61aa38",
+    "peak": 0.891265869140625,
+    "rms": 0.07135899364948273,
+    "seconds": 1.3263633020105772,
+    "peak_allocated_gib": 7.032329559326172,
+    "pcm_exact": true
+  }
+}

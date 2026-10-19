@@ -7,6 +7,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from prepare_blood_training import prepare, digest
+import cloud_blood_trial as cloud
 
 
 class BloodTrainingTests(unittest.TestCase):
@@ -60,6 +61,53 @@ class BloodTrainingTests(unittest.TestCase):
         self.assertFalse((self.output / 'preparation.json').exists())
         self.assertFalse((self.output / 'blood-training-input.tar.gz').exists())
         self.assertEqual(digest(self.source), self.data['source_sha256'])
+
+
+class CloudInputTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.rows, self.samples = [], []
+        for n in range(1, 17):
+            name = f'blood-{n:02d}.wav'
+            (self.root / name).write_bytes(b'test WAV bytes')
+            self.rows.append({'file': name, 'sha256': digest(self.root / name), 'split': 'train',
+                              'source_id': 'blood_club', 'source_sha256': cloud.SOURCE_SHA})
+            self.samples.append({'filename': name, 'audio_path': str(self.root / name),
+                                 'caption': 'Music with rhythmic bass and drum patterns.'})
+        self.addCleanup(patch.stopall)
+        patch.object(cloud, 'INPUT', self.root).start()
+        wav = patch.object(cloud.wave, 'open').start().return_value.__enter__.return_value
+        for method, value in [('getframerate', 48000), ('getnchannels', 2), ('getsampwidth', 2), ('getnframes', 1440000)]:
+            getattr(wav, method).return_value = value
+
+    def check(self):
+        (self.root / 'manifest.json').write_text(json.dumps(self.rows))
+        (self.root / 'dataset.json').write_text(json.dumps({'samples': self.samples}))
+        return cloud.checked_inputs()
+
+    def test_exact_training_scope_and_tamper_detection(self):
+        self.assertEqual(len(self.check()), 16)
+        (self.root / 'blood-01.wav').write_bytes(b'changed')
+        with self.assertRaisesRegex(ValueError, 'hash'):
+            self.check()
+
+    def test_rejects_holdout_and_duplicate(self):
+        self.rows[0]['split'] = 'holdout'
+        with self.assertRaisesRegex(ValueError, 'holdout'):
+            self.check()
+        self.rows[0] = self.rows[1].copy()
+        with self.assertRaisesRegex(ValueError, 'sixteen'):
+            self.check()
+
+    def test_rejects_foreign_path_and_extra_files(self):
+        self.samples[0]['audio_path'] = '/workspace/owner-voice.wav'
+        with self.assertRaisesRegex(ValueError, 'path'):
+            self.check()
+        (self.root / 'extra.wav').touch()
+        with self.assertRaisesRegex(ValueError, 'Unexpected'):
+            self.check()
 
 
 if __name__ == '__main__':

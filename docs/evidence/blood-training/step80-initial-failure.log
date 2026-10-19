@@ -1,0 +1,165 @@
+2026-10-19 05:44:38.441 | DEBUG    | acestep.core.generation.handler.init_service_memory_basic:_apply_malloc_mmap_threshold:50 - [memory] Set M_MMAP_THRESHOLD=131072 for immediate OS reclaim of large frees
+2026-10-19 05:44:42.388 | WARNING  | acestep.training.trainer:<module>:40 - bitsandbytes not installed. Using standard AdamW.
+2026-10-19 05:44:42.425 | INFO     | acestep.gpu_config:get_gpu_memory_gb:578 - CUDA GPU detected: NVIDIA GeForce RTX 3090 (23.6 GB)
+2026-10-19 05:44:42.552 | INFO     | acestep.core.generation.handler.init_service_loader:_load_main_model_from_checkpoint:174 - [initialize_service] Attempting to load model with attention implementation: sdpa
+2026-10-19 05:44:45.995 | INFO     | acestep.core.generation.handler.lora.lifecycle:add_lora:250 - VRAM before LoRA load: 5.89GB
+2026-10-19 05:44:48.407 | INFO     | acestep.core.generation.handler.lora.lifecycle:add_lora:260 - Base decoder state_dict backed up to CPU (3004.9MB)
+2026-10-19 05:44:48.407 | INFO     | acestep.core.generation.handler.lora.lifecycle:add_lora:268 - Loading LoRA adapter from /workspace/ace-step/blood-results/adapter/checkpoints/epoch_5_loss_1.2063 as 'epoch_5_loss_1.2063'
+2026-10-19 05:44:48.411 | ERROR    | acestep.core.generation.handler.lora.lifecycle:add_lora:315 - Failed to load LoRA adapter
+Traceback (most recent call last):
+
+  File "/workspace/cloud_blood_trial.py", line 100, in <module>
+    shared.compare(row['path'], modes=(args.phase,), adapter_mode=args.phase, report_name=args.phase + '.json')
+    │      │       │                   │    │                     │    │                  │    └ 'step80'
+    │      │       │                   │    │                     │    │                  └ Namespace(phase='step80')
+    │      │       │                   │    │                     │    └ 'step80'
+    │      │       │                   │    │                     └ Namespace(phase='step80')
+    │      │       │                   │    └ 'step80'
+    │      │       │                   └ Namespace(phase='step80')
+    │      │       └ {'epoch': 5, 'step': 80, 'path': '/workspace/ace-step/blood-results/adapter/checkpoints/epoch_5_loss_1.2063', 'sha256': '4aa5...
+    │      └ <function compare at 0x70ee44c34540>
+    └ <module 'cloud_style_trial' from '/workspace/cloud_style_trial.py'>
+
+  File "/workspace/cloud_style_trial.py", line 127, in compare
+    status = dit.load_lora(adapter)
+             │   │         └ '/workspace/ace-step/blood-results/adapter/checkpoints/epoch_5_loss_1.2063'
+             │   └ <function load_lora at 0x70ece6afdb20>
+             └ <acestep.handler.AceStepHandler object at 0x70ee44c62480>
+
+  File "/workspace/ace-step/acestep/core/generation/handler/lora/lifecycle.py", line 322, in load_lora
+    message = self.add_lora(lora_path, adapter_name=None)
+              │    │        └ '/workspace/ace-step/blood-results/adapter/checkpoints/epoch_5_loss_1.2063'
+              │    └ <function add_lora at 0x70ece6afda80>
+              └ <acestep.handler.AceStepHandler object at 0x70ee44c62480>
+
+> File "/workspace/ace-step/acestep/core/generation/handler/lora/lifecycle.py", line 269, in add_lora
+    self.model.decoder = PeftModel.from_pretrained(
+    │    │               │         └ <classmethod(<function PeftModel.from_pretrained at 0x70ecf4993e20>)>
+    │    │               └ <class 'peft.peft_model.PeftModel'>
+    │    └ AceStepConditionGenerationModel(
+    │        (decoder): AceStepDiTModel(
+    │          (rotary_emb): Qwen3RotaryEmbedding()
+    │          (layers): ModuleL...
+    └ <acestep.handler.AceStepHandler object at 0x70ee44c62480>
+
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/peft/peft_model.py", line 560, in from_pretrained
+    model = MODEL_TYPE_TO_PEFT_MODEL_MAPPING[config.task_type](
+            │                                │      └ 'FEATURE_EXTRACTION'
+            │                                └ LoraConfig(task_type='FEATURE_EXTRACTION', peft_type=<PeftType.LORA: 'LORA'>, auto_mapping=None, peft_version='0.18.1', base_...
+            └ {'SEQ_CLS': <class 'peft.peft_model.PeftModelForSequenceClassification'>, 'SEQ_2_SEQ_LM': <class 'peft.peft_model.PeftModelFo...
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/peft/peft_model.py", line 2966, in __init__
+    super().__init__(model, peft_config, adapter_name, **kwargs)
+                     │      │            │               └ {'autocast_adapter_dtype': True, 'low_cpu_mem_usage': False}
+                     │      │            └ 'epoch_5_loss_1.2063'
+                     │      └ LoraConfig(task_type='FEATURE_EXTRACTION', peft_type=<PeftType.LORA: 'LORA'>, auto_mapping=None, peft_version='0.18.1', base_...
+                     └ AceStepDiTModel(
+                         (rotary_emb): Qwen3RotaryEmbedding()
+                         (layers): ModuleList(
+                           (0-23): 24 x AceStepDiTLayer(
+                             (self...
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/peft/peft_model.py", line 129, in __init__
+    self.base_model = cls(model, {adapter_name: peft_config}, adapter_name)
+    │                 │   │       │             │             └ 'epoch_5_loss_1.2063'
+    │                 │   │       │             └ LoraConfig(task_type='FEATURE_EXTRACTION', peft_type=<PeftType.LORA: 'LORA'>, auto_mapping=None, peft_version='0.18.1', base_...
+    │                 │   │       └ 'epoch_5_loss_1.2063'
+    │                 │   └ AceStepDiTModel(
+    │                 │       (rotary_emb): Qwen3RotaryEmbedding()
+    │                 │       (layers): ModuleList(
+    │                 │         (0-23): 24 x AceStepDiTLayer(
+    │                 │           (self...
+    │                 └ <class 'peft.tuners.lora.model.LoraModel'>
+    └ PeftModelForFeatureExtraction()
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/peft/tuners/tuners_utils.py", line 298, in __init__
+    self.inject_adapter(self.model, adapter_name, low_cpu_mem_usage=low_cpu_mem_usage, state_dict=state_dict)
+    │    │              │           │                               │                             └ None
+    │    │              │           │                               └ False
+    │    │              │           └ 'epoch_5_loss_1.2063'
+    │    │              └ LoraModel(
+    │    │                  (model): AceStepDiTModel(
+    │    │                    (rotary_emb): Qwen3RotaryEmbedding()
+    │    │                    (layers): ModuleList(
+    │    │                      (0-23): 24 x ...
+    │    └ <function BaseTuner.inject_adapter at 0x70ecf49b39c0>
+    └ LoraModel(
+        (model): AceStepDiTModel(
+          (rotary_emb): Qwen3RotaryEmbedding()
+          (layers): ModuleList(
+            (0-23): 24 x ...
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/peft/tuners/tuners_utils.py", line 804, in inject_adapter
+    self._create_and_replace(
+    │    └ <function LoraModel._create_and_replace at 0x70ecf4a0e840>
+    └ LoraModel(
+        (model): AceStepDiTModel(
+          (rotary_emb): Qwen3RotaryEmbedding()
+          (layers): ModuleList(
+            (0-23): 24 x ...
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/peft/tuners/lora/model.py", line 250, in _create_and_replace
+    new_module = self._create_new_module(lora_config, adapter_name, target, device_map=device_map, **kwargs)
+                 │    │                  │            │             │                  │             └ {'r': 16, 'lora_alpha': 32, 'lora_dropout': 0.1, 'fan_in_fan_out': False, 'init_lora_weights': True, 'use_rslora': False, 'us...
+                 │    │                  │            │             │                  └ None
+                 │    │                  │            │             └ Linear(in_features=2048, out_features=2048, bias=False)
+                 │    │                  │            └ 'epoch_5_loss_1.2063'
+                 │    │                  └ LoraConfig(task_type='FEATURE_EXTRACTION', peft_type=<PeftType.LORA: 'LORA'>, auto_mapping=None, peft_version='0.18.1', base_...
+                 │    └ <staticmethod(<function LoraModel._create_new_module at 0x70ecf4a0e980>)>
+                 └ LoraModel(
+                     (model): AceStepDiTModel(
+                       (rotary_emb): Qwen3RotaryEmbedding()
+                       (layers): ModuleList(
+                         (0-23): 24 x ...
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/peft/tuners/lora/model.py", line 337, in _create_new_module
+    new_module = dispatcher(target, adapter_name, lora_config=lora_config, **kwargs)
+                 │          │       │                         │              └ {'device_map': None, 'r': 16, 'lora_alpha': 32, 'lora_dropout': 0.1, 'fan_in_fan_out': False, 'init_lora_weights': True, 'use...
+                 │          │       │                         └ LoraConfig(task_type='FEATURE_EXTRACTION', peft_type=<PeftType.LORA: 'LORA'>, auto_mapping=None, peft_version='0.18.1', base_...
+                 │          │       └ 'epoch_5_loss_1.2063'
+                 │          └ Linear(in_features=2048, out_features=2048, bias=False)
+                 └ <function dispatch_default at 0x70ecf49f2200>
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/peft/tuners/lora/layer.py", line 2282, in dispatch_default
+    new_module = Linear(target, adapter_name, **kwargs)
+                 │      │       │               └ {'device_map': None, 'r': 16, 'lora_alpha': 32, 'lora_dropout': 0.1, 'fan_in_fan_out': False, 'init_lora_weights': True, 'use...
+                 │      │       └ 'epoch_5_loss_1.2063'
+                 │      └ Linear(in_features=2048, out_features=2048, bias=False)
+                 └ <class 'peft.tuners.lora.layer.Linear'>
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/peft/tuners/lora/layer.py", line 623, in __init__
+    self.update_layer(
+    │    └ <function LoraLayer.update_layer at 0x70ecf49dafc0>
+    └ lora.Linear(
+        (base_layer): Linear(in_features=2048, out_features=2048, bias=False)
+        (lora_dropout): ModuleDict()
+        (lora_A...
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/peft/tuners/lora/layer.py", line 193, in update_layer
+    self.lora_dropout.update(nn.ModuleDict({adapter_name: lora_dropout_layer}))
+    │                        │  │           │             └ Dropout(p=0.1, inplace=False)
+    │                        │  │           └ 'epoch_5_loss_1.2063'
+    │                        │  └ <class 'torch.nn.modules.container.ModuleDict'>
+    │                        └ <module 'torch.nn' from '/workspace/ace-step/.venv/lib/python3.12/site-packages/torch/nn/__init__.py'>
+    └ lora.Linear(
+        (base_layer): Linear(in_features=2048, out_features=2048, bias=False)
+        (lora_dropout): ModuleDict()
+        (lora_A...
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 551, in __init__
+    self.update(modules)
+    │    │      └ {'epoch_5_loss_1.2063': Dropout(p=0.1, inplace=False)}
+    │    └ <function ModuleDict.update at 0x70ed15ab6c00>
+    └ ModuleDict()
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 623, in update
+    self[key] = module
+    │    │      └ Dropout(p=0.1, inplace=False)
+    │    └ 'epoch_5_loss_1.2063'
+    └ ModuleDict()
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 558, in __setitem__
+    self.add_module(key, module)
+    │    │          │    └ Dropout(p=0.1, inplace=False)
+    │    │          └ 'epoch_5_loss_1.2063'
+    │    └ <function Module.add_module at 0x70ed15e51800>
+    └ ModuleDict()
+  File "/workspace/ace-step/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 661, in add_module
+    raise KeyError(f'module name can\'t contain ".", got: {name}')
+                                                           └ 'epoch_5_loss_1.2063'
+
+KeyError: 'module name can\'t contain ".", got: epoch_5_loss_1.2063'
+Traceback (most recent call last):
+  File "/workspace/cloud_blood_trial.py", line 100, in <module>
+    shared.compare(row['path'], modes=(args.phase,), adapter_mode=args.phase, report_name=args.phase + '.json')
+  File "/workspace/cloud_style_trial.py", line 129, in compare
+    raise RuntimeError('Adapter load did not confirm success: ' + status)
+RuntimeError: Adapter load did not confirm success: ❌ Failed to load LoRA: 'module name can\'t contain ".", got: epoch_5_loss_1.2063'

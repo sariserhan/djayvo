@@ -16,13 +16,21 @@ import review_style_trial as review
 
 class ReviewFlow(unittest.TestCase):
     def test_verified_pairs_matching_and_preservation(self):
+        self.run_review(False)
+
+    def test_three_way_blood_comparison(self):
+        self.run_review(True)
+
+    def run_review(self, blood):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             results = root / 'results'
             results.mkdir()
-            (root / 'docs/evidence/style-training').mkdir(parents=True)
+            evidence = root / ('docs/evidence/blood-training' if blood else 'docs/evidence/style-training')
+            evidence.mkdir(parents=True)
             cases = []
-            for mode, frequency in [('base', 220), ('adapter', 330)]:
+            modes = [('base', 220), ('step80', 330), ('step160', 440)] if blood else [('base', 220), ('adapter', 330)]
+            for mode, frequency in modes:
                 samples = array.array('h', (int(6000 * math.sin(2 * math.pi * frequency * i / 48000))
                                            for i in range(48000)))
                 stereo = array.array('h', (sample for value in samples for sample in (value, value)))
@@ -45,26 +53,28 @@ class ReviewFlow(unittest.TestCase):
             try:
                 os.chdir(root)
                 with patch.object(review, 'ROOT', results):
-                    review.main()
+                    review.main(blood)
                     page = (root / 'review/index.html').read_text()
-                    self.assertEqual(page.count('<audio '), 8)
+                    self.assertEqual(page.count('<audio '), 4 * len(modes))
                     self.assertIn('&lt;synthetic &amp; test&gt;', page)
                     self.assertNotIn('base-bass', page)
                     self.assertNotIn('adapter-bass', page)
-                    measured = json.loads((root / 'docs/evidence/style-training/output-measurements.json').read_text())
+                    self.assertNotIn('step80-bass', page)
+                    self.assertNotIn('step160-bass', page)
+                    measured = json.loads((evidence / 'output-measurements.json').read_text())
                     self.assertEqual(measured['human_listening'], 'NOT RUN')
                     self.assertTrue(all(abs(row['lufs'] - measured['target_lufs']) <= .2 for row in measured['review']))
                     with self.assertRaises(FileExistsError):
-                        review.main()
-                    repeated.write_bytes((results / 'adapter-bass-a.wav').read_bytes())
+                        review.main(blood)
+                    repeated.write_bytes((results / f'{modes[1][0]}-bass-a.wav').read_bytes())
                     report['repeat_control']['sha256'] = hashlib.sha256(repeated.read_bytes()).hexdigest()
                     (results / 'comparison.json').write_text(json.dumps(report))
                     with self.assertRaisesRegex(ValueError, 'Base repeat differs'):
-                        review.main()
+                        review.main(blood)
                     path = results / cases[0]['file']
                     path.write_bytes(b'corrupt')
                     with self.assertRaisesRegex(ValueError, 'checksum'):
-                        review.main()
+                        review.main(blood)
             finally:
                 os.chdir(previous)
 

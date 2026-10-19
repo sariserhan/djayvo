@@ -11,23 +11,26 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest training preparation — 2026-10-19: owner selected **blood_club** for
-training. [Blood Club package](blood-training.md): preparation **PASS**, 16
-training candidates (480 s), four same-session held-out passages (120 s), no
-full-scale samples, verified archive and originals. Dataset/pairing **PARTIAL**;
-new GPU/upload/optimizer training and quality **NOT RUN**. A concrete $10,
-one-instance/two-hour research run is prepared for the separate spending/upload
-authorization required by AGENTS.md. No new compute was rented.
+Latest training execution — 2026-10-19: [Blood Club GPU trial](blood-training-run.md)
+**PASS (technical)**: 16 clips, verified 80/160-step adapters, 13 retrieved WAVs,
+exact base repeat, 38 local regression tests and confirmed rental/key cleanup.
+Fixed decimal checkpoint-name loading and resumed without retraining or another
+rental. Four matched A/B/C groups: `http://127.0.0.1:4195/review/`. No strong
+training-waveform matches; repeated passages remain. Dataset/pairing and novelty
+**PARTIAL**; independent generalization, human preference and production release
+**NOT RUN**. No checkpoint promoted. Observed debit $0.124824; final billing
+**PARTIAL**. Originals, master, previous adapter and C++ engine preserved.
 
 
-Current priority — 2026-10-19: the owner deferred streaming-library integration
+Prior contour experiment — 2026-10-19: the owner deferred streaming-library integration
 and prioritized musical intelligence and training quality. [Source-contour
 research](source-contour.md) produced four matched pairs and passed Mac/Linux/
 WASM technical checks. Owner response: **“No clear difference.”** Audible-benefit
 promotion **FAIL**; owner listening **PARTIAL**. The candidate patch and audio
 are retained as research; the original engine and local studio were restored.
-New model training and formal quality **NOT RUN**; paired source/response data
-and independent evaluation remain missing. No paid compute or upload occurred.
+That contour experiment did not train a model or use paid compute. Its formal
+quality remained **NOT RUN**. The later Blood Club run above adds style-training
+evidence; paired source/response data and independent evaluation remain missing.
 
 
 Latest local validation: [Linux browser portability and recording fallback](linux-browser.md).

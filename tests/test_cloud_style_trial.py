@@ -3,7 +3,9 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import patch
+import sys
+from types import SimpleNamespace
+from unittest.mock import patch, MagicMock
 
 spec = importlib.util.spec_from_file_location('style_trial', Path(__file__).resolve().parents[1] / 'scripts/cloud_style_trial.py')
 trial = importlib.util.module_from_spec(spec)
@@ -11,6 +13,23 @@ spec.loader.exec_module(trial)
 
 
 class InputScope(unittest.TestCase):
+    def test_checkpoint_decimal_path_uses_safe_explicit_adapter_name(self):
+        dit = MagicMock()
+        dit.initialize_service.return_value = ('ready', True)
+        dit.add_lora.return_value = '✅ loaded'
+        dit.set_lora_scale.side_effect = RuntimeError('stop before GPU rendering')
+        modules = {'soundfile': MagicMock(), 'torch': MagicMock(),
+                   'acestep': MagicMock(), 'acestep.handler': SimpleNamespace(AceStepHandler=lambda: dit),
+                   'acestep.llm_inference': SimpleNamespace(LLMHandler=MagicMock()),
+                   'acestep.inference': SimpleNamespace(GenerationParams=MagicMock(), GenerationConfig=MagicMock(), generate_music=MagicMock())}
+        modules['torch'].__version__ = 'test-double'
+        with patch.dict(sys.modules, modules):
+            with self.assertRaisesRegex(RuntimeError, 'stop before GPU'):
+                trial.compare('/checkpoints/epoch_5_loss_1.2063', modes=('step80',), adapter_mode='step80')
+        dit.add_lora.assert_called_once_with('/checkpoints/epoch_5_loss_1.2063', adapter_name='step80')
+        dit.load_lora.assert_not_called()
+        dit.set_lora_scale.assert_called_once_with(.7)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

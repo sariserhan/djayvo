@@ -101,7 +101,7 @@ def preprocess():
         raise RuntimeError('Incomplete preprocessing')
 
 
-def compare(adapter):
+def compare(adapter, modes=('base', 'base-repeat', 'adapter'), adapter_mode='adapter', report_name='comparison.json'):
     import random
     import numpy as np
     import soundfile as sf
@@ -122,9 +122,10 @@ def compare(adapter):
         raise RuntimeError(status)
     report = {'quality': 'NOT RUN', 'gpu': torch.cuda.get_device_name(), 'torch': torch.__version__,
               'cuda': torch.version.cuda, 'adapter': adapter, 'cases': []}
-    for mode in ('base', 'base-repeat', 'adapter'):
-        if mode == 'adapter':
-            status = dit.load_lora(adapter)
+    for mode in modes:
+        if mode == adapter_mode:
+            # Checkpoint directory names contain decimal losses, invalid in PEFT module names.
+            status = dit.add_lora(adapter, adapter_name=adapter_mode)
             if '✅' not in status:
                 raise RuntimeError('Adapter load did not confirm success: ' + status)
             scale_status = dit.set_lora_scale(0.7)
@@ -170,7 +171,7 @@ def compare(adapter):
                     raise ValueError('Base repeat differs; adapter attribution needs investigation')
             else:
                 report['cases'].append(receipt)
-            save('comparison.json', report)
+            save(report_name, report)
             print('RENDERED', mode, name, flush=True)
 
 

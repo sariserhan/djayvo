@@ -1,0 +1,29 @@
+{
+  "training": "PASS",
+  "checkpoint_loader_recovery": "PASS",
+  "input_scope": "PASS",
+  "transfer": "PASS",
+  "audio_format_and_repeat": "PASS",
+  "local_tests": {
+    "status": "PASS",
+    "count": 38
+  },
+  "http_audio_delivery": "PASS",
+  "rendered_browser_interaction": "NOT RUN",
+  "waveform_diagnostic_execution": "PASS",
+  "perceptual_novelty": "PARTIAL",
+  "dataset_pairing": "PARTIAL",
+  "independent_generalization": "NOT RUN",
+  "human_listening": "NOT RUN",
+  "production_promotion": "NOT RUN",
+  "new_event_frame_agreement": "NOT RUN",
+  "source_preservation": "PASS",
+  "cleanup": "PASS",
+  "final_billing": "PARTIAL",
+  "observed_debit_usd": 0.12482357300000047,
+  "review_url": "http://127.0.0.1:4195/review/",
+  "target_lufs": -22.2,
+  "review_true_peak_max_dbfs": -2.0,
+  "training_overlap_flagged_windows": 0,
+  "repetition_flagged_windows": 37
+}

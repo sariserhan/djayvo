@@ -1,0 +1,12 @@
+test_decode_failure_never_publishes_ready_archive (test_blood_training.BloodTrainingTests.test_decode_failure_never_publishes_ready_archive) ... ok
+test_duration_bounds_before_extract (test_blood_training.BloodTrainingTests.test_duration_bounds_before_extract) ... ok
+test_permission_and_source_hash_precede_any_decode (test_blood_training.BloodTrainingTests.test_permission_and_source_hash_precede_any_decode) ... ok
+test_preserves_existing_output (test_blood_training.BloodTrainingTests.test_preserves_existing_output) ... ok
+test_exact_training_scope_and_tamper_detection (test_blood_training.CloudInputTests.test_exact_training_scope_and_tamper_detection) ... ok
+test_rejects_foreign_path_and_extra_files (test_blood_training.CloudInputTests.test_rejects_foreign_path_and_extra_files) ... ok
+test_rejects_holdout_and_duplicate (test_blood_training.CloudInputTests.test_rejects_holdout_and_duplicate) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.013s
+
+OK

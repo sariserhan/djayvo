@@ -1,0 +1,63 @@
+{
+  "quality": "NOT RUN",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "torch": "2.10.0+cu128",
+  "cuda": "12.8",
+  "adapter": "/workspace/ace-step/blood-results/adapter/checkpoints/epoch_5_loss_1.2063",
+  "cases": [
+    {
+      "mode": "step80",
+      "name": "bass-a",
+      "seed": 7441,
+      "bpm": 140,
+      "caption": "Instrumental bass music, 140 BPM, half-time drums, syncopated modulated bass phrases with rests, percussive vocal-like synth textures, call and response between bass and melodic lead. Sparse opening, a developing rhythmic motif, contrasting break, varied return and deliberate ending. No vocals.",
+      "file": "step80-bass-a.wav",
+      "sha256": "c8c6b063f1504f111d36a0ff20b8403f373169b77541fae665a600924fdbed78",
+      "peak": 0.891265869140625,
+      "rms": 0.07060349732637405,
+      "seconds": 2.446094612008892,
+      "peak_allocated_gib": 7.052837371826172
+    },
+    {
+      "mode": "step80",
+      "name": "bass-b",
+      "seed": 7442,
+      "bpm": 140,
+      "caption": "Instrumental bass music, 140 BPM, half-time drums, syncopated modulated bass phrases with rests, percussive vocal-like synth textures, call and response between bass and melodic lead. Sparse opening, a developing rhythmic motif, contrasting break, varied return and deliberate ending. No vocals.",
+      "file": "step80-bass-b.wav",
+      "sha256": "bdcddb05eda44a0c4cd00bd9c017dd019f49f071dc55c2ac407e848b3659b2ee",
+      "peak": 0.891265869140625,
+      "rms": 0.12570242583751678,
+      "seconds": 1.5511017050012015,
+      "peak_allocated_gib": 7.053254127502441
+    },
+    {
+      "mode": "step80",
+      "name": "funk",
+      "seed": 8123,
+      "bpm": 112,
+      "caption": "Instrumental funk, 112 BPM, syncopated electric bass, expressive electric piano, muted guitar replies, dry drums with ghost notes. A memorable motif develops across sections, space between phrases, stripped-down break and resolved ending. No vocals.",
+      "file": "step80-funk.wav",
+      "sha256": "649562256fda19842dd27b41548bc0592d28119fe37d88740594515785749690",
+      "peak": 0.891265869140625,
+      "rms": 0.15994754433631897,
+      "seconds": 1.5521330070332624,
+      "peak_allocated_gib": 7.053183555603027
+    },
+    {
+      "mode": "step80",
+      "name": "hiphop",
+      "seed": 9123,
+      "bpm": 92,
+      "caption": "Instrumental hip hop, 92 BPM, warm electric bass, swung drums, expressive Rhodes and short guitar answers. A short recurring motif, varied drum fills, contrasting middle section and musical ending. No vocals.",
+      "file": "step80-hiphop.wav",
+      "sha256": "c529ebd77a585b80ceccda7d61bf0a24ba96ce67fc2f67076fc6c20395223a7c",
+      "peak": 0.891265869140625,
+      "rms": 0.12438097596168518,
+      "seconds": 1.5649752450408414,
+      "peak_allocated_gib": 7.05264949798584
+    }
+  ],
+  "adapter_load_status": "\u2705 LoRA 'step80' loaded from /workspace/ace-step/blood-results/adapter/checkpoints/epoch_5_loss_1.2063",
+  "adapter_scale_status": "\u2705 LoRA scale (step80): 0.70"
+}

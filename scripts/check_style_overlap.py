@@ -115,20 +115,28 @@ def calibration():
 
 
 def main():
+    global ROOT
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--blood', action='store_true')
     parser.add_argument('--output', type=Path, required=True, help='New JSON evidence path')
     args = parser.parse_args()
     if args.output.exists():
         parser.error('Output exists; preserve earlier evidence')
     started = time.monotonic()
     controls = calibration()  # Fixed controls/threshold run before real audio.
-    accepted = json.loads((ROOT / 'results/accepted.json').read_text())['samples']
+    if args.blood:
+        ROOT = Path('renders/blood-training-20261019')
+        accepted = json.loads((ROOT / 'train-input/dataset.json').read_text())['samples']
+        assert {item['filename'] for item in accepted} == {f'blood-{n:02d}.wav' for n in range(1, 17)}
+    else:
+        accepted = json.loads((ROOT / 'results/accepted.json').read_text())['samples']
+        assert {item['filename'] for item in accepted} == {'x-01.wav', 'x-02.wav', 'x-06.wav', 'y-04.wav', 'y-05.wav'}
+    modes = ('base', 'step80', 'step160') if args.blood else ('base', 'adapter')
     comparison = json.loads((ROOT / 'results/comparison.json').read_text())
-    assert {item['filename'] for item in accepted} == {'x-01.wav', 'x-02.wav', 'x-06.wav', 'y-04.wav', 'y-05.wav'}
     cases = comparison['cases']
-    assert {c['file'] for c in cases} == {f'{mode}-{name}.wav' for mode in ('base', 'adapter')
+    assert {c['file'] for c in cases} == {f'{mode}-{name}.wav' for mode in modes
                                         for name in ('bass-a', 'bass-b', 'funk', 'hiphop')}
-    inputs = {ROOT / 'headroom' / item['filename']: item['sha256'] for item in accepted}
+    inputs = {ROOT / ('train-input' if args.blood else 'headroom') / item['filename']: item['sha256'] for item in accepted}
     inputs.update({ROOT / 'results' / c['file']: c['sha256'] for c in cases})
     signals = {path.name: decode(path, sha) for path, sha in inputs.items()}
     training, repetition, seeds = [], [], []
@@ -138,7 +146,7 @@ def main():
             training.append({'output': name, 'training_excerpt': item['filename'],
                              **scan(signals[name], signals[item['filename']])})
         repetition.append({'output': name, **scan(signals[name], signals[name], same_file=True)})
-    for mode in ('base', 'adapter'):
+    for mode in modes:
         a, b = f'{mode}-bass-a.wav', f'{mode}-bass-b.wav'
         seeds.append({'query': a, 'target': b, **scan(signals[a], signals[b])})
     for path, sha in inputs.items():
@@ -152,7 +160,7 @@ def main():
                          'limitations': 'No pitch/time invariance, stereo-side search, melody/identity test or proof of originality. Short copies and boundary-straddling copies may be missed. Natural musical repetition can correlate.'},
               'calibration': controls, 'training_overlap': training, 'within_output_repetition': repetition,
               'same_brief_different_seed': seeds, 'inputs_sha256': {str(p): sha for p, sha in inputs.items()},
-              'input_preservation': 'PASS', 'holdout_z': 'NOT RUN: excluded from this diagnostic',
+              'input_preservation': 'PASS', 'holdout' if args.blood else 'holdout_z': 'NOT RUN: excluded from this diagnostic',
               'toolchain': {'python': platform.python_version(), 'numpy': np.__version__,
                             'scipy': scipy.__version__, 'platform': platform.platform(),
                             'ffmpeg': subprocess.check_output(['ffmpeg', '-version'], text=True).splitlines()[0]},

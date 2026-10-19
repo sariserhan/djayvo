@@ -1,0 +1,29 @@
+test_changed_audio_refused (test_cloud_style_trial.InputScope.test_changed_audio_refused) ... ok
+test_checkpoint_decimal_path_uses_safe_explicit_adapter_name (test_cloud_style_trial.InputScope.test_checkpoint_decimal_path_uses_safe_explicit_adapter_name) ... ok
+test_duplicate_refused (test_cloud_style_trial.InputScope.test_duplicate_refused) ... ok
+test_exact_approved_manifest (test_cloud_style_trial.InputScope.test_exact_approved_manifest) ... ok
+test_holdout_refused (test_cloud_style_trial.InputScope.test_holdout_refused) ... ok
+test_path_escape_refused (test_cloud_style_trial.InputScope.test_path_escape_refused) ... ok
+test_changed_source (test_style_candidates.CandidateTests.test_changed_source) ... ok
+test_float_overshoot_is_attenuated_before_pcm_conversion (test_style_candidates.CandidateTests.test_float_overshoot_is_attenuated_before_pcm_conversion) ... ok
+test_invalid_duration (test_style_candidates.CandidateTests.test_invalid_duration) ... ok
+test_missing_permission (test_style_candidates.CandidateTests.test_missing_permission) ... ok
+test_nonoverlapping_bounded_windows (test_style_candidates.CandidateTests.test_nonoverlapping_bounded_windows) ... ok
+test_path_escape (test_style_candidates.CandidateTests.test_path_escape) ... ok
+test_preserve_existing_output (test_style_candidates.CandidateTests.test_preserve_existing_output) ... ok
+test_split_change (test_style_candidates.CandidateTests.test_split_change) ... ok
+test_calibration_and_direct_agreement (test_style_overlap.WaveformOverlap.test_calibration_and_direct_agreement) ... ok
+test_decoded_audio_and_corruption (test_style_overlap.WaveformOverlap.test_decoded_audio_and_corruption) ... [in#0 @ 0xb68c20000] Error opening input: Invalid data found when processing input
+Error opening input file /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmp3qsebvfr/invalid.wav.
+Error opening input files: Invalid data found when processing input
+ok
+test_existing_evidence_is_preserved (test_style_overlap.WaveformOverlap.test_existing_evidence_is_preserved) ... ok
+test_three_way_blood_comparison (test_style_review.ReviewFlow.test_three_way_blood_comparison) ... ok
+test_verified_pairs_matching_and_preservation (test_style_review.ReviewFlow.test_verified_pairs_matching_and_preservation) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 37.480s
+
+OK
+PASS: 12 retrieved WAVs, four comparison groups, loudness-matched review; listening NOT RUN
+PASS: 8 retrieved WAVs, four comparison groups, loudness-matched review; listening NOT RUN

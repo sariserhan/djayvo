@@ -1,0 +1,20 @@
+[
+  {
+    "epoch": 5,
+    "step": 80,
+    "path": "/workspace/ace-step/blood-results/adapter/checkpoints/epoch_5_loss_1.2063",
+    "sha256": "4aa53903d275bfbdbf3217d2afc14d612fe2eb8ee943491d26df73e9fe667de4",
+    "tensors": 384,
+    "parameters": 11010048,
+    "nonzero_lora_b_tensors": 192
+  },
+  {
+    "epoch": 10,
+    "step": 160,
+    "path": "/workspace/ace-step/blood-results/adapter/checkpoints/epoch_10_loss_1.0058",
+    "sha256": "51c6ccde5205751fdcb63051468601ad8e496379ef54ec64ed56bf3b5d94c5ea",
+    "tensors": 384,
+    "parameters": 11010048,
+    "nonzero_lora_b_tensors": 192
+  }
+]

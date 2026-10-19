@@ -1,0 +1,7 @@
+/workspace/ace-step/.venv/lib/python3.12/site-packages/torchao/quantization/quant_api.py:1811: SyntaxWarning: invalid escape sequence '\.'
+  """Configuration class for applying different quantization configs to modules or parameters based on their fully qualified names (FQNs).
+2026-10-19 05:42:59.578 | WARNING  | acestep.training.trainer:<module>:40 - bitsandbytes not installed. Using standard AdamW.
+/workspace/ace-step/.venv/lib/python3.12/site-packages/torch/nn/utils/weight_norm.py:144: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+[INFO] Loading model from /workspace/ace-step/checkpoints/acestep-v15-turbo (variant=turbo, dtype=torch.bfloat16)
+[OK] Model loaded with attn_implementation=sdpa

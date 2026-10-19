@@ -1,7 +1,10 @@
 # Blood Club training preparation
 
-2026-10-19. **Preparation PASS; dataset readiness PARTIAL; optimizer training,
-cloud upload and musical quality NOT RUN.** No new rental or spending occurred.
+2026-10-19. **Preparation PASS; dataset readiness PARTIAL.** This report records
+preparation before the paid trial. The subsequently authorized
+[completed training run](blood-training-run.md) has **training, retrieval and
+cleanup PASS; musical quality NOT RUN**. Its results supersede the pending
+execution statuses in this historical preparation ledger.
 
 The owner replied **“train with blood_club”** to the request for cleared complete
 improvisation recordings. This selects the existing `~/Downloads/blood_club.mp3`
@@ -36,7 +39,7 @@ are **not independent sessions**, and similar musical material may recur across
 the gap. This package supports a bounded style experiment, not a claim that the
 model has learned general improvisation or that a recording was human-made.
 
-## Concrete next run
+## Original run proposal
 
 The [run plan](evidence/blood-training/run-plan.json) proposes one new Vast.ai
 RTX 3090 rental, at most two hours and a $10 ceiling, with no replacement host
@@ -67,13 +70,12 @@ the 16 reference clips and their manifests are proposed for temporary upload.
 No streaming-library integration, production promotion or deployment is included.
 The shared C++ engine is unchanged and remains the fallback.
 
-The new file-specific training instruction authorizes preparation and training
-research; the previous paid approvals covered completed individual rentals.
-[AGENTS.md](../AGENTS.md) still states: **“new paid compute, publication and
-monetization still need explicit authorization.”** Approval of this new bounded
-rental and temporary reference upload is the remaining execution decision.
-Current provider availability and pricing have not been queried. No API keys
-were read for preparation.
+At preparation time, the previous paid approvals covered completed individual
+rentals. [AGENTS.md](../AGENTS.md) requires explicit authorization for new paid
+compute. The owner subsequently approved this bounded rental and temporary
+upload with **“yes continue”**; see the [authorization](evidence/blood-training/authorization.json)
+and [executed run](blood-training-run.md). No new rental is authorized by these
+completed-run records.
 
 ## Evidence and reproduction
 
