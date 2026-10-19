@@ -1,0 +1,2 @@
+PASS: 4 retained worklet captures; protected inputs unchanged; listening NOT RUN
+PASS exact before/after/Mac/Linux voice PCM, 75 WAVs per platform, 11 remix WASM cases and four real-time browser captures

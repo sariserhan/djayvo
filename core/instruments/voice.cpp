@@ -6,6 +6,7 @@
 namespace djayvo {
 namespace {
 constexpr double pi = 3.14159265358979323846;
+#include "full_band_interpolation.inc"
 struct InstrumentSample {
     Instrument instrument;
     int root_midi;
@@ -65,11 +66,16 @@ void Voice::start(const Event& e,std::uint32_t rate) noexcept {
                            instrument_==Instrument::bass?1200+3500*brightness:2500+8000*brightness;
     tone_=0;tone_alpha_=1-std::exp(-2*pi*std::min(cutoff_hz,rate*0.45)/rate);
     left_gain_=e.left_gain;right_gain_=e.right_gain;
-    // Precompute short windowed-sinc fractional-delay kernels at note start.
     // A lower cutoff when reading faster suppresses downsampling aliases.
     const double cutoff=0.94*std::min(1.0,1.0/sample_step_);
     // Reuse only identical coefficients; note state above still resets every time.
     if (cutoff == interpolation_cutoff_) return;
+    // Read-only coefficients avoid trigonometry on common cold note starts.
+    if (cutoff == 0.94) {
+        interpolation_ = full_band_interpolation;
+        interpolation_cutoff_ = cutoff;
+        return;
+    }
     for (std::size_t phase=0;phase<interpolation_.size();++phase) {
         double total=0;
         for (int tap=0;tap<16;++tap) {

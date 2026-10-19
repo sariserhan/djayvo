@@ -1,0 +1,2 @@
+PASS final source/protected hashes, exact table reproduction, 15+15 suites, 2 sanitizer suites, 30 web/4 Linux probe checks
+Initial receipt-check assertion expected CTest 3 wording on CTest 4; corrected parser accepts both. The underlying test logs passed throughout.

@@ -1,0 +1,22 @@
+[
+  {
+    "url": "http://127.0.0.1:4173/engine/djayvo_live.wasm",
+    "sha256": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "status": "PASS"
+  },
+  {
+    "url": "http://127.0.0.1:4173/engine/djayvo_web.wasm",
+    "sha256": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1",
+    "status": "PASS"
+  },
+  {
+    "url": "http://127.0.0.1:3000/studio/engine/djayvo_live.wasm",
+    "sha256": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "status": "PASS"
+  },
+  {
+    "url": "http://127.0.0.1:3000/studio/engine/djayvo_web.wasm",
+    "sha256": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1",
+    "status": "PASS"
+  }
+]

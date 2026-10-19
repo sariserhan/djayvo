@@ -12,6 +12,17 @@ new paid compute, publication and monetization still need explicit authorization
 
 
 Latest shared-engine optimization — 2026-10-19:
+[Precomputed common interpolation coefficients](interpolation-table.md) **PASS
+(technical)**: empty-cache sampled-note setup avoids the common filter calculation.
+Mac/Linux 15/15 suites, sanitizer, exact coefficients, 75 unchanged WAVs per
+platform, 1,170 old/new WASM note cases, 11 remix comparisons and four browser
+captures pass. All compared PCM and event frames agree exactly. Native load
+has no observed deadline misses this run; three browser timing screens still
+**FAIL** (3–10 ms). Overall live/production readiness **PARTIAL**; physical latency,
+venue and musical quality **NOT RUN**. Master and recordings preserved; local
+bundles refreshed and isolated Linux services stopped.
+
+Previous shared-engine optimization — 2026-10-19:
 [Reuse unchanged interpolation coefficients](interpolation-cache.md) **PASS
 (technical)**: sampled voices reuse only an exactly matching cutoff table,
 reset all note state and recompute on change. Mac/Linux 15/15 suites, sanitizer,

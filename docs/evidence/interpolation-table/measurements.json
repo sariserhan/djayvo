@@ -1,0 +1,566 @@
+{
+  "status": "PASS",
+  "scope": "precomputed common coefficients and preserved tested output, not overall live readiness",
+  "probe_pcm_sha256": "dc87f980ea16401d22c8020de245c05e42822ccc4cbf8b7e8756780f7c1e2d9a",
+  "probe_samples_per_run": 1536000,
+  "microbenchmarks": {
+    "mac": {
+      "trials": [
+        {
+          "stage": "before",
+          "trial": 1,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 40.583,
+              "p50_us": 8.666,
+              "p95_us": 17.584,
+              "max_us": 54.292
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 6.5,
+              "p50_us": 5.625,
+              "p95_us": 6.333,
+              "max_us": 15.458
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 5.459,
+              "p50_us": 5.083,
+              "p95_us": 5.709,
+              "max_us": 18.375
+            }
+          ]
+        },
+        {
+          "stage": "after",
+          "trial": 1,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 19.458,
+              "p50_us": 0.167,
+              "p95_us": 0.25,
+              "max_us": 19.458
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 0.292,
+              "p50_us": 0.125,
+              "p95_us": 0.167,
+              "max_us": 0.5
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 0.125,
+              "p50_us": 0.084,
+              "p95_us": 6.959,
+              "max_us": 12.542
+            }
+          ]
+        },
+        {
+          "stage": "before",
+          "trial": 2,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 7.458,
+              "p50_us": 5.416,
+              "p95_us": 5.5,
+              "max_us": 20.833
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 5.167,
+              "p50_us": 5.041,
+              "p95_us": 5.125,
+              "max_us": 13.041
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 5.041,
+              "p50_us": 5.125,
+              "p95_us": 14.375,
+              "max_us": 225.042
+            }
+          ]
+        },
+        {
+          "stage": "after",
+          "trial": 2,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 1.458,
+              "p50_us": 0.083,
+              "p95_us": 0.125,
+              "max_us": 1.458
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 0.208,
+              "p50_us": 0.083,
+              "p95_us": 0.125,
+              "max_us": 0.417
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 0.083,
+              "p50_us": 0.083,
+              "p95_us": 6.292,
+              "max_us": 23.125
+            }
+          ]
+        },
+        {
+          "stage": "before",
+          "trial": 3,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 7,
+              "p50_us": 5.083,
+              "p95_us": 5.25,
+              "max_us": 17.584
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 5.167,
+              "p50_us": 5.083,
+              "p95_us": 5.167,
+              "max_us": 17.625
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 5.084,
+              "p50_us": 5.084,
+              "p95_us": 5.625,
+              "max_us": 21.375
+            }
+          ]
+        },
+        {
+          "stage": "after",
+          "trial": 3,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 1.625,
+              "p50_us": 0.083,
+              "p95_us": 0.125,
+              "max_us": 1.625
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 0.125,
+              "p50_us": 0.083,
+              "p95_us": 0.125,
+              "max_us": 0.459
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 0.125,
+              "p50_us": 0.083,
+              "p95_us": 5.666,
+              "max_us": 8.167
+            }
+          ]
+        }
+      ],
+      "median_note_start_us_by_case": {
+        "before": [
+          5.416,
+          5.083,
+          5.084
+        ],
+        "after": [
+          0.083,
+          0.083,
+          0.083
+        ]
+      }
+    },
+    "linux": {
+      "trials": [
+        {
+          "stage": "before",
+          "trial": 1,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 18.791,
+              "p50_us": 8.148,
+              "p95_us": 10.06,
+              "max_us": 26.107
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 8.065,
+              "p50_us": 8.192,
+              "p95_us": 10.23,
+              "max_us": 147.748
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 7.943,
+              "p50_us": 8.192,
+              "p95_us": 10.438,
+              "max_us": 53.102
+            }
+          ]
+        },
+        {
+          "stage": "after",
+          "trial": 1,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 5.614,
+              "p50_us": 0.25,
+              "p95_us": 0.333,
+              "max_us": 5.614
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 0.291,
+              "p50_us": 0.25,
+              "p95_us": 0.333,
+              "max_us": 2.162
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 0.25,
+              "p50_us": 0.25,
+              "p95_us": 10.271,
+              "max_us": 17.174
+            }
+          ]
+        },
+        {
+          "stage": "before",
+          "trial": 2,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 16.259,
+              "p50_us": 8.068,
+              "p95_us": 10.147,
+              "max_us": 19.419
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 7.984,
+              "p50_us": 8.067,
+              "p95_us": 11.477,
+              "max_us": 631.496
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 7.86,
+              "p50_us": 8.234,
+              "p95_us": 10.687,
+              "max_us": 43.414
+            }
+          ]
+        },
+        {
+          "stage": "after",
+          "trial": 2,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 6.903,
+              "p50_us": 0.25,
+              "p95_us": 0.374,
+              "max_us": 6.903
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 0.25,
+              "p50_us": 0.25,
+              "p95_us": 0.333,
+              "max_us": 6.821
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 0.208,
+              "p50_us": 0.249,
+              "p95_us": 10.524,
+              "max_us": 33.4
+            }
+          ]
+        },
+        {
+          "stage": "before",
+          "trial": 3,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 27.369,
+              "p50_us": 8.152,
+              "p95_us": 10.066,
+              "max_us": 27.369
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 7.903,
+              "p50_us": 8.069,
+              "p95_us": 10.149,
+              "max_us": 29.781
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 7.986,
+              "p50_us": 8.235,
+              "p95_us": 10.607,
+              "max_us": 22.337
+            }
+          ]
+        },
+        {
+          "stage": "after",
+          "trial": 3,
+          "cases": [
+            {
+              "scenario": 0,
+              "notes": 2000,
+              "first_us": 5.907,
+              "p50_us": 0.25,
+              "p95_us": 0.374,
+              "max_us": 5.907
+            },
+            {
+              "scenario": 1,
+              "notes": 2000,
+              "first_us": 0.25,
+              "p50_us": 0.25,
+              "p95_us": 0.333,
+              "max_us": 0.541
+            },
+            {
+              "scenario": 2,
+              "notes": 2000,
+              "first_us": 0.207,
+              "p50_us": 0.25,
+              "p95_us": 10.482,
+              "max_us": 18.468
+            }
+          ]
+        }
+      ],
+      "median_note_start_us_by_case": {
+        "before": [
+          8.148,
+          8.069,
+          8.234
+        ],
+        "after": [
+          0.25,
+          0.25,
+          0.25
+        ]
+      }
+    }
+  },
+  "replay_plans": 14,
+  "replay_wavs_per_platform": 75,
+  "replay_event_frames": "PASS",
+  "max_pcm_difference": 0,
+  "rms_pcm_difference": 0,
+  "wasm_fixture_cases": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "club": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "funk": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "call_response": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "hybrid": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "wasm_owner_cases": {
+    "status": "PASS",
+    "node": "v22.23.1",
+    "output": "renders/active-vocals-20261019/owner-wasm-vLEm5r",
+    "cases": 4,
+    "plan_decisions_event_frames_pcm": "exact",
+    "analysis_absolute_tolerance": 1e-12,
+    "analysis_differences": [],
+    "max_pcm_difference": 0,
+    "rms_pcm_difference": 0,
+    "rendered_browser_interaction": "NOT RUN"
+  },
+  "native_load": {
+    "sample_rate": 48000,
+    "block_frames": 128,
+    "virtual_seconds": 600,
+    "repeats": 60,
+    "blocks": 225000,
+    "events_per_repeat": 320,
+    "wall_seconds": 10.116842625,
+    "callback_allocations": 0,
+    "peak": 0.724759042263031,
+    "rms": 0.1245789616032406,
+    "max_active": 32,
+    "quiet_blocks": 11100,
+    "deadline_us": 2666.6666666666665,
+    "blocks_over_deadline": 0,
+    "all": {
+      "count": 225000,
+      "p50_us": 35.791,
+      "p95_us": 152.375,
+      "p99_us": 159.834,
+      "p100_us": 1266.208
+    },
+    "attack": {
+      "count": 300,
+      "p50_us": 61.625,
+      "p95_us": 137.833,
+      "p99_us": 156.209,
+      "p100_us": 369.5
+    },
+    "other": {
+      "count": 224700,
+      "p50_us": 35.791,
+      "p95_us": 152.375,
+      "p99_us": 159.834,
+      "p100_us": 1266.208
+    },
+    "misses": []
+  },
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "files_sha256": {
+    "core/include/djayvo/audio.h": "0b556b7f731d5bbf257d152dae1b591311283ffd8366fe98ba66e20df7a2c523",
+    "core/instruments/voice.cpp": "d0bc8893083ac9f14a94f53e6f561a4316b0e09584e86361f4101b47a4b52120",
+    "core/tests/tests.cpp": "396d770309332e747a130291e01df51348e2fe185454ab49a53ef5e38bdebc09",
+    "core/instruments/full_band_interpolation.inc": "b5188a1756bb48d352361601443644e17088e6df3ade3b2682126afb6875a547",
+    "scripts/prepare_interpolation.py": "b03ba08a3fcfec20ca62beb19d288b80cbe3cacbf499a2653b0fd3bff0ee6343",
+    "build-mac/libdjayvo_core.a": "8d241d13914ea0485c4cc1d10611000e705c7fc036bbc2b104bb9c1d170e9d9b",
+    "dist/web/engine/djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "dist/web/engine/djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1",
+    "renders/interpolation-table-20261019/before.a": "89342bf8d37581b6b78af298665472a075044738c4fec514ba3993633ded93b8",
+    "renders/interpolation-table-20261019/before.wasm": "460c7830ab1c209be9df3bb39ed11e1c543fe10accf4f54271107f7833681623"
+  },
+  "common_empty_cache_note_setup": "PASS",
+  "other_cutoffs": "original computation",
+  "wasm_cold_notes": {
+    "status": "PASS",
+    "node": "v22.23.1",
+    "cases": 1170,
+    "stereo_frames": 1198080,
+    "peak": 0.35626766085624695,
+    "pcm_sha256": "e5693a20aa8e14bf96cececbc041e9cd5b2a09b3a7bdcf9ed882de112e242486",
+    "before_wasm_sha256": "460c7830ab1c209be9df3bb39ed11e1c543fe10accf4f54271107f7833681623",
+    "after_wasm_sha256": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "maximum_pcm_difference": 0,
+    "rms_pcm_difference": 0,
+    "command_frames": "exact: note on 0, off 256",
+    "timing": "NOT RUN",
+    "listening": "NOT RUN"
+  },
+  "live_wasm_byte_growth": 4206,
+  "all_timing_outlier_causes": "PARTIAL",
+  "musical_quality": "NOT RUN",
+  "physical_latency": "NOT RUN",
+  "production": "PARTIAL"
+}

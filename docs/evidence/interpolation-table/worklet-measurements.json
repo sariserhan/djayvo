@@ -1,0 +1,353 @@
+{
+  "runs": [
+    {
+      "artifacts": "renders/worklet-load-chromium-GTKXZC",
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "runner": {
+        "node": "v22.23.1",
+        "platform": "darwin",
+        "architecture": "arm64"
+      },
+      "wall_seconds": 60.0835,
+      "frames": 2880000,
+      "blocks": 22500,
+      "signal": "PASS",
+      "max_pcm_difference": 0,
+      "rms_pcm_difference": 0,
+      "peak": 0.724759042263031,
+      "command_count": 1920,
+      "command_frames": "PASS",
+      "independent_counter": "PASS",
+      "timestamp_gaps": 0,
+      "timestamp_continuity": "PASS",
+      "browser_reported_underruns": "PASS",
+      "playback_stats": {
+        "underrunDuration": 0,
+        "underrunEvents": 0,
+        "totalDuration": 59.097222,
+        "averageLatency": 0.024496,
+        "minimumLatency": 0,
+        "maximumLatency": 0.024514
+      },
+      "reported_base_latency_seconds": 0.005333333333333333,
+      "reported_output_latency_seconds": 0.024,
+      "physical_latency": "NOT RUN",
+      "render_clock": "Date.now",
+      "coarse_duration_ms_counts": {
+        "0.0": 14763,
+        "1.0": 7030,
+        "2.0": 707
+      },
+      "coarse_wall_max_ms": 2.0,
+      "coarse_readings_over_quantum": 0,
+      "coarse_wall_threshold_screen": "PASS",
+      "largest_coarse_readings": [
+        {
+          "frame": 96128,
+          "program_frame": 96128,
+          "milliseconds": 2.0,
+          "commands": 0
+        },
+        {
+          "frame": 96256,
+          "program_frame": 96256,
+          "milliseconds": 2.0,
+          "commands": 0
+        },
+        {
+          "frame": 97920,
+          "program_frame": 97920,
+          "milliseconds": 2.0,
+          "commands": 0
+        },
+        {
+          "frame": 98048,
+          "program_frame": 98048,
+          "milliseconds": 2.0,
+          "commands": 0
+        },
+        {
+          "frame": 98432,
+          "program_frame": 98432,
+          "milliseconds": 2.0,
+          "commands": 0
+        }
+      ],
+      "strict_128_frame_deadline": "PARTIAL",
+      "worklet_allocations": "NOT RUN",
+      "playable_wav": "renders/worklet-load-chromium-GTKXZC/captured-instruments.wav",
+      "wav_sha256": "bb5e9d5e13494191303173f9a1bbccee1a9de3cb8f7a36810fb4e3df11346602",
+      "file_sha256": {
+        "result.json": "f6cdd52209a71b3821b9c42c2244f2ddf6c35c5f0ab41cf601f497707137ce11",
+        "capture.f32": "b42c008dc84af3e0e524176639611034ac3944d1364eaf007d4ba6ead4d24289",
+        "timestamps.f64": "a78fb13e687c12af19bb5d9fae502c4027f219c114b54f4651d6804a35e9bfd4",
+        "durations.f64": "9c7d6eeb1dd46c9cb3c213e021d3dc476ca853055acd94572baab1f614ebc706",
+        "commands.u32": "e5622f03901cc6df3fa39f05c67f3db15048a662ab919412d323a951915204f3"
+      }
+    },
+    {
+      "artifacts": "renders/worklet-load-webkit-Q4WGza",
+      "browser": "webkit",
+      "version": "26.5",
+      "runner": {
+        "node": "v22.23.1",
+        "platform": "darwin",
+        "architecture": "arm64"
+      },
+      "wall_seconds": 60.051,
+      "frames": 2880000,
+      "blocks": 22500,
+      "signal": "PASS",
+      "max_pcm_difference": 0,
+      "rms_pcm_difference": 0,
+      "peak": 0.724759042263031,
+      "command_count": 1920,
+      "command_frames": "PASS",
+      "independent_counter": "PASS",
+      "timestamp_gaps": 0,
+      "timestamp_continuity": "PASS",
+      "browser_reported_underruns": "NOT RUN",
+      "playback_stats": null,
+      "reported_base_latency_seconds": 0.0026666666666666666,
+      "reported_output_latency_seconds": 0,
+      "physical_latency": "NOT RUN",
+      "render_clock": "Date.now",
+      "coarse_duration_ms_counts": {
+        "0.0": 13498,
+        "1.0": 7704,
+        "2.0": 1293,
+        "3.0": 5
+      },
+      "coarse_wall_max_ms": 3.0,
+      "coarse_readings_over_quantum": 5,
+      "coarse_wall_threshold_screen": "FAIL",
+      "largest_coarse_readings": [
+        {
+          "frame": 0,
+          "program_frame": 0,
+          "milliseconds": 3.0,
+          "commands": 32
+        },
+        {
+          "frame": 96000,
+          "program_frame": 96000,
+          "milliseconds": 3.0,
+          "commands": 32
+        },
+        {
+          "frame": 1920000,
+          "program_frame": 0,
+          "milliseconds": 3.0,
+          "commands": 32
+        },
+        {
+          "frame": 2068864,
+          "program_frame": 148864,
+          "milliseconds": 3.0,
+          "commands": 0
+        },
+        {
+          "frame": 2548096,
+          "program_frame": 148096,
+          "milliseconds": 3.0,
+          "commands": 0
+        }
+      ],
+      "strict_128_frame_deadline": "PARTIAL",
+      "worklet_allocations": "NOT RUN",
+      "playable_wav": "renders/worklet-load-webkit-Q4WGza/captured-instruments.wav",
+      "wav_sha256": "bb5e9d5e13494191303173f9a1bbccee1a9de3cb8f7a36810fb4e3df11346602",
+      "file_sha256": {
+        "result.json": "251c7f12736cb2caba28ae2bd047c1196dce2129150dc2ae3298e79b0d862873",
+        "capture.f32": "b42c008dc84af3e0e524176639611034ac3944d1364eaf007d4ba6ead4d24289",
+        "timestamps.f64": "a78fb13e687c12af19bb5d9fae502c4027f219c114b54f4651d6804a35e9bfd4",
+        "durations.f64": "712b230b87fec989f9b69611391f7b920718c04d087c3ed9da10005482ed815d",
+        "commands.u32": "e5622f03901cc6df3fa39f05c67f3db15048a662ab919412d323a951915204f3"
+      }
+    },
+    {
+      "artifacts": "renders/worklet-linux-QxeyrM/worklet-load-chromium-fi7Ux2",
+      "browser": "chromium",
+      "version": "149.0.7827.0",
+      "runner": {
+        "node": "v24.17.0",
+        "platform": "linux",
+        "architecture": "arm64"
+      },
+      "wall_seconds": 60.584699999999984,
+      "frames": 2880000,
+      "blocks": 22500,
+      "signal": "PASS",
+      "max_pcm_difference": 0,
+      "rms_pcm_difference": 0,
+      "peak": 0.724759042263031,
+      "command_count": 1920,
+      "command_frames": "PASS",
+      "independent_counter": "PASS",
+      "timestamp_gaps": 0,
+      "timestamp_continuity": "PASS",
+      "browser_reported_underruns": "PASS",
+      "playback_stats": {
+        "underrunDuration": 0,
+        "underrunEvents": 0,
+        "totalDuration": 59.715734,
+        "averageLatency": 0.037557,
+        "minimumLatency": 0,
+        "maximumLatency": 0.056824
+      },
+      "reported_base_latency_seconds": 0.011625,
+      "reported_output_latency_seconds": 0.032,
+      "physical_latency": "NOT RUN",
+      "render_clock": "Date.now",
+      "coarse_duration_ms_counts": {
+        "0.0": 14277,
+        "1.0": 8054,
+        "2.0": 156,
+        "3.0": 10,
+        "4.0": 3
+      },
+      "coarse_wall_max_ms": 4.0,
+      "coarse_readings_over_quantum": 13,
+      "coarse_wall_threshold_screen": "FAIL",
+      "largest_coarse_readings": [
+        {
+          "frame": 631680,
+          "program_frame": 151680,
+          "milliseconds": 4.0,
+          "commands": 0
+        },
+        {
+          "frame": 2608384,
+          "program_frame": 208384,
+          "milliseconds": 4.0,
+          "commands": 0
+        },
+        {
+          "frame": 2738688,
+          "program_frame": 338688,
+          "milliseconds": 4.0,
+          "commands": 0
+        },
+        {
+          "frame": 96000,
+          "program_frame": 96000,
+          "milliseconds": 3.0,
+          "commands": 32
+        },
+        {
+          "frame": 134528,
+          "program_frame": 134528,
+          "milliseconds": 3.0,
+          "commands": 0
+        }
+      ],
+      "strict_128_frame_deadline": "PARTIAL",
+      "worklet_allocations": "NOT RUN",
+      "playable_wav": "renders/worklet-linux-QxeyrM/worklet-load-chromium-fi7Ux2/captured-instruments.wav",
+      "wav_sha256": "bb5e9d5e13494191303173f9a1bbccee1a9de3cb8f7a36810fb4e3df11346602",
+      "file_sha256": {
+        "result.json": "0be047bdcffd735e7b5fc00329cd7c2bda9a378c367df43bedbb474c3c5d6fd9",
+        "capture.f32": "b42c008dc84af3e0e524176639611034ac3944d1364eaf007d4ba6ead4d24289",
+        "timestamps.f64": "a78fb13e687c12af19bb5d9fae502c4027f219c114b54f4651d6804a35e9bfd4",
+        "durations.f64": "f923cbf57216e8fad0014053489caa19fd4e777b546585b503a71344cc8496bd",
+        "commands.u32": "e5622f03901cc6df3fa39f05c67f3db15048a662ab919412d323a951915204f3"
+      }
+    },
+    {
+      "artifacts": "renders/worklet-linux-QxeyrM/worklet-load-webkit-pgAJRE",
+      "browser": "webkit",
+      "version": "26.5",
+      "runner": {
+        "node": "v24.17.0",
+        "platform": "linux",
+        "architecture": "arm64"
+      },
+      "wall_seconds": 60.001,
+      "frames": 2880000,
+      "blocks": 22500,
+      "signal": "PASS",
+      "max_pcm_difference": 0,
+      "rms_pcm_difference": 0,
+      "peak": 0.724759042263031,
+      "command_count": 1920,
+      "command_frames": "PASS",
+      "independent_counter": "PASS",
+      "timestamp_gaps": 0,
+      "timestamp_continuity": "PASS",
+      "browser_reported_underruns": "NOT RUN",
+      "playback_stats": null,
+      "reported_base_latency_seconds": 0.0026666666666666666,
+      "reported_output_latency_seconds": 0,
+      "physical_latency": "NOT RUN",
+      "render_clock": "Date.now",
+      "coarse_duration_ms_counts": {
+        "0.0": 14192,
+        "1.0": 7543,
+        "2.0": 749,
+        "3.0": 5,
+        "4.0": 2,
+        "5.0": 3,
+        "6.0": 2,
+        "7.0": 2,
+        "8.0": 1,
+        "10.0": 1
+      },
+      "coarse_wall_max_ms": 10.0,
+      "coarse_readings_over_quantum": 16,
+      "coarse_wall_threshold_screen": "FAIL",
+      "largest_coarse_readings": [
+        {
+          "frame": 539008,
+          "program_frame": 59008,
+          "milliseconds": 10.0,
+          "commands": 0
+        },
+        {
+          "frame": 1102720,
+          "program_frame": 142720,
+          "milliseconds": 8.0,
+          "commands": 0
+        },
+        {
+          "frame": 1870848,
+          "program_frame": 430848,
+          "milliseconds": 7.0,
+          "commands": 0
+        },
+        {
+          "frame": 2158848,
+          "program_frame": 238848,
+          "milliseconds": 7.0,
+          "commands": 0
+        },
+        {
+          "frame": 2542848,
+          "program_frame": 142848,
+          "milliseconds": 6.0,
+          "commands": 0
+        }
+      ],
+      "strict_128_frame_deadline": "PARTIAL",
+      "worklet_allocations": "NOT RUN",
+      "playable_wav": "renders/worklet-linux-QxeyrM/worklet-load-webkit-pgAJRE/captured-instruments.wav",
+      "wav_sha256": "bb5e9d5e13494191303173f9a1bbccee1a9de3cb8f7a36810fb4e3df11346602",
+      "file_sha256": {
+        "result.json": "a755f095f0e1528ccdff00581d984ee2547edf694e3ab185822092389f6c9924",
+        "capture.f32": "b42c008dc84af3e0e524176639611034ac3944d1364eaf007d4ba6ead4d24289",
+        "timestamps.f64": "a78fb13e687c12af19bb5d9fae502c4027f219c114b54f4651d6804a35e9bfd4",
+        "durations.f64": "2e8d2f44d94597090d95dce3548955228170b5554c8a3a9d905adc9d47958282",
+        "commands.u32": "e5622f03901cc6df3fa39f05c67f3db15048a662ab919412d323a951915204f3"
+      }
+    }
+  ],
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "listening": "NOT RUN",
+  "microphone_round_trip": "NOT RUN",
+  "venue_readiness": "PARTIAL",
+  "clock_limit": "Date.now is a coarse non-monotonic wall clock. Counts are diagnostic, not a precise CPU or deadline certificate."
+}

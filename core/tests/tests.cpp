@@ -292,6 +292,25 @@ void guitar_articulation() {
     bad=p;bad.tracks[0].instrument=djayvo::Instrument::piano;rejects([&]{djayvo::compile(bad);});
     schedule.events[0].instrument=static_cast<djayvo::Instrument>(99);rejects([&]{djayvo::Renderer invalid(schedule);});
 }
+void full_band_coefficients() {
+    #include "../instruments/full_band_interpolation.inc"
+    constexpr double pi = 3.14159265358979323846;
+    for (std::size_t phase = 0; phase < full_band_interpolation.size(); ++phase) {
+        std::array<float, 16> expected{};
+        double total = 0;
+        for (int tap = 0; tap < 16; ++tap) {
+            const double distance = static_cast<double>(phase) / 64.0 - (tap - 7);
+            const double x = pi * distance * .94;
+            const double value = std::abs(distance) >= 8 ? 0 : .94 *
+                (std::abs(x) < 1e-12 ? 1 : std::sin(x) / x) * (.5 + .5 * std::cos(pi * distance / 8));
+            expected[static_cast<std::size_t>(tap)] = static_cast<float>(value);
+            total += value;
+        }
+        for (std::size_t tap = 0; tap < expected.size(); ++tap)
+            check(full_band_interpolation[phase][tap] == static_cast<float>(expected[tap] / total),
+                  "precomputed coefficient differs from the reference filter");
+    }
+}
 void reused_voice() {
     djayvo::Voice reused;
     unsigned notes = 0;
@@ -447,6 +466,7 @@ int main() {
         {"organ/pad/lead sustain, note-off, bandwidth, timbre and allocation-free processing", sustained_instruments},
         {"recorded guitar pitches, attacks, layers, takes, limits and allocation-free processing", guitar_articulation},
         {"recorded piano dynamics and seeded piano/drum takes", sample_articulation},
+        {"precomputed full-band interpolation coefficients", full_band_coefficients},
         {"reused voice coefficient invalidation and complete note-state reset", reused_voice},
         {"pan, gain, finite audio and overload ceiling", mixing},
         {"plan bounds, polyphony, silence and invalid requests", validation},

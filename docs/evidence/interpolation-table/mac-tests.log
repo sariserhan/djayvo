@@ -1,0 +1,35 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+      Start  1: live_instruments
+ 1/15 Test  #1: live_instruments .................   Passed    0.66 sec
+      Start  2: core
+ 2/15 Test  #2: core .............................   Passed    0.72 sec
+      Start  3: remix_core
+ 3/15 Test  #3: remix_core .......................   Passed    4.89 sec
+      Start  4: c_abi
+ 4/15 Test  #4: c_abi ............................   Passed    0.56 sec
+      Start  5: acoustic_assets
+ 5/15 Test  #5: acoustic_assets ..................   Passed    0.40 sec
+      Start  6: sustained_assets
+ 6/15 Test  #6: sustained_assets .................   Passed    0.02 sec
+      Start  7: guitar_assets
+ 7/15 Test  #7: guitar_assets ....................   Passed    0.37 sec
+      Start  8: electronic_assets
+ 8/15 Test  #8: electronic_assets ................   Passed    0.08 sec
+      Start  9: wav_integration
+ 9/15 Test  #9: wav_integration ..................   Passed    0.79 sec
+      Start 10: remix_integration
+10/15 Test #10: remix_integration ................   Passed    3.93 sec
+      Start 11: word_timing
+11/15 Test #11: word_timing ......................   Passed    0.11 sec
+      Start 12: tooling
+12/15 Test #12: tooling ..........................   Passed    1.02 sec
+      Start 13: listening_review
+13/15 Test #13: listening_review .................   Passed    0.04 sec
+      Start 14: evaluation_preparation
+14/15 Test #14: evaluation_preparation ...........   Passed   11.39 sec
+      Start 15: plan_import
+15/15 Test #15: plan_import ......................   Passed    4.55 sec
+
+100% tests passed out of 15
+
+Total Test time (real) =  29.52 sec

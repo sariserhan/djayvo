@@ -11,8 +11,8 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest validation: [Actual macOS output callback](docs/audio-callback.md).
-Latest engine improvement: [Bounded active vocal processing](docs/active-vocals.md).
+Last updated: 2026-10-19 (America/New_York). Latest validation: [Common cold-note coefficients and browser captures](docs/interpolation-table.md).
+Latest engine improvement: [Precomputed common interpolation coefficients](docs/interpolation-table.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
 
@@ -54,7 +54,8 @@ closes that task only; it does not automatically pass its parent milestone.
   Physical latency, full-session/venue and musical quality **NOT RUN**.
   This does not close DJ14, DJ17 or DJ20. Production engine unchanged.
   Follow-up E15 validates the optimized engine with four new exact worklet
-  captures; coarse timing screens still **FAIL**.
+  captures; coarse timing screens still **FAIL**. E16 adds four captures after
+  cold-note optimization; three timing screens **FAIL**, one **PASS** for that run.
 
 - [x] **DJ21 — PASS (bounded native callback scope):** [Actual macOS output callback](docs/audio-callback.md).
   One minute on the M5's LG DisplayPort output route, 512 frames / 48 kHz:
@@ -517,6 +518,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P69 | PASS | Run shared engine in actual M5 default-output callback for 60 seconds, retain exact PCM/events, calibrated timing/continuity checks and bounded native result | [Evidence](docs/audio-callback.md) |
 | [x] | P70 | PASS | Validate production instrument AudioWorklet in Mac/Linux Chromium and WebKit, retain six exact captures and command-frame evidence without hiding timing-screen failures | [Evidence](docs/worklet-load.md) |
 | [x] | P71 | PASS | Reuse identical per-voice interpolation coefficients, validate exact before/after audio on Mac/Linux/WASM, measure note setup and retain failing browser timing screens | [Evidence](docs/interpolation-cache.md) |
+| [x] | P72 | PASS | Precompute common cold-note filter coefficients; preserve exact Mac/Linux/WASM audio and retain failing browser timing evidence | [Evidence](docs/interpolation-table.md) |
 
 ## Engineering backlog
 
@@ -602,6 +604,15 @@ is needed. Prioritize by recorded listening defects and product requirements.
   Repeated note-start work is reduced; cold starts and cache misses still compute
   the table. Browser timing screens remain **FAIL** (3–8 ms readings); full live
   qualification **PARTIAL**, physical latency and musical quality **NOT RUN**.
+
+- [x] **E16 — PASS (technical):** [Precomputed common interpolation coefficients](docs/interpolation-table.md).
+  Empty-cache notes copy constant data for cutoff 0.94; other cutoffs retain the
+  original calculation. Mac/Linux 15/15 suites, sanitizer, exact coefficient/
+  waveform/event comparisons, 75 unchanged WAVs per platform, 1,170 WASM note
+  cases, 11 remix comparisons and four browser captures pass. Cold-note setup
+  improves; total stress throughput is similar. Three browser timing screens
+  still **FAIL** (3–10 ms); complete live/production readiness **PARTIAL**,
+  physical latency, venue and musical quality **NOT RUN**.
 
 ## M1: formal musical-quality evaluation
 
