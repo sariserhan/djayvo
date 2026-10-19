@@ -1,4 +1,5 @@
 #include "djayvo/remix.h"
+#include "djayvo/session.h"
 #include <algorithm>
 #include <atomic>
 #include <cmath>
@@ -55,6 +56,34 @@ std::vector<float> render(const djayvo::RemixPlan& p,const djayvo::AudioBuffer& 
     }
     check(r.voice_overflows()==0 && r.stats().nonfinite_samples==0,"invalid render stats");
     return all;
+}
+void session_context() {
+    for (unsigned rate : {8000U,44100U,48000U,96000U,192000U}) {
+        for (unsigned tempo : {60000U,83920U,127190U,180000U}) {
+            for (unsigned bar=0;bar<10000;bar+=13) {
+                const auto frame=static_cast<double>(17+(bar*240000ULL*rate+tempo/2)/tempo);
+                check(djayvo_next_bar(frame,17,rate,tempo)==frame,"bar boundary mismatch");
+                check(djayvo_next_bar(frame-1,17,rate,tempo)==frame,"early boundary mismatch");
+                check(djayvo_next_bar(frame+1,17,rate,tempo)>frame,"late boundary mismatch");
+            }
+        }
+    }
+    check(djayvo_next_bar(NAN,0,48000,120000)==-1,"NaN frame accepted");
+    check(djayvo_next_bar(1.5,0,48000,120000)==-1,"fractional frame accepted");
+    check(djayvo_next_bar(0,0,48000,0)==-1,"zero tempo accepted");
+    check(djayvo_next_bar(48000.0*86400+1,0,48000,120000)==-1,"unbounded frame accepted");
+    const auto a=source(); const auto analysis=djayvo::analyze(a);
+    for (unsigned bpm : {60000U,83920U,120000U,180000U}) for (int key=60;key<=71;++key) {
+        const djayvo::MusicalContext context{bpm,key};
+        for (unsigned seed : {0U,4123U,982451653U}) {
+            const auto p=djayvo::make_remix(a,analysis,djayvo::Strategy::call_response,seed,true,false,&context);
+            djayvo::validate(p,a);
+            check(p.music.tempo_milli_bpm==bpm && p.tonic_midi==key,"context lost");
+            check(p.music.tempo_changes.empty(),"session must keep constant tempo");
+        }
+    }
+    for (const auto context : {djayvo::MusicalContext{59999,60},{180001,60},{120000,59},{120000,72}})
+        rejects([&]{djayvo::make_remix(a,analysis,djayvo::Strategy::call_response,1,true,false,&context);});
 }
 void hashes() {
     check(djayvo::sha256({})=="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","empty SHA-256 vector");
@@ -855,6 +884,7 @@ int main() {
         {"bounded stereo feedback reverb, clean vocals, stems, tail and allocation-free processing",instrument_reverb},
         {"SHA-256 known vectors",hashes},{"energy/onset/phrase/pitch analysis and silence",analysis},
         {"resampling duration, identity, round-trip and antialias",resampling},
+        {"session tempo/key, duration and validator across 144 plans",session_context},
         {"clean hook preservation, deterministic styles, finite bounded output",preservation},
         {"consent, crop, transform, polyphony and duration rejection",validation},
         {"quantized chop spacing and both clean hooks at 2/3/5 seconds",vocal_spacing},

@@ -1,27 +1,30 @@
 import { createMixer, updateMixer, validateTrack, trackDuration } from './mixer.js';
 import { attachDeck } from './deck-controls.js';
 import { attachKeyboard } from './keyboard.js';
+import { attachPerformance } from './performance-session.js';
 
 const $ = id => document.getElementById(id);
 const rights = $('music-rights');
 const decks = ['a', 'b'].map(id => ({ id, audio: $(`audio-${id}`), url: null, duration: 0, loading: null, revision: 0, starting: false }));
-let context, mixer, meterData, audioFailure;
+let context, mixer, meterData, audioFailure, session;
 const time = seconds => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 
 function controls(deck) {
   const { id, audio } = deck;
-  const ready = !!deck.url && rights.checked;
+  const held = deck.prepared || deck.preparing;
+  const ready = !!deck.url && rights.checked && !held;
   $(`play-${id}`).disabled = !ready || !!deck.loading || deck.starting;
   $(`play-${id}`).textContent = `${audio.paused ? 'Play' : 'Pause'} ${id.toUpperCase()}`;
-  $(`file-${id}`).disabled = !rights.checked || !audio.paused || deck.starting || !!deck.loading;
+  $(`file-${id}`).disabled = held || !rights.checked || !audio.paused || deck.starting || !!deck.loading;
   $(`clear-${id}`).disabled = !deck.url && !deck.loading;
   $(`seek-${id}`).disabled = !ready || !!deck.loading;
   $(`level-${id}`).disabled = !rights.checked;
-  $(`state-${id}`).textContent = deck.loading ? 'Loading…' : deck.starting ? 'Starting…' : !deck.url ? 'Empty' : audio.ended ? 'Ended' : audio.paused ? 'Ready' : 'Playing';
+  $(`state-${id}`).textContent = held ? (deck.sessionPlaying ? 'Prepared · playing' : 'Prepared session') : deck.loading ? 'Loading…' : deck.starting ? 'Starting…' : !deck.url ? 'Empty' : audio.ended ? 'Ended' : audio.paused ? 'Ready' : 'Playing';
   $(`seek-${id}`).max = String(deck.duration);
   $(`seek-${id}`).value = String(audio.currentTime || 0);
   deck.transportControls?.(ready && !deck.loading && !deck.starting);
-  $(`time-${id}`).textContent = `${time(audio.currentTime || 0)} / ${time(deck.duration)}`;
+  if (deck.prepared) for (let band = 0; band < 3; band++) $(`eq-${id}-${band}`).disabled = !rights.checked;
+  $(`time-${id}`).textContent = `${time(deck.prepared ? deck.sessionTime || 0 : audio.currentTime || 0)} / ${time(deck.duration)}`;
 }
 
 function levels() {
@@ -33,15 +36,19 @@ function levels() {
   $('rack-value').textContent = `${Math.round(Number($('rack-level').value) * 100)}%`;
   if (mixer) {
     updateMixer(context, mixer, blend, values, master);
+    mixer.performance.gain.setTargetAtTime(Number($('c-level').value) * master * .8, context.currentTime, .005);
     mixer.rack.gain.setTargetAtTime(Number($('rack-level').value) * master, context.currentTime, .005);
   }
 }
 
 function pause(deck) {
+  if (deck.id === 'a') session?.stop();
   deck.revision++; deck.starting = false; deck.playRequested = false; deck.audio.pause(); controls(deck);
 }
 
 function unload(deck) {
+  if (deck.id === 'a') session?.reset();
+  deck.file = null;
   pause(deck); deck.loading?.abort(); deck.loading = null;
   deck.audio.removeAttribute('src'); deck.audio.load();
   if (deck.url) URL.revokeObjectURL(deck.url);
@@ -82,7 +89,7 @@ function masterControls() {
 const keyboard = attachKeyboard({ graph: audioGraph, context: () => context, mixer: () => mixer, levels, masterControls });
 async function start(deck) {
     const { id, audio } = deck;
-    if (!rights.checked || !deck.url || deck.loading || deck.starting) return;
+    if (!rights.checked || !deck.url || deck.loading || deck.starting || deck.prepared || deck.preparing) return;
     if (!audio.paused) { pause(deck); return; }
     const revision = ++deck.revision;
     deck.starting = true; deck.playRequested = true; controls(deck); $(`error-${id}`).textContent = '';
@@ -114,7 +121,7 @@ for (const deck of decks) {
   $(`file-${id}`).onchange = async event => {
     const file = event.target.files[0];
     event.target.value = '';
-    if (!file || !rights.checked || !audio.paused || deck.starting || deck.loading) return;
+    if (!file || !rights.checked || !audio.paused || deck.starting || deck.loading || deck.prepared || deck.preparing) return;
     $(`error-${id}`).textContent = '';
     const revision = ++deck.revision, controller = new AbortController();
     deck.playRequested = false; deck.loading = controller; controls(deck);
@@ -124,7 +131,7 @@ for (const deck of decks) {
       if (revision !== deck.revision || !rights.checked) return;
       const previous = deck.url, url = URL.createObjectURL(file);
       audio.removeAttribute('src'); audio.load();
-      deck.url = url; deck.duration = duration; audio.src = url; deck.resetTransport();
+      deck.file = file; deck.url = url; deck.duration = duration; audio.src = url; deck.resetTransport();
       if (previous) URL.revokeObjectURL(previous);
       $(`name-${id}`).textContent = file.name;
     } catch (error) {
@@ -149,15 +156,17 @@ for (const deck of decks) {
     if (deck.url) { pause(deck); $(`error-${id}`).textContent = 'Track playback failed. Unload it and try another file.'; }
   });
 }
+session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights });
 $('crossfade').oninput = $('master').oninput = levels;
-$('pause-all').onclick = () => { decks.forEach(pause); $('mixer-status').textContent = 'Both decks paused.'; };
+$('pause-all').onclick = () => { decks.forEach(pause); $('mixer-status').textContent = 'All decks paused.'; };
 window.addEventListener('pagehide', event => {
   decks.forEach(pause);
   if (!event.persisted) { decks.forEach(unload); context?.close().catch(() => {}); }
 });
-// shortcut: media-element transport is not sample-synchronized; use the shared
-// frame clock and AudioWorklet transport before adding beat sync or Deck C.
+// shortcut: manual A/B remain unsynchronized; unify transport before adding
+// live tempo changes or beat loops. Prepared A/C already share the audio clock.
 setInterval(() => {
+  session.refresh();
   if (!mixer || context.state !== 'running') { $('output-meter').value = 0; $('peak').textContent = 'Silent'; return; }
   let peak = 0;
   for (const node of mixer.stereoMeters) {

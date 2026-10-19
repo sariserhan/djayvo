@@ -1,17 +1,17 @@
 # Djayvo development tracker
 
-**Current authorization — 2026-10-18:** The owner requested a professional-looking
-DJ console with spinning, controllable decks, a full piano and a broader instrument
-palette. This authorizes the local [console and live instruments](docs/dj-console.md)
-increment after the manual mixer. M0a and the master remain unchanged. Shared
-beat synchronization, AI Deck C, production/venue acceptance, new paid compute
-and deployment are not passed or authorized by this increment. Preserve earlier
-work, recordings and evidence.
-Owner continuation extends this local increment with [instrument tone and echo](docs/instrument-effects.md); other scope boundaries remain unchanged.
-The owner subsequently requested [Talk bass and extra percussion](docs/talk-bass.md), using `pipe.mp3` for local analysis; this is part of the same local instrument scope.
+**Current authorization — 2026-10-18:** The owner's latest “continue with the
+spec, finish everything” supersedes the earlier console-only increment and
+M0a review stop for remaining local implementation. Continue the browser musical
+improviser and available specification work without per-step approval; preserve
+local changes, recordings, evidence and the immutable master. The
+[prepared A + C session](docs/prepared-session.md) connects the local phrase director to the mixer.
+Human quality, actual hardware/venue evidence and M1 prerequisites for production
+learned AI remain required. Phone and hosted-infrastructure work remain paused;
+new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [Talk bass and extra percussion](docs/talk-bass.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [Prepared A + C session](docs/prepared-session.md).
 Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
 Use this file for past work, open issues and future development. Detailed test
@@ -70,18 +70,25 @@ closes that task only; it does not automatically pass its parent milestone.
   playback, seek/levels/crossfader/master, stereo meter, permission and unload,
   failed-replacement preservation, interruption recovery and prepared offline
   reload. 16 unit checks, 26 DJ browser checks and 40 voice regressions PASS.
-- [ ] **DJ02 — PARTIAL:** Live instrument AudioWorklet and shared C++ voices now work. Shared sample-frame deck transport,
-  tempo/beat/harmonic context and synchronized Deck C preparation. Keep the
-  validated director/engine boundary; no sample-level AI control.
-- [ ] **DJ03 — NOT RUN:** Capture a consented phrase while Deck A continues,
-  create a source-driven performance, then manually or automatically mix Deck C
-  with safe failure and manual override. Current workspaces remain separate.
+- [x] **DJ09 — PASS (technical):** [Prepared A + C session](docs/prepared-session.md):
+  shared C++ absolute bar grid, context-aware phrase plan, real scheduled browser
+  audio, capture/import, preview, C fader/stop, safe cancellation/failure and
+  disconnected-server generation/playback. Native Mac/Linux/WASM agreement and
+  short callback continuity checks recorded. No learned model or quality claim.
+- [ ] **DJ02 — PARTIAL:** Prepared A/C now share the AudioContext clock using the
+  shared C++ bar grid; tempo/triad estimates plus mandatory manual confirmation.
+  Remaining: general beat tracking, major/modulating harmony, unified A/B/C
+  transport, sample-frame live note/chop scheduling and tempo changes in flight.
+- [ ] **DJ03 — PARTIAL:** Consented capture/import while A plays, source-driven C,
+  manual preview/entry/level/stop, local fallback and failure isolation work in
+  Chromium/WebKit. Physical microphone/session check and learned-director
+  automation/quality remain NOT RUN; synthetic capture is not physical evidence.
 - [ ] **DJ04 — PARTIAL:** Automated Apple M5 browser sessions, prepared offline
   playback, CPU block timing and repeated transport checks PASS. Actual Linux
   browser, physical latency, long-session glitch checks, cue/device routing and
   human musical evaluation remain NOT RUN. Cached-page tests do not pass venue readiness.
 
-## Existing product work — DJ increment active; other tracks paused
+## Existing product work — local specification work active; phone and hosted infrastructure paused
 
 - [x] **C01 — PASS:** Ran the owner-authorized $10 pretrained music experiment
   on one Vast RTX 3090: ten successful 30-second hip-hop/club takes, pinned
@@ -507,3 +514,9 @@ table and [progress](docs/progress.md) together; do not invent scores or dates.
   eight-candidate recent-body rejection, complete stems/import/version contracts
   and corrected instrument-bank reports. 93 exact cross-OS WAVs and 42 exact
   old-score replay WAVs; eight matched owner pairs. [Evidence](docs/sustained-instruments.md).
+
+- 2026-10-18: Joined the browser phrase director to prepared A/C playback, with
+  confirmed tempo/minor key, shared native/WASM bar timing, capture/import, preview,
+  manual mixing and offline generation. Four Mac/Linux/WASM WAVs and event streams
+  identical; 34 session checks, 48 DJ regressions, 40 voice regressions, 22 unit
+  checks and 15/15 native suites per OS PASS. [Evidence](docs/prepared-session.md).

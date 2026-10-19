@@ -109,9 +109,9 @@ export function attachDeck(deck, other, { pause, start, mixer, context }) {
   let last = 0;
   function draw(now) {
     if (now - last > 33) {
-      last = now; $(`vinyl-${id}`).style.transform = `rotate(${(audio.currentTime || 0) * 200 % 360}deg)`;
+      last = now; $(`vinyl-${id}`).style.transform = `rotate(${(deck.prepared ? deck.sessionTime || 0 : audio.currentTime || 0) * 200 % 360}deg)`;
       samples.fill(0);
-      if (context()?.state === 'running' && !audio.paused) mixer()?.strips[id === 'a' ? 0 : 1].scope.getFloatTimeDomainData(samples);
+      if (context()?.state === 'running' && (!audio.paused || deck.sessionPlaying)) mixer()?.strips[id === 'a' ? 0 : 1].scope.getFloatTimeDomainData(samples);
       painter.clearRect(0, 0, scope.width, scope.height); painter.beginPath();
       painter.strokeStyle = id === 'a' ? '#61d4e4' : '#f9a66c'; painter.lineWidth = 1.5;
       for (let i = 0; i < samples.length; i++) { const x = i * scope.width / samples.length, y = scope.height * (.5 - samples[i] * .45); i ? painter.lineTo(x, y) : painter.moveTo(x, y); }

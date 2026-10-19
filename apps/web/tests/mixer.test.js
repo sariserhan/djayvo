@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mixGains, validateTrack, updateInstrumentFX } from '../mixer.js';
+import { mixGains, validateTrack, updateInstrumentFX, validatePreparedTrack } from '../mixer.js';
 
 test('linear blend bounds coherent summed peaks and supports channel/master silence', () => {
   assert.deepEqual(mixGains(0, [1, 1], 1), [.8, 0]);
@@ -28,4 +28,15 @@ test('track limits reject empty, oversized and nonaudio files before decoding', 
 test('effect boundaries reject nonfinite and out-of-range controls before touching audio', () => {
   for (const values of [[NaN, 0, 300], [-1, 0, 300], [101, 0, 300], [100, Infinity, 300], [100, -.01, 300], [100, .51, 300], [100, 0, NaN], [100, 0, 99], [100, 0, 801]])
     assert.throws(() => updateInstrumentFX(null, null, ...values), /outside their allowed range/);
+});
+
+test('prepared track rejects decoded limits and nonfinite samples beyond the analysis window', () => {
+  const pcm = new Float32Array(48000 * 31);
+  const buffer = { duration: 31, numberOfChannels: 1, length: pcm.length, getChannelData: () => pcm };
+  validatePreparedTrack(buffer);
+  pcm[pcm.length - 1] = Infinity;
+  assert.throws(() => validatePreparedTrack(buffer), /invalid audio samples/);
+  pcm[pcm.length - 1] = 0;
+  for (const change of [{ duration: 301 }, { numberOfChannels: 3 }, { length: 128 * 1024 * 1024 }])
+    assert.throws(() => validatePreparedTrack({ ...buffer, ...change }));
 });

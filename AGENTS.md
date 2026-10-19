@@ -1,20 +1,20 @@
 # Djayvo
 
-**Current authorization — 2026-10-18:** The owner requested a professional-looking
-DJ console with spinning, controllable decks, a full piano and a broader instrument
-palette. This authorizes the local [console and live instruments](docs/dj-console.md)
-increment after the manual mixer. M0a and the master remain unchanged. Shared
-beat synchronization, AI Deck C, production/venue acceptance, new paid compute
-and deployment are not passed or authorized by this increment. Preserve earlier
-work, recordings and evidence.
-Owner continuation extends this local increment with [instrument tone and echo](docs/instrument-effects.md); other scope boundaries remain unchanged.
-The owner subsequently requested [Talk bass and extra percussion](docs/talk-bass.md), using `pipe.mp3` for local analysis; this is part of the same local instrument scope.
+**Current authorization — 2026-10-18:** The owner's latest “continue with the
+spec, finish everything” supersedes the earlier console-only increment and
+M0a review stop for remaining local implementation. Continue the browser musical
+improviser and available specification work without per-step approval; preserve
+local changes, recordings, evidence and the immutable master. The
+[prepared A + C session](docs/prepared-session.md) connects the local phrase director to the mixer.
+Human quality, actual hardware/venue evidence and M1 prerequisites for production
+learned AI remain required. Phone and hosted-infrastructure work remain paused;
+new paid compute, publication and monetization still need explicit authorization.
 
 
 Read the complete master specification before implementation. Djayvo is the
 official product name. Do not modify the master specification.
 
-Historical permissions below are bounded by the current scoped authorization above.
+Historical permissions below are interpreted under the latest authorization above.
 
 The owner subsequently authorized continuing through the steps without per-step
 approval. Continue M0b/M0c and available portability/evaluation work autonomously.

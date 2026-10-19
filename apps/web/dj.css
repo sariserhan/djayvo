@@ -109,3 +109,19 @@ input::file-selector-button { background:#25313b; border:1px solid #50616e; colo
 .instrument-effects label { flex:1 1 140px; min-width:0; font-size:11px; color:var(--muted); }
 .instrument-effects output { float:right; color:var(--ink); font:11px ui-monospace,Menlo,monospace; }
 .instrument-effects p { flex-basis:100%; font-size:11px; color:var(--muted); margin:0; }
+
+#performance { margin: 2rem 0; padding: clamp(1rem, 3vw, 2rem); border: 1px solid #405947; border-radius: 16px; background: #17221e; }
+#performance h2 { margin: .2rem 0 .7rem; }
+#performance > p { color: #bdc7c3; max-width: 85ch; }
+.session-actions, .session-context { display: flex; flex-wrap: wrap; align-items: end; gap: .7rem; margin: 1rem 0; }
+.session-context label { flex: 1 1 150px; display: grid; gap: .4rem; }
+.session-context input, .session-context select { width: 100%; padding: .6rem; background: #10151b; color: #f3f5f4; border: 1px solid #526057; border-radius: 6px; }
+#performance .file-label { flex: 1 1 240px; min-width: 0; }
+#performance .file-label input { width: 100%; }
+#performance .consent { margin: 1rem 0; }
+#performance-download { display: inline-block; margin-top: .7rem; }
+#performance-download[hidden] { display: none; }
+
+#performance .session-actions button { min-height: 42px; }
+#phrase-generate, #c-arm { background: #c3ef69; color: #182014; border-color: #c3ef69; font-weight: 700; }
+.session-context input, .session-context select { min-height: 44px; }

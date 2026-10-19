@@ -1,12 +1,10 @@
 # Djayvo
 
-**Current authorization — 2026-10-18:** After the M0a review stop, the owner said
-“okaycontinue”. The next local DJ-studio increment is authorized: two playable
-decks and manual mixing. See [mixer evidence](docs/dj-mixer.md) and the
-[web-studio addendum](docs/web-studio-addendum.md). M0a and the master remain
-unchanged; this does not pass musical-quality, live/venue or production gates,
-or authorize new paid compute or deployment. Preserve earlier work/evidence.
-
+**Current authorization — 2026-10-18:** Continue remaining local specification
+work without per-step approval. The [prepared A + C session](docs/prepared-session.md)
+now joins the phrase improviser to the browser DJ console. The master is unchanged;
+formal listening, hardware/venue and release gates remain required. Phone and
+hosted infrastructure work remain paused; no new paid compute or deployment.
 
 **Say anything. Make music.**
 

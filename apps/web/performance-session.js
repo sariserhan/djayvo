@@ -1,0 +1,235 @@
+import { decodeAudio, encodeWav } from './audio.js';
+import { SessionTransport } from './session-transport.js';
+import { validatePreparedTrack } from './mixer.js';
+import { compositionKey } from './novelty.js';
+
+const $ = id => document.getElementById(id);
+const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
+export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights }) {
+  let prepared, transport, samples, performanceBuffer, download, busy = '', revision = 0, startVersion = 0;
+  let worker, timer, recorder, stream, recordingAt, generationContext, recent = [], wasA = false, wasC = false;
+  const error = failure => { $('performance-error').textContent = failure.message || String(failure); };
+  const say = text => { $('performance-status').textContent = text; };
+  const confirmed = () => rights.checked && $('context-confirmed').checked && !!prepared;
+  const permitted = () => $('phrase-consent').checked;
+  const currentContext = () => ({ tempo: Math.round(Number($('session-bpm').value) * 1000), tonic: Number($('session-key').value) });
+  notes.forEach((name, i) => { const option = document.createElement('option'); option.value = 60 + i; option.textContent = `${name} minor`; $('session-key').append(option); });
+  $('session-key').value = '69';
+  function refresh() {
+    const playing = !!transport?.a, activeC = !!transport?.c;
+    $('prepare-a').disabled = !rights.checked || !deck.file || !deck.audio.paused || !!deck.loading || !!busy || !!prepared || deck.starting;
+    $('release-a').disabled = !prepared && busy !== 'preparing';
+    $('session-play').disabled = !confirmed() || playing || !!busy;
+    $('session-stop').disabled = !playing;
+    $('context-confirmed').disabled = !prepared || playing || !!busy;
+    for (const id of ['session-bpm', 'session-key', 'session-downbeat']) $(id).disabled = playing || !!busy;
+    $('phrase-record').disabled = !permitted() || (!!busy && busy !== 'recording');
+    $('phrase-record').textContent = busy === 'recording' ? 'Stop recording' : 'Record phrase';
+    $('phrase-file').disabled = !permitted() || !!busy;
+    $('phrase-delete').disabled = !samples && !busy && !performanceBuffer;
+    $('phrase-generate').disabled = !confirmed() || !permitted() || !samples || !!busy || activeC;
+    $('phrase-cancel').disabled = !['generating', 'loading', 'permission'].includes(busy);
+    $('c-arm').disabled = !playing || !performanceBuffer || !confirmed() || !permitted() || !!busy || activeC;
+    $('c-stop').disabled = !activeC;
+    $('c-preview').disabled = playing || !performanceBuffer || !permitted() || !confirmed() || !!busy || activeC;
+    deck.sessionTime = transport?.a ? Math.max(0, context().currentTime - transport.a.frame / context().sampleRate) : 0;
+    deck.sessionPlaying = playing;
+    if (activeC) {
+      const seconds = (transport.c.frame / context().sampleRate - context().currentTime);
+      say(!playing ? 'Previewing C through the performance channel.' : seconds > 0 ? `C armed · enters in ${seconds.toFixed(1)} s. Stop C cancels entry.` : 'A + C playing on the shared audio clock.');
+    }
+    if (wasA && !playing) say(busy === 'generating' ? 'A has ended. C is still preparing.' : 'A stopped. Start prepared A to play again.');
+    else if (wasC && !activeC) say(playing ? 'C stopped. A continues.' : 'C stopped.');
+    wasA = playing; wasC = activeC;
+    controls(deck);
+  }
+  function clearPerformance() {
+    transport?.stopC(); performanceBuffer = undefined; generationContext = undefined;
+    if (download) URL.revokeObjectURL(download);
+    download = undefined; $('performance-download').hidden = true; $('performance-download').removeAttribute('href');
+  }
+  function cancel() {
+    if (['permission', 'recording'].includes(busy)) $('phrase-status').textContent = samples ? 'Recording cancelled. Previous phrase kept.' : 'Recording cancelled. No phrase loaded.';
+    revision++; worker?.terminate(); worker = undefined; clearTimeout(timer); clearInterval(timer);
+    if (recorder?.state === 'recording') recorder.stop();
+    stream?.getTracks().forEach(track => track.stop()); stream = undefined; recorder = undefined;
+    busy = ''; deck.preparing = false; refresh();
+  }
+  function reset() {
+    cancel(); transport?.stop(); prepared = undefined; transport = undefined;
+    deck.prepared = false; deck.sessionPlaying = false; $('context-confirmed').checked = false;
+    clearPerformance(); say('Load and prepare Deck A to begin.'); refresh();
+  }
+  function stop() { startVersion++; transport?.stop(); refresh(); }
+  function deletePhrase() {
+    cancel(); samples = undefined; recent = []; clearPerformance(); $('phrase-status').textContent = 'Phrase and C deleted from this tab.'; refresh();
+  }
+  $('prepare-a').onclick = async () => {
+    if (busy || !deck.file || !rights.checked || !deck.audio.paused || deck.starting) return;
+    const file = deck.file;
+    if (file.size > 32 * 1024 * 1024 || deck.duration > 300) { error(new Error('Prepared sessions accept tracks up to 32 MB / 5 minutes. Manual decks still accept larger tracks.')); return; }
+    pause(deck); busy = 'preparing'; deck.preparing = true;
+    const token = ++revision; refresh(); $('performance-error').textContent = ''; say('Preparing A and analyzing its first 30 seconds…');
+    try {
+      graph();
+      const buffer = await context().decodeAudioData(await file.arrayBuffer());
+      if (token !== revision) return;
+      validatePreparedTrack(buffer);
+      const response = await fetch('./engine/djayvo_live.wasm', { credentials: 'omit' });
+      if (!response.ok) throw new Error('Prepare the studio online once to load its engine.');
+      const engine = (await WebAssembly.instantiate(await response.arrayBuffer(), {})).instance.exports;
+      engine._initialize();
+      if (token !== revision) return;
+      const offline = new OfflineAudioContext(1, Math.floor(Math.min(30, buffer.duration) * 8000), 8000);
+      const source = offline.createBufferSource(); source.buffer = buffer; source.connect(offline.destination); source.start();
+      const mono = (await offline.startRendering()).getChannelData(0).slice();
+      if (token !== revision) return;
+      const analysis = await new Promise((resolve, reject) => {
+        worker = new Worker('./session-analysis-worker.js', { type: 'module' });
+        timer = setTimeout(() => { worker?.terminate(); reject(new Error('Analysis timed out. Try a shorter track.')); }, 20000);
+        worker.onerror = () => reject(new Error('Track analysis failed.'));
+        worker.onmessage = ({ data }) => data.error ? reject(new Error(data.error)) : resolve(data.result);
+        worker.postMessage({ samples: mono, rate: 8000 }, [mono.buffer]);
+      });
+      if (token !== revision || !rights.checked || deck.file !== file) return;
+      prepared = buffer; deck.prepared = true;
+      transport = new SessionTransport(context(), engine.djayvo_next_bar, refresh);
+      const key = analysis.keys[0];
+      $('context-analysis').textContent = `First 30 s estimate: ${analysis.tempo.bpm} BPM (pulse correlation ${analysis.tempo.confidence.toFixed(2)}); strongest triad ${notes[key.tonic]} ${key.mode}. Tempo may be half/double; triads do not establish a key. Confirm a minor-key context and downbeat yourself. A will play at original speed.`;
+      if (analysis.tempo.confidence > .3) $('session-bpm').value = analysis.tempo.bpm;
+      if (key.mode === 'minor' && key.score > 0) $('session-key').value = 60 + key.tonic;
+      $('session-downbeat').max = buffer.duration; $('context-confirmed').checked = false;
+      say('A prepared. Check its tempo, minor key and first downbeat, then confirm.');
+    } catch (failure) { if (token === revision) error(failure); }
+    finally {
+      if (token === revision) { worker?.terminate(); worker = undefined; clearTimeout(timer); busy = ''; deck.preparing = false; refresh(); }
+    }
+  };
+  $('release-a').onclick = reset;
+  $('session-play').onclick = async () => {
+    if (!confirmed() || busy || transport?.a) return;
+    const token = revision, start = ++startVersion;
+    try {
+      await context().resume();
+      if (token !== revision || start !== startVersion || !confirmed()) return;
+      if (context().state !== 'running') throw new Error('Audio is interrupted. Try Start prepared A again.');
+      transport.startA(prepared, mixer().strips[0].input, currentContext().tempo, Number($('session-downbeat').value));
+      say('Prepared A playing. Capture a phrase or bring your ready performance in.'); refresh();
+    } catch (failure) { error(failure); }
+  };
+  $('session-stop').onclick = () => { stop(); say('A + C stopped. Ready to start A again from the beginning.'); };
+  for (const id of ['session-bpm', 'session-key', 'session-downbeat', 'context-confirmed']) $(id).addEventListener('change', () => {
+    cancel(); stop(); clearPerformance(); if (id !== 'context-confirmed') $('context-confirmed').checked = false;
+    refresh();
+  });
+  async function loadPhrase(blob, recorded = false) {
+    $('performance-error').textContent = '';
+    busy = 'loading'; const token = ++revision; refresh();
+    try {
+      const decoded = await decodeAudio(blob, recorded);
+      if (token !== revision || !permitted()) return;
+      if (decoded.length > 5 * 48000) throw new Error('Import a 2–5 second phrase. Trim longer recordings in Voice studio first.');
+      encodeWav(decoded);
+      clearPerformance(); samples = decoded; $('phrase-status').textContent = `${(samples.length / 48000).toFixed(2)} s phrase ready · held only in this tab.`;
+    } catch (failure) { if (token === revision) error(failure); }
+    finally { if (token === revision) { busy = ''; refresh(); } }
+  }
+  $('phrase-file').onchange = event => {
+    const file = event.target.files[0]; event.target.value = '';
+    if (file && permitted() && !busy) loadPhrase(file);
+  };
+  $('phrase-record').onclick = async () => {
+    if (busy === 'recording') { clearInterval(timer); recorder.stop(); stream?.getTracks().forEach(track => track.stop()); return; }
+    if (!permitted() || busy) return;
+    $('performance-error').textContent = '';
+    const token = ++revision; busy = 'permission'; refresh();
+    $('phrase-status').textContent = 'Waiting for microphone permission. Use headphones to prevent recapturing Deck A.';
+    try {
+      if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) throw new Error('Microphone capture is unavailable; import a phrase instead.');
+      const capture = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
+      if (token !== revision || !permitted() || document.hidden) { capture.getTracks().forEach(track => track.stop()); return; }
+      stream = capture;
+      const type = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/webm'].find(value => MediaRecorder.isTypeSupported(value));
+      const active = recorder = new MediaRecorder(capture, type ? { mimeType: type } : undefined), chunks = [];
+      active.ondataavailable = event => { if (event.data.size) chunks.push(event.data); };
+      active.onstop = () => {
+        capture.getTracks().forEach(track => track.stop());
+        if (token !== revision) return;
+        clearInterval(timer); stream = recorder = undefined;
+        if (performance.now() - recordingAt < 2000) { busy = ''; error(new Error('Record at least 2 seconds.')); refresh(); return; }
+        loadPhrase(new Blob(chunks, { type: active.mimeType }), true);
+      };
+      active.onerror = () => { if (token === revision) { cancel(); error(new Error('Recording failed. Try importing a phrase.')); } };
+      recordingAt = performance.now(); busy = 'recording'; active.start(); refresh();
+      timer = setInterval(() => {
+        const elapsed = (performance.now() - recordingAt) / 1000;
+        $('phrase-status').textContent = `Recording · ${elapsed.toFixed(1)} / 5 s`;
+        if (elapsed >= 4.8) { clearInterval(timer); active.stop(); capture.getTracks().forEach(track => track.stop()); }
+      }, 100);
+    } catch (failure) { if (token === revision) { cancel(); error(new Error(`Microphone unavailable: ${failure.message}`)); } }
+  };
+  $('phrase-generate').onclick = () => {
+    if (!confirmed() || !permitted() || !samples || busy || transport?.c) return;
+    const requested = currentContext(), token = ++revision, began = performance.now();
+    let wav;
+    try { wav = encodeWav(samples); } catch (failure) { error(failure); return; }
+    busy = 'generating'; refresh(); $('performance-error').textContent = ''; say('Preparing a new phrase-response performance. A keeps playing…');
+    worker = new Worker('./engine-worker.js', { type: 'module' });
+    const failed = message => { if (token === revision) { cancel(); error(new Error(message)); say('Preparation failed; A is unaffected. Your last ready performance is kept.'); } };
+    timer = setTimeout(() => failed('Preparation exceeded two minutes.'), 120000);
+    worker.onerror = () => failed('The local director could not load. Prepare the offline app and try again.');
+    worker.onmessage = async ({ data }) => {
+      if (token !== revision || data.type === 'rendering') return;
+      if (data.type !== 'complete') { failed(data.message || 'Preparation failed.'); return; }
+      clearTimeout(timer); worker.terminate(); worker = undefined;
+      try {
+        for (const file of data.files) {
+          const hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', file.bytes)), n => n.toString(16).padStart(2, '0')).join('');
+          if (hash !== file.sha256) throw new Error('Performance integrity check failed.');
+        }
+        const score = JSON.parse(new TextDecoder().decode(data.files.find(f => f.name.endsWith('.score.json')).bytes));
+        const report = JSON.parse(new TextDecoder().decode(data.files.find(f => f.name.endsWith('.report.json')).bytes));
+        if (score.tempo_milli_bpm !== requested.tempo || score.key.tonic_midi !== requested.tonic || report.technical_render !== 'PASS' || report.nonfinite_samples !== 0)
+          throw new Error('The performance did not match the confirmed context.');
+        const bytes = data.files.find(f => f.name.endsWith('.wav')).bytes;
+        const key = await compositionKey(score);
+        const buffer = await context().decodeAudioData(bytes.slice().buffer);
+        if (token !== revision || !permitted() || !confirmed()) return;
+        clearPerformance(); performanceBuffer = buffer; generationContext = requested;
+        recent = [...recent.slice(-9), key];
+        download = URL.createObjectURL(new Blob([bytes], { type: 'audio/wav' }));
+        $('performance-download').href = download; $('performance-download').download = `djayvo-session-${data.seed}.wav`; $('performance-download').hidden = false;
+        say(`C ready in ${((performance.now() - began) / 1000).toFixed(1)} s · ${buffer.duration.toFixed(1)} s performance. Arm it when A is playing.`);
+      } catch (failure) { if (token === revision) error(failure); }
+      finally { if (token === revision) { busy = ''; refresh(); } }
+    };
+    worker.postMessage({ wav, style: 'call_response', seed: crypto.getRandomValues(new Uint32Array(1))[0], recent, consent: true, context: requested }, [wav]);
+  };
+  $('c-preview').onclick = async () => {
+    const token = revision, start = ++startVersion;
+    try {
+      if (!permitted() || !confirmed() || !performanceBuffer || busy || transport?.a || transport?.c) return;
+      await context().resume();
+      if (token === revision && start === startVersion && permitted() && confirmed() && performanceBuffer && !transport.a)
+        transport.preview(performanceBuffer, mixer().performance);
+    } catch (failure) { error(failure); }
+  };
+  $('c-arm').onclick = () => {
+    try {
+      if (busy || transport?.c || !permitted() || !confirmed() || !performanceBuffer || JSON.stringify(generationContext) !== JSON.stringify(currentContext())) throw new Error('Prepare C for the current confirmed context first.');
+      transport.arm(performanceBuffer, mixer().performance); refresh();
+    } catch (failure) { error(failure); }
+  };
+  $('c-stop').onclick = () => { transport?.stopC(); say('C stopped. A continues.'); refresh(); };
+  $('phrase-cancel').onclick = () => { cancel(); say('Preparation cancelled. A continues.'); };
+  $('phrase-delete').onclick = deletePhrase;
+  $('phrase-consent').onchange = () => { if (!permitted()) deletePhrase(); refresh(); };
+  $('c-level').oninput = () => {
+    $('c-level-value').textContent = `${Math.round(Number($('c-level').value) * 100)}%`;
+    if (mixer()) mixer().performance.gain.setTargetAtTime(Number($('c-level').value) * Number($('master').value) * .8, context().currentTime, .005);
+  };
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { if (busy) cancel(); stop(); say('Session stopped when the page was hidden. Start A again when ready.'); } });
+  window.addEventListener('pagehide', () => { reset(); deletePhrase(); });
+  refresh();
+  return { reset, stop, refresh };
+}

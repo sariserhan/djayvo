@@ -44,6 +44,7 @@ export function createMixer(context) {
     low.connect(mid); mid.connect(high); high.connect(scope); scope.connect(channel);
     return { input: low, eq: [low, mid, high], scope };
   });
+  const performance = context.createGain(); performance.gain.value = 0; performance.connect(limiter);
   const rack = context.createGain(); rack.gain.value = 0; rack.connect(limiter);
   const input = context.createBiquadFilter(), dry = context.createGain(), wet = context.createGain();
   input.type = 'lowpass'; input.Q.value = 0; input.frequency.value = context.sampleRate / 2;
@@ -63,7 +64,7 @@ export function createMixer(context) {
   meter.connect(split);
   const stereoMeters = [context.createAnalyser(), context.createAnalyser()];
   stereoMeters.forEach((node, channel) => { node.fftSize = 2048; split.connect(node, channel); });
-  return { channels, meter, stereoMeters, strips, rack, rackFX };
+  return { channels, meter, stereoMeters, strips, rack, rackFX, performance };
 }
 
 export function updateMixer(context, mixer, crossfade, levels, master) {
@@ -96,4 +97,13 @@ export async function trackDuration(file, signal) {
       audio.preload = 'metadata'; audio.src = url;
     });
   } finally { audio.onloadedmetadata = audio.onerror = null; audio.removeAttribute('src'); audio.load(); URL.revokeObjectURL(url); }
+}
+
+export function validatePreparedTrack(buffer) {
+  if (buffer.duration < 2 || buffer.duration > 300 || buffer.numberOfChannels > 2 ||
+      buffer.length * buffer.numberOfChannels * 4 > 128 * 1024 * 1024)
+    throw new Error('Prepared A requires 2 seconds–5 minutes of mono/stereo audio, within 128 MB decoded.');
+  for (let channel = 0; channel < buffer.numberOfChannels; channel++)
+    for (const sample of buffer.getChannelData(channel))
+      if (!Number.isFinite(sample)) throw new Error('The track contains invalid audio samples.');
 }

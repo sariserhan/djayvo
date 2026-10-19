@@ -44,7 +44,13 @@ both decks. The pages are separate; opening Voice studio ends the DJ session.
 
 The existing offline preparation includes the DJ page. Reopen it after saving
 app assets, then select local tracks; reload clears the decks. This is manual
-mixing, with no beat sync, cue routing or AI Deck C yet. See
+mixing outside prepared mode. The new **Deck C** section can prepare a paused A,
+estimate and confirm its constant tempo/minor key/downbeat, record/import a phrase
+while A plays, and generate/preview/arm a local phrase-response performance on
+A's bar grid. C has independent level, stop and WAV download. See the
+[prepared-session guide and evidence](../../docs/prepared-session.md); run
+`node apps/web/tests/session.mjs` and repeat with `DJAYVO_BROWSER=webkit`.
+Cue routing and learned AI remain unimplemented. See
 [checks and limits](../../docs/dj-console.md). Run the dedicated checks with
 `node apps/web/tests/dj.mjs` (from the root), then the same command with
 `DJAYVO_BROWSER=webkit`. They start their own temporary server.

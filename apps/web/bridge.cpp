@@ -30,3 +30,19 @@ extern "C" const char* djayvo_web_render(unsigned seed, unsigned direction, unsi
       catch (...) { error = "The music engine could not finish. Try again."; }
     return error.c_str();
 }
+
+// Session generation uses the same validated planner and renderer in a worker.
+extern "C" const char* djayvo_web_session(unsigned seed, unsigned tempo, unsigned tonic, unsigned permission) {
+    static std::string error;
+    error.clear();
+    try {
+        if (permission != 1) throw std::invalid_argument("Confirm recording permission.");
+        const auto source=djayvo::resample(djayvo::read_wav("/input.wav"),48000);
+        const djayvo::MusicalContext context{tempo,static_cast<int>(tonic)};
+        const auto plan=djayvo::make_remix(source,djayvo::analyze(source),djayvo::Strategy::call_response,
+                                          seed,false,true,&context);
+        djayvo::render_remix(plan,source,"/mix.call_response");
+    } catch (const std::exception& e) { error=e.what(); }
+      catch (...) { error="Session generation failed."; }
+    return error.c_str();
+}

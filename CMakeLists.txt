@@ -12,6 +12,7 @@ add_library(djayvo_core STATIC
   core/composition/remix_plan.cpp
   core/instruments/voice.cpp
   core/audio/live.cpp
+  core/audio/session.cpp
   core/audio/renderer.cpp
   core/audio/input.cpp
   core/audio/remix_renderer.cpp
@@ -48,7 +49,7 @@ if(EMSCRIPTEN)
   target_compile_options(djayvo_web PRIVATE -fexceptions)
   target_link_options(djayvo_web PRIVATE
     -fexceptions --no-entry
-    "-sEXPORTED_FUNCTIONS=['_djayvo_web_render']"
+    "-sEXPORTED_FUNCTIONS=['_djayvo_web_render','_djayvo_web_session']"
     "-sEXPORTED_RUNTIME_METHODS=['ccall','FS']"
     -sMODULARIZE=1 -sEXPORT_ES6=1 -sENVIRONMENT=web,worker,node
     -sALLOW_MEMORY_GROWTH=1 -sMAXIMUM_MEMORY=536870912 -sSTACK_SIZE=2097152)
@@ -56,13 +57,15 @@ if(EMSCRIPTEN)
   add_executable(djayvo_live core/audio/live.cpp)
   target_link_libraries(djayvo_live PRIVATE djayvo_core)
   target_link_options(djayvo_live PRIVATE --no-entry
-    "-sEXPORTED_FUNCTIONS=['_djayvo_live_init','_djayvo_live_note','_djayvo_live_off','_djayvo_live_panic','_djayvo_live_buffer','_djayvo_live_render','_djayvo_live_active','_djayvo_live_mouth']"
+    "-sEXPORTED_FUNCTIONS=['_djayvo_live_init','_djayvo_live_note','_djayvo_live_off','_djayvo_live_panic','_djayvo_live_buffer','_djayvo_live_render','_djayvo_live_active','_djayvo_live_mouth','_djayvo_next_bar']"
     -sSTANDALONE_WASM=1 -sFILESYSTEM=0 -sALLOW_MEMORY_GROWTH=0
     -sINITIAL_MEMORY=33554432 -sSTACK_SIZE=262144)
   set_target_properties(djayvo_live PROPERTIES SUFFIX ".wasm")
 endif()
 
 if(BUILD_TESTING)
+  add_executable(djayvo_session_render core/tests/session_render.cpp)
+  target_link_libraries(djayvo_session_render PRIVATE djayvo_core)
   add_executable(djayvo_live_tests core/tests/live_tests.cpp)
   target_link_libraries(djayvo_live_tests PRIVATE djayvo_core)
   add_test(NAME live_instruments COMMAND djayvo_live_tests)

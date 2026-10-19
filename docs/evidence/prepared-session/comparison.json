@@ -1,0 +1,197 @@
+{
+  "status": "PASS",
+  "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+  "grid": "PASS",
+  "wasm_input_rejection": "PASS",
+  "results": [
+    {
+      "tempo": 60000,
+      "seconds": 1.1007427500000002,
+      "report": {
+        "project": "Djayvo",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1728000,
+        "total_frames": 1824000,
+        "duration_seconds": 38,
+        "events": 130,
+        "peak_linear": 0.400469720364,
+        "peak_dbfs": -7.9486063095,
+        "pre_limiter_peak_linear": 0.400469706345,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -30.1613315195,
+        "rms_dbfs_right": -30.4097504464,
+        "max_adjacent_sample_step": 0.305370569229,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "wasm_sha256": "755f58903b9e4cf0cc4a421e6894b55197c07fe09978ea0f1c61d32719b0c0fb",
+      "comparisons": [
+        {
+          "platform": "mac",
+          "plans": "PASS",
+          "event_frames": "PASS",
+          "waveform_max_absolute": 0,
+          "waveform_rms": 0,
+          "sha256": "755f58903b9e4cf0cc4a421e6894b55197c07fe09978ea0f1c61d32719b0c0fb"
+        },
+        {
+          "platform": "linux",
+          "plans": "PASS",
+          "event_frames": "PASS",
+          "waveform_max_absolute": 0,
+          "waveform_rms": 0,
+          "sha256": "755f58903b9e4cf0cc4a421e6894b55197c07fe09978ea0f1c61d32719b0c0fb"
+        }
+      ]
+    },
+    {
+      "tempo": 83920,
+      "seconds": 0.317667375,
+      "report": {
+        "project": "Djayvo",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1372736,
+        "total_frames": 1468736,
+        "duration_seconds": 30.5986666667,
+        "events": 76,
+        "peak_linear": 0.400474607944,
+        "peak_dbfs": -7.94850030217,
+        "pre_limiter_peak_linear": 0.40047461188,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -30.0011119884,
+        "rms_dbfs_right": -30.2037673502,
+        "max_adjacent_sample_step": 0.305289298296,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "wasm_sha256": "7b097aa348e9756b8b60166b3e59e8c4658672c466ad521ab15cca4fca78ebee",
+      "comparisons": [
+        {
+          "platform": "mac",
+          "plans": "PASS",
+          "event_frames": "PASS",
+          "waveform_max_absolute": 0,
+          "waveform_rms": 0,
+          "sha256": "7b097aa348e9756b8b60166b3e59e8c4658672c466ad521ab15cca4fca78ebee"
+        },
+        {
+          "platform": "linux",
+          "plans": "PASS",
+          "event_frames": "PASS",
+          "waveform_max_absolute": 0,
+          "waveform_rms": 0,
+          "sha256": "7b097aa348e9756b8b60166b3e59e8c4658672c466ad521ab15cca4fca78ebee"
+        }
+      ]
+    },
+    {
+      "tempo": 120000,
+      "seconds": 0.330420208,
+      "report": {
+        "project": "Djayvo",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1344000,
+        "total_frames": 1440000,
+        "duration_seconds": 30,
+        "events": 148,
+        "peak_linear": 0.400474607944,
+        "peak_dbfs": -7.94850030217,
+        "pre_limiter_peak_linear": 0.400474611825,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -29.2626119978,
+        "rms_dbfs_right": -29.5707979794,
+        "max_adjacent_sample_step": 0.305370330811,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "wasm_sha256": "257f8bec707db55bc347c260a0c690938cf158d911b743aba707c681b080c50e",
+      "comparisons": [
+        {
+          "platform": "mac",
+          "plans": "PASS",
+          "event_frames": "PASS",
+          "waveform_max_absolute": 0,
+          "waveform_rms": 0,
+          "sha256": "257f8bec707db55bc347c260a0c690938cf158d911b743aba707c681b080c50e"
+        },
+        {
+          "platform": "linux",
+          "plans": "PASS",
+          "event_frames": "PASS",
+          "waveform_max_absolute": 0,
+          "waveform_rms": 0,
+          "sha256": "257f8bec707db55bc347c260a0c690938cf158d911b743aba707c681b080c50e"
+        }
+      ]
+    },
+    {
+      "tempo": 180000,
+      "seconds": 0.3477975419999998,
+      "report": {
+        "project": "Djayvo",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1344000,
+        "total_frames": 1440000,
+        "duration_seconds": 30,
+        "events": 262,
+        "peak_linear": 0.404935956001,
+        "peak_dbfs": -7.85227317297,
+        "pre_limiter_peak_linear": 0.404935967574,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -28.464944778,
+        "rms_dbfs_right": -28.7090436397,
+        "max_adjacent_sample_step": 0.30538970232,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "wasm_sha256": "7f68894367c057b317832a15773543a7fdea242c3692342bb6ea11669e3348e1",
+      "comparisons": [
+        {
+          "platform": "mac",
+          "plans": "PASS",
+          "event_frames": "PASS",
+          "waveform_max_absolute": 0,
+          "waveform_rms": 0,
+          "sha256": "7f68894367c057b317832a15773543a7fdea242c3692342bb6ea11669e3348e1"
+        },
+        {
+          "platform": "linux",
+          "plans": "PASS",
+          "event_frames": "PASS",
+          "waveform_max_absolute": 0,
+          "waveform_rms": 0,
+          "sha256": "7f68894367c057b317832a15773543a7fdea242c3692342bb6ea11669e3348e1"
+        }
+      ]
+    }
+  ],
+  "listening": "NOT RUN"
+}

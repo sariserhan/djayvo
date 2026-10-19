@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "scope": "Prepared A plus source-derived C on a common audio clock; local rule director",
+  "full_specification": "PARTIAL",
+  "native_mac": "15/15 PASS",
+  "native_linux": "15/15 PASS (actual arm64 VM)",
+  "sanitizers": "PASS: address and undefined behavior",
+  "context_plan_matrix": "144 plans: 12 minor tonics, four tempi, three seeds",
+  "web_unit": "22/22 PASS",
+  "browsers": {
+    "chromium": {
+      "status": "PASS",
+      "checks": 17,
+      "version": "149.0.7827.55",
+      "artifacts": "renders/session-chromium-TQYCst",
+      "generation_seconds": 1.0015624589999998,
+      "callback_blocks": 12974,
+      "callback_frames": 1660672,
+      "silent_blocks": 0,
+      "frame_gaps": 0
+    },
+    "webkit": {
+      "status": "PASS",
+      "checks": 17,
+      "version": "26.5",
+      "artifacts": "renders/session-webkit-l5JfdT",
+      "generation_seconds": 0.3682613749999996,
+      "callback_blocks": 12695,
+      "callback_frames": 1624960,
+      "silent_blocks": 0,
+      "frame_gaps": 0
+    }
+  },
+  "existing_dj_regressions": "48 PASS",
+  "voice_regressions": "40 PASS",
+  "integrated_site": "PASS: Chromium and WebKit",
+  "event_frame_agreement": "PASS: native Mac/Linux/WASM exact at four tempi; six-hour clock receipt exact",
+  "pcm_max_absolute_difference": 0,
+  "pcm_rms_difference": 0,
+  "offline": "PASS: actual server disconnected before reload and generation",
+  "prepared_limits": "32 MiB encoded / 128 MiB decoded; 5 minutes; 60-180 BPM; constant 4/4; minor context",
+  "physical_microphone": "NOT RUN",
+  "physical_output_latency": "NOT RUN",
+  "actual_linux_browser": "NOT RUN",
+  "venue_endurance": "NOT RUN",
+  "blinded_listening": "NOT RUN",
+  "learned_director": "NOT RUN",
+  "production_release": "NOT RUN",
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/x.mp3": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+    "/Users/serhansari/Downloads/y.mp3": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+    "/Users/serhansari/Downloads/z.mp3": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63",
+    "/Users/serhansari/Downloads/pipe.mp3": "e57756d665c676e876bc7b25abf6d97bd88d137c889eebd633ade0d353919bc8"
+  },
+  "playable_outputs": [
+    "renders/session-native-20261018",
+    "renders/session-wasm-20261018"
+  ]
+}

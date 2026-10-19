@@ -89,8 +89,11 @@ Region chop_region(const AudioBuffer& source, std::uint64_t onset, std::uint64_t
 }
 }
 RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy strategy,
-                     std::uint32_t seed, bool synthetic, bool consent) {
+                     std::uint32_t seed, bool synthetic, bool consent, const MusicalContext* context) {
     strategy_name(strategy);
+    if (context && (strategy!=Strategy::call_response || context->tempo_milli_bpm<60000 ||
+        context->tempo_milli_bpm>180000 || context->tonic_midi<60 || context->tonic_midi>71))
+        throw std::invalid_argument("session context requires call-response, 60..180 BPM and a minor tonic C4..B4");
     if (strategy==Strategy::baseline) return make_baseline(source,a,seed,synthetic,consent);
     if (source.sample_rate<8000 || source.sample_rate>192000 ||
         source.mono.size()<source.sample_rate*2ULL || source.mono.size()>source.sample_rate*5ULL ||
@@ -117,6 +120,10 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     if (club) {p.tempo_milli_bpm=140000;p.bars=20;p.kick_duck_db=-7;}
     if (funk) {p.tempo_milli_bpm=std::array<std::uint32_t,3>{{108000,112000,116000}}[(seed/4U)%3U];p.bars=14;}
     if (dialogue || hybrid) {p.tempo_milli_bpm=std::array<std::uint32_t,3>{{108000,112000,116000}}[(seed/4U)%3U];p.bars=16;}
+    if (context) {
+        p.tempo_milli_bpm=context->tempo_milli_bpm;
+        p.bars=std::max(9,static_cast<int>(std::llround(28.0*p.tempo_milli_bpm/240000.0)));
+    }
     const int late_break=(strategy==Strategy::reggae || strategy==Strategy::experimental)?static_cast<int>((seed>>2U)&1U):0;
     const int break_bar=club?10:p.bars-6+late_break, return_bar=club?14:p.bars-4+late_break;
     p.sections={{"intro",0,2},{"groove",2,break_bar-2},{"break",break_bar,2},
@@ -127,6 +134,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         const int midi = static_cast<int>(std::llround(69 + 12*std::log2(a.pitch_hz/440)));
         r.tonic_midi = 60 + ((midi % 12 + 12) % 12);
     }
+    if (context) r.tonic_midi=context->tonic_midi;
     // Entire source survives unpitched and forward. Edge fades are only 3 ms.
     r.clips.push_back({0,source.mono.size(),1.0});
     for (auto onset : a.onsets) {

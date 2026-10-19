@@ -1,5 +1,13 @@
 # Djayvo — web-studio product direction addendum
 
+**Current authorization — 2026-10-18:** The owner subsequently instructed continued
+implementation through the specification. This supersedes the historical M0a
+review stop and console-only boundary for local implementation. The
+[prepared A + C session](prepared-session.md) implements the first joined
+browser workflow. Master/M0a scope remain unchanged; formal quality, physical
+hardware/venue evidence, and separate paid/release approval remain mandatory.
+Phone and hosted infrastructure work remain paused.
+
 **Subsequent authorization:** After the M0a review stop the owner authorized the
 [first manual DJ increment](dj-mixer.md), then explicitly requested spinning,
 controllable decks, full piano keys and more instruments. The
@@ -14,7 +22,7 @@ Owner direction recorded 2026-10-18. This separate addendum preserves the
 It changes the future product direction and current authorization boundary,
 not M0a's implementation scope or acceptance criteria.
 
-## Current authorization and review stop
+## Historical M0a authorization and review stop
 
 **M0a technical implementation: PASS. Review acceptance: PARTIAL.** M0a is already
 implemented. Its [original evidence](m0a-report.md), commit `02d0e18`, includes
@@ -22,7 +30,7 @@ Linux release and sanitizer runs, 9/9 C++ groups, 2/2 CTest suites, deterministi
 rendering and a decoded four-bar instrumental WAV. Human musical-quality
 acceptance remains **NOT RUN**; automated tests do not supply it.
 
-The latest owner instruction supersedes earlier autonomous-continuation
+At that historical checkpoint, the owner instruction superseded earlier autonomous-continuation
 permissions: stop for M0a review. Do not begin or resume W0, W1, other later
 milestones, model training, DJ implementation or infrastructure work without
 explicit authorization. Existing later-stage code, recordings and evidence were
@@ -44,7 +52,7 @@ The musician must respond to the captured sound and current musical context,
 preserve a recognizable source hook where appropriate, develop an original
 performance, and leave the performer in control of when it enters the mix.
 
-## Future component boundaries — design only
+## Component boundaries
 
 | Component | Responsibility | Boundary |
 | --- | --- | --- |
@@ -90,11 +98,11 @@ optional during preparation; the venue path must work without it.
 
 | Gate | Status now | Required future evidence |
 | --- | --- | --- |
-| Browser DJ mixer and Deck C integration | NOT RUN | Real audio behind each control, cue/transport/mix behavior and end-to-end demonstration |
-| AI command/failure boundary in a live session | NOT RUN | Invalid output, timeout, crash and manual-override tests while existing music continues |
-| Live timing and audio continuity | NOT RUN | Measured capture-to-ready latency, scheduled-entry frame error, sustained callback load and underruns/glitches on actual hardware |
-| Offline venue performance | NOT RUN | Disconnect before session start and during playback; verify prepared assets, reload/recovery, local fallback, storage/permission failures and no required network requests |
-| Linux and Apple Silicon studio compatibility | NOT RUN | Actual runs of the same prepared session; event-frame comparison, measured waveform differences, hardware, browser and toolchain versions |
+| Browser DJ mixer and Deck C integration | PARTIAL | Prepared A/C implemented and tested; full transport and physical review remain. Real audio behind each control, cue/transport/mix behavior and end-to-end demonstration |
+| AI command/failure boundary in a live session | PARTIAL | Validated rule planner and worker-failure isolation tested; learned model held. Invalid output, timeout, crash and manual-override tests while existing music continues |
+| Live timing and audio continuity | PARTIAL | Frame/short callback checks pass; physical timing and endurance remain. Measured capture-to-ready latency, scheduled-entry frame error, sustained callback load and underruns/glitches on actual hardware |
+| Offline venue performance | PARTIAL | Disconnected-server prepared session passes; venue acceptance remains. Disconnect before session start and during playback; verify prepared assets, reload/recovery, local fallback, storage/permission failures and no required network requests |
+| Linux and Apple Silicon studio compatibility | PARTIAL | Native Mac/Linux/WASM agree; actual Linux browser still required. Actual runs of the same prepared session; event-frame comparison, measured waveform differences, hardware, browser and toolchain versions |
 | Musical quality and originality | NOT RUN | Playable outputs and blinded listening comparing source-driven improvisation with a stock-beat baseline; varied inputs and contexts |
 | Recording consent and music rights | PARTIAL | Existing controls/ledgers provide a foundation; review live capture, local retention/deletion, playback, transformation, training and publication rights separately |
 
@@ -120,5 +128,5 @@ render, inference, fixture generation or listening assessment was performed.
 Later [Apple M5 portability evidence](mac-portability.md) remains available,
 separate from the historical Linux M0a report and future live-studio gates.
 
-**Stop here for owner review.** Subsequent implementation requires a new explicit
-scope authorization; this addendum grants none.
+**Historical stop:** subsequently superseded by the current authorization above.
+Human quality and release gates still require their stated evidence.

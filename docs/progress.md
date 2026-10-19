@@ -1,15 +1,22 @@
 # Djayvo: M0 continuation evidence
 
-**Current authorization — 2026-10-18:** The owner requested a professional-looking
-DJ console with spinning, controllable decks, a full piano and a broader instrument
-palette. This authorizes the local [console and live instruments](dj-console.md)
-increment after the manual mixer. M0a and the master remain unchanged. Shared
-beat synchronization, AI Deck C, production/venue acceptance, new paid compute
-and deployment are not passed or authorized by this increment. Preserve earlier
-work, recordings and evidence.
-Owner continuation extends this local increment with [instrument tone and echo](instrument-effects.md); other scope boundaries remain unchanged.
-The owner subsequently requested [Talk bass and extra percussion](talk-bass.md), using `pipe.mp3` for local analysis; this is part of the same local instrument scope.
+**Current authorization — 2026-10-18:** The owner's latest “continue with the
+spec, finish everything” supersedes the earlier console-only increment and
+M0a review stop for remaining local implementation. Continue the browser musical
+improviser and available specification work without per-step approval; preserve
+local changes, recordings, evidence and the immutable master. The
+[prepared A + C session](prepared-session.md) connects the local phrase director to the mixer.
+Human quality, actual hardware/venue evidence and M1 prerequisites for production
+learned AI remain required. Phone and hosted-infrastructure work remain paused;
+new paid compute, publication and monetization still need explicit authorization.
 
+
+Latest local implementation: [Prepared A + C session](prepared-session.md).
+**PASS:** context-bound C++ phrase responses, absolute bar scheduling, prepared
+Deck A playback plus C preview/entry/fader/stop, opt-in capture/import, cancellation
+and local failure handling. Reproducible native/browser/offline evidence is in the
+linked report. **PARTIAL:** full live/production studio. **NOT RUN:** formal
+listening, physical microphone/output latency and venue endurance for this path.
 
 For completed development, open tasks and future milestones, use the
 [development tracker](../TODO.md). This file retains the detailed evidence record.
@@ -21,7 +28,7 @@ master specification is unchanged. The original M0a record is
 
 **Current Apple M5 and Linux arm64 technical checks: PASS. Overall M0: PARTIAL.**
 
-Latest local implementation: [Talk bass and extra percussion](talk-bass.md).
+Previous local implementation: [Talk bass and extra percussion](talk-bass.md).
 **PASS:** original shared-core formant bass, four new pads, local pipe-reference
 measurements, Mac/Linux 15/15 suites each, sanitizer, PCM agreement, 48 DJ browser
 checks, 19 unit and 40 voice regressions. Playable demos retained locally.

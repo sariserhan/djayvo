@@ -54,9 +54,10 @@ struct RemixPlan {
     std::vector<Region> clips;
     std::vector<VocalEvent> vocals;
 };
+struct MusicalContext { std::uint32_t tempo_milli_bpm; int tonic_midi; };
 RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& analysis,
                      Strategy strategy, std::uint32_t seed,
-                     bool synthetic, bool consent_confirmed);
+                     bool synthetic, bool consent_confirmed, const MusicalContext* context = nullptr);
 RemixPlan make_baseline(const AudioBuffer& source, const InputAnalysis& analysis,
                         std::uint32_t seed, bool synthetic, bool consent_confirmed);
 void validate(const RemixPlan& plan, const AudioBuffer& source);
