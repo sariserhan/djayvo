@@ -1,6 +1,11 @@
 # Specification completion ledger
 
-Latest engine fix: [Offset-resistant vocal pause detection](chop-offset.md)
+Latest renderer improvement: [Bounded active vocals](active-vocals.md)
+**PASS (technical)**: stable event scheduling, unchanged native/WASM audio and
+measured offline timing. Live latency and new musical quality **NOT RUN**;
+M1 and production remain open.
+
+Previous engine fix: [Offset-resistant vocal pause detection](chop-offset.md)
 **PASS (technical)**: known endings, native/WASM agreement and saved-score
 compatibility. One licensed speech source changes crops; new word accuracy and
 musical benefit **NOT RUN**. M1 and production remain open.

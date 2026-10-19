@@ -1,0 +1,7 @@
+PASS: renders/active-vocals-20261019/after/dense.hiphop.wav
+PASS: complete export renders/active-vocals-20261019/after/dense.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/active-vocals-20261019/after/echo.hiphop.wav
+PASS: complete export renders/active-vocals-20261019/after/echo.complete.json
+Listening/recognizability: NOT RUN
+PASS: dense and echo plans validated, imported and rendered

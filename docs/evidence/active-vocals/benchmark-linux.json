@@ -1,0 +1,274 @@
+{
+  "status": "PASS",
+  "system": "Linux-6.8.0-117-generic-aarch64-with-glibc2.36",
+  "python": "3.11.2 (main, Oct  7 2026, 12:35:07) [GCC 12.2.0]",
+  "scope": "Offline CLI import/planning/render/IO/hashing; 3 trials, alternating order, no warmup exclusion",
+  "binary_sha256": {
+    "before": "6014d1fa347ec6dddfc780318994a24462de91820bcb052d752a7602457e060f",
+    "after": "66de2018b6262b812dca09e32b9898534cf20cba2b56a01ea331522731b130a4"
+  },
+  "cases": [
+    {
+      "plan": "sparse",
+      "block": 512,
+      "trials": [
+        {
+          "stage": "before",
+          "repeat": 0,
+          "wav": "/out/active-vocals-benchmark-20261019/sparse-512-0-before.hiphop.wav",
+          "sha256": "0fe9d9715326d4c9a284825657d35421ef5c8a86d0b966927a95c2b798e71eac",
+          "wall_seconds": 0.38227461200000334,
+          "cpu_seconds": 0.329135,
+          "peak_rss_bytes": 27267072
+        },
+        {
+          "stage": "after",
+          "repeat": 0,
+          "wav": "/out/active-vocals-benchmark-20261019/sparse-512-0-after.hiphop.wav",
+          "sha256": "0fe9d9715326d4c9a284825657d35421ef5c8a86d0b966927a95c2b798e71eac",
+          "wall_seconds": 0.3700987029999965,
+          "cpu_seconds": 0.31726099999999996,
+          "peak_rss_bytes": 27267072
+        },
+        {
+          "stage": "after",
+          "repeat": 1,
+          "wav": "/out/active-vocals-benchmark-20261019/sparse-512-1-after.hiphop.wav",
+          "sha256": "0fe9d9715326d4c9a284825657d35421ef5c8a86d0b966927a95c2b798e71eac",
+          "wall_seconds": 0.37132500400002755,
+          "cpu_seconds": 0.32127700000000003,
+          "peak_rss_bytes": 27271168
+        },
+        {
+          "stage": "before",
+          "repeat": 1,
+          "wav": "/out/active-vocals-benchmark-20261019/sparse-512-1-before.hiphop.wav",
+          "sha256": "0fe9d9715326d4c9a284825657d35421ef5c8a86d0b966927a95c2b798e71eac",
+          "wall_seconds": 0.3664632489999917,
+          "cpu_seconds": 0.318135,
+          "peak_rss_bytes": 27267072
+        },
+        {
+          "stage": "before",
+          "repeat": 2,
+          "wav": "/out/active-vocals-benchmark-20261019/sparse-512-2-before.hiphop.wav",
+          "sha256": "0fe9d9715326d4c9a284825657d35421ef5c8a86d0b966927a95c2b798e71eac",
+          "wall_seconds": 0.36494006499998477,
+          "cpu_seconds": 0.317013,
+          "peak_rss_bytes": 27267072
+        },
+        {
+          "stage": "after",
+          "repeat": 2,
+          "wav": "/out/active-vocals-benchmark-20261019/sparse-512-2-after.hiphop.wav",
+          "sha256": "0fe9d9715326d4c9a284825657d35421ef5c8a86d0b966927a95c2b798e71eac",
+          "wall_seconds": 0.36643520299998045,
+          "cpu_seconds": 0.317072,
+          "peak_rss_bytes": 27136000
+        }
+      ],
+      "median_seconds": {
+        "before": 0.3664632489999917,
+        "after": 0.3700987029999965
+      },
+      "observed_speedup": 0.9901770690614801
+    },
+    {
+      "plan": "dense",
+      "block": 512,
+      "trials": [
+        {
+          "stage": "before",
+          "repeat": 0,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-512-0-before.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.7526657919999593,
+          "cpu_seconds": 0.7165969999999999,
+          "peak_rss_bytes": 27451392
+        },
+        {
+          "stage": "after",
+          "repeat": 0,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-512-0-after.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.37943977700001597,
+          "cpu_seconds": 0.33308099999999996,
+          "peak_rss_bytes": 27451392
+        },
+        {
+          "stage": "after",
+          "repeat": 1,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-512-1-after.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.3583894529999725,
+          "cpu_seconds": 0.31997,
+          "peak_rss_bytes": 27451392
+        },
+        {
+          "stage": "before",
+          "repeat": 1,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-512-1-before.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.7429656039999486,
+          "cpu_seconds": 0.705635,
+          "peak_rss_bytes": 27451392
+        },
+        {
+          "stage": "before",
+          "repeat": 2,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-512-2-before.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.7660834790000308,
+          "cpu_seconds": 0.72836,
+          "peak_rss_bytes": 27451392
+        },
+        {
+          "stage": "after",
+          "repeat": 2,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-512-2-after.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.36092517500003396,
+          "cpu_seconds": 0.322665,
+          "peak_rss_bytes": 27451392
+        }
+      ],
+      "median_seconds": {
+        "before": 0.7526657919999593,
+        "after": 0.36092517500003396
+      },
+      "observed_speedup": 2.08537903181702
+    },
+    {
+      "plan": "echo",
+      "block": 512,
+      "trials": [
+        {
+          "stage": "before",
+          "repeat": 0,
+          "wav": "/out/active-vocals-benchmark-20261019/echo-512-0-before.hiphop.wav",
+          "sha256": "1f73a1fb2ebf059882601764fc53a71304bc7cd72aa2e1f4c6cbcfb233d682ce",
+          "wall_seconds": 0.6557112379999808,
+          "cpu_seconds": 0.622063,
+          "peak_rss_bytes": 27246592
+        },
+        {
+          "stage": "after",
+          "repeat": 0,
+          "wav": "/out/active-vocals-benchmark-20261019/echo-512-0-after.hiphop.wav",
+          "sha256": "1f73a1fb2ebf059882601764fc53a71304bc7cd72aa2e1f4c6cbcfb233d682ce",
+          "wall_seconds": 0.3545034869999881,
+          "cpu_seconds": 0.317484,
+          "peak_rss_bytes": 27250688
+        },
+        {
+          "stage": "after",
+          "repeat": 1,
+          "wav": "/out/active-vocals-benchmark-20261019/echo-512-1-after.hiphop.wav",
+          "sha256": "1f73a1fb2ebf059882601764fc53a71304bc7cd72aa2e1f4c6cbcfb233d682ce",
+          "wall_seconds": 0.3539695649999999,
+          "cpu_seconds": 0.318578,
+          "peak_rss_bytes": 27246592
+        },
+        {
+          "stage": "before",
+          "repeat": 1,
+          "wav": "/out/active-vocals-benchmark-20261019/echo-512-1-before.hiphop.wav",
+          "sha256": "1f73a1fb2ebf059882601764fc53a71304bc7cd72aa2e1f4c6cbcfb233d682ce",
+          "wall_seconds": 0.6732420939999884,
+          "cpu_seconds": 0.6346160000000001,
+          "peak_rss_bytes": 27246592
+        },
+        {
+          "stage": "before",
+          "repeat": 2,
+          "wav": "/out/active-vocals-benchmark-20261019/echo-512-2-before.hiphop.wav",
+          "sha256": "1f73a1fb2ebf059882601764fc53a71304bc7cd72aa2e1f4c6cbcfb233d682ce",
+          "wall_seconds": 0.684517110999991,
+          "cpu_seconds": 0.639786,
+          "peak_rss_bytes": 27246592
+        },
+        {
+          "stage": "after",
+          "repeat": 2,
+          "wav": "/out/active-vocals-benchmark-20261019/echo-512-2-after.hiphop.wav",
+          "sha256": "1f73a1fb2ebf059882601764fc53a71304bc7cd72aa2e1f4c6cbcfb233d682ce",
+          "wall_seconds": 0.35635111999999936,
+          "cpu_seconds": 0.316714,
+          "peak_rss_bytes": 27246592
+        }
+      ],
+      "median_seconds": {
+        "before": 0.6732420939999884,
+        "after": 0.3545034869999881
+      },
+      "observed_speedup": 1.8991127554127865
+    },
+    {
+      "plan": "dense",
+      "block": 113,
+      "trials": [
+        {
+          "stage": "before",
+          "repeat": 0,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-113-0-before.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.7479426859999876,
+          "cpu_seconds": 0.7091059999999999,
+          "peak_rss_bytes": 27451392
+        },
+        {
+          "stage": "after",
+          "repeat": 0,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-113-0-after.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.35672528600002806,
+          "cpu_seconds": 0.320904,
+          "peak_rss_bytes": 27455488
+        },
+        {
+          "stage": "after",
+          "repeat": 1,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-113-1-after.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.358290506000003,
+          "cpu_seconds": 0.31893199999999994,
+          "peak_rss_bytes": 27451392
+        },
+        {
+          "stage": "before",
+          "repeat": 1,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-113-1-before.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.8043260249999662,
+          "cpu_seconds": 0.744673,
+          "peak_rss_bytes": 27451392
+        },
+        {
+          "stage": "before",
+          "repeat": 2,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-113-2-before.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.7671303820000048,
+          "cpu_seconds": 0.7197979999999999,
+          "peak_rss_bytes": 27451392
+        },
+        {
+          "stage": "after",
+          "repeat": 2,
+          "wav": "/out/active-vocals-benchmark-20261019/dense-113-2-after.hiphop.wav",
+          "sha256": "884f96af4ea42af00afd1c012138b74f6642b985de89c62cd81f00e5de940a26",
+          "wall_seconds": 0.4052262210000208,
+          "cpu_seconds": 0.33610999999999996,
+          "peak_rss_bytes": 27451392
+        }
+      ],
+      "median_seconds": {
+        "before": 0.7671303820000048,
+        "after": 0.358290506000003
+      },
+      "observed_speedup": 2.1410848715036797
+    }
+  ],
+  "live_latency": "NOT RUN",
+  "quality": "NOT RUN"
+}

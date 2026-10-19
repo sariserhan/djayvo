@@ -11,7 +11,19 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest shared-engine fix — 2026-10-19:
+Latest renderer improvement — 2026-10-19:
+[Bounded active vocal processing](active-vocals.md) **PASS (technical)**:
+keep at most 16 active triggers, expire at measured frame boundaries and preserve
+summation order. Mac/Linux suites, sanitizer, 75 byte-identical old/new/cross-OS
+WAVs and 11 WASM comparisons pass. Dense/echo plans and 129-event scheduling
+regression validate full-pool reuse, original output and allocation-free processing.
+Dense/echo offline renders improve by 2.16–2.39× on M5 and 1.90–2.14× on Linux;
+sparse medians are slightly slower (2.9%/1.0%), so no general speedup is claimed. Live/device
+latency and new musical quality **NOT RUN**; full production remains **PARTIAL**.
+No new training, rental, upload or change to the listening comparisons.
+
+
+Previous shared-engine fix — 2026-10-19:
 [Offset-resistant vocal pause detection](chop-offset.md) **PASS (technical)**:
 48 controls, actual Mac/Linux 15/15 suites, sanitizer, 107 exact cross-OS WAVs,
 17 WASM comparisons and 11 saved-score replays. All 65 original owner/fixture

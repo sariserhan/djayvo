@@ -1,0 +1,33 @@
+PASS: renders/active-vocals-20261019/before-original/owner-4123.call_response.wav
+PASS: complete export renders/active-vocals-20261019/before-original/owner-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/active-vocals-20261019/before-original/owner-4124.call_response.wav
+PASS: complete export renders/active-vocals-20261019/before-original/owner-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/active-vocals-20261019/before-original/owner-4125.call_response.wav
+PASS: complete export renders/active-vocals-20261019/before-original/owner-4125.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/active-vocals-20261019/before-original/owner-4126.call_response.wav
+PASS: complete export renders/active-vocals-20261019/before-original/owner-4126.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/active-vocals-20261019/before-original/fixture.hiphop.wav
+PASS: renders/active-vocals-20261019/before-original/fixture.reggae.wav
+PASS: renders/active-vocals-20261019/before-original/fixture.experimental.wav
+PASS: complete export renders/active-vocals-20261019/before-original/fixture.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/active-vocals-20261019/before-original/club.club.wav
+PASS: complete export renders/active-vocals-20261019/before-original/club.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/active-vocals-20261019/before-original/funk.funk.wav
+PASS: complete export renders/active-vocals-20261019/before-original/funk.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/active-vocals-20261019/before-original/baseline.baseline.wav
+PASS: complete export renders/active-vocals-20261019/before-original/baseline.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/active-vocals-20261019/before-original/call_response.call_response.wav
+PASS: complete export renders/active-vocals-20261019/before-original/call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/active-vocals-20261019/before-original/hybrid.hybrid.wav
+PASS: complete export renders/active-vocals-20261019/before-original/hybrid.complete.json
+Listening/recognizability: NOT RUN
+PASS: 10 exports in renders/active-vocals-20261019/before-original

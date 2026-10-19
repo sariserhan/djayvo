@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "client_files_checked": 16,
+  "server_secrets_absent": "PASS",
+  "studio_assets_unchanged_except_account_link_and_offline_hashes": "PASS",
+  "wasm_sha256": "d3ad4cd47adf90ee1abc719bb2f51fc894ddf6c505d7448617394b91c8fa98e2"
+}

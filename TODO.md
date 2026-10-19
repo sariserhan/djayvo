@@ -12,7 +12,7 @@ new paid compute, publication and monetization still need explicit authorization
 
 
 Last updated: 2026-10-19 (America/New_York). Latest validation: [Linux browser portability](docs/linux-browser.md).
-Latest engine fix: [Offset-resistant vocal pause detection](docs/chop-offset.md).
+Latest engine improvement: [Bounded active vocal processing](docs/active-vocals.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
 
@@ -481,6 +481,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P64 | PASS | Prepare controlled phrase-articulation research, verify score isolation and 40 Mac/Linux WAVs, deliver 16 matched private A/B listening files; human benefit and default promotion remain open | [Evidence](docs/phrase-articulation.md) |
 | [x] | P65 | PASS | Correct sustained-tone period/key selection; calibrate 180 cases, verify native/WASM output and saved-score compatibility, characterize four changed speech keys | [Evidence](docs/pitch-period.md) |
 | [x] | P66 | PASS | Fix recording-offset energy masking vocal pauses; preserve edge selection and 65 existing WAVs, verify Mac/Linux/WASM and saved scores, audit 20 licensed speech sources | [Evidence](docs/chop-offset.md) |
+| [x] | P67 | PASS | Bound active vocal processing, preserve all comparison audio and event frames, validate dense/echo schedules and measure actual Mac/Linux offline timing | [Evidence](docs/active-vocals.md) |
 
 ## Engineering backlog
 
@@ -548,6 +549,15 @@ is needed. Prioritize by recorded listening defects and product requirements.
   harmony and groove, with seed-selected later breaks in reggae/experimental; perceived variety, broader
   listening and learned contextual direction remain open. Finite rules can still
   sound similar. [Evidence](docs/creative-strategies.md).
+
+- [x] **E14 — PASS (technical):** [Bounded active vocal processing](docs/active-vocals.md).
+  Retire ended vocal triggers instead of scanning the entire history per sample;
+  preserve summation order and exact end/start slot reuse. Mac/Linux suites,
+  sanitizer, 75 unchanged cross-platform WAVs and 11 WASM comparisons pass.
+  Dense/echo imports and allocation-free processing validated; interleaved
+  offline dense/echo speedups of 2.16–2.39× M5 and 1.90–2.14× Linux; ordinary
+  medians slightly slower, so no general speedup claimed. Physical/live latency and new musical quality
+  **NOT RUN**; this does not advance M1 or certify venue performance.
 
 ## M1: formal musical-quality evaluation
 

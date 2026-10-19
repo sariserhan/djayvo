@@ -1,0 +1,130 @@
+-- The C compiler identification is GNU 12.2.0
+-- The CXX compiler identification is GNU 12.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python3: /usr/bin/python3 (found suitable version "3.11.2", minimum required is "3.9") found components: Interpreter
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /work/active-vocals-20261019
+[  3%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/demo.cpp.o
+[  6%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/remix.cpp.o
+[ 10%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/plan.cpp.o
+[ 13%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/analysis.cpp.o
+[ 16%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/remix_plan.cpp.o
+[ 20%] Building CXX object CMakeFiles/djayvo_core.dir/core/instruments/voice.cpp.o
+[ 23%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/live.cpp.o
+[ 26%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/session.cpp.o
+[ 30%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/renderer.cpp.o
+[ 33%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/input.cpp.o
+[ 36%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_renderer.cpp.o
+[ 40%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_file.cpp.o
+[ 43%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/c_api.cpp.o
+[ 46%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/wav.cpp.o
+[ 50%] Linking CXX static library libdjayvo_core.a
+[ 50%] Built target djayvo_core
+[ 53%] Building CXX object CMakeFiles/djayvo_render.dir/tools/cli/main.cpp.o
+[ 56%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/remix_main.cpp.o
+[ 60%] Building CXX object CMakeFiles/djayvo_live_tests.dir/core/tests/live_tests.cpp.o
+[ 63%] Building CXX object CMakeFiles/djayvo_session_render.dir/core/tests/session_render.cpp.o
+[ 66%] Linking CXX executable djayvo_live_tests
+[ 66%] Built target djayvo_live_tests
+[ 70%] Building CXX object CMakeFiles/djayvo_remix.dir/tools/cli/plan_import.cpp.o
+[ 73%] Linking CXX executable djayvo_render
+[ 76%] Linking CXX executable djayvo_session_render
+[ 76%] Built target djayvo_render
+[ 80%] Building CXX object CMakeFiles/djayvo_tests.dir/core/tests/tests.cpp.o
+[ 80%] Built target djayvo_session_render
+[ 83%] Building CXX object CMakeFiles/djayvo_remix_tests.dir/core/tests/remix_tests.cpp.o
+[ 86%] Building C object CMakeFiles/djayvo_c_smoke.dir/core/tests/c_api_smoke.c.o
+[ 90%] Linking CXX executable djayvo_c_smoke
+[ 90%] Built target djayvo_c_smoke
+[ 93%] Linking CXX executable djayvo_remix
+[ 93%] Built target djayvo_remix
+[ 96%] Linking CXX executable djayvo_tests
+[ 96%] Built target djayvo_tests
+[100%] Linking CXX executable djayvo_remix_tests
+[100%] Built target djayvo_remix_tests
+Internal ctest changing into directory: /work/active-vocals-20261019
+Test project /work/active-vocals-20261019
+      Start  1: live_instruments
+ 1/15 Test  #1: live_instruments .................   Passed    0.23 sec
+      Start  2: core
+ 2/15 Test  #2: core .............................   Passed    0.51 sec
+      Start  3: remix_core
+ 3/15 Test  #3: remix_core .......................   Passed    6.13 sec
+      Start  4: c_abi
+ 4/15 Test  #4: c_abi ............................   Passed    0.38 sec
+      Start  5: acoustic_assets
+ 5/15 Test  #5: acoustic_assets ..................   Passed    0.45 sec
+      Start  6: sustained_assets
+ 6/15 Test  #6: sustained_assets .................   Passed    0.01 sec
+      Start  7: guitar_assets
+ 7/15 Test  #7: guitar_assets ....................   Passed    0.38 sec
+      Start  8: electronic_assets
+ 8/15 Test  #8: electronic_assets ................   Passed    0.08 sec
+      Start  9: wav_integration
+ 9/15 Test  #9: wav_integration ..................   Passed    0.52 sec
+      Start 10: remix_integration
+10/15 Test #10: remix_integration ................   Passed    4.20 sec
+      Start 11: word_timing
+11/15 Test #11: word_timing ......................   Passed    0.06 sec
+      Start 12: tooling
+12/15 Test #12: tooling ..........................   Passed    1.31 sec
+      Start 13: listening_review
+13/15 Test #13: listening_review .................   Passed    0.03 sec
+      Start 14: evaluation_preparation
+14/15 Test #14: evaluation_preparation ...........   Passed   13.44 sec
+      Start 15: plan_import
+15/15 Test #15: plan_import ......................   Passed    5.24 sec
+
+100% tests passed, 0 tests failed out of 15
+
+Total Test time (real) =  32.96 sec
+PASS: /out/active-vocals-20261019/owner-4123.call_response.wav
+PASS: complete export /out/active-vocals-20261019/owner-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/active-vocals-20261019/owner-4124.call_response.wav
+PASS: complete export /out/active-vocals-20261019/owner-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/active-vocals-20261019/owner-4125.call_response.wav
+PASS: complete export /out/active-vocals-20261019/owner-4125.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/active-vocals-20261019/owner-4126.call_response.wav
+PASS: complete export /out/active-vocals-20261019/owner-4126.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/active-vocals-20261019/fixture.hiphop.wav
+PASS: /out/active-vocals-20261019/fixture.reggae.wav
+PASS: /out/active-vocals-20261019/fixture.experimental.wav
+PASS: complete export /out/active-vocals-20261019/fixture.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/active-vocals-20261019/club.club.wav
+PASS: complete export /out/active-vocals-20261019/club.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/active-vocals-20261019/funk.funk.wav
+PASS: complete export /out/active-vocals-20261019/funk.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/active-vocals-20261019/baseline.baseline.wav
+PASS: complete export /out/active-vocals-20261019/baseline.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/active-vocals-20261019/call_response.call_response.wav
+PASS: complete export /out/active-vocals-20261019/call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/active-vocals-20261019/hybrid.hybrid.wav
+PASS: complete export /out/active-vocals-20261019/hybrid.complete.json
+Listening/recognizability: NOT RUN
+PASS: 10 exports in /out/active-vocals-20261019
+PASS: /out/active-vocals-20261019/dense.hiphop.wav
+PASS: complete export /out/active-vocals-20261019/dense.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/active-vocals-20261019/echo.hiphop.wav
+PASS: complete export /out/active-vocals-20261019/echo.complete.json
+Listening/recognizability: NOT RUN
+PASS: dense and echo plans validated, imported and rendered

@@ -75,7 +75,7 @@ public:
     std::size_t process(float* stereo, std::size_t count) noexcept;
     bool finished() const noexcept { return cursor_ == total_frames_; }
     const AudioStats& stats() const noexcept { return stats_; }
-    std::uint64_t voice_overflows() const noexcept { return music_.voice_overflows(); }
+    std::uint64_t voice_overflows() const noexcept { return music_.voice_overflows()+vocal_overflows_; }
 private:
     struct Trigger {
         std::uint64_t start, frames, source_begin, source_end;
@@ -91,6 +91,9 @@ private:
     Renderer music_;
     const AudioBuffer& source_;
     std::vector<Trigger> triggers_;
+    std::array<const Trigger*,16> active_triggers_{};
+    std::size_t next_trigger_ = 0, active_count_ = 0;
+    std::uint64_t next_vocal_end_ = 0, vocal_overflows_ = 0;
     std::vector<TransformedClip> transformed_;
     std::vector<float> music_buffer_;
     std::vector<double> room_buffer_;

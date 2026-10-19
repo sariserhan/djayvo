@@ -133,11 +133,31 @@ std::size_t RemixRenderer::process(float* stereo,std::size_t requested) noexcept
     const double fade=std::max(1.0,source_.sample_rate*0.003);
     const double duck_fade=std::max(1.0,source_.sample_rate*0.010);
     for (std::size_t i=0;i<count;++i,++cursor_) {
+        // Stable compaction preserves summation order; ended clips leave before same-frame starts.
+        if (cursor_>=next_vocal_end_) {
+            std::size_t remaining=0;
+            next_vocal_end_=total_frames_;
+            for (std::size_t j=0;j<active_count_;++j) {
+                const auto end=active_triggers_[j]->start+active_triggers_[j]->frames;
+                if (cursor_>=end) continue;
+                next_vocal_end_=std::min(next_vocal_end_,end);
+                active_triggers_[remaining++]=active_triggers_[j];
+            }
+            active_count_=remaining;
+        }
+        while (next_trigger_<triggers_.size() && triggers_[next_trigger_].start<=cursor_) {
+            const auto& trigger=triggers_[next_trigger_];
+            if (active_count_<active_triggers_.size()) {
+                active_triggers_[active_count_++]=&trigger;
+                next_vocal_end_=std::min(next_vocal_end_,trigger.start+trigger.frames);
+            }
+            else ++vocal_overflows_; // Validation caps simultaneous triggers at 16, including echoes.
+            ++next_trigger_;
+        }
         double voice_left=0,voice_right=0,duck=1;
-        for (const auto& t : triggers_) {
-            if (t.start>cursor_) break;
+        for (std::size_t j=0;j<active_count_;++j) {
+            const auto& t=*active_triggers_[j];
             const auto position=cursor_-t.start;
-            if (position>=t.frames) continue;
             const double edge=std::min(static_cast<double>(position),static_cast<double>(t.frames-1-position));
             const double envelope=std::clamp(edge/fade,0.0,1.0);
             if (t.clean) duck=std::min(duck,1.0-0.85*std::clamp(edge/duck_fade,0.0,1.0));

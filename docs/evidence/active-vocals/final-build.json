@@ -1,0 +1,27 @@
+{
+  "protected_files": "PASS",
+  "preserved_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "build_and_evidence_sha256": {
+    "core/audio/remix_renderer.cpp": "076cdabd0c43cbb97881923f1b6cc3f24387903f6b0f6f97b7f567a5e60f37a4",
+    "core/include/djayvo/remix.h": "5acd436bf330563e863ff7cbf67014b4a7aa8c36ad4eafc02c84692056ccedaa",
+    "core/tests/remix_tests.cpp": "b8723a07c21c1ee72264462138b43c1edbbbc12e5d0e8903a80b382bc04cff37",
+    "build-mac/djayvo_remix": "55d572333345f0a50786410757bf3dfd967e4d93d806430dd264d5330efe815f",
+    "build-mac/libdjayvo_core.a": "affd7a4443724109bae3bbe1dee084aae7c6baaa536a07842abd50b0a3114157",
+    "build-web/djayvo_web.wasm": "35fff78da4506db1e863ae93718d247fe5e57f86e90046bceda896b1126324f4",
+    "docs/evidence/active-vocals/prepare.py": "b6157ffdc83be83547de89adc34eac9c5f8ea2d3e404c16617d94ffb4b90362a",
+    "docs/evidence/active-vocals/render-stress.py": "6eac98198e061f35f107cc63f97d6a98cafa87c95bbfe9bc31489959dc895fac",
+    "docs/evidence/active-vocals/benchmark.py": "0656aa8316b643249bb39ca58af13fd0a76621ab3b9c599ce242a20e0d67ee81",
+    "docs/evidence/active-vocals/measure.py": "a73294a63f1cc24cc60c48dd80dfccee5a26405a56b44944f8b3f9e46ace63ed",
+    "docs/evidence/active-vocals/wasm-check.mjs": "af74d627b537d4c3cab917cb676205b913054d1158336a6c3ab0f12c9c0d9fcb",
+    "docs/evidence/active-vocals/measurements.json": "a408c8d063ff8e179f008e214afa748da2a8d58976f68c1df5379b32507c6df6",
+    "docs/evidence/active-vocals/benchmark-mac.json": "e68dbfe70f9d0b7c12ad61922a94b7f9558a6dc1a53cadef1cc5d593bf812f89",
+    "docs/evidence/active-vocals/benchmark-linux.json": "160dfeddefb2b5262a8fc590b21c39f08871643c307df31e2d5549a2d25abe52",
+    "renders/active-vocals-20261019/plans/dense.json": "ab2f8d923efad35b2919add887210401cc8fa1a308f98db77d75503168c67c06",
+    "renders/active-vocals-20261019/plans/echo.json": "a7114be6990f86e7453449250ba3c9d6434b95e6569b810bbce21a1f89494cc5",
+    "renders/active-vocals-20261019/plans/sparse.json": "a14f7785797400315a3fc12c75609483b4059852e6d9ca8ca508e3e8d70de275"
+  }
+}

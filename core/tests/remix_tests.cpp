@@ -615,6 +615,63 @@ void no_allocations() {
         const auto after=allocations.load();check(before==after,"sample render allocated memory");
     }
 }
+void active_vocals() {
+    const auto a=source();
+    auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+    p.analysis.normalization_gain=1;
+    p.clips={{0,a.mono.size(),1},{4000,4001,.5},{4000,4100,.5},{4200,4450,.5},{4300,4800,.5},{4000,5000,.5}};
+    p.vocals={{0,0,-30,1,false,0,true}};
+    for (int i=0;i<96;++i)
+        p.vocals.push_back({(i/15)*400,static_cast<std::size_t>(1+i%4),-30,
+                           std::array<double,5>{{.5,.75,1,1.5,2}}[static_cast<std::size_t>(i%5)],
+                           i%2!=0,(i%3-1)*.4,false});
+    for (const auto start:{6000,6192}) for (int i=0;i<16;++i)
+        p.vocals.push_back({start,5,-30,1,i%2!=0,0,false}); // Full pool reused at the exact preceding end frame.
+    djayvo::validate(p,a);
+    auto invalid=p;invalid.vocals.push_back(p.vocals[2]);
+    rejects([&]{djayvo::validate(invalid,a);}); // 17 simultaneous voices at frame zero.
+    const auto frames=djayvo::compile(p.music).total_frames;
+    const auto capture=[&](std::size_t block) {
+        djayvo::RemixRenderer renderer(p,a,block,true);
+        std::vector<float> samples(static_cast<std::size_t>(frames)*2);
+        std::array<float,1024> scratch{};
+        std::size_t position=0;
+        const auto before=allocations.load();
+        while (!renderer.finished()) {
+            const auto count=renderer.process(scratch.data(),block);
+            check(count>0,"active voice renderer stalled");
+            std::copy_n(scratch.begin(),count*2,samples.begin()+static_cast<std::ptrdiff_t>(position*2));
+            position+=count;
+        }
+        check(allocations.load()==before && renderer.voice_overflows()==0,"active voice processing allocated or overflowed");
+        return samples;
+    };
+    const auto actual=capture(113);
+    check(actual==capture(512),"active voice scheduling depends on block size");
+    struct Expected { std::uint64_t start,length; const djayvo::VocalEvent* event; };
+    std::vector<Expected> expected;
+    for (const auto& event:p.vocals)
+        expected.push_back({djayvo::tick_to_frame(event.start,p.music),djayvo::vocal_frames(event,p.clips[event.clip]),&event});
+    for (std::uint64_t frame=0;frame<frames;++frame) {
+        double channels[2]={0,0};
+        for (const auto& trigger:expected) {
+            if (frame<trigger.start || frame-trigger.start>=trigger.length) continue;
+            const auto position=frame-trigger.start;
+            const auto& event=*trigger.event;const auto& clip=p.clips[event.clip];
+            const double index=std::clamp(event.reverse?clip.end-1-position*event.rate:clip.begin+position*event.rate,
+                                          static_cast<double>(clip.begin),static_cast<double>(clip.end-1));
+            const auto sample=static_cast<std::size_t>(index);
+            const auto next=std::min(sample+1,static_cast<std::size_t>(clip.end-1));
+            const double value=(a.mono[sample]*(1-(index-sample))+a.mono[next]*(index-sample))*
+                std::min(1.0,static_cast<double>(std::min(position,trigger.length-1-position))/(a.sample_rate*.003));
+            const double angle=(event.pan+1)*3.14159265358979323846/4;
+            channels[0]+=value*(std::pow(10.0,event.gain_db/20)*std::cos(angle));
+            channels[1]+=value*(std::pow(10.0,event.gain_db/20)*std::sin(angle));
+        }
+        for (unsigned channel=0;channel<2;++channel)
+            check(std::abs(actual[frame*2+channel]-channels[channel])<1e-7,"active voice lost, reordered or retained an expired clip");
+    }
+}
 void club_direction() {
     const auto a=source();auto features=djayvo::analyze(a);
     auto p=djayvo::make_remix(a,features,djayvo::Strategy::club,4123,true,false);
@@ -1015,7 +1072,8 @@ int main() {
         {"tempo-map source preservation and echo timing across tempo changes",timeline_voice},
         {"club pause selection, deduplication, bounded fallback and transition accents",club_phrasing},
         {"cancel/render/publication rollback, concurrent destinations and stale-lock preservation",export_transactions},
-        {"allocation-free sample and instrument processing",no_allocations}};
+        {"allocation-free sample and instrument processing",no_allocations},
+        {"bounded active vocals, overlaps, reverse/rates, one-frame clips and block-independent PCM",active_vocals}};
     int failures=0;
     for(const auto& t:tests)try{t.second();std::cout<<"PASS: "<<t.first<<'\n';}
     catch(const std::exception& e){++failures;std::cout<<"FAIL: "<<t.first<<": "<<e.what()<<'\n';}
