@@ -1,5 +1,9 @@
 # MIDI instrument input
 
+Follow-up: [MIDI Learn](midi-learn.md) adds bounded, tab-local absolute CC
+assignments. The results and unimplemented list below describe the original
+fixed-mapping increment; physical hardware gates remain open.
+
 2026-10-18. Local MIDI input connects a keyboard or pads to the existing shared
 C++/WASM instrument rack. This increment implements part of DJ06; physical
 controller validation and the full professional studio remain open.

@@ -211,6 +211,14 @@ try {
   await page.locator('#keylock-a').uncheck(); assert.equal(await page.locator('#audio-a').evaluate(a => a.preservesPitch), false);
   await page.locator('#keylock-a').check();
   await page.locator('#loop-a').click(); assert.equal(await page.locator('#loop-a').getAttribute('aria-pressed'), 'true');
+  await page.evaluate(() => {
+    window.loopTrace = [];
+    const audio = document.getElementById('audio-a');
+    for (const type of ['play', 'playing', 'pause', 'ended', 'seeking', 'seeked', 'error']) audio.addEventListener(type, () => {
+      loopTrace.push({ type, time: audio.currentTime, paused: audio.paused, ended: audio.ended, rate: audio.playbackRate });
+      if (loopTrace.length > 40) loopTrace.shift();
+    });
+  });
   await set('#seek-a', 59.9);
   await page.waitForFunction(() => document.querySelector('#audio-a').currentTime > 59 && !document.querySelector('#audio-a').seeking);
   await page.locator('#play-a').click();
@@ -435,12 +443,19 @@ try {
   await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
   await page.locator('#midi-enable').click(); await page.locator('#midi-input').selectOption('one');
   await page.waitForFunction(() => document.getElementById('midi-status').textContent.startsWith('Connected:'));
+  await page.locator('#midi-target').selectOption('rack-level'); await page.locator('#midi-learn').click();
+  await page.evaluate(() => midiPorts[0].emit([0xb0, 7, 0]));
   await page.evaluate(() => midiPorts[0].emit([0x90, 60, 100]));
+  await page.waitForFunction(() => document.getElementById('output-meter').value > .001);
+  await page.evaluate(() => { midiPorts[0].emit([0xb0, 7, 83]); midiPorts[0].emit([0xb0, 7, 0]); });
+  await page.waitForTimeout(150); assert.ok(await peak() < .0001);
+  await page.evaluate(() => midiPorts[0].emit([0xb0, 7, 127]));
   await page.waitForFunction(() => document.getElementById('output-meter').value > .001);
   await page.locator('#midi-enable').click();
   await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
   assert.equal(serverRequests.length, requestsBeforeDisconnect);
-  check('cached MIDI input module plays and releases real instrument audio with server disconnected (synthetic port)');
+  assert.equal(await page.locator('#midi-bindings li').count(), 0);
+  check('cached MIDI Learn picks up, mutes/unmutes actual instrument PCM and clears on disable with server disconnected (synthetic port)');
   await page.locator('#clear-a').click();
   assert.equal(await page.locator('#audio-a').getAttribute('src'), null);
   check('unload releases the deck source');
@@ -464,6 +479,6 @@ try {
     signalEvidence, fxEvidence, deckFXEvidence, audioContext: audioContextEvidence, actualMedia: { aPeak, channelSilent, masterSilent }, errors, warnings,
     humanListening: 'NOT RUN', physicalDeviceLatency: 'NOT RUN', offlineVenueReliability: 'NOT RUN' }, null, 2));
 } catch (error) {
-  await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings, state: await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({ instruments: document.querySelector('#instrument-status').textContent, decks: [...document.querySelectorAll('audio')].map(a => ({time:a.currentTime,paused:a.paused,seeking:a.seeking,ended:a.ended,rate:a.playbackRate,readyState:a.readyState})), meter:document.querySelector('#output-meter').value }))]) }, null, 2));
+  await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings, state: await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({ instruments: document.querySelector('#instrument-status').textContent, loopTrace: window.loopTrace, deckError: document.getElementById('error-a').textContent, decks: [...document.querySelectorAll('audio')].map(a => ({time:a.currentTime,paused:a.paused,seeking:a.seeking,ended:a.ended,rate:a.playbackRate,readyState:a.readyState})), meter:document.querySelector('#output-meter').value }))]) }, null, 2));
   throw error;
 } finally { await browser.close(); server.closeAllConnections(); server.close(); }

@@ -72,7 +72,11 @@
 <label>Input<select id="midi-input" disabled><option value="">Choose an input</option></select></label>
 <label>Channel 10 drums<select id="midi-kit"><option value="9">Acoustic</option><option value="10">Electronic</option></select></label>
 <p id="midi-status" role="status">Optional · connect a keyboard or pads, then enable MIDI.</p>
-<p>Keys use the selected sound and controller velocity. Sustain: CC64. Channel 10: kick 36, snare 38, hats 42/46, clap 39, rim 37, tom 41, shaker 70. Other notes and controls are ignored. Enable MIDI does not record audio.</p>
+<p>Keys use the selected sound and controller velocity. Sustain: CC64. Channel 10: kick 36, snare 38, hats 42/46, clap 39, rim 37, tom 41, shaker 70. Other notes are ignored. Enable MIDI does not record audio.</p>
+<div class="midi-learn-controls"><label>Control to assign<select id="midi-target"></select></label><button id="midi-learn" class="small-button" disabled>Learn control</button><button id="midi-forget" class="small-button" disabled>Clear mappings</button></div>
+<p id="midi-learn-status" role="status">No mappings. Choose a control, then Learn control and move a knob or fader.</p>
+<ul id="midi-bindings" aria-label="MIDI control assignments"></ul>
+<p>Absolute 7-bit CC knobs/faders only. Move through the screen value to take control; mouse/touch changes rearm pickup. Sustain and channel-mode controls keep their fixed functions. Mappings stay in this tab and clear when input changes or MIDI is disabled. Recording and permissions cannot be mapped.</p>
 </fieldset>
 <div class="keyboard-tools"><div><button id="octave-down" class="small-button" disabled>− Octave</button><output id="octave-name">C4–C5</output><button id="octave-up" class="small-button" disabled>+ Octave</button></div><p>A W S E D F T G Y H U J K · Hold for a note, combine for chords</p></div><div class="keyboard-scroll" tabindex="0" aria-label="88-note keyboard, scroll horizontally"><div id="keyboard" class="keyboard" role="group" aria-label="Piano A0 through C8"></div></div>
 <div class="pad-heading"><h3>Rhythm pads</h3><span>Acoustic, electronic &amp; percussion · hold to play</span></div><div id="drum-pads" class="drum-pads"></div>

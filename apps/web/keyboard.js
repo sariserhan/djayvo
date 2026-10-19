@@ -137,10 +137,10 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
       if (note === 64) pedal(group, value >= 64);
       else if (note === 120) stopGroup(group);
       else if (note === 121) pedal(group, false);
-      else for (const [heldToken, heldNote] of held) if (heldNote.group === group) release(heldToken);
+      else if (note === 123) for (const [heldToken, heldNote] of held) if (heldNote.group === group) release(heldToken);
     } else if (type === 'off') release(token);
     else {
-      // shortcut: fixed channel-10 pad mapping; add MIDI learn when more controllers are supported.
+      // shortcut: channel-10 note layout is fixed; extend when alternate pad layouts are required.
       const patch = channel === 9 ? (PERCUSSION.some(([, pitch]) => pitch === note) ? 12 : Number($('midi-kit').value)) : Number($('patch').value);
       const button = channel === 9 ? pads.get(`${patch}-${note}`) : keys.get(note);
       if (!button || button.disabled) return;

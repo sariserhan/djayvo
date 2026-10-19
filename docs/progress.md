@@ -11,7 +11,14 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local implementation: [Deck tone and echo](deck-effects.md).
+Latest local implementation: [MIDI Learn](midi-learn.md).
+**PASS (technical):** 23 bounded CC targets with pickup, manual rearm and safe
+input lifecycle; 80 final DJ/38 session checks, 24 unit checks and integrated/
+offline audio evidence. **PARTIAL:** studio and intermittent WebKit whole-track
+loop reliability (DJ14); failed receipt retained despite successful final/isolated
+reruns. **NOT RUN:** physical MIDI, latency, Linux browser, formal listening and venue.
+
+Previous local implementation: [Deck tone and echo](deck-effects.md).
 **PASS (technical):** independent A/B controls including prepared A, mute-safe
 routing and cleared delay buffers; 70 DJ/38 session browser checks, 23 unit checks,
 exact echo frames, playable WAVs and offline/integrated desktop/mobile evidence.

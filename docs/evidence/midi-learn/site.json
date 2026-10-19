@@ -1,0 +1,41 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "url": "http://localhost:3000/studio/dj.html",
+    "gate": "PASS",
+    "nativeMidiAvailable": true,
+    "syntheticPort": true,
+    "checks": [
+      "page identity/content",
+      "actual instrument PCM from MIDI event",
+      "learn consumes CC; pickup master mute/unmute changes real PCM",
+      "disable clears mappings",
+      "disable releases audio",
+      "desktop/mobile screenshots and no overflow",
+      "no page/console errors"
+    ],
+    "warnings": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "url": "http://localhost:3000/studio/dj.html",
+    "gate": "PASS",
+    "nativeMidiAvailable": false,
+    "syntheticPort": true,
+    "checks": [
+      "page identity/content",
+      "actual instrument PCM from MIDI event",
+      "learn consumes CC; pickup master mute/unmute changes real PCM",
+      "disable clears mappings",
+      "disable releases audio",
+      "desktop/mobile screenshots and no overflow",
+      "no page/console errors"
+    ],
+    "warnings": [
+      "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+      "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+    ]
+  }
+]

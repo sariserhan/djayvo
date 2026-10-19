@@ -43,6 +43,16 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
 
+- [x] **DJ13 — PASS (technical):** [MIDI Learn](docs/midi-learn.md): 23 allowed
+  absolute CC controls, channel-specific assignment, pickup/manual rearm,
+  clear/cancel/input lifecycle and existing audio/permission paths. 80 final DJ,
+  38 session, 24 unit checks and integrated/offline behavior pass. Physical MIDI
+  and latency NOT RUN; native Web MIDI unavailable in tested WebKit.
+- [ ] **DJ14 — PARTIAL:** Investigate intermittent WebKit whole-track loop start:
+  one timeout at paused 59.9 s before MIDI activation; final suite and 20 isolated
+  repeats pass. Root cause unconfirmed; failure receipt and diagnostics retained
+  in [MIDI Learn evidence](docs/midi-learn.md). Do not call venue looping validated.
+
 - [x] **DJ12 — PASS (technical):** [Deck tone and echo](docs/deck-effects.md):
   independent A/B effects including prepared A, post-effect mute/crossfader,
   cleared delay buffers on reset/unload/permission withdrawal and Pause all.
@@ -81,9 +91,10 @@ closes that task only; it does not automatically pass its parent milestone.
   15/15 CTest suites per native platform, sanitizer and bit-identical PCM PASS.
   Professional/artist-reference quality remains NOT RUN.
 - [ ] **DJ06 — PARTIAL:** Fixed MIDI input mapping is implemented by DJ10;
-  instrument tone/echo is covered by DJ07 and deck tone/echo by DJ12. Physical
-  controller validation, human audition, MIDI learn, audible scratching, beat-sized loops and headphone
-  cue routing remain open.
+  instrument tone/echo is covered by DJ07, deck tone/echo by DJ12 and absolute CC
+  MIDI Learn by DJ13. Physical controller validation, human audition, relative
+  encoders/custom pad layouts, audible scratching, beat-sized loops and headphone
+  cue routing remain open. Whole-track loop reliability is tracked in DJ14.
 
 - [x] **DJ01 — PASS:** [Manual two-deck foundation](docs/dj-mixer.md): actual local
   playback, seek/levels/crossfader/master, stereo meter, permission and unload,
@@ -293,6 +304,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 
 | Done | ID | Status | Development | Commit / evidence |
 | --- | --- | --- | --- | --- |
+| [x] | DJ13 | PASS | MIDI Learn with channel-specific pickup, bounded controls and real audio/offline checks | [Evidence](docs/midi-learn.md) |
 | [x] | DJ12 | PASS | Independent deck tone/echo, safe buffer clearing, browser timing/PCM and offline checks | [Evidence](docs/deck-effects.md) |
 | [x] | DJ08 | PASS | Original Talk bass, four percussion voices, local reference analysis and portable/browser audio checks | [Evidence](docs/talk-bass.md) |
 | [x] | DJ07 | PASS | Local instrument tone/echo, measured browser timing, stereo sweep fix and playable piano pairs | [Effects evidence](docs/instrument-effects.md) |

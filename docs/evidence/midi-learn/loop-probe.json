@@ -1,0 +1,107 @@
+{
+  "browser": "26.5",
+  "iterations": [
+    {
+      "iteration": 1,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 2,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 3,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 4,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 5,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 6,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 7,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 8,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 9,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 10,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 11,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 12,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 13,
+      "status": "PASS",
+      "position": 0.006112608472241151
+    },
+    {
+      "iteration": 14,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 15,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 16,
+      "status": "PASS",
+      "position": 0.00000209808349609375
+    },
+    {
+      "iteration": 17,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 18,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 19,
+      "status": "PASS",
+      "position": 0
+    },
+    {
+      "iteration": 20,
+      "status": "PASS",
+      "position": 0
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

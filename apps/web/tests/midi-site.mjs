@@ -35,6 +35,15 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     await page.evaluate(() => midiPorts[0].emit([0x90, 60, 100]));
     await page.waitForFunction(() => document.getElementById('output-meter').value > .001);
     assert.equal(await page.locator('[data-pitch="60"]').getAttribute('aria-pressed'), 'true');
+    await page.locator('#midi-target').selectOption('master'); await page.locator('#midi-learn').click();
+    await page.evaluate(() => midiPorts[0].emit([0xb0, 7, 0]));
+    assert.equal(await page.locator('#master').inputValue(), '0.75');
+    await page.evaluate(() => { midiPorts[0].emit([0xb0, 7, 95]); midiPorts[0].emit([0xb0, 7, 0]); });
+    await page.waitForFunction(() => document.getElementById('output-meter').value < .0001);
+    await page.evaluate(() => midiPorts[0].emit([0xb0, 7, 127]));
+    await page.waitForFunction(() => document.getElementById('output-meter').value > .001);
+    assert.match(await page.locator('#midi-bindings').textContent(), /Master level · active/);
+
     for (const [label, width, height] of [['desktop',1440,1000],['mobile',390,844]]) {
       await page.setViewportSize({ width, height }); await page.locator('.midi-controls').scrollIntoViewIfNeeded();
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
@@ -44,10 +53,11 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     }
     await page.locator('#midi-enable').click();
     await page.waitForFunction(() => document.getElementById('output-meter').value < .0001);
+    assert.equal(await page.locator('#midi-bindings li').count(), 0);
     assert.deepEqual(errors, []);
     results.push({ browser: name, version: browser.version(), url: page.url(), gate: 'PASS',
       nativeMidiAvailable: await page.evaluate(() => nativeMidiAvailable), syntheticPort: true,
-      checks: ['page identity/content', 'actual instrument PCM from MIDI event', 'disable releases audio', 'desktop/mobile screenshots and no overflow', 'no page/console errors'], warnings });
+      checks: ['page identity/content', 'actual instrument PCM from MIDI event', 'learn consumes CC; pickup master mute/unmute changes real PCM', 'disable clears mappings', 'disable releases audio', 'desktop/mobile screenshots and no overflow', 'no page/console errors'], warnings });
   } finally { await browser.close(); }
 }
 await fs.writeFile('/tmp/djayvo-midi-site.json', JSON.stringify(results, null, 2));

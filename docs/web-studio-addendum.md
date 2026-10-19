@@ -22,7 +22,12 @@ Owner direction recorded 2026-10-18. This separate addendum preserves the
 It changes the future product direction and current authorization boundary,
 not M0a's implementation scope or acceptance criteria.
 
-Latest local increment: [Deck tone and echo](deck-effects.md), **PASS (technical)**
+Latest local increment: [MIDI Learn](midi-learn.md), **PASS (technical)** for
+23 bounded absolute CC targets with pickup and tab-local assignments. Physical
+MIDI/timing and venue evidence remain **NOT RUN**; whole-track loop repeatability
+is **PARTIAL** after an intermittent WebKit timeout (DJ14).
+
+Previous local increment: [Deck tone and echo](deck-effects.md), **PASS (technical)**
 for independent A/B effects, including prepared A, controlled tails and offline
 browser operation. Full studio remains **PARTIAL**; no new human listening,
 physical latency or venue gate has passed.

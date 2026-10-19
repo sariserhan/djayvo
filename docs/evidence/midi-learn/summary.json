@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "scope": "MIDI Learn: 23 bounded absolute CC controls with pickup; synthetic input and real audio",
+  "full_specification": "PARTIAL",
+  "unit": "24/24 PASS",
+  "browser": {
+    "chromium": {
+      "status": "PASS",
+      "checks": 40,
+      "version": "149.0.7827.55",
+      "artifacts": "renders/dj-chromium-rPfPsm"
+    },
+    "webkit": {
+      "status": "PASS",
+      "checks": 40,
+      "version": "26.5",
+      "artifacts": "renders/dj-webkit-Hl5vrH"
+    },
+    "session-chromium": {
+      "status": "PASS",
+      "checks": 19,
+      "version": "149.0.7827.55",
+      "artifacts": "renders/session-chromium-oOIRYV"
+    },
+    "session-webkit": {
+      "status": "PASS",
+      "checks": 19,
+      "version": "26.5",
+      "artifacts": "renders/session-webkit-IcyO9D"
+    }
+  },
+  "integrated_site": "PASS: Chromium/WebKit synthetic input, pickup/master mute/unmute, inspected desktop/mobile screenshots",
+  "native_midi_api": "PARTIAL: Chromium exposes Web MIDI; installed WebKit does not. Synthetic WebKit tests do not establish native support.",
+  "public_bundle": "PASS: 35 audited assets; engine module/WASM hashes unchanged",
+  "waveforms": "PASS: all 12 deterministic piano/deck dry/echo WAVs byte-identical to previous deck-effects increment. Cross-browser dry exact; echo max 1 PCM16 step, RMS 0.0000019081961550195384.",
+  "offline_echo_event_frames": "PASS: 36 measured A/B echo peaks at exact requested frames; shared prepared clock regression passed",
+  "live_midi_event_frame_agreement": "NOT RUN: immediate main-thread dispatch to existing audio path; no sample-accurate MIDI scheduling claim",
+  "whole_track_loop_repeatability": "PARTIAL: one WebKit near-end loop timeout before MIDI activation; final suite and 20 isolated repeats PASS, root cause unconfirmed",
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/x.mp3": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+    "/Users/serhansari/Downloads/y.mp3": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+    "/Users/serhansari/Downloads/z.mp3": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63",
+    "/Users/serhansari/Downloads/pipe.mp3": "e57756d665c676e876bc7b25abf6d97bd88d137c889eebd633ade0d353919bc8"
+  },
+  "hardware": "Apple M5, 16 GiB",
+  "os": "macOS 26.7.1 (25G241), Darwin 25.6.0 arm64",
+  "node": "22.23.1",
+  "playwright": "1.61.1",
+  "next": "16.4.2",
+  "toolchain": "Emscripten 6.0.1, CMake 4.4.2, Apple Clang 21.0.0 (clang-2100.3.34.2), Xcode 27.1 (27A9275)",
+  "new_native_mac_linux_execution": "NOT RUN: shared core unchanged",
+  "linux_browser": "NOT RUN",
+  "physical_midi_controller": "NOT RUN",
+  "physical_latency": "NOT RUN",
+  "venue_endurance": "NOT RUN",
+  "formal_listening": "NOT RUN",
+  "voice_studio_regression_this_increment": "NOT RUN: voice app/engine unchanged",
+  "production_release": "NOT RUN",
+  "qa_notes": [
+    "In-app Browser Node REPL tool unavailable; used existing project Playwright workflow.",
+    "First disabled-mouth assertion assumed zero, but the prior talk-bass test leaves its value at one. Test now checks the existing value and disabled state.",
+    "All-target test initially tried to restore a disabled Mouth input; it now leaves unavailable controls untouched.",
+    "One WebKit whole-track loop timed out at paused 59.9 seconds, before MIDI was enabled. Failed receipt retained. Added bounded media-event diagnostics; final suite and 20 isolated near-end rate/loop runs passed. Cause remains unconfirmed.",
+    "No MIDI Learn implementation failure was suppressed; all final target/range/pickup/cancellation/offline checks passed.",
+    "Screenshot-only WebKit stylesheet warnings are recorded separately; no unexpected application console errors."
+  ]
+}

@@ -59,6 +59,8 @@ export async function verifyMidi(page, check, peak) {
   assert.equal((await sent())[0].velocity, 112);
   await emit([0x90, 60, 0]); await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
   check('MIDI notes drive real C++ worklet audio with velocity and zero-velocity note-off');
+  await verifyMidiLearn(page, check, peak);
+
   await clear();
   await emit([0xb0, 64, 127]); await emit([0x90, 60, 90]); await emit([0x80, 60, 0]);
   await emit([0x91, 64, 72]); await emit([0x81, 64, 0]);
@@ -124,4 +126,100 @@ export async function verifyMidi(page, check, peak) {
   } finally { await unsupported.close(); await page.bringToFront(); }
   check('unsupported MIDI browser keeps clear fallback and existing instrument controls');
   await page.locator('#patch').selectOption('0');
+}
+
+
+export async function verifyMidiLearn(page, check, peak) {
+  const emit = data => page.evaluate(data => midiPorts[0].emit(data), data);
+  const set = async (id, value) => { await page.locator(`#${id}`).fill(String(value)); await page.locator(`#${id}`).dispatchEvent('input'); };
+  const learn = async (target, cc, value, channel = 0) => {
+    await page.locator('#midi-target').selectOption(target); await page.locator('#midi-learn').click();
+    await emit([0xb0 + channel, cc, value]);
+    assert.equal(await page.locator('#midi-learn').textContent(), 'Learn control');
+  };
+  // Decks keep advancing but were muted by the instrument checks.
+  await emit([0x90, 60, 100]); await page.waitForTimeout(150);
+  await emit([0xb0, 1, 100]); await page.waitForTimeout(150); assert.ok(await peak() > .001);
+  await page.locator('#midi-target').selectOption('rack-level'); await page.locator('#midi-learn').click();
+  await emit([0xb0, 64, 127]); await emit([0xb0, 121, 0]);
+  assert.equal(await page.locator('#midi-learn').textContent(), 'Cancel learn');
+  await emit([0xb0, 7, 0]);
+  assert.equal(await page.locator('#rack-level').inputValue(), '0.65');
+  await emit([0xb0, 7, 10]); assert.equal(await page.locator('#rack-level').inputValue(), '0.65');
+  await emit([0xb1, 7, 127]); assert.equal(await page.locator('#rack-level').inputValue(), '0.65');
+  await emit([0xb0, 7, 83]); await emit([0xb0, 7, 0]);
+  await page.waitForTimeout(200); assert.ok(await peak() < .0001);
+  assert.equal(await page.locator('#rack-level').inputValue(), '0');
+  assert.match(await page.locator('#midi-bindings').textContent(), /Instrument level · active/);
+  await emit([0xb0, 7, 127]); await page.waitForTimeout(150); assert.ok(await peak() > .001);
+  await set('rack-level', .4); await emit([0xb0, 7, 120]);
+  assert.equal(await page.locator('#rack-level').inputValue(), '0.4');
+  await emit([0xb0, 7, 51]); await emit([0xb0, 7, 0]);
+  await page.waitForTimeout(150); assert.ok(await peak() < .0001);
+  check('MIDI Learn consumes assignment without jumps; channel-specific pickup controls actual audio, manual changes rearm, unmapped/reserved CC preserve notes');
+  await learn('rack-level', 8, 0);
+  await emit([0xb0, 7, 127]); assert.equal(await page.locator('#rack-level').inputValue(), '0');
+  await emit([0xb0, 8, 0]); await emit([0xb0, 8, 127]);
+  assert.equal(await page.locator('#rack-level').inputValue(), '1');
+  await learn('master', 8, 127);
+  assert.equal(await page.locator('#midi-bindings li').count(), 1);
+  await emit([0xb0, 8, 95]); await emit([0xb0, 8, 0]);
+  await page.waitForTimeout(150); assert.ok(await peak() < .0001);
+  assert.equal(await page.locator('#master').inputValue(), '0');
+  assert.equal(await page.locator('#rack-level').inputValue(), '1');
+  await emit([0xb0, 8, 127]); await page.waitForTimeout(150); assert.ok(await peak() > .001);
+  const mouth = await page.locator('#mouth').inputValue();
+  assert.equal(await page.locator('#mouth').isDisabled(), true);
+  await learn('mouth', 9, 0);
+  await emit([0xb0, 9, Math.round(Number(mouth) * 127)]); await emit([0xb0, 9, Number(mouth) > .5 ? 0 : 127]);
+  assert.equal(await page.locator('#mouth').inputValue(), mouth);
+  await page.locator('#midi-learn').click(); await page.locator('#midi-learn').click();
+  await emit([0xb0, 11, 80]); assert.equal(await page.locator('#midi-bindings li').count(), 2);
+  check('reassignment replaces old target/controller bindings; disabled sound controls and cancelled learning ignore CC');
+  await emit([0x80, 60, 0]); await page.waitForTimeout(1100);
+  await set('rack-level', .65); await set('master', .75);
+  await learn('level-a', 10, 0);
+  await emit([0xb0, 10, 0]); await emit([0xb0, 10, 127]);
+  await set('crossfade', 0); await page.waitForTimeout(150); assert.ok(await peak() > .1);
+  await learn('crossfade', 11, 127);
+  await emit([0xb0, 11, 0]); await emit([0xb0, 11, 127]);
+  await page.waitForTimeout(150); assert.ok(await peak() < .0001);
+  await emit([0xb0, 11, 0]); await page.waitForTimeout(150); assert.ok(await peak() > .1);
+  await learn('tone-a', 12, 127); await emit([0xb0, 12, 127]); await emit([0xb0, 12, 0]);
+  assert.equal(await page.locator('#tone-a-value').textContent(), '200 Hz');
+  await learn('eq-a-0', 13, 0); await emit([0xb0, 13, 64]); await emit([0xb0, 13, 0]);
+  assert.equal(await page.locator('#eq-a-0-value').textContent(), '-12 dB');
+  await set('level-a', 0); await set('tone-a', 100); await set('eq-a-0', 0);
+  check('learned channel and crossfader controls change media-deck PCM; tone/EQ use existing validated audio controls');
+  await page.locator('#midi-learn').click();
+  await page.evaluate(() => window.dispatchEvent(new Event('blur')));
+  assert.equal(await page.locator('#midi-learn').textContent(), 'Learn control');
+  await emit([0xb0, 8, 127]); assert.equal(await page.locator('#master').inputValue(), '0.75');
+  await page.locator('#midi-forget').click();
+  await emit([0xb0, 8, 0]); assert.equal(await page.locator('#master').inputValue(), '0.75');
+  assert.equal(await page.locator('#midi-bindings li').count(), 0);
+  await learn('master', 14, 0);
+  await page.locator('#midi-input').selectOption('two');
+  await page.waitForFunction(() => document.getElementById('midi-status').textContent.startsWith('Connected:'));
+  assert.equal(await page.locator('#midi-bindings li').count(), 0);
+  await page.evaluate(() => midiPorts[1].emit([0xb0, 14, 0]));
+  assert.equal(await page.locator('#master').inputValue(), '0.75');
+  await page.locator('#midi-input').selectOption('one');
+  await page.waitForFunction(() => document.getElementById('midi-status').textContent.startsWith('Connected:'));
+  check('blur cancels learning/rearms pickup; clear and input switching remove bindings without changing levels');
+  const targets = await page.locator('#midi-target option').evaluateAll(options => options.map(option => {
+    const node = document.getElementById(option.value);
+    return { id: node.id, value: node.value, min: node.min, max: node.max, disabled: node.disabled };
+  }));
+  for (const [i, target] of targets.entries()) {
+    if (!target.disabled) await set(target.id, target.min);
+    await learn(target.id, 20 + i, 0);
+    await emit([0xb0, 20 + i, 0]); await emit([0xb0, 20 + i, 127]);
+    assert.equal(Number(await page.locator(`#${target.id}`).inputValue()), Number(target.disabled ? target.value : target.max), target.id);
+    if (!target.disabled) await set(target.id, target.value);
+  }
+  assert.equal(await page.locator('#midi-bindings li').count(), targets.length);
+  await page.locator('#midi-forget').click();
+  check('all 23 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count');
+
 }
