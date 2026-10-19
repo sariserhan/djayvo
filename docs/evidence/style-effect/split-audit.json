@@ -1,0 +1,1033 @@
+{
+  "diagnostic_execution": "PASS",
+  "source_preservation": "PASS",
+  "calibration": {
+    "status": "PASS",
+    "gain_inverted_dc_shifted_copy": {
+      "correlation": 0.9999999999999835,
+      "target_seconds": 3.03075
+    },
+    "noisy_copy": {
+      "correlation": 0.9869169150237775,
+      "target_seconds": 3.03075
+    },
+    "unrelated_noise": {
+      "correlation": 0.04527552911168208,
+      "target_seconds": 2.08725
+    },
+    "brute_force_agreement_silence_nonfinite_nonoverlap": "PASS"
+  },
+  "independent_session_split": "FAIL: all clips share one declared source group; independence is not established",
+  "independent_generalization": "NOT RUN",
+  "human_listening": "NOT RUN",
+  "checkpoint_selection_or_training": "NOT RUN",
+  "pairs": [
+    {
+      "query": "blood-18.wav",
+      "target": "blood-01.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 0,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 20.0,
+        "correlation": 0.24710393379978823,
+        "target_seconds": 6.32175
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-02.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 30,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.2745912981080762,
+        "target_seconds": 12.288
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-03.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 60,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.2686584211378163,
+        "target_seconds": 3.37525
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-04.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 90,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 22.0,
+        "correlation": 0.2701359874415277,
+        "target_seconds": 27.96025
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-05.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 120,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 22.0,
+        "correlation": 0.2719389696193445,
+        "target_seconds": 4.9895
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-06.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 150,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 22.0,
+        "correlation": 0.2755436667972,
+        "target_seconds": 10.135
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-07.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 180,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 22.0,
+        "correlation": 0.2727034909952347,
+        "target_seconds": 1.22225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-08.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 210,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.22339788235546656,
+        "target_seconds": 16.08675
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-09.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 240,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.21345776066701264,
+        "target_seconds": 18.6875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-10.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 270,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.20239762385157972,
+        "target_seconds": 2.22775
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-11.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 300,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.1979039786231929,
+        "target_seconds": 9.426
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-12.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 330,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.19096163798522423,
+        "target_seconds": 6.478
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-13.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 360,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.2025338112936839,
+        "target_seconds": 17.04075
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-14.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 390,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 21.0,
+        "correlation": 0.4686698710673373,
+        "target_seconds": 17.9355
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-15.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 420,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 21.0,
+        "correlation": 0.4742467544646094,
+        "target_seconds": 6.73625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-18.wav",
+      "target": "blood-16.wav",
+      "query_source_start_seconds": 510,
+      "target_source_start_seconds": 450,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 18.0,
+        "correlation": 0.44749088111450486,
+        "target_seconds": 21.38925
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-01.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 0,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 12.0,
+        "correlation": 0.3309753448787147,
+        "target_seconds": 0.47125
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-02.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 30,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 12.0,
+        "correlation": 0.250740584919186,
+        "target_seconds": 8.8815
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-03.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 60,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.2862150858260575,
+        "target_seconds": 24.5505
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-04.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 90,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.3981167146573515,
+        "target_seconds": 13.932
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-05.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 120,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.24723594924273454,
+        "target_seconds": 5.99175
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-06.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 150,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.25332703314900656,
+        "target_seconds": 18.16625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-07.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 180,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.2501538775505473,
+        "target_seconds": 2.22475
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-08.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 210,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 25.0,
+        "correlation": 0.1442136787503494,
+        "target_seconds": 27.07425
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-09.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 240,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.22023589403743773,
+        "target_seconds": 25.03425
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-10.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 270,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.21666389187070365,
+        "target_seconds": 1.795
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-11.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 300,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.21273967076981365,
+        "target_seconds": 15.763
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-12.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 330,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.2077021540780213,
+        "target_seconds": 12.806
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-13.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 360,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.2890302066308792,
+        "target_seconds": 9.71125
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-14.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 390,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 9.0,
+        "correlation": 0.42612756645565686,
+        "target_seconds": 13.252
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-15.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 420,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.7250894940051611,
+        "target_seconds": 25.88675
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-19.wav",
+      "target": "blood-16.wav",
+      "query_source_start_seconds": 540,
+      "target_source_start_seconds": 450,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.5536728524580193,
+        "target_seconds": 0.112
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-01.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 0,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 9.0,
+        "correlation": 0.2232628420743237,
+        "target_seconds": 0.594
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-02.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 30,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 25.0,
+        "correlation": 0.26545199832353505,
+        "target_seconds": 1.14525
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-03.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 60,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.3085808641566231,
+        "target_seconds": 24.61925
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-04.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 90,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.3813013720135142,
+        "target_seconds": 14.071
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-05.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 120,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.24564133104887523,
+        "target_seconds": 26.7345
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-06.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 150,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.2644952226982161,
+        "target_seconds": 3.73625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-07.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 180,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.22321474621302204,
+        "target_seconds": 20.59975
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-08.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 210,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.17628568271868972,
+        "target_seconds": 27.8835
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-09.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 240,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.31833161028542367,
+        "target_seconds": 17.37675
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-10.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 270,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.30127754999120354,
+        "target_seconds": 6.79225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-11.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 300,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.3619445735030963,
+        "target_seconds": 4.72975
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-12.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 330,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.29147264145139035,
+        "target_seconds": 12.7795
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-13.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 360,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.4541691736335432,
+        "target_seconds": 9.821
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-14.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 390,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.49456094963099645,
+        "target_seconds": 0.1035
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-15.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 420,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.7260014392190928,
+        "target_seconds": 27.886
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-20.wav",
+      "target": "blood-16.wav",
+      "query_source_start_seconds": 570,
+      "target_source_start_seconds": 450,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.8384667292474849,
+        "target_seconds": 0.887
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.8384667292474849,
+          "target_seconds": 0.887
+        },
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.8162244464484322,
+          "target_seconds": 1.2525
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          3.0,
+          6.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 3.0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-01.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 0,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.3059694296976701,
+        "target_seconds": 0.24825
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-02.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 30,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 1.0,
+        "correlation": 0.2953068621943948,
+        "target_seconds": 1.23625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-03.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 60,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 6.0,
+        "correlation": 0.2234348212567787,
+        "target_seconds": 12.81625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-04.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 90,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.2424435961532491,
+        "target_seconds": 22.26875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-05.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 120,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.24101500113202942,
+        "target_seconds": 13.356
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-06.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 150,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 22.0,
+        "correlation": 0.23939401066274504,
+        "target_seconds": 4.77425
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-07.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 180,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.2375685725970725,
+        "target_seconds": 16.618
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-08.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 210,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 25.0,
+        "correlation": 0.20051056726922156,
+        "target_seconds": 26.691
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-09.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 240,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.3169481661477361,
+        "target_seconds": 18.9765
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-10.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 270,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.30846158783575006,
+        "target_seconds": 2.49775
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-11.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 300,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.2865613831828503,
+        "target_seconds": 9.70525
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-12.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 330,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.27453989213917523,
+        "target_seconds": 13.5085
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-13.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 360,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.3028625366163233,
+        "target_seconds": 17.31075
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-14.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 390,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.20222965337208706,
+        "target_seconds": 18.8215
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-15.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 420,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.49025444037407223,
+        "target_seconds": 24.50725
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "blood-21.wav",
+      "target": "blood-16.wav",
+      "query_source_start_seconds": 600,
+      "target_source_start_seconds": 450,
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 9.0,
+        "correlation": 0.42365027857461846,
+        "target_seconds": 0.0915
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    }
+  ],
+  "input_sha256": {
+    "renders/blood-training-20261019/train-input/blood-01.wav": "31c8b47457ab75e0db777b0b7dcf71a02a9ee219c6107b9af7f4f4180787e240",
+    "renders/blood-training-20261019/train-input/blood-02.wav": "1910ee1bb84bf037b9afcce0738abb2c31c1375c63bff969cee19a6b9ad2d0b5",
+    "renders/blood-training-20261019/train-input/blood-03.wav": "e80255132ef26beccb56b1dfe3003a072c799258e2b9b7332dad4c87131abbea",
+    "renders/blood-training-20261019/train-input/blood-04.wav": "a5dd1aee7d0e3426e4a959f393e6c6abc8909879046147dfeb0254d567b1d14b",
+    "renders/blood-training-20261019/train-input/blood-05.wav": "9598c39c810754ca28cdeba7bebd1df456990c57290f0dd0a6fefd955321b426",
+    "renders/blood-training-20261019/train-input/blood-06.wav": "f3cef173744c50caf7b106af623f1c0cb12520e258e04674d6c311c087b3d992",
+    "renders/blood-training-20261019/train-input/blood-07.wav": "47874601363737412487ea2a5ce1691af4c111267d6ec1b8e73d9287046b8ba4",
+    "renders/blood-training-20261019/train-input/blood-08.wav": "aad4803026f0f211b68aa73117405ed6fa140d51f7537538b6d65d447ba717e9",
+    "renders/blood-training-20261019/train-input/blood-09.wav": "2278398d999405e37d2ef4ac077be27dd67026bfe2851ca5b36ab2047a373319",
+    "renders/blood-training-20261019/train-input/blood-10.wav": "c8c939cf5b9134603b8fa92079d556a4d41f9a1ef6ce7de9c196a6d759920c37",
+    "renders/blood-training-20261019/train-input/blood-11.wav": "e65f6a2c4f0ad79d6c607bd1cf555a6c85803c9ea29dc8724596ad37f5ec8522",
+    "renders/blood-training-20261019/train-input/blood-12.wav": "61299ac3e7d18c1c71b5d4d7376b93bf2c4b087e51fd0bd0c86b8bd2cc144a4d",
+    "renders/blood-training-20261019/train-input/blood-13.wav": "7aee30c9d37d55d141f40b5c32e7a9fbaa844a9b852829aa2dac7ed81a66a3af",
+    "renders/blood-training-20261019/train-input/blood-14.wav": "aa558111a4c2b66eea88f106f10201dd9dc91b2f8e2206898229df48c8cb352a",
+    "renders/blood-training-20261019/train-input/blood-15.wav": "421ea81130aab09920bf37805926b08927c4ff7d9ad6040dbb8bd49e361da883",
+    "renders/blood-training-20261019/train-input/blood-16.wav": "f21d3370730f4cd07e2767dc53f7b72d4b7f1db05f0c7de735288ceb8dbbd30b",
+    "renders/blood-training-20261019/same-session-holdout/blood-18.wav": "b3bb74ff4fad8f3efc0cef08985e6d3be1856aa8d63e5eb434e00ab8f8c6b25a",
+    "renders/blood-training-20261019/same-session-holdout/blood-19.wav": "5252b16c5a6fec8eaaace612b3957511882e7ad6753f51a926d5291cf34bff99",
+    "renders/blood-training-20261019/same-session-holdout/blood-20.wav": "ebe19b1f24194e8470e780b24926310026138ff18f71cc734f2d7ecdbab95335",
+    "renders/blood-training-20261019/same-session-holdout/blood-21.wav": "cb0ab11f5ee64c141d9cf8d76afdd52aa2b05e152f047a9d44025da0aa0dae1e"
+  },
+  "method": {
+    "rate": 4000,
+    "window_seconds": 2.0,
+    "query_hop_seconds": 1.0,
+    "threshold": 0.8,
+    "limitations": "Fixed-rate mono waveform matching cannot establish independence or absence of transformed/melodic reuse."
+  },
+  "script_sha256": "c190b726d37bef4fd7803918fd1f34703ebc42de81d4e2311e3ea77d6d384d4c",
+  "elapsed_seconds": 5.656942166999215
+}

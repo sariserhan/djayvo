@@ -1,0 +1,18 @@
+{
+  "legacy_diagnostic_agreement": "PASS",
+  "protected_source_files": 28,
+  "protected_gpu_artifacts": 45,
+  "source_and_model_preservation": "PASS",
+  "playable_exact_pcm_excerpts": 4,
+  "new_training": "NOT RUN",
+  "new_paid_compute": "NOT RUN",
+  "new_spend_usd": 0,
+  "human_listening": "NOT RUN",
+  "musical_quality": "NOT RUN",
+  "independent_generalization": "NOT RUN",
+  "independent_source_group_split": "FAIL",
+  "perceptual_structure_interpretation": "PARTIAL",
+  "new_native_browser_event_frame_agreement": "NOT RUN: shared engine unchanged; model audio contains no event stream",
+  "split_repeat": "PASS: all 64 comparisons and input hashes reproduced",
+  "split_evidence_overwrite_protection": "PASS"
+}

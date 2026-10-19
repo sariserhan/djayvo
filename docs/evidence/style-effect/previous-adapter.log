@@ -1,0 +1,17 @@
+{
+  "training": {
+    "pairs": 40,
+    "flagged_windows": 0,
+    "maximum_correlation": 0.3369938694958287
+  },
+  "repetition": {
+    "pairs": 8,
+    "flagged_windows": 16,
+    "maximum_correlation": 0.9331244532026153
+  },
+  "seeds": {
+    "pairs": 2,
+    "flagged_windows": 0,
+    "maximum_correlation": 0.7428721050273035
+  }
+}

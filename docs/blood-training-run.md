@@ -3,6 +3,12 @@
 2026-10-19. **Training, retrieval and cleanup PASS. Musical quality and production
 acceptance NOT RUN. Overall research gate PARTIAL.**
 
+Later local [adapter-effect and split audit](style-adapter-effect.md): bass/funk
+outputs remain strongly correlated with the base, and two waveform windows cross
+the train/holdout split. Independent source-group split **FAIL**; independent
+generalization and musical improvement remain **NOT RUN**. Original trial
+artifacts and the measurements below are preserved.
+
 The owner approved the prepared one-instance, $10/two-hour trial with **“yes
 continue”**. [Authorization](evidence/blood-training/authorization.json) binds the
 unchanged [run proposal](evidence/blood-training/run-plan.json) and input archive.

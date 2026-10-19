@@ -11,6 +11,17 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
+Latest local training follow-up — 2026-10-19:
+[Adapter effect and split audit](style-adapter-effect.md) **PASS (technical)**:
+five tests, 16 matched-checkpoint comparisons, 64 train/holdout pairs, exact
+agreement with prior diagnostic results, four playable reference crops and
+preserved originals/models. Blood Club bass/funk remain strongly correlated
+with the matched base. Two waveform windows cross the train/holdout split;
+independent source-group split **FAIL**. Perceptual interpretation **PARTIAL**;
+independent generalization, human preference and musical improvement **NOT RUN**.
+No new training, rental, upload or production change.
+
+
 Latest training execution — 2026-10-19: [Blood Club GPU trial](blood-training-run.md)
 **PASS (technical)**: 16 clips, verified 80/160-step adapters, 13 retrieved WAVs,
 exact base repeat, 38 local regression tests and confirmed rental/key cleanup.

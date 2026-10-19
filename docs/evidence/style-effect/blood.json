@@ -1,0 +1,4743 @@
+{
+  "diagnostic_execution": "PASS",
+  "copying_and_perceptual_novelty": "PARTIAL",
+  "human_listening": "NOT RUN",
+  "production_acceptance": "NOT RUN",
+  "method": {
+    "rate": 4000,
+    "mono": true,
+    "window_seconds": 2.0,
+    "query_hop_seconds": 1.0,
+    "target_hop_samples": 1,
+    "absolute_centered_correlation_threshold": 0.8,
+    "minimum_centered_rms_dbfs": -80,
+    "coverage": "Union of flagged query windows only; excludes later matching target passages and does not double-count overlapping windows.",
+    "aligned_comparison": "Least-squares gain and DC removal at fixed sample alignment. Correlation and residual are not arrangement, audibility or quality scores.",
+    "limitations": "No pitch/time invariance, stereo-side search, melody/identity test or proof of originality. Short copies and boundary-straddling copies may be missed. Natural musical repetition can correlate."
+  },
+  "calibration": {
+    "status": "PASS",
+    "gain_inverted_dc_shifted_copy": {
+      "correlation": 0.9999999999999835,
+      "target_seconds": 3.03075
+    },
+    "noisy_copy": {
+      "correlation": 0.9869169150237775,
+      "target_seconds": 3.03075
+    },
+    "unrelated_noise": {
+      "correlation": 0.04527552911168208,
+      "target_seconds": 2.08725
+    },
+    "brute_force_agreement_silence_nonfinite_nonoverlap": "PASS"
+  },
+  "training_overlap": [
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 16.0,
+        "correlation": 0.19437012566424475,
+        "target_seconds": 0.032
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.20943300068784823,
+        "target_seconds": 14.79525
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.2056212348815014,
+        "target_seconds": 12.9115
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.20762146201309253,
+        "target_seconds": 3.972
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.1849756529226581,
+        "target_seconds": 24.07225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.18873782902727348,
+        "target_seconds": 7.2285
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.2420974468331786,
+        "target_seconds": 20.94275
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.1230306194004972,
+        "target_seconds": 15.44725
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.1756503920234032,
+        "target_seconds": 20.3575
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.15731606313595162,
+        "target_seconds": 3.8785
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.15200118103831545,
+        "target_seconds": 11.087
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.13314113242708542,
+        "target_seconds": 8.129
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.1780608435255578,
+        "target_seconds": 25.45275
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.16460563398368763,
+        "target_seconds": 11.87975
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 18.0,
+        "correlation": 0.19461032855133667,
+        "target_seconds": 24.5
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.17138241407648686,
+        "target_seconds": 5.9405
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 2.0,
+        "correlation": 0.17716828313780178,
+        "target_seconds": 0.19375
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.1695136429737541,
+        "target_seconds": 11.596
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.22590434937355794,
+        "target_seconds": 25.067
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.1989475687303771,
+        "target_seconds": 14.238
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.20283309231438565,
+        "target_seconds": 27.03925
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.19833794675407254,
+        "target_seconds": 18.12
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.2261950714556236,
+        "target_seconds": 20.41075
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.12747337689447868,
+        "target_seconds": 15.06875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.18170409540860588,
+        "target_seconds": 20.3795
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.18028836696005443,
+        "target_seconds": 3.9005
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.15775600713103033,
+        "target_seconds": 22.21675
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 2.0,
+        "correlation": 0.15951762751624352,
+        "target_seconds": 11.07725
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.1812365205749462,
+        "target_seconds": 25.47475
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.16843389185177082,
+        "target_seconds": 11.9365
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.19983600287447986,
+        "target_seconds": 22.46975
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.2314993028230656,
+        "target_seconds": 5.84825
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.20259694236363007,
+        "target_seconds": 13.158
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.20283728646031055,
+        "target_seconds": 0.73475
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.24318875610573149,
+        "target_seconds": 25.11175
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.30541996615373646,
+        "target_seconds": 14.29475
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 9.0,
+        "correlation": 0.2108747863090642,
+        "target_seconds": 27.67625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.21118008314941994,
+        "target_seconds": 6.9945
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.19904073530585842,
+        "target_seconds": 19.16875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.1353051832659519,
+        "target_seconds": 17.06225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 2.0,
+        "correlation": 0.16505835123263554,
+        "target_seconds": 20.04575
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.16387165525100378,
+        "target_seconds": 0.71625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.15364720905334905,
+        "target_seconds": 21.446
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.15153338241883577,
+        "target_seconds": 11.727
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.1990152293104216,
+        "target_seconds": 9.6185
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.1849407817837551,
+        "target_seconds": 0.47275
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.2036421322176217,
+        "target_seconds": 27.75725
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.2108911287806564,
+        "target_seconds": 5.935
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.20585940473801612,
+        "target_seconds": 0.692
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.21814516307847814,
+        "target_seconds": 7.80425
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.294830140588414,
+        "target_seconds": 24.9405
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.28826428072377336,
+        "target_seconds": 14.08225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 14.0,
+        "correlation": 0.17940958897951909,
+        "target_seconds": 23.269
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.19112976759605582,
+        "target_seconds": 19.29
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.23408388571799804,
+        "target_seconds": 21.0305
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.13858564594651654,
+        "target_seconds": 17.94275
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.15933055614264524,
+        "target_seconds": 27.0815
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.15491972972105011,
+        "target_seconds": 3.842
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.13360887656228304,
+        "target_seconds": 9.727
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.1264953084939735,
+        "target_seconds": 8.373
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.15048625375437924,
+        "target_seconds": 25.41625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.1881831234437431,
+        "target_seconds": 25.77125
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.19677282634233406,
+        "target_seconds": 27.6295
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 5.0,
+        "correlation": 0.19256674468961044,
+        "target_seconds": 6.09375
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 16.0,
+        "correlation": 0.20524791811557938,
+        "target_seconds": 0.027
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 9.0,
+        "correlation": 0.1996920885093908,
+        "target_seconds": 7.4645
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 9.0,
+        "correlation": 0.19473144333815534,
+        "target_seconds": 5.581
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.19476099218083215,
+        "target_seconds": 3.972
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.18050128803550988,
+        "target_seconds": 24.07225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 22.0,
+        "correlation": 0.17942808901495502,
+        "target_seconds": 7.12375
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.2405940643212855,
+        "target_seconds": 20.94275
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.1304389046419534,
+        "target_seconds": 15.44
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 24.0,
+        "correlation": 0.17049123299680413,
+        "target_seconds": 20.105
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 24.0,
+        "correlation": 0.15652085411570527,
+        "target_seconds": 2.7595
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 24.0,
+        "correlation": 0.15304801638349716,
+        "target_seconds": 9.9675
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 24.0,
+        "correlation": 0.1432488527368212,
+        "target_seconds": 7.00975
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.17023978682060434,
+        "target_seconds": 25.45275
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.15971991232612123,
+        "target_seconds": 11.88
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 18.0,
+        "correlation": 0.19874164744871609,
+        "target_seconds": 24.5
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.189020603308624,
+        "target_seconds": 5.941
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 2.0,
+        "correlation": 0.181623369770691,
+        "target_seconds": 0.19375
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.16951937446968812,
+        "target_seconds": 11.596
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.21713287285881516,
+        "target_seconds": 25.067
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.19502080398804314,
+        "target_seconds": 0.303
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.20325482620209304,
+        "target_seconds": 27.03925
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.1994135647490217,
+        "target_seconds": 18.12
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.22610687549061242,
+        "target_seconds": 20.41075
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.12500723510876258,
+        "target_seconds": 15.06875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.1770913709137984,
+        "target_seconds": 20.3795
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.17523500619589655,
+        "target_seconds": 3.9005
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.1551777804175874,
+        "target_seconds": 22.21675
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 2.0,
+        "correlation": 0.15925625867018753,
+        "target_seconds": 11.07725
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.17764278375860992,
+        "target_seconds": 18.658
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.1660898773273605,
+        "target_seconds": 11.9365
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.19776850801173346,
+        "target_seconds": 22.46975
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.2301618041992877,
+        "target_seconds": 5.84825
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.2023653524277025,
+        "target_seconds": 0.18525
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.19506591897079115,
+        "target_seconds": 14.529
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.19431681188878813,
+        "target_seconds": 25.11225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.24120358660698896,
+        "target_seconds": 14.3005
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 9.0,
+        "correlation": 0.20826823078654172,
+        "target_seconds": 27.676
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.21456715979242155,
+        "target_seconds": 6.9945
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.2021216086412608,
+        "target_seconds": 19.16875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 12.0,
+        "correlation": 0.13017066731741725,
+        "target_seconds": 16.20625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.16246895859949034,
+        "target_seconds": 23.95575
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.16659759648689856,
+        "target_seconds": 0.71625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.15654102081693053,
+        "target_seconds": 21.446
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.15380156417969165,
+        "target_seconds": 11.727
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.1969601348459376,
+        "target_seconds": 10.0755
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.2095495978409139,
+        "target_seconds": 0.357
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.2000511949250496,
+        "target_seconds": 27.75725
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-funk.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.2082213993882532,
+        "target_seconds": 6.1495
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.22384050803001074,
+        "target_seconds": 0.6925
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.1980875363408273,
+        "target_seconds": 0.9315
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.29749738417231875,
+        "target_seconds": 24.9405
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.28609437234279056,
+        "target_seconds": 14.08225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.17896020609799865,
+        "target_seconds": 21.1735
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.1943919759787859,
+        "target_seconds": 19.29
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.21960893848757665,
+        "target_seconds": 20.31025
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.13808230402699195,
+        "target_seconds": 17.94275
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.14691084288642245,
+        "target_seconds": 27.0815
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.14554432254948937,
+        "target_seconds": 3.842
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.127235982292624,
+        "target_seconds": 11.266
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.12742201756248964,
+        "target_seconds": 8.308
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.15181580504392825,
+        "target_seconds": 25.34575
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.18952172360636171,
+        "target_seconds": 25.7715
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 18.0,
+        "correlation": 0.21193979338112265,
+        "target_seconds": 8.909
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.22644382189293977,
+        "target_seconds": 5.9365
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 16.0,
+        "correlation": 0.18947796086292226,
+        "target_seconds": 0.032
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.20198535482109367,
+        "target_seconds": 7.72275
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.1946614120699974,
+        "target_seconds": 12.8685
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.2029498548670284,
+        "target_seconds": 3.95025
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 18.0,
+        "correlation": 0.1751325686069132,
+        "target_seconds": 22.89225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 23.0,
+        "correlation": 0.1931704819596255,
+        "target_seconds": 14.24675
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.24848397166910965,
+        "target_seconds": 20.9425
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.14541936985490944,
+        "target_seconds": 15.44
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 1.0,
+        "correlation": 0.19563377330947931,
+        "target_seconds": 19.377
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 1.0,
+        "correlation": 0.18634676738134162,
+        "target_seconds": 2.871
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 1.0,
+        "correlation": 0.17845743326166194,
+        "target_seconds": 10.07925
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 1.0,
+        "correlation": 0.15808746549538769,
+        "target_seconds": 13.90875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 1.0,
+        "correlation": 0.17891690898826307,
+        "target_seconds": 17.68475
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 20.0,
+        "correlation": 0.12672659440783024,
+        "target_seconds": 12.16225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 18.0,
+        "correlation": 0.21738620526491398,
+        "target_seconds": 24.5
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.18931286545980147,
+        "target_seconds": 5.94125
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 2.0,
+        "correlation": 0.19126572567655867,
+        "target_seconds": 0.1935
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.1722420716607124,
+        "target_seconds": 11.59575
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.21319316793016976,
+        "target_seconds": 25.07225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.1936881306734198,
+        "target_seconds": 7.82875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.20681979123754107,
+        "target_seconds": 27.03925
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.2028500817342391,
+        "target_seconds": 18.11975
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.21872673133163703,
+        "target_seconds": 20.41075
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.12062087623125375,
+        "target_seconds": 15.06875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.1778934124015652,
+        "target_seconds": 20.3795
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 17.0,
+        "correlation": 0.17663575166751025,
+        "target_seconds": 3.9005
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.15021481989229662,
+        "target_seconds": 8.02125
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 2.0,
+        "correlation": 0.1563167642668296,
+        "target_seconds": 11.07725
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.17828671840401897,
+        "target_seconds": 24.9645
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.16651741613536802,
+        "target_seconds": 11.94325
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 15.0,
+        "correlation": 0.18627249192712816,
+        "target_seconds": 22.476
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.22389995781814265,
+        "target_seconds": 5.84825
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.20518772876451036,
+        "target_seconds": 8.05675
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.1975681613550815,
+        "target_seconds": 14.52925
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.21459820936258817,
+        "target_seconds": 25.1115
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.25410155231129455,
+        "target_seconds": 14.29525
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 9.0,
+        "correlation": 0.2099314585678423,
+        "target_seconds": 27.676
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.21534912018189747,
+        "target_seconds": 6.99475
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.2018238263668604,
+        "target_seconds": 19.16875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.1322821075259779,
+        "target_seconds": 17.062
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.16731342196298044,
+        "target_seconds": 23.9555
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.17061107418937416,
+        "target_seconds": 0.71625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.16033239579959419,
+        "target_seconds": 21.446
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.15820705634400076,
+        "target_seconds": 11.727
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.1848558642213024,
+        "target_seconds": 24.13825
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.18091613323520128,
+        "target_seconds": 19.97875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 24.0,
+        "correlation": 0.19507044168701396,
+        "target_seconds": 26.4325
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-funk.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.20683166392645702,
+        "target_seconds": 6.1495
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-01.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.1951131744339716,
+        "target_seconds": 0.62175
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-02.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 5.0,
+        "correlation": 0.2086733564230646,
+        "target_seconds": 14.8655
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-03.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.3486345465000265,
+        "target_seconds": 24.9535
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-04.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.2883213959740215,
+        "target_seconds": 14.0885
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-05.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.21682586581050314,
+        "target_seconds": 21.17375
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-06.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.23396956663499668,
+        "target_seconds": 19.29025
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-07.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 25.0,
+        "correlation": 0.23823780453423618,
+        "target_seconds": 20.93175
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-08.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.11648825101912373,
+        "target_seconds": 15.42025
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-09.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 5.0,
+        "correlation": 0.17228014306500042,
+        "target_seconds": 6.74525
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-10.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.15790088107371017,
+        "target_seconds": 1.27625
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-11.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.1526753000592027,
+        "target_seconds": 22.0055
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-12.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.1494184580915768,
+        "target_seconds": 25.80825
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-13.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.15777196590221554,
+        "target_seconds": 19.9975
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-14.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 18.0,
+        "correlation": 0.18220960287871119,
+        "target_seconds": 18.9955
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-15.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 6.0,
+        "correlation": 0.1860336994668395,
+        "target_seconds": 23.57225
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "training_excerpt": "blood-16.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 5.0,
+        "correlation": 0.23229382667825857,
+        "target_seconds": 6.0935
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    }
+  ],
+  "within_output_repetition": [
+    {
+      "output": "base-bass-a.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.7711893522489394,
+        "target_seconds": 10.89175
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.9331244532026153,
+        "target_seconds": 23.5715
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9092977524247329,
+          "target_seconds": 20.5715
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.8503287966660771,
+          "target_seconds": 22.5715
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9331244532026153,
+          "target_seconds": 23.5715
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.8703609424957194,
+          "target_seconds": 19.71425
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.8383903031353289,
+          "target_seconds": 20.7145
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.8616700642969535,
+          "target_seconds": 21.71425
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9223431699231749,
+          "target_seconds": 15.85725
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.9005293701474866,
+          "target_seconds": 16.85725
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.881112488772369,
+          "target_seconds": 17.8575
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.812122318994073,
+          "target_seconds": 18.85725
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.8031073964579242,
+          "target_seconds": 19.85725
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.8346461512819878,
+          "target_seconds": 20.85725
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.8353649616985667,
+          "target_seconds": 22.857
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          5.0
+        ],
+        [
+          6.0,
+          18.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 17.0
+    },
+    {
+      "output": "base-funk.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.7843545728263505,
+        "target_seconds": 15.5715
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.5389801148259382,
+        "target_seconds": 7.4975
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-a.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.7558771210697458,
+        "target_seconds": 10.89175
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-bass-b.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.9267584248659017,
+        "target_seconds": 23.5715
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.892765996684845,
+          "target_seconds": 20.5715
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.8405210401703785,
+          "target_seconds": 22.5715
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9267584248659017,
+          "target_seconds": 23.5715
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.8586122110646226,
+          "target_seconds": 19.71425
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.8223901891454685,
+          "target_seconds": 20.7145
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.8440073852069812,
+          "target_seconds": 21.71425
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9163620251181241,
+          "target_seconds": 15.85725
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.8956135390498702,
+          "target_seconds": 16.85725
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.8722319527065935,
+          "target_seconds": 17.8575
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.8031549170322493,
+          "target_seconds": 18.85725
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.828305410255332,
+          "target_seconds": 20.85725
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.8194355132965835,
+          "target_seconds": 22.857
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          5.0
+        ],
+        [
+          6.0,
+          18.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 17.0
+    },
+    {
+      "output": "step80-funk.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.7604269225235464,
+        "target_seconds": 15.5715
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step80-hiphop.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 6.0,
+        "correlation": 0.46300235240199356,
+        "target_seconds": 16.48725
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-bass-a.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.8036227892287112,
+        "target_seconds": 10.892
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.8036227892287112,
+          "target_seconds": 10.892
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          4.0,
+          6.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 2.0
+    },
+    {
+      "output": "step160-bass-b.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.9243477396159103,
+        "target_seconds": 23.5715
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.8750174069075253,
+          "target_seconds": 20.5715
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.8509315657520176,
+          "target_seconds": 22.5715
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9243477396159103,
+          "target_seconds": 23.5715
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.8595337777607863,
+          "target_seconds": 19.71425
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.8155874973633784,
+          "target_seconds": 20.7145
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.8222961428540938,
+          "target_seconds": 21.71425
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9131709468987231,
+          "target_seconds": 15.85725
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.896874953828362,
+          "target_seconds": 16.85725
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.873370478657909,
+          "target_seconds": 17.8575
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.8320105109667102,
+          "target_seconds": 20.85725
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.8083436634394348,
+          "target_seconds": 22.857
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          5.0
+        ],
+        [
+          6.0,
+          13.0
+        ],
+        [
+          14.0,
+          18.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 16.0
+    },
+    {
+      "output": "step160-funk.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.7368312921866084,
+        "target_seconds": 15.5715
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "step160-hiphop.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.5857573961750447,
+        "target_seconds": 18.482
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    }
+  ],
+  "same_brief_different_seed": [
+    {
+      "query": "base-bass-a.wav",
+      "target": "base-bass-b.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.7428721050273035,
+        "target_seconds": 28.0
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "step80-bass-a.wav",
+      "target": "step80-bass-b.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.7327685077114535,
+        "target_seconds": 28.0
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "query": "step160-bass-a.wav",
+      "target": "step160-bass-b.wav",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.7078074344780912,
+        "target_seconds": 28.0
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    }
+  ],
+  "inputs_sha256": {
+    "renders/blood-training-20261019/train-input/blood-01.wav": "31c8b47457ab75e0db777b0b7dcf71a02a9ee219c6107b9af7f4f4180787e240",
+    "renders/blood-training-20261019/train-input/blood-02.wav": "1910ee1bb84bf037b9afcce0738abb2c31c1375c63bff969cee19a6b9ad2d0b5",
+    "renders/blood-training-20261019/train-input/blood-03.wav": "e80255132ef26beccb56b1dfe3003a072c799258e2b9b7332dad4c87131abbea",
+    "renders/blood-training-20261019/train-input/blood-04.wav": "a5dd1aee7d0e3426e4a959f393e6c6abc8909879046147dfeb0254d567b1d14b",
+    "renders/blood-training-20261019/train-input/blood-05.wav": "9598c39c810754ca28cdeba7bebd1df456990c57290f0dd0a6fefd955321b426",
+    "renders/blood-training-20261019/train-input/blood-06.wav": "f3cef173744c50caf7b106af623f1c0cb12520e258e04674d6c311c087b3d992",
+    "renders/blood-training-20261019/train-input/blood-07.wav": "47874601363737412487ea2a5ce1691af4c111267d6ec1b8e73d9287046b8ba4",
+    "renders/blood-training-20261019/train-input/blood-08.wav": "aad4803026f0f211b68aa73117405ed6fa140d51f7537538b6d65d447ba717e9",
+    "renders/blood-training-20261019/train-input/blood-09.wav": "2278398d999405e37d2ef4ac077be27dd67026bfe2851ca5b36ab2047a373319",
+    "renders/blood-training-20261019/train-input/blood-10.wav": "c8c939cf5b9134603b8fa92079d556a4d41f9a1ef6ce7de9c196a6d759920c37",
+    "renders/blood-training-20261019/train-input/blood-11.wav": "e65f6a2c4f0ad79d6c607bd1cf555a6c85803c9ea29dc8724596ad37f5ec8522",
+    "renders/blood-training-20261019/train-input/blood-12.wav": "61299ac3e7d18c1c71b5d4d7376b93bf2c4b087e51fd0bd0c86b8bd2cc144a4d",
+    "renders/blood-training-20261019/train-input/blood-13.wav": "7aee30c9d37d55d141f40b5c32e7a9fbaa844a9b852829aa2dac7ed81a66a3af",
+    "renders/blood-training-20261019/train-input/blood-14.wav": "aa558111a4c2b66eea88f106f10201dd9dc91b2f8e2206898229df48c8cb352a",
+    "renders/blood-training-20261019/train-input/blood-15.wav": "421ea81130aab09920bf37805926b08927c4ff7d9ad6040dbb8bd49e361da883",
+    "renders/blood-training-20261019/train-input/blood-16.wav": "f21d3370730f4cd07e2767dc53f7b72d4b7f1db05f0c7de735288ceb8dbbd30b",
+    "renders/blood-training-20261019/results/base-bass-a.wav": "cd0429818f5b180aa73f8730912c623de272f916ebd93003ad0a4bbcae61aa38",
+    "renders/blood-training-20261019/results/base-bass-b.wav": "23d8b13fde08b9c5004cfe60aa721f9071642fa06e6ae4ffed7741f5032d3595",
+    "renders/blood-training-20261019/results/base-funk.wav": "57654380ca0770da8d6624bcd8bfc786503c68f0c99f541a9e7e9a62e7c7b548",
+    "renders/blood-training-20261019/results/base-hiphop.wav": "7fa5b9056a219157ff22ca356d585d71892c840d77d36c7c549c24ae1d9de0bf",
+    "renders/blood-training-20261019/results/step80-bass-a.wav": "c8c6b063f1504f111d36a0ff20b8403f373169b77541fae665a600924fdbed78",
+    "renders/blood-training-20261019/results/step80-bass-b.wav": "bdcddb05eda44a0c4cd00bd9c017dd019f49f071dc55c2ac407e848b3659b2ee",
+    "renders/blood-training-20261019/results/step80-funk.wav": "649562256fda19842dd27b41548bc0592d28119fe37d88740594515785749690",
+    "renders/blood-training-20261019/results/step80-hiphop.wav": "c529ebd77a585b80ceccda7d61bf0a24ba96ce67fc2f67076fc6c20395223a7c",
+    "renders/blood-training-20261019/results/step160-bass-a.wav": "88d45dff758b480568f341318cb80f6ede17089c697dca8367e4521574dd6262",
+    "renders/blood-training-20261019/results/step160-bass-b.wav": "aa166dd5f848937a4a1e3595505521dcb3de357573302fe95ad4776f4703f4fb",
+    "renders/blood-training-20261019/results/step160-funk.wav": "e0cce297b05d3a6b8160621997c646867237d1e0484c75879f7586ee81800813",
+    "renders/blood-training-20261019/results/step160-hiphop.wav": "81f49ef5b8362d3f19bfd9d5c703bc386a10774e43a66f08efb1b3345370696e"
+  },
+  "same_brief_checkpoints": [
+    {
+      "query": "base-bass-a.wav",
+      "target": "step80-bass-a.wav",
+      "aligned": {
+        "signed_correlation": 0.9925770443651075,
+        "fitted_gain": 0.9810953142193622,
+        "gain_dc_removed_residual_rms": 0.0118779126622458,
+        "residual_fraction_of_target_centered_rms": 0.12161747818232237
+      },
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.9994726358044296,
+        "target_seconds": 26.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9972829802216034,
+          "target_seconds": 0.0
+        },
+        {
+          "query_seconds": 1.0,
+          "correlation": 0.9973819929593013,
+          "target_seconds": 1.0
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.9894134027538843,
+          "target_seconds": 2.0
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9887638295225457,
+          "target_seconds": 3.0
+        },
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.995461765824679,
+          "target_seconds": 4.0
+        },
+        {
+          "query_seconds": 5.0,
+          "correlation": 0.9952991206106029,
+          "target_seconds": 5.0
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.9947233854507133,
+          "target_seconds": 6.0
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.9946367626620276,
+          "target_seconds": 7.0
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.9958942237928734,
+          "target_seconds": 8.0
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9923453117787709,
+          "target_seconds": 9.0
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.993482480905158,
+          "target_seconds": 10.0
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.9930367070610188,
+          "target_seconds": 11.0
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.9963713061362919,
+          "target_seconds": 12.0
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.9979371320143684,
+          "target_seconds": 13.0
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.992920355773027,
+          "target_seconds": 14.0
+        },
+        {
+          "query_seconds": 15.0,
+          "correlation": 0.9802004845260901,
+          "target_seconds": 15.0
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.9799844569855285,
+          "target_seconds": 16.0
+        },
+        {
+          "query_seconds": 17.0,
+          "correlation": 0.9886115481018244,
+          "target_seconds": 17.0
+        },
+        {
+          "query_seconds": 18.0,
+          "correlation": 0.994742166122794,
+          "target_seconds": 18.0
+        },
+        {
+          "query_seconds": 19.0,
+          "correlation": 0.991236368343829,
+          "target_seconds": 19.0
+        },
+        {
+          "query_seconds": 20.0,
+          "correlation": 0.9875046364308375,
+          "target_seconds": 20.0
+        },
+        {
+          "query_seconds": 21.0,
+          "correlation": 0.9954999566387127,
+          "target_seconds": 21.0
+        },
+        {
+          "query_seconds": 22.0,
+          "correlation": 0.9981460466844327,
+          "target_seconds": 22.0
+        },
+        {
+          "query_seconds": 23.0,
+          "correlation": 0.9894220264401561,
+          "target_seconds": 23.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.9749211096965364,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.9976602969672801,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.9994726358044296,
+          "target_seconds": 26.0
+        },
+        {
+          "query_seconds": 27.0,
+          "correlation": 0.9987898743184768,
+          "target_seconds": 27.0
+        },
+        {
+          "query_seconds": 28.0,
+          "correlation": 0.8445647436733749,
+          "target_seconds": 28.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          30.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 30.0
+    },
+    {
+      "query": "base-bass-a.wav",
+      "target": "step160-bass-a.wav",
+      "aligned": {
+        "signed_correlation": 0.9614689542298742,
+        "fitted_gain": 0.950457969199523,
+        "gain_dc_removed_residual_rms": 0.02685288349818593,
+        "residual_fraction_of_target_centered_rms": 0.27491353195525325
+      },
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.9984841959127774,
+        "target_seconds": 27.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9805455185418162,
+          "target_seconds": 0.0
+        },
+        {
+          "query_seconds": 1.0,
+          "correlation": 0.9768429737739817,
+          "target_seconds": 1.0
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.9444672026385044,
+          "target_seconds": 2.0
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9444926015983172,
+          "target_seconds": 3.0
+        },
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.9816380724362578,
+          "target_seconds": 4.0
+        },
+        {
+          "query_seconds": 5.0,
+          "correlation": 0.9838467177390611,
+          "target_seconds": 5.0
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.9817473311536601,
+          "target_seconds": 6.0
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.9792442634864233,
+          "target_seconds": 7.0
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.9773604471602539,
+          "target_seconds": 8.0
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9760525928161577,
+          "target_seconds": 9.0
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.9772220122187654,
+          "target_seconds": 10.0
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.9725694451074677,
+          "target_seconds": 11.0
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.9832187526012927,
+          "target_seconds": 12.0
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.9864313024596845,
+          "target_seconds": 13.0
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.9576541256601412,
+          "target_seconds": 14.0
+        },
+        {
+          "query_seconds": 15.0,
+          "correlation": 0.8640311933292523,
+          "target_seconds": 15.0
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.8936665475040858,
+          "target_seconds": 16.0
+        },
+        {
+          "query_seconds": 17.0,
+          "correlation": 0.9412551953266526,
+          "target_seconds": 17.0
+        },
+        {
+          "query_seconds": 18.0,
+          "correlation": 0.9530636630579801,
+          "target_seconds": 18.0
+        },
+        {
+          "query_seconds": 19.0,
+          "correlation": 0.9375285551785006,
+          "target_seconds": 19.0
+        },
+        {
+          "query_seconds": 20.0,
+          "correlation": 0.9381307868058064,
+          "target_seconds": 20.0
+        },
+        {
+          "query_seconds": 21.0,
+          "correlation": 0.9756884285067664,
+          "target_seconds": 21.0
+        },
+        {
+          "query_seconds": 22.0,
+          "correlation": 0.9789344057873702,
+          "target_seconds": 22.0
+        },
+        {
+          "query_seconds": 23.0,
+          "correlation": 0.9592654724343193,
+          "target_seconds": 23.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.8991069438351312,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.9857185722462943,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.9983726633337601,
+          "target_seconds": 26.0
+        },
+        {
+          "query_seconds": 27.0,
+          "correlation": 0.9984841959127774,
+          "target_seconds": 27.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          29.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 29.0
+    },
+    {
+      "query": "step80-bass-a.wav",
+      "target": "step160-bass-a.wav",
+      "aligned": {
+        "signed_correlation": 0.976019651162969,
+        "fitted_gain": 0.9761335462852078,
+        "gain_dc_removed_residual_rms": 0.021262689049740154,
+        "residual_fraction_of_target_centered_rms": 0.21768243048927102
+      },
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.9994710436875145,
+        "target_seconds": 27.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9853417514555369,
+          "target_seconds": 0.0
+        },
+        {
+          "query_seconds": 1.0,
+          "correlation": 0.9840514159175994,
+          "target_seconds": 1.0
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.9693501014903121,
+          "target_seconds": 2.0
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9677330408947765,
+          "target_seconds": 3.0
+        },
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.9874550585060253,
+          "target_seconds": 4.0
+        },
+        {
+          "query_seconds": 5.0,
+          "correlation": 0.9899899024939213,
+          "target_seconds": 5.0
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.989025259287489,
+          "target_seconds": 6.0
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.9875158686186754,
+          "target_seconds": 7.0
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.9815926284563096,
+          "target_seconds": 8.0
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9859472069921814,
+          "target_seconds": 9.0
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.9909171204888665,
+          "target_seconds": 10.0
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.9866960957480578,
+          "target_seconds": 11.0
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.9899541830557019,
+          "target_seconds": 12.0
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.990478561121313,
+          "target_seconds": 13.0
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.9753259043558855,
+          "target_seconds": 14.0
+        },
+        {
+          "query_seconds": 15.0,
+          "correlation": 0.9213017408593811,
+          "target_seconds": 15.0
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.9438140638520424,
+          "target_seconds": 16.0
+        },
+        {
+          "query_seconds": 17.0,
+          "correlation": 0.9651731085604517,
+          "target_seconds": 17.0
+        },
+        {
+          "query_seconds": 18.0,
+          "correlation": 0.9641189402161648,
+          "target_seconds": 18.0
+        },
+        {
+          "query_seconds": 19.0,
+          "correlation": 0.9560893677361697,
+          "target_seconds": 19.0
+        },
+        {
+          "query_seconds": 20.0,
+          "correlation": 0.9649309594393857,
+          "target_seconds": 20.0
+        },
+        {
+          "query_seconds": 21.0,
+          "correlation": 0.9812538096936808,
+          "target_seconds": 21.0
+        },
+        {
+          "query_seconds": 22.0,
+          "correlation": 0.9821817254824085,
+          "target_seconds": 22.0
+        },
+        {
+          "query_seconds": 23.0,
+          "correlation": 0.9740362427016154,
+          "target_seconds": 23.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.9501138235709793,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.9901640731835513,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.9993208053196339,
+          "target_seconds": 26.0
+        },
+        {
+          "query_seconds": 27.0,
+          "correlation": 0.9994710436875145,
+          "target_seconds": 27.0
+        },
+        {
+          "query_seconds": 28.0,
+          "correlation": 0.8025703388238652,
+          "target_seconds": 28.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          30.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 30.0
+    },
+    {
+      "query": "base-bass-b.wav",
+      "target": "step80-bass-b.wav",
+      "aligned": {
+        "signed_correlation": 0.9957237530250879,
+        "fitted_gain": 1.0609119490103534,
+        "gain_dc_removed_residual_rms": 0.016201972849880727,
+        "residual_fraction_of_target_centered_rms": 0.09238077538986932
+      },
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.9984717028845028,
+        "target_seconds": 11.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9959489297087012,
+          "target_seconds": 0.0
+        },
+        {
+          "query_seconds": 1.0,
+          "correlation": 0.9976749496474254,
+          "target_seconds": 1.0
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.9983112220519756,
+          "target_seconds": 2.0
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9981021935848342,
+          "target_seconds": 3.0
+        },
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.998232447734604,
+          "target_seconds": 4.0
+        },
+        {
+          "query_seconds": 5.0,
+          "correlation": 0.991459436872919,
+          "target_seconds": 5.0
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.9899825946085157,
+          "target_seconds": 6.0
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.9963736873125936,
+          "target_seconds": 7.0
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.9976125380320454,
+          "target_seconds": 8.0
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9978569529317945,
+          "target_seconds": 9.0
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.9979450660694371,
+          "target_seconds": 10.0
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.9984717028845028,
+          "target_seconds": 11.0
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.9937470137452241,
+          "target_seconds": 12.0
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.9926520362187229,
+          "target_seconds": 13.0
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.9969263807204839,
+          "target_seconds": 14.0
+        },
+        {
+          "query_seconds": 15.0,
+          "correlation": 0.997150586659243,
+          "target_seconds": 15.0
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.9979240397413264,
+          "target_seconds": 16.0
+        },
+        {
+          "query_seconds": 17.0,
+          "correlation": 0.9982361861832031,
+          "target_seconds": 17.0
+        },
+        {
+          "query_seconds": 18.0,
+          "correlation": 0.9982670609249014,
+          "target_seconds": 18.0
+        },
+        {
+          "query_seconds": 19.0,
+          "correlation": 0.9883632519379898,
+          "target_seconds": 19.0
+        },
+        {
+          "query_seconds": 20.0,
+          "correlation": 0.987583897288439,
+          "target_seconds": 20.0
+        },
+        {
+          "query_seconds": 21.0,
+          "correlation": 0.9973315933004437,
+          "target_seconds": 21.0
+        },
+        {
+          "query_seconds": 22.0,
+          "correlation": 0.9970669466747092,
+          "target_seconds": 22.0
+        },
+        {
+          "query_seconds": 23.0,
+          "correlation": 0.9980370640492222,
+          "target_seconds": 23.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.9983601878254893,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.9933573442790786,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.9923855562072863,
+          "target_seconds": 26.0
+        },
+        {
+          "query_seconds": 27.0,
+          "correlation": 0.9955679180567706,
+          "target_seconds": 27.0
+        },
+        {
+          "query_seconds": 28.0,
+          "correlation": 0.8142607179675269,
+          "target_seconds": 28.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          30.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 30.0
+    },
+    {
+      "query": "base-bass-b.wav",
+      "target": "step160-bass-b.wav",
+      "aligned": {
+        "signed_correlation": 0.9897039099466263,
+        "fitted_gain": 1.030733061068988,
+        "gain_dc_removed_residual_rms": 0.02453675557693409,
+        "residual_fraction_of_target_centered_rms": 0.14312990825246844
+      },
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.9957596764641038,
+        "target_seconds": 4.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9877064797651617,
+          "target_seconds": 0.0
+        },
+        {
+          "query_seconds": 1.0,
+          "correlation": 0.9893888822572809,
+          "target_seconds": 1.0
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.9921977754521446,
+          "target_seconds": 2.0
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9931430810819375,
+          "target_seconds": 3.0
+        },
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.9957596764641038,
+          "target_seconds": 4.0
+        },
+        {
+          "query_seconds": 5.0,
+          "correlation": 0.9836350847802596,
+          "target_seconds": 5.0
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.980560740518276,
+          "target_seconds": 6.0
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.9910373616462258,
+          "target_seconds": 7.0
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.9931925733574831,
+          "target_seconds": 8.0
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9921251572553414,
+          "target_seconds": 9.0
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.9927691271574061,
+          "target_seconds": 10.0
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.9944891328194355,
+          "target_seconds": 11.0
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.9866038988832424,
+          "target_seconds": 12.0
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.9855661840983287,
+          "target_seconds": 13.0
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.9917013767819198,
+          "target_seconds": 14.0
+        },
+        {
+          "query_seconds": 15.0,
+          "correlation": 0.9904253136589977,
+          "target_seconds": 15.0
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.9914661036796253,
+          "target_seconds": 16.0
+        },
+        {
+          "query_seconds": 17.0,
+          "correlation": 0.9936910506114826,
+          "target_seconds": 17.0
+        },
+        {
+          "query_seconds": 18.0,
+          "correlation": 0.9934857793985575,
+          "target_seconds": 18.0
+        },
+        {
+          "query_seconds": 19.0,
+          "correlation": 0.97924008877444,
+          "target_seconds": 19.0
+        },
+        {
+          "query_seconds": 20.0,
+          "correlation": 0.9791097568723992,
+          "target_seconds": 20.0
+        },
+        {
+          "query_seconds": 21.0,
+          "correlation": 0.992264215830001,
+          "target_seconds": 21.0
+        },
+        {
+          "query_seconds": 22.0,
+          "correlation": 0.9903078619948341,
+          "target_seconds": 22.0
+        },
+        {
+          "query_seconds": 23.0,
+          "correlation": 0.991777563548581,
+          "target_seconds": 23.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.9939659647635645,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.9885312696784494,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.9874462217689975,
+          "target_seconds": 26.0
+        },
+        {
+          "query_seconds": 27.0,
+          "correlation": 0.9910377550012679,
+          "target_seconds": 27.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          29.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 29.0
+    },
+    {
+      "query": "step80-bass-b.wav",
+      "target": "step160-bass-b.wav",
+      "aligned": {
+        "signed_correlation": 0.9935842517177003,
+        "fitted_gain": 0.971192111530476,
+        "gain_dc_removed_residual_rms": 0.019387762864051004,
+        "residual_fraction_of_target_centered_rms": 0.11309436209899157
+      },
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.9976083512303395,
+        "target_seconds": 27.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9906957688304343,
+          "target_seconds": 0.0
+        },
+        {
+          "query_seconds": 1.0,
+          "correlation": 0.9942942158962036,
+          "target_seconds": 1.0
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.9943742091975343,
+          "target_seconds": 2.0
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9951555605756792,
+          "target_seconds": 3.0
+        },
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.9968662081153433,
+          "target_seconds": 4.0
+        },
+        {
+          "query_seconds": 5.0,
+          "correlation": 0.9932590385662591,
+          "target_seconds": 5.0
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.9885932566770865,
+          "target_seconds": 6.0
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.9920323065725369,
+          "target_seconds": 7.0
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.997227267438471,
+          "target_seconds": 8.0
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9949460576553384,
+          "target_seconds": 9.0
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.9952640182569777,
+          "target_seconds": 10.0
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.9967018448328533,
+          "target_seconds": 11.0
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.9905973038729201,
+          "target_seconds": 12.0
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.9891391668167968,
+          "target_seconds": 13.0
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.9953462400443457,
+          "target_seconds": 14.0
+        },
+        {
+          "query_seconds": 15.0,
+          "correlation": 0.995923912253902,
+          "target_seconds": 15.0
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.9944210102111616,
+          "target_seconds": 16.0
+        },
+        {
+          "query_seconds": 17.0,
+          "correlation": 0.9954766989211282,
+          "target_seconds": 17.0
+        },
+        {
+          "query_seconds": 18.0,
+          "correlation": 0.9962379441882926,
+          "target_seconds": 18.0
+        },
+        {
+          "query_seconds": 19.0,
+          "correlation": 0.9857514468138804,
+          "target_seconds": 19.0
+        },
+        {
+          "query_seconds": 20.0,
+          "correlation": 0.9855452171089777,
+          "target_seconds": 20.0
+        },
+        {
+          "query_seconds": 21.0,
+          "correlation": 0.9964841664793549,
+          "target_seconds": 21.0
+        },
+        {
+          "query_seconds": 22.0,
+          "correlation": 0.9958034843029426,
+          "target_seconds": 22.0
+        },
+        {
+          "query_seconds": 23.0,
+          "correlation": 0.9944827553119762,
+          "target_seconds": 23.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.995362435912569,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.9935660835431863,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.9937573813418457,
+          "target_seconds": 26.0
+        },
+        {
+          "query_seconds": 27.0,
+          "correlation": 0.9976083512303395,
+          "target_seconds": 27.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          29.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 29.0
+    },
+    {
+      "query": "base-funk.wav",
+      "target": "step80-funk.wav",
+      "aligned": {
+        "signed_correlation": 0.9903161395877619,
+        "fitted_gain": 1.0469179757137104,
+        "gain_dc_removed_residual_rms": 0.030722752965101643,
+        "residual_fraction_of_target_centered_rms": 0.13883062944463143
+      },
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 25.0,
+        "correlation": 0.999466355178941,
+        "target_seconds": 25.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9288972573429488,
+          "target_seconds": 0.0
+        },
+        {
+          "query_seconds": 1.0,
+          "correlation": 0.9947745442422716,
+          "target_seconds": 1.0
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.995433381896593,
+          "target_seconds": 2.0
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9967882424739136,
+          "target_seconds": 3.0
+        },
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.997263206346788,
+          "target_seconds": 4.0
+        },
+        {
+          "query_seconds": 5.0,
+          "correlation": 0.996806190334549,
+          "target_seconds": 5.0
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.9956416013434273,
+          "target_seconds": 6.0
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.9949776169557105,
+          "target_seconds": 7.0
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.9963890309677295,
+          "target_seconds": 8.0
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9947436303424578,
+          "target_seconds": 9.0
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.988565473304267,
+          "target_seconds": 10.0
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.9920901696794407,
+          "target_seconds": 11.0
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.9977162892337441,
+          "target_seconds": 12.0
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.9974509636386074,
+          "target_seconds": 13.0
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.9972017126461555,
+          "target_seconds": 14.0
+        },
+        {
+          "query_seconds": 15.0,
+          "correlation": 0.9944372162142753,
+          "target_seconds": 15.0
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.9939508763322887,
+          "target_seconds": 16.0
+        },
+        {
+          "query_seconds": 17.0,
+          "correlation": 0.9972244274499118,
+          "target_seconds": 17.0
+        },
+        {
+          "query_seconds": 18.0,
+          "correlation": 0.9964928822799429,
+          "target_seconds": 18.0
+        },
+        {
+          "query_seconds": 19.0,
+          "correlation": 0.9960918418159459,
+          "target_seconds": 19.0
+        },
+        {
+          "query_seconds": 20.0,
+          "correlation": 0.9968343695754802,
+          "target_seconds": 20.0
+        },
+        {
+          "query_seconds": 21.0,
+          "correlation": 0.990698530884021,
+          "target_seconds": 21.0
+        },
+        {
+          "query_seconds": 22.0,
+          "correlation": 0.9878257225247812,
+          "target_seconds": 22.0
+        },
+        {
+          "query_seconds": 23.0,
+          "correlation": 0.9948884467274751,
+          "target_seconds": 23.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.9938326622958952,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.999466355178941,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.9985482219120461,
+          "target_seconds": 26.0
+        },
+        {
+          "query_seconds": 27.0,
+          "correlation": 0.8943962836116984,
+          "target_seconds": 26.95925
+        },
+        {
+          "query_seconds": 28.0,
+          "correlation": 0.8705416660241339,
+          "target_seconds": 28.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          30.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 30.0
+    },
+    {
+      "query": "base-funk.wav",
+      "target": "step160-funk.wav",
+      "aligned": {
+        "signed_correlation": 0.9854113785735392,
+        "fitted_gain": 0.9160342767028798,
+        "gain_dc_removed_residual_rms": 0.03311788309166509,
+        "residual_fraction_of_target_centered_rms": 0.17018935036540053
+      },
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 25.0,
+        "correlation": 0.9988975727185276,
+        "target_seconds": 25.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9800214301816005,
+          "target_seconds": 0.0
+        },
+        {
+          "query_seconds": 1.0,
+          "correlation": 0.9813051160599259,
+          "target_seconds": 1.0
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.9824249818336437,
+          "target_seconds": 2.0
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9899797787337457,
+          "target_seconds": 3.0
+        },
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.991151586659418,
+          "target_seconds": 4.0
+        },
+        {
+          "query_seconds": 5.0,
+          "correlation": 0.9900042297106942,
+          "target_seconds": 5.0
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.988339430562537,
+          "target_seconds": 6.0
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.9879274528815516,
+          "target_seconds": 7.0
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.9818120258883628,
+          "target_seconds": 8.0
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9831531897404484,
+          "target_seconds": 9.0
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.9827991475406971,
+          "target_seconds": 10.0
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.9855728077570155,
+          "target_seconds": 11.0
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.9916199334533305,
+          "target_seconds": 12.0
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.9919085090765376,
+          "target_seconds": 13.0
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.9850609174498822,
+          "target_seconds": 14.0
+        },
+        {
+          "query_seconds": 15.0,
+          "correlation": 0.9805434908647191,
+          "target_seconds": 15.0
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.9848860238521322,
+          "target_seconds": 16.0
+        },
+        {
+          "query_seconds": 17.0,
+          "correlation": 0.9886996877804549,
+          "target_seconds": 17.0
+        },
+        {
+          "query_seconds": 18.0,
+          "correlation": 0.9840022984683895,
+          "target_seconds": 18.0
+        },
+        {
+          "query_seconds": 19.0,
+          "correlation": 0.9867432844339025,
+          "target_seconds": 19.0
+        },
+        {
+          "query_seconds": 20.0,
+          "correlation": 0.9916515552631728,
+          "target_seconds": 20.0
+        },
+        {
+          "query_seconds": 21.0,
+          "correlation": 0.9849097949072007,
+          "target_seconds": 21.0
+        },
+        {
+          "query_seconds": 22.0,
+          "correlation": 0.9828275080282235,
+          "target_seconds": 22.0
+        },
+        {
+          "query_seconds": 23.0,
+          "correlation": 0.9813613418257319,
+          "target_seconds": 23.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.9734145161708986,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.9988975727185276,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.9965327803612026,
+          "target_seconds": 26.0
+        },
+        {
+          "query_seconds": 28.0,
+          "correlation": 0.8052443599679194,
+          "target_seconds": 28.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          30.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 30.0
+    },
+    {
+      "query": "step80-funk.wav",
+      "target": "step160-funk.wav",
+      "aligned": {
+        "signed_correlation": 0.9856204345285591,
+        "fitted_gain": 0.8666925253772817,
+        "gain_dc_removed_residual_rms": 0.03288146707594527,
+        "residual_fraction_of_target_centered_rms": 0.16897443309487425
+      },
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 25.0,
+        "correlation": 0.9991138868128634,
+        "target_seconds": 25.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.898458119334562,
+          "target_seconds": 0.0
+        },
+        {
+          "query_seconds": 1.0,
+          "correlation": 0.9914899994000851,
+          "target_seconds": 1.0
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.9914523781284703,
+          "target_seconds": 2.0
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9939763020370355,
+          "target_seconds": 3.0
+        },
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.9948910491656312,
+          "target_seconds": 4.0
+        },
+        {
+          "query_seconds": 5.0,
+          "correlation": 0.9953718490809806,
+          "target_seconds": 5.0
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.9944681562781921,
+          "target_seconds": 6.0
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.9940581984720217,
+          "target_seconds": 7.0
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.9883377172529404,
+          "target_seconds": 8.0
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9886163550256597,
+          "target_seconds": 9.0
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.9834946622381807,
+          "target_seconds": 10.0
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.986491741422097,
+          "target_seconds": 11.0
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.9953705474936457,
+          "target_seconds": 12.0
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.996099084568856,
+          "target_seconds": 13.0
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.990287779420632,
+          "target_seconds": 14.0
+        },
+        {
+          "query_seconds": 15.0,
+          "correlation": 0.989221386807222,
+          "target_seconds": 15.0
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.9922827057297928,
+          "target_seconds": 16.0
+        },
+        {
+          "query_seconds": 17.0,
+          "correlation": 0.992701556589934,
+          "target_seconds": 17.0
+        },
+        {
+          "query_seconds": 18.0,
+          "correlation": 0.9917516489089108,
+          "target_seconds": 18.0
+        },
+        {
+          "query_seconds": 19.0,
+          "correlation": 0.9934486631242122,
+          "target_seconds": 19.0
+        },
+        {
+          "query_seconds": 20.0,
+          "correlation": 0.9958431160237651,
+          "target_seconds": 20.0
+        },
+        {
+          "query_seconds": 21.0,
+          "correlation": 0.99452078478959,
+          "target_seconds": 21.0
+        },
+        {
+          "query_seconds": 22.0,
+          "correlation": 0.9944750058746554,
+          "target_seconds": 22.0
+        },
+        {
+          "query_seconds": 23.0,
+          "correlation": 0.992450894558035,
+          "target_seconds": 23.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.9897975919607634,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.9991138868128634,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.9947188526636107,
+          "target_seconds": 26.0
+        },
+        {
+          "query_seconds": 28.0,
+          "correlation": 0.8083013707627111,
+          "target_seconds": 28.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          30.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 30.0
+    },
+    {
+      "query": "base-hiphop.wav",
+      "target": "step80-hiphop.wav",
+      "aligned": {
+        "signed_correlation": 0.8225218249094379,
+        "fitted_gain": 0.9141513935039132,
+        "gain_dc_removed_residual_rms": 0.09752913542497774,
+        "residual_fraction_of_target_centered_rms": 0.568733547056658
+      },
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.9902568200648569,
+        "target_seconds": 26.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 1.0,
+          "correlation": 0.9682320243384558,
+          "target_seconds": 1.0
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.9152840787914016,
+          "target_seconds": 2.0
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9012840392931638,
+          "target_seconds": 3.0
+        },
+        {
+          "query_seconds": 4.0,
+          "correlation": 0.9487128210239024,
+          "target_seconds": 4.0
+        },
+        {
+          "query_seconds": 5.0,
+          "correlation": 0.9525547907394307,
+          "target_seconds": 5.0
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.8925156620414804,
+          "target_seconds": 6.0
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.8144631734804434,
+          "target_seconds": 7.00025
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.8562115689844223,
+          "target_seconds": 8.0
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.811701167089884,
+          "target_seconds": 13.0
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.8040501267337568,
+          "target_seconds": 14.0
+        },
+        {
+          "query_seconds": 15.0,
+          "correlation": 0.8416327701570031,
+          "target_seconds": 15.0
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.942963047546558,
+          "target_seconds": 16.0
+        },
+        {
+          "query_seconds": 17.0,
+          "correlation": 0.9473573006613265,
+          "target_seconds": 17.0
+        },
+        {
+          "query_seconds": 21.0,
+          "correlation": 0.830255593405794,
+          "target_seconds": 21.0
+        },
+        {
+          "query_seconds": 22.0,
+          "correlation": 0.8836163504813622,
+          "target_seconds": 22.0
+        },
+        {
+          "query_seconds": 23.0,
+          "correlation": 0.9067384586284025,
+          "target_seconds": 23.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.9852053513754757,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.9873555643339009,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.9902568200648569,
+          "target_seconds": 26.0
+        },
+        {
+          "query_seconds": 28.0,
+          "correlation": 0.8196197636005212,
+          "target_seconds": 28.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          1.0,
+          10.0
+        ],
+        [
+          13.0,
+          19.0
+        ],
+        [
+          21.0,
+          30.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 24.0
+    },
+    {
+      "query": "base-hiphop.wav",
+      "target": "step160-hiphop.wav",
+      "aligned": {
+        "signed_correlation": 0.6467248441016782,
+        "fitted_gain": 0.8152123061999379,
+        "gain_dc_removed_residual_rms": 0.14834505790664762,
+        "residual_fraction_of_target_centered_rms": 0.762723394174887
+      },
+      "eligible_windows": 28,
+      "strongest": {
+        "query_seconds": 25.0,
+        "correlation": 0.8865852756584581,
+        "target_seconds": 25.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 22.0,
+          "correlation": 0.8140632509634212,
+          "target_seconds": 22.0
+        },
+        {
+          "query_seconds": 23.0,
+          "correlation": 0.8267317284944029,
+          "target_seconds": 23.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.8321237313958934,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.8865852756584581,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.8649346211468842,
+          "target_seconds": 26.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          22.0,
+          28.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 6.0
+    },
+    {
+      "query": "step80-hiphop.wav",
+      "target": "step160-hiphop.wav",
+      "aligned": {
+        "signed_correlation": 0.7299975382705051,
+        "fitted_gain": 0.8279457526910379,
+        "gain_dc_removed_residual_rms": 0.13292682135234674,
+        "residual_fraction_of_target_centered_rms": 0.6834497743938488
+      },
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 25.0,
+        "correlation": 0.9051909891723997,
+        "target_seconds": 25.0
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 1.0,
+          "correlation": 0.8408790266675643,
+          "target_seconds": 1.0
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.8565780714077526,
+          "target_seconds": 2.0
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.8393094462677848,
+          "target_seconds": 3.0
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.8535857343063755,
+          "target_seconds": 12.0
+        },
+        {
+          "query_seconds": 24.0,
+          "correlation": 0.8570001850278404,
+          "target_seconds": 24.0
+        },
+        {
+          "query_seconds": 25.0,
+          "correlation": 0.9051909891723997,
+          "target_seconds": 25.0
+        },
+        {
+          "query_seconds": 26.0,
+          "correlation": 0.8760722072200551,
+          "target_seconds": 26.0
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          1.0,
+          5.0
+        ],
+        [
+          12.0,
+          14.0
+        ],
+        [
+          24.0,
+          28.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 10.0
+    }
+  ],
+  "input_preservation": "PASS",
+  "holdout": "NOT RUN: excluded from this diagnostic",
+  "toolchain": {
+    "python": "3.15.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "platform": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "script_sha256": "5c7bc36c5e05091013a8ff7f54e928b7c5f98bbef0cd79b9ce38e41edbb5585d",
+  "elapsed_seconds": 17.2843334999925
+}

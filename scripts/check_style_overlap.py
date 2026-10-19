@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+from itertools import combinations
 from pathlib import Path
 import platform
 import subprocess
@@ -73,9 +74,34 @@ def scan(query, target, same_file=False):
         match = best_match(query[start:start + WINDOW], target, start + WINDOW if same_file else 0)
         if match is not None:
             rows.append({'query_seconds': start / RATE, **match})
+    flagged = [row for row in rows if row['correlation'] >= THRESHOLD]
+    intervals = []
+    for row in flagged:
+        start, stop = row['query_seconds'], row['query_seconds'] + WINDOW / RATE
+        if intervals and start <= intervals[-1][1]:
+            intervals[-1][1] = max(stop, intervals[-1][1])
+        else:
+            intervals.append([start, stop])
     return {'eligible_windows': len(rows),
             'strongest': max(rows, key=lambda row: row['correlation']) if rows else None,
-            'flagged_windows': [row for row in rows if row['correlation'] >= THRESHOLD]}
+            'flagged_windows': flagged, 'flagged_query_intervals_seconds': intervals,
+            'flagged_query_coverage_seconds': sum(stop - start for start, stop in intervals)}
+
+
+def aligned_difference(query, target):
+    """Fit gain/DC only, without aligning time; no perceptual-quality interpretation."""
+    x, y = np.asarray(query, dtype=np.float64), np.asarray(target, dtype=np.float64)
+    if x.ndim != 1 or y.shape != x.shape or not x.size or not np.isfinite(x).all() or not np.isfinite(y).all():
+        raise ValueError('Expected equal, finite, nonempty mono signals')
+    x, y = x - x.mean(), y - y.mean()
+    xx, yy, xy = float(x @ x), float(y @ y), float(x @ y)
+    if min(xx, yy) / len(x) < MIN_VARIANCE:
+        return None
+    gain = xy / xx
+    residual = y - gain * x
+    return {'signed_correlation': float(np.clip(xy / np.sqrt(xx * yy), -1, 1)),
+            'fitted_gain': gain, 'gain_dc_removed_residual_rms': float(np.sqrt(np.mean(residual ** 2))),
+            'residual_fraction_of_target_centered_rms': float(np.sqrt((residual @ residual) / yy))}
 
 
 def calibration():
@@ -139,7 +165,7 @@ def main():
     inputs = {ROOT / ('train-input' if args.blood else 'headroom') / item['filename']: item['sha256'] for item in accepted}
     inputs.update({ROOT / 'results' / c['file']: c['sha256'] for c in cases})
     signals = {path.name: decode(path, sha) for path, sha in inputs.items()}
-    training, repetition, seeds = [], [], []
+    training, repetition, seeds, adapters = [], [], [], []
     for case in cases:
         name = case['file']
         for item in accepted:
@@ -149,6 +175,11 @@ def main():
     for mode in modes:
         a, b = f'{mode}-bass-a.wav', f'{mode}-bass-b.wav'
         seeds.append({'query': a, 'target': b, **scan(signals[a], signals[b])})
+    for name in ('bass-a', 'bass-b', 'funk', 'hiphop'):
+        for left, right in combinations(modes, 2):
+            a, b = f'{left}-{name}.wav', f'{right}-{name}.wav'
+            adapters.append({'query': a, 'target': b, 'aligned': aligned_difference(signals[a], signals[b]),
+                             **scan(signals[a], signals[b])})
     for path, sha in inputs.items():
         assert digest(path) == sha, f'Input changed: {path}'
     report = {'diagnostic_execution': 'PASS', 'copying_and_perceptual_novelty': 'PARTIAL',
@@ -157,9 +188,12 @@ def main():
                          'query_hop_seconds': HOP / RATE, 'target_hop_samples': 1,
                          'absolute_centered_correlation_threshold': THRESHOLD,
                          'minimum_centered_rms_dbfs': -80,
+                         'coverage': 'Union of flagged query windows only; excludes later matching target passages and does not double-count overlapping windows.',
+                         'aligned_comparison': 'Least-squares gain and DC removal at fixed sample alignment. Correlation and residual are not arrangement, audibility or quality scores.',
                          'limitations': 'No pitch/time invariance, stereo-side search, melody/identity test or proof of originality. Short copies and boundary-straddling copies may be missed. Natural musical repetition can correlate.'},
               'calibration': controls, 'training_overlap': training, 'within_output_repetition': repetition,
               'same_brief_different_seed': seeds, 'inputs_sha256': {str(p): sha for p, sha in inputs.items()},
+              'same_brief_checkpoints': adapters,
               'input_preservation': 'PASS', 'holdout' if args.blood else 'holdout_z': 'NOT RUN: excluded from this diagnostic',
               'toolchain': {'python': platform.python_version(), 'numpy': np.__version__,
                             'scipy': scipy.__version__, 'platform': platform.platform(),

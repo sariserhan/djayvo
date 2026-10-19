@@ -13,6 +13,35 @@ import check_style_overlap as overlap
 
 
 class WaveformOverlap(unittest.TestCase):
+    def test_aligned_gain_dc_inversion_and_changed_content(self):
+        rng = np.random.default_rng(19)
+        source = rng.normal(0, .1, 12000)
+        for gain in (.3, -1.7):
+            fit = overlap.aligned_difference(source, gain * source + .02)
+            self.assertAlmostEqual(fit['fitted_gain'], gain)
+            self.assertLess(fit['residual_fraction_of_target_centered_rms'], 1e-12)
+            self.assertAlmostEqual(fit['signed_correlation'], np.sign(gain))
+        changed = overlap.aligned_difference(source, rng.normal(0, .1, len(source)))
+        self.assertGreater(changed['residual_fraction_of_target_centered_rms'], .99)
+        shifted = overlap.aligned_difference(source, np.roll(source, 100))
+        self.assertLess(abs(shifted['signed_correlation']), .05)
+        self.assertIsNone(overlap.aligned_difference(source, np.ones(len(source))))
+        for a, b in [(source, source[:-1]), ([], []), ([np.nan], [1]), ([[1]], [[2]])]:
+            with self.assertRaises(ValueError):
+                overlap.aligned_difference(a, b)
+
+    def test_repeated_window_coverage_is_merged_not_count_times_duration(self):
+        rng = np.random.default_rng(20)
+        pattern = rng.normal(0, .1, 4 * overlap.RATE)
+        repeated = np.tile(pattern, 3)
+        result = overlap.scan(repeated, repeated, same_file=True)
+        self.assertEqual(result['flagged_query_intervals_seconds'], [[0., 8.]])
+        self.assertEqual(result['flagged_query_coverage_seconds'], 8.)
+        self.assertGreater(len(result['flagged_windows']) * 2, 8)
+        blank = overlap.scan(np.zeros(overlap.WINDOW), np.zeros(overlap.WINDOW))
+        self.assertEqual(blank['flagged_query_intervals_seconds'], [])
+        self.assertEqual(blank['flagged_query_coverage_seconds'], 0)
+
     def test_calibration_and_direct_agreement(self):
         self.assertEqual(overlap.calibration()['status'], 'PASS')
 

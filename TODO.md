@@ -12,7 +12,7 @@ new paid compute, publication and monetization still need explicit authorization
 
 
 Last updated: 2026-10-19 (America/New_York). Latest validation: [Linux browser portability](docs/linux-browser.md).
-Latest research: [Completed Blood Club GPU trial](docs/blood-training-run.md); [prior inconclusive contour trial](docs/source-contour.md).
+Latest research: [Adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
 
 Use this file for past work, open issues and future development. Detailed test
@@ -235,6 +235,11 @@ closes that task only; it does not automatically pass its parent milestone.
   generalization, human preference and production acceptance remain open; no
   checkpoint promoted. Observed debit about $0.12; final billing PARTIAL.
   [Execution evidence](docs/blood-training-run.md).
+  [Local follow-up](docs/style-adapter-effect.md): bass/funk remain strongly
+  waveform-correlated with base; independent source-group split **FAIL** and
+  two cross-split windows flagged. Five diagnostic tests, repeated 64-pair audit,
+  exact legacy-result agreement and four playable reference crops **PASS**.
+  Do not treat greater waveform change or this same-source holdout as quality proof.
 
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,
@@ -440,6 +445,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P59 | PASS | Two local DJ decks and real manual mixing, stereo metering, consent/failure handling and disconnected-server playback; 16 unit, 26 DJ browser and 40 voice regression checks | [Evidence](docs/dj-mixer.md) |
 | [x] | P60 | PASS | Complete source-contour experiment and cross-platform evidence; record inconclusive owner listening and restore unchanged production engine. Musical benefit not established; candidate not promoted | [Evidence](docs/source-contour.md) |
 | [x] | P61 | PASS | Execute bounded Blood Club training, fix checkpoint loader, verify both adapters and 13 WAVs, prepare four matched groups, scan waveform reuse, preserve originals and delete rental/keys; musical-quality gate stays open | [Evidence](docs/blood-training-run.md) |
+| [x] | P62 | PASS | Measure adapter effect after gain/DC fitting, merge overlapping detection coverage, audit train/holdout similarity and export four exact reference crops; independent split fails and human-quality gate remains open | [Evidence](docs/style-adapter-effect.md) |
 
 ## Engineering backlog
 

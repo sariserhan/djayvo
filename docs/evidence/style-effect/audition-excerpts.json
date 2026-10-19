@@ -1,0 +1,34 @@
+{
+  "execution": "PASS",
+  "human_listening": "NOT RUN",
+  "files": [
+    {
+      "file": "renders/style-effect-20261019/overlap-1-holdout.wav",
+      "source": "renders/blood-training-20261019/same-session-holdout/blood-20.wav",
+      "source_start_frame": 144000,
+      "frames": 96000,
+      "sha256": "d3bf11c7f51ccda3f7edcfc4f9359eea72ca43e26dd599b3c4e871882c03956a"
+    },
+    {
+      "file": "renders/style-effect-20261019/overlap-1-training.wav",
+      "source": "renders/blood-training-20261019/train-input/blood-16.wav",
+      "source_start_frame": 42576,
+      "frames": 96000,
+      "sha256": "a7c5a33125e5ab53e74a7bfb9c7104e027d944e573dbeffb80646243f1b8616f"
+    },
+    {
+      "file": "renders/style-effect-20261019/overlap-2-holdout.wav",
+      "source": "renders/blood-training-20261019/same-session-holdout/blood-20.wav",
+      "source_start_frame": 192000,
+      "frames": 96000,
+      "sha256": "2e7054d8b39e9ec0bda5370f8b2aae8fb482a7f8b026e5bad16ed9ea93d4ef7c"
+    },
+    {
+      "file": "renders/style-effect-20261019/overlap-2-training.wav",
+      "source": "renders/blood-training-20261019/train-input/blood-16.wav",
+      "source_start_frame": 60120,
+      "frames": 96000,
+      "sha256": "7ea083a21ff24d107563b6ed50fbab388f0c53207ae02680abdde870d1baa738"
+    }
+  ]
+}
