@@ -1,0 +1,30 @@
+test_consent_provenance_existing_outputs_and_failure_marker (test_phrase_articulation.Articulation.test_consent_provenance_existing_outputs_and_failure_marker) ... ok
+test_only_response_durations_change_with_space_and_harmonic_boundaries (test_phrase_articulation.Articulation.test_only_response_durations_change_with_space_and_harmonic_boundaries) ... FAIL
+test_rejects_wrong_form_duplicate_attacks_and_already_modified_score (test_phrase_articulation.Articulation.test_rejects_wrong_form_duplicate_attacks_and_already_modified_score) ... ok
+test_rhythm_changes_articulation (test_phrase_articulation.Articulation.test_rhythm_changes_articulation) ... ok
+test_voice_and_eighty_ms_margin_protected (test_phrase_articulation.Articulation.test_voice_and_eighty_ms_margin_protected) ... ok
+
+======================================================================
+FAIL: test_only_response_durations_change_with_space_and_harmonic_boundaries (test_phrase_articulation.Articulation.test_only_response_durations_change_with_space_and_harmonic_boundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/test_phrase_articulation.py", line 36, in test_only_response_durations_change_with_space_and_harmonic_boundaries
+    self.assertEqual([r['after_ticks'] for r in changes[:5]], [120, 480, 1440, 720, 1440])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [120, 480, 1440, 360, 1440] != [120, 480, 1440, 720, 1440]
+
+First differing element 3:
+360
+720
+
+- [120, 480, 1440, 360, 1440]
+?                  ^^
+
++ [120, 480, 1440, 720, 1440]
+?                  ^^
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.008s
+
+FAILED (failures=1)

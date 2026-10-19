@@ -1,0 +1,26 @@
+{
+  "http_delivery_and_audio_decode": "PASS",
+  "range_requests": "PASS",
+  "private_routes": "PASS",
+  "decoded_files": [
+    "pair-1-A.wav",
+    "pair-1-B.wav",
+    "pair-1-A.piano.wav",
+    "pair-1-B.piano.wav",
+    "pair-2-A.wav",
+    "pair-2-B.wav",
+    "pair-2-A.piano.wav",
+    "pair-2-B.piano.wav",
+    "pair-3-A.wav",
+    "pair-3-B.wav",
+    "pair-3-A.piano.wav",
+    "pair-3-B.piano.wav",
+    "pair-4-A.wav",
+    "pair-4-B.wav",
+    "pair-4-A.piano.wav",
+    "pair-4-B.piano.wav"
+  ],
+  "rendered_browser_interaction": "NOT RUN",
+  "browser_limit": "Browser plugin listed, but its required Node REPL execution tool and tool discovery are unavailable in this session.",
+  "human_listening": "NOT RUN"
+}

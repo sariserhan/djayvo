@@ -1,0 +1,10 @@
+{
+  "platform": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+  "python": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "hardware": "Apple M5",
+  "memory_bytes": "17179869184",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+  "node": "v22.23.1",
+  "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "renderer_sha256": "0725cef9ba5286a41ed1e6e3cdbfe20c82fa8fc552ab578ebb33cfc21eb6fc00"
+}

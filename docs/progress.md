@@ -11,6 +11,17 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
+Latest local musical experiment — 2026-10-19:
+[Phrase articulation candidate](phrase-articulation.md) **PASS (technical)**:
+five tests, four controlled pairs, eight Mac/Linux plan imports, 40 exact WAVs,
+unchanged voice/bass/drum stems and note attacks, 16 matched HTTP-decoded review
+files. Listen at `http://127.0.0.1:4196/review/`, including piano-only versions.
+Piano durations follow phrase spacing; no new learned behavior or quality claim.
+**NOT RUN:** human preference, candidate browser/device checks and promotion.
+Default engine, sources and previous reviews preserved; no paid compute. C13 and
+broader musical quality remain **PARTIAL**. No further preferences were inferred.
+
+
 Latest shared-engine fix — 2026-10-19:
 [Offset-resistant phrase analysis](analysis-offset.md) **PASS (technical)**.
 Remove constant electrical offset from analysis only, retaining original PCM,

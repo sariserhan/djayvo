@@ -1,0 +1,8 @@
+{
+  "scripts/phrase_articulation.py": "84c04d0c0a05e4fedf16f8063c35cc544df4aac9ceb411bbe7d36d76938dc24a",
+  "tests/test_phrase_articulation.py": "20b36d71dc0b2980516794b31fba1f7f17f345f21be92b25613e5c6b5dfb2723",
+  "docs/evidence/phrase-articulation/measure.py": "0caf5c429f370b1d51391c530254d9980571ee2f643d5e76f7ca9f18d266366a",
+  "docs/evidence/phrase-articulation/serve.mjs": "3240c99394f976e3b9ba5f145755ca88508011411da13c44a74024f493b31ea4",
+  "docs/evidence/phrase-articulation/verify-review.py": "30b9a9edd79e86acf39a5e49aff04ca79b05191fc862ccf5d57cc9b3f874fe62",
+  "build-mac/djayvo_remix": "0725cef9ba5286a41ed1e6e3cdbfe20c82fa8fc552ab578ebb33cfc21eb6fc00"
+}

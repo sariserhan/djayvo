@@ -1,0 +1,700 @@
+{
+  "cases": {
+    "4123": {
+      "changed_note_durations": 16,
+      "changes": [
+        {
+          "start_tick": 19200,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 514286,
+          "end_frame": 523929
+        },
+        {
+          "start_tick": 19680,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 527143,
+          "end_frame": 536786
+        },
+        {
+          "start_tick": 20160,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 540000,
+          "end_frame": 552857
+        },
+        {
+          "start_tick": 20880,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 559286,
+          "end_frame": 568929
+        },
+        {
+          "start_tick": 21360,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 572143,
+          "end_frame": 585000
+        },
+        {
+          "start_tick": 22080,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 591429,
+          "end_frame": 601071
+        },
+        {
+          "start_tick": 22560,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 604286,
+          "end_frame": 613929
+        },
+        {
+          "start_tick": 23280,
+          "before_ticks": 320,
+          "after_ticks": 1440,
+          "start_frame": 623571,
+          "end_frame": 662143
+        },
+        {
+          "start_tick": 50400,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1350000,
+          "end_frame": 1359643
+        },
+        {
+          "start_tick": 50880,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1362857,
+          "end_frame": 1372500
+        },
+        {
+          "start_tick": 51360,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 1375714,
+          "end_frame": 1388571
+        },
+        {
+          "start_tick": 52080,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1395000,
+          "end_frame": 1404643
+        },
+        {
+          "start_tick": 52560,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 1407857,
+          "end_frame": 1420714
+        },
+        {
+          "start_tick": 53280,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1427143,
+          "end_frame": 1436786
+        },
+        {
+          "start_tick": 53760,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 1440000,
+          "end_frame": 1452857
+        },
+        {
+          "start_tick": 54480,
+          "before_ticks": 320,
+          "after_ticks": 1440,
+          "start_frame": 1459286,
+          "end_frame": 1497857
+        }
+      ],
+      "note_on_and_nonpiano_event_frames": "exact",
+      "mac_linux_event_frames_and_pcm": "exact",
+      "mix_difference": {
+        "maximum_pcm_difference": 0.009674072265625,
+        "rms_pcm_difference": 0.0006701776039813326,
+        "equal_sample_fraction": 0.8300375377358166
+      },
+      "piano_difference": {
+        "maximum_pcm_difference": 0.009674072265625,
+        "rms_pcm_difference": 0.0006701729713193954,
+        "equal_sample_fraction": 0.8304787697635777
+      }
+    },
+    "4124": {
+      "changed_note_durations": 16,
+      "changes": [
+        {
+          "start_tick": 19200,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 496552,
+          "end_frame": 505862
+        },
+        {
+          "start_tick": 19680,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 508966,
+          "end_frame": 518276
+        },
+        {
+          "start_tick": 20160,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 521379,
+          "end_frame": 533793
+        },
+        {
+          "start_tick": 20880,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 540000,
+          "end_frame": 549310
+        },
+        {
+          "start_tick": 21360,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 552414,
+          "end_frame": 564828
+        },
+        {
+          "start_tick": 22080,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 571034,
+          "end_frame": 580345
+        },
+        {
+          "start_tick": 22560,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 583448,
+          "end_frame": 592759
+        },
+        {
+          "start_tick": 23520,
+          "before_ticks": 320,
+          "after_ticks": 1440,
+          "start_frame": 608276,
+          "end_frame": 645517
+        },
+        {
+          "start_tick": 50400,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1303448,
+          "end_frame": 1312759
+        },
+        {
+          "start_tick": 50880,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1315862,
+          "end_frame": 1325172
+        },
+        {
+          "start_tick": 51360,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 1328276,
+          "end_frame": 1340690
+        },
+        {
+          "start_tick": 52080,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1346897,
+          "end_frame": 1356207
+        },
+        {
+          "start_tick": 52560,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 1359310,
+          "end_frame": 1371724
+        },
+        {
+          "start_tick": 53280,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1377931,
+          "end_frame": 1387241
+        },
+        {
+          "start_tick": 53760,
+          "before_ticks": 320,
+          "after_ticks": 720,
+          "start_frame": 1390345,
+          "end_frame": 1408966
+        },
+        {
+          "start_tick": 54720,
+          "before_ticks": 320,
+          "after_ticks": 1440,
+          "start_frame": 1415172,
+          "end_frame": 1452414
+        }
+      ],
+      "note_on_and_nonpiano_event_frames": "exact",
+      "mac_linux_event_frames_and_pcm": "exact",
+      "mix_difference": {
+        "maximum_pcm_difference": 0.009796142578125,
+        "rms_pcm_difference": 0.0006559593063179746,
+        "equal_sample_fraction": 0.8252463254451425
+      },
+      "piano_difference": {
+        "maximum_pcm_difference": 0.009765625,
+        "rms_pcm_difference": 0.0006559866845975939,
+        "equal_sample_fraction": 0.8256136919083233
+      }
+    },
+    "4125": {
+      "changed_note_durations": 16,
+      "changes": [
+        {
+          "start_tick": 19200,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 496552,
+          "end_frame": 505862
+        },
+        {
+          "start_tick": 19680,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 508966,
+          "end_frame": 518276
+        },
+        {
+          "start_tick": 20160,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 521379,
+          "end_frame": 533793
+        },
+        {
+          "start_tick": 20880,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 540000,
+          "end_frame": 549310
+        },
+        {
+          "start_tick": 21360,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 552414,
+          "end_frame": 564828
+        },
+        {
+          "start_tick": 22080,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 571034,
+          "end_frame": 580345
+        },
+        {
+          "start_tick": 22560,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 583448,
+          "end_frame": 592759
+        },
+        {
+          "start_tick": 23520,
+          "before_ticks": 320,
+          "after_ticks": 1440,
+          "start_frame": 608276,
+          "end_frame": 645517
+        },
+        {
+          "start_tick": 50400,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1303448,
+          "end_frame": 1312759
+        },
+        {
+          "start_tick": 50880,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1315862,
+          "end_frame": 1325172
+        },
+        {
+          "start_tick": 51360,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 1328276,
+          "end_frame": 1340690
+        },
+        {
+          "start_tick": 52080,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1346897,
+          "end_frame": 1356207
+        },
+        {
+          "start_tick": 52560,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 1359310,
+          "end_frame": 1371724
+        },
+        {
+          "start_tick": 53280,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1377931,
+          "end_frame": 1387241
+        },
+        {
+          "start_tick": 53760,
+          "before_ticks": 320,
+          "after_ticks": 720,
+          "start_frame": 1390345,
+          "end_frame": 1408966
+        },
+        {
+          "start_tick": 54720,
+          "before_ticks": 320,
+          "after_ticks": 1440,
+          "start_frame": 1415172,
+          "end_frame": 1452414
+        }
+      ],
+      "note_on_and_nonpiano_event_frames": "exact",
+      "mac_linux_event_frames_and_pcm": "exact",
+      "mix_difference": {
+        "maximum_pcm_difference": 0.012939453125,
+        "rms_pcm_difference": 0.0007945305719012863,
+        "equal_sample_fraction": 0.8243756847319175
+      },
+      "piano_difference": {
+        "maximum_pcm_difference": 0.012939453125,
+        "rms_pcm_difference": 0.0007945131652000896,
+        "equal_sample_fraction": 0.8247062552004016
+      }
+    },
+    "4126": {
+      "changed_note_durations": 16,
+      "changes": [
+        {
+          "start_tick": 19200,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 496552,
+          "end_frame": 505862
+        },
+        {
+          "start_tick": 19680,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 508966,
+          "end_frame": 518276
+        },
+        {
+          "start_tick": 20160,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 521379,
+          "end_frame": 533793
+        },
+        {
+          "start_tick": 20880,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 540000,
+          "end_frame": 549310
+        },
+        {
+          "start_tick": 21360,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 552414,
+          "end_frame": 564828
+        },
+        {
+          "start_tick": 22080,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 571034,
+          "end_frame": 580345
+        },
+        {
+          "start_tick": 22560,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 583448,
+          "end_frame": 592759
+        },
+        {
+          "start_tick": 23520,
+          "before_ticks": 320,
+          "after_ticks": 1440,
+          "start_frame": 608276,
+          "end_frame": 645517
+        },
+        {
+          "start_tick": 50400,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1303448,
+          "end_frame": 1312759
+        },
+        {
+          "start_tick": 50880,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1315862,
+          "end_frame": 1325172
+        },
+        {
+          "start_tick": 51360,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 1328276,
+          "end_frame": 1340690
+        },
+        {
+          "start_tick": 52080,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1346897,
+          "end_frame": 1356207
+        },
+        {
+          "start_tick": 52560,
+          "before_ticks": 320,
+          "after_ticks": 480,
+          "start_frame": 1359310,
+          "end_frame": 1371724
+        },
+        {
+          "start_tick": 53280,
+          "before_ticks": 320,
+          "after_ticks": 360,
+          "start_frame": 1377931,
+          "end_frame": 1387241
+        },
+        {
+          "start_tick": 53760,
+          "before_ticks": 320,
+          "after_ticks": 720,
+          "start_frame": 1390345,
+          "end_frame": 1408966
+        },
+        {
+          "start_tick": 54720,
+          "before_ticks": 320,
+          "after_ticks": 1440,
+          "start_frame": 1415172,
+          "end_frame": 1452414
+        }
+      ],
+      "note_on_and_nonpiano_event_frames": "exact",
+      "mac_linux_event_frames_and_pcm": "exact",
+      "mix_difference": {
+        "maximum_pcm_difference": 0.00946044921875,
+        "rms_pcm_difference": 0.0006624596012820142,
+        "equal_sample_fraction": 0.8236293788717398
+      },
+      "piano_difference": {
+        "maximum_pcm_difference": 0.009429931640625,
+        "rms_pcm_difference": 0.00066246433830159,
+        "equal_sample_fraction": 0.824031760878261
+      }
+    }
+  },
+  "source_preserved": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "default_engine_preserved": {
+    "core/composition/analysis.cpp": "7109d4d133891539b44baa42fa4df087663dd40d7af87becfd4cb69bd9a53d0d",
+    "core/tests/remix_tests.cpp": "5da09e1da5bf0569aa4113ec5343db7eaaf1599ea727c72584a3ae25d6e65345",
+    "build-mac/djayvo_remix": "0725cef9ba5286a41ed1e6e3cdbfe20c82fa8fc552ab578ebb33cfc21eb6fc00",
+    "build-web/djayvo_web.mjs": "ae99a78f24bbd233a428c2f86baac1969a8425987d6ca3e64530a7f0034c5c66",
+    "build-web/djayvo_web.wasm": "98ed74454494ed2184e2d72dbfb58cd559354073c9aaeed62de556c1ea0b0748"
+  },
+  "review": [
+    {
+      "file": "pair-1-A.wav",
+      "sha256": "b85b73ec0ef04fad9df337f52330bdde990ef8de11ddb8dd7bcd4ca2e5e88cb3",
+      "gain_db": 2.3999999999999986,
+      "target_lufs": -22,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.5
+      }
+    },
+    {
+      "file": "pair-1-A.piano.wav",
+      "sha256": "5e71448fe21ad2a8ef2150122b9e5feceadf6bd01b5cf328f4a07babef9fa6de",
+      "gain_db": 6.800000000000001,
+      "target_lufs": -25,
+      "matched": {
+        "lufs": -25.0,
+        "true_peak_dbfs": -7.0
+      }
+    },
+    {
+      "file": "pair-1-B.wav",
+      "sha256": "0ba859952887992ac4d7b2fd37d2a21ff48fbcf5541dfae13a332d6bf5b7cdc0",
+      "gain_db": 2.3999999999999986,
+      "target_lufs": -22,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.5
+      }
+    },
+    {
+      "file": "pair-1-B.piano.wav",
+      "sha256": "70f65611bf5a9e92103e4c844b158a8bed2b75a056b260dd0711cdf81c454bc4",
+      "gain_db": 6.800000000000001,
+      "target_lufs": -25,
+      "matched": {
+        "lufs": -25.0,
+        "true_peak_dbfs": -7.0
+      }
+    },
+    {
+      "file": "pair-2-A.wav",
+      "sha256": "df6cd9b28728c29038476675ef0a61c5bc8c1c0fcc9cd23efbadb138d87f6241",
+      "gain_db": 2.3999999999999986,
+      "target_lufs": -22,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.5
+      }
+    },
+    {
+      "file": "pair-2-A.piano.wav",
+      "sha256": "08cb962bf84a4d7650a42d7c63b9e4196bffe71e9bd4aad40a5257c532b2b0c7",
+      "gain_db": 7.200000000000003,
+      "target_lufs": -25,
+      "matched": {
+        "lufs": -25.0,
+        "true_peak_dbfs": -8.4
+      }
+    },
+    {
+      "file": "pair-2-B.wav",
+      "sha256": "3b0a8af84b1ca4551355daadc3080ebdc0f3aaff931ef3cbb7f206ec7fb8045c",
+      "gain_db": 2.3999999999999986,
+      "target_lufs": -22,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.5
+      }
+    },
+    {
+      "file": "pair-2-B.piano.wav",
+      "sha256": "8bbe3d7e3c3cd6457d80fdefa73578cef312be874bf48d9e3474951ac9c2991f",
+      "gain_db": 7.200000000000003,
+      "target_lufs": -25,
+      "matched": {
+        "lufs": -25.1,
+        "true_peak_dbfs": -8.4
+      }
+    },
+    {
+      "file": "pair-3-A.wav",
+      "sha256": "94c768a097af4fb41863569ace6b055de63c3312b51a6a166f2cd748ce7b915a",
+      "gain_db": 2.3000000000000007,
+      "target_lufs": -22,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.6
+      }
+    },
+    {
+      "file": "pair-3-A.piano.wav",
+      "sha256": "e590e31857d89a9e77d935645ae50d13f7918a71a9d6be7b1e27fc805d7e613c",
+      "gain_db": 6.800000000000001,
+      "target_lufs": -25,
+      "matched": {
+        "lufs": -25.0,
+        "true_peak_dbfs": -9.1
+      }
+    },
+    {
+      "file": "pair-3-B.wav",
+      "sha256": "5ae2dd096b65a391af94519437194b7326b724699f242270bda8d12f17709806",
+      "gain_db": 2.3000000000000007,
+      "target_lufs": -22,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.6
+      }
+    },
+    {
+      "file": "pair-3-B.piano.wav",
+      "sha256": "43ac7df7927e1c9e5afcf517b627d86b1edb6285d36dfec3b870d3fbc10e15ed",
+      "gain_db": 6.800000000000001,
+      "target_lufs": -25,
+      "matched": {
+        "lufs": -25.0,
+        "true_peak_dbfs": -9.1
+      }
+    },
+    {
+      "file": "pair-4-A.wav",
+      "sha256": "c80a15a4d611cecf2930a0418f2d1fd8b7f83467fd784c7ae8fd049badd90166",
+      "gain_db": 2.3999999999999986,
+      "target_lufs": -22,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.5
+      }
+    },
+    {
+      "file": "pair-4-A.piano.wav",
+      "sha256": "deb6c200a6ee5de95855d50ab2503f21af055bb9df4ae971cec68efb1b98d93c",
+      "gain_db": 7.299999999999997,
+      "target_lufs": -25,
+      "matched": {
+        "lufs": -25.0,
+        "true_peak_dbfs": -8.5
+      }
+    },
+    {
+      "file": "pair-4-B.wav",
+      "sha256": "d678873ac1eac3697a59dd9737321da5ee3c60020006b6f30bc2af87f89af04a",
+      "gain_db": 2.3999999999999986,
+      "target_lufs": -22,
+      "matched": {
+        "lufs": -22.0,
+        "true_peak_dbfs": -5.5
+      }
+    },
+    {
+      "file": "pair-4-B.piano.wav",
+      "sha256": "9d61e1b04576c7c94733bf4bdae329fb4072e846d302f076168e25ea33ab567e",
+      "gain_db": 7.299999999999997,
+      "target_lufs": -25,
+      "matched": {
+        "lufs": -25.0,
+        "true_peak_dbfs": -8.5
+      }
+    }
+  ],
+  "technical": "PASS",
+  "matched_review_files": 16,
+  "exact_mac_linux_wavs": 40,
+  "human_listening": "NOT RUN",
+  "promotion": "NOT RUN",
+  "source_response_learning": "NOT RUN"
+}

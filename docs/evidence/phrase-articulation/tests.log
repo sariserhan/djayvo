@@ -1,0 +1,10 @@
+test_consent_provenance_existing_outputs_and_failure_marker (test_phrase_articulation.Articulation.test_consent_provenance_existing_outputs_and_failure_marker) ... ok
+test_only_response_durations_change_with_space_and_harmonic_boundaries (test_phrase_articulation.Articulation.test_only_response_durations_change_with_space_and_harmonic_boundaries) ... ok
+test_rejects_wrong_form_duplicate_attacks_and_already_modified_score (test_phrase_articulation.Articulation.test_rejects_wrong_form_duplicate_attacks_and_already_modified_score) ... ok
+test_rhythm_changes_articulation (test_phrase_articulation.Articulation.test_rhythm_changes_articulation) ... ok
+test_voice_and_eighty_ms_margin_protected (test_phrase_articulation.Articulation.test_voice_and_eighty_ms_margin_protected) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.006s
+
+OK

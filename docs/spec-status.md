@@ -1,5 +1,10 @@
 # Specification completion ledger
 
+Latest local research: [Phrase articulation](phrase-articulation.md) has four
+matched owner A/B pairs and exact Mac/Linux rendering. **PASS:** technical
+isolation and playable audio. **NOT RUN:** listening benefit, default promotion
+and learned source-response behavior. Existing quality/release gates remain open.
+
 **Current authorization — 2026-10-18:** The owner's latest “continue with the
 spec, finish everything” supersedes the earlier console-only increment and
 M0a review stop for remaining local implementation. Continue the browser musical
