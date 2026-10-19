@@ -41,6 +41,10 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     assert.equal(await page.locator('#performance-error').textContent(), '');
     await page.locator('#session-stop').click(); await page.locator('#c-preview').click();
     await page.waitForFunction(() => Number(document.getElementById('output-meter').value) > .001);
+    await page.locator('#echo-c').fill('0.4'); await page.locator('#echo-c').dispatchEvent('input');
+    await page.locator('#tone-c').fill('60'); await page.locator('#tone-c').dispatchEvent('input');
+    assert.equal(await page.locator('#echo-c-value').textContent(), '40%');
+    assert.equal(await page.locator('#tone-c-value').textContent(), '3170 Hz');
     await page.locator('#performance').screenshot({ path: `/tmp/djayvo-session-${name}-desktop.png` });
     await page.setViewportSize({ width: 390, height: 844 }); await page.locator('#performance').scrollIntoViewIfNeeded();
     await page.waitForTimeout(300);
@@ -48,8 +52,9 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     await page.locator('#performance').screenshot({ path: `/tmp/djayvo-session-${name}-mobile.png` });
     await page.locator('.deck-a').screenshot({ path: `/tmp/djayvo-deckfx-${name}-mobile.png` });
     await page.locator('#c-stop').click();
+    assert.equal(await page.locator('#performance-status').textContent(), 'C stopped.');
     assert.deepEqual(errors, []);
-    results.push({ browser: name, version: browser.version(), url: page.url(), gate: 'PASS', checks: ['page identity and content', 'prepared A audible PCM', 'prepared A effects enabled, echo readout/reset and deck screenshots', 'integrated worker/context engine/WAV', 'C preview', 'desktop/mobile screenshots and no overflow', 'no page errors'] });
+    results.push({ browser: name, version: browser.version(), url: page.url(), gate: 'PASS', checks: ['page identity and content', 'prepared A audible PCM', 'prepared A effects enabled, echo readout/reset and deck screenshots', 'integrated worker/context engine/WAV', 'C preview, tone and echo controls', 'desktop/mobile screenshots and no overflow', 'no page errors'] });
   } finally { await browser.close(); }
 }
 await fs.writeFile('/tmp/djayvo-session-site.json', JSON.stringify(results, null, 2));

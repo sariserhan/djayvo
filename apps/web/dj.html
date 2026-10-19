@@ -56,6 +56,12 @@
 <div class="session-actions"><button class="small-button" id="phrase-record" disabled>Record phrase</button><label class="file-label">Or import 2–5 seconds<input id="phrase-file" type="file" accept="audio/*,.wav,.m4a" disabled></label><button class="small-button" id="phrase-delete" disabled>Delete phrase + C</button></div>
 <p id="phrase-status" role="status">No phrase loaded.</p><div class="session-actions"><button class="small-button" id="phrase-generate" disabled>Make performance</button><button class="small-button" id="phrase-cancel" disabled>Cancel preparation</button><button class="small-button" id="c-preview" disabled>Preview C (A stopped)</button><button class="small-button" id="c-arm" disabled>Bring C in on next bar</button><button class="small-button" id="c-stop" disabled>Stop C</button></div>
 <label class="level-label" for="c-level">Performance C level <output id="c-level-value">50%</output></label><input id="c-level" type="range" min="0" max="1" step="0.01" value="0.5">
+<fieldset class="instrument-effects deck-effects"><legend>Performance C effects</legend>
+<label>Tone <output id="tone-c-value">Open</output><input id="tone-c" type="range" min="0" max="100" step="1" value="100" disabled></label>
+<label>Echo mix <output id="echo-c-value">Off</output><input id="echo-c" type="range" min="0" max="0.5" step="0.01" value="0" disabled></label>
+<label>Echo spacing <output id="delay-c-value">300 ms</output><input id="delay-c" type="range" min="100" max="800" step="10" value="300" disabled></label>
+<button id="fx-reset-c" class="small-button" disabled>Reset C effects</button></fieldset>
+<p class="pad-help">Shape C in the mix. Stop C clears its echoes. Download saves the original performance without mixer effects.</p>
 <p id="performance-status" role="status">A keeps playing while the director prepares C. Generation failure leaves your music running.</p><p id="performance-error" class="deck-error" role="alert"></p><a id="performance-download" hidden>Download performance WAV</a>
 <p class="pad-help">Prepared A plays at original pitch and speed. To change tempo, key or downbeat, stop A + C first. Stop C or move its fader for manual control. This is a local phrase-response planner, not a trained AI. Reload deletes unsaved phrase and deck memory.</p>
 </section>

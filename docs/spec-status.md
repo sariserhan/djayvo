@@ -11,7 +11,15 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local implementation: [MIDI Learn](midi-learn.md).
+Latest local implementation: [Performance C tone and echo](performance-effects.md).
+**PASS (technical):** C preview/bar-entry effects, three additional MIDI Learn
+controls, cleared voice echoes and accurate preview-stop status; 80 DJ/46 session
+and 24 unit checks, integrated/offline audio and playable PCM comparisons.
+**PARTIAL:** full studio and unexplained WebKit manual-loop timeout (DJ14), despite
+15 additional passing cue/jog/rate sequences and two full passing WebKit runs.
+**NOT RUN:** physical MIDI/microphone/latency, Linux browser, formal listening and venue.
+
+Previous local implementation: [MIDI Learn](midi-learn.md).
 **PASS (technical):** 23 bounded CC targets with pickup, manual rearm and safe
 input lifecycle; 80 final DJ/38 session checks, 24 unit checks and integrated/
 offline audio evidence. **PARTIAL:** studio and intermittent WebKit whole-track

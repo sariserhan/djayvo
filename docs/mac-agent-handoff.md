@@ -11,7 +11,15 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local implementation: [Major/minor prepared performances](session-modes.md).
+Latest local implementation: [Performance C tone and echo](performance-effects.md).
+**PASS (technical):** C preview/bar-entry effects, three additional MIDI Learn
+controls, cleared voice echoes and accurate preview-stop status; 80 DJ/46 session
+and 24 unit checks, integrated/offline audio and playable PCM comparisons.
+**PARTIAL:** full studio and unexplained WebKit manual-loop timeout (DJ14), despite
+15 additional passing cue/jog/rate sequences and two full passing WebKit runs.
+**NOT RUN:** physical MIDI/microphone/latency, Linux browser, formal listening and venue.
+
+Previous local implementation: [Major/minor prepared performances](session-modes.md).
 **PASS (technical):** 288 context plans, actual Mac/Linux tests, eight exact
 Mac/Linux/WASM event/PCM comparisons, unchanged historical minor outputs and
 major-mode browser generation with safe context changes. **PARTIAL:** full live

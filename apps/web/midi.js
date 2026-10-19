@@ -34,6 +34,7 @@ export function attachMidi({ message, reset }) {
     ['crossfade', 'Crossfader'], ['master', 'Master level'], ['level-a', 'Deck A level'], ['level-b', 'Deck B level'],
     ['tone-a', 'Deck A tone'], ['echo-a', 'Deck A echo'], ['delay-a', 'Deck A echo spacing'],
     ['tone-b', 'Deck B tone'], ['echo-b', 'Deck B echo'], ['delay-b', 'Deck B echo spacing'],
+    ['tone-c', 'Performance C tone'], ['echo-c', 'Performance C echo'], ['delay-c', 'Performance C echo spacing'],
     ['c-level', 'Performance C level'], ['rack-level', 'Instrument level'], ['rack-tone', 'Instrument tone'],
     ['rack-echo', 'Instrument echo'], ['rack-delay', 'Instrument echo spacing'], ['mouth', 'Talk bass mouth'], ['velocity', 'Computer/touch velocity'],
     ...['a', 'b'].flatMap(id => ['Low', 'Mid', 'High'].map((band, i) => [`eq-${id}-${i}`, `Deck ${id.toUpperCase()} ${band} EQ`]))

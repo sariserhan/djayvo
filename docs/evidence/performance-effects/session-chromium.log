@@ -1,0 +1,24 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/session-chromium-ZZFvaW
+PASS: identity, meaningful screen, permission-disabled preparation/capture
+PASS: C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry
+PASS: C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs
+PASS: prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport
+PASS: confirmed major mode reaches the shared planner; all pitched notes belong to its scale
+PASS: ready C effects and synthetic MIDI pickup drive the existing tone control
+PASS: consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues
+PASS: complete C performance ends naturally with accurate status while A keeps playing
+PASS: C manual fader/stop do not stop A
+PASS: worker cancellation retains ready C and uninterrupted A; next request excludes recent composition
+PASS: director load failure leaves A and previous ready C intact
+PASS: measured callback continuity during generation, entry, cancellation and failed preparation
+PASS: rejected replacement phrase keeps previous source/performance and A playback
+PASS: desktop/mobile visible controls and no horizontal overflow
+PASS: C preview produces audio, master mutes wet/dry, Stop C clears 800 ms echoes and reset restores defaults
+PASS: C preview routes through performance gain, and restarting A cancels the preview
+PASS: changing mode clears ready C and confirmation before playback can resume
+PASS: synthetic microphone capture, decoding and track cleanup while A continues
+PASS: revoked consent rejects late microphone permission and closes its tracks
+PASS: separate phrase and music consent withdrawal clears owned audio and scheduled entry
+PASS: server disconnected: reload, local track analysis, minor rule generation and synchronized C all work
+PASS: offline consent withdrawal stops C, resets/disables effects and keeps A playing
+PASS: no uploads, external requests or unexpected runtime errors

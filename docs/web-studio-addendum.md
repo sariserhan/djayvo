@@ -140,3 +140,11 @@ separate from the historical Linux M0a report and future live-studio gates.
 
 **Historical stop:** subsequently superseded by the current authorization above.
 Human quality and release gates still require their stated evidence.
+
+### 2026-10-19 — Performance C effects
+
+**PASS (technical):** C now shares the existing tone/echo processing design,
+with independent controls, MIDI Learn, safe stop/consent cleanup and effects
+before C/Master levels. [Evidence and remaining gates](performance-effects.md).
+Full studio **PARTIAL**; physical/venue and musical-quality acceptance **NOT RUN**.
+The master specification remains unchanged.

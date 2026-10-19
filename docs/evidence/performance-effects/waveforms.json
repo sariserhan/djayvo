@@ -1,0 +1,88 @@
+{
+  "gate": "PASS",
+  "echo_frame_errors": {
+    "chromium": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "webkit": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "comparisons": {
+    "chromium: C vs existing instrument dry": {
+      "max_abs": 0.0,
+      "rms": 0.0
+    },
+    "chromium: C vs existing instrument echo": {
+      "max_abs": 0.0,
+      "rms": 0.0
+    },
+    "chromium: C echo vs dry": {
+      "max_abs": 0.064910888671875,
+      "rms": 0.006371839855816554
+    },
+    "webkit: C vs existing instrument dry": {
+      "max_abs": 0.0,
+      "rms": 0.0
+    },
+    "webkit: C vs existing instrument echo": {
+      "max_abs": 0.0,
+      "rms": 0.0
+    },
+    "webkit: C echo vs dry": {
+      "max_abs": 0.064910888671875,
+      "rms": 0.00637181033502978
+    },
+    "Chromium vs WebKit C dry": {
+      "max_abs": 0.0,
+      "rms": 0.0
+    },
+    "Chromium vs WebKit C echo": {
+      "max_abs": 3.0517578125e-05,
+      "rms": 1.9081961550195384e-06
+    }
+  },
+  "files": {
+    "renders/session-chromium-ZZFvaW/deck-c-piano-dry.wav": {
+      "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+      "frames": 288000,
+      "rate": 48000,
+      "peak": 0.16259765625
+    },
+    "renders/session-chromium-ZZFvaW/deck-c-piano-echo.wav": {
+      "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+      "frames": 288000,
+      "rate": 48000,
+      "peak": 0.097686767578125
+    },
+    "renders/session-webkit-M7m09O/deck-c-piano-dry.wav": {
+      "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+      "frames": 288000,
+      "rate": 48000,
+      "peak": 0.16259765625
+    },
+    "renders/session-webkit-M7m09O/deck-c-piano-echo.wav": {
+      "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+      "frames": 288000,
+      "rate": 48000,
+      "peak": 0.097686767578125
+    }
+  },
+  "previous_deck_and_instrument_wavs": "PASS: 12 byte-identical files"
+}

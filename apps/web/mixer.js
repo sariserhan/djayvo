@@ -80,6 +80,7 @@ export function createMixer(context) {
     return { input: low, eq: [low, mid, high], scope, fx };
   });
   const performance = context.createGain(); performance.gain.value = 0; performance.connect(limiter);
+  const performanceFX = createToneEcho(context, performance);
   const rack = context.createGain(); rack.gain.value = 0; rack.connect(limiter);
   const rackFX = createToneEcho(context, rack);
   meter.connect(context.destination);
@@ -87,7 +88,7 @@ export function createMixer(context) {
   meter.connect(split);
   const stereoMeters = [context.createAnalyser(), context.createAnalyser()];
   stereoMeters.forEach((node, channel) => { node.fftSize = 2048; split.connect(node, channel); });
-  return { channels, meter, stereoMeters, strips, rack, rackFX, performance };
+  return { channels, meter, stereoMeters, strips, rack, rackFX, performance, performanceFX };
 }
 
 export function updateMixer(context, mixer, crossfade, levels, master) {

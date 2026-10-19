@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [Major/minor prepared performances](docs/session-modes.md).
+Last updated: 2026-10-19 (America/New_York). Latest implementation: [Performance C tone and echo](docs/performance-effects.md).
 Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
 Use this file for past work, open issues and future development. Detailed test
@@ -43,6 +43,12 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
 
+- [x] **DJ15 — PASS (technical):** [Performance C tone and echo](docs/performance-effects.md):
+  preview/bar-entry effects before C/Master gains, three MIDI Learn targets,
+  cleared voice echoes on stop/deletion/consent and accurate preview-stop status.
+  80 DJ, 46 session and 24 unit checks; integrated/offline browser audio, exact
+  echo frames and playable comparisons PASS. Physical/listening/venue NOT RUN.
+
 - [x] **DJ13 — PASS (technical):** [MIDI Learn](docs/midi-learn.md): 23 allowed
   absolute CC controls, channel-specific assignment, pickup/manual rearm,
   clear/cancel/input lifecycle and existing audio/permission paths. 80 final DJ,
@@ -51,7 +57,9 @@ closes that task only; it does not automatically pass its parent milestone.
 - [ ] **DJ14 — PARTIAL:** Investigate intermittent WebKit whole-track loop start:
   one timeout at paused 59.9 s before MIDI activation; final suite and 20 isolated
   repeats pass. Root cause unconfirmed; failure receipt and diagnostics retained
-  in [MIDI Learn evidence](docs/midi-learn.md). Do not call venue looping validated.
+  in [MIDI Learn evidence](docs/midi-learn.md). Another 15 cue/jog/rate sequences
+  and two full WebKit runs passed on 2026-10-19 ([evidence](docs/performance-effects.md));
+  cause remains unconfirmed. Do not call venue looping validated.
 
 - [x] **DJ12 — PASS (technical):** [Deck tone and echo](docs/deck-effects.md):
   independent A/B effects including prepared A, post-effect mute/crossfader,
@@ -92,7 +100,7 @@ closes that task only; it does not automatically pass its parent milestone.
   Professional/artist-reference quality remains NOT RUN.
 - [ ] **DJ06 — PARTIAL:** Fixed MIDI input mapping is implemented by DJ10;
   instrument tone/echo is covered by DJ07, deck tone/echo by DJ12 and absolute CC
-  MIDI Learn by DJ13. Physical controller validation, human audition, relative
+  MIDI Learn by DJ13 and C effects by DJ15. Physical controller validation, human audition, relative
   encoders/custom pad layouts, audible scratching, beat-sized loops and headphone
   cue routing remain open. Whole-track loop reliability is tracked in DJ14.
 

@@ -11,8 +11,8 @@ knob/fader. That message records the assignment without moving the screen
 control. Move the hardware control through the current screen value to pick it
 up. The assignment list shows whether it is waiting for pickup or active.
 
-The 23 targets cover crossfader/master, A/B/C levels, A/B three-band EQ and
-tone/echo/spacing, instrument level/tone/echo/spacing, Talk bass mouth and
+The 26 targets cover crossfader/master, A/B/C levels, A/B three-band EQ,
+A/B/C tone/echo/spacing, instrument level/tone/echo/spacing, Talk bass mouth and
 computer/touch velocity. MIDI note velocity still comes from the incoming note.
 Disabled controls ignore mapped CC, including Mouth when Talk bass is not
 selected. Music/instrument controls retain their existing permission/readiness
@@ -23,7 +23,9 @@ Mappings are specific to a MIDI channel and CC number on the selected input.
 Each target has one assignment, and each channel/CC controls one target.
 Reassigning either replaces its previous binding. Learn can be cancelled, and
 **Clear mappings** removes all assignments without changing sound levels.
-The maximum assignment count is bounded by the 23 targets.
+The maximum assignment count is bounded by the 26 targets. C's three effect
+targets were added on 2026-10-19; [current evidence](performance-effects.md)
+includes their disabled-state and ready-performance pickup checks.
 
 Pickup waits until the incoming value is within one MIDI step of the current
 screen value or crosses it. Values then follow the target's bounds and step.
@@ -70,7 +72,7 @@ session, so the existing repository Playwright workflow is used. No new browser
 or build dependency was installed. [Evidence](evidence/midi-learn/summary.json)
 records exact runs, versions, protected hashes and unrun gates.
 
-## Evidence and limits
+## Original MIDI Learn evidence and limits
 
 Apple M5 / 16 GiB, macOS 26.7.1 (25G241), Node 22.23.1, Playwright 1.61.1,
 Chromium 149.0.7827.55, WebKit 26.5 and local Next 16.4.2. The build uses the

@@ -220,6 +220,6 @@ export async function verifyMidiLearn(page, check, peak) {
   }
   assert.equal(await page.locator('#midi-bindings li').count(), targets.length);
   await page.locator('#midi-forget').click();
-  check('all 23 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count');
+  check('all 26 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count');
 
 }

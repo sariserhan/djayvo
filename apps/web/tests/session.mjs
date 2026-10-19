@@ -5,6 +5,8 @@ import { createServer } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { chromium, webkit } from 'playwright';
 import { verifySessionAudio } from './session-audio.mjs';
+import { verifyInstrumentFX } from './instrument-fx.mjs';
+import { fakeMidi } from './midi-browser.mjs';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const kind = process.env.DJAYVO_BROWSER || 'chromium';
@@ -79,6 +81,7 @@ await context.addInitScript(() => {
   };
 });
 const page = await context.newPage();
+await page.addInitScript(fakeMidi);
 page.on('pageerror', error => errors.push(error.message));
 page.on('console', message => {
   if (message.type() !== 'error') return;
@@ -94,10 +97,14 @@ try {
   await page.locator('#performance-title').waitFor();
   assert.equal(await page.locator('#prepare-a').isDisabled(), true);
   assert.equal(await page.locator('#phrase-record').isDisabled(), true);
+  assert.equal(await page.locator('#tone-c').isDisabled(), true);
   check('identity, meaningful screen, permission-disabled preparation/capture');
   const timing = await verifySessionAudio(page);
   await fs.writeFile(path.join(output, 'timing.json'), JSON.stringify(timing, null, 2));
   check('C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry');
+  const performanceFX = await verifyInstrumentFX(page, output, 'c');
+  await fs.writeFile(path.join(output, 'performance-fx.json'), JSON.stringify(performanceFX, null, 2));
+  check('C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs');
   const rate = 48000, frames = rate * 90;
   const wav = Buffer.alloc(44 + frames * 2);
   wav.write('RIFF'); wav.writeUInt32LE(wav.length - 8, 4); wav.write('WAVEfmt ', 8); wav.writeUInt32LE(16, 16);
@@ -159,6 +166,17 @@ try {
   await page.locator('#performance-download').click();
   await (await downloaded).saveAs(path.join(output, 'consented-performance.wav'));
   assert.equal(await page.locator('#session-stop').isDisabled(), false);
+  await page.locator('#echo-c').fill('0.4'); await page.locator('#echo-c').dispatchEvent('input');
+  await page.locator('#delay-c').fill('800'); await page.locator('#delay-c').dispatchEvent('input');
+  assert.equal(await page.locator('#echo-c-value').textContent(), '40%');
+  await page.locator('#midi-enable').click(); await page.locator('#midi-input').selectOption('one');
+  await page.waitForFunction(() => document.getElementById('midi-status').textContent.startsWith('Connected:'));
+  await page.locator('#midi-target').selectOption('tone-c'); await page.locator('#midi-learn').click();
+  await page.evaluate(() => { midiPorts[0].emit([0xb0, 12, 0]); midiPorts[0].emit([0xb0, 12, 127]); midiPorts[0].emit([0xb0, 12, 0]); });
+  assert.equal(await page.locator('#tone-c-value').textContent(), '200 Hz');
+  await page.evaluate(() => midiPorts[0].emit([0xb0, 12, 127]));
+  await page.locator('#midi-enable').click();
+  check('ready C effects and synthetic MIDI pickup drive the existing tone control');
   await page.locator('#c-arm').click();
   await page.waitForFunction(() => document.getElementById('performance-status').textContent.includes('A + C playing'), null, { timeout: 6000 });
   assert.equal(await page.locator('#c-stop').isDisabled(), false);
@@ -207,8 +225,33 @@ try {
   await capture('mobile.png');
   check('desktop/mobile visible controls and no horizontal overflow');
   await page.locator('#session-stop').click();
+  await page.locator('#c-level').fill('0.5'); await page.locator('#c-level').dispatchEvent('input');
   await page.locator('#c-preview').click();
   await page.waitForFunction(() => document.getElementById('performance-status').textContent.includes('Previewing C'));
+  await page.waitForFunction(() => document.getElementById('output-meter').value > .001);
+  await page.locator('#master').fill('0'); await page.locator('#master').dispatchEvent('input');
+  await page.waitForTimeout(250);
+  assert.ok(Number(await page.locator('#output-meter').getAttribute('value')) < .0001);
+  await page.locator('#master').fill('0.75'); await page.locator('#master').dispatchEvent('input');
+  await page.waitForFunction(() => document.getElementById('output-meter').value > .001);
+  await page.locator('#c-stop').click();
+  const afterStop = await page.evaluate(async () => {
+    await new Promise(r => setTimeout(r, 200));
+    let peak = 0;
+    const data = new Float32Array(testMeter.fftSize);
+    for (let i = 0; i < 30; i++) {
+      testMeter.getFloatTimeDomainData(data);
+      for (const value of data) peak = Math.max(peak, Math.abs(value));
+      await new Promise(r => setTimeout(r, 100));
+    }
+    return peak;
+  });
+  assert.ok(afterStop < .0001, `Echo remained after Stop C: ${afterStop}`);
+  await page.locator('#fx-reset-c').click();
+  assert.equal(await page.locator('#echo-c').inputValue(), '0');
+  assert.equal(await page.locator('#delay-c').inputValue(), '300');
+  await page.locator('#c-preview').click();
+  check('C preview produces audio, master mutes wet/dry, Stop C clears 800 ms echoes and reset restores defaults');
   await page.locator('#session-play').click();
   assert.equal(await page.locator('#c-stop').isDisabled(), true);
   check('C preview routes through performance gain, and restarting A cancels the preview');
@@ -217,6 +260,7 @@ try {
   assert.equal(await page.locator('#context-confirmed').isChecked(), false);
   assert.equal(await page.locator('#performance-download').isVisible(), false);
   assert.equal(await page.locator('#c-preview').isDisabled(), true);
+  assert.equal(await page.locator('#tone-c').isDisabled(), true);
   await page.locator('#context-confirmed').check();
   await page.locator('#session-play').click();
   check('changing mode clears ready C and confirmation before playback can resume');
@@ -275,10 +319,17 @@ try {
   await page.waitForFunction(() => !document.getElementById('performance-download').hidden || document.getElementById('performance-error').textContent, null, { timeout: 120000 });
   assert.equal(await page.locator('#performance-error').innerText(), '');
   await page.locator('#c-arm').click();
+  await page.locator('#echo-c').fill('0.5'); await page.locator('#echo-c').dispatchEvent('input');
   await page.waitForFunction(() => document.getElementById('performance-status').textContent.includes('A + C playing'), null, { timeout: 6000 });
   assert.equal(serverRequests.length, requestsBeforeDisconnect);
   assert.equal(await page.evaluate(() => sessionScores[0].key.mode), 'minor');
   check('server disconnected: reload, local track analysis, minor rule generation and synchronized C all work');
+  await page.locator('#phrase-consent').uncheck();
+  assert.equal(await page.locator('#echo-c').inputValue(), '0');
+  assert.equal(await page.locator('#tone-c').isDisabled(), true);
+  assert.equal(await page.locator('#c-stop').isDisabled(), true);
+  assert.equal(await page.locator('#session-stop').isDisabled(), false);
+  check('offline consent withdrawal stops C, resets/disables effects and keeps A playing');
   assert.deepEqual(errors, []);
   assert.ok(requests.every(url => url.startsWith(origin) || url.startsWith('blob:')));
   check('no uploads, external requests or unexpected runtime errors');

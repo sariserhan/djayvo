@@ -8,8 +8,8 @@ export async function verifyInstrumentFX(page, output, deck = null) {
     const result = await page.evaluate(async ({ mode, deck }) => {
       const { createMixer, updateToneEcho, clearEcho } = await import('./mixer.js');
       const context = new OfflineAudioContext(2, 48000 * 5, 48000), mixer = createMixer(context);
-      const channel = deck === null ? mixer.rack : mixer.channels[deck];
-      const fx = deck === null ? mixer.rackFX : mixer.strips[deck].fx;
+      const channel = deck === null ? mixer.rack : deck === 'c' ? mixer.performance : mixer.channels[deck];
+      const fx = deck === null ? mixer.rackFX : deck === 'c' ? mixer.performanceFX : mixer.strips[deck].fx;
       channel.gain.value = 1;
       const buffer = context.createBuffer(2, 48000 * 5, 48000);
       const left = buffer.getChannelData(0), right = buffer.getChannelData(1);
@@ -18,7 +18,7 @@ export async function verifyInstrumentFX(page, output, deck = null) {
         if (mode === 'clear-stop-fade' && i >= 52800 && i < 53040) left[i] = .2 * (53040 - i) / 240;
         right[i] = -left[i];
       }
-      const source = context.createBufferSource(); source.buffer = buffer; source.connect(deck === null ? fx.input : mixer.strips[deck].input); source.start();
+      const source = context.createBufferSource(); source.buffer = buffer; source.connect(deck === null || deck === 'c' ? fx.input : mixer.strips[deck].input); source.start();
       const spacing = mode.startsWith('echo-') ? Number(mode.split('-')[1]) : 300;
       updateToneEcho(context, fx, mode === 'tone' || mode === 'sweep' ? 0 : 100, ['dry', 'tone', 'sweep'].includes(mode) ? 0 : .5, spacing);
       if (mode === 'mute') channel.gain.setValueAtTime(0, 1.1);
@@ -71,8 +71,8 @@ export async function verifyInstrumentFX(page, output, deck = null) {
       const { exports: core } = await WebAssembly.instantiate(module);
       core._initialize(); core.djayvo_live_init(48000);
       const context = new OfflineAudioContext(2, 48000 * 6, 48000), mixer = createMixer(context);
-      const channel = deck === null ? mixer.rack : mixer.channels[deck];
-      const fx = deck === null ? mixer.rackFX : mixer.strips[deck].fx;
+      const channel = deck === null ? mixer.rack : deck === 'c' ? mixer.performance : mixer.channels[deck];
+      const fx = deck === null ? mixer.rackFX : deck === 'c' ? mixer.performanceFX : mixer.strips[deck].fx;
       channel.gain.value = .65;
       updateToneEcho(context, fx, 100, echo, 300);
       const buffer = context.createBuffer(2, 48000 * 6, 48000);
@@ -87,7 +87,7 @@ export async function verifyInstrumentFX(page, output, deck = null) {
         const samples = new Float32Array(core.memory.buffer, pointer, count * 2);
         for (let channel = 0; channel < 2; channel++) for (let i = 0; i < count; i++) buffer.getChannelData(channel)[frame + i] = samples[i * 2 + channel];
       }
-      const source = context.createBufferSource(); source.buffer = buffer; source.connect(deck === null ? fx.input : mixer.strips[deck].input); source.start();
+      const source = context.createBufferSource(); source.buffer = buffer; source.connect(deck === null || deck === 'c' ? fx.input : mixer.strips[deck].input); source.start();
       const rendered = await context.startRendering();
       return Array.from({ length: rendered.length * 2 }, (_, i) => rendered.getChannelData(i % 2)[Math.floor(i / 2)]);
     }, { echo, deck });
@@ -100,7 +100,7 @@ export async function verifyInstrumentFX(page, output, deck = null) {
     wav.writeUInt32LE(48000, 24); wav.writeUInt32LE(192000, 28); wav.writeUInt16LE(4, 32); wav.writeUInt16LE(16, 34);
     wav.write('data', 36); wav.writeUInt32LE(pcm.length * 2, 40);
     pcm.forEach((value, i) => wav.writeInt16LE(Math.round(value * 32767), 44 + i * 2));
-    const name = `${deck === null ? '' : `deck-${deck === 0 ? 'a' : 'b'}-`}piano-${echo ? 'echo' : 'dry'}.wav`;
+    const name = `${deck === null ? '' : `deck-${deck === 0 ? 'a' : deck === 1 ? 'b' : 'c'}-`}piano-${echo ? 'echo' : 'dry'}.wav`;
     await fs.writeFile(path.join(output, name), wav);
     evidence.push({ file: name, peak, frames: pcm.length / 2, rate: 48000, noteOn: [0, 96000], noteOff: [24064, 120064] });
   }

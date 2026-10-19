@@ -1,6 +1,6 @@
 import { decodeAudio, encodeWav } from './audio.js';
 import { SessionTransport } from './session-transport.js';
-import { validatePreparedTrack } from './mixer.js';
+import { validatePreparedTrack, updateToneEcho, clearEcho } from './mixer.js';
 import { compositionKey } from './novelty.js';
 
 const $ = id => document.getElementById(id);
@@ -15,8 +15,21 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   const currentContext = () => ({ tempo: Math.round(Number($('session-bpm').value) * 1000), tonic: Number($('session-key').value), mode: $('session-mode').value });
   notes.forEach((name, i) => { const option = document.createElement('option'); option.value = 60 + i; option.textContent = name; $('session-key').append(option); });
   $('session-key').value = '69';
+  function clearCEcho() { if (mixer()) clearEcho(context(), mixer().performanceFX); }
+  function effects(reset = false) {
+    if (reset) {
+      $('tone-c').value = '100'; $('echo-c').value = '0'; $('delay-c').value = '300';
+      clearCEcho();
+    }
+    const tone = Number($('tone-c').value), echo = Number($('echo-c').value), spacing = Number($('delay-c').value);
+    $('tone-c-value').textContent = tone === 100 ? 'Open' : `${Math.round(200 * 100 ** (tone / 100))} Hz`;
+    $('echo-c-value').textContent = echo ? `${Math.round(echo * 100)}%` : 'Off';
+    $('delay-c-value').textContent = `${spacing} ms`;
+    if (mixer()) updateToneEcho(context(), mixer().performanceFX, tone, echo, spacing);
+  }
   function refresh() {
     const playing = !!transport?.a, activeC = !!transport?.c;
+    if (wasC && !activeC) clearCEcho();
     $('prepare-a').disabled = !rights.checked || !deck.file || !deck.audio.paused || !!deck.loading || !!busy || !!prepared || deck.starting;
     $('release-a').disabled = !prepared && busy !== 'preparing';
     $('session-play').disabled = !confirmed() || playing || !!busy;
@@ -32,6 +45,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     $('c-arm').disabled = !playing || !performanceBuffer || !confirmed() || !permitted() || !!busy || activeC;
     $('c-stop').disabled = !activeC;
     $('c-preview').disabled = playing || !performanceBuffer || !permitted() || !confirmed() || !!busy || activeC;
+    for (const id of ['tone-c', 'echo-c', 'delay-c', 'fx-reset-c']) $(id).disabled = !performanceBuffer || !permitted() || !confirmed();
     deck.sessionTime = transport?.a ? Math.max(0, context().currentTime - transport.a.frame / context().sampleRate) : 0;
     deck.sessionPlaying = playing;
     if (activeC) {
@@ -45,6 +59,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   }
   function clearPerformance() {
     transport?.stopC(); performanceBuffer = undefined; generationContext = undefined;
+    effects(true);
     if (download) URL.revokeObjectURL(download);
     download = undefined; $('performance-download').hidden = true; $('performance-download').removeAttribute('href');
   }
@@ -60,7 +75,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     deck.prepared = false; deck.sessionPlaying = false; $('context-confirmed').checked = false;
     clearPerformance(); say('Load and prepare Deck A to begin.'); refresh();
   }
-  function stop() { startVersion++; transport?.stop(); refresh(); }
+  function stop() { startVersion++; transport?.stop(); clearCEcho(); refresh(); }
   function deletePhrase() {
     cancel(); samples = undefined; recent = []; clearPerformance(); $('phrase-status').textContent = 'Phrase and C deleted from this tab.'; refresh();
   }
@@ -211,16 +226,18 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
       if (!permitted() || !confirmed() || !performanceBuffer || busy || transport?.a || transport?.c) return;
       await context().resume();
       if (token === revision && start === startVersion && permitted() && confirmed() && performanceBuffer && !transport.a)
-        transport.preview(performanceBuffer, mixer().performance);
+        transport.preview(performanceBuffer, mixer().performanceFX.input);
     } catch (failure) { error(failure); }
   };
   $('c-arm').onclick = () => {
     try {
       if (busy || transport?.c || !permitted() || !confirmed() || !performanceBuffer || JSON.stringify(generationContext) !== JSON.stringify(currentContext())) throw new Error('Prepare C for the current confirmed context first.');
-      transport.arm(performanceBuffer, mixer().performance); refresh();
+      transport.arm(performanceBuffer, mixer().performanceFX.input); refresh();
     } catch (failure) { error(failure); }
   };
-  $('c-stop').onclick = () => { transport?.stopC(); say('C stopped. A continues.'); refresh(); };
+  $('c-stop').onclick = () => { transport?.stopC(); clearCEcho(); say(transport?.a ? 'C stopped. A continues.' : 'C stopped.'); refresh(); };
+  for (const id of ['tone-c', 'echo-c', 'delay-c']) $(id).oninput = () => effects();
+  $('fx-reset-c').onclick = () => effects(true);
   $('phrase-cancel').onclick = () => { cancel(); say('Preparation cancelled. A continues.'); };
   $('phrase-delete').onclick = deletePhrase;
   $('phrase-consent').onchange = () => { if (!permitted()) deletePhrase(); refresh(); };
