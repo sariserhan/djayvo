@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest validation: [Linux browser portability](docs/linux-browser.md).
+Last updated: 2026-10-19 (America/New_York). Latest validation: [Live instrument load and deadlines](docs/live-deadline.md).
 Latest engine improvement: [Bounded active vocal processing](docs/active-vocals.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
@@ -44,6 +44,16 @@ criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
+
+- [ ] **DJ20 — PARTIAL:** [Live instrument load and deadlines](docs/live-deadline.md).
+  600 virtual seconds per run, all 13 patches, 32 voices, 60 identical programs,
+  exact Mac/Linux/WASM PCM and command frames, native allocation checks and
+  focused tests **PASS**. Strict offline no-overrun check **FAIL**: initial Mac,
+  first Linux and Node WASM have delays beyond 2.667 ms; reruns are retained,
+  not substituted for failures. Cause **PARTIAL**. Actual AudioWorklet/device
+  scheduling, physical latency and venue endurance **NOT RUN**. No engine or
+  musical-quality change; next timing work must measure the actual audio host.
+
 
 - [x] **DJ19 — PASS (validation and fallback scope):** [Linux browser validation and recording fallback](docs/linux-browser.md).
   Linux Chromium session/manual suites pass 29/40 checks; 22 Mac/Linux WAVs
@@ -482,6 +492,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P65 | PASS | Correct sustained-tone period/key selection; calibrate 180 cases, verify native/WASM output and saved-score compatibility, characterize four changed speech keys | [Evidence](docs/pitch-period.md) |
 | [x] | P66 | PASS | Fix recording-offset energy masking vocal pauses; preserve edge selection and 65 existing WAVs, verify Mac/Linux/WASM and saved scores, audit 20 licensed speech sources | [Evidence](docs/chop-offset.md) |
 | [x] | P67 | PASS | Bound active vocal processing, preserve all comparison audio and event frames, validate dense/echo schedules and measure actual Mac/Linux offline timing | [Evidence](docs/active-vocals.md) |
+| [x] | P68 | PASS | Add reproducible 32-voice native/WASM stress diagnostics, playable output and exact frame/PCM comparison; record timing overruns without closing live gates | [Evidence](docs/live-deadline.md) |
 
 ## Engineering backlog
 

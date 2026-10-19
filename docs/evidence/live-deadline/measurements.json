@@ -1,0 +1,23 @@
+{
+  "signal_checks": "PASS",
+  "event_frame_agreement": "PASS",
+  "native_wasm_max_difference": 0,
+  "native_wasm_rms_difference": 0,
+  "native_pcm_sha256": "c14c9defad68ad811fb1ea9b4e2e4dab43a293c846c67210a8553f34fc2501e0",
+  "event_trace_sha256": "fa5df6e8ea62d51f1527d91d2d2da167e59f47a6d8d0f43e7d2df2a6191d6575",
+  "playable_wav": "renders/live-deadline-20261019/live-stress.wav",
+  "wav_sha256": "bb5e9d5e13494191303173f9a1bbccee1a9de3cb8f7a36810fb4e3df11346602",
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "initial_mac_deadline_misses": 1,
+  "detailed_deadline_misses": {
+    "mac": 0,
+    "linux": 1,
+    "wasm": 48
+  },
+  "hardware_latency": "NOT RUN",
+  "musical_quality": "NOT RUN"
+}

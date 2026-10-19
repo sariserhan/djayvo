@@ -1,0 +1,11 @@
+[ 88%] Built target djayvo_core
+[100%] Built target djayvo_live_tests
+Internal ctest changing into directory: /work/active-vocals-20261019
+Test project /work/active-vocals-20261019
+    Start 1: live_instruments
+1/1 Test #1: live_instruments .................   Passed    0.23 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.23 sec
+PASS 600 virtual seconds, 225000 blocks, 60 identical programs, zero engine allocations; deadline misses 1

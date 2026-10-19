@@ -1,0 +1,20 @@
+{
+  "head": "a44c9d0fd72d2dc3103d401c9ca125b9a720c1ec",
+  "macOS": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241",
+  "cpu": "Apple M5",
+  "memory_bytes": "17179869184",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+  "node": "v22.23.1",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "linux": "Linux e8f410f9a8c6 6.8.0-117-generic #117-Ubuntu SMP PREEMPT_DYNAMIC Thu May  7 17:26:37 UTC 2026 aarch64 GNU/Linux\nc++ (Debian 12.2.0-14+deb12u1) 12.2.0\ncmake version 3.25.1",
+  "docker_default_context": "desktop-linux",
+  "hashes": {
+    "core/audio/live.cpp": "5c750df48c2f873ebf52c63de3160ea3e00ae494bf202159f1cc760735e2b8c8",
+    "core/instruments/voice.cpp": "aeefb20ae30d5019b621a26d693182701a4b5aeaa5d71cfce404d84ea701623c",
+    "core/instruments/performance_voices.h": "e3a7b3da63e1fea6bd1c4d227a3c731ce68eee646f67edfae2e540e4750beae6",
+    "build-mac/libdjayvo_core.a": "affd7a4443724109bae3bbe1dee084aae7c6baaa536a07842abd50b0a3114157",
+    "dist/web/engine/djayvo_live.wasm": "6135823549a0204fa4a935c3eb6401099e88a0c8074e1c55142e7400efec8086",
+    "docs/evidence/live-deadline/probe.cpp": "12c512601ef4809794e3ccb6b800baf697dfb6f3e2fd1a4b08f7e61fd32825ed",
+    "docs/evidence/live-deadline/wasm.mjs": "9af2df391cc6294bb6b3c4b19e9370d4a0d5fac5f9b27fb142e5302e6618a2cc"
+  }
+}

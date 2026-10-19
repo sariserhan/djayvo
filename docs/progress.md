@@ -11,6 +11,17 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
+Latest local timing evidence — 2026-10-19:
+[Live instrument load and deadlines](live-deadline.md): **PASS** for 600 virtual
+seconds per run, 32 simultaneous voices, 60 identical programs, exact Mac/Linux/
+WASM PCM and command frames, native allocation checks and focused live tests.
+**FAIL** for the strict offline no-overrun gate: initial Mac, first Linux and
+Node WASM runs exceed 2.667 ms; clean reruns do not erase those observations.
+Cause **PARTIAL**; actual browser AudioWorklet, physical latency, venue endurance
+and musical benefit **NOT RUN**. Production remains **PARTIAL**. This adds
+reproducible diagnostics and playable instrument output; production engine,
+recordings, training candidates and master remain unchanged.
+
 Latest renderer improvement — 2026-10-19:
 [Bounded active vocal processing](active-vocals.md) **PASS (technical)**:
 keep at most 16 active triggers, expire at measured frame boundaries and preserve

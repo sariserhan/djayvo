@@ -1,0 +1,12 @@
+{
+  "mac-repeat": {
+    "signal_checks": "PASS",
+    "pcm_sha256": "c14c9defad68ad811fb1ea9b4e2e4dab43a293c846c67210a8553f34fc2501e0",
+    "deadline_misses": 0
+  },
+  "linux-repeat": {
+    "signal_checks": "PASS",
+    "pcm_sha256": "c14c9defad68ad811fb1ea9b4e2e4dab43a293c846c67210a8553f34fc2501e0",
+    "deadline_misses": 0
+  }
+}

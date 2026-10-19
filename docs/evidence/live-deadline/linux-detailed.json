@@ -1,0 +1,46 @@
+{
+  "sample_rate": 48000,
+  "block_frames": 128,
+  "virtual_seconds": 600,
+  "repeats": 60,
+  "blocks": 225000,
+  "events_per_repeat": 320,
+  "wall_seconds": 15.415375211,
+  "callback_allocations": 0,
+  "peak": 0.724759042263031,
+  "rms": 0.1245789616032406,
+  "max_active": 32,
+  "quiet_blocks": 11100,
+  "deadline_us": 2666.6666666666665,
+  "blocks_over_deadline": 1,
+  "all": {
+    "count": 225000,
+    "p50_us": 39.75,
+    "p95_us": 253.963,
+    "p99_us": 280.461,
+    "p100_us": 2724.327
+  },
+  "attack": {
+    "count": 300,
+    "p50_us": 276.085,
+    "p95_us": 325.086,
+    "p99_us": 507.547,
+    "p100_us": 636.467
+  },
+  "other": {
+    "count": 224700,
+    "p50_us": 39.709,
+    "p95_us": 253.795,
+    "p99_us": 279.421,
+    "p100_us": 2724.327
+  },
+  "misses": [
+    {
+      "repeat": 14,
+      "frame": 97152,
+      "wall_us": 2724.327,
+      "cpu_us": 2722,
+      "attack": false
+    }
+  ]
+}

@@ -1,5 +1,17 @@
 # Specification completion ledger
 
+Latest local timing evidence — 2026-10-19:
+[Live instrument load and deadlines](live-deadline.md): **PASS** for 600 virtual
+seconds per run, 32 simultaneous voices, 60 identical programs, exact Mac/Linux/
+WASM PCM and command frames, native allocation checks and focused live tests.
+**FAIL** for the strict offline no-overrun gate: initial Mac, first Linux and
+Node WASM runs exceed 2.667 ms; clean reruns do not erase those observations.
+Cause **PARTIAL**; actual browser AudioWorklet, physical latency, venue endurance
+and musical benefit **NOT RUN**. Production remains **PARTIAL**. This adds
+reproducible diagnostics and playable instrument output; production engine,
+recordings, training candidates and master remain unchanged.
+
+
 Latest renderer improvement: [Bounded active vocals](active-vocals.md)
 **PASS (technical)**: stable event scheduling, unchanged native/WASM audio and
 measured offline timing. Live latency and new musical quality **NOT RUN**;
