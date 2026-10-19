@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/docs/evidence/pitch-period/measure.py", line 72, in <module>
+    assert old['key']['tonic_midi'] == 62 and new['key']['tonic_midi'] == 69
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

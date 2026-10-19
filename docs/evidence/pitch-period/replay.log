@@ -1,0 +1,16 @@
+PASS: renders/pitch-period-20261019/replay/owner-4123.call_response.wav
+PASS: complete export renders/pitch-period-20261019/replay/owner-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/pitch-period-20261019/replay/owner-4124.call_response.wav
+PASS: complete export renders/pitch-period-20261019/replay/owner-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/pitch-period-20261019/replay/owner-4125.call_response.wav
+PASS: complete export renders/pitch-period-20261019/replay/owner-4125.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/pitch-period-20261019/replay/owner-4126.call_response.wav
+PASS: complete export renders/pitch-period-20261019/replay/owner-4126.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/pitch-period-20261019/replay/call_response.call_response.wav
+PASS: complete export renders/pitch-period-20261019/replay/call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: 5 exports in renders/pitch-period-20261019/replay

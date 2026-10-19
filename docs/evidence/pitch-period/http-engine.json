@@ -1,0 +1,12 @@
+[
+  {
+    "url": "http://127.0.0.1:3000/studio/engine/djayvo_web.wasm",
+    "status": 200,
+    "sha256": "c1e51de305cb0335c1d1f7ff054901fb29e0de6e28e0e0f2e039841a5caf3af5"
+  },
+  {
+    "url": "http://127.0.0.1:4173/engine/djayvo_web.wasm",
+    "status": 200,
+    "sha256": "c1e51de305cb0335c1d1f7ff054901fb29e0de6e28e0e0f2e039841a5caf3af5"
+  }
+]

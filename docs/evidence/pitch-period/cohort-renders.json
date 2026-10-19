@@ -1,0 +1,158 @@
+[
+  {
+    "id": "ls-1988-147956-0018",
+    "source_sha256": "ebb2e7c8202c076a4fe971eb479060c10279c2284eab4454b5548cf2b54a48b6",
+    "portability": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "output": {
+      "file": "renders/pitch-period-20261019/cohort/ls-1988-147956-0018/after.call_response.wav",
+      "sha256": "b53ff9ac89431ea6599273764d27d44558b1828603dba7870dcb801431ea6ad2",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.40155029296875,
+      "peak_dbfs": -7.925201057971028,
+      "rms_dbfs_left": -28.93548437332989,
+      "rms_dbfs_right": -29.379769334471316,
+      "dc_left": 0.002813530930415384,
+      "dc_right": 0.0027141263037478366,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 11,
+      "last_nonzero_frame": 1612933,
+      "max_adjacent_sample_step": 0.0826416015625,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "before_after_difference": {
+      "maximum_pcm_difference": 0.5081787109375,
+      "rms_pcm_difference": 0.03195039908717368,
+      "equal_sample_fraction": 0.3903514009762797
+    }
+  },
+  {
+    "id": "ls-84-121123-0012",
+    "source_sha256": "196ce28738282c266cfc2b878a73fd2962d9f040c7a51bca71d3e321765417b4",
+    "portability": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "output": {
+      "file": "renders/pitch-period-20261019/cohort/ls-84-121123-0012/after.call_response.wav",
+      "sha256": "4c10d568b953e17e752ab9d2be573152790dcae722bb7b149b35a062e9ed24c0",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.399658203125,
+      "peak_dbfs": -7.966225371116657,
+      "rms_dbfs_left": -27.775641987808783,
+      "rms_dbfs_right": -28.259636744759273,
+      "dc_left": 7.97435060287596e-06,
+      "dc_right": 7.116756955854621e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 10,
+      "last_nonzero_frame": 1612953,
+      "max_adjacent_sample_step": 0.11480712890625,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "before_after_difference": {
+      "maximum_pcm_difference": 0.42327880859375,
+      "rms_pcm_difference": 0.03306075177215635,
+      "equal_sample_fraction": 0.4201688681379377
+    }
+  },
+  {
+    "id": "ls-6295-244435-0035",
+    "source_sha256": "d6cdac0794ba8986b8fa24095d07e513b31a97dced5ab489457255e0ce678917",
+    "portability": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "output": {
+      "file": "renders/pitch-period-20261019/cohort/ls-6295-244435-0035/after.call_response.wav",
+      "sha256": "27bb5c27584c653c523e6d02fb0dc9002f59a2f81efd93f966002aadb4dca29d",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.400421142578125,
+      "peak_dbfs": -7.949659989359018,
+      "rms_dbfs_left": -30.831448681994118,
+      "rms_dbfs_right": -31.10531781348596,
+      "dc_left": -7.850858519431147e-06,
+      "dc_right": -6.319595232187589e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 10,
+      "last_nonzero_frame": 1613155,
+      "max_adjacent_sample_step": 0.04901123046875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "before_after_difference": {
+      "maximum_pcm_difference": 0.368896484375,
+      "rms_pcm_difference": 0.02767670852981903,
+      "equal_sample_fraction": 0.43946537720888734
+    }
+  },
+  {
+    "id": "ls-1993-147965-0001",
+    "source_sha256": "950a0d7da0eee8c3432c7f46f0a5f3435dc942b5a5096a21acddee703993e803",
+    "portability": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "output": {
+      "file": "renders/pitch-period-20261019/cohort/ls-1993-147965-0001/after.call_response.wav",
+      "sha256": "d7ad32d90a37e485f7fee2b1d88b4b4ca0e380ec867b1a62ccaa0bb8f9c43ba3",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1741714,
+      "duration_seconds": 36.28570833333333,
+      "peak_linear": 0.401702880859375,
+      "peak_dbfs": -7.9219010732658335,
+      "rms_dbfs_left": -27.79484266358462,
+      "rms_dbfs_right": -28.16756454131945,
+      "dc_left": -2.9132777710275625e-06,
+      "dc_right": -2.4106012128623727e-06,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 11,
+      "last_nonzero_frame": 1612977,
+      "max_adjacent_sample_step": 0.087005615234375,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    },
+    "before_after_difference": {
+      "maximum_pcm_difference": 0.472991943359375,
+      "rms_pcm_difference": 0.034431072430145225,
+      "equal_sample_fraction": 0.41466739085751164
+    }
+  }
+]

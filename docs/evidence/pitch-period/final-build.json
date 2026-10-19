@@ -1,0 +1,22 @@
+{
+  "protected_files": "PASS",
+  "preserved_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "build_and_evidence_sha256": {
+    "core/composition/analysis.cpp": "afa0ee4d060b155ad502693dae4072efb39ca1c91c8a61981277ddd012842708",
+    "core/tests/remix_tests.cpp": "b074bc6beda091ba44dc08a604afa4bf83d738e21e873477cb8c0b7651de3aec",
+    "build-mac/djayvo_remix": "eec2633afea86aba4fe22d5040bf5e3acfbb4bf9f88e03ce2dbc497bb4b9e590",
+    "build-mac/libdjayvo_core.a": "f746e2f4c1324b468807981a56edde384ea29e91bf92d0d87757158a1645fc3e",
+    "build-web/djayvo_web.wasm": "c1e51de305cb0335c1d1f7ff054901fb29e0de6e28e0e0f2e039841a5caf3af5",
+    "renders/pitch-period-20261019/a4-control.wav": "0d5d53a8ccb24c19400c8d0014c936c439177b303251d21748d463cc43836e6c",
+    "docs/evidence/pitch-period/probe.cpp": "f702e7cefcd9d0470006c908eef3231342a789a6f606da8ec1c87e7f35f929d3",
+    "docs/evidence/pitch-period/file-probe.cpp": "a9c340840b0958c155c7611240e7b50660303834a42668bc6b225a38edd3b6f0",
+    "docs/evidence/pitch-period/wasm-check.mjs": "b01072586d474cb1e46b434a3dbe92c6b091827d733aab3bab18613c4ad66b9a",
+    "docs/evidence/pitch-period/measure.py": "df1604c7a6f81d97c1b5550ec3392d2327a570ed26baf491e8642b57aaa3b876",
+    "docs/evidence/pitch-period/measurements.json": "b86f2e85e67500daea6e83fd1ce3ab231c27917df2ac653ee64fe5c52cd360b8",
+    "docs/evidence/pitch-period/cohort-renders.json": "a80d4585d257adf66f31ffbe80c75ea0eb242b3b0cd8df18a2972b0dcc3c7fe9"
+  }
+}

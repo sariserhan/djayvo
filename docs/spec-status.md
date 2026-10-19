@@ -1,5 +1,10 @@
 # Specification completion ledger
 
+Latest engine fix: [Sustained-note period selection](pitch-period.md) **PASS**
+for known-tone calibration and native/WASM portability. Four licensed speech
+inputs change selected tonic; verified speech pitch and musical benefit remain
+**NOT RUN**. This does not close M1 or production gates.
+
 Latest local research: [Phrase articulation](phrase-articulation.md) has four
 matched owner A/B pairs and exact Mac/Linux rendering. **PASS:** technical
 isolation and playable audio. **NOT RUN:** listening benefit, default promotion

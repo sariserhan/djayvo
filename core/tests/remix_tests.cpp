@@ -165,7 +165,7 @@ void analysis_offset() {
                 for (std::size_t i=0;i<reference.phrases.size();++i)
                     check(actual.phrases[i].begin==reference.phrases[i].begin &&
                           actual.phrases[i].end==reference.phrases[i].end,"DC offset moved phrase boundary");
-                check(actual.pitch_hz==reference.pitch_hz &&
+                check(std::abs(actual.pitch_hz-reference.pitch_hz)<1e-4 &&
                       std::abs(actual.pitch_confidence-reference.pitch_confidence)<1e-5,"DC offset changed pitch");
                 check(actual.peak>reference.peak+0.49 && actual.rms>reference.rms &&
                       std::abs(actual.normalization_gain-std::min(3.9810717055,0.8/actual.peak))<1e-12,
@@ -184,6 +184,30 @@ void analysis_offset() {
     for (auto& sample:noise.mono) sample+=0.5F;
     const auto shifted=djayvo::analyze(noise);
     check(shifted.pitch_hz==0 && shifted.pitch_confidence==0,"DC offset invented voiced pitch in noise");
+}
+void pitch_period() {
+    for (const auto rate:{8000U,16000U,44100U,48000U,192000U}) {
+        auto a=source();a.sample_rate=a.original_rate=rate;
+        a.original_frames=rate*3U;a.mono.resize(rate*3U);
+        for (const double hz:{70.0,73.4162,110.0,146.8324,220.0,261.6256,329.6276,440.0,450.0}) {
+            for (const double phase:{0.0,0.37}) for (const bool harmonics:{false,true}) {
+                for (std::size_t i=0;i<a.mono.size();++i) {
+                    const double angle=6.283185307179586*hz*i/rate+phase;
+                    a.mono[i]=static_cast<float>(0.2*std::sin(angle)+
+                        (harmonics?0.3*std::sin(2*angle)+0.1*std::sin(3*angle)+0.25:0));
+                }
+                const auto original=a.mono;
+                const auto features=djayvo::analyze(a);
+                check(features.pitch_hz>0 && std::abs(1200*std::log2(features.pitch_hz/hz))<5,
+                      "sustained note was assigned a later period or inaccurate pitch");
+                check(features.pitch_confidence>0.9,"periodic control lost pitch confidence");
+                const int midi=static_cast<int>(std::llround(69+12*std::log2(hz/440)));
+                const auto plan=djayvo::make_remix(a,features,djayvo::Strategy::call_response,4123,true,false);
+                check(plan.tonic_midi==60+((midi%12+12)%12),"known sustained note selected wrong key");
+                check(a.mono==original,"pitch analysis changed the source");
+            }
+        }
+    }
 }
 void resampling() {
     auto a=source(); const auto same=djayvo::resample(a,8000);
@@ -942,6 +966,7 @@ int main() {
         {"bounded stereo feedback reverb, clean vocals, stems, tail and allocation-free processing",instrument_reverb},
         {"SHA-256 known vectors",hashes},{"energy/onset/phrase/pitch analysis and silence",analysis},
         {"offset-invariant attacks, pauses and pitch with unchanged source and raw levels",analysis_offset},
+        {"sustained fundamentals and keys across five rates, phases and strong harmonics",pitch_period},
         {"resampling duration, identity, round-trip and antialias",resampling},
         {"session tempo/key, duration and validator across 144 plans",session_context},
         {"clean hook preservation, deterministic styles, finite bounded output",preservation},

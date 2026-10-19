@@ -12,7 +12,7 @@ new paid compute, publication and monetization still need explicit authorization
 
 
 Last updated: 2026-10-19 (America/New_York). Latest validation: [Linux browser portability](docs/linux-browser.md).
-Latest engine fix: [Offset-resistant phrase analysis](docs/analysis-offset.md).
+Latest engine fix: [Sustained-note period selection](docs/pitch-period.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
 
@@ -256,6 +256,14 @@ closes that task only; it does not automatically pass its parent milestone.
   files **PASS**. Default engine preserved. Human benefit, generalization and
   promotion **NOT RUN**; this is rule-based research, not further model training.
 
+- [x] **C14 — PASS (technical):** [Sustained-note period selection](docs/pitch-period.md).
+  Stop later period multiples selecting the wrong pitch/key; 180 known-tone
+  cases, Mac/Linux suites, sanitizer and 12 WASM comparisons pass. 74 exact
+  cross-platform WAVs; 65 owner/fixture WAVs unchanged; six saved-score replays.
+  Four of 20 licensed speech inputs change selected tonic and have fresh renders;
+  their pitch accuracy/listening **NOT RUN**, frozen study preserved. No learned
+  behavior or production-quality advancement is inferred.
+
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,
 with private generation plus a reviewed public catalogue. Keep the database free;
@@ -463,6 +471,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P62 | PASS | Measure adapter effect after gain/DC fitting, merge overlapping detection coverage, audit train/holdout similarity and export four exact reference crops; independent split fails and human-quality gate remains open | [Evidence](docs/style-adapter-effect.md) |
 | [x] | P63 | PASS | Fix electrical offset masking source attacks/pauses and inventing noise pitch; validate Mac/Linux/WASM, preserve 65 existing renders and saved-score replay | [Evidence](docs/analysis-offset.md) |
 | [x] | P64 | PASS | Prepare controlled phrase-articulation research, verify score isolation and 40 Mac/Linux WAVs, deliver 16 matched private A/B listening files; human benefit and default promotion remain open | [Evidence](docs/phrase-articulation.md) |
+| [x] | P65 | PASS | Correct sustained-tone period/key selection; calibrate 180 cases, verify native/WASM output and saved-score compatibility, characterize four changed speech keys | [Evidence](docs/pitch-period.md) |
 
 ## Engineering backlog
 

@@ -1,0 +1,68 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+      Start  1: live_instruments
+ 1/15 Test  #1: live_instruments .................   Passed    0.37 sec
+      Start  2: core
+ 2/15 Test  #2: core .............................   Passed    0.66 sec
+      Start  3: remix_core
+ 3/15 Test  #3: remix_core .......................***Failed    4.89 sec
+PASS: bounded stereo feedback reverb, clean vocals, stems, tail and allocation-free processing
+PASS: SHA-256 known vectors
+PASS: energy/onset/phrase/pitch analysis and silence
+FAIL: offset-invariant attacks, pauses and pitch with unchanged source and raw levels: DC offset changed pitch
+PASS: sustained fundamentals and keys across five rates, phases and strong harmonics
+PASS: resampling duration, identity, round-trip and antialias
+PASS: session tempo/key, duration and validator across 144 plans
+PASS: clean hook preservation, deterministic styles, finite bounded output
+PASS: consent, crop, transform, polyphony and duration rejection
+PASS: quantized chop spacing and both clean hooks at 2/3/5 seconds
+PASS: seeded clean, instrumental and fragment openings
+Hip-hop 64-seed audit: 4 harmonic cycles, 12 drum shapes, 48 four-bar instrumental shapes
+PASS: hiphop harmonic/rhythmic seed diversity, recurring motifs and developed returns
+PASS: reggae/experimental/club harmony, rhythm and form variety across 192 seeds
+PASS: call-response turn taking, hybrid transitions and 128 seed structures
+PASS: source phrase order, accents, silence invariance and developed instrumental answers
+PASS: funk syncopation, bass/kick lock, ghost notes, seed variety and input response
+PASS: pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates
+PASS: subtraction and return across styles and seeds
+PASS: instrument room timing, stereo, dry speech and finite tail
+PASS: independent voice pitch/time, four rates, exact duration/reverse, bounds and no callback allocation
+PASS: tempo echo timing, stereo decay, bounded tails, hook clearance and callback safety
+PASS: club form, input-driven bass, electronic palette and stem-consistent kick ducking
+PASS: stem identity and linear mix reconstruction including room and ducking
+PASS: tempo-map source preservation and echo timing across tempo changes
+PASS: club pause selection, deduplication, bounded fallback and transition accents
+PASS: cancel/render/publication rollback, concurrent destinations and stale-lock preservation
+PASS: allocation-free sample and instrument processing
+
+      Start  4: c_abi
+ 4/15 Test  #4: c_abi ............................   Passed    0.74 sec
+      Start  5: acoustic_assets
+ 5/15 Test  #5: acoustic_assets ..................   Passed    0.46 sec
+      Start  6: sustained_assets
+ 6/15 Test  #6: sustained_assets .................   Passed    0.02 sec
+      Start  7: guitar_assets
+ 7/15 Test  #7: guitar_assets ....................   Passed    0.41 sec
+      Start  8: electronic_assets
+ 8/15 Test  #8: electronic_assets ................   Passed    0.08 sec
+      Start  9: wav_integration
+ 9/15 Test  #9: wav_integration ..................   Passed    0.90 sec
+      Start 10: remix_integration
+10/15 Test #10: remix_integration ................   Passed    3.86 sec
+      Start 11: word_timing
+11/15 Test #11: word_timing ......................   Passed    0.12 sec
+      Start 12: tooling
+12/15 Test #12: tooling ..........................   Passed    1.12 sec
+      Start 13: listening_review
+13/15 Test #13: listening_review .................   Passed    0.05 sec
+      Start 14: evaluation_preparation
+14/15 Test #14: evaluation_preparation ...........   Passed   12.51 sec
+      Start 15: plan_import
+15/15 Test #15: plan_import ......................   Passed    4.73 sec
+
+93% tests passed, 1 tests failed out of 15
+
+Total Test time (real) =  30.93 sec
+
+The following tests FAILED:
+	  3 - remix_core (Failed)
+Errors while running CTest

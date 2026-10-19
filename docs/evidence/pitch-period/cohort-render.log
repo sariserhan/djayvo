@@ -1,0 +1,37 @@
+PASS: renders/pitch-period-20261019/cohort/ls-1988-147956-0018/before.call_response.wav
+PASS: complete export renders/pitch-period-20261019/cohort/ls-1988-147956-0018/before.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/pitch-period-20261019/cohort/ls-1988-147956-0018/after.call_response.wav
+PASS: complete export renders/pitch-period-20261019/cohort/ls-1988-147956-0018/after.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/pitch-period-20261019/cohort-ls-1988-147956-0018.call_response.wav
+PASS: complete export /out/pitch-period-20261019/cohort-ls-1988-147956-0018.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/pitch-period-20261019/cohort/ls-84-121123-0012/before.call_response.wav
+PASS: complete export renders/pitch-period-20261019/cohort/ls-84-121123-0012/before.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/pitch-period-20261019/cohort/ls-84-121123-0012/after.call_response.wav
+PASS: complete export renders/pitch-period-20261019/cohort/ls-84-121123-0012/after.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/pitch-period-20261019/cohort-ls-84-121123-0012.call_response.wav
+PASS: complete export /out/pitch-period-20261019/cohort-ls-84-121123-0012.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/pitch-period-20261019/cohort/ls-6295-244435-0035/before.call_response.wav
+PASS: complete export renders/pitch-period-20261019/cohort/ls-6295-244435-0035/before.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/pitch-period-20261019/cohort/ls-6295-244435-0035/after.call_response.wav
+PASS: complete export renders/pitch-period-20261019/cohort/ls-6295-244435-0035/after.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/pitch-period-20261019/cohort-ls-6295-244435-0035.call_response.wav
+PASS: complete export /out/pitch-period-20261019/cohort-ls-6295-244435-0035.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/pitch-period-20261019/cohort/ls-1993-147965-0001/before.call_response.wav
+PASS: complete export renders/pitch-period-20261019/cohort/ls-1993-147965-0001/before.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/pitch-period-20261019/cohort/ls-1993-147965-0001/after.call_response.wav
+PASS: complete export renders/pitch-period-20261019/cohort/ls-1993-147965-0001/after.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/pitch-period-20261019/cohort-ls-1993-147965-0001.call_response.wav
+PASS: complete export /out/pitch-period-20261019/cohort-ls-1993-147965-0001.complete.json
+Listening/recognizability: NOT RUN
+PASS: four changed-key sources rendered before/after and cross-platform; frozen cohort preserved

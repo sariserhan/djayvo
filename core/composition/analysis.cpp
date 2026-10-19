@@ -76,9 +76,11 @@ InputAnalysis analyze(const AudioBuffer& source) {
     const double analysis_rate = static_cast<double>(source.sample_rate) / stride;
     const auto window = std::min<std::size_t>(static_cast<std::size_t>(analysis_rate * 0.12), source.mono.size() / stride);
     const auto start = std::min(strongest * hop, source.mono.size() - window * stride);
-    double best = 0; std::size_t best_lag = 0;
+    double best = 0;
+    const auto min_lag = static_cast<std::size_t>(analysis_rate / 450);
     const auto max_lag = std::min(window / 2, static_cast<std::size_t>(analysis_rate / 70));
-    for (auto lag = static_cast<std::size_t>(analysis_rate / 450); lag <= max_lag; ++lag) {
+    std::vector<double> correlations(max_lag + 2);
+    for (auto lag = min_lag - 1; lag <= max_lag + 1; ++lag) {
         double xy = 0, xx = 0, yy = 0;
         for (std::size_t j = lag; j < window; ++j) {
             const double x = source.mono[start + j * stride] - mean;
@@ -86,11 +88,17 @@ InputAnalysis analyze(const AudioBuffer& source) {
             xy += x*y; xx += x*x; yy += y*y;
         }
         const double correlation = xy / std::sqrt(std::max(1e-24, xx*yy));
-        if (correlation > best) { best = correlation; best_lag = lag; }
+        correlations[lag] = correlation;
+        if (lag >= min_lag && lag <= max_lag) best = std::max(best, correlation);
     }
-    if (best > 0.55 && best_lag) {
-        a.pitch_hz = analysis_rate / static_cast<double>(best_lag);
-        a.pitch_confidence = std::clamp(best,0.0,1.0);
+    // A later multiple of the period can fit the integer grid better than the fundamental.
+    for (auto lag = min_lag; best > 0.55 && lag <= max_lag; ++lag) {
+        const auto left = correlations[lag-1], middle = correlations[lag], right = correlations[lag+1];
+        if (middle < std::max(0.55, best * 0.9) || middle <= left || middle < right) continue;
+        const double offset = std::clamp(0.5*(left-right)/(left-2*middle+right), -0.5, 0.5);
+        a.pitch_hz = analysis_rate / (static_cast<double>(lag)+offset);
+        a.pitch_confidence = std::clamp(middle,0.0,1.0);
+        break;
     }
     return a;
 }

@@ -11,6 +11,17 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
+Latest shared-engine fix — 2026-10-19:
+[Sustained-note period selection](pitch-period.md) **PASS (technical)**: later
+period multiples no longer win merely by fitting the integer sample grid.
+180 known-tone combinations, Mac/Linux suites, sanitizer, 74 exact cross-OS WAVs,
+six saved-score replays and 12 WASM comparisons pass. All 65 original owner/
+fixture WAVs stay identical. Four of 20 licensed speech inputs select a different
+tonic; fresh comparisons exist, but speech F0 accuracy and musical preference
+are **NOT RUN**. Frozen study and pending reviews preserved; rebuilt local web
+engine; no model training or paid compute. Overall quality/production **PARTIAL**.
+
+
 Latest local musical experiment — 2026-10-19:
 [Phrase articulation candidate](phrase-articulation.md) **PASS (technical)**:
 five tests, four controlled pairs, eight Mac/Linux plan imports, 40 exact WAVs,
@@ -22,7 +33,7 @@ Default engine, sources and previous reviews preserved; no paid compute. C13 and
 broader musical quality remain **PARTIAL**. No further preferences were inferred.
 
 
-Latest shared-engine fix — 2026-10-19:
+Previous shared-engine fix — 2026-10-19:
 [Offset-resistant phrase analysis](analysis-offset.md) **PASS (technical)**.
 Remove constant electrical offset from analysis only, retaining original PCM,
 raw levels and gain rules. The control recovers 15 source attacks instead of
