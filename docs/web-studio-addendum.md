@@ -148,3 +148,11 @@ with independent controls, MIDI Learn, safe stop/consent cleanup and effects
 before C/Master levels. [Evidence and remaining gates](performance-effects.md).
 Full studio **PARTIAL**; physical/venue and musical-quality acceptance **NOT RUN**.
 The master specification remains unchanged.
+
+### 2026-10-19 — Rhythmic C echoes and timing diagnostics
+
+**PASS (technical):** C's confirmed tempo drives eighth/dotted/triplet echoes;
+shared delay clearing retains its requested target. Independent test PCM counters
+separate sample sequence from stale browser frame metadata. [Evidence](beat-echo.md).
+Startup/manual-loop repeatability and full studio **PARTIAL**; physical/venue and
+musical-quality acceptance **NOT RUN**. Master specification unchanged.

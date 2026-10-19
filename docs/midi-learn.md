@@ -15,7 +15,8 @@ The 26 targets cover crossfader/master, A/B/C levels, A/B three-band EQ,
 A/B/C tone/echo/spacing, instrument level/tone/echo/spacing, Talk bass mouth and
 computer/touch velocity. MIDI note velocity still comes from the incoming note.
 Disabled controls ignore mapped CC, including Mouth when Talk bass is not
-selected. Music/instrument controls retain their existing permission/readiness
+selected. C spacing also ignores mapped CC while [beat echo](beat-echo.md) is
+selected; its manual setting is retained. Music/instrument controls retain their existing permission/readiness
 checks; assigning a control does not enable recording, load audio or resume a
 suspended audio context.
 

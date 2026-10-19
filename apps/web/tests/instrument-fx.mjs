@@ -4,9 +4,10 @@ import path from 'node:path';
 
 export async function verifyInstrumentFX(page, output, deck = null) {
   const evidence = [];
-  for (const mode of ['dry', 'echo-100', 'echo-300', 'echo-800', 'tone', 'sweep', 'mute', 'reset', 'clear', 'clear-stop-fade']) {
+  const synced = deck === 'c' ? [60000, 127190, 180000].flatMap(tempo => ['eighth', 'dotted', 'triplet'].map(division => `echo-${division}-${tempo}`)) : [];
+  for (const mode of ['dry', 'echo-100', 'echo-300', 'echo-800', 'tone', 'sweep', 'mute', 'reset', 'clear', 'clear-stop-fade', 'transition', ...synced]) {
     const result = await page.evaluate(async ({ mode, deck }) => {
-      const { createMixer, updateToneEcho, clearEcho } = await import('./mixer.js');
+      const { createMixer, updateToneEcho, clearEcho, beatEchoDelay } = await import('./mixer.js');
       const context = new OfflineAudioContext(2, 48000 * 5, 48000), mixer = createMixer(context);
       const channel = deck === null ? mixer.rack : deck === 'c' ? mixer.performance : mixer.channels[deck];
       const fx = deck === null ? mixer.rackFX : deck === 'c' ? mixer.performanceFX : mixer.strips[deck].fx;
@@ -19,14 +20,15 @@ export async function verifyInstrumentFX(page, output, deck = null) {
         right[i] = -left[i];
       }
       const source = context.createBufferSource(); source.buffer = buffer; source.connect(deck === null || deck === 'c' ? fx.input : mixer.strips[deck].input); source.start();
-      const spacing = mode.startsWith('echo-') ? Number(mode.split('-')[1]) : 300;
+      const [, division, tempo] = mode.split('-');
+      const spacing = mode === 'transition' ? 800 : mode.startsWith('echo-') ? (tempo ? beatEchoDelay(Number(tempo), division) : Number(division)) : 300;
       updateToneEcho(context, fx, mode === 'tone' || mode === 'sweep' ? 0 : 100, ['dry', 'tone', 'sweep'].includes(mode) ? 0 : .5, spacing);
       if (mode === 'mute') channel.gain.setValueAtTime(0, 1.1);
       if (mode === 'reset') {
         fx.wet.gain.setTargetAtTime(0, 1.1, .01);
         fx.dry.gain.setTargetAtTime(1, 1.1, .01);
       }
-      const cleared = mode.startsWith('clear') ? context.suspend(1.1).then(() => { clearEcho(context, fx); return context.resume(); }) : Promise.resolve();
+      const cleared = mode.startsWith('clear') || mode === 'transition' ? context.suspend(mode === 'transition' ? .01 : 1.1).then(() => { clearEcho(context, fx); return context.resume(); }) : Promise.resolve();
       const rendered = await context.startRendering();
       await cleared;
       const samples = rendered.getChannelData(0), other = rendered.getChannelData(1);
@@ -42,20 +44,20 @@ export async function verifyInstrumentFX(page, output, deck = null) {
       const echoes = [1, 2, 3].map(repeat => {
         const expectedFrame = 48000 + spacing * 48 * repeat;
         let frame = expectedFrame, value = 0, sum = 0;
-        for (let i = expectedFrame - 2; i <= expectedFrame + 2; i++) {
+        for (let i = Math.round(expectedFrame) - 2; i <= Math.round(expectedFrame) + 2; i++) {
           sum += Math.abs(samples[i]);
           if (Math.abs(samples[i]) > value) { frame = i; value = Math.abs(samples[i]); }
         }
         return { expectedFrame, frame, value, sum, expectedValue: .2 * .5 * .35 ** (repeat - 1) / 1.4725 };
       });
       const impulses = [];
-      if (mode.startsWith('echo-')) for (let i = 48000; i < samples.length; i++) if (Math.abs(samples[i]) > 1e-5) impulses.push([i, samples[i]]);
-      return { mode, impulses, peak, difference, stereoError, latePeak, rms: Math.sqrt(square / 48000), echoes };
+      if (mode.startsWith('echo-') || mode === 'transition') for (let i = 48000; i < samples.length; i++) if (Math.abs(samples[i]) > 1e-5) impulses.push([i, samples[i]]);
+      return { mode, spacing, impulses, peak, difference, stereoError, latePeak, rms: Math.sqrt(square / 48000), echoes };
     }, { mode, deck });
     assert.ok(result.peak <= (mode === 'sweep' ? .3 : .2) + 1e-6, JSON.stringify(result));
     assert.ok(result.stereoError < 1e-6);
     if (mode === 'dry') assert.ok(result.difference < 1e-6);
-    if (mode.startsWith('echo-')) for (const echo of result.echoes) {
+    if (mode.startsWith('echo-') || mode === 'transition') for (const echo of result.echoes) {
       assert.ok(Math.abs(echo.frame - echo.expectedFrame) <= 1, JSON.stringify(result));
       assert.ok(Math.abs(echo.sum - echo.expectedValue) < 1e-6, JSON.stringify(result));
     }
@@ -64,9 +66,9 @@ export async function verifyInstrumentFX(page, output, deck = null) {
     evidence.push(result);
   }
   // Render the real shared piano through the same mixer for a playable dry/echo comparison.
-  for (const echo of [0, .4]) {
-    const pcm = await page.evaluate(async ({ echo, deck }) => {
-      const { createMixer, updateToneEcho } = await import('./mixer.js');
+  for (const mode of ['dry', 'echo', ...(deck === 'c' ? ['eighth', 'dotted', 'triplet'] : [])]) {
+    const pcm = await page.evaluate(async ({ mode, deck }) => {
+      const { createMixer, updateToneEcho, beatEchoDelay } = await import('./mixer.js');
       const module = await WebAssembly.compile(await (await fetch('./engine/djayvo_live.wasm')).arrayBuffer());
       const { exports: core } = await WebAssembly.instantiate(module);
       core._initialize(); core.djayvo_live_init(48000);
@@ -74,7 +76,7 @@ export async function verifyInstrumentFX(page, output, deck = null) {
       const channel = deck === null ? mixer.rack : deck === 'c' ? mixer.performance : mixer.channels[deck];
       const fx = deck === null ? mixer.rackFX : deck === 'c' ? mixer.performanceFX : mixer.strips[deck].fx;
       channel.gain.value = .65;
-      updateToneEcho(context, fx, 100, echo, 300);
+      updateToneEcho(context, fx, 100, mode === 'dry' ? 0 : .4, ['dry', 'echo'].includes(mode) ? 300 : beatEchoDelay(127190, mode));
       const buffer = context.createBuffer(2, 48000 * 6, 48000);
       const pointer = core.djayvo_live_buffer();
       for (let frame = 0; frame < buffer.length; frame += 128) {
@@ -90,7 +92,7 @@ export async function verifyInstrumentFX(page, output, deck = null) {
       const source = context.createBufferSource(); source.buffer = buffer; source.connect(deck === null || deck === 'c' ? fx.input : mixer.strips[deck].input); source.start();
       const rendered = await context.startRendering();
       return Array.from({ length: rendered.length * 2 }, (_, i) => rendered.getChannelData(i % 2)[Math.floor(i / 2)]);
-    }, { echo, deck });
+    }, { mode, deck });
     assert.ok(pcm.every(Number.isFinite));
     const peak = pcm.reduce((max, value) => Math.max(max, Math.abs(value)), 0);
     assert.ok(peak > .001 && peak < 1);
@@ -100,7 +102,7 @@ export async function verifyInstrumentFX(page, output, deck = null) {
     wav.writeUInt32LE(48000, 24); wav.writeUInt32LE(192000, 28); wav.writeUInt16LE(4, 32); wav.writeUInt16LE(16, 34);
     wav.write('data', 36); wav.writeUInt32LE(pcm.length * 2, 40);
     pcm.forEach((value, i) => wav.writeInt16LE(Math.round(value * 32767), 44 + i * 2));
-    const name = `${deck === null ? '' : `deck-${deck === 0 ? 'a' : deck === 1 ? 'b' : 'c'}-`}piano-${echo ? 'echo' : 'dry'}.wav`;
+    const name = `${deck === null ? '' : `deck-${deck === 0 ? 'a' : deck === 1 ? 'b' : 'c'}-`}piano-${mode}.wav`;
     await fs.writeFile(path.join(output, name), wav);
     evidence.push({ file: name, peak, frames: pcm.length / 2, rate: 48000, noteOn: [0, 96000], noteOff: [24064, 120064] });
   }

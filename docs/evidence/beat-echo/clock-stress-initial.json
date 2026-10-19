@@ -1,0 +1,154 @@
+{
+  "browser": "149.0.7827.55",
+  "blocks": 5612,
+  "silent": 0,
+  "frameGaps": 686,
+  "events": [
+    {
+      "frame": 4224,
+      "expected": 4352,
+      "delta": -128,
+      "block": 32,
+      "sampleRate": 48000,
+      "signalFrame": 4480,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 4480,
+      "expected": 4352,
+      "delta": 128,
+      "block": 33,
+      "sampleRate": 48000,
+      "signalFrame": 4608,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 8960,
+      "expected": 9088,
+      "delta": -128,
+      "block": 69,
+      "sampleRate": 48000,
+      "signalFrame": 9216,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 9216,
+      "expected": 9088,
+      "delta": 128,
+      "block": 70,
+      "sampleRate": 48000,
+      "signalFrame": 9344,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 11392,
+      "expected": 11520,
+      "delta": -128,
+      "block": 88,
+      "sampleRate": 48000,
+      "signalFrame": 11648,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 11648,
+      "expected": 11520,
+      "delta": 128,
+      "block": 89,
+      "sampleRate": 48000,
+      "signalFrame": 11776,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 14208,
+      "expected": 14336,
+      "delta": -128,
+      "block": 110,
+      "sampleRate": 48000,
+      "signalFrame": 14464,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 14464,
+      "expected": 14336,
+      "delta": 128,
+      "block": 111,
+      "sampleRate": 48000,
+      "signalFrame": 14592,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 16768,
+      "expected": 16896,
+      "delta": -128,
+      "block": 130,
+      "sampleRate": 48000,
+      "signalFrame": 17024,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 17024,
+      "expected": 16896,
+      "delta": 128,
+      "block": 131,
+      "sampleRate": 48000,
+      "signalFrame": 17152,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 19072,
+      "expected": 19200,
+      "delta": -128,
+      "block": 148,
+      "sampleRate": 48000,
+      "signalFrame": 19328,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 19328,
+      "expected": 19200,
+      "delta": 128,
+      "block": 149,
+      "sampleRate": 48000,
+      "signalFrame": 19456,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 21760,
+      "expected": 21888,
+      "delta": -128,
+      "block": 169,
+      "sampleRate": 48000,
+      "signalFrame": 22016,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 22016,
+      "expected": 21888,
+      "delta": 128,
+      "block": 170,
+      "sampleRate": 48000,
+      "signalFrame": 22144,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 22912,
+      "expected": 23040,
+      "delta": -128,
+      "block": 178,
+      "sampleRate": 48000,
+      "signalFrame": 23168,
+      "signalFrameGaps": 0
+    },
+    {
+      "frame": 23168,
+      "expected": 23040,
+      "delta": 128,
+      "block": 179,
+      "sampleRate": 48000,
+      "signalFrame": 23296,
+      "signalFrameGaps": 0
+    }
+  ],
+  "signalFrameGaps": 0,
+  "signalFrames": 718336
+}

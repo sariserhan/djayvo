@@ -1,0 +1,21 @@
+{
+  "blocks": 12972,
+  "silent": 0,
+  "frameGaps": 2,
+  "events": [
+    {
+      "frame": 1678464,
+      "expected": 1678592,
+      "delta": -128,
+      "block": 12882,
+      "sampleRate": 48000
+    },
+    {
+      "frame": 1678720,
+      "expected": 1678592,
+      "delta": 128,
+      "block": 12883,
+      "sampleRate": 48000
+    }
+  ]
+}

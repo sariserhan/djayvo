@@ -5,6 +5,14 @@ export function mixGains(crossfade, levels, master) {
   return [(1 - crossfade) * levels[0] * master * .8, crossfade * levels[1] * master * .8];
 }
 
+export function beatEchoDelay(tempoMilliBpm, division) {
+  if (!Number.isInteger(tempoMilliBpm) || tempoMilliBpm < 60000 || tempoMilliBpm > 180000 ||
+      !['eighth', 'dotted', 'triplet'].includes(division))
+    throw new Error('Beat echo requires a confirmed 60–180 BPM performance and supported division.');
+  const beats = division === 'eighth' ? .5 : division === 'dotted' ? .75 : 1 / 3;
+  return 60000000 * beats / tempoMilliBpm;
+}
+
 export function updateToneEcho(context, fx, tone, echo, milliseconds) {
   if (!Number.isFinite(tone) || tone < 0 || tone > 100 ||
       !Number.isFinite(echo) || echo < 0 || echo > .5 ||
@@ -19,6 +27,7 @@ export function updateToneEcho(context, fx, tone, echo, milliseconds) {
   fx.input.frequency.exponentialRampToValueAtTime(frequency, now + .03);
   fx.dry.gain.setTargetAtTime(1 - echo, now, .01);
   fx.wet.gain.setTargetAtTime(echo, now, .01);
+  fx.spacing = milliseconds;
   fx.delays.forEach((delay, i) => delay.delayTime.setTargetAtTime(milliseconds * (i + 1) / 1000, now, .03));
 }
 
@@ -38,7 +47,7 @@ function createToneEcho(context, destination) {
     taps.push(gain);
     return delay;
   });
-  return { input, dry, wet, delays, taps, send };
+  return { input, dry, wet, delays, taps, send, spacing: 300 };
 }
 
 export function clearEcho(context, fx) {
@@ -49,7 +58,8 @@ export function clearEcho(context, fx) {
   fx.send.gain.setValueAtTime(1, context.currentTime + .01);
   fx.delays = fx.delays.map((previous, i) => {
     const delay = context.createDelay(2.4);
-    delay.delayTime.value = previous.delayTime.value;
+    // Preserve the requested spacing, not an intermediate value from an interrupted ramp.
+    delay.delayTime.value = fx.spacing * (i + 1) / 1000;
     fx.send.disconnect(previous); previous.disconnect();
     fx.send.connect(delay); delay.connect(fx.taps[i]);
     return delay;

@@ -1,6 +1,21 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mixGains, validateTrack, updateToneEcho, validatePreparedTrack } from '../mixer.js';
+import { mixGains, validateTrack, updateToneEcho, validatePreparedTrack, beatEchoDelay } from '../mixer.js';
+
+test('beat echo converts validated performance tempo without rounding to the manual slider step', () => {
+  assert.equal(beatEchoDelay(120000, 'eighth'), 250);
+  assert.equal(beatEchoDelay(120000, 'dotted'), 375);
+  assert.equal(beatEchoDelay(120000, 'triplet'), 500 / 3);
+  assert.equal(beatEchoDelay(127190, 'eighth'), 30000000 / 127190);
+  for (const tempo of [60000, 83920, 127190, 180000]) for (const division of ['eighth', 'dotted', 'triplet']) {
+    const delay = beatEchoDelay(tempo, division);
+    assert.ok(delay >= 100 && delay <= 800);
+  }
+  for (const tempo of [NaN, Infinity, 59999, 180001, 120000.5, '120000', null])
+    assert.throws(() => beatEchoDelay(tempo, 'eighth'));
+  for (const division of ['manual', 'quarter', 'toString', null, .5])
+    assert.throws(() => beatEchoDelay(120000, division));
+});
 
 test('linear blend bounds coherent summed peaks and supports channel/master silence', () => {
   assert.deepEqual(mixGains(0, [1, 1], 1), [.8, 0]);

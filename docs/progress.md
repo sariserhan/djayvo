@@ -11,7 +11,15 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local implementation: [Performance C tone and echo](performance-effects.md).
+Latest local implementation: [Rhythmic C echoes and reset timing](beat-echo.md).
+**PASS (technical):** tempo subdivisions, manual/MIDI restoration, requested delay
+retention after mid-ramp clearing; 26 unit, 80 DJ and 50 session checks, integrated/
+offline controls and playable WAVs. Independent PCM counter replaces unreliable
+timestamp-only dropout inference; original failures and calibration retained.
+**PARTIAL:** startup repeatability (DJ17), manual loop reliability (DJ14) and full
+studio. **NOT RUN:** formal listening, physical timing and venue readiness.
+
+Previous local implementation: [Performance C tone and echo](performance-effects.md).
 **PASS (technical):** C preview/bar-entry effects, three additional MIDI Learn
 controls, cleared voice echoes and accurate preview-stop status; 80 DJ/46 session
 and 24 unit checks, integrated/offline audio and playable PCM comparisons.

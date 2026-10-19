@@ -2,6 +2,40 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { analyzeContext } from '../session-analysis.js';
 import { SessionTransport } from '../session-transport.js';
+import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
+
+test('continuity diagnostic counts frame gaps, bounds its trace and resets the measurement window', () => {
+  let Probe;
+  const sandbox = { AudioWorkletProcessor: class { constructor() { this.port = { postMessage(data) { this.report = data; } }; } },
+    currentFrame: 0, sampleRate: 48000, registerProcessor(name, processor) { Probe = processor; } };
+  runInNewContext(readFileSync(new URL('./session-probe.js', import.meta.url), 'utf8'), sandbox);
+  const probe = new Probe(), input = [[new Float32Array(128).fill(.1)]];
+  probe.port.onmessage({ data: 'start' });
+  for (let i = 0; i < 20; i++) { sandbox.currentFrame = i * 256; probe.process(input); }
+  probe.port.onmessage({ data: 'report' });
+  const report = probe.port.report;
+  assert.equal(report.blocks, 20); assert.equal(report.frameGaps, 19); assert.equal(report.silent, 0);
+  assert.equal(report.events.length, 16); assert.equal(report.events[0].delta, 128);
+  assert.equal(report.events[0].frame, 256); assert.equal(report.events[0].expected, 128);
+  probe.port.onmessage({ data: 'start' }); probe.process([[new Float32Array(128)]]);
+  probe.port.onmessage({ data: 'report' });
+  assert.equal(probe.port.report.frameGaps, 0); assert.equal(probe.port.report.events.length, 0);
+  assert.equal(probe.port.report.silent, 1);
+  probe.port.onmessage({ data: 'start' });
+  const reference = offset => Float32Array.from({ length: 128 }, (_, i) => (offset + i + 1) / 8388608);
+  sandbox.currentFrame = 0; probe.process([input[0], [reference(0)]]);
+  sandbox.currentFrame = 0; probe.process([input[0], [reference(128)]]);
+  probe.port.onmessage({ data: 'report' });
+  assert.equal(probe.port.report.frameGaps, 1); assert.equal(probe.port.report.signalFrameGaps, 0);
+  assert.equal(probe.port.report.signalFrames, 256);
+  sandbox.currentFrame = 128; probe.process([input[0], [reference(128)]]);
+  probe.port.onmessage({ data: 'report' });
+  assert.equal(probe.port.report.signalFrameGaps, 1);
+  probe.process([input[0], [reference(512)]]);
+  probe.port.onmessage({ data: 'report' });
+  assert.equal(probe.port.report.signalFrameGaps, 2);
+});
 
 test('bounded context heuristic finds pulse and triad, and treats silence as uncertain', () => {
   const rate = 8000, samples = new Float32Array(rate * 12);

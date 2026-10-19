@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest implementation: [Performance C tone and echo](docs/performance-effects.md).
+Last updated: 2026-10-19 (America/New_York). Latest implementation: [Rhythmic C echoes and reset timing](docs/beat-echo.md).
 Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
 Use this file for past work, open issues and future development. Detailed test
@@ -42,6 +42,19 @@ criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
+
+- [x] **DJ16 — PASS (technical):** [Rhythmic C echoes](docs/beat-echo.md): eighth,
+  dotted-eighth and triplet spacing from confirmed C tempo, retained manual value,
+  disabled MIDI spacing while synced, and requested delay targets preserved when
+  clearing mid-ramp across A/B/C/instruments. 26 unit, 80 DJ and 50 session checks;
+  54 rhythmic tap peaks within half a frame, 24 exact post-clear peaks, six new
+  WAVs and unchanged preceding output. Integrated/offline controls PASS.
+- [ ] **DJ17 — PARTIAL:** [Startup repeatability and continuity diagnostics](docs/beat-echo.md).
+  One Chromium prepared-A signal assertion failed after a 300 ms wait; cause
+  unconfirmed, later runs pass unchanged threshold. Corrected the timestamp-only
+  dropout detector using an independent PCM counter: focused stress reproduced
+  stale timestamps with continuous samples. Final session PCM checks PASS;
+  failed receipts retained, physical/venue validation NOT RUN.
 
 - [x] **DJ15 — PASS (technical):** [Performance C tone and echo](docs/performance-effects.md):
   preview/bar-entry effects before C/Master gains, three MIDI Learn targets,

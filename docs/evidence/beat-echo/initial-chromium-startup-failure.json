@@ -1,0 +1,8 @@
+{
+  "status": "FAIL",
+  "artifacts": "renders/session-chromium-z1SWq1",
+  "check": "Prepared A peak > 0.01 after a 300 ms startup wait",
+  "cause": "Unconfirmed; fresh isolated rerun passed the same unchanged assertion.",
+  "diagnostic_limitation": "Initial assertion did not print measured peak or context state. Test now includes the measured peak and saves context/state/error details on failure.",
+  "echo_checks": "PASS before startup failure, including newly corrected reset timing."
+}

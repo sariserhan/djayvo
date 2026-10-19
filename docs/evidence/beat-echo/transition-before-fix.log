@@ -1,0 +1,16 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: {"mode":"transition","spacing":800,"impulses":[[48000,0.10000002384185791],[73509,0.06578946113586426],[73510,0.0021222829818725586],[99018,0.022283554077148438],[99019,0.001485586166381836],[124527,0.0064994096755981445],[124528,0.0018198490142822266]],"peak":0.10000002384185791,"difference":0.09999997913837433,"stereoError":5.960464477539063e-8,"latePeak":0.06578946113586426,"rms":0.0005464423202630564,"echoes":[{"expectedFrame":86400,"frame":86400,"value":0,"sum":0,"expectedValue":0.06791171477079797},{"expectedFrame":124800,"frame":124800,"value":0,"sum":0,"expectedValue":0.023769100169779286},{"expectedFrame":163200,"frame":163200,"value":0,"sum":0,"expectedValue":0.00831918505942275}]}
+    at verifyInstrumentFX (file:///Users/serhansari/Documents/projects/djayvo/apps/web/tests/instrument-fx.mjs:62:14)
+    at async file:///Users/serhansari/Documents/projects/djayvo/[eval1]:7:3 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

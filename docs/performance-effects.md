@@ -25,7 +25,8 @@ effects. A failed generation or rejected source replacement keeps the previous
 ready C and its settings. Controls are unavailable without a ready, permitted C.
 
 Downloads contain the original generated WAV; live mixer effects are not baked
-into the download. Echo spacing is manual, not beat-synchronized. Changing spacing
+into the download. The subsequent [beat-echo increment](beat-echo.md) adds tempo
+subdivisions to C; the original manual-spacing path remains available. Changing spacing
 bends echo pitch; clearing tails is immediate rather than a click-free effect
 transition. MIDI remains immediate browser dispatch, not sample-frame scheduling.
 

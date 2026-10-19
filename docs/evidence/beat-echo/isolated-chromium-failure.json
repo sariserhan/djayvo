@@ -1,0 +1,69 @@
+{
+  "status": "FAIL",
+  "error": "Expected values to be strictly equal:\n\n2 !== 0\n",
+  "checks": [
+    {
+      "name": "identity, meaningful screen, permission-disabled preparation/capture",
+      "status": "PASS"
+    },
+    {
+      "name": "C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry",
+      "status": "PASS"
+    },
+    {
+      "name": "C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs",
+      "status": "PASS"
+    },
+    {
+      "name": "C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons",
+      "status": "PASS"
+    },
+    {
+      "name": "prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport",
+      "status": "PASS"
+    },
+    {
+      "name": "confirmed major mode reaches the shared planner; all pitched notes belong to its scale",
+      "status": "PASS"
+    },
+    {
+      "name": "ready C effects and synthetic MIDI pickup drive the existing tone control",
+      "status": "PASS"
+    },
+    {
+      "name": "beat sync uses confirmed C tempo, holds manual spacing, blocks mapped spacing and rearms pickup on return",
+      "status": "PASS"
+    },
+    {
+      "name": "consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues",
+      "status": "PASS"
+    },
+    {
+      "name": "complete C performance ends naturally with accurate status while A keeps playing",
+      "status": "PASS"
+    },
+    {
+      "name": "C manual fader/stop do not stop A",
+      "status": "PASS"
+    },
+    {
+      "name": "worker cancellation retains ready C and uninterrupted A; next request excludes recent composition",
+      "status": "PASS"
+    },
+    {
+      "name": "director load failure leaves A and previous ready C intact",
+      "status": "PASS"
+    }
+  ],
+  "state": {
+    "context": {
+      "state": "running",
+      "time": 35.216,
+      "rate": 48000
+    },
+    "status": "Preparation failed; A is unaffected. Your last ready performance is kept.",
+    "error": "The local director could not load. Prepare the offline app and try again.",
+    "meter": 0.04028439521789551,
+    "deck": "Prepared · playing"
+  }
+}

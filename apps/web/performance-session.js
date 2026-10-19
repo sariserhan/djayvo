@@ -1,6 +1,6 @@
 import { decodeAudio, encodeWav } from './audio.js';
 import { SessionTransport } from './session-transport.js';
-import { validatePreparedTrack, updateToneEcho, clearEcho } from './mixer.js';
+import { validatePreparedTrack, updateToneEcho, clearEcho, beatEchoDelay } from './mixer.js';
 import { compositionKey } from './novelty.js';
 
 const $ = id => document.getElementById(id);
@@ -18,13 +18,16 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   function clearCEcho() { if (mixer()) clearEcho(context(), mixer().performanceFX); }
   function effects(reset = false) {
     if (reset) {
-      $('tone-c').value = '100'; $('echo-c').value = '0'; $('delay-c').value = '300';
+      $('tone-c').value = '100'; $('echo-c').value = '0'; $('delay-c').value = '300'; $('echo-grid-c').value = 'manual';
       clearCEcho();
     }
-    const tone = Number($('tone-c').value), echo = Number($('echo-c').value), spacing = Number($('delay-c').value);
+    const division = $('echo-grid-c').value;
+    const tone = Number($('tone-c').value), echo = Number($('echo-c').value);
+    const spacing = division === 'manual' ? Number($('delay-c').value) : beatEchoDelay(generationContext?.tempo, division);
     $('tone-c-value').textContent = tone === 100 ? 'Open' : `${Math.round(200 * 100 ** (tone / 100))} Hz`;
     $('echo-c-value').textContent = echo ? `${Math.round(echo * 100)}%` : 'Off';
-    $('delay-c-value').textContent = `${spacing} ms`;
+    $('delay-c-value').textContent = `${$('delay-c').value} ms`;
+    $('echo-grid-c-value').textContent = division === 'manual' ? '' : `${Number(spacing.toFixed(2))} ms`;
     if (mixer()) updateToneEcho(context(), mixer().performanceFX, tone, echo, spacing);
   }
   function refresh() {
@@ -45,7 +48,8 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     $('c-arm').disabled = !playing || !performanceBuffer || !confirmed() || !permitted() || !!busy || activeC;
     $('c-stop').disabled = !activeC;
     $('c-preview').disabled = playing || !performanceBuffer || !permitted() || !confirmed() || !!busy || activeC;
-    for (const id of ['tone-c', 'echo-c', 'delay-c', 'fx-reset-c']) $(id).disabled = !performanceBuffer || !permitted() || !confirmed();
+    for (const id of ['tone-c', 'echo-c', 'delay-c', 'echo-grid-c', 'fx-reset-c']) $(id).disabled = !performanceBuffer || !permitted() || !confirmed();
+    $('delay-c').disabled ||= $('echo-grid-c').value !== 'manual';
     deck.sessionTime = transport?.a ? Math.max(0, context().currentTime - transport.a.frame / context().sampleRate) : 0;
     deck.sessionPlaying = playing;
     if (activeC) {
@@ -237,7 +241,8 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   };
   $('c-stop').onclick = () => { transport?.stopC(); clearCEcho(); say(transport?.a ? 'C stopped. A continues.' : 'C stopped.'); refresh(); };
   for (const id of ['tone-c', 'echo-c', 'delay-c']) $(id).oninput = () => effects();
-  $('fx-reset-c').onclick = () => effects(true);
+  $('echo-grid-c').onchange = () => { effects(); refresh(); };
+  $('fx-reset-c').onclick = () => { effects(true); refresh(); };
   $('phrase-cancel').onclick = () => { cancel(); say('Preparation cancelled. A continues.'); };
   $('phrase-delete').onclick = deletePhrase;
   $('phrase-consent').onchange = () => { if (!permitted()) deletePhrase(); refresh(); };

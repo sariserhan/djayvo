@@ -98,6 +98,7 @@ try {
   assert.equal(await page.locator('#prepare-a').isDisabled(), true);
   assert.equal(await page.locator('#phrase-record').isDisabled(), true);
   assert.equal(await page.locator('#tone-c').isDisabled(), true);
+  assert.equal(await page.locator('#echo-grid-c').isDisabled(), true);
   check('identity, meaningful screen, permission-disabled preparation/capture');
   const timing = await verifySessionAudio(page);
   await fs.writeFile(path.join(output, 'timing.json'), JSON.stringify(timing, null, 2));
@@ -105,6 +106,7 @@ try {
   const performanceFX = await verifyInstrumentFX(page, output, 'c');
   await fs.writeFile(path.join(output, 'performance-fx.json'), JSON.stringify(performanceFX, null, 2));
   check('C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs');
+  check('C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons');
   const rate = 48000, frames = rate * 90;
   const wav = Buffer.alloc(44 + frames * 2);
   wav.write('RIFF'); wav.writeUInt32LE(wav.length - 8, 4); wav.write('WAVEfmt ', 8); wav.writeUInt32LE(16, 16);
@@ -128,7 +130,7 @@ try {
     const samples = new Float32Array(testMeter.fftSize); testMeter.getFloatTimeDomainData(samples);
     return Math.max(...samples.map(Math.abs));
   });
-  assert.ok(heardA > .01);
+  assert.ok(heardA > .01, `Prepared A peak after startup: ${heardA}`);
   assert.equal(await page.locator('#tone-a').isDisabled(), false);
   await page.locator('#tone-a').fill('0'); await page.locator('#tone-a').dispatchEvent('input');
   await page.waitForTimeout(150);
@@ -142,9 +144,14 @@ try {
   check('prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport');
   await page.evaluate(async () => {
     await testAudioContext.audioWorklet.addModule('./session-probe.js');
-    window.probe = new AudioWorkletNode(testAudioContext, 'continuity-probe');
+    window.probe = new AudioWorkletNode(testAudioContext, 'continuity-probe', { numberOfInputs: 2 });
     const mute = testAudioContext.createGain(); mute.gain.value = 0;
     testMeter.connect(probe); probe.connect(mute); mute.connect(testAudioContext.destination);
+    const counter = testAudioContext.createBufferSource();
+    counter.buffer = testAudioContext.createBuffer(1, 90 * testAudioContext.sampleRate, testAudioContext.sampleRate);
+    const samples = counter.buffer.getChannelData(0);
+    for (let i = 0; i < samples.length; i++) samples[i] = (i + 1) / 8388608;
+    counter.connect(probe, 0, 1); counter.start();
     await new Promise(r => setTimeout(r, 200)); probe.port.postMessage('start');
   });
   await page.locator('#phrase-consent').check();
@@ -175,11 +182,33 @@ try {
   await page.evaluate(() => { midiPorts[0].emit([0xb0, 12, 0]); midiPorts[0].emit([0xb0, 12, 127]); midiPorts[0].emit([0xb0, 12, 0]); });
   assert.equal(await page.locator('#tone-c-value').textContent(), '200 Hz');
   await page.evaluate(() => midiPorts[0].emit([0xb0, 12, 127]));
+  await page.locator('#midi-target').selectOption('delay-c'); await page.locator('#midi-learn').click();
+  await page.evaluate(() => { midiPorts[0].emit([0xb0, 13, 127]); midiPorts[0].emit([0xb0, 13, 127]); });
+  await page.locator('#echo-grid-c').selectOption('dotted');
+  assert.equal(await page.locator('#echo-grid-c-value').textContent(), '375 ms');
+  assert.equal(await page.locator('#delay-c').isDisabled(), true);
+  await page.evaluate(() => midiPorts[0].emit([0xb0, 13, 0]));
+  assert.equal(await page.locator('#delay-c').inputValue(), '800');
+  assert.equal(await page.locator('#echo-grid-c-value').textContent(), '375 ms');
+  await page.locator('#echo-grid-c').selectOption('manual');
+  await page.evaluate(() => midiPorts[0].emit([0xb0, 13, 0]));
+  assert.equal(await page.locator('#delay-c').inputValue(), '800');
+  await page.evaluate(() => { midiPorts[0].emit([0xb0, 13, 127]); midiPorts[0].emit([0xb0, 13, 64]); });
+  assert.equal(await page.locator('#delay-c').inputValue(), '450');
+  await page.locator('#delay-c').fill('800'); await page.locator('#delay-c').dispatchEvent('input');
+  await page.locator('#echo-grid-c').selectOption('eighth');
+  assert.equal(await page.locator('#echo-grid-c-value').textContent(), '250 ms');
   await page.locator('#midi-enable').click();
   check('ready C effects and synthetic MIDI pickup drive the existing tone control');
+  check('beat sync uses confirmed C tempo, holds manual spacing, blocks mapped spacing and rearms pickup on return');
   await page.locator('#c-arm').click();
   await page.waitForFunction(() => document.getElementById('performance-status').textContent.includes('A + C playing'), null, { timeout: 6000 });
   assert.equal(await page.locator('#c-stop').isDisabled(), false);
+  await page.locator('#echo-grid-c').selectOption('triplet');
+  assert.equal(await page.locator('#echo-grid-c-value').textContent(), '166.67 ms');
+  assert.equal(await page.locator('#session-stop').isDisabled(), false);
+  await page.locator('#echo-grid-c').selectOption('manual');
+  assert.equal(await page.locator('#delay-c-value').textContent(), '800 ms');
   check('consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues');
   await page.waitForFunction(() => document.getElementById('c-stop').disabled, null, { timeout: 45000 });
   assert.equal(await page.locator('#session-stop').isDisabled(), false);
@@ -195,6 +224,7 @@ try {
   await page.locator('#phrase-generate').click(); await page.locator('#phrase-cancel').click();
   assert.equal(await page.locator('#performance-download').isVisible(), true);
   assert.equal(await page.locator('#session-stop').isDisabled(), false);
+  await page.locator('#echo-grid-c').selectOption('dotted');
   assert.deepEqual(await page.evaluate(() => historyCounts), [0, 1]);
   check('worker cancellation retains ready C and uninterrupted A; next request excludes recent composition');
   // Reject optional preparation without corrupting the active session.
@@ -205,10 +235,12 @@ try {
   assert.equal(await page.locator('#performance-download').isVisible(), true);
   await page.unroute('**/engine-worker.js');
   check('director load failure leaves A and previous ready C intact');
+  assert.equal(await page.locator('#echo-grid-c').inputValue(), 'dotted');
   const continuity = await page.evaluate(() => new Promise(resolve => { probe.port.onmessage = ({ data }) => resolve(data); probe.port.postMessage('report'); }));
-  assert.ok(continuity.blocks > 100); assert.equal(continuity.silent, 0); assert.equal(continuity.frameGaps, 0);
   await fs.writeFile(path.join(output, 'continuity.json'), JSON.stringify(continuity, null, 2));
-  check('measured callback continuity during generation, entry, cancellation and failed preparation');
+  assert.ok(continuity.blocks > 100); assert.equal(continuity.silent, 0);
+  assert.equal(continuity.signalFrameGaps, 0); assert.equal(continuity.signalFrames, continuity.processedFrames);
+  check('independent PCM counter and nonsilent mix during generation/entry/cancellation; browser timestamp anomalies retained');
   await page.locator('#phrase-file').setInputFiles({ name: 'empty.wav', mimeType: 'audio/wav', buffer: Buffer.alloc(0) });
   await page.waitForFunction(() => document.getElementById('performance-error').textContent.includes('8 MB'));
   assert.equal(await page.locator('#performance-download').isVisible(), true);
@@ -225,6 +257,7 @@ try {
   await capture('mobile.png');
   check('desktop/mobile visible controls and no horizontal overflow');
   await page.locator('#session-stop').click();
+  await page.locator('#echo-grid-c').selectOption('manual');
   await page.locator('#c-level').fill('0.5'); await page.locator('#c-level').dispatchEvent('input');
   await page.locator('#c-preview').click();
   await page.waitForFunction(() => document.getElementById('performance-status').textContent.includes('Previewing C'));
@@ -247,7 +280,10 @@ try {
     return peak;
   });
   assert.ok(afterStop < .0001, `Echo remained after Stop C: ${afterStop}`);
+  await page.locator('#echo-grid-c').selectOption('dotted');
   await page.locator('#fx-reset-c').click();
+  assert.equal(await page.locator('#echo-grid-c').inputValue(), 'manual');
+  assert.equal(await page.locator('#delay-c').isDisabled(), false);
   assert.equal(await page.locator('#echo-c').inputValue(), '0');
   assert.equal(await page.locator('#delay-c').inputValue(), '300');
   await page.locator('#c-preview').click();
@@ -261,6 +297,7 @@ try {
   assert.equal(await page.locator('#performance-download').isVisible(), false);
   assert.equal(await page.locator('#c-preview').isDisabled(), true);
   assert.equal(await page.locator('#tone-c').isDisabled(), true);
+  assert.equal(await page.locator('#echo-grid-c').isDisabled(), true);
   await page.locator('#context-confirmed').check();
   await page.locator('#session-play').click();
   check('changing mode clears ready C and confirmation before playback can resume');
@@ -320,6 +357,8 @@ try {
   assert.equal(await page.locator('#performance-error').innerText(), '');
   await page.locator('#c-arm').click();
   await page.locator('#echo-c').fill('0.5'); await page.locator('#echo-c').dispatchEvent('input');
+  await page.locator('#echo-grid-c').selectOption('triplet');
+  assert.equal(await page.locator('#echo-grid-c-value').textContent(), '166.67 ms');
   await page.waitForFunction(() => document.getElementById('performance-status').textContent.includes('A + C playing'), null, { timeout: 6000 });
   assert.equal(serverRequests.length, requestsBeforeDisconnect);
   assert.equal(await page.evaluate(() => sessionScores[0].key.mode), 'minor');
@@ -327,6 +366,8 @@ try {
   await page.locator('#phrase-consent').uncheck();
   assert.equal(await page.locator('#echo-c').inputValue(), '0');
   assert.equal(await page.locator('#tone-c').isDisabled(), true);
+  assert.equal(await page.locator('#echo-grid-c').inputValue(), 'manual');
+  assert.equal(await page.locator('#echo-grid-c').isDisabled(), true);
   assert.equal(await page.locator('#c-stop').isDisabled(), true);
   assert.equal(await page.locator('#session-stop').isDisabled(), false);
   check('offline consent withdrawal stops C, resets/disables effects and keeps A playing');
@@ -335,6 +376,14 @@ try {
   check('no uploads, external requests or unexpected runtime errors');
   await fs.writeFile(path.join(output, 'report.json'), JSON.stringify({ status: 'PASS', browser: kind, version: browser.version(), checks, timing, continuity, generationSeconds, heardA, expectedErrors, errors, warnings, physical_microphone: 'NOT RUN', listening: 'NOT RUN' }, null, 2));
 } catch (error) {
+  const state = await page.evaluate(() => ({
+    context: window.testAudioContext && { state: testAudioContext.state, time: testAudioContext.currentTime, rate: testAudioContext.sampleRate },
+    status: document.getElementById('performance-status').textContent,
+    error: document.getElementById('performance-error').textContent,
+    meter: document.getElementById('output-meter').value,
+    deck: document.getElementById('state-a').textContent
+  })).catch(() => null);
+  await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ status: 'FAIL', error: error.message, checks, state }, null, 2));
   console.error(await page.locator('#performance-error').innerText().catch(() => 'page unavailable'));
   await page.screenshot({ path: path.join(output, 'failure.png'), timeout: 2000 }).catch(() => {});
   throw error;

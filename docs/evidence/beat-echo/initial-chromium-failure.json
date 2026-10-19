@@ -1,0 +1,9 @@
+{
+  "status": "FAIL",
+  "artifacts": "renders/session-chromium-ZiE4BJ",
+  "failure": "Continuity probe reported 2 frame gaps; silent-block assertion passed before the frame-gap assertion failed.",
+  "concurrent_browser_run": true,
+  "cause": "Unconfirmed; concurrency is an observation, not an established cause.",
+  "diagnostic_limitation": "Original probe did not preserve event timestamps; test now writes continuity JSON before assertions and records up to 16 gap events.",
+  "earlier_checks": "Beat-delay PCM and ready C/MIDI/scheduled-playback checks passed before this failure."
+}
