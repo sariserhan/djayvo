@@ -49,7 +49,7 @@ if(EMSCRIPTEN)
   target_compile_options(djayvo_web PRIVATE -fexceptions)
   target_link_options(djayvo_web PRIVATE
     -fexceptions --no-entry
-    "-sEXPORTED_FUNCTIONS=['_djayvo_web_render','_djayvo_web_session']"
+    "-sEXPORTED_FUNCTIONS=['_djayvo_web_render','_djayvo_web_session','_djayvo_web_session_mode']"
     "-sEXPORTED_RUNTIME_METHODS=['ccall','FS']"
     -sMODULARIZE=1 -sEXPORT_ES6=1 -sENVIRONMENT=web,worker,node
     -sALLOW_MEMORY_GROWTH=1 -sMAXIMUM_MEMORY=536870912 -sSTACK_SIZE=2097152)

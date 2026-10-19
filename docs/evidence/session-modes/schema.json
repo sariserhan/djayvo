@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "checks": 40,
+  "schema": "draft 2020-12",
+  "harmony": "Native validator, not JSON Schema, checks pitches against the mode."
+}

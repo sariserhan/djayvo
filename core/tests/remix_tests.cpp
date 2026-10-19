@@ -73,16 +73,32 @@ void session_context() {
     check(djayvo_next_bar(0,0,48000,0)==-1,"zero tempo accepted");
     check(djayvo_next_bar(48000.0*86400+1,0,48000,120000)==-1,"unbounded frame accepted");
     const auto a=source(); const auto analysis=djayvo::analyze(a);
-    for (unsigned bpm : {60000U,83920U,120000U,180000U}) for (int key=60;key<=71;++key) {
-        const djayvo::MusicalContext context{bpm,key};
+    for (unsigned bpm : {60000U,83920U,120000U,180000U}) for (int key=60;key<=71;++key)
+        for (auto mode : {djayvo::KeyMode::minor,djayvo::KeyMode::major}) {
+        const djayvo::MusicalContext context{bpm,key,mode};
         for (unsigned seed : {0U,4123U,982451653U}) {
             const auto p=djayvo::make_remix(a,analysis,djayvo::Strategy::call_response,seed,true,false,&context);
             djayvo::validate(p,a);
-            check(p.music.tempo_milli_bpm==bpm && p.tonic_midi==key,"context lost");
+            check(p.music.tempo_milli_bpm==bpm && p.tonic_midi==key && p.key_mode==mode,"context lost");
             check(p.music.tempo_changes.empty(),"session must keep constant tempo");
+            const std::set<int> scale=mode==djayvo::KeyMode::major?std::set<int>{0,2,4,5,7,9,11}:std::set<int>{0,2,3,5,7,8,10};
+            bool third=false;
+            for (const auto& track:p.music.tracks) if (track.instrument!=djayvo::Instrument::drums)
+                for (const auto& note:track.notes) {
+                    const int degree=(note.pitch-key+120)%12;
+                    check(scale.count(degree)==1,"session note escaped declared scale");
+                    third|=degree==(mode==djayvo::KeyMode::major?4:3);
+                }
+            check(third,"missing mode-defining third");
+            if (mode==djayvo::KeyMode::major) {
+                auto bad=p;bad.key_mode=static_cast<djayvo::KeyMode>(2);rejects([&]{djayvo::validate(bad,a);});
+                bad=p;bad.music.tracks[0].notes[0].pitch=key+1;
+                bad.music.tracks[0].notes[0].duration=djayvo::ticks_per_quarter;
+                rejects([&]{djayvo::validate(bad,a);});
+            }
         }
     }
-    for (const auto context : {djayvo::MusicalContext{59999,60},{180001,60},{120000,59},{120000,72}})
+    for (const auto context : {djayvo::MusicalContext{59999,60},{180001,60},{120000,59},{120000,72},{120000,60,static_cast<djayvo::KeyMode>(2)}})
         rejects([&]{djayvo::make_remix(a,analysis,djayvo::Strategy::call_response,1,true,false,&context);});
 }
 void hashes() {

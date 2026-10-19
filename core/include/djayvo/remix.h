@@ -41,6 +41,8 @@ struct VocalEvent {
 };
 // Call only after validating the event and crop bounds.
 std::uint64_t vocal_frames(const VocalEvent& event, const Region& clip);
+enum class KeyMode { minor, major };
+bool in_key(int pitch, int tonic, KeyMode mode);
 struct RemixPlan {
     PerformancePlan music;
     Strategy strategy = Strategy::hiphop;
@@ -48,13 +50,14 @@ struct RemixPlan {
     bool synthetic_source = false;
     bool consent_confirmed = false;
     int tonic_midi = 57;
+    KeyMode key_mode = KeyMode::minor;
     double instrument_room_mix = 0; // optional, dry vocals; finite early reflections
     double instrument_reverb_mix = 0; // optional damped feedback, dry vocals, bounded 1.5 s tail
     InputAnalysis analysis;
     std::vector<Region> clips;
     std::vector<VocalEvent> vocals;
 };
-struct MusicalContext { std::uint32_t tempo_milli_bpm; int tonic_midi; };
+struct MusicalContext { std::uint32_t tempo_milli_bpm; int tonic_midi; KeyMode mode = KeyMode::minor; };
 RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& analysis,
                      Strategy strategy, std::uint32_t seed,
                      bool synthetic, bool consent_confirmed, const MusicalContext* context = nullptr);

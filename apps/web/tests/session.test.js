@@ -14,6 +14,10 @@ test('bounded context heuristic finds pulse and triad, and treats silence as unc
   assert.equal(result.tempo.bpm, 120);
   assert.ok(result.tempo.confidence > .7);
   assert.equal(result.keys[0].tonic, 0); assert.equal(result.keys[0].mode, 'minor');
+  const major = Float32Array.from(samples, (_, i) =>
+    .01 * [261.626, 329.628, 391.995].reduce((sum, f) => sum + Math.sin(2 * Math.PI * f * i / rate), 0));
+  const majorTriad = analyzeContext(major, rate).keys[0];
+  assert.equal(majorTriad.tonic, 0); assert.equal(majorTriad.mode, 'major');
   const silent = analyzeContext(new Float32Array(rate * 2), rate);
   assert.equal(silent.tempo.confidence, 0); assert.equal(silent.energy, 0); assert.equal(silent.keys[0].score, 0);
   samples[120] = NaN; assert.throws(() => analyzeContext(samples, rate));

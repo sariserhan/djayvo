@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [MIDI instrument input](docs/midi-input.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [Major/minor prepared performances](docs/session-modes.md).
 Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
 Use this file for past work, open issues and future development. Detailed test
@@ -42,6 +42,12 @@ criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
+
+- [x] **DJ11 — PASS (technical):** [Major/minor context](docs/session-modes.md):
+  all twelve tonics, seeded major progressions and scale-bound answers, validated
+  version 1.7 plan import/export, explicit mode selection and C invalidation.
+  288 native plans, eight Mac/Linux/WASM comparisons and browser/offline checks;
+  historical minor output unchanged. Perceptual quality NOT RUN.
 
 - [x] **DJ10 — PASS (technical):** [MIDI instrument input](docs/midi-input.md):
   explicit single-input permission/selection, note velocity, per-channel sustain,
@@ -84,7 +90,7 @@ closes that task only; it does not automatically pass its parent milestone.
   short callback continuity checks recorded. No learned model or quality claim.
 - [ ] **DJ02 — PARTIAL:** Prepared A/C now share the AudioContext clock using the
   shared C++ bar grid; tempo/triad estimates plus mandatory manual confirmation.
-  Remaining: general beat tracking, major/modulating harmony, unified A/B/C
+  Remaining: general beat tracking, modulating/chord-aware harmony, unified A/B/C
   transport, sample-frame live note/chop scheduling and tempo changes in flight.
 - [ ] **DJ03 — PARTIAL:** Consented capture/import while A plays, source-driven C,
   manual preview/entry/level/stop, local fallback and failure isolation work in

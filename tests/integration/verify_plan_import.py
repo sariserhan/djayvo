@@ -93,6 +93,27 @@ def main(renderer):
                           ('tail',lambda p:p.update(tail_ms=500))]:
             bad=copy.deepcopy(reverb);edit(bad);candidate.write_text(json.dumps(bad))
             run('rejected-reverb-'+name,('--plan',str(candidate)),success=False)
+        major=copy.deepcopy(plans['hiphop'])
+        major['schema_version']='1.7-remix';major['key']['mode']='major'
+        for track in major['tracks']:
+            if track['instrument']=='drums':continue
+            for note in track['events']:
+                if (note['note']-major['key']['tonic_midi'])%12 in (3,8,10):note['note']+=1
+        candidate=root/'major.json';candidate.write_text(json.dumps(major))
+        run('major',('--plan',str(candidate),'--stems'))
+        run('major-replay',('--plan',str(root/'major.hiphop.score.json'),'--stems','--block-size','113'))
+        assert verify_export(root/'major')['artifacts']==verify_export(root/'major-replay')['artifacts']
+        assert json.loads((root/'major.hiphop.score.json').read_text())==major
+        assert (root/'major.hiphop.wav').read_bytes()!=(root/'rules-hiphop.hiphop.wav').read_bytes()
+        for stem in ('vocals','drums'):
+            assert (root/f'major.hiphop.{stem}.wav').read_bytes()==(root/f'rules-hiphop.hiphop.{stem}.wav').read_bytes()
+        for version in range(7):
+            bad=copy.deepcopy(major);bad['schema_version']=f'1.{version}-remix';candidate.write_text(json.dumps(bad))
+            run(f'major-old-{version}',('--plan',str(candidate)),success=False)
+        for name,edit in [('mode',lambda p:p['key'].update(mode='dorian')),
+                         ('harmony',lambda p:p['tracks'][0]['events'][0].update(note=p['key']['tonic_midi']+3,duration_ticks=960))]:
+            bad=copy.deepcopy(major);edit(bad);candidate.write_text(json.dumps(bad))
+            run('major-invalid-'+name,('--plan',str(candidate)),success=False)
         base=plans['hiphop']
         sparse=copy.deepcopy(base)
         selected=add_echoes(sparse,480)

@@ -167,7 +167,8 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
     j.keys({"schema_version","seed","source_asset_id","sample_rate","source","tempo_milli_bpm",
             "ticks_per_quarter","time_signature","target_bars","tail_ms","strategy","key","mix",
             "analysis","sections","voice_clips","voice_events","tracks"},{"tempo_changes"});
-    const bool reverb=j.at("schema_version").string()=="1.6-remix";
+    const bool modes=j.at("schema_version").string()=="1.7-remix";
+    const bool reverb=modes || j.at("schema_version").string()=="1.6-remix";
     const bool sustained=reverb || j.at("schema_version").string()=="1.5-remix";
     const bool guitar=sustained || j.at("schema_version").string()=="1.4-remix";
     const bool timeline=guitar || j.at("schema_version").string()=="1.3-remix";
@@ -196,7 +197,8 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
     p.bars=static_cast<int>(j.at("target_bars").integer(256));p.tail_ms=j.at("tail_ms").integer(10000);
     const auto& key=j.at("key");key.keys({"tonic_midi","mode"});
     r.tonic_midi=static_cast<int>(key.at("tonic_midi").integer(71));
-    if (key.at("mode").string()!="minor") reject("unsupported key mode");
+    if (key.at("mode").string()=="major" && modes) r.key_mode=KeyMode::major;
+    else if (key.at("mode").string()!="minor") reject("unsupported key mode/version");
     const auto& mix=j.at("mix");
     mix.keys({"master_target_peak_dbfs","clean_hook_instrument_duck_db"},{"instrument_room_mix","kick_duck_db","instrument_reverb_mix"});
     if (mix.at("clean_hook_instrument_duck_db").number()!=-16.4781748189) reject("unsupported hook ducking");
@@ -267,11 +269,10 @@ djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer&
                                   static_cast<int>(e.at("note").integer(108)),static_cast<int>(e.at("velocity").integer(127))});
             if (e.has("muted")) track.notes.back().muted=e.at("muted").boolean();
             const auto& note=track.notes.back();
-            const int degree=((note.pitch-r.tonic_midi)%12+12)%12;
-            // The current minor-key contract permits short chromatic passing notes.
+            // Short chromatic passing notes remain permitted in either mode.
             if (track.instrument!=Instrument::drums && note.duration>ticks_per_quarter/2 &&
-                degree!=0 && degree!=2 && degree!=3 && degree!=5 && degree!=7 && degree!=8 && degree!=10)
-                reject("sustained note conflicts with declared minor key");
+                !in_key(note.pitch,r.tonic_midi,r.key_mode))
+                reject("sustained note conflicts with declared key");
         }
         p.tracks.push_back(std::move(track));
     }

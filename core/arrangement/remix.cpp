@@ -92,8 +92,9 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
                      std::uint32_t seed, bool synthetic, bool consent, const MusicalContext* context) {
     strategy_name(strategy);
     if (context && (strategy!=Strategy::call_response || context->tempo_milli_bpm<60000 ||
-        context->tempo_milli_bpm>180000 || context->tonic_midi<60 || context->tonic_midi>71))
-        throw std::invalid_argument("session context requires call-response, 60..180 BPM and a minor tonic C4..B4");
+        context->tempo_milli_bpm>180000 || context->tonic_midi<60 || context->tonic_midi>71 ||
+        (context->mode!=KeyMode::minor && context->mode!=KeyMode::major)))
+        throw std::invalid_argument("session context requires call-response, 60..180 BPM and a major/minor tonic C4..B4");
     if (strategy==Strategy::baseline) return make_baseline(source,a,seed,synthetic,consent);
     if (source.sample_rate<8000 || source.sample_rate>192000 ||
         source.mono.size()<source.sample_rate*2ULL || source.mono.size()>source.sample_rate*5ULL ||
@@ -134,7 +135,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         const int midi = static_cast<int>(std::llround(69 + 12*std::log2(a.pitch_hz/440)));
         r.tonic_midi = 60 + ((midi % 12 + 12) % 12);
     }
-    if (context) r.tonic_midi=context->tonic_midi;
+    if (context) { r.tonic_midi=context->tonic_midi; r.key_mode=context->mode; }
     // Entire source survives unpitched and forward. Edge fades are only 3 ms.
     r.clips.push_back({0,source.mono.size(),1.0});
     for (auto onset : a.onsets) {
@@ -191,7 +192,9 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     const std::array<std::array<int,4>,4> hiphop_progressions{{
         {{0,-4,-7,0}},{{0,-7,-4,-2}},{{0,-2,-4,-7}},{{0,-4,-2,0}}}};
     const auto harmony=(composition>>4U)%4U,groove=seed%4U;
-    const auto progression=hiphop_progressions[harmony];
+    const std::array<std::array<int,4>,4> major_progressions{{
+        {{0,-3,-7,0}},{{0,-7,-3,-5}},{{0,-5,-3,-7}},{{0,-3,-5,0}}}};
+    const auto progression=r.key_mode==KeyMode::major?major_progressions[harmony]:hiphop_progressions[harmony];
     const std::array<std::array<int,4>,8> club_progressions{{
         {{0,0,-4,-4}},{{0,-7,-7,0}},{{0,-4,-2,-7}},{{0,-5,-7,-4}},
         {{0,-4,0,-7}},{{0,-7,-5,-4}},{{0,-2,-4,0}},{{0,-5,-4,-2}}}};
@@ -232,7 +235,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         const auto phrase_bar=static_cast<std::size_t>((std::max(phrase_start,b)-phrase_start)%4);
         const int step=last?0:club?club_progressions[(composition>>6U)%8U][static_cast<std::size_t>(b)%4]:funk?funk_progressions[harmony][phrase_bar]:progression[phrase_bar];
         const int root=r.tonic_midi+step;
-        const bool major=step==-4 || step==-2;
+        const bool major=r.key_mode==KeyMode::major?step!=-3:step==-4 || step==-2;
         // Choose a nearby inversion so each chord voice moves a short distance.
         std::array<int,3> voicing{{root,root+(major?4:3),root+7}};
         int best_distance=1000;

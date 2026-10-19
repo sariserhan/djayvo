@@ -1,0 +1,62 @@
+[
+  {
+    "tempo": 60000,
+    "minor_key": {
+      "tonic_midi": 60,
+      "mode": "minor"
+    },
+    "major_key": {
+      "tonic_midi": 60,
+      "mode": "major"
+    },
+    "changed_pcm": "PASS",
+    "max_absolute_difference": 0.184783935546875,
+    "rms_difference": 0.009764188189407549,
+    "voice_events_clips_and_drum_plan_unchanged": "PASS"
+  },
+  {
+    "tempo": 83920,
+    "minor_key": {
+      "tonic_midi": 60,
+      "mode": "minor"
+    },
+    "major_key": {
+      "tonic_midi": 63,
+      "mode": "major"
+    },
+    "changed_pcm": "PASS",
+    "max_absolute_difference": 0.27593994140625,
+    "rms_difference": 0.015240057769270626,
+    "voice_events_clips_and_drum_plan_unchanged": "PASS"
+  },
+  {
+    "tempo": 120000,
+    "minor_key": {
+      "tonic_midi": 60,
+      "mode": "minor"
+    },
+    "major_key": {
+      "tonic_midi": 66,
+      "mode": "major"
+    },
+    "changed_pcm": "PASS",
+    "max_absolute_difference": 0.451202392578125,
+    "rms_difference": 0.02405760597571356,
+    "voice_events_clips_and_drum_plan_unchanged": "PASS"
+  },
+  {
+    "tempo": 180000,
+    "minor_key": {
+      "tonic_midi": 60,
+      "mode": "minor"
+    },
+    "major_key": {
+      "tonic_midi": 71,
+      "mode": "major"
+    },
+    "changed_pcm": "PASS",
+    "max_absolute_difference": 0.46966552734375,
+    "rms_difference": 0.030313782040361996,
+    "voice_events_clips_and_drum_plan_unchanged": "PASS"
+  }
+]

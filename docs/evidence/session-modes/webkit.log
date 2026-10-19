@@ -1,0 +1,20 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/session-webkit-Ld7sxt
+PASS: identity, meaningful screen, permission-disabled preparation/capture
+PASS: C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry
+PASS: prepared A locks conflicting transport, preserves EQ and produces real mixed audio
+PASS: confirmed major mode reaches the shared planner; all pitched notes belong to its scale
+PASS: consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues
+PASS: complete C performance ends naturally with accurate status while A keeps playing
+PASS: C manual fader/stop do not stop A
+PASS: worker cancellation retains ready C and uninterrupted A; next request excludes recent composition
+PASS: director load failure leaves A and previous ready C intact
+PASS: measured callback continuity during generation, entry, cancellation and failed preparation
+PASS: rejected replacement phrase keeps previous source/performance and A playback
+PASS: desktop/mobile visible controls and no horizontal overflow
+PASS: C preview routes through performance gain, and restarting A cancels the preview
+PASS: changing mode clears ready C and confirmation before playback can resume
+PASS: synthetic microphone capture, decoding and track cleanup while A continues
+PASS: revoked consent rejects late microphone permission and closes its tracks
+PASS: separate phrase and music consent withdrawal clears owned audio and scheduled entry
+PASS: server disconnected: reload, local track analysis, minor rule generation and synchronized C all work
+PASS: no uploads, external requests or unexpected runtime errors

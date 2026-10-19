@@ -45,7 +45,7 @@ both decks. The pages are separate; opening Voice studio ends the DJ session.
 The existing offline preparation includes the DJ page. Reopen it after saving
 app assets, then select local tracks; reload clears the decks. This is manual
 mixing outside prepared mode. The new **Deck C** section can prepare a paused A,
-estimate and confirm its constant tempo/minor key/downbeat, record/import a phrase
+estimate and confirm its constant tempo/tonic/major-or-minor mode/downbeat, record/import a phrase
 while A plays, and generate/preview/arm a local phrase-response performance on
 A's bar grid. C has independent level, stop and WAV download. See the
 [prepared-session guide and evidence](../../docs/prepared-session.md); run

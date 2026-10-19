@@ -7,11 +7,22 @@
 #include <stdexcept>
 
 namespace djayvo {
+bool in_key(int pitch, int tonic, KeyMode mode) {
+    if (mode!=KeyMode::minor && mode!=KeyMode::major) throw std::invalid_argument("unsupported key mode");
+    const int degree=(pitch%12-tonic%12+24)%12;
+    const bool major=mode==KeyMode::major;
+    return degree==0 || degree==2 || degree==(major?4:3) || degree==5 || degree==7 ||
+           degree==(major?9:8) || degree==(major?11:10);
+}
 std::uint64_t vocal_frames(const VocalEvent& e,const Region& clip) {
     return static_cast<std::uint64_t>(std::ceil(static_cast<double>(clip.end-clip.begin)*e.time_stretch/e.rate));
 }
 void validate(const RemixPlan& r, const AudioBuffer& source) {
     validate(r.music); strategy_name(r.strategy);
+    in_key(r.tonic_midi,r.tonic_midi,r.key_mode);
+    if (r.key_mode==KeyMode::major) for (const auto& track:r.music.tracks) for (const auto& note:track.notes)
+        if (track.instrument!=Instrument::drums && note.duration>ticks_per_quarter/2 && !in_key(note.pitch,r.tonic_midi,r.key_mode))
+            throw std::invalid_argument("sustained note conflicts with declared major key");
     if (!r.synthetic_source && !r.consent_confirmed)
         throw std::invalid_argument("recorded input requires explicit consent to process");
     if (source.sample_rate != r.music.sample_rate || source.mono.empty() ||
@@ -123,7 +134,7 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
     const bool sustained=std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return t.instrument>=Instrument::organ;});
     const bool guitar=std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return t.instrument==Instrument::guitar;});
     const bool timeline=!p.tempo_changes.empty() || std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return !t.automation.empty();});
-    out<<"{\n  \"schema_version\": \""<<(r.instrument_reverb_mix>0?"1.6-remix":sustained?"1.5-remix":guitar?"1.4-remix":timeline?"1.3-remix":echoes?"1.2-remix":transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
+    out<<"{\n  \"schema_version\": \""<<(r.key_mode==KeyMode::major?"1.7-remix":r.instrument_reverb_mix>0?"1.6-remix":sustained?"1.5-remix":guitar?"1.4-remix":timeline?"1.3-remix":echoes?"1.2-remix":transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
        <<",\n  \"source_asset_id\": \"sha256:"<<source.sha256<<"\",\n  \"sample_rate\": "<<p.sample_rate
        <<",\n  \"source\": {\"sha256\": \""<<source.sha256<<"\", \"original_rate\": "<<source.original_rate
        <<", \"original_frames\": "<<source.original_frames<<", \"processed_frames\": "<<source.mono.size()
@@ -132,7 +143,7 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
        <<"  \"tempo_milli_bpm\": "<<p.tempo_milli_bpm<<",\n  \"ticks_per_quarter\": 960,\n"
        <<"  \"time_signature\": ["<<p.numerator<<", "<<p.denominator<<"],\n  \"target_bars\": "<<p.bars
        <<",\n  \"tail_ms\": "<<p.tail_ms<<",\n  \"strategy\": \""<<strategy_name(r.strategy)
-       <<"\",\n  \"key\": {\"tonic_midi\": "<<r.tonic_midi<<", \"mode\": \"minor\"},\n"
+       <<"\",\n  \"key\": {\"tonic_midi\": "<<r.tonic_midi<<", \"mode\": \""<<(r.key_mode==KeyMode::major?"major":"minor")<<"\"},\n"
        <<"  \"mix\": {\"master_target_peak_dbfs\": "<<p.ceiling_dbfs
        <<", \"clean_hook_instrument_duck_db\": -16.4781748189, \"instrument_room_mix\": "<<r.instrument_room_mix;
     if (r.instrument_reverb_mix>0) out<<", \"instrument_reverb_mix\": "<<r.instrument_reverb_mix;

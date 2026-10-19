@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "scope": "Major/minor context for prepared A/C; rule-based planner",
+  "full_specification": "PARTIAL",
+  "native_mac": "15/15 PASS",
+  "native_linux": "15/15 PASS (actual Debian 12 arm64)",
+  "context_matrix": "288 plans: 12 tonics x two modes x four tempi x three seeds",
+  "schema": "40 checks PASS",
+  "unit": "23/23 PASS",
+  "voice_regressions": "40 PASS",
+  "browser_sessions": {
+    "chromium": {
+      "status": "PASS",
+      "checks": 19,
+      "version": "149.0.7827.55",
+      "artifacts": "renders/session-chromium-EB1cua"
+    },
+    "webkit": {
+      "status": "PASS",
+      "checks": 19,
+      "version": "26.5",
+      "artifacts": "renders/session-webkit-Ld7sxt"
+    }
+  },
+  "integrated_site": "PASS: Chromium/WebKit, major C preview, desktop/mobile screenshots, no overflow or page errors",
+  "event_frame_agreement": "PASS: eight Mac/Linux/WASM plans and event traces exact; six-hour grid exact",
+  "waveform_max_absolute_difference": 0,
+  "waveform_rms_difference": 0,
+  "historical_minor_preservation": "PASS: four prior scores/events/WAVs exact",
+  "legacy_minor_wasm_abi": "PASS",
+  "mode_change_invalidation": "PASS",
+  "offline": "PASS: actual disconnected-server reload; local analysis/generation/A+C",
+  "physical_mic_and_output_latency": "NOT RUN",
+  "actual_linux_browser": "NOT RUN",
+  "modulation_and_chord_tracking": "NOT RUN",
+  "venue_endurance": "NOT RUN",
+  "formal_listening": "NOT RUN",
+  "learned_director": "NOT RUN",
+  "production_release": "NOT RUN",
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/x.mp3": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+    "/Users/serhansari/Downloads/y.mp3": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+    "/Users/serhansari/Downloads/z.mp3": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63",
+    "/Users/serhansari/Downloads/pipe.mp3": "e57756d665c676e876bc7b25abf6d97bd88d137c889eebd633ade0d353919bc8"
+  },
+  "playable_outputs": [
+    "renders/session-modes-mac-20261018",
+    "renders/session-modes-wasm-20261018",
+    "renders/arrangement-linux/session-modes-linux-20261018"
+  ],
+  "qa_notes": [
+    "Browser execution tool unavailable; repository Playwright fallback.",
+    "Two pre-existing WASM 64-to-32 vector-index conversion warnings in bounded chop_region loop; no new compiler warning.",
+    "No test failure in final mode implementation runs; earlier environment probe found jsonschema absent in build environment, existing analysis environment used without installing dependencies."
+  ],
+  "sanitizers": "PASS: address/undefined behavior, remix_core and plan_import",
+  "integrated_loudness_range_lufs": [
+    -24.6,
+    -23.4
+  ],
+  "true_peak_range_dbfs": [
+    -7.9,
+    -7.8
+  ]
+}

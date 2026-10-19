@@ -12,8 +12,8 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   const say = text => { $('performance-status').textContent = text; };
   const confirmed = () => rights.checked && $('context-confirmed').checked && !!prepared;
   const permitted = () => $('phrase-consent').checked;
-  const currentContext = () => ({ tempo: Math.round(Number($('session-bpm').value) * 1000), tonic: Number($('session-key').value) });
-  notes.forEach((name, i) => { const option = document.createElement('option'); option.value = 60 + i; option.textContent = `${name} minor`; $('session-key').append(option); });
+  const currentContext = () => ({ tempo: Math.round(Number($('session-bpm').value) * 1000), tonic: Number($('session-key').value), mode: $('session-mode').value });
+  notes.forEach((name, i) => { const option = document.createElement('option'); option.value = 60 + i; option.textContent = name; $('session-key').append(option); });
   $('session-key').value = '69';
   function refresh() {
     const playing = !!transport?.a, activeC = !!transport?.c;
@@ -22,7 +22,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     $('session-play').disabled = !confirmed() || playing || !!busy;
     $('session-stop').disabled = !playing;
     $('context-confirmed').disabled = !prepared || playing || !!busy;
-    for (const id of ['session-bpm', 'session-key', 'session-downbeat']) $(id).disabled = playing || !!busy;
+    for (const id of ['session-bpm', 'session-key', 'session-mode', 'session-downbeat']) $(id).disabled = playing || !!busy;
     $('phrase-record').disabled = !permitted() || (!!busy && busy !== 'recording');
     $('phrase-record').textContent = busy === 'recording' ? 'Stop recording' : 'Record phrase';
     $('phrase-file').disabled = !permitted() || !!busy;
@@ -95,11 +95,11 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
       prepared = buffer; deck.prepared = true;
       transport = new SessionTransport(context(), engine.djayvo_next_bar, refresh);
       const key = analysis.keys[0];
-      $('context-analysis').textContent = `First 30 s estimate: ${analysis.tempo.bpm} BPM (pulse correlation ${analysis.tempo.confidence.toFixed(2)}); strongest triad ${notes[key.tonic]} ${key.mode}. Tempo may be half/double; triads do not establish a key. Confirm a minor-key context and downbeat yourself. A will play at original speed.`;
+      $('context-analysis').textContent = `First 30 s estimate: ${analysis.tempo.bpm} BPM (pulse correlation ${analysis.tempo.confidence.toFixed(2)}); strongest triad ${notes[key.tonic]} ${key.mode}. Tempo may be half/double; triads do not establish a key. Confirm the tonic, major/minor mode and downbeat yourself. A will play at original speed.`;
       if (analysis.tempo.confidence > .3) $('session-bpm').value = analysis.tempo.bpm;
-      if (key.mode === 'minor' && key.score > 0) $('session-key').value = 60 + key.tonic;
+      if (key.score > 0) { $('session-key').value = 60 + key.tonic; $('session-mode').value = key.mode; }
       $('session-downbeat').max = buffer.duration; $('context-confirmed').checked = false;
-      say('A prepared. Check its tempo, minor key and first downbeat, then confirm.');
+      say('A prepared. Check its tempo, key and first downbeat, then confirm.');
     } catch (failure) { if (token === revision) error(failure); }
     finally {
       if (token === revision) { worker?.terminate(); worker = undefined; clearTimeout(timer); busy = ''; deck.preparing = false; refresh(); }
@@ -118,7 +118,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     } catch (failure) { error(failure); }
   };
   $('session-stop').onclick = () => { stop(); say('A + C stopped. Ready to start A again from the beginning.'); };
-  for (const id of ['session-bpm', 'session-key', 'session-downbeat', 'context-confirmed']) $(id).addEventListener('change', () => {
+  for (const id of ['session-bpm', 'session-key', 'session-mode', 'session-downbeat', 'context-confirmed']) $(id).addEventListener('change', () => {
     cancel(); stop(); clearPerformance(); if (id !== 'context-confirmed') $('context-confirmed').checked = false;
     refresh();
   });
@@ -189,7 +189,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
         }
         const score = JSON.parse(new TextDecoder().decode(data.files.find(f => f.name.endsWith('.score.json')).bytes));
         const report = JSON.parse(new TextDecoder().decode(data.files.find(f => f.name.endsWith('.report.json')).bytes));
-        if (score.tempo_milli_bpm !== requested.tempo || score.key.tonic_midi !== requested.tonic || report.technical_render !== 'PASS' || report.nonfinite_samples !== 0)
+        if (score.tempo_milli_bpm !== requested.tempo || score.key.tonic_midi !== requested.tonic || score.key.mode !== requested.mode || report.technical_render !== 'PASS' || report.nonfinite_samples !== 0)
           throw new Error('The performance did not match the confirmed context.');
         const bytes = data.files.find(f => f.name.endsWith('.wav')).bytes;
         const key = await compositionKey(score);

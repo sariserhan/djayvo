@@ -8,15 +8,16 @@ self.onmessage = async ({ data }) => {
       || !['three', 'club', 'funk', 'call_response', 'hybrid'].includes(data.style)) throw new Error('Invalid recording or permission.');
     if (data.context && (data.style !== 'call_response' ||
       !Number.isInteger(data.context.tempo) || data.context.tempo < 60000 || data.context.tempo > 180000 ||
-      !Number.isInteger(data.context.tonic) || data.context.tonic < 60 || data.context.tonic > 71))
-      throw new Error('Invalid session context. Confirm tempo and minor key.');
+      !Number.isInteger(data.context.tonic) || data.context.tonic < 60 || data.context.tonic > 71 ||
+      ![undefined, 'minor', 'major'].includes(data.context.mode)))
+      throw new Error('Invalid session context. Confirm tempo, tonic and major/minor mode.');
     const engine = await createEngine();
     engine.FS.writeFile('/input.wav', new Uint8Array(data.wav));
     self.postMessage({ type: 'rendering' });
     const styles = data.style === 'three' ? ['hiphop', 'reggae', 'experimental'] : [data.style];
     const selection = await selectFresh(data.seed, data.recent ?? [], async seed => {
-      const error = data.context ? engine.ccall('djayvo_web_session', 'string', ['number', 'number', 'number', 'number'],
-        [seed, data.context.tempo, data.context.tonic, 1]) : engine.ccall('djayvo_web_render', 'string', ['number', 'number', 'number'],
+      const error = data.context ? engine.ccall('djayvo_web_session_mode', 'string', ['number', 'number', 'number', 'number', 'number'],
+        [seed, data.context.tempo, data.context.tonic, data.context.mode === 'major' ? 1 : 0, 1]) : engine.ccall('djayvo_web_render', 'string', ['number', 'number', 'number'],
         [seed, ['three', 'club', 'funk', 'call_response', 'hybrid'].indexOf(data.style), 1]);
       if (error) throw new Error(error);
       return styles.map(style => JSON.parse(engine.FS.readFile(`/mix.${style}.score.json`, { encoding: 'utf8' })));

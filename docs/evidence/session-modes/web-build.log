@@ -1,0 +1,38 @@
+Setting up EMSDK environment (suppress these messages with EMSDK_QUIET=1)
+Adding directories to PATH:
+PATH += /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk
+PATH += /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten
+
+Setting environment variables:
+PATH = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk:/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten:/opt/homebrew/opt/openjdk/bin:/Users/serhansari/.nvm/versions/node/v22.23.1/bin:/Users/serhansari/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/podman/bin:/Users/serhansari/.codex/tmp/arg0/codex-arg07otU96:/Users/serhansari/mlx-env/bin:/Users/serhansari/.unity/bin:/Users/serhansari/.cargo/bin:/Applications/CODE/iTerm.app/Contents/Resources/utilities:/opt/homebrew/share/android-commandlinetools/platform-tools:/Users/serhansari/.vscode/extensions/openai.chatgpt-26.51007.21434-darwin-arm64/bin/macos-aarch64
+EMSDK = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk
+EMSDK_NODE = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/node/24.19.0_64bit/bin/node
+EMSDK_PYTHON = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/python/3.13.3_64bit/bin/python3
+SSL_CERT_FILE = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/python/3.13.3_64bit/lib/python3.13/site-packages/certifi/cacert.pem
+emcmake: cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE=/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_CROSSCOMPILING_EMULATOR=/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/node/24.19.0_64bit/bin/node in directory /Users/serhansari/Documents/projects/djayvo
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-web
+[ 23%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/input.cpp.o
+[ 23%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/remix.cpp.o
+[ 23%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/remix_plan.cpp.o
+[ 23%] Building CXX object CMakeFiles/djayvo_core.dir/core/composition/analysis.cpp.o
+/Users/serhansari/Documents/projects/djayvo/core/arrangement/remix.cpp:79:99: warning: implicit conversion loses integer precision: 'std::uint64_t' (aka 'unsigned long long') to 'size_type' (aka 'unsigned long') [-Wshorten-64-to-32]
+   79 |         for (auto i=frame;i<frame+hop;++i) power+=static_cast<double>(source.mono[i])*source.mono[i];
+      |                                                                                       ~~~~~~      ^
+/Users/serhansari/Documents/projects/djayvo/core/arrangement/remix.cpp:79:83: warning: implicit conversion loses integer precision: 'std::uint64_t' (aka 'unsigned long long') to 'size_type' (aka 'unsigned long') [-Wshorten-64-to-32]
+   79 |         for (auto i=frame;i<frame+hop;++i) power+=static_cast<double>(source.mono[i])*source.mono[i];
+      |                                                                       ~~~~~~      ^
+[ 29%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_renderer.cpp.o
+[ 35%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/remix_file.cpp.o
+[ 41%] Building CXX object CMakeFiles/djayvo_core.dir/core/audio/c_api.cpp.o
+2 warnings generated.
+[ 47%] Linking CXX static library libdjayvo_core.a
+[ 88%] Built target djayvo_core
+[ 94%] Building CXX object CMakeFiles/djayvo_web.dir/apps/web/bridge.cpp.o
+[100%] Linking CXX executable djayvo_web.mjs
+[100%] Built target djayvo_web
+[ 88%] Built target djayvo_core
+[ 94%] Linking CXX executable djayvo_live.wasm
+[100%] Built target djayvo_live
+Built dist/web. Start with: python3 scripts/web_serve.py

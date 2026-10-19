@@ -57,7 +57,9 @@ inside the render callback; no third-party runtime dependency was added.
 - Reuse native validation for tempo, bars, section coverage, 20–40 s duration,
   2–5 s source, event/sample bounds, note releases, room tails, mix levels,
   128 instrument voices, 16 source voices and at least one clean hook.
-- Sustained pitched notes must belong to the declared natural minor key. Short
+- Sustained pitched notes must belong to the declared natural minor key, or
+  major key in version **1.7-remix**. Older versions reject major; see
+  [mode validation and current evidence](session-modes.md). Short
   chromatic notes up to half a quarter note are allowed, including the existing
   baseline's passing tone. This is a limited tonal constraint, not proof of good
   harmony, phrase intelligibility or musical coherence.

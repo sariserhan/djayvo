@@ -1,0 +1,30 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "url": "http://localhost:3000/studio/dj.html",
+    "gate": "PASS",
+    "checks": [
+      "page identity and content",
+      "prepared A audible PCM",
+      "integrated worker/context engine/WAV",
+      "C preview",
+      "desktop/mobile screenshots and no overflow",
+      "no page errors"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "url": "http://localhost:3000/studio/dj.html",
+    "gate": "PASS",
+    "checks": [
+      "page identity and content",
+      "prepared A audible PCM",
+      "integrated worker/context engine/WAV",
+      "C preview",
+      "desktop/mobile screenshots and no overflow",
+      "no page errors"
+    ]
+  }
+]

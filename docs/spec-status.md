@@ -11,7 +11,13 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local implementation: [MIDI instrument input](midi-input.md).
+Latest local implementation: [Major/minor prepared performances](session-modes.md).
+**PASS (technical):** 288 context plans, actual Mac/Linux tests, eight exact
+Mac/Linux/WASM event/PCM comparisons, unchanged historical minor outputs and
+major-mode browser generation with safe context changes. **PARTIAL:** full live
+studio. **NOT RUN:** new formal listening, physical timing and venue readiness.
+
+Previous local implementation: [MIDI instrument input](midi-input.md).
 **PASS (technical):** opt-in input selection, velocity, channel sustain and drum
 mapping, safe switching/disconnect/permission races, real worklet output and
 cached operation. Chromium/WebKit synthetic-port and integrated-site evidence

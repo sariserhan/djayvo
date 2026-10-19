@@ -24,7 +24,7 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     await page.locator('#prepare-a').click();
     await page.waitForFunction(() => !document.getElementById('context-confirmed').disabled, null, { timeout: 30000 });
     await page.locator('#session-bpm').fill('60'); await page.locator('#session-bpm').dispatchEvent('change');
-    await page.locator('#session-key').selectOption('60'); await page.locator('#context-confirmed').check();
+    await page.locator('#session-key').selectOption('60'); await page.locator('#session-mode').selectOption('major'); await page.locator('#context-confirmed').check();
     await page.locator('#session-play').click();
     await page.waitForFunction(() => Number(document.getElementById('output-meter').value) > .001);
     await page.locator('#phrase-consent').check();

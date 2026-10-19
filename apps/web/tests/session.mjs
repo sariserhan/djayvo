@@ -36,8 +36,14 @@ let screenshot = false;
 // Silence only the physical test output, downstream of the application's measured mix.
 await context.addInitScript(() => {
   const NativeWorker = window.Worker;
-  window.historyCounts = [];
+  window.historyCounts = []; window.sessionScores = [];
   window.Worker = class extends NativeWorker {
+    constructor(...args) {
+      super(...args);
+      this.addEventListener('message', ({data}) => {
+        if (data.type === 'complete') sessionScores.push(JSON.parse(new TextDecoder().decode(data.files.find(f => f.name.endsWith('.score.json')).bytes)));
+      });
+    }
     postMessage(data, transfer) {
       if (data?.style === 'call_response') window.historyCounts.push(data.recent.length);
       return super.postMessage(data, transfer);
@@ -106,6 +112,7 @@ try {
   assert.equal(await page.locator('#eq-a-0').isDisabled(), false);
   await page.locator('#session-bpm').fill('120'); await page.locator('#session-bpm').dispatchEvent('change');
   await page.locator('#session-key').selectOption('60');
+  await page.locator('#session-mode').selectOption('major');
   await page.locator('#context-confirmed').check();
   await page.locator('#session-play').click();
   await page.waitForFunction(() => !document.getElementById('session-stop').disabled);
@@ -131,6 +138,13 @@ try {
   await page.waitForFunction(() => !document.getElementById('performance-download').hidden || document.getElementById('performance-error').textContent, null, { timeout: 120000 });
   assert.equal(await page.locator('#performance-error').innerText(), '');
   const generationSeconds = (performance.now() - generationBegan) / 1000;
+  const majorScore = await page.evaluate(() => sessionScores[0]);
+  assert.deepEqual(majorScore.key, { tonic_midi: 60, mode: 'major' });
+  assert.equal(majorScore.schema_version, '1.7-remix');
+  for (const track of majorScore.tracks) if (track.instrument !== 'drums') for (const event of track.events)
+    assert.ok([0,2,4,5,7,9,11].includes((event.note - 60 + 120) % 12));
+  assert.equal(await page.locator('#session-mode').isDisabled(), true);
+  check('confirmed major mode reaches the shared planner; all pitched notes belong to its scale');
   const downloaded = page.waitForEvent('download');
   await page.locator('#performance-download').click();
   await (await downloaded).saveAs(path.join(output, 'consented-performance.wav'));
@@ -188,6 +202,14 @@ try {
   await page.locator('#session-play').click();
   assert.equal(await page.locator('#c-stop').isDisabled(), true);
   check('C preview routes through performance gain, and restarting A cancels the preview');
+  await page.locator('#session-stop').click();
+  await page.locator('#session-mode').selectOption('minor');
+  assert.equal(await page.locator('#context-confirmed').isChecked(), false);
+  assert.equal(await page.locator('#performance-download').isVisible(), false);
+  assert.equal(await page.locator('#c-preview').isDisabled(), true);
+  await page.locator('#context-confirmed').check();
+  await page.locator('#session-play').click();
+  check('changing mode clears ready C and confirmation before playback can resume');
   // Synthetic microphone stream tests browser capture/lifecycle, not physical input.
   await page.evaluate(() => {
     window.originalCapture = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
@@ -234,7 +256,7 @@ try {
   await page.locator('#prepare-a').click();
   await page.waitForFunction(() => !document.getElementById('context-confirmed').disabled, null, { timeout: 30000 });
   await page.locator('#session-bpm').fill('120'); await page.locator('#session-bpm').dispatchEvent('change');
-  await page.locator('#session-key').selectOption('60'); await page.locator('#context-confirmed').check();
+  await page.locator('#session-key').selectOption('60'); await page.locator('#session-mode').selectOption('minor'); await page.locator('#context-confirmed').check();
   await page.locator('#session-play').click();
   await page.locator('#phrase-consent').check();
   await page.locator('#phrase-file').setInputFiles(path.join(root, 'renders/voice-20261017-221411/source-pcm.wav'));
@@ -245,7 +267,8 @@ try {
   await page.locator('#c-arm').click();
   await page.waitForFunction(() => document.getElementById('performance-status').textContent.includes('A + C playing'), null, { timeout: 6000 });
   assert.equal(serverRequests.length, requestsBeforeDisconnect);
-  check('server disconnected: reload, local track analysis, rule generation and synchronized C all work');
+  assert.equal(await page.evaluate(() => sessionScores[0].key.mode), 'minor');
+  check('server disconnected: reload, local track analysis, minor rule generation and synchronized C all work');
   assert.deepEqual(errors, []);
   assert.ok(requests.every(url => url.startsWith(origin) || url.startsWith('blob:')));
   check('no uploads, external requests or unexpected runtime errors');

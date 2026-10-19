@@ -32,17 +32,23 @@ extern "C" const char* djayvo_web_render(unsigned seed, unsigned direction, unsi
 }
 
 // Session generation uses the same validated planner and renderer in a worker.
-extern "C" const char* djayvo_web_session(unsigned seed, unsigned tempo, unsigned tonic, unsigned permission) {
+extern "C" const char* djayvo_web_session_mode(unsigned seed, unsigned tempo, unsigned tonic, unsigned mode, unsigned permission) {
     static std::string error;
     error.clear();
     try {
         if (permission != 1) throw std::invalid_argument("Confirm recording permission.");
         const auto source=djayvo::resample(djayvo::read_wav("/input.wav"),48000);
-        const djayvo::MusicalContext context{tempo,static_cast<int>(tonic)};
+        if (mode>1) throw std::invalid_argument("Invalid context mode.");
+        const djayvo::MusicalContext context{tempo,static_cast<int>(tonic),static_cast<djayvo::KeyMode>(mode)};
         const auto plan=djayvo::make_remix(source,djayvo::analyze(source),djayvo::Strategy::call_response,
                                           seed,false,true,&context);
         djayvo::render_remix(plan,source,"/mix.call_response");
     } catch (const std::exception& e) { error=e.what(); }
       catch (...) { error="Session generation failed."; }
     return error.c_str();
+}
+
+// Preserve callers of the original minor-only entry point.
+extern "C" const char* djayvo_web_session(unsigned seed, unsigned tempo, unsigned tonic, unsigned permission) {
+    return djayvo_web_session_mode(seed,tempo,tonic,0,permission);
 }

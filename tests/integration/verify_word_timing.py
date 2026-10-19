@@ -34,7 +34,7 @@ crowded=copy.deepcopy(plan);crowded['voice_events'].append({**plan['voice_events
 echoed=copy.deepcopy(plan)
 echoed['voice_events'][0].update(start_tick=5000,clean=False,echo_ticks=960)
 assert align(echoed,timing)[1]==[], 'previous echo tail must retain its clearance'
-for version in ('1.0-remix','1.1-remix','1.2-remix','1.3-remix','1.4-remix','1.5-remix','1.6-remix'):
+for version in ('1.0-remix','1.1-remix','1.2-remix','1.3-remix','1.4-remix','1.5-remix','1.6-remix','1.7-remix'):
     candidate=copy.deepcopy(plan);candidate['schema_version']=version;add_echoes(candidate,480)
     assert candidate['schema_version']==('1.2-remix' if version in ('1.0-remix','1.1-remix') else version)
 b=io.BytesIO()
