@@ -50,6 +50,8 @@ while A plays, and generate/preview/arm a local phrase-response performance on
 A's bar grid. C has independent level, stop and WAV download. See the
 [prepared-session guide and evidence](../../docs/prepared-session.md); run
 `node apps/web/tests/session.mjs` and repeat with `DJAYVO_BROWSER=webkit`.
+If A or C shows **Starting**, its Stop button cancels the pending request; a
+failed start can be retried without reloading or losing the prepared performance.
 Cue routing and learned AI remain unimplemented. See
 [checks and limits](../../docs/dj-console.md). Run the dedicated checks with
 `node apps/web/tests/dj.mjs` (from the root), then the same command with

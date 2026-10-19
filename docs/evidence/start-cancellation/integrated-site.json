@@ -1,0 +1,34 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "url": "http://localhost:3000/studio/dj.html",
+    "gate": "PASS",
+    "checks": [
+      "page identity and content",
+      "pending A and C: disabled duplicate start, enabled stop, desktop/mobile screenshots, cancel and late resume",
+      "prepared A audible PCM",
+      "prepared A effects enabled, echo readout/reset and deck screenshots",
+      "integrated worker/context engine/WAV",
+      "C preview, tone and tempo-synced dotted eighth echo at 60 BPM",
+      "desktop/mobile screenshots and no overflow",
+      "no page errors"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "url": "http://localhost:3000/studio/dj.html",
+    "gate": "PASS",
+    "checks": [
+      "page identity and content",
+      "pending A and C: disabled duplicate start, enabled stop, desktop/mobile screenshots, cancel and late resume",
+      "prepared A audible PCM",
+      "prepared A effects enabled, echo readout/reset and deck screenshots",
+      "integrated worker/context engine/WAV",
+      "C preview, tone and tempo-synced dotted eighth echo at 60 BPM",
+      "desktop/mobile screenshots and no overflow",
+      "no page errors"
+    ]
+  }
+]

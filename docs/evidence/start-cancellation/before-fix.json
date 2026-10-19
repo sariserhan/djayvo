@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "error": "a: pending start must prevent duplicate requests\n\nfalse !== true\n",
+  "checks": [
+    {
+      "name": "identity, meaningful screen, permission-disabled preparation/capture",
+      "status": "PASS"
+    },
+    {
+      "name": "C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry",
+      "status": "PASS"
+    },
+    {
+      "name": "C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs",
+      "status": "PASS"
+    },
+    {
+      "name": "C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons",
+      "status": "PASS"
+    }
+  ],
+  "state": {
+    "context": {
+      "state": "running",
+      "time": 0.17066666666666666,
+      "rate": 48000
+    },
+    "status": "A prepared. Check its tempo, key and first downbeat, then confirm.",
+    "error": "",
+    "meter": 0,
+    "deck": "Prepared session"
+  }
+}

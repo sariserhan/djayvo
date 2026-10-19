@@ -6,7 +6,7 @@ import { compositionKey } from './novelty.js';
 const $ = id => document.getElementById(id);
 const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
 export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights }) {
-  let prepared, transport, samples, performanceBuffer, download, busy = '', revision = 0, startVersion = 0;
+  let prepared, transport, samples, performanceBuffer, download, busy = '', starting = '', revision = 0, startVersion = 0;
   let worker, timer, recorder, stream, recordingAt, generationContext, recent = [], wasA = false, wasC = false;
   const error = failure => { $('performance-error').textContent = failure.message || String(failure); };
   const say = text => { $('performance-status').textContent = text; };
@@ -35,19 +35,19 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     if (wasC && !activeC) clearCEcho();
     $('prepare-a').disabled = !rights.checked || !deck.file || !deck.audio.paused || !!deck.loading || !!busy || !!prepared || deck.starting;
     $('release-a').disabled = !prepared && busy !== 'preparing';
-    $('session-play').disabled = !confirmed() || playing || !!busy;
-    $('session-stop').disabled = !playing;
-    $('context-confirmed').disabled = !prepared || playing || !!busy;
-    for (const id of ['session-bpm', 'session-key', 'session-mode', 'session-downbeat']) $(id).disabled = playing || !!busy;
-    $('phrase-record').disabled = !permitted() || (!!busy && busy !== 'recording');
+    $('session-play').disabled = !confirmed() || playing || !!busy || !!starting;
+    $('session-stop').disabled = !playing && starting !== 'a';
+    $('context-confirmed').disabled = !prepared || playing || !!busy || !!starting;
+    for (const id of ['session-bpm', 'session-key', 'session-mode', 'session-downbeat']) $(id).disabled = playing || !!busy || !!starting;
+    $('phrase-record').disabled = !permitted() || !!starting || (!!busy && busy !== 'recording');
     $('phrase-record').textContent = busy === 'recording' ? 'Stop recording' : 'Record phrase';
-    $('phrase-file').disabled = !permitted() || !!busy;
+    $('phrase-file').disabled = !permitted() || !!busy || !!starting;
     $('phrase-delete').disabled = !samples && !busy && !performanceBuffer;
-    $('phrase-generate').disabled = !confirmed() || !permitted() || !samples || !!busy || activeC;
+    $('phrase-generate').disabled = !confirmed() || !permitted() || !samples || !!busy || !!starting || activeC;
     $('phrase-cancel').disabled = !['generating', 'loading', 'permission'].includes(busy);
-    $('c-arm').disabled = !playing || !performanceBuffer || !confirmed() || !permitted() || !!busy || activeC;
-    $('c-stop').disabled = !activeC;
-    $('c-preview').disabled = playing || !performanceBuffer || !permitted() || !confirmed() || !!busy || activeC;
+    $('c-arm').disabled = !playing || !performanceBuffer || !confirmed() || !permitted() || !!busy || !!starting || activeC;
+    $('c-stop').disabled = !activeC && starting !== 'c';
+    $('c-preview').disabled = playing || !performanceBuffer || !permitted() || !confirmed() || !!busy || !!starting || activeC;
     for (const id of ['tone-c', 'echo-c', 'delay-c', 'echo-grid-c', 'fx-reset-c']) $(id).disabled = !performanceBuffer || !permitted() || !confirmed();
     $('delay-c').disabled ||= $('echo-grid-c').value !== 'manual';
     deck.sessionTime = transport?.a ? Math.max(0, context().currentTime - transport.a.frame / context().sampleRate) : 0;
@@ -58,6 +58,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     }
     if (wasA && !playing) say(busy === 'generating' ? 'A has ended. C is still preparing.' : 'A stopped. Start prepared A to play again.');
     else if (wasC && !activeC) say(playing ? 'C stopped. A continues.' : 'C stopped.');
+    if (starting) say(starting === 'a' ? 'Starting prepared A… Stop A + C cancels this request.' : 'Starting C preview… Stop C cancels this request.');
     wasA = playing; wasC = activeC;
     controls(deck);
   }
@@ -68,8 +69,9 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     download = undefined; $('performance-download').hidden = true; $('performance-download').removeAttribute('href');
   }
   function cancel() {
+    if (starting) say('Playback request cancelled.');
     if (['permission', 'recording'].includes(busy)) $('phrase-status').textContent = samples ? 'Recording cancelled. Previous phrase kept.' : 'Recording cancelled. No phrase loaded.';
-    revision++; worker?.terminate(); worker = undefined; clearTimeout(timer); clearInterval(timer);
+    revision++; startVersion++; starting = ''; worker?.terminate(); worker = undefined; clearTimeout(timer); clearInterval(timer);
     if (recorder?.state === 'recording') recorder.stop();
     stream?.getTracks().forEach(track => track.stop()); stream = undefined; recorder = undefined;
     busy = ''; deck.preparing = false; refresh();
@@ -79,7 +81,10 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     deck.prepared = false; deck.sessionPlaying = false; $('context-confirmed').checked = false;
     clearPerformance(); say('Load and prepare Deck A to begin.'); refresh();
   }
-  function stop() { startVersion++; transport?.stop(); clearCEcho(); refresh(); }
+  function stop() {
+    if (starting) say('Playback request cancelled.');
+    startVersion++; starting = ''; transport?.stop(); clearCEcho(); refresh();
+  }
   function deletePhrase() {
     cancel(); samples = undefined; recent = []; clearPerformance(); $('phrase-status').textContent = 'Phrase and C deleted from this tab.'; refresh();
   }
@@ -126,15 +131,18 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   };
   $('release-a').onclick = reset;
   $('session-play').onclick = async () => {
-    if (!confirmed() || busy || transport?.a) return;
+    if (!confirmed() || busy || starting || transport?.a) return;
     const token = revision, start = ++startVersion;
+    starting = 'a'; $('performance-error').textContent = ''; refresh();
     try {
       await context().resume();
       if (token !== revision || start !== startVersion || !confirmed()) return;
       if (context().state !== 'running') throw new Error('Audio is interrupted. Try Start prepared A again.');
+      starting = '';
       transport.startA(prepared, mixer().strips[0].input, currentContext().tempo, Number($('session-downbeat').value));
       say('Prepared A playing. Capture a phrase or bring your ready performance in.'); refresh();
-    } catch (failure) { error(failure); }
+    } catch (failure) { if (token === revision && start === startVersion) { error(failure); say('A could not start. Ready to try again.'); } }
+    finally { if (start === startVersion) { starting = ''; refresh(); } }
   };
   $('session-stop').onclick = () => { stop(); say('A + C stopped. Ready to start A again from the beginning.'); };
   for (const id of ['session-bpm', 'session-key', 'session-mode', 'session-downbeat', 'context-confirmed']) $(id).addEventListener('change', () => {
@@ -155,11 +163,11 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   }
   $('phrase-file').onchange = event => {
     const file = event.target.files[0]; event.target.value = '';
-    if (file && permitted() && !busy) loadPhrase(file);
+    if (file && permitted() && !busy && !starting) loadPhrase(file);
   };
   $('phrase-record').onclick = async () => {
     if (busy === 'recording') { clearInterval(timer); recorder.stop(); stream?.getTracks().forEach(track => track.stop()); return; }
-    if (!permitted() || busy) return;
+    if (!permitted() || busy || starting) return;
     $('performance-error').textContent = '';
     const token = ++revision; busy = 'permission'; refresh();
     $('phrase-status').textContent = 'Waiting for microphone permission. Use headphones to prevent recapturing Deck A.';
@@ -188,7 +196,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     } catch (failure) { if (token === revision) { cancel(); error(new Error(`Microphone unavailable: ${failure.message}`)); } }
   };
   $('phrase-generate').onclick = () => {
-    if (!confirmed() || !permitted() || !samples || busy || transport?.c) return;
+    if (!confirmed() || !permitted() || !samples || busy || starting || transport?.c) return;
     const requested = currentContext(), token = ++revision, began = performance.now();
     let wav;
     try { wav = encodeWav(samples); } catch (failure) { error(failure); return; }
@@ -225,13 +233,17 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     worker.postMessage({ wav, style: 'call_response', seed: crypto.getRandomValues(new Uint32Array(1))[0], recent, consent: true, context: requested }, [wav]);
   };
   $('c-preview').onclick = async () => {
+    if (!permitted() || !confirmed() || !performanceBuffer || busy || starting || transport?.a || transport?.c) return;
     const token = revision, start = ++startVersion;
+    starting = 'c'; $('performance-error').textContent = ''; refresh();
     try {
-      if (!permitted() || !confirmed() || !performanceBuffer || busy || transport?.a || transport?.c) return;
       await context().resume();
-      if (token === revision && start === startVersion && permitted() && confirmed() && performanceBuffer && !transport.a)
-        transport.preview(performanceBuffer, mixer().performanceFX.input);
-    } catch (failure) { error(failure); }
+      if (token !== revision || start !== startVersion || !permitted() || !confirmed() || !performanceBuffer || transport.a) return;
+      if (context().state !== 'running') throw new Error('Audio is interrupted. Try Preview C again.');
+      starting = '';
+      transport.preview(performanceBuffer, mixer().performanceFX.input);
+    } catch (failure) { if (token === revision && start === startVersion) { error(failure); say('C could not start. Ready to try again.'); } }
+    finally { if (start === startVersion) { starting = ''; refresh(); } }
   };
   $('c-arm').onclick = () => {
     try {
@@ -239,7 +251,10 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
       transport.arm(performanceBuffer, mixer().performanceFX.input); refresh();
     } catch (failure) { error(failure); }
   };
-  $('c-stop').onclick = () => { transport?.stopC(); clearCEcho(); say(transport?.a ? 'C stopped. A continues.' : 'C stopped.'); refresh(); };
+  $('c-stop').onclick = () => {
+    if (starting === 'c') { startVersion++; starting = ''; }
+    transport?.stopC(); clearCEcho(); say(transport?.a ? 'C stopped. A continues.' : 'C stopped.'); refresh();
+  };
   for (const id of ['tone-c', 'echo-c', 'delay-c']) $(id).oninput = () => effects();
   $('echo-grid-c').onchange = () => { effects(); refresh(); };
   $('fx-reset-c').onclick = () => { effects(true); refresh(); };

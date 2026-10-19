@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest implementation: [Rhythmic C echoes and reset timing](docs/beat-echo.md).
+Last updated: 2026-10-19 (America/New_York). Latest implementation: [Cancellable prepared playback](docs/start-cancellation.md).
 Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
 Use this file for past work, open issues and future development. Detailed test
@@ -43,6 +43,12 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
 
+- [x] **DJ18 — PASS (technical):** [Cancellable prepared playback](docs/start-cancellation.md):
+  pending A/C start state, working Stop during resume, guarded stale errors,
+  explicit retry, and consent withdrawal during pending C preview. 26 unit and
+  56 final session checks, integrated/offline controls and ten unchanged piano
+  WAVs. Before-fix and test-harness failures retained. DJ14/DJ17 remain open.
+
 - [x] **DJ16 — PASS (technical):** [Rhythmic C echoes](docs/beat-echo.md): eighth,
   dotted-eighth and triplet spacing from confirmed C tempo, retained manual value,
   disabled MIDI spacing while synced, and requested delay targets preserved when
@@ -54,7 +60,9 @@ closes that task only; it does not automatically pass its parent milestone.
   unconfirmed, later runs pass unchanged threshold. Corrected the timestamp-only
   dropout detector using an independent PCM counter: focused stress reproduced
   stale timestamps with continuous samples. Final session PCM checks PASS;
-  failed receipts retained, physical/venue validation NOT RUN.
+  failed receipts retained, physical/venue validation NOT RUN. DJ18 fixes a
+  separate reproducible pending-start control defect; it does not establish the
+  cause of the earlier 300 ms failure.
 
 - [x] **DJ15 — PASS (technical):** [Performance C tone and echo](docs/performance-effects.md):
   preview/bar-entry effects before C/Master gains, three MIDI Learn targets,
@@ -72,7 +80,8 @@ closes that task only; it does not automatically pass its parent milestone.
   repeats pass. Root cause unconfirmed; failure receipt and diagnostics retained
   in [MIDI Learn evidence](docs/midi-learn.md). Another 15 cue/jog/rate sequences
   and two full WebKit runs passed on 2026-10-19 ([evidence](docs/performance-effects.md));
-  cause remains unconfirmed. Do not call venue looping validated.
+  cause remains unconfirmed. Fifteen further integrated sequences pass in
+  [startup-cancellation validation](docs/start-cancellation.md). Do not call venue looping validated.
 
 - [x] **DJ12 — PASS (technical):** [Deck tone and echo](docs/deck-effects.md):
   independent A/B effects including prepared A, post-effect mute/crossfader,

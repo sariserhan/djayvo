@@ -11,7 +11,16 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local implementation: [Rhythmic C echoes and reset timing](beat-echo.md).
+Latest local implementation: [Cancellable prepared playback](start-cancellation.md).
+**PASS (technical):** visible pending A/C starts, usable Stop during resume,
+protected retries and pending-preview consent cleanup; 26 unit / 56 final session
+checks, integrated/offline browser flows, exact event frames and ten unchanged
+piano WAVs. Fifteen further WebKit manual-loop sequences pass.
+**PARTIAL:** original intermittent startup/loop failures (DJ17/DJ14) remain
+unexplained; full specification. **NOT RUN:** new native/Linux browser, physical
+latency, formal listening and venue readiness.
+
+Previous local implementation: [Rhythmic C echoes and reset timing](beat-echo.md).
 **PASS (technical):** tempo subdivisions, manual/MIDI restoration, requested delay
 retention after mid-ramp clearing; 26 unit, 80 DJ and 50 session checks, integrated/
 offline controls and playable WAVs. Independent PCM counter replaces unreliable

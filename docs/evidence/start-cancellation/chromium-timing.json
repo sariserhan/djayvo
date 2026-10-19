@@ -1,0 +1,71 @@
+{
+  "startA": 4800,
+  "startC": 100800,
+  "firstA": 4801,
+  "firstC": 100801,
+  "gap": 0,
+  "frames": [
+    {
+      "rate": 44100,
+      "tempo": 60000,
+      "afterSixHours": 952560017
+    },
+    {
+      "rate": 44100,
+      "tempo": 83920,
+      "afterSixHours": 952585241
+    },
+    {
+      "rate": 44100,
+      "tempo": 127190,
+      "afterSixHours": 952634910
+    },
+    {
+      "rate": 44100,
+      "tempo": 180000,
+      "afterSixHours": 952560017
+    },
+    {
+      "rate": 48000,
+      "tempo": 60000,
+      "afterSixHours": 1036800017
+    },
+    {
+      "rate": 48000,
+      "tempo": 83920,
+      "afterSixHours": 1036827472
+    },
+    {
+      "rate": 48000,
+      "tempo": 127190,
+      "afterSixHours": 1036881533
+    },
+    {
+      "rate": 48000,
+      "tempo": 180000,
+      "afterSixHours": 1036800017
+    },
+    {
+      "rate": 96000,
+      "tempo": 60000,
+      "afterSixHours": 2073600017
+    },
+    {
+      "rate": 96000,
+      "tempo": 83920,
+      "afterSixHours": 2073654926
+    },
+    {
+      "rate": 96000,
+      "tempo": 127190,
+      "afterSixHours": 2073763049
+    },
+    {
+      "rate": 96000,
+      "tempo": 180000,
+      "afterSixHours": 2073600017
+    }
+  ],
+  "sampleRate": 48000,
+  "renderedFrames": 192000
+}

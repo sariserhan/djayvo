@@ -1,0 +1,236 @@
+{
+  "gate": "PASS",
+  "browsers": {
+    "chromium": {
+      "artifacts": "renders/session-chromium-RoEJcn",
+      "timing": {
+        "startA": 4800,
+        "startC": 100800,
+        "firstA": 4801,
+        "firstC": 100801,
+        "gap": 0,
+        "frames": [
+          {
+            "rate": 44100,
+            "tempo": 60000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 44100,
+            "tempo": 83920,
+            "afterSixHours": 952585241
+          },
+          {
+            "rate": 44100,
+            "tempo": 127190,
+            "afterSixHours": 952634910
+          },
+          {
+            "rate": 44100,
+            "tempo": 180000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 48000,
+            "tempo": 60000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 48000,
+            "tempo": 83920,
+            "afterSixHours": 1036827472
+          },
+          {
+            "rate": 48000,
+            "tempo": 127190,
+            "afterSixHours": 1036881533
+          },
+          {
+            "rate": 48000,
+            "tempo": 180000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 96000,
+            "tempo": 60000,
+            "afterSixHours": 2073600017
+          },
+          {
+            "rate": 96000,
+            "tempo": 83920,
+            "afterSixHours": 2073654926
+          },
+          {
+            "rate": 96000,
+            "tempo": 127190,
+            "afterSixHours": 2073763049
+          },
+          {
+            "rate": 96000,
+            "tempo": 180000,
+            "afterSixHours": 2073600017
+          }
+        ],
+        "sampleRate": 48000,
+        "renderedFrames": 192000
+      },
+      "waves": {
+        "dry": {
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "difference": {
+            "max_abs": 0.0,
+            "rms": 0.0
+          }
+        },
+        "echo": {
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "difference": {
+            "max_abs": 0.0,
+            "rms": 0.0
+          }
+        },
+        "eighth": {
+          "sha256": "cc5ccde681b66ca97fa3333189b30e0fc69db604288be45925c473e596c41c13",
+          "difference": {
+            "max_abs": 0.0,
+            "rms": 0.0
+          }
+        },
+        "dotted": {
+          "sha256": "00fa4a2401b04dc8d6bf3d944a3c26752ab653c99485de9b6599aad3b2c8c3fa",
+          "difference": {
+            "max_abs": 0.0,
+            "rms": 0.0
+          }
+        },
+        "triplet": {
+          "sha256": "8b1157a97a18f694ff68c76af5b12f478232387210ae45b3c9078c59c6ebeba3",
+          "difference": {
+            "max_abs": 0.0,
+            "rms": 0.0
+          }
+        }
+      }
+    },
+    "webkit": {
+      "artifacts": "renders/session-webkit-8s6EQa",
+      "timing": {
+        "startA": 4800,
+        "startC": 100800,
+        "firstA": 4801,
+        "firstC": 100801,
+        "gap": 0,
+        "frames": [
+          {
+            "rate": 44100,
+            "tempo": 60000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 44100,
+            "tempo": 83920,
+            "afterSixHours": 952585241
+          },
+          {
+            "rate": 44100,
+            "tempo": 127190,
+            "afterSixHours": 952634910
+          },
+          {
+            "rate": 44100,
+            "tempo": 180000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 48000,
+            "tempo": 60000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 48000,
+            "tempo": 83920,
+            "afterSixHours": 1036827472
+          },
+          {
+            "rate": 48000,
+            "tempo": 127190,
+            "afterSixHours": 1036881533
+          },
+          {
+            "rate": 48000,
+            "tempo": 180000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 96000,
+            "tempo": 60000,
+            "afterSixHours": 2073600017
+          },
+          {
+            "rate": 96000,
+            "tempo": 83920,
+            "afterSixHours": 2073654926
+          },
+          {
+            "rate": 96000,
+            "tempo": 127190,
+            "afterSixHours": 2073763049
+          },
+          {
+            "rate": 96000,
+            "tempo": 180000,
+            "afterSixHours": 2073600017
+          }
+        ],
+        "sampleRate": 48000,
+        "renderedFrames": 192000
+      },
+      "waves": {
+        "dry": {
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "difference": {
+            "max_abs": 0.0,
+            "rms": 0.0
+          }
+        },
+        "echo": {
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "difference": {
+            "max_abs": 0.0,
+            "rms": 0.0
+          }
+        },
+        "eighth": {
+          "sha256": "311154d579255cf694832a8c129550ca3cd2b6e4f226574d6e26557ac4b7c846",
+          "difference": {
+            "max_abs": 0.0,
+            "rms": 0.0
+          }
+        },
+        "dotted": {
+          "sha256": "2a922b3d0efdf629d14f72bf314df9a8224ccd72abfdfaac6f8e9935fc863ab4",
+          "difference": {
+            "max_abs": 0.0,
+            "rms": 0.0
+          }
+        },
+        "triplet": {
+          "sha256": "34b00fe01c8bfb48b2022ff63ce734fc74a157e4e41a1551a2777f1db64e9f94",
+          "difference": {
+            "max_abs": 0.0,
+            "rms": 0.0
+          }
+        }
+      }
+    }
+  },
+  "protected_inputs": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/x.mp3": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+    "/Users/serhansari/Downloads/y.mp3": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+    "/Users/serhansari/Downloads/z.mp3": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63",
+    "/Users/serhansari/Downloads/pipe.mp3": "e57756d665c676e876bc7b25abf6d97bd88d137c889eebd633ade0d353919bc8"
+  }
+}

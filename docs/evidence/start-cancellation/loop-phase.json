@@ -1,0 +1,187 @@
+{
+  "browser": "26.5",
+  "iterations": [
+    {
+      "iteration": 1,
+      "beforeSeek": {
+        "time": 9.3790821,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 2,
+      "beforeSeek": {
+        "time": 9.4495928,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 3,
+      "beforeSeek": {
+        "time": 9.4495926,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 4,
+      "beforeSeek": {
+        "time": 9.3188632,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 5,
+      "beforeSeek": {
+        "time": 9.3934519,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 6,
+      "beforeSeek": {
+        "time": 9.4495927,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 7,
+      "beforeSeek": {
+        "time": 9.3844245,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 8,
+      "beforeSeek": {
+        "time": 9.3934519,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 9,
+      "beforeSeek": {
+        "time": 9.4495927,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 10,
+      "beforeSeek": {
+        "time": 9.4495927,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 11,
+      "beforeSeek": {
+        "time": 9.4495927,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 12,
+      "beforeSeek": {
+        "time": 9.3139139,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 13,
+      "beforeSeek": {
+        "time": 9.4495926,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 14,
+      "beforeSeek": {
+        "time": 9.3188631,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 15,
+      "beforeSeek": {
+        "time": 9.3844243,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

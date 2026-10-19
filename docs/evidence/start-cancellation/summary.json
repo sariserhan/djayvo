@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "scope": "Cancellable prepared A and C preview starts; stale rejection protection and retry",
+  "full_specification": "PARTIAL",
+  "unit": "26/26 PASS",
+  "browser": {
+    "chromium": {
+      "status": "PASS",
+      "checks": 28,
+      "version": "149.0.7827.55",
+      "artifacts": "renders/session-chromium-RoEJcn",
+      "peak_after_300_ms": 0.04028439521789551,
+      "continuity": {
+        "blocks": 12916,
+        "silent": 0,
+        "frameGaps": 0,
+        "events": [],
+        "signalFrameGaps": 0,
+        "signalFrames": 1653248,
+        "processedFrames": 1653248
+      }
+    },
+    "webkit": {
+      "status": "PASS",
+      "checks": 28,
+      "version": "26.5",
+      "artifacts": "renders/session-webkit-8s6EQa",
+      "peak_after_300_ms": 0.040283203125,
+      "continuity": {
+        "blocks": 12616,
+        "silent": 0,
+        "frameGaps": 0,
+        "events": [],
+        "signalFrameGaps": 0,
+        "signalFrames": 1614848,
+        "processedFrames": 1614848
+      }
+    }
+  },
+  "integrated_site": "PASS: Chromium/WebKit; pending A/C states, stop, retry, actual playback, 1440x1000 and 390x844",
+  "offline": "PASS: both session suites disconnect their server and reload, generate and play locally",
+  "event_frames": "PASS: A/C entry frames and 12 long-grid arithmetic cases match preceding timing receipts exactly; this is not six-hour venue execution",
+  "waveforms": "PASS: ten 6-second dry/echo/rhythmic piano WAVs byte-identical to beat-echo; maximum and RMS differences zero within each browser",
+  "protected_inputs": "PASS: seven original hashes checked by compare.py; master, fixture, owner source and x/y/z/pipe preserved",
+  "public_bundle": "PASS: 35 audited assets; unchanged engine binaries; no private audio or test probe bundled",
+  "startup_repeatability": "PARTIAL: prior 300 ms startup failure remains unexplained. Separate pending-control regression fixed; threshold unchanged.",
+  "manual_loop_repeatability": "PARTIAL: prior WebKit timeout remains unexplained; current probe result recorded separately",
+  "new_native_or_linux_browser_checks": "NOT RUN",
+  "physical_microphone_midi_output_latency": "NOT RUN",
+  "formal_listening": "NOT RUN",
+  "venue_endurance": "NOT RUN",
+  "production_release": "NOT RUN",
+  "browser_fallback": "Browser execution tool unavailable; existing Playwright workflow used",
+  "qa_notes": [
+    "Before-fix deferred-resume regression FAIL: Start remained enabled while the request waited; evidence retained.",
+    "Initial new helper FAIL at a 150 ms visible-meter snapshot. It now waits for real PCM within five seconds to establish retry behavior; the separate existing 300 ms / peak >0.01 check is unchanged.",
+    "Initial integrated probe FAIL: the test reference was overwritten by the temporary phrase-decoder AudioContext. Keeping the first context fixes the hook; final integration passes.",
+    "Four WebKit stylesheet warnings occur only during screenshot capture and are retained separately; no unexpected app errors.",
+    "Intermediate passing runs are retained locally; only final-source Chromium RoEJcn and WebKit 8s6EQa runs count in this summary."
+  ],
+  "environment": {
+    "cpu": "Apple M5",
+    "memory_bytes": "17179869184",
+    "os": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241",
+    "kernel": "Darwin 25.6.0 arm64",
+    "node": "v22.23.1",
+    "playwright": "1.61.1",
+    "xcode": "Xcode 27.1\nBuild version 27A9275",
+    "clang": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "cmake": "cmake version 4.4.2\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake)."
+  },
+  "engine_hashes": {
+    "engine/djayvo_live.wasm": "6135823549a0204fa4a935c3eb6401099e88a0c8074e1c55142e7400efec8086",
+    "engine/djayvo_web.mjs": "ae99a78f24bbd233a428c2f86baac1969a8425987d6ca3e64530a7f0034c5c66",
+    "engine/djayvo_web.wasm": "222ec6f68932543961c74ad32859c69ad34d404f206ac57d969aef9827138728"
+  },
+  "manual_loop_probe": "PASS: 15 WebKit cue/hot-cue/jog/rate/near-end loop sequences, no page errors; does not close DJ14"
+}

@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "error": "The expression evaluated to a falsy value:\n\n  assert.ok(Number(await page.locator('#output-meter').getAttribute('value')) > .001)\n",
+  "checks": [
+    {
+      "name": "identity, meaningful screen, permission-disabled preparation/capture",
+      "status": "PASS"
+    },
+    {
+      "name": "C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry",
+      "status": "PASS"
+    },
+    {
+      "name": "C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs",
+      "status": "PASS"
+    },
+    {
+      "name": "C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons",
+      "status": "PASS"
+    }
+  ],
+  "state": {
+    "context": {
+      "state": "running",
+      "time": 0.5813333333333334,
+      "rate": 48000
+    },
+    "status": "Prepared A playing. Capture a phrase or bring your ready performance in.",
+    "error": "",
+    "meter": 0,
+    "deck": "Prepared · playing"
+  }
+}

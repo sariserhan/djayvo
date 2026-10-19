@@ -8,6 +8,7 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
   await page.addInitScript(() => {
     const Native = AudioContext;
     window.AudioContext = class extends Native {
+      constructor(options) { super(options); window.testAudioContext ||= this; }
       createAnalyser() {
         const node = super.createAnalyser(), connect = node.connect.bind(node);
         node.connect = destination => { if (destination === this.destination) { const mute = this.createGain(); mute.gain.value = 0; connect(mute); mute.connect(destination); return destination; } return connect(destination); };
@@ -15,6 +16,28 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
       }
     };
   });
+  const pending = async (play, stop, channel) => {
+    await page.evaluate(() => {
+      const resume = testAudioContext.resume.bind(testAudioContext);
+      testAudioContext.resume = () => {
+        testAudioContext.resume = resume;
+        const running = resume();
+        return new Promise((resolve, reject) => { window.releaseStart = () => running.then(resolve, reject); });
+      };
+    });
+    await page.locator(play).click();
+    assert.equal(await page.locator(play).isDisabled(), true);
+    assert.equal(await page.locator(stop).isDisabled(), false);
+    assert.match(await page.locator('#performance-status').textContent(), /Starting/);
+    await page.locator('#performance').screenshot({ path: `/tmp/djayvo-pending-${name}-${channel}-desktop.png` });
+    await page.setViewportSize({ width: 390, height: 844 });
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+    await page.locator('#performance').screenshot({ path: `/tmp/djayvo-pending-${name}-${channel}-mobile.png` });
+    await page.locator(stop).click(); await page.evaluate(() => releaseStart());
+    assert.equal(await page.locator(play).isDisabled(), false);
+    assert.equal(await page.locator(stop).isDisabled(), true);
+    await page.setViewportSize({ width: 1440, height: 1000 });
+  };
   try {
     await page.goto('http://localhost:3000/studio/dj.html');
     assert.equal(await page.title(), 'Djayvo — DJ workspace');
@@ -25,6 +48,7 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     await page.waitForFunction(() => !document.getElementById('context-confirmed').disabled, null, { timeout: 30000 });
     await page.locator('#session-bpm').fill('60'); await page.locator('#session-bpm').dispatchEvent('change');
     await page.locator('#session-key').selectOption('60'); await page.locator('#session-mode').selectOption('major'); await page.locator('#context-confirmed').check();
+    await pending('#session-play', '#session-stop', 'a');
     await page.locator('#session-play').click();
     await page.waitForFunction(() => Number(document.getElementById('output-meter').value) > .001);
     assert.equal(await page.locator('#tone-a').isDisabled(), false);
@@ -39,7 +63,9 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     await page.locator('#phrase-generate').click();
     await page.waitForFunction(() => !document.getElementById('performance-download').hidden || document.getElementById('performance-error').textContent, null, { timeout: 120000 });
     assert.equal(await page.locator('#performance-error').textContent(), '');
-    await page.locator('#session-stop').click(); await page.locator('#c-preview').click();
+    await page.locator('#session-stop').click();
+    await pending('#c-preview', '#c-stop', 'c');
+    await page.locator('#c-preview').click();
     await page.waitForFunction(() => Number(document.getElementById('output-meter').value) > .001);
     await page.locator('#echo-c').fill('0.4'); await page.locator('#echo-c').dispatchEvent('input');
     await page.locator('#tone-c').fill('60'); await page.locator('#tone-c').dispatchEvent('input');
@@ -57,7 +83,7 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     await page.locator('#c-stop').click();
     assert.equal(await page.locator('#performance-status').textContent(), 'C stopped.');
     assert.deepEqual(errors, []);
-    results.push({ browser: name, version: browser.version(), url: page.url(), gate: 'PASS', checks: ['page identity and content', 'prepared A audible PCM', 'prepared A effects enabled, echo readout/reset and deck screenshots', 'integrated worker/context engine/WAV', 'C preview, tone and tempo-synced dotted eighth echo at 60 BPM', 'desktop/mobile screenshots and no overflow', 'no page errors'] });
+    results.push({ browser: name, version: browser.version(), url: page.url(), gate: 'PASS', checks: ['page identity and content', 'pending A and C: disabled duplicate start, enabled stop, desktop/mobile screenshots, cancel and late resume', 'prepared A audible PCM', 'prepared A effects enabled, echo readout/reset and deck screenshots', 'integrated worker/context engine/WAV', 'C preview, tone and tempo-synced dotted eighth echo at 60 BPM', 'desktop/mobile screenshots and no overflow', 'no page errors'] });
   } finally { await browser.close(); }
 }
 await fs.writeFile('/tmp/djayvo-session-site.json', JSON.stringify(results, null, 2));

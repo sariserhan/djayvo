@@ -3,6 +3,8 @@
 This report records the original minor-only increment. The current
 [major/minor extension](session-modes.md) adds explicit mode selection and new
 portability evidence; the original results below remain historical.
+The [startup cancellation follow-up](start-cancellation.md) adds visible pending
+A/C starts, matching Stop controls, stale-request protection and retry checks.
 
 2026-10-18. Local implementation **PASS** for the tested scope below. Full
 specification and live studio **PARTIAL**. The owner's latest instruction resumes

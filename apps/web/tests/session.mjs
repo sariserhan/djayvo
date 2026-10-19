@@ -7,6 +7,7 @@ import { chromium, webkit } from 'playwright';
 import { verifySessionAudio } from './session-audio.mjs';
 import { verifyInstrumentFX } from './instrument-fx.mjs';
 import { fakeMidi } from './midi-browser.mjs';
+import { verifyPendingStart, verifyPendingConsent } from './session-start.mjs';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const kind = process.env.DJAYVO_BROWSER || 'chromium';
@@ -123,6 +124,8 @@ try {
   await page.locator('#session-key').selectOption('60');
   await page.locator('#session-mode').selectOption('major');
   await page.locator('#context-confirmed').check();
+  const startup = [await verifyPendingStart(page, 'a', capture)];
+  check('pending prepared A start can be stopped; stale rejection cannot overwrite retry; current failure recovers');
   await page.locator('#session-play').click();
   await page.waitForFunction(() => !document.getElementById('session-stop').disabled);
   const heardA = await page.evaluate(async () => {
@@ -259,6 +262,9 @@ try {
   await page.locator('#session-stop').click();
   await page.locator('#echo-grid-c').selectOption('manual');
   await page.locator('#c-level').fill('0.5'); await page.locator('#c-level').dispatchEvent('input');
+  startup.push(await verifyPendingStart(page, 'c', capture));
+  await fs.writeFile(path.join(output, 'startup.json'), JSON.stringify(startup, null, 2));
+  check('pending C preview can be stopped; stale rejection cannot overwrite retry; current failure recovers');
   await page.locator('#c-preview').click();
   await page.waitForFunction(() => document.getElementById('performance-status').textContent.includes('Previewing C'));
   await page.waitForFunction(() => document.getElementById('output-meter').value > .001);
@@ -292,6 +298,9 @@ try {
   assert.equal(await page.locator('#c-stop').isDisabled(), true);
   check('C preview routes through performance gain, and restarting A cancels the preview');
   await page.locator('#session-stop').click();
+  await verifyPendingConsent(page);
+  await page.locator('#phrase-consent').check();
+  check('consent withdrawal cancels pending C preview, clears its download and prevents a late resume from scheduling audio');
   await page.locator('#session-mode').selectOption('minor');
   assert.equal(await page.locator('#context-confirmed').isChecked(), false);
   assert.equal(await page.locator('#performance-download').isVisible(), false);
