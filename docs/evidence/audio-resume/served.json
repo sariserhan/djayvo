@@ -1,0 +1,44 @@
+{
+  "audio.js": {
+    "sha256": "5b7b18df7d733ea6b6184073e25325797135950735b81e4fae1cfee83c26968f",
+    "served": {
+      "http://127.0.0.1:4173/audio.js": "5b7b18df7d733ea6b6184073e25325797135950735b81e4fae1cfee83c26968f",
+      "http://127.0.0.1:3000/studio/audio.js": "5b7b18df7d733ea6b6184073e25325797135950735b81e4fae1cfee83c26968f"
+    }
+  },
+  "dj.js": {
+    "sha256": "9634604bad8bd7a152a217c7b0fcb5be0b663b9e3fca46401f61714e3e69e6c3",
+    "served": {
+      "http://127.0.0.1:4173/dj.js": "9634604bad8bd7a152a217c7b0fcb5be0b663b9e3fca46401f61714e3e69e6c3",
+      "http://127.0.0.1:3000/studio/dj.js": "9634604bad8bd7a152a217c7b0fcb5be0b663b9e3fca46401f61714e3e69e6c3"
+    }
+  },
+  "keyboard.js": {
+    "sha256": "0d3497e1bad1616de67692455d970054ff1b5edd6dfa2b7462131eb37a0dac1a",
+    "served": {
+      "http://127.0.0.1:4173/keyboard.js": "0d3497e1bad1616de67692455d970054ff1b5edd6dfa2b7462131eb37a0dac1a",
+      "http://127.0.0.1:3000/studio/keyboard.js": "0d3497e1bad1616de67692455d970054ff1b5edd6dfa2b7462131eb37a0dac1a"
+    }
+  },
+  "performance-session.js": {
+    "sha256": "842141cd099450db876cee097ca2851b4d63f65463f9c457988a9e293c16e79f",
+    "served": {
+      "http://127.0.0.1:4173/performance-session.js": "842141cd099450db876cee097ca2851b4d63f65463f9c457988a9e293c16e79f",
+      "http://127.0.0.1:3000/studio/performance-session.js": "842141cd099450db876cee097ca2851b4d63f65463f9c457988a9e293c16e79f"
+    }
+  },
+  "engine/djayvo_live.wasm": {
+    "sha256": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "served": {
+      "http://127.0.0.1:4173/engine/djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+      "http://127.0.0.1:3000/studio/engine/djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c"
+    }
+  },
+  "engine/djayvo_web.wasm": {
+    "sha256": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1",
+    "served": {
+      "http://127.0.0.1:4173/engine/djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1",
+      "http://127.0.0.1:3000/studio/engine/djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1"
+    }
+  }
+}

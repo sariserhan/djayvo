@@ -11,7 +11,21 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local-file playback repair — 2026-10-19:
+Latest bounded audio wake-up — 2026-10-19:
+[Audio resume recovery](audio-resume.md) **PASS (recovery scope)**: all five
+production resume sites have a ten-second deadline; late failures cannot release
+newer notes. Mac/Linux each pass 41 unit checks. Mac Chromium/WebKit and Linux
+Chromium pass 46 studio checks each. Linux WebKit passes the new recovery checks
+but its complete studio gate is **FAIL**: valid reload rejection, then a fresh-run
+browser crash. Precise cause remains **PARTIAL**. Mac and Linux Chromium prepared
+sessions pass 29 checks each; Linux WebKit is **PARTIAL**, with 28 PASS and two
+capture checks **NOT RUN**. All 44 offline WAVs are byte-identical; recorded event
+frames match baselines (fractional echo targets within 0.474 sample frame).
+Physical latency, venue and new listening **NOT RUN**; specification/production
+**PARTIAL**. Master, recordings and shared engine preserved; local copies updated
+and isolated Linux containers/VM stopped. See report for retained setup failures.
+
+Previous local-file playback repair — 2026-10-19:
 [Preload, routing and transport transitions](media-preload.md) **PASS (bounded
 technical scope)**: connect before loading, use metadata preload, coalesce pitch
 changes after pause and fade the native input to prevent post-pause effect refill.

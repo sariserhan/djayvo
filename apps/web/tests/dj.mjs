@@ -149,6 +149,25 @@ try {
   await page.locator('#file-b').setInputFiles(b);
   await page.waitForFunction(() => !document.querySelector('#play-b').disabled);
   await page.evaluate(() => {
+    const resume = testAudioContext.resume.bind(testAudioContext);
+    testAudioContext.resume = () => {
+      testAudioContext.resume = resume;
+      return new Promise(resolve => { window.finishTimedOutResume = resolve; });
+    };
+  });
+  await page.locator('#play-a').click();
+  assert.equal(await page.locator('#state-a').textContent(), 'Starting…');
+  await page.waitForFunction(() => document.querySelector('#error-a').textContent.includes('Audio did not wake up'), null, { timeout: 15000 });
+  assert.equal(await page.locator('#play-a').isDisabled(), false);
+  assert.equal(await page.locator('#audio-a').evaluate(audio => audio.paused), true);
+  await page.locator('#play-a').click();
+  await page.waitForFunction(() => !document.querySelector('#play-a').disabled && !document.querySelector('#audio-a').paused);
+  await page.evaluate(() => finishTimedOutResume()); await page.waitForTimeout(100);
+  assert.equal(await page.locator('#error-a').textContent(), '');
+  assert.equal(await page.locator('#audio-a').evaluate(audio => audio.paused), false);
+  await page.locator('#play-a').click();
+  check('hung audio resume reports failure, restores manual Play and cannot disrupt a successful retry');
+  await page.evaluate(() => {
     const audio = document.querySelector('#audio-a'), play = audio.play.bind(audio);
     audio.play = () => { audio.play = play; return play().then(() => new Promise(resolve => { window.finishOldPlay = resolve; })); };
   });
@@ -331,8 +350,23 @@ try {
   }
   await set('#crossfade', 0);
   check('A/B controls change real audio independently; pause tails follow channel/master/crossfader and reset cannot revive old audio');
+  await page.evaluate(() => {
+    const resume = testAudioContext.resume.bind(testAudioContext);
+    testAudioContext.resume = () => {
+      testAudioContext.resume = resume;
+      return new Promise(resolve => { window.finishRackResume = resolve; });
+    };
+  });
+  await page.locator('#load-instruments').click();
+  await page.waitForFunction(() => document.querySelector('#instrument-status').textContent.includes('Audio did not wake up'), null, { timeout: 15000 });
+  assert.equal(await page.locator('#load-instruments').isDisabled(), false);
+  assert.equal(await page.locator('.piano-key').first().isDisabled(), true);
+  assert.equal(await page.locator('#audio-a').evaluate(audio => audio.paused), false);
   await page.locator('#load-instruments').click();
   await page.waitForFunction(() => document.querySelector('#instrument-status').textContent.startsWith('Ready'), null, { timeout: 30000 });
+  await page.evaluate(() => finishRackResume()); await page.waitForTimeout(100);
+  assert.match(await page.locator('#instrument-status').textContent(), /^Ready/);
+  check('hung instrument wake-up restores Prepare; retry succeeds and late completion stays inert');
   assert.equal(await page.locator('#audio-a').evaluate(a => a.paused), false);
   assert.equal(await page.locator('.piano-key').count(), 88);
   assert.equal(await page.locator('.drum-pad').count(), 12);
@@ -344,6 +378,23 @@ try {
   await page.keyboard.up('a'); await page.keyboard.up('d'); await page.keyboard.up('g');
   await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
   check('live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound');
+  await page.evaluate(() => {
+    const resume = testAudioContext.resume.bind(testAudioContext);
+    Object.defineProperty(testAudioContext, 'state', { configurable: true, value: 'suspended' });
+    testAudioContext.resume = () => {
+      delete testAudioContext.state; testAudioContext.resume = resume;
+      return new Promise((_, reject) => { window.rejectOldNoteResume = reject; });
+    };
+  });
+  await page.keyboard.down('a'); await page.keyboard.up('a'); await page.keyboard.down('a');
+  await page.waitForFunction(() => document.querySelector('#output-meter').value > .001);
+  const readyStatus = await page.locator('#instrument-status').textContent();
+  await page.evaluate(() => rejectOldNoteResume(new Error('Old note wake-up failed'))); await page.waitForTimeout(100);
+  assert.equal(await page.locator('.piano-key[aria-pressed=true]').count(), 1);
+  assert.equal(await page.locator('#instrument-status').textContent(), readyStatus);
+  assert.ok(await peak() > .001);
+  await page.keyboard.up('a'); await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
+  check('late note wake-up rejection cannot release or overwrite a newer note on the same key');
   await page.locator('#sustain').click(); await page.locator('.keyboard-scroll').focus();
   await page.keyboard.press('a'); await page.waitForTimeout(500); assert.ok(await peak() > .001);
   await set('#master', 0); await page.waitForTimeout(200); assert.ok(await peak() < .0001);
@@ -550,6 +601,6 @@ try {
     signalEvidence, fxEvidence, deckFXEvidence, audioContext: audioContextEvidence, actualMedia: { aPeak, channelSilent, masterSilent }, errors, warnings,
     humanListening: 'NOT RUN', physicalDeviceLatency: 'NOT RUN', offlineVenueReliability: 'NOT RUN' }, null, 2));
 } catch (error) {
-  await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings, state: await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({ instruments: document.querySelector('#instrument-status').textContent, loopTrace: window.loopTrace, deckError: document.getElementById('error-a').textContent, decks: [...document.querySelectorAll('audio')].map(a => ({time:a.currentTime,paused:a.paused,seeking:a.seeking,ended:a.ended,rate:a.playbackRate,readyState:a.readyState})), meter:document.querySelector('#output-meter').value }))]) }, null, 2));
+  await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings, state: await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({ instruments: document.querySelector('#instrument-status').textContent, loopTrace: window.loopTrace, deckError: document.getElementById('error-a').textContent, decks: [...document.querySelectorAll('audio')].map(a => ({time:a.currentTime,paused:a.paused,seeking:a.seeking,ended:a.ended,rate:a.playbackRate,readyState:a.readyState})), meter:document.querySelector('#output-meter').value })).catch(() => null)]) }, null, 2));
   throw error;
 } finally { await browser.close(); server.closeAllConnections(); server.close(); }

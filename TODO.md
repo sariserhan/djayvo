@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest validation: [Local-file playback repair](docs/media-preload.md).
+Last updated: 2026-10-19 (America/New_York). Latest validation: [Bounded audio wake-up](docs/audio-resume.md).
 Latest engine improvement: [Precomputed common interpolation coefficients](docs/interpolation-table.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
@@ -44,6 +44,16 @@ criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
+
+- [x] **DJ25 — PASS (bounded recovery scope):** [Audio wake-up deadline](docs/audio-resume.md).
+  All five resume sites time out and allow retry; late note failures cannot release
+  a newer note. 41 unit tests per platform; Mac Chromium/WebKit and Linux Chromium
+  pass 46 studio checks each. Linux WebKit passes the recovery cases but its full
+  studio run **FAIL** on reload/crash; DJ14 remains open. Prepared sessions: 29
+  checks per Mac browser and Linux Chromium; Linux WebKit **PARTIAL** (28 PASS,
+  two capture checks NOT RUN). 44 unchanged offline WAVs; baseline event frames
+  identical, fractional echo targets within 0.474 frame. Physical/listening/venue
+  **NOT RUN**. Test setup failures and cleanup receipts retained.
 
 - [x] **DJ24 — PASS (local-file host regression scope):** [Preload, routing and transport repair](docs/media-preload.md).
   Connect before loading, use metadata preload, coalesce active pitch changes
@@ -141,7 +151,11 @@ closes that task only; it does not automatically pass its parent milestone.
   clear/cancel/input lifecycle and existing audio/permission paths. 80 final DJ,
   38 session, 24 unit checks and integrated/offline behavior pass. Physical MIDI
   and latency NOT RUN; native Web MIDI unavailable in tested WebKit.
-- [ ] **DJ14 — PARTIAL (local-file regression now PASS):**
+- [ ] **DJ14 — PARTIAL (latest full Linux WebKit studio FAIL):**
+  [DJ25 evidence](docs/audio-resume.md) retains a valid reload rejection after
+  rapid pitch changes and a fresh-container browser crash later in the suite.
+  Fresh run reached its 2 GiB memory limit without OOM kills; cause unproven.
+  Earlier passing suites remain valid receipts, not proof of reliable repetition.
   [DJ24 repair](docs/media-preload.md) passes full Mac/Linux studio checks and
   controlled local-file repeats. HTTP active-rate diagnostics still fail;
   precise native-code cause and venue reliability remain open. Historical
@@ -226,8 +240,8 @@ closes that task only; it does not automatically pass its parent milestone.
   Chromium/WebKit. Physical microphone/session check and learned-director
   automation/quality remain NOT RUN; synthetic capture is not physical evidence.
 - [ ] **DJ04 — PARTIAL:** Automated Apple M5 browser sessions, prepared offline
-  playback, CPU block timing and repeated transport checks PASS. Actual Linux
-  browser, physical latency, long-session glitch checks, cue/device routing and
+  playback, CPU block timing and repeated transport checks PASS. Actual Linux ARM64 browser coverage is recorded in DJ24/DJ25; physical Intel
+  Linux, physical latency, long-session glitch checks, cue/device routing and
   human musical evaluation remain NOT RUN. Cached-page tests do not pass venue readiness.
 
 ## Existing product work — local specification work active; phone and hosted infrastructure paused
@@ -551,6 +565,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P72 | PASS | Precompute common cold-note filter coefficients; preserve exact Mac/Linux/WASM audio and retain failing browser timing evidence | [Evidence](docs/interpolation-table.md) |
 | [x] | P73 | PASS | Bound manual playback-start failures, verify cancellation and uninterrupted other-deck audio, isolate Linux WebKit restart failures and retain exact PCM/frame evidence | [Evidence](docs/media-restart.md) |
 | [x] | P74 | PASS | Repair local-file preload/routing, serialize pitch transitions, gate paused native input, pass four complete browser suites and preserve exact offline audio while retaining failed controls | [Evidence](docs/media-preload.md) |
+| [x] | P75 | PASS | Bound browser audio wake-up, protect newer notes from stale failures, verify 44 unchanged WAVs and preserve Linux WebKit failure gates | [Evidence](docs/audio-resume.md) |
 
 ## Engineering backlog
 

@@ -1,0 +1,30 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/session-webkit-ujxhLJ
+PASS: both studios disable unavailable recording and keep consented import enabled
+PASS: identity, meaningful screen, permission-disabled preparation/capture
+PASS: C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry
+PASS: C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs
+PASS: C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons
+PASS: pending prepared A start can be stopped; stale rejection cannot overwrite retry; current failure recovers
+PASS: prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport
+PASS: confirmed major mode reaches the shared planner; all pitched notes belong to its scale
+PASS: ready C effects and synthetic MIDI pickup drive the existing tone control
+PASS: beat sync uses confirmed C tempo, holds manual spacing, blocks mapped spacing and rearms pickup on return
+PASS: consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues
+PASS: complete C performance ends naturally with accurate status while A keeps playing
+PASS: C manual fader/stop do not stop A
+PASS: worker cancellation retains ready C and uninterrupted A; next request excludes recent composition
+PASS: director load failure leaves A and previous ready C intact
+PASS: independent PCM counter and nonsilent mix during generation/entry/cancellation; browser timestamp anomalies retained
+PASS: rejected replacement phrase keeps previous source/performance and A playback
+PASS: desktop/mobile visible controls and no horizontal overflow
+PASS: pending C preview can be stopped; stale rejection cannot overwrite retry; current failure recovers
+PASS: C preview produces audio, master mutes wet/dry, Stop C clears 800 ms echoes and reset restores defaults
+PASS: C preview routes through performance gain, and restarting A cancels the preview
+PASS: consent withdrawal cancels pending C preview, clears its download and prevents a late resume from scheduling audio
+PASS: changing mode clears ready C and confirmation before playback can resume
+PASS: synthetic microphone capture, decoding and track cleanup while A continues
+PASS: revoked consent rejects late microphone permission and closes its tracks
+PASS: separate phrase and music consent withdrawal clears owned audio and scheduled entry
+PASS: server disconnected: reload, local track analysis, minor rule generation and synchronized C all work
+PASS: offline consent withdrawal stops C, resets/disables effects and keeps A playing
+PASS: no uploads, external requests or unexpected runtime errors

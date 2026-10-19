@@ -170,3 +170,7 @@ Documentation consulted (Context7 tools were unavailable):
 [MediaRecorder](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder),
 [OfflineAudioContext](https://developer.mozilla.org/en-US/docs/Web/API/OfflineAudioContext),
 [Playwright contexts](https://playwright.dev/docs/api/class-browsercontext).
+
+Audio wake-up has a ten-second recovery deadline for decks and instruments.
+A failed wake-up restores retry controls; late old requests cannot start another
+performance or release a newer note. See [wake-up evidence](../../docs/audio-resume.md).

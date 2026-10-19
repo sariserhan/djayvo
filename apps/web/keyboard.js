@@ -1,6 +1,7 @@
 import { PATCHES, DRUMS, PERCUSSION, noteName, playable, createRack } from './instrument-rack.js';
 import { updateToneEcho, clearEcho } from './mixer.js';
 import { attachMidi } from './midi.js';
+import { resumeAudio } from './audio.js';
 const $ = id => document.getElementById(id);
 export function attachKeyboard({ graph, context, mixer, levels, masterControls }) {
   let node, loading = false, nextId = 1, root = 60;
@@ -37,11 +38,11 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
     if (nextId > 0xffffffff) nextId = 1;
     held.set(token, note); paint(button);
     try {
-      if (context().state !== 'running') await context().resume();
+      if (context().state !== 'running') await resumeAudio(context());
       if (held.get(token) !== note) return;
       if (context().state !== 'running') throw new Error('Audio is suspended. Tap a key to retry.');
       send({ type: 'note', id: note.id, patch, pitch, velocity });
-    } catch (error) { release(token); status(error.message); }
+    } catch (error) { if (held.get(token) === note) { release(token); status(error.message); } }
   }
   function bind(button, pitch, patch) {
     button.disabled = true; button.setAttribute('aria-pressed', 'false');
@@ -91,7 +92,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
     if (node || loading) return;
     loading = true; $('load-instruments').disabled = true; status('Preparing the instrument bank…');
     try {
-      graph(); await context().resume(); node = await createRack(context(), mixer().rackFX.input);
+      graph(); await resumeAudio(context()); node = await createRack(context(), mixer().rackFX.input);
       node.addEventListener('processorerror', () => {
         panic(); node.disconnect(); node.port.close(); node = null; availability(); masterControls();
         status('The instrument engine stopped. Your decks remain available. Reload to prepare instruments again.');

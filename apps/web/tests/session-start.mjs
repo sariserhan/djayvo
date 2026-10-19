@@ -63,7 +63,18 @@ export async function verifyPendingStart(page, channel, capture) {
   await page.waitForFunction(() => scheduledStarts.length === 2);
   assert.equal(await page.locator('#performance-error').textContent(), '');
   await page.locator(stop).click();
-  return { channel, status: 'PASS', cancelledStarts: 0, successfulStarts: 2, staleFailureIgnored: true, currentFailureRecoverable: true };
+  await hold(); await page.locator(play).click();
+  await page.waitForFunction(() => document.getElementById('performance-error').textContent.includes('Audio did not wake up'), null, { timeout: 15000 });
+  assert.equal(await page.locator(play).isDisabled(), false);
+  assert.equal(await page.locator(stop).isDisabled(), true);
+  assert.equal(await page.evaluate(() => scheduledStarts.length), 2);
+  await page.locator(play).click();
+  await page.waitForFunction(() => scheduledStarts.length === 3);
+  await page.evaluate(() => finishResume(false)); await page.waitForTimeout(150);
+  assert.equal(await page.evaluate(() => scheduledStarts.length), 3, 'Timed-out resume scheduled an extra source');
+  assert.equal(await page.locator('#performance-error').textContent(), '');
+  await page.locator(stop).click();
+  return { channel, status: 'PASS', cancelledStarts: 0, successfulStarts: 3, staleFailureIgnored: true, currentFailureRecoverable: true, resumeTimeoutRecoverable: true };
 }
 
 export async function verifyPendingConsent(page) {

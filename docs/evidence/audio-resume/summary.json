@@ -1,0 +1,2702 @@
+{
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "core/include/djayvo/audio.h": "0b556b7f731d5bbf257d152dae1b591311283ffd8366fe98ba66e20df7a2c523",
+    "core/instruments/voice.cpp": "d0bc8893083ac9f14a94f53e6f561a4316b0e09584e86361f4101b47a4b52120",
+    "core/tests/tests.cpp": "396d770309332e747a130291e01df51348e2fe185454ab49a53ef5e38bdebc09",
+    "core/instruments/full_band_interpolation.inc": "b5188a1756bb48d352361601443644e17088e6df3ade3b2682126afb6875a547",
+    "dist/web/engine/djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "dist/web/engine/djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1"
+  },
+  "source_sha256": {
+    "apps/web/audio.js": "5b7b18df7d733ea6b6184073e25325797135950735b81e4fae1cfee83c26968f",
+    "apps/web/dj.js": "9634604bad8bd7a152a217c7b0fcb5be0b663b9e3fca46401f61714e3e69e6c3",
+    "apps/web/keyboard.js": "0d3497e1bad1616de67692455d970054ff1b5edd6dfa2b7462131eb37a0dac1a",
+    "apps/web/performance-session.js": "842141cd099450db876cee097ca2851b4d63f65463f9c457988a9e293c16e79f",
+    "apps/web/tests/dj.mjs": "2e49e844f603363c7dd4140309afd23bd5e870ce4315e6fd25f8a53630d47387",
+    "apps/web/tests/session.mjs": "5de5b32ddcc4529d20a09c3decccc1026faad5f2807f4cc2d4a88f7a9b649f44",
+    "apps/web/tests/session-start.mjs": "df5f7acf84985731fe1f97a496d323bceab0f348131de2d819a7b585d81de718",
+    "apps/web/tests/audio-resume.test.js": "6d7c90e9ddeb2fd7ec724ea340ff6bd50c53ac4da79fc38b6f72a92affeb8942"
+  },
+  "runs": {
+    "mac-chromium-dj": {
+      "status": "PASS",
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "checks": [
+        {
+          "name": "page identity, nonblank content, consent gating",
+          "status": "PASS"
+        },
+        {
+          "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+          "status": "PASS"
+        },
+        {
+          "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "hung audio resume reports failure, restores manual Play and cannot disrupt a successful retry",
+          "status": "PASS"
+        },
+        {
+          "name": "late completion of an older play request cannot pause a newer playback request",
+          "status": "PASS"
+        },
+        {
+          "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+          "status": "PASS"
+        },
+        {
+          "name": "real media output follows crossfader, channel level and master silence",
+          "status": "PASS"
+        },
+        {
+          "name": "pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects",
+          "status": "PASS"
+        },
+        {
+          "name": "resolved-but-stalled A start reports failure and restores controls while B keeps producing audio",
+          "status": "PASS"
+        },
+        {
+          "name": "Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry",
+          "status": "PASS"
+        },
+        {
+          "name": "rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping",
+          "status": "PASS"
+        },
+        {
+          "name": "rapid active pitch changes keep the latest rate; Pause All and unload cancel the queued resume, then reload plays",
+          "status": "PASS"
+        },
+        {
+          "name": "deck low EQ changes measured output",
+          "status": "PASS"
+        },
+        {
+          "name": "A/B controls change real audio independently; pause tails follow channel/master/crossfader and reset cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "hung instrument wake-up restores Prepare; retry succeeds and late completion stays inert",
+          "status": "PASS"
+        },
+        {
+          "name": "live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound",
+          "status": "PASS"
+        },
+        {
+          "name": "late note wake-up rejection cannot release or overwrite a newer note on the same key",
+          "status": "PASS"
+        },
+        {
+          "name": "sustain, instrument/master mute, panic and blur release work without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "live tone/echo controls change instrument audio; level/master silence tails; reset clears buffers even if echo is raised again, decks continue",
+          "status": "PASS"
+        },
+        {
+          "name": "talk-bass low register and live vowel spectrum, release, isolated controls and four new percussion sounds",
+          "status": "PASS"
+        },
+        {
+          "name": "octave selection, patch range limits and pointer drum pad generate real audio",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI opt-in, denied permission and late permission cancellation preserve manual controls",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI notes drive real C++ worklet audio with velocity and zero-velocity note-off",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI Learn consumes assignment without jumps; channel-specific pickup controls actual audio, manual changes rearm, unmapped/reserved CC preserve notes",
+          "status": "PASS"
+        },
+        {
+          "name": "reassignment replaces old target/controller bindings; disabled sound controls and cancelled learning ignore CC",
+          "status": "PASS"
+        },
+        {
+          "name": "learned channel and crossfader controls change media-deck PCM; tone/EQ use existing validated audio controls",
+          "status": "PASS"
+        },
+        {
+          "name": "blur cancels learning/rearms pickup; clear and input switching remove bindings without changing levels",
+          "status": "PASS"
+        },
+        {
+          "name": "all 26 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI sustain is isolated by channel and from computer/touch sustain",
+          "status": "PASS"
+        },
+        {
+          "name": "retrigger and MIDI CC123/121/120 release held and sustained voices safely",
+          "status": "PASS"
+        },
+        {
+          "name": "channel-10 drums/percussion mapping produces audio; unsupported notes and messages are ignored",
+          "status": "PASS"
+        },
+        {
+          "name": "input switching preserves computer notes; unplug clears sustain and requires explicit reconnect",
+          "status": "PASS"
+        },
+        {
+          "name": "failed/pending port opens, blur and disabling MIDI release voices without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "unsupported MIDI browser keeps clear fallback and existing instrument controls",
+          "status": "PASS"
+        },
+        {
+          "name": "desktop, tablet and mobile controls render without horizontal overflow; reduced motion stops platter animation",
+          "status": "PASS"
+        },
+        {
+          "name": "injected instrument processor failure disables keys and preserves deck playback",
+          "status": "PASS"
+        },
+        {
+          "name": "pause-all and audio-context interruption require explicit resume",
+          "status": "PASS"
+        },
+        {
+          "name": "opposite-polarity stereo remains visible on output meter despite mono cancellation",
+          "status": "PASS"
+        },
+        {
+          "name": "revoking permission stops, detaches both decks and clears effect tails and controls",
+          "status": "PASS"
+        },
+        {
+          "name": "disconnected reload: deck playback/effects, Pause all clears tails, unload/reload cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "cached WASM bank and AudioWorklet produce instrument audio with server disconnected",
+          "status": "PASS"
+        },
+        {
+          "name": "cached MIDI Learn picks up, mutes/unmutes actual instrument PCM and clears on disable with server disconnected (synthetic port)",
+          "status": "PASS"
+        },
+        {
+          "name": "unload releases the deck source",
+          "status": "PASS"
+        },
+        {
+          "name": "failed graph initialization rejects repeated loads before attaching audio; no unprocessed fallback",
+          "status": "PASS"
+        },
+        {
+          "name": "no upload/external request, URL-release errors or app console errors",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "receipt": "renders/dj-chromium-TSnFOX/report.json",
+      "sha256": "d2b273bfb71e3aa0d487d5d18de4562e42d688bd5d11544e71716d1029a5efcb",
+      "log": "docs/evidence/audio-resume/mac-chromium-dj.log",
+      "log_sha256": "31aca70d627bcabb3fc67d448f8c07f0ee5fc18606388e3ceb31dac0bd910219",
+      "echo_frames_match_baseline": true,
+      "echo_frame_errors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "mac-chromium-session": {
+      "status": "PASS",
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "checks": [
+        {
+          "name": "both studios disable unavailable recording and keep consented import enabled",
+          "status": "PASS"
+        },
+        {
+          "name": "identity, meaningful screen, permission-disabled preparation/capture",
+          "status": "PASS"
+        },
+        {
+          "name": "C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry",
+          "status": "PASS"
+        },
+        {
+          "name": "C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons",
+          "status": "PASS"
+        },
+        {
+          "name": "pending prepared A start can be stopped; stale rejection cannot overwrite retry; current failure recovers",
+          "status": "PASS"
+        },
+        {
+          "name": "prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport",
+          "status": "PASS"
+        },
+        {
+          "name": "confirmed major mode reaches the shared planner; all pitched notes belong to its scale",
+          "status": "PASS"
+        },
+        {
+          "name": "ready C effects and synthetic MIDI pickup drive the existing tone control",
+          "status": "PASS"
+        },
+        {
+          "name": "beat sync uses confirmed C tempo, holds manual spacing, blocks mapped spacing and rearms pickup on return",
+          "status": "PASS"
+        },
+        {
+          "name": "consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues",
+          "status": "PASS"
+        },
+        {
+          "name": "complete C performance ends naturally with accurate status while A keeps playing",
+          "status": "PASS"
+        },
+        {
+          "name": "C manual fader/stop do not stop A",
+          "status": "PASS"
+        },
+        {
+          "name": "worker cancellation retains ready C and uninterrupted A; next request excludes recent composition",
+          "status": "PASS"
+        },
+        {
+          "name": "director load failure leaves A and previous ready C intact",
+          "status": "PASS"
+        },
+        {
+          "name": "independent PCM counter and nonsilent mix during generation/entry/cancellation; browser timestamp anomalies retained",
+          "status": "PASS"
+        },
+        {
+          "name": "rejected replacement phrase keeps previous source/performance and A playback",
+          "status": "PASS"
+        },
+        {
+          "name": "desktop/mobile visible controls and no horizontal overflow",
+          "status": "PASS"
+        },
+        {
+          "name": "pending C preview can be stopped; stale rejection cannot overwrite retry; current failure recovers",
+          "status": "PASS"
+        },
+        {
+          "name": "C preview produces audio, master mutes wet/dry, Stop C clears 800 ms echoes and reset restores defaults",
+          "status": "PASS"
+        },
+        {
+          "name": "C preview routes through performance gain, and restarting A cancels the preview",
+          "status": "PASS"
+        },
+        {
+          "name": "consent withdrawal cancels pending C preview, clears its download and prevents a late resume from scheduling audio",
+          "status": "PASS"
+        },
+        {
+          "name": "changing mode clears ready C and confirmation before playback can resume",
+          "status": "PASS"
+        },
+        {
+          "name": "synthetic microphone capture, decoding and track cleanup while A continues",
+          "status": "PASS"
+        },
+        {
+          "name": "revoked consent rejects late microphone permission and closes its tracks",
+          "status": "PASS"
+        },
+        {
+          "name": "separate phrase and music consent withdrawal clears owned audio and scheduled entry",
+          "status": "PASS"
+        },
+        {
+          "name": "server disconnected: reload, local track analysis, minor rule generation and synchronized C all work",
+          "status": "PASS"
+        },
+        {
+          "name": "offline consent withdrawal stops C, resets/disables effects and keeps A playing",
+          "status": "PASS"
+        },
+        {
+          "name": "no uploads, external requests or unexpected runtime errors",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "receipt": "renders/session-chromium-SepXST/report.json",
+      "sha256": "b500c74b6fdda45c116929402caaaf3443a0541f74c33744320df6b8d582ee69",
+      "log": "docs/evidence/audio-resume/mac-chromium-session.log",
+      "log_sha256": "ddfa82d12125ed76435655db0434bb3a71ae135857c3b601f69209e5c5bdb144",
+      "timing": {
+        "startA": 4800,
+        "startC": 100800,
+        "firstA": 4801,
+        "firstC": 100801,
+        "gap": 0,
+        "frames": [
+          {
+            "rate": 44100,
+            "tempo": 60000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 44100,
+            "tempo": 83920,
+            "afterSixHours": 952585241
+          },
+          {
+            "rate": 44100,
+            "tempo": 127190,
+            "afterSixHours": 952634910
+          },
+          {
+            "rate": 44100,
+            "tempo": 180000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 48000,
+            "tempo": 60000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 48000,
+            "tempo": 83920,
+            "afterSixHours": 1036827472
+          },
+          {
+            "rate": 48000,
+            "tempo": 127190,
+            "afterSixHours": 1036881533
+          },
+          {
+            "rate": 48000,
+            "tempo": 180000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 96000,
+            "tempo": 60000,
+            "afterSixHours": 2073600017
+          },
+          {
+            "rate": 96000,
+            "tempo": 83920,
+            "afterSixHours": 2073654926
+          },
+          {
+            "rate": 96000,
+            "tempo": 127190,
+            "afterSixHours": 2073763049
+          },
+          {
+            "rate": 96000,
+            "tempo": 180000,
+            "afterSixHours": 2073600017
+          }
+        ],
+        "sampleRate": 48000,
+        "renderedFrames": 192000
+      },
+      "continuity": {
+        "blocks": 12972,
+        "silent": 0,
+        "frameGaps": 3,
+        "events": [
+          {
+            "frame": 1143552,
+            "expected": 1143680,
+            "delta": -128,
+            "block": 4581,
+            "sampleRate": 48000,
+            "signalFrame": 587520,
+            "signalFrameGaps": 0
+          },
+          {
+            "frame": 1143552,
+            "expected": 1143680,
+            "delta": -128,
+            "block": 4582,
+            "sampleRate": 48000,
+            "signalFrame": 587648,
+            "signalFrameGaps": 0
+          },
+          {
+            "frame": 1143936,
+            "expected": 1143680,
+            "delta": 256,
+            "block": 4583,
+            "sampleRate": 48000,
+            "signalFrame": 587776,
+            "signalFrameGaps": 0
+          }
+        ],
+        "signalFrameGaps": 0,
+        "signalFrames": 1660416,
+        "processedFrames": 1660416
+      },
+      "recordingAvailable": true,
+      "startup": [
+        {
+          "channel": "a",
+          "status": "PASS",
+          "cancelledStarts": 0,
+          "successfulStarts": 3,
+          "staleFailureIgnored": true,
+          "currentFailureRecoverable": true,
+          "resumeTimeoutRecoverable": true
+        },
+        {
+          "channel": "c",
+          "status": "PASS",
+          "cancelledStarts": 0,
+          "successfulStarts": 3,
+          "staleFailureIgnored": true,
+          "currentFailureRecoverable": true,
+          "resumeTimeoutRecoverable": true
+        }
+      ],
+      "echo_frames_match_baseline": true,
+      "echo_frame_errors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.3552166050794767,
+        -0.28956678984104656,
+        0.06564981523843016,
+        -0.4671750923807849,
+        0.06564981523843016,
+        -0.4015252771496307,
+        0.2368110700554098,
+        0.4736221401108196,
+        -0.28956678984104656,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -0.33333333333575865,
+        0.3333333333284827,
+        0
+      ]
+    },
+    "mac-webkit-dj": {
+      "status": "PASS",
+      "browser": "webkit",
+      "version": "26.5",
+      "checks": [
+        {
+          "name": "page identity, nonblank content, consent gating",
+          "status": "PASS"
+        },
+        {
+          "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+          "status": "PASS"
+        },
+        {
+          "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "hung audio resume reports failure, restores manual Play and cannot disrupt a successful retry",
+          "status": "PASS"
+        },
+        {
+          "name": "late completion of an older play request cannot pause a newer playback request",
+          "status": "PASS"
+        },
+        {
+          "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+          "status": "PASS"
+        },
+        {
+          "name": "real media output follows crossfader, channel level and master silence",
+          "status": "PASS"
+        },
+        {
+          "name": "pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects",
+          "status": "PASS"
+        },
+        {
+          "name": "resolved-but-stalled A start reports failure and restores controls while B keeps producing audio",
+          "status": "PASS"
+        },
+        {
+          "name": "Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry",
+          "status": "PASS"
+        },
+        {
+          "name": "rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping",
+          "status": "PASS"
+        },
+        {
+          "name": "rapid active pitch changes keep the latest rate; Pause All and unload cancel the queued resume, then reload plays",
+          "status": "PASS"
+        },
+        {
+          "name": "deck low EQ changes measured output",
+          "status": "PASS"
+        },
+        {
+          "name": "A/B controls change real audio independently; pause tails follow channel/master/crossfader and reset cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "hung instrument wake-up restores Prepare; retry succeeds and late completion stays inert",
+          "status": "PASS"
+        },
+        {
+          "name": "live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound",
+          "status": "PASS"
+        },
+        {
+          "name": "late note wake-up rejection cannot release or overwrite a newer note on the same key",
+          "status": "PASS"
+        },
+        {
+          "name": "sustain, instrument/master mute, panic and blur release work without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "live tone/echo controls change instrument audio; level/master silence tails; reset clears buffers even if echo is raised again, decks continue",
+          "status": "PASS"
+        },
+        {
+          "name": "talk-bass low register and live vowel spectrum, release, isolated controls and four new percussion sounds",
+          "status": "PASS"
+        },
+        {
+          "name": "octave selection, patch range limits and pointer drum pad generate real audio",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI opt-in, denied permission and late permission cancellation preserve manual controls",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI notes drive real C++ worklet audio with velocity and zero-velocity note-off",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI Learn consumes assignment without jumps; channel-specific pickup controls actual audio, manual changes rearm, unmapped/reserved CC preserve notes",
+          "status": "PASS"
+        },
+        {
+          "name": "reassignment replaces old target/controller bindings; disabled sound controls and cancelled learning ignore CC",
+          "status": "PASS"
+        },
+        {
+          "name": "learned channel and crossfader controls change media-deck PCM; tone/EQ use existing validated audio controls",
+          "status": "PASS"
+        },
+        {
+          "name": "blur cancels learning/rearms pickup; clear and input switching remove bindings without changing levels",
+          "status": "PASS"
+        },
+        {
+          "name": "all 26 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI sustain is isolated by channel and from computer/touch sustain",
+          "status": "PASS"
+        },
+        {
+          "name": "retrigger and MIDI CC123/121/120 release held and sustained voices safely",
+          "status": "PASS"
+        },
+        {
+          "name": "channel-10 drums/percussion mapping produces audio; unsupported notes and messages are ignored",
+          "status": "PASS"
+        },
+        {
+          "name": "input switching preserves computer notes; unplug clears sustain and requires explicit reconnect",
+          "status": "PASS"
+        },
+        {
+          "name": "failed/pending port opens, blur and disabling MIDI release voices without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "unsupported MIDI browser keeps clear fallback and existing instrument controls",
+          "status": "PASS"
+        },
+        {
+          "name": "desktop, tablet and mobile controls render without horizontal overflow; reduced motion stops platter animation",
+          "status": "PASS"
+        },
+        {
+          "name": "injected instrument processor failure disables keys and preserves deck playback",
+          "status": "PASS"
+        },
+        {
+          "name": "pause-all and audio-context interruption require explicit resume",
+          "status": "PASS"
+        },
+        {
+          "name": "opposite-polarity stereo remains visible on output meter despite mono cancellation",
+          "status": "PASS"
+        },
+        {
+          "name": "revoking permission stops, detaches both decks and clears effect tails and controls",
+          "status": "PASS"
+        },
+        {
+          "name": "disconnected reload: deck playback/effects, Pause all clears tails, unload/reload cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "cached WASM bank and AudioWorklet produce instrument audio with server disconnected",
+          "status": "PASS"
+        },
+        {
+          "name": "cached MIDI Learn picks up, mutes/unmutes actual instrument PCM and clears on disable with server disconnected (synthetic port)",
+          "status": "PASS"
+        },
+        {
+          "name": "unload releases the deck source",
+          "status": "PASS"
+        },
+        {
+          "name": "failed graph initialization rejects repeated loads before attaching audio; no unprocessed fallback",
+          "status": "PASS"
+        },
+        {
+          "name": "no upload/external request, URL-release errors or app console errors",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+      ],
+      "receipt": "renders/dj-webkit-l4yxAk/report.json",
+      "sha256": "eba99d9ce726cc11ea31ba618eda8745944ba09ac8e2b7baf46a9549ff4d684a",
+      "log": "docs/evidence/audio-resume/mac-webkit-dj.log",
+      "log_sha256": "5b137f28bbd69269c2af92c1fbb7562ad798a4d019c8f2e2b91e3848e1346673",
+      "echo_frames_match_baseline": true,
+      "echo_frame_errors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "mac-webkit-session": {
+      "status": "PASS",
+      "browser": "webkit",
+      "version": "26.5",
+      "checks": [
+        {
+          "name": "both studios disable unavailable recording and keep consented import enabled",
+          "status": "PASS"
+        },
+        {
+          "name": "identity, meaningful screen, permission-disabled preparation/capture",
+          "status": "PASS"
+        },
+        {
+          "name": "C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry",
+          "status": "PASS"
+        },
+        {
+          "name": "C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons",
+          "status": "PASS"
+        },
+        {
+          "name": "pending prepared A start can be stopped; stale rejection cannot overwrite retry; current failure recovers",
+          "status": "PASS"
+        },
+        {
+          "name": "prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport",
+          "status": "PASS"
+        },
+        {
+          "name": "confirmed major mode reaches the shared planner; all pitched notes belong to its scale",
+          "status": "PASS"
+        },
+        {
+          "name": "ready C effects and synthetic MIDI pickup drive the existing tone control",
+          "status": "PASS"
+        },
+        {
+          "name": "beat sync uses confirmed C tempo, holds manual spacing, blocks mapped spacing and rearms pickup on return",
+          "status": "PASS"
+        },
+        {
+          "name": "consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues",
+          "status": "PASS"
+        },
+        {
+          "name": "complete C performance ends naturally with accurate status while A keeps playing",
+          "status": "PASS"
+        },
+        {
+          "name": "C manual fader/stop do not stop A",
+          "status": "PASS"
+        },
+        {
+          "name": "worker cancellation retains ready C and uninterrupted A; next request excludes recent composition",
+          "status": "PASS"
+        },
+        {
+          "name": "director load failure leaves A and previous ready C intact",
+          "status": "PASS"
+        },
+        {
+          "name": "independent PCM counter and nonsilent mix during generation/entry/cancellation; browser timestamp anomalies retained",
+          "status": "PASS"
+        },
+        {
+          "name": "rejected replacement phrase keeps previous source/performance and A playback",
+          "status": "PASS"
+        },
+        {
+          "name": "desktop/mobile visible controls and no horizontal overflow",
+          "status": "PASS"
+        },
+        {
+          "name": "pending C preview can be stopped; stale rejection cannot overwrite retry; current failure recovers",
+          "status": "PASS"
+        },
+        {
+          "name": "C preview produces audio, master mutes wet/dry, Stop C clears 800 ms echoes and reset restores defaults",
+          "status": "PASS"
+        },
+        {
+          "name": "C preview routes through performance gain, and restarting A cancels the preview",
+          "status": "PASS"
+        },
+        {
+          "name": "consent withdrawal cancels pending C preview, clears its download and prevents a late resume from scheduling audio",
+          "status": "PASS"
+        },
+        {
+          "name": "changing mode clears ready C and confirmation before playback can resume",
+          "status": "PASS"
+        },
+        {
+          "name": "synthetic microphone capture, decoding and track cleanup while A continues",
+          "status": "PASS"
+        },
+        {
+          "name": "revoked consent rejects late microphone permission and closes its tracks",
+          "status": "PASS"
+        },
+        {
+          "name": "separate phrase and music consent withdrawal clears owned audio and scheduled entry",
+          "status": "PASS"
+        },
+        {
+          "name": "server disconnected: reload, local track analysis, minor rule generation and synchronized C all work",
+          "status": "PASS"
+        },
+        {
+          "name": "offline consent withdrawal stops C, resets/disables effects and keeps A playing",
+          "status": "PASS"
+        },
+        {
+          "name": "no uploads, external requests or unexpected runtime errors",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+      ],
+      "receipt": "renders/session-webkit-ujxhLJ/report.json",
+      "sha256": "b99735442413f252984a1979d29dd374ff25c05b612995b450eeb50901473ca6",
+      "log": "docs/evidence/audio-resume/mac-webkit-session.log",
+      "log_sha256": "5bdb41b5de2b7d527e3fd12ae2aac04fbb3991c0958bb14f452b140dddf23de2",
+      "timing": {
+        "startA": 4800,
+        "startC": 100800,
+        "firstA": 4801,
+        "firstC": 100801,
+        "gap": 0,
+        "frames": [
+          {
+            "rate": 44100,
+            "tempo": 60000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 44100,
+            "tempo": 83920,
+            "afterSixHours": 952585241
+          },
+          {
+            "rate": 44100,
+            "tempo": 127190,
+            "afterSixHours": 952634910
+          },
+          {
+            "rate": 44100,
+            "tempo": 180000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 48000,
+            "tempo": 60000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 48000,
+            "tempo": 83920,
+            "afterSixHours": 1036827472
+          },
+          {
+            "rate": 48000,
+            "tempo": 127190,
+            "afterSixHours": 1036881533
+          },
+          {
+            "rate": 48000,
+            "tempo": 180000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 96000,
+            "tempo": 60000,
+            "afterSixHours": 2073600017
+          },
+          {
+            "rate": 96000,
+            "tempo": 83920,
+            "afterSixHours": 2073654926
+          },
+          {
+            "rate": 96000,
+            "tempo": 127190,
+            "afterSixHours": 2073763049
+          },
+          {
+            "rate": 96000,
+            "tempo": 180000,
+            "afterSixHours": 2073600017
+          }
+        ],
+        "sampleRate": 48000,
+        "renderedFrames": 192000
+      },
+      "continuity": {
+        "blocks": 12636,
+        "silent": 0,
+        "frameGaps": 0,
+        "events": [],
+        "signalFrameGaps": 0,
+        "signalFrames": 1617408,
+        "processedFrames": 1617408
+      },
+      "recordingAvailable": true,
+      "startup": [
+        {
+          "channel": "a",
+          "status": "PASS",
+          "cancelledStarts": 0,
+          "successfulStarts": 3,
+          "staleFailureIgnored": true,
+          "currentFailureRecoverable": true,
+          "resumeTimeoutRecoverable": true
+        },
+        {
+          "channel": "c",
+          "status": "PASS",
+          "cancelledStarts": 0,
+          "successfulStarts": 3,
+          "staleFailureIgnored": true,
+          "currentFailureRecoverable": true,
+          "resumeTimeoutRecoverable": true
+        }
+      ],
+      "echo_frames_match_baseline": true,
+      "echo_frame_errors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.3552166050794767,
+        -0.28956678984104656,
+        0.06564981523843016,
+        -0.4671750923807849,
+        0.06564981523843016,
+        -0.4015252771496307,
+        0.2368110700554098,
+        0.4736221401108196,
+        -0.28956678984104656,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -0.33333333333575865,
+        0.3333333333284827,
+        0
+      ]
+    },
+    "linux-chromium-dj": {
+      "status": "PASS",
+      "browser": "chromium",
+      "version": "149.0.7827.0",
+      "checks": [
+        {
+          "name": "page identity, nonblank content, consent gating",
+          "status": "PASS"
+        },
+        {
+          "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+          "status": "PASS"
+        },
+        {
+          "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "hung audio resume reports failure, restores manual Play and cannot disrupt a successful retry",
+          "status": "PASS"
+        },
+        {
+          "name": "late completion of an older play request cannot pause a newer playback request",
+          "status": "PASS"
+        },
+        {
+          "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+          "status": "PASS"
+        },
+        {
+          "name": "real media output follows crossfader, channel level and master silence",
+          "status": "PASS"
+        },
+        {
+          "name": "pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects",
+          "status": "PASS"
+        },
+        {
+          "name": "resolved-but-stalled A start reports failure and restores controls while B keeps producing audio",
+          "status": "PASS"
+        },
+        {
+          "name": "Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry",
+          "status": "PASS"
+        },
+        {
+          "name": "rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping",
+          "status": "PASS"
+        },
+        {
+          "name": "rapid active pitch changes keep the latest rate; Pause All and unload cancel the queued resume, then reload plays",
+          "status": "PASS"
+        },
+        {
+          "name": "deck low EQ changes measured output",
+          "status": "PASS"
+        },
+        {
+          "name": "A/B controls change real audio independently; pause tails follow channel/master/crossfader and reset cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "hung instrument wake-up restores Prepare; retry succeeds and late completion stays inert",
+          "status": "PASS"
+        },
+        {
+          "name": "live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound",
+          "status": "PASS"
+        },
+        {
+          "name": "late note wake-up rejection cannot release or overwrite a newer note on the same key",
+          "status": "PASS"
+        },
+        {
+          "name": "sustain, instrument/master mute, panic and blur release work without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "live tone/echo controls change instrument audio; level/master silence tails; reset clears buffers even if echo is raised again, decks continue",
+          "status": "PASS"
+        },
+        {
+          "name": "talk-bass low register and live vowel spectrum, release, isolated controls and four new percussion sounds",
+          "status": "PASS"
+        },
+        {
+          "name": "octave selection, patch range limits and pointer drum pad generate real audio",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI opt-in, denied permission and late permission cancellation preserve manual controls",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI notes drive real C++ worklet audio with velocity and zero-velocity note-off",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI Learn consumes assignment without jumps; channel-specific pickup controls actual audio, manual changes rearm, unmapped/reserved CC preserve notes",
+          "status": "PASS"
+        },
+        {
+          "name": "reassignment replaces old target/controller bindings; disabled sound controls and cancelled learning ignore CC",
+          "status": "PASS"
+        },
+        {
+          "name": "learned channel and crossfader controls change media-deck PCM; tone/EQ use existing validated audio controls",
+          "status": "PASS"
+        },
+        {
+          "name": "blur cancels learning/rearms pickup; clear and input switching remove bindings without changing levels",
+          "status": "PASS"
+        },
+        {
+          "name": "all 26 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI sustain is isolated by channel and from computer/touch sustain",
+          "status": "PASS"
+        },
+        {
+          "name": "retrigger and MIDI CC123/121/120 release held and sustained voices safely",
+          "status": "PASS"
+        },
+        {
+          "name": "channel-10 drums/percussion mapping produces audio; unsupported notes and messages are ignored",
+          "status": "PASS"
+        },
+        {
+          "name": "input switching preserves computer notes; unplug clears sustain and requires explicit reconnect",
+          "status": "PASS"
+        },
+        {
+          "name": "failed/pending port opens, blur and disabling MIDI release voices without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "unsupported MIDI browser keeps clear fallback and existing instrument controls",
+          "status": "PASS"
+        },
+        {
+          "name": "desktop, tablet and mobile controls render without horizontal overflow; reduced motion stops platter animation",
+          "status": "PASS"
+        },
+        {
+          "name": "injected instrument processor failure disables keys and preserves deck playback",
+          "status": "PASS"
+        },
+        {
+          "name": "pause-all and audio-context interruption require explicit resume",
+          "status": "PASS"
+        },
+        {
+          "name": "opposite-polarity stereo remains visible on output meter despite mono cancellation",
+          "status": "PASS"
+        },
+        {
+          "name": "revoking permission stops, detaches both decks and clears effect tails and controls",
+          "status": "PASS"
+        },
+        {
+          "name": "disconnected reload: deck playback/effects, Pause all clears tails, unload/reload cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "cached WASM bank and AudioWorklet produce instrument audio with server disconnected",
+          "status": "PASS"
+        },
+        {
+          "name": "cached MIDI Learn picks up, mutes/unmutes actual instrument PCM and clears on disable with server disconnected (synthetic port)",
+          "status": "PASS"
+        },
+        {
+          "name": "unload releases the deck source",
+          "status": "PASS"
+        },
+        {
+          "name": "failed graph initialization rejects repeated loads before attaching audio; no unprocessed fallback",
+          "status": "PASS"
+        },
+        {
+          "name": "no upload/external request, URL-release errors or app console errors",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "receipt": "renders/audio-resume-linux-Pko79o/dj-chromium-LlLq3T/report.json",
+      "sha256": "0db52fa4f1c82d110638804ecfe2b0bbeb924f447b40e3a02f52ff39b3ed890c",
+      "log": "renders/audio-resume-linux-Pko79o/chromium-dj.log",
+      "log_sha256": "ead28e7570abda666061dcac69a8f56fa773c53b66ec2368de4c7a8d39dc22fa",
+      "echo_frames_match_baseline": true,
+      "echo_frame_errors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "linux-chromium-session": {
+      "status": "PASS",
+      "browser": "chromium",
+      "version": "149.0.7827.0",
+      "checks": [
+        {
+          "name": "both studios disable unavailable recording and keep consented import enabled",
+          "status": "PASS"
+        },
+        {
+          "name": "identity, meaningful screen, permission-disabled preparation/capture",
+          "status": "PASS"
+        },
+        {
+          "name": "C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry",
+          "status": "PASS"
+        },
+        {
+          "name": "C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons",
+          "status": "PASS"
+        },
+        {
+          "name": "pending prepared A start can be stopped; stale rejection cannot overwrite retry; current failure recovers",
+          "status": "PASS"
+        },
+        {
+          "name": "prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport",
+          "status": "PASS"
+        },
+        {
+          "name": "confirmed major mode reaches the shared planner; all pitched notes belong to its scale",
+          "status": "PASS"
+        },
+        {
+          "name": "ready C effects and synthetic MIDI pickup drive the existing tone control",
+          "status": "PASS"
+        },
+        {
+          "name": "beat sync uses confirmed C tempo, holds manual spacing, blocks mapped spacing and rearms pickup on return",
+          "status": "PASS"
+        },
+        {
+          "name": "consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues",
+          "status": "PASS"
+        },
+        {
+          "name": "complete C performance ends naturally with accurate status while A keeps playing",
+          "status": "PASS"
+        },
+        {
+          "name": "C manual fader/stop do not stop A",
+          "status": "PASS"
+        },
+        {
+          "name": "worker cancellation retains ready C and uninterrupted A; next request excludes recent composition",
+          "status": "PASS"
+        },
+        {
+          "name": "director load failure leaves A and previous ready C intact",
+          "status": "PASS"
+        },
+        {
+          "name": "independent PCM counter and nonsilent mix during generation/entry/cancellation; browser timestamp anomalies retained",
+          "status": "PASS"
+        },
+        {
+          "name": "rejected replacement phrase keeps previous source/performance and A playback",
+          "status": "PASS"
+        },
+        {
+          "name": "desktop/mobile visible controls and no horizontal overflow",
+          "status": "PASS"
+        },
+        {
+          "name": "pending C preview can be stopped; stale rejection cannot overwrite retry; current failure recovers",
+          "status": "PASS"
+        },
+        {
+          "name": "C preview produces audio, master mutes wet/dry, Stop C clears 800 ms echoes and reset restores defaults",
+          "status": "PASS"
+        },
+        {
+          "name": "C preview routes through performance gain, and restarting A cancels the preview",
+          "status": "PASS"
+        },
+        {
+          "name": "consent withdrawal cancels pending C preview, clears its download and prevents a late resume from scheduling audio",
+          "status": "PASS"
+        },
+        {
+          "name": "changing mode clears ready C and confirmation before playback can resume",
+          "status": "PASS"
+        },
+        {
+          "name": "synthetic microphone capture, decoding and track cleanup while A continues",
+          "status": "PASS"
+        },
+        {
+          "name": "revoked consent rejects late microphone permission and closes its tracks",
+          "status": "PASS"
+        },
+        {
+          "name": "separate phrase and music consent withdrawal clears owned audio and scheduled entry",
+          "status": "PASS"
+        },
+        {
+          "name": "server disconnected: reload, local track analysis, minor rule generation and synchronized C all work",
+          "status": "PASS"
+        },
+        {
+          "name": "offline consent withdrawal stops C, resets/disables effects and keeps A playing",
+          "status": "PASS"
+        },
+        {
+          "name": "no uploads, external requests or unexpected runtime errors",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "receipt": "renders/audio-resume-retry-1eqVcO/session-chromium-03pXyh/report.json",
+      "sha256": "c1f8dc9795f35de48fb2a948bab85a82f595a101a370aeff85177c7709562a1a",
+      "log": "renders/audio-resume-retry-1eqVcO/chromium-session.log",
+      "log_sha256": "c1c9f9c13bb6553cb5b307801e27772780e05efc9d25287c0766d25f189d0531",
+      "timing": {
+        "startA": 4800,
+        "startC": 100800,
+        "firstA": 4801,
+        "firstC": 100801,
+        "gap": 0,
+        "frames": [
+          {
+            "rate": 44100,
+            "tempo": 60000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 44100,
+            "tempo": 83920,
+            "afterSixHours": 952585241
+          },
+          {
+            "rate": 44100,
+            "tempo": 127190,
+            "afterSixHours": 952634910
+          },
+          {
+            "rate": 44100,
+            "tempo": 180000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 48000,
+            "tempo": 60000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 48000,
+            "tempo": 83920,
+            "afterSixHours": 1036827472
+          },
+          {
+            "rate": 48000,
+            "tempo": 127190,
+            "afterSixHours": 1036881533
+          },
+          {
+            "rate": 48000,
+            "tempo": 180000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 96000,
+            "tempo": 60000,
+            "afterSixHours": 2073600017
+          },
+          {
+            "rate": 96000,
+            "tempo": 83920,
+            "afterSixHours": 2073654926
+          },
+          {
+            "rate": 96000,
+            "tempo": 127190,
+            "afterSixHours": 2073763049
+          },
+          {
+            "rate": 96000,
+            "tempo": 180000,
+            "afterSixHours": 2073600017
+          }
+        ],
+        "sampleRate": 48000,
+        "renderedFrames": 192000
+      },
+      "continuity": {
+        "blocks": 12272,
+        "silent": 0,
+        "frameGaps": 0,
+        "events": [],
+        "signalFrameGaps": 0,
+        "signalFrames": 1570816,
+        "processedFrames": 1570816
+      },
+      "recordingAvailable": true,
+      "startup": [
+        {
+          "channel": "a",
+          "status": "PASS",
+          "cancelledStarts": 0,
+          "successfulStarts": 3,
+          "staleFailureIgnored": true,
+          "currentFailureRecoverable": true,
+          "resumeTimeoutRecoverable": true
+        },
+        {
+          "channel": "c",
+          "status": "PASS",
+          "cancelledStarts": 0,
+          "successfulStarts": 3,
+          "staleFailureIgnored": true,
+          "currentFailureRecoverable": true,
+          "resumeTimeoutRecoverable": true
+        }
+      ],
+      "echo_frames_match_baseline": true,
+      "echo_frame_errors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.3552166050794767,
+        -0.28956678984104656,
+        0.06564981523843016,
+        -0.4671750923807849,
+        0.06564981523843016,
+        -0.4015252771496307,
+        0.2368110700554098,
+        0.4736221401108196,
+        -0.28956678984104656,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -0.33333333333575865,
+        0.3333333333284827,
+        0
+      ]
+    },
+    "linux-webkit-dj": {
+      "status": "FAIL",
+      "browser": "webkit",
+      "version": "26.5",
+      "checks": [
+        {
+          "name": "page identity, nonblank content, consent gating",
+          "status": "PASS"
+        },
+        {
+          "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+          "status": "PASS"
+        },
+        {
+          "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "hung audio resume reports failure, restores manual Play and cannot disrupt a successful retry",
+          "status": "PASS"
+        },
+        {
+          "name": "late completion of an older play request cannot pause a newer playback request",
+          "status": "PASS"
+        },
+        {
+          "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+          "status": "PASS"
+        },
+        {
+          "name": "real media output follows crossfader, channel level and master silence",
+          "status": "PASS"
+        },
+        {
+          "name": "pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects",
+          "status": "PASS"
+        },
+        {
+          "name": "resolved-but-stalled A start reports failure and restores controls while B keeps producing audio",
+          "status": "PASS"
+        },
+        {
+          "name": "Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry",
+          "status": "PASS"
+        },
+        {
+          "name": "rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping",
+          "status": "PASS"
+        },
+        {
+          "name": "rapid active pitch changes keep the latest rate; Pause All and unload cancel the queued resume, then reload plays",
+          "status": "PASS"
+        },
+        {
+          "name": "deck low EQ changes measured output",
+          "status": "PASS"
+        },
+        {
+          "name": "A/B controls change real audio independently; pause tails follow channel/master/crossfader and reset cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "hung instrument wake-up restores Prepare; retry succeeds and late completion stays inert",
+          "status": "PASS"
+        },
+        {
+          "name": "live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound",
+          "status": "PASS"
+        },
+        {
+          "name": "late note wake-up rejection cannot release or overwrite a newer note on the same key",
+          "status": "PASS"
+        },
+        {
+          "name": "sustain, instrument/master mute, panic and blur release work without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "live tone/echo controls change instrument audio; level/master silence tails; reset clears buffers even if echo is raised again, decks continue",
+          "status": "PASS"
+        },
+        {
+          "name": "talk-bass low register and live vowel spectrum, release, isolated controls and four new percussion sounds",
+          "status": "PASS"
+        },
+        {
+          "name": "octave selection, patch range limits and pointer drum pad generate real audio",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI opt-in, denied permission and late permission cancellation preserve manual controls",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI notes drive real C++ worklet audio with velocity and zero-velocity note-off",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI Learn consumes assignment without jumps; channel-specific pickup controls actual audio, manual changes rearm, unmapped/reserved CC preserve notes",
+          "status": "PASS"
+        },
+        {
+          "name": "reassignment replaces old target/controller bindings; disabled sound controls and cancelled learning ignore CC",
+          "status": "PASS"
+        },
+        {
+          "name": "learned channel and crossfader controls change media-deck PCM; tone/EQ use existing validated audio controls",
+          "status": "PASS"
+        },
+        {
+          "name": "blur cancels learning/rearms pickup; clear and input switching remove bindings without changing levels",
+          "status": "PASS"
+        },
+        {
+          "name": "all 26 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI sustain is isolated by channel and from computer/touch sustain",
+          "status": "PASS"
+        },
+        {
+          "name": "retrigger and MIDI CC123/121/120 release held and sustained voices safely",
+          "status": "PASS"
+        },
+        {
+          "name": "channel-10 drums/percussion mapping produces audio; unsupported notes and messages are ignored",
+          "status": "PASS"
+        },
+        {
+          "name": "input switching preserves computer notes; unplug clears sustain and requires explicit reconnect",
+          "status": "PASS"
+        },
+        {
+          "name": "failed/pending port opens, blur and disabling MIDI release voices without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "unsupported MIDI browser keeps clear fallback and existing instrument controls",
+          "status": "PASS"
+        },
+        {
+          "name": "desktop, tablet and mobile controls render without horizontal overflow; reduced motion stops platter animation",
+          "status": "PASS"
+        },
+        {
+          "name": "injected instrument processor failure disables keys and preserves deck playback",
+          "status": "PASS"
+        },
+        {
+          "name": "pause-all and audio-context interruption require explicit resume",
+          "status": "PASS"
+        }
+      ],
+      "errors": null,
+      "warnings": null,
+      "receipt": "renders/audio-resume-retry-1eqVcO/webkit-dj.log",
+      "sha256": "94d377b2983d1b20835d1b6f9bcb689eb61ca47b46df4fe339cf0afc02f612d9",
+      "log": "renders/audio-resume-retry-1eqVcO/webkit-dj.log",
+      "log_sha256": "94d377b2983d1b20835d1b6f9bcb689eb61ca47b46df4fe339cf0afc02f612d9",
+      "note": "Browser target crashed after the listed checks; failure-state evaluation also rejected. Raw decoder log retained. No complete suite receipt or runtime-error accounting.",
+      "echo_frame_errors": []
+    },
+    "linux-webkit-session": {
+      "status": "PARTIAL",
+      "browser": "webkit",
+      "version": "26.5",
+      "checks": [
+        {
+          "name": "both studios disable unavailable recording and keep consented import enabled",
+          "status": "PASS"
+        },
+        {
+          "name": "identity, meaningful screen, permission-disabled preparation/capture",
+          "status": "PASS"
+        },
+        {
+          "name": "C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry",
+          "status": "PASS"
+        },
+        {
+          "name": "C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons",
+          "status": "PASS"
+        },
+        {
+          "name": "pending prepared A start can be stopped; stale rejection cannot overwrite retry; current failure recovers",
+          "status": "PASS"
+        },
+        {
+          "name": "prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport",
+          "status": "PASS"
+        },
+        {
+          "name": "confirmed major mode reaches the shared planner; all pitched notes belong to its scale",
+          "status": "PASS"
+        },
+        {
+          "name": "ready C effects and synthetic MIDI pickup drive the existing tone control",
+          "status": "PASS"
+        },
+        {
+          "name": "beat sync uses confirmed C tempo, holds manual spacing, blocks mapped spacing and rearms pickup on return",
+          "status": "PASS"
+        },
+        {
+          "name": "consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues",
+          "status": "PASS"
+        },
+        {
+          "name": "complete C performance ends naturally with accurate status while A keeps playing",
+          "status": "PASS"
+        },
+        {
+          "name": "C manual fader/stop do not stop A",
+          "status": "PASS"
+        },
+        {
+          "name": "worker cancellation retains ready C and uninterrupted A; next request excludes recent composition",
+          "status": "PASS"
+        },
+        {
+          "name": "director load failure leaves A and previous ready C intact",
+          "status": "PASS"
+        },
+        {
+          "name": "independent PCM counter and nonsilent mix during generation/entry/cancellation; browser timestamp anomalies retained",
+          "status": "PASS"
+        },
+        {
+          "name": "rejected replacement phrase keeps previous source/performance and A playback",
+          "status": "PASS"
+        },
+        {
+          "name": "desktop/mobile visible controls and no horizontal overflow",
+          "status": "PASS"
+        },
+        {
+          "name": "pending C preview can be stopped; stale rejection cannot overwrite retry; current failure recovers",
+          "status": "PASS"
+        },
+        {
+          "name": "C preview produces audio, master mutes wet/dry, Stop C clears 800 ms echoes and reset restores defaults",
+          "status": "PASS"
+        },
+        {
+          "name": "C preview routes through performance gain, and restarting A cancels the preview",
+          "status": "PASS"
+        },
+        {
+          "name": "consent withdrawal cancels pending C preview, clears its download and prevents a late resume from scheduling audio",
+          "status": "PASS"
+        },
+        {
+          "name": "changing mode clears ready C and confirmation before playback can resume",
+          "status": "PASS"
+        },
+        {
+          "name": "recording unavailable is visible; consented phrase import remains enabled",
+          "status": "PASS"
+        },
+        {
+          "name": "synthetic microphone capture, decoding and track cleanup while A continues",
+          "status": "NOT RUN",
+          "reason": "Browser lacks microphone recording APIs"
+        },
+        {
+          "name": "revoked consent rejects late microphone permission and closes its tracks",
+          "status": "NOT RUN",
+          "reason": "Browser lacks microphone recording APIs"
+        },
+        {
+          "name": "separate phrase and music consent withdrawal clears owned audio and scheduled entry",
+          "status": "PASS"
+        },
+        {
+          "name": "server disconnected: reload, local track analysis, minor rule generation and synchronized C all work",
+          "status": "PASS"
+        },
+        {
+          "name": "offline consent withdrawal stops C, resets/disables effects and keeps A playing",
+          "status": "PASS"
+        },
+        {
+          "name": "no uploads, external requests or unexpected runtime errors",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+      ],
+      "receipt": "renders/audio-resume-linux-Pko79o/session-webkit-V2F6wU/report.json",
+      "sha256": "e3bb9a40c764a2e7173073c1fa862e4778e8eeb9fff763c397fa0c484512c83b",
+      "log": "renders/audio-resume-linux-Pko79o/webkit-session.log",
+      "log_sha256": "3d314e1e53b3c294acb021c1cb045b1c3a4381c1aa4984e89dc43ef957168b54",
+      "timing": {
+        "startA": 4800,
+        "startC": 100800,
+        "firstA": 4801,
+        "firstC": 100801,
+        "gap": 0,
+        "frames": [
+          {
+            "rate": 44100,
+            "tempo": 60000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 44100,
+            "tempo": 83920,
+            "afterSixHours": 952585241
+          },
+          {
+            "rate": 44100,
+            "tempo": 127190,
+            "afterSixHours": 952634910
+          },
+          {
+            "rate": 44100,
+            "tempo": 180000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 48000,
+            "tempo": 60000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 48000,
+            "tempo": 83920,
+            "afterSixHours": 1036827472
+          },
+          {
+            "rate": 48000,
+            "tempo": 127190,
+            "afterSixHours": 1036881533
+          },
+          {
+            "rate": 48000,
+            "tempo": 180000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 96000,
+            "tempo": 60000,
+            "afterSixHours": 2073600017
+          },
+          {
+            "rate": 96000,
+            "tempo": 83920,
+            "afterSixHours": 2073654926
+          },
+          {
+            "rate": 96000,
+            "tempo": 127190,
+            "afterSixHours": 2073763049
+          },
+          {
+            "rate": 96000,
+            "tempo": 180000,
+            "afterSixHours": 2073600017
+          }
+        ],
+        "sampleRate": 48000,
+        "renderedFrames": 192000
+      },
+      "continuity": {
+        "blocks": 13248,
+        "silent": 0,
+        "frameGaps": 0,
+        "events": [],
+        "signalFrameGaps": 0,
+        "signalFrames": 1695744,
+        "processedFrames": 1695744
+      },
+      "recordingAvailable": false,
+      "startup": [
+        {
+          "channel": "a",
+          "status": "PASS",
+          "cancelledStarts": 0,
+          "successfulStarts": 3,
+          "staleFailureIgnored": true,
+          "currentFailureRecoverable": true,
+          "resumeTimeoutRecoverable": true
+        },
+        {
+          "channel": "c",
+          "status": "PASS",
+          "cancelledStarts": 0,
+          "successfulStarts": 3,
+          "staleFailureIgnored": true,
+          "currentFailureRecoverable": true,
+          "resumeTimeoutRecoverable": true
+        }
+      ],
+      "echo_frames_match_baseline": true,
+      "echo_frame_errors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.3552166050794767,
+        -0.28956678984104656,
+        0.06564981523843016,
+        -0.4671750923807849,
+        0.06564981523843016,
+        -0.4015252771496307,
+        0.2368110700554098,
+        0.4736221401108196,
+        -0.28956678984104656,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -0.33333333333575865,
+        0.3333333333284827,
+        0
+      ]
+    }
+  },
+  "waveforms": {
+    "mac-chromium-dj": {
+      "run": "renders/dj-chromium-TSnFOX",
+      "baseline": "renders/dj-chromium-9PpttK",
+      "files": {
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        }
+      }
+    },
+    "mac-chromium-session": {
+      "run": "renders/session-chromium-SepXST",
+      "baseline": "renders/session-chromium-O6n9NC",
+      "files": {
+        "deck-c-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-c-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-c-piano-eighth.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "cc5ccde681b66ca97fa3333189b30e0fc69db604288be45925c473e596c41c13",
+          "baseline_sha256": "cc5ccde681b66ca97fa3333189b30e0fc69db604288be45925c473e596c41c13"
+        },
+        "deck-c-piano-dotted.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "00fa4a2401b04dc8d6bf3d944a3c26752ab653c99485de9b6599aad3b2c8c3fa",
+          "baseline_sha256": "00fa4a2401b04dc8d6bf3d944a3c26752ab653c99485de9b6599aad3b2c8c3fa"
+        },
+        "deck-c-piano-triplet.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "8b1157a97a18f694ff68c76af5b12f478232387210ae45b3c9078c59c6ebeba3",
+          "baseline_sha256": "8b1157a97a18f694ff68c76af5b12f478232387210ae45b3c9078c59c6ebeba3"
+        }
+      }
+    },
+    "mac-webkit-dj": {
+      "run": "renders/dj-webkit-l4yxAk",
+      "baseline": "renders/dj-webkit-xFxj41",
+      "files": {
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        }
+      }
+    },
+    "mac-webkit-session": {
+      "run": "renders/session-webkit-ujxhLJ",
+      "baseline": "renders/session-webkit-RxGTiO",
+      "files": {
+        "deck-c-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-c-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-c-piano-eighth.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "311154d579255cf694832a8c129550ca3cd2b6e4f226574d6e26557ac4b7c846",
+          "baseline_sha256": "311154d579255cf694832a8c129550ca3cd2b6e4f226574d6e26557ac4b7c846"
+        },
+        "deck-c-piano-dotted.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "2a922b3d0efdf629d14f72bf314df9a8224ccd72abfdfaac6f8e9935fc863ab4",
+          "baseline_sha256": "2a922b3d0efdf629d14f72bf314df9a8224ccd72abfdfaac6f8e9935fc863ab4"
+        },
+        "deck-c-piano-triplet.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "34b00fe01c8bfb48b2022ff63ce734fc74a157e4e41a1551a2777f1db64e9f94",
+          "baseline_sha256": "34b00fe01c8bfb48b2022ff63ce734fc74a157e4e41a1551a2777f1db64e9f94"
+        }
+      }
+    },
+    "linux-chromium-dj": {
+      "run": "renders/audio-resume-linux-Pko79o/dj-chromium-LlLq3T",
+      "baseline": "renders/dj-chromium-9PpttK",
+      "files": {
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        }
+      }
+    },
+    "linux-chromium-session": {
+      "run": "renders/audio-resume-retry-1eqVcO/session-chromium-03pXyh",
+      "baseline": "renders/session-chromium-O6n9NC",
+      "files": {
+        "deck-c-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-c-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-c-piano-eighth.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "cc5ccde681b66ca97fa3333189b30e0fc69db604288be45925c473e596c41c13",
+          "baseline_sha256": "cc5ccde681b66ca97fa3333189b30e0fc69db604288be45925c473e596c41c13"
+        },
+        "deck-c-piano-dotted.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "00fa4a2401b04dc8d6bf3d944a3c26752ab653c99485de9b6599aad3b2c8c3fa",
+          "baseline_sha256": "00fa4a2401b04dc8d6bf3d944a3c26752ab653c99485de9b6599aad3b2c8c3fa"
+        },
+        "deck-c-piano-triplet.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "8b1157a97a18f694ff68c76af5b12f478232387210ae45b3c9078c59c6ebeba3",
+          "baseline_sha256": "8b1157a97a18f694ff68c76af5b12f478232387210ae45b3c9078c59c6ebeba3"
+        }
+      }
+    },
+    "linux-webkit-dj": {
+      "run": "renders/audio-resume-retry-1eqVcO/dj-webkit-GvHYMQ",
+      "baseline": "renders/dj-webkit-xFxj41",
+      "files": {
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        }
+      }
+    },
+    "linux-webkit-session": {
+      "run": "renders/audio-resume-linux-Pko79o/session-webkit-V2F6wU",
+      "baseline": "renders/session-webkit-RxGTiO",
+      "files": {
+        "deck-c-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-c-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-c-piano-eighth.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "311154d579255cf694832a8c129550ca3cd2b6e4f226574d6e26557ac4b7c846",
+          "baseline_sha256": "311154d579255cf694832a8c129550ca3cd2b6e4f226574d6e26557ac4b7c846"
+        },
+        "deck-c-piano-dotted.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "2a922b3d0efdf629d14f72bf314df9a8224ccd72abfdfaac6f8e9935fc863ab4",
+          "baseline_sha256": "2a922b3d0efdf629d14f72bf314df9a8224ccd72abfdfaac6f8e9935fc863ab4"
+        },
+        "deck-c-piano-triplet.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "34b00fe01c8bfb48b2022ff63ce734fc74a157e4e41a1551a2777f1db64e9f94",
+          "baseline_sha256": "34b00fe01c8bfb48b2022ff63ce734fc74a157e4e41a1551a2777f1db64e9f94"
+        }
+      }
+    }
+  },
+  "unit": {
+    "mac": {
+      "status": "PASS",
+      "tests": 41,
+      "log": "docs/evidence/audio-resume/unit.log",
+      "sha256": "290df6d3b4a4119a2cfb53f01765b9c42c4d236a3a6c0cd5c4b3bc53afcf0a70"
+    },
+    "linux": {
+      "status": "PASS",
+      "tests": 41,
+      "log": "renders/audio-resume-linux-Pko79o/unit.log",
+      "sha256": "392bb7106e41d775804d12f7734d123292d435d4a01f4d112a27212c930865c7"
+    }
+  },
+  "before": {
+    "status": "FAIL",
+    "receipt": "renders/dj-chromium-sxetVn/failure.json",
+    "sha256": "b7f5a775a3c304e987b7a274bde9384f478eb73b805d0211246cc235016d688b",
+    "details": {
+      "message": "page.waitForFunction: Timeout 15000ms exceeded.",
+      "stack": "page.waitForFunction: Timeout 15000ms exceeded.\n    at /Users/serhansari/Documents/projects/djayvo/apps/web/tests/dj.mjs:160:14",
+      "checks": [
+        {
+          "name": "page identity, nonblank content, consent gating",
+          "status": "PASS"
+        },
+        {
+          "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+          "status": "PASS"
+        },
+        {
+          "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "state": {
+        "instruments": "Prepare the cleared sound bank, then play with your mouse, touch or computer keyboard.",
+        "deckError": "",
+        "decks": [
+          {
+            "time": 0,
+            "paused": true,
+            "seeking": false,
+            "ended": false,
+            "rate": 1,
+            "readyState": 4
+          },
+          {
+            "time": 0,
+            "paused": true,
+            "seeking": false,
+            "ended": false,
+            "rate": 1,
+            "readyState": 4
+          }
+        ],
+        "meter": 0
+      }
+    }
+  },
+  "mac_setup_failures": {
+    "mac-webkit-session-idle-page": {
+      "status": "FAIL",
+      "receipt": "renders/session-webkit-ZDJniP/failure.json",
+      "sha256": "808663f06718cbc620e44a8035279addde0e1a52114e36db1f5eaf12d5e64ed1",
+      "details": {
+        "status": "FAIL",
+        "error": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:49408/dj.html\", waiting until \"load\"\u001b[22m\n",
+        "checks": [
+          {
+            "name": "both studios disable unavailable recording and keep consented import enabled",
+            "status": "PASS"
+          }
+        ],
+        "state": "Page unavailable after failure"
+      }
+    },
+    "mac-webkit-session-initial": {
+      "status": "FAIL",
+      "receipt": "renders/session-webkit-lnveJu/failure.json",
+      "sha256": "53f7e9282eb81fedd5a1c7b8ec7a972c2c4b4ac83857f9ce73c8dca7c07138c5",
+      "details": {
+        "status": "FAIL",
+        "error": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:49382/dj.html\", waiting until \"load\"\u001b[22m\n",
+        "checks": [
+          {
+            "name": "both studios disable unavailable recording and keep consented import enabled",
+            "status": "PASS"
+          }
+        ],
+        "state": "Page unavailable after failure"
+      }
+    }
+  },
+  "initial_linux_failures": {
+    "webkit-dj": {
+      "status": "FAIL",
+      "receipt": "renders/audio-resume-linux-Pko79o/dj-webkit-tEc6id/failure.json",
+      "sha256": "88e0cacdd85799547a67a38d515a9560d53f59d9b3c0bbad890bff03ec62f6c6",
+      "details": {
+        "message": "page.waitForFunction: Timeout 10000ms exceeded.",
+        "stack": "page.waitForFunction: Timeout 10000ms exceeded.\n    at /work/apps/web/tests/dj.mjs:315:14",
+        "checks": [
+          {
+            "name": "page identity, nonblank content, consent gating",
+            "status": "PASS"
+          },
+          {
+            "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+            "status": "PASS"
+          },
+          {
+            "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+            "status": "PASS"
+          },
+          {
+            "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+            "status": "PASS"
+          },
+          {
+            "name": "hung audio resume reports failure, restores manual Play and cannot disrupt a successful retry",
+            "status": "PASS"
+          },
+          {
+            "name": "late completion of an older play request cannot pause a newer playback request",
+            "status": "PASS"
+          },
+          {
+            "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+            "status": "PASS"
+          },
+          {
+            "name": "real media output follows crossfader, channel level and master silence",
+            "status": "PASS"
+          },
+          {
+            "name": "pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects",
+            "status": "PASS"
+          },
+          {
+            "name": "resolved-but-stalled A start reports failure and restores controls while B keeps producing audio",
+            "status": "PASS"
+          },
+          {
+            "name": "Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry",
+            "status": "PASS"
+          },
+          {
+            "name": "rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping",
+            "status": "PASS"
+          }
+        ],
+        "errors": [],
+        "warnings": [
+          "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+          "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+        ],
+        "state": {
+          "instruments": "Prepare the cleared sound bank, then play with your mouse, touch or computer keyboard.",
+          "loopTrace": [
+            {
+              "type": "seeking",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "rate": 1.1
+            },
+            {
+              "type": "seeking",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "rate": 1.1
+            },
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "rate": 1.1
+            },
+            {
+              "type": "play",
+              "time": 59.9,
+              "paused": false,
+              "ended": false,
+              "rate": 1.1
+            },
+            {
+              "type": "playing",
+              "time": 59.9,
+              "paused": false,
+              "ended": false,
+              "rate": 1.1
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "rate": 1.1
+            },
+            {
+              "type": "ended",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "rate": 1.1
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "rate": 1.1
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "rate": 1.1
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "rate": 1.1
+            },
+            {
+              "type": "seeked",
+              "time": 0.747583332,
+              "paused": false,
+              "ended": false,
+              "rate": 1.1
+            },
+            {
+              "type": "pause",
+              "time": 1.545166666,
+              "paused": true,
+              "ended": false,
+              "rate": 1.1
+            },
+            {
+              "type": "play",
+              "time": 0.447135709,
+              "paused": false,
+              "ended": false,
+              "rate": 1
+            },
+            {
+              "type": "playing",
+              "time": 0.447135709,
+              "paused": false,
+              "ended": false,
+              "rate": 1
+            },
+            {
+              "type": "pause",
+              "time": 1.599145834,
+              "paused": true,
+              "ended": false,
+              "rate": 1
+            },
+            {
+              "type": "play",
+              "time": 0.556660834,
+              "paused": false,
+              "ended": false,
+              "rate": 1.08
+            },
+            {
+              "type": "playing",
+              "time": 0.556660834,
+              "paused": false,
+              "ended": false,
+              "rate": 1.08
+            },
+            {
+              "type": "pause",
+              "time": 1.888541666,
+              "paused": true,
+              "ended": false,
+              "rate": 1.08
+            },
+            {
+              "type": "play",
+              "time": 1.842104166,
+              "paused": false,
+              "ended": false,
+              "rate": 1.12
+            },
+            {
+              "type": "playing",
+              "time": 1.842104166,
+              "paused": false,
+              "ended": false,
+              "rate": 1.12
+            },
+            {
+              "type": "error",
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "rate": 1
+            }
+          ],
+          "deckError": "Playback could not start: The operation is not supported.",
+          "decks": [
+            {
+              "time": 0,
+              "paused": true,
+              "seeking": false,
+              "ended": false,
+              "rate": 1,
+              "readyState": 0
+            },
+            {
+              "time": 27.946666667,
+              "paused": false,
+              "seeking": false,
+              "ended": false,
+              "rate": 1,
+              "readyState": 3
+            }
+          ],
+          "meter": 0.07500225305557251
+        }
+      }
+    },
+    "chromium-session": {
+      "status": "FAIL",
+      "receipt": "renders/audio-resume-linux-Pko79o/session-chromium-qp6ZUf/failure.json",
+      "sha256": "97dca2599a1efa758ef9eb6af52dce54b7d4880e597633385e885e75535a6289",
+      "details": {
+        "status": "FAIL",
+        "error": "ENOENT: no such file or directory, stat '/work/renders/voice-20261017-221411/source-pcm.wav'",
+        "checks": [
+          {
+            "name": "both studios disable unavailable recording and keep consented import enabled",
+            "status": "PASS"
+          },
+          {
+            "name": "identity, meaningful screen, permission-disabled preparation/capture",
+            "status": "PASS"
+          },
+          {
+            "name": "C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry",
+            "status": "PASS"
+          },
+          {
+            "name": "C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs",
+            "status": "PASS"
+          },
+          {
+            "name": "C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons",
+            "status": "PASS"
+          },
+          {
+            "name": "pending prepared A start can be stopped; stale rejection cannot overwrite retry; current failure recovers",
+            "status": "PASS"
+          },
+          {
+            "name": "prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport",
+            "status": "PASS"
+          }
+        ],
+        "state": {
+          "context": {
+            "state": "running",
+            "time": 11.319727891156463,
+            "rate": 44100
+          },
+          "status": "Prepared A playing. Capture a phrase or bring your ready performance in.",
+          "error": "",
+          "meter": 0.04029053449630737,
+          "deck": "Prepared \u00b7 playing"
+        }
+      }
+    }
+  },
+  "waveform_count": 44,
+  "waveform_gate": "PASS"
+}

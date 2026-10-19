@@ -1,5 +1,16 @@
 export const RATE = 48000;
 
+export async function resumeAudio(context) {
+  let timer;
+  try {
+    await Promise.race([
+      new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Audio did not wake up. Try again, or reload the studio.')), 10000); }),
+      context.resume(),
+    ]);
+    if (context.state !== 'running') throw new Error('Audio is suspended. Try again.');
+  } finally { clearTimeout(timer); }
+}
+
 export function trimFrames(length, start, end, rate = RATE) {
   if (![start, end, rate].every(Number.isFinite) || rate <= 0 || start < 0 || end < start)
     throw new Error('Choose a valid 2–5 second selection.');

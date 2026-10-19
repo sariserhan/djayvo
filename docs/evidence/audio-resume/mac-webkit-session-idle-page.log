@@ -1,0 +1,26 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/session-webkit-ZDJniP
+2026-10-19T22:34:26.683Z pw:browser <launching> /Users/serhansari/Library/Caches/ms-playwright/webkit-2311/pw_run.sh --inspector-pipe --headless --no-startup-window
+2026-10-19T22:34:26.690Z pw:browser <launched> pid=90401
+PASS: both studios disable unavailable recording and keep consented import enabled
+page unavailable
+2026-10-19T22:34:51.776Z pw:browser [pid=90401] <gracefully close start>
+2026-10-19T22:34:56.791Z pw:browser [pid=90401] <process did exit: exitCode=0, signal=null>
+2026-10-19T22:34:56.791Z pw:browser [pid=90401] starting temporary directories cleanup
+2026-10-19T22:34:56.792Z pw:browser [pid=90401] finished temporary directories cleanup
+2026-10-19T22:34:56.792Z pw:browser [pid=90401] <gracefully close end>
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.goto: Timeout 10000ms exceeded.
+Call log:
+[2m  - navigating to "http://127.0.0.1:49408/dj.html", waiting until "load"[22m
+
+    at /Users/serhansari/Documents/projects/djayvo/apps/web/tests/session.mjs:112:14 {
+  log: [
+    '  - navigating to "http://127.0.0.1:49408/dj.html", waiting until "load"'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.1

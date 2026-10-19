@@ -81,16 +81,8 @@ await context.addInitScript(() => {
     revoke(url);
   };
 });
-const page = await context.newPage();
-await page.addInitScript(fakeMidi);
-page.on('pageerror', error => errors.push(error.message));
-page.on('console', message => {
-  if (message.type() !== 'error') return;
-  if (screenshot && kind === 'webkit' && message.text().startsWith('Refused to apply a stylesheet')) warnings.push(message.text());
-  else errors.push(message.text());
-});
+let page;
 const capture = async name => { screenshot = true; try { await page.screenshot({ path: path.join(output, name), fullPage: true }); } finally { screenshot = false; } };
-page.on('request', request => requests.push(request.url()));
 const check = name => { checks.push({ name, status: 'PASS' }); console.log('PASS:', name); };
 try {
   // Keep the missing-recorder simulation separate from the full audio session.
@@ -109,6 +101,16 @@ try {
   }
   await unsupported.close();
   check('both studios disable unavailable recording and keep consented import enabled');
+  // Create the audio page after capability checks; an idle earlier WebKit page stalled navigation.
+  page = await context.newPage();
+  await page.addInitScript(fakeMidi);
+  page.on('pageerror', error => errors.push(error.message));
+  page.on('console', message => {
+    if (message.type() !== 'error') return;
+    if (screenshot && kind === 'webkit' && message.text().startsWith('Refused to apply a stylesheet')) warnings.push(message.text());
+    else errors.push(message.text());
+  });
+  page.on('request', request => requests.push(request.url()));
   await page.goto(`${origin}/dj.html`);
   assert.match(await page.title(), /Djayvo/);
   await page.locator('#performance-title').waitFor();
@@ -416,7 +418,7 @@ try {
   check('no uploads, external requests or unexpected runtime errors');
   await fs.writeFile(path.join(output, 'report.json'), JSON.stringify({ status: recordingAvailable ? 'PASS' : 'PARTIAL', recordingAvailable, browser: kind, version: browser.version(), checks, timing, continuity, generationSeconds, heardA, expectedErrors, errors, warnings, physical_microphone: 'NOT RUN', listening: 'NOT RUN' }, null, 2));
 } catch (error) {
-  const state = await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({
+  const state = await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page?.evaluate(() => ({
     context: window.testAudioContext && { state: testAudioContext.state, time: testAudioContext.currentTime, rate: testAudioContext.sampleRate },
     status: document.getElementById('performance-status').textContent,
     error: document.getElementById('performance-error').textContent,
@@ -424,7 +426,7 @@ try {
     deck: document.getElementById('state-a').textContent
   })).catch(() => null)]);
   await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ status: 'FAIL', error: error.message, checks, state }, null, 2));
-  console.error(await page.locator('#performance-error').innerText().catch(() => 'page unavailable'));
-  await page.screenshot({ path: path.join(output, 'failure.png'), timeout: 2000 }).catch(() => {});
+  console.error(await page?.locator('#performance-error').innerText().catch(() => 'page unavailable'));
+  await page?.screenshot({ path: path.join(output, 'failure.png'), timeout: 2000 }).catch(() => {});
   throw error;
 } finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }

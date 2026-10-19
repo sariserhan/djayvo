@@ -1,4 +1,4 @@
-import { decodeAudio, encodeWav } from './audio.js';
+import { decodeAudio, encodeWav, resumeAudio } from './audio.js';
 import { SessionTransport } from './session-transport.js';
 import { validatePreparedTrack, updateToneEcho, clearEcho, beatEchoDelay } from './mixer.js';
 import { compositionKey } from './novelty.js';
@@ -136,7 +136,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     const token = revision, start = ++startVersion;
     starting = 'a'; $('performance-error').textContent = ''; refresh();
     try {
-      await context().resume();
+      await resumeAudio(context());
       if (token !== revision || start !== startVersion || !confirmed()) return;
       if (context().state !== 'running') throw new Error('Audio is interrupted. Try Start prepared A again.');
       starting = '';
@@ -238,7 +238,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     const token = revision, start = ++startVersion;
     starting = 'c'; $('performance-error').textContent = ''; refresh();
     try {
-      await context().resume();
+      await resumeAudio(context());
       if (token !== revision || start !== startVersion || !permitted() || !confirmed() || !performanceBuffer || transport.a) return;
       if (context().state !== 'running') throw new Error('Audio is interrupted. Try Preview C again.');
       starting = '';

@@ -1,0 +1,5 @@
+chromium dj completed (see report for capability gates)
+chromium session FAIL (see /Users/serhansari/Documents/projects/djayvo/renders/audio-resume-linux-Pko79o/chromium-session.log)
+webkit dj FAIL (see /Users/serhansari/Documents/projects/djayvo/renders/audio-resume-linux-Pko79o/webkit-dj.log)
+webkit session completed (see report for capability gates)
+docs/evidence/audio-resume/linux-run.sh: line 41: syntax error near unexpected token `)'

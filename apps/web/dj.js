@@ -2,6 +2,7 @@ import { createMixer, updateMixer, validateTrack, trackDuration, updateToneEcho,
 import { attachDeck, playMedia } from './deck-controls.js';
 import { attachKeyboard } from './keyboard.js';
 import { attachPerformance } from './performance-session.js';
+import { resumeAudio } from './audio.js';
 
 const $ = id => document.getElementById(id);
 const rights = $('music-rights');
@@ -119,7 +120,7 @@ async function start(deck) {
     const revision = ++deck.revision;
     deck.starting = true; deck.playRequested = true; controls(deck); $(`error-${id}`).textContent = '';
     try {
-      audioGraph(); await context.resume();
+      audioGraph(); await resumeAudio(context);
       if (revision !== deck.revision || !rights.checked) return;
       if (context.state !== 'running') throw new Error('Audio is suspended. Press Play to try again.');
       if (audio.ended) audio.currentTime = 0;
