@@ -1,0 +1,33 @@
+PASS: renders/analysis-offset-20261019/after/owner-4123.call_response.wav
+PASS: complete export renders/analysis-offset-20261019/after/owner-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/analysis-offset-20261019/after/owner-4124.call_response.wav
+PASS: complete export renders/analysis-offset-20261019/after/owner-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/analysis-offset-20261019/after/owner-4125.call_response.wav
+PASS: complete export renders/analysis-offset-20261019/after/owner-4125.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/analysis-offset-20261019/after/owner-4126.call_response.wav
+PASS: complete export renders/analysis-offset-20261019/after/owner-4126.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/analysis-offset-20261019/after/fixture.hiphop.wav
+PASS: renders/analysis-offset-20261019/after/fixture.reggae.wav
+PASS: renders/analysis-offset-20261019/after/fixture.experimental.wav
+PASS: complete export renders/analysis-offset-20261019/after/fixture.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/analysis-offset-20261019/after/club.club.wav
+PASS: complete export renders/analysis-offset-20261019/after/club.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/analysis-offset-20261019/after/funk.funk.wav
+PASS: complete export renders/analysis-offset-20261019/after/funk.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/analysis-offset-20261019/after/baseline.baseline.wav
+PASS: complete export renders/analysis-offset-20261019/after/baseline.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/analysis-offset-20261019/after/call_response.call_response.wav
+PASS: complete export renders/analysis-offset-20261019/after/call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/analysis-offset-20261019/after/hybrid.hybrid.wav
+PASS: complete export renders/analysis-offset-20261019/after/hybrid.complete.json
+Listening/recognizability: NOT RUN
+PASS: 10 exports in renders/analysis-offset-20261019/after

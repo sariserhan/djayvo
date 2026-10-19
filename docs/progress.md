@@ -11,7 +11,19 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local training follow-up — 2026-10-19:
+Latest shared-engine fix — 2026-10-19:
+[Offset-resistant phrase analysis](analysis-offset.md) **PASS (technical)**.
+Remove constant electrical offset from analysis only, retaining original PCM,
+raw levels and gain rules. The control recovers 15 source attacks instead of
+six distorted detections. Mac/Linux 15/15 suites, ASan/UBSan, 70 exact cross-OS
+WAVs, six saved-score replays and 12 native/WASM comparisons pass; 65 original-
+input WAVs remain unchanged. Rebuilt/audited local web engine. **NOT RUN:** new
+human quality, physical microphone and rendered-browser interaction. Overall
+music/production **PARTIAL**; no new rental, training or quality-gate promotion.
+[Full measurements](evidence/analysis-offset/measurements.json).
+
+
+Previous local training follow-up — 2026-10-19:
 [Adapter effect and split audit](style-adapter-effect.md) **PASS (technical)**:
 five tests, 16 matched-checkpoint comparisons, 64 train/holdout pairs, exact
 agreement with prior diagnostic results, four playable reference crops and

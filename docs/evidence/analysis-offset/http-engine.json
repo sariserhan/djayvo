@@ -1,0 +1,16 @@
+[
+  {
+    "url": "http://127.0.0.1:3000/studio/engine/djayvo_web.wasm",
+    "status": "PASS",
+    "http_status": 200,
+    "sha256": "98ed74454494ed2184e2d72dbfb58cd559354073c9aaeed62de556c1ea0b0748",
+    "bytes": 14148544
+  },
+  {
+    "url": "http://127.0.0.1:4173/engine/djayvo_web.wasm",
+    "status": "PASS",
+    "http_status": 200,
+    "sha256": "98ed74454494ed2184e2d72dbfb58cd559354073c9aaeed62de556c1ea0b0748",
+    "bytes": 14148544
+  }
+]

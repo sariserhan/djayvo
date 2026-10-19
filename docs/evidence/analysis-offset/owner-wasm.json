@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "node": "v22.23.1",
+  "output": "renders/analysis-offset-20261019/owner-wasm-8ZpAfQ",
+  "cases": 5,
+  "plan_decisions_event_frames_pcm": "exact",
+  "analysis_absolute_tolerance": 1e-12,
+  "analysis_differences": [
+    {
+      "name": "offset",
+      "field": "pitch_confidence",
+      "absolute_error": 2.220446049250313e-16
+    }
+  ],
+  "max_pcm_difference": 0,
+  "rms_pcm_difference": 0,
+  "rendered_browser_interaction": "NOT RUN"
+}

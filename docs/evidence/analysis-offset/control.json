@@ -1,0 +1,66 @@
+{
+  "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+  "control_sha256": "18ffa36d07f61c8df5e9014017c5d8dbe8546e6644cdba8373b6f516d3ea6dd0",
+  "transform": "Add 8192 to every signed PCM16 sample in both channels; no clipping or other edits. Artificial electrical-offset test, not a new independent source.",
+  "results": [
+    {
+      "build": "before",
+      "analysis": {
+        "peak": 0.448089599609375,
+        "rms": 0.2521274164146433,
+        "normalization_gain": 1.7853572158278281,
+        "pitch_hz": 148.14814814814815,
+        "pitch_confidence": 0.9842427331301266,
+        "onsets": [
+          0,
+          61440,
+          65280,
+          121440,
+          128640,
+          132960
+        ],
+        "phrases": [
+          {
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 0.65
+          }
+        ]
+      }
+    },
+    {
+      "build": "after",
+      "analysis": {
+        "peak": 0.448089599609375,
+        "rms": 0.2521274164146433,
+        "normalization_gain": 1.7853572158278281,
+        "pitch_hz": 145.45454545454547,
+        "pitch_confidence": 0.8650947006251258,
+        "onsets": [
+          47520,
+          56640,
+          60960,
+          65760,
+          71040,
+          82560,
+          92160,
+          98880,
+          102720,
+          119520,
+          124320,
+          128640,
+          137280,
+          145920,
+          159840
+        ],
+        "phrases": [
+          {
+            "start_frame": 46560,
+            "end_frame": 164640,
+            "confidence": 0.65
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -12,6 +12,7 @@ new paid compute, publication and monetization still need explicit authorization
 
 
 Last updated: 2026-10-19 (America/New_York). Latest validation: [Linux browser portability](docs/linux-browser.md).
+Latest engine fix: [Offset-resistant phrase analysis](docs/analysis-offset.md).
 Latest research: [Adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
 
@@ -241,6 +242,13 @@ closes that task only; it does not automatically pass its parent milestone.
   exact legacy-result agreement and four playable reference crops **PASS**.
   Do not treat greater waveform change or this same-source holdout as quality proof.
 
+- [x] **C12 — PASS (technical):** [Offset-resistant phrase analysis](docs/analysis-offset.md).
+  Correct attacks/pauses/pitch despite constant electrical offset without editing
+  the recording. Old-library failure reproduced; Mac/Linux 15/15 suites, sanitizer
+  and 12 WASM comparisons pass. 70 exact cross-platform WAVs; 65 original-input
+  WAVs unchanged, six saved-score replays. New musical benefit and physical
+  microphone/browser interaction **NOT RUN**; C05/C06/C11 and M1 stay open.
+
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,
 with private generation plus a reviewed public catalogue. Keep the database free;
@@ -446,6 +454,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P60 | PASS | Complete source-contour experiment and cross-platform evidence; record inconclusive owner listening and restore unchanged production engine. Musical benefit not established; candidate not promoted | [Evidence](docs/source-contour.md) |
 | [x] | P61 | PASS | Execute bounded Blood Club training, fix checkpoint loader, verify both adapters and 13 WAVs, prepare four matched groups, scan waveform reuse, preserve originals and delete rental/keys; musical-quality gate stays open | [Evidence](docs/blood-training-run.md) |
 | [x] | P62 | PASS | Measure adapter effect after gain/DC fitting, merge overlapping detection coverage, audit train/holdout similarity and export four exact reference crops; independent split fails and human-quality gate remains open | [Evidence](docs/style-adapter-effect.md) |
+| [x] | P63 | PASS | Fix electrical offset masking source attacks/pauses and inventing noise pitch; validate Mac/Linux/WASM, preserve 65 existing renders and saved-score replay | [Evidence](docs/analysis-offset.md) |
 
 ## Engineering backlog
 

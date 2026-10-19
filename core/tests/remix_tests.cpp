@@ -143,6 +143,48 @@ void analysis() {
         }
     }
 }
+void analysis_offset() {
+    for (const auto rate:{8000U,16000U,44100U,48000U,192000U}) {
+        auto a=source();a.sample_rate=a.original_rate=rate;
+        a.original_frames=rate*3U;a.mono.assign(rate*3U,0);
+        for (const double amplitude:{0.02,0.3}) {
+            for (std::size_t i=0;i<a.mono.size();++i) {
+                const auto local=i%rate;
+                a.mono[i]=local>=rate/4 && local<rate/2?
+                    static_cast<float>(amplitude*std::sin(6.283185307179586*220*i/rate)):0;
+            }
+            const auto reference=djayvo::analyze(a);
+            check(reference.phrases.size()==3 && reference.onsets.size()>=3,"missing control attacks/pauses");
+            for (const float dc:{-0.5F,0.5F}) {
+                auto shifted=a;
+                for (auto& sample:shifted.mono) sample+=dc;
+                const auto original=shifted.mono;
+                const auto actual=djayvo::analyze(shifted);
+                check(actual.onsets==reference.onsets,"DC offset changed source attacks");
+                check(actual.phrases.size()==reference.phrases.size(),"DC offset hid source pauses");
+                for (std::size_t i=0;i<reference.phrases.size();++i)
+                    check(actual.phrases[i].begin==reference.phrases[i].begin &&
+                          actual.phrases[i].end==reference.phrases[i].end,"DC offset moved phrase boundary");
+                check(actual.pitch_hz==reference.pitch_hz &&
+                      std::abs(actual.pitch_confidence-reference.pitch_confidence)<1e-5,"DC offset changed pitch");
+                check(actual.peak>reference.peak+0.49 && actual.rms>reference.rms &&
+                      std::abs(actual.normalization_gain-std::min(3.9810717055,0.8/actual.peak))<1e-12,
+                      "raw source levels or peak-safe normalization changed");
+                check(shifted.mono==original,"analysis rewrote the recording");
+            }
+        }
+    }
+    auto noise=source();std::uint32_t state=4123;
+    for (auto& sample:noise.mono) {
+        state=state*1664525U+1013904223U;
+        sample=static_cast<float>((static_cast<double>(state>>8)/16777216.0-0.5)*0.04);
+    }
+    const auto reference=djayvo::analyze(noise);
+    check(reference.pitch_hz==0 && reference.pitch_confidence==0,"noise control has false pitch");
+    for (auto& sample:noise.mono) sample+=0.5F;
+    const auto shifted=djayvo::analyze(noise);
+    check(shifted.pitch_hz==0 && shifted.pitch_confidence==0,"DC offset invented voiced pitch in noise");
+}
 void resampling() {
     auto a=source(); const auto same=djayvo::resample(a,8000);
     check(same.mono==a.mono,"identity resampler changed source");
@@ -899,6 +941,7 @@ int main() {
     const std::vector<std::pair<const char*,std::function<void()>>> tests{
         {"bounded stereo feedback reverb, clean vocals, stems, tail and allocation-free processing",instrument_reverb},
         {"SHA-256 known vectors",hashes},{"energy/onset/phrase/pitch analysis and silence",analysis},
+        {"offset-invariant attacks, pauses and pitch with unchanged source and raw levels",analysis_offset},
         {"resampling duration, identity, round-trip and antialias",resampling},
         {"session tempo/key, duration and validator across 144 plans",session_context},
         {"clean hook preservation, deterministic styles, finite bounded output",preservation},

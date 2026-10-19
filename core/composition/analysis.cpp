@@ -34,7 +34,10 @@ InputAnalysis analyze(const AudioBuffer& source) {
     for (std::size_t begin = 0; begin < source.mono.size(); begin += hop) {
         const auto end = std::min(begin + hop, source.mono.size());
         double square = 0;
-        for (auto i = begin; i < end; ++i) square += static_cast<double>(source.mono[i]) * source.mono[i];
+        for (auto i = begin; i < end; ++i) {
+            const double signal = source.mono[i] - mean;
+            square += signal * signal;
+        }
         envelope.push_back(std::sqrt(square / static_cast<double>(end - begin)));
     }
     const auto maximum = *std::max_element(envelope.begin(), envelope.end());
@@ -78,8 +81,8 @@ InputAnalysis analyze(const AudioBuffer& source) {
     for (auto lag = static_cast<std::size_t>(analysis_rate / 450); lag <= max_lag; ++lag) {
         double xy = 0, xx = 0, yy = 0;
         for (std::size_t j = lag; j < window; ++j) {
-            const double x = source.mono[start + j * stride];
-            const double y = source.mono[start + (j-lag) * stride];
+            const double x = source.mono[start + j * stride] - mean;
+            const double y = source.mono[start + (j-lag) * stride] - mean;
             xy += x*y; xx += x*x; yy += y*y;
         }
         const double correlation = xy / std::sqrt(std::max(1e-24, xx*yy));
