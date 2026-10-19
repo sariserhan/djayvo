@@ -1,0 +1,18 @@
+Setting up EMSDK environment (suppress these messages with EMSDK_QUIET=1)
+Adding directories to PATH:
+PATH += /work/build-web-tools/emsdk
+PATH += /work/build-web-tools/emsdk/upstream/emscripten
+
+Setting environment variables:
+PATH = /work/build-web-tools/emsdk:/work/build-web-tools/emsdk/upstream/emscripten:/work/build-web-tools/python-env/bin:/work/build-web-tools/cmake-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+EMSDK = /work/build-web-tools/emsdk
+EMSDK_NODE = /work/build-web-tools/emsdk/node/22.16.0_64bit/bin/node
+emcmake: cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE=/work/build-web-tools/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_CROSSCOMPILING_EMULATOR=/work/build-web-tools/emsdk/node/22.16.0_64bit/bin/node in directory /work
+-- Configuring done (0.9s)
+-- Generating done (0.0s)
+-- Build files have been written to: /work/build-web
+[ 88%] Built target djayvo_core
+[100%] Built target djayvo_web
+[ 88%] Built target djayvo_core
+[100%] Built target djayvo_live
+Built dist/web. Start with: python3 scripts/web_serve.py

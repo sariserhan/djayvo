@@ -1,0 +1,21 @@
+{
+  "platform": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "node": "v22.23.1",
+  "cmake": "cmake version 4.4.2",
+  "master_sha256": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+  "fixture_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+  "build": "PASS",
+  "unit_tests": {
+    "gate": "PASS",
+    "count": 7
+  },
+  "bundle_audit": "PASS",
+  "engines": {
+    "djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "djayvo_web.mjs": "ae99a78f24bbd233a428c2f86baac1969a8425987d6ca3e64530a7f0034c5c66",
+    "djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1"
+  },
+  "vercel_deployment": "NOT RUN",
+  "musical_quality": "NOT RUN"
+}

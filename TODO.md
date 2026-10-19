@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest validation: [Neon setup](docs/neon-setup.md).
+Last updated: 2026-10-19 (America/New_York). Latest validation: [Clean website build](docs/vercel-clean-build.md); [Neon setup](docs/neon-setup.md).
 Latest audio validation: [Bounded audio wake-up](docs/audio-resume.md).
 Latest engine improvement: [Precomputed common interpolation coefficients](docs/interpolation-table.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
@@ -489,6 +489,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 
 | Done | ID | Status | Development | Commit / evidence |
 | --- | --- | --- | --- | --- |
+| [x] | WEB-BUILD | PASS | Build the studio from tracked sources before site preparation; isolated SDK/Python/CMake bootstrap, clean Mac/Amazon Linux builds, seven unit tests each, exact seven-style browser audio and CI regression job. Actual Vercel/remote CI NOT RUN. | [Evidence](docs/vercel-clean-build.md) |
 | [x] | DJ13 | PASS | MIDI Learn with channel-specific pickup, bounded controls and real audio/offline checks | [Evidence](docs/midi-learn.md) |
 | [x] | DJ12 | PASS | Independent deck tone/echo, safe buffer clearing, browser timing/PCM and offline checks | [Evidence](docs/deck-effects.md) |
 | [x] | DJ08 | PASS | Original Talk bass, four percussion voices, local reference analysis and portable/browser audio checks | [Evidence](docs/talk-bass.md) |

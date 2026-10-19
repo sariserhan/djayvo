@@ -1,5 +1,14 @@
 # Djayvo: Apple M5 agent handoff
 
+Latest deployment-build repair — 2026-10-19:
+[Clean website build](vercel-clean-build.md) **PASS (local build scope)**.
+Site builds now compile/audit the studio from tracked sources and bootstrap
+missing tools under `build-web-tools/`. Fresh Mac and Amazon Linux x86_64 builds,
+seven unit tests each, bundle audits and browser renders pass. Both engines and
+seven WAVs/plans/event files match exactly. Actual Vercel redeployment/remote CI
+**NOT RUN**; overall production **PARTIAL**. Primary localhost app, original
+recordings, synthetic fixture, master and `~/mlx-env` are retained.
+
 Latest Neon setup — 2026-10-19:
 [Neon setup and evidence](neon-setup.md) **PASS (Postgres scope)** under the owner's
 explicit init/deploy authorization for the existing production branch. Five

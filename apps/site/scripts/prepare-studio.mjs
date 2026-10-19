@@ -3,8 +3,10 @@ import { cp, mkdir, rm, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
+// Generated files are ignored: compile current sources even on a fresh checkout.
+execFileSync('sh', ['scripts/web_build.sh'], { cwd: root, stdio: 'inherit' });
 // Audit the explicit public bundle before copying; never expose the repository.
-execFileSync('python3', ['scripts/verify_web_bundle.py'], { cwd: root, stdio: 'pipe' });
+execFileSync('python3', ['scripts/verify_web_bundle.py'], { cwd: root, stdio: 'inherit' });
 const target = new URL('../public/studio/', import.meta.url);
 await rm(target, { recursive: true, force: true });
 await mkdir(target, { recursive: true });

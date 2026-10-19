@@ -1,0 +1,22 @@
+{
+  "gate": "PASS",
+  "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.34",
+  "python": "3.12.13",
+  "system_python": "Python 3.9.25",
+  "node": "v22.23.2",
+  "cmake": "cmake version 3.31.6",
+  "uv": "uv 0.13.2 (x86_64-unknown-linux-gnu)",
+  "emscripten": "6.0.1",
+  "emsdk_commit": "1518bec61a0430aa5cfda576f5ce3191004c84d9",
+  "engines": {
+    "djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1",
+    "djayvo_web.mjs": "ae99a78f24bbd233a428c2f86baac1969a8425987d6ca3e64530a7f0034c5c66",
+    "djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c"
+  },
+  "unit_tests": {
+    "gate": "PASS",
+    "count": 7
+  },
+  "bundle_audit": "PASS",
+  "vercel_deployment": "NOT RUN"
+}

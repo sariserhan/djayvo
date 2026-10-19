@@ -11,7 +11,7 @@ const output = await fs.mkdtemp(path.join(root, `renders/web-${kind}-engine-`));
 const browser = await engine.launch();
 try {
   const page = await browser.newPage();
-  await page.goto('http://localhost:4173');
+  await page.goto(process.env.DJAYVO_STUDIO_URL || 'http://localhost:4173');
   await page.exposeFunction('writeArtifact', async (name, base64) => {
     if (!/^(hiphop|reggae|experimental|club|funk|call_response|hybrid)\.(wav|score\.json|report\.json|events\.tsv)$/.test(name)) throw new Error('Unexpected artifact');
     await fs.writeFile(path.join(output, `mix.${name}`), Buffer.from(base64, 'base64'));

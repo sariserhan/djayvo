@@ -2,12 +2,35 @@
 set -eu
 cd "$(dirname "$0")/.."
 EMSDK_PATH="${DJAYVO_EMSDK:-$PWD/build-web-tools/emsdk}"
+if [ -x "$PWD/.venv-build/bin/cmake" ]; then PATH="$PWD/.venv-build/bin:$PATH"; export PATH; fi
+PATH="$PWD/build-web-tools/python-env/bin:$PWD/build-web-tools/cmake-env/bin:$PATH"; export PATH
+if ! python3 -c 'import sys; sys.exit(sys.version_info < (3, 10))'; then
+  python3 -m venv build-web-tools/bootstrap
+  build-web-tools/bootstrap/bin/python -m pip install --disable-pip-version-check 'uv==0.13.2'
+  UV_PYTHON_INSTALL_DIR="$PWD/build-web-tools/python" \
+    UV_CACHE_DIR="$PWD/build-web-tools/uv-cache" \
+    build-web-tools/bootstrap/bin/uv venv --python 3.12.13 build-web-tools/python-env
+  # Forget system Python cached before the new environment existed.
+  hash -r
+fi
+python3 -c 'import sys; assert sys.version_info >= (3, 10), "Emscripten requires Python 3.10+"'
+if ! command -v cmake >/dev/null 2>&1; then
+  python3 -m venv build-web-tools/cmake-env
+  build-web-tools/cmake-env/bin/python -m pip install --disable-pip-version-check 'cmake==3.31.6'
+  PATH="$PWD/build-web-tools/cmake-env/bin:$PATH"; export PATH
+fi
 if [ ! -f "$EMSDK_PATH/emsdk_env.sh" ]; then
-  echo 'Install the isolated SDK as described in apps/web/README.md.' >&2
-  exit 1
+  git clone --depth 1 --branch 6.0.1 https://github.com/emscripten-core/emsdk.git "$EMSDK_PATH"
+fi
+if [ ! -f "$EMSDK_PATH/.emscripten" ]; then
+  "$EMSDK_PATH/emsdk" install 6.0.1
+  "$EMSDK_PATH/emsdk" activate 6.0.1
 fi
 . "$EMSDK_PATH/emsdk_env.sh"
-if [ -x "$PWD/.venv-build/bin/cmake" ]; then PATH="$PWD/.venv-build/bin:$PATH"; export PATH; fi
+emcc --version | head -n 1 | grep -F ' 6.0.1 ' >/dev/null || {
+  echo 'Djayvo requires Emscripten 6.0.1; activate it in DJAYVO_EMSDK.' >&2
+  exit 1
+}
 emcmake cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
 cmake --build build-web --target djayvo_web djayvo_live -j 4
 mkdir -p dist/web/engine dist/web/licenses

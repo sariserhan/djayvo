@@ -1,0 +1,105 @@
+{
+  "gate": "PASS",
+  "browser_client": "macOS Chromium",
+  "server": "Amazon Linux 2023 x86_64 container, forwarded to localhost:3002",
+  "baseline": "renders/web-chromium-engine-dUi640",
+  "clean_build": "renders/web-chromium-engine-Xbn4ay",
+  "browser": {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "results": [
+      {
+        "style": "three",
+        "seconds": 2.446,
+        "artifacts": 12
+      },
+      {
+        "style": "club",
+        "seconds": 1.647199999988079,
+        "artifacts": 4
+      },
+      {
+        "style": "funk",
+        "seconds": 1.3775999999940396,
+        "artifacts": 4
+      },
+      {
+        "style": "call_response",
+        "seconds": 1.4197000000178814,
+        "artifacts": 4
+      },
+      {
+        "style": "hybrid",
+        "seconds": 1.6035999999940396,
+        "artifacts": 4
+      }
+    ]
+  },
+  "results": [
+    {
+      "style": "call_response",
+      "frames": 1741714,
+      "wav_sha256": "77c27c18839c70f4a61b4598b078e4ee32daa981375f0cd17bc23b90ff289cb1",
+      "event_frames": "PASS",
+      "score": "PASS",
+      "pcm_max_difference": 0,
+      "pcm_rms_difference": 0
+    },
+    {
+      "style": "club",
+      "frames": 1741714,
+      "wav_sha256": "1f412157fc55a7a50b55643598aefaad009777294e1a31e87bd29044ca3f467f",
+      "event_frames": "PASS",
+      "score": "PASS",
+      "pcm_max_difference": 0,
+      "pcm_rms_difference": 0
+    },
+    {
+      "style": "experimental",
+      "frames": 1582452,
+      "wav_sha256": "974c7a89d0c575a979fadb7c4aaa59de8845d1f06ebe9063caf3fb59fda992c6",
+      "event_frames": "PASS",
+      "score": "PASS",
+      "pcm_max_difference": 0,
+      "pcm_rms_difference": 0
+    },
+    {
+      "style": "funk",
+      "frames": 1536000,
+      "wav_sha256": "c468a6bfce0ddb5916ffcd4a1d05e2cda6e1951bf6439923a44b836e86014e2b",
+      "event_frames": "PASS",
+      "score": "PASS",
+      "pcm_max_difference": 0,
+      "pcm_rms_difference": 0
+    },
+    {
+      "style": "hiphop",
+      "frames": 1536000,
+      "wav_sha256": "0fe9d9715326d4c9a284825657d35421ef5c8a86d0b966927a95c2b798e71eac",
+      "event_frames": "PASS",
+      "score": "PASS",
+      "pcm_max_difference": 0,
+      "pcm_rms_difference": 0
+    },
+    {
+      "style": "hybrid",
+      "frames": 1741714,
+      "wav_sha256": "d68d4259095619903216897fdeacac0d0651674ff397458b866eb0e80cffeabd",
+      "event_frames": "PASS",
+      "score": "PASS",
+      "pcm_max_difference": 0,
+      "pcm_rms_difference": 0
+    },
+    {
+      "style": "reggae",
+      "frames": 1536000,
+      "wav_sha256": "cd91037ecdd2be2a7f3a716da1a2b7b0eab4c39fbf4de914f022364bb768f71c",
+      "event_frames": "PASS",
+      "score": "PASS",
+      "pcm_max_difference": 0,
+      "pcm_rms_difference": 0
+    }
+  ],
+  "engine_artifacts_match_mac": "PASS",
+  "human_listening": "NOT RUN"
+}

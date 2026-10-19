@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/build-vercel-clean/source/scripts/verify_web_bundle.py", line 39, in <module>
+    print(json.dumps(verify(), indent=2))
+                     ~~~~~~^^
+  File "/Users/serhansari/Documents/projects/djayvo/build-vercel-clean/source/scripts/verify_web_bundle.py", line 17, in verify
+    assert actual == expected, f'Unexpected or missing public files: {actual ^ expected}'
+           ^^^^^^^^^^^^^^^^^^
+AssertionError: Unexpected or missing public files: {'icon-192.png', 'licenses/EMSCRIPTEN-LICENSE.txt', 'offline.js', 'session-analysis-worker.js', 'icon.svg', 'library.js', 'engine-worker.js', 'deck-controls.js', 'icon-512.png', 'session-transport.js', 'licenses/VCSL-LICENSE.txt', 'dj.html', 'app.js', 'audio.js', 'keyboard.js', 'novelty.js', 'install.js', 'dj.css', 'icon-180.png', 'licenses/VSCO-2-CE-LICENSE.txt', 'engine/djayvo_live.wasm', 'service-worker.js', 'mixer.js', 'performance-session.js', 'dj.js', 'manifest.webmanifest', 'session-analysis.js', 'engine/djayvo_web.mjs', 'style.css', 'instrument-rack.js', 'instrument-worklet.js', 'midi.js', 'engine/djayvo_web.wasm', 'licenses/BLACK-AND-GREEN-GUITARS-CC0.txt', 'index.html'}

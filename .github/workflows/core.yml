@@ -9,6 +9,27 @@ concurrency:
   group: core-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  website:
+    runs-on: ubuntu-24.04
+    container: amazonlinux:2023
+    timeout-minutes: 20
+    steps:
+      - name: Install baseline build-image utilities
+        run: dnf install -y git make python3 python3-pip tar gzip xz findutils
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Build website from tracked sources without a prebuilt studio
+        working-directory: apps/site
+        run: |
+          test ! -d ../../dist/web
+          npm ci
+          npm run build
+          npm test
+          npm run audit:bundle
   build:
     strategy:
       fail-fast: false

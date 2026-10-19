@@ -80,19 +80,20 @@ cover local browser behavior; physical install/launch and public hosting remain 
 
 ## Isolated build tools
 
-The existing checkout and `~/mlx-env` are not modified by SDK setup. The SDK is a
-separate tool repository under the ignored `build-web-tools` directory:
+The build script installs missing tools into ignored `build-web-tools/`: the
+Emscripten SDK **6.0.1**, and CMake **3.31.6** in a Python environment if no CMake
+is available. System Python below 3.10 gets an isolated Python **3.12.13** via
+uv **0.13.2**, also under that tools directory. Setup needs Python 3.9+ with
+venv/pip, Git, Make, tar with xz support and initial network access.
+`~/mlx-env` and shell profiles are unchanged:
 
 ```sh
-git clone --depth 1 https://github.com/emscripten-core/emsdk.git build-web-tools/emsdk
-build-web-tools/emsdk/emsdk install 6.0.1
-build-web-tools/emsdk/emsdk activate 6.0.1
 sh scripts/web_build.sh
 ```
 
-Do not repeat setup if it already exists. `DJAYVO_EMSDK` can select another SDK
-directory. No shell profile edits are needed. CMake uses `.venv-build/bin` if
-present. Build output is `dist/web`; only that folder is served. No repository
+Installed tools are reused. `DJAYVO_EMSDK` can select another SDK directory with
+6.0.1 activated. CMake uses `.venv-build/bin` if present.
+Build output is `dist/web`; only that folder is served. No repository
 files, private audio, test fixtures or developer tools belong in a hosted bundle.
 Run `python3 scripts/verify_web_bundle.py` before distributing a build.
 

@@ -1,5 +1,14 @@
 # Djayvo: M0 continuation evidence
 
+Latest deployment-build repair — 2026-10-19:
+[Clean website build](vercel-clean-build.md) **PASS (local build scope)**.
+Fresh Amazon Linux 2023 x86_64 and Mac source builds compile both WASM engines
+before auditing/copying them. Missing SDK/CMake/Python are isolated locally.
+Seven site unit tests per platform and bundle audits pass; seven browser render
+WAVs/plans/event frames match exactly, PCM differences zero. Initial failures
+and fixes are retained in the report; CI regression job added. Actual Vercel
+redeployment and remote CI **NOT RUN**; overall production remains **PARTIAL**.
+
 Latest Neon setup — 2026-10-19:
 [Neon setup and evidence](neon-setup.md) **PASS (Postgres scope)** under the owner's
 explicit init/deploy authorization for the existing production branch. Five

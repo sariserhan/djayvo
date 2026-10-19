@@ -19,10 +19,9 @@ and npm select different Node installations, activate Node 22 for both before
 running these commands; the evidence includes an explicit Node 22 build and tests.
 Keep `~/mlx-env` unchanged.
 
-From the repository root, ensure the existing WASM bundle is current:
+From the repository root:
 
 ```sh
-sh scripts/web_build.sh
 cd apps/site
 npm ci
 ```
@@ -171,12 +170,24 @@ serialized by a transaction lock and rolled back together on failure. An applied
 file cannot be silently edited. `0001_auth.sql` was generated using Better Auth
 1.7.10 `getMigrations(authOptions(...)).compileMigrations()` on an empty database.
 
-Vercel must receive the audited WASM bundle before `npm run build`. The local
-prepare step deliberately fails if `dist/web` is absent/stale; it never downloads
-an unverified binary. A clean hosted build pipeline for that artifact, production
-environment setup and deployment are still open. Do not claim Git-import deployment
-works yet. For any deployment, select Node 22 and validate the proxy-provided
-client IP used by the rate limiter.
+`npm run build` and `npm run dev` compile the studio from tracked C++/web sources,
+then audit its public files and licenses before copying it into `public/studio`.
+A fresh checkout installs Emscripten **6.0.1** under ignored `build-web-tools/`;
+when CMake is absent, it installs **3.31.6** in a project-only Python environment.
+If system Python is older than 3.10, isolated uv **0.13.2** installs Python
+**3.12.13** inside the same tools directory. Python 3.9+ with venv/pip, Git, Make
+and tar with xz support must be available. The first build needs
+network access for build tools; prepared venue playback remains offline-capable.
+Existing SDKs must have 6.0.1 activated. `~/mlx-env` and shell profiles are untouched.
+
+For Vercel, select **Next.js**, root directory **apps/site**, **Node 22.x**, and
+the default **npm run build** command. Enable **Include source files outside of
+the Root Directory in the Build Step** so the shared core and scripts are present.
+Do not upload local recordings, `.env.local`, or prebuilt `dist/` artifacts.
+The clean-source build has a CI regression job; [local Linux/Mac evidence and
+remaining deployment gates](../../docs/vercel-clean-build.md) distinguish this
+from an actual Vercel deployment. Production environment setup and validation of
+the proxy-provided client IP used by the rate limiter remain required.
 
 ## Checks
 

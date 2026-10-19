@@ -1,0 +1,111 @@
+v22.23.2
+Python 3.9.25
+
+added 127 packages, and audited 128 packages in 7s
+
+19 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> djayvo-site@0.1.0 prebuild
+> npm run studio:prepare
+
+
+> djayvo-site@0.1.0 studio:prepare
+> node scripts/prepare-studio.mjs
+
+Collecting uv==0.13.2
+  Downloading uv-0.13.2-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.2 MB)
+Installing collected packages: uv
+Successfully installed uv-0.13.2
+Downloading cpython-3.12.13-linux-x86_64-gnu (download) (32.6MiB)
+ Downloaded cpython-3.12.13-linux-x86_64-gnu (download)
+Using CPython 3.12.13
+Creating virtual environment at: build-web-tools/python-env
+Collecting cmake==3.31.6
+  Downloading cmake-3.31.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (27.8 MB)
+Installing collected packages: cmake
+Successfully installed cmake-3.31.6
+Cloning into '/work/build-web-tools/emsdk'...
+Note: switching to '1518bec61a0430aa5cfda576f5ce3191004c84d9'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+Resolving SDK version '6.0.1' to 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'
+Installing SDK 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'..
+Installing tool 'node-22.16.0-64bit'..
+Downloading: /work/build-web-tools/emsdk/downloads/node-v22.16.0-linux-x64.tar.xz from https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/node-v22.16.0-linux-x64.tar.xz, 30425588 Bytes
+ [----------------------------------------------------------------------------]
+Unpacking '/work/build-web-tools/emsdk/downloads/node-v22.16.0-linux-x64.tar.xz' to '/work/build-web-tools/emsdk/node/22.16.0_64bit'
+Done installing tool 'node-22.16.0-64bit'.
+Installing tool 'releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'..
+Downloading: /work/build-web-tools/emsdk/downloads/4857659ec65fbcf1f3e43c88499925475957b238-wasm-binaries.tar.xz from https://storage.googleapis.com/webassembly/emscripten-releases-builds/linux/4857659ec65fbcf1f3e43c88499925475957b238/wasm-binaries.tar.xz, 274269128 Bytes
+ [----------------------------------------------------------------------------]
+Unpacking '/work/build-web-tools/emsdk/downloads/4857659ec65fbcf1f3e43c88499925475957b238-wasm-binaries.tar.xz' to '/work/build-web-tools/emsdk/upstream'
+Done installing tool 'releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'.
+Done installing SDK 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'.
+Resolving SDK version '6.0.1' to 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'
+Setting the following tools as active:
+   node-22.16.0-64bit
+   releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit
+
+Next steps:
+- To conveniently access emsdk tools from the command line,
+  consider adding the following directories to your PATH:
+    /work/build-web-tools/emsdk
+    /work/build-web-tools/emsdk/upstream/emscripten
+- This can be done for the current shell by running:
+    source "/work/build-web-tools/emsdk/emsdk_env.sh"
+- Configure emsdk in your shell startup scripts by running:
+    echo 'source "/work/build-web-tools/emsdk/emsdk_env.sh"' >> $HOME/.bash_profile
+Setting up EMSDK environment (suppress these messages with EMSDK_QUIET=1)
+Adding directories to PATH:
+PATH += /work/build-web-tools/emsdk
+PATH += /work/build-web-tools/emsdk/upstream/emscripten
+
+Setting environment variables:
+PATH = /work/build-web-tools/emsdk:/work/build-web-tools/emsdk/upstream/emscripten:/work/build-web-tools/cmake-env/bin:/work/build-web-tools/python-env/bin:/work/apps/site/node_modules/.bin:/work/apps/node_modules/.bin:/work/node_modules/.bin:/node_modules/.bin:/usr/local/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+EMSDK = /work/build-web-tools/emsdk
+EMSDK_NODE = /work/build-web-tools/emsdk/node/22.16.0_64bit/bin/node
+Traceback (most recent call last):
+  File "/work/build-web-tools/emsdk/upstream/emscripten/emcc.py", line 37, in <module>
+    assert sys.version_info >= (3, 10), f'emscripten requires python 3.10 or above ({sys.executable} {sys.version})'
+AssertionError: emscripten requires python 3.10 or above (/work/build-web-tools/cmake-env/bin/python3 3.9.25 (main, Jul 15 2026, 00:00:00)
+[GCC 11.5.0 20240719 (Red Hat 11.5.0-5)])
+Djayvo requires Emscripten 6.0.1; activate it in DJAYVO_EMSDK.
+node:internal/errors:983
+  const err = new Error(message);
+              ^
+
+Error: Command failed: sh scripts/web_build.sh
+    at genericNodeError (node:internal/errors:983:15)
+    at wrappedFn (node:internal/errors:537:14)
+    at checkExecSyncError (node:child_process:916:11)
+    at execFileSync (node:child_process:952:15)
+    at file:///work/apps/site/scripts/prepare-studio.mjs:7:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 64,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v22.23.2
