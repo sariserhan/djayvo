@@ -1,4 +1,23 @@
 const $ = id => document.getElementById(id);
+export function playMedia(audio, current) {
+  return new Promise((resolve, reject) => {
+    const position = audio.currentTime;
+    let pending = true, played = false;
+    const finish = error => {
+      if (!pending) return;
+      pending = false; clearInterval(poll); clearTimeout(timer);
+      error ? reject(error) : resolve();
+    };
+    // A resolved play promise can still leave WebKit stuck seeking at EOF.
+    const poll = setInterval(() => {
+      if (!current()) finish();
+      else if (played && (audio.ended || (!audio.paused && !audio.seeking && audio.currentTime !== position))) finish();
+    }, 50);
+    const timer = setTimeout(() => finish(new Error('The track did not begin playing. Unload it and try again.')), 10000);
+    try { Promise.resolve(audio.play()).then(() => { played = true; }, finish); }
+    catch (error) { finish(error); }
+  });
+}
 export function tempoRate(own, other, otherRate) {
   if (![own, other].every(n => Number.isFinite(n) && n >= 40 && n <= 240) || !Number.isFinite(otherRate))
     throw new Error('Enter both track tempos between 40 and 240 BPM first.');

@@ -1,0 +1,31 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/dj-webkit-SkefSa
+PASS: page identity, nonblank content, consent gating
+PASS: real offline stereo PCM: A/B endpoints, center, channel mute, master mute
+PASS: instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs
+PASS: both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs
+PASS: late completion of an older play request cannot pause a newer playback request
+PASS: two media decks advance independently; active-track replacement blocked; actual mix signal present
+PASS: real media output follows crossfader, channel level and master silence
+PASS: pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects
+PASS: resolved-but-stalled A start reports failure and restores controls while B keeps producing audio
+PASS: Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+
+'rotate(240deg)'
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/web/tests/dj.mjs:224:10
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processImmediate (node:internal/timers:452:9)
+    at process.callbackTrampoline (node:internal/async_hooks:130:17) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'rotate(240deg)',
+  expected: 'rotate(240deg)',
+  operator: 'notStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

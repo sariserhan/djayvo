@@ -11,7 +11,19 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest shared-engine optimization — 2026-10-19:
+Latest browser playback reliability — 2026-10-19:
+[Bounded manual starts and native-media restart diagnostics](media-restart.md)
+**PASS (recovery scope)**: stuck/never-resolving starts report failure and restore
+controls; cancellation and late-result handling preserve newer playback and the
+other deck. Mac Chromium/WebKit and Linux Chromium each pass 42 studio checks;
+Mac/Linux each pass 34 unit tests. All 24 WAVs are unchanged and measured echo
+frames agree exactly. Linux WebKit startup/restart remains **FAIL**, reproduced
+outside Djayvo in a fresh container without memory-limit events; precise cause
+**PARTIAL**. Rejected restart workarounds and initial harness/test failures are
+retained. Physical latency, venue and new human listening **NOT RUN**. Master,
+recordings and DSP unchanged; local bundles refreshed and Linux services stopped.
+
+Previous shared-engine optimization — 2026-10-19:
 [Precomputed common interpolation coefficients](interpolation-table.md) **PASS
 (technical)**: empty-cache sampled-note setup avoids the common filter calculation.
 Mac/Linux 15/15 suites, sanitizer, exact coefficients, 75 unchanged WAVs per

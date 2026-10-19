@@ -1,5 +1,5 @@
 import { createMixer, updateMixer, validateTrack, trackDuration, updateToneEcho, clearEcho } from './mixer.js';
-import { attachDeck } from './deck-controls.js';
+import { attachDeck, playMedia } from './deck-controls.js';
 import { attachKeyboard } from './keyboard.js';
 import { attachPerformance } from './performance-session.js';
 
@@ -117,7 +117,7 @@ async function start(deck) {
       if (revision !== deck.revision || !rights.checked) return;
       if (context.state !== 'running') throw new Error('Audio is suspended. Press Play to try again.');
       if (audio.ended) audio.currentTime = 0;
-      await audio.play();
+      await playMedia(audio, () => revision === deck.revision && rights.checked && deck.playRequested);
       if (!rights.checked || !deck.playRequested) audio.pause();
       else if (revision === deck.revision) $('mixer-status').textContent = 'Manual mixing active. Keep this page open and your device awake.';
     } catch (error) {

@@ -1,0 +1,11 @@
+{
+  "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+  "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+  "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+  "core/include/djayvo/audio.h": "0b556b7f731d5bbf257d152dae1b591311283ffd8366fe98ba66e20df7a2c523",
+  "core/instruments/voice.cpp": "d0bc8893083ac9f14a94f53e6f561a4316b0e09584e86361f4101b47a4b52120",
+  "core/tests/tests.cpp": "396d770309332e747a130291e01df51348e2fe185454ab49a53ef5e38bdebc09",
+  "core/instruments/full_band_interpolation.inc": "b5188a1756bb48d352361601443644e17088e6df3ade3b2682126afb6875a547",
+  "dist/web/engine/djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+  "dist/web/engine/djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1"
+}

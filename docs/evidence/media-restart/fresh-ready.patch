@@ -1,0 +1,37 @@
+--- fresh.mjs
++++ fresh-ready.mjs
+@@ -61,7 +61,13 @@
+         const a = document.getElementById('audio'); window.a = a; window.events = []; window.restarts = 0;
+         const state = () => ({ time: a.currentTime, paused: a.paused, ended: a.ended, seeking: a.seeking,
+           ready: a.readyState, rate: a.playbackRate, error: a.error?.message || null });
+-        window.state = state;
++        window.state = state; a.preload = 'auto';
++        const ready = () => new Promise((resolve, reject) => {
++          if (a.readyState >= 1) { resolve(); return; }
++          const done = () => { a.removeEventListener('loadedmetadata', done); a.removeEventListener('error', failed); resolve(); };
++          const failed = () => { a.removeEventListener('loadedmetadata', done); a.removeEventListener('error', failed); reject(new Error('Metadata failed')); };
++          a.addEventListener('loadedmetadata', done); a.addEventListener('error', failed);
++        });
+         for (const type of ['loadedmetadata', 'play', 'playing', 'pause', 'seeking', 'seeked', 'ended', 'error'])
+           a.addEventListener(type, () => { events.push({ type, ...state() }); if (events.length > 400) events.shift(); });
+         const ctx = new AudioContext(); window.ctx = ctx;
+@@ -75,16 +81,15 @@
+             new File([bytes], 'tone.wav', { type: 'audio/wav' }) : document.getElementById('file').files[0];
+           window.mediaFile = file; a.src = URL.createObjectURL(file);
+         }
+-        a.onended = () => {
++        a.onended = async () => {
+           restarts++; const rate = a.playbackRate, previous = a.src; a.pause();
+           a.removeAttribute('src'); a.load();
+           a.src = source === 'http' ? '/tone.wav?restart=' + restarts : URL.createObjectURL(mediaFile);
+-          a.playbackRate = rate;
+           if (previous.startsWith('blob:')) URL.revokeObjectURL(previous);
+-          a.play().catch(e => { window.playError = e.message; });
++          try { await ready(); a.playbackRate = rate; await a.play(); } catch (e) { window.playError = e.message; }
+         };
+         document.getElementById('play').onclick = async () => {
+-          try { await ctx.resume(); await a.play(); } catch (e) { window.playError = e.message; }
++          try { await ctx.resume(); await ready(); await a.play(); } catch (e) { window.playError = e.message; }
+         };
+       }, source);
+       await page.locator('#play').click();

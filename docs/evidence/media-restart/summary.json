@@ -1,0 +1,4574 @@
+{
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "core/include/djayvo/audio.h": "0b556b7f731d5bbf257d152dae1b591311283ffd8366fe98ba66e20df7a2c523",
+    "core/instruments/voice.cpp": "d0bc8893083ac9f14a94f53e6f561a4316b0e09584e86361f4101b47a4b52120",
+    "core/tests/tests.cpp": "396d770309332e747a130291e01df51348e2fe185454ab49a53ef5e38bdebc09",
+    "core/instruments/full_band_interpolation.inc": "b5188a1756bb48d352361601443644e17088e6df3ade3b2682126afb6875a547",
+    "dist/web/engine/djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "dist/web/engine/djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1"
+  },
+  "probes": {
+    "linux-minimal-before": {
+      "status": "FAIL",
+      "browser": "webkit",
+      "version": "26.5",
+      "runner": {
+        "node": "v24.17.0",
+        "platform": "linux",
+        "architecture": "arm64"
+      },
+      "receipt": "renders/media-restart-20261019/media-restart-webkit-U5h81m/result.json",
+      "sha256": "2948e49126ebb7ceb471332b248e9b188cc609ed246bf59147b0fe8b0cb2c07d",
+      "cases": [
+        {
+          "source": "blob",
+          "iterations": 0,
+          "errors": [],
+          "external": [
+            "blob:http://127.0.0.1:44121/233dd4ea-e633-4c05-bb43-5245486e3109"
+          ],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": "R1: Blocked by Web Inspector"
+            },
+            "restarts": 0,
+            "playError": "The operation is not supported.",
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "error",
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": "R1: Blocked by Web Inspector"
+            }
+          ]
+        },
+        {
+          "source": "file",
+          "iterations": 0,
+          "errors": [],
+          "external": [
+            "blob:http://127.0.0.1:44121/3676e1d1-51ce-4aae-a465-fff009ff3e59"
+          ],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": "R1: Blocked by Web Inspector"
+            },
+            "restarts": 0,
+            "playError": "The operation is not supported.",
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "error",
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": "R1: Blocked by Web Inspector"
+            }
+          ]
+        },
+        {
+          "source": "input",
+          "iterations": 0,
+          "errors": [],
+          "external": [
+            "blob:http://127.0.0.1:44121/0e8f5c92-c337-4876-a7e8-2251ebf4d7e6"
+          ],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": "R1: Blocked by Web Inspector"
+            },
+            "restarts": 0,
+            "playError": "The operation is not supported.",
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "error",
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": "R1: Blocked by Web Inspector"
+            }
+          ]
+        },
+        {
+          "source": "http",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 1.169833333,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.26044243574142456,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0.043833333,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 1.169833333,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    "linux-minimal-route-corrected": {
+      "status": "FAIL",
+      "browser": "webkit",
+      "version": "26.5",
+      "runner": {
+        "node": "v24.17.0",
+        "platform": "linux",
+        "architecture": "arm64"
+      },
+      "receipt": "renders/media-restart-20261019/media-restart-webkit-qMsI92/result.json",
+      "sha256": "e176fd3055b0df07f1190591ec853b5df98faec05cbbc9f4d866dae3365f2aa8",
+      "cases": [
+        {
+          "source": "blob",
+          "iterations": 0,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            },
+            "restarts": 0,
+            "playError": "The operation is not supported.",
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            },
+            {
+              "type": "error",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "file",
+          "iterations": 2,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 3,
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "input",
+          "iterations": 0,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            },
+            "restarts": 0,
+            "playError": "The operation is not supported.",
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            },
+            {
+              "type": "error",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "http",
+          "iterations": 9,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 10,
+            "peak": 0.2500094771385193,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    "linux-minimal-unrouted": {
+      "status": "FAIL",
+      "browser": "webkit",
+      "version": "26.5",
+      "runner": {
+        "node": "v24.17.0",
+        "platform": "linux",
+        "architecture": "arm64"
+      },
+      "probe_sha256": "f76102d85d8a9e8910a4eca0c9f797f871ceafaf85d5347c8f3c2b9bea61a80d",
+      "receipt": "renders/media-restart-20261019/media-restart-webkit-hBPBO0/result.json",
+      "sha256": "901262989dc5af132bd1cb2bbf56754d75b44b33da9183ef3bdf91eef08f754a",
+      "cases": [
+        {
+          "source": "blob",
+          "iterations": 0,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 1,
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "file",
+          "iterations": 0,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 1,
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "input",
+          "iterations": 3,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 4,
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "http",
+          "iterations": 11,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 12,
+            "peak": 0.2500044107437134,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    "linux-native-loop": {
+      "status": "FAIL",
+      "browser": "webkit",
+      "version": "26.5",
+      "runner": {
+        "node": "v24.17.0",
+        "platform": "linux",
+        "architecture": "arm64"
+      },
+      "probe_sha256": "d86b776c01422419392954c9eea47d7ac0a08e1f606f75cc11adc9a5e6127e6d",
+      "receipt": "renders/media-restart-20261019/media-restart-webkit-zflZxN/result.json",
+      "sha256": "73cdf03222c23c3782db2b00b307ccd74a6f58853702f4a5fc80d64338e050c0",
+      "cases": [
+        {
+          "source": "blob",
+          "iterations": 2,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": "Media failed to load: R11: "
+            },
+            "restarts": 0,
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0.278416666,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 1.122916666,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": "Media failed to load: R11: "
+            },
+            {
+              "type": "error",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": "Media failed to load: R11: "
+            }
+          ]
+        },
+        {
+          "source": "file",
+          "iterations": 0,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            },
+            "restarts": 0,
+            "playError": "The operation is not supported.",
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            },
+            {
+              "type": "error",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "input",
+          "iterations": 2,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": "Media failed to load: R11: "
+            },
+            "restarts": 0,
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0.137666666,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0.137666666,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0.137666666,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0.137666666,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "error",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": "Media failed to load: R11: "
+            }
+          ]
+        },
+        {
+          "source": "http",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 1.169833333,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 0,
+            "peak": 0.2669619619846344,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeking",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": true,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 1.169833333,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 1.169833333,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 1.169833333,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    "linux-fresh-source": {
+      "status": "FAIL",
+      "browser": "webkit",
+      "version": "26.5",
+      "runner": {
+        "node": "v24.17.0",
+        "platform": "linux",
+        "architecture": "arm64"
+      },
+      "probe_sha256": "ccb95157c67ebac414ecc27409072bec03055e232af5f9534f18ddc8fd1c1665",
+      "receipt": "renders/media-restart-20261019/media-restart-webkit-w1O9TP/result.json",
+      "sha256": "49a15baf8c929872ecd63fdcfb2c07f4ddec467af7b1510a9712ffac5dc7f08b",
+      "cases": [
+        {
+          "source": "blob",
+          "iterations": 0,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            },
+            "restarts": 0,
+            "playError": "The operation is not supported.",
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            },
+            {
+              "type": "error",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "file",
+          "iterations": 3,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 4,
+            "playError": "The operation is not supported.",
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeking",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "error",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "input",
+          "iterations": 1,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 2,
+            "playError": "The operation is not supported.",
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeking",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "error",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "http",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 1.169833333,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.24999292194843292,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "loadedmetadata",
+              "time": 1.169833333,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 1.169833333,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 1.169833333,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    "linux-fresh-ready": {
+      "status": "FAIL",
+      "browser": "webkit",
+      "version": "26.5",
+      "runner": {
+        "node": "v24.17.0",
+        "platform": "linux",
+        "architecture": "arm64"
+      },
+      "probe_sha256": "ab8a9902d245ad043c92145e01f2eae97fbc8307d7a38320df8bde7815b4f0eb",
+      "receipt": "renders/media-restart-20261019/media-restart-webkit-uHuEbs/result.json",
+      "sha256": "fd3950f25f136aa305a5144f7fcbf7dacb476a751b1d1fdc7d0fd7f81220f05b",
+      "cases": [
+        {
+          "source": "blob",
+          "iterations": 0,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            },
+            "restarts": 0,
+            "playError": "Metadata failed",
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "error",
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "file",
+          "iterations": 7,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            },
+            "restarts": 8,
+            "playError": "Metadata failed",
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "pause",
+              "time": 1.169833333,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "error",
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "input",
+          "iterations": 0,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            },
+            "restarts": 0,
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "error",
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 0,
+              "rate": 1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "http",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 1.169833333,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.25000110268592834,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "loadedmetadata",
+              "time": 0,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0.419166666,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0.419166666,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 1.169833333,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    "linux-minimal-chromium": {
+      "status": "PASS",
+      "browser": "chromium",
+      "version": "149.0.7827.0",
+      "runner": {
+        "node": "v24.17.0",
+        "platform": "linux",
+        "architecture": "arm64"
+      },
+      "probe_sha256": "f76102d85d8a9e8910a4eca0c9f797f871ceafaf85d5347c8f3c2b9bea61a80d",
+      "receipt": "renders/media-restart-20261019/media-restart-chromium-4Z8u24/result.json",
+      "sha256": "5817487bbb5d86421e00dd64fe165f7367e5373012e7cf8127824d5668615000",
+      "cases": [
+        {
+          "source": "blob",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 0.064024,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.2500174641609192,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "playing",
+              "time": 59.9,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 1,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 1,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 0.064024,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "file",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 0.070884,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.2500193119049072,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "playing",
+              "time": 59.9,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 1,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 1,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 0.070884,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "input",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 0.063021,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.25001490116119385,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "playing",
+              "time": 59.9,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 1,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 1,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 0.063021,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "http",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 0.052021,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.2500206232070923,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "playing",
+              "time": 59.9,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 1,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 1,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 0.052021,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    "mac-minimal-webkit": {
+      "status": "PASS",
+      "browser": "webkit",
+      "version": "26.5",
+      "runner": {
+        "node": "v22.23.1",
+        "platform": "darwin",
+        "architecture": "arm64"
+      },
+      "probe_sha256": "f76102d85d8a9e8910a4eca0c9f797f871ceafaf85d5347c8f3c2b9bea61a80d",
+      "receipt": "renders/media-restart-webkit-RuN6Wh/result.json",
+      "sha256": "e0f6ccbf44c5258bb0b84115e9550eccd2b10eaa961733349cab5be3677783c5",
+      "cases": [
+        {
+          "source": "blob",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 0.17768369136977383,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.2521185576915741,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "playing",
+              "time": 59.9,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 0.17768369136977383,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "file",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 0.19428837505378319,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.2506818473339081,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "playing",
+              "time": 59.9,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 0.19428837505378319,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "input",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 0.17718016633446385,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.2527778446674347,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "playing",
+              "time": 59.9,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 0.17718016633446385,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "http",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 0.19147714166023788,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.25082945823669434,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "playing",
+              "time": 59.9,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 0.19147714166023788,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    "linux-minimal-clean": {
+      "status": "FAIL",
+      "browser": "webkit",
+      "version": "26.5",
+      "runner": {
+        "node": "v24.17.0",
+        "platform": "linux",
+        "architecture": "arm64"
+      },
+      "probe_sha256": "f76102d85d8a9e8910a4eca0c9f797f871ceafaf85d5347c8f3c2b9bea61a80d",
+      "receipt": "renders/media-restart-20261019/media-restart-webkit-pLLNyG/result.json",
+      "sha256": "ac6a4393234c64658070f8566b6785eb22a065318c669aee5565280023a5426e",
+      "cases": [
+        {
+          "source": "blob",
+          "iterations": 0,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 1,
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "file",
+          "iterations": 0,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 1,
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "input",
+          "iterations": 2,
+          "errors": [],
+          "external": [],
+          "status": "FAIL",
+          "failure": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "final": {
+            "state": {
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 3,
+            "peak": 0,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "seeked",
+              "time": 59.9,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        },
+        {
+          "source": "http",
+          "iterations": 15,
+          "errors": [],
+          "external": [],
+          "status": "PASS",
+          "final": {
+            "state": {
+              "time": 1.122916666,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            "restarts": 15,
+            "peak": 0.7197495698928833,
+            "context": "running"
+          },
+          "last_events": [
+            {
+              "type": "playing",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "ended",
+              "time": 60,
+              "paused": true,
+              "ended": true,
+              "seeking": false,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "play",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "playing",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeking",
+              "time": 0,
+              "paused": false,
+              "ended": false,
+              "seeking": true,
+              "ready": 4,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "seeked",
+              "time": 0.747583332,
+              "paused": false,
+              "ended": false,
+              "seeking": false,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            },
+            {
+              "type": "pause",
+              "time": 1.122916666,
+              "paused": true,
+              "ended": false,
+              "seeking": false,
+              "ready": 2,
+              "rate": 1.1,
+              "error": null
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "studio": {
+    "linux-dj-before": {
+      "message": "page.waitForFunction: Timeout 10000ms exceeded.",
+      "state": {
+        "instruments": "Prepare the cleared sound bank, then play with your mouse, touch or computer keyboard.",
+        "deckError": "Playback could not start: The operation is not supported.",
+        "decks": [
+          {
+            "time": 0,
+            "paused": true,
+            "seeking": false,
+            "ended": false,
+            "rate": 1,
+            "readyState": 0
+          },
+          {
+            "time": 0,
+            "paused": true,
+            "seeking": false,
+            "ended": false,
+            "rate": 1,
+            "readyState": 4
+          }
+        ],
+        "meter": 0
+      },
+      "checks": [
+        {
+          "name": "page identity, nonblank content, consent gating",
+          "status": "PASS"
+        },
+        {
+          "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+          "status": "PASS"
+        },
+        {
+          "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "status": "FAIL",
+      "receipt": "renders/media-restart-20261019/dj-webkit-bXV3kF/failure.json",
+      "sha256": "6809a6fb2eb9281151dcaff786aff58ea8e76961a37c712e77fa4717c1e88f31"
+    },
+    "mac-webkit": {
+      "message": "Expected \"actual\" to be strictly unequal to:\n\n'rotate(240deg)'",
+      "state": {
+        "instruments": "Prepare the cleared sound bank, then play with your mouse, touch or computer keyboard.",
+        "deckError": "",
+        "decks": [
+          {
+            "time": 12,
+            "paused": false,
+            "seeking": false,
+            "ended": false,
+            "rate": 1,
+            "readyState": 4
+          },
+          {
+            "time": 11.497174878679116,
+            "paused": false,
+            "seeking": false,
+            "ended": false,
+            "rate": 1,
+            "readyState": 4
+          }
+        ],
+        "meter": 0.14761048555374146
+      },
+      "checks": [
+        {
+          "name": "page identity, nonblank content, consent gating",
+          "status": "PASS"
+        },
+        {
+          "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+          "status": "PASS"
+        },
+        {
+          "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "late completion of an older play request cannot pause a newer playback request",
+          "status": "PASS"
+        },
+        {
+          "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+          "status": "PASS"
+        },
+        {
+          "name": "real media output follows crossfader, channel level and master silence",
+          "status": "PASS"
+        },
+        {
+          "name": "pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects",
+          "status": "PASS"
+        },
+        {
+          "name": "resolved-but-stalled A start reports failure and restores controls while B keeps producing audio",
+          "status": "PASS"
+        },
+        {
+          "name": "Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+      ],
+      "status": "FAIL",
+      "receipt": "renders/dj-webkit-SkefSa/failure.json",
+      "sha256": "ddbc11c8fcd7619b511127f1945dc9668bbca9613c14f978cb2b14300e872008"
+    },
+    "mac-chromium": {
+      "status": "PASS",
+      "version": "149.0.7827.55",
+      "checks": [
+        {
+          "name": "page identity, nonblank content, consent gating",
+          "status": "PASS"
+        },
+        {
+          "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+          "status": "PASS"
+        },
+        {
+          "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "late completion of an older play request cannot pause a newer playback request",
+          "status": "PASS"
+        },
+        {
+          "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+          "status": "PASS"
+        },
+        {
+          "name": "real media output follows crossfader, channel level and master silence",
+          "status": "PASS"
+        },
+        {
+          "name": "pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects",
+          "status": "PASS"
+        },
+        {
+          "name": "resolved-but-stalled A start reports failure and restores controls while B keeps producing audio",
+          "status": "PASS"
+        },
+        {
+          "name": "Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry",
+          "status": "PASS"
+        },
+        {
+          "name": "rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping",
+          "status": "PASS"
+        },
+        {
+          "name": "deck low EQ changes measured output",
+          "status": "PASS"
+        },
+        {
+          "name": "A/B controls change real audio independently; pause tails follow channel/master/crossfader and reset cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound",
+          "status": "PASS"
+        },
+        {
+          "name": "sustain, instrument/master mute, panic and blur release work without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "live tone/echo controls change instrument audio; level/master silence tails; reset clears buffers even if echo is raised again, decks continue",
+          "status": "PASS"
+        },
+        {
+          "name": "talk-bass low register and live vowel spectrum, release, isolated controls and four new percussion sounds",
+          "status": "PASS"
+        },
+        {
+          "name": "octave selection, patch range limits and pointer drum pad generate real audio",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI opt-in, denied permission and late permission cancellation preserve manual controls",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI notes drive real C++ worklet audio with velocity and zero-velocity note-off",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI Learn consumes assignment without jumps; channel-specific pickup controls actual audio, manual changes rearm, unmapped/reserved CC preserve notes",
+          "status": "PASS"
+        },
+        {
+          "name": "reassignment replaces old target/controller bindings; disabled sound controls and cancelled learning ignore CC",
+          "status": "PASS"
+        },
+        {
+          "name": "learned channel and crossfader controls change media-deck PCM; tone/EQ use existing validated audio controls",
+          "status": "PASS"
+        },
+        {
+          "name": "blur cancels learning/rearms pickup; clear and input switching remove bindings without changing levels",
+          "status": "PASS"
+        },
+        {
+          "name": "all 26 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI sustain is isolated by channel and from computer/touch sustain",
+          "status": "PASS"
+        },
+        {
+          "name": "retrigger and MIDI CC123/121/120 release held and sustained voices safely",
+          "status": "PASS"
+        },
+        {
+          "name": "channel-10 drums/percussion mapping produces audio; unsupported notes and messages are ignored",
+          "status": "PASS"
+        },
+        {
+          "name": "input switching preserves computer notes; unplug clears sustain and requires explicit reconnect",
+          "status": "PASS"
+        },
+        {
+          "name": "failed/pending port opens, blur and disabling MIDI release voices without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "unsupported MIDI browser keeps clear fallback and existing instrument controls",
+          "status": "PASS"
+        },
+        {
+          "name": "desktop, tablet and mobile controls render without horizontal overflow; reduced motion stops platter animation",
+          "status": "PASS"
+        },
+        {
+          "name": "injected instrument processor failure disables keys and preserves deck playback",
+          "status": "PASS"
+        },
+        {
+          "name": "pause-all and audio-context interruption require explicit resume",
+          "status": "PASS"
+        },
+        {
+          "name": "opposite-polarity stereo remains visible on output meter despite mono cancellation",
+          "status": "PASS"
+        },
+        {
+          "name": "revoking permission stops, detaches both decks and clears effect tails and controls",
+          "status": "PASS"
+        },
+        {
+          "name": "disconnected reload: deck playback/effects, Pause all clears tails, unload/reload cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "cached WASM bank and AudioWorklet produce instrument audio with server disconnected",
+          "status": "PASS"
+        },
+        {
+          "name": "cached MIDI Learn picks up, mutes/unmutes actual instrument PCM and clears on disable with server disconnected (synthetic port)",
+          "status": "PASS"
+        },
+        {
+          "name": "unload releases the deck source",
+          "status": "PASS"
+        },
+        {
+          "name": "failed graph initialization stays silent on repeated Play; no unprocessed fallback",
+          "status": "PASS"
+        },
+        {
+          "name": "no upload/external request, URL-release errors or app console errors",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "receipt": "renders/dj-chromium-TKj8Fk/report.json",
+      "sha256": "8a8c36fd29f362a19e0f1f4d05a0e9a421cc7fbd79baa94e66003ff139c4d6eb",
+      "echo_frames": [
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ]
+      ],
+      "max_echo_frame_error": 0
+    },
+    "mac-webkit-final": {
+      "status": "PASS",
+      "version": "26.5",
+      "checks": [
+        {
+          "name": "page identity, nonblank content, consent gating",
+          "status": "PASS"
+        },
+        {
+          "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+          "status": "PASS"
+        },
+        {
+          "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "late completion of an older play request cannot pause a newer playback request",
+          "status": "PASS"
+        },
+        {
+          "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+          "status": "PASS"
+        },
+        {
+          "name": "real media output follows crossfader, channel level and master silence",
+          "status": "PASS"
+        },
+        {
+          "name": "pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects",
+          "status": "PASS"
+        },
+        {
+          "name": "resolved-but-stalled A start reports failure and restores controls while B keeps producing audio",
+          "status": "PASS"
+        },
+        {
+          "name": "Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry",
+          "status": "PASS"
+        },
+        {
+          "name": "rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping",
+          "status": "PASS"
+        },
+        {
+          "name": "deck low EQ changes measured output",
+          "status": "PASS"
+        },
+        {
+          "name": "A/B controls change real audio independently; pause tails follow channel/master/crossfader and reset cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound",
+          "status": "PASS"
+        },
+        {
+          "name": "sustain, instrument/master mute, panic and blur release work without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "live tone/echo controls change instrument audio; level/master silence tails; reset clears buffers even if echo is raised again, decks continue",
+          "status": "PASS"
+        },
+        {
+          "name": "talk-bass low register and live vowel spectrum, release, isolated controls and four new percussion sounds",
+          "status": "PASS"
+        },
+        {
+          "name": "octave selection, patch range limits and pointer drum pad generate real audio",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI opt-in, denied permission and late permission cancellation preserve manual controls",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI notes drive real C++ worklet audio with velocity and zero-velocity note-off",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI Learn consumes assignment without jumps; channel-specific pickup controls actual audio, manual changes rearm, unmapped/reserved CC preserve notes",
+          "status": "PASS"
+        },
+        {
+          "name": "reassignment replaces old target/controller bindings; disabled sound controls and cancelled learning ignore CC",
+          "status": "PASS"
+        },
+        {
+          "name": "learned channel and crossfader controls change media-deck PCM; tone/EQ use existing validated audio controls",
+          "status": "PASS"
+        },
+        {
+          "name": "blur cancels learning/rearms pickup; clear and input switching remove bindings without changing levels",
+          "status": "PASS"
+        },
+        {
+          "name": "all 26 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI sustain is isolated by channel and from computer/touch sustain",
+          "status": "PASS"
+        },
+        {
+          "name": "retrigger and MIDI CC123/121/120 release held and sustained voices safely",
+          "status": "PASS"
+        },
+        {
+          "name": "channel-10 drums/percussion mapping produces audio; unsupported notes and messages are ignored",
+          "status": "PASS"
+        },
+        {
+          "name": "input switching preserves computer notes; unplug clears sustain and requires explicit reconnect",
+          "status": "PASS"
+        },
+        {
+          "name": "failed/pending port opens, blur and disabling MIDI release voices without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "unsupported MIDI browser keeps clear fallback and existing instrument controls",
+          "status": "PASS"
+        },
+        {
+          "name": "desktop, tablet and mobile controls render without horizontal overflow; reduced motion stops platter animation",
+          "status": "PASS"
+        },
+        {
+          "name": "injected instrument processor failure disables keys and preserves deck playback",
+          "status": "PASS"
+        },
+        {
+          "name": "pause-all and audio-context interruption require explicit resume",
+          "status": "PASS"
+        },
+        {
+          "name": "opposite-polarity stereo remains visible on output meter despite mono cancellation",
+          "status": "PASS"
+        },
+        {
+          "name": "revoking permission stops, detaches both decks and clears effect tails and controls",
+          "status": "PASS"
+        },
+        {
+          "name": "disconnected reload: deck playback/effects, Pause all clears tails, unload/reload cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "cached WASM bank and AudioWorklet produce instrument audio with server disconnected",
+          "status": "PASS"
+        },
+        {
+          "name": "cached MIDI Learn picks up, mutes/unmutes actual instrument PCM and clears on disable with server disconnected (synthetic port)",
+          "status": "PASS"
+        },
+        {
+          "name": "unload releases the deck source",
+          "status": "PASS"
+        },
+        {
+          "name": "failed graph initialization stays silent on repeated Play; no unprocessed fallback",
+          "status": "PASS"
+        },
+        {
+          "name": "no upload/external request, URL-release errors or app console errors",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+        "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+      ],
+      "receipt": "renders/dj-webkit-4ydodp/report.json",
+      "sha256": "c10457e8967afee0d44c37da76396d712c9bd06bcd3b3d8fe3579598ef100629",
+      "echo_frames": [
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ]
+      ],
+      "max_echo_frame_error": 0
+    },
+    "linux-chromium-after": {
+      "status": "PASS",
+      "version": "149.0.7827.0",
+      "checks": [
+        {
+          "name": "page identity, nonblank content, consent gating",
+          "status": "PASS"
+        },
+        {
+          "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+          "status": "PASS"
+        },
+        {
+          "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "late completion of an older play request cannot pause a newer playback request",
+          "status": "PASS"
+        },
+        {
+          "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+          "status": "PASS"
+        },
+        {
+          "name": "real media output follows crossfader, channel level and master silence",
+          "status": "PASS"
+        },
+        {
+          "name": "pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects",
+          "status": "PASS"
+        },
+        {
+          "name": "resolved-but-stalled A start reports failure and restores controls while B keeps producing audio",
+          "status": "PASS"
+        },
+        {
+          "name": "Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry",
+          "status": "PASS"
+        },
+        {
+          "name": "rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping",
+          "status": "PASS"
+        },
+        {
+          "name": "deck low EQ changes measured output",
+          "status": "PASS"
+        },
+        {
+          "name": "A/B controls change real audio independently; pause tails follow channel/master/crossfader and reset cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound",
+          "status": "PASS"
+        },
+        {
+          "name": "sustain, instrument/master mute, panic and blur release work without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "live tone/echo controls change instrument audio; level/master silence tails; reset clears buffers even if echo is raised again, decks continue",
+          "status": "PASS"
+        },
+        {
+          "name": "talk-bass low register and live vowel spectrum, release, isolated controls and four new percussion sounds",
+          "status": "PASS"
+        },
+        {
+          "name": "octave selection, patch range limits and pointer drum pad generate real audio",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI opt-in, denied permission and late permission cancellation preserve manual controls",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI notes drive real C++ worklet audio with velocity and zero-velocity note-off",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI Learn consumes assignment without jumps; channel-specific pickup controls actual audio, manual changes rearm, unmapped/reserved CC preserve notes",
+          "status": "PASS"
+        },
+        {
+          "name": "reassignment replaces old target/controller bindings; disabled sound controls and cancelled learning ignore CC",
+          "status": "PASS"
+        },
+        {
+          "name": "learned channel and crossfader controls change media-deck PCM; tone/EQ use existing validated audio controls",
+          "status": "PASS"
+        },
+        {
+          "name": "blur cancels learning/rearms pickup; clear and input switching remove bindings without changing levels",
+          "status": "PASS"
+        },
+        {
+          "name": "all 26 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count",
+          "status": "PASS"
+        },
+        {
+          "name": "MIDI sustain is isolated by channel and from computer/touch sustain",
+          "status": "PASS"
+        },
+        {
+          "name": "retrigger and MIDI CC123/121/120 release held and sustained voices safely",
+          "status": "PASS"
+        },
+        {
+          "name": "channel-10 drums/percussion mapping produces audio; unsupported notes and messages are ignored",
+          "status": "PASS"
+        },
+        {
+          "name": "input switching preserves computer notes; unplug clears sustain and requires explicit reconnect",
+          "status": "PASS"
+        },
+        {
+          "name": "failed/pending port opens, blur and disabling MIDI release voices without pausing decks",
+          "status": "PASS"
+        },
+        {
+          "name": "unsupported MIDI browser keeps clear fallback and existing instrument controls",
+          "status": "PASS"
+        },
+        {
+          "name": "desktop, tablet and mobile controls render without horizontal overflow; reduced motion stops platter animation",
+          "status": "PASS"
+        },
+        {
+          "name": "injected instrument processor failure disables keys and preserves deck playback",
+          "status": "PASS"
+        },
+        {
+          "name": "pause-all and audio-context interruption require explicit resume",
+          "status": "PASS"
+        },
+        {
+          "name": "opposite-polarity stereo remains visible on output meter despite mono cancellation",
+          "status": "PASS"
+        },
+        {
+          "name": "revoking permission stops, detaches both decks and clears effect tails and controls",
+          "status": "PASS"
+        },
+        {
+          "name": "disconnected reload: deck playback/effects, Pause all clears tails, unload/reload cannot revive old audio",
+          "status": "PASS"
+        },
+        {
+          "name": "cached WASM bank and AudioWorklet produce instrument audio with server disconnected",
+          "status": "PASS"
+        },
+        {
+          "name": "cached MIDI Learn picks up, mutes/unmutes actual instrument PCM and clears on disable with server disconnected (synthetic port)",
+          "status": "PASS"
+        },
+        {
+          "name": "unload releases the deck source",
+          "status": "PASS"
+        },
+        {
+          "name": "failed graph initialization stays silent on repeated Play; no unprocessed fallback",
+          "status": "PASS"
+        },
+        {
+          "name": "no upload/external request, URL-release errors or app console errors",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "receipt": "renders/media-restart-20261019/dj-chromium-on9fyA/report.json",
+      "sha256": "8aa2ea4419c4dcc9e297e17ef5d5ab4f9297272889e84cef57499ac2f7c486df",
+      "echo_frames": [
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ]
+      ],
+      "max_echo_frame_error": 0
+    },
+    "linux-webkit-after": {
+      "message": "page.waitForFunction: Timeout 10000ms exceeded.",
+      "state": {
+        "instruments": "Prepare the cleared sound bank, then play with your mouse, touch or computer keyboard.",
+        "deckError": "Playback could not start: The track did not begin playing. Unload it and try again.",
+        "decks": [
+          {
+            "time": 0,
+            "paused": true,
+            "seeking": false,
+            "ended": false,
+            "rate": 1,
+            "readyState": 4
+          },
+          {
+            "time": 0,
+            "paused": true,
+            "seeking": false,
+            "ended": false,
+            "rate": 1,
+            "readyState": 0
+          }
+        ],
+        "meter": 0
+      },
+      "checks": [
+        {
+          "name": "page identity, nonblank content, consent gating",
+          "status": "PASS"
+        },
+        {
+          "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+          "status": "PASS"
+        },
+        {
+          "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+          "status": "PASS"
+        },
+        {
+          "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "status": "FAIL",
+      "receipt": "renders/media-restart-20261019/dj-webkit-0kEDOb/failure.json",
+      "sha256": "f0b6b5c08b359b6f3e15ba3dca4d977c07a126e27710b30a34d518d50f5d672d"
+    }
+  },
+  "waveforms": [
+    {
+      "run": "renders/dj-chromium-TKj8Fk",
+      "baseline": "renders/dj-chromium-rXzvBo",
+      "files": {
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "frames": 288000,
+          "byte_identical": true
+        }
+      }
+    },
+    {
+      "run": "renders/dj-webkit-4ydodp",
+      "baseline": "renders/dj-webkit-wXU65G",
+      "files": {
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "frames": 288000,
+          "byte_identical": true
+        }
+      }
+    },
+    {
+      "run": "renders/media-restart-20261019/dj-chromium-on9fyA",
+      "baseline": "renders/dj-chromium-rXzvBo",
+      "files": {
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "baseline_sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+          "frames": 288000,
+          "byte_identical": true
+        }
+      }
+    },
+    {
+      "run": "renders/media-restart-20261019/dj-webkit-0kEDOb",
+      "baseline": "renders/dj-webkit-wXU65G",
+      "files": {
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "baseline_sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+          "frames": 288000,
+          "byte_identical": true
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "baseline_sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+          "frames": 288000,
+          "byte_identical": true
+        }
+      }
+    }
+  ],
+  "waveform_gate": "PASS",
+  "waveform_count": 24
+}

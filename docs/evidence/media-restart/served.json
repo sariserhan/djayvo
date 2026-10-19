@@ -1,0 +1,34 @@
+{
+  "dj.js": {
+    "disk": "dist/web/dj.js",
+    "sha256": "d6c6a29ef959cdc5928d2ef1b17f67629750151c2046d59678d0e87b5ed2c027",
+    "served": {
+      "http://127.0.0.1:4173/dj.js": "d6c6a29ef959cdc5928d2ef1b17f67629750151c2046d59678d0e87b5ed2c027",
+      "http://127.0.0.1:3000/studio/dj.js": "d6c6a29ef959cdc5928d2ef1b17f67629750151c2046d59678d0e87b5ed2c027"
+    }
+  },
+  "deck-controls.js": {
+    "disk": "dist/web/deck-controls.js",
+    "sha256": "ca3e438e3ad25ce7c153922ad6359b4b2b9a0ac4d6b15b37ab46e983ddef098e",
+    "served": {
+      "http://127.0.0.1:4173/deck-controls.js": "ca3e438e3ad25ce7c153922ad6359b4b2b9a0ac4d6b15b37ab46e983ddef098e",
+      "http://127.0.0.1:3000/studio/deck-controls.js": "ca3e438e3ad25ce7c153922ad6359b4b2b9a0ac4d6b15b37ab46e983ddef098e"
+    }
+  },
+  "engine/djayvo_live.wasm": {
+    "disk": "dist/web/engine/djayvo_live.wasm",
+    "sha256": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "served": {
+      "http://127.0.0.1:4173/engine/djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+      "http://127.0.0.1:3000/studio/engine/djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c"
+    }
+  },
+  "engine/djayvo_web.wasm": {
+    "disk": "dist/web/engine/djayvo_web.wasm",
+    "sha256": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1",
+    "served": {
+      "http://127.0.0.1:4173/engine/djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1",
+      "http://127.0.0.1:3000/studio/engine/djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1"
+    }
+  }
+}

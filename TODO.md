@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest validation: [Common cold-note coefficients and browser captures](docs/interpolation-table.md).
+Last updated: 2026-10-19 (America/New_York). Latest validation: [Manual deck start recovery and native-media restart investigation](docs/media-restart.md).
 Latest engine improvement: [Precomputed common interpolation coefficients](docs/interpolation-table.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
@@ -44,6 +44,16 @@ criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
+
+- [x] **DJ23 — PASS (bounded manual-start recovery):** [Playback failure handling](docs/media-restart.md).
+  Stuck and never-resolving native starts report an error and restore controls;
+  cancellation/late results preserve newer playback while the other deck continues.
+  34 unit tests on each platform; 42 studio checks each in Mac Chromium/WebKit
+  and Linux Chromium; 24 unchanged WAVs and exact measured echo frames.
+  Linux WebKit startup/restart remains **FAIL**, including a minimal fresh-container
+  reproduction without memory-limit events. Root cause **PARTIAL**; rejected
+  native-loop/fresh-source workarounds retained. Physical/listening/venue **NOT RUN**.
+  Does not close DJ14, DJ17, M1 or production readiness.
 
 - [x] **DJ22 — PASS (instrument worklet validation scope):** [Actual browser instrument load](docs/worklet-load.md).
   Sixty-second runs in Mac/Linux Chromium and WebKit: exact native PCM and all
@@ -106,7 +116,8 @@ closes that task only; it does not automatically pass its parent milestone.
   stale timestamps with continuous samples. Final session PCM checks PASS;
   failed receipts retained, physical/venue validation NOT RUN. DJ18 fixes a
   separate reproducible pending-start control defect; it does not establish the
-  cause of the earlier 300 ms failure.
+  cause of the earlier 300 ms failure. DJ23 adds bounded manual-start failure
+  handling; it does not qualify latency or prepared-session startup.
 
 - [x] **DJ15 — PASS (technical):** [Performance C tone and echo](docs/performance-effects.md):
   preview/bar-entry effects before C/Master gains, three MIDI Learn targets,
@@ -120,6 +131,10 @@ closes that task only; it does not automatically pass its parent milestone.
   38 session, 24 unit checks and integrated/offline behavior pass. Physical MIDI
   and latency NOT RUN; native Web MIDI unavailable in tested WebKit.
 - [ ] **DJ14 — FAIL (Linux WebKit startup/repeat), PARTIAL (cause):**
+  [New minimal native-media probes](docs/media-restart.md) reproduce EOF failure
+  outside Djayvo with Blob/File and HTTP sources; a fresh-container Blob/File
+  reproduction has no memory-limit events. Three candidate workarounds still
+  fail local-file paths. DJ23 handles stalled starts without closing this defect.
   [Linux browser validation](docs/linux-browser.md) reproduces an EOF restart
   stuck seeking at zero; full suite fails and focused repeats fail on iteration 2.
   Waiting for seek and decoder reload candidates also failed; neither shipped.
@@ -519,6 +534,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P70 | PASS | Validate production instrument AudioWorklet in Mac/Linux Chromium and WebKit, retain six exact captures and command-frame evidence without hiding timing-screen failures | [Evidence](docs/worklet-load.md) |
 | [x] | P71 | PASS | Reuse identical per-voice interpolation coefficients, validate exact before/after audio on Mac/Linux/WASM, measure note setup and retain failing browser timing screens | [Evidence](docs/interpolation-cache.md) |
 | [x] | P72 | PASS | Precompute common cold-note filter coefficients; preserve exact Mac/Linux/WASM audio and retain failing browser timing evidence | [Evidence](docs/interpolation-table.md) |
+| [x] | P73 | PASS | Bound manual playback-start failures, verify cancellation and uninterrupted other-deck audio, isolate Linux WebKit restart failures and retain exact PCM/frame evidence | [Evidence](docs/media-restart.md) |
 
 ## Engineering backlog
 

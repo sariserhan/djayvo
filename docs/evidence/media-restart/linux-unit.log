@@ -1,0 +1,42 @@
+✔ decimal selections preserve the exact two-second boundary (0.635135ms)
+✔ WAV is bounded PCM16 mono with finite samples and safe clipping (5.056913ms)
+✔ browser.mjs rejects unknown browsers before launching (331.148457ms)
+✔ browser-render.mjs rejects unknown browsers before launching (287.892404ms)
+✔ installation is optional, capability-driven and never confuses acceptance with completion (0.909681ms)
+✔ standalone platforms, prompt rejection and installation during a pending prompt remain honest (1.043766ms)
+✔ instrument map covers full piano and respects guitar bank limits (1.199144ms)
+✔ tempo match uses other deck effective tempo and rejects impossible matches (0.359005ms)
+✔ funk sessions verify complete hashed artifacts and reject mislabeled or corrupted files (3.827643ms)
+✔ call_response sessions verify complete hashed artifacts and reject mislabeled or corrupted files (0.930848ms)
+✔ hybrid sessions verify complete hashed artifacts and reject mislabeled or corrupted files (1.268562ms)
+✔ malformed stored file entries are withheld instead of aborting library recovery (0.131419ms)
+✔ resolved play must advance without seeking; successful/short playback cleans up timers (0.943139ms)
+✔ stuck seeking and unresolved play both fail within the start deadline (1.145601ms)
+✔ cancellation clears timers and ignores late completion or rejection (0.565967ms)
+✔ native synchronous and asynchronous playback errors retain their message and clean up (0.451799ms)
+✔ MIDI decodes note-off forms, velocity, channel boundaries and only supported controls (0.608718ms)
+✔ absolute CC pickup prevents jumps, follows crossings and rearms after screen changes (0.192753ms)
+✔ beat echo converts validated performance tempo without rounding to the manual slider step (0.414715ms)
+✔ linear blend bounds coherent summed peaks and supports channel/master silence (0.778095ms)
+✔ track limits reject empty, oversized and nonaudio files before decoding (0.137711ms)
+✔ effect boundaries reject nonfinite and out-of-range controls before touching audio (0.171878ms)
+✔ prepared track rejects decoded limits and nonfinite samples beyond the analysis window (20.345483ms)
+✔ composition identity ignores cosmetic changes, ordering and transposition; detects musical changes (11.524429ms)
+✔ selection retries only duplicates, records the actual seed and bounds exhaustion before publishing (2.244702ms)
+✔ offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets (55.788243ms)
+✔ reinstall reuses a complete verified cache without redownloading or deleting it (12.428568ms)
+✔ continuity diagnostic counts frame gaps, bounds its trace and resets the measurement window (2.221743ms)
+✔ bounded context heuristic finds pulse and triad, and treats silence as uncertain (42.389284ms)
+✔ transport cancels future C, rejects late/short contexts and preserves A on C failure (0.340463ms)
+✔ worklet capture keeps both channels and every independent frame (1.738236ms)
+✔ stale browser timestamps do not become false missing-sample claims (1.157352ms)
+✔ missing counter samples and altered audio remain detectable (1.393938ms)
+✔ load probe dispatches on/off at exact frames across program boundaries (3.521929ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1136.836627
