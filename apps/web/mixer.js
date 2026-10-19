@@ -5,11 +5,11 @@ export function mixGains(crossfade, levels, master) {
   return [(1 - crossfade) * levels[0] * master * .8, crossfade * levels[1] * master * .8];
 }
 
-export function updateInstrumentFX(context, fx, tone, echo, milliseconds) {
+export function updateToneEcho(context, fx, tone, echo, milliseconds) {
   if (!Number.isFinite(tone) || tone < 0 || tone > 100 ||
       !Number.isFinite(echo) || echo < 0 || echo > .5 ||
       !Number.isFinite(milliseconds) || milliseconds < 100 || milliseconds > 800)
-    throw new Error('Instrument effects are outside their allowed range.');
+    throw new Error('Tone/echo controls are outside their allowed range.');
   const frequency = tone === 100 ? context.sampleRate / 2 : Math.min(context.sampleRate / 2, 200 * 100 ** (tone / 100));
   const now = context.currentTime;
   // WebKit's target smoothing skews stereo channels during a filter sweep.
@@ -20,6 +20,40 @@ export function updateInstrumentFX(context, fx, tone, echo, milliseconds) {
   fx.dry.gain.setTargetAtTime(1 - echo, now, .01);
   fx.wet.gain.setTargetAtTime(echo, now, .01);
   fx.delays.forEach((delay, i) => delay.delayTime.setTargetAtTime(milliseconds * (i + 1) / 1000, now, .03));
+}
+
+function createToneEcho(context, destination) {
+  const input = context.createBiquadFilter(), dry = context.createGain(), wet = context.createGain();
+  input.type = 'lowpass'; input.Q.value = 0; input.frequency.value = context.sampleRate / 2;
+  wet.gain.value = 0;
+  input.connect(dry); dry.connect(destination);
+  wet.connect(destination);
+  // Parallel taps avoid the extra render-block delay of a browser feedback cycle.
+  const send = context.createGain(); input.connect(send);
+  const taps = [];
+  const delays = [1, .35, .1225].map((weight, i) => {
+    const delay = context.createDelay(2.4), gain = context.createGain();
+    delay.delayTime.value = .3 * (i + 1); gain.gain.value = weight / 1.4725;
+    send.connect(delay); delay.connect(gain); gain.connect(wet);
+    taps.push(gain);
+    return delay;
+  });
+  return { input, dry, wet, delays, taps, send };
+}
+
+export function clearEcho(context, fx) {
+  // Replacing delay buffers prevents an old track resurfacing when echo is raised again.
+  // Prepared transport releases over 5 ms; keep that stop fade out of the fresh buffers.
+  fx.send.gain.cancelScheduledValues(context.currentTime);
+  fx.send.gain.setValueAtTime(0, context.currentTime);
+  fx.send.gain.setValueAtTime(1, context.currentTime + .01);
+  fx.delays = fx.delays.map((previous, i) => {
+    const delay = context.createDelay(2.4);
+    delay.delayTime.value = previous.delayTime.value;
+    fx.send.disconnect(previous); previous.disconnect();
+    fx.send.connect(delay); delay.connect(fx.taps[i]);
+    return delay;
+  });
 }
 
 export function createMixer(context) {
@@ -41,24 +75,13 @@ export function createMixer(context) {
     mid.type = 'peaking'; mid.frequency.value = 1200; mid.Q.value = .7;
     high.type = 'highshelf'; high.frequency.value = 5000;
     const scope = context.createAnalyser(); scope.fftSize = 2048;
-    low.connect(mid); mid.connect(high); high.connect(scope); scope.connect(channel);
-    return { input: low, eq: [low, mid, high], scope };
+    const fx = createToneEcho(context, scope);
+    low.connect(mid); mid.connect(high); high.connect(fx.input); scope.connect(channel);
+    return { input: low, eq: [low, mid, high], scope, fx };
   });
   const performance = context.createGain(); performance.gain.value = 0; performance.connect(limiter);
   const rack = context.createGain(); rack.gain.value = 0; rack.connect(limiter);
-  const input = context.createBiquadFilter(), dry = context.createGain(), wet = context.createGain();
-  input.type = 'lowpass'; input.Q.value = 0; input.frequency.value = context.sampleRate / 2;
-  wet.gain.value = 0;
-  input.connect(dry); dry.connect(rack);
-  wet.connect(rack);
-  // Parallel taps avoid the extra render-block delay of a browser feedback cycle.
-  const delays = [1, .35, .1225].map((weight, i) => {
-    const delay = context.createDelay(2.4), gain = context.createGain();
-    delay.delayTime.value = .3 * (i + 1); gain.gain.value = weight / 1.4725;
-    input.connect(delay); delay.connect(gain); gain.connect(wet);
-    return delay;
-  });
-  const rackFX = { input, dry, wet, delays };
+  const rackFX = createToneEcho(context, rack);
   meter.connect(context.destination);
   const split = context.createChannelSplitter(2);
   meter.connect(split);

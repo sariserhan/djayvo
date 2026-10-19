@@ -102,7 +102,7 @@ try {
   const wav = Buffer.alloc(44 + frames * 2);
   wav.write('RIFF'); wav.writeUInt32LE(wav.length - 8, 4); wav.write('WAVEfmt ', 8); wav.writeUInt32LE(16, 16);
   wav.writeUInt16LE(1, 20); wav.writeUInt16LE(1, 22); wav.writeUInt32LE(rate, 24); wav.writeUInt32LE(rate * 2, 28); wav.writeUInt16LE(2, 32); wav.writeUInt16LE(16, 34); wav.write('data', 36); wav.writeUInt32LE(frames * 2, 40);
-  for (let i = 0; i < frames; i++) wav.writeInt16LE(Math.round(2200 * Math.sin(2 * Math.PI * 130.8128 * i / rate)), 44 + i * 2);
+  for (let i = 0; i < frames; i++) wav.writeInt16LE(Math.round(2200 * Math.sin(2 * Math.PI * 523.2512 * i / rate)), 44 + i * 2);
   await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles({ name: 'session-test-a.wav', mimeType: 'audio/wav', buffer: wav });
   await page.locator('#prepare-a').click();
@@ -122,7 +122,17 @@ try {
     return Math.max(...samples.map(Math.abs));
   });
   assert.ok(heardA > .01);
-  check('prepared A locks conflicting transport, preserves EQ and produces real mixed audio');
+  assert.equal(await page.locator('#tone-a').isDisabled(), false);
+  await page.locator('#tone-a').fill('0'); await page.locator('#tone-a').dispatchEvent('input');
+  await page.waitForTimeout(150);
+  const darkA = await page.evaluate(() => {
+    const samples = new Float32Array(testMeter.fftSize); testMeter.getFloatTimeDomainData(samples);
+    return Math.max(...samples.map(Math.abs));
+  });
+  assert.ok(darkA < heardA * .85, `${darkA} / ${heardA}`);
+  await page.locator('#fx-reset-a').click();
+  assert.equal(await page.locator('#state-a').textContent(), 'Prepared · playing');
+  check('prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport');
   await page.evaluate(async () => {
     await testAudioContext.audioWorklet.addModule('./session-probe.js');
     window.probe = new AudioWorkletNode(testAudioContext, 'continuity-probe');

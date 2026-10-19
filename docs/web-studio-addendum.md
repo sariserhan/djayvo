@@ -22,6 +22,11 @@ Owner direction recorded 2026-10-18. This separate addendum preserves the
 It changes the future product direction and current authorization boundary,
 not M0a's implementation scope or acceptance criteria.
 
+Latest local increment: [Deck tone and echo](deck-effects.md), **PASS (technical)**
+for independent A/B effects, including prepared A, controlled tails and offline
+browser operation. Full studio remains **PARTIAL**; no new human listening,
+physical latency or venue gate has passed.
+
 ## Historical M0a authorization and review stop
 
 **M0a technical implementation: PASS. Review acceptance: PARTIAL.** M0a is already

@@ -1,5 +1,5 @@
 import { PATCHES, DRUMS, PERCUSSION, noteName, playable, createRack } from './instrument-rack.js';
-import { updateInstrumentFX } from './mixer.js';
+import { updateToneEcho, clearEcho } from './mixer.js';
 import { attachMidi } from './midi.js';
 const $ = id => document.getElementById(id);
 export function attachKeyboard({ graph, context, mixer, levels, masterControls }) {
@@ -120,10 +120,11 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
     $('rack-tone-value').textContent = tone === 100 ? 'Open' : `${Math.round(200 * 100 ** (tone / 100))} Hz`;
     $('rack-echo-value').textContent = echo === 0 ? 'Off' : `${Math.round(echo * 100)}%`;
     $('rack-delay-value').textContent = `${milliseconds} ms`;
-    if (mixer()) updateInstrumentFX(context(), mixer().rackFX, tone, echo, milliseconds);
+    if (mixer()) updateToneEcho(context(), mixer().rackFX, tone, echo, milliseconds);
   }
   for (const id of ['rack-tone', 'rack-echo', 'rack-delay']) $(id).oninput = effects;
   $('rack-fx-reset').onclick = () => {
+    if (mixer()) clearEcho(context(), mixer().rackFX);
     $('rack-tone').value = 100; $('rack-echo').value = 0; $('rack-delay').value = 300; effects();
   };
   $('sustain').onclick = () => {

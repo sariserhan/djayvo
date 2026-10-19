@@ -1,4 +1,4 @@
-import { createMixer, updateMixer, validateTrack, trackDuration } from './mixer.js';
+import { createMixer, updateMixer, validateTrack, trackDuration, updateToneEcho, clearEcho } from './mixer.js';
 import { attachDeck } from './deck-controls.js';
 import { attachKeyboard } from './keyboard.js';
 import { attachPerformance } from './performance-session.js';
@@ -22,6 +22,7 @@ function controls(deck) {
   $(`state-${id}`).textContent = held ? (deck.sessionPlaying ? 'Prepared · playing' : 'Prepared session') : deck.loading ? 'Loading…' : deck.starting ? 'Starting…' : !deck.url ? 'Empty' : audio.ended ? 'Ended' : audio.paused ? 'Ready' : 'Playing';
   $(`seek-${id}`).max = String(deck.duration);
   $(`seek-${id}`).value = String(audio.currentTime || 0);
+  for (const name of ['tone', 'echo', 'delay', 'fx-reset']) $(`${name}-${id}`).disabled = !deck.url || !rights.checked || !!deck.loading;
   deck.transportControls?.(ready && !deck.loading && !deck.starting);
   if (deck.prepared) for (let band = 0; band < 3; band++) $(`eq-${id}-${band}`).disabled = !rights.checked;
   $(`time-${id}`).textContent = `${time(deck.prepared ? deck.sessionTime || 0 : audio.currentTime || 0)} / ${time(deck.duration)}`;
@@ -41,6 +42,24 @@ function levels() {
   }
 }
 
+function deckEffects(deck, reset = false) {
+  const { id } = deck;
+  const fx = mixer?.strips[id === 'a' ? 0 : 1].fx;
+  if (reset) {
+    $(`tone-${id}`).value = '100'; $(`echo-${id}`).value = '0'; $(`delay-${id}`).value = '300';
+    if (fx) clearEcho(context, fx);
+  }
+  const tone = Number($(`tone-${id}`).value), echo = Number($(`echo-${id}`).value), milliseconds = Number($(`delay-${id}`).value);
+  $(`tone-${id}-value`).textContent = tone === 100 ? 'Open' : `${Math.round(200 * 100 ** (tone / 100))} Hz`;
+  $(`echo-${id}-value`).textContent = echo ? `${Math.round(echo * 100)}%` : 'Off';
+  $(`delay-${id}-value`).textContent = `${milliseconds} ms`;
+  if (fx) updateToneEcho(context, fx, tone, echo, milliseconds);
+}
+
+function clearDeckEchoes() {
+  if (mixer) mixer.strips.forEach(strip => clearEcho(context, strip.fx));
+}
+
 function pause(deck) {
   if (deck.id === 'a') session?.stop();
   deck.revision++; deck.starting = false; deck.playRequested = false; deck.audio.pause(); controls(deck);
@@ -52,7 +71,7 @@ function unload(deck) {
   pause(deck); deck.loading?.abort(); deck.loading = null;
   deck.audio.removeAttribute('src'); deck.audio.load();
   if (deck.url) URL.revokeObjectURL(deck.url);
-  deck.url = null; deck.duration = 0; deck.resetTransport?.();
+  deck.url = null; deck.duration = 0; deck.resetTransport?.(); deckEffects(deck, true);
   $(`file-${deck.id}`).value = '';
   $(`name-${deck.id}`).textContent = deck.id === 'a' ? 'Choose your opening track' : 'Choose what comes next';
   $(`error-${deck.id}`).textContent = '';
@@ -75,11 +94,11 @@ function audioGraph() {
   }
   context.onstatechange = () => {
     if (context.state !== 'running') {
-      keyboard.panic(); decks.forEach(pause);
+      keyboard.panic(); decks.forEach(pause); clearDeckEchoes();
       $('mixer-status').textContent = 'Audio was interrupted. Press Play when you are ready to resume.';
     }
   };
-  levels(); decks.forEach(deck => deck.applyEQ?.());
+  levels(); decks.forEach(deck => { deck.applyEQ?.(); deckEffects(deck); });
 }
 
 function masterControls() {
@@ -131,7 +150,7 @@ for (const deck of decks) {
       if (revision !== deck.revision || !rights.checked) return;
       const previous = deck.url, url = URL.createObjectURL(file);
       audio.removeAttribute('src'); audio.load();
-      deck.file = file; deck.url = url; deck.duration = duration; audio.src = url; deck.resetTransport();
+      deck.file = file; deck.url = url; deck.duration = duration; audio.src = url; deck.resetTransport(); deckEffects(deck, true);
       if (previous) URL.revokeObjectURL(previous);
       $(`name-${id}`).textContent = file.name;
     } catch (error) {
@@ -141,6 +160,8 @@ for (const deck of decks) {
       controls(deck);
     }
   };
+  for (const name of ['tone', 'echo', 'delay']) $(`${name}-${id}`).oninput = () => deckEffects(deck);
+  $(`fx-reset-${id}`).onclick = () => deckEffects(deck, true);
   $(`play-${id}`).onclick = () => start(deck);
   attachDeck(deck, decks.find(other => other !== deck), { pause, start, mixer: () => mixer, context: () => context });
   $(`clear-${id}`).onclick = () => unload(deck);
@@ -158,9 +179,9 @@ for (const deck of decks) {
 }
 session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights });
 $('crossfade').oninput = $('master').oninput = levels;
-$('pause-all').onclick = () => { decks.forEach(pause); $('mixer-status').textContent = 'All decks paused.'; };
+$('pause-all').onclick = () => { decks.forEach(pause); clearDeckEchoes(); $('mixer-status').textContent = 'All decks paused.'; };
 window.addEventListener('pagehide', event => {
-  decks.forEach(pause);
+  decks.forEach(pause); clearDeckEchoes();
   if (!event.persisted) { decks.forEach(unload); context?.close().catch(() => {}); }
 });
 // shortcut: manual A/B remain unsynchronized; unify transport before adding

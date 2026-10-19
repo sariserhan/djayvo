@@ -27,6 +27,12 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     await page.locator('#session-key').selectOption('60'); await page.locator('#session-mode').selectOption('major'); await page.locator('#context-confirmed').check();
     await page.locator('#session-play').click();
     await page.waitForFunction(() => Number(document.getElementById('output-meter').value) > .001);
+    assert.equal(await page.locator('#tone-a').isDisabled(), false);
+    await page.locator('#echo-a').fill('0.4'); await page.locator('#echo-a').dispatchEvent('input');
+    assert.equal(await page.locator('#echo-a-value').textContent(), '40%');
+    assert.equal(await page.locator('#state-a').textContent(), 'Prepared · playing');
+    await page.locator('.deck-a').screenshot({ path: `/tmp/djayvo-deckfx-${name}-desktop.png` });
+    await page.locator('#fx-reset-a').click();
     await page.locator('#phrase-consent').check();
     await page.locator('#phrase-file').setInputFiles('renders/voice-20261017-221411/source-pcm.wav');
     await page.waitForFunction(() => !document.getElementById('phrase-generate').disabled);
@@ -40,9 +46,10 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     await page.waitForTimeout(300);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
     await page.locator('#performance').screenshot({ path: `/tmp/djayvo-session-${name}-mobile.png` });
+    await page.locator('.deck-a').screenshot({ path: `/tmp/djayvo-deckfx-${name}-mobile.png` });
     await page.locator('#c-stop').click();
     assert.deepEqual(errors, []);
-    results.push({ browser: name, version: browser.version(), url: page.url(), gate: 'PASS', checks: ['page identity and content', 'prepared A audible PCM', 'integrated worker/context engine/WAV', 'C preview', 'desktop/mobile screenshots and no overflow', 'no page errors'] });
+    results.push({ browser: name, version: browser.version(), url: page.url(), gate: 'PASS', checks: ['page identity and content', 'prepared A audible PCM', 'prepared A effects enabled, echo readout/reset and deck screenshots', 'integrated worker/context engine/WAV', 'C preview', 'desktop/mobile screenshots and no overflow', 'no page errors'] });
   } finally { await browser.close(); }
 }
 await fs.writeFile('/tmp/djayvo-session-site.json', JSON.stringify(results, null, 2));

@@ -102,7 +102,7 @@ function tone(frequency, stereo = false) {
   return { name: `test-${frequency}.wav`, mimeType: 'audio/wav', buffer };
 }
 const a = tone(220), b = tone(440);
-let signalEvidence, fxEvidence;
+let signalEvidence, fxEvidence, deckFXEvidence;
 try {
   await page.goto(`${origin}/dj.html`);
   assert.match(await page.title(), /Djayvo — DJ workspace/);
@@ -136,6 +136,8 @@ try {
   check('real offline stereo PCM: A/B endpoints, center, channel mute, master mute');
   fxEvidence = await verifyInstrumentFX(page, output);
   check('instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs');
+  deckFXEvidence = [await verifyInstrumentFX(page, output, 0), await verifyInstrumentFX(page, output, 1)];
+  check('both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs');
   await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles(a);
   await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
@@ -171,11 +173,15 @@ try {
   assert.equal(await page.locator('#audio-b').evaluate(audio => audio.paused), false);
   await set('#seek-a', 12);
   await page.waitForFunction(() => Math.abs(document.querySelector('#audio-a').currentTime - 12) < .2);
+  await set('#echo-a', .35); await set('#tone-a', 40);
   await page.locator('#file-a').setInputFiles({ name: 'broken.wav', mimeType: 'audio/wav', buffer: Buffer.from('invalid audio') });
   await page.waitForFunction(() => document.querySelector('#error-a').textContent.includes('Previous track kept'));
   assert.equal(await page.locator('#name-a').textContent(), a.name);
   assert.equal(await page.locator('#audio-b').evaluate(audio => audio.paused), false);
-  check('pause/seek one deck and reject corrupt replacement while other deck continues');
+  assert.equal(await page.locator('#echo-a').inputValue(), '0.35');
+  assert.equal(await page.locator('#tone-a').inputValue(), '40');
+  await page.locator('#fx-reset-a').click();
+  check('pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects');
   await page.locator('#play-a').click();
   const rotation = await page.locator('#vinyl-a').evaluate(node => node.style.transform);
   await page.waitForTimeout(200);
@@ -223,6 +229,30 @@ try {
   }, eqFlat, { timeout: 5000 });
   await set('#eq-a-0', 0);
   check('deck low EQ changes measured output');
+  for (const [id, crossfade] of [['a', 0], ['b', 1]]) {
+    await set('#crossfade', crossfade); await set(`#tone-${id}`, 0); await page.waitForTimeout(200);
+    const dark = await peak();
+    await set(`#tone-${id}`, 100); await page.waitForTimeout(200);
+    const bright = await peak();
+    assert.ok(bright > dark * 1.05, `${id}: ${bright} / ${dark}`);
+    await set(`#echo-${id}`, .5); await set(`#delay-${id}`, 800); await page.waitForTimeout(900);
+    await page.locator(`#play-${id}`).click(); await page.waitForTimeout(250);
+    assert.ok(await peak() > .001, `${id} echo continues after pause`);
+    await set(`#level-${id}`, 0); await page.waitForTimeout(150); assert.ok(await peak() < .0001);
+    await set(`#level-${id}`, 1); await page.waitForTimeout(150); assert.ok(await peak() > .001);
+    await set('#master', 0); await page.waitForTimeout(150); assert.ok(await peak() < .0001);
+    await set('#master', .75); await set('#crossfade', 1 - crossfade);
+    await set(`#level-${id === 'a' ? 'b' : 'a'}`, 0);
+    await page.waitForTimeout(150); assert.ok(await peak() < .0001);
+    await set('#crossfade', crossfade); await page.locator(`#fx-reset-${id}`).click();
+    await set(`#echo-${id}`, .5); await page.waitForTimeout(150);
+    assert.ok(await peak() < .0001, 'reset cannot revive an old delay buffer');
+    await page.locator(`#fx-reset-${id}`).click();
+    await set(`#level-${id === 'a' ? 'b' : 'a'}`, 1);
+    await page.locator(`#play-${id}`).click();
+  }
+  await set('#crossfade', 0);
+  check('A/B controls change real audio independently; pause tails follow channel/master/crossfader and reset cannot revive old audio');
   await page.locator('#load-instruments').click();
   await page.waitForFunction(() => document.querySelector('#instrument-status').textContent.startsWith('Ready'), null, { timeout: 30000 });
   assert.equal(await page.locator('#audio-a').evaluate(a => a.paused), false);
@@ -265,7 +295,9 @@ try {
   assert.equal(await page.locator('#rack-echo-value').textContent(), 'Off');
   assert.equal(await page.locator('#rack-delay-value').textContent(), '300 ms');
   assert.equal(await page.locator('#audio-a').evaluate(a => a.paused), false);
-  check('live tone/echo controls change instrument audio; level/master silence tails; reset restores dry and decks continue');
+  await set('#rack-echo', .5); await page.waitForTimeout(150); assert.ok(await peak() < .0001);
+  await page.locator('#rack-fx-reset').click();
+  check('live tone/echo controls change instrument audio; level/master silence tails; reset clears buffers even if echo is raised again, decks continue');
   await page.locator('#patch').selectOption('11');
   assert.match(await page.locator('#octave-name').textContent(), /C2/);
   assert.equal(await page.locator('#mouth').isDisabled(), false);
@@ -346,10 +378,15 @@ try {
   await page.waitForFunction(() => document.querySelector('#output-meter').value > .1);
   assert.ok(await peak() < .0001);
   check('opposite-polarity stereo remains visible on output meter despite mono cancellation');
+  await set('#echo-a', .5); await set('#delay-a', 800); await page.waitForTimeout(900);
   await page.locator('#music-rights').uncheck();
   assert.equal(await page.locator('audio').evaluateAll(nodes => nodes.every(a => a.paused && !a.getAttribute('src'))), true);
   assert.equal(await page.locator('#play-b').isDisabled(), true);
-  check('revoking permission stops and detaches both decks');
+  await page.waitForTimeout(150);
+  assert.ok(Number(await page.locator('#output-meter').getAttribute('value')) < .0001);
+  assert.equal(await page.locator('#echo-a').inputValue(), '0');
+  assert.equal(await page.locator('#echo-a').isDisabled(), true);
+  check('revoking permission stops, detaches both decks and clears effect tails and controls');
   // Prepare the same audited cache as the existing offline control, then reload disconnected.
   await page.evaluate(async () => {
     await navigator.serviceWorker.register('./service-worker.js');
@@ -375,7 +412,15 @@ try {
     return samples.some(value => Math.abs(value) > .1);
   }, null, { timeout: 5000 });
   assert.equal(serverRequests.length, requestsBeforeDisconnect);
-  check('prepared app reloads with server disconnected and plays newly selected local audio');
+  await set('#echo-a', .5); await set('#delay-a', 800); await page.waitForTimeout(900);
+  await page.locator('#pause-all').click(); await page.waitForTimeout(150); assert.ok(await peak() < .0001);
+  await page.locator('#play-a').click(); await page.waitForTimeout(300);
+  await page.locator('#clear-a').click();
+  await page.locator('#file-a').setInputFiles(a);
+  await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
+  await set('#echo-a', .5); await page.waitForTimeout(350); assert.ok(await peak() < .0001);
+  await page.locator('#fx-reset-a').click();
+  check('disconnected reload: deck playback/effects, Pause all clears tails, unload/reload cannot revive old audio');
   await page.locator('#pause-all').click();
   await page.locator('#load-instruments').click();
   await page.waitForFunction(() => document.querySelector('#instrument-status').textContent.startsWith('Ready'));
@@ -416,7 +461,7 @@ try {
   assert.deepEqual(errors, []);
   check('no upload/external request, URL-release errors or app console errors');
   await fs.writeFile(path.join(output, 'report.json'), JSON.stringify({ status: 'PASS', browser: kind, version: browser.version(), checks,
-    signalEvidence, fxEvidence, audioContext: audioContextEvidence, actualMedia: { aPeak, channelSilent, masterSilent }, errors, warnings,
+    signalEvidence, fxEvidence, deckFXEvidence, audioContext: audioContextEvidence, actualMedia: { aPeak, channelSilent, masterSilent }, errors, warnings,
     humanListening: 'NOT RUN', physicalDeviceLatency: 'NOT RUN', offlineVenueReliability: 'NOT RUN' }, null, 2));
 } catch (error) {
   await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings, state: await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({ instruments: document.querySelector('#instrument-status').textContent, decks: [...document.querySelectorAll('audio')].map(a => ({time:a.currentTime,paused:a.paused,seeking:a.seeking,ended:a.ended,rate:a.playbackRate,readyState:a.readyState})), meter:document.querySelector('#output-meter').value }))]) }, null, 2));

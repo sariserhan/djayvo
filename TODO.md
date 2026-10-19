@@ -43,6 +43,12 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
 
+- [x] **DJ12 — PASS (technical):** [Deck tone and echo](docs/deck-effects.md):
+  independent A/B effects including prepared A, post-effect mute/crossfader,
+  cleared delay buffers on reset/unload/permission withdrawal and Pause all.
+  70 DJ and 38 prepared-session browser checks; 23 unit checks, offline/integrated
+  site, exact echo frames and playable dry/echo WAVs. Listening/venue NOT RUN.
+
 - [x] **DJ11 — PASS (technical):** [Major/minor context](docs/session-modes.md):
   all twelve tonics, seeded major progressions and scale-bound answers, validated
   version 1.7 plan import/export, explicit mode selection and C invalidation.
@@ -75,8 +81,8 @@ closes that task only; it does not automatically pass its parent milestone.
   15/15 CTest suites per native platform, sanitizer and bit-identical PCM PASS.
   Professional/artist-reference quality remains NOT RUN.
 - [ ] **DJ06 — PARTIAL:** Fixed MIDI input mapping is implemented by DJ10;
-  instrument tone/echo is covered by DJ07. Physical controller validation, human
-  audition, MIDI learn, audible scratching, beat-sized loops, deck FX and headphone
+  instrument tone/echo is covered by DJ07 and deck tone/echo by DJ12. Physical
+  controller validation, human audition, MIDI learn, audible scratching, beat-sized loops and headphone
   cue routing remain open.
 
 - [x] **DJ01 — PASS:** [Manual two-deck foundation](docs/dj-mixer.md): actual local
@@ -287,6 +293,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 
 | Done | ID | Status | Development | Commit / evidence |
 | --- | --- | --- | --- | --- |
+| [x] | DJ12 | PASS | Independent deck tone/echo, safe buffer clearing, browser timing/PCM and offline checks | [Evidence](docs/deck-effects.md) |
 | [x] | DJ08 | PASS | Original Talk bass, four percussion voices, local reference analysis and portable/browser audio checks | [Evidence](docs/talk-bass.md) |
 | [x] | DJ07 | PASS | Local instrument tone/echo, measured browser timing, stereo sweep fix and playable piano pairs | [Effects evidence](docs/instrument-effects.md) |
 | [x] | P01 | PASS | C++17 foundation, sample-frame scheduling, polyphony, WAV output, validation and deterministic tests | `02d0e18` · [M0a](docs/m0a-report.md) |

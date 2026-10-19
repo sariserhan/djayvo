@@ -1,0 +1,152 @@
+
+> djayvo-web@0.1.0 test
+> node --test tests/*.test.js
+
+TAP version 13
+# Subtest: decimal selections preserve the exact two-second boundary
+ok 1 - decimal selections preserve the exact two-second boundary
+  ---
+  duration_ms: 0.594667
+  type: 'test'
+  ...
+# Subtest: WAV is bounded PCM16 mono with finite samples and safe clipping
+ok 2 - WAV is bounded PCM16 mono with finite samples and safe clipping
+  ---
+  duration_ms: 3.763709
+  type: 'test'
+  ...
+# Subtest: browser.mjs rejects unknown browsers before launching
+ok 3 - browser.mjs rejects unknown browsers before launching
+  ---
+  duration_ms: 347.418125
+  type: 'test'
+  ...
+# Subtest: browser-render.mjs rejects unknown browsers before launching
+ok 4 - browser-render.mjs rejects unknown browsers before launching
+  ---
+  duration_ms: 309.066917
+  type: 'test'
+  ...
+# Subtest: installation is optional, capability-driven and never confuses acceptance with completion
+ok 5 - installation is optional, capability-driven and never confuses acceptance with completion
+  ---
+  duration_ms: 1.484125
+  type: 'test'
+  ...
+# Subtest: standalone platforms, prompt rejection and installation during a pending prompt remain honest
+ok 6 - standalone platforms, prompt rejection and installation during a pending prompt remain honest
+  ---
+  duration_ms: 1.746291
+  type: 'test'
+  ...
+# Subtest: instrument map covers full piano and respects guitar bank limits
+ok 7 - instrument map covers full piano and respects guitar bank limits
+  ---
+  duration_ms: 1.194
+  type: 'test'
+  ...
+# Subtest: tempo match uses other deck effective tempo and rejects impossible matches
+ok 8 - tempo match uses other deck effective tempo and rejects impossible matches
+  ---
+  duration_ms: 0.215
+  type: 'test'
+  ...
+# Subtest: funk sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+ok 9 - funk sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+  ---
+  duration_ms: 7.004708
+  type: 'test'
+  ...
+# Subtest: call_response sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+ok 10 - call_response sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+  ---
+  duration_ms: 3.186
+  type: 'test'
+  ...
+# Subtest: hybrid sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+ok 11 - hybrid sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+  ---
+  duration_ms: 1.55675
+  type: 'test'
+  ...
+# Subtest: malformed stored file entries are withheld instead of aborting library recovery
+ok 12 - malformed stored file entries are withheld instead of aborting library recovery
+  ---
+  duration_ms: 0.270459
+  type: 'test'
+  ...
+# Subtest: MIDI decodes note-off forms, velocity, channel boundaries and only supported controls
+ok 13 - MIDI decodes note-off forms, velocity, channel boundaries and only supported controls
+  ---
+  duration_ms: 0.913333
+  type: 'test'
+  ...
+# Subtest: linear blend bounds coherent summed peaks and supports channel/master silence
+ok 14 - linear blend bounds coherent summed peaks and supports channel/master silence
+  ---
+  duration_ms: 1.84075
+  type: 'test'
+  ...
+# Subtest: track limits reject empty, oversized and nonaudio files before decoding
+ok 15 - track limits reject empty, oversized and nonaudio files before decoding
+  ---
+  duration_ms: 0.351791
+  type: 'test'
+  ...
+# Subtest: effect boundaries reject nonfinite and out-of-range controls before touching audio
+ok 16 - effect boundaries reject nonfinite and out-of-range controls before touching audio
+  ---
+  duration_ms: 0.178417
+  type: 'test'
+  ...
+# Subtest: prepared track rejects decoded limits and nonfinite samples beyond the analysis window
+ok 17 - prepared track rejects decoded limits and nonfinite samples beyond the analysis window
+  ---
+  duration_ms: 50.67675
+  type: 'test'
+  ...
+# Subtest: composition identity ignores cosmetic changes, ordering and transposition; detects musical changes
+ok 18 - composition identity ignores cosmetic changes, ordering and transposition; detects musical changes
+  ---
+  duration_ms: 9.377083
+  type: 'test'
+  ...
+# Subtest: selection retries only duplicates, records the actual seed and bounds exhaustion before publishing
+ok 19 - selection retries only duplicates, records the actual seed and bounds exhaustion before publishing
+  ---
+  duration_ms: 3.402791
+  type: 'test'
+  ...
+# Subtest: offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets
+ok 20 - offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets
+  ---
+  duration_ms: 76.875041
+  type: 'test'
+  ...
+# Subtest: reinstall reuses a complete verified cache without redownloading or deleting it
+ok 21 - reinstall reuses a complete verified cache without redownloading or deleting it
+  ---
+  duration_ms: 16.113083
+  type: 'test'
+  ...
+# Subtest: bounded context heuristic finds pulse and triad, and treats silence as uncertain
+ok 22 - bounded context heuristic finds pulse and triad, and treats silence as uncertain
+  ---
+  duration_ms: 60.891542
+  type: 'test'
+  ...
+# Subtest: transport cancels future C, rejects late/short contexts and preserves A on C failure
+ok 23 - transport cancels future C, rejects late/short contexts and preserves A on C failure
+  ---
+  duration_ms: 0.371375
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 718.810625

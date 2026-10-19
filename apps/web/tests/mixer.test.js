@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mixGains, validateTrack, updateInstrumentFX, validatePreparedTrack } from '../mixer.js';
+import { mixGains, validateTrack, updateToneEcho, validatePreparedTrack } from '../mixer.js';
 
 test('linear blend bounds coherent summed peaks and supports channel/master silence', () => {
   assert.deepEqual(mixGains(0, [1, 1], 1), [.8, 0]);
@@ -27,7 +27,7 @@ test('track limits reject empty, oversized and nonaudio files before decoding', 
 
 test('effect boundaries reject nonfinite and out-of-range controls before touching audio', () => {
   for (const values of [[NaN, 0, 300], [-1, 0, 300], [101, 0, 300], [100, Infinity, 300], [100, -.01, 300], [100, .51, 300], [100, 0, NaN], [100, 0, 99], [100, 0, 801]])
-    assert.throws(() => updateInstrumentFX(null, null, ...values), /outside their allowed range/);
+    assert.throws(() => updateToneEcho(null, null, ...values), /outside their allowed range/);
 });
 
 test('prepared track rejects decoded limits and nonfinite samples beyond the analysis window', () => {

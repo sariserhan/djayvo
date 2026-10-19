@@ -11,7 +11,14 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local implementation: [Major/minor prepared performances](session-modes.md).
+Latest local implementation: [Deck tone and echo](deck-effects.md).
+**PASS (technical):** independent A/B controls including prepared A, mute-safe
+routing and cleared delay buffers; 70 DJ/38 session browser checks, 23 unit checks,
+exact echo frames, playable WAVs and offline/integrated desktop/mobile evidence.
+**PARTIAL:** full studio. **NOT RUN:** new native/Linux browser execution,
+physical latency, formal listening and venue endurance.
+
+Previous local implementation: [Major/minor prepared performances](session-modes.md).
 **PASS (technical):** 288 context plans, actual Mac/Linux tests, eight exact
 Mac/Linux/WASM event/PCM comparisons, unchanged historical minor outputs and
 major-mode browser generation with safe context changes. **PARTIAL:** full live
