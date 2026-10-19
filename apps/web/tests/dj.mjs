@@ -5,6 +5,7 @@ import { createServer } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { chromium, webkit } from 'playwright';
 import { verifyInstrumentFX } from './instrument-fx.mjs';
+import { fakeMidi, verifyMidi } from './midi-browser.mjs';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const kind = process.env.DJAYVO_BROWSER || 'chromium';
@@ -64,6 +65,7 @@ await context.addInitScript(() => {
     revoke(url);
   };
 });
+await context.addInitScript(fakeMidi);
 const page = await context.newPage();
 page.on('pageerror', error => errors.push(error.message));
 page.on('console', message => {
@@ -302,6 +304,7 @@ try {
   await page.waitForTimeout(80); assert.ok(await peak() > .0001); await page.mouse.up();
   await page.locator('#panic').click();
   check('octave selection, patch range limits and pointer drum pad generate real audio');
+  await verifyMidi(page, check, peak);
   await set('#level-a', 1); await set('#level-b', 1); await set('#crossfade', .5);
   await capture('desktop.png');
   await page.setViewportSize({ width: 390, height: 844 });
@@ -382,6 +385,17 @@ try {
   await page.keyboard.up('a'); await page.locator('#panic').click();
   assert.equal(serverRequests.length, requestsBeforeDisconnect);
   check('cached WASM bank and AudioWorklet produce instrument audio with server disconnected');
+  await page.locator('#rack-fx-reset').click();
+  await page.locator('#patch').selectOption('6');
+  await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
+  await page.locator('#midi-enable').click(); await page.locator('#midi-input').selectOption('one');
+  await page.waitForFunction(() => document.getElementById('midi-status').textContent.startsWith('Connected:'));
+  await page.evaluate(() => midiPorts[0].emit([0x90, 60, 100]));
+  await page.waitForFunction(() => document.getElementById('output-meter').value > .001);
+  await page.locator('#midi-enable').click();
+  await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
+  assert.equal(serverRequests.length, requestsBeforeDisconnect);
+  check('cached MIDI input module plays and releases real instrument audio with server disconnected (synthetic port)');
   await page.locator('#clear-a').click();
   assert.equal(await page.locator('#audio-a').getAttribute('src'), null);
   check('unload releases the deck source');

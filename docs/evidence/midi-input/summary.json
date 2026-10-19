@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "scope": "MIDI browser adapter, fixed input mappings and local lifecycle; synthetic MIDI ports with real WASM audio",
+  "full_specification": "PARTIAL",
+  "dj06": "PARTIAL",
+  "web_unit": "23/23 PASS",
+  "browsers": {
+    "chromium": {
+      "status": "PASS",
+      "checks": 33,
+      "version": "149.0.7827.55",
+      "artifacts": "renders/dj-chromium-w3d3iZ"
+    },
+    "webkit": {
+      "status": "PASS",
+      "checks": 33,
+      "version": "26.5",
+      "artifacts": "renders/dj-webkit-NCbheX"
+    }
+  },
+  "integrated_site": "PASS: Chromium/WebKit, 1440 and 390 px screenshots",
+  "offline": "PASS: closed-server reload, new synthetic MIDI input and actual worklet signal/release",
+  "native_api_availability": {
+    "chromium": true,
+    "webkit": false
+  },
+  "physical_midi": "NOT RUN",
+  "native_permission_prompt": "NOT RUN",
+  "native_mac_linux_rerun": "NOT RUN: shared C++ unchanged; both WASM hashes identical to previous validated build",
+  "event_frame_agreement": "NOT RUN this increment: MIDI dispatch is next-block, not sample-scheduled; prior prepared-session evidence retained",
+  "waveform_differences": "NOT RUN for live MIDI; unchanged WASM verified; existing deterministic stereo/effect checks PASS",
+  "physical_latency": "NOT RUN",
+  "actual_linux_browser": "NOT RUN",
+  "venue_endurance": "NOT RUN",
+  "human_musical_quality": "NOT RUN",
+  "deployment": "NOT RUN",
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/x.mp3": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+    "/Users/serhansari/Downloads/y.mp3": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+    "/Users/serhansari/Downloads/z.mp3": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63",
+    "/Users/serhansari/Downloads/pipe.mp3": "e57756d665c676e876bc7b25abf6d97bd88d137c889eebd633ade0d353919bc8"
+  },
+  "unchanged_wasm_sha256": {
+    "engine/djayvo_web.wasm": "ebadb780aa7f9e3e4da64f113eebf497afa313f953234e489abbaf4d3ad189e5",
+    "engine/djayvo_live.wasm": "6135823549a0204fa4a935c3eb6401099e88a0c8074e1c55142e7400efec8086"
+  },
+  "qa_issue": "Initial MIDI audio assertion read stale display meter before a new audio block. Fixed test waits for actual PCM. Final reruns passed without relaxing energy threshold.",
+  "prepared_session_regressions": {
+    "chromium": {
+      "status": "PASS",
+      "checks": 17,
+      "artifacts": "renders/session-chromium-6q4Lm1"
+    },
+    "webkit": {
+      "status": "PASS",
+      "checks": 17,
+      "artifacts": "renders/session-webkit-ftCzym"
+    }
+  }
+}

@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [Prepared A + C session](docs/prepared-session.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [MIDI instrument input](docs/midi-input.md).
 Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
 Use this file for past work, open issues and future development. Detailed test
@@ -33,7 +33,7 @@ the source of truth and is not modified by this tracker.
 | M2 — AI director benchmarks | PARTIAL | Offline import/fallback prerequisite complete; model integration and benchmark remain NOT RUN behind M1; separately authorized pretrained and style-adapter feasibility trials measured |
 | M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
 | W0 — browser Instant Remix | PARTIAL | Local WebAssembly app and Chromium/WebKit/Firefox technical flows pass; physical browser microphone and owner web listening remain open |
-| M4 — live improvisation | PARTIAL | Research protocol and provisional budgets prepared; live implementation and hardware measurements NOT RUN |
+| M4 — live improvisation | PARTIAL | Prepared A/C session and live instrument/MIDI input implemented locally; general live transport, physical timing and venue evidence remain |
 | M5 — production and monetization | PARTIAL | Local privacy controls, bundled rights notices and release preparation exist; beta, demand, public policy details and release approval remain |
 
 `PASS` means the named deliverable has evidence. `PARTIAL` means some required
@@ -42,6 +42,12 @@ criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
+
+- [x] **DJ10 — PASS (technical):** [MIDI instrument input](docs/midi-input.md):
+  explicit single-input permission/selection, note velocity, per-channel sustain,
+  channel-10 drum/percussion mapping and safe disconnect/cancellation. Synthetic
+  MIDI drives real C++ worklet audio in browser and disconnected-server tests;
+  integrated desktop/mobile controls checked. Physical MIDI hardware NOT RUN.
 
 - [x] **DJ08 — PASS (technical):** [Talk bass and extra percussion](docs/talk-bass.md):
   shared C++ original formant synth with OO/AH/EE control, low C2 register, clap,
@@ -62,9 +68,10 @@ closes that task only; it does not automatically pass its parent milestone.
   evidence recorded: 42 DJ browser checks, 18 unit checks, 40 voice regressions,
   15/15 CTest suites per native platform, sanitizer and bit-identical PCM PASS.
   Professional/artist-reference quality remains NOT RUN.
-- [ ] **DJ06 — NOT RUN:** Human audition of the new instrument channel, MIDI
-  hardware mapping, audible scratching, beat-sized loops, deck FX and headphone cue
-  routing; instrument tone/echo is covered by DJ07. Prioritize remaining work with the owner.
+- [ ] **DJ06 — PARTIAL:** Fixed MIDI input mapping is implemented by DJ10;
+  instrument tone/echo is covered by DJ07. Physical controller validation, human
+  audition, MIDI learn, audible scratching, beat-sized loops, deck FX and headphone
+  cue routing remain open.
 
 - [x] **DJ01 — PASS:** [Manual two-deck foundation](docs/dj-mixer.md): actual local
   playback, seek/levels/crossfader/master, stereo meter, permission and unload,

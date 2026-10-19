@@ -11,7 +11,14 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local implementation: [Prepared A + C session](prepared-session.md).
+Latest local implementation: [MIDI instrument input](midi-input.md).
+**PASS (technical):** opt-in input selection, velocity, channel sustain and drum
+mapping, safe switching/disconnect/permission races, real worklet output and
+cached operation. Chromium/WebKit synthetic-port and integrated-site evidence
+is retained in the report. **PARTIAL:** DJ06 and full studio. **NOT RUN:** physical
+MIDI controllers, round-trip latency, Linux browser and musical-quality acceptance.
+
+Previous local implementation: [Prepared A + C session](prepared-session.md).
 **PASS:** context-bound C++ phrase responses, absolute bar scheduling, prepared
 Deck A playback plus C preview/entry/fader/stop, opt-in capture/import, cancellation
 and local failure handling. Reproducible native/browser/offline evidence is in the

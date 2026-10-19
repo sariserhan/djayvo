@@ -1,0 +1,161 @@
+{
+  "status": "PASS",
+  "browser": "webkit",
+  "version": "26.5",
+  "checks": [
+    {
+      "name": "identity, meaningful screen, permission-disabled preparation/capture",
+      "status": "PASS"
+    },
+    {
+      "name": "C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry",
+      "status": "PASS"
+    },
+    {
+      "name": "prepared A locks conflicting transport, preserves EQ and produces real mixed audio",
+      "status": "PASS"
+    },
+    {
+      "name": "consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues",
+      "status": "PASS"
+    },
+    {
+      "name": "complete C performance ends naturally with accurate status while A keeps playing",
+      "status": "PASS"
+    },
+    {
+      "name": "C manual fader/stop do not stop A",
+      "status": "PASS"
+    },
+    {
+      "name": "worker cancellation retains ready C and uninterrupted A; next request excludes recent composition",
+      "status": "PASS"
+    },
+    {
+      "name": "director load failure leaves A and previous ready C intact",
+      "status": "PASS"
+    },
+    {
+      "name": "measured callback continuity during generation, entry, cancellation and failed preparation",
+      "status": "PASS"
+    },
+    {
+      "name": "rejected replacement phrase keeps previous source/performance and A playback",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop/mobile visible controls and no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "C preview routes through performance gain, and restarting A cancels the preview",
+      "status": "PASS"
+    },
+    {
+      "name": "synthetic microphone capture, decoding and track cleanup while A continues",
+      "status": "PASS"
+    },
+    {
+      "name": "revoked consent rejects late microphone permission and closes its tracks",
+      "status": "PASS"
+    },
+    {
+      "name": "separate phrase and music consent withdrawal clears owned audio and scheduled entry",
+      "status": "PASS"
+    },
+    {
+      "name": "server disconnected: reload, local track analysis, rule generation and synchronized C all work",
+      "status": "PASS"
+    },
+    {
+      "name": "no uploads, external requests or unexpected runtime errors",
+      "status": "PASS"
+    }
+  ],
+  "timing": {
+    "startA": 4800,
+    "startC": 100800,
+    "firstA": 4801,
+    "firstC": 100801,
+    "gap": 0,
+    "frames": [
+      {
+        "rate": 44100,
+        "tempo": 60000,
+        "afterSixHours": 952560017
+      },
+      {
+        "rate": 44100,
+        "tempo": 83920,
+        "afterSixHours": 952585241
+      },
+      {
+        "rate": 44100,
+        "tempo": 127190,
+        "afterSixHours": 952634910
+      },
+      {
+        "rate": 44100,
+        "tempo": 180000,
+        "afterSixHours": 952560017
+      },
+      {
+        "rate": 48000,
+        "tempo": 60000,
+        "afterSixHours": 1036800017
+      },
+      {
+        "rate": 48000,
+        "tempo": 83920,
+        "afterSixHours": 1036827472
+      },
+      {
+        "rate": 48000,
+        "tempo": 127190,
+        "afterSixHours": 1036881533
+      },
+      {
+        "rate": 48000,
+        "tempo": 180000,
+        "afterSixHours": 1036800017
+      },
+      {
+        "rate": 96000,
+        "tempo": 60000,
+        "afterSixHours": 2073600017
+      },
+      {
+        "rate": 96000,
+        "tempo": 83920,
+        "afterSixHours": 2073654926
+      },
+      {
+        "rate": 96000,
+        "tempo": 127190,
+        "afterSixHours": 2073763049
+      },
+      {
+        "rate": 96000,
+        "tempo": 180000,
+        "afterSixHours": 2073600017
+      }
+    ],
+    "sampleRate": 48000,
+    "renderedFrames": 192000
+  },
+  "continuity": {
+    "blocks": 12694,
+    "silent": 0,
+    "frameGaps": 0
+  },
+  "generationSeconds": 0.30541308300000014,
+  "heardA": 0.040283203125,
+  "expectedErrors": [],
+  "errors": [],
+  "warnings": [
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+  ],
+  "physical_microphone": "NOT RUN",
+  "listening": "NOT RUN"
+}

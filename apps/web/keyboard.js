@@ -1,9 +1,10 @@
 import { PATCHES, DRUMS, PERCUSSION, noteName, playable, createRack } from './instrument-rack.js';
 import { updateInstrumentFX } from './mixer.js';
+import { attachMidi } from './midi.js';
 const $ = id => document.getElementById(id);
 export function attachKeyboard({ graph, context, mixer, levels, masterControls }) {
-  let node, loading = false, nextId = 1, root = 60, sustain = false;
-  const held = new Map(), deferred = new Set(), keys = new Map();
+  let node, loading = false, nextId = 1, root = 60;
+  const held = new Map(), deferred = new Map(), pedals = new Set(), keys = new Map(), pads = new Map();
   const letters = 'awsedftgyhujk';
   const send = data => node?.port.postMessage(data);
   const status = message => { $('instrument-status').textContent = message; };
@@ -11,23 +12,35 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
   function release(token) {
     const note = held.get(token); if (!note) return;
     held.delete(token); paint(note.button);
-    if (sustain) deferred.add(note.id); else send({ type: 'off', id: note.id });
+    if (pedals.has(note.group)) deferred.set(note.id, note); else send({ type: 'off', id: note.id });
   }
+  function pedal(group, down) {
+    if (down) pedals.add(group);
+    else {
+      pedals.delete(group);
+      for (const [id, note] of deferred) if (note.group === group) { send({ type: 'off', id }); deferred.delete(id); }
+    }
+  }
+  function stopGroup(group) {
+    pedal(group, false);
+    for (const [token, note] of held) if (note.group === group) release(token);
+  }
+  function resetMidi() { for (let channel = 0; channel < 16; channel++) stopGroup(`midi-${channel}`); }
   function panic() {
-    send({ type: 'panic' }); held.clear(); deferred.clear(); sustain = false;
+    send({ type: 'panic' }); held.clear(); deferred.clear(); pedals.clear();
     $('sustain').setAttribute('aria-pressed', 'false');
     for (const button of document.querySelectorAll('.piano-key,.drum-pad')) button.setAttribute('aria-pressed', 'false');
   }
-  async function press(token, button, pitch, patch) {
-    if (!node || held.has(token) || button.disabled) return;
-    const note = { id: nextId++, button };
+  async function press(token, button, pitch, patch, velocity = Number($('velocity').value), group = 'local') {
+    if (!node || held.has(token) || !button || button.disabled) return;
+    const note = { id: nextId++, button, group };
     if (nextId > 0xffffffff) nextId = 1;
     held.set(token, note); paint(button);
     try {
       if (context().state !== 'running') await context().resume();
       if (held.get(token) !== note) return;
       if (context().state !== 'running') throw new Error('Audio is suspended. Tap a key to retry.');
-      send({ type: 'note', id: note.id, patch, pitch, velocity: Number($('velocity').value) });
+      send({ type: 'note', id: note.id, patch, pitch, velocity });
     } catch (error) { release(token); status(error.message); }
   }
   function bind(button, pitch, patch) {
@@ -55,7 +68,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
   for (const patch of [9, 10, 12]) for (const [name, pitch] of patch === 12 ? PERCUSSION : DRUMS) {
     const button = document.createElement('button'); button.className = 'drum-pad';
     button.innerHTML = `${name}<small>${patch === 9 ? 'ACOUSTIC' : patch === 10 ? 'ELECTRONIC' : 'PERCUSSION'}</small>`;
-    bind(button, pitch, patch); $('drum-pads').append(button);
+    bind(button, pitch, patch); pads.set(`${patch}-${pitch}`, button); $('drum-pads').append(button);
   }
   function availability() {
     for (const id of ['patch', 'velocity', 'rack-level', 'sustain', 'panic', 'octave-down', 'octave-up', 'rack-tone', 'rack-echo', 'rack-delay', 'rack-fx-reset']) $(id).disabled = !node;
@@ -114,9 +127,28 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
     $('rack-tone').value = 100; $('rack-echo').value = 0; $('rack-delay').value = 300; effects();
   };
   $('sustain').onclick = () => {
-    sustain = !sustain; $('sustain').setAttribute('aria-pressed', String(sustain));
-    if (!sustain) { for (const id of deferred) send({ type: 'off', id }); deferred.clear(); }
+    pedal('local', !pedals.has('local')); $('sustain').setAttribute('aria-pressed', String(pedals.has('local')));
   };
+  attachMidi({ reset: resetMidi, message: ({ type, channel, note, value }) => {
+    if (!node) return;
+    const group = `midi-${channel}`, token = `${group}-${note}`;
+    if (type === 'control') {
+      if (note === 64) pedal(group, value >= 64);
+      else if (note === 120) stopGroup(group);
+      else if (note === 121) pedal(group, false);
+      else for (const [heldToken, heldNote] of held) if (heldNote.group === group) release(heldToken);
+    } else if (type === 'off') release(token);
+    else {
+      // shortcut: fixed channel-10 pad mapping; add MIDI learn when more controllers are supported.
+      const patch = channel === 9 ? (PERCUSSION.some(([, pitch]) => pitch === note) ? 12 : Number($('midi-kit').value)) : Number($('patch').value);
+      const button = channel === 9 ? pads.get(`${patch}-${note}`) : keys.get(note);
+      if (!button || button.disabled) return;
+      const previous = held.get(token);
+      if (previous) { held.delete(token); send({ type: 'off', id: previous.id }); }
+      press(token, button, note, patch, value, group);
+    }
+  } });
+  $('midi-kit').onchange = () => stopGroup('midi-9');
   $('panic').onclick = panic;
   $('octave-down').onclick = () => octave(-12); $('octave-up').onclick = () => octave(12);
   window.addEventListener('keydown', event => {
