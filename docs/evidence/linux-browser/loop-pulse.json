@@ -1,0 +1,21 @@
+{
+  "browser": "26.5",
+  "iterations": [
+    {
+      "iteration": 1,
+      "beforeSeek": {
+        "time": 9.448482647147015,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      }
+    }
+  ],
+  "errors": [],
+  "status": "FAIL",
+  "failure": "page.waitForFunction: Timeout 10000ms exceeded.",
+  "events": [],
+  "deckError": "Playback could not start: The operation is not supported."
+}

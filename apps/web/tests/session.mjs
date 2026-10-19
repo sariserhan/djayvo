@@ -35,7 +35,7 @@ const browser = await { chromium, webkit }[kind].launch();
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
 context.setDefaultTimeout(10000);
 const errors = [], requests = [], checks = [], warnings = [];
-let screenshot = false;
+let screenshot = false, recordingAvailable;
 // Silence only the physical test output, downstream of the application's measured mix.
 await context.addInitScript(() => {
   const NativeWorker = window.Worker;
@@ -93,6 +93,20 @@ const capture = async name => { screenshot = true; try { await page.screenshot({
 page.on('request', request => requests.push(request.url()));
 const check = name => { checks.push({ name, status: 'PASS' }); console.log('PASS:', name); };
 try {
+  const unsupported = await context.newPage();
+  await unsupported.addInitScript(() => { window.MediaRecorder = undefined; });
+  for (const [file, consent, record, input] of [
+    ['index.html', '#consent', '#record', '#import'],
+    ['dj.html', '#phrase-consent', '#phrase-record', '#phrase-file'],
+  ]) {
+    await unsupported.goto(`${origin}/${file}`);
+    await unsupported.locator(consent).check();
+    await unsupported.waitForFunction(selector => document.querySelector(selector).textContent === 'Recording unavailable', record);
+    assert.equal(await unsupported.locator(record).isDisabled(), true);
+    assert.equal(await unsupported.locator(input).isDisabled(), false);
+  }
+  await unsupported.close();
+  check('both studios disable unavailable recording and keep consented import enabled');
   await page.goto(`${origin}/dj.html`);
   assert.match(await page.title(), /Djayvo/);
   await page.locator('#performance-title').waitFor();
@@ -310,38 +324,53 @@ try {
   await page.locator('#context-confirmed').check();
   await page.locator('#session-play').click();
   check('changing mode clears ready C and confirmation before playback can resume');
-  // Synthetic microphone stream tests browser capture/lifecycle, not physical input.
-  await page.evaluate(() => {
-    window.originalCapture = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
-    navigator.mediaDevices.getUserMedia = async () => {
-      const destination = testAudioContext.createMediaStreamDestination();
-      const tone = testAudioContext.createOscillator(), gain = testAudioContext.createGain();
-      tone.frequency.value = 220; gain.gain.value = .1; tone.connect(gain); gain.connect(destination); tone.start();
-      tone.stop(testAudioContext.currentTime + 4);
-      window.captureTracks = destination.stream.getTracks();
-      return destination.stream;
-    };
-  });
-  await page.locator('#phrase-record').click();
-  await page.waitForFunction(() => document.getElementById('phrase-record').textContent.includes('Stop recording'));
-  await page.waitForTimeout(2400);
-  await page.locator('#phrase-record').click();
-  await page.waitForFunction(() => document.getElementById('phrase-status').textContent.includes('phrase ready'));
-  assert.equal(await page.evaluate(() => captureTracks.every(t => t.readyState === 'ended')), true);
-  assert.equal(await page.locator('#session-stop').isDisabled(), false);
-  check('synthetic microphone capture, decoding and track cleanup while A continues');
-  await page.locator('#phrase-consent').uncheck();
-  assert.equal(await page.locator('#performance-download').isVisible(), false);
-  assert.equal(await page.locator('#phrase-generate').isDisabled(), true);
-  assert.equal(await page.locator('#session-stop').isDisabled(), false);
-  await page.evaluate(() => { navigator.mediaDevices.getUserMedia = () => new Promise(resolve => { window.resolveCapture = resolve; }); });
-  await page.locator('#phrase-consent').check(); await page.locator('#phrase-record').click();
-  await page.waitForFunction(() => !!window.resolveCapture);
-  await page.locator('#phrase-consent').uncheck();
-  await page.evaluate(() => { const stream = testAudioContext.createMediaStreamDestination().stream; window.lateTracks = stream.getTracks(); resolveCapture(stream); });
-  await page.waitForFunction(() => lateTracks.every(t => t.readyState === 'ended'));
-  assert.equal(await page.locator('#phrase-generate').isDisabled(), true);
-  check('revoked consent rejects late microphone permission and closes its tracks');
+  recordingAvailable = await page.evaluate(() => !!(navigator.mediaDevices?.getUserMedia && window.MediaRecorder));
+  if (recordingAvailable) {
+    // Synthetic microphone stream tests browser capture/lifecycle, not physical input.
+    await page.evaluate(() => {
+      window.originalCapture = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+      navigator.mediaDevices.getUserMedia = async () => {
+        const destination = testAudioContext.createMediaStreamDestination();
+        const tone = testAudioContext.createOscillator(), gain = testAudioContext.createGain();
+        tone.frequency.value = 220; gain.gain.value = .1; tone.connect(gain); gain.connect(destination); tone.start();
+        tone.stop(testAudioContext.currentTime + 4);
+        window.captureTracks = destination.stream.getTracks();
+        return destination.stream;
+      };
+    });
+    await page.locator('#phrase-record').click();
+    await page.waitForFunction(() => document.getElementById('phrase-record').textContent.includes('Stop recording'));
+    await page.waitForTimeout(2400);
+    await page.locator('#phrase-record').click();
+    await page.waitForFunction(() => document.getElementById('phrase-status').textContent.includes('phrase ready'));
+    assert.equal(await page.evaluate(() => captureTracks.every(t => t.readyState === 'ended')), true);
+    assert.equal(await page.locator('#session-stop').isDisabled(), false);
+    check('synthetic microphone capture, decoding and track cleanup while A continues');
+    await page.locator('#phrase-consent').uncheck();
+    assert.equal(await page.locator('#performance-download').isVisible(), false);
+    assert.equal(await page.locator('#phrase-generate').isDisabled(), true);
+    assert.equal(await page.locator('#session-stop').isDisabled(), false);
+    await page.evaluate(() => { navigator.mediaDevices.getUserMedia = () => new Promise(resolve => { window.resolveCapture = resolve; }); });
+    await page.locator('#phrase-consent').check(); await page.locator('#phrase-record').click();
+    await page.waitForFunction(() => !!window.resolveCapture);
+    await page.locator('#phrase-consent').uncheck();
+    await page.evaluate(() => { const stream = testAudioContext.createMediaStreamDestination().stream; window.lateTracks = stream.getTracks(); resolveCapture(stream); });
+    await page.waitForFunction(() => lateTracks.every(t => t.readyState === 'ended'));
+    assert.equal(await page.locator('#phrase-generate').isDisabled(), true);
+    check('revoked consent rejects late microphone permission and closes its tracks');
+  } else {
+    assert.equal(await page.locator('#phrase-record').isDisabled(), true);
+    assert.equal(await page.locator('#phrase-record').textContent(), 'Recording unavailable');
+    assert.equal(await page.locator('#phrase-file').isDisabled(), false);
+    check('recording unavailable is visible; consented phrase import remains enabled');
+    for (const name of ['synthetic microphone capture, decoding and track cleanup while A continues', 'revoked consent rejects late microphone permission and closes its tracks']) {
+      checks.push({ name, status: 'NOT RUN', reason: 'Browser lacks microphone recording APIs' });
+      console.log('NOT RUN:', name);
+    }
+    await page.locator('#phrase-consent').uncheck();
+    assert.equal(await page.locator('#phrase-generate').isDisabled(), true);
+    assert.equal(await page.locator('#session-stop').isDisabled(), false);
+  }
   await page.locator('#music-rights').uncheck();
   assert.equal(await page.locator('#session-stop').isDisabled(), true);
   assert.equal(await page.locator('#session-play').isDisabled(), true);
@@ -383,7 +412,7 @@ try {
   assert.deepEqual(errors, []);
   assert.ok(requests.every(url => url.startsWith(origin) || url.startsWith('blob:')));
   check('no uploads, external requests or unexpected runtime errors');
-  await fs.writeFile(path.join(output, 'report.json'), JSON.stringify({ status: 'PASS', browser: kind, version: browser.version(), checks, timing, continuity, generationSeconds, heardA, expectedErrors, errors, warnings, physical_microphone: 'NOT RUN', listening: 'NOT RUN' }, null, 2));
+  await fs.writeFile(path.join(output, 'report.json'), JSON.stringify({ status: recordingAvailable ? 'PASS' : 'PARTIAL', recordingAvailable, browser: kind, version: browser.version(), checks, timing, continuity, generationSeconds, heardA, expectedErrors, errors, warnings, physical_microphone: 'NOT RUN', listening: 'NOT RUN' }, null, 2));
 } catch (error) {
   const state = await page.evaluate(() => ({
     context: window.testAudioContext && { state: testAudioContext.state, time: testAudioContext.currentTime, rate: testAudioContext.sampleRate },

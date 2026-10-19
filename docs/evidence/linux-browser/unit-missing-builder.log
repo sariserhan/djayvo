@@ -1,0 +1,62 @@
+
+> djayvo-web@0.1.0 test
+> node --test tests/*.test.js
+
+✔ decimal selections preserve the exact two-second boundary (0.67662ms)
+✔ WAV is bounded PCM16 mono with finite samples and safe clipping (1.937524ms)
+✔ browser.mjs rejects unknown browsers before launching (304.435495ms)
+✔ browser-render.mjs rejects unknown browsers before launching (290.417617ms)
+✔ installation is optional, capability-driven and never confuses acceptance with completion (0.920798ms)
+✔ standalone platforms, prompt rejection and installation during a pending prompt remain honest (1.046096ms)
+✔ instrument map covers full piano and respects guitar bank limits (0.493359ms)
+✔ tempo match uses other deck effective tempo and rejects impossible matches (0.12134ms)
+✔ funk sessions verify complete hashed artifacts and reject mislabeled or corrupted files (3.513766ms)
+✔ call_response sessions verify complete hashed artifacts and reject mislabeled or corrupted files (1.374489ms)
+✔ hybrid sessions verify complete hashed artifacts and reject mislabeled or corrupted files (0.886713ms)
+✔ malformed stored file entries are withheld instead of aborting library recovery (0.080671ms)
+✔ MIDI decodes note-off forms, velocity, channel boundaries and only supported controls (0.597739ms)
+✔ absolute CC pickup prevents jumps, follows crossings and rearms after screen changes (0.182509ms)
+✔ beat echo converts validated performance tempo without rounding to the manual slider step (0.442523ms)
+✔ linear blend bounds coherent summed peaks and supports channel/master silence (0.707578ms)
+✔ track limits reject empty, oversized and nonaudio files before decoding (0.120381ms)
+✔ effect boundaries reject nonfinite and out-of-range controls before touching audio (0.14455ms)
+✔ prepared track rejects decoded limits and nonfinite samples beyond the analysis window (18.81531ms)
+✔ composition identity ignores cosmetic changes, ordering and transposition; detects musical changes (6.205072ms)
+✔ selection retries only duplicates, records the actual seed and bounds exhaustion before publishing (2.24145ms)
+✖ offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets (14.418457ms)
+✔ reinstall reuses a complete verified cache without redownloading or deleting it (10.394248ms)
+✔ continuity diagnostic counts frame gaps, bounds its trace and resets the measurement window (1.518079ms)
+✔ bounded context heuristic finds pulse and triad, and treats silence as uncertain (40.569566ms)
+✔ transport cancels future C, rejects late/short contexts and preserves A on C failure (0.31935ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 25
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 925.198221
+
+✖ failing tests:
+
+test at tests/offline-build.test.js:6:1
+✖ offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets (14.418457ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<stdin>", line 5, in <module>
+  ModuleNotFoundError: No module named 'build_offline'
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///work/apps/web/tests/offline-build.test.js:35:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

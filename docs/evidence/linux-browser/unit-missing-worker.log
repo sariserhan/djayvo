@@ -1,0 +1,76 @@
+
+> djayvo-web@0.1.0 test
+> node --test tests/*.test.js
+
+✔ decimal selections preserve the exact two-second boundary (0.610786ms)
+✔ WAV is bounded PCM16 mono with finite samples and safe clipping (2.928709ms)
+✔ browser.mjs rejects unknown browsers before launching (288.511411ms)
+✔ browser-render.mjs rejects unknown browsers before launching (282.100995ms)
+✔ installation is optional, capability-driven and never confuses acceptance with completion (1.033207ms)
+✔ standalone platforms, prompt rejection and installation during a pending prompt remain honest (1.095424ms)
+✔ instrument map covers full piano and respects guitar bank limits (0.478474ms)
+✔ tempo match uses other deck effective tempo and rejects impossible matches (0.127598ms)
+✔ funk sessions verify complete hashed artifacts and reject mislabeled or corrupted files (3.904344ms)
+✔ call_response sessions verify complete hashed artifacts and reject mislabeled or corrupted files (1.02129ms)
+✔ hybrid sessions verify complete hashed artifacts and reject mislabeled or corrupted files (0.695792ms)
+✔ malformed stored file entries are withheld instead of aborting library recovery (0.081676ms)
+✔ MIDI decodes note-off forms, velocity, channel boundaries and only supported controls (0.538523ms)
+✔ absolute CC pickup prevents jumps, follows crossings and rearms after screen changes (0.17848ms)
+✔ beat echo converts validated performance tempo without rounding to the manual slider step (0.449137ms)
+✔ linear blend bounds coherent summed peaks and supports channel/master silence (0.892982ms)
+✔ track limits reject empty, oversized and nonaudio files before decoding (0.141433ms)
+✔ effect boundaries reject nonfinite and out-of-range controls before touching audio (0.146809ms)
+✔ prepared track rejects decoded limits and nonfinite samples beyond the analysis window (19.289027ms)
+✔ composition identity ignores cosmetic changes, ordering and transposition; detects musical changes (11.625064ms)
+✔ selection retries only duplicates, records the actual seed and bounds exhaustion before publishing (2.493509ms)
+✖ offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets (30.822913ms)
+✖ reinstall reuses a complete verified cache without redownloading or deleting it (1.238441ms)
+✔ continuity diagnostic counts frame gaps, bounds its trace and resets the measurement window (1.988614ms)
+✔ bounded context heuristic finds pulse and triad, and treats silence as uncertain (54.937188ms)
+✔ transport cancels future C, rejects late/short contexts and preserves A on C failure (0.396798ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 24
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 937.616347
+
+✖ failing tests:
+
+test at tests/offline-build.test.js:6:1
+✖ offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets (30.822913ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<stdin>", line 5, in <module>
+  ModuleNotFoundError: No module named 'build_offline'
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///work/apps/web/tests/offline-build.test.js:35:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/offline-cache.test.js:6:1
+✖ reinstall reuses a complete verified cache without redownloading or deleting it (1.238441ms)
+  Error: ENOENT: no such file or directory, open '/work/scripts/service-worker.js'
+      at async open (node:internal/fs/promises:640:25)
+      at async readFile (node:internal/fs/promises:1290:14)
+      at async TestContext.<anonymous> (file:///work/apps/web/tests/offline-cache.test.js:10:19)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/work/scripts/service-worker.js'
+  }

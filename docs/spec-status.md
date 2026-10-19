@@ -11,7 +11,20 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local implementation: [Cancellable prepared playback](start-cancellation.md).
+Latest local validation: [Linux browser portability and recording fallback](linux-browser.md).
+**PASS (technical):** Linux ARM64 Chromium prepared session (29 checks), WebKit
+imported-phrase/playback/offline paths (28 checks), explicit unavailable-recording
+UI on both studios, and native Mac Chromium/WebKit capability controls.
+**PASS:** Chromium manual decks (40 checks); 22 exact Mac/Linux piano WAV
+comparisons and matching event frames.
+**FAIL:** Linux WebKit manual startup/repeat; software-sink diagnostics still fail.
+Two focused restart candidates failed and were not applied.
+**PARTIAL:** Linux WebKit session overall: its build lacks MediaRecorder; two
+capture checks are **NOT RUN**. DJ14/DJ17 reliability and full specification remain
+**PARTIAL**. Physical Intel Linux, microphone/MIDI, latency, venue and formal
+listening evidence remain **NOT RUN**.
+
+Previous local implementation: [Cancellable prepared playback](start-cancellation.md).
 **PASS (technical):** visible pending A/C starts, usable Stop during resume,
 protected retries and pending-preview consent cleanup; 26 unit / 56 final session
 checks, integrated/offline browser flows, exact event frames and ten unchanged

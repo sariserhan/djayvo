@@ -22,7 +22,20 @@ Owner direction recorded 2026-10-18. This separate addendum preserves the
 It changes the future product direction and current authorization boundary,
 not M0a's implementation scope or acceptance criteria.
 
-Latest local increment: [MIDI Learn](midi-learn.md), **PASS (technical)** for
+Latest local increment: [Linux browser portability and recording fallback](linux-browser.md).
+**PASS (technical):** Linux ARM64 Chromium prepared session (29 checks), WebKit
+imported-phrase/playback/offline paths (28 checks), explicit unavailable-recording
+UI on both studios, and native Mac Chromium/WebKit capability controls.
+**PASS:** Chromium manual decks (40 checks); 22 exact Mac/Linux piano WAV
+comparisons and matching event frames.
+**FAIL:** Linux WebKit manual startup/repeat; software-sink diagnostics still fail.
+Two focused restart candidates failed and were not applied.
+**PARTIAL:** Linux WebKit session overall: its build lacks MediaRecorder; two
+capture checks are **NOT RUN**. DJ14/DJ17 reliability and full specification remain
+**PARTIAL**. Physical Intel Linux, microphone/MIDI, latency, venue and formal
+listening evidence remain **NOT RUN**.
+
+Previous local increment: [MIDI Learn](midi-learn.md), **PASS (technical)** for
 23 bounded absolute CC targets with pickup and tab-local assignments. Physical
 MIDI/timing and venue evidence remain **NOT RUN**; whole-track loop repeatability
 is **PARTIAL** after an intermittent WebKit timeout (DJ14).

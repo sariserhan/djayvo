@@ -1,0 +1,514 @@
+{
+  "browser": "26.5",
+  "iterations": [
+    {
+      "iteration": 1,
+      "beforeSeek": {
+        "time": 9.448482647,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      },
+      "status": "PASS"
+    },
+    {
+      "iteration": 2,
+      "beforeSeek": {
+        "time": 9.448482647,
+        "paused": true
+      },
+      "beforeClick": {
+        "time": 59.9,
+        "paused": true
+      }
+    }
+  ],
+  "errors": [],
+  "status": "FAIL",
+  "failure": "page.waitForFunction: Timeout 10000ms exceeded.",
+  "events": [
+    {
+      "type": "pause",
+      "time": 1.408,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 15,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 15,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 15,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 15,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 20,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 20,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 20,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 20,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 9,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.035120718,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 9.143114529000632,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.211974049561855,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.211974049561855,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 9.348291552774024,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.348291553,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 9.404155473108643,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.404155473,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 9.448482647147015,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.448482647147015,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 9.448482647,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 59.9,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 59.9,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 59.9,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "play",
+      "time": 59.943833333,
+      "paused": false,
+      "ended": false
+    },
+    {
+      "type": "playing",
+      "time": 59.943833333,
+      "paused": false,
+      "ended": false
+    },
+    {
+      "type": "pause",
+      "time": 60,
+      "paused": true,
+      "ended": true
+    },
+    {
+      "type": "ended",
+      "time": 0,
+      "paused": false,
+      "ended": false
+    },
+    {
+      "type": "play",
+      "time": 0,
+      "paused": false,
+      "ended": false
+    },
+    {
+      "type": "playing",
+      "time": 0,
+      "paused": false,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 0,
+      "paused": false,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 0.184583333,
+      "paused": false,
+      "ended": false
+    },
+    {
+      "type": "pause",
+      "time": 1.404416666,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 15,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 15,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 15,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 15,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 20,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 20,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 20,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 20,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 8,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 9,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.082721591663077,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.082721591663077,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 9.211974049561855,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.21197405,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 9.28166289513004,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.348291552774024,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.348291552774024,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.404155473108643,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 9.448482647147015,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 9.448482647,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 59.9,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 59.9,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "seeked",
+      "time": 59.9,
+      "paused": true,
+      "ended": false
+    },
+    {
+      "type": "play",
+      "time": 60,
+      "paused": true,
+      "ended": true
+    },
+    {
+      "type": "playing",
+      "time": 60,
+      "paused": true,
+      "ended": true
+    },
+    {
+      "type": "pause",
+      "time": 60,
+      "paused": true,
+      "ended": true
+    },
+    {
+      "type": "ended",
+      "time": 0,
+      "paused": false,
+      "ended": false
+    },
+    {
+      "type": "play",
+      "time": 0,
+      "paused": false,
+      "ended": false
+    },
+    {
+      "type": "playing",
+      "time": 0,
+      "paused": false,
+      "ended": false
+    },
+    {
+      "type": "seeking",
+      "time": 0,
+      "paused": false,
+      "ended": false
+    }
+  ],
+  "deckError": ""
+}

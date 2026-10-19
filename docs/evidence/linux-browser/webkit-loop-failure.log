@@ -1,0 +1,20 @@
+Artifacts: /work/renders/dj-webkit-s3FUr9
+PASS: page identity, nonblank content, consent gating
+PASS: real offline stereo PCM: A/B endpoints, center, channel mute, master mute
+PASS: instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs
+PASS: both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs
+PASS: late completion of an older play request cannot pause a newer playback request
+PASS: two media decks advance independently; active-track replacement blocked; actual mix signal present
+PASS: real media output follows crossfader, channel level and master silence
+PASS: pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 10000ms exceeded.
+    at /work/apps/web/tests/dj.mjs:225:14 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.17.0

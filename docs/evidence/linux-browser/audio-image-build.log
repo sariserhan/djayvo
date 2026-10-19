@@ -1,0 +1,146 @@
+#0 building with "colima-djayvo" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 252B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for mcr.microsoft.com/playwright@sha256:824f1a789072e648c62541c2cfa4479c4061a290d5c27766d67dc1dcbc19b321
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM mcr.microsoft.com/playwright@sha256:824f1a789072e648c62541c2cfa4479c4061a290d5c27766d67dc1dcbc19b321
+#4 resolve mcr.microsoft.com/playwright@sha256:824f1a789072e648c62541c2cfa4479c4061a290d5c27766d67dc1dcbc19b321 done
+#4 DONE 0.0s
+
+#5 [2/2] RUN apt-get update && apt-get install -y --no-install-recommends pulseaudio && rm -rf /var/lib/apt/lists/*
+#5 0.174 Get:1 https://deb.nodesource.com/node_24.x nodistro InRelease [12.1 kB]
+#5 0.245 Get:2 http://ports.ubuntu.com/ubuntu-ports noble InRelease [256 kB]
+#5 0.348 Get:3 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+#5 0.380 Get:4 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease [126 kB]
+#5 0.409 Get:5 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease [126 kB]
+#5 0.437 Get:6 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 Packages [19.0 MB]
+#5 0.486 Get:7 https://deb.nodesource.com/node_24.x nodistro/main arm64 Packages [9461 B]
+#5 0.769 Get:8 http://ports.ubuntu.com/ubuntu-ports noble/restricted arm64 Packages [113 kB]
+#5 0.770 Get:9 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 Packages [1776 kB]
+#5 0.787 Get:10 http://ports.ubuntu.com/ubuntu-ports noble/multiverse arm64 Packages [274 kB]
+#5 0.790 Get:11 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [3251 kB]
+#5 0.827 Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/multiverse arm64 Packages [104 kB]
+#5 0.828 Get:13 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 Packages [2214 kB]
+#5 0.851 Get:14 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1786 kB]
+#5 0.866 Get:15 http://ports.ubuntu.com/ubuntu-ports noble-backports/multiverse arm64 Packages [669 B]
+#5 0.866 Get:16 http://ports.ubuntu.com/ubuntu-ports noble-backports/main arm64 Packages [49.0 kB]
+#5 0.867 Get:17 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [36.3 kB]
+#5 0.867 Get:18 http://ports.ubuntu.com/ubuntu-ports noble-security/restricted arm64 Packages [3129 kB]
+#5 0.900 Get:19 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [1475 kB]
+#5 0.915 Get:20 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Packages [1638 kB]
+#5 0.931 Get:21 http://ports.ubuntu.com/ubuntu-ports noble-security/multiverse arm64 Packages [99.1 kB]
+#5 1.502 Fetched 35.6 MB in 1s (25.5 MB/s)
+#5 1.502 Reading package lists...
+#5 1.903 Reading package lists...
+#5 2.278 Building dependency tree...
+#5 2.367 Reading state information...
+#5 2.490 The following additional packages will be installed:
+#5 2.490   libasound2-plugins libfftw3-single3 libltdl7 libsnapd-glib-2-1 libspeexdsp1
+#5 2.490   libtdb1 libwrap0 pulseaudio-utils
+#5 2.490 Suggested packages:
+#5 2.490   libfftw3-bin libfftw3-dev snapd udev pavumeter pavucontrol paprefs
+#5 2.490   avahi-daemon
+#5 2.490 Recommended packages:
+#5 2.490   rtkit
+#5 2.513 The following NEW packages will be installed:
+#5 2.514   libasound2-plugins libfftw3-single3 libltdl7 libsnapd-glib-2-1 libspeexdsp1
+#5 2.514   libtdb1 libwrap0 pulseaudio pulseaudio-utils
+#5 2.601 0 upgraded, 9 newly installed, 0 to remove and 108 not upgraded.
+#5 2.601 Need to get 1823 kB of archives.
+#5 2.601 After this operation, 12.1 MB of additional disk space will be used.
+#5 2.601 Get:1 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libfftw3-single3 arm64 3.3.10-1ubuntu3 [583 kB]
+#5 2.733 Get:2 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libltdl7 arm64 2.4.7-7build1 [40.4 kB]
+#5 2.736 Get:3 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libsnapd-glib-2-1 arm64 1.64-0ubuntu5 [105 kB]
+#5 2.738 Get:4 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libspeexdsp1 arm64 1.2.1-1ubuntu3 [40.2 kB]
+#5 2.739 Get:5 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libtdb1 arm64 1.4.10-1build1 [48.5 kB]
+#5 2.742 Get:6 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libwrap0 arm64 7.6.q-33 [48.5 kB]
+#5 2.743 Get:7 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 libasound2-plugins arm64 1.2.7.1-1ubuntu5 [73.7 kB]
+#5 2.744 Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 pulseaudio-utils arm64 1:16.1+dfsg1-2ubuntu10.1 [72.0 kB]
+#5 2.751 Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 pulseaudio arm64 1:16.1+dfsg1-2ubuntu10.1 [812 kB]
+#5 2.886 debconf: delaying package configuration, since apt-utils is not installed
+#5 2.901 Fetched 1823 kB in 0s (7125 kB/s)
+#5 2.912 Selecting previously unselected package libfftw3-single3:arm64.
+#5 2.912 (Reading database ...
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 34741 files and directories currently installed.)
+#5 2.977 Preparing to unpack .../0-libfftw3-single3_3.3.10-1ubuntu3_arm64.deb ...
+#5 2.979 Unpacking libfftw3-single3:arm64 (3.3.10-1ubuntu3) ...
+#5 2.992 Selecting previously unselected package libltdl7:arm64.
+#5 2.993 Preparing to unpack .../1-libltdl7_2.4.7-7build1_arm64.deb ...
+#5 2.994 Unpacking libltdl7:arm64 (2.4.7-7build1) ...
+#5 3.003 Selecting previously unselected package libsnapd-glib-2-1:arm64.
+#5 3.003 Preparing to unpack .../2-libsnapd-glib-2-1_1.64-0ubuntu5_arm64.deb ...
+#5 3.004 Unpacking libsnapd-glib-2-1:arm64 (1.64-0ubuntu5) ...
+#5 3.013 Selecting previously unselected package libspeexdsp1:arm64.
+#5 3.013 Preparing to unpack .../3-libspeexdsp1_1.2.1-1ubuntu3_arm64.deb ...
+#5 3.014 Unpacking libspeexdsp1:arm64 (1.2.1-1ubuntu3) ...
+#5 3.022 Selecting previously unselected package libtdb1:arm64.
+#5 3.023 Preparing to unpack .../4-libtdb1_1.4.10-1build1_arm64.deb ...
+#5 3.024 Unpacking libtdb1:arm64 (1.4.10-1build1) ...
+#5 3.033 Selecting previously unselected package libwrap0:arm64.
+#5 3.034 Preparing to unpack .../5-libwrap0_7.6.q-33_arm64.deb ...
+#5 3.035 Unpacking libwrap0:arm64 (7.6.q-33) ...
+#5 3.042 Selecting previously unselected package libasound2-plugins:arm64.
+#5 3.043 Preparing to unpack .../6-libasound2-plugins_1.2.7.1-1ubuntu5_arm64.deb ...
+#5 3.044 Unpacking libasound2-plugins:arm64 (1.2.7.1-1ubuntu5) ...
+#5 3.055 Selecting previously unselected package pulseaudio-utils.
+#5 3.056 Preparing to unpack .../7-pulseaudio-utils_1%3a16.1+dfsg1-2ubuntu10.1_arm64.deb ...
+#5 3.057 Unpacking pulseaudio-utils (1:16.1+dfsg1-2ubuntu10.1) ...
+#5 3.071 Selecting previously unselected package pulseaudio.
+#5 3.072 Preparing to unpack .../8-pulseaudio_1%3a16.1+dfsg1-2ubuntu10.1_arm64.deb ...
+#5 3.073 Unpacking pulseaudio (1:16.1+dfsg1-2ubuntu10.1) ...
+#5 3.111 Setting up libfftw3-single3:arm64 (3.3.10-1ubuntu3) ...
+#5 3.113 Setting up libtdb1:arm64 (1.4.10-1build1) ...
+#5 3.115 Setting up libwrap0:arm64 (7.6.q-33) ...
+#5 3.118 Setting up pulseaudio-utils (1:16.1+dfsg1-2ubuntu10.1) ...
+#5 3.119 Setting up libltdl7:arm64 (2.4.7-7build1) ...
+#5 3.121 Setting up libsnapd-glib-2-1:arm64 (1.64-0ubuntu5) ...
+#5 3.123 Setting up libspeexdsp1:arm64 (1.2.1-1ubuntu3) ...
+#5 3.125 Setting up libasound2-plugins:arm64 (1.2.7.1-1ubuntu5) ...
+#5 3.128 Setting up pulseaudio (1:16.1+dfsg1-2ubuntu10.1) ...
+#5 3.244 Created symlink /etc/systemd/user/default.target.wants/pulseaudio.service → /usr/lib/systemd/user/pulseaudio.service.
+
+#5 3.244 Created symlink /etc/systemd/user/sockets.target.wants/pulseaudio.socket → /usr/lib/systemd/user/pulseaudio.socket.
+
+#5 3.288 invoke-rc.d: could not determine current runlevel
+#5 3.289 invoke-rc.d: policy-rc.d denied execution of start.
+#5 3.290 Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
+#5 3.371 Processing triggers for dbus (1.14.10-4ubuntu4.1) ...
+#5 DONE 3.4s
+
+#6 exporting to image
+#6 exporting layers 0.1s done
+#6 exporting manifest sha256:1f372b1bf9e2929735bec744c7a068785a57933cc29c765f50e3051da905e361 done
+#6 exporting config sha256:120c2377267902f291dc45346f8a863ed77257355f724cf3a04d87ee3c6c8f24 done
+#6 exporting attestation manifest sha256:6d9784c7b9945d06db43a41c0f5b1f6020f139900c7f29348bcedc2021d40616 done
+#6 exporting manifest list sha256:76a22127dada958d2534858eacd538ae286f56a165802b44ddb926f2566eb719 done
+#6 naming to docker.io/library/djayvo-browser-audio:1.61.1 done
+#6 unpacking to docker.io/library/djayvo-browser-audio:1.61.1 0.0s done
+#6 DONE 0.2s

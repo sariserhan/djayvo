@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "browser": "webkit",
+  "version": "26.5",
+  "pages": [
+    {
+      "file": "index.html",
+      "capability": {
+        "secure": true,
+        "capture": "function",
+        "recorder": "function"
+      },
+      "recordingAvailable": true,
+      "label": "● Record",
+      "consentedImportEnabled": true
+    },
+    {
+      "file": "dj.html",
+      "capability": {
+        "secure": true,
+        "capture": "function",
+        "recorder": "function"
+      },
+      "recordingAvailable": true,
+      "label": "Record phrase",
+      "consentedImportEnabled": true
+    }
+  ],
+  "errors": [],
+  "physicalMicrophone": "NOT RUN"
+}

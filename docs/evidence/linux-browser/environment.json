@@ -1,0 +1,159 @@
+{
+  "source_commit": "8b19dc1d06041ac1f2f8d3abe7fe235f8049b1a1",
+  "image": "mcr.microsoft.com/playwright@sha256:824f1a789072e648c62541c2cfa4479c4061a290d5c27766d67dc1dcbc19b321",
+  "image_id": "sha256:824f1a789072e648c62541c2cfa4479c4061a290d5c27766d67dc1dcbc19b321",
+  "image_os": "linux",
+  "image_architecture": "arm64",
+  "image_bytes": 938196683,
+  "vm": {
+    "Architecture": "aarch64",
+    "KernelVersion": "6.8.0-117-generic",
+    "OperatingSystem": "Ubuntu 24.04.4 LTS",
+    "NCPU": 2,
+    "MemTotal": 3039588352,
+    "ServerVersion": "29.5.2"
+  },
+  "container": {
+    "network": "none",
+    "memory_limit_bytes": 2147483648,
+    "shm_bytes": 1073741824,
+    "init": true,
+    "mounts": [
+      "/Users/serhansari/Documents/projects/djayvo/apps/web:/work/apps/web:ro",
+      "/Users/serhansari/Documents/projects/djayvo/dist/web:/work/dist/web:ro",
+      "/Users/serhansari/Documents/projects/djayvo/renders/linux-browser-eihb11az:/work/renders:rw"
+    ]
+  },
+  "host_cpu": "Apple M5",
+  "colima": "colima version 0.10.3\ngit commit: 00f6c297e92a82c04a4ab507db0a61435650d7e8",
+  "docker_context": "desktop-linux",
+  "node": "v24.17.0",
+  "source_changes": "Recording capability UI and capability-aware session tests in this commit; DSP unchanged",
+  "playwright": "1.61.1",
+  "webkit_probe": {
+    "version": "26.5",
+    "secure": true,
+    "mediaDevices": true,
+    "getUserMedia": "function",
+    "MediaRecorder": "undefined",
+    "AudioContext": "function"
+  },
+  "support_files_copied": [
+    "scripts/service-worker.js",
+    "scripts/build_offline.py"
+  ],
+  "host_toolchain": {
+    "macos": {
+      "command": [
+        "sw_vers"
+      ],
+      "exit": 0,
+      "output": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241"
+    },
+    "host_memory": {
+      "command": [
+        "sysctl",
+        "-n",
+        "hw.memsize"
+      ],
+      "exit": 0,
+      "output": "17179869184"
+    },
+    "host_node": {
+      "command": [
+        "node",
+        "--version"
+      ],
+      "exit": 0,
+      "output": "v22.23.1"
+    },
+    "xcode": {
+      "command": [
+        "xcodebuild",
+        "-version"
+      ],
+      "exit": 0,
+      "output": "Xcode 27.1\nBuild version 27A9275"
+    },
+    "clang": {
+      "command": [
+        "clang",
+        "--version"
+      ],
+      "exit": 0,
+      "output": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin"
+    },
+    "cmake": {
+      "command": [
+        "/opt/homebrew/bin/cmake",
+        "--version"
+      ],
+      "exit": 0,
+      "output": "cmake version 4.4.2\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake)."
+    },
+    "emscripten": {
+      "command": [
+        "build-web-tools/emsdk/upstream/emscripten/emcc",
+        "--version"
+      ],
+      "exit": 0,
+      "output": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.1 (25e4e8d6550d392ba9e0c2936bce7cf41ee47cc0)\nCopyright (C) 2026 the Emscripten authors (see AUTHORS.txt)\nThis is free and open source software under the MIT license.\nThere is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    }
+  },
+  "audio_image": {
+    "tag": "djayvo-browser-audio:1.61.1",
+    "id": "sha256:76a22127dada958d2534858eacd538ae286f56a165802b44ddb926f2566eb719",
+    "architecture": "arm64",
+    "os": "linux"
+  },
+  "software_sink": {
+    "Server String": "unix:/tmp/djayvo-pulse",
+    "Library Protocol Version": "35",
+    "Server Protocol Version": "35",
+    "Is Local": "yes",
+    "Client Index": "5",
+    "Tile Size": "65472",
+    "User Name": "root",
+    "Host Name": "48f497d3cb9d",
+    "Server Name": "pulseaudio",
+    "Server Version": "16.1",
+    "Default Sample Specification": "s16le 2ch 44100Hz",
+    "Default Channel Map": "front-left,front-right",
+    "Default Sink": "djayvo",
+    "Default Source": "djayvo.monitor"
+  },
+  "audio_container_command": [
+    "docker",
+    "--context",
+    "colima-djayvo",
+    "run",
+    "--detach",
+    "--init",
+    "--name",
+    "djayvo-browser-20261019",
+    "--network",
+    "none",
+    "--shm-size",
+    "1g",
+    "--memory",
+    "2g",
+    "--workdir",
+    "/work",
+    "--volume",
+    "/Users/serhansari/Documents/projects/djayvo/apps/web:/work/apps/web:ro",
+    "--volume",
+    "/Users/serhansari/Documents/projects/djayvo/dist/web:/work/dist/web:ro",
+    "--volume",
+    "/Users/serhansari/Documents/projects/djayvo/renders/linux-browser-eihb11az:/work/renders:rw",
+    "--env",
+    "PULSE_SERVER=unix:/tmp/djayvo-pulse",
+    "--volume",
+    "/Users/serhansari/Documents/projects/djayvo/scripts/service-worker.js:/work/scripts/service-worker.js:ro",
+    "--volume",
+    "/Users/serhansari/Documents/projects/djayvo/scripts/build_offline.py:/work/scripts/build_offline.py:ro",
+    "djayvo-browser-audio:1.61.1",
+    "sleep",
+    "infinity"
+  ],
+  "evidence_log_format": "ANSI colour removed from native logs; terminal CR and trailing whitespace normalized. Raw command logs remain in /tmp."
+}

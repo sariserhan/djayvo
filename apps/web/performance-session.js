@@ -12,6 +12,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   const say = text => { $('performance-status').textContent = text; };
   const confirmed = () => rights.checked && $('context-confirmed').checked && !!prepared;
   const permitted = () => $('phrase-consent').checked;
+  const canRecord = !!(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
   const currentContext = () => ({ tempo: Math.round(Number($('session-bpm').value) * 1000), tonic: Number($('session-key').value), mode: $('session-mode').value });
   notes.forEach((name, i) => { const option = document.createElement('option'); option.value = 60 + i; option.textContent = name; $('session-key').append(option); });
   $('session-key').value = '69';
@@ -39,8 +40,8 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     $('session-stop').disabled = !playing && starting !== 'a';
     $('context-confirmed').disabled = !prepared || playing || !!busy || !!starting;
     for (const id of ['session-bpm', 'session-key', 'session-mode', 'session-downbeat']) $(id).disabled = playing || !!busy || !!starting;
-    $('phrase-record').disabled = !permitted() || !!starting || (!!busy && busy !== 'recording');
-    $('phrase-record').textContent = busy === 'recording' ? 'Stop recording' : 'Record phrase';
+    $('phrase-record').disabled = !canRecord || !permitted() || !!starting || (!!busy && busy !== 'recording');
+    $('phrase-record').textContent = busy === 'recording' ? 'Stop recording' : canRecord ? 'Record phrase' : 'Recording unavailable';
     $('phrase-file').disabled = !permitted() || !!busy || !!starting;
     $('phrase-delete').disabled = !samples && !busy && !performanceBuffer;
     $('phrase-generate').disabled = !confirmed() || !permitted() || !samples || !!busy || !!starting || activeC;

@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest implementation: [Cancellable prepared playback](docs/start-cancellation.md).
+Last updated: 2026-10-19 (America/New_York). Latest validation: [Linux browser portability](docs/linux-browser.md).
 Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
 Use this file for past work, open issues and future development. Detailed test
@@ -42,6 +42,16 @@ criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
+
+- [x] **DJ19 — PASS (validation and fallback scope):** [Linux browser validation and recording fallback](docs/linux-browser.md).
+  Linux Chromium session/manual suites pass 29/40 checks; 22 Mac/Linux WAVs
+  match exactly. Linux WebKit manual startup/repeat is **FAIL** (DJ14).
+  Actual isolated Linux ARM64 browser execution; unavailable recording is visibly
+  disabled in both studios and consented import remains usable. Native Mac
+  capability controls pass. Linux WebKit's full session is **PARTIAL** because
+  its build lacks MediaRecorder: two capture checks **NOT RUN**. Physical Intel
+  Linux, microphone/MIDI, latency, formal listening and venue validation remain
+  **NOT RUN**; this does not close DJ14/DJ17 or the full specification.
 
 - [x] **DJ18 — PASS (technical):** [Cancellable prepared playback](docs/start-cancellation.md):
   pending A/C start state, working Stop during resume, guarded stale errors,
@@ -75,7 +85,15 @@ closes that task only; it does not automatically pass its parent milestone.
   clear/cancel/input lifecycle and existing audio/permission paths. 80 final DJ,
   38 session, 24 unit checks and integrated/offline behavior pass. Physical MIDI
   and latency NOT RUN; native Web MIDI unavailable in tested WebKit.
-- [ ] **DJ14 — PARTIAL:** Investigate intermittent WebKit whole-track loop start:
+- [ ] **DJ14 — FAIL (Linux WebKit startup/repeat), PARTIAL (cause):**
+  [Linux browser validation](docs/linux-browser.md) reproduces an EOF restart
+  stuck seeking at zero; full suite fails and focused repeats fail on iteration 2.
+  Waiting for seek and decoder reload candidates also failed; neither shipped.
+  A software-only audio sink removes missing-device errors but native media
+  startup/repeat failures remain. Isolate Blob/range delivery and native media
+  decoding before changing transport; later Linux WebKit manual checks NOT RUN.
+  These traces extend, but do not establish the cause of, the prior Mac issue:
+  investigate intermittent WebKit whole-track loop start:
   one timeout at paused 59.9 s before MIDI activation; final suite and 20 isolated
   repeats pass. Root cause unconfirmed; failure receipt and diagnostics retained
   in [MIDI Learn evidence](docs/midi-learn.md). Another 15 cue/jog/rate sequences

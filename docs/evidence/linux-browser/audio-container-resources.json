@@ -1,0 +1,19 @@
+{
+  "memory_peak": "1598947328",
+  "memory_events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+  "processes": "PID COMMAND\n      1 docker-init\n      7 sleep\n     15 pulseaudio\n     23 python3\n    859 ps",
+  "pulse_sink": "0\tdjayvo\tmodule-null-sink.c\ts16le 2ch 44100Hz\tIDLE",
+  "existing_native_container": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 137,
+    "Error": "",
+    "StartedAt": "2026-10-19T01:28:50.289608976Z",
+    "FinishedAt": "2026-10-19T01:30:52.670233032Z"
+  }
+}

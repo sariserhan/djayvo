@@ -1,0 +1,128 @@
+{
+  "status": "PARTIAL",
+  "scope": "Linux ARM64 browser portability and recording capability UI; full specification remains PARTIAL",
+  "source_base_commit": "8b19dc1d06041ac1f2f8d3abe7fe235f8049b1a1",
+  "unit": {
+    "linux": "26/26 PASS",
+    "mac": "26/26 PASS"
+  },
+  "browser": {
+    "session-chromium": {
+      "status": "PASS",
+      "version": "149.0.7827.0",
+      "artifacts": "renders/linux-browser-eihb11az/session-chromium-fPgHDR",
+      "checks": {
+        "PASS": 29,
+        "PARTIAL": 0,
+        "FAIL": 0,
+        "NOT RUN": 0
+      },
+      "errors": [],
+      "heardA": 0.040289103984832764,
+      "continuity": {
+        "blocks": 12568,
+        "silent": 0,
+        "frameGaps": 0,
+        "events": [],
+        "signalFrameGaps": 0,
+        "signalFrames": 1608704,
+        "processedFrames": 1608704
+      },
+      "generationSeconds": 1.1616916939999993
+    },
+    "session-webkit": {
+      "status": "PARTIAL",
+      "version": "26.5",
+      "artifacts": "renders/linux-browser-eihb11az/session-webkit-wHyEes",
+      "checks": {
+        "PASS": 28,
+        "PARTIAL": 0,
+        "FAIL": 0,
+        "NOT RUN": 2
+      },
+      "errors": [],
+      "heardA": 0.04028928279876709,
+      "continuity": {
+        "blocks": 13180,
+        "silent": 0,
+        "frameGaps": 0,
+        "events": [],
+        "signalFrameGaps": 0,
+        "signalFrames": 1687040,
+        "processedFrames": 1687040
+      },
+      "generationSeconds": 0.9775882750000001
+    },
+    "dj-chromium": {
+      "status": "PASS",
+      "version": "149.0.7827.0",
+      "artifacts": "renders/linux-browser-eihb11az/dj-chromium-9CX6R2",
+      "checks": {
+        "PASS": 40,
+        "PARTIAL": 0,
+        "FAIL": 0,
+        "NOT RUN": 0
+      },
+      "errors": [],
+      "audioContext": {
+        "sampleRate": 44100,
+        "baseLatency": 0.01,
+        "outputLatency": 0.032,
+        "note": "Browser-reported values, not hardware latency measurements"
+      }
+    },
+    "dj-webkit": {
+      "status": "FAIL",
+      "version": "26.5",
+      "artifacts": "renders/linux-browser-eihb11az/dj-webkit-s3FUr9",
+      "checks_passed_before_failure": 8,
+      "failure": "Whole-track repeat stuck seeking at zero",
+      "receipt": "webkit-loop-failure.json"
+    }
+  },
+  "recording_capability_ui": "PASS on both studios in native Mac/Linux Chromium/WebKit; missing recorder simulated in full session tests",
+  "event_frames": "PASS: exact Mac agreement for A/C entry and 12 long-grid cases per browser",
+  "waveforms": "PASS: 22/22 stereo 48 kHz piano WAVs byte-identical to matching Mac browser baselines; max_abs=0, rms=0",
+  "initial_chromium_timestamp_anomalies": "8 timestamp anomalies with 0 independent PCM counter gaps; retained, final run 0",
+  "public_bundle": "PASS: 35 assets, unchanged engine binaries, no private audio/probes",
+  "protected_inputs": "PASS: seven hashes verified by compare.py",
+  "full_mac_browser_suite_this_increment": "NOT RUN: native capability controls checked; previous full session and DJ baselines retained",
+  "native_cpp_this_increment": "NOT RUN: no C++ changes",
+  "physical_intel_linux_microphone_midi_latency": "NOT RUN",
+  "formal_listening_and_musical_quality": "NOT RUN",
+  "venue_readiness": "NOT RUN",
+  "production_release": "NOT RUN",
+  "loop_root_cause": "PARTIAL: EOF seeking stall and intermittent startup unsupported-media errors; two source-route candidates rejected, software audio sink did not resolve native parser failures",
+  "remaining_linux_webkit_manual_checks": "NOT RUN: diagnostic attempts stopped after four offline checks at startup, before instrument/MIDI/offline manual paths",
+  "cleanup": "PASS: own container removed, profile stopped, original Docker context and native container preserved",
+  "diagnostics": [
+    {
+      "receipt": "loop-before.json",
+      "status": "FAIL"
+    },
+    {
+      "receipt": "loop-seek-wait.json",
+      "status": "FAIL"
+    },
+    {
+      "receipt": "loop-reload.json",
+      "status": "FAIL"
+    },
+    {
+      "receipt": "loop-gstreamer-failure.json",
+      "status": "FAIL"
+    },
+    {
+      "receipt": "loop-pulse.json",
+      "status": "FAIL"
+    },
+    {
+      "receipt": "webkit-remainder-initial-failure.json",
+      "status": "FAIL"
+    },
+    {
+      "receipt": "webkit-remainder-pulse-failure.json",
+      "status": "FAIL"
+    }
+  ]
+}

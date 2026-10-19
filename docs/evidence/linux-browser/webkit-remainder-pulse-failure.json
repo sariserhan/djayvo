@@ -1,0 +1,47 @@
+{
+  "message": "page.waitForFunction: Timeout 10000ms exceeded.",
+  "stack": "page.waitForFunction: Timeout 10000ms exceeded.\n    at /work/renders/dj-remainder.mjs:151:14",
+  "checks": [
+    {
+      "name": "page identity, nonblank content, consent gating",
+      "status": "PASS"
+    },
+    {
+      "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+      "status": "PASS"
+    },
+    {
+      "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+      "status": "PASS"
+    },
+    {
+      "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "state": {
+    "instruments": "Prepare the cleared sound bank, then play with your mouse, touch or computer keyboard.",
+    "deckError": "Playback could not start: The operation is not supported.",
+    "decks": [
+      {
+        "time": 0,
+        "paused": true,
+        "seeking": false,
+        "ended": false,
+        "rate": 1,
+        "readyState": 0
+      },
+      {
+        "time": 0,
+        "paused": true,
+        "seeking": false,
+        "ended": false,
+        "rate": 1,
+        "readyState": 4
+      }
+    ],
+    "meter": 0
+  }
+}

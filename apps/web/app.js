@@ -5,6 +5,7 @@ import { decodeAudio, encodeWav, RATE } from './audio.js';
 import { loadSessions, saveSession, deleteSession, deleteAllSessions, verifySession, MAX_SESSIONS } from './library.js';
 
 const $ = id => document.getElementById(id);
+const canRecord = !!(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
 const names = { hiphop: 'Hip-hop', reggae: 'Reggae', experimental: 'Experimental', club: 'Club', funk: 'Funk', call_response: 'Call & response', hybrid: 'Surprise hybrid' };
 let samples, start = 0, end = 0, previewURL, state = 'idle', worker, recorder, stream, recordTimer;
 let operation = 0, recordedAt = 0, sessions = [], urls = [], deleting;
@@ -14,8 +15,8 @@ const clearError = () => { $('error').hidden = true; $('error').textContent = ''
 
 function update() {
   const idle = state === 'idle';
-  $('record').disabled = !($('consent').checked && (idle || state === 'recording'));
-  $('record').textContent = state === 'recording' ? '■ Stop recording' : '● Record';
+  $('record').disabled = !canRecord || !($('consent').checked && (idle || state === 'recording'));
+  $('record').textContent = state === 'recording' ? '■ Stop recording' : canRecord ? '● Record' : 'Recording unavailable';
   $('import').disabled = !idle || !$('consent').checked;
   $('generate').disabled = !idle || !samples || !$('consent').checked;
   $('styles').disabled = !idle;

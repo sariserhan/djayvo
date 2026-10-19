@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "owned_container_removed": true,
+  "profiles": [
+    {
+      "name": "default",
+      "status": "Stopped",
+      "arch": "aarch64",
+      "cpus": 2,
+      "memory": 4294967296,
+      "disk": 21474836480,
+      "runtime": "docker"
+    },
+    {
+      "name": "djayvo",
+      "status": "Stopped",
+      "arch": "aarch64",
+      "cpus": 2,
+      "memory": 3221225472,
+      "disk": 17179869184,
+      "runtime": "docker"
+    }
+  ],
+  "default_docker_context": "desktop-linux",
+  "existing_native_container": "Unchanged: exited, code 137; state retained in audio-container-resources.json",
+  "cached_images": "Retained; no running test services",
+  "mlx_environment": "Untouched"
+}

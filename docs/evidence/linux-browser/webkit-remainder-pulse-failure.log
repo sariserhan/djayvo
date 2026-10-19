@@ -1,0 +1,16 @@
+Artifacts: /work/renders/dj-webkit-I1TZtm
+PASS: page identity, nonblank content, consent gating
+PASS: real offline stereo PCM: A/B endpoints, center, channel mute, master mute
+PASS: instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs
+PASS: both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 10000ms exceeded.
+    at /work/renders/dj-remainder.mjs:151:14 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.17.0

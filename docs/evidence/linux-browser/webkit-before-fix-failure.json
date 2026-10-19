@@ -1,0 +1,105 @@
+{
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 10000ms exceeded.",
+  "checks": [
+    {
+      "name": "identity, meaningful screen, permission-disabled preparation/capture",
+      "status": "PASS"
+    },
+    {
+      "name": "C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry",
+      "status": "PASS"
+    },
+    {
+      "name": "C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs",
+      "status": "PASS"
+    },
+    {
+      "name": "C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons",
+      "status": "PASS"
+    },
+    {
+      "name": "pending prepared A start can be stopped; stale rejection cannot overwrite retry; current failure recovers",
+      "status": "PASS"
+    },
+    {
+      "name": "prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport",
+      "status": "PASS"
+    },
+    {
+      "name": "confirmed major mode reaches the shared planner; all pitched notes belong to its scale",
+      "status": "PASS"
+    },
+    {
+      "name": "ready C effects and synthetic MIDI pickup drive the existing tone control",
+      "status": "PASS"
+    },
+    {
+      "name": "beat sync uses confirmed C tempo, holds manual spacing, blocks mapped spacing and rearms pickup on return",
+      "status": "PASS"
+    },
+    {
+      "name": "consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues",
+      "status": "PASS"
+    },
+    {
+      "name": "complete C performance ends naturally with accurate status while A keeps playing",
+      "status": "PASS"
+    },
+    {
+      "name": "C manual fader/stop do not stop A",
+      "status": "PASS"
+    },
+    {
+      "name": "worker cancellation retains ready C and uninterrupted A; next request excludes recent composition",
+      "status": "PASS"
+    },
+    {
+      "name": "director load failure leaves A and previous ready C intact",
+      "status": "PASS"
+    },
+    {
+      "name": "independent PCM counter and nonsilent mix during generation/entry/cancellation; browser timestamp anomalies retained",
+      "status": "PASS"
+    },
+    {
+      "name": "rejected replacement phrase keeps previous source/performance and A playback",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop/mobile visible controls and no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "pending C preview can be stopped; stale rejection cannot overwrite retry; current failure recovers",
+      "status": "PASS"
+    },
+    {
+      "name": "C preview produces audio, master mutes wet/dry, Stop C clears 800 ms echoes and reset restores defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "C preview routes through performance gain, and restarting A cancels the preview",
+      "status": "PASS"
+    },
+    {
+      "name": "consent withdrawal cancels pending C preview, clears its download and prevents a late resume from scheduling audio",
+      "status": "PASS"
+    },
+    {
+      "name": "changing mode clears ready C and confirmation before playback can resume",
+      "status": "PASS"
+    }
+  ],
+  "state": {
+    "context": {
+      "state": "running",
+      "time": 61.26875283446712,
+      "rate": 44100
+    },
+    "status": "Prepared A playing. Capture a phrase or bring your ready performance in.",
+    "error": "Microphone unavailable: Microphone capture is unavailable; import a phrase instead.",
+    "meter": 0.04029184579849243,
+    "deck": "Prepared · playing"
+  }
+}
