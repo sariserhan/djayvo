@@ -1,0 +1,25 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/dj-webkit-mr19il
+PASS: page identity, nonblank content, consent gating
+PASS: real offline stereo PCM: A/B endpoints, center, channel mute, master mute
+PASS: instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs
+PASS: late completion of an older play request cannot pause a newer playback request
+PASS: two media decks advance independently; active-track replacement blocked; actual mix signal present
+PASS: real media output follows crossfader, channel level and master silence
+PASS: pause/seek one deck and reject corrupt replacement while other deck continues
+PASS: rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping
+PASS: deck low EQ changes measured output
+PASS: live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound
+PASS: sustain, instrument/master mute, panic and blur release work without pausing decks
+PASS: live tone/echo controls change instrument audio; level/master silence tails; reset restores dry and decks continue
+PASS: talk-bass low register and live vowel spectrum, release, isolated controls and four new percussion sounds
+PASS: octave selection, patch range limits and pointer drum pad generate real audio
+PASS: desktop, tablet and mobile controls render without horizontal overflow; reduced motion stops platter animation
+PASS: injected instrument processor failure disables keys and preserves deck playback
+PASS: pause-all and audio-context interruption require explicit resume
+PASS: opposite-polarity stereo remains visible on output meter despite mono cancellation
+PASS: revoking permission stops and detaches both decks
+PASS: prepared app reloads with server disconnected and plays newly selected local audio
+PASS: cached WASM bank and AudioWorklet produce instrument audio with server disconnected
+PASS: unload releases the deck source
+PASS: failed graph initialization stays silent on repeated Play; no unprocessed fallback
+PASS: no upload/external request, URL-release errors or app console errors

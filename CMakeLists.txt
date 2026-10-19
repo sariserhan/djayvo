@@ -56,7 +56,7 @@ if(EMSCRIPTEN)
   add_executable(djayvo_live core/audio/live.cpp)
   target_link_libraries(djayvo_live PRIVATE djayvo_core)
   target_link_options(djayvo_live PRIVATE --no-entry
-    "-sEXPORTED_FUNCTIONS=['_djayvo_live_init','_djayvo_live_note','_djayvo_live_off','_djayvo_live_panic','_djayvo_live_buffer','_djayvo_live_render','_djayvo_live_active']"
+    "-sEXPORTED_FUNCTIONS=['_djayvo_live_init','_djayvo_live_note','_djayvo_live_off','_djayvo_live_panic','_djayvo_live_buffer','_djayvo_live_render','_djayvo_live_active','_djayvo_live_mouth']"
     -sSTANDALONE_WASM=1 -sFILESYSTEM=0 -sALLOW_MEMORY_GROWTH=0
     -sINITIAL_MEMORY=33554432 -sSTACK_SIZE=262144)
   set_target_properties(djayvo_live PROPERTIES SUFFIX ".wasm")

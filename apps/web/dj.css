@@ -91,7 +91,7 @@ input::file-selector-button { background:#25313b; border:1px solid #50616e; colo
 .piano-key:disabled { opacity:.4; }
 .pad-heading { display:flex; align-items:center; gap:20px; margin:18px 0 10px; }
 .pad-heading h3 { margin:0; font-size:15px; }.pad-heading span { color:var(--muted); font-size:11px; }
-.drum-pads { display:grid; grid-template-columns:repeat(8,1fr); gap:10px; }
+.drum-pads { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
 .drum-pad { border:1px solid #6b5d86; border-bottom:4px solid #6b5d86; background:#262435; border-radius:6px; color:#e6def5; padding:15px 8px; font-size:12px; touch-action:none; }
 .drum-pad small { display:block; font:9px ui-monospace,Menlo,monospace; color:#b8a8cc; margin-top:4px; }
 .drum-pad[aria-pressed=true] { background:#7963a6; }

@@ -8,6 +8,7 @@ beat synchronization, AI Deck C, production/venue acceptance, new paid compute
 and deployment are not passed or authorized by this increment. Preserve earlier
 work, recordings and evidence.
 Owner continuation extends this local increment with [instrument tone and echo](instrument-effects.md); other scope boundaries remain unchanged.
+The owner subsequently requested [Talk bass and extra percussion](talk-bass.md), using `pipe.mp3` for local analysis; this is part of the same local instrument scope.
 
 
 Audited 2026-10-18 against the complete, unchanged master specification and the
@@ -18,7 +19,14 @@ remain paused. Earlier broad implementation authorization is bounded by
 the current local DJ increment above.
 [TODO](../TODO.md) tracks individual past/future work and evidence links.
 
-Latest local follow-up: [Instrument tone and echo](instrument-effects.md).
+Latest local implementation: [Talk bass and extra percussion](talk-bass.md).
+**PASS:** original shared-core formant bass, four new pads, local pipe-reference
+measurements, Mac/Linux 15/15 suites each, sanitizer, PCM agreement, 48 DJ browser
+checks, 19 unit and 40 voice regressions. Playable demos retained locally.
+Exact artist rig identification **PARTIAL**; reference listening, musical quality,
+physical latency and venue readiness **NOT RUN**. Full studio remains **PARTIAL**.
+
+Previous local follow-up: [Instrument tone and echo](instrument-effects.md).
 **PASS:** real tone/echo controls, 46 two-browser DJ checks, 19 unit checks,
 40 voice regressions, playable dry/echo piano WAVs, offline reload and integrated
 site verification. Browser timing/waveform measurements are retained; native

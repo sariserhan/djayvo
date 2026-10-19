@@ -1,0 +1,199 @@
+{
+  "status": "PASS",
+  "scope": "Original live talk bass and four additional percussion sounds; local pipe reference analysis",
+  "fullStudio": "PARTIAL",
+  "nativeMac": "15/15 PASS; final targeted block-size invariance PASS",
+  "nativeLinux": "15/15 PASS; final targeted block-size invariance PASS",
+  "sanitizers": "Address/Undefined PASS",
+  "noHeapAllocation": "PASS for note/render/mouth control",
+  "webUnit": "19/19 PASS",
+  "browsers": {
+    "chromium": {
+      "checks": 24,
+      "version": "149.0.7827.55",
+      "artifactDirectory": "renders/dj-chromium-cYGcoU"
+    },
+    "webkit": {
+      "checks": 24,
+      "version": "26.5",
+      "artifactDirectory": "renders/dj-webkit-mr19il"
+    }
+  },
+  "voiceRegressions": "21 Chromium + 19 WebKit PASS",
+  "integratedSite": "PASS",
+  "playableDemos": "renders/talk-performance-20261018",
+  "pcmMaxDifference": 2.0679515313825692e-25,
+  "pcmMaxRmsDifference": 9.22442252536651e-28,
+  "old11PatchPcm": "PASS: byte-identical to previous native program",
+  "frameAgreement": "13 programs: note-on frame 0; mouth change frame 12800 on patch 11; note-off frame 23936; 96000 frames per program",
+  "physicalLatency": "NOT RUN",
+  "actualLinuxBrowser": "NOT RUN",
+  "referenceListening": "NOT RUN",
+  "referenceRigIdentification": "PARTIAL: mechanism confirmed, specific performer rig unverified",
+  "humanQuality": "NOT RUN",
+  "venueEndurance": "NOT RUN",
+  "reference": {
+    "file": "pipe.mp3",
+    "sha256": "e57756d665c676e876bc7b25abf6d97bd88d137c889eebd633ade0d353919bc8",
+    "duration_seconds": 79.657,
+    "integrated_lufs": -12.1,
+    "loudness_range_lu": 5.8,
+    "true_peak_dbfs": 0.2,
+    "rms_dbfs": -11.59,
+    "rms_p10_p90_dbfs": [
+      -19.52,
+      -8.42
+    ],
+    "side_to_mid_db": -17.17,
+    "stereo_correlation": 0.965,
+    "mono_bass_20_150hz_energy_fraction": 0.899,
+    "pulse_candidates_not_confirmed_tempo": [
+      {
+        "bpm": 83.92,
+        "correlation": 0.365
+      },
+      {
+        "bpm": 127.19,
+        "correlation": 0.343
+      },
+      {
+        "bpm": 62.92,
+        "correlation": 0.325
+      },
+      {
+        "bpm": 101.49,
+        "correlation": 0.056
+      }
+    ],
+    "change_candidates": [
+      {
+        "seconds": 2.04,
+        "contrast_score": 1.01,
+        "rms_before_dbfs": -14.38,
+        "rms_after_dbfs": -15.12
+      },
+      {
+        "seconds": 13.76,
+        "contrast_score": 10.73,
+        "rms_before_dbfs": -41.59,
+        "rms_after_dbfs": -9.05
+      },
+      {
+        "seconds": 24.53,
+        "contrast_score": 0.9,
+        "rms_before_dbfs": -9.93,
+        "rms_after_dbfs": -11.42
+      },
+      {
+        "seconds": 37.69,
+        "contrast_score": 1.51,
+        "rms_before_dbfs": -9.32,
+        "rms_after_dbfs": -16.58
+      },
+      {
+        "seconds": 53.47,
+        "contrast_score": 2.16,
+        "rms_before_dbfs": -18.08,
+        "rms_after_dbfs": -15.28
+      },
+      {
+        "seconds": 70.06,
+        "contrast_score": 1.18,
+        "rms_before_dbfs": -13.57,
+        "rms_after_dbfs": -13.51
+      },
+      {
+        "seconds": 77.62,
+        "contrast_score": 1.82,
+        "rms_before_dbfs": -11.43,
+        "rms_after_dbfs": -14.37
+      }
+    ],
+    "ten_second_windows": [
+      {
+        "start": 0,
+        "end": 10,
+        "rms_dbfs": -15.8,
+        "bass_fraction": 0.732,
+        "upper_fraction": 0.008,
+        "side_to_mid_db": -12.17
+      },
+      {
+        "start": 10,
+        "end": 20,
+        "rms_dbfs": -10.66,
+        "bass_fraction": 0.909,
+        "upper_fraction": 0.003,
+        "side_to_mid_db": -18.29
+      },
+      {
+        "start": 20,
+        "end": 30,
+        "rms_dbfs": -10.06,
+        "bass_fraction": 0.921,
+        "upper_fraction": 0.002,
+        "side_to_mid_db": -18.61
+      },
+      {
+        "start": 30,
+        "end": 40,
+        "rms_dbfs": -10.41,
+        "bass_fraction": 0.91,
+        "upper_fraction": 0.002,
+        "side_to_mid_db": -18.42
+      },
+      {
+        "start": 40,
+        "end": 50,
+        "rms_dbfs": -17.26,
+        "bass_fraction": 0.697,
+        "upper_fraction": 0.011,
+        "side_to_mid_db": -10.32
+      },
+      {
+        "start": 50,
+        "end": 60,
+        "rms_dbfs": -11.56,
+        "bass_fraction": 0.919,
+        "upper_fraction": 0.004,
+        "side_to_mid_db": -17.69
+      },
+      {
+        "start": 60,
+        "end": 70,
+        "rms_dbfs": -10.23,
+        "bass_fraction": 0.926,
+        "upper_fraction": 0.002,
+        "side_to_mid_db": -18.94
+      },
+      {
+        "start": 70,
+        "end": 79.66,
+        "rms_dbfs": -11.6,
+        "bass_fraction": 0.898,
+        "upper_fraction": 0.003,
+        "side_to_mid_db": -18.01
+      }
+    ]
+  },
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/x.mp3": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+    "/Users/serhansari/Downloads/y.mp3": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+    "/Users/serhansari/Downloads/z.mp3": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63",
+    "/Users/serhansari/Downloads/pipe.mp3": "e57756d665c676e876bc7b25abf6d97bd88d137c889eebd633ade0d353919bc8"
+  },
+  "hardware": "Apple M5",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241",
+  "clang": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+  "cmake": "cmake version 4.4.2",
+  "node": "v22.23.1",
+  "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "linuxToolchain": "Same existing Debian12 arm64 container and GCC12.2/CMake3.25.1 build documented in dj-console; no dependency changes",
+  "emscripten": "6.0.1 isolated existing SDK",
+  "environmentCleanup": "Dedicated djayvo profile returned to stopped; default profile and global Docker context not changed; no rentals or uploads",
+  "toolFallback": "In-app Browser execution tool and Context7 unavailable; existing Playwright plus primary web sources",
+  "testCorrection": "EE need not have a higher spectral centroid than AH; test now measures all three shapes with analyzer smoothing disabled and independent fundamental-pitch check"
+}

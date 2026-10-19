@@ -11,4 +11,6 @@ void djayvo_live_panic() noexcept;
 float* djayvo_live_buffer() noexcept;
 int djayvo_live_render(unsigned frames) noexcept;
 unsigned djayvo_live_active() noexcept;
+// Morph the original talk-bass formants OO -> AH -> EE; position in [0,1].
+int djayvo_live_mouth(double position) noexcept;
 }

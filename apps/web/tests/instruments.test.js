@@ -1,9 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { playable, noteName, PATCHES, DRUMS } from '../instrument-rack.js';
+import { playable, noteName, PATCHES, DRUMS, PERCUSSION } from '../instrument-rack.js';
 import { tempoRate } from '../deck-controls.js';
 test('instrument map covers full piano and respects guitar bank limits', () => {
-  assert.equal(PATCHES.length, 9); assert.equal(DRUMS.length, 4);
+  assert.equal(PATCHES.length, 10); assert.equal(DRUMS.length, 4); assert.deepEqual(PERCUSSION.map(x => x[1]), [39,37,41,70]);
   for (let note = 21; note <= 108; note++) assert.equal(playable(0, note), true);
   for (const note of [20, 109, NaN, 60.5]) assert.equal(playable(0, note), false);
   assert.equal(playable(4, 39), false); assert.equal(playable(5, 80), false);

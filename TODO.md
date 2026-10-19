@@ -8,9 +8,10 @@ beat synchronization, AI Deck C, production/venue acceptance, new paid compute
 and deployment are not passed or authorized by this increment. Preserve earlier
 work, recordings and evidence.
 Owner continuation extends this local increment with [instrument tone and echo](docs/instrument-effects.md); other scope boundaries remain unchanged.
+The owner subsequently requested [Talk bass and extra percussion](docs/talk-bass.md), using `pipe.mp3` for local analysis; this is part of the same local instrument scope.
 
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [instrument tone and echo](docs/instrument-effects.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [Talk bass and extra percussion](docs/talk-bass.md).
 Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
 Use this file for past work, open issues and future development. Detailed test
@@ -41,6 +42,12 @@ criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
+
+- [x] **DJ08 — PASS (technical):** [Talk bass and extra percussion](docs/talk-bass.md):
+  shared C++ original formant synth with OO/AH/EE control, low C2 register, clap,
+  rimshot, low tom and shaker; twelve pads total. Local `pipe.mp3` measurements,
+  native Mac/Linux/WASM checks, browser/offline coverage and three original demos.
+  Reference rig identification PARTIAL; sound similarity/listening NOT RUN.
 
 - [x] **DJ07 — PASS (technical):** [Instrument tone and echo](docs/instrument-effects.md):
   real low-pass tone, three fading echoes, manual spacing, dry reset and mute-safe
@@ -260,6 +267,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 
 | Done | ID | Status | Development | Commit / evidence |
 | --- | --- | --- | --- | --- |
+| [x] | DJ08 | PASS | Original Talk bass, four percussion voices, local reference analysis and portable/browser audio checks | [Evidence](docs/talk-bass.md) |
 | [x] | DJ07 | PASS | Local instrument tone/echo, measured browser timing, stereo sweep fix and playable piano pairs | [Effects evidence](docs/instrument-effects.md) |
 | [x] | P01 | PASS | C++17 foundation, sample-frame scheduling, polyphony, WAV output, validation and deterministic tests | `02d0e18` · [M0a](docs/m0a-report.md) |
 | [x] | P02 | PASS | Input decoding/resampling, onset analysis, three rule-based styles, clean hooks, stems, score exports and C ABI | `5837dfa` · [architecture](docs/remix-architecture.md) |

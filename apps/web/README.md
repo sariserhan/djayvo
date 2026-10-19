@@ -33,7 +33,9 @@ Open [DJ workspace](http://localhost:4173/dj.html), also linked from the studio.
 Confirm permission for your music, load local tracks into A and B, then use
 play/pause, platter jogging, pitch/key lock, cue/hot cues, full-track looping,
 manual tempo matching, three-band EQ, channel levels, crossfader and master.
-Enable instruments for an 88-key piano, nine melodic sounds and two drum kits.
+Enable instruments for an 88-key piano, ten melodic sounds and twelve drum/percussion pads. Select Talk bass for the
+low C2 register, then hold a key and move Mouth shape through OO / AH / EE.
+This is an original formant synth, not microphone processing or an artist sample.
 Use mouse/touch or A W S E D F T G Y H U J K for a chromatic octave; octave
 buttons shift this computer-key range. Sustain, velocity, instrument level and
 All notes off operate the shared C++ AudioWorklet engine. Tracks

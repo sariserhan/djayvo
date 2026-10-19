@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "human_listening": "NOT RUN",
+  "files": {
+    "talk-bass-vowels": {
+      "sha256": "47c027ae149cd7db29a2c87d2a9eaddfef8f2167bea3b37a7e00c5371ee3f305",
+      "frames": 288000,
+      "rate": 48000,
+      "peak_dbfs": -11.052145075169511,
+      "rms_dbfs": -26.310464782806704,
+      "dc_mean": 0.00015633307562934028,
+      "maximum_step": 0.084228515625,
+      "clipped_samples": 0
+    },
+    "new-percussion": {
+      "sha256": "52a1dba2132c609ee4883f440114b79c9965bb6348b9a41a5499c7ad3d2d24e9",
+      "frames": 240000,
+      "rate": 48000,
+      "peak_dbfs": -14.520205007850773,
+      "rms_dbfs": -35.438674397393655,
+      "dc_mean": 2.200202941894531e-05,
+      "maximum_step": 0.20233154296875,
+      "clipped_samples": 0
+    },
+    "studio-jam": {
+      "sha256": "a961b10000c3668141d19a77f2188c3e72e41e1c16100654f06297dcd301f6ba",
+      "frames": 576000,
+      "rate": 48000,
+      "peak_dbfs": -9.398627441504503,
+      "rms_dbfs": -25.56123904535749,
+      "dc_mean": 0.00011247486538357205,
+      "maximum_step": 0.148040771484375,
+      "clipped_samples": 0
+    }
+  },
+  "vowels": [
+    {
+      "shape": "OO",
+      "measured_fundamental_hz": 65.39509536784742,
+      "expected_note": "C2",
+      "expected_fundamental_hz": 65.4064,
+      "spectral_centroid_hz": 389.606313118174
+    },
+    {
+      "shape": "AH",
+      "measured_fundamental_hz": 65.39509536784742,
+      "expected_note": "C2",
+      "expected_fundamental_hz": 65.4064,
+      "spectral_centroid_hz": 703.3220707339535
+    },
+    {
+      "shape": "EE",
+      "measured_fundamental_hz": 65.39509536784742,
+      "expected_note": "C2",
+      "expected_fundamental_hz": 65.4064,
+      "spectral_centroid_hz": 435.53343690859333
+    }
+  ]
+}

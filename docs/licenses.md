@@ -1,5 +1,12 @@
 # Dependencies, licenses, and asset provenance
 
+Talk bass/percussion increment (2026-10-18): original procedural corrected-saw,
+formant-filter, clap, rimshot, tom and shaker code. No new recordings, model,
+third-party DSP implementation or runtime dependency. Standard filter equations
+were checked against the [W3C EQ cookbook](https://www.w3.org/TR/audio-eq-cookbook/).
+The owner-supplied `pipe.mp3` is a private local analysis reference only; it is
+not a shipping asset or a granted publication/training license.
+
 Website account shell (2026-10-18): Next.js 16.4.2, React/React DOM 19.3.1,
 Better Auth 1.7.10, pg 8.23.1 and server-only 0.0.1 report MIT licenses in their
 installed package metadata. Versions/transitive dependencies are locked in

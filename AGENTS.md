@@ -8,6 +8,7 @@ beat synchronization, AI Deck C, production/venue acceptance, new paid compute
 and deployment are not passed or authorized by this increment. Preserve earlier
 work, recordings and evidence.
 Owner continuation extends this local increment with [instrument tone and echo](docs/instrument-effects.md); other scope boundaries remain unchanged.
+The owner subsequently requested [Talk bass and extra percussion](docs/talk-bass.md), using `pipe.mp3` for local analysis; this is part of the same local instrument scope.
 
 
 Read the complete master specification before implementation. Djayvo is the

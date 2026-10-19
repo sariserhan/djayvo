@@ -225,7 +225,7 @@ try {
   await page.waitForFunction(() => document.querySelector('#instrument-status').textContent.startsWith('Ready'), null, { timeout: 30000 });
   assert.equal(await page.locator('#audio-a').evaluate(a => a.paused), false);
   assert.equal(await page.locator('.piano-key').count(), 88);
-  assert.equal(await page.locator('.drum-pad').count(), 8);
+  assert.equal(await page.locator('.drum-pad').count(), 12);
   await set('#level-a', 0); await set('#level-b', 0); await page.waitForTimeout(200);
   await page.locator('#patch').selectOption('6'); await page.locator('.keyboard-scroll').focus();
   await page.keyboard.down('a'); await page.keyboard.down('d'); await page.keyboard.down('g');
@@ -264,6 +264,32 @@ try {
   assert.equal(await page.locator('#rack-delay-value').textContent(), '300 ms');
   assert.equal(await page.locator('#audio-a').evaluate(a => a.paused), false);
   check('live tone/echo controls change instrument audio; level/master silence tails; reset restores dry and decks continue');
+  await page.locator('#patch').selectOption('11');
+  assert.match(await page.locator('#octave-name').textContent(), /C2/);
+  assert.equal(await page.locator('#mouth').isDisabled(), false);
+  const centroid = () => page.evaluate(() => {
+    testMeter.smoothingTimeConstant = 0;
+    const values = new Float32Array(testMeter.frequencyBinCount); testMeter.getFloatFrequencyData(values);
+    let total = 0, weighted = 0;
+    for (let i=1;i<values.length;i++) { const hz=i*testAudioContext.sampleRate/testMeter.fftSize; if(hz>4000) break; const power=10**(values[i]/10);total+=power;weighted+=power*hz; }
+    return weighted/total;
+  });
+  await set('#mouth', 0); await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('a');
+  await page.waitForTimeout(500); const oo = await centroid();
+  await set('#mouth', .5); await page.waitForTimeout(500); const ah = await centroid();
+  await set('#mouth', 1); await page.waitForTimeout(500); const ee = await centroid();
+  assert.ok(ah > oo + 100 && ah > ee + 100, `${oo} -> ${ah} -> ${ee}`);
+  await page.keyboard.up('a'); await page.waitForTimeout(700); assert.ok(await peak() < .0001);
+  assert.equal(await page.locator('#audio-a').evaluate(a => a.paused), false);
+  await page.locator('#patch').selectOption('0'); assert.equal(await page.locator('#mouth').isDisabled(), true);
+  await page.locator('#octave-up').click(); await page.locator('#octave-up').click();
+  for (const name of ['Clap', 'Rimshot', 'Low tom', 'Shaker']) {
+    const pad = page.getByRole('button', {name: `${name} PERCUSSION`});
+    await pad.focus(); await page.keyboard.down('Space'); await page.waitForTimeout(35);
+    assert.ok(await peak() > .00001, name);
+    await page.keyboard.up('Space'); await page.waitForTimeout(250);
+  }
+  check('talk-bass low register and live vowel spectrum, release, isolated controls and four new percussion sounds');
   await page.locator('#octave-up').click(); assert.match(await page.locator('#octave-name').textContent(), /C5/);
   await page.locator('#octave-down').click();
   await page.locator('#patch').selectOption('4');

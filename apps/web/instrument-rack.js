@@ -1,8 +1,9 @@
 export const PATCHES = [
-  ['Grand piano', 0], ['Electric piano', 1], ['Electric bass', 2], ['Synth bass', 3],
+  ['Grand piano', 0], ['Talk bass', 11], ['Electric piano', 1], ['Electric bass', 2], ['Synth bass', 3],
   ['Electric guitar', 4], ['Muted guitar', 5], ['Drawbar organ', 6], ['Warm pad', 7], ['Triangle lead', 8],
 ];
 export const DRUMS = [['Kick', 36], ['Snare', 38], ['Closed hat', 42], ['Open hat', 46]];
+export const PERCUSSION = [['Clap', 39], ['Rimshot', 37], ['Low tom', 41], ['Shaker', 70]];
 export const noteName = note => `${['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'][note % 12]}${Math.floor(note / 12) - 1}`;
 export const playable = (patch, pitch) => Number.isInteger(pitch) && pitch >= 21 && pitch <= 108 && (!(patch === 4 || patch === 5) || (pitch >= 40 && pitch <= 79));
 

@@ -7,11 +7,12 @@ class DjayvoInstruments extends AudioWorkletProcessor {
     this.samples = new Float32Array(this.engine.memory.buffer, this.engine.djayvo_live_buffer(), 4096);
     this.port.onmessage = ({ data }) => {
       if (!data || typeof data !== 'object') return;
-      if (data.type === 'panic') this.engine.djayvo_live_panic();
+      if (data.type === 'mouth' && Number.isFinite(data.position) && data.position >= 0 && data.position <= 1) this.engine.djayvo_live_mouth(data.position);
+      else if (data.type === 'panic') this.engine.djayvo_live_panic();
       else if (data.type === 'off' && Number.isInteger(data.id) && data.id > 0 && data.id <= 0xffffffff)
         this.engine.djayvo_live_off(data.id);
       else if (data.type === 'note' && [data.id, data.patch, data.pitch, data.velocity].every(Number.isInteger)
-        && data.id > 0 && data.id <= 0xffffffff && data.patch >= 0 && data.patch <= 10
+        && data.id > 0 && data.id <= 0xffffffff && data.patch >= 0 && data.patch <= 12
         && data.pitch >= 21 && data.pitch <= 108 && data.velocity >= 1 && data.velocity <= 127) {
         if (!this.engine.djayvo_live_note(data.id, data.patch, data.pitch, data.velocity))
           this.port.postMessage({ type: 'rejected' });

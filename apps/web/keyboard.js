@@ -1,4 +1,4 @@
-import { PATCHES, DRUMS, noteName, playable, createRack } from './instrument-rack.js';
+import { PATCHES, DRUMS, PERCUSSION, noteName, playable, createRack } from './instrument-rack.js';
 import { updateInstrumentFX } from './mixer.js';
 const $ = id => document.getElementById(id);
 export function attachKeyboard({ graph, context, mixer, levels, masterControls }) {
@@ -52,15 +52,16 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
     button.textContent = noteName(pitch); button.setAttribute('aria-label', noteName(pitch)); button.dataset.pitch = pitch;
     bind(button, pitch); keys.set(pitch, button); $('keyboard').append(button);
   }
-  for (const patch of [9, 10]) for (const [name, pitch] of DRUMS) {
+  for (const patch of [9, 10, 12]) for (const [name, pitch] of patch === 12 ? PERCUSSION : DRUMS) {
     const button = document.createElement('button'); button.className = 'drum-pad';
-    button.innerHTML = `${name}<small>${patch === 9 ? 'ACOUSTIC' : 'ELECTRONIC'}</small>`;
+    button.innerHTML = `${name}<small>${patch === 9 ? 'ACOUSTIC' : patch === 10 ? 'ELECTRONIC' : 'PERCUSSION'}</small>`;
     bind(button, pitch, patch); $('drum-pads').append(button);
   }
   function availability() {
     for (const id of ['patch', 'velocity', 'rack-level', 'sustain', 'panic', 'octave-down', 'octave-up', 'rack-tone', 'rack-echo', 'rack-delay', 'rack-fx-reset']) $(id).disabled = !node;
     for (const [pitch, button] of keys) button.disabled = !node || !playable(Number($('patch').value), pitch);
     for (const button of $('drum-pads').children) button.disabled = !node;
+    $('mouth').disabled = !node || Number($('patch').value) !== 11;
     $('octave-down').disabled ||= root <= 24; $('octave-up').disabled ||= root >= 96;
   }
   function octave(delta) {
@@ -84,11 +85,21 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
       }, { once: true });
       node.port.onmessage = ({ data }) => { if (data.type === 'rejected') status('Voice limit reached. Release notes or use All notes off.'); };
       levels(); availability(); octave(0); masterControls();
-      $('load-instruments').textContent = 'Instruments ready'; status('Ready · 88 keys, nine sounds and two drum kits.');
+      $('load-instruments').textContent = 'Instruments ready'; status('Ready · 88 keys, ten sounds and twelve drum pads.');
     } catch (error) { status(error.message); $('load-instruments').disabled = false; }
     finally { loading = false; }
   };
-  $('patch').onchange = () => { panic(); availability(); };
+  $('patch').onchange = () => {
+    panic();
+    if (Number($('patch').value) === 11) { root = 36; octave(0); status('Talk bass · C2 register. Hold a key and move Mouth shape. No microphone needed.'); }
+    else status('Ready · play keys and pads.');
+    availability();
+  };
+  $('mouth').oninput = () => {
+    const position = Number($('mouth').value);
+    $('mouth-value').textContent = position < .25 ? 'OO' : position > .75 ? 'EE' : 'AH';
+    send({ type: 'mouth', position });
+  };
   $('velocity').oninput = () => { $('velocity-value').textContent = $('velocity').value; };
   $('rack-level').oninput = levels;
   function effects() {
