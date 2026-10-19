@@ -1,0 +1,172 @@
+{
+  "status": "PASS",
+  "scope": "Local instrument tone/echo technical increment; full project PARTIAL",
+  "artifacts": {
+    "chromium": "renders/dj-chromium-NLFxjj",
+    "webkit": "renders/dj-webkit-o7iZA9"
+  },
+  "unit": "19/19 PASS",
+  "djBrowsers": "23/23 per browser PASS",
+  "voiceRegression": "21 Chromium + 19 WebKit PASS",
+  "integratedSite": "PASS",
+  "hardware": "Apple M5, 16 GiB",
+  "os": "macOS 26.7.1 (25G241)",
+  "node": "v22.23.1",
+  "playwright": "1.61.1",
+  "wasmBuild": "Emscripten 6.0.1; unchanged planner and live-instrument WASM",
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/x.mp3": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+    "/Users/serhansari/Downloads/y.mp3": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+    "/Users/serhansari/Downloads/z.mp3": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63"
+  },
+  "humanListening": "NOT RUN",
+  "physicalLatency": "NOT RUN",
+  "linuxBrowser": "NOT RUN",
+  "nativeReexecution": "NOT RUN; no shared C++ change",
+  "venueEndurance": "NOT RUN",
+  "production": "NOT RUN",
+  "fullStudio": "PARTIAL",
+  "toolFallback": "Required in-app Browser execution tool and Context7 unavailable; repository Playwright workflow and MDN used",
+  "correctedFailures": [
+    "Feedback cycle added 128 frames per repeat on Chromium; replaced with parallel taps",
+    "WebKit target filter sweep stereo error 0.13013994693756104; exponential ramp eliminated it"
+  ],
+  "testClarifications": [
+    "Zero-filled source lasts full impulse render, matching live worklet lifetime",
+    "Adjacent impulse samples summed for fractional delay interpolation; 1e-6 amplitude tolerance"
+  ],
+  "waveforms": {
+    "chromium": {
+      "dry": {
+        "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+        "frames": 288000,
+        "sample_rate": 48000,
+        "peak_dbfs": -15.777714375949465,
+        "clipped_samples": 0
+      },
+      "echo": {
+        "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175",
+        "frames": 288000,
+        "sample_rate": 48000,
+        "peak_dbfs": -20.203285216311713,
+        "clipped_samples": 0
+      },
+      "echo_vs_dry": {
+        "max_abs": 0.064910888671875,
+        "rms": 0.006371839855816554
+      }
+    },
+    "webkit": {
+      "dry": {
+        "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314",
+        "frames": 288000,
+        "sample_rate": 48000,
+        "peak_dbfs": -15.777714375949465,
+        "clipped_samples": 0
+      },
+      "echo": {
+        "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45",
+        "frames": 288000,
+        "sample_rate": 48000,
+        "peak_dbfs": -20.203285216311713,
+        "clipped_samples": 0
+      },
+      "echo_vs_dry": {
+        "max_abs": 0.064910888671875,
+        "rms": 0.00637181033502978
+      }
+    }
+  },
+  "browserWaveformDifferences": {
+    "dry": {
+      "max_abs": 0.0,
+      "rms": 0.0
+    },
+    "echo": {
+      "max_abs": 3.0517578125e-05,
+      "rms": 1.9081961550195384e-06
+    }
+  },
+  "echoTiming": {
+    "chromium": [
+      {
+        "mode": "echo-100",
+        "frame_errors": [
+          0,
+          0,
+          0
+        ],
+        "max_impulse_sum_error": 4.5578831929168895e-08
+      },
+      {
+        "mode": "echo-300",
+        "frame_errors": [
+          0,
+          0,
+          0
+        ],
+        "max_impulse_sum_error": 4.5578831929168895e-08
+      },
+      {
+        "mode": "echo-800",
+        "frame_errors": [
+          0,
+          0,
+          0
+        ],
+        "max_impulse_sum_error": 4.5578831929168895e-08
+      }
+    ],
+    "webkit": [
+      {
+        "mode": "echo-100",
+        "frame_errors": [
+          0,
+          0,
+          0
+        ],
+        "max_impulse_sum_error": 4.5578831929168895e-08
+      },
+      {
+        "mode": "echo-300",
+        "frame_errors": [
+          0,
+          0,
+          0
+        ],
+        "max_impulse_sum_error": 7.913553856306321e-08
+      },
+      {
+        "mode": "echo-800",
+        "frame_errors": [
+          0,
+          0,
+          0
+        ],
+        "max_impulse_sum_error": 7.913553856306321e-08
+      }
+    ]
+  },
+  "sweepStereo": {
+    "chromium": 5.960464477539063e-08,
+    "webkit": 5.960464477539063e-08
+  },
+  "browserVersions": {
+    "chromium": "149.0.7827.55",
+    "webkit": "26.5"
+  },
+  "pianoEventFrames": {
+    "note_on": [
+      0,
+      96000
+    ],
+    "note_off": [
+      24064,
+      120064
+    ],
+    "agreement": "Same integer event positions in both browsers"
+  }
+}

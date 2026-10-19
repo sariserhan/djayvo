@@ -5,6 +5,23 @@ export function mixGains(crossfade, levels, master) {
   return [(1 - crossfade) * levels[0] * master * .8, crossfade * levels[1] * master * .8];
 }
 
+export function updateInstrumentFX(context, fx, tone, echo, milliseconds) {
+  if (!Number.isFinite(tone) || tone < 0 || tone > 100 ||
+      !Number.isFinite(echo) || echo < 0 || echo > .5 ||
+      !Number.isFinite(milliseconds) || milliseconds < 100 || milliseconds > 800)
+    throw new Error('Instrument effects are outside their allowed range.');
+  const frequency = tone === 100 ? context.sampleRate / 2 : Math.min(context.sampleRate / 2, 200 * 100 ** (tone / 100));
+  const now = context.currentTime;
+  // WebKit's target smoothing skews stereo channels during a filter sweep.
+  const heldFrequency = fx.input.frequency.value;
+  fx.input.frequency.cancelScheduledValues(now);
+  fx.input.frequency.setValueAtTime(heldFrequency, now);
+  fx.input.frequency.exponentialRampToValueAtTime(frequency, now + .03);
+  fx.dry.gain.setTargetAtTime(1 - echo, now, .01);
+  fx.wet.gain.setTargetAtTime(echo, now, .01);
+  fx.delays.forEach((delay, i) => delay.delayTime.setTargetAtTime(milliseconds * (i + 1) / 1000, now, .03));
+}
+
 export function createMixer(context) {
   const channels = [context.createGain(), context.createGain()];
   const meter = context.createAnalyser();
@@ -28,12 +45,25 @@ export function createMixer(context) {
     return { input: low, eq: [low, mid, high], scope };
   });
   const rack = context.createGain(); rack.gain.value = 0; rack.connect(limiter);
+  const input = context.createBiquadFilter(), dry = context.createGain(), wet = context.createGain();
+  input.type = 'lowpass'; input.Q.value = 0; input.frequency.value = context.sampleRate / 2;
+  wet.gain.value = 0;
+  input.connect(dry); dry.connect(rack);
+  wet.connect(rack);
+  // Parallel taps avoid the extra render-block delay of a browser feedback cycle.
+  const delays = [1, .35, .1225].map((weight, i) => {
+    const delay = context.createDelay(2.4), gain = context.createGain();
+    delay.delayTime.value = .3 * (i + 1); gain.gain.value = weight / 1.4725;
+    input.connect(delay); delay.connect(gain); gain.connect(wet);
+    return delay;
+  });
+  const rackFX = { input, dry, wet, delays };
   meter.connect(context.destination);
   const split = context.createChannelSplitter(2);
   meter.connect(split);
   const stereoMeters = [context.createAnalyser(), context.createAnalyser()];
   stereoMeters.forEach((node, channel) => { node.fftSize = 2048; split.connect(node, channel); });
-  return { channels, meter, stereoMeters, strips, rack };
+  return { channels, meter, stereoMeters, strips, rack, rackFX };
 }
 
 export function updateMixer(context, mixer, crossfade, levels, master) {

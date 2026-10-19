@@ -4,7 +4,8 @@
 [first manual DJ increment](dj-mixer.md), then explicitly requested spinning,
 controllable decks, full piano keys and more instruments. The
 [console and live instruments increment](dj-console.md) implements that local
-scope. The original review-stop wording below is historical; it is not a blanket
+scope. The owner then continued local instrument controls with
+[tone and echo](instrument-effects.md). The original review-stop wording below is historical; it is not a blanket
 later-stage approval. All live, quality and venue requirements remain in force.
 
 Owner direction recorded 2026-10-18. This separate addendum preserves the

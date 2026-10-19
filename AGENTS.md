@@ -7,6 +7,7 @@ increment after the manual mixer. M0a and the master remain unchanged. Shared
 beat synchronization, AI Deck C, production/venue acceptance, new paid compute
 and deployment are not passed or authorized by this increment. Preserve earlier
 work, recordings and evidence.
+Owner continuation extends this local increment with [instrument tone and echo](docs/instrument-effects.md); other scope boundaries remain unchanged.
 
 
 Read the complete master specification before implementation. Djayvo is the

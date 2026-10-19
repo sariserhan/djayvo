@@ -103,3 +103,9 @@ input::file-selector-button { background:#25313b; border:1px solid #50616e; colo
 @media(max-width:560px) { .header-inner,main { padding-inline:12px; }.header-inner { height:auto; min-height:70px; gap:6px; }.console-title { align-items:start; flex-direction:column; gap:0; }.console-title h1 { font-size:28px; margin-bottom:8px; }.prototype { margin-bottom:18px; }.console { grid-template-columns:1fr; }.deck-b { border-left:0; }.mix-bus { grid-row:3; }.jog { width:min(235px,60vw); }.transport { grid-template-columns:1fr 1fr 1.5fr 1.3fr; }.instrument-heading { align-items:start; flex-direction:column; }.instrument-heading h2 { font-size:23px; }.instrument-controls { gap:14px; }.pad-heading { flex-direction:column; align-items:start; gap:4px; }.piano-key { width:36px; }.file-label { flex-wrap:wrap; gap:5px; } }
 @media(prefers-reduced-motion:reduce) { .vinyl { transform:none!important; } }
 @media(max-width:380px) { .drum-pads { grid-template-columns:repeat(2,1fr); } }
+
+.instrument-effects { display:flex; flex-wrap:wrap; align-items:center; gap:16px 24px; border:1px solid #4c4561; border-radius:6px; margin:20px 0 0; padding:12px 16px; min-width:0; }
+.instrument-effects legend { font:11px ui-monospace,Menlo,monospace; color:var(--keys); padding:0 8px; }
+.instrument-effects label { flex:1 1 140px; min-width:0; font-size:11px; color:var(--muted); }
+.instrument-effects output { float:right; color:var(--ink); font:11px ui-monospace,Menlo,monospace; }
+.instrument-effects p { flex-basis:100%; font-size:11px; color:var(--muted); margin:0; }

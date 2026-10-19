@@ -1,0 +1,30 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "url": "http://localhost:3000/studio/dj.html",
+    "status": "PASS",
+    "checks": [
+      "integrated page and bank load",
+      "live piano signal",
+      "echo control",
+      "reset",
+      "desktop/mobile rendered",
+      "no horizontal overflow or page errors"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "url": "http://localhost:3000/studio/dj.html",
+    "status": "PASS",
+    "checks": [
+      "integrated page and bank load",
+      "live piano signal",
+      "echo control",
+      "reset",
+      "desktop/mobile rendered",
+      "no horizontal overflow or page errors"
+    ]
+  }
+]

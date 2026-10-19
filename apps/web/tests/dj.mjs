@@ -4,6 +4,7 @@ import path from 'node:path';
 import { createServer } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { chromium, webkit } from 'playwright';
+import { verifyInstrumentFX } from './instrument-fx.mjs';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const kind = process.env.DJAYVO_BROWSER || 'chromium';
@@ -99,7 +100,7 @@ function tone(frequency, stereo = false) {
   return { name: `test-${frequency}.wav`, mimeType: 'audio/wav', buffer };
 }
 const a = tone(220), b = tone(440);
-let signalEvidence;
+let signalEvidence, fxEvidence;
 try {
   await page.goto(`${origin}/dj.html`);
   assert.match(await page.title(), /Djayvo — DJ workspace/);
@@ -131,6 +132,8 @@ try {
     }, values));
   }
   check('real offline stereo PCM: A/B endpoints, center, channel mute, master mute');
+  fxEvidence = await verifyInstrumentFX(page, output);
+  check('instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs');
   await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles(a);
   await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
@@ -246,6 +249,21 @@ try {
   await page.waitForTimeout(1100); assert.ok(await peak() < .0001);
   assert.equal(await page.locator('#audio-a').evaluate(a => a.paused), false);
   check('sustain, instrument/master mute, panic and blur release work without pausing decks');
+  await set('#rack-echo', .5); await set('#rack-delay', 800); await set('#rack-tone', 0);
+  assert.equal(await page.locator('#rack-tone-value').textContent(), '200 Hz');
+  await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('k');
+  await page.waitForTimeout(300); const dark = await peak();
+  await set('#rack-tone', 100); await page.waitForTimeout(200); const bright = await peak();
+  assert.ok(bright > dark * 2, `${bright} vs ${dark}`);
+  await page.keyboard.up('k'); await page.waitForTimeout(1200); assert.ok(await peak() > .0001);
+  await set('#rack-level', 0); await page.waitForTimeout(200); assert.ok(await peak() < .0001);
+  await set('#rack-level', .65); await set('#master', 0); await page.waitForTimeout(200); assert.ok(await peak() < .0001);
+  await set('#master', .75); await page.locator('#rack-fx-reset').click();
+  await page.waitForTimeout(300); assert.ok(await peak() < .0001);
+  assert.equal(await page.locator('#rack-echo-value').textContent(), 'Off');
+  assert.equal(await page.locator('#rack-delay-value').textContent(), '300 ms');
+  assert.equal(await page.locator('#audio-a').evaluate(a => a.paused), false);
+  check('live tone/echo controls change instrument audio; level/master silence tails; reset restores dry and decks continue');
   await page.locator('#octave-up').click(); assert.match(await page.locator('#octave-name').textContent(), /C5/);
   await page.locator('#octave-down').click();
   await page.locator('#patch').selectOption('4');
@@ -280,6 +298,7 @@ try {
   await page.waitForFunction(() => document.querySelector('#instrument-status').textContent.includes('engine stopped'));
   assert.equal(await page.locator('#audio-a').evaluate(audio => audio.paused), false);
   assert.equal(await page.locator('#patch').isDisabled(), true);
+  assert.equal(await page.locator('#rack-echo').isDisabled(), true);
   check('injected instrument processor failure disables keys and preserves deck playback');
   await page.locator('#pause-all').click();
   assert.equal(await page.locator('audio').evaluateAll(nodes => nodes.every(a => a.paused)), true);
@@ -333,6 +352,7 @@ try {
   await page.waitForFunction(() => document.querySelector('#instrument-status').textContent.startsWith('Ready'));
   await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('a');
   await page.waitForFunction(() => document.querySelector('#output-meter').value > .001);
+  await set('#rack-echo', .4); assert.equal(await page.locator('#rack-echo-value').textContent(), '40%');
   await page.keyboard.up('a'); await page.locator('#panic').click();
   assert.equal(serverRequests.length, requestsBeforeDisconnect);
   check('cached WASM bank and AudioWorklet produce instrument audio with server disconnected');
@@ -356,7 +376,7 @@ try {
   assert.deepEqual(errors, []);
   check('no upload/external request, URL-release errors or app console errors');
   await fs.writeFile(path.join(output, 'report.json'), JSON.stringify({ status: 'PASS', browser: kind, version: browser.version(), checks,
-    signalEvidence, audioContext: audioContextEvidence, actualMedia: { aPeak, channelSilent, masterSilent }, errors, warnings,
+    signalEvidence, fxEvidence, audioContext: audioContextEvidence, actualMedia: { aPeak, channelSilent, masterSilent }, errors, warnings,
     humanListening: 'NOT RUN', physicalDeviceLatency: 'NOT RUN', offlineVenueReliability: 'NOT RUN' }, null, 2));
 } catch (error) {
   await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings, state: await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({ instruments: document.querySelector('#instrument-status').textContent, decks: [...document.querySelectorAll('audio')].map(a => ({time:a.currentTime,paused:a.paused,seeking:a.seeking,ended:a.ended,rate:a.playbackRate,readyState:a.readyState})), meter:document.querySelector('#output-meter').value }))]) }, null, 2));

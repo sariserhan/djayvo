@@ -7,9 +7,10 @@ increment after the manual mixer. M0a and the master remain unchanged. Shared
 beat synchronization, AI Deck C, production/venue acceptance, new paid compute
 and deployment are not passed or authorized by this increment. Preserve earlier
 work, recordings and evidence.
+Owner continuation extends this local increment with [instrument tone and echo](docs/instrument-effects.md); other scope boundaries remain unchanged.
 
 
-Last updated: 2026-10-18 (America/New_York). Latest implementation: [performance console and live instruments](docs/dj-console.md).
+Last updated: 2026-10-18 (America/New_York). Latest implementation: [instrument tone and echo](docs/instrument-effects.md).
 Latest research: [style-adapter waveform diagnostics](docs/style-waveform-diagnostics.md).
 
 Use this file for past work, open issues and future development. Detailed test
@@ -41,6 +42,12 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
 
+- [x] **DJ07 — PASS (technical):** [Instrument tone and echo](docs/instrument-effects.md):
+  real low-pass tone, three fading echoes, manual spacing, dry reset and mute-safe
+  routing for keys/pads. 46 DJ checks, 19 unit checks, 40 voice regressions and
+  integrated site checks PASS; playable piano pairs and timing/waveform evidence
+  retained. Human musical quality and physical latency remain NOT RUN.
+
 - [x] **DJ05 — PASS (technical):** [Console and live instruments](docs/dj-console.md):
   rotating/joggable platters, cue/hot cues, ±16% pitch/key lock, manual tempo match,
   full-track loops, three-band EQ, 88-key piano, nine melodic patches and eight
@@ -49,8 +56,8 @@ closes that task only; it does not automatically pass its parent milestone.
   15/15 CTest suites per native platform, sanitizer and bit-identical PCM PASS.
   Professional/artist-reference quality remains NOT RUN.
 - [ ] **DJ06 — NOT RUN:** Human audition of the new instrument channel, MIDI
-  hardware mapping, audible scratching, beat-sized loops, FX and headphone cue
-  routing; prioritize these with the owner before further implementation.
+  hardware mapping, audible scratching, beat-sized loops, deck FX and headphone cue
+  routing; instrument tone/echo is covered by DJ07. Prioritize remaining work with the owner.
 
 - [x] **DJ01 — PASS:** [Manual two-deck foundation](docs/dj-mixer.md): actual local
   playback, seek/levels/crossfader/master, stereo meter, permission and unload,
@@ -253,6 +260,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 
 | Done | ID | Status | Development | Commit / evidence |
 | --- | --- | --- | --- | --- |
+| [x] | DJ07 | PASS | Local instrument tone/echo, measured browser timing, stereo sweep fix and playable piano pairs | [Effects evidence](docs/instrument-effects.md) |
 | [x] | P01 | PASS | C++17 foundation, sample-frame scheduling, polyphony, WAV output, validation and deterministic tests | `02d0e18` · [M0a](docs/m0a-report.md) |
 | [x] | P02 | PASS | Input decoding/resampling, onset analysis, three rule-based styles, clean hooks, stems, score exports and C ABI | `5837dfa` · [architecture](docs/remix-architecture.md) |
 | [x] | P03 | PASS | Transfer archive, supplied speech fixture and reviewed-branch handoff packaging | `5837dfa`, `1cb2e92` · [handoff](docs/mac-agent-handoff.md) |

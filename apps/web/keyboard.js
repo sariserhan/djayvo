@@ -1,4 +1,5 @@
 import { PATCHES, DRUMS, noteName, playable, createRack } from './instrument-rack.js';
+import { updateInstrumentFX } from './mixer.js';
 const $ = id => document.getElementById(id);
 export function attachKeyboard({ graph, context, mixer, levels, masterControls }) {
   let node, loading = false, nextId = 1, root = 60, sustain = false;
@@ -57,7 +58,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
     bind(button, pitch, patch); $('drum-pads').append(button);
   }
   function availability() {
-    for (const id of ['patch', 'velocity', 'rack-level', 'sustain', 'panic', 'octave-down', 'octave-up']) $(id).disabled = !node;
+    for (const id of ['patch', 'velocity', 'rack-level', 'sustain', 'panic', 'octave-down', 'octave-up', 'rack-tone', 'rack-echo', 'rack-delay', 'rack-fx-reset']) $(id).disabled = !node;
     for (const [pitch, button] of keys) button.disabled = !node || !playable(Number($('patch').value), pitch);
     for (const button of $('drum-pads').children) button.disabled = !node;
     $('octave-down').disabled ||= root <= 24; $('octave-up').disabled ||= root >= 96;
@@ -76,7 +77,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
     if (node || loading) return;
     loading = true; $('load-instruments').disabled = true; status('Preparing the instrument bank…');
     try {
-      graph(); await context().resume(); node = await createRack(context(), mixer().rack);
+      graph(); await context().resume(); node = await createRack(context(), mixer().rackFX.input);
       node.addEventListener('processorerror', () => {
         panic(); node.disconnect(); node.port.close(); node = null; availability(); masterControls();
         status('The instrument engine stopped. Your decks remain available. Reload to prepare instruments again.');
@@ -90,6 +91,17 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
   $('patch').onchange = () => { panic(); availability(); };
   $('velocity').oninput = () => { $('velocity-value').textContent = $('velocity').value; };
   $('rack-level').oninput = levels;
+  function effects() {
+    const tone = Number($('rack-tone').value), echo = Number($('rack-echo').value), milliseconds = Number($('rack-delay').value);
+    $('rack-tone-value').textContent = tone === 100 ? 'Open' : `${Math.round(200 * 100 ** (tone / 100))} Hz`;
+    $('rack-echo-value').textContent = echo === 0 ? 'Off' : `${Math.round(echo * 100)}%`;
+    $('rack-delay-value').textContent = `${milliseconds} ms`;
+    if (mixer()) updateInstrumentFX(context(), mixer().rackFX, tone, echo, milliseconds);
+  }
+  for (const id of ['rack-tone', 'rack-echo', 'rack-delay']) $(id).oninput = effects;
+  $('rack-fx-reset').onclick = () => {
+    $('rack-tone').value = 100; $('rack-echo').value = 0; $('rack-delay').value = 300; effects();
+  };
   $('sustain').onclick = () => {
     sustain = !sustain; $('sustain').setAttribute('aria-pressed', String(sustain));
     if (!sustain) { for (const id of deferred) send({ type: 'off', id }); deferred.clear(); }

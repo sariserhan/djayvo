@@ -7,6 +7,7 @@ increment after the manual mixer. M0a and the master remain unchanged. Shared
 beat synchronization, AI Deck C, production/venue acceptance, new paid compute
 and deployment are not passed or authorized by this increment. Preserve earlier
 work, recordings and evidence.
+Owner continuation extends this local increment with [instrument tone and echo](instrument-effects.md); other scope boundaries remain unchanged.
 
 
 Audited 2026-10-18 against the complete, unchanged master specification and the
@@ -17,7 +18,14 @@ remain paused. Earlier broad implementation authorization is bounded by
 the current local DJ increment above.
 [TODO](../TODO.md) tracks individual past/future work and evidence links.
 
-Latest local implementation: [Performance console and live instruments](dj-console.md).
+Latest local follow-up: [Instrument tone and echo](instrument-effects.md).
+**PASS:** real tone/echo controls, 46 two-browser DJ checks, 19 unit checks,
+40 voice regressions, playable dry/echo piano WAVs, offline reload and integrated
+site verification. Browser timing/waveform measurements are retained; native
+and Linux browser execution this increment are **NOT RUN**. Full workflow remains
+**PARTIAL**; musical quality, hardware latency and venue acceptance **NOT RUN**.
+
+Previous local implementation: [Performance console and live instruments](dj-console.md).
 **PASS:** 88 piano keys, nine melodic patches/two drum kits, real deck transport,
 EQ, pitch/cue/loop and instrument controls; native Mac/Linux and WASM comparison
 with identical PCM; playable palette retained locally. **PARTIAL:** full DJ/AI

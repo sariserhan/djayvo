@@ -168,3 +168,9 @@ used the repository's Playwright workflow. Context7 resolve/query tools were
 also unavailable; official MDN [AudioWorklet](https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletNode),
 [BiquadFilter](https://developer.mozilla.org/en-US/docs/Web/API/BiquadFilterNode) and
 [pitch preservation](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/preservesPitch) documentation provided the API reference.
+
+## Subsequent local increment
+
+[Instrument tone and echo](instrument-effects.md) adds effects to keys and pads.
+The results above remain historical evidence for this console revision. See the
+new report for current browser checks, WAVs and remaining gates.
