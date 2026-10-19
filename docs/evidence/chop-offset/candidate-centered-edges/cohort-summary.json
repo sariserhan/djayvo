@@ -1,0 +1,672 @@
+{
+  "not_promoted": true,
+  "changes": [
+    {
+      "plan": "ls-174-50561-0018.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6313-66125-0024.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1988-147956-0018.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-174-50561-0018.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1673-143397-0009.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2078-142845-0042.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1988-147956-0018.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2086-149220-0047.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6313-66125-0024.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1673-143397-0009.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1673-143397-0009.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6319-57405-0007.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-84-121123-0012.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2078-142845-0042.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-84-121123-0012.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6295-244435-0035.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6295-244435-0035.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2078-142845-0042.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2086-149220-0047.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6313-66125-0024.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2803-161169-0002.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-8297-275156-0004.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2035-147960-0013.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2035-147960-0013.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1272-128104-0001.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-174-50561-0018.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-174-50561-0018.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2086-149220-0047.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-174-50561-0018.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-5536-43358-0016.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2078-142845-0042.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6313-66125-0024.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2086-149220-0047.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1673-143397-0009.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6295-244435-0035.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6319-57405-0007.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-174-50561-0018.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1988-147956-0018.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1988-147956-0018.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1993-147965-0001.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2803-161169-0002.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-84-121123-0012.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1272-128104-0001.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2803-161169-0002.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6345-93302-0019.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6345-93302-0019.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1988-147956-0018.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6345-93302-0019.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-84-121123-0012.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6295-244435-0035.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6295-244435-0035.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1673-143397-0009.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1993-147965-0001.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2078-142845-0042.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1272-128104-0001.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1988-147956-0018.club.score.json",
+      "changed_fields": [
+        "voice_clips",
+        "voice_events"
+      ]
+    },
+    {
+      "plan": "ls-1993-147965-0001.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-84-121123-0012.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6313-66125-0024.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6319-57405-0007.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1993-147965-0001.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-5536-43358-0016.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-8297-275156-0004.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2086-149220-0047.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2035-147960-0013.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-5536-43358-0016.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2035-147960-0013.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2078-142845-0042.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6345-93302-0019.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2035-147960-0013.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-5536-43358-0016.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1993-147965-0001.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6295-244435-0035.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2803-161169-0002.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6313-66125-0024.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6345-93302-0019.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1272-128104-0001.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6319-57405-0007.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2803-161169-0002.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1272-128104-0001.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-84-121123-0012.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2803-161169-0002.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2086-149220-0047.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1993-147965-0001.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2078-142845-0042.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-5536-43358-0016.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-8297-275156-0004.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2035-147960-0013.hybrid.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6345-93302-0019.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1673-143397-0009.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6319-57405-0007.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1272-128104-0001.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6319-57405-0007.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6295-244435-0035.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-8297-275156-0004.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6313-66125-0024.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-84-121123-0012.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-174-50561-0018.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1673-143397-0009.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2086-149220-0047.club.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2035-147960-0013.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6319-57405-0007.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1272-128104-0001.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-8297-275156-0004.funk.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1988-147956-0018.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-1993-147965-0001.call_response.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-6345-93302-0019.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-5536-43358-0016.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-8297-275156-0004.reggae.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-5536-43358-0016.experimental.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    },
+    {
+      "plan": "ls-2803-161169-0002.hiphop.score.json",
+      "changed_fields": [
+        "voice_clips"
+      ]
+    }
+  ]
+}

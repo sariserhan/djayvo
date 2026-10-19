@@ -1,0 +1,19 @@
+PASS: renders/chop-offset-20261019/after/short-flat.experimental.wav
+PASS: complete export renders/chop-offset-20261019/after/short-flat.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/chop-offset-20261019/after/short-positive.experimental.wav
+PASS: complete export renders/chop-offset-20261019/after/short-positive.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/chop-offset-20261019/after/short-negative.experimental.wav
+PASS: complete export renders/chop-offset-20261019/after/short-negative.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/chop-offset-20261019/after/long-flat.club.wav
+PASS: complete export renders/chop-offset-20261019/after/long-flat.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/chop-offset-20261019/after/long-positive.club.wav
+PASS: complete export renders/chop-offset-20261019/after/long-positive.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/chop-offset-20261019/after/long-negative.club.wav
+PASS: complete export renders/chop-offset-20261019/after/long-negative.complete.json
+Listening/recognizability: NOT RUN
+PASS: six complete exports; synthetic technical controls, not speech or listening evidence

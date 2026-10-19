@@ -12,7 +12,7 @@ new paid compute, publication and monetization still need explicit authorization
 
 
 Last updated: 2026-10-19 (America/New_York). Latest validation: [Linux browser portability](docs/linux-browser.md).
-Latest engine fix: [Sustained-note period selection](docs/pitch-period.md).
+Latest engine fix: [Offset-resistant vocal pause detection](docs/chop-offset.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
 
@@ -264,6 +264,14 @@ closes that task only; it does not automatically pass its parent milestone.
   their pitch accuracy/listening **NOT RUN**, frozen study preserved. No learned
   behavior or production-quality advancement is inferred.
 
+- [x] **C15 — PASS (technical):** [Offset-resistant vocal pause detection](docs/chop-offset.md).
+  Center crop energy so constant recording offsets do not hide pauses and force
+  premature fallback slices; retain original PCM and edge selection. 48 controls,
+  Mac/Linux 15/15 suites, sanitizer, 107 exact cross-OS WAVs, 17 WASM comparisons
+  and 11 saved-score replays pass. All 65 owner/fixture WAVs preserved. One of
+  20 licensed speech sources changes crops; human benefit **NOT RUN**. Frozen
+  evaluation and prior reviews remain intact; no new training or paid compute.
+
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,
 with private generation plus a reviewed public catalogue. Keep the database free;
@@ -472,6 +480,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P63 | PASS | Fix electrical offset masking source attacks/pauses and inventing noise pitch; validate Mac/Linux/WASM, preserve 65 existing renders and saved-score replay | [Evidence](docs/analysis-offset.md) |
 | [x] | P64 | PASS | Prepare controlled phrase-articulation research, verify score isolation and 40 Mac/Linux WAVs, deliver 16 matched private A/B listening files; human benefit and default promotion remain open | [Evidence](docs/phrase-articulation.md) |
 | [x] | P65 | PASS | Correct sustained-tone period/key selection; calibrate 180 cases, verify native/WASM output and saved-score compatibility, characterize four changed speech keys | [Evidence](docs/pitch-period.md) |
+| [x] | P66 | PASS | Fix recording-offset energy masking vocal pauses; preserve edge selection and 65 existing WAVs, verify Mac/Linux/WASM and saved scores, audit 20 licensed speech sources | [Evidence](docs/chop-offset.md) |
 
 ## Engineering backlog
 
@@ -485,7 +494,7 @@ is needed. Prioritize by recorded listening defects and product requirements.
 - [ ] **E02 — PARTIAL:** Improve phrase/chop selection if N03/N05 show cut words.
   V3 adds sustained low-energy endings and attack pre-roll. Club v8 extends
   the pause search, deduplicates overlapping candidates and prefers pause-ended crops;
-  optional offline word-time estimates/crop proposals are implemented; reliable boundaries, semantic selection and listening acceptance remain open.
+  optional offline word-time estimates/crop proposals are implemented. [Offset-resistant pause detection](docs/chop-offset.md) now retains known endings under constant recording offsets; reliable word boundaries, semantic selection and listening acceptance remain open.
 - [ ] **E03 — PARTIAL:** Independent pitch/time DSP, bounded 1.1 plans, cached
   preparation and four owner comparisons implemented. Four-rate technical checks,
   exact M5/Linux PCM, preserved clean hooks and a three-pulse probe pass. Formant

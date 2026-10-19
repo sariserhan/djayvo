@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "node": "v22.23.1",
+  "output": "renders/chop-offset-20261019/owner-wasm-ENQklR",
+  "cases": 10,
+  "plan_decisions_event_frames_pcm": "exact",
+  "analysis_absolute_tolerance": 1e-12,
+  "analysis_differences": [],
+  "max_pcm_difference": 0,
+  "rms_pcm_difference": 0,
+  "rendered_browser_interaction": "NOT RUN"
+}

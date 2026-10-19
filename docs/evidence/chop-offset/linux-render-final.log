@@ -1,0 +1,52 @@
+PASS: /out/chop-offset-20261019/owner-4123.call_response.wav
+PASS: complete export /out/chop-offset-20261019/owner-4123.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/owner-4124.call_response.wav
+PASS: complete export /out/chop-offset-20261019/owner-4124.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/owner-4125.call_response.wav
+PASS: complete export /out/chop-offset-20261019/owner-4125.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/owner-4126.call_response.wav
+PASS: complete export /out/chop-offset-20261019/owner-4126.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/fixture.hiphop.wav
+PASS: /out/chop-offset-20261019/fixture.reggae.wav
+PASS: /out/chop-offset-20261019/fixture.experimental.wav
+PASS: complete export /out/chop-offset-20261019/fixture.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/club.club.wav
+PASS: complete export /out/chop-offset-20261019/club.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/funk.funk.wav
+PASS: complete export /out/chop-offset-20261019/funk.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/baseline.baseline.wav
+PASS: complete export /out/chop-offset-20261019/baseline.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/call_response.call_response.wav
+PASS: complete export /out/chop-offset-20261019/call_response.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/hybrid.hybrid.wav
+PASS: complete export /out/chop-offset-20261019/hybrid.complete.json
+Listening/recognizability: NOT RUN
+PASS: 10 exports in /out/chop-offset-20261019
+PASS: /out/chop-offset-20261019/short-flat.experimental.wav
+PASS: complete export /out/chop-offset-20261019/short-flat.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/short-positive.experimental.wav
+PASS: complete export /out/chop-offset-20261019/short-positive.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/short-negative.experimental.wav
+PASS: complete export /out/chop-offset-20261019/short-negative.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/long-flat.club.wav
+PASS: complete export /out/chop-offset-20261019/long-flat.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/long-positive.club.wav
+PASS: complete export /out/chop-offset-20261019/long-positive.complete.json
+Listening/recognizability: NOT RUN
+PASS: /out/chop-offset-20261019/long-negative.club.wav
+PASS: complete export /out/chop-offset-20261019/long-negative.complete.json
+Listening/recognizability: NOT RUN
+PASS: six complete exports; synthetic technical controls, not speech or listening evidence

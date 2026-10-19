@@ -68,7 +68,7 @@ std::uint64_t near_zero(const AudioBuffer& source, std::uint64_t frame) {
         if (std::abs(source.mono[static_cast<std::size_t>(i)]) < std::abs(source.mono[static_cast<std::size_t>(best)])) best=i;
     return best;
 }
-Region chop_region(const AudioBuffer& source, std::uint64_t onset, std::uint64_t limit, bool extended=false) {
+Region chop_region(const AudioBuffer& source, std::uint64_t onset, std::uint64_t limit, double mean, bool extended=false) {
     const auto hop=source.sample_rate/100U;
     const auto begin=near_zero(source,onset>hop?onset-hop:0);
     const auto stop=std::min<std::uint64_t>(limit,onset+(extended?90ULL:60ULL)*hop);
@@ -76,7 +76,10 @@ Region chop_region(const AudioBuffer& source, std::uint64_t onset, std::uint64_t
     unsigned quiet=0;
     for (auto frame=onset;frame+hop<=stop;frame+=hop) {
         double power=0;
-        for (auto i=frame;i<frame+hop;++i) power+=static_cast<double>(source.mono[i])*source.mono[i];
+        for (auto i=frame;i<frame+hop;++i) {
+            const double signal=source.mono[i]-mean;
+            power+=signal*signal;
+        }
         power/=hop;
         peak_power=std::max(peak_power,power);
         // Require a sustained energy valley, not a single waveform zero crossing.
@@ -138,9 +141,13 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     if (context) { r.tonic_midi=context->tonic_midi; r.key_mode=context->mode; }
     // Entire source survives unpitched and forward. Edge fades are only 3 ms.
     r.clips.push_back({0,source.mono.size(),1.0});
+    // DC is not audible energy; center pause detection while keeping source PCM and edge selection intact.
+    double mean=0;
+    for (float sample:source.mono) mean+=sample;
+    mean/=static_cast<double>(source.mono.size());
     for (auto onset : a.onsets) {
         if (r.clips.size() >= 13) break;
-        const auto clip=chop_region(source,onset,source.mono.size(),club);
+        const auto clip=chop_region(source,onset,source.mono.size(),mean,club);
         if (club) {
             if (clip.confidence<0.65) continue;
             const bool duplicate=std::any_of(r.clips.begin()+1,r.clips.end(),[&](const Region& other) {
@@ -153,7 +160,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     }
     if (r.clips.size() == 1) {
         for (const auto& phrase : a.phrases) {
-            auto clip=chop_region(source,phrase.begin,phrase.end,club);
+            auto clip=chop_region(source,phrase.begin,phrase.end,mean,club);
             clip.begin=phrase.begin;
             clip.end=std::clamp(clip.end,phrase.begin+1,phrase.end);
             r.clips.push_back(clip);

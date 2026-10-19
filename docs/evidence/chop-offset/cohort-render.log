@@ -1,0 +1,6 @@
+PASS: renders/chop-offset-20261019/cohort-render/before.club.wav
+PASS: complete export renders/chop-offset-20261019/cohort-render/before.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/chop-offset-20261019/cohort-render/after.club.wav
+PASS: complete export renders/chop-offset-20261019/cohort-render/after.complete.json
+Listening/recognizability: NOT RUN

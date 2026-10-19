@@ -579,6 +579,32 @@ void pause_aware_chops() {
         check(p.clips[1].begin==rate && p.clips[1].end==rate+1,"tiny fallback region escapes its bounds");
     }
 }
+void offset_chops() {
+    for (const unsigned rate:{8000U,44100U,48000U,192000U}) {
+        for (const auto style:{djayvo::Strategy::experimental,djayvo::Strategy::club}) {
+            const auto end=rate*(style==djayvo::Strategy::club?80ULL:47ULL)/100;
+            for (const float offset:{0.0F,0.25F,-0.25F}) for (const bool fallback:{false,true}) {
+                auto a=source();a.sample_rate=a.original_rate=rate;
+                a.mono.assign(3*rate,offset);a.original_frames=a.mono.size();
+                for (std::size_t i=rate/10;i<end;++i)
+                    if (i<rate*3/10 || i>=rate*31/100)
+                        a.mono[i]+=static_cast<float>(0.3*std::sin(6.283185307179586*200*i/rate));
+                const auto original=a.mono;
+                auto features=djayvo::analyze(a);features.onsets={rate/10};
+                if (fallback) features.onsets.clear();
+                const auto p=djayvo::make_remix(a,features,style,4123,true,false);
+                check(p.clips.size()==2,"offset changed the number of pause-ended crops");
+                const auto clip=p.clips[1];
+                check(clip.end>=end && clip.end<=end+rate*3/100 && clip.confidence==0.65,
+                      "recording offset hid a pause or caused a premature fallback crop");
+                check(clip.begin<=rate/10 && clip.begin>=rate*7/100,"offset lost crop attack context");
+                check(p.clips[0].begin==0 && p.clips[0].end==a.mono.size() && a.mono==original,
+                      "offset-resistant cropping changed source PCM or the complete clean hook");
+                djayvo::validate(p,a);
+            }
+        }
+    }
+}
 void no_allocations() {
     const auto a=source();
     for (auto style:{djayvo::Strategy::experimental,djayvo::Strategy::club,djayvo::Strategy::funk,djayvo::Strategy::call_response,djayvo::Strategy::hybrid}) {
@@ -979,6 +1005,7 @@ int main() {
         {"source phrase order, accents, silence invariance and developed instrumental answers",source_phrase_development},
         {"funk syncopation, bass/kick lock, ghost notes, seed variety and input response",funk_composition},
         {"pause-aware crops, attack pre-roll, bounded fallback and EOF at four rates",pause_aware_chops},
+        {"pause-ended short/club crops with positive/negative offsets and phrase fallback",offset_chops},
         {"subtraction and return across styles and seeds",arrangement_contrast},
         {"instrument room timing, stereo, dry speech and finite tail",room_processing},
         {"independent voice pitch/time, four rates, exact duration/reverse, bounds and no callback allocation",independent_voice},

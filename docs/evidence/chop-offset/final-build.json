@@ -1,0 +1,27 @@
+{
+  "protected_files": "PASS",
+  "preserved_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "build_and_evidence_sha256": {
+    "core/arrangement/remix.cpp": "d14d7336c22471065f75fb331346a9a9effc2831aec881f61f3698ab3e811858",
+    "core/tests/remix_tests.cpp": "8bd3e745a92b88bb73c990d45975fd37e600866d0cbf5f2deeb986dd58d7c113",
+    "build-mac/djayvo_remix": "1f9efd34ee9ff9bfeece94345658d6afc2da70bb410357461807d3e56fb753e9",
+    "build-mac/libdjayvo_core.a": "d857f65ddc68dea8f0ed680328b9005674758c0b58e43c99c9515686cc09adba",
+    "build-web/djayvo_web.wasm": "e3ce86adbaad6a0416973dbe26acf86b15c46162e40e8c0ab0315034c3416823",
+    "renders/chop-offset-20261019/controls/long-flat.wav": "c082cfb7c278f5930ad6632ab4f0062a3f605b631a140e454f2b569886b4e726",
+    "renders/chop-offset-20261019/controls/long-negative.wav": "ee294f75eff961cb47a04bd42dfeba79470d6dbc975dfbfabf24ab1acee2cb48",
+    "renders/chop-offset-20261019/controls/long-positive.wav": "abaa2bec2e7a635abf755df78cb281b8c7962c7396b64330e40f97aa95b567e2",
+    "renders/chop-offset-20261019/controls/short-flat.wav": "dfc9a6965e683699626e38bda4967fa3299bf5004054c43eafb2e386f57eff22",
+    "renders/chop-offset-20261019/controls/short-negative.wav": "e2fd5b18e53720750e183b13d20031a3ddd06d6b2d7f8c42c2eb50aebacd1d05",
+    "renders/chop-offset-20261019/controls/short-positive.wav": "09a1fe88b095dffc7058139c75f003807fcc12ee128048ea2c067331a9fa949c",
+    "docs/evidence/chop-offset/controls.py": "cd6cbdc2b50ad5e4f87fe7d3f2aaf14ef147ce5d811ac9a40fcd1f8e4065673f",
+    "docs/evidence/chop-offset/render-controls.py": "9539743cfd10cf8717c456bf50992774eb3a8dc569ed4fff7a11193ae4f9b6b8",
+    "docs/evidence/chop-offset/cohort-probe.cpp": "65cf9eed6a8c5b0dc959edef41697bf598347f03bf1def2015ccd672bc39cee0",
+    "docs/evidence/chop-offset/wasm-check.mjs": "696c571b603363f36b7f3c5467c73e9294fcc490f7bfa295f85e3d5f9b2fad39",
+    "docs/evidence/chop-offset/measure.py": "e48a0ad12aa3249d96566562696362bbd52ba0e72f56054ec61d2e079058f76b",
+    "docs/evidence/chop-offset/measurements.json": "ef35eadefbee1d88c91c84b2bcd66d0b087254895058045d5e0f8996b814329e"
+  }
+}

@@ -1,0 +1,59 @@
+[  3%] Building CXX object CMakeFiles/djayvo_core.dir/core/arrangement/remix.cpp.o
+[  6%] Linking CXX static library libdjayvo_core.a
+[ 50%] Built target djayvo_core
+[ 53%] Linking CXX executable djayvo_session_render
+[ 56%] Linking CXX executable djayvo_render
+[ 60%] Linking CXX executable djayvo_live_tests
+[ 63%] Linking CXX executable djayvo_remix
+[ 66%] Built target djayvo_live_tests
+[ 70%] Built target djayvo_session_render
+[ 73%] Built target djayvo_render
+[ 80%] Built target djayvo_remix
+[ 83%] Linking CXX executable djayvo_tests
+[ 86%] Linking CXX executable djayvo_c_smoke
+[ 90%] Linking CXX executable djayvo_remix_tests
+[ 93%] Built target djayvo_c_smoke
+[ 96%] Built target djayvo_tests
+[100%] Built target djayvo_remix_tests
+Internal ctest changing into directory: /work/chop-offset-20261019
+Test project /work/chop-offset-20261019
+      Start  1: live_instruments
+ 1/15 Test  #1: live_instruments .................   Passed    0.34 sec
+      Start  2: core
+ 2/15 Test  #2: core .............................   Passed    0.64 sec
+      Start  3: remix_core
+ 3/15 Test  #3: remix_core .......................   Passed    8.92 sec
+      Start  4: c_abi
+ 4/15 Test  #4: c_abi ............................   Passed    0.57 sec
+      Start  5: acoustic_assets
+ 5/15 Test  #5: acoustic_assets ..................   Passed    0.66 sec
+      Start  6: sustained_assets
+ 6/15 Test  #6: sustained_assets .................   Passed    0.02 sec
+      Start  7: guitar_assets
+ 7/15 Test  #7: guitar_assets ....................   Passed    0.60 sec
+      Start  8: electronic_assets
+ 8/15 Test  #8: electronic_assets ................   Passed    0.12 sec
+      Start  9: wav_integration
+ 9/15 Test  #9: wav_integration ..................   Passed    0.77 sec
+      Start 10: remix_integration
+10/15 Test #10: remix_integration ................   Passed    5.14 sec
+      Start 11: word_timing
+11/15 Test #11: word_timing ......................   Passed    0.06 sec
+      Start 12: tooling
+12/15 Test #12: tooling ..........................   Passed    1.55 sec
+      Start 13: listening_review
+13/15 Test #13: listening_review .................   Passed    0.05 sec
+      Start 14: evaluation_preparation
+14/15 Test #14: evaluation_preparation ...........   Passed   16.65 sec
+      Start 15: plan_import
+15/15 Test #15: plan_import ......................   Passed    5.95 sec
+
+100% tests passed, 0 tests failed out of 15
+
+Total Test time (real) =  42.06 sec
+Traceback (most recent call last):
+  File "/src/docs/evidence/source-motif/render.py", line 12, in <module>
+    args.output.mkdir(parents=True,exist_ok=False)
+  File "/usr/lib/python3.11/pathlib.py", line 1117, in mkdir
+    os.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: '/out/chop-offset-20261019'

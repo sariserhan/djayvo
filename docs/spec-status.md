@@ -1,6 +1,11 @@
 # Specification completion ledger
 
-Latest engine fix: [Sustained-note period selection](pitch-period.md) **PASS**
+Latest engine fix: [Offset-resistant vocal pause detection](chop-offset.md)
+**PASS (technical)**: known endings, native/WASM agreement and saved-score
+compatibility. One licensed speech source changes crops; new word accuracy and
+musical benefit **NOT RUN**. M1 and production remain open.
+
+Previous engine fix: [Sustained-note period selection](pitch-period.md) **PASS**
 for known-tone calibration and native/WASM portability. Four licensed speech
 inputs change selected tonic; verified speech pitch and musical benefit remain
 **NOT RUN**. This does not close M1 or production gates.

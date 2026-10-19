@@ -1,0 +1,2 @@
+PASS: 107 exact Mac/Linux WAVs; 65 original WAVs unchanged; 11 saved scores; 17 WASM cases
+PARTIAL: one of 20 licensed speech inputs changes crops; musical benefit NOT RUN

@@ -12,6 +12,17 @@ new paid compute, publication and monetization still need explicit authorization
 
 
 Latest shared-engine fix — 2026-10-19:
+[Offset-resistant vocal pause detection](chop-offset.md) **PASS (technical)**:
+48 controls, actual Mac/Linux 15/15 suites, sanitizer, 107 exact cross-OS WAVs,
+17 WASM comparisons and 11 saved-score replays. All 65 original owner/fixture
+WAVs remain identical. Source PCM and waveform edge selection are preserved.
+One of 20 licensed speech inputs changes crops; fresh club comparisons exist,
+but new word-boundary accuracy and musical preference are **NOT RUN**. Frozen
+study and prior reviews intact; local web engine rebuilt/audited. Overall
+quality/production **PARTIAL**; no model training, upload or paid compute.
+
+
+Previous shared-engine fix — 2026-10-19:
 [Sustained-note period selection](pitch-period.md) **PASS (technical)**: later
 period multiples no longer win merely by fitting the integer sample grid.
 180 known-tone combinations, Mac/Linux suites, sanitizer, 74 exact cross-OS WAVs,
