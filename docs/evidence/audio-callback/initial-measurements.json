@@ -1,0 +1,37 @@
+{
+  "signal": "PASS",
+  "command_count": "PASS",
+  "captured_frames": 2880000,
+  "cpp_allocation_gate": "PASS",
+  "sample_timestamp_gate": "PASS",
+  "observed_callback_deadline_gate": "PASS",
+  "route_start_end_gate": "PASS",
+  "device_transport_fourcc": "dprt",
+  "callback_frames": [
+    512
+  ],
+  "callback_us": {
+    "p50": 590.125,
+    "p95": 1920.0833333333333,
+    "p99": 3324.5,
+    "p100": 4261.916666666666
+  },
+  "first_last_sample_time_span_seconds": 60.0,
+  "max_pcm_difference": 0,
+  "rms_pcm_difference": 0,
+  "captured_pcm_sha256": "b42c008dc84af3e0e524176639611034ac3944d1364eaf007d4ba6ead4d24289",
+  "callback_trace_sha256": "901f5fef094ef4e80a0f3a113ed3d8b1bc6ca9f5962af3ca8ea5f64859631e40",
+  "reference_event_sha256": "fa5df6e8ea62d51f1527d91d2d2da167e59f47a6d8d0f43e7d2df2a6191d6575",
+  "playable_wav": "renders/audio-callback-20261019/captured-instruments.wav",
+  "wav_sha256": "bb5e9d5e13494191303173f9a1bbccee1a9de3cb8f7a36810fb4e3df11346602",
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  },
+  "browser_audio_worklet": "NOT RUN",
+  "speaker_loopback": "NOT RUN",
+  "microphone_round_trip": "NOT RUN",
+  "musical_quality": "NOT RUN",
+  "venue_readiness": "PARTIAL"
+}

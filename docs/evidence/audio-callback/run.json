@@ -1,0 +1,22 @@
+{
+  "client_rate": 48000,
+  "captured_frames": 2880000,
+  "wall_seconds": 60.052383333,
+  "callbacks": 5625,
+  "device_rate": 48000,
+  "device_buffer_frames": 512,
+  "device_transport": 1685090932,
+  "default_device_unchanged": true,
+  "host_tick_us": 0.041666666666666664,
+  "commands": 1920,
+  "sample_time_gaps": 0,
+  "missing_timestamps": 0,
+  "cpp_callback_allocations": 0,
+  "callback_deadline_misses": 0,
+  "callback_max_us": 4261.916666666666,
+  "peak": 0.724759042263031,
+  "max_pcm_difference": 0,
+  "rms_pcm_difference": 0,
+  "active_at_end": 0,
+  "speaker_output_muted": true
+}

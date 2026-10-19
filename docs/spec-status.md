@@ -1,6 +1,16 @@
 # Specification completion ledger
 
-Latest local timing evidence — 2026-10-19:
+Latest actual audio-host evidence — 2026-10-19:
+[macOS output callback](audio-callback.md) **PASS (bounded technical scope)**:
+60 real seconds on the M5's DisplayPort output route, 5,625 callbacks at 512
+frames/48 kHz, exact offline PCM and command-frame agreement, no sample-time
+gaps or counted C++ allocations. Longest measured callback 4.262 ms against
+10.667 ms. Self-tests, sanitizer and focused live suite pass. Prior 128-frame
+benchmark failures remain **FAIL**; cause and full live readiness **PARTIAL**.
+Browser AudioWorklet, acoustic loopback, microphone latency, venue endurance
+and new listening **NOT RUN**. Engine, recordings and master unchanged.
+
+Previous local timing evidence — 2026-10-19:
 [Live instrument load and deadlines](live-deadline.md): **PASS** for 600 virtual
 seconds per run, 32 simultaneous voices, 60 identical programs, exact Mac/Linux/
 WASM PCM and command frames, native allocation checks and focused live tests.
@@ -200,7 +210,7 @@ a source motif; C06 remains **PARTIAL**, with new engine work/evaluation open.
 | M1 formal quality baseline | NOT RUN | Licensed cohort prepared; remaining coverage/verification and independent blinded observations required; owner recording stays owner-only |
 | M2 constrained AI director | PARTIAL | Offline import/fallback prerequisite implemented; model integration/benchmark and quality advancement remain NOT RUN behind M1 |
 | M3 device prototype | PARTIAL | Existing implementation and device evidence retained; remaining phone work paused |
-| M4 live improvisation | PARTIAL | Protocol only; live implementation, feedback handling and actual latency/battery measurements remain NOT RUN |
+| M4 live improvisation | PARTIAL | Prepared A/C session and live instrument controls implemented; bounded M5 native output-callback validation PASS; full browser scheduling, continuous capture/feedback, actual round-trip latency and battery/venue evidence remain open |
 | M5 production/monetization | PARTIAL | Release/privacy preparation exists; quality, demand, moderation, infrastructure, economics and release approval remain open |
 
 This ledger exposes unfinished code as well as missing tests. Neither a successful

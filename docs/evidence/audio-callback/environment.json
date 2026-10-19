@@ -1,0 +1,25 @@
+{
+  "head": "79c0e86bdc2ee9f62772e54d2bce2d4da3c34172",
+  "cpu": "Apple M5",
+  "memory": "17179869184",
+  "macOS": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241",
+  "Xcode": "Xcode 27.1\nBuild version 27A9275",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+  "default_output_after_run": {
+    "_name": "LG Ultra HD",
+    "_properties": "coreaudio_default_audio_system_device",
+    "coreaudio_default_audio_output_device": "spaudio_yes",
+    "coreaudio_default_audio_system_device": "spaudio_yes",
+    "coreaudio_device_manufacturer": "GSM",
+    "coreaudio_device_output": 2,
+    "coreaudio_device_srate": 48000,
+    "coreaudio_device_transport": "coreaudio_device_type_displayport",
+    "coreaudio_output_source": "spaudio_default"
+  },
+  "files_sha256": {
+    "docs/evidence/audio-callback/probe.cpp": "986b1ab50f834f955a7e8f46e5a67b7980a13907ac76f75d0201aa09925ab0e9",
+    "docs/evidence/audio-callback/measure.py": "95e2a9523a28d6e72aa837cf84041811211e585ad3a24bb8c85b0045dfbeb921",
+    "build-mac/libdjayvo_core.a": "affd7a4443724109bae3bbe1dee084aae7c6baaa536a07842abd50b0a3114157",
+    "renders/audio-callback-20261019/probe": "ef418a3403f674146f58d619b4b29df0845717b6a78dbfa847d10527f83fb2ba"
+  }
+}

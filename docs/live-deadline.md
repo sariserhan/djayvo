@@ -1,5 +1,9 @@
 # Live instrument load and deadline measurements
 
+Follow-up: [actual macOS output callback](audio-callback.md) passes a bounded
+60-second native run at **512 frames / 10.667 ms**. It does not replace the
+**128-frame / 2.667 ms** failures below or validate browser AudioWorklet timing.
+
 2026-10-19. **Signal integrity PASS; strict offline deadline check FAIL;
 real-time readiness PARTIAL.** This increment adds a reproducible stress probe
 and retained measurements. It makes no production engine, arrangement, training,

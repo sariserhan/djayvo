@@ -11,7 +11,17 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Latest local timing evidence — 2026-10-19:
+Latest actual audio-host evidence — 2026-10-19:
+[macOS output callback](audio-callback.md) **PASS (bounded technical scope)**:
+60 real seconds on the M5's DisplayPort output route, 5,625 callbacks at 512
+frames/48 kHz, exact offline PCM and command-frame agreement, no sample-time
+gaps or counted C++ allocations. Longest measured callback 4.262 ms against
+10.667 ms. Self-tests, sanitizer and focused live suite pass. Prior 128-frame
+benchmark failures remain **FAIL**; cause and full live readiness **PARTIAL**.
+Browser AudioWorklet, acoustic loopback, microphone latency, venue endurance
+and new listening **NOT RUN**. Engine, recordings and master unchanged.
+
+Previous local timing evidence — 2026-10-19:
 [Live instrument load and deadlines](live-deadline.md): **PASS** for 600 virtual
 seconds per run, 32 simultaneous voices, 60 identical programs, exact Mac/Linux/
 WASM PCM and command frames, native allocation checks and focused live tests.

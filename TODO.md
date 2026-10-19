@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest validation: [Live instrument load and deadlines](docs/live-deadline.md).
+Last updated: 2026-10-19 (America/New_York). Latest validation: [Actual macOS output callback](docs/audio-callback.md).
 Latest engine improvement: [Bounded active vocal processing](docs/active-vocals.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
@@ -45,14 +45,23 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
 
+- [x] **DJ21 — PASS (bounded native callback scope):** [Actual macOS output callback](docs/audio-callback.md).
+  One minute on the M5's LG DisplayPort output route, 512 frames / 48 kHz:
+  5,625 callbacks, exact offline PCM and command frames, no sample-time gaps,
+  rejected notes or counted C++ allocations. Maximum 4.262 ms against 10.667 ms;
+  speaker output muted. Calibration/self-tests, sanitizer and focused suite pass.
+  Does not pass browser AudioWorklet, 128-frame deadlines, physical loopback,
+  microphone round-trip, venue endurance or musical quality. DJ20 stays open.
+
+
 - [ ] **DJ20 — PARTIAL:** [Live instrument load and deadlines](docs/live-deadline.md).
   600 virtual seconds per run, all 13 patches, 32 voices, 60 identical programs,
   exact Mac/Linux/WASM PCM and command frames, native allocation checks and
   focused tests **PASS**. Strict offline no-overrun check **FAIL**: initial Mac,
   first Linux and Node WASM have delays beyond 2.667 ms; reruns are retained,
-  not substituted for failures. Cause **PARTIAL**. Actual AudioWorklet/device
-  scheduling, physical latency and venue endurance **NOT RUN**. No engine or
-  musical-quality change; next timing work must measure the actual audio host.
+  not substituted for failures. Cause **PARTIAL**. Native device scheduling is
+  now covered by DJ21 at 512 frames; browser AudioWorklet, physical round-trip latency and venue
+  endurance **NOT RUN**. No engine or musical-quality change is implied.
 
 
 - [x] **DJ19 — PASS (validation and fallback scope):** [Linux browser validation and recording fallback](docs/linux-browser.md).
@@ -493,6 +502,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P66 | PASS | Fix recording-offset energy masking vocal pauses; preserve edge selection and 65 existing WAVs, verify Mac/Linux/WASM and saved scores, audit 20 licensed speech sources | [Evidence](docs/chop-offset.md) |
 | [x] | P67 | PASS | Bound active vocal processing, preserve all comparison audio and event frames, validate dense/echo schedules and measure actual Mac/Linux offline timing | [Evidence](docs/active-vocals.md) |
 | [x] | P68 | PASS | Add reproducible 32-voice native/WASM stress diagnostics, playable output and exact frame/PCM comparison; record timing overruns without closing live gates | [Evidence](docs/live-deadline.md) |
+| [x] | P69 | PASS | Run shared engine in actual M5 default-output callback for 60 seconds, retain exact PCM/events, calibrated timing/continuity checks and bounded native result | [Evidence](docs/audio-callback.md) |
 
 ## Engineering backlog
 
