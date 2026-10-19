@@ -7,7 +7,7 @@ export type AccountEmail = { to: string; subject: string; text: string };
 
 export async function sendEmail(config: Config, message: AccountEmail, send = fetch) {
   if (config.outbox) {
-    if (!config.local) throw new Error('Local email transport is disabled.');
+    if (!config.localApp) throw new Error('Local email transport is disabled.');
     await mkdir(config.outbox, { recursive: true, mode: 0o700 });
     await writeFile(join(config.outbox, `${Date.now()}-${randomUUID()}.json`),
       JSON.stringify(message), { mode: 0o600, flag: 'wx' });

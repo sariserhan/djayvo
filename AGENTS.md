@@ -1,5 +1,11 @@
 # Djayvo
 
+**Neon authorization and result — 2026-10-19:** The owner explicitly authorized
+Neon CLI init/deploy and database wiring on `misty-cherry-32516479`, branch
+`production`. [Setup and evidence](docs/neon-setup.md) pass for the database and
+localhost browser account/library flow. Other hosted services, publication,
+phone work and quality/release gates retain their existing limits.
+
 **Current authorization — 2026-10-18:** The owner's latest “continue with the
 spec, finish everything” supersedes the earlier console-only increment and
 M0a review stop for remaining local implementation. Continue the browser musical

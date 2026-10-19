@@ -1,0 +1,16 @@
+DEBUG: Initialized CLI analytics client
+DEBUG: Trying to read credentials from /Users/serhansari/.config/neon/credentials.json
+DEBUG: Using existing valid access_token
+DEBUG: GET https://console.neon.tech/api/v2/auth
+DEBUG: GET https://console.neon.tech/api/v2/projects/misty-cherry-32516479/branches?limit=100
+DEBUG: 200 OK
+DEBUG: 200 OK
+→ Applying to branch production (br-rapid-pond-b471tuva)
+No changes — branch production already matches the policy.
+
+Utilized services: Postgres
+Pulled 3 Neon variables into .env.local
+  Postgres        DATABASE_URL, DATABASE_URL_UNPOOLED
+  Branch          NEON_BRANCH
+DEBUG: Flushing CLI analytics
+DEBUG: Flushed CLI analytics

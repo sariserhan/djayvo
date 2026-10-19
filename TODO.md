@@ -11,7 +11,8 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest validation: [Bounded audio wake-up](docs/audio-resume.md).
+Last updated: 2026-10-19 (America/New_York). Latest validation: [Neon setup](docs/neon-setup.md).
+Latest audio validation: [Bounded audio wake-up](docs/audio-resume.md).
 Latest engine improvement: [Precomputed common interpolation coefficients](docs/interpolation-table.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
@@ -353,10 +354,11 @@ Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js she
 with private generation plus a reviewed public catalogue. Keep the database free;
 no paid upgrade without owner approval. The owner chose email/password sign-in and
 Resend for account email. [Local implementation/evidence](docs/web-accounts.md)
-now exists; cloud resources remain unconfigured.
+now exists; [Neon Postgres is configured and tested](docs/neon-setup.md) under the
+owner's specific 2026-10-19 setup authorization. Resend/R2/Vercel remain unconfigured.
 
 - [x] **W08 — PASS:** Document hosting/auth/database/object-storage boundaries, private save/public submission separation, logical model and upload/deletion lifecycle.
-- [ ] **W09 — PARTIAL:** Next.js shell, Better Auth email/password, Resend adapter, generated auth schema, private metadata queries, migration safeguards and local Postgres/browser tests and bounded expired-auth cleanup implemented. Live Neon/Resend, preview/production isolation, cleanup scheduling, database compute/transfer budgets and overload limits remain. [Account evidence](docs/web-accounts.md); [cleanup evidence](docs/auth-cleanup.md).
+- [ ] **W09 — PARTIAL:** Next.js shell, Better Auth email/password, Resend adapter, generated auth schema, private metadata queries, migration safeguards and local Postgres/browser tests and bounded expired-auth cleanup implemented. Live Neon schema and localhost account/library end-to-end checks PASS; Resend delivery, hosted app execution, preview/production isolation, cleanup scheduling, database compute/transfer budgets and overload limits remain. [Neon evidence](docs/neon-setup.md). [Account evidence](docs/web-accounts.md); [cleanup evidence](docs/auth-cleanup.md).
 - [ ] **W10 — PARTIAL:** Explicit private save, checksum/WAV validation, all seven strategies, atomic quotas, owner-scoped playback/download, retryable deletion and bounded cleanup implemented. Local Postgres/files, 20 unit/integration checks and ten workflows in each Chromium/WebKit pass. R2 adapter and signed-request contract exist but live R2/CORS/lifecycle, late-write reconciliation, hosted cleanup scheduling and cost/overload validation remain NOT RUN. [Evidence](docs/private-account-audio.md).
 - [ ] **W11 — PARTIAL:** Local submission/revision review, filters/search, track pages, persistent player, private playlists, reports and withdrawal implemented; 28 unit/integration checks and 16 catalogue browser checks PASS. Withdrawal recovery, stale-review and displayed-report-batch safeguards also implemented and tested. Hosted publication, actual permission/quality review and moderation operations remain NOT RUN. [Initial evidence](docs/reviewed-catalogue.md); [recovery evidence](docs/catalogue-withdrawal.md).
 
@@ -565,6 +567,7 @@ adds an eighth passing suite and confirms the unchanged renderer/audio.
 | [x] | P72 | PASS | Precompute common cold-note filter coefficients; preserve exact Mac/Linux/WASM audio and retain failing browser timing evidence | [Evidence](docs/interpolation-table.md) |
 | [x] | P73 | PASS | Bound manual playback-start failures, verify cancellation and uninterrupted other-deck audio, isolate Linux WebKit restart failures and retain exact PCM/frame evidence | [Evidence](docs/media-restart.md) |
 | [x] | P74 | PASS | Repair local-file preload/routing, serialize pitch transitions, gate paused native input, pass four complete browser suites and preserve exact offline audio while retaining failed controls | [Evidence](docs/media-preload.md) |
+| [x] | P76 | PASS | Wire existing Neon production database, rehearse/apply migrations and verify browser account/library flow; retain external provider gates | [Evidence](docs/neon-setup.md) |
 | [x] | P75 | PASS | Bound browser audio wake-up, protect newer notes from stale failures, verify 44 unchanged WAVs and preserve Linux WebKit failure gates | [Evidence](docs/audio-resume.md) |
 
 ## Engineering backlog

@@ -1,0 +1,11 @@
+{
+  applied: [
+    '0001_auth.sql',
+    '0002_tracks.sql',
+    '0003_private_audio.sql',
+    '0004_catalogue.sql',
+    '0005_auth_expiry.sql'
+  ]
+}
+2026-10-19T22:49:36.548Z WARN [Better Auth]: Field lastRequest in table rateLimit has a different type in the database. Expected number but got int8.
+PASS: five migrations on disposable Neon branch, idempotence, Better Auth schema agreement

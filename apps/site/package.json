@@ -18,6 +18,7 @@
     "test": "tsx --test tests/config.test.ts tests/audio.test.ts",
     "test:integration": "tsx --test tests/database.test.ts tests/private-audio.test.ts tests/catalogue.test.ts",
     "test:browser": "node tests/browser.mjs",
+    "test:neon": "node --import tsx tests/neon.mjs",
     "test:catalogue-browser": "TSX_DISABLE_CACHE=1 NODE_DISABLE_COMPILE_CACHE=1 node --import tsx tests/catalogue-browser.mjs",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:usage": "tsx scripts/usage.ts",
@@ -27,6 +28,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "3.1152.0",
     "@aws-sdk/s3-request-presigner": "3.1152.0",
+    "@vercel/functions": "3.10.1",
     "better-auth": "1.7.10",
     "next": "16.4.2",
     "pg": "8.23.1",

@@ -1,5 +1,16 @@
 # Specification completion ledger
 
+Latest Neon setup — 2026-10-19:
+[Neon setup and evidence](neon-setup.md) **PASS (Postgres scope)** under the owner's
+explicit init/deploy authorization for the existing production branch. Five
+migrations rehearsed then applied; build, seven unit tests, typecheck, secret
+bundle audit and nine Chromium checks pass. Real browser registration,
+verification, sign-in, isolated library reads and sign-out use Neon. Test records
+and rehearsal branch removed; initial rate-limit cleanup failure and repair
+retained. Local email outbox is used: Resend/R2/Vercel deployment **NOT RUN**.
+Website remains at http://localhost:3000; previous local DB/audio retained.
+Overall production **PARTIAL**; master, audio and quality gates unchanged.
+
 Latest bounded audio wake-up — 2026-10-19:
 [Audio resume recovery](audio-resume.md) **PASS (recovery scope)**: all five
 production resume sites have a ten-second deadline; late failures cannot release

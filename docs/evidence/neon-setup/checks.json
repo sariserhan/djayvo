@@ -1,0 +1,42 @@
+{
+  "neon_cli": "8.8.0",
+  "node_build_and_tests": "22.23.1",
+  "next": "16.4.2",
+  "pg": "8.23.1",
+  "vercel_functions": "3.10.1",
+  "neon_config": "1.9.2",
+  "playwright": "1.61.1",
+  "project_id": "misty-cherry-32516479",
+  "branch": "production",
+  "branch_id": "br-rapid-pond-b471tuva",
+  "database": "neondb",
+  "region": "aws-us-east-2",
+  "init": "PASS",
+  "deploy": "PASS",
+  "rehearsal_migrations": "PASS",
+  "production_migrations": "PASS",
+  "build": "PASS",
+  "unit_tests": {
+    "status": "PASS",
+    "passed": 7
+  },
+  "typecheck": "PASS",
+  "browser_checks": {
+    "status": "PASS",
+    "passed": 9
+  },
+  "bundle_audit": {
+    "status": "PASS",
+    "client_files_checked": 16,
+    "secrets_absent": "PASS"
+  },
+  "temporary_branch_deleted": "PASS",
+  "initial_rate_limit_cleanup": "FAIL",
+  "corrected_cleanup": "PASS",
+  "resend_delivery": "NOT RUN",
+  "r2": "NOT RUN",
+  "vercel_deployment": "NOT RUN",
+  "vercel_fluid_suspend": "NOT RUN",
+  "music_quality": "NOT RUN",
+  "overall_release": "PARTIAL"
+}

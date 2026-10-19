@@ -1,0 +1,18 @@
+
+> test:neon
+> npm --prefix apps/site run test:neon
+
+
+> djayvo-site@0.1.0 test:neon
+> node --import tsx tests/neon.mjs
+
+Screenshots: /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/djayvo-neon-KKzPU6
+PASS: live pooled Neon connection and five applied migrations
+PASS: studio loads and consent control responds
+PASS: browser registration persists an unverified account on Neon; anonymous library denied
+PASS: local email verification and browser password sign-in create a Neon session
+PASS: Next library page and API read Neon records with owner isolation and private caching
+PASS: desktop/mobile library renders without horizontal overflow
+PASS: browser sign-out removes Neon session and revokes library access
+PASS: no browser runtime or console errors
+PASS: synthetic accounts, cascading tracks/sessions, test rate limits and captured email cleaned

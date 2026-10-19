@@ -44,7 +44,8 @@ This model research remains paused; the current local DJ increment is described 
 
 Latest website work: [Next.js accounts foundation](apps/site/README.md), with
 Better Auth email/password, Neon-compatible Postgres schema and Resend adapter.
-Local account/browser checks pass; live cloud services remain unconfigured.
+[Live Neon setup](docs/neon-setup.md), production schema and localhost account/browser
+checks pass. Resend/R2 and public web deployment remain unconfigured.
 Run it at http://localhost:3000 using the linked setup instructions.
 
 **Selected product platform: [Djayvo web](apps/web/README.md).** Record/import, trim,

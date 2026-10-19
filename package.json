@@ -1,0 +1,20 @@
+{
+  "name": "djayvo",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "build": "npm --prefix apps/site run build",
+    "dev": "npm --prefix apps/site run dev",
+    "start": "npm --prefix apps/site run start",
+    "test": "npm --prefix apps/site test",
+    "neon:env": "neon env pull --file apps/site/.env.local",
+    "db:migrate": "npm --prefix apps/site run db:migrate --",
+    "db:usage": "npm --prefix apps/site run db:usage",
+    "test:neon": "npm --prefix apps/site run test:neon"
+  },
+  "dependencies": {
+    "@neon/config": "1.9.2"
+  }
+}

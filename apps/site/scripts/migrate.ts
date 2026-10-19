@@ -2,7 +2,7 @@ import './env';
 import { createPool } from '../lib/database';
 import { migrate } from '../lib/migrations';
 
-const url = new URL(process.env.DATABASE_MIGRATION_URL ?? '');
+const url = new URL(process.env.DATABASE_MIGRATION_URL || process.env.DATABASE_URL_UNPOOLED || '');
 const target = `${url.host}${url.pathname}`;
 if (!process.argv.includes('--apply')) {
   console.log(`Migration target: ${target}. To apply reviewed SQL, set DJAYVO_MIGRATION_TARGET to this value and pass --apply.`);

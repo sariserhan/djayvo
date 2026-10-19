@@ -2,7 +2,9 @@
 
 Next.js shell around the existing browser studio, with Better Auth email/password
 accounts and a PostgreSQL private-library foundation. Neon **Free** and Resend are
-the selected hosted providers. No hosted resources have been provisioned.
+the selected hosted providers. [Neon is now connected](../../docs/neon-setup.md)
+and the account/library flow passes against its production branch from localhost.
+Resend delivery, R2 and Vercel deployment remain NOT RUN.
 
 The studio at `/studio/index.html` keeps the existing WebAssembly engine and
 IndexedDB library. Only its built navigation link changes to **Account**. Sign-in
@@ -36,7 +38,9 @@ npm run dev
 Setup refuses to replace `.env.local`, creates a separate password-protected
 loopback cluster on port 55439 under ignored `build-site/`, and captures mail in
 its private outbox. **Do not rerun setup when that environment already exists.**
-The current checkout already has this environment. Open **http://localhost:3000**.
+The old environment remains intact; this checkout now uses Neon instead, with
+its original settings backed up privately. See [Neon setup](../../docs/neon-setup.md).
+Open **http://localhost:3000**.
 For an optimized local run, use `npm run build` then `npm start`.
 
 Local verification/reset messages are JSON files in the directory named by
@@ -49,14 +53,15 @@ Browser storage belongs to an origin. The old `localhost:4173` library is unchan
 but is separate from `localhost:3000`; no automatic transfer is attempted. Keep
 using 4173 to download older mixes. Neither sign-in nor sign-out deletes local music.
 
-## Hosted configuration — NOT RUN
+## Hosted configuration — PARTIAL (Neon PASS; other providers NOT RUN)
 
 ### Private audio: local development
 
 Apply reviewed migration `0003_private_audio.sql` using the same explicit local
 target command above. Set `DJAYVO_LOCAL_AUDIO_DIR` to an absolute private directory
 outside `public/`, such as `<repository>/build-site/private-audio`. This checkout
-has that local directory configured. Restart the app after changing configuration.
+retains that directory, but disables this adapter while using Neon. Restart the
+app after changing configuration.
 The library explains that development account files stay on this Mac. Hosted
 configuration rejects the local adapter.
 
