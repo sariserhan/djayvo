@@ -11,6 +11,15 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
+Latest training preparation — 2026-10-19: owner selected **blood_club** for
+training. [Blood Club package](blood-training.md): preparation **PASS**, 16
+training candidates (480 s), four same-session held-out passages (120 s), no
+full-scale samples, verified archive and originals. Dataset/pairing **PARTIAL**;
+new GPU/upload/optimizer training and quality **NOT RUN**. A concrete $10,
+one-instance/two-hour research run is prepared for the separate spending/upload
+authorization required by AGENTS.md. No new compute was rented.
+
+
 Current priority — 2026-10-19: the owner deferred streaming-library integration
 and prioritized musical intelligence and training quality. [Source-contour
 research](source-contour.md) produced four matched pairs and passed Mac/Linux/

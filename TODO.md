@@ -12,7 +12,7 @@ new paid compute, publication and monetization still need explicit authorization
 
 
 Last updated: 2026-10-19 (America/New_York). Latest validation: [Linux browser portability](docs/linux-browser.md).
-Latest research: [source-contour candidate and inconclusive listening](docs/source-contour.md).
+Latest research: [Blood Club training preparation](docs/blood-training.md); [prior inconclusive contour trial](docs/source-contour.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
 
 Use this file for past work, open issues and future development. Detailed test
@@ -226,6 +226,13 @@ closes that task only; it does not automatically pass its parent milestone.
   research artifacts; original studio engine restored. No new model training.
   Prioritize paired phrase/response examples, reviewed session splits and real
   preference evidence for C05/C09. [Evidence](docs/source-contour.md).
+
+- [ ] **C11 — PARTIAL:** Owner-selected Blood Club training package prepared:
+  16 training candidates, four same-session held-out passages, verified train-only
+  archive and source preservation; 12 safeguard/extraction tests PASS. Concrete
+  one-rental $10/two-hour plan prepared. New paid compute/upload approval, GPU
+  execution, paired annotations, independent generalization and listening quality
+  remain open. [Evidence and run plan](docs/blood-training.md).
 
 Latest platform design: [ADR 0002](docs/decisions/0002-web-platform-auth-and-storage.md).
 Owner selected Vercel, Better Auth, Neon PostgreSQL Free, R2 and the Next.js shell,

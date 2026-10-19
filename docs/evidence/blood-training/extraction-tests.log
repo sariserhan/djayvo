@@ -1,0 +1,13 @@
+test_changed_source (test_style_candidates.CandidateTests.test_changed_source) ... ok
+test_float_overshoot_is_attenuated_before_pcm_conversion (test_style_candidates.CandidateTests.test_float_overshoot_is_attenuated_before_pcm_conversion) ... ok
+test_invalid_duration (test_style_candidates.CandidateTests.test_invalid_duration) ... ok
+test_missing_permission (test_style_candidates.CandidateTests.test_missing_permission) ... ok
+test_nonoverlapping_bounded_windows (test_style_candidates.CandidateTests.test_nonoverlapping_bounded_windows) ... ok
+test_path_escape (test_style_candidates.CandidateTests.test_path_escape) ... ok
+test_preserve_existing_output (test_style_candidates.CandidateTests.test_preserve_existing_output) ... ok
+test_split_change (test_style_candidates.CandidateTests.test_split_change) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.198s
+
+OK

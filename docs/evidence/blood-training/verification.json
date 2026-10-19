@@ -1,0 +1,25 @@
+{
+  "preparation_checks": "PASS",
+  "distinct_clip_hashes": 20,
+  "archive_members": 18,
+  "archive_content_hash_checks": "PASS",
+  "holdout_in_upload": false,
+  "maximum_clip_sample_peak": 0.582427978515625,
+  "minimum_centered_rms": 0.0735061321432487,
+  "full_scale_samples": 0,
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "/Users/serhansari/Downloads/x.mp3": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+    "/Users/serhansari/Downloads/y.mp3": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+    "/Users/serhansari/Downloads/z.mp3": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63",
+    "/Users/serhansari/Downloads/blood_club.mp3": "12cad3d3b5d66383d69207630d09d66d5203d963ab48d0f0ade7d1ee32672188"
+  },
+  "host": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+  "python": "3.15.0",
+  "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "training": "NOT RUN",
+  "cloud_upload": "NOT RUN",
+  "new_spend_usd": 0
+}

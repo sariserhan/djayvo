@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-19",
+  "source_id": "blood_club",
+  "source_filename": "blood_club.mp3",
+  "source_sha256": "12cad3d3b5d66383d69207630d09d66d5203d963ab48d0f0ade7d1ee32672188",
+  "owner_statement": "train with blood_club",
+  "question_context": "For the next training set, do you have more cleared recordings showing the full process—a spoken phrase followed by the musician developing it into music?",
+  "training_permission": "owner_confirmed",
+  "basis": "Explicit file selection in response to a request for cleared training recordings; owner attestation, not independent license verification.",
+  "cloud_transfer_permission": "NOT RUN: temporary reference upload included in proposed new rental approval",
+  "new_paid_compute_permission": "NOT RUN: previous one-trial budget authorization is exhausted in scope, not reused",
+  "rights_holder": null,
+  "license_document": null,
+  "raw_audio_distribution": "not established",
+  "adapter_distribution": "not established",
+  "commercial_release": "not established",
+  "withdrawal": "Remove source and descendants from future datasets and invalidate affected adapters if permission is withdrawn; preserve original recording unless owner requests deletion."
+}

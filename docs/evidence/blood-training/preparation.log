@@ -1,0 +1,22 @@
+{
+  "preparation": "PASS",
+  "training": "NOT RUN",
+  "cloud_upload": "NOT RUN",
+  "source_duration_seconds": 634.067313,
+  "train_candidate_seconds": 480,
+  "same_session_holdout_seconds": 120,
+  "excluded_gap_seconds": [
+    480,
+    510
+  ],
+  "excluded_tail_seconds": [
+    630,
+    634.067313
+  ],
+  "independent_holdout": "NOT RUN",
+  "verified_phrase_response_pairs": 0,
+  "human_content_review": "NOT RUN",
+  "permission_ledger_sha256": "457d7f3d29fbd733d3074e4f1052a2586281c9e8a2b4f86cca301efcdf4043c6",
+  "script_sha256": "f4aa127b60115e5c8688fbc9190f690a98632c40516daeb33c774f9152893a3a",
+  "archive_sha256": "cab2f143b307dbccf0095c48f3e909f176d42c5dbcb087ead8b638afea0199d9"
+}
