@@ -1379,3 +1379,20 @@ plans and recordings remain unchanged. No training, spending or deployment.
 
 [New private review](http://127.0.0.1:4200/);
 [changes, limits, evidence and commands](q0-five-arm-trial.md).
+
+## Q0 five-condition rejection and reference reassessment
+
+**FAIL:** Owner acceptance of the new five-condition packet. The owner called
+the output “very robotic and bad quality” and requested reference listening to
+f/x/y/z/down/question/blood_club in Downloads. Exact feedback is retained with
+packet identity; no numeric scores or per-file listening are inferred.
+
+**PASS:** All seven source hashes checked; six match prior full-file analyses.
+New full-file signal analysis of f and current owner A/E masters completed using
+the existing analyzer. **PARTIAL:** Code-grounded gap analysis: most timbres,
+style/form rules and clean-voice ducking survived the rejected intervention.
+**NOT RUN:** Direct agent listening, musical reference annotation or proof of a
+dominant perceptual cause. No audio-perception tool is available in this session.
+No engine changes, new renders, training, uploads or spending in this reassessment.
+
+[Findings and next controlled experiment](q0-reference-reassessment.md).

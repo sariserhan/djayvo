@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0-q0-qualitative-feedback",
+  "reviewer": "project_owner",
+  "reviewer_count": 1,
+  "evidence_type": "direct_user_reply",
+  "prompt_scope": "New five-condition comparison at http://127.0.0.1:4200/, starting with the owner's voice; asks whether any candidate sounds less robotic or more coherent",
+  "verbatim": "listen mr wobble and understand the quality these are very robotic and bad quality they are in downloads folder listen f.mp3 z x y and down question and blood_club",
+  "packet_id": "0896a2136e68f3545c6e32b4f8cc02283ad704dedc2476f8294002184919c85f",
+  "implementation_commit": "d6872cf5a7df95b84fb6a5904e1b8142a7b6801f",
+  "owner_acceptance": "FAIL",
+  "numeric_ratings": null,
+  "per_candidate_preferences": null,
+  "component_timestamps": null,
+  "main_perceptual_cause": "NOT RUN",
+  "independent_listener_study": "NOT RUN",
+  "promotion_decision": "Do not promote the decay or composition candidates as accepted musical improvements.",
+  "limitations": "General rejection linked to the new packet. No claim that every file or all five source sets were auditioned, no per-condition causal ranking, and no proof of equal quality."
+}

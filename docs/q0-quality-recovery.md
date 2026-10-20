@@ -5,8 +5,9 @@
 **Latest continuation:** [The five-condition trial](q0-five-arm-trial.md) now
 renders B/D/E alongside the preserved A/C controls. A copied native build tests
 longer drum decay; E tests intact vocal calls and a source-rhythm instrumental
-answer. Technical execution passes; new listening acceptance is **NOT RUN**.
-The rejected packets below remain unchanged.
+answer. Technical execution passes; the owner subsequently rejected the new
+packet too: **FAIL**. [Reference reassessment](q0-reference-reassessment.md)
+records the remaining implementation gaps. All rejected recordings remain unchanged.
 
 The technical audit, five-input baseline, instrument probes and an expression-only
 comparison are available. The owner responded “still bad” and clarified “All of

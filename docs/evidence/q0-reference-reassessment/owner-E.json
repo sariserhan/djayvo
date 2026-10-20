@@ -1,0 +1,104 @@
+{
+  "E.hiphop": {
+    "file": "E.hiphop.wav",
+    "sha256": "49093e1a5c5e4fc84da783a88498ad83243cd76df37c09945eac0122086ef113",
+    "duration_seconds": 32.0,
+    "integrated_lufs": -23.9,
+    "loudness_range_lu": 13.9,
+    "true_peak_dbfs": -7.9,
+    "rms_dbfs": -28.26,
+    "rms_p10_p90_dbfs": [
+      -45.52,
+      -21.4
+    ],
+    "side_to_mid_db": -20.02,
+    "stereo_correlation": 0.982,
+    "mono_bass_20_150hz_energy_fraction": 0.571,
+    "pulse_candidates_not_confirmed_tempo": [
+      {
+        "bpm": 95.67,
+        "correlation": 0.455
+      },
+      {
+        "bpm": 64.55,
+        "correlation": 0.236
+      },
+      {
+        "bpm": 76.75,
+        "correlation": 0.182
+      },
+      {
+        "bpm": 60.66,
+        "correlation": 0.173
+      },
+      {
+        "bpm": 162.46,
+        "correlation": 0.114
+      },
+      {
+        "bpm": 129.66,
+        "correlation": 0.075
+      }
+    ],
+    "change_candidates": [
+      {
+        "seconds": 4.99,
+        "contrast_score": 2.22,
+        "rms_before_dbfs": -49.14,
+        "rms_after_dbfs": -34.66
+      },
+      {
+        "seconds": 11.47,
+        "contrast_score": 1.54,
+        "rms_before_dbfs": -37.18,
+        "rms_after_dbfs": -31.46
+      },
+      {
+        "seconds": 21.47,
+        "contrast_score": 2.25,
+        "rms_before_dbfs": -41.75,
+        "rms_after_dbfs": -31.04
+      },
+      {
+        "seconds": 29.4,
+        "contrast_score": 7.88,
+        "rms_before_dbfs": -37.39,
+        "rms_after_dbfs": -127.69
+      }
+    ],
+    "ten_second_windows": [
+      {
+        "start": 0,
+        "end": 10,
+        "rms_dbfs": -28.98,
+        "bass_fraction": 0.483,
+        "upper_fraction": 0.091,
+        "side_to_mid_db": -24.88
+      },
+      {
+        "start": 10,
+        "end": 20,
+        "rms_dbfs": -27.44,
+        "bass_fraction": 0.59,
+        "upper_fraction": 0.058,
+        "side_to_mid_db": -21.59
+      },
+      {
+        "start": 20,
+        "end": 30,
+        "rms_dbfs": -27.67,
+        "bass_fraction": 0.618,
+        "upper_fraction": 0.018,
+        "side_to_mid_db": -17.4
+      },
+      {
+        "start": 30,
+        "end": 32.0,
+        "rms_dbfs": null,
+        "bass_fraction": null,
+        "upper_fraction": null,
+        "side_to_mid_db": null
+      }
+    ]
+  }
+}

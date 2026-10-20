@@ -20,14 +20,16 @@ of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.
   official splits retained, no profile fitting or training.
 - [ ] **Q006 — PARTIAL:** Five controlled A/B/C/D/E sets now render. B tests
   drum decay in an isolated source copy; E tests intact calls and rhythmic
-  instrumental answers. Listening improvement remains NOT RUN; no promotion.
+  instrumental answers. Owner acceptance FAIL; no promotion.
   [Full trial](docs/q0-five-arm-trial.md).
 - [x] **Q007 — PASS:** Ten Q0 tests, three native groups, 8,216 exact
   instrument event rows, 20 exact replays and comparison level checks. Browser form/decode
   checks pass; physical playback and headless WebKit clock remain separate.
-- [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression and native/SFZ
-  packets: “still bad,” clarified as “All of them.” No numeric scores, relative
-  preferences or causal ranking inferred; no candidate promotion.
+- [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression, native/SFZ and
+  the new five-condition packet, calling the latter “very robotic and bad quality.”
+  No numeric scores, relative preferences or causal ranking inferred; no promotion.
+  [Reference reassessment](docs/q0-reference-reassessment.md): seven source
+  hashes checked; f newly analyzed; direct listening/annotation remains NOT RUN.
   Independent comparative study and fresh Linux/iPhone/WASM Q0 audio validation
   remain **NOT RUN**. [Exact feedback](docs/evidence/q0/owner-feedback.json).
 

@@ -1,0 +1,87 @@
+{
+  "source_integrity": "PASS",
+  "reference_files": [
+    {
+      "file": "f.mp3",
+      "sha256": "dcc26654d96138cd7aafecfc1298ea159884cdcd54a221422e35c77ace7a45f6",
+      "duration_seconds": 114.411,
+      "integrated_lufs": -11.1,
+      "loudness_range_lu": 9.8,
+      "mono_bass_20_150hz_energy_fraction": 0.455,
+      "side_to_mid_db": -12.76
+    },
+    {
+      "file": "x.mp3",
+      "sha256": "af8a99b1fe4c2c2d578f6ae22724da773343200a94dd10a24f6c1c66611ffef7",
+      "duration_seconds": 764.651,
+      "integrated_lufs": -8.9,
+      "loudness_range_lu": 13.8,
+      "mono_bass_20_150hz_energy_fraction": 0.657,
+      "side_to_mid_db": -10.76
+    },
+    {
+      "file": "y.mp3",
+      "sha256": "f53c66f0f1707b1a3fe9f1e5da447cdb7aafe92c056ffe9420a50e5c6084632f",
+      "duration_seconds": 667.179,
+      "integrated_lufs": -7.9,
+      "loudness_range_lu": 12.1,
+      "mono_bass_20_150hz_energy_fraction": 0.539,
+      "side_to_mid_db": -11.44
+    },
+    {
+      "file": "z.mp3",
+      "sha256": "badb35377a94ff6e51ae3fcadb9d0fa327632d1f5a6bbe0c86383eb57edc4b63",
+      "duration_seconds": 625.408,
+      "integrated_lufs": -9.4,
+      "loudness_range_lu": 14.5,
+      "mono_bass_20_150hz_energy_fraction": 0.654,
+      "side_to_mid_db": -12.05
+    },
+    {
+      "file": "down.mp3",
+      "sha256": "f10a3fa3cf773a85b04458747d7a46de7d7f621bf7ab732785ad3038212a2d12",
+      "duration_seconds": 143.799,
+      "integrated_lufs": -5.3,
+      "loudness_range_lu": 4.7,
+      "mono_bass_20_150hz_energy_fraction": 0.535,
+      "side_to_mid_db": -12.23
+    },
+    {
+      "file": "question.mp3",
+      "sha256": "e830e315e59e111ef09f6436483f094c9b2e6ed8c86273ebc13021fdea98b9e8",
+      "duration_seconds": 155.317,
+      "integrated_lufs": -5.7,
+      "loudness_range_lu": 6.1,
+      "mono_bass_20_150hz_energy_fraction": 0.689,
+      "side_to_mid_db": -13.13
+    },
+    {
+      "file": "blood_club.mp3",
+      "sha256": "12cad3d3b5d66383d69207630d09d66d5203d963ab48d0f0ade7d1ee32672188",
+      "duration_seconds": 634.067,
+      "integrated_lufs": -11.6,
+      "loudness_range_lu": 4.5,
+      "mono_bass_20_150hz_energy_fraction": 0.757,
+      "side_to_mid_db": -8.03
+    }
+  ],
+  "new_full_file_measurements": [
+    "f.mp3",
+    "owner A",
+    "owner E"
+  ],
+  "prior_measurements_reused_after_hash_check": [
+    "x",
+    "y",
+    "z",
+    "down",
+    "question",
+    "blood_club"
+  ],
+  "new_packet_owner_acceptance": "FAIL",
+  "packet_id": "0896a2136e68f3545c6e32b4f8cc02283ad704dedc2476f8294002184919c85f",
+  "direct_agent_audio_perception": "NOT RUN: no available audio-perception tool",
+  "reference_musical_annotation": "NOT RUN",
+  "authorization": "Owner requested local reference analysis. No new training authorization inferred.",
+  "training_upload_publication": "NOT RUN"
+}

@@ -1,7 +1,12 @@
 # Q0 continuation — controlled decay and composition trial
 
-2026-10-20. **Overall Q0: PARTIAL. Previous owner acceptance: FAIL.
-New listening outcome: NOT RUN.**
+2026-10-20. **Overall Q0: PARTIAL. Previous and new owner acceptance: FAIL.**
+
+The owner subsequently rejected these candidates as “very robotic and bad
+quality” and redirected attention to the supplied references.
+[Exact feedback](evidence/q0-recovery/owner-feedback.json);
+[reference reassessment and implementation gaps](q0-reference-reassessment.md).
+The render-time JSON reports retain their historical NOT RUN status.
 
 The owner rejected all prior packets. This continuation supplies the missing
 full-mix conditions without promoting an unaccepted candidate. It tests two
@@ -92,7 +97,8 @@ No audio is committed, uploaded or authorized for training by this trial.
 | Composition and expression quality | PARTIAL | Candidates implemented/rendered; musical coherence and enjoyment not established |
 | Instrument realism recovery | PARTIAL | A narrow drum-decay experiment; broader articulation/layer limitations remain |
 | Prior owner acceptance | FAIL | “still bad” / “All of them”; preserved separately |
-| New owner comparison and independent study | NOT RUN | No inferred scores, preferences or improvement |
+| New owner acceptance | FAIL | General rejection; no numerical scores, per-condition ranking or full-packet playback claim |
+| Independent study | NOT RUN | No independent ratings or measured effect size |
 
 Exact measurements, hashes, build/render/test logs and browser evidence:
 [`docs/evidence/q0-recovery/`](evidence/q0-recovery/).
