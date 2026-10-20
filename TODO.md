@@ -842,3 +842,13 @@ Latest authorization is R0 only; stop for review before R1/data collection/train
 - [ ] **IR06 — PARTIAL:** Overall evidence; historical M0 reference comparison FAIL (different arrangements), current Linux execution NOT RUN.
 - [ ] **IR07 — NOT RUN:** Independent human musical-quality/recognition/preferences. Blank protocol/materials prepared; no scores invented.
 - [ ] **IR08 — NOT RUN:** R1 demonstration collection and all training await explicit authorization.
+
+## Storage maintenance — 2026-10-20
+
+- [x] **ST01 — PASS:** Removed 42 disposable cache directories (2.96 GiB inventoried),
+  consolidated 1,557 identical audio files using independent APFS copy-on-write
+  copies (8.36 GiB duplicate content), and stopped seven obsolete review servers.
+  No audio files deleted; source, worktrees, credentials, databases and environments
+  retained. Current studio HTTP 200; fixture, pinned R0 implementation/binary and
+  26 export artifacts unchanged. Free disk space approximately 8.8 → 19 GiB.
+  [Cleanup receipt](docs/evidence/storage-cleanup/report.json).

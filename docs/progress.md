@@ -1003,3 +1003,21 @@ quality/recognizability is NOT RUN (n=0), with blank blinded review materials.
 No master-specification changes, new native runtime dependency, paid service,
 third-party ingestion or model training. [Full R0 report](r0-report.md) and
 [architecture](improvisation_architecture.md). R1 requires separate authorization.
+
+## 2026-10-20 — project storage cleanup
+
+**PASS:** Removed 42 disposable Next.js/deployment-copy/Emscripten/iOS build-cache
+directories (2.96 GiB inventoried). Replaced 1,557 byte-identical audio copies with
+independent APFS copy-on-write files, sharing 8.36 GiB of duplicate content while
+preserving every recording path, contents, owner, permissions and timestamps.
+All replaced files were SHA256-verified. This uses separate inodes, not hard links;
+future edits remain independent. Stopped seven obsolete audition/review servers.
+
+Free disk increased from approximately 8.8 to 19 GiB, with other project builds
+running concurrently. The current studio on port 3000 returns HTTP 200; the
+preserved fixture, pinned R0 engine/policy and 26 latest export artifacts verify
+unchanged. No source changes, audio deletion, credential/environment removal or
+database changes. Subsequent builds can regenerate caches. Complete local cleanup
+audit: ignored `build-cleanup-20261020/`; compact [receipt](evidence/storage-cleanup/report.json).
+Full builds were not rerun because this was storage-only maintenance. R0's review
+stop and its outstanding human/cross-platform evidence are unchanged.

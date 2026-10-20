@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-20",
+  "base_commit": "c7b1b6a0ae1d59cd42116877f8d7039b4f846dd3",
+  "cache_directories_removed": 42,
+  "cache_bytes_inventoried": 3175497728,
+  "audio_files_consolidated": 1557,
+  "duplicate_audio_bytes": 8976464396,
+  "audio_files_deleted": 0,
+  "audio_integrity": "PASS: SHA256 checked after every replacement; separate inodes, copy-on-write isolation test passed",
+  "fixture_and_R0_exports": "PASS: unchanged fixture plus 26 complete export artifacts; pinned binary/policy hashes unchanged",
+  "old_review_servers_stopped": 7,
+  "local_audit_directory": "build-cleanup-20261020",
+  "disk_available_before_approx_GiB": 8.8,
+  "disk_available_after_approx_GiB": 19,
+  "disk_measurement_note": "Other projects were building concurrently; total system free space can change independently. du may double-count shared copy-on-write extents.",
+  "scope": "Project caches and identical audio storage only; original recordings, all audio paths, source, evidence, worktrees, environments, credentials, databases and current website retained."
+}
