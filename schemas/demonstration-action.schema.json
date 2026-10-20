@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jamloom.com/schemas/demonstration-action.schema.json",
+  "title": "Jamloom offline musical edit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "action"
+  ],
+  "properties": {
+    "action": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason",
+            "value",
+            "index",
+            "track"
+          ],
+          "properties": {
+            "kind": {
+              "const": "note"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#/properties/tracks/items/properties/events/items"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "index": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            },
+            "track": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason",
+            "value",
+            "index"
+          ],
+          "properties": {
+            "kind": {
+              "const": "track"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#/properties/tracks/items"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "index": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason",
+            "value",
+            "index"
+          ],
+          "properties": {
+            "kind": {
+              "const": "slice"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#/properties/voice_clips/items"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "index": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason",
+            "value",
+            "index"
+          ],
+          "properties": {
+            "kind": {
+              "const": "vocal"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#/properties/voice_events/items"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "index": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason",
+            "value"
+          ],
+          "properties": {
+            "kind": {
+              "const": "mix"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "value": {
+              "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#/properties/mix"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reason",
+            "value"
+          ],
+          "properties": {
+            "kind": {
+              "const": "candidate"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "value": {
+              "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

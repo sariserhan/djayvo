@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "policy_sha256": "affb52c35aaf472a888998c4d575810a4dd4850ad59b574a8175d6325fb110ab",
+  "artifacts": [
+    {
+      "path": "scripts/demonstrations.py",
+      "sha256": "830965bc98db5d34f64dfacea5f5a3f397f9895e4d99cb811ef6062b7c80fc5a"
+    },
+    {
+      "path": "scripts/r1_smoke.py",
+      "sha256": "61d603fcbfff2940dfbac35a3bfb17b30952f30a36c3a5b26c277e33ad8e888f"
+    },
+    {
+      "path": "datasets/demonstration-ledger.schema.json",
+      "sha256": "b5805915ef86098b7844262438ef9a2d476b8ccb2a488742c97b9596ef598f1f"
+    },
+    {
+      "path": "schemas/demonstration-action.schema.json",
+      "sha256": "36a7c6a56b8e94fe77d51a71e8016b351636f47474705545876a51925898b0c2"
+    },
+    {
+      "path": "schemas/demonstration-trace.schema.json",
+      "sha256": "5bb55028e3d8843df961e7c3b757d211b75efe637fb2d6ee8e8b317889da5240"
+    },
+    {
+      "path": "tests/integration/verify_demonstrations.py",
+      "sha256": "d3dc2df3172f2c363a2a0ae845cbb3e445b8012270ede60e3f5f206f2a7ea736"
+    },
+    {
+      "path": "renders/r1-final-demonstration/examples.jsonl",
+      "sha256": "45cc945cc1799f2f84571042fa692a023159b763dc45b805591089bd1f68de72"
+    },
+    {
+      "path": "renders/r1-final-demonstration/trace-6.json",
+      "sha256": "e7f24174db74ba05c6bbbfa10f33a7ef809b3d11757def2d523dd42e5fa5df74"
+    },
+    {
+      "path": "renders/r1-final-demonstration/performance.reggae.wav",
+      "sha256": "23cdc36c062b0b9085e87a8b1b037759fcb9af467d25836dc6b3db5d929237c0"
+    },
+    {
+      "path": "renders/r1-final-demonstration/performance.reggae.score.json",
+      "sha256": "c511971ad06ec2e50191ed2cf1f1f6dc18ed55f375f0862559259b07de6e63a7"
+    },
+    {
+      "path": "renders/r1-final-demonstration/performance.reggae.report.json",
+      "sha256": "783239757f58f7f564902125423ca8014b74eb6591255a35c211aabc85231826"
+    },
+    {
+      "path": "renders/r1-final-demonstration/performance.reggae.events.tsv",
+      "sha256": "ef0ed6e66ada765ebe8c52eff516c94961689ea82f9a29a24b9e3e44fe592465"
+    },
+    {
+      "path": "renders/r1-final-demonstration/performance.complete.json",
+      "sha256": "84d2126eda7bfb09f5f5d1944899930c68da093b9e4d71e4b3b270f0a597bb09"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0-demonstration-ledger",
+  "records": [
+    {
+      "id": "r1_synthetic_test",
+      "asset": {
+        "path": "renders/fixtures/synthetic-speech.wav",
+        "sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e"
+      },
+      "origin": "preserved_synthetic_fixture",
+      "rights_owner": "Jamloom project original test material; outbound license unselected",
+      "authorization": {
+        "path": "assets/manifests/m0-remix.json",
+        "sha256": "c50e894fa1ffcb864d1b0786d0e5d18b05021356823fa3f7aef398ad5d46b970"
+      },
+      "reviewer_id": null,
+      "permissions": {
+        "local_processing": true,
+        "evaluation": true,
+        "training": false
+      },
+      "identifiable_speakers": 0,
+      "speakers": [],
+      "withdrawn": false,
+      "expires_on": "2027-10-20",
+      "deletion": "delete_source_and_descendants_rebuild_affected_datasets",
+      "restrictions": "Local automated regression only; no human expertise, training, or distribution.",
+      "split": "test",
+      "source_group": "r0_phrase",
+      "session_group": "r1_synthetic_test",
+      "phrase_group": "r0_phrase",
+      "performer_group": "automated_test",
+      "strata": {
+        "language": "en",
+        "environment": "clean",
+        "content": "synthetic_test"
+      }
+    }
+  ]
+}

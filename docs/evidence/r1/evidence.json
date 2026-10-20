@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "scope": "automated offline capture/replay, not expert or musical-quality evidence",
+  "environment": {
+    "platform": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "python": "3.15.0",
+    "cpu": "Apple M5"
+  },
+  "policy_sha256": "affb52c35aaf472a888998c4d575810a4dd4850ad59b574a8175d6325fb110ab",
+  "engine": {
+    "path": "build-jamloom/jamloom_remix",
+    "sha256": "bd20df4c419cacc20603d48c7e96caa7db34f78385333bb77966bd3a03e22309"
+  },
+  "master_sha256": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+  "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+  "trace": {
+    "path": "renders/r1-final-demonstration/trace-6.json",
+    "sha256": "e7f24174db74ba05c6bbbfa10f33a7ef809b3d11757def2d523dd42e5fa5df74"
+  },
+  "dataset": {
+    "status": "PASS",
+    "examples": 6,
+    "sessions": 1,
+    "human_expert_examples": 0,
+    "training_authorized": false,
+    "splits": [
+      "test"
+    ]
+  },
+  "actions": [
+    "candidate",
+    "note",
+    "track",
+    "slice",
+    "vocal",
+    "mix"
+  ],
+  "render": {
+    "wav_sha256": "23cdc36c062b0b9085e87a8b1b037759fcb9af467d25836dc6b3db5d929237c0",
+    "events_sha256": "ef0ed6e66ada765ebe8c52eff516c94961689ea82f9a29a24b9e3e44fe592465",
+    "instruments": [
+      {
+        "patch": "organ:default",
+        "license_manifest": {
+          "path": "assets/manifests/sustained-v1.json",
+          "sha256": "5b77a9d3cd01b2f7b260d212e537d4881c550e3d2dfde8ed206f69a83dea4e71"
+        },
+        "midi_range": [
+          21,
+          108
+        ],
+        "articulations": [
+          "normal"
+        ]
+      },
+      {
+        "patch": "bass:default",
+        "license_manifest": {
+          "path": "assets/manifests/acoustic-v1.json",
+          "sha256": "82be16f8c20082442bfc38f16aae61e6237a583fc8864dff69b99008c695fec5"
+        },
+        "midi_range": [
+          21,
+          108
+        ],
+        "articulations": [
+          "normal"
+        ]
+      },
+      {
+        "patch": "drums:default",
+        "license_manifest": {
+          "path": "assets/manifests/acoustic-v1.json",
+          "sha256": "82be16f8c20082442bfc38f16aae61e6237a583fc8864dff69b99008c695fec5"
+        },
+        "midi_range": [
+          21,
+          108
+        ],
+        "articulations": [
+          "normal"
+        ]
+      }
+    ],
+    "wav": {
+      "sha256": "23cdc36c062b0b9085e87a8b1b037759fcb9af467d25836dc6b3db5d929237c0",
+      "format": "PCM16 stereo little-endian",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "duration_seconds": 32.0,
+      "peak_linear": 0.40277099609375,
+      "peak_dbfs": -7.898836218672283,
+      "rms_dbfs_left": -28.848176599384377,
+      "rms_dbfs_right": -28.586163662036185,
+      "dc_left": 9.316003322601318e-05,
+      "dc_right": 9.289912382761638e-05,
+      "full_scale_samples": 0,
+      "first_nonzero_frame": 2,
+      "last_nonzero_frame": 1417481,
+      "max_adjacent_sample_step": 0.135711669921875,
+      "last_100ms_peak": 0.0,
+      "loudness_method": "unweighted RMS; not integrated LUFS"
+    }
+  },
+  "replay": {
+    "block_sizes": [
+      512,
+      113
+    ],
+    "exact_wav": true,
+    "pcm_max_error": 0,
+    "pcm_rms_error": 0,
+    "exact_events": true,
+    "independent_instrument_events": 304,
+    "independent_event_frames": "PASS"
+  },
+  "change_from_r0_reggae": {
+    "max_pcm16_difference": 3378,
+    "rms_pcm16_difference": 313.33079492786885,
+    "interpretation": "Audio changed; musical improvement NOT RUN"
+  },
+  "human_listeners": 0,
+  "human_expert_examples": 0,
+  "model_training": "NOT RUN",
+  "paid_services_usd": 0,
+  "retained_wav_files": 1
+}

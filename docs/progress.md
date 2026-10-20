@@ -1044,3 +1044,33 @@ replay comparisons may require regeneration before use. Current R0 exports
 and all five dataset records validate; studio on localhost:3000 returns HTTP 200.
 No source or milestone implementation changed, and no full rebuild was run.
 [Retirement receipt](evidence/storage-cleanup/audio-retirement.json).
+
+## 2026-10-20 — R1 offline musical demonstration capture
+
+Under the owner's continuation of model development after R0 review/cleanup,
+implemented a local offline edit interface and state/action/next-state dataset
+format. **PASS:** six action kinds reuse the existing C++ importer/renderer;
+invalid edits fail before publication; immutable revisions preserve initial
+plans, accepted edit order/timestamps, source/rights/engine/policy hashes and
+actual render receipts. Existing R0 contracts and original specification remain
+unchanged. Private file permissions and exclusive output creation preserve data.
+
+**PASS:** consent/evidence/expiry/withdrawal and split-leakage rejection checks,
+including cross-ledger exact arrangement leakage. Export revalidation reads
+current rights and re-renders the final plan; withdrawing permission invalidates
+old exports. Exports remain evaluation-only regardless of declared training
+opt-in. Software checks declarations and hashes; human legal review is separate.
+
+**PASS:** 14 new regression tests and 11 existing R0 tests. Actual M5 output:
+one 32-second PCM16 stereo WAV, −7.899 dBFS sample peak, no full-scale samples;
+blocks 512 and 113 give identical WAV/event traces and zero PCM difference.
+All 304 instrument on/off event frames match independent rational scheduling.
+Only one new final WAV is retained; scratch render audio is deleted automatically.
+
+**PARTIAL:** R1 overall. Six exported decisions belong to one automated synthetic
+session, not expert musicians. In-studio live MIDI/capture integration, real
+permissioned expert traces and a diverse stratified corpus are unfinished.
+**NOT RUN:** human quality (n=0), new Linux/WASM/device execution, model training,
+third-party ingestion and paid compute ($0). No changes to web/iPhone/C++ audio,
+no new dependencies and no push/deploy. No claim of improved musical quality.
+[Full guide and exact evidence](r1-demonstrations.md).

@@ -1,0 +1,397 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jamloom.com/schemas/demonstration-trace.schema.json",
+  "title": "Jamloom versioned offline musical action trace",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session_id",
+    "started_at",
+    "actor",
+    "ledger",
+    "record_id",
+    "renderer",
+    "implementation_sha256",
+    "initial_plan",
+    "initial_render",
+    "steps"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0-demonstration"
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 36
+    },
+    "started_at": {
+      "type": "string",
+      "maxLength": 40,
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00$"
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "performer_group"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "human",
+            "automated_test"
+          ]
+        },
+        "performer_group": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_-]{1,100}$"
+        }
+      }
+    },
+    "ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "record_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]{1,100}$"
+    },
+    "renderer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "implementation_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "initial_plan": {
+      "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json"
+    },
+    "initial_render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wav_sha256",
+        "events_sha256",
+        "instruments",
+        "wav"
+      ],
+      "properties": {
+        "wav_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "events_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "instruments": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "items": {
+            "type": "object"
+          }
+        },
+        "wav": {
+          "type": "object"
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 128,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sequence",
+          "captured_at",
+          "previous_sha256",
+          "action",
+          "plan_sha256",
+          "render"
+        ],
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 128
+          },
+          "captured_at": {
+            "type": "string",
+            "maxLength": 40,
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00$"
+          },
+          "previous_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "action": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "reason",
+                  "value",
+                  "index",
+                  "track"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "note"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "value": {
+                    "anyOf": [
+                      {
+                        "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#/properties/tracks/items/properties/events/items"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000
+                  },
+                  "track": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "reason",
+                  "value",
+                  "index"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "track"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "value": {
+                    "anyOf": [
+                      {
+                        "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#/properties/tracks/items"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "reason",
+                  "value",
+                  "index"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "slice"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "value": {
+                    "anyOf": [
+                      {
+                        "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#/properties/voice_clips/items"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "reason",
+                  "value",
+                  "index"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "vocal"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "value": {
+                    "anyOf": [
+                      {
+                        "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#/properties/voice_events/items"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "reason",
+                  "value"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "mix"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "value": {
+                    "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#/properties/mix"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "reason",
+                  "value"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "candidate"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "value": {
+                    "$ref": "https://djayvo.com/schemas/performance-plan-1.0-remix.json#"
+                  }
+                }
+              }
+            ]
+          },
+          "plan_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "render": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "wav_sha256",
+              "events_sha256",
+              "instruments",
+              "wav"
+            ],
+            "properties": {
+              "wav_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "events_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "instruments": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 16,
+                "items": {
+                  "type": "object"
+                }
+              },
+              "wav": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

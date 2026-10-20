@@ -24,3 +24,12 @@ change requires new examples, not silently changing old provenance. The taxonomy
 retained audio links use the first run's paths. All five records are evaluation
 only; `--use training` and `--use distribution` fail even if metadata is edited.
 Recorded or downloaded sources are intentionally unsupported by R0 ingestion.
+
+## R1 demonstration records
+
+The additive `demonstration-ledger.schema.json` supports reviewed first-party
+declarations and the pinned synthetic test. `examples/r1-ledger.json` contains
+only that nonperson, evaluation-only test. R0's ingestion policy is unchanged.
+See the [R1 guide](../docs/r1-demonstrations.md) for edit capture, current-consent
+revalidation, state/action/next-state JSONL, split guards and remaining human
+review requirements. All current exports deny training authorization.

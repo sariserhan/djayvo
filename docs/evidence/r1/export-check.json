@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "examples": 6,
+  "sessions": 1,
+  "human_expert_examples": 0,
+  "training_authorized": false,
+  "splits": [
+    "test"
+  ]
+}

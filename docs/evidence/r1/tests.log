@@ -1,0 +1,19 @@
+test_all_six_action_kinds_native_render (__main__.Demonstrations.test_all_six_action_kinds_native_render) ... ok
+test_cross_ledger_arrangement_leakage (__main__.Demonstrations.test_cross_ledger_arrangement_leakage) ... ok
+test_exclusive_atomic_and_private_files (__main__.Demonstrations.test_exclusive_atomic_and_private_files) ... ok
+test_export_tampering_duplicate_session_and_empty (__main__.Demonstrations.test_export_tampering_duplicate_session_and_empty) ... ok
+test_first_party_speaker_permissions_and_group_splits (__main__.Demonstrations.test_first_party_speaker_permissions_and_group_splits) ... ok
+test_insert_remove_and_unknown_noop_actions (__main__.Demonstrations.test_insert_remove_and_unknown_noop_actions) ... ok
+test_jsonl_duplicate_keys_and_schema_types (__main__.Demonstrations.test_jsonl_duplicate_keys_and_schema_types) ... ok
+test_mismatched_audio_receipt_rejected (__main__.Demonstrations.test_mismatched_audio_receipt_rejected) ... ok
+test_native_invalid_edit_never_commits (__main__.Demonstrations.test_native_invalid_edit_never_commits) ... ok
+test_real_edit_replay_and_dataset (__main__.Demonstrations.test_real_edit_replay_and_dataset) ... ok
+test_rights_rejections (__main__.Demonstrations.test_rights_rejections) ... ok
+test_source_metadata_immutable (__main__.Demonstrations.test_source_metadata_immutable) ... ok
+test_trace_corruption_and_provenance_rejected (__main__.Demonstrations.test_trace_corruption_and_provenance_rejected) ... ok
+test_withdrawal_invalidates_existing_export (__main__.Demonstrations.test_withdrawal_invalidates_existing_export) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 26.688s
+
+OK

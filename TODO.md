@@ -1,6 +1,12 @@
 # Jamloom development tracker
 
-**Current authorization — 2026-10-18:** The owner's latest “continue with the
+**Research continuation — 2026-10-20:** After R0 and storage cleanup, the owner
+requested continuing model development. Local R1 offline demonstration tooling
+is implemented; corpus/live capture remain **PARTIAL**. R2/R3 model experiments,
+third-party ingestion and paid compute retain their separate gates.
+[Current R1 evidence](docs/r1-demonstrations.md).
+
+**Earlier product authorization — 2026-10-18:** The owner's “continue with the
 spec, finish everything” supersedes the earlier console-only increment and
 M0a review stop for remaining local implementation. Continue the browser musical
 improviser and available specification work without per-step approval; preserve
@@ -14,7 +20,7 @@ new paid compute, publication and monetization still need explicit authorization
 Last updated: 2026-10-20 (America/New_York). Latest validation: [Saved performances](docs/saved-mixes.md); [Clean website build](docs/vercel-clean-build.md); [Neon setup](docs/neon-setup.md).
 Latest audio validation: [Bounded audio wake-up](docs/audio-resume.md).
 Latest engine improvement: [Precomputed common interpolation coefficients](docs/interpolation-table.md).
-Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
+Latest research: [R1 offline action capture](docs/r1-demonstrations.md); [R0 intelligence foundation](docs/r0-report.md). Historical research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [Blood Club GPU trial](docs/blood-training-run.md).
 Current priority: musical intelligence and training quality; Spotify/YouTube integration deferred.
 
 Use this file for past work, open issues and future development. Detailed test
@@ -831,7 +837,8 @@ table and [progress](docs/progress.md) together; do not invent scores or dates.
 
 ## R0 — improvisation intelligence foundation (2026-10-20)
 
-Latest authorization is R0 only; stop for review before R1/data collection/training.
+R0 stopped for review as requested. The later continuation starts local R1 tooling;
+it does not waive the remaining quality, rights or training gates.
 [Full report and reproducible evidence](docs/r0-report.md).
 
 - [x] **IR01 — PASS:** 35-technique taxonomy and analyzer/director/shared-engine architecture.
@@ -841,7 +848,17 @@ Latest authorization is R0 only; stop for review before R1/data collection/train
 - [x] **IR05 — PASS:** M5 native 15/15 suites and current-build comparison; R0 11-test suite.
 - [ ] **IR06 — PARTIAL:** Overall evidence; historical M0 reference comparison FAIL (different arrangements), current Linux execution NOT RUN.
 - [ ] **IR07 — NOT RUN:** Independent human musical-quality/recognition/preferences. Blank protocol/materials prepared; no scores invented.
-- [ ] **IR08 — NOT RUN:** R1 demonstration collection and all training await explicit authorization.
+- [ ] **IR08 — PARTIAL:** R1 offline capture tooling now implemented under the owner's continuation; expert corpus and live capture remain open. Model training NOT RUN.
+
+## R1 — first-party demonstration workflow (2026-10-20)
+
+- [x] **IR09 — PASS:** Versioned offline edit trace, six native musical action kinds, exclusive private writes and actual native validation before accepting edits.
+- [x] **IR10 — PASS:** Rights declarations/evidence hashes, speaker opt-in boundaries, withdrawal/expiry and cross-ledger source/session/speaker/performer/phrase/arrangement split guards.
+- [x] **IR11 — PASS:** Six evaluation-only state/action/next-state examples, current-consent revalidation, one playable WAV, exact 512/113-block replay and 304 independently checked instrument events.
+- [x] **IR12 — PASS:** 14 new capture tests and 11 unchanged R0 tests on M5. [Report/logs](docs/r1-demonstrations.md).
+- [ ] **IR13 — PARTIAL:** Ergonomic in-studio live microphone/MIDI/action capture; current interface is an offline plan-edit CLI.
+- [ ] **IR14 — NOT RUN:** Permissioned expert demonstrations, verified human review, diverse stratified corpus and near-duplicate detection.
+- [ ] **IR15 — NOT RUN:** R2 human comparison / R3 training. No training-authorized examples exported, no new model or paid compute; require their gates and authorization.
 
 ## Storage maintenance — 2026-10-20
 
