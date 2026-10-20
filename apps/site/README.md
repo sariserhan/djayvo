@@ -120,12 +120,19 @@ run `npm run test:catalogue-browser` and
 temporary allowlist and restart afterward. Never use those accounts in a shared
 or hosted environment. Evidence: [reviewed catalogue](../../docs/reviewed-catalogue.md).
 
-### R2: disabled until live validation
+### R2: provider validated; hosted release gates remain
 
 The owner created `jamloom-audio` for production. The exact production origin is
 `https://jamloom.com`; see [domain and R2 setup](../../docs/production-domain.md)
 for the production environment template, dashboard CORS policy and minimum
 credentials. Local and preview environments must use separate storage.
+
+Live bucket configuration and ten provider checks now pass; see
+[R2 validation](../../docs/r2-live.md). Reproduce explicitly with
+`JAMLOOM_R2_TEST_BUCKET=jamloom-audio npm run test:r2 -- --apply` from this
+directory. The test uploads a synthetic tone, exercises the real adapter and
+Chromium/WebKit CORS, then removes only its random test objects. It does not
+enable R2 in the app or validate the hosted account workflow/scheduler.
 
 The server-only AWS SDK adapter is pinned in the lockfile. To prepare a separate
 private test bucket later, use `R2_ACCOUNT_ID`, `R2_BUCKET`, `R2_ACCESS_KEY_ID`,

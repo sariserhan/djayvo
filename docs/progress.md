@@ -1,5 +1,16 @@
 # Jamloom: M0 continuation evidence
 
+Latest R2 setup — 2026-10-19 local / 2026-10-20 UTC:
+[Live private storage](r2-live.md) **PASS (bucket/provider scope)**. Production
+CORS and uploads-only lifecycle applied and read back; public access remains
+disabled. Ten live checks pass, including signed header/expiry enforcement,
+byte-exact transfer, Chromium/WebKit CORS and audio decoding, retention headers,
+and test-object deletion. Ten unit tests, build, typecheck and client-secret audit
+pass. Actual age-triggered expiry, hosted reconciliation, complete authenticated
+production workflow and Resend remain **NOT RUN**; overall production **PARTIAL**.
+No database, deployment or app enablement changes. Initial assertion failure and
+its correction are retained in the report.
+
 Latest production domain preparation — 2026-10-19:
 [jamloom.com and private R2 setup](production-domain.md) **PASS (local configuration)**:
 production template targets `https://jamloom.com` and `jamloom-audio`; exact-origin

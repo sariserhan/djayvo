@@ -10,7 +10,7 @@ let count = 0;
 for (const path of await readdir('.next/static', { recursive: true })) {
   if (!(await stat(`.next/static/${path}`)).isFile()) continue;
   const bytes = await readFile(`.next/static/${path}`); count++;
-  for (const name of ['BETTER_AUTH_SECRET', 'DATABASE_URL', 'DATABASE_URL_UNPOOLED', 'DATABASE_MIGRATION_URL', 'RESEND_API_KEY','R2_ACCESS_KEY_ID','R2_SECRET_ACCESS_KEY']) {
+  for (const name of ['BETTER_AUTH_SECRET', 'DATABASE_URL', 'DATABASE_URL_UNPOOLED', 'DATABASE_MIGRATION_URL', 'RESEND_API_KEY','R2_ACCESS_KEY_ID','R2_SECRET_ACCESS_KEY','CLOUDFLARE_API_TOKEN']) {
     assert.ok(!process.env[name] || !bytes.includes(process.env[name]), `Server secret found in browser bundle: ${name}`);
   }
 }

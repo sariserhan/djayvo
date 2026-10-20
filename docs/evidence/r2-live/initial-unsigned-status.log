@@ -1,0 +1,10 @@
+
+> jamloom-site@0.1.0 test:r2
+> tsx tests/r2-live.ts --apply
+
+{"bucket":"jamloom-audio","testObjectId":"63f0118d-8f1f-4405-a51d-c72595bc60a8","timestamp":"2026-10-20T02:28:23.134Z","node":"v22.23.1"}
+{"gate":"signed upload and exact server read","status":"PASS"}
+{"gate":"signed Content-Type and Content-Length tampering denied","status":"PASS"}
+{"gate":"master copy, range playback and download","status":"PASS"}
+{"gate":"test objects deleted and absence verified","status":"PASS"}
+{"gate":"unsigned playback denied","status":"FAIL","errorType":"assertion"}

@@ -1,0 +1,83 @@
+{
+  "timestamp": "2026-10-20T02:27:46.478Z",
+  "bucket": "jamloom-audio",
+  "status": "PASS",
+  "publicAccess": false,
+  "customDomains": [],
+  "before": {
+    "cors": "absent",
+    "lifecycle": {
+      "rules": [
+        {
+          "id": "Default Multipart Abort Rule",
+          "enabled": true,
+          "conditions": {},
+          "abortMultipartUploadsTransition": {
+            "condition": {
+              "type": "Age",
+              "maxAge": 604800
+            }
+          }
+        }
+      ]
+    }
+  },
+  "after": {
+    "cors": {
+      "rules": [
+        {
+          "allowed": {
+            "origins": [
+              "https://jamloom.com"
+            ],
+            "methods": [
+              "GET",
+              "PUT",
+              "HEAD"
+            ],
+            "headers": [
+              "Content-Type",
+              "Range"
+            ]
+          },
+          "exposeHeaders": [
+            "ETag",
+            "Content-Length",
+            "Content-Range",
+            "Accept-Ranges"
+          ],
+          "maxAgeSeconds": 3600
+        }
+      ]
+    },
+    "lifecycle": {
+      "rules": [
+        {
+          "id": "Default Multipart Abort Rule",
+          "enabled": true,
+          "conditions": {},
+          "abortMultipartUploadsTransition": {
+            "condition": {
+              "type": "Age",
+              "maxAge": 604800
+            }
+          }
+        },
+        {
+          "id": "jamloom-temporary-uploads-1-day",
+          "enabled": true,
+          "conditions": {
+            "prefix": "uploads/"
+          },
+          "deleteObjectsTransition": {
+            "condition": {
+              "type": "Age",
+              "maxAge": 86400
+            }
+          }
+        }
+      ]
+    }
+  },
+  "savedMastersHaveNoExpiry": true
+}

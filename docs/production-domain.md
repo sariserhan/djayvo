@@ -52,6 +52,11 @@ and **Zone → Zone → Read**, restricted to `jamloom.com`.
 
 ## Bucket settings to apply after access is available
 
+**Update:** Bucket CORS, private access and upload lifecycle configuration have
+now been verified live. See [R2 setup and provider evidence](r2-live.md).
+The checklist below remains the reference; hosted scheduling and the full
+authenticated production workflow are still outstanding.
+
 - Keep public access (`r2.dev` and public custom domains) disabled. Playback uses
   short-lived signed URLs, not a public `audio.jamloom.com` domain.
 - In bucket Settings → CORS Policy → JSON, use
@@ -89,7 +94,8 @@ and **Zone → Zone → Read**, restricted to `jamloom.com`.
 | TypeScript | PASS | `npm --prefix apps/site run typecheck`. [Log](evidence/production-domain/typecheck.log) |
 | Client secret/bundle audit | PASS | 16 client files, no server secrets; studio assets audit passes. [Log](evidence/production-domain/bundle-audit.log) |
 | Live domain/DNS/TLS and Vercel configuration | NOT RUN | No remote configuration was changed. |
-| Live R2 requests, browser CORS, lifecycle and cleanup scheduling | NOT RUN | Cloudflare credentials unavailable. |
+| Live R2 requests, browser CORS and lifecycle configuration | PASS | Subsequently validated with supplied credentials; [live evidence](r2-live.md). |
+| Actual lifecycle deletion, scheduled cleanup and full hosted workflow | NOT RUN | See the live report for the remaining gates. |
 | Resend delivery | NOT RUN | Deferred. |
 | Production readiness | PARTIAL | Local configuration prepared; hosted gates remain open. |
 
