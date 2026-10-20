@@ -130,24 +130,7 @@ def trial(baseline, output, renderer, instrument_renderer=None, performance=Fals
         'audio{width:100%}fieldset{margin:24px 0;border:1px solid #667;padding:20px}label{display:block;margin:12px 0}'
         '.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}select,input,button,textarea{font:inherit;max-width:100%;box-sizing:border-box}'
         'textarea{width:100%}a{color:#8de4e6}')
-    (listener/'review.js').write_text("""document.addEventListener('play', e => {
-  document.querySelectorAll('audio').forEach(a => { if(a!==e.target) a.pause(); });
-}, true);
-let packet;
-fetch('packet.json').then(r => { if(!r.ok) throw Error('Packet unavailable'); return r.json(); }).then(p => {
-  packet=p; document.querySelector('button').disabled=false;
-  document.getElementById('status').textContent='Packet ready. Ratings stay on this device.';
-}).catch(() => { document.getElementById('status').textContent='Packet unavailable; reload before rating.'; });
-document.querySelector('form').onsubmit = e => {
-  e.preventDefault();
-  if(!packet) return;
-  const ratings = Object.fromEntries(new FormData(e.target));
-  const url = URL.createObjectURL(new Blob([JSON.stringify({schema_version:'1.0-q0-listening',packet_id:packet.packet_id,ratings},null,2)],{type:'application/json'}));
-  const a=document.createElement('a');a.href=url;a.download='jamloom-q0-ratings.json';a.click();
-  setTimeout(()=>URL.revokeObjectURL(url),1000);
-  document.getElementById('status').textContent='Ratings downloaded locally. Nothing uploaded.';
-};
-""")
+    shutil.copyfile(ROOT/'scripts/q0-review.js', listener/'review.js')
     write(output/'organizer-key.json', keys)
     write(output/'report.json', {'technical': 'PASS', 'scope':
         'A/B/C/D/E decay-expression-composition trial' if instrument_renderer else 'A/C expression-only diagnostic',

@@ -1595,3 +1595,25 @@ promotion occurred.
 [Independent-review preview](http://127.0.0.1:4208/);
 [private owner comparison remains unchanged](http://127.0.0.1:4207/);
 [execution details, gates and reproduction](q0-linux-review-followup.md).
+
+## Q0 final local checkpoint: listening workflow and evidence
+
+**PASS:** Reproduced and fixed a form/import mismatch: an incomplete six-score
+candidate could download but was rejected by the results validator. Shared
+review controls now focus the missing score without clearing answers.
+Completed candidates, blank unheard candidates and notes alone remain supported.
+Seventeen regression tests pass. Chromium/WebKit checks pass for both private
+and licensed-only pages, including privacy boundaries and no external requests.
+
+**PASS:** Fresh form-only copies at 4209/4210 preserve the 4207/4208 audio,
+candidate order and packet identities. All 54 WAV entries use hard links to
+unchanged files, avoiding duplicate audio storage. Original comparisons remain
+intact. Existing native/WASM inventories and five exact Linux/Mac outputs
+were reverified; no new engine execution is claimed for this form-only change.
+
+**PARTIAL:** Q0 overall and physical browser playback. **FAIL:** Prior owner
+improvement judgments. **NOT RUN:** New full-packet listening verdict,
+independent panel and physical target checks. The actual musical success
+criterion remains unmet; implementation/report delivery does not close it.
+No new musical experiment, training, spending, publication or production
+promotion. [Consolidated final review](q0-completion-review.md#final-local-checkpoint--2026-10-20).

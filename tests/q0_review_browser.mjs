@@ -47,6 +47,17 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]) {
   await page.locator('audio').nth(2).evaluate(a=>a.pause());
   await page.getByLabel('Reviewer code').fill('UI_FIXTURE_ONLY');
   const optionalRatings=await page.locator('select').evaluateAll(ns=>ns.every(n=>!n.required));
+  await page.getByRole('checkbox').check();
+  if(optionalRatings) {
+   let downloads=0;
+   page.on('download',()=>downloads++);
+   await page.locator('select').first().selectOption('3');
+   await page.getByRole('button').click();
+   await page.getByText('Complete all six ratings for this candidate, or clear them all. Notes can stand alone.',{exact:true}).waitFor();
+   assert.equal(downloads,0);
+   assert.equal(await page.locator('select').nth(1).evaluate(s=>s===document.activeElement),true);
+   assert.equal(await page.locator('select').first().inputValue(),'3');
+  }
   if(optionalRatings) for(const s of (await page.locator('select').all()).slice(0,6)) await s.selectOption('3');
   else for(const s of await page.locator('select').all()) await s.selectOption('3');
   await page.getByRole('checkbox').check();
@@ -59,11 +70,21 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]) {
   if(optionalRatings) assert.equal(Object.entries(data.ratings).filter(([k,v])=>!['reviewer','listened'].includes(k)&&!k.endsWith('/notes')&&v!=='').length,6);
   if(await page.locator('input[name="listened"]').count()) assert.equal(data.ratings.listened,'yes');
   await rm(file);
+  if(optionalRatings) {
+   for(const s of (await page.locator('select').all()).slice(0,6)) await s.selectOption('');
+   await page.locator('textarea').first().fill('Synthetic UI note only; not a listening judgment.');
+   const notesDownload=page.waitForEvent('download'); await page.getByRole('button').click();
+   await (await notesDownload).saveAs(file);
+   const notes=JSON.parse(await readFile(file,'utf8'));
+   assert.ok(Object.entries(notes.ratings).filter(([k])=>k.includes('/')&&!k.endsWith('/notes')).every(([,v])=>v===''));
+   assert.equal(Object.values(notes.ratings).filter(v=>v==='Synthetic UI note only; not a listening judgment.').length,1);
+   await rm(file);
+  }
   assert.equal((await page.request.get(base+'organizer-key.json')).status(),404);
   await page.reload();assert.ok((await page.locator('select').evaluateAll(ns=>ns.map(n=>n.value))).every(v=>v===''));
   assert.deepEqual(errors,[]);assert.deepEqual(consoleErrors,[]);assert.deepEqual(external,[]);
-  report.push({browser:name,version:browser.version(),status:name==='chromium'?'PASS':'PARTIAL',viewports:['1440x1000','390x844'],checks:[optionalRatings?'partial ratings preserve missing values':'blank required ratings','muted audio decode and automatic pause','responsive width','packet-bound local download','organizer key not served','reload clears ratings','no page errors or external requests'],playback_clock:name==='chromium'?'PASS: muted playback advances':'PARTIAL: headless WebKit decodes but clock stalled in prior run',human_listening:'NOT RUN',physical_audio:'NOT RUN; unmuted headless clock stalled, muted automated playback used',ratings:'Synthetic UI fixtures deleted; never study evidence'});
+  report.push({browser:name,version:browser.version(),status:name==='chromium'?'PASS':'PARTIAL',viewports:['1440x1000','390x844'],checks:[optionalRatings?'incomplete candidate blocked; completed candidate and notes-only export; unheard scores blank':'blank required ratings','muted audio decode and automatic pause','responsive width','packet-bound local download','organizer key not served','reload clears ratings','no page errors or external requests'],playback_clock:name==='chromium'?'PASS: muted playback advances':'PARTIAL: headless WebKit decodes but clock stalled in prior run',human_listening:'NOT RUN',physical_audio:'NOT RUN; unmuted headless clock stalled, muted automated playback used',ratings:'Synthetic UI fixtures deleted; never study evidence'});
  } finally {await browser.close();}
 }
-await writeFile(join(out,'report.json'),JSON.stringify({browser_plugin:'Invocation unavailable: Node JS tool not exposed; existing project Playwright used for authorized reproducible tests',results:report},null,2));
+await writeFile(join(out,'report.json'),JSON.stringify({automation:'Existing project Playwright used for reproducible local tests',results:report},null,2));
 console.log(out);console.log('PASS: Chromium and WebKit form/decode flow; PARTIAL: WebKit playback clock; human listening NOT RUN');

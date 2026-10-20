@@ -18,6 +18,90 @@ now has 17 passing tests. “Continue” supplied no new quality judgment.
 This review consolidates the requested steps rather than treating each small
 experiment as a completed musical recovery milestone.
 
+## Final local checkpoint — 2026-10-20
+
+**Q0 remains PARTIAL, not successfully completed.** The implementation and
+evidence below are delivered for review. The remaining work is substantive:
+identify the dominant audible problems and demonstrate a substantial
+improvement through controlled human listening. The owner's rejected
+comparisons are failures, not unfinished technical tests that another green
+test run can cure. No numeric judgments or new acceptance were received.
+
+The final check found and fixed a listening-data workflow bug: selecting only
+one of a candidate's six scores allowed a download that the importer would
+reject. The page now focuses the first missing score and retains the entered
+answers. All six scores or all blank is the existing contract; notes alone
+remain valid and unheard candidates stay blank. No rubric or benchmark changed.
+The original failure is retained in
+[`form-before.log`](evidence/q0-closeout/form-before.log).
+
+Changed source:
+
+- `scripts/q0-review.js`: extracted existing local-only controls and added the
+  all-or-none check; no new dependency.
+- `scripts/q0_expression_trial.py` and `scripts/q0_independent_packet.py`: use
+  the same corrected controls when preparing future packets.
+- `tests/q0_review_browser.mjs`: incomplete-entry rejection, retained answers,
+  correction, notes-only export, missing-score preservation and privacy checks.
+- `tests/integration/verify_q0.py`: blank and note-only response handling.
+- [`prepare.py`](evidence/q0-closeout/prepare.py): reproducible form-only copies
+  with exact audio/metadata assertions. Historical authored/pair-study generators
+  retain their pinned controls and distinct partial-rating protocols.
+
+The corrected [private review at 4209](http://127.0.0.1:4209/) has **exactly
+the same recordings and candidate order as 4207**. The
+[licensed-only review at 4210](http://127.0.0.1:4210/) likewise preserves 4208.
+These are not new musical candidates. All 54 WAV entries are hard links to
+immutable existing files, avoiding additional audio storage. Only `review.js`
+differs; packet IDs, plans, masters, stems and the old pages remain unchanged.
+Do not edit these linked WAVs in place.
+
+| Final check | Gate | Evidence |
+|---|---|---|
+| Q0 regression suite | PASS | 17 tests; [output](evidence/q0-closeout/tests.log) |
+| Corrected private and licensed forms | PASS | Chromium and WebKit reject partial candidate scores, accept complete scores and note-only responses, and retain blank unheard scores |
+| Privacy and packet integrity | PASS | Both organizer keys return 404; licensed packet excludes owner voice; no external requests; [hash inventory](evidence/q0-closeout/review-packets.json) |
+| Frozen native/WASM evidence recheck | PASS | Original audio/source/spec/core inventories intact; [output](evidence/q0-closeout/native-wasm-verification.log) |
+| Retained Linux outputs recheck | PASS | Five exact Mac/Linux WAV/plan/event comparisons and valid export receipts; [output](evidence/q0-closeout/linux-review-verification.log) |
+| Physical browser audio | PARTIAL | Decode/form checks pass; headless WebKit clock limitation and actual speaker/headphone listening remain unverified |
+| New human judgments / independent panel | NOT RUN | Browser fixture answers were deleted, never imported as study results |
+| Previously judged improvement | FAIL | Owner rejected earlier packets and the guitar-accent comparison |
+| Substantial recovery / overall Q0 | PARTIAL | No accepted musical improvement; do not promote or move to training |
+
+The two browser reports and mobile screenshots are in
+[`q0-closeout`](evidence/q0-closeout/). Desktop and mobile browser checks passed;
+the retained Chromium mobile screenshot was also visually inspected. Native
+and Linux compilation were **not rerun** for this form-only change; the
+previous actual execution evidence was reverified. No additional audio
+perception, provider action, publication or device run is implied.
+
+Reproduce the form checks with the two loopback servers running:
+
+```sh
+.venv-q0/bin/python tests/integration/verify_q0.py
+.venv-analysis/bin/python docs/evidence/q0-performance/verify.py
+.venv-q0/bin/python docs/evidence/q0-followup/verify.py
+Q0_REVIEW_URL=http://127.0.0.1:4209/ Q0_CANDIDATES=5 \
+  node tests/q0_review_browser.mjs
+Q0_REVIEW_URL=http://127.0.0.1:4210/ Q0_CANDIDATES=5 Q0_SOURCES=4 \
+  node tests/q0_review_browser.mjs
+```
+
+The updated private page is served from
+`renders/q0-performance-form-v2-20261020/listener/`; the licensed-only page
+from `renders/q0-independent-form-v2-20261020/listener/`. Serve only `listener/`
+on `127.0.0.1`, keeping organizer metadata outside the web root. `prepare.py`
+refuses existing destinations; change its destination names for a fresh rerun.
+Downloaded real responses remain compatible with the original packet's
+results validator because the audio identities and candidate mapping match.
+
+**Next experimental decision, still inside Q0:** obtain a verdict on the
+current full packet. If it too fails, use isolated instrument/stem judgments
+and an authorized musician's annotated phrase-to-performance demonstration
+to select a new causal intervention. The existing tests do not tell us which
+sound change will succeed. More timing jitter, new numerical thresholds or
+unreviewed training would not establish the required improvement.
+
 ## Requirement-by-requirement status
 
 | Q0 step | Gate | Evidence and remaining limitation |

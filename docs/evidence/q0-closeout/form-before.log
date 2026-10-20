@@ -1,0 +1,16 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByText('Complete all six ratings for this candidate, or clear them all. Notes can stand alone.', { exact: true }) to be visible[22m
+
+    at /Users/serhansari/Documents/projects/djayvo/tests/q0_review_browser.mjs:56:128 {
+  log: [
+    "  - waiting for getByText('Complete all six ratings for this candidate, or clear them all. Notes can stand alone.', { exact: true }) to be visible"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.1

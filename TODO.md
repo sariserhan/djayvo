@@ -1,6 +1,13 @@
 # Jamloom development tracker
 
 **Current priority — 2026-10-20: Q0 implementation PARTIAL; owner acceptance FAIL.**
+Final local checkpoint: the listening form now blocks incomplete candidate
+scores before download; notes alone and unheard candidates remain supported.
+Seventeen tests and Chromium/WebKit form checks pass. Frozen native/WASM and
+Linux evidence is reverified. [Private corrected form](http://127.0.0.1:4209/)
+uses the exact same audio as 4207; this is not a new quality experiment.
+[Final gates and remaining work](docs/q0-completion-review.md#final-local-checkpoint--2026-10-20).
+No accepted improvement or independent panel exists; Q0 is not closed as passed.
 The owner requested diagnosis and controlled listening before engine changes.
 No later milestone, model training, paid service or dashboard redesign is part
 of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.md).
@@ -69,6 +76,9 @@ Prior rejected candidates remain FAIL.
   Linux follow-up: fresh GCC build and three native groups, five byte-identical
   E WAVs and 1,432 exact event rows. Permission-filtered review preparation and
   17 Q0 regression tests pass.
+  Final form correction: complete-candidate and note-only downloads verified in
+  both browsers for private/licensed packets; incomplete scores blocked.
+  All 54 WAV entries and both packet IDs preserved, no audio regenerated.
 - [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression, native/SFZ and
   the new five-condition packet, calling the latter “very robotic and bad quality.”
   No numeric scores, relative preferences or causal ranking inferred; no promotion.

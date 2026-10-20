@@ -2,6 +2,12 @@
 
 2026-10-20. **Implementation: PARTIAL. Current owner listening acceptance: FAIL.**
 
+**Final local checkpoint:** [Consolidated review](q0-completion-review.md#final-local-checkpoint--2026-10-20).
+Seventeen tests and corrected listening forms pass; original native/WASM/Linux
+evidence is reverified. Corrected pages at 4209/4210 use unchanged audio.
+Q0's substantial-improvement requirement remains unmet. No new judgment,
+quality promotion or later milestone is inferred.
+
 **Latest execution/evaluation follow-up:** [Linux and independent-review preparation](q0-linux-review-followup.md).
 Linux ARM64 build/tests and five exact waveform/event comparisons **PASS**.
 Four cleared sources are ready for independent review, with private owner audio

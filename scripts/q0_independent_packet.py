@@ -7,7 +7,7 @@ from pathlib import Path
 import re
 import shutil
 
-from q0_audit import digest, inputs, write
+from q0_audit import ROOT, digest, inputs, write
 from q0_listening_results import summarize
 
 
@@ -62,8 +62,8 @@ def prepare(trial, output):
             if audio[name] != packet['audio_sha256'][name]:
                 raise ValueError('Copied audio differs from frozen listening packet')
         permissions.append({k: rights[ident][k] for k in ('id', 'sha256', 'license', 'consent')})
-    for name in ('review.js', 'review.css'):
-        shutil.copyfile(trial/'listener'/name, listener/name)
+    shutil.copyfile(trial/'listener/review.css', listener/'review.css')
+    shutil.copyfile(ROOT/'scripts/q0-review.js', listener/'review.js')
     (listener/'index.html').write_text(document)
     (listener/'ATTRIBUTION.txt').write_text('\n\n'.join(r['license']['attribution'] for r in permissions)+'\n')
     identity = hashlib.sha256(json.dumps(audio, sort_keys=True).encode()).hexdigest()

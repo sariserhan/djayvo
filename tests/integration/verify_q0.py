@@ -147,6 +147,16 @@ class Q0(unittest.TestCase):
             with self.assertRaises(ValueError): summarize(trial, [response])
             response.write_text('{"schema_version":"1.0-q0-listening","schema_version":"duplicate"}')
             with self.assertRaises(ValueError): summarize(trial, [response])
+            blank = copy.deepcopy(payload)
+            blank['ratings'] = {'reviewer': 'TEST_ONLY', 'listened': 'yes'}
+            response.write_text(json.dumps(blank))
+            self.assertEqual(summarize(trial, [response])['candidate_ratings'], 0)
+            blank['ratings']['test-source-1/notes'] = 'Synthetic note-only protocol fixture'
+            response.write_text(json.dumps(blank))
+            notes = summarize(trial, [response])
+            self.assertEqual(notes['candidate_ratings'], 0)
+            self.assertEqual(len(notes['comments']), 1)
+            self.assertEqual(notes['formal_quality'], 'NOT RUN')
             response.write_text(json.dumps(payload))
             (listener/'test-source-1.wav').write_bytes(b'changed')
             with self.assertRaises(ValueError): summarize(trial, [response])
