@@ -1,0 +1,8 @@
+{
+  "system": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+  "chip": "Apple M5",
+  "memory_bytes": 17179869184,
+  "node": "v22.23.1",
+  "playwright": "1.61.1",
+  "next": "16.4.2"
+}

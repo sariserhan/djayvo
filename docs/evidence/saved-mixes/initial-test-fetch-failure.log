@@ -1,0 +1,25 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/session-chromium-XfeVFz
+PASS: both studios disable unavailable recording and keep consented import enabled
+PASS: identity, meaningful screen, permission-disabled preparation/capture
+PASS: C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry
+PASS: C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs
+PASS: C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons
+PASS: pending prepared A start can be stopped; stale rejection cannot overwrite retry; current failure recovers
+PASS: prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport
+PASS: confirmed major mode reaches the shared planner; all pitched notes belong to its scale
+PASS: generated C remains temporary until an explicit save
+PASS: full library preserves every old entry, ready C and its downloadable audio; save remains retryable
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:303:30), <anonymous>:8:47)
+    at async <anonymous>:329:30
+    at verifyPerformanceSave (/Users/serhansari/Documents/projects/djayvo/apps/web/tests/saved-mixes.mjs:20:29)
+    at async file:///Users/serhansari/Documents/projects/djayvo/apps/web/tests/session.mjs:197:20 {
+  log: []
+}
+
+Node.js v26.3.0

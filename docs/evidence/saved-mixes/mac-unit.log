@@ -1,0 +1,260 @@
+
+> djayvo-web@0.1.0 test
+> node --test tests/*.test.js
+
+TAP version 13
+# Subtest: audio resume clears its deadline on success and rejects a still-suspended context
+ok 1 - audio resume clears its deadline on success and rejects a still-suspended context
+  ---
+  duration_ms: 1.788834
+  type: 'test'
+  ...
+# Subtest: audio resume retains synchronous and asynchronous errors and clears the deadline
+ok 2 - audio resume retains synchronous and asynchronous errors and clears the deadline
+  ---
+  duration_ms: 1.954
+  type: 'test'
+  ...
+# Subtest: hung audio resume times out and late completion cannot revive its caller
+ok 3 - hung audio resume times out and late completion cannot revive its caller
+  ---
+  duration_ms: 1.135542
+  type: 'test'
+  ...
+# Subtest: decimal selections preserve the exact two-second boundary
+ok 4 - decimal selections preserve the exact two-second boundary
+  ---
+  duration_ms: 1.313625
+  type: 'test'
+  ...
+# Subtest: WAV is bounded PCM16 mono with finite samples and safe clipping
+ok 5 - WAV is bounded PCM16 mono with finite samples and safe clipping
+  ---
+  duration_ms: 7.431542
+  type: 'test'
+  ...
+# Subtest: browser.mjs rejects unknown browsers before launching
+ok 6 - browser.mjs rejects unknown browsers before launching
+  ---
+  duration_ms: 413.848125
+  type: 'test'
+  ...
+# Subtest: browser-render.mjs rejects unknown browsers before launching
+ok 7 - browser-render.mjs rejects unknown browsers before launching
+  ---
+  duration_ms: 328.629583
+  type: 'test'
+  ...
+# Subtest: rapid rates are coalesced until pause completes, then resume at the latest rate
+ok 8 - rapid rates are coalesced until pause completes, then resume at the latest rate
+  ---
+  duration_ms: 2.821208
+  type: 'test'
+  ...
+# Subtest: Pause All keeps the requested rate but cancels the pending resume
+ok 9 - Pause All keeps the requested rate but cancels the pending resume
+  ---
+  duration_ms: 2.111083
+  type: 'test'
+  ...
+# Subtest: unload/replacement cannot inherit a pending rate or resume from the old source
+ok 10 - unload/replacement cannot inherit a pending rate or resume from the old source
+  ---
+  duration_ms: 0.688042
+  type: 'test'
+  ...
+# Subtest: an immediate manual Play is safely paused again before applying its pending rate
+ok 11 - an immediate manual Play is safely paused again before applying its pending rate
+  ---
+  duration_ms: 0.5285
+  type: 'test'
+  ...
+# Subtest: installation is optional, capability-driven and never confuses acceptance with completion
+ok 12 - installation is optional, capability-driven and never confuses acceptance with completion
+  ---
+  duration_ms: 0.78375
+  type: 'test'
+  ...
+# Subtest: standalone platforms, prompt rejection and installation during a pending prompt remain honest
+ok 13 - standalone platforms, prompt rejection and installation during a pending prompt remain honest
+  ---
+  duration_ms: 4.544792
+  type: 'test'
+  ...
+# Subtest: instrument map covers full piano and respects guitar bank limits
+ok 14 - instrument map covers full piano and respects guitar bank limits
+  ---
+  duration_ms: 0.581792
+  type: 'test'
+  ...
+# Subtest: tempo match uses other deck effective tempo and rejects impossible matches
+ok 15 - tempo match uses other deck effective tempo and rejects impossible matches
+  ---
+  duration_ms: 0.153209
+  type: 'test'
+  ...
+# Subtest: funk sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+ok 16 - funk sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+  ---
+  duration_ms: 11.5885
+  type: 'test'
+  ...
+# Subtest: call_response sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+ok 17 - call_response sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+  ---
+  duration_ms: 2.984292
+  type: 'test'
+  ...
+# Subtest: hybrid sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+ok 18 - hybrid sessions verify complete hashed artifacts and reject mislabeled or corrupted files
+  ---
+  duration_ms: 0.699417
+  type: 'test'
+  ...
+# Subtest: malformed stored file entries are withheld instead of aborting library recovery
+ok 19 - malformed stored file entries are withheld instead of aborting library recovery
+  ---
+  duration_ms: 0.2745
+  type: 'test'
+  ...
+# Subtest: resolved play must advance without seeking; successful/short playback cleans up timers
+ok 20 - resolved play must advance without seeking; successful/short playback cleans up timers
+  ---
+  duration_ms: 2.303166
+  type: 'test'
+  ...
+# Subtest: stuck seeking and unresolved play both fail within the start deadline
+ok 21 - stuck seeking and unresolved play both fail within the start deadline
+  ---
+  duration_ms: 1.248333
+  type: 'test'
+  ...
+# Subtest: cancellation clears timers and ignores late completion or rejection
+ok 22 - cancellation clears timers and ignores late completion or rejection
+  ---
+  duration_ms: 0.471792
+  type: 'test'
+  ...
+# Subtest: native synchronous and asynchronous playback errors retain their message and clean up
+ok 23 - native synchronous and asynchronous playback errors retain their message and clean up
+  ---
+  duration_ms: 0.399959
+  type: 'test'
+  ...
+# Subtest: MIDI decodes note-off forms, velocity, channel boundaries and only supported controls
+ok 24 - MIDI decodes note-off forms, velocity, channel boundaries and only supported controls
+  ---
+  duration_ms: 1.879792
+  type: 'test'
+  ...
+# Subtest: absolute CC pickup prevents jumps, follows crossings and rearms after screen changes
+ok 25 - absolute CC pickup prevents jumps, follows crossings and rearms after screen changes
+  ---
+  duration_ms: 0.4735
+  type: 'test'
+  ...
+# Subtest: beat echo converts validated performance tempo without rounding to the manual slider step
+ok 26 - beat echo converts validated performance tempo without rounding to the manual slider step
+  ---
+  duration_ms: 0.462708
+  type: 'test'
+  ...
+# Subtest: linear blend bounds coherent summed peaks and supports channel/master silence
+ok 27 - linear blend bounds coherent summed peaks and supports channel/master silence
+  ---
+  duration_ms: 4.11325
+  type: 'test'
+  ...
+# Subtest: track limits reject empty, oversized and nonaudio files before decoding
+ok 28 - track limits reject empty, oversized and nonaudio files before decoding
+  ---
+  duration_ms: 0.283708
+  type: 'test'
+  ...
+# Subtest: effect boundaries reject nonfinite and out-of-range controls before touching audio
+ok 29 - effect boundaries reject nonfinite and out-of-range controls before touching audio
+  ---
+  duration_ms: 0.3725
+  type: 'test'
+  ...
+# Subtest: prepared track rejects decoded limits and nonfinite samples beyond the analysis window
+ok 30 - prepared track rejects decoded limits and nonfinite samples beyond the analysis window
+  ---
+  duration_ms: 51.216041
+  type: 'test'
+  ...
+# Subtest: composition identity ignores cosmetic changes, ordering and transposition; detects musical changes
+ok 31 - composition identity ignores cosmetic changes, ordering and transposition; detects musical changes
+  ---
+  duration_ms: 19.89075
+  type: 'test'
+  ...
+# Subtest: selection retries only duplicates, records the actual seed and bounds exhaustion before publishing
+ok 32 - selection retries only duplicates, records the actual seed and bounds exhaustion before publishing
+  ---
+  duration_ms: 8.187875
+  type: 'test'
+  ...
+# Subtest: offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets
+ok 33 - offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets
+  ---
+  duration_ms: 71.816
+  type: 'test'
+  ...
+# Subtest: verified cache survives reinstall and serves fragment navigation without caching private URLs
+ok 34 - verified cache survives reinstall and serves fragment navigation without caching private URLs
+  ---
+  duration_ms: 53.245709
+  type: 'test'
+  ...
+# Subtest: continuity diagnostic counts frame gaps, bounds its trace and resets the measurement window
+ok 35 - continuity diagnostic counts frame gaps, bounds its trace and resets the measurement window
+  ---
+  duration_ms: 1.931708
+  type: 'test'
+  ...
+# Subtest: bounded context heuristic finds pulse and triad, and treats silence as uncertain
+ok 36 - bounded context heuristic finds pulse and triad, and treats silence as uncertain
+  ---
+  duration_ms: 60.047792
+  type: 'test'
+  ...
+# Subtest: transport cancels future C, rejects late/short contexts and preserves A on C failure
+ok 37 - transport cancels future C, rejects late/short contexts and preserves A on C failure
+  ---
+  duration_ms: 0.656417
+  type: 'test'
+  ...
+# Subtest: worklet capture keeps both channels and every independent frame
+ok 38 - worklet capture keeps both channels and every independent frame
+  ---
+  duration_ms: 2.774541
+  type: 'test'
+  ...
+# Subtest: stale browser timestamps do not become false missing-sample claims
+ok 39 - stale browser timestamps do not become false missing-sample claims
+  ---
+  duration_ms: 1.985625
+  type: 'test'
+  ...
+# Subtest: missing counter samples and altered audio remain detectable
+ok 40 - missing counter samples and altered audio remain detectable
+  ---
+  duration_ms: 2.221834
+  type: 'test'
+  ...
+# Subtest: load probe dispatches on/off at exact frames across program boundaries
+ok 41 - load probe dispatches on/off at exact frames across program boundaries
+  ---
+  duration_ms: 7.70925
+  type: 'test'
+  ...
+1..41
+# tests 41
+# suites 0
+# pass 41
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 815.146375

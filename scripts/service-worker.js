@@ -58,6 +58,7 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
   if (url.search) return;
+  url.hash = '';
   const key = url.href === self.registration.scope ? new URL('index.html', self.registration.scope).href : url.href;
   if (!assets.has(key)) return;
   event.respondWith((async () => {

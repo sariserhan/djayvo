@@ -1,4 +1,6 @@
 import { chromium, webkit } from 'playwright';
+import { createHash } from 'node:crypto';
+import { verifyPerformanceSave, verifySavedDecks } from './saved-mixes.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 const results = [];
@@ -39,7 +41,7 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     await page.setViewportSize({ width: 1440, height: 1000 });
   };
   try {
-    await page.goto('http://localhost:3000/studio/dj.html');
+    await page.goto(`${process.env.DJAYVO_STUDIO_URL || 'http://localhost:3000/studio'}/dj.html`);
     assert.equal(await page.title(), 'Djayvo — DJ workspace');
     await page.locator('#performance-title').waitFor();
     await page.locator('#music-rights').check();
@@ -82,8 +84,15 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     await page.locator('.deck-a').screenshot({ path: `/tmp/djayvo-deckfx-${name}-mobile.png` });
     await page.locator('#c-stop').click();
     assert.equal(await page.locator('#performance-status').textContent(), 'C stopped.');
+    const savedChecks = [];
+    const check = name => savedChecks.push({ name, status: 'PASS' });
+    const downloading = page.waitForEvent('download');
+    await page.locator('#performance-download').click();
+    const download = await downloading;
+    const savedMix = await verifyPerformanceSave(page, check, createHash('sha256').update(await fs.readFile(await download.path())).digest('hex'));
+    await verifySavedDecks(page, check, name => page.locator('#saved-mixes').screenshot({ path: `/tmp/djayvo-${name}-${browser.browserType().name()}.png` }));
     assert.deepEqual(errors, []);
-    results.push({ browser: name, version: browser.version(), url: page.url(), gate: 'PASS', checks: ['page identity and content', 'pending A and C: disabled duplicate start, enabled stop, desktop/mobile screenshots, cancel and late resume', 'prepared A audible PCM', 'prepared A effects enabled, echo readout/reset and deck screenshots', 'integrated worker/context engine/WAV', 'C preview, tone and tempo-synced dotted eighth echo at 60 BPM', 'desktop/mobile screenshots and no overflow', 'no page errors'] });
+    results.push({ browser: name, version: browser.version(), url: page.url(), gate: 'PASS', savedChecks, savedMix, checks: ['page identity and content', 'pending A and C: disabled duplicate start, enabled stop, desktop/mobile screenshots, cancel and late resume', 'prepared A audible PCM', 'prepared A effects enabled, echo readout/reset and deck screenshots', 'integrated worker/context engine/WAV', 'C preview, tone and tempo-synced dotted eighth echo at 60 BPM', 'desktop/mobile screenshots and no overflow', 'no page errors'] });
   } finally { await browser.close(); }
 }
 await fs.writeFile('/tmp/djayvo-session-site.json', JSON.stringify(results, null, 2));

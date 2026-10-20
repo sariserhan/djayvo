@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest validation: [Clean website build](docs/vercel-clean-build.md); [Neon setup](docs/neon-setup.md).
+Last updated: 2026-10-19 (America/New_York). Latest validation: [Saved performances](docs/saved-mixes.md); [Clean website build](docs/vercel-clean-build.md); [Neon setup](docs/neon-setup.md).
 Latest audio validation: [Bounded audio wake-up](docs/audio-resume.md).
 Latest engine improvement: [Precomputed common interpolation coefficients](docs/interpolation-table.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
@@ -45,6 +45,16 @@ criteria. `NOT RUN` means it has not been executed or assessed. A checked box
 closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
+
+- [x] **DJ26 — PASS (local save/reuse implementation):** [Saved performances](docs/saved-mixes.md).
+  Explicit Save C, shared ten-session browser library, load into paused A/B,
+  revalidation on load, cancellation/permission guards, quota retry and Voice
+  studio deletion. Offline fragment links and WebKit select clipping repaired.
+  Mac Chromium/WebKit and Linux Chromium: 39 session checks each. Linux WebKit:
+  38 PASS and 2 capture checks NOT RUN; all 10 save/reuse checks pass. Final Next
+  integration passes both Mac browsers. 44 fixture WAVs remain byte-identical.
+  Linux WebKit manual-deck reliability remains FAIL; receipts are in the report. Full session recall, cloud
+  sync, musical quality and venue acceptance are not included. R2/Resend deferred.
 
 - [x] **DJ25 — PASS (bounded recovery scope):** [Audio wake-up deadline](docs/audio-resume.md).
   All five resume sites time out and allow retry; late note failures cannot release

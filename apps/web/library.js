@@ -25,13 +25,20 @@ async function transaction(mode, action) {
 
 export async function loadSessions() {
   const records = await transaction('readonly', store => store.getAll());
-  return records.map(record => ({ ...record, files: Array.isArray(record.files) ? record.files.map(entry => {
+  return records.map(restoreSession);
+}
+export async function loadSession(id) {
+  const record = await transaction('readonly', store => store.get(id));
+  return record && restoreSession(record);
+}
+function restoreSession(record) {
+  return { ...record, files: Array.isArray(record.files) ? record.files.map(entry => {
     // Leave malformed entries for verification; one damaged session must not hide healthy ones.
     if (!entry || typeof entry !== 'object') return entry;
     const { bytes, ...file } = entry;
     return { ...file, blob: bytes instanceof ArrayBuffer
       ? new Blob([bytes], { type: typeof file.name === 'string' && file.name.endsWith('.wav') ? 'audio/wav' : 'application/octet-stream' }) : file.blob };
-  }) : record.files }));
+  }) : record.files };
 }
 export const deleteSession = id => transaction('readwrite', store => store.delete(id));
 export const deleteAllSessions = () => transaction('readwrite', store => store.clear());

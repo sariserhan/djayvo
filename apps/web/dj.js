@@ -3,6 +3,7 @@ import { attachDeck, playMedia } from './deck-controls.js';
 import { attachKeyboard } from './keyboard.js';
 import { attachPerformance } from './performance-session.js';
 import { resumeAudio } from './audio.js';
+import { loadSessions, loadSession, verifySession } from './library.js';
 
 const $ = id => document.getElementById(id);
 const rights = $('music-rights');
@@ -17,6 +18,7 @@ function controls(deck) {
   $(`play-${id}`).disabled = !ready || !!deck.loading || deck.starting;
   $(`play-${id}`).textContent = `${audio.paused ? 'Play' : 'Pause'} ${id.toUpperCase()}`;
   $(`file-${id}`).disabled = held || !rights.checked || !audio.paused || deck.starting || !!deck.loading;
+  $(`library-load-${id}`).disabled = $(`file-${id}`).disabled || !$('saved-mix').value;
   $(`clear-${id}`).disabled = !deck.url && !deck.loading;
   $(`seek-${id}`).disabled = !ready || !!deck.loading;
   $(`level-${id}`).disabled = !rights.checked;
@@ -143,32 +145,71 @@ rights.onchange = () => {
   $('mixer-status').textContent = rights.checked ? 'Load your tracks. Start A, then bring B into the blend.' : 'Confirm your music permissions to load tracks.';
 };
 
+async function loadTrack(deck, getFile) {
+  const { id, audio } = deck;
+  if (!rights.checked || !audio.paused || deck.starting || deck.loading || deck.prepared || deck.preparing) return;
+  $(`error-${id}`).textContent = '';
+  const revision = ++deck.revision, controller = new AbortController();
+  deck.playRequested = false; deck.loading = controller; controls(deck);
+  try {
+    const file = await getFile();
+    if (!file || revision !== deck.revision || !rights.checked) return;
+    validateTrack(file);
+    const duration = await trackDuration(file, controller.signal);
+    if (revision !== deck.revision || !rights.checked) return;
+    // Connect before preloading: Linux WebKit can stall when rerouting decoded media.
+    audioGraph();
+    const previous = deck.url, url = URL.createObjectURL(file);
+    audio.removeAttribute('src'); audio.load();
+    deck.file = file; deck.url = url; deck.duration = duration; audio.src = url; deck.resetTransport(); deckEffects(deck, true);
+    if (previous) URL.revokeObjectURL(previous);
+    $(`name-${id}`).textContent = file.name;
+  } catch (error) {
+    if (revision === deck.revision) $(`error-${id}`).textContent = `${error.message}${deck.url ? ' Previous track kept.' : ''}`;
+  } finally {
+    if (deck.loading === controller) deck.loading = null;
+    controls(deck);
+  }
+}
+
+async function refreshLibrary() {
+  $('library-refresh').disabled = true;
+  $('saved-mix').replaceChildren(new Option('Choose a saved mix', ''));
+  decks.forEach(controls);
+  $('library-status').textContent = 'Checking saved mixes…';
+  try {
+    const sessions = (await loadSessions()).sort((a, b) => b.created - a.created);
+    let damaged = 0, count = 0;
+    for (const saved of sessions) {
+      if (!await verifySession(saved)) { damaged++; continue; }
+      for (const file of saved.files.filter(file => file.name.endsWith('.wav'))) {
+        const label = `${new Date(saved.created).toLocaleString()} · ${file.name.slice(0, -4).replaceAll('_', ' ')} · take ${saved.seed}`;
+        $('saved-mix').append(new Option(label, JSON.stringify([saved.id, file.name]))); count++;
+      }
+    }
+    $('library-status').textContent = `${count} saved mix${count === 1 ? '' : 'es'} on this browser.${damaged ? ` ${damaged} damaged session(s) hidden; manage them in Voice studio.` : ''}`;
+  } catch (error) { $('library-status').textContent = error.message; }
+  finally { $('library-refresh').disabled = false; decks.forEach(controls); }
+}
+$('library-refresh').onclick = refreshLibrary;
+$('saved-mix').onchange = () => decks.forEach(controls);
 for (const deck of decks) {
   const { id, audio } = deck;
-  $(`file-${id}`).onchange = async event => {
-    const file = event.target.files[0];
-    event.target.value = '';
-    if (!file || !rights.checked || !audio.paused || deck.starting || deck.loading || deck.prepared || deck.preparing) return;
-    $(`error-${id}`).textContent = '';
-    const revision = ++deck.revision, controller = new AbortController();
-    deck.playRequested = false; deck.loading = controller; controls(deck);
-    try {
-      validateTrack(file);
-      const duration = await trackDuration(file, controller.signal);
-      if (revision !== deck.revision || !rights.checked) return;
-      // Connect before preloading: Linux WebKit can stall when rerouting decoded media.
-      audioGraph();
-      const previous = deck.url, url = URL.createObjectURL(file);
-      audio.removeAttribute('src'); audio.load();
-      deck.file = file; deck.url = url; deck.duration = duration; audio.src = url; deck.resetTransport(); deckEffects(deck, true);
-      if (previous) URL.revokeObjectURL(previous);
-      $(`name-${id}`).textContent = file.name;
-    } catch (error) {
-      if (revision === deck.revision) $(`error-${id}`).textContent = `${error.message}${deck.url ? ' Previous track kept.' : ''}`;
-    } finally {
-      if (deck.loading === controller) deck.loading = null;
-      controls(deck);
-    }
+  $(`file-${id}`).onchange = event => {
+    const file = event.target.files[0]; event.target.value = '';
+    if (file) loadTrack(deck, () => file);
+  };
+  $(`library-load-${id}`).onclick = () => {
+    const selected = $('saved-mix').value;
+    if (!selected) return;
+    loadTrack(deck, async () => {
+      const [sessionId, name] = JSON.parse(selected);
+      const saved = await loadSession(sessionId);
+      if (!saved || !await verifySession(saved)) throw new Error('Saved mix is missing or damaged. Refresh the library.');
+      const file = saved.files.find(file => file.name === name && file.name.endsWith('.wav'));
+      if (!file) throw new Error('Saved audio is missing. Refresh the library.');
+      return new File([file.blob], `djayvo-${saved.seed}-${name}`, { type: 'audio/wav' });
+    });
   };
   for (const name of ['tone', 'echo', 'delay']) $(`${name}-${id}`).oninput = () => deckEffects(deck);
   $(`fx-reset-${id}`).onclick = () => deckEffects(deck, true);
@@ -187,7 +228,7 @@ for (const deck of decks) {
     if (deck.url) { pause(deck); $(`error-${id}`).textContent = 'Track playback failed. Unload it and try another file.'; }
   });
 }
-session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights });
+session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
 $('crossfade').oninput = $('master').oninput = levels;
 $('pause-all').onclick = () => { decks.forEach(pause); clearDeckEchoes(); $('mixer-status').textContent = 'All decks paused.'; };
 window.addEventListener('pagehide', event => {

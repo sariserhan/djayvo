@@ -2,11 +2,13 @@ import { decodeAudio, encodeWav, resumeAudio } from './audio.js';
 import { SessionTransport } from './session-transport.js';
 import { validatePreparedTrack, updateToneEcho, clearEcho, beatEchoDelay } from './mixer.js';
 import { compositionKey } from './novelty.js';
+import { saveSession, verifySession } from './library.js';
 
 const $ = id => document.getElementById(id);
 const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
-export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights }) {
+export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights, onSaved }) {
   let prepared, transport, samples, performanceBuffer, download, busy = '', starting = '', revision = 0, startVersion = 0;
+  let savedPerformance, saving = false, saved = false;
   let worker, timer, recorder, stream, recordingAt, generationContext, recent = [], wasA = false, wasC = false;
   const error = failure => { $('performance-error').textContent = failure.message || String(failure); };
   const say = text => { $('performance-status').textContent = text; };
@@ -47,6 +49,8 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     $('phrase-generate').disabled = !confirmed() || !permitted() || !samples || !!busy || !!starting || activeC;
     $('phrase-cancel').disabled = !['generating', 'loading', 'permission'].includes(busy);
     $('c-arm').disabled = !playing || !performanceBuffer || !confirmed() || !permitted() || !!busy || !!starting || activeC;
+    $('performance-save').disabled = !savedPerformance || !permitted() || !rights.checked || !!busy || saving || saved;
+    $('performance-save').textContent = saving ? 'Saving…' : saved ? 'Saved on this device' : 'Save C on this device';
     $('c-stop').disabled = !activeC && starting !== 'c';
     $('c-preview').disabled = playing || !performanceBuffer || !permitted() || !confirmed() || !!busy || !!starting || activeC;
     for (const id of ['tone-c', 'echo-c', 'delay-c', 'echo-grid-c', 'fx-reset-c']) $(id).disabled = !performanceBuffer || !permitted() || !confirmed();
@@ -64,6 +68,8 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     controls(deck);
   }
   function clearPerformance() {
+    savedPerformance = undefined; saved = false;
+    $('performance-save-status').textContent = '';
     transport?.stopC(); performanceBuffer = undefined; generationContext = undefined;
     effects(true);
     if (download) URL.revokeObjectURL(download);
@@ -196,6 +202,23 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
       }, 100);
     } catch (failure) { if (token === revision) { cancel(); error(new Error(`Microphone unavailable: ${failure.message}`)); } }
   };
+  $('performance-save').onclick = async () => {
+    if (!savedPerformance || saving || saved || busy || !permitted() || !rights.checked) return;
+    const performance = savedPerformance;
+    saving = true; refresh();
+    $('performance-save-status').textContent = 'Saving locally. Keep this tab open until it finishes.';
+    try {
+      if (!await verifySession(performance)) throw new Error('Performance integrity check failed.');
+      if (performance !== savedPerformance || !permitted() || !rights.checked) return;
+      // An explicit save persists independently of unloading a deck or deleting its phrase.
+      await saveSession(performance);
+      if (performance === savedPerformance) saved = true;
+      $('performance-save-status').textContent = 'Saved in this browser. Manage or delete it in Voice studio.';
+      onSaved?.();
+    } catch (failure) {
+      $('performance-save-status').textContent = failure.message;
+    } finally { saving = false; refresh(); }
+  };
   $('phrase-generate').onclick = () => {
     if (!confirmed() || !permitted() || !samples || busy || starting || transport?.c) return;
     const requested = currentContext(), token = ++revision, began = performance.now();
@@ -224,6 +247,12 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
         const buffer = await context().decodeAudioData(bytes.slice().buffer);
         if (token !== revision || !permitted() || !confirmed()) return;
         clearPerformance(); performanceBuffer = buffer; generationContext = requested;
+        savedPerformance = {
+          id: crypto.randomUUID(), created: Date.now(), style: 'call_response', seed: data.seed,
+          seconds: (performance.now() - began) / 1000,
+          files: data.files.map(file => ({ name: file.name, sha256: file.sha256,
+            blob: new Blob([file.bytes], { type: file.name.endsWith('.wav') ? 'audio/wav' : 'application/octet-stream' }) })),
+        };
         recent = [...recent.slice(-9), key];
         download = URL.createObjectURL(new Blob([bytes], { type: 'audio/wav' }));
         $('performance-download').href = download; $('performance-download').download = `djayvo-session-${data.seed}.wav`; $('performance-download').hidden = false;

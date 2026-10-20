@@ -1,5 +1,16 @@
 # Djayvo: Apple M5 agent handoff
 
+Latest local product increment — 2026-10-19:
+[Save and reuse performances](saved-mixes.md) connects generated C to the existing
+browser library and loads verified saved mixes into A/B. Explicit local saving,
+quota recovery, duplicate prevention, permissions, integrity checks and shared
+Voice studio deletion are covered. Offline fragment navigation and WebKit select
+clipping are repaired. R2 and Resend remain deferred at the owner's request;
+cloud synchronization, full session recall and production/listening gates remain
+open. See the report for exact PASS/PARTIAL/FAIL/NOT RUN receipts, including the
+unresolved Linux WebKit manual-deck check. The master and source recordings are
+unchanged.
+
 Latest deployment-build repair — 2026-10-19:
 [Clean website build](vercel-clean-build.md) **PASS (local build scope)**.
 Site builds now compile/audit the studio from tracked sources and bootstrap

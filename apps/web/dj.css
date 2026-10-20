@@ -140,3 +140,7 @@ input::file-selector-button { background:#25313b; border:1px solid #50616e; colo
 .midi-learn-controls { display:flex; flex-wrap:wrap; gap:12px; align-items:end; width:100%; }
 #midi-bindings { width:100%; margin:0; padding-left:20px; font:12px ui-monospace,Menlo,monospace; line-height:1.8; overflow-wrap:anywhere; }
 #midi-bindings:empty { display:none; }
+
+#saved-mixes { margin: 2rem 0; padding: clamp(1rem, 3vw, 2rem); border: 1px solid #405947; border-radius: 16px; }
+#saved-mixes .session-context label { flex: 1; min-width: 0; }
+#saved-mixes select { height: 44px; font: inherit; contain: paint; }

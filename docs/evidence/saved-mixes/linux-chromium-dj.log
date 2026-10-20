@@ -1,0 +1,47 @@
+Artifacts: /work/renders/dj-chromium-kMuvRO
+PASS: page identity, nonblank content, consent gating
+PASS: real offline stereo PCM: A/B endpoints, center, channel mute, master mute
+PASS: instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs
+PASS: both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs
+PASS: hung audio resume reports failure, restores manual Play and cannot disrupt a successful retry
+PASS: late completion of an older play request cannot pause a newer playback request
+PASS: two media decks advance independently; active-track replacement blocked; actual mix signal present
+PASS: real media output follows crossfader, channel level and master silence
+PASS: pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects
+PASS: resolved-but-stalled A start reports failure and restores controls while B keeps producing audio
+PASS: Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry
+PASS: rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping
+PASS: rapid active pitch changes keep the latest rate; Pause All and unload cancel the queued resume, then reload plays
+PASS: deck low EQ changes measured output
+PASS: A/B controls change real audio independently; pause tails follow channel/master/crossfader and reset cannot revive old audio
+PASS: hung instrument wake-up restores Prepare; retry succeeds and late completion stays inert
+PASS: live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound
+PASS: late note wake-up rejection cannot release or overwrite a newer note on the same key
+PASS: sustain, instrument/master mute, panic and blur release work without pausing decks
+PASS: live tone/echo controls change instrument audio; level/master silence tails; reset clears buffers even if echo is raised again, decks continue
+PASS: talk-bass low register and live vowel spectrum, release, isolated controls and four new percussion sounds
+PASS: octave selection, patch range limits and pointer drum pad generate real audio
+PASS: MIDI opt-in, denied permission and late permission cancellation preserve manual controls
+PASS: MIDI notes drive real C++ worklet audio with velocity and zero-velocity note-off
+PASS: MIDI Learn consumes assignment without jumps; channel-specific pickup controls actual audio, manual changes rearm, unmapped/reserved CC preserve notes
+PASS: reassignment replaces old target/controller bindings; disabled sound controls and cancelled learning ignore CC
+PASS: learned channel and crossfader controls change media-deck PCM; tone/EQ use existing validated audio controls
+PASS: blur cancels learning/rearms pickup; clear and input switching remove bindings without changing levels
+PASS: all 26 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count
+PASS: MIDI sustain is isolated by channel and from computer/touch sustain
+PASS: retrigger and MIDI CC123/121/120 release held and sustained voices safely
+PASS: channel-10 drums/percussion mapping produces audio; unsupported notes and messages are ignored
+PASS: input switching preserves computer notes; unplug clears sustain and requires explicit reconnect
+PASS: failed/pending port opens, blur and disabling MIDI release voices without pausing decks
+PASS: unsupported MIDI browser keeps clear fallback and existing instrument controls
+PASS: desktop, tablet and mobile controls render without horizontal overflow; reduced motion stops platter animation
+PASS: injected instrument processor failure disables keys and preserves deck playback
+PASS: pause-all and audio-context interruption require explicit resume
+PASS: opposite-polarity stereo remains visible on output meter despite mono cancellation
+PASS: revoking permission stops, detaches both decks and clears effect tails and controls
+PASS: disconnected reload: deck playback/effects, Pause all clears tails, unload/reload cannot revive old audio
+PASS: cached WASM bank and AudioWorklet produce instrument audio with server disconnected
+PASS: cached MIDI Learn picks up, mutes/unmutes actual instrument PCM and clears on disable with server disconnected (synthetic port)
+PASS: unload releases the deck source
+PASS: failed graph initialization rejects repeated loads before attaching audio; no unprocessed fallback
+PASS: no upload/external request, URL-release errors or app console errors

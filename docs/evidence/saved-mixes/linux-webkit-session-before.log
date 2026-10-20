@@ -1,0 +1,40 @@
+Artifacts: /work/renders/session-webkit-NytxzW
+PASS: both studios disable unavailable recording and keep consented import enabled
+PASS: identity, meaningful screen, permission-disabled preparation/capture
+PASS: C++/WASM absolute bar clock and real two-channel rendered A/C entry, zero A gaps at C entry
+PASS: C effects: stereo dry identity, tone attenuation, exact echo frames, mute/reset/clear and playable piano WAVs
+PASS: C beat echoes at 60/127.19/180 BPM: all three divisions within one sample frame and playable piano comparisons
+PASS: pending prepared A start can be stopped; stale rejection cannot overwrite retry; current failure recovers
+PASS: prepared A locks conflicting transport, preserves EQ/effects and tone changes actual audio without stopping transport
+PASS: confirmed major mode reaches the shared planner; all pitched notes belong to its scale
+PASS: generated C remains temporary until an explicit save
+PASS: full library preserves every old entry, ready C and its downloadable audio; save remains retryable
+PASS: double save commits once; four verified artifacts match the download and exclude raw phrase/Deck A; prepared A stays protected
+PASS: ready C effects and synthetic MIDI pickup drive the existing tone control
+PASS: beat sync uses confirmed C tempo, holds manual spacing, blocks mapped spacing and rearms pickup on return
+PASS: consented phrase -> C++ context plan -> playable WAV -> bar-armed C while A continues
+PASS: complete C performance ends naturally with accurate status while A keeps playing
+PASS: C manual fader/stop do not stop A
+PASS: worker cancellation retains ready C and uninterrupted A; next request excludes recent composition
+PASS: director load failure leaves A and previous ready C intact
+PASS: independent PCM counter and nonsilent mix during generation/entry/cancellation; browser timestamp anomalies retained
+PASS: rejected replacement phrase keeps previous source/performance and A playback
+Choose an audio file smaller than 8 MB.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+false !== true
+
+    at file:///work/apps/web/tests/session.mjs:280:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.17.0

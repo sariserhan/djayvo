@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { createServer } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { chromium, webkit } from 'playwright';
+import { verifyPerformanceSave, verifySavedDecks } from './saved-mixes.mjs';
 import { verifySessionAudio } from './session-audio.mjs';
 import { verifyInstrumentFX } from './instrument-fx.mjs';
 import { fakeMidi } from './midi-browser.mjs';
@@ -193,6 +195,7 @@ try {
   const downloaded = page.waitForEvent('download');
   await page.locator('#performance-download').click();
   await (await downloaded).saveAs(path.join(output, 'consented-performance.wav'));
+  const savedMix = await verifyPerformanceSave(page, check, createHash('sha256').update(await fs.readFile(path.join(output, 'consented-performance.wav'))).digest('hex'));
   assert.equal(await page.locator('#session-stop').isDisabled(), false);
   await page.locator('#echo-c').fill('0.4'); await page.locator('#echo-c').dispatchEvent('input');
   await page.locator('#delay-c').fill('800'); await page.locator('#delay-c').dispatchEvent('input');
@@ -413,10 +416,12 @@ try {
   assert.equal(await page.locator('#c-stop').isDisabled(), true);
   assert.equal(await page.locator('#session-stop').isDisabled(), false);
   check('offline consent withdrawal stops C, resets/disables effects and keeps A playing');
+  await verifySavedDecks(page, check, capture);
+  assert.equal(serverRequests.length, requestsBeforeDisconnect);
   assert.deepEqual(errors, []);
   assert.ok(requests.every(url => url.startsWith(origin) || url.startsWith('blob:')));
   check('no uploads, external requests or unexpected runtime errors');
-  await fs.writeFile(path.join(output, 'report.json'), JSON.stringify({ status: recordingAvailable ? 'PASS' : 'PARTIAL', recordingAvailable, browser: kind, version: browser.version(), checks, timing, continuity, generationSeconds, heardA, expectedErrors, errors, warnings, physical_microphone: 'NOT RUN', listening: 'NOT RUN' }, null, 2));
+  await fs.writeFile(path.join(output, 'report.json'), JSON.stringify({ status: recordingAvailable ? 'PASS' : 'PARTIAL', recordingAvailable, browser: kind, version: browser.version(), checks, savedMix, timing, continuity, generationSeconds, heardA, expectedErrors, errors, warnings, physical_microphone: 'NOT RUN', listening: 'NOT RUN' }, null, 2));
 } catch (error) {
   const state = await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page?.evaluate(() => ({
     context: window.testAudioContext && { state: testAudioContext.state, time: testAudioContext.currentTime, rate: testAudioContext.sampleRate },

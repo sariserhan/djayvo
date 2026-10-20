@@ -1,0 +1,960 @@
+{
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "core/include/djayvo/audio.h": "0b556b7f731d5bbf257d152dae1b591311283ffd8366fe98ba66e20df7a2c523",
+    "core/instruments/voice.cpp": "d0bc8893083ac9f14a94f53e6f561a4316b0e09584e86361f4101b47a4b52120",
+    "core/tests/tests.cpp": "396d770309332e747a130291e01df51348e2fe185454ab49a53ef5e38bdebc09",
+    "core/instruments/full_band_interpolation.inc": "b5188a1756bb48d352361601443644e17088e6df3ade3b2682126afb6875a547",
+    "dist/web/engine/djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "dist/web/engine/djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1"
+  },
+  "sources": {
+    "apps/web/dj.js": "1c5a74e385eb282b9146fe7a84c0ace13edca4c047b8d7f397bdd93d7bab1948",
+    "apps/web/dj.html": "5e7c48b8a1f1c82f79beba1f26ad752c57cb6024d26f2caa583be0fa71c2054c",
+    "apps/web/dj.css": "5d8cc4563f7dbff75d2643dfce883089ebffa086b35e47e8ad4d57e6ae202281",
+    "apps/web/performance-session.js": "729d3b04adf8da5c070a61d39339185159b83e2722699fbecd06f1d878192404",
+    "apps/web/library.js": "cccaa6b1b26642c42e778f19782077169c40621e455ff109f168d815cbe21ed3"
+  },
+  "runs": {
+    "linux-chromium-session": {
+      "status": "PASS",
+      "version": "149.0.7827.0",
+      "checks": {
+        "PASS": 39,
+        "PARTIAL": 0,
+        "FAIL": 0,
+        "NOT RUN": 0
+      },
+      "receipt": "renders/audio-resume-linux-JicipR/session-chromium-ylfNIA/report.json",
+      "sha256": "37583ed46048c349a1d3b6f7804ff9bfe17689d379d5b4e7280c27ba0f6c3ec8",
+      "log_sha256": "866b4005056e375acd9473df3ba63a0a1cfeb018d02e42cd0aa2413745eee598",
+      "timing": {
+        "startA": 4800,
+        "startC": 100800,
+        "firstA": 4801,
+        "firstC": 100801,
+        "gap": 0,
+        "frames": [
+          {
+            "rate": 44100,
+            "tempo": 60000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 44100,
+            "tempo": 83920,
+            "afterSixHours": 952585241
+          },
+          {
+            "rate": 44100,
+            "tempo": 127190,
+            "afterSixHours": 952634910
+          },
+          {
+            "rate": 44100,
+            "tempo": 180000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 48000,
+            "tempo": 60000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 48000,
+            "tempo": 83920,
+            "afterSixHours": 1036827472
+          },
+          {
+            "rate": 48000,
+            "tempo": 127190,
+            "afterSixHours": 1036881533
+          },
+          {
+            "rate": 48000,
+            "tempo": 180000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 96000,
+            "tempo": 60000,
+            "afterSixHours": 2073600017
+          },
+          {
+            "rate": 96000,
+            "tempo": 83920,
+            "afterSixHours": 2073654926
+          },
+          {
+            "rate": 96000,
+            "tempo": 127190,
+            "afterSixHours": 2073763049
+          },
+          {
+            "rate": 96000,
+            "tempo": 180000,
+            "afterSixHours": 2073600017
+          }
+        ],
+        "sampleRate": 48000,
+        "renderedFrames": 192000
+      },
+      "continuity": {
+        "blocks": 12276,
+        "silent": 0,
+        "frameGaps": 0,
+        "events": [],
+        "signalFrameGaps": 0,
+        "signalFrames": 1571328,
+        "processedFrames": 1571328
+      },
+      "savedMix": {
+        "count": 1,
+        "valid": true,
+        "keys": [
+          "created",
+          "files",
+          "id",
+          "seconds",
+          "seed",
+          "style"
+        ],
+        "files": [
+          "call_response.events.tsv",
+          "call_response.report.json",
+          "call_response.score.json",
+          "call_response.wav"
+        ],
+        "savedHash": "ea122debc3669f53900b255bd0055a8e5c45c516b98bea358d7d41a51c69c356"
+      },
+      "max_echo_frame_error": 0.4736221401108196
+    },
+    "linux-webkit-session": {
+      "status": "PARTIAL",
+      "version": "26.5",
+      "checks": {
+        "PASS": 38,
+        "PARTIAL": 0,
+        "FAIL": 0,
+        "NOT RUN": 2
+      },
+      "receipt": "renders/saved-mixes-linux-retry-mn5h7L/session-webkit-VYow3R/report.json",
+      "sha256": "289f1a0a9fa1039da15d7294ba1bded9e50a9169bb8b9af8d2d277eb5591edad",
+      "log_sha256": "7a7fcb0522cbaa4daaf8c89cc957afd71892b2a1f40a100de5f7e81a185d5cfb",
+      "timing": {
+        "startA": 4800,
+        "startC": 100800,
+        "firstA": 4801,
+        "firstC": 100801,
+        "gap": 0,
+        "frames": [
+          {
+            "rate": 44100,
+            "tempo": 60000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 44100,
+            "tempo": 83920,
+            "afterSixHours": 952585241
+          },
+          {
+            "rate": 44100,
+            "tempo": 127190,
+            "afterSixHours": 952634910
+          },
+          {
+            "rate": 44100,
+            "tempo": 180000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 48000,
+            "tempo": 60000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 48000,
+            "tempo": 83920,
+            "afterSixHours": 1036827472
+          },
+          {
+            "rate": 48000,
+            "tempo": 127190,
+            "afterSixHours": 1036881533
+          },
+          {
+            "rate": 48000,
+            "tempo": 180000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 96000,
+            "tempo": 60000,
+            "afterSixHours": 2073600017
+          },
+          {
+            "rate": 96000,
+            "tempo": 83920,
+            "afterSixHours": 2073654926
+          },
+          {
+            "rate": 96000,
+            "tempo": 127190,
+            "afterSixHours": 2073763049
+          },
+          {
+            "rate": 96000,
+            "tempo": 180000,
+            "afterSixHours": 2073600017
+          }
+        ],
+        "sampleRate": 48000,
+        "renderedFrames": 192000
+      },
+      "continuity": {
+        "blocks": 13649,
+        "silent": 0,
+        "frameGaps": 0,
+        "events": [],
+        "signalFrameGaps": 0,
+        "signalFrames": 1747072,
+        "processedFrames": 1747072
+      },
+      "savedMix": {
+        "count": 1,
+        "valid": true,
+        "keys": [
+          "created",
+          "files",
+          "id",
+          "seconds",
+          "seed",
+          "style"
+        ],
+        "files": [
+          "call_response.events.tsv",
+          "call_response.report.json",
+          "call_response.score.json",
+          "call_response.wav"
+        ],
+        "savedHash": "6e50264fa25f38ac8cd8b2f1190154a6d12e91163327836a5a437a4765e97e23"
+      },
+      "max_echo_frame_error": 0.4736221401108196
+    },
+    "mac-chromium-session": {
+      "status": "PASS",
+      "version": "149.0.7827.55",
+      "checks": {
+        "PASS": 39,
+        "PARTIAL": 0,
+        "FAIL": 0,
+        "NOT RUN": 0
+      },
+      "receipt": "renders/session-chromium-VPnWE9/report.json",
+      "sha256": "d29bbbbdfaa3c7c868146c9f829189d5e81256993871b2aa7e5f18ca41a0ffea",
+      "log_sha256": "6298f23599b0c0f36185c2b91cc5304c7713b010789e962422d0b82b4b5604c7",
+      "timing": {
+        "startA": 4800,
+        "startC": 100800,
+        "firstA": 4801,
+        "firstC": 100801,
+        "gap": 0,
+        "frames": [
+          {
+            "rate": 44100,
+            "tempo": 60000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 44100,
+            "tempo": 83920,
+            "afterSixHours": 952585241
+          },
+          {
+            "rate": 44100,
+            "tempo": 127190,
+            "afterSixHours": 952634910
+          },
+          {
+            "rate": 44100,
+            "tempo": 180000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 48000,
+            "tempo": 60000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 48000,
+            "tempo": 83920,
+            "afterSixHours": 1036827472
+          },
+          {
+            "rate": 48000,
+            "tempo": 127190,
+            "afterSixHours": 1036881533
+          },
+          {
+            "rate": 48000,
+            "tempo": 180000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 96000,
+            "tempo": 60000,
+            "afterSixHours": 2073600017
+          },
+          {
+            "rate": 96000,
+            "tempo": 83920,
+            "afterSixHours": 2073654926
+          },
+          {
+            "rate": 96000,
+            "tempo": 127190,
+            "afterSixHours": 2073763049
+          },
+          {
+            "rate": 96000,
+            "tempo": 180000,
+            "afterSixHours": 2073600017
+          }
+        ],
+        "sampleRate": 48000,
+        "renderedFrames": 192000
+      },
+      "continuity": {
+        "blocks": 13674,
+        "silent": 0,
+        "frameGaps": 0,
+        "events": [],
+        "signalFrameGaps": 0,
+        "signalFrames": 1750272,
+        "processedFrames": 1750272
+      },
+      "savedMix": {
+        "count": 1,
+        "valid": true,
+        "keys": [
+          "created",
+          "files",
+          "id",
+          "seconds",
+          "seed",
+          "style"
+        ],
+        "files": [
+          "call_response.events.tsv",
+          "call_response.report.json",
+          "call_response.score.json",
+          "call_response.wav"
+        ],
+        "savedHash": "683d597ca3185529f01156917dd0b21a36661549cb7d6543c3b0c16754216e98"
+      },
+      "max_echo_frame_error": 0.4736221401108196
+    },
+    "mac-webkit-session": {
+      "status": "PASS",
+      "version": "26.5",
+      "checks": {
+        "PASS": 39,
+        "PARTIAL": 0,
+        "FAIL": 0,
+        "NOT RUN": 0
+      },
+      "receipt": "renders/session-webkit-P1ksmn/report.json",
+      "sha256": "ea59e06415f3156ada4cba06b4690c60108dae25fe5541035c74b88cdb567b01",
+      "log_sha256": "8f842df8027de359fe7ecd5f805e1b3866d812b7241fd3633e61dcbacb084da8",
+      "timing": {
+        "startA": 4800,
+        "startC": 100800,
+        "firstA": 4801,
+        "firstC": 100801,
+        "gap": 0,
+        "frames": [
+          {
+            "rate": 44100,
+            "tempo": 60000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 44100,
+            "tempo": 83920,
+            "afterSixHours": 952585241
+          },
+          {
+            "rate": 44100,
+            "tempo": 127190,
+            "afterSixHours": 952634910
+          },
+          {
+            "rate": 44100,
+            "tempo": 180000,
+            "afterSixHours": 952560017
+          },
+          {
+            "rate": 48000,
+            "tempo": 60000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 48000,
+            "tempo": 83920,
+            "afterSixHours": 1036827472
+          },
+          {
+            "rate": 48000,
+            "tempo": 127190,
+            "afterSixHours": 1036881533
+          },
+          {
+            "rate": 48000,
+            "tempo": 180000,
+            "afterSixHours": 1036800017
+          },
+          {
+            "rate": 96000,
+            "tempo": 60000,
+            "afterSixHours": 2073600017
+          },
+          {
+            "rate": 96000,
+            "tempo": 83920,
+            "afterSixHours": 2073654926
+          },
+          {
+            "rate": 96000,
+            "tempo": 127190,
+            "afterSixHours": 2073763049
+          },
+          {
+            "rate": 96000,
+            "tempo": 180000,
+            "afterSixHours": 2073600017
+          }
+        ],
+        "sampleRate": 48000,
+        "renderedFrames": 192000
+      },
+      "continuity": {
+        "blocks": 12599,
+        "silent": 0,
+        "frameGaps": 0,
+        "events": [],
+        "signalFrameGaps": 0,
+        "signalFrames": 1612672,
+        "processedFrames": 1612672
+      },
+      "savedMix": {
+        "count": 1,
+        "valid": true,
+        "keys": [
+          "created",
+          "files",
+          "id",
+          "seconds",
+          "seed",
+          "style"
+        ],
+        "files": [
+          "call_response.events.tsv",
+          "call_response.report.json",
+          "call_response.score.json",
+          "call_response.wav"
+        ],
+        "savedHash": "2f4d6d9f49a73bf37c47bc368f5fc320d0cad5bcf1343da5c535c29baabb96d8"
+      },
+      "max_echo_frame_error": 0.4736221401108196
+    },
+    "linux-chromium-dj": {
+      "status": "PASS",
+      "version": "149.0.7827.0",
+      "checks": {
+        "PASS": 46,
+        "PARTIAL": 0,
+        "FAIL": 0,
+        "NOT RUN": 0
+      },
+      "receipt": "renders/audio-resume-linux-JicipR/dj-chromium-kMuvRO/report.json",
+      "sha256": "358e35194ef33bab4df8ddac6a3474db6494d573d7134ab141fcf71818040c91",
+      "log_sha256": "6994b5eb0b41c27354986d4c8ff8a23336fabee027defecf1d455f8c28095e13"
+    },
+    "linux-webkit-dj": {
+      "status": "FAIL",
+      "version": null,
+      "checks": {
+        "PASS": 38,
+        "PARTIAL": 0,
+        "FAIL": 0,
+        "NOT RUN": 0
+      },
+      "receipt": "renders/audio-resume-linux-JicipR/dj-webkit-jbti0B/failure.json",
+      "sha256": "283675f303ca8bc758c17590e39a77ff9566e7dbbbbe47320439fedb8b74535a",
+      "log_sha256": "27fed5163accf761ba9127ad0e7a144ac68fe234f57fa79c34fef76abd687202",
+      "error": "page.waitForFunction: Timeout 10000ms exceeded."
+    },
+    "mac-chromium-dj": {
+      "status": "PASS",
+      "version": "149.0.7827.55",
+      "checks": {
+        "PASS": 46,
+        "PARTIAL": 0,
+        "FAIL": 0,
+        "NOT RUN": 0
+      },
+      "receipt": "renders/dj-chromium-tA8O3A/report.json",
+      "sha256": "d2b273bfb71e3aa0d487d5d18de4562e42d688bd5d11544e71716d1029a5efcb",
+      "log_sha256": "c3b123a36f3d6b979b51ab8576c8bdced6ade2a0c93d2914c0196d60b00ac7d0"
+    },
+    "mac-webkit-dj": {
+      "status": "PASS",
+      "version": "26.5",
+      "checks": {
+        "PASS": 46,
+        "PARTIAL": 0,
+        "FAIL": 0,
+        "NOT RUN": 0
+      },
+      "receipt": "renders/dj-webkit-5B381h/report.json",
+      "sha256": "eba99d9ce726cc11ea31ba618eda8745944ba09ac8e2b7baf46a9549ff4d684a",
+      "log_sha256": "2a6e06226e57cceb1bb32c689813dc3ec08b695096056ae30a0ed713483aec56"
+    }
+  },
+  "waveforms": {
+    "linux-chromium-session": {
+      "run": "renders/audio-resume-linux-JicipR/session-chromium-ylfNIA",
+      "baseline": "renders/session-chromium-SepXST",
+      "files": {
+        "deck-c-piano-dotted.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "00fa4a2401b04dc8d6bf3d944a3c26752ab653c99485de9b6599aad3b2c8c3fa"
+        },
+        "deck-c-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-c-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-c-piano-eighth.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "cc5ccde681b66ca97fa3333189b30e0fc69db604288be45925c473e596c41c13"
+        },
+        "deck-c-piano-triplet.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "8b1157a97a18f694ff68c76af5b12f478232387210ae45b3c9078c59c6ebeba3"
+        }
+      }
+    },
+    "linux-webkit-session": {
+      "run": "renders/saved-mixes-linux-retry-mn5h7L/session-webkit-VYow3R",
+      "baseline": "renders/session-webkit-ujxhLJ",
+      "files": {
+        "deck-c-piano-dotted.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "2a922b3d0efdf629d14f72bf314df9a8224ccd72abfdfaac6f8e9935fc863ab4"
+        },
+        "deck-c-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-c-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-c-piano-eighth.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "311154d579255cf694832a8c129550ca3cd2b6e4f226574d6e26557ac4b7c846"
+        },
+        "deck-c-piano-triplet.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "34b00fe01c8bfb48b2022ff63ce734fc74a157e4e41a1551a2777f1db64e9f94"
+        }
+      }
+    },
+    "mac-chromium-session": {
+      "run": "renders/session-chromium-VPnWE9",
+      "baseline": "renders/session-chromium-SepXST",
+      "files": {
+        "deck-c-piano-dotted.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "00fa4a2401b04dc8d6bf3d944a3c26752ab653c99485de9b6599aad3b2c8c3fa"
+        },
+        "deck-c-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-c-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-c-piano-eighth.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "cc5ccde681b66ca97fa3333189b30e0fc69db604288be45925c473e596c41c13"
+        },
+        "deck-c-piano-triplet.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "8b1157a97a18f694ff68c76af5b12f478232387210ae45b3c9078c59c6ebeba3"
+        }
+      }
+    },
+    "mac-webkit-session": {
+      "run": "renders/session-webkit-P1ksmn",
+      "baseline": "renders/session-webkit-ujxhLJ",
+      "files": {
+        "deck-c-piano-dotted.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "2a922b3d0efdf629d14f72bf314df9a8224ccd72abfdfaac6f8e9935fc863ab4"
+        },
+        "deck-c-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-c-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-c-piano-eighth.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "311154d579255cf694832a8c129550ca3cd2b6e4f226574d6e26557ac4b7c846"
+        },
+        "deck-c-piano-triplet.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "34b00fe01c8bfb48b2022ff63ce734fc74a157e4e41a1551a2777f1db64e9f94"
+        }
+      }
+    },
+    "linux-chromium-dj": {
+      "run": "renders/audio-resume-linux-JicipR/dj-chromium-kMuvRO",
+      "baseline": "renders/dj-chromium-TSnFOX",
+      "files": {
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        }
+      }
+    },
+    "linux-webkit-dj": {
+      "run": "renders/audio-resume-linux-JicipR/dj-webkit-jbti0B",
+      "baseline": "renders/dj-webkit-l4yxAk",
+      "files": {
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        }
+      }
+    },
+    "mac-chromium-dj": {
+      "run": "renders/dj-chromium-tA8O3A",
+      "baseline": "renders/dj-chromium-TSnFOX",
+      "files": {
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        }
+      }
+    },
+    "mac-webkit-dj": {
+      "run": "renders/dj-webkit-5B381h",
+      "baseline": "renders/dj-webkit-l4yxAk",
+      "files": {
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        }
+      }
+    }
+  },
+  "physical_audio": "NOT RUN",
+  "listening": "NOT RUN",
+  "production": "PARTIAL",
+  "r2": "NOT RUN",
+  "resend": "NOT RUN",
+  "waveform_count": 44,
+  "waveform_gate": "PASS",
+  "integrated": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "url": "http://localhost:3000/studio/dj.html",
+      "gate": "PASS",
+      "savedChecks": [
+        {
+          "name": "generated C remains temporary until an explicit save",
+          "status": "PASS"
+        },
+        {
+          "name": "full library preserves every old entry, ready C and its downloadable audio; save remains retryable",
+          "status": "PASS"
+        },
+        {
+          "name": "double save commits once; four verified artifacts match the download and exclude raw phrase/Deck A; prepared A stays protected",
+          "status": "PASS"
+        },
+        {
+          "name": "Voice studio and DJ workspace share the saved performance after reload",
+          "status": "PASS"
+        },
+        {
+          "name": "saved C survives reload and consent withdrawal; loading requires fresh music permission",
+          "status": "PASS"
+        },
+        {
+          "name": "saved WAV loads byte-exactly into A/B without autoplay; both play real nonzero audio and reject replacement while playing",
+          "status": "PASS"
+        },
+        {
+          "name": "saved-mix controls fit desktop and mobile without horizontal overflow",
+          "status": "PASS"
+        },
+        {
+          "name": "permission withdrawal during verification prevents late loading; a fresh permitted retry succeeds",
+          "status": "PASS"
+        },
+        {
+          "name": "changed/corrupt stored bytes are rechecked on load, leave the old deck intact and are hidden on refresh",
+          "status": "PASS"
+        },
+        {
+          "name": "deleting saved mixes empties the shared library",
+          "status": "PASS"
+        }
+      ],
+      "savedMix": {
+        "count": 1,
+        "valid": true,
+        "keys": [
+          "created",
+          "files",
+          "id",
+          "seconds",
+          "seed",
+          "style"
+        ],
+        "files": [
+          "call_response.events.tsv",
+          "call_response.report.json",
+          "call_response.score.json",
+          "call_response.wav"
+        ],
+        "savedHash": "add984f60fac28c915c635fe9cd0a0a2c32be07391b834968160a4fc5aa44bb4"
+      },
+      "checks": [
+        "page identity and content",
+        "pending A and C: disabled duplicate start, enabled stop, desktop/mobile screenshots, cancel and late resume",
+        "prepared A audible PCM",
+        "prepared A effects enabled, echo readout/reset and deck screenshots",
+        "integrated worker/context engine/WAV",
+        "C preview, tone and tempo-synced dotted eighth echo at 60 BPM",
+        "desktop/mobile screenshots and no overflow",
+        "no page errors"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "url": "http://localhost:3000/studio/dj.html",
+      "gate": "PASS",
+      "savedChecks": [
+        {
+          "name": "generated C remains temporary until an explicit save",
+          "status": "PASS"
+        },
+        {
+          "name": "full library preserves every old entry, ready C and its downloadable audio; save remains retryable",
+          "status": "PASS"
+        },
+        {
+          "name": "double save commits once; four verified artifacts match the download and exclude raw phrase/Deck A; prepared A stays protected",
+          "status": "PASS"
+        },
+        {
+          "name": "Voice studio and DJ workspace share the saved performance after reload",
+          "status": "PASS"
+        },
+        {
+          "name": "saved C survives reload and consent withdrawal; loading requires fresh music permission",
+          "status": "PASS"
+        },
+        {
+          "name": "saved WAV loads byte-exactly into A/B without autoplay; both play real nonzero audio and reject replacement while playing",
+          "status": "PASS"
+        },
+        {
+          "name": "saved-mix controls fit desktop and mobile without horizontal overflow",
+          "status": "PASS"
+        },
+        {
+          "name": "permission withdrawal during verification prevents late loading; a fresh permitted retry succeeds",
+          "status": "PASS"
+        },
+        {
+          "name": "changed/corrupt stored bytes are rechecked on load, leave the old deck intact and are hidden on refresh",
+          "status": "PASS"
+        },
+        {
+          "name": "deleting saved mixes empties the shared library",
+          "status": "PASS"
+        }
+      ],
+      "savedMix": {
+        "count": 1,
+        "valid": true,
+        "keys": [
+          "created",
+          "files",
+          "id",
+          "seconds",
+          "seed",
+          "style"
+        ],
+        "files": [
+          "call_response.events.tsv",
+          "call_response.report.json",
+          "call_response.score.json",
+          "call_response.wav"
+        ],
+        "savedHash": "c564c85f3c165b8bbe28bf163d7068ea776e8ecfd6c034fa8bc85cd3b115a57f"
+      },
+      "checks": [
+        "page identity and content",
+        "pending A and C: disabled duplicate start, enabled stop, desktop/mobile screenshots, cancel and late resume",
+        "prepared A audible PCM",
+        "prepared A effects enabled, echo readout/reset and deck screenshots",
+        "integrated worker/context engine/WAV",
+        "C preview, tone and tempo-synced dotted eighth echo at 60 BPM",
+        "desktop/mobile screenshots and no overflow",
+        "no page errors"
+      ]
+    }
+  ]
+}

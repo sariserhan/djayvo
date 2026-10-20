@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "visually_reviewed": [
+    "chromium-desktop",
+    "webkit-mobile"
+  ],
+  "files": [
+    {
+      "file": "renders/saved-mixes-ui-20261019/chromium-desktop.png",
+      "sha256": "3998814a3583c6a33e8ef47de49912b77eab79b631e8727f51956049dd63f081",
+      "viewport": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "file": "renders/saved-mixes-ui-20261019/chromium-mobile.png",
+      "sha256": "5ab400c5e089c5e0216e3e9cdac832df8be73f4a11189cec9b96ce3dd7e7e2ce",
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "renders/saved-mixes-ui-20261019/webkit-desktop.png",
+      "sha256": "a233f687012caa7bf5aa8da2ab89dc04e48d42bd863df60a0c35d38527d8216a",
+      "viewport": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "file": "renders/saved-mixes-ui-20261019/webkit-mobile.png",
+      "sha256": "13e9f24ff0f83e9eb95f2179d9fe82648d9bf1c7e917e24220d41fbbe65e975f",
+      "viewport": [
+        390,
+        844
+      ]
+    }
+  ]
+}

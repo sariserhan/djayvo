@@ -1,0 +1,37 @@
+{
+  width: 390,
+  scroll: 462,
+  elements: [
+    { id: 'dj', width: 390, right: 390 },
+    { id: '', width: 364, right: 377 },
+    { id: 'name-a', width: 332, right: 361 },
+    { id: 'scope-a', width: 332, right: 361 },
+    { id: '', width: 364, right: 377 },
+    { id: '', width: 364, right: 377 },
+    { id: 'name-b', width: 332, right: 361 },
+    { id: 'scope-b', width: 332, right: 361 },
+    { id: 'saved-mixes', width: 366, right: 378 },
+    { id: 'saved-mix', width: 332, right: 361 },
+    { id: 'performance', width: 366, right: 378 },
+    { id: 'session-key', width: 160.40625, right: 361 },
+    { id: 'session-mode', width: 160.40625, right: 189.40625 },
+    { id: 'echo-grid-c', width: 149, right: 189 },
+    { id: 'instruments', width: 366, right: 378 },
+    { id: 'patch', width: 180, right: 215 },
+    { id: 'midi-input', width: 182.953125, right: 338 },
+    { id: 'midi-kit', width: 286, right: 338 },
+    { id: 'midi-target', width: 177.25, right: 229.25 }
+  ]
+}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 3000ms exceeded.
+    at verifySavedDecks (/Users/serhansari/Documents/projects/djayvo/apps/web/tests/saved-mixes.mjs:84:14)
+    at async file:///Users/serhansari/Documents/projects/djayvo/apps/web/tests/session-site.mjs:93:5 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.1

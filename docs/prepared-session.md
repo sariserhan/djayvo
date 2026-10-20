@@ -1,5 +1,12 @@
 # Prepared Deck A + C session
 
+**2026-10-19 — local retention update:** Generated C can now be saved explicitly
+to the existing browser library and reused in manual A/B. See
+[saved performances](saved-mixes.md) for scope and evidence. Saving keeps the
+original mix and score, including voice in the mix; it does not persist the raw
+phrase, imported A, effect settings or a synchronized prepared session.
+
+
 This report records the original minor-only increment. The current
 [major/minor extension](session-modes.md) adds explicit mode selection and new
 portability evidence; the original results below remain historical.

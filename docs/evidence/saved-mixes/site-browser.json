@@ -1,0 +1,156 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "url": "http://localhost:3000/studio/dj.html",
+    "gate": "PASS",
+    "savedChecks": [
+      {
+        "name": "generated C remains temporary until an explicit save",
+        "status": "PASS"
+      },
+      {
+        "name": "full library preserves every old entry, ready C and its downloadable audio; save remains retryable",
+        "status": "PASS"
+      },
+      {
+        "name": "double save commits once; four verified artifacts match the download and exclude raw phrase/Deck A; prepared A stays protected",
+        "status": "PASS"
+      },
+      {
+        "name": "Voice studio and DJ workspace share the saved performance after reload",
+        "status": "PASS"
+      },
+      {
+        "name": "saved C survives reload and consent withdrawal; loading requires fresh music permission",
+        "status": "PASS"
+      },
+      {
+        "name": "saved WAV loads byte-exactly into A/B without autoplay; both play real nonzero audio and reject replacement while playing",
+        "status": "PASS"
+      },
+      {
+        "name": "saved-mix controls fit desktop and mobile without horizontal overflow",
+        "status": "PASS"
+      },
+      {
+        "name": "permission withdrawal during verification prevents late loading; a fresh permitted retry succeeds",
+        "status": "PASS"
+      },
+      {
+        "name": "changed/corrupt stored bytes are rechecked on load, leave the old deck intact and are hidden on refresh",
+        "status": "PASS"
+      },
+      {
+        "name": "deleting saved mixes empties the shared library",
+        "status": "PASS"
+      }
+    ],
+    "savedMix": {
+      "count": 1,
+      "valid": true,
+      "keys": [
+        "created",
+        "files",
+        "id",
+        "seconds",
+        "seed",
+        "style"
+      ],
+      "files": [
+        "call_response.events.tsv",
+        "call_response.report.json",
+        "call_response.score.json",
+        "call_response.wav"
+      ],
+      "savedHash": "add984f60fac28c915c635fe9cd0a0a2c32be07391b834968160a4fc5aa44bb4"
+    },
+    "checks": [
+      "page identity and content",
+      "pending A and C: disabled duplicate start, enabled stop, desktop/mobile screenshots, cancel and late resume",
+      "prepared A audible PCM",
+      "prepared A effects enabled, echo readout/reset and deck screenshots",
+      "integrated worker/context engine/WAV",
+      "C preview, tone and tempo-synced dotted eighth echo at 60 BPM",
+      "desktop/mobile screenshots and no overflow",
+      "no page errors"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "url": "http://localhost:3000/studio/dj.html",
+    "gate": "PASS",
+    "savedChecks": [
+      {
+        "name": "generated C remains temporary until an explicit save",
+        "status": "PASS"
+      },
+      {
+        "name": "full library preserves every old entry, ready C and its downloadable audio; save remains retryable",
+        "status": "PASS"
+      },
+      {
+        "name": "double save commits once; four verified artifacts match the download and exclude raw phrase/Deck A; prepared A stays protected",
+        "status": "PASS"
+      },
+      {
+        "name": "Voice studio and DJ workspace share the saved performance after reload",
+        "status": "PASS"
+      },
+      {
+        "name": "saved C survives reload and consent withdrawal; loading requires fresh music permission",
+        "status": "PASS"
+      },
+      {
+        "name": "saved WAV loads byte-exactly into A/B without autoplay; both play real nonzero audio and reject replacement while playing",
+        "status": "PASS"
+      },
+      {
+        "name": "saved-mix controls fit desktop and mobile without horizontal overflow",
+        "status": "PASS"
+      },
+      {
+        "name": "permission withdrawal during verification prevents late loading; a fresh permitted retry succeeds",
+        "status": "PASS"
+      },
+      {
+        "name": "changed/corrupt stored bytes are rechecked on load, leave the old deck intact and are hidden on refresh",
+        "status": "PASS"
+      },
+      {
+        "name": "deleting saved mixes empties the shared library",
+        "status": "PASS"
+      }
+    ],
+    "savedMix": {
+      "count": 1,
+      "valid": true,
+      "keys": [
+        "created",
+        "files",
+        "id",
+        "seconds",
+        "seed",
+        "style"
+      ],
+      "files": [
+        "call_response.events.tsv",
+        "call_response.report.json",
+        "call_response.score.json",
+        "call_response.wav"
+      ],
+      "savedHash": "c564c85f3c165b8bbe28bf163d7068ea776e8ecfd6c034fa8bc85cd3b115a57f"
+    },
+    "checks": [
+      "page identity and content",
+      "pending A and C: disabled duplicate start, enabled stop, desktop/mobile screenshots, cancel and late resume",
+      "prepared A audible PCM",
+      "prepared A effects enabled, echo readout/reset and deck screenshots",
+      "integrated worker/context engine/WAV",
+      "C preview, tone and tempo-synced dotted eighth echo at 60 BPM",
+      "desktop/mobile screenshots and no overflow",
+      "no page errors"
+    ]
+  }
+]
