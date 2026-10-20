@@ -1,5 +1,14 @@
 # Jamloom: M0 continuation evidence
 
+Latest email configuration — 2026-10-19:
+[Resend setup](resend-setup.md) **PARTIAL** overall. Sending key present; owner
+confirms domain Verified. Account emails now use `hello@jamloom.com` with
+Reply-To `support@jamloom.com`, matching the owner's receiving-mailbox policy.
+Eleven unit tests, production build, typecheck and client-secret audit pass.
+API domain inspection is restricted by the send-only key;
+actual sends, inbox/reply delivery and hosted signup/reset remain **NOT RUN**.
+Local outbox behavior remains unchanged; no emails were sent.
+
 Latest R2 setup — 2026-10-19 local / 2026-10-20 UTC:
 [Live private storage](r2-live.md) **PASS (bucket/provider scope)**. Production
 CORS and uploads-only lifecycle applied and read back; public access remains

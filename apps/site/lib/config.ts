@@ -17,10 +17,11 @@ export function readConfig(env: Record<string, string | undefined> = process.env
   if (outbox && !localApp) throw new Error('The local email outbox is forbidden on hosted environments.');
   if (!outbox && (!env.RESEND_API_KEY || !env.EMAIL_FROM)) throw new Error('Resend is not configured.');
   if (env.EMAIL_FROM && /[\r\n]/.test(env.EMAIL_FROM)) throw new Error('Invalid sender.');
+  if (env.EMAIL_REPLY_TO && !/^[^\s@<>,;]+@[^\s@<>,;]+\.[^\s@<>,;]+$/.test(env.EMAIL_REPLY_TO)) throw new Error('Invalid reply-to address.');
   return {
     databaseURL: database.toString(), baseURL: origin.origin,
     secret: env.BETTER_AUTH_SECRET!, local, localApp, outbox,
-    resendKey: env.RESEND_API_KEY, emailFrom: env.EMAIL_FROM,
+    resendKey: env.RESEND_API_KEY, emailFrom: env.EMAIL_FROM, emailReplyTo: env.EMAIL_REPLY_TO || undefined,
   };
 }
 

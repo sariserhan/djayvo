@@ -169,6 +169,10 @@ Neon Free plan, with no paid upgrade or add-on without owner approval.
 - `BETTER_AUTH_URL`: exact HTTPS app origin, without paths or wildcard preview hosts.
 - `BETTER_AUTH_SECRET`: unique cryptographically random secret of at least 32 characters.
 - `RESEND_API_KEY`, `EMAIL_FROM`: server-side sending key and verified sender.
+- `EMAIL_REPLY_TO`: single receiving mailbox. Production sends as
+  `Jamloom <hello@jamloom.com>` with replies directed to `support@jamloom.com`.
+  Only support/contact receive mail; hello/info/alert are sending-only addresses.
+  See [email setup and evidence](../../docs/resend-setup.md).
 - Unset `JAMLOOM_LOCAL_OUTBOX` on hosted environments. Configuration rejects it there.
 
 The Resend adapter uses the HTTPS API directly, with a timeout and idempotency

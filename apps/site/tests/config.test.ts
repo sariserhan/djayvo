@@ -24,6 +24,7 @@ test('production template binds auth and private R2 grants to Jamloom configurat
     R2_ACCOUNT_ID: 'a'.repeat(32), R2_ACCESS_KEY_ID: 'test-key', R2_SECRET_ACCESS_KEY: 'test-secret', VERCEL: '1' };
   const config = readConfig(env);
   assert.equal(config.baseURL, 'https://jamloom.com');
+  assert.equal(config.emailReplyTo, 'support@jamloom.com');
   const pool = new Pool({ connectionString: env.DATABASE_URL });
   try {
     assert.deepEqual(authOptions(config, pool).trustedOrigins, ['https://jamloom.com']);
@@ -49,20 +50,38 @@ test('account configuration fails closed and forbids hosted development mail', (
   assert.throws(() => readConfig({ ...hosted, JAMLOOM_LOCAL_OUTBOX: '/tmp/outbox' }));
   assert.throws(() => readConfig({ ...hosted, BETTER_AUTH_URL: 'http://jamloom.example' }));
 });
-test('Resend request uses server credentials, timeout and deterministic retry identity', async () => {
-  const config = { ...readConfig(local), local: false, outbox: undefined, resendKey: 'test-key', emailFrom: 'Jamloom <hello@example.com>' };
+test('Resend request routes replies to support and binds retry identity to the full payload', async () => {
+  const config = { ...readConfig(local), local: false, outbox: undefined, resendKey: 'test-key', emailFrom: 'Jamloom <hello@example.com>', emailReplyTo: 'support@example.com' };
   const mail = { to: 'listener@example.com', subject: 'Verify', text: 'A test link' };
   const requests: Request[] = [];
   const fakeFetch: typeof fetch = async (url, options) => {
     const request = new Request(url, options); requests.push(request);
     assert.equal(request.url, 'https://api.resend.com/emails');
     assert.equal(request.headers.get('authorization'), 'Bearer test-key');
-    assert.deepEqual(await request.json(), { from: config.emailFrom, to: [mail.to], subject: mail.subject, text: mail.text });
+    assert.deepEqual(await request.json(), { from: config.emailFrom, to: [mail.to], subject: mail.subject, text: mail.text, reply_to: config.emailReplyTo });
     return Response.json({ id: 'local-test' });
   };
   await sendEmail(config, mail, fakeFetch); await sendEmail(config, mail, fakeFetch);
   assert.equal(requests[0].headers.get('idempotency-key'), requests[1].headers.get('idempotency-key'));
+  const changed: Request[] = [];
+  await sendEmail({ ...config, emailReplyTo: 'contact@example.com' }, mail, async (url, options) => {
+    const request = new Request(url, options); changed.push(request);
+    assert.equal((await request.json()).reply_to, 'contact@example.com');
+    return Response.json({ id: 'changed-reply' });
+  });
+  assert.notEqual(requests[0].headers.get('idempotency-key'), changed[0].headers.get('idempotency-key'));
+  await sendEmail({ ...config, emailReplyTo: undefined }, mail, async (_url, options) => {
+    assert.equal(Object.hasOwn(JSON.parse(options!.body as string), 'reply_to'), false);
+    return Response.json({ id: 'no-override' });
+  });
   await assert.rejects(sendEmail(config, mail, async () => new Response('private provider error', { status: 429 })), /delivery failed \(429\)/);
+});
+test('reply-to accepts a single mailbox and rejects malformed or injected headers', () => {
+  assert.equal(readConfig({ ...local, EMAIL_REPLY_TO: 'support@jamloom.com' }).emailReplyTo, 'support@jamloom.com');
+  assert.equal(readConfig({ ...local, EMAIL_REPLY_TO: '' }).emailReplyTo, undefined);
+  for (const value of ['missing-at', 'support@jamloom.com\r\nBcc: other@example.com', 'support@jamloom.com,other@example.com']) {
+    assert.throws(() => readConfig({ ...local, EMAIL_REPLY_TO: value }), /Invalid reply-to/);
+  }
 });
 test('localhost can use Neon without enabling local database/storage shortcuts', () => {
   const remote = { ...local, DATABASE_URL: 'postgresql://user:pass@ep-example-pooler.neon.tech/db' };

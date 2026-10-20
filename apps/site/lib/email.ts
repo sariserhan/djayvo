@@ -13,13 +13,15 @@ export async function sendEmail(config: Config, message: AccountEmail, send = fe
       JSON.stringify(message), { mode: 0o600, flag: 'wx' });
     return;
   }
+  const payload = JSON.stringify({ from: config.emailFrom, to: [message.to], subject: message.subject,
+    text: message.text, reply_to: config.emailReplyTo });
   const response = await send('https://api.resend.com/emails', {
     method: 'POST', signal: AbortSignal.timeout(10_000),
     headers: {
       Authorization: `Bearer ${config.resendKey}`, 'Content-Type': 'application/json',
-      'Idempotency-Key': createHash('sha256').update(JSON.stringify(message)).digest('hex'),
+      'Idempotency-Key': createHash('sha256').update(payload).digest('hex'),
     },
-    body: JSON.stringify({ from: config.emailFrom, to: [message.to], subject: message.subject, text: message.text }),
+    body: payload,
   });
   // Never log provider bodies, email addresses or verification/reset links.
   if (!response.ok) throw new Error(`Account email delivery failed (${response.status}).`);

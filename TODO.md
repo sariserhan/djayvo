@@ -27,7 +27,7 @@ the source of truth and is not modified by this tracker.
 ## Product identity
 
 - [x] BR01: Rename current app, packages, native/WASM engine, exports, scripts and active documentation to Jamloom; preserve saved data and historical evidence. [Validation](docs/jamloom-rename.md).
-- [ ] BR02 — PARTIAL: Owner reports purchasing `jamloom.com`; `jamloom-audio` confirmed live. Production origin prepared; private R2 access, CORS, lifecycle configuration and 10 provider gates PASS. Live Vercel/DNS, actual lifecycle expiry, scheduled cleanup and email delivery remain NOT RUN; Resend stays deferred. Trademark clearance is unverified. [Setup](docs/production-domain.md), [live R2 evidence](docs/r2-live.md).
+- [ ] BR02 — PARTIAL: Owner reports purchasing `jamloom.com`; `jamloom-audio` confirmed live. Production origin prepared; private R2 access, CORS, lifecycle configuration and 10 provider gates PASS. Resend domain owner-confirmed Verified; hello sender/support Reply-To configured. Live Vercel/DNS, actual lifecycle expiry, scheduled cleanup and email delivery remain NOT RUN. Trademark clearance is unverified. [Setup](docs/production-domain.md), [R2 evidence](docs/r2-live.md), [email evidence](docs/resend-setup.md).
 
 ## At a glance
 
@@ -381,7 +381,9 @@ with private generation plus a reviewed public catalogue. Keep the database free
 no paid upgrade without owner approval. The owner chose email/password sign-in and
 Resend for account email. [Local implementation/evidence](docs/web-accounts.md)
 now exists; [Neon Postgres is configured and tested](docs/neon-setup.md) under the
-owner's specific 2026-10-19 setup authorization. Resend/R2/Vercel remain unconfigured.
+owner's specific 2026-10-19 setup authorization. R2 provider checks now pass;
+Resend sender/reply wiring is prepared with owner-confirmed domain verification.
+Vercel deployment and live email delivery remain outstanding.
 
 - [x] **W08 — PASS:** Document hosting/auth/database/object-storage boundaries, private save/public submission separation, logical model and upload/deletion lifecycle.
 - [ ] **W09 — PARTIAL:** Next.js shell, Better Auth email/password, Resend adapter, generated auth schema, private metadata queries, migration safeguards and local Postgres/browser tests and bounded expired-auth cleanup implemented. Live Neon schema and localhost account/library end-to-end checks PASS; Resend delivery, hosted app execution, preview/production isolation, cleanup scheduling, database compute/transfer budgets and overload limits remain. [Neon evidence](docs/neon-setup.md). [Account evidence](docs/web-accounts.md); [cleanup evidence](docs/auth-cleanup.md).

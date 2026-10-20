@@ -3,7 +3,8 @@
 2026-10-19. The owner reports owning `jamloom.com` and creating the R2 bucket
 `jamloom-audio`. Canonical app origin: **https://jamloom.com**. Hosting remains
 Vercel; Neon stores account/track metadata; R2 stores private audio. Resend is
-still deferred. The master specification and historical schema identities remain
+now locally configured; [verification and delivery limits](resend-setup.md).
+The master specification and historical schema identities remain
 unchanged.
 
 ## Production configuration
@@ -19,9 +20,10 @@ Add `jamloom.com` and `www.jamloom.com` to the existing Vercel project; redirect
 `www` to `https://jamloom.com`. Use the exact DNS records Vercel assigns to that
 project, then verify HTTPS and the redirect. Do not guess an IP or change
 Cloudflare nameservers. Domain changes require a deployment with the matching
-production origin. Authentication still requires configured Resend and a verified
-sender before public registration works; `hello@jamloom.com` is only a proposed
-sender until verified. Keep search indexing and catalogue gates unchanged.
+production origin. The owner confirms Resend domain verification; account mail
+sends from `hello@jamloom.com` with Reply-To `support@jamloom.com`. Production
+environment setup and inbox delivery still require validation before public
+registration works. Keep search indexing and catalogue gates unchanged.
 
 ## Credentials needed
 
@@ -96,7 +98,7 @@ authenticated production workflow are still outstanding.
 | Live domain/DNS/TLS and Vercel configuration | NOT RUN | No remote configuration was changed. |
 | Live R2 requests, browser CORS and lifecycle configuration | PASS | Subsequently validated with supplied credentials; [live evidence](r2-live.md). |
 | Actual lifecycle deletion, scheduled cleanup and full hosted workflow | NOT RUN | See the live report for the remaining gates. |
-| Resend delivery | NOT RUN | Deferred. |
+| Resend delivery | NOT RUN | Local sender/reply wiring prepared; domain owner-confirmed verified. [Email evidence](resend-setup.md). |
 | Production readiness | PARTIAL | Local configuration prepared; hosted gates remain open. |
 
 No master, audio-engine, recording, database or local credential changes. No
