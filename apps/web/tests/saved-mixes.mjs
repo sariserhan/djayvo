@@ -41,7 +41,7 @@ export async function verifySavedDecks(page, check, capture) {
   await page.locator('#saved-mixes a').click();
   await page.waitForFunction(() => document.querySelectorAll('#library audio').length === 1);
   assert.match(await page.locator('#library-count').textContent(), /1 \/ 10 sessions/);
-  await page.getByRole('link', { name: 'DJ workspace' }).click();
+  await page.getByRole('link', { name: 'DJ workspace', exact: true }).click();
   check('Voice studio and DJ workspace share the saved performance after reload');
   await page.locator('#library-refresh').click();
   await page.waitForFunction(() => document.getElementById('saved-mix').options.length === 2);
@@ -127,7 +127,7 @@ export async function verifySavedDecks(page, check, capture) {
   await page.locator('#delete-all').click();
   await page.locator('#delete-confirm').click();
   await page.waitForFunction(() => !document.getElementById('delete-dialog').open);
-  await page.getByRole('link', { name: 'DJ workspace' }).click();
+  await page.getByRole('link', { name: 'DJ workspace', exact: true }).click();
   await page.locator('#library-refresh').click();
   await page.waitForFunction(() => document.getElementById('library-status').textContent.startsWith('0 saved'));
   check('deleting saved mixes empties the shared library');

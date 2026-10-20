@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium, webkit } from 'playwright';
 import { fakeMidi } from './midi-browser.mjs';
 import { replayTake } from '../live-take.js';
+import { verifyPhrasePair } from '../phrase-pair.js';
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const kind = process.env.JAMLOOM_BROWSER || 'chromium';
 assert.ok(['chromium', 'webkit'].includes(kind));
@@ -55,6 +56,7 @@ try {
   assert.equal(await page.title(), 'Jamloom — DJ workspace');
   assert.equal(await page.locator('h1').textContent(), 'Performance studio');
   assert.equal(await page.locator('#take-start').isDisabled(),true);
+  assert.equal(await page.locator('#take-include-phrase').isDisabled(),true);
   await page.locator('#load-instruments').click();
   await page.waitForFunction(() => document.getElementById('load-instruments').textContent === 'Instruments ready');
   assert.equal(await page.locator('#take-start').isDisabled(),true);
@@ -93,6 +95,31 @@ try {
   await page.waitForFunction(()=>document.getElementById('take-player').currentTime>0);
   await page.locator('#take-player').evaluate(audio=>audio.pause());
   checks.push('consent-gated keyboard, mouth and simulated MIDI recording; playable WAV and exact replay');
+  assert.equal(await page.locator('#take-source').isVisible(),false);
+  await page.locator('#take-delete').click();
+  await page.locator('#phrase-consent').check();
+  const fixture = path.join(root,'renders/fixtures/synthetic-speech.wav');
+  await page.locator('#phrase-file').setInputFiles(fixture);
+  await page.waitForFunction(()=>document.getElementById('phrase-status').textContent.includes('phrase ready'));
+  assert.equal(await page.locator('#take-include-phrase').isChecked(),false);
+  await page.locator('#take-include-phrase').check();
+  await page.locator('#take-start').click();
+  await page.waitForFunction(()=>!document.getElementById('take-stop').disabled);
+  await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('a');
+  await page.waitForTimeout(200); await page.keyboard.up('a'); await page.waitForTimeout(200);
+  await page.locator('#take-stop').click();
+  await page.locator('#take-pair').waitFor({state:'visible'});
+  for (const [id,name] of [['take-wav','paired-response.wav'],['take-trace','paired-response.json'],['take-source','source.wav'],['take-pair','pair.json']]) {
+    const promise = page.waitForEvent('download'); await page.locator(`#${id}`).click();
+    await (await promise).saveAs(path.join(output,name));
+  }
+  const pair = JSON.parse(await fs.readFile(path.join(output,'pair.json'),'utf8'));
+  const pairedTrace = await verifyPhrasePair(pair, await fs.readFile(path.join(output,'source.wav')),
+    await fs.readFile(path.join(output,'paired-response.json')));
+  assert.equal(pair.context_at_start,null); assert.equal(pair.source.origin,'imported_file');
+  assert.deepEqual(Buffer.from(await replayTake(pairedTrace,await fs.readFile(path.join(publicRoot,'engine/jamloom_live.wasm')))),
+    await fs.readFile(path.join(output,'paired-response.wav')));
+  checks.push('explicit source pairing exports four hash-linked files; response WAV replays exactly; no inferred context or training rights');
   await page.locator('.instrument-take').scrollIntoViewIfNeeded();
   await screenshot('desktop.png');
   await page.setViewportSize({width:390,height:844});
@@ -100,6 +127,73 @@ try {
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   await screenshot('mobile.png');
   checks.push('desktop/mobile capture controls render without horizontal overflow');
+  await page.locator('#phrase-consent').uncheck();
+  assert.match(await page.locator('#take-status').textContent(),/Source changed or permission removed/);
+  assert.equal(await page.locator('#take-pair').isVisible(),false);
+  assert.equal(await page.locator('#take-include-phrase').isChecked(),false);
+  await page.locator('#phrase-consent').check();
+  await page.locator('#phrase-file').setInputFiles(fixture);
+  await page.waitForFunction(()=>!document.getElementById('take-include-phrase').disabled);
+  await page.locator('#music-rights').check();
+  await page.locator('#file-a').setInputFiles(fixture);
+  await page.waitForFunction(()=>!document.getElementById('prepare-a').disabled);
+  await page.locator('#prepare-a').click();
+  await page.waitForFunction(()=>!document.getElementById('context-confirmed').disabled);
+  await page.locator('#session-bpm').fill('120'); await page.locator('#session-bpm').dispatchEvent('change');
+  await page.locator('#session-key').selectOption('60'); await page.locator('#session-mode').selectOption('major');
+  await page.locator('#session-downbeat').fill('0.5'); await page.locator('#session-downbeat').dispatchEvent('change');
+  await page.locator('#context-confirmed').check();
+  await page.locator('#take-include-phrase').check(); await page.locator('#take-start').click();
+  await page.waitForFunction(()=>!document.getElementById('take-stop').disabled);
+  await page.locator('#session-bpm').fill('140'); await page.locator('#session-bpm').dispatchEvent('change');
+  await page.locator('#take-stop').click(); await page.locator('#take-pair').waitFor({state:'visible'});
+  for (const [id,name] of [['take-pair','context-pair.json'],['take-trace','context-response.json']]) {
+    const promise=page.waitForEvent('download'); await page.locator(`#${id}`).click();
+    await (await promise).saveAs(path.join(output,name));
+  }
+  const frozen = JSON.parse(await fs.readFile(path.join(output,'context-pair.json'),'utf8'));
+  assert.deepEqual(frozen.context_at_start, {tempo_milli_bpm:120000,tonic_midi:60,mode:'major',beats_per_bar:4,downbeat_seconds:.5,status:'user_confirmed'});
+  await verifyPhrasePair(frozen,await fs.readFile(path.join(output,'source.wav')),await fs.readFile(path.join(output,'context-response.json')));
+  await page.locator('#take-delete').click(); await page.locator('#take-include-phrase').uncheck();
+  await page.locator('#release-a').click();
+  checks.push('confirmed tempo/key/downbeat frozen at start; later context edits do not relabel the response');
+  // Merely loading a phrase must not include it in a plain instrument take.
+  await page.locator('#take-start').click();
+  await page.waitForFunction(()=>!document.getElementById('take-stop').disabled);
+  await page.waitForTimeout(150); await page.locator('#take-stop').click();
+  await page.locator('#take-wav').waitFor({state:'visible'});
+  assert.equal(await page.locator('#take-source').isVisible(),false);
+  assert.equal(await page.locator('#take-pair').isVisible(),false);
+  await page.locator('#take-delete').click();
+  await page.locator('#take-include-phrase').check();
+  await page.locator('#take-start').click();
+  await page.waitForFunction(()=>!document.getElementById('take-stop').disabled);
+  await page.locator('#phrase-file').setInputFiles(fixture);
+  await page.waitForFunction(()=>document.getElementById('take-status').textContent.includes('Source changed'));
+  assert.equal(await page.locator('#take-wav').isVisible(),false);
+  assert.equal(await page.locator('#take-include-phrase').isChecked(),false);
+  // Hold async hashing, withdraw the pairing permission, then release the stale completion.
+  await page.locator('#take-include-phrase').check();
+  await page.locator('#take-start').click();
+  await page.waitForFunction(()=>!document.getElementById('take-stop').disabled);
+  await page.waitForTimeout(150);
+  await page.evaluate(()=>{
+    const digest=crypto.subtle.digest.bind(crypto.subtle); window.pendingDigests=[]; let calls=0;
+    crypto.subtle.digest=async (...args)=>{if (++calls===2) await new Promise(resolve=>pendingDigests.push(resolve)); return digest(...args);};
+    window.releaseDigests=()=>{crypto.subtle.digest=digest; pendingDigests.forEach(resolve=>resolve());};
+  });
+  await page.locator('#take-stop').click();
+  await page.waitForFunction(()=>pendingDigests.length>0);
+  await page.locator('#take-include-phrase').uncheck();
+  await page.evaluate(()=>releaseDigests());
+  await page.waitForTimeout(200);
+  assert.equal(await page.locator('#take-wav').isVisible(),false);
+  assert.equal(await page.locator('#take-pair').isVisible(),false);
+  checks.push('loaded source excluded by default; replacement and consent withdrawal discard paired takes, including stale async completion');
+  await page.locator('#take-start').click();
+  await page.waitForFunction(()=>!document.getElementById('take-stop').disabled);
+  await page.waitForTimeout(150); await page.locator('#take-stop').click();
+  await page.locator('#take-wav').waitFor({state:'visible'});
   await page.locator('#take-delete').click();
   assert.equal(await page.locator('#take-wav').isVisible(),false);
   assert.equal(await page.locator('#take-player').getAttribute('src'),null);
@@ -117,7 +211,7 @@ try {
   assert.equal(await page.locator('#take-wav').isVisible(),false);
   await page.locator('#take-start').click();
   await page.waitForFunction(()=>!document.getElementById('take-stop').disabled);
-  await page.evaluate(()=>testContext.suspend());
+  await page.evaluate(()=>testRack.context.suspend());
   await page.waitForFunction(()=>document.getElementById('take-status').textContent.includes('interrupted'));
   assert.equal(await page.locator('#take-wav').isVisible(),false);
   await page.locator('#take-start').click();

@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0-live-instrument-take",
+  "scope": "dry_instruments",
+  "origin": "unreviewed_live_capture",
+  "training_authorized": false,
+  "engine_sha256": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8",
+  "wav_sha256": "c631b229d74a1c4b7a2ddfac3d0c3257caac7dd7f7ea07d76f29a554dc0a46c3",
+  "sample_rate": 48000,
+  "frames": 20864,
+  "initial_mouth": 0.7,
+  "events": [
+    {
+      "frame": 128,
+      "command": {
+        "type": "note",
+        "id": 4,
+        "patch": 11,
+        "pitch": 36,
+        "velocity": 100
+      }
+    },
+    {
+      "frame": 9856,
+      "command": {
+        "type": "off",
+        "id": 4
+      }
+    },
+    {
+      "frame": 20864,
+      "command": {
+        "type": "panic"
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "chromium": {
+    "directory": "renders/instrument-take-chromium-6wA2qD",
+    "files": {
+      "source.wav": {
+        "bytes": 308328,
+        "sha256": "e69abf410addabcaef3770da6a75a4ed76a4650264cc2196db73337ca532141f",
+        "frames": 154142,
+        "rate": 48000,
+        "channels": 1,
+        "seconds": 3.211291666666667,
+        "peak_dbfs": -4.486507766950056,
+        "full_scale_samples": 0
+      },
+      "paired-response.wav": {
+        "bytes": 91180,
+        "sha256": "f1e3e9871a4abb044cd1b2b9650d7a46a6bf972049f89b6dec68f6146ae857e7",
+        "frames": 22784,
+        "rate": 48000,
+        "channels": 2,
+        "seconds": 0.4746666666666667,
+        "peak_dbfs": -12.27220685816977,
+        "full_scale_samples": 0
+      },
+      "take.wav": {
+        "bytes": 201772,
+        "sha256": "3199bb895d1c3e066d629bfd38f7dd90e0c846c8703806070c48982c45d251cf",
+        "frames": 50432,
+        "rate": 48000,
+        "channels": 2,
+        "seconds": 1.0506666666666666,
+        "peak_dbfs": -11.715512340222602,
+        "full_scale_samples": 0
+      },
+      "take.json": {
+        "bytes": 1689,
+        "sha256": "d0a216f2a60a6bff4697cc142a6a4d516eff70756ef499d33e0e6dbdb5b08f2b"
+      },
+      "pair.json": {
+        "bytes": 467,
+        "sha256": "abde41dbfbe64a71dd49e67ee6fe33141d134c2f3ccdd1e40d7d2edcdb83c99b"
+      },
+      "paired-response.json": {
+        "bytes": 762,
+        "sha256": "f004bf304a593c0ff2dd3ba399a69da86802e781de389045d97fa5d1c848ff82"
+      },
+      "context-pair.json": {
+        "bytes": 626,
+        "sha256": "159e43bfacd3df062fa25e6bd4de25a798b420e20d492d4f2dfb5ad0ab5920c0"
+      },
+      "context-response.json": {
+        "bytes": 491,
+        "sha256": "5307f7c76597f0531fdaf28628141522be0590186e82bdca8040170cf757c52f"
+      }
+    }
+  },
+  "webkit": {
+    "directory": "renders/instrument-take-webkit-GT8zwB",
+    "files": {
+      "source.wav": {
+        "bytes": 308328,
+        "sha256": "f3348d00ef4512fb3d76ded363cc66dcdd2ac1c50f9ac25f5e1c01fde9be48af",
+        "frames": 154142,
+        "rate": 48000,
+        "channels": 1,
+        "seconds": 3.211291666666667,
+        "peak_dbfs": -4.486507766950056,
+        "full_scale_samples": 0
+      },
+      "paired-response.wav": {
+        "bytes": 83500,
+        "sha256": "c631b229d74a1c4b7a2ddfac3d0c3257caac7dd7f7ea07d76f29a554dc0a46c3",
+        "frames": 20864,
+        "rate": 48000,
+        "channels": 2,
+        "seconds": 0.43466666666666665,
+        "peak_dbfs": -12.273295793122372,
+        "full_scale_samples": 0
+      },
+      "take.wav": {
+        "bytes": 195628,
+        "sha256": "5040f4588df045b58c1d7296f40ee013fabef4232072ae3e16e1d35e75f51d4b",
+        "frames": 48896,
+        "rate": 48000,
+        "channels": 2,
+        "seconds": 1.0186666666666666,
+        "peak_dbfs": -11.173148291784461,
+        "full_scale_samples": 0
+      },
+      "take.json": {
+        "bytes": 1688,
+        "sha256": "c6de3fa3e7ff6ef2ac15063cfec39902701424fb80e396a241ed0fdde5eb9d51"
+      },
+      "pair.json": {
+        "bytes": 467,
+        "sha256": "66f356236c4e866d39795b4bf713aeb8fbc0a707fadf5d76daa97fa7cd2eb5ad"
+      },
+      "paired-response.json": {
+        "bytes": 760,
+        "sha256": "4660b39f84fc01c930824a0a5dd35630c0c6552ea76fd7aaa22e3f46779b8247"
+      },
+      "context-pair.json": {
+        "bytes": 626,
+        "sha256": "a156ca3fa2fd3782ec80ed3974ccb164e9501795a6a670b7749f82fc1c0cc1d2"
+      },
+      "context-response.json": {
+        "bytes": 491,
+        "sha256": "bda88b58f3e9f954d7847b86357d41eed0d3c5f273b888680f8a745f3f7102ba"
+      }
+    }
+  },
+  "prepared_session": {
+    "status": "PASS",
+    "directory": "renders/session-chromium-ReNa5H",
+    "checks": 39
+  },
+  "source_decode_difference": {
+    "status": "PARTIAL",
+    "max_pcm16": 4,
+    "rms_pcm16": 0.3592079823579427,
+    "differing_frames": 15508,
+    "frames": 154142,
+    "note": "Existing 22050-to-48000 Hz browser decode/resample; not new engine DSP"
+  },
+  "preserved": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "jamloom_improvisation_learning_addendum_v1.md": "5bfe33e037f4d0aff6910ba3dbc55ce090e96b0ee772fdc834d94a12aa29941d",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "dist/web/engine/jamloom_live.wasm": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8"
+  },
+  "localhost": {
+    "status": "PASS",
+    "origin": "http://127.0.0.1:3000/studio/",
+    "served_sha256": {
+      "dj.html": "049690a028c50c2e51be8439487e27098aff60fa7d8b88b8507208555d5361ed",
+      "dj.js": "bd86b38170863d4e5ca763921214c49e13e20c60cdc00f611d01d21fc657f0ce",
+      "keyboard.js": "ec5d3d2a773963fecd7a2596a5cbda437036a7083c8165c9dd42d645afbd923f",
+      "instrument-take.js": "d87e1a57f05856af5fb6a1c89ea18a1697397390aabf8481d32d1051ee2e10fb",
+      "phrase-pair.js": "911a5c6f17cbcec7cc038f6c1838946f090e697e1e14c7988c8ab6412b841658",
+      "live-take.js": "a791ec47b083bbb122792f88484086730eca26a1ef548128b2753f62be6069ad",
+      "performance-session.js": "cc529415dffe0e73ccbb5efd31f6ff0fd2892367fa5292d7714adbb06e3c7481"
+    },
+    "server_restart_required": true,
+    "build": "existing production build; no rebuild"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "url": "http://127.0.0.1:3000/studio/dj.html",
+  "browser": "149.0.7827.55",
+  "flow": "phrase import -> explicit pair consent -> native instrument capture -> four download links -> response playback -> delete",
+  "errors": [],
+  "external": []
+}

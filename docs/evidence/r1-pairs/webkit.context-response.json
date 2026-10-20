@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0-live-instrument-take",
+  "scope": "dry_instruments",
+  "origin": "unreviewed_live_capture",
+  "training_authorized": false,
+  "engine_sha256": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8",
+  "wav_sha256": "67f6705189fe396f9832092327f2343655cb4f0d97f7b2aa595cba2bde2da971",
+  "sample_rate": 48000,
+  "frames": 1536,
+  "initial_mouth": 0.7,
+  "events": [
+    {
+      "frame": 1536,
+      "command": {
+        "type": "panic"
+      }
+    }
+  ]
+}

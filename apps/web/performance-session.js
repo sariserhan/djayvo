@@ -6,9 +6,10 @@ import { saveSession, verifySession } from './library.js';
 
 const $ = id => document.getElementById(id);
 const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
-export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights, onSaved }) {
+export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights, onSaved, onPhraseChanged = () => {} }) {
   let prepared, transport, samples, performanceBuffer, download, busy = '', starting = '', revision = 0, startVersion = 0;
   let savedPerformance, saving = false, saved = false;
+  let sourceOrigin;
   let worker, timer, recorder, stream, recordingAt, generationContext, recent = [], wasA = false, wasC = false;
   const error = failure => { $('performance-error').textContent = failure.message || String(failure); };
   const say = text => { $('performance-status').textContent = text; };
@@ -93,7 +94,8 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     startVersion++; starting = ''; transport?.stop(); clearCEcho(); refresh();
   }
   function deletePhrase() {
-    cancel(); samples = undefined; recent = []; clearPerformance(); $('phrase-status').textContent = 'Phrase and C deleted from this tab.'; refresh();
+    cancel(); samples = undefined; sourceOrigin = undefined; onPhraseChanged();
+    recent = []; clearPerformance(); $('phrase-status').textContent = 'Phrase and C deleted from this tab.'; refresh();
   }
   $('prepare-a').onclick = async () => {
     if (busy || !deck.file || !rights.checked || !deck.audio.paused || deck.starting) return;
@@ -164,7 +166,8 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
       if (token !== revision || !permitted()) return;
       if (decoded.length > 5 * 48000) throw new Error('Import a 2–5 second phrase. Trim longer recordings in Voice studio first.');
       encodeWav(decoded);
-      clearPerformance(); samples = decoded; $('phrase-status').textContent = `${(samples.length / 48000).toFixed(2)} s phrase ready · held only in this tab.`;
+      clearPerformance(); samples = decoded; sourceOrigin = recorded ? 'microphone' : 'imported_file'; onPhraseChanged();
+      $('phrase-status').textContent = `${(samples.length / 48000).toFixed(2)} s phrase ready · held only in this tab.`;
     } catch (failure) { if (token === revision) error(failure); }
     finally { if (token === revision) { busy = ''; refresh(); } }
   }
@@ -298,5 +301,12 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   document.addEventListener('visibilitychange', () => { if (document.hidden) { if (busy) cancel(); stop(); say('Session stopped when the page was hidden. Start A again when ready.'); } });
   window.addEventListener('pagehide', () => { reset(); deletePhrase(); });
   refresh();
-  return { reset, stop, refresh };
+  function phraseSource() {
+    if (!permitted() || !samples) return null;
+    const captured = samples, c = currentContext();
+    return { samples: captured, origin: sourceOrigin, current: () => permitted() && samples === captured,
+      context: confirmed() ? { tempo_milli_bpm: c.tempo, tonic_midi: c.tonic, mode: c.mode,
+        beats_per_bar: 4, downbeat_seconds: Number($('session-downbeat').value), status: 'user_confirmed' } : null };
+  }
+  return { reset, stop, refresh, phraseSource };
 }

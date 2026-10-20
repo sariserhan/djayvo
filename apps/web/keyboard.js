@@ -4,7 +4,7 @@ import { attachMidi } from './midi.js';
 import { resumeAudio } from './audio.js';
 import { attachInstrumentTake } from './instrument-take.js';
 const $ = id => document.getElementById(id);
-export function attachKeyboard({ graph, context, mixer, levels, masterControls }) {
+export function attachKeyboard({ graph, context, mixer, levels, masterControls, getPhrase }) {
   let node, loading = false, nextId = 1, root = 60;
   const held = new Map(), deferred = new Map(), pedals = new Set(), keys = new Map(), pads = new Map();
   const letters = 'awsedftgyhujk';
@@ -33,7 +33,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
     $('sustain').setAttribute('aria-pressed', 'false');
     for (const button of document.querySelectorAll('.piano-key,.drum-pad')) button.setAttribute('aria-pressed', 'false');
   }
-  const take = attachInstrumentTake({ context, getNode: () => node, panic });
+  const take = attachInstrumentTake({ context, getNode: () => node, panic, getPhrase });
   async function press(token, button, pitch, patch, velocity = Number($('velocity').value), group = 'local') {
     if (!node || held.has(token) || !button || button.disabled) return;
     const note = { id: nextId++, button, group };
@@ -168,5 +168,5 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
   window.addEventListener('keyup', event => release(`key-${event.code}`));
   window.addEventListener('blur', panic); window.addEventListener('pagehide', panic);
   document.addEventListener('visibilitychange', () => { if (document.hidden) panic(); });
-  return { ready: () => !!node, panic, interrupt: take.interrupt };
+  return { ready: () => !!node, panic, interrupt: take.interrupt, sourceChanged: take.sourceChanged };
 }

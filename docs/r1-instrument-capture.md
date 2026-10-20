@@ -1,5 +1,9 @@
 # R1 continuation — private live instrument takes
 
+Follow-up: [optional private source-phrase pairing](r1-phrase-response.md) now
+connects an existing phrase to its instrument response. The original dry
+instrument trace/replay format below is unchanged.
+
 **R1 overall: PARTIAL.** The browser studio now captures real instrument
 performances as frame-addressed commands plus playable WAVs. The earlier
 [offline plan editor](r1-demonstrations.md) remains intact. No model was trained,

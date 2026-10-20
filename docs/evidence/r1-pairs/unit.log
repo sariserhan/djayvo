@@ -1,0 +1,66 @@
+
+> jamloom-web@0.1.0 test
+> node --test tests/*.test.js
+
+✔ audio resume clears its deadline on success and rejects a still-suspended context (2.124666ms)
+✔ audio resume retains synchronous and asynchronous errors and clears the deadline (1.631667ms)
+✔ hung audio resume times out and late completion cannot revive its caller (0.836417ms)
+✔ decimal selections preserve the exact two-second boundary (1.710375ms)
+✔ WAV is bounded PCM16 mono with finite samples and safe clipping (3.087708ms)
+✔ browser.mjs rejects unknown browsers before launching (459.767792ms)
+✔ browser-render.mjs rejects unknown browsers before launching (429.810375ms)
+✔ rapid rates are coalesced until pause completes, then resume at the latest rate (1.522916ms)
+✔ Pause All keeps the requested rate but cancels the pending resume (0.331708ms)
+✔ unload/replacement cannot inherit a pending rate or resume from the old source (0.258125ms)
+✔ an immediate manual Play is safely paused again before applying its pending rate (0.267ms)
+✔ installation is optional, capability-driven and never confuses acceptance with completion (1.157417ms)
+✔ standalone platforms, prompt rejection and installation during a pending prompt remain honest (0.692709ms)
+✔ instrument map covers full piano and respects guitar bank limits (3.577291ms)
+✔ tempo match uses other deck effective tempo and rejects impossible matches (0.149875ms)
+✔ funk sessions verify complete hashed artifacts and reject mislabeled or corrupted files (16.631125ms)
+✔ call_response sessions verify complete hashed artifacts and reject mislabeled or corrupted files (1.64475ms)
+✔ hybrid sessions verify complete hashed artifacts and reject mislabeled or corrupted files (2.516708ms)
+✔ malformed stored file entries are withheld instead of aborting library recovery (0.14475ms)
+✔ actual worklet acceptance frames and captured PCM replay exactly (50.189583ms)
+✔ rejected voices do not appear as accepted notes (2.344167ms)
+✔ cancel and event overflow discard buffers without disabling live audio (12.596416ms)
+✔ capture has a hard 30-second audio and event boundary (7.928541ms)
+✔ command limits and private take metadata cannot be silently relaxed (18.810792ms)
+✔ recording is off by default and stale stop cannot export another take (3.895958ms)
+✔ Play waits for the actual deck metadata and starts exactly once (2.136667ms)
+✔ cancelled metadata waits cannot start a later source (0.635333ms)
+✔ missing or rejected metadata fails within the existing start deadline (2.121708ms)
+✔ resolved play must advance without seeking; successful/short playback cleans up timers (0.324542ms)
+✔ stuck seeking and unresolved play both fail within the start deadline (1.059417ms)
+✔ cancellation clears timers and ignores late completion or rejection (0.979625ms)
+✔ native synchronous and asynchronous playback errors retain their message and clean up (1.13125ms)
+✔ MIDI decodes note-off forms, velocity, channel boundaries and only supported controls (1.268208ms)
+✔ absolute CC pickup prevents jumps, follows crossings and rearms after screen changes (0.421125ms)
+✔ beat echo converts validated performance tempo without rounding to the manual slider step (0.821583ms)
+✔ linear blend bounds coherent summed peaks and supports channel/master silence (1.957791ms)
+✔ track limits reject empty, oversized and nonaudio files before decoding (0.160083ms)
+✔ effect boundaries reject nonfinite and out-of-range controls before touching audio (0.994625ms)
+✔ prepared track rejects decoded limits and nonfinite samples beyond the analysis window (36.794291ms)
+✔ composition identity ignores cosmetic changes, ordering and transposition; detects musical changes (20.832417ms)
+✔ selection retries only duplicates, records the actual seed and bounds exhaustion before publishing (4.252416ms)
+✔ offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets (65.772458ms)
+✔ verified cache survives reinstall and serves fragment navigation without caching private URLs (47.488917ms)
+✔ pair binds a normalized source and existing trace without inferring rights or context (12.724375ms)
+✔ confirmed context is explicit and bounded; malformed permissions, extra identity and future formats fail (2.279ms)
+✔ changed source, swapped response trace and tampered WAV header are rejected (2.552459ms)
+✔ pairing rejects short, long and nonfinite source audio without altering the input (2.416708ms)
+✔ continuity diagnostic counts frame gaps, bounds its trace and resets the measurement window (3.554375ms)
+✔ bounded context heuristic finds pulse and triad, and treats silence as uncertain (57.41925ms)
+✔ transport cancels future C, rejects late/short contexts and preserves A on C failure (0.859958ms)
+✔ worklet capture keeps both channels and every independent frame (2.7815ms)
+✔ stale browser timestamps do not become false missing-sample claims (1.323459ms)
+✔ missing counter samples and altered audio remain detectable (1.056708ms)
+✔ load probe dispatches on/off at exact frames across program boundaries (2.926625ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 54
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 993.107333

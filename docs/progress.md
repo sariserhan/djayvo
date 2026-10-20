@@ -1102,3 +1102,40 @@ and public deployment. Both specifications, existing recordings, C++ engine and
 security policies remain unchanged. Existing local website/standalone studio
 assets refreshed without compiler-cache regeneration.
 [Full report and reproducible evidence](r1-instrument-capture.md).
+
+## 2026-10-20 — R1 private phrase-response pairing
+
+**PASS:** Added separate opt-in to retain the existing 2–5 second consented
+phrase with a dry instrument take. Four local downloads bind source WAV,
+response WAV, accepted musical commands and a strict versioned pair record by
+hash. Source origin and confirmed context at the start request are explicit;
+unconfirmed context is null. No original filenames, device identities, upload,
+library persistence or training authorization is inferred. Source replacement,
+deletion or consent withdrawal discards the pair, including pending hash results.
+Existing instrument traces, offline exporter and shared engine remain unchanged.
+
+**PASS:** 54 unit tests, seven capture flow checks each in Chromium/WebKit,
+desktop/mobile screenshots, 39 Chromium prepared-session regression checks,
+static bundle audit and actual localhost capture/pair/playback/delete. Both
+ordinary and paired instrument responses replay byte-identically; max/RMS PCM16
+error zero. Original synthetic fixture and both specifications retain their hashes.
+
+**PARTIAL:** Browser normalization of the same 22.05 kHz fixture produces equal
+48 kHz frame counts but max PCM16 difference 4 and RMS 0.3592079824. This existing
+decode/resampling difference is recorded, not treated as exact source parity.
+Two WebKit screenshot-tool CSP warnings remain isolated; app errors are absent.
+
+An initial context test's blob fetch was blocked by existing CSP; changed the
+test to use the actual download link. An existing ambiguous saved-mixes navigation
+selector stopped the first broad run after 31 checks; narrowed both selectors and
+the complete 39-check rerun passed. The long-running local Next server initially
+404ed new modules, so it was restarted; seven served assets then matched source
+bytes and the actual website flow passed. No security settings or production
+deployment changed. Failure logs and successful evidence are retained.
+
+**PARTIAL:** R1 overall; full-mix/automation capture, source-to-response timeline
+alignment, reviewed expert demonstrations and stratified corpus remain.
+**NOT RUN:** physical microphone/MIDI, hardware latency, new Linux/iPhone runs,
+human musical quality, full Next rebuild, model training, paid compute and public
+release. No claim that these short automated test notes improve musical quality.
+[Full report, WAVs and reproducible commands](r1-phrase-response.md).

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0-phrase-response",
+  "training_authorized": false,
+  "review": "unreviewed",
+  "source": {
+    "wav_sha256": "e69abf410addabcaef3770da6a75a4ed76a4650264cc2196db73337ca532141f",
+    "frames": 154142,
+    "sample_rate": 48000,
+    "channels": 1,
+    "origin": "imported_file",
+    "permission": "user_attested_local_pairing"
+  },
+  "take_sha256": "5307f7c76597f0531fdaf28628141522be0590186e82bdca8040170cf757c52f",
+  "context_at_start": {
+    "tempo_milli_bpm": 120000,
+    "tonic_midi": 60,
+    "mode": "major",
+    "beats_per_bar": 4,
+    "downbeat_seconds": 0.5,
+    "status": "user_confirmed"
+  }
+}

@@ -114,7 +114,7 @@ function masterControls() {
   for (const id of ['crossfade', 'pause-all']) $(id).disabled = !rights.checked;
   $('master').disabled = !rights.checked && !keyboard.ready();
 }
-const keyboard = attachKeyboard({ graph: audioGraph, context: () => context, mixer: () => mixer, levels, masterControls });
+const keyboard = attachKeyboard({ graph: audioGraph, context: () => context, mixer: () => mixer, levels, masterControls, getPhrase: () => session?.phraseSource() });
 async function start(deck) {
     const { id, audio } = deck;
     if (!rights.checked || !deck.url || deck.loading || deck.starting || deck.prepared || deck.preparing) return;
@@ -228,7 +228,7 @@ for (const deck of decks) {
     if (deck.url) { pause(deck); $(`error-${id}`).textContent = 'Track playback failed. Unload it and try another file.'; }
   });
 }
-session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
+session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onPhraseChanged: keyboard.sourceChanged, onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
 $('crossfade').oninput = $('master').oninput = levels;
 $('pause-all').onclick = () => { decks.forEach(pause); clearDeckEchoes(); $('mixer-status').textContent = 'All decks paused.'; };
 window.addEventListener('pagehide', event => {

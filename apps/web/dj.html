@@ -86,10 +86,13 @@
 <fieldset class="instrument-take"><legend>Keep an instrument take</legend>
 <p>Capture up to 30 seconds of keys, drums and talk bass before channel effects and volume. Decks, microphone, tone and echo are not recorded. Starting releases held notes; release notes before stopping to keep their tails.</p>
 <label class="consent"><input id="take-consent" type="checkbox"><span>I agree to capture my playing locally. Nothing is uploaded or used for training.</span></label>
+<label class="consent"><input id="take-include-phrase" type="checkbox" disabled aria-describedby="take-phrase-help"><span>Include the current phrase with this take. I have permission from its owner and speakers to keep this private copy.</span></label>
+<p id="take-phrase-help" class="hint">Optional: record or import a phrase above first. Play your response on the instruments. Downloads keep the phrase and response separate; they are not a mixed song. Replacing or deleting the phrase discards its paired take from this tab.</p>
 <div class="session-actions"><button id="take-start" class="small-button" disabled>Record instrument take</button><button id="take-stop" class="small-button" disabled>Stop take</button><button id="take-delete" class="small-button" disabled>Delete take</button></div>
 <p id="take-status" role="status">Enable instruments and confirm capture permission to begin.</p>
 <audio id="take-player" controls hidden aria-label="Recorded instrument take"></audio>
 <div class="session-actions"><a id="take-wav" download="jamloom-instrument-take.wav" hidden>Download take WAV</a><a id="take-trace" download="jamloom-instrument-take.json" hidden>Download musical actions</a></div>
+<div class="session-actions"><a id="take-source" download="jamloom-take-source.wav" hidden>Download source phrase</a><a id="take-pair" download="jamloom-phrase-response.json" hidden>Download phrase-response link</a></div>
 <p class="pad-help">Your take stays in this tab until you download it. Leaving the tab during capture discards an incomplete take. Delete or uncheck permission to clear it here; downloaded copies must be deleted separately. These captures need separate rights and musician review before any learning use.</p>
 </fieldset>
 <fieldset class="midi-controls"><legend>MIDI controller</legend>

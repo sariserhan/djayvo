@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0-phrase-response",
+  "training_authorized": false,
+  "review": "unreviewed",
+  "source": {
+    "wav_sha256": "f3348d00ef4512fb3d76ded363cc66dcdd2ac1c50f9ac25f5e1c01fde9be48af",
+    "frames": 154142,
+    "sample_rate": 48000,
+    "channels": 1,
+    "origin": "imported_file",
+    "permission": "user_attested_local_pairing"
+  },
+  "take_sha256": "4660b39f84fc01c930824a0a5dd35630c0c6552ea76fd7aaa22e3f46779b8247",
+  "context_at_start": null
+}
