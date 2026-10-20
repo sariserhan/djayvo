@@ -1,0 +1,108 @@
+{
+  "chromium": {
+    "directory": "renders/mix-recording-chromium-J0ZldT",
+    "files": {
+      "mix.wav": {
+        "bytes": 115756,
+        "sha256": "e6470e7d983448d9a8e3111fd943c328b3dfd374cd8c7a82eb6150f2bcc55a08",
+        "rate": 48000,
+        "frames": 28928,
+        "channels": 2,
+        "seconds": 0.6026666666666667,
+        "peak_dbfs": -15.231212069997689,
+        "full_scale_samples": 0
+      },
+      "post-limiter-reference.wav": {
+        "bytes": 144428,
+        "sha256": "8b1a6f96b0ed9796983f8d4861b191445a5921ed3be5b4debee47b5a72147fcb",
+        "rate": 48000,
+        "frames": 36096,
+        "channels": 2,
+        "seconds": 0.752,
+        "peak_dbfs": -0.42451496085632534,
+        "full_scale_samples": 0
+      },
+      "mix.json": {
+        "bytes": 425,
+        "sha256": "c663987075ec3a01c86cd95cf8382b482914ad53a1e240a2e1ebf0baa9d47b5e"
+      },
+      "automatic-stop.json": {
+        "bytes": 427,
+        "sha256": "e3ea4604d2225952f77654b6f9ab6dbe41a3c29b2f4ef2a4e29547a96a868f72"
+      }
+    }
+  },
+  "webkit": {
+    "directory": "renders/mix-recording-webkit-yxH1Yz",
+    "files": {
+      "mix.wav": {
+        "bytes": 126508,
+        "sha256": "bd061ed9efba41a71836c0440738e1c7fddfff2cf2b3866b56d9f3a908f3baaf",
+        "rate": 48000,
+        "frames": 31616,
+        "channels": 2,
+        "seconds": 0.6586666666666666,
+        "peak_dbfs": -15.471790817889088,
+        "full_scale_samples": 0
+      },
+      "post-limiter-reference.wav": {
+        "bytes": 192044,
+        "sha256": "516d1fdd0ac3f8817c0ef1452dd5cd3cd063de3509fedcca5164880cb7ad5cee",
+        "rate": 48000,
+        "frames": 48000,
+        "channels": 2,
+        "seconds": 1.0,
+        "peak_dbfs": -0.42451496085632534,
+        "full_scale_samples": 0
+      },
+      "mix.json": {
+        "bytes": 425,
+        "sha256": "ffa9f669a27e3f9400522a6463f48e3b06bcbf21f06aaacc8656ef85f20afe94"
+      },
+      "automatic-stop.json": {
+        "bytes": 427,
+        "sha256": "8029f7664db19528f381336083fc09567aee030fcddabec5f15711961ead49e3"
+      }
+    }
+  },
+  "offline_recording": {
+    "directory": "renders/dj-chromium-9N0vSX",
+    "wav_sha256": "82733a2aea022b9b824916eee46507a6ee5cdba4c024cabad75334785be75650",
+    "status": "PASS",
+    "dj_checks": 48
+  },
+  "cross_browser_reference": {
+    "status": "PARTIAL",
+    "compared_stereo_frames": 36096,
+    "max_pcm16": 2158,
+    "rms_pcm16": 12.922176422963961,
+    "different_channel_samples": 15325,
+    "largest_difference_frame": 9600,
+    "largest_difference_channel": 0,
+    "note": "Within-browser capture/destination differences are zero; browser mixer outputs and async stop boundaries differ."
+  },
+  "preserved": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "jamloom_improvisation_learning_addendum_v1.md": "5bfe33e037f4d0aff6910ba3dbc55ce090e96b0ee772fdc834d94a12aa29941d",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "dist/web/engine/jamloom_live.wasm": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8"
+  },
+  "local_public_files": {
+    "status": "PASS",
+    "origin": "http://127.0.0.1:3000/studio/",
+    "sha256": {
+      "dj.html": "2f2bf1e3fac2582952977e079a95d872be3939ef5b25b05b231d07f8b63c444d",
+      "dj.js": "0a3c252d8d84fb8fd6595a50cc4e8fd2f698a5347b8cc2857bb4d94c37653083",
+      "dj.css": "d1beca3a77f43196a33ed86a0f375e1d3e29a80285e6f735af54aea3b03a2864",
+      "mix-recording.js": "25b8c33156e04a89f99086cc2d279ed5c6ec44403534b5a64e302b2155461ed2",
+      "mix-recording-worklet.js": "3d15a7405b3cf89cc995fd3bf4f11f48c0069db00365e9a221c03055766c2452",
+      "live-take.js": "a791ec47b083bbb122792f88484086730eca26a1ef548128b2753f62be6069ad"
+    }
+  },
+  "machine": {
+    "os": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241",
+    "cpu": "Apple M5",
+    "ram_bytes": 17179869184,
+    "node": "v22.23.1"
+  }
+}

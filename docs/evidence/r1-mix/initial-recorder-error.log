@@ -1,0 +1,19 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/mix-recording-chromium-3OJmIq
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Recorder failed/. Input:
+
+'Recording studio mix · 0 / 30 seconds'
+
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/web/tests/mix-recording.mjs:161:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'Recording studio mix · 0 / 30 seconds',
+  expected: /Recorder failed/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

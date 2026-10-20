@@ -46,6 +46,15 @@
  <div class="hotcues"><button id="hot-b-0" class="hotcue" disabled aria-label="Deck B hot cue 1, empty">1<small>EMPTY</small></button><button id="hot-b-1" class="hotcue" disabled aria-label="Deck B hot cue 2, empty">2<small>EMPTY</small></button><button id="hot-b-2" class="hotcue" disabled aria-label="Deck B hot cue 3, empty">3<small>EMPTY</small></button><button id="hot-b-3" class="hotcue" disabled aria-label="Deck B hot cue 4, empty">4<small>EMPTY</small></button></div><p class="pad-help">Hot cues: click empty to set · shift-click to clear</p>
  <label class="level-label" for="level-b">Channel B <output id="level-value-b">100%</output></label><input id="level-b" type="range" min="0" max="1" step="0.01" value="1" disabled>
  <p class="deck-error" id="error-b" role="alert"></p></section></div>
+<fieldset id="mix-recording" class="mix-recording"><legend>Record the studio mix</legend>
+<p>Keep up to 30 seconds of Decks A/B/C and instruments, including effects and fader moves. Captures the stereo mixer output after its limiter; excludes live microphone input and preview players.</p>
+<label class="consent"><input id="mix-record-consent" type="checkbox"><span>I have permission to record all music, performances and voices in this mix for private use. Nothing is uploaded or used for training.</span></label>
+<div class="session-actions"><button id="mix-record-start" class="small-button" disabled>Record mix</button><button id="mix-record-stop" class="small-button" disabled>Stop recording</button><button id="mix-record-delete" class="small-button" disabled>Delete recording</button></div>
+<p id="mix-record-status" role="status">Confirm recording permission to begin. Playback continues when recording stops.</p>
+<audio id="mix-record-player" controls hidden aria-label="Recorded studio mix"></audio>
+<div class="session-actions"><a id="mix-record-wav" download="jamloom-studio-mix.wav" hidden>Download mix WAV</a><a id="mix-record-json" download="jamloom-studio-mix.json" hidden>Download recording details</a></div>
+<p class="hint">Recordings stay in this tab until downloaded. Changing or deleting the source phrase, or removing recording/music/voice permission, discards the recording here. Leaving this tab during capture discards the unfinished recording. Downloaded copies must be deleted separately.</p>
+</fieldset>
 <section id="saved-mixes" aria-labelledby="saved-mixes-title">
 <h2 id="saved-mixes-title">Your saved mixes</h2>
 <p>Reuse a performance from this browser. Pause a deck before loading; release prepared A first.</p>

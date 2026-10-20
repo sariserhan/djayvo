@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "browser": "webkit",
+  "version": "26.5",
+  "url": "http://127.0.0.1:52212/dj.html",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "checks": [
+    "actual four-channel mixer tap matches destination PCM exactly, preserves stereo, includes limiter/FX/faders and mutes",
+    "consented deck + live instruments produce playable hash-bound WAV; master mute captured; stop leaves deck playing",
+    "desktop/mobile controls render without horizontal overflow",
+    "music/voice/capture withdrawal and source replacement discard captures; delayed hashes cannot restore exports",
+    "focus loss, audio suspension and recorder failure discard unfinished capture; instruments keep sounding, retry/delete work",
+    "real 30-second UI timer stops automatically within the audio buffer cap"
+  ],
+  "reference": {
+    "maximum": 0,
+    "rms": 0,
+    "frames": 48000,
+    "first": 0,
+    "timestampDiscontinuities": 0,
+    "peak": 0.9523188471794128,
+    "tail": 0,
+    "stereoDifference": 1.7327372431755066,
+    "capturedHash": "516d1fdd0ac3f8817c0ef1452dd5cd3cd063de3509fedcca5164880cb7ad5cee",
+    "referenceHash": "516d1fdd0ac3f8817c0ef1452dd5cd3cd063de3509fedcca5164880cb7ad5cee"
+  },
+  "receipt": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 31616,
+    "wav_sha256": "bd061ed9efba41a71836c0440738e1c7fddfff2cf2b3866b56d9f3a908f3baaf",
+    "observed_context_start_frame": 22016,
+    "timestamp_discontinuities": 0,
+    "limit_reached": false
+  },
+  "automatic": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 1440000,
+    "wav_sha256": "d5587459c5d1bcb65a64b89396e78fa52106a65307e2b713df1c17b1f95ec144",
+    "observed_context_start_frame": 124672,
+    "timestamp_discontinuities": 0,
+    "limit_reached": true
+  },
+  "peak": 0.168426513671875,
+  "tail": 0,
+  "errors": [],
+  "external": [],
+  "warnings": [
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+  ],
+  "physicalDevices": "NOT RUN",
+  "humanQuality": "NOT RUN",
+  "training": "NOT RUN",
+  "liveMixReplay": "NOT RUN: no complete automation/source trace"
+}

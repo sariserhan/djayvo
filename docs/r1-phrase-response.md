@@ -1,5 +1,9 @@
 # R1 continuation — private phrase-response pairs
 
+Follow-up: [private studio mix recording](r1-mix-recording.md) now retains the
+post-effects/fader/limiter output. Its PCM receipt is separate from these
+replayable instrument/source pairs; full automation replay remains unfinished.
+
 **R1 overall: PARTIAL.** A musician can now keep a source phrase alongside a
 replayable instrument response. This extends [live takes](r1-instrument-capture.md)
 and reuses the existing phrase recorder/importer. It does not train a model,

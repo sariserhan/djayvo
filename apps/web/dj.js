@@ -2,6 +2,7 @@ import { createMixer, updateMixer, validateTrack, trackDuration, updateToneEcho,
 import { attachDeck, playMedia } from './deck-controls.js';
 import { attachKeyboard } from './keyboard.js';
 import { attachPerformance } from './performance-session.js';
+import { attachMixRecording } from './mix-recording.js';
 import { resumeAudio } from './audio.js';
 import { loadSessions, loadSession, verifySession } from './library.js';
 
@@ -103,7 +104,7 @@ function audioGraph() {
   }
   context.onstatechange = () => {
     if (context.state !== 'running') {
-      keyboard.panic(); keyboard.interrupt(); decks.forEach(pause); clearDeckEchoes();
+      keyboard.panic(); keyboard.interrupt(); mixRecording.interrupt(); decks.forEach(pause); clearDeckEchoes();
       $('mixer-status').textContent = 'Audio was interrupted. Press Play when you are ready to resume.';
     }
   };
@@ -115,6 +116,7 @@ function masterControls() {
   $('master').disabled = !rights.checked && !keyboard.ready();
 }
 const keyboard = attachKeyboard({ graph: audioGraph, context: () => context, mixer: () => mixer, levels, masterControls, getPhrase: () => session?.phraseSource() });
+const mixRecording = attachMixRecording({ graph: audioGraph, context: () => context, mixer: () => mixer });
 async function start(deck) {
     const { id, audio } = deck;
     if (!rights.checked || !deck.url || deck.loading || deck.starting || deck.prepared || deck.preparing) return;
@@ -228,7 +230,7 @@ for (const deck of decks) {
     if (deck.url) { pause(deck); $(`error-${id}`).textContent = 'Track playback failed. Unload it and try another file.'; }
   });
 }
-session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onPhraseChanged: keyboard.sourceChanged, onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
+session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onPhraseChanged: () => { keyboard.sourceChanged(); mixRecording.sourceChanged(); }, onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
 $('crossfade').oninput = $('master').oninput = levels;
 $('pause-all').onclick = () => { decks.forEach(pause); clearDeckEchoes(); $('mixer-status').textContent = 'All decks paused.'; };
 window.addEventListener('pagehide', event => {

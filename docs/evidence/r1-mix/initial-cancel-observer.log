@@ -1,0 +1,12 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/mix-recording-webkit-jtse0j
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at /Users/serhansari/Documents/projects/djayvo/apps/web/tests/mix-recording.mjs:172:14 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.1

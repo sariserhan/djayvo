@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 import { chromium, webkit } from 'playwright';
 import { verifyInstrumentFX } from './instrument-fx.mjs';
 import { fakeMidi, verifyMidi } from './midi-browser.mjs';
+import { sha256 } from '../live-take.js';
+import { validateMixRecording } from '../mix-recording.js';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const kind = (process.env.JAMLOOM_BROWSER ?? process.env.DJAYVO_BROWSER) || 'chromium';
@@ -592,6 +594,25 @@ try {
   assert.equal(serverRequests.length, requestsBeforeDisconnect);
   assert.equal(await page.locator('#midi-bindings li').count(), 0);
   check('cached MIDI Learn picks up, mutes/unmutes actual instrument PCM and clears on disable with server disconnected (synthetic port)');
+  await page.locator('#mix-record-consent').check(); await page.locator('#mix-record-start').click();
+  await page.waitForFunction(() => !document.getElementById('mix-record-stop').disabled);
+  await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('a');
+  await page.waitForTimeout(200); await page.keyboard.up('a'); await page.waitForTimeout(150);
+  await page.locator('#mix-record-stop').click(); await page.locator('#mix-record-wav').waitFor({state:'visible'});
+  for (const [id,name] of [['mix-record-wav','offline-mix.wav'],['mix-record-json','offline-mix.json']]) {
+    const promise=page.waitForEvent('download'); await page.locator(`#${id}`).click();
+    await(await promise).saveAs(path.join(output,name));
+  }
+  const offlineReceipt=validateMixRecording(JSON.parse(await fs.readFile(path.join(output,'offline-mix.json'),'utf8')));
+  const offlineWav=await fs.readFile(path.join(output,'offline-mix.wav'));
+  assert.equal(await sha256(offlineWav),offlineReceipt.wav_sha256);
+  let offlinePeak=0; for(let i=44;i<offlineWav.length;i+=2)offlinePeak=Math.max(offlinePeak,Math.abs(offlineWav.readInt16LE(i)));
+  assert.ok(offlinePeak>32 && offlinePeak<32767);
+  await page.locator('#mix-record-player').evaluate(audio=>audio.play());
+  await page.waitForFunction(()=>document.getElementById('mix-record-player').currentTime>0);
+  await page.locator('#mix-record-delete').click();
+  assert.equal(serverRequests.length,requestsBeforeDisconnect);
+  check('cached mix recorder captures, downloads and plays nonzero hash-verified PCM with server disconnected');
   await page.locator('#clear-a').click();
   assert.equal(await page.locator('#audio-a').getAttribute('src'), null);
   check('unload releases the deck source');

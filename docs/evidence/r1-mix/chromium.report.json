@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "browser": "chromium",
+  "version": "149.0.7827.55",
+  "url": "http://127.0.0.1:52228/dj.html",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "checks": [
+    "actual four-channel mixer tap matches destination PCM exactly, preserves stereo, includes limiter/FX/faders and mutes",
+    "consented deck + live instruments produce playable hash-bound WAV; master mute captured; stop leaves deck playing",
+    "desktop/mobile controls render without horizontal overflow",
+    "music/voice/capture withdrawal and source replacement discard captures; delayed hashes cannot restore exports",
+    "focus loss, audio suspension and recorder failure discard unfinished capture; instruments keep sounding, retry/delete work",
+    "real 30-second UI timer stops automatically within the audio buffer cap"
+  ],
+  "reference": {
+    "maximum": 0,
+    "rms": 0,
+    "frames": 36096,
+    "first": 0,
+    "timestampDiscontinuities": 0,
+    "peak": 0.9523188471794128,
+    "tail": 0,
+    "stereoDifference": 1.7332295179367065,
+    "capturedHash": "8b1a6f96b0ed9796983f8d4861b191445a5921ed3be5b4debee47b5a72147fcb",
+    "referenceHash": "8b1a6f96b0ed9796983f8d4861b191445a5921ed3be5b4debee47b5a72147fcb"
+  },
+  "receipt": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 28928,
+    "wav_sha256": "e6470e7d983448d9a8e3111fd943c328b3dfd374cd8c7a82eb6150f2bcc55a08",
+    "observed_context_start_frame": 11520,
+    "timestamp_discontinuities": 0,
+    "limit_reached": false
+  },
+  "automatic": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 1440000,
+    "wav_sha256": "f3c30dab5fc819135ff8a6f55811c3c25602a5e67b6c3b111cbf196bfef3bc28",
+    "observed_context_start_frame": 110592,
+    "timestamp_discontinuities": 0,
+    "limit_reached": true
+  },
+  "peak": 0.17315673828125,
+  "tail": 0,
+  "errors": [],
+  "external": [],
+  "warnings": [],
+  "physicalDevices": "NOT RUN",
+  "humanQuality": "NOT RUN",
+  "training": "NOT RUN",
+  "liveMixReplay": "NOT RUN: no complete automation/source trace"
+}

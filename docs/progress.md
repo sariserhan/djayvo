@@ -1139,3 +1139,46 @@ alignment, reviewed expert demonstrations and stratified corpus remain.
 human musical quality, full Next rebuild, model training, paid compute and public
 release. No claim that these short automated test notes improve musical quality.
 [Full report, WAVs and reproducible commands](r1-phrase-response.md).
+
+## 2026-10-20 — R1 private studio mix recording
+
+**PASS:** Added separate permission-gated capture of the actual stereo mixer
+output after channel effects/faders and limiting. Decks A/B/C and instruments
+are included; live microphone input and independent preview players are excluded.
+Playback routing stays intact when recording starts/stops/fails. Bounded
+30-second AudioWorklet buffer, local WAV/receipt downloads and preview/delete;
+no upload, persistent save or inferred training permission. Permission/source
+changes and interruptions discard pending recordings, including late hash results.
+
+**PASS:** 59 unit tests (including 44.1/48 kHz buffer caps); six flow checks each
+in Chromium/WebKit; seven existing instrument/source-pair checks; 48 Chromium
+DJ regressions, including real recording/playback after the server is stopped.
+Both browsers reach the actual 30-second automatic limit. Static bundle audit,
+desktop/mobile screenshots and actual localhost record/play/delete pass.
+New modules initially returned 404 from the long-running local Next server;
+restarting the existing build made them available, without public deployment.
+
+**PASS:** Four-input mixer probe captures stereo float32 exactly against each
+browser's rendered destination, including gain/effect changes, limiting and mute.
+Max/RMS capture error zero; encoded WAV hashes identical within each probe.
+**PARTIAL:** cross-browser mixer identity. The async offline stop is serviced
+at different boundaries (36,096 Chromium / 48,000 WebKit frames); common-prefix
+max/RMS difference is 2,158 / 12.9221764230 PCM16 units. This is recorded separately
+from capture accuracy; no sample-accurate UI-stop or physical latency claim.
+
+An initial recorder-error injection exposed a cleanup handler that did not fire.
+Changed to the existing instrument rack's explicit event-listener pattern;
+both browser reruns prove cleanup/retry while native instruments keep sounding.
+Cancellation now acknowledges buffer release before the controller closes the
+port; final browser tests observe that closure. A secondary WebKit test listener
+missed the terminal event, so its observer was corrected and the timeout retained.
+Initial failures retained. Two WebKit screenshot-tool CSP warnings are isolated;
+app errors/external requests absent. Original fixtures, specifications, native
+engine and security policy unchanged.
+
+**PARTIAL:** R1 overall; complete automation/source provenance, aligned stems,
+permissioned expert demonstrations and reviewed stratified dataset remain.
+**NOT RUN:** live-mix deterministic replay, human musical quality, physical
+mic/MIDI/latency/venue checks, new Linux/iPhone runs, full Next rebuild, model
+training, paid compute and public release.
+[Full report, playable probes and exact evidence](r1-mix-recording.md).
