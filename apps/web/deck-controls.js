@@ -1,3 +1,4 @@
+import { setMixerGain } from './mixer.js';
 const $ = id => document.getElementById(id);
 export function playMedia(audio, current) {
   return new Promise((resolve, reject) => {
@@ -60,7 +61,7 @@ export function attachDeck(deck, other, { pause, start, mixer, context }) {
   const eq = band => {
     const value = Number($(`eq-${id}-${band}`).value);
     $(`eq-${id}-${band}-value`).textContent = `${value} dB`;
-    mixer()?.strips[id === 'a' ? 0 : 1].eq[band].gain.setTargetAtTime(value, context().currentTime, .005);
+    if (mixer()) setMixerGain(context(), mixer(), `eq-${id}-${band}`, value);
   };
   const hotLabels = () => hot.forEach((value, index) => {
     const button = $(`hot-${id}-${index}`), label = value === null ? 'EMPTY' : `${value.toFixed(1)} s`;

@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0-mix-gain-automation",
+  "scope": "scheduled_gain_eq_targets",
+  "training_authorized": false,
+  "wav_sha256": "84eba32ee8e646b8b281c244ec21f4d3653d4843063a7176b06c0684332e41f5",
+  "sample_rate": 48000,
+  "observed_context_start_frame": 251136,
+  "snapshot_context_frame": 251136,
+  "initial_targets": {
+    "a": 0.6000000000000001,
+    "b": 0,
+    "c": 0.30000000000000004,
+    "rack": 0.75,
+    "eq-a-0": 0,
+    "eq-a-1": 0,
+    "eq-a-2": 0,
+    "eq-b-0": 0,
+    "eq-b-1": 0,
+    "eq-b-2": 0
+  },
+  "events": [
+    {
+      "context_frame": 269056,
+      "target": "a",
+      "value": 0.6000000000000001
+    },
+    {
+      "context_frame": 269056,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "context_frame": 269056,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "context_frame": 269056,
+      "target": "rack",
+      "value": 0.44999999999999996
+    },
+    {
+      "context_frame": 269312,
+      "target": "a",
+      "value": 0.6000000000000001
+    },
+    {
+      "context_frame": 269312,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "context_frame": 269312,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "context_frame": 269312,
+      "target": "rack",
+      "value": 0.44999999999999996
+    }
+  ]
+}

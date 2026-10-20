@@ -1,0 +1,44 @@
+{
+  "dj.html": {
+    "url": "http://127.0.0.1:3000/studio/dj.html",
+    "http": 200,
+    "sha256": "b113083b633d60dab088a8c8ab04051c2c014c7596501751fb5c9824e653c403",
+    "matches_source": true
+  },
+  "dj.js": {
+    "url": "http://127.0.0.1:3000/studio/dj.js",
+    "http": 200,
+    "sha256": "d6c30f6b2785c6cb18b68e85cfd1ac09988c17893fa2ede34920648c6eccf190",
+    "matches_source": true
+  },
+  "mixer.js": {
+    "url": "http://127.0.0.1:3000/studio/mixer.js",
+    "http": 200,
+    "sha256": "1d2bb712feb75c034635a632c42f67112a6cc1c7a683b23f5f72164059aadac0",
+    "matches_source": true
+  },
+  "deck-controls.js": {
+    "url": "http://127.0.0.1:3000/studio/deck-controls.js",
+    "http": 200,
+    "sha256": "47e39bbc7f6db1896c75745f146eeeb0f029f08a390e245f3c05cbca51866952",
+    "matches_source": true
+  },
+  "performance-session.js": {
+    "url": "http://127.0.0.1:3000/studio/performance-session.js",
+    "http": 200,
+    "sha256": "7f6c694c846b5d8174fbcaa4f28cf4b013a041509cbbaa0ecc08a69248fccaf6",
+    "matches_source": true
+  },
+  "mix-recording.js": {
+    "url": "http://127.0.0.1:3000/studio/mix-recording.js",
+    "http": 200,
+    "sha256": "99e5bcbead93046a327a992c42db4c17680f0cd14996633b52b0377f273382da",
+    "matches_source": true
+  },
+  "mix-automation.js": {
+    "url": "http://127.0.0.1:3000/studio/mix-automation.js",
+    "http": 200,
+    "sha256": "eecb3fafc9ac21bba7808836a7919a616a7cc542f7102648ba8b55198ae53287",
+    "matches_source": true
+  }
+}

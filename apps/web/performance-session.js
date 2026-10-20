@@ -1,6 +1,6 @@
 import { decodeAudio, encodeWav, resumeAudio } from './audio.js';
 import { SessionTransport } from './session-transport.js';
-import { validatePreparedTrack, updateToneEcho, clearEcho, beatEchoDelay } from './mixer.js';
+import { setMixerGain, validatePreparedTrack, updateToneEcho, clearEcho, beatEchoDelay } from './mixer.js';
 import { compositionKey } from './novelty.js';
 import { saveSession, verifySession } from './library.js';
 
@@ -296,7 +296,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   $('phrase-consent').onchange = () => { if (!permitted()) deletePhrase(); refresh(); };
   $('c-level').oninput = () => {
     $('c-level-value').textContent = `${Math.round(Number($('c-level').value) * 100)}%`;
-    if (mixer()) mixer().performance.gain.setTargetAtTime(Number($('c-level').value) * Number($('master').value) * .8, context().currentTime, .005);
+    if (mixer()) setMixerGain(context(), mixer(), 'c', Number($('c-level').value) * Number($('master').value) * .8);
   };
   document.addEventListener('visibilitychange', () => { if (document.hidden) { if (busy) cancel(); stop(); say('Session stopped when the page was hidden. Start A again when ready.'); } });
   window.addEventListener('pagehide', () => { reset(); deletePhrase(); });

@@ -1,4 +1,4 @@
-import { createMixer, updateMixer, validateTrack, trackDuration, updateToneEcho, clearEcho } from './mixer.js';
+import { createMixer, updateMixer, setMixerGain, validateTrack, trackDuration, updateToneEcho, clearEcho } from './mixer.js';
 import { attachDeck, playMedia } from './deck-controls.js';
 import { attachKeyboard } from './keyboard.js';
 import { attachPerformance } from './performance-session.js';
@@ -41,8 +41,8 @@ function levels() {
   $('rack-value').textContent = `${Math.round(Number($('rack-level').value) * 100)}%`;
   if (mixer) {
     updateMixer(context, mixer, blend, values, master);
-    mixer.performance.gain.setTargetAtTime(Number($('c-level').value) * master * .8, context.currentTime, .005);
-    mixer.rack.gain.setTargetAtTime(Number($('rack-level').value) * master, context.currentTime, .005);
+    setMixerGain(context, mixer, 'c', Number($('c-level').value) * master * .8);
+    setMixerGain(context, mixer, 'rack', Number($('rack-level').value) * master);
   }
 }
 

@@ -5,6 +5,7 @@ import { createServer } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { chromium, webkit } from 'playwright';
 import { stereoWav, sha256 } from '../live-take.js';
+import { validateMixAutomation } from '../mix-automation.js';
 import { validateMixRecording } from '../mix-recording.js';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
@@ -104,17 +105,30 @@ try {
   const recording=()=>page.waitForFunction(()=>!document.getElementById('mix-record-stop').disabled);
   await recording();
   await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('a'); await page.waitForTimeout(250); await page.keyboard.up('a');
+  for (const [id,value] of [['eq-a-0','-6'],['c-level','0.3'],['rack-level','0.5']]) {
+    await page.locator(`#${id}`).fill(value); await page.locator(`#${id}`).dispatchEvent('input');
+  }
   await page.locator('#master').fill('0'); await page.locator('#master').dispatchEvent('input');
   await page.waitForTimeout(300); await page.locator('#mix-record-stop').click();
   await page.locator('#mix-record-wav').waitFor({state:'visible'});
   assert.equal(await page.locator('#state-a').textContent(),'Playing');
-  for(const [id,name] of [['mix-record-wav','mix.wav'],['mix-record-json','mix.json']]) {
+  for(const [id,name] of [['mix-record-wav','mix.wav'],['mix-record-json','mix.json'],['mix-record-automation','controls.json']]) {
     const promise=page.waitForEvent('download'); await page.locator(`#${id}`).click();
     await(await promise).saveAs(path.join(output,name));
   }
   const receipt=validateMixRecording(JSON.parse(await fs.readFile(path.join(output,'mix.json'),'utf8')));
   const wav=await fs.readFile(path.join(output,'mix.wav')); assert.equal(await sha256(wav),receipt.wav_sha256);
   assert.equal(wav.length,44+receipt.frames*4); assert.equal(receipt.training_authorized,false);
+  const automation=validateMixAutomation(JSON.parse(await fs.readFile(path.join(output,'controls.json'),'utf8')),receipt);
+  for (const [target,value] of [['eq-a-0',-6],['c',.3*.75*.8],['rack',.5*.75]])
+    assert.ok(automation.events.some(e=>e.target===target && e.value===value));
+  const mute=automation.events.filter(e=>e.target==='a' && e.value===0).at(-1);
+  assert.ok(mute);
+  const muteFrame=mute.context_frame-receipt.observed_context_start_frame;
+  assert.ok(muteFrame>=0 && muteFrame+Math.ceil(receipt.sample_rate*.1)<receipt.frames);
+  for(let f=muteFrame+Math.ceil(receipt.sample_rate*.1);f<receipt.frames;f++)
+    assert.equal(wav.readInt16LE(44+f*4),0);
+  checks.push('scheduled gain/EQ targets link to WAV clock and hash; master mute reaches zero PCM after smoothing');
   let peak=0,tail=0;
   for(let i=44;i<wav.length;i+=2){const v=Math.abs(wav.readInt16LE(i))/32768;peak=Math.max(peak,v);if(i>wav.length-receipt.sample_rate*.05*4)tail=Math.max(tail,v);}
   assert.ok(peak>.01 && peak<1); assert.equal(tail,0);
@@ -132,6 +146,7 @@ try {
   await page.locator('#music-rights').uncheck();
   assert.equal(await page.locator('#mix-record-wav').isVisible(),false);
   assert.equal(await page.locator('#mix-record-player').getAttribute('src'),null);
+  assert.equal(await page.locator('#mix-record-automation').getAttribute('href'),null);
   await page.locator('#mix-record-start').click(); await recording();
   await page.evaluate(()=>{
     const digest=crypto.subtle.digest.bind(crypto.subtle);
@@ -149,6 +164,7 @@ try {
   await page.locator('#mix-record-start').click(); await recording();
   await page.locator('#phrase-consent').uncheck();
   assert.equal(await page.locator('#mix-record-wav').isVisible(),false);
+  assert.equal(await page.locator('#mix-record-automation').getAttribute('href'),null);
   checks.push('music/voice/capture withdrawal and source replacement discard captures; delayed hashes cannot restore exports');
   await page.locator('#mix-record-start').click(); await recording();
   await page.evaluate(()=>window.dispatchEvent(new Event('blur')));
@@ -175,6 +191,17 @@ try {
   assert.equal(await page.locator('#mix-record-wav').isVisible(),false);
   checks.push('focus loss, audio suspension and recorder failure discard unfinished capture; instruments keep sounding, retry/delete work');
   await page.locator('#mix-record-start').click(); await recording();
+  await page.evaluate(()=>{
+    const control=document.getElementById('master');
+    for(let i=0;i<1100;i++) control.dispatchEvent(new Event('input'));
+  });
+  await page.waitForTimeout(150); await page.locator('#mix-record-stop').click();
+  await page.locator('#mix-record-wav').waitFor({state:'visible'});
+  assert.equal(await page.locator('#mix-record-automation').getAttribute('href'),null);
+  assert.match(await page.locator('#mix-record-status').textContent(),/trace exceeded its limit/);
+  await page.locator('#mix-record-delete').click();
+  checks.push('automation overflow discards only control trace, keeps WAV and reports the limit');
+  await page.locator('#mix-record-start').click(); await recording();
   await page.locator('#mix-record-wav').waitFor({state:'visible',timeout:35000});
   const autoDownload=page.waitForEvent('download'); await page.locator('#mix-record-json').click();
   await(await autoDownload).saveAs(path.join(output,'automatic-stop.json'));
@@ -184,7 +211,7 @@ try {
   checks.push('real 30-second UI timer stops automatically within the audio buffer cap');
   assert.deepEqual(errors,[]); assert.deepEqual(external,[]);
   await fs.writeFile(path.join(output,'report.json'),JSON.stringify({status:'PASS',browser:kind,version:browser.version(),url,
-    viewports:[[1440,1000],[390,844]],checks,reference,receipt,automatic,peak,tail,errors,external,warnings,
+    viewports:[[1440,1000],[390,844]],checks,reference,receipt,automation,muteFrame,automatic,peak,tail,errors,external,warnings,
     physicalDevices:'NOT RUN',humanQuality:'NOT RUN',training:'NOT RUN',liveMixReplay:'NOT RUN: no complete automation/source trace'},null,2));
   console.log(JSON.stringify({status:'PASS',output,checks}));
 } finally {await browser?.close();await new Promise(resolve=>server.close(resolve));}

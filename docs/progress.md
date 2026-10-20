@@ -1182,3 +1182,30 @@ permissioned expert demonstrations and reviewed stratified dataset remain.
 mic/MIDI/latency/venue checks, new Linux/iPhone runs, full Next rebuild, model
 training, paid compute and public release.
 [Full report, playable probes and exact evidence](r1-mix-recording.md).
+
+## 2026-10-20 — R1 mixer gain/EQ schedule capture
+
+**PASS:** Private WAV-linked `1.0-mix-gain-automation` download. Shared scheduling
+captures A/B/C/rack effective gains and six deck EQ targets only after the audio
+API accepts them; original 5 ms smoothing retained. Initial requested targets and
+rounded context-frame schedules remain distinct from actual PCM application and
+native instrument-event acknowledgements. Bounded 4096 actions; overflow discards
+the control trace while preserving WAV/audio. Existing consent, cancellation,
+source replacement and deletion lifecycle also removes controls.
+
+**PASS:** 63 unit tests; eight capture checks each on Chromium 149.0.7827.55 /
+WebKit 26.5; 48 Chromium DJ checks including actual disconnected capture and
+control download; 41-file bundle audit and source-identical localhost assets.
+Desktop/mobile inspected. Eleven initial VM harness failures from the new import
+were fixed without changing their behavioral assertions. Actual UI mutes align
+with scheduled frame offsets after smoothing; capture/destination PCM differences
+remain exactly zero within each browser. Cross-browser common-prefix max/RMS
+2,158 / 12.9221764230 PCM16 units remains **PARTIAL**. Both real timed captures
+reach 1,440,000 frames. M5 16 GiB / macOS 26.7.1 / Node 22.23.1 / Playwright 1.61.1.
+
+**PARTIAL:** Overall R1; full effect/transport replay, hash-linked source rights,
+aligned stems and expert-reviewed demonstrations remain. Private captures are
+not training authorization. **NOT RUN:** human musical-quality evaluation,
+physical latency/MIDI/venue, new Linux/iPhone execution, full Next rebuild, model
+training, paid compute and deployment. Immutable specs, fixture and native WASM
+unchanged. [Report, playable probes and exact evidence](r1-mix-automation.md).

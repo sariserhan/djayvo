@@ -1,0 +1,197 @@
+{
+  "status": "PASS",
+  "browser": "chromium",
+  "version": "149.0.7827.55",
+  "url": "http://127.0.0.1:52660/dj.html",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "checks": [
+    "actual four-channel mixer tap matches destination PCM exactly, preserves stereo, includes limiter/FX/faders and mutes",
+    "scheduled gain/EQ targets link to WAV clock and hash; master mute reaches zero PCM after smoothing",
+    "consented deck + live instruments produce playable hash-bound WAV; master mute captured; stop leaves deck playing",
+    "desktop/mobile controls render without horizontal overflow",
+    "music/voice/capture withdrawal and source replacement discard captures; delayed hashes cannot restore exports",
+    "focus loss, audio suspension and recorder failure discard unfinished capture; instruments keep sounding, retry/delete work",
+    "automation overflow discards only control trace, keeps WAV and reports the limit",
+    "real 30-second UI timer stops automatically within the audio buffer cap"
+  ],
+  "reference": {
+    "maximum": 0,
+    "rms": 0,
+    "frames": 36096,
+    "first": 0,
+    "timestampDiscontinuities": 0,
+    "peak": 0.9523188471794128,
+    "tail": 0,
+    "stereoDifference": 1.7332295179367065,
+    "capturedHash": "8b1a6f96b0ed9796983f8d4861b191445a5921ed3be5b4debee47b5a72147fcb",
+    "referenceHash": "8b1a6f96b0ed9796983f8d4861b191445a5921ed3be5b4debee47b5a72147fcb"
+  },
+  "receipt": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 29440,
+    "wav_sha256": "3493111ac7168614bb4c565282da5e3e4da350228750c6f4cfec523b7f9fe92a",
+    "observed_context_start_frame": 14592,
+    "timestamp_discontinuities": 0,
+    "limit_reached": false
+  },
+  "automation": {
+    "schema_version": "1.0-mix-gain-automation",
+    "scope": "scheduled_gain_eq_targets",
+    "training_authorized": false,
+    "wav_sha256": "3493111ac7168614bb4c565282da5e3e4da350228750c6f4cfec523b7f9fe92a",
+    "sample_rate": 48000,
+    "observed_context_start_frame": 14592,
+    "snapshot_context_frame": 14336,
+    "initial_targets": {
+      "a": 0.6000000000000001,
+      "b": 0,
+      "c": 0.30000000000000004,
+      "rack": 0.48750000000000004,
+      "eq-a-0": 0,
+      "eq-a-1": 0,
+      "eq-a-2": 0,
+      "eq-b-0": 0,
+      "eq-b-1": 0,
+      "eq-b-2": 0
+    },
+    "events": [
+      {
+        "context_frame": 27392,
+        "target": "eq-a-0",
+        "value": -6
+      },
+      {
+        "context_frame": 27648,
+        "target": "eq-a-0",
+        "value": -6
+      },
+      {
+        "context_frame": 27648,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "context_frame": 27648,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "context_frame": 27904,
+        "target": "a",
+        "value": 0.6000000000000001
+      },
+      {
+        "context_frame": 27904,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "context_frame": 27904,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "context_frame": 27904,
+        "target": "rack",
+        "value": 0.375
+      },
+      {
+        "context_frame": 27904,
+        "target": "a",
+        "value": 0.6000000000000001
+      },
+      {
+        "context_frame": 27904,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "context_frame": 27904,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "context_frame": 27904,
+        "target": "rack",
+        "value": 0.375
+      },
+      {
+        "context_frame": 28160,
+        "target": "a",
+        "value": 0
+      },
+      {
+        "context_frame": 28160,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "context_frame": 28160,
+        "target": "c",
+        "value": 0
+      },
+      {
+        "context_frame": 28160,
+        "target": "rack",
+        "value": 0
+      },
+      {
+        "context_frame": 28160,
+        "target": "a",
+        "value": 0
+      },
+      {
+        "context_frame": 28160,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "context_frame": 28160,
+        "target": "c",
+        "value": 0
+      },
+      {
+        "context_frame": 28160,
+        "target": "rack",
+        "value": 0
+      }
+    ]
+  },
+  "muteFrame": 13568,
+  "automatic": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 1440000,
+    "wav_sha256": "17e181b8c513a37f62fadcaa1dd973b02769d1a2d0ed999a5317bdf34076b8b3",
+    "observed_context_start_frame": 128768,
+    "timestamp_discontinuities": 0,
+    "limit_reached": true
+  },
+  "peak": 0.173675537109375,
+  "tail": 0,
+  "errors": [],
+  "external": [],
+  "warnings": [],
+  "physicalDevices": "NOT RUN",
+  "humanQuality": "NOT RUN",
+  "training": "NOT RUN",
+  "liveMixReplay": "NOT RUN: no complete automation/source trace"
+}

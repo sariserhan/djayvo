@@ -1,0 +1,200 @@
+{
+  "status": "PASS",
+  "browser": "webkit",
+  "version": "26.5",
+  "url": "http://127.0.0.1:52659/dj.html",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "checks": [
+    "actual four-channel mixer tap matches destination PCM exactly, preserves stereo, includes limiter/FX/faders and mutes",
+    "scheduled gain/EQ targets link to WAV clock and hash; master mute reaches zero PCM after smoothing",
+    "consented deck + live instruments produce playable hash-bound WAV; master mute captured; stop leaves deck playing",
+    "desktop/mobile controls render without horizontal overflow",
+    "music/voice/capture withdrawal and source replacement discard captures; delayed hashes cannot restore exports",
+    "focus loss, audio suspension and recorder failure discard unfinished capture; instruments keep sounding, retry/delete work",
+    "automation overflow discards only control trace, keeps WAV and reports the limit",
+    "real 30-second UI timer stops automatically within the audio buffer cap"
+  ],
+  "reference": {
+    "maximum": 0,
+    "rms": 0,
+    "frames": 48000,
+    "first": 0,
+    "timestampDiscontinuities": 0,
+    "peak": 0.9523188471794128,
+    "tail": 0,
+    "stereoDifference": 1.7327372431755066,
+    "capturedHash": "516d1fdd0ac3f8817c0ef1452dd5cd3cd063de3509fedcca5164880cb7ad5cee",
+    "referenceHash": "516d1fdd0ac3f8817c0ef1452dd5cd3cd063de3509fedcca5164880cb7ad5cee"
+  },
+  "receipt": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 32128,
+    "wav_sha256": "a3f7094901fff21a3e5b935cda9e6586fdcd0d4e18a9583c2eb03e1626638eb6",
+    "observed_context_start_frame": 24832,
+    "timestamp_discontinuities": 0,
+    "limit_reached": false
+  },
+  "automation": {
+    "schema_version": "1.0-mix-gain-automation",
+    "scope": "scheduled_gain_eq_targets",
+    "training_authorized": false,
+    "wav_sha256": "a3f7094901fff21a3e5b935cda9e6586fdcd0d4e18a9583c2eb03e1626638eb6",
+    "sample_rate": 48000,
+    "observed_context_start_frame": 24832,
+    "snapshot_context_frame": 24832,
+    "initial_targets": {
+      "a": 0.6000000000000001,
+      "b": 0,
+      "c": 0.30000000000000004,
+      "rack": 0.48750000000000004,
+      "eq-a-0": 0,
+      "eq-a-1": 0,
+      "eq-a-2": 0,
+      "eq-b-0": 0,
+      "eq-b-1": 0,
+      "eq-b-2": 0
+    },
+    "events": [
+      {
+        "context_frame": 38144,
+        "target": "eq-a-0",
+        "value": -6
+      },
+      {
+        "context_frame": 38144,
+        "target": "eq-a-0",
+        "value": -6
+      },
+      {
+        "context_frame": 38272,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "context_frame": 38272,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "context_frame": 38656,
+        "target": "a",
+        "value": 0.6000000000000001
+      },
+      {
+        "context_frame": 38656,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "context_frame": 38656,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "context_frame": 38656,
+        "target": "rack",
+        "value": 0.375
+      },
+      {
+        "context_frame": 38656,
+        "target": "a",
+        "value": 0.6000000000000001
+      },
+      {
+        "context_frame": 38656,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "context_frame": 38656,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "context_frame": 38656,
+        "target": "rack",
+        "value": 0.375
+      },
+      {
+        "context_frame": 38784,
+        "target": "a",
+        "value": 0
+      },
+      {
+        "context_frame": 38784,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "context_frame": 38784,
+        "target": "c",
+        "value": 0
+      },
+      {
+        "context_frame": 38784,
+        "target": "rack",
+        "value": 0
+      },
+      {
+        "context_frame": 38784,
+        "target": "a",
+        "value": 0
+      },
+      {
+        "context_frame": 38784,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "context_frame": 38784,
+        "target": "c",
+        "value": 0
+      },
+      {
+        "context_frame": 38784,
+        "target": "rack",
+        "value": 0
+      }
+    ]
+  },
+  "muteFrame": 13952,
+  "automatic": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 1440000,
+    "wav_sha256": "17e181b8c513a37f62fadcaa1dd973b02769d1a2d0ed999a5317bdf34076b8b3",
+    "observed_context_start_frame": 139392,
+    "timestamp_discontinuities": 0,
+    "limit_reached": true
+  },
+  "peak": 0.17626953125,
+  "tail": 0,
+  "errors": [],
+  "external": [],
+  "warnings": [
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+  ],
+  "physicalDevices": "NOT RUN",
+  "humanQuality": "NOT RUN",
+  "training": "NOT RUN",
+  "liveMixReplay": "NOT RUN: no complete automation/source trace"
+}

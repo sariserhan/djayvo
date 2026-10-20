@@ -859,7 +859,7 @@ it does not waive the remaining quality, rights or training gates.
 - [x] **IR10 — PASS:** Rights declarations/evidence hashes, speaker opt-in boundaries, withdrawal/expiry and cross-ledger source/session/speaker/performer/phrase/arrangement split guards.
 - [x] **IR11 — PASS:** Six evaluation-only state/action/next-state examples, current-consent revalidation, one playable WAV, exact 512/113-block replay and 304 independently checked instrument events.
 - [x] **IR12 — PASS:** 14 new capture tests and 11 unchanged R0 tests on M5. [Report/logs](docs/r1-demonstrations.md).
-- [ ] **IR13 — PARTIAL:** Browser instrument actions/dry PCM, source-phrase pairs and post-limiter full-mix WAV capture now implemented. Frame-linked automation/source provenance, aligned stems and source/response alignment remain. [Evidence](docs/r1-mix-recording.md).
+- [ ] **IR13 — PARTIAL:** Browser instrument actions/dry PCM, source-phrase pairs and post-limiter full-mix WAV capture now implemented. Gain/EQ scheduling is now linked to WAV frames; effect/transport traces, source provenance, aligned stems and source/response alignment remain. [Evidence](docs/r1-mix-automation.md).
 - [ ] **IR14 — NOT RUN:** Permissioned expert demonstrations, verified human review, diverse stratified corpus and near-duplicate detection.
 - [ ] **IR15 — NOT RUN:** R2 human comparison / R3 training. No training-authorized examples exported, no new model or paid compute; require their gates and authorization.
 - [x] **IR16 — PASS:** Opt-in local instrument take, playback/WAV/action download/delete, bounded capture, cancellation on lost focus/audio/engine failure, exact shared-engine replay.
@@ -868,6 +868,9 @@ it does not waive the remaining quality, rights or training gates.
 - [x] **IR19 — PASS:** 54 web unit tests, seven pairing flow checks each in Chromium/WebKit, 39 Chromium prepared-session regressions and localhost flow; exact response replay and desktop/mobile screenshots. Source decoding parity PARTIAL (max 4 PCM16 units); human quality/training NOT RUN. [Report](docs/r1-phrase-response.md).
 - [x] **IR20 — PASS:** Separate opt-in stereo studio mix recording after effects/faders/limiter; bounded 30-second capture, local WAV/receipt/playback/delete, permission/interruption cleanup and unchanged playback routing.
 - [x] **IR21 — PASS:** 59 unit tests, six full-mix checks each in Chromium/WebKit, seven existing instrument/pairing checks and 48 DJ regressions including actual disconnected capture; destination/capture PCM exact within each browser; actual 30-second stops and localhost flow. Cross-browser mixer identity PARTIAL; human quality/training NOT RUN. [Report](docs/r1-mix-recording.md).
+
+- [x] **IR22 — PASS:** Private versioned WAV-linked gain/EQ schedules, initial target snapshot, strict validation, 4096-action bound and consent/deletion cleanup; overflow keeps WAV and reports discarded trace.
+- [x] **IR23 — PASS:** 63 unit tests, eight capture checks each in Chromium/WebKit and 48 offline-inclusive DJ regressions; exact within-browser capture PCM, scheduled mute verified against WAV, mobile/desktop inspection and served-asset audit. Full replay and R1 remain PARTIAL. [Report](docs/r1-mix-automation.md).
 
 ## Storage maintenance — 2026-10-20
 

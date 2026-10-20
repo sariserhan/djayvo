@@ -162,3 +162,5 @@ Both specifications, original recordings, supplied synthetic speech fixture,
 shared C++ engine and `~/mlx-env` remain unchanged. Next R1 work is frame-linked
 automation/source provenance and reviewed, permissioned expert demonstrations;
 R2/R3 training still requires its authorization and evidence gates.
+
+Gain/EQ scheduling capture is now implemented in the [R1 automation follow-up](r1-mix-automation.md). Full effect/transport/source replay remains open.

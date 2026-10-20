@@ -1,4 +1,5 @@
 import { TAKE_SECONDS, stereoWav, sha256 } from './live-take.js';
+import { MixAutomation } from './mix-automation.js';
 import { resumeAudio } from './audio.js';
 
 export function validateMixRecording(recording) {
@@ -29,6 +30,7 @@ export function attachMixRecording({ graph, context, mixer }) {
   }
   function disconnect(completed = false) {
     clearInterval(timer);
+    if (mixer()) mixer().gainTrace = undefined;
     if (node) {
       const port = node.port;
       node.removeEventListener('processorerror', nodeError);
@@ -44,7 +46,7 @@ export function attachMixRecording({ graph, context, mixer }) {
   function clear(text = 'Mix recording deleted from this tab. Downloaded copies remain on your device.') {
     version++; disconnect(); state = 'idle';
     const player = $('mix-record-player'); player.pause(); player.removeAttribute('src'); player.load(); player.hidden = true;
-    for (const id of ['mix-record-wav', 'mix-record-json']) { $(id).hidden = true; $(id).removeAttribute('href'); }
+    for (const id of ['mix-record-wav', 'mix-record-json', 'mix-record-automation']) { $(id).hidden = true; $(id).removeAttribute('href'); }
     urls.forEach(url => URL.revokeObjectURL(url)); urls = [];
     $('mix-record-status').textContent = text; refresh();
   }
@@ -65,6 +67,8 @@ export function attachMixRecording({ graph, context, mixer }) {
       if (token !== version) return;
       if (!loaded) { await context().audioWorklet.addModule('./mix-recording-worklet.js'); loaded = true; }
       if (token !== version || !$('mix-record-consent').checked) return;
+      const automation = new MixAutomation(mixer(), context());
+      mixer().gainTrace = automation;
       node = new AudioWorkletNode(context(), 'jamloom-mix-recording', {
         numberOfInputs: 1, numberOfOutputs: 1, outputChannelCount: [2], channelCount: 2, channelCountMode: 'explicit',
       });
@@ -92,12 +96,14 @@ export function attachMixRecording({ graph, context, mixer }) {
               sample_rate: data.rate, frames: data.frames, wav_sha256: await sha256(wav),
               observed_context_start_frame: data.first, timestamp_discontinuities: data.discontinuities, limit_reached: data.capped });
             if (token !== version || !$('mix-record-consent').checked) return;
+            const trace = automation.finish(receipt);
             urls = [URL.createObjectURL(new Blob([wav], { type: 'audio/wav' })),
               URL.createObjectURL(new Blob([JSON.stringify(receipt, null, 2)], { type: 'application/json' }))];
-            for (const [i, id] of ['mix-record-wav', 'mix-record-json'].entries()) { $(id).href = urls[i]; $(id).hidden = false; }
+            if (trace) urls.push(URL.createObjectURL(new Blob([JSON.stringify(trace, null, 2)], { type: 'application/json' })));
+            for (const [i, id] of ['mix-record-wav', 'mix-record-json', 'mix-record-automation'].entries()) { if (urls[i]) { $(id).href = urls[i]; $(id).hidden = false; } }
             $('mix-record-player').src = urls[0]; $('mix-record-player').hidden = false;
             state = 'ready'; refresh();
-            $('mix-record-status').textContent = `${(data.frames / data.rate).toFixed(1)} seconds · Private studio mix ready.${data.capped ? ' Recording reached its 30-second limit.' : ''}`;
+            $('mix-record-status').textContent = `${(data.frames / data.rate).toFixed(1)} seconds · Private studio mix ready.${data.capped ? ' Recording reached its 30-second limit.' : ''}${trace ? '' : ' Control trace exceeded its limit and was discarded; WAV retained.'}`;
           } catch { if (token === version) clear('Could not validate the recording. It was discarded.'); }
         }
       };

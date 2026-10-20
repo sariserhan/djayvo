@@ -1,0 +1,172 @@
+{
+  "chromium": {
+    "directory": "renders/mix-recording-chromium-50hunw",
+    "files": {
+      "automatic-stop.json": {
+        "bytes": 427,
+        "sha256": "5816d89e4091baa7354b91acbc930bb89fd83d390196d151681d1518db1c9b24"
+      },
+      "controls.json": {
+        "bytes": 2254,
+        "sha256": "b13b64cafd725e74ac0358d6a501cb6338067e067c4016e3a07741ea9f277444"
+      },
+      "report.json": {
+        "bytes": 5171,
+        "sha256": "d768f1b8f1932440659d2a34d2f8a3d723bad235284db25039aa95e72d1ec711"
+      },
+      "post-limiter-reference.wav": {
+        "bytes": 144428,
+        "sha256": "8b1a6f96b0ed9796983f8d4861b191445a5921ed3be5b4debee47b5a72147fcb"
+      },
+      "mix.wav": {
+        "bytes": 117804,
+        "sha256": "3493111ac7168614bb4c565282da5e3e4da350228750c6f4cfec523b7f9fe92a"
+      },
+      "mix.json": {
+        "bytes": 425,
+        "sha256": "34218fd07de47b0be12a615b8745abfc7e15253ae02d5fd027464a6a77ff8f21"
+      }
+    },
+    "mute_window_nonempty": "PASS",
+    "nominal_event_offsets": [
+      12800,
+      13056,
+      13056,
+      13056,
+      13312,
+      13312,
+      13312,
+      13312,
+      13312,
+      13312,
+      13312,
+      13312,
+      13568,
+      13568,
+      13568,
+      13568,
+      13568,
+      13568,
+      13568,
+      13568
+    ]
+  },
+  "webkit": {
+    "directory": "renders/mix-recording-webkit-LrciYB",
+    "files": {
+      "automatic-stop.json": {
+        "bytes": 427,
+        "sha256": "477dc7bfbe123172eb1889226fb20204981677ee7b8a19a70b55c3517d27fe43"
+      },
+      "controls.json": {
+        "bytes": 2254,
+        "sha256": "220f660ad29c3128e620d68d80d600489defdf1230efa62c568ef7d87b357679"
+      },
+      "report.json": {
+        "bytes": 5478,
+        "sha256": "75bb73d0ce72dc91cdda242b72bb9a4a8fa46b5698b153c4a5ad4f50d1dff4f9"
+      },
+      "post-limiter-reference.wav": {
+        "bytes": 192044,
+        "sha256": "516d1fdd0ac3f8817c0ef1452dd5cd3cd063de3509fedcca5164880cb7ad5cee"
+      },
+      "mix.wav": {
+        "bytes": 128556,
+        "sha256": "a3f7094901fff21a3e5b935cda9e6586fdcd0d4e18a9583c2eb03e1626638eb6"
+      },
+      "mix.json": {
+        "bytes": 425,
+        "sha256": "c1fea36b7636f019624da4c60383d7b3cbc2f1771b1425861d856c56a5f0af1f"
+      }
+    },
+    "mute_window_nonempty": "PASS",
+    "nominal_event_offsets": [
+      13312,
+      13312,
+      13440,
+      13440,
+      13824,
+      13824,
+      13824,
+      13824,
+      13824,
+      13824,
+      13824,
+      13824,
+      13952,
+      13952,
+      13952,
+      13952,
+      13952,
+      13952,
+      13952,
+      13952
+    ]
+  },
+  "dj": {
+    "directory": "renders/dj-chromium-5rhtd7",
+    "files": {
+      "deck-a-piano-echo.wav": {
+        "bytes": 1152044,
+        "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+      },
+      "offline-mix.json": {
+        "bytes": 426,
+        "sha256": "34362a27a0e0ba748d9f4a7e3bc0826cef004d79edc359efde905d1ce1363b13"
+      },
+      "piano-echo.wav": {
+        "bytes": 1152044,
+        "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+      },
+      "report.json": {
+        "bytes": 44012,
+        "sha256": "1913c4eba80918045ee2c89f90202e59273dee62cedd7a09150c5a2c572f1bae"
+      },
+      "deck-b-piano-echo.wav": {
+        "bytes": 1152044,
+        "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+      },
+      "deck-a-piano-dry.wav": {
+        "bytes": 1152044,
+        "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+      },
+      "offline-mix.wav": {
+        "bytes": 77868,
+        "sha256": "84eba32ee8e646b8b281c244ec21f4d3653d4843063a7176b06c0684332e41f5"
+      },
+      "piano-dry.wav": {
+        "bytes": 1152044,
+        "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+      },
+      "deck-b-piano-dry.wav": {
+        "bytes": 1152044,
+        "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+      },
+      "offline-controls.json": {
+        "bytes": 1311,
+        "sha256": "fa41a0cd152af7e51f60317166c39c8c14491a47175c4ea1fe42e7095ec6ae89"
+      }
+    }
+  },
+  "cross_browser_reference_pcm": {
+    "common_frames": 36096,
+    "max_pcm16": 2158,
+    "rms_pcm16": 12.922176422963961,
+    "different_channel_samples": 15325,
+    "gate": "PARTIAL"
+  },
+  "machine": {
+    "system": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241\n",
+    "cpu": "Apple M5",
+    "memory_bytes": 17179869184,
+    "arch": "arm64",
+    "node": "v22.23.1",
+    "playwright": "1.61.1"
+  },
+  "preserved": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "jamloom_improvisation_learning_addendum_v1.md": "5bfe33e037f4d0aff6910ba3dbc55ce090e96b0ee772fdc834d94a12aa29941d",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "dist/web/engine/jamloom_live.wasm": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8"
+  }
+}

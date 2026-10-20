@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.0-mix-gain-automation",
+  "scope": "scheduled_gain_eq_targets",
+  "training_authorized": false,
+  "wav_sha256": "3493111ac7168614bb4c565282da5e3e4da350228750c6f4cfec523b7f9fe92a",
+  "sample_rate": 48000,
+  "observed_context_start_frame": 14592,
+  "snapshot_context_frame": 14336,
+  "initial_targets": {
+    "a": 0.6000000000000001,
+    "b": 0,
+    "c": 0.30000000000000004,
+    "rack": 0.48750000000000004,
+    "eq-a-0": 0,
+    "eq-a-1": 0,
+    "eq-a-2": 0,
+    "eq-b-0": 0,
+    "eq-b-1": 0,
+    "eq-b-2": 0
+  },
+  "events": [
+    {
+      "context_frame": 27392,
+      "target": "eq-a-0",
+      "value": -6
+    },
+    {
+      "context_frame": 27648,
+      "target": "eq-a-0",
+      "value": -6
+    },
+    {
+      "context_frame": 27648,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "context_frame": 27648,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "context_frame": 27904,
+      "target": "a",
+      "value": 0.6000000000000001
+    },
+    {
+      "context_frame": 27904,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "context_frame": 27904,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "context_frame": 27904,
+      "target": "rack",
+      "value": 0.375
+    },
+    {
+      "context_frame": 27904,
+      "target": "a",
+      "value": 0.6000000000000001
+    },
+    {
+      "context_frame": 27904,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "context_frame": 27904,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "context_frame": 27904,
+      "target": "rack",
+      "value": 0.375
+    },
+    {
+      "context_frame": 28160,
+      "target": "a",
+      "value": 0
+    },
+    {
+      "context_frame": 28160,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "context_frame": 28160,
+      "target": "c",
+      "value": 0
+    },
+    {
+      "context_frame": 28160,
+      "target": "rack",
+      "value": 0
+    },
+    {
+      "context_frame": 28160,
+      "target": "a",
+      "value": 0
+    },
+    {
+      "context_frame": 28160,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "context_frame": 28160,
+      "target": "c",
+      "value": 0
+    },
+    {
+      "context_frame": 28160,
+      "target": "rack",
+      "value": 0
+    }
+  ]
+}

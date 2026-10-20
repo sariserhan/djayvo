@@ -8,6 +8,7 @@ planner; R1 adds offline demonstration capture for future supervised decisions.
 - [R1 live browser instrument capture and exact replay](../docs/r1-instrument-capture.md)
 - [R1 private source/response pairs](../docs/r1-phrase-response.md)
 - [R1 private studio mix recording](../docs/r1-mix-recording.md)
+- [R1 WAV-linked mixer gain/EQ schedules](../docs/r1-mix-automation.md)
 - [Musical architecture](../docs/improvisation_architecture.md)
 
 Offline R1 dataset exports remain evaluation-only. Browser recordings are private,

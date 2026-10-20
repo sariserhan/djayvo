@@ -1,3 +1,18 @@
+export const MIX_GAIN_TARGETS = ['a', 'b', 'c', 'rack', 'eq-a-0', 'eq-a-1', 'eq-a-2', 'eq-b-0', 'eq-b-1', 'eq-b-2'];
+
+export function validMixerGain(target, value) {
+  return MIX_GAIN_TARGETS.includes(target) && Number.isFinite(value) &&
+    (target.startsWith('eq-') ? value >= -12 && value <= 12 : value >= 0 && value <= 1);
+}
+
+export function setMixerGain(context, mixer, target, value) {
+  if (!validMixerGain(target, value)) throw new Error('Invalid mixer gain target/value.');
+  const time = context.currentTime;
+  mixer.gainParams[target].setTargetAtTime(value, time, .005);
+  mixer.gainTargets[target] = value;
+  mixer.gainTrace?.record(target, value, Math.round(time * context.sampleRate));
+}
+
 export function mixGains(crossfade, levels, master) {
   if (levels.length !== 2 || ![crossfade, ...levels, master].every(n => Number.isFinite(n) && n >= 0 && n <= 1))
     throw new Error('Mixer controls must be between zero and one.');
@@ -98,12 +113,15 @@ export function createMixer(context) {
   meter.connect(split);
   const stereoMeters = [context.createAnalyser(), context.createAnalyser()];
   stereoMeters.forEach((node, channel) => { node.fftSize = 2048; split.connect(node, channel); });
-  return { channels, meter, stereoMeters, strips, rack, rackFX, performance, performanceFX };
+  const gainParams = { a: channels[0].gain, b: channels[1].gain, c: performance.gain, rack: rack.gain };
+  strips.forEach((strip, index) => strip.eq.forEach((filter, band) => { gainParams[`eq-${index ? 'b' : 'a'}-${band}`] = filter.gain; }));
+  const gainTargets = Object.fromEntries(MIX_GAIN_TARGETS.map(target => [target, 0]));
+  return { channels, meter, stereoMeters, strips, rack, rackFX, performance, performanceFX, gainParams, gainTargets };
 }
 
 export function updateMixer(context, mixer, crossfade, levels, master) {
   mixGains(crossfade, levels, master).forEach((gain, index) => {
-    mixer.channels[index].gain.setTargetAtTime(gain, context.currentTime, .005);
+    setMixerGain(context, mixer, index ? 'b' : 'a', gain);
   });
 }
 
