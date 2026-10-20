@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "method": "First scheduled note at frame zero, velocity40, 1.5s gate; first250ms measured. Half-peak is a relative RMS threshold, not a perceptual onset or speaker latency.",
+  "records": [
+    {
+      "instrument": "bass",
+      "sha256": "6fb73be19221e67d78aad0c75f8bfbe641af4bf79e2d6d22ebdc0d360f53961f",
+      "velocity": 40,
+      "first_above_10_pcm16_units_ms": 0.6041666666666666,
+      "first_1ms_window_at_half_250ms_peak_rms_ms": 19,
+      "peak_1ms_rms_pcm16": 1273.5904545156316
+    },
+    {
+      "instrument": "drums",
+      "sha256": "bb61a863b547c5727d22729a7d1bcb83bdf2be2de8dfd473a0c0f3a91f3ac259",
+      "velocity": 40,
+      "first_above_10_pcm16_units_ms": 0.5208333333333334,
+      "first_1ms_window_at_half_250ms_peak_rms_ms": 4,
+      "peak_1ms_rms_pcm16": 373.85803901124467
+    },
+    {
+      "instrument": "guitar",
+      "sha256": "2dc3a1dd7f21a3a67101a1b96bbf7d128c54be2c73cc45055925326bb5b19239",
+      "velocity": 40,
+      "first_above_10_pcm16_units_ms": 4.229166666666667,
+      "first_1ms_window_at_half_250ms_peak_rms_ms": 18,
+      "peak_1ms_rms_pcm16": 723.1393076948129
+    },
+    {
+      "instrument": "lead",
+      "sha256": "f2eb3470d546c92b45424c272f1799e9a3899e8fbf8fac70936c3f01b9028add",
+      "velocity": 40,
+      "first_above_10_pcm16_units_ms": 0.3125,
+      "first_1ms_window_at_half_250ms_peak_rms_ms": 6,
+      "peak_1ms_rms_pcm16": 899.0958073716802
+    },
+    {
+      "instrument": "organ",
+      "sha256": "5cd627b38b34a958f6900a7a3ec996598b3957b7ac85ae33fa55af564450e30c",
+      "velocity": 40,
+      "first_above_10_pcm16_units_ms": 0.14583333333333334,
+      "first_1ms_window_at_half_250ms_peak_rms_ms": 3,
+      "peak_1ms_rms_pcm16": 631.1997999841254
+    },
+    {
+      "instrument": "pad",
+      "sha256": "776f08a9fd55b2e84b21ae2077f2b49864663ec13b886e61b46427ab70affb41",
+      "velocity": 40,
+      "first_above_10_pcm16_units_ms": 2.7291666666666665,
+      "first_1ms_window_at_half_250ms_peak_rms_ms": 83,
+      "peak_1ms_rms_pcm16": 756.6648035953568
+    },
+    {
+      "instrument": "piano",
+      "sha256": "ff393ee2ad40448c2433257f549587a79794a1b4b9e36619babfce7be1747fce",
+      "velocity": 40,
+      "first_above_10_pcm16_units_ms": 0.4583333333333333,
+      "first_1ms_window_at_half_250ms_peak_rms_ms": 9,
+      "peak_1ms_rms_pcm16": 810.6386885248775
+    }
+  ],
+  "human_timing": "NOT RUN"
+}

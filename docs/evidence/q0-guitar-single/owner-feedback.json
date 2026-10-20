@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-20",
+  "packet_id": "660796b7622e172b82d81d1e4fd4a95f2caac4b7d281d5f21d2c0c1aa517e635",
+  "review_url": "http://127.0.0.1:4206/",
+  "question": "Q0 requires a real listening result. Please compare Candidates 1 and 2 at http://127.0.0.1:4206/: is either substantially less robotic and more coherent, or neither? This pair tests guitar accents only; I’m continuing the remaining expression and evaluation work.",
+  "answer": "Neither is substantially better",
+  "substantial_improvement_gate": "FAIL",
+  "scope": "One owner's qualitative comparison of the guitar-accent pair. No numeric ratings, absolute quality scores, independent panel or equal-quality claim inferred."
+}

@@ -1,7 +1,12 @@
 # Q0 — Guitar dynamics without reducing existing mix levels
 
-2026-10-20. **Technical execution PASS; new musical acceptance NOT RUN;
+2026-10-20. **Technical execution PASS; substantial-improvement judgment FAIL;
 overall Q0 PARTIAL. Earlier rejected packets remain FAIL.**
+
+After this run, the owner compared the accent pair and replied:
+**“Neither is substantially better.”** [Exact feedback](evidence/q0-guitar-single/owner-feedback.json).
+Frozen render-time reports retain their historical NOT RUN status; this
+feedback supersedes that status for the owner's improvement judgment.
 
 The [previous calibration](q0-guitar-mix-study.md) reduced a measured guitar
 velocity discontinuity but lowered guitar energy in existing mixes by
@@ -75,8 +80,8 @@ change to guitar accent balance.
 Start with the [private full-mix accent pair](http://127.0.0.1:4206/).
 The [isolated guitar sequences](http://127.0.0.1:4205/) provide a second check.
 The first five seconds of each probe contain unchanged soft notes; the higher
-velocities follow. No new listener response has been collected. “Continue” is
-not a vote, and automated muted playback is not hearing.
+velocities follow. The owner subsequently rejected substantial improvement
+in the accent pair. No numeric scores or isolated-probe judgments are inferred.
 
 - Accent masters/stems: `renders/q0-guitar-accents-20261020/{control,candidate}.hiphop*.wav`
 - Exact replay: `renders/q0-guitar-accents-20261020/replay.hiphop.wav`
@@ -107,7 +112,8 @@ directories; neither page uploads audio or collects ratings.
 | Private browser controls | PASS | Chromium decode, playback clock, automatic pause, 390px layout, no external requests, organizer key 404 |
 | Other browsers and physical audio output | NOT RUN | No listening inference from muted automation |
 | Fresh Linux/iPhone/WASM execution | NOT RUN | Native Mac evidence does not establish cross-platform execution |
-| New musical realism and enjoyment | NOT RUN | No listening acceptance collected |
+| Accent-pair substantial improvement | FAIL | Owner: neither is substantially better |
+| Numeric realism/enjoyment and independent study | NOT RUN | No scores or independent panel collected |
 | Earlier owner acceptance | FAIL | Previous rejected packets remain rejected |
 | Q0 success criterion | PARTIAL | Substantially less robotic and more coherent music remains unproven |
 

@@ -39,7 +39,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]) {
   await page.locator('audio').nth(2).evaluate(a=>a.pause());
   await page.getByLabel('Reviewer code').fill('UI_FIXTURE_ONLY');
   const optionalRatings=await page.locator('select').evaluateAll(ns=>ns.every(n=>!n.required));
-  if(optionalRatings) await page.locator('select').first().selectOption('3');
+  if(optionalRatings) for(const s of (await page.locator('select').all()).slice(0,6)) await s.selectOption('3');
   else for(const s of await page.locator('select').all()) await s.selectOption('3');
   await page.getByRole('checkbox').check();
   const download=page.waitForEvent('download'); await page.getByRole('button').click();
@@ -47,8 +47,9 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]) {
   const data=JSON.parse(await readFile(file,'utf8'));
   const packet=await(await page.request.get(base+'packet.json')).json();
   assert.equal(data.packet_id,packet.packet_id);assert.equal(data.ratings.reviewer,'UI_FIXTURE_ONLY');
-  assert.equal(Object.keys(data.ratings).filter(k=>!k.endsWith('/notes')&&k!=='reviewer').length,30*candidates);
-  if(optionalRatings) assert.equal(Object.entries(data.ratings).filter(([k,v])=>k!=='reviewer'&&!k.endsWith('/notes')&&v!=='').length,1);
+  assert.equal(Object.keys(data.ratings).filter(k=>!k.endsWith('/notes')&&!['reviewer','listened'].includes(k)).length,30*candidates);
+  if(optionalRatings) assert.equal(Object.entries(data.ratings).filter(([k,v])=>!['reviewer','listened'].includes(k)&&!k.endsWith('/notes')&&v!=='').length,6);
+  if(await page.locator('input[name="listened"]').count()) assert.equal(data.ratings.listened,'yes');
   await rm(file);
   assert.equal((await page.request.get(base+'organizer-key.json')).status(),404);
   await page.reload();assert.ok((await page.locator('select').evaluateAll(ns=>ns.map(n=>n.value))).every(v=>v===''));

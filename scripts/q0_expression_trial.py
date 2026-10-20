@@ -11,12 +11,13 @@ import subprocess
 
 from q0_audit import ROOT, digest, event_metrics, inspect, loudness, level_match, write
 from q0_expression import express, PROFILE
+from q0_performance import perform
 from q0_composition import compose
 from q0_measure_comparisons import timing
 from verify_export import verify_export
 
 
-def trial(baseline, output, renderer, instrument_renderer=None):
+def trial(baseline, output, renderer, instrument_renderer=None, performance=False):
     frozen = json.loads((baseline/'freeze.json').read_text())
     audit = json.loads((baseline/'audit.json').read_text())
     if (baseline/'INCOMPLETE').exists() or frozen['renderer_sha256'] != digest(renderer):
@@ -39,13 +40,14 @@ def trial(baseline, output, renderer, instrument_renderer=None):
         if digest(original) != record['plan_sha256'] or digest(source) != record['source_sha256']:
             raise ValueError('Frozen baseline changed')
         plan = json.loads(original.read_text())
-        candidate, trace = express(plan, 4123)
+        transform = perform if performance else express
+        candidate, trace = transform(plan, 4123)
         folder = output/identifier; folder.mkdir()
         write(folder/'expression.json', trace)
         plans = {'C': candidate}
         if instrument_renderer:
             composition, composition_trace = compose(plan)
-            developed, expression_trace = express(composition, 4123)
+            developed, expression_trace = transform(composition, 4123)
             plans = {'B': plan, 'C': candidate, 'D': candidate, 'E': developed}
             write(folder/'composition.json', composition_trace)
             write(folder/'E.expression.json', expression_trace)
@@ -88,7 +90,7 @@ def trial(baseline, output, renderer, instrument_renderer=None):
             gain, matched = level_match(paths[arm],path,target,levels[arm])
             keys[code] = {'arm': arm, 'gain_db': gain, 'sha256': digest(path)}
             row[arm] = {'raw': inspect(paths[arm]), 'raw_loudness': levels[arm], 'matched_loudness': matched}
-            fields = ''.join(f'<label>{label} <select name="{code}/{key}" required>'
+            fields = ''.join(f'<label>{label} <select name="{code}/{key}">'
                 '<option value="">Choose</option>'+''.join(f'<option>{i}</option>' for i in range(1,6))+
                 '</select></label>' for key,label in [
                     ('musicality','Musicality'),('realism','Instrument realism'),('groove','Groove'),
@@ -118,9 +120,11 @@ def trial(baseline, output, renderer, instrument_renderer=None):
         'No candidate is assumed better. '
         'Private owner-only use; do not share this packet. Nothing is uploaded.</p><p><a href="ATTRIBUTION.txt">Credits</a></p>'
         '<p>Rate 1 (poor) to 5 (excellent). Pause one recording before playing the next. '
-        'Recognizability means identifying the source, including laughter. Ratings start blank.</p>'
+        'Recognizability means identifying the source, including laughter. Ratings start blank. '
+        'Rate all six dimensions for each candidate you hear; leave unheard candidates blank. '
+        'Compare the whole performance, including transitions, coherence and robotic sound.</p>'
         '<form><label>Reviewer code<input name="reviewer" required pattern="(?:[A-Za-z0-9_]|-){1,64}" maxlength="64"></label>'+
-        ''.join(sections)+'<label><input type="checkbox" required>I listened and entered these judgments myself.</label>'
+        ''.join(sections)+'<label><input type="checkbox" name="listened" value="yes" required>I listened and entered these judgments myself.</label>'
         '<button disabled>Download my ratings</button><p id="status" role="status">Loading packet identity…</p></form></main></html>')
     (listener/'review.css').write_text('body{background:#10171b;color:#eee;font:18px/1.5 system-ui;margin:auto;max-width:900px;padding:24px}'
         'audio{width:100%}fieldset{margin:24px 0;border:1px solid #667;padding:20px}label{display:block;margin:12px 0}'
@@ -151,6 +155,8 @@ document.querySelector('form').onsubmit = e => {
         'B_D_E': 'PASS: rendered, not quality acceptance' if instrument_renderer else
                  'NOT RUN: instrument/causal diagnosis pending; no substitute identical arms',
         'instrument_build': instrument_manifest,
+        'performance_version': '2.0-q0-performance' if performance else '1.0-q0-expression',
+        'performance_source_sha256': digest(ROOT/'scripts/q0_performance.py') if performance else None,
         'expression_profile_sha256': digest(PROFILE), 'records': reports, 'human_quality': 'NOT RUN'})
     (output/'INCOMPLETE').unlink()
     print('PASS: isolated renders, replay, event frames and LUFS matching; human quality NOT RUN:', output)
@@ -162,5 +168,6 @@ if __name__ == '__main__':
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--renderer', type=Path, default=ROOT/'build-mac/jamloom_remix')
     p.add_argument('--instrument-renderer', type=Path)
+    p.add_argument('--performance', action='store_true', help='Q0 v2 phrase expression and transition pickups')
     a = p.parse_args()
-    trial(a.baseline.resolve(), a.output.resolve(), a.renderer, a.instrument_renderer)
+    trial(a.baseline.resolve(), a.output.resolve(), a.renderer, a.instrument_renderer, a.performance)

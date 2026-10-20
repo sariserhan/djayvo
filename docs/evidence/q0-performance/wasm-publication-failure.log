@@ -1,0 +1,17 @@
+shared:INFO: (Emscripten: Running sanity checks)
+FAIL: filesystem error: in create_hard_link: Too many links ["/Users/serhansari/Documents/projects/djayvo/renders/q0-performance-wasm-v2-20261020/owner-speech.partial/export.hiphop.wav"] ["/Users/serhansari/Documents/projects/djayvo/renders/q0-performance-wasm-v2-20261020/owner-speech.hiphop.wav"]
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/q0_wasm_trial.py", line 83, in <module>
+    run(args.trial.resolve(), args.build.resolve(), args.sdk.resolve(), args.output.resolve())
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/q0_wasm_trial.py", line 57, in run
+    subprocess.run([node, str(binary), '--input', str(wav), '--consent',
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--plan', str(plan_path), '--style', style, '--seed', '4123',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--output', str(prefix)], check=True, timeout=120)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/Users/serhansari/.nvm/versions/node/v22.23.1/bin/node', '/Users/serhansari/Documents/projects/djayvo/renders/q0-performance-wasm-v2-20261020/jamloom_remix.js', '--input', '/Users/serhansari/Documents/projects/djayvo/renders/q0-baseline-v2-20261020/owner-speech/source.wav', '--consent', '--plan', '/Users/serhansari/Documents/projects/djayvo/renders/q0-performance-20261020/owner-speech/E.plan.json', '--style', 'hiphop', '--seed', '4123', '--output', '/Users/serhansari/Documents/projects/djayvo/renders/q0-performance-wasm-v2-20261020/owner-speech']' returned non-zero exit status 1.

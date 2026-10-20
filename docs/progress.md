@@ -1526,3 +1526,42 @@ no spending, training or later milestone.
 [Private accent pair](http://127.0.0.1:4206/);
 [isolated probes](http://127.0.0.1:4205/);
 [results, gates and reproduction](q0-guitar-single-study.md).
+
+## Q0 completion audit, V2 performance expression and WASM execution
+
+**FAIL:** The owner heard the 4206 guitar-accent pair and replied “Neither is
+substantially better.” This is retained against its exact packet identity;
+no equal-quality claim or numeric scores are inferred.
+
+**PASS:** `q0_performance.py` extends the isolated plan transform with melodic
+arrival/release, bass/kick accent relationships and guarded genre-specific
+transition pickups. Existing groove, gates, ghost strokes and deterministic
+shared timing remain. Five A/B/C/D/E blocks now render with V2 expression:
+twenty candidate masters and their stems, twenty exact 512/113 replays, 8,264
+zero-error instrument event rows. Independent inspection decodes 112
+masters/stems without full-scale samples; native reports have zero limiting or
+nonfinite samples. A/B and C/D changes remain isolated to drums. Twenty-five
+listening WAVs measure −23.05 to −22.99 LUFS, maximum true peak −4.91 dBTP.
+Sixteen Q0 tests and all three native regression groups pass.
+
+**PASS:** Fresh Emscripten 6.0.1 execution of all five final-condition plans in
+Node 22.23.1. WAVs are byte-identical to native, maximum/RMS PCM error zero,
+1,432 exact event rows. The missing local SDK binaries were restored; the
+unsupported native hard-link publication path was replaced only in the
+experimental probe with the existing low-level render API. Failure logs are
+retained. No production code or atomic-publication behavior changed.
+
+**PASS:** A packet/hash-bound listening-results validator handles real ratings,
+paired source-level descriptive differences and notes, rejecting stale,
+duplicate, malformed or incomplete submissions. Current output: zero ratings,
+**NOT RUN**. Seven sample-attack threshold measurements separate envelope
+behavior from event-clock evidence without claiming perceived latency.
+
+**PARTIAL:** Overall Q0 and browser playback; Chromium/WebKit form/decode checks
+pass but physical listening and the known headless WebKit clock limitation
+remain separate. **NOT RUN:** New full-packet musical acceptance, independent
+panel, Linux/iPhone/AudioWorklet execution. Substantial recovery is not
+demonstrated, so Q0 is not closed. No training, spending, release or later milestone.
+
+[Current private review](http://127.0.0.1:4207/);
+[requirement-by-requirement completion review](q0-completion-review.md).

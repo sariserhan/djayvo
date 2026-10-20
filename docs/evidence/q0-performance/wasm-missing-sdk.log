@@ -1,0 +1,17 @@
+em++: warning: cannot check node version: [Errno 2] No such file or directory: '/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/node/24.19.0_64bit/bin/node' [-Wversion-check]
+em++: error: clang executable not found at `/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/bin/clang`
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/q0_wasm_trial.py", line 83, in <module>
+    run(args.trial.resolve(), args.build.resolve(), args.sdk.resolve(), args.output.resolve())
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/q0_wasm_trial.py", line 36, in run
+    version = subprocess.check_output([str(compiler), '--version'], env=env, text=True)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten/em++', '--version']' returned non-zero exit status 1.

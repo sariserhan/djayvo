@@ -4,11 +4,12 @@
 The owner requested diagnosis and controlled listening before engine changes.
 No later milestone, model training, paid service or dashboard redesign is part
 of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.md).
-Latest: [Guitar dynamics without reducing existing mixes](docs/q0-guitar-single-study.md)
-tests using the ordinary recorded guitar layer at higher velocities. Five
-existing mixes stay byte-identical; a same-score accent pair isolates its
-effect. Technical PASS; the separate forte timbre is sacrificed.
-Realism and mix acceptance remain open. New listening NOT RUN.
+Latest: [Q0 completion review](docs/q0-completion-review.md).
+V2 expression adds phrase release, coordinated bass accents and guarded fills;
+all five A/B/C/D/E blocks render and replay. Five E native/WASM WAVs are
+byte-identical. A validated listening-results workflow is ready.
+The owner rejected substantial improvement in the guitar pair; new full-packet
+listening is NOT RUN. Q0 cannot close on technical execution alone.
 Prior rejected candidates remain FAIL.
 
 - [x] **Q001 — PASS:** Freeze five authorized real inputs with plans, events,
@@ -27,9 +28,12 @@ Prior rejected candidates remain FAIL.
   Single-layer alternative: positive ~0.15 dB boundary steps, exact existing
   mix preservation and one controlled accent pair. Forte timbre tradeoff
   requires listening; no production promotion.
+  Owner subsequently answered “Neither is substantially better” for the guitar
+  pair: improvement FAIL. Do not promote it as a quality fix.
 - [ ] **Q004 — PARTIAL:** Deterministic offline expression transform and five
-  A/C comparisons render and replay. Fills, deeper phrasing and musical
-  acceptance remain open.
+  A/C comparisons render and replay. V2 phrase arrival/release, coordinated
+  bass/kick accents and genre-specific transition pickups now render in the
+  full trial. Functional coverage PASS; musical acceptance remains open.
 - [x] **Q005 — PASS:** GMD license/checksum and descriptive MIDI reference audit;
   official splits retained, no profile fitting or training.
 - [ ] **Q006 — PARTIAL:** Five controlled A/B/C/D/E sets now render. B tests
@@ -40,6 +44,8 @@ Prior rejected candidates remain FAIL.
   expression, with intact calls and a recurring motif; no quality promotion.
   The latest copied-plan study tests padded vocal boundaries and shorter call
   sections; instrumental notes and expression stay fixed.
+  V2 full trial supplies 25 matched mixes with source/tempo controls and
+  packet-bound result validation; musical improvement remains NOT RUN.
 - [x] **Q007 — PASS:** Phrase-form study: twelve Q0 tests, 4,292 exact
   control/candidate event rows, five exact replays and comparison level checks. Earlier
   native regression results are retained separately. Browser form/decode
@@ -53,13 +59,18 @@ Prior rejected candidates remain FAIL.
   Latest single-layer study: 14 Q0 tests, three native test groups, five exact
   old-mix re-renders, eight probe replays and one accent replay. All 1,278
   accent event rows have zero frame error; non-guitar stems are unchanged.
+  V2 performance: 16 tests, three native groups, 8,264 event rows, twenty exact
+  replays, 112 masters/stems decoded; five E native/WASM WAVs byte-identical,
+  with 1,432 exact event rows. Seven descriptive acoustic-attack measurements.
 - [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression, native/SFZ and
   the new five-condition packet, calling the latter “very robotic and bad quality.”
   No numeric scores, relative preferences or causal ranking inferred; no promotion.
   [Reference reassessment](docs/q0-reference-reassessment.md): seven source
   hashes checked; f newly analyzed; direct listening/annotation remains NOT RUN.
-  Independent comparative study and fresh Linux/iPhone/WASM Q0 audio validation
-  remain **NOT RUN**. [Exact feedback](docs/evidence/q0/owner-feedback.json).
+  Independent comparative study and fresh Linux/iPhone/AudioWorklet Q0 execution
+  remain **NOT RUN**; offline Node/WASM E rendering now **PASS**.
+  [Original feedback](docs/evidence/q0/owner-feedback.json);
+  [guitar-pair rejection](docs/evidence/q0-guitar-single/owner-feedback.json).
 
 **Research continuation — 2026-10-20:** After R0 and storage cleanup, the owner
 requested continuing model development. Local R1 offline demonstration tooling

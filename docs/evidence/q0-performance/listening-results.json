@@ -1,0 +1,175 @@
+{
+  "status": "NOT RUN",
+  "packet_id": "e083b97026b09c06b1c6cee5f1140ad3a15d656c14a2fe46f302c087c2abbe63",
+  "submitted_files": [],
+  "candidate_ratings": 0,
+  "comments": [],
+  "coverage": {
+    "owner-speech": {
+      "reviewer_codes": 0,
+      "complete_five_condition_codes": 0
+    },
+    "ls-2277-149896-0026": {
+      "reviewer_codes": 0,
+      "complete_five_condition_codes": 0
+    },
+    "ls-2035-147960-0013": {
+      "reviewer_codes": 0,
+      "complete_five_condition_codes": 0
+    },
+    "ls-2086-149220-0047": {
+      "reviewer_codes": 0,
+      "complete_five_condition_codes": 0
+    },
+    "commons-laughter": {
+      "reviewer_codes": 0,
+      "complete_five_condition_codes": 0
+    }
+  },
+  "comparisons": {
+    "B": {
+      "paired_source_clips": 0,
+      "candidate_minus_A": {
+        "musicality": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "realism": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "groove": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "creativity": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "recognizability": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "enjoyment": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        }
+      }
+    },
+    "C": {
+      "paired_source_clips": 0,
+      "candidate_minus_A": {
+        "musicality": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "realism": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "groove": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "creativity": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "recognizability": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "enjoyment": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        }
+      }
+    },
+    "D": {
+      "paired_source_clips": 0,
+      "candidate_minus_A": {
+        "musicality": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "realism": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "groove": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "creativity": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "recognizability": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "enjoyment": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        }
+      }
+    },
+    "E": {
+      "paired_source_clips": 0,
+      "candidate_minus_A": {
+        "musicality": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "realism": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "groove": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "creativity": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "recognizability": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        },
+        "enjoyment": {
+          "source_clips": 0,
+          "mean": null,
+          "bootstrap_95_percent": null
+        }
+      }
+    }
+  },
+  "formal_quality": "NOT RUN",
+  "reviewer_independence": "NOT RUN",
+  "benchmarks_changed": false,
+  "limits": "Descriptive paired differences averaged within source before bootstrap. Reviewer codes do not prove independent people. No interval for one source. Ratings are not forced preferences or a professional-quality verdict."
+}

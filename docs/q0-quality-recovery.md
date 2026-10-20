@@ -2,11 +2,20 @@
 
 2026-10-20. **Implementation: PARTIAL. Current owner listening acceptance: FAIL.**
 
-**Newest study:** [Guitar dynamics with existing-mix preservation](q0-guitar-single-study.md)
+**Current consolidated status:** [Q0 completion review](q0-completion-review.md).
+V2 expression adds guarded transition fills, melodic phrase shaping and
+bass/kick accent relationships. Five A/B/C/D/E blocks, twenty exact replays,
+112 decoded masters/stems and 8,264 event rows pass. Five final-condition
+native/WASM WAVs are byte-identical. The real-response validator reports zero
+submitted numeric ratings. Overall Q0 remains **PARTIAL**; no demonstrated
+substantial improvement. The owner rejected the guitar pair as not
+substantially better. No production promotion.
+
+**Previous study:** [Guitar dynamics with existing-mix preservation](q0-guitar-single-study.md)
 tests retaining the ordinary recorded layer at higher velocities. Technical
 **PASS**: ~0.15 dB positive boundary steps, five byte-identical existing mixes,
 and one same-score accent comparison with changes isolated to guitar.
-The separate forte timbre is lost; realism and musical acceptance **NOT RUN**.
+The separate forte timbre is lost; owner substantial-improvement gate **FAIL**.
 No production change or overall quality claim.
 
 **Previous full-mix study:** [Guitar calibration and mix balance](q0-guitar-mix-study.md)
@@ -64,7 +73,7 @@ operates on copies of plans in an offline experiment.
 | Preserve existing plans and master | PASS | New output directories, source/plan hashes, immutable spec hashes |
 | Separate instrument realism evaluation | PARTIAL | Probes and measurements complete; owner rejects the packet, without instrument-specific ratings or causal ranking |
 | SFZ/sfizz dependency investigation | PARTIAL | Local Mac build and rendering PASS after isolated compatibility fixes; production integration, distribution notice assembly and other targets NOT RUN |
-| Modular deterministic performance expression | PARTIAL | Shared onset shifts, accents, existing ghost strokes, gates, guitar muting and phrase dynamics; new fills/transitions, deeper melodic phrasing and listening acceptance remain open |
+| Modular deterministic performance expression | PASS | Functional V2 coverage: shared timing, accents/ghosts, gates/muting, phrase shaping, bass/kick accents and guarded transitions. Musical quality remains unaccepted |
 | Groove MIDI Dataset evaluation | PASS | License/checksum review and descriptive MIDI analysis; no training or fitting |
 | Improved composition | PARTIAL | Copied-plan call/response candidate rendered; no musical improvement claimed |
 | A: existing renderer | PASS | Five native baseline mixes and stems |
@@ -72,9 +81,10 @@ operates on copies of plans in an offline experiment.
 | C: expression only | PASS | Five copied plans, actual mixes/stems, deterministic replay and blind level-matched A/C packet |
 | D: instruments + expression | PASS | Decay build with exactly C's plan/events |
 | E: composition + D | PASS | New copied composition with the same expression transform and decay build |
-| Technical event timing/replay and comparison level matching | PASS | Latest five-arm trial: 8,216 instrument event rows, zero frame errors, 20 exact block-size replays |
+| Technical event timing/replay and comparison level matching | PASS | V2 five-arm trial: 8,264 instrument event rows, zero frame errors, 20 exact block-size replays |
 | Browser listening controls | PARTIAL | Form, decoding, downloads and layouts pass; headless WebKit playback clock stalled; physical playback/listening NOT RUN |
-| Q0 Linux/iPhone/WASM audio execution | NOT RUN | Prior R0 portability evidence is retained separately; not relabeled as Q0 |
+| Q0 Node/WebAssembly audio execution | PASS | Five imported E plans, byte-identical native/WASM WAVs, 1,432 agreeing event rows; not browser real-time execution |
+| Q0 Linux/iPhone/AudioWorklet execution | NOT RUN | No result inferred from Mac or Node |
 | Current owner listening acceptance | FAIL | Owner rejects all three packets; exact replies retained; no numeric ratings or relative preference inferred |
 | Formal comparative improvement / independent study | NOT RUN | Qualitative rejection is not a measured effect size or an independent study |
 
@@ -86,7 +96,8 @@ checkpoint for review, not a completed quality milestone.
 
 ## Listen locally
 
-- [Latest blind A/B/C/D/E comparison](http://127.0.0.1:4200/)
+- [Current blind A/B/C/D/E comparison](http://127.0.0.1:4207/)
+- [Earlier rejected five-condition comparison](http://127.0.0.1:4200/)
 - [Unchanged mixes, original recordings and stems](http://127.0.0.1:4197/)
 - [Isolated unchanged instruments](http://127.0.0.1:4197/instruments/)
 - [Blind A/C expression comparison](http://127.0.0.1:4198/)
@@ -215,8 +226,9 @@ so this was not passed off as B.
 The expression profiles are explicitly hand-authored and were not fitted to GMD
 or listener outcomes. The seed selects deterministic strength; it does not
 promise an unlimited variety of learned performances. No independent random
-timing noise was added. New fills, richer instrument articulation, convincing
-melodic development and a composition candidate remain unimplemented.
+timing noise was added. Subsequent composition and V2 expression studies now
+implement call/response, phrase shaping and fills. Richer recorded articulation
+and convincing musical results remain unestablished.
 
 ## Licenses and provenance
 
@@ -371,19 +383,20 @@ Screenshots and the browser report are written to a new temporary directory.
 
 ## Remaining work and recommendation
 
-The current A/C and sample-playback candidates have been rejected. Do not repeat
-them as a new improvement or promote small parameter changes on technical
-metrics alone. Causal diagnosis and a materially different composition/instrument
-experiment remain necessary before completing B/D/E with the same native mixing
-path and frozen controls. Longer vocal units, bass/drum articulation, phrase
-response and restrained contrast remain hypotheses, not accepted improvements.
+The initial A/C, sample-playback and five-arm candidates have been rejected.
+The guitar follow-up also failed to demonstrate substantial improvement.
+Do not promote these on technical metrics alone. B/D/E and the subsequent
+V2 expression trial now exist with the same native mixing path and frozen
+controls. Longer vocal units, bass/drum articulation, phrase response and
+restrained contrast remain hypotheses, not accepted improvements.
 Do not use extra random offsets or louder masters to manufacture a preference.
 
 There is no new numerical “professional quality” threshold and no change to the
 existing M1/listener benchmarks. Q0's required substantial improvement remains
 unestablished; current owner acceptance is FAIL. Independent listener evidence,
-broader inputs, acoustic attack
-timing, physical playback and fresh cross-platform execution remain open.
+broader inputs, perceived attack timing, physical playback and fresh Linux/iPhone
+execution remain open. Descriptive attack thresholds and Node/WASM parity now
+have evidence in the completion review.
 No later milestone or model training is recommended until Q0's controlled
 comparison has a credible listening result.
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Small Q0 invariants; actual native import/render is checked by experiment runs."""
 import copy
+import hashlib
 import io
 import json
 import math
@@ -16,6 +17,8 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT/'scripts'))
 from q0_expression import express
+from q0_performance import perform
+from q0_listening_results import summarize, DIMENSIONS
 from q0_composition import compose
 from q0_authored_score import authored
 from q0_phrase_form import adapt
@@ -49,6 +52,91 @@ class Q0(unittest.TestCase):
                     self.assertEqual(offset, 0)
                 self.assertTrue(1 <= after['velocity'] <= 127)
         self.assertNotEqual(candidate, self.plan)
+
+    def test_performance_phrases_fills_and_shared_clock(self):
+        original = copy.deepcopy(self.plan)
+        candidate, trace = perform(self.plan, 4123)
+        self.assertEqual(original, self.plan)
+        self.assertEqual((candidate, trace), perform(self.plan, 4123))
+        self.assertTrue(trace['transition_fills'])
+        self.assertTrue(any(c['reason'] == 'melodic arrival/release' for c in trace['phrase_changes']))
+        old_kicks = {n['start_tick'] for t in original['tracks'] if t['instrument'] == 'drums'
+                     for n in t['events'] if n['note'] == 36}
+        new_kicks = {n['start_tick'] for t in candidate['tracks'] if t['instrument'] == 'drums'
+                     for n in t['events'] if n['note'] == 36}
+        self.assertEqual(old_kicks, new_kicks)
+        for fill in trace['transition_fills']:
+            for note in fill['notes']:
+                self.assertLess(note['start_tick']+note['duration_ticks'], fill['boundary_tick'])
+                for start, stop in trace['vocal_windows']:
+                    self.assertFalse(note['start_tick'] < stop and note['start_tick']+120 > start)
+        for track in candidate['tracks']:
+            for note in track['events']:
+                self.assertTrue(1 <= note['velocity'] <= 127)
+                self.assertTrue(0 <= note['start_tick'] < note['start_tick']+note['duration_ticks'] <= candidate['target_bars']*3840)
+        for old, new in zip(original['tracks'], candidate['tracks']):
+            if old['instrument'] == 'bass':
+                for a, b in zip(old['events'], new['events']):
+                    if a['start_tick'] in old_kicks:
+                        self.assertEqual(a['start_tick'], b['start_tick'])
+        bad = copy.deepcopy(self.plan); bad['voice_events'][0]['rate'] = 2
+        with self.assertRaises(ValueError): perform(bad, 4123)
+        bad = copy.deepcopy(self.plan); bad['tracks'] = [t for t in bad['tracks'] if t['instrument'] != 'drums']
+        with self.assertRaises(ValueError): perform(bad, 4123)
+        for style in ('hiphop', 'reggae', 'experimental'):
+            instrumental = copy.deepcopy(self.plan)
+            instrumental['strategy'] = style
+            instrumental['voice_events'] = []
+            # Clear existing snare pickups so each profile has an eligible test slot.
+            for track in instrumental['tracks']:
+                if track['instrument'] == 'drums':
+                    track['events'] = [n for n in track['events'] if n['note'] != 38]
+            _, details = perform(instrumental, 4124)
+            self.assertTrue(details['transition_fills'], style)
+
+    def test_listening_forms_fail_closed_and_never_pass_quality(self):
+        # Synthetic protocol fixtures only, removed with the temporary directory.
+        with tempfile.TemporaryDirectory() as tmp:
+            trial = Path(tmp); listener = trial/'listener'; listener.mkdir()
+            audio, keys = {}, {}
+            for i, arm in enumerate('ABCDE', 1):
+                code = f'test-source-{i}'
+                path = listener/(code+'.wav'); path.write_bytes(b'test-only-not-a-recording')
+                sha = digest(path); audio[path.name] = sha
+                keys[code] = {'arm': arm, 'sha256': sha}
+            identity = hashlib.sha256(json.dumps(audio, sort_keys=True).encode()).hexdigest()
+            (listener/'packet.json').write_text(json.dumps({'packet_id': identity, 'audio_sha256': audio}))
+            (trial/'report.json').write_text(json.dumps({'packet_id': identity,
+                'records': [{'id': 'test-source', 'arms': dict.fromkeys('ABCDE', {})}]}))
+            (trial/'organizer-key.json').write_text(json.dumps(keys))
+            self.assertEqual(summarize(trial, [])['status'], 'NOT RUN')
+            ratings = {'reviewer': 'TEST_ONLY', 'listened': 'yes'}
+            for code, score in [('test-source-1', '2'), ('test-source-5', '4')]:
+                ratings.update({code+'/'+d: score for d in DIMENSIONS})
+            payload = {'schema_version': '1.0-q0-listening', 'packet_id': identity, 'ratings': ratings}
+            response = trial/'response.json'
+            response.write_text(json.dumps(payload))
+            result = summarize(trial, [response])
+            self.assertEqual(result['candidate_ratings'], 2)
+            self.assertEqual(result['formal_quality'], 'NOT RUN')
+            metric = result['comparisons']['E']['candidate_minus_A']['musicality']
+            self.assertEqual(metric['mean'], 2)
+            self.assertIsNone(metric['bootstrap_95_percent'])
+            with self.assertRaises(ValueError): summarize(trial, [response, response])
+            for change in ({'listened': 'no'}, {'test-source-5/groove': ''},
+                           {'madeup/realism': '5'}, {'reviewer': 'UI_FIXTURE_ONLY'},
+                           {'test-source-1/realism': 5}):
+                changed = copy.deepcopy(payload); changed['ratings'].update(change)
+                response.write_text(json.dumps(changed))
+                with self.assertRaises(ValueError): summarize(trial, [response])
+            changed = copy.deepcopy(payload); changed['packet_id'] = '0'*64
+            response.write_text(json.dumps(changed))
+            with self.assertRaises(ValueError): summarize(trial, [response])
+            response.write_text('{"schema_version":"1.0-q0-listening","schema_version":"duplicate"}')
+            with self.assertRaises(ValueError): summarize(trial, [response])
+            response.write_text(json.dumps(payload))
+            (listener/'test-source-1.wav').write_bytes(b'changed')
+            with self.assertRaises(ValueError): summarize(trial, [response])
 
     def test_composition_intact_calls_and_response_space(self):
         original = copy.deepcopy(self.plan)

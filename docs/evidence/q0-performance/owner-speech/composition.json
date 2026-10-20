@@ -1,0 +1,26 @@
+{
+  "version": "1.0-q0-call-response",
+  "source_rhythm_ticks": [
+    0,
+    240,
+    480,
+    720
+  ],
+  "intact_call_windows": [
+    [
+      7680,
+      15149
+    ],
+    [
+      23040,
+      30509
+    ]
+  ],
+  "answer_start_ticks": [
+    15360,
+    30720
+  ],
+  "removed_short_vocal_events": 6,
+  "intent": "Intact calls, recurring rhythm with a second contour, existing harmony and contrast.",
+  "quality": "NOT RUN"
+}
