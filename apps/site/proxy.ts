@@ -6,7 +6,7 @@ export function proxy(request: NextRequest) {
   const account=process.env.R2_ACCOUNT_ID ?? '', bucket=process.env.R2_BUCKET ?? '';
   const storage=(process.env.JAMLOOM_R2_ENABLED ?? process.env.DJAYVO_R2_ENABLED)==='true' && /^[a-f0-9]{32}$/.test(account) && /^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$/.test(bucket)
     ? ` https://${bucket}.${account}.r2.cloudflarestorage.com` : '';
-  const policy = `default-src 'self'; script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${development ? " 'unsafe-eval'" : ''}; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'${storage}${development ? ' ws: wss:' : ''}; media-src 'self'${storage}; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'`;
+  const policy = `default-src 'self'; script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${development ? " 'unsafe-eval'" : ''}; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://ingest.visitorping.com wss://realtime.visitorping.com${storage}${development ? ' ws: wss:' : ''}; media-src 'self'${storage}; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'`;
   const headers = new Headers(request.headers);
   headers.set('x-nonce', nonce);
   headers.set('Content-Security-Policy', policy);

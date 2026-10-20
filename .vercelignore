@@ -1,0 +1,13 @@
+# Build from source on Vercel; local CMake caches contain machine-specific paths.
+build*/**
+dist/**
+renders/**
+.venv*/**
+.neon/**
+**/node_modules/**
+**/.next/**
+**/.env*
+**/*.tsbuildinfo
+apps/site/public/studio/**
+.git
+.git/**

@@ -2,6 +2,12 @@
 
 2026-10-19 (America/New_York). Public site key: `vp_QBDH92AC`.
 
+**Follow-up:** [Public branding and CSP check](brand-live.md) confirms an actual
+configuration-fetch and realtime blocks and allows only those two provider origins.
+The tracker subsequently activated automatically and two page views received
+HTTP 204. Dashboard Test installation and Live Radar still need confirmation. The initial installation evidence below remains
+historical.
+
 The website uses Next.js 16.4.2 App Router. Added the supplied `next/script`
 component to `apps/site/app/layout.tsx`, with `afterInteractive` and anonymous
 cross-origin loading. No existing VisitorPing or tag-manager installation was
@@ -53,7 +59,7 @@ This does not establish behavior of the paused provider's eventual active script
 
 ## Owner verification still needed
 
-1. Resume tracking for `jamloom.com` in VisitorPing; preserve existing exclusions.
+1. Check automatic activation for `jamloom.com` in VisitorPing; preserve existing exclusions. If the script stays paused, inspect the dashboard account/site status rather than assuming it was manually disabled.
 2. Open a private browser window, visit `https://www.jamloom.com/account/sign-in`
    and `https://www.jamloom.com/catalogue`, and complete any required consent.
    If either path is excluded in your dashboard, use two other included Next.js

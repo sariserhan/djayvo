@@ -1,0 +1,116 @@
+Vercel CLI 59.1.4 (Node.js 22.23.1)
+Deploying site
+Uploading [--------------------] (0.0B/115MB)
+Uploading [=====---------------] (28.7MB/115MB)
+Uploading [==========----------] (57.5MB/115MB)
+Uploading [===============-----] (86.2MB/115MB)
+  Inspect         https://vercel.com/ssari/site/F9DFZE6hNfkqFQY1AKpgG9fCxeiu
+  Production      https://site-pu0hdqj7v-ssari.vercel.app
+Building…
+Building…
+Running build in Washington, D.C., USA (East) – iad1
+Build machine configuration: 4 cores, 8 GB
+Retrieving list of deployment files...
+Skipping build cache, deployment was triggered without cache.
+Downloading 2677 deployment files...
+Uploading [====================] (115.0MB/115MB)
+Running "vercel build"
+Vercel CLI 64.3.1
+Installing dependencies...
+added 127 packages in 7s
+19 packages are looking for funding
+run `npm fund` for details
+Detected Next.js version: 16.4.2
+Running "npm run build"
+> jamloom-site@0.1.0 prebuild
+> npm run studio:prepare
+> jamloom-site@0.1.0 studio:prepare
+> node scripts/prepare-studio.mjs
+Collecting cmake==3.31.6
+Downloading cmake-3.31.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.3 kB)
+Downloading cmake-3.31.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (27.8 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 27.8/27.8 MB 101.7 MB/s eta 0:00:00
+Installing collected packages: cmake
+Successfully installed cmake-3.31.6
+Cloning into '/vercel/path0/build-web-tools/emsdk'...
+Note: switching to '1518bec61a0430aa5cfda576f5ce3191004c84d9'.
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+git switch -c <new-branch-name>
+Or undo this operation with:
+git switch -
+Turn off this advice by setting config variable advice.detachedHead to false
+Resolving SDK version '6.0.1' to 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'
+Installing SDK 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'..
+Installing tool 'node-22.16.0-64bit'..
+Downloading: /vercel/path0/build-web-tools/emsdk/downloads/node-v22.16.0-linux-x64.tar.xz from https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/node-v22.16.0-linux-x64.tar.xz, 30425588 Bytes
+[----------------------------------------------------------------------------]
+Unpacking '/vercel/path0/build-web-tools/emsdk/downloads/node-v22.16.0-linux-x64.tar.xz' to '/vercel/path0/build-web-tools/emsdk/node/22.16.0_64bit'
+Done installing tool 'node-22.16.0-64bit'.
+Installing tool 'releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'..
+Downloading: /vercel/path0/build-web-tools/emsdk/downloads/4857659ec65fbcf1f3e43c88499925475957b238-wasm-binaries.tar.xz from https://storage.googleapis.com/webassembly/emscripten-releases-builds/linux/4857659ec65fbcf1f3e43c88499925475957b238/wasm-binaries.tar.xz, 274269128 Bytes
+[----------------------------------------------------------------------------]
+Unpacking '/vercel/path0/build-web-tools/emsdk/downloads/4857659ec65fbcf1f3e43c88499925475957b238-wasm-binaries.tar.xz' to '/vercel/path0/build-web-tools/emsdk/upstream'
+Done installing tool 'releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'.
+Done installing SDK 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'.
+Resolving SDK version '6.0.1' to 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'
+Setting the following tools as active:
+node-22.16.0-64bit
+releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit
+Next steps:
+- To conveniently access emsdk tools from the command line,
+consider adding the following directories to your PATH:
+/vercel/path0/build-web-tools/emsdk
+/vercel/path0/build-web-tools/emsdk/upstream/emscripten
+- This can be done for the current shell by running:
+source "/vercel/path0/build-web-tools/emsdk/emsdk_env.sh"
+- Configure emsdk in your shell startup scripts by running:
+echo 'source "/vercel/path0/build-web-tools/emsdk/emsdk_env.sh"' >> $HOME/.bash_profile
+Setting up EMSDK environment (suppress these messages with EMSDK_QUIET=1)
+Adding directories to PATH:
+PATH += /vercel/path0/build-web-tools/emsdk
+PATH += /vercel/path0/build-web-tools/emsdk/upstream/emscripten
+Setting environment variables:
+PATH = /vercel/path0/build-web-tools/emsdk:/vercel/path0/build-web-tools/emsdk/upstream/emscripten:/vercel/path0/build-web-tools/cmake-env/bin:/vercel/path0/build-web-tools/python-env/bin:/vercel/path0/apps/site/node_modules/.bin:/vercel/path0/apps/node_modules/.bin:/vercel/path0/node_modules/.bin:/vercel/node_modules/.bin:/node_modules/.bin:/node22/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/vlt/node_modules/.bin:/pnpm6/node_modules/.bin:/yarn1/node_modules/yarn/bin:/vercel/.config/yarn/global/node_modules/.bin:/ruby33/bin:/uv/python/bin:/rust/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bun1:/node22/bin
+EMSDK = /vercel/path0/build-web-tools/emsdk
+EMSDK_NODE = /vercel/path0/build-web-tools/emsdk/node/22.16.0_64bit/bin/node
+shared:INFO: (Emscripten: Running sanity checks)
+emcmake: cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE=/vercel/path0/build-web-tools/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_CROSSCOMPILING_EMULATOR=/vercel/path0/build-web-tools/emsdk/node/22.16.0_64bit/bin/node in directory /vercel/path0
+CMake Error: The current CMakeCache.txt directory /vercel/path0/build-web/CMakeCache.txt is different than the directory /Users/serhansari/Documents/projects/djayvo/build-visitorping/source/build-web where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt
+CMake Error: The source "/vercel/path0/CMakeLists.txt" does not match the source "/Users/serhansari/Documents/projects/djayvo/build-visitorping/source/CMakeLists.txt" used to generate cache.  Re-run cmake with a different source directory.
+node:internal/errors:983
+const err = new Error(message);
+^
+Error: Command failed: sh scripts/web_build.sh
+at genericNodeError (node:internal/errors:983:15)
+at wrappedFn (node:internal/errors:537:14)
+at checkExecSyncError (node:child_process:916:11)
+at execFileSync (node:child_process:952:15)
+at file:///vercel/path0/apps/site/scripts/prepare-studio.mjs:7:1
+at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+status: 1,
+signal: null,
+output: [ null, null, null ],
+pid: 104,
+stdout: null,
+stderr: null
+}
+Node.js v22.23.2
+Error: [BUILD_UTILS_SPAWN_1] Command "npm run build" exited with 1
+{
+  "id": "dpl_F9DFZE6hNfkqFQY1AKpgG9fCxeiu",
+  "url": "https://site-pu0hdqj7v-ssari.vercel.app",
+  "inspectorUrl": "https://vercel.com/ssari/site/F9DFZE6hNfkqFQY1AKpgG9fCxeiu",
+  "readyState": "ERROR",
+  "target": "production",
+  "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_F9DFZE6hNfkqFQY1AKpgG9fCxeiu",
+  "error": {
+    "name": "BUILD_ERROR",
+    "message": "Command \"npm run build\" exited with 1"
+  }
+}

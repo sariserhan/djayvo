@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-10-20T03:26:50.723Z",
+  "requests": [
+    {
+      "url": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://cdn.visitorping.com/vp.js?site=vp_QBDH92AC&chat=1",
+      "method": "GET"
+    },
+    {
+      "url": "https://ingest.visitorping.com/v1/config?site=vp_QBDH92AC",
+      "method": "GET"
+    },
+    {
+      "url": "https://ingest.visitorping.com/e/vp_QBDH92AC",
+      "method": "POST",
+      "event": {
+        "event": "page_view",
+        "path": "/account/sign-in",
+        "siteId": "vp_QBDH92AC"
+      }
+    },
+    {
+      "url": "https://ingest.visitorping.com/e/vp_QBDH92AC",
+      "method": "POST",
+      "event": {
+        "event": "page_duration",
+        "path": "/account/sign-in",
+        "siteId": "vp_QBDH92AC"
+      }
+    },
+    {
+      "url": "https://ingest.visitorping.com/e/vp_QBDH92AC",
+      "method": "POST",
+      "event": {
+        "event": "page_view",
+        "path": "/catalogue",
+        "siteId": "vp_QBDH92AC"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+      "status": 200
+    },
+    {
+      "url": "https://cdn.visitorping.com/vp.js?site=vp_QBDH92AC&chat=1",
+      "status": 200
+    },
+    {
+      "url": "https://ingest.visitorping.com/v1/config?site=vp_QBDH92AC",
+      "status": 200
+    },
+    {
+      "url": "https://ingest.visitorping.com/e/vp_QBDH92AC",
+      "status": 204
+    },
+    {
+      "url": "https://ingest.visitorping.com/e/vp_QBDH92AC",
+      "status": 204
+    },
+    {
+      "url": "https://ingest.visitorping.com/e/vp_QBDH92AC",
+      "status": 204
+    }
+  ],
+  "errors": [
+    "Connecting to 'wss://realtime.visitorping.com/ws?visitor=1&siteId=vp_QBDH92AC&sessionId=REDACTED' violates the following Content Security Policy directive: \"connect-src 'self' https://ingest.visitorping.com\". The action has been blocked."
+  ],
+  "violations": [
+    {
+      "directive": "connect-src",
+      "uri": "wss://realtime.visitorping.com/ws?visitor=1&siteId=vp_QBDH92AC&sessionId=REDACTED"
+    }
+  ],
+  "liveRadar": "NOT RUN: dashboard unavailable"
+}

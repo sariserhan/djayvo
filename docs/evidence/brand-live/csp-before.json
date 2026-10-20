@@ -1,0 +1,11 @@
+{
+  "outcome": {
+    "error": "Failed to fetch"
+  },
+  "violations": [
+    {
+      "directive": "connect-src",
+      "blockedURI": "https://ingest.visitorping.com/v1/config?site=vp_QBDH92AC"
+    }
+  ]
+}

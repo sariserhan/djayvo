@@ -1,0 +1,22 @@
+
+> jamloom-site@0.1.0 test
+> tsx --test tests/config.test.ts tests/audio.test.ts
+
+✔ private save validates consent, bounded metadata and canonical metadata-free PCM (141.611917ms)
+✔ storage is opt-in, local files cannot be hosted, R2 grants bind content length and type (15.911334ms)
+✔ brand transition preserves legacy storage config without overriding explicit opt-outs (0.1975ms)
+✔ account configuration fails closed and forbids hosted development mail (1.191583ms)
+✔ Resend request uses server credentials, timeout and deterministic retry identity (6.862041ms)
+✔ localhost can use Neon without enabling local database/storage shortcuts (0.349459ms)
+✔ email outbox cannot run in a hosted app even if a config is supplied directly (1.764417ms)
+✔ auth body limit measures real streamed bytes rather than trusting Content-Length (2.9775ms)
+✔ Jamloom config accepts legacy deployment keys and gives explicit new values priority (0.188292ms)
+✔ VisitorPing can connect without weakening script or framing protections (1.570292ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 740.413375

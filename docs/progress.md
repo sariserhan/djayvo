@@ -1,5 +1,17 @@
 # Jamloom: M0 continuation evidence
 
+Latest public branding and tracker connection — 2026-10-19:
+[Public Jamloom release](brand-live.md). Local remote and Vercel Git integration
+now use `sariserhan/jamloom` with the same repository ID. Approved branding is
+live on the public studio, DJ workspace and account page; unrelated local features
+stay out.
+Browser evidence confirmed VisitorPing's configuration fetch was blocked by CSP;
+only its exact ingestion HTTPS and observed realtime WebSocket origins were added. Main 14 tests/typecheck and
+release 10 tests/build/typecheck/secret audit **PASS**. Provider activated
+automatically; two page views and page duration received HTTP 204, realtime
+handshake HTTP 101, and final browser console/CSP checks pass. Dashboard
+Test installation and Live Radar remain **NOT RUN**. See the report for receipts.
+
 Latest website analytics installation — 2026-10-19:
 [VisitorPing](visitorping.md) **PARTIAL**. Single Next.js layout integration for
 `vp_QBDH92AC`; static offline studio remains untracked and CSP is unchanged.

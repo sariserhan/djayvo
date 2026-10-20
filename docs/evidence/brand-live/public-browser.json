@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-10-20T03:29:05.074Z",
+  "gates": [
+    {
+      "gate": "public branding",
+      "path": "/studio/index.html",
+      "status": "PASS",
+      "title": "Jamloom — Your voice into music"
+    },
+    {
+      "gate": "public branding",
+      "path": "/studio/dj.html",
+      "status": "PASS",
+      "title": "Jamloom — DJ workspace"
+    },
+    {
+      "gate": "public branding",
+      "path": "/account/sign-in",
+      "status": "PASS",
+      "title": "Jamloom"
+    },
+    {
+      "gate": "VisitorPing config readable under CSP",
+      "status": "PASS",
+      "httpStatus": 200,
+      "violations": []
+    },
+    {
+      "gate": "auth remains available",
+      "status": "PASS"
+    },
+    {
+      "gate": "PWA name and stable identity",
+      "status": "PASS"
+    },
+    {
+      "gate": "renamed audio modules load",
+      "status": "PASS",
+      "renderExport": "function",
+      "liveExports": 9
+    }
+  ],
+  "errors": [],
+  "tracker": {
+    "paused": false
+  },
+  "collection": "NOT RUN: no Live Radar access"
+}

@@ -26,17 +26,18 @@ the source of truth and is not modified by this tracker.
 
 ## Product identity
 
-- [x] BR01: Rename current app, packages, native/WASM engine, exports, scripts and active documentation to Jamloom; preserve saved data and historical evidence. [Validation](docs/jamloom-rename.md).
+- [x] BR01: Rename current app, packages, native/WASM engine, exports, scripts and active documentation to Jamloom; preserve saved data and historical evidence. [Validation](docs/jamloom-rename.md). [Public release and renamed GitHub connection](docs/brand-live.md).
 - [ ] BR02 — PARTIAL: Owner reports purchasing `jamloom.com`; `jamloom-audio` confirmed live. Production origin prepared; private R2 access, CORS, lifecycle configuration and 10 provider gates PASS. Resend domain owner-confirmed Verified; hello sender/support Reply-To configured. Shared branded email templates pass 54 browser layout cases; real inbox clients/delivery remain NOT RUN. Canonical www origin, Vercel settings and live R2 CORS aligned; existing production release redeployed, live auth/redirect/origin checks PASS; [www validation](docs/www-origin.md). Hosted account/email workflow, actual lifecycle expiry and scheduled cleanup remain NOT RUN. Trademark clearance is unverified. [Setup](docs/production-domain.md), [R2 evidence](docs/r2-live.md), [email setup](docs/resend-setup.md), [templates](docs/email-templates.md).
 
 ## Website analytics
 
 - [ ] **AN01 — PARTIAL:** Install VisitorPing site `vp_QBDH92AC` once in the Next.js
   shared layout; preserve untracked offline studio and security settings. Local
-  build, 13 tests, typecheck, secret audit, production deploy and public browser
+  build, 14 tests, typecheck, secret audit, production deploy and public browser
   deduplication **PASS**.
-  Provider currently serves “tracking paused”; resume tracking and confirm Test
-  installation plus two-page Live Radar activity. [Evidence](docs/visitorping.md).
+  Provider activated automatically; both page views received HTTP 204. Exact ingestion
+  and realtime origins allowed after confirmed CSP blocks. [Follow-up](docs/brand-live.md).
+  Confirm dashboard Test installation plus two-page Live Radar activity. [Evidence](docs/visitorping.md).
 
 ## At a glance
 

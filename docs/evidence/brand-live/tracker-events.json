@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-10-20T03:29:03.495Z",
+  "events": [
+    {
+      "event": "page_view",
+      "path": "/account/sign-in",
+      "siteKey": "vp_QBDH92AC",
+      "httpStatus": 204
+    },
+    {
+      "event": "page_duration",
+      "path": "/account/sign-in",
+      "siteKey": "vp_QBDH92AC",
+      "httpStatus": 204
+    },
+    {
+      "event": "page_view",
+      "path": "/catalogue",
+      "siteKey": "vp_QBDH92AC",
+      "httpStatus": 204
+    }
+  ],
+  "connections": [
+    {
+      "status": 101
+    }
+  ],
+  "errors": [],
+  "violations": [],
+  "liveRadar": "NOT RUN: authenticated dashboard unavailable"
+}

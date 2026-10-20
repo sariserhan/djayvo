@@ -1,3 +1,5 @@
+import { NextRequest } from 'next/server';
+import { proxy } from '../proxy';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
@@ -119,4 +121,15 @@ test('Jamloom config accepts legacy deployment keys and gives explicit new value
   assert.equal(readConfig({ ...legacy, JAMLOOM_LOCAL_OUTBOX: '/tmp/new-outbox' }).outbox, '/tmp/new-outbox');
   assert.throws(() => readConfig({ ...legacy, JAMLOOM_LOCAL_OUTBOX: '' }), /Resend/);
   assert.throws(() => readConfig({ ...legacy, VERCEL: '1', BETTER_AUTH_URL: 'https://jamloom.example', DATABASE_URL: 'postgresql://u:p@ep-example.neon.tech/db' }), /forbidden/);
+});
+
+test('VisitorPing can connect without weakening script or framing protections', () => {
+  const response = proxy(new NextRequest('https://www.jamloom.com/account'));
+  const policy = response.headers.get('Content-Security-Policy')!;
+  assert.ok(policy.includes("connect-src 'self' https://ingest.visitorping.com wss://realtime.visitorping.com"));
+  assert.ok(policy.includes("'strict-dynamic'"));
+  assert.match(policy, /script-src 'self' 'nonce-[^']+'/);
+  assert.ok(policy.includes("frame-ancestors 'none'"));
+  assert.ok(!policy.includes('*.visitorping.com'));
+  assert.equal(response.headers.get('Cache-Control'), 'private, no-store');
 });
