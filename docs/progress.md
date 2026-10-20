@@ -985,3 +985,21 @@ Next: audition the validated Mac renders, collect consented source clips,
 and use the preregistered [evaluation protocol](evaluation-protocol.md) to find
 musical defects. Improve from those observations before model experiments. The
 handoff carries all work needed to continue without per-step permission pauses.
+
+## 2026-10-20 — R0 improvisation foundation
+
+**Implementation complete; overall evidence PARTIAL. Stop for review.** Added the
+35-operation taxonomy, architecture/C++ type mapping, versioned plan envelope,
+fail-closed five-record synthetic provenance ledger, rule-planner adapter,
+inspector/diff and executable evaluation harness. Three arrangements from the
+preserved phrase replay with identical PCM and instrument event frames at block
+sizes 512/113. M5 native CTest: 15/15 PASS; R0 boundary/timing suite: 11 tests PASS.
+
+The original Mac smoke command exits 1 because the retained M0 reference has older
+arrangements/instruments; that historical comparison remains FAIL. Fresh Mac
+outputs versus current R0 outputs are byte-identical, PASS. This is Mac/Mac,
+not new Linux evidence; Linux/WASM/iPhone execution is NOT RUN for R0. Human
+quality/recognizability is NOT RUN (n=0), with blank blinded review materials.
+No master-specification changes, new native runtime dependency, paid service,
+third-party ingestion or model training. [Full R0 report](r0-report.md) and
+[architecture](improvisation_architecture.md). R1 requires separate authorization.

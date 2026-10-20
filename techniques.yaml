@@ -1,0 +1,1005 @@
+{
+  "schema_version": "1.0-r0-techniques",
+  "format": "JSON-compatible YAML 1.2",
+  "basis": "General compositional/DSP operations observed in the existing shared engine; no performer identities or imitation targets",
+  "implementation": [
+    "core/arrangement/remix.cpp",
+    "core/composition/analysis.cpp",
+    "core/audio/remix_renderer.cpp"
+  ],
+  "grammar_restrictions": {
+    "hiphop": "96 BPM, backbeat, swung hats, minor chord vocabulary; not a claim to represent all hip-hop",
+    "reggae": "80 BPM, offbeat organ stabs and sparse bass/drum vocabulary; no performer-specific pattern",
+    "experimental": "124 BPM, displaced motif and lead responses; intelligibility and enjoyment require listening"
+  },
+  "unsupported_in_R0": [
+    "semantic phoneme/word labels",
+    "formant preservation",
+    "automatic live tempo/key tracking",
+    "polyrhythm inference",
+    "live AI override",
+    "pitch-contour transcription"
+  ],
+  "techniques": [
+    {
+      "id": "phrase_regions",
+      "family": "capture",
+      "name": "Bound active phrase regions",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "start/end frames, confidence [0,1]",
+        "execution_path": "analysis.phrases",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/analysis/properties/phrases"
+      },
+      "use_when": [
+        "Source contains energy-separated phrases"
+      ],
+      "failure_modes": [
+        "Breaths/noise may be mistaken for boundaries"
+      ],
+      "engine_actions": [
+        "analysis.phrases"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/fixtures/synthetic-speech.wav",
+          "start_seconds": 0,
+          "end_seconds": 3,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "onset_capture",
+      "family": "capture",
+      "name": "Locate transient onsets",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "frame indices within source",
+        "execution_path": "analysis.onsets",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/analysis/properties/onsets"
+      },
+      "use_when": [
+        "Rhythm can be inferred from source attacks"
+      ],
+      "failure_modes": [
+        "Speech energy peaks are not semantic syllables"
+      ],
+      "engine_actions": [
+        "analysis.onsets"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/fixtures/synthetic-speech.wav",
+          "start_seconds": 0,
+          "end_seconds": 3,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "quiet_boundary_trim",
+      "family": "capture",
+      "name": "Trim chops near quiet boundaries",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "start/end frames, confidence [0,1]",
+        "execution_path": "voice_clips",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/voice_clips"
+      },
+      "use_when": [
+        "A source onset has a nearby quiet ending"
+      ],
+      "failure_modes": [
+        "Quiet consonants can be clipped"
+      ],
+      "engine_actions": [
+        "voice_clips"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/fixtures/synthetic-speech.wav",
+          "start_seconds": 0,
+          "end_seconds": 3,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "source_normalization",
+      "family": "capture",
+      "name": "Bound source normalization",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "gain (0,4]",
+        "execution_path": "analysis.normalization_gain",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/analysis/properties/normalization_gain"
+      },
+      "use_when": [
+        "Quiet original source needs headroom"
+      ],
+      "failure_modes": [
+        "Noise is raised with speech"
+      ],
+      "engine_actions": [
+        "analysis.normalization_gain"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/fixtures/synthetic-speech.wav",
+          "start_seconds": 0,
+          "end_seconds": 3,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "clean_phrase",
+      "family": "sampling",
+      "name": "Preserve a forward unpitched hook",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "clean=true; rate=1; centered; duration>=0.5s",
+        "execution_path": "voice_events.clean",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/voice_events/items/properties/clean"
+      },
+      "use_when": [
+        "Recognition needs an intact reference"
+      ],
+      "failure_modes": [
+        "Intact playback does not prove intelligibility in the mix"
+      ],
+      "engine_actions": [
+        "voice_events.clean"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "one_shot",
+      "family": "sampling",
+      "name": "Trigger a bounded source one-shot",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "clip_id; gain [-30,0] dB",
+        "execution_path": "voice_events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/voice_events"
+      },
+      "use_when": [
+        "A transient or phrase fragment supplies rhythmic character"
+      ],
+      "failure_modes": [
+        "Overlong fragments collide with the next response"
+      ],
+      "engine_actions": [
+        "voice_events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "repeat_fragment",
+      "family": "sampling",
+      "name": "Repeat a selected fragment across bars",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "same clip_id at separate start_tick values",
+        "execution_path": "voice_events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/voice_events"
+      },
+      "use_when": [
+        "Repetition establishes a motif"
+      ],
+      "failure_modes": [
+        "Over-repetition can become tedious"
+      ],
+      "engine_actions": [
+        "voice_events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "retrigger_with_breath",
+      "family": "sampling",
+      "name": "Retrigger chops with clearance",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "at least 80ms clearance from neighboring chops/hooks",
+        "execution_path": "voice_events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/voice_events"
+      },
+      "use_when": [
+        "Several useful fragments fit a phrase"
+      ],
+      "failure_modes": [
+        "Excess spacing weakens rhythmic continuity"
+      ],
+      "engine_actions": [
+        "voice_events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "grid_quantization",
+      "family": "rhythm",
+      "name": "Map source onsets to a sixteenth-note grid",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "960 PPQ; sixteenth grid 240 ticks",
+        "execution_path": "tracks.events.start_tick",
+        "schema_ref": "schemas/remix-plan.schema.json#/$defs/note/properties/start_tick"
+      },
+      "use_when": [
+        "Source attacks should inform a repeatable motif"
+      ],
+      "failure_modes": [
+        "Grid collapse can merge distinct attacks"
+      ],
+      "engine_actions": [
+        "tracks.events.start_tick"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "swing",
+      "family": "rhythm",
+      "name": "Delay alternating hats",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "40,80,120 tick alternate offsets",
+        "execution_path": "tracks.events.start_tick",
+        "schema_ref": "schemas/remix-plan.schema.json#/$defs/note/properties/start_tick"
+      },
+      "use_when": [
+        "An asymmetric subdivision suits the chosen grammar"
+      ],
+      "failure_modes": [
+        "Strong swing may fight the voice rhythm"
+      ],
+      "engine_actions": [
+        "tracks.events.start_tick"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "syncopation",
+      "family": "rhythm",
+      "name": "Place bass or chord accents off the downbeat",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "offbeat start ticks, note durations",
+        "execution_path": "tracks.events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/events"
+      },
+      "use_when": [
+        "Contrast with the kick leaves space for calls"
+      ],
+      "failure_modes": [
+        "Dense offbeats can obscure the pulse"
+      ],
+      "engine_actions": [
+        "tracks.events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.reggae.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "backbeat",
+      "family": "rhythm",
+      "name": "Place snare accents against the kick",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "drums note=38; velocity [1,127]",
+        "execution_path": "tracks.events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/events"
+      },
+      "use_when": [
+        "A clear backbeat anchors a phrase"
+      ],
+      "failure_modes": [
+        "Rigid repeating accents can feel mechanical"
+      ],
+      "engine_actions": [
+        "tracks.events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "kick_anchor",
+      "family": "rhythm",
+      "name": "Anchor the groove with kick attacks",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "drums note=36; velocity [1,127]",
+        "execution_path": "tracks.events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/events"
+      },
+      "use_when": [
+        "Low-end pulse is needed"
+      ],
+      "failure_modes": [
+        "Too much kick energy masks bass/voice"
+      ],
+      "engine_actions": [
+        "tracks.events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "hat_subdivision",
+      "family": "rhythm",
+      "name": "Alternate closed/open hat articulation",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "drums notes 42/46; durations in ticks",
+        "execution_path": "tracks.events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/events"
+      },
+      "use_when": [
+        "High-frequency subdivisions clarify groove"
+      ],
+      "failure_modes": [
+        "Busy hats can fatigue listeners"
+      ],
+      "engine_actions": [
+        "tracks.events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "velocity_humanization",
+      "family": "rhythm",
+      "name": "Apply bounded seeded velocity deviations",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "base velocity plus [-5,5], clipped [1,127]",
+        "execution_path": "tracks.events.velocity",
+        "schema_ref": "schemas/remix-plan.schema.json#/$defs/note/properties/velocity"
+      },
+      "use_when": [
+        "Repeated acoustic attacks need dynamic variation"
+      ],
+      "failure_modes": [
+        "Random loudness alone is not human timing"
+      ],
+      "engine_actions": [
+        "tracks.events.velocity"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "phrase_fill",
+      "family": "rhythm",
+      "name": "Change drum density at phrase boundaries",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "bar-relative drum positions",
+        "execution_path": "tracks.events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/events"
+      },
+      "use_when": [
+        "The arrangement needs a transition cue"
+      ],
+      "failure_modes": [
+        "A fill can overtake the voice"
+      ],
+      "engine_actions": [
+        "tracks.events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "pitch_uncertainty",
+      "family": "harmony",
+      "name": "Use pitch only above a confidence threshold",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "pitch confidence >=0.65 or safe default tonic",
+        "execution_path": "analysis.pitch_confidence",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/analysis/properties/pitch_confidence"
+      },
+      "use_when": [
+        "Periodic source frames support a tonal estimate"
+      ],
+      "failure_modes": [
+        "Octave errors; speech is not a musical key"
+      ],
+      "engine_actions": [
+        "analysis.pitch_confidence"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "chord_function",
+      "family": "harmony",
+      "name": "Choose a bounded minor-key progression",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "four-step diatonic progression from the rule grammar",
+        "execution_path": "tracks.events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/events"
+      },
+      "use_when": [
+        "Harmony should repeat coherently across phrases"
+      ],
+      "failure_modes": [
+        "Diatonic legality is not harmonic taste"
+      ],
+      "engine_actions": [
+        "tracks.events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "bassline",
+      "family": "harmony",
+      "name": "Develop roots and short bass responses",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "bass pitch/duration and onset pattern",
+        "execution_path": "tracks.events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/events"
+      },
+      "use_when": [
+        "The low end should support chord movement"
+      ],
+      "failure_modes": [
+        "Bass clashes or excessive sustain muddy the mix"
+      ],
+      "engine_actions": [
+        "tracks.events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "voice_leading",
+      "family": "harmony",
+      "name": "Choose nearby chord inversions",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "three-note voicings minimizing distance to prior chord",
+        "execution_path": "tracks.events.note",
+        "schema_ref": "schemas/remix-plan.schema.json#/$defs/note/properties/note"
+      },
+      "use_when": [
+        "Repeated chord changes should avoid large jumps"
+      ],
+      "failure_modes": [
+        "Minimum motion can sound static"
+      ],
+      "engine_actions": [
+        "tracks.events.note"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "staggered_chord",
+      "family": "harmony",
+      "name": "Offset attacks within a chord",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "small ordered offsets within a chord",
+        "execution_path": "tracks.events.start_tick",
+        "schema_ref": "schemas/remix-plan.schema.json#/$defs/note/properties/start_tick"
+      },
+      "use_when": [
+        "A chord benefits from articulated attack"
+      ],
+      "failure_modes": [
+        "Too much staggering sounds like unintended arpeggiation"
+      ],
+      "engine_actions": [
+        "tracks.events.start_tick"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "chord_stab",
+      "family": "harmony",
+      "name": "Use short offbeat organ/chord stabs",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "short note duration; offbeat positions",
+        "execution_path": "tracks.events.duration_ticks",
+        "schema_ref": "schemas/remix-plan.schema.json#/$defs/note/properties/duration_ticks"
+      },
+      "use_when": [
+        "Reggae grammar leaves space between accents"
+      ],
+      "failure_modes": [
+        "Short releases can sound abrupt"
+      ],
+      "engine_actions": [
+        "tracks.events.duration_ticks"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.reggae.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "source_rhythm_answer",
+      "family": "harmony",
+      "name": "Map source onset motif into melodic answers",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "source-derived motif ticks; chord-tone notes",
+        "execution_path": "tracks.events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/events"
+      },
+      "use_when": [
+        "Alternating instrumental response should relate to the call"
+      ],
+      "failure_modes": [
+        "This maps rhythm, not semantic meaning or pitch contour"
+      ],
+      "engine_actions": [
+        "tracks.events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "tonic_ending",
+      "family": "harmony",
+      "name": "Resolve the final bar to the tonic",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "last-bar chord and bass root",
+        "execution_path": "tracks.events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/events"
+      },
+      "use_when": [
+        "A finite performance needs closure"
+      ],
+      "failure_modes": [
+        "Predictable cadences can reduce surprise"
+      ],
+      "engine_actions": [
+        "tracks.events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "sparse_intro",
+      "family": "arrangement",
+      "name": "Begin with fewer layers",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "intro starts bar 0, two bars",
+        "execution_path": "sections",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/sections"
+      },
+      "use_when": [
+        "Leave space before the main groove"
+      ],
+      "failure_modes": [
+        "A sparse opening may feel empty"
+      ],
+      "engine_actions": [
+        "sections"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "delayed_hook",
+      "family": "arrangement",
+      "name": "Reveal the complete voice after instrumental setup",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "clean hook at bar 0 or bar 2 depending on seed/style",
+        "execution_path": "voice_events.start_tick",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/voice_events/items/properties/start_tick"
+      },
+      "use_when": [
+        "Avoid using the raw phrase as every opening"
+      ],
+      "failure_modes": [
+        "Late reveal can weaken source connection"
+      ],
+      "engine_actions": [
+        "voice_events.start_tick"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "layer_entry",
+      "family": "arrangement",
+      "name": "Introduce instruments as the groove develops",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "first event time by track",
+        "execution_path": "tracks.events",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/events"
+      },
+      "use_when": [
+        "Build energy across a phrase"
+      ],
+      "failure_modes": [
+        "Too many entries at once obscure contrast"
+      ],
+      "engine_actions": [
+        "tracks.events"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "contrast_break",
+      "family": "arrangement",
+      "name": "Reduce instrumental activity for a break",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "break start_bar and bars",
+        "execution_path": "sections",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/sections"
+      },
+      "use_when": [
+        "The source needs a clear return point"
+      ],
+      "failure_modes": [
+        "Break can feel disconnected from the groove"
+      ],
+      "engine_actions": [
+        "sections"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "motif_return",
+      "family": "arrangement",
+      "name": "Return with a related motif and changed density",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "return section; source motif/chord-tone variation",
+        "execution_path": "sections",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/sections"
+      },
+      "use_when": [
+        "A performance needs recognizable development"
+      ],
+      "failure_modes": [
+        "A return without sufficient change is repetitive"
+      ],
+      "engine_actions": [
+        "sections"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "planned_tail",
+      "family": "arrangement",
+      "name": "Reserve a release tail after the final cadence",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "500..10000 ms with native release validation",
+        "execution_path": "tail_ms",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tail_ms"
+      },
+      "use_when": [
+        "Notes must decay without truncation"
+      ],
+      "failure_modes": [
+        "Long tails may sound unfinished"
+      ],
+      "engine_actions": [
+        "tail_ms"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "gain_staging",
+      "family": "mix",
+      "name": "Set bounded per-track and vocal levels",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "instrument [-60,12] dB; vocal [-30,0] dB",
+        "execution_path": "tracks.gain_db",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/gain_db"
+      },
+      "use_when": [
+        "Layers need headroom before the limiter"
+      ],
+      "failure_modes": [
+        "Numerical headroom does not guarantee balance"
+      ],
+      "engine_actions": [
+        "tracks.gain_db"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "clean_hook_duck",
+      "family": "mix",
+      "name": "Duck instruments around intact vocal hooks",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "fixed -16.4781748189 dB with smoothed envelope",
+        "execution_path": "mix.clean_hook_instrument_duck_db",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/mix/properties/clean_hook_instrument_duck_db"
+      },
+      "use_when": [
+        "The clean hook needs space"
+      ],
+      "failure_modes": [
+        "Deep ducking can produce distracting level changes"
+      ],
+      "engine_actions": [
+        "mix.clean_hook_instrument_duck_db"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "stereo_placement",
+      "family": "mix",
+      "name": "Spread instruments and chopped calls",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "pan [-1,1]; clean hooks stay centered",
+        "execution_path": "tracks.pan",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/tracks/items/properties/pan"
+      },
+      "use_when": [
+        "Separate competing layers spatially"
+      ],
+      "failure_modes": [
+        "Wide placement can reduce mono consistency"
+      ],
+      "engine_actions": [
+        "tracks.pan"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "room_reflections",
+      "family": "mix",
+      "name": "Add bounded instrumental early reflections",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "wet mix [0,0.35]; 213ms tail allowance",
+        "execution_path": "mix.instrument_room_mix",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/mix/properties/instrument_room_mix"
+      },
+      "use_when": [
+        "Dry sample attacks need a common space"
+      ],
+      "failure_modes": [
+        "Reflections can blur transients"
+      ],
+      "engine_actions": [
+        "mix.instrument_room_mix"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    },
+    {
+      "id": "soft_peak_ceiling",
+      "family": "mix",
+      "name": "Apply a soft-knee output ceiling",
+      "status": "existing_engine_rule_or_DSP",
+      "parameters": {
+        "contract": "sample ceiling [-24,-0.1] dBFS",
+        "execution_path": "mix.master_target_peak_dbfs",
+        "schema_ref": "schemas/remix-plan.schema.json#/properties/mix/properties/master_target_peak_dbfs"
+      },
+      "use_when": [
+        "Layer sums need bounded sample peaks"
+      ],
+      "failure_modes": [
+        "Peak limiting can color sound; not true-peak certification"
+      ],
+      "engine_actions": [
+        "mix.master_target_peak_dbfs"
+      ],
+      "audio_examples": [
+        {
+          "path": "renders/r0-final-evaluation/rules.hiphop.wav",
+          "start_seconds": 0,
+          "end_seconds": 30,
+          "purpose": "Context example from original/cleared assets; not an isolated causal ablation or human acceptance"
+        }
+      ]
+    }
+  ]
+}

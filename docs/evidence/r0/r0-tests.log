@@ -1,0 +1,16 @@
+test_absolute_event_frames_and_order (__main__.R0.test_absolute_event_frames_and_order) ... ok
+test_duplicate_and_split_leakage (__main__.R0.test_duplicate_and_split_leakage) ... ok
+test_fail_closed_rights (__main__.R0.test_fail_closed_rights) ... ok
+test_five_original_records (__main__.R0.test_five_original_records) ... ok
+test_json_duplicate_nonfinite_unknown (__main__.R0.test_json_duplicate_nonfinite_unknown) ... ok
+test_native_rejects_unschedulable_and_conflicting_actions (__main__.R0.test_native_rejects_unschedulable_and_conflicting_actions) ... ok
+test_plan_policy_mutations (__main__.R0.test_plan_policy_mutations) ... ok
+test_structural_not_seed_novelty (__main__.R0.test_structural_not_seed_novelty) ... ok
+test_synthetic_claim_requires_matching_signal (__main__.R0.test_synthetic_claim_requires_matching_signal) ... ok
+test_taxonomy_examples (__main__.R0.test_taxonomy_examples) ... ok
+test_three_verified_native_replays (__main__.R0.test_three_verified_native_replays) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 24.786s
+
+OK

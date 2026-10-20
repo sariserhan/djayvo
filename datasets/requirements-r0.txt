@@ -1,0 +1,2 @@
+# Offline tooling only; use a separate project virtual environment, never ~/mlx-env.
+jsonschema==4.19.2

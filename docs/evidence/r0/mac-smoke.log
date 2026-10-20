@@ -1,0 +1,132 @@
+-- Found Python3: /Users/serhansari/Documents/projects/djayvo/.venv-build/bin/python (found suitable version "3.14.6", minimum required is "3.9") found components: Interpreter
+-- Configuring done (1.3s)
+-- Generating done (0.2s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-mac
+[  3%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/plan.cpp.o
+[  6%] Building CXX object CMakeFiles/jamloom_core.dir/core/arrangement/demo.cpp.o
+[ 10%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/analysis.cpp.o
+[ 13%] Building CXX object CMakeFiles/jamloom_core.dir/core/arrangement/remix.cpp.o
+[ 16%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/remix_plan.cpp.o
+[ 20%] Building CXX object CMakeFiles/jamloom_core.dir/core/instruments/voice.cpp.o
+[ 23%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/live.cpp.o
+In file included from /Users/serhansari/Documents/projects/djayvo/core/audio/live.cpp:3:
+/Users/serhansari/Documents/projects/djayvo/core/audio/../instruments/performance_voices.h:65:42: warning: declaration shadows a field of 'jamloom::MouthFilter' [-Wshadow]
+   65 |         double next(double input, double smoothing) noexcept {
+      |                                          ^
+/Users/serhansari/Documents/projects/djayvo/core/audio/../instruments/performance_voices.h:75:12: note: previous declaration is here
+   75 |     double smoothing = 0;
+      |            ^
+1 warning generated.
+[ 26%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/session.cpp.o
+[ 30%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/renderer.cpp.o
+[ 33%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/input.cpp.o
+[ 36%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/remix_renderer.cpp.o
+[ 40%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/remix_file.cpp.o
+[ 43%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/c_api.cpp.o
+[ 46%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/wav.cpp.o
+[ 50%] Linking CXX static library libjamloom_core.a
+[ 50%] Built target jamloom_core
+[ 56%] Building CXX object CMakeFiles/jamloom_render.dir/tools/cli/main.cpp.o
+[ 56%] Building CXX object CMakeFiles/jamloom_session_render.dir/core/tests/session_render.cpp.o
+[ 60%] Building CXX object CMakeFiles/jamloom_live_tests.dir/core/tests/live_tests.cpp.o
+[ 63%] Building CXX object CMakeFiles/jamloom_remix.dir/tools/cli/remix_main.cpp.o
+[ 66%] Linking CXX executable jamloom_live_tests
+[ 66%] Built target jamloom_live_tests
+[ 70%] Building CXX object CMakeFiles/jamloom_remix.dir/tools/cli/plan_import.cpp.o
+[ 73%] Linking CXX executable jamloom_session_render
+[ 73%] Built target jamloom_session_render
+[ 76%] Building CXX object CMakeFiles/jamloom_tests.dir/core/tests/tests.cpp.o
+[ 80%] Linking CXX executable jamloom_render
+[ 80%] Built target jamloom_render
+[ 83%] Building CXX object CMakeFiles/jamloom_remix_tests.dir/core/tests/remix_tests.cpp.o
+[ 86%] Building C object CMakeFiles/jamloom_c_smoke.dir/core/tests/c_api_smoke.c.o
+[ 90%] Linking CXX executable jamloom_c_smoke
+[ 90%] Built target jamloom_c_smoke
+[ 93%] Linking CXX executable jamloom_remix
+[ 93%] Built target jamloom_remix
+[ 96%] Linking CXX executable jamloom_tests
+[ 96%] Built target jamloom_tests
+[100%] Linking CXX executable jamloom_remix_tests
+[100%] Built target jamloom_remix_tests
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+      Start  1: live_instruments
+ 1/15 Test  #1: live_instruments .................   Passed    2.34 sec
+      Start  2: core
+ 2/15 Test  #2: core .............................   Passed    3.46 sec
+      Start  3: remix_core
+ 3/15 Test  #3: remix_core .......................   Passed   59.84 sec
+      Start  4: c_abi
+ 4/15 Test  #4: c_abi ............................   Passed    6.23 sec
+      Start  5: acoustic_assets
+ 5/15 Test  #5: acoustic_assets ..................   Passed    6.43 sec
+      Start  6: sustained_assets
+ 6/15 Test  #6: sustained_assets .................   Passed    0.09 sec
+      Start  7: guitar_assets
+ 7/15 Test  #7: guitar_assets ....................   Passed    6.30 sec
+      Start  8: electronic_assets
+ 8/15 Test  #8: electronic_assets ................   Passed    1.40 sec
+      Start  9: wav_integration
+ 9/15 Test  #9: wav_integration ..................   Passed    8.46 sec
+      Start 10: remix_integration
+10/15 Test #10: remix_integration ................   Passed   46.41 sec
+      Start 11: word_timing
+11/15 Test #11: word_timing ......................   Passed    0.63 sec
+      Start 12: tooling
+12/15 Test #12: tooling ..........................   Passed   17.57 sec
+      Start 13: listening_review
+13/15 Test #13: listening_review .................   Passed    0.76 sec
+      Start 14: evaluation_preparation
+14/15 Test #14: evaluation_preparation ...........   Passed  150.31 sec
+      Start 15: plan_import
+15/15 Test #15: plan_import ......................   Passed   33.68 sec
+
+100% tests passed out of 15
+
+Total Test time (real) = 343.95 sec
+PASS: renders/r0-mac-smoke/remix.hiphop.wav
+PASS: renders/r0-mac-smoke/remix.reggae.wav
+PASS: renders/r0-mac-smoke/remix.experimental.wav
+PASS: complete export renders/r0-mac-smoke/remix.complete.json
+Listening/recognizability: NOT RUN
+PASS: 26 complete, unchanged export artifacts
+{
+  "comparisons": {
+    "hiphop": {
+      "status": "FAIL",
+      "error": "musical/source/clip decisions differ"
+    },
+    "reggae": {
+      "status": "FAIL",
+      "error": "musical/source/clip decisions differ"
+    },
+    "experimental": {
+      "status": "FAIL",
+      "error": "musical/source/clip decisions differ"
+    }
+  },
+  "candidate_environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "cpu_brand": "Apple M5",
+    "memory_bytes": 17179869184,
+    "cpu_cores": 10,
+    "macos_version": "26.7.1",
+    "macos_build": "25G241",
+    "kernel_release": "25.6.0",
+    "xcode": "Xcode 27.1\nBuild version 27A9275",
+    "developer_directory": "/Applications/Xcode.app/Contents/Developer",
+    "sdk_version": "27.0",
+    "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "cmake": "cmake version 4.4.2",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "python_executable": "/Users/serhansari/Documents/projects/djayvo/.venv-build/bin/python",
+    "renderer_binary": "build-mac/jamloom_remix: Mach-O 64-bit executable arm64"
+  },
+  "comparison_gate": "FAIL",
+  "apple_m5_gate": "FAIL",
+  "tolerances": {
+    "maximum_pcm_error": 0.001,
+    "rms_pcm_error": 0.0001
+  },
+  "listening_gate": "NOT RUN"
+}

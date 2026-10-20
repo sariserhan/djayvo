@@ -1,0 +1,16 @@
+{
+  "changed_fields": [
+    "strategy",
+    "tempo_bpm",
+    "bars",
+    "sections",
+    "patches",
+    "notes",
+    "voice_events",
+    "mix"
+  ],
+  "note_event_jaccard_distance": 0.9968847352024922,
+  "meaningful_structural_variation": true,
+  "perceptual_originality": "NOT RUN",
+  "copyright_novelty": "NOT RUN"
+}

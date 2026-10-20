@@ -1,0 +1,49 @@
+{
+  "strategy": "hiphop",
+  "tempo_bpm": 96.0,
+  "bars": 12,
+  "key": {
+    "tonic_midi": 63,
+    "mode": "minor"
+  },
+  "sections": [
+    {
+      "name": "intro",
+      "start_bar": 0,
+      "bars": 2
+    },
+    {
+      "name": "groove",
+      "start_bar": 2,
+      "bars": 4
+    },
+    {
+      "name": "break",
+      "start_bar": 6,
+      "bars": 2
+    },
+    {
+      "name": "return",
+      "start_bar": 8,
+      "bars": 3
+    },
+    {
+      "name": "ending",
+      "start_bar": 11,
+      "bars": 1
+    }
+  ],
+  "patches": [
+    "piano:default",
+    "bass:default",
+    "drums:default"
+  ],
+  "mix": {
+    "master_target_peak_dbfs": -1,
+    "clean_hook_instrument_duck_db": -16.4781748189,
+    "instrument_room_mix": 0.18
+  },
+  "note_count": 170,
+  "voice_event_count": 7,
+  "approval": "Inspection only; use validate with the actual source ledger and renderer"
+}

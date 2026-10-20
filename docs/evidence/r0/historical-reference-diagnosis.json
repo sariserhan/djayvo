@@ -1,0 +1,71 @@
+{
+  "hiphop": {
+    "reference_schema": "1.0-remix",
+    "current_schema": "1.0-remix",
+    "changed_fields": [
+      "mix",
+      "analysis",
+      "sections",
+      "voice_clips",
+      "voice_events",
+      "tracks"
+    ],
+    "reference_patches": [
+      "piano",
+      "bass",
+      "drums"
+    ],
+    "current_patches": [
+      "piano",
+      "bass",
+      "drums"
+    ]
+  },
+  "reggae": {
+    "reference_schema": "1.0-remix",
+    "current_schema": "1.5-remix",
+    "changed_fields": [
+      "schema_version",
+      "mix",
+      "analysis",
+      "sections",
+      "voice_clips",
+      "voice_events",
+      "tracks"
+    ],
+    "reference_patches": [
+      "piano",
+      "bass",
+      "drums"
+    ],
+    "current_patches": [
+      "organ",
+      "bass",
+      "drums"
+    ]
+  },
+  "experimental": {
+    "reference_schema": "1.0-remix",
+    "current_schema": "1.5-remix",
+    "changed_fields": [
+      "schema_version",
+      "mix",
+      "analysis",
+      "sections",
+      "voice_clips",
+      "voice_events",
+      "tracks"
+    ],
+    "reference_patches": [
+      "piano",
+      "bass",
+      "drums"
+    ],
+    "current_patches": [
+      "piano",
+      "bass",
+      "drums",
+      "lead"
+    ]
+  }
+}

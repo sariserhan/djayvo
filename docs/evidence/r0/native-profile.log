@@ -1,0 +1,21 @@
+PASS: renders/r0-evaluation/profile.hiphop.wav
+PASS: complete export renders/r0-evaluation/profile.complete.json
+Listening/recognizability: NOT RUN
+        4.15 real         0.75 user         0.08 sys
+            31326208  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                2332  page reclaims
+                 104  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  13  voluntary context switches
+                6274  involuntary context switches
+          6908094668  instructions retired
+          1707443682  cycles elapsed
+            29835672  peak memory footprint

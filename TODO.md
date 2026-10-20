@@ -828,3 +828,17 @@ table and [progress](docs/progress.md) together; do not invent scores or dates.
   manual mixing and offline generation. Four Mac/Linux/WASM WAVs and event streams
   identical; 34 session checks, 48 DJ regressions, 40 voice regressions, 22 unit
   checks and 15/15 native suites per OS PASS. [Evidence](docs/prepared-session.md).
+
+## R0 — improvisation intelligence foundation (2026-10-20)
+
+Latest authorization is R0 only; stop for review before R1/data collection/training.
+[Full report and reproducible evidence](docs/r0-report.md).
+
+- [x] **IR01 — PASS:** 35-technique taxonomy and analyzer/director/shared-engine architecture.
+- [x] **IR02 — PASS:** Versioned plan envelope, native validation/replay, inspector/diff, invalid-plan tests.
+- [x] **IR03 — PASS:** Fail-closed provenance ledger and five synthetic/original evaluation records; training disabled.
+- [x] **IR04 — PASS:** Three structurally distinct plans, actual WAVs/stems/control, exact block-size replay and timing checks.
+- [x] **IR05 — PASS:** M5 native 15/15 suites and current-build comparison; R0 11-test suite.
+- [ ] **IR06 — PARTIAL:** Overall evidence; historical M0 reference comparison FAIL (different arrangements), current Linux execution NOT RUN.
+- [ ] **IR07 — NOT RUN:** Independent human musical-quality/recognition/preferences. Blank protocol/materials prepared; no scores invented.
+- [ ] **IR08 — NOT RUN:** R1 demonstration collection and all training await explicit authorization.

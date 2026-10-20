@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0-r0-dataset",
+  "records": [
+    {
+      "id": "r0_phrase",
+      "asset": {
+        "path": "renders/fixtures/synthetic-speech.wav",
+        "sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e"
+      },
+      "origin": "preserved_synthetic_fixture",
+      "rights_owner": "Jamloom project original test material; outbound license unselected",
+      "allowed_uses": [
+        "evaluation"
+      ],
+      "training_opt_in": false,
+      "identifiable_people": false,
+      "voice_consent": "not_applicable_nonperson",
+      "authorization": {
+        "path": "assets/manifests/m0-remix.json",
+        "sha256": "c50e894fa1ffcb864d1b0786d0e5d18b05021356823fa3f7aef398ad5d46b970"
+      },
+      "withdrawn": false,
+      "retention": {
+        "expires_on": "2027-10-20",
+        "deletion": "delete_asset_and_descendants_rebuild_if_used"
+      },
+      "split": "test",
+      "source_group": "r0_phrase",
+      "session_group": "r0_phrase",
+      "speaker_group": null,
+      "performer_group": null,
+      "restrictions": "local_R0_evaluation_only_no_training_or_distribution"
+    },
+    {
+      "id": "r0_pulses",
+      "asset": {
+        "path": "renders/r0-final-fixtures/r0_pulses.wav",
+        "sha256": "76e3fc29ea9487b2a4ac6f05fcff2bdba6ec214f7743182f339662c7eb35cfa4"
+      },
+      "origin": "original_r0_signal",
+      "rights_owner": "Jamloom project original test material; outbound license unselected",
+      "allowed_uses": [
+        "evaluation"
+      ],
+      "training_opt_in": false,
+      "identifiable_people": false,
+      "voice_consent": "not_applicable_nonperson",
+      "authorization": {
+        "path": "scripts/r0.py",
+        "sha256": "52f668feb503a7ea804ffc97600fc480f0079409d53484c7fa9ff583f6053843"
+      },
+      "withdrawn": false,
+      "retention": {
+        "expires_on": "2027-10-20",
+        "deletion": "delete_asset_and_descendants_rebuild_if_used"
+      },
+      "split": "test",
+      "source_group": "r0_pulses",
+      "session_group": "r0_pulses",
+      "speaker_group": null,
+      "performer_group": null,
+      "restrictions": "local_R0_evaluation_only_no_training_or_distribution"
+    },
+    {
+      "id": "r0_glide",
+      "asset": {
+        "path": "renders/r0-final-fixtures/r0_glide.wav",
+        "sha256": "776ac03ffb3afb7d30da2c4587d82c9ae359291ccfff26a9d4f41a61654e9480"
+      },
+      "origin": "original_r0_signal",
+      "rights_owner": "Jamloom project original test material; outbound license unselected",
+      "allowed_uses": [
+        "evaluation"
+      ],
+      "training_opt_in": false,
+      "identifiable_people": false,
+      "voice_consent": "not_applicable_nonperson",
+      "authorization": {
+        "path": "scripts/r0.py",
+        "sha256": "52f668feb503a7ea804ffc97600fc480f0079409d53484c7fa9ff583f6053843"
+      },
+      "withdrawn": false,
+      "retention": {
+        "expires_on": "2027-10-20",
+        "deletion": "delete_asset_and_descendants_rebuild_if_used"
+      },
+      "split": "test",
+      "source_group": "r0_glide",
+      "session_group": "r0_glide",
+      "speaker_group": null,
+      "performer_group": null,
+      "restrictions": "local_R0_evaluation_only_no_training_or_distribution"
+    },
+    {
+      "id": "r0_double_hits",
+      "asset": {
+        "path": "renders/r0-final-fixtures/r0_double_hits.wav",
+        "sha256": "80bc17db539db26e09ac40f4667acbfde031f126772752235dc039714b068d93"
+      },
+      "origin": "original_r0_signal",
+      "rights_owner": "Jamloom project original test material; outbound license unselected",
+      "allowed_uses": [
+        "evaluation"
+      ],
+      "training_opt_in": false,
+      "identifiable_people": false,
+      "voice_consent": "not_applicable_nonperson",
+      "authorization": {
+        "path": "scripts/r0.py",
+        "sha256": "52f668feb503a7ea804ffc97600fc480f0079409d53484c7fa9ff583f6053843"
+      },
+      "withdrawn": false,
+      "retention": {
+        "expires_on": "2027-10-20",
+        "deletion": "delete_asset_and_descendants_rebuild_if_used"
+      },
+      "split": "test",
+      "source_group": "r0_double_hits",
+      "session_group": "r0_double_hits",
+      "speaker_group": null,
+      "performer_group": null,
+      "restrictions": "local_R0_evaluation_only_no_training_or_distribution"
+    },
+    {
+      "id": "r0_contour",
+      "asset": {
+        "path": "renders/r0-final-fixtures/r0_contour.wav",
+        "sha256": "d3cf225059fd8ae259ddf43f9067325b57cfb87fbc22f68715f2018860784cc8"
+      },
+      "origin": "original_r0_signal",
+      "rights_owner": "Jamloom project original test material; outbound license unselected",
+      "allowed_uses": [
+        "evaluation"
+      ],
+      "training_opt_in": false,
+      "identifiable_people": false,
+      "voice_consent": "not_applicable_nonperson",
+      "authorization": {
+        "path": "scripts/r0.py",
+        "sha256": "52f668feb503a7ea804ffc97600fc480f0079409d53484c7fa9ff583f6053843"
+      },
+      "withdrawn": false,
+      "retention": {
+        "expires_on": "2027-10-20",
+        "deletion": "delete_asset_and_descendants_rebuild_if_used"
+      },
+      "split": "test",
+      "source_group": "r0_contour",
+      "session_group": "r0_contour",
+      "speaker_group": null,
+      "performer_group": null,
+      "restrictions": "local_R0_evaluation_only_no_training_or_distribution"
+    }
+  ]
+}

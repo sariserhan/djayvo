@@ -1,0 +1,158 @@
+{
+  "schema_version": "1.0-r0-evaluation",
+  "status": "PASS",
+  "source_sha256": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+  "candidate_batch_seconds": 30.16808420800953,
+  "renders": {
+    "hiphop": {
+      "status": "PASS",
+      "wav": {
+        "file": "renders/r0-final-evaluation/replay-hiphop.hiphop.wav",
+        "sha256": "0fe9d9715326d4c9a284825657d35421ef5c8a86d0b966927a95c2b798e71eac",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "duration_seconds": 32.0,
+        "peak_linear": 0.403167724609375,
+        "peak_dbfs": -7.890284847971737,
+        "rms_dbfs_left": -27.889631947743588,
+        "rms_dbfs_right": -28.61453189232825,
+        "dc_left": 0.00010904773076375325,
+        "dc_right": 0.00010728275775909424,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 4,
+        "last_nonzero_frame": 1428363,
+        "max_adjacent_sample_step": 0.134033203125,
+        "last_100ms_peak": 0.0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "exact_pcm": true,
+      "max_pcm_difference": 0,
+      "rms_pcm_difference": 0,
+      "event_frame_agreement": true,
+      "render_seconds": 3.346257874974981,
+      "offline_render_realtime_factor": 0.10457055859296815,
+      "time_to_first_audible_result": "NOT RUN: offline full-file export, not streaming",
+      "human_recognizability": "NOT RUN"
+    },
+    "reggae": {
+      "status": "PASS",
+      "wav": {
+        "file": "renders/r0-final-evaluation/replay-reggae.reggae.wav",
+        "sha256": "cd91037ecdd2be2a7f3a716da1a2b7b0eab4c39fbf4de914f022364bb768f71c",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1536000,
+        "duration_seconds": 32.0,
+        "peak_linear": 0.40606689453125,
+        "peak_dbfs": -7.828048316993749,
+        "rms_dbfs_left": -27.11007100526426,
+        "rms_dbfs_right": -28.36936296557362,
+        "dc_left": 9.137125809987386e-05,
+        "dc_right": 9.255111217498779e-05,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 2,
+        "last_nonzero_frame": 1417868,
+        "max_adjacent_sample_step": 0.135711669921875,
+        "last_100ms_peak": 0.0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "exact_pcm": true,
+      "max_pcm_difference": 0,
+      "rms_pcm_difference": 0,
+      "event_frame_agreement": true,
+      "render_seconds": 5.012648917007027,
+      "offline_render_realtime_factor": 0.1566452786564696,
+      "time_to_first_audible_result": "NOT RUN: offline full-file export, not streaming",
+      "human_recognizability": "NOT RUN"
+    },
+    "experimental": {
+      "status": "PASS",
+      "wav": {
+        "file": "renders/r0-final-evaluation/replay-experimental.experimental.wav",
+        "sha256": "974c7a89d0c575a979fadb7c4aaa59de8845d1f06ebe9063caf3fb59fda992c6",
+        "format": "PCM16 stereo little-endian",
+        "sample_rate": 48000,
+        "frames": 1582452,
+        "duration_seconds": 32.96775,
+        "peak_linear": 0.443603515625,
+        "peak_dbfs": -7.060100413194801,
+        "rms_dbfs_left": -26.831800855843756,
+        "rms_dbfs_right": -27.251776354496545,
+        "dc_left": 0.00011125575042126081,
+        "dc_right": 0.00011471987541427007,
+        "full_scale_samples": 0,
+        "first_nonzero_frame": 532,
+        "last_nonzero_frame": 1481519,
+        "max_adjacent_sample_step": 0.1346435546875,
+        "last_100ms_peak": 0.0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "exact_pcm": true,
+      "max_pcm_difference": 0,
+      "rms_pcm_difference": 0,
+      "event_frame_agreement": true,
+      "render_seconds": 2.1931355420092586,
+      "offline_render_realtime_factor": 0.06652366455124352,
+      "time_to_first_audible_result": "NOT RUN: offline full-file export, not streaming",
+      "human_recognizability": "NOT RUN"
+    }
+  },
+  "comparisons": {
+    "hiphop_vs_reggae": {
+      "changed_fields": [
+        "strategy",
+        "tempo_bpm",
+        "bars",
+        "sections",
+        "patches",
+        "notes",
+        "voice_events",
+        "mix"
+      ],
+      "note_event_jaccard_distance": 0.9968847352024922,
+      "meaningful_structural_variation": true,
+      "perceptual_originality": "NOT RUN",
+      "copyright_novelty": "NOT RUN"
+    },
+    "hiphop_vs_experimental": {
+      "changed_fields": [
+        "strategy",
+        "tempo_bpm",
+        "bars",
+        "sections",
+        "patches",
+        "notes",
+        "voice_events"
+      ],
+      "note_event_jaccard_distance": 0.9971264367816092,
+      "meaningful_structural_variation": true,
+      "perceptual_originality": "NOT RUN",
+      "copyright_novelty": "NOT RUN"
+    },
+    "reggae_vs_experimental": {
+      "changed_fields": [
+        "strategy",
+        "tempo_bpm",
+        "bars",
+        "sections",
+        "patches",
+        "notes",
+        "voice_events",
+        "mix"
+      ],
+      "note_event_jaccard_distance": 1.0,
+      "meaningful_structural_variation": true,
+      "perceptual_originality": "NOT RUN",
+      "copyright_novelty": "NOT RUN"
+    }
+  },
+  "human_quality": "NOT RUN",
+  "human_sample_size": 0,
+  "confidence_intervals": null,
+  "effect_sizes": null,
+  "third_party_training": "NOT RUN; ingestion disabled",
+  "model_training": "NOT RUN",
+  "cost_paid_services_usd": 0,
+  "scope": "one preserved synthetic phrase, three strategies; no quality/generalization claim"
+}
