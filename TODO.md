@@ -11,7 +11,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Last updated: 2026-10-19 (America/New_York). Latest validation: [Saved performances](docs/saved-mixes.md); [Clean website build](docs/vercel-clean-build.md); [Neon setup](docs/neon-setup.md).
+Last updated: 2026-10-20 (America/New_York). Latest validation: [Saved performances](docs/saved-mixes.md); [Clean website build](docs/vercel-clean-build.md); [Neon setup](docs/neon-setup.md).
 Latest audio validation: [Bounded audio wake-up](docs/audio-resume.md).
 Latest engine improvement: [Precomputed common interpolation coefficients](docs/interpolation-table.md).
 Latest research: [Phrase articulation comparisons](docs/phrase-articulation.md); [adapter effect and split audit](docs/style-adapter-effect.md); [completed Blood Club GPU trial](docs/blood-training-run.md).
@@ -28,6 +28,10 @@ the source of truth and is not modified by this tracker.
 
 - [x] BR01: Rename current app, packages, native/WASM engine, exports, scripts and active documentation to Jamloom; preserve saved data and historical evidence. [Validation](docs/jamloom-rename.md). [Public release and renamed GitHub connection](docs/brand-live.md).
 - [ ] BR02 — PARTIAL: Owner reports purchasing `jamloom.com`; `jamloom-audio` confirmed live. Production origin prepared; private R2 access, CORS, lifecycle configuration and 10 provider gates PASS. Resend domain owner-confirmed Verified; hello sender/support Reply-To configured. Shared branded email templates pass 54 browser layout cases; real inbox clients/delivery remain NOT RUN. Canonical www origin, Vercel settings and live R2 CORS aligned; existing production release redeployed, live auth/redirect/origin checks PASS; [www validation](docs/www-origin.md). Hosted account/email workflow, actual lifecycle expiry and scheduled cleanup remain NOT RUN. Trademark clearance is unverified. [Setup](docs/production-domain.md), [R2 evidence](docs/r2-live.md), [email setup](docs/resend-setup.md), [templates](docs/email-templates.md).
+
+## Deployment reliability
+
+- [ ] **DEP01 — PARTIAL:** Repair partial Emscripten directories restored by Vercel build cache. Failure reproduced; fresh/partial/warm bootstrap and preservation checks, full local build and bundle audit PASS. Cached production deployment and live page/engine checks PASS. GitHub push remains pending; remote main still lacks the fix. Fix `66031e3`; [evidence](docs/deploy-cache.md).
 
 ## Public interface
 

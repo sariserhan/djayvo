@@ -1,0 +1,20 @@
+[
+  {
+    "name": "jamloom_web.wasm",
+    "status": "PASS",
+    "httpStatus": 200,
+    "bytes": 14153566,
+    "sha256": "1aac34227acb177b11c712a39aa8c1c23ec036b9e31e35c66d4c6f04bf068c57",
+    "validWasm": true,
+    "identicalToLocalBuild": true
+  },
+  {
+    "name": "jamloom_live.wasm",
+    "status": "PASS",
+    "httpStatus": 200,
+    "bytes": 13801608,
+    "sha256": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8",
+    "validWasm": true,
+    "identicalToLocalBuild": true
+  }
+]

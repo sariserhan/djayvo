@@ -1,0 +1,7 @@
+{
+  "deployment": "dpl_FnKTx3qLzsW3mXJmEmaBbE7Lg7uM",
+  "filter": "level=error, since=10m, limit=20",
+  "status": "PASS",
+  "returnedErrorLogs": 0,
+  "continuousMonitoring": "NOT RUN"
+}

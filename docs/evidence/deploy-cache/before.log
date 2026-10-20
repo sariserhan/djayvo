@@ -1,0 +1,10 @@
+PASS: fresh-and-warm
+Traceback (most recent call last):
+  File "tests/integration/verify_web_sdk.py", line 66, in <module>
+    run('partial-cache-and-warm', partial=True)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/integration/verify_web_sdk.py", line 56, in run
+    assert result.returncode == 42 and 'BOOTSTRAP_READY' in result.stdout, result.stderr
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: fatal: destination path '/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-sdk-test-ugafjbhm/partial-cache-and-warm/build-web-tools/emsdk' already exists and is not an empty directory.
+

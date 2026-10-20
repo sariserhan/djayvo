@@ -1,0 +1,26 @@
+{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_FnKTx3qLzsW3mXJmEmaBbE7Lg7uM",
+    "url": "https://site-jc3z5yovt-ssari.vercel.app",
+    "inspectorUrl": "https://vercel.com/ssari/site/FnKTx3qLzsW3mXJmEmaBbE7Lg7uM",
+    "readyState": "READY",
+    "target": "production",
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_FnKTx3qLzsW3mXJmEmaBbE7Lg7uM"
+  },
+  "message": "Deployment site-jc3z5yovt-ssari.vercel.app ready.",
+  "next": [
+    {
+      "command": "vercel curl https://site-jc3z5yovt-ssari.vercel.app",
+      "when": "Verify deployment, including when Deployment Protection is enabled"
+    },
+    {
+      "command": "vercel inspect site-jc3z5yovt-ssari.vercel.app --cwd build-deploy-repair/source --scope ssari",
+      "when": "Inspect deployment"
+    },
+    {
+      "command": "vercel deploy --prod --cwd build-deploy-repair/source --scope ssari",
+      "when": "Promote to production"
+    }
+  ]
+}

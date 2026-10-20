@@ -1,5 +1,15 @@
 # Jamloom: M0 continuation evidence
 
+Latest cached-deployment repair — 2026-10-20:
+[SDK cache recovery](deploy-cache.md): Git build `41fd759` failed when its SDK
+clone collided with an incomplete restored tools directory. Regression reproduction
+and recovery/preservation checks **PASS**; local build and audit **PASS**. Fix
+`66031e3` passes the production retry with the same build cache enabled, plus
+live Chromium/WebKit page/auth checks and byte-identical valid WASM downloads.
+The deployment-specific runtime error query returned no errors. Git rollout is
+**PARTIAL** until the local fix is pushed; remote main remains `41fd759`.
+No master, audio algorithm, data, credential or infrastructure configuration changes.
+
 Latest public interface refinement — 2026-10-19:
 [Sharper responsive UI](public-ui.md). Main build/typecheck/14 tests and bundle
 audit **PASS**; 56 Chromium/WebKit layout cases plus keyboard, consent/import,
