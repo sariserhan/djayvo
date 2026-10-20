@@ -11,14 +11,22 @@ import subprocess
 
 from q0_audit import ROOT, digest, event_metrics, inspect, loudness, level_match, write
 from q0_expression import express, PROFILE
+from q0_composition import compose
+from q0_measure_comparisons import timing
 from verify_export import verify_export
 
 
-def trial(baseline, output, renderer):
+def trial(baseline, output, renderer, instrument_renderer=None):
     frozen = json.loads((baseline/'freeze.json').read_text())
     audit = json.loads((baseline/'audit.json').read_text())
     if (baseline/'INCOMPLETE').exists() or frozen['renderer_sha256'] != digest(renderer):
         raise ValueError('Baseline incomplete or renderer changed')
+    instrument_manifest = None
+    if instrument_renderer:
+        instrument_manifest = json.loads((instrument_renderer.parent.parent/'build-manifest.json').read_text())
+        if (instrument_manifest['renderer_sha256'] != digest(instrument_renderer) or
+                instrument_manifest['changed_sources'] != ['core/instruments/voice.cpp']):
+            raise ValueError('Unexpected instrument experiment build')
     if output.exists():
         raise ValueError('Choose a fresh trial directory')
     output.mkdir(parents=True); (output/'INCOMPLETE').touch()
@@ -33,24 +41,46 @@ def trial(baseline, output, renderer):
         plan = json.loads(original.read_text())
         candidate, trace = express(plan, 4123)
         folder = output/identifier; folder.mkdir()
-        write(folder/'C.plan.json', candidate); write(folder/'expression.json', trace)
-        command = [str(renderer.resolve()), '--input', str(source), '--consent', '--plan',
-            str(folder/'C.plan.json'), '--style', style, '--seed', str(plan['seed']),
-            '--sample-rate', str(plan['sample_rate'])]
-        subprocess.run([*command, '--stems', '--output', str(folder/'C')], check=True, timeout=120)
-        verify_export(folder/'C', (style,))
-        subprocess.run([*command, '--block-size', '113', '--output', str(folder/'replay')],
-                       check=True, timeout=120)
-        verify_export(folder/'replay', (style,))
-        for suffix in ('wav', 'events.tsv', 'score.json'):
-            if (folder/f'C.{style}.{suffix}').read_bytes() != (folder/f'replay.{style}.{suffix}').read_bytes():
-                raise ValueError('Expression replay differs: '+suffix)
-        if json.loads((folder/f'C.{style}.score.json').read_text()) != candidate:
-            raise ValueError('Native importer changed expression plan')
-        paths = {'A': baseline/identifier/f'A.{style}.wav', 'C': folder/f'C.{style}.wav'}
+        write(folder/'expression.json', trace)
+        plans = {'C': candidate}
+        if instrument_renderer:
+            composition, composition_trace = compose(plan)
+            developed, expression_trace = express(composition, 4123)
+            plans = {'B': plan, 'C': candidate, 'D': candidate, 'E': developed}
+            write(folder/'composition.json', composition_trace)
+            write(folder/'E.expression.json', expression_trace)
+        paths = {'A': baseline/identifier/f'A.{style}.wav'}
+        events = {'A': timing(plan, baseline/identifier/f'A.{style}.events.tsv')}
+        for arm, arm_plan in plans.items():
+            write(folder/f'{arm}.plan.json', arm_plan)
+            executable = renderer if arm == 'C' else instrument_renderer
+            command = [str(executable.resolve()), '--input', str(source), '--consent', '--plan',
+                str(folder/f'{arm}.plan.json'), '--style', style, '--seed', str(plan['seed']),
+                '--sample-rate', str(plan['sample_rate'])]
+            subprocess.run([*command, '--stems', '--output', str(folder/arm)], check=True, timeout=120)
+            verify_export(folder/arm, (style,))
+            replay = 'replay' if arm == 'C' else 'replay-'+arm
+            subprocess.run([*command, '--block-size', '113', '--output', str(folder/replay)],
+                           check=True, timeout=120)
+            verify_export(folder/replay, (style,))
+            for suffix in ('wav', 'events.tsv', 'score.json'):
+                if (folder/f'{arm}.{style}.{suffix}').read_bytes() != (folder/f'{replay}.{style}.{suffix}').read_bytes():
+                    raise ValueError('Replay differs: '+arm+' '+suffix)
+            if json.loads((folder/f'{arm}.{style}.score.json').read_text()) != arm_plan:
+                raise ValueError('Native importer changed candidate plan')
+            paths[arm] = folder/f'{arm}.{style}.wav'
+            events[arm] = timing(arm_plan, folder/f'{arm}.{style}.events.tsv')
+        if instrument_renderer:
+            for left, right in [('A', 'B'), ('C', 'D')]:
+                ldir = baseline/identifier if left == 'A' else folder
+                for suffix in ('score.json', 'events.tsv'):
+                    if (ldir/f'{left}.{style}.{suffix}').read_bytes() != (folder/f'{right}.{style}.{suffix}').read_bytes():
+                        raise ValueError('Instrument-only intervention changed plans/events')
+                if digest(paths[left]) == digest(paths[right]):
+                    raise ValueError('Instrument arm did not change audio')
         levels = {arm: loudness(path) for arm, path in paths.items()}
         target = min(-23., *(float(v['input_i']) - 2. - float(v['input_tp']) for v in levels.values()))
-        order = ['A', 'C']; random.Random('q0-ac-'+identifier).shuffle(order)
+        order = list(paths); random.Random('q0-ac-'+identifier).shuffle(order)
         row, players = {}, []
         shutil.copyfile(source, listener/(identifier+'-source.wav'))
         for index, arm in enumerate(order):
@@ -67,6 +97,8 @@ def trial(baseline, output, renderer):
                 f'<div class="fields">{fields}</div><label>Notes and timestamps<textarea name="{code}/notes" maxlength="2000"></textarea></label></fieldset>')
         reports.append({'id': identifier, 'style': style, 'target_lufs': target, 'arms': row,
             'candidate_metrics': event_metrics(candidate), 'replay_512_113': 'PASS',
+            'event_frame_checks': events,
+            'plan_metrics': {arm: event_metrics(p) for arm, p in {'A': plan, **plans}.items()},
             'human_preference': 'NOT RUN'})
         sections.append(f'<section><h2>{html.escape(identifier)}</h2><p>Original source</p>'
             f'<audio controls preload="none" src="{identifier}-source.wav"></audio>'+''.join(players)+'</section>')
@@ -77,8 +109,13 @@ def trial(baseline, output, renderer):
     (listener/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1"><title>Q0 blind expression diagnostic</title>'
         '<link rel="stylesheet" href="review.css"><script defer src="review.js"></script><main>'
-        '<h1>Q0 controlled listening diagnostic</h1><p>Same source, tempo, notes and instruments; only performance expression differs. '
-        'This is a two-condition diagnostic, not the complete five-condition Q0 study. No candidate is assumed better. '
+        '<h1>Q0 controlled listening diagnostic</h1><p>'+
+        ('Five conditions: existing rendering, instrument decay, expression, their combination, and composition plus both. '
+         'Same source and tempo throughout; the composition condition changes notes and vocal arrangement. '
+         if instrument_renderer else
+         'Same source, tempo, notes and instruments; only performance expression differs. '
+         'This is a two-condition diagnostic, not the complete five-condition Q0 study. ')+
+        'No candidate is assumed better. '
         'Private owner-only use; do not share this packet. Nothing is uploaded.</p><p><a href="ATTRIBUTION.txt">Credits</a></p>'
         '<p>Rate 1 (poor) to 5 (excellent). Pause one recording before playing the next. '
         'Recognizability means identifying the source, including laughter. Ratings start blank.</p>'
@@ -108,12 +145,15 @@ document.querySelector('form').onsubmit = e => {
 };
 """)
     write(output/'organizer-key.json', keys)
-    write(output/'report.json', {'technical': 'PASS', 'scope': 'A/C expression-only diagnostic',
+    write(output/'report.json', {'technical': 'PASS', 'scope':
+        'A/B/C/D/E decay-expression-composition trial' if instrument_renderer else 'A/C expression-only diagnostic',
         'packet_id': packet_id,
-        'B_D_E': 'NOT RUN: instrument/causal diagnosis pending; no substitute identical arms',
+        'B_D_E': 'PASS: rendered, not quality acceptance' if instrument_renderer else
+                 'NOT RUN: instrument/causal diagnosis pending; no substitute identical arms',
+        'instrument_build': instrument_manifest,
         'expression_profile_sha256': digest(PROFILE), 'records': reports, 'human_quality': 'NOT RUN'})
     (output/'INCOMPLETE').unlink()
-    print('PASS: isolated A/C renders and LUFS matching; B/D/E and human quality NOT RUN:', output)
+    print('PASS: isolated renders, replay, event frames and LUFS matching; human quality NOT RUN:', output)
 
 
 if __name__ == '__main__':
@@ -121,5 +161,6 @@ if __name__ == '__main__':
     p.add_argument('--baseline', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--renderer', type=Path, default=ROOT/'build-mac/jamloom_remix')
+    p.add_argument('--instrument-renderer', type=Path)
     a = p.parse_args()
-    trial(a.baseline.resolve(), a.output.resolve(), a.renderer)
+    trial(a.baseline.resolve(), a.output.resolve(), a.renderer, a.instrument_renderer)

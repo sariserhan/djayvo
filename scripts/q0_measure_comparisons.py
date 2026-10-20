@@ -15,7 +15,8 @@ from q0_audit import digest, write
 
 def timing(plan, path):
     notes = [(t['instrument'], n) for t in plan['tracks'] for n in t['events']]
-    rows = list(csv.DictReader(path.open(), delimiter='\t'))
+    with path.open() as stream:
+        rows = list(csv.DictReader(stream, delimiter='\t'))
     expected = {}
     denominator = plan['ticks_per_quarter'] * plan['tempo_milli_bpm']
     for i, (instrument, n) in enumerate(notes):

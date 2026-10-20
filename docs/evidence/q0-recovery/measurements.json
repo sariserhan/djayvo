@@ -1,0 +1,4251 @@
+{
+  "technical": "PASS",
+  "human_quality": "NOT RUN",
+  "records": [
+    {
+      "id": "owner-speech",
+      "waveform_differences": {
+        "A/B": {
+          "max_pcm16_difference": 1167,
+          "rms_pcm16_difference": 45.417061101832694
+        },
+        "C/D": {
+          "max_pcm16_difference": 1109,
+          "rms_pcm16_difference": 44.93402577335488
+        },
+        "D/E": {
+          "max_pcm16_difference": 7917,
+          "rms_pcm16_difference": 560.4168651519552
+        }
+      },
+      "instrument_only_stem_checks": [
+        {
+          "pair": "A/B",
+          "instrument": "bass",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "drums",
+          "identical": false
+        },
+        {
+          "pair": "A/B",
+          "instrument": "piano",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "vocals",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "bass",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "drums",
+          "identical": false
+        },
+        {
+          "pair": "C/D",
+          "instrument": "piano",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "vocals",
+          "identical": true
+        }
+      ],
+      "rendered_audio": [
+        {
+          "file": "B.hiphop.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/B.hiphop.bass.wav",
+            "sha256": "f16420ddb4fab6a0bac329239b74be7bfc484014251f0ebe4e2dec9199916de4",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.1820068359375,
+            "peak_dbfs": -14.798246003575219,
+            "rms_dbfs_left": -33.75723554657154,
+            "rms_dbfs_right": -33.715133265234954,
+            "dc_left": -4.514257113138835e-07,
+            "dc_right": -4.5871734619140623e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240006,
+            "last_nonzero_frame": 1384916,
+            "max_adjacent_sample_step": 0.002899169921875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.25",
+            "input_tp": "-14.80",
+            "input_lra": "18.70",
+            "input_thresh": "-41.04"
+          }
+        },
+        {
+          "file": "B.hiphop.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/B.hiphop.drums.wav",
+            "sha256": "44d9c19e8215e641da28c3998f7616de15145ae83b0f33c980e2c40ecfe6af18",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.266357421875,
+            "peak_dbfs": -11.49070394758865,
+            "rms_dbfs_left": -38.46983019139107,
+            "rms_dbfs_right": -37.28957524806666,
+            "dc_left": 1.0557313760121663e-05,
+            "dc_right": 1.1993189652760824e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 210010,
+            "last_nonzero_frame": 1368227,
+            "max_adjacent_sample_step": 0.068267822265625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.90",
+            "input_tp": "-11.49",
+            "input_lra": "18.00",
+            "input_thresh": "-43.66"
+          }
+        },
+        {
+          "file": "B.hiphop.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/B.hiphop.piano.wav",
+            "sha256": "b6dd0b503e14aee6d36b7f84c4a1634190ed56f614451e05964ea6d2b2deebb5",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.22100830078125,
+            "peak_dbfs": -13.1118282895745,
+            "rms_dbfs_left": -33.93336287005188,
+            "rms_dbfs_right": -37.48001638171579,
+            "dc_left": 8.158346017201742e-06,
+            "dc_right": 5.9196750322977705e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 10,
+            "last_nonzero_frame": 1428577,
+            "max_adjacent_sample_step": 0.02313232421875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.29",
+            "input_tp": "-13.11",
+            "input_lra": "22.20",
+            "input_thresh": "-42.15"
+          }
+        },
+        {
+          "file": "B.hiphop.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/B.hiphop.vocals.wav",
+            "sha256": "9e9c439c823c1aecbbfe6ef2e9b10f93ee86a06233bf9dddbb3579c0920a800d",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -30.90983092452136,
+            "rms_dbfs_right": -30.7500907137737,
+            "dc_left": -2.0531415939331053e-06,
+            "dc_right": -1.7246206601460776e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240003,
+            "last_nonzero_frame": 1260490,
+            "max_adjacent_sample_step": 0.30535888671875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-22.40",
+            "input_tp": "-7.89",
+            "input_lra": "17.10",
+            "input_thresh": "-34.09"
+          }
+        },
+        {
+          "file": "B.hiphop.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/B.hiphop.wav",
+            "sha256": "e3b54ab3e9a7ee369f73f7b3079972eda20be0a276229987ae2d263102becf28",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.446563720703125,
+            "peak_dbfs": -7.002331247254695,
+            "rms_dbfs_left": -27.47839854768539,
+            "rms_dbfs_right": -27.857149148876893,
+            "dc_left": 1.618337631225586e-05,
+            "dc_right": 1.5690624713897705e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 10,
+            "last_nonzero_frame": 1428577,
+            "max_adjacent_sample_step": 0.30499267578125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-23.34",
+            "input_tp": "-6.98",
+            "input_lra": "14.70",
+            "input_thresh": "-35.17"
+          }
+        },
+        {
+          "file": "C.hiphop.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/C.hiphop.bass.wav",
+            "sha256": "fbec68fd284f2869e574e0a405ad73234a00a34ae5ec4f54792c930ff516c7c5",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.17529296875,
+            "peak_dbfs": -15.12471007450948,
+            "rms_dbfs_left": -33.89554268385611,
+            "rms_dbfs_right": -33.851697261431816,
+            "dc_left": -4.643400510152181e-07,
+            "dc_right": -4.583199818929036e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240006,
+            "last_nonzero_frame": 1384915,
+            "max_adjacent_sample_step": 0.002777099609375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.16",
+            "input_tp": "-15.12",
+            "input_lra": "18.70",
+            "input_thresh": "-41.16"
+          }
+        },
+        {
+          "file": "C.hiphop.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/C.hiphop.drums.wav",
+            "sha256": "20d4fe7a95ee1c912faf27e430591f31b80d89a49d9e0016166077d82fa2cdd7",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.280181884765625,
+            "peak_dbfs": -11.051198951358536,
+            "rms_dbfs_left": -38.66581677669886,
+            "rms_dbfs_right": -37.483995306277166,
+            "dc_left": 7.000565528869629e-06,
+            "dc_right": 7.942219575246175e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 210385,
+            "last_nonzero_frame": 1340335,
+            "max_adjacent_sample_step": 0.07562255859375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.77",
+            "input_tp": "-11.05",
+            "input_lra": "17.90",
+            "input_thresh": "-43.73"
+          }
+        },
+        {
+          "file": "C.hiphop.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/C.hiphop.piano.wav",
+            "sha256": "38c0bbfbfe507a86a26700803ba0485abf2850c7a7076afa80d3e97ae39a86de",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.22100830078125,
+            "peak_dbfs": -13.1118282895745,
+            "rms_dbfs_left": -34.03568720824528,
+            "rms_dbfs_right": -37.57634700700776,
+            "dc_left": 7.915576299031575e-06,
+            "dc_right": 5.762994289398193e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435468,
+            "max_adjacent_sample_step": 0.02398681640625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.48",
+            "input_tp": "-13.11",
+            "input_lra": "21.30",
+            "input_thresh": "-42.40"
+          }
+        },
+        {
+          "file": "C.hiphop.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/C.hiphop.vocals.wav",
+            "sha256": "51329d4c71a826cf28d20ab5ac0827aa7a020c435c04c9da9e796e4b39f9e5f8",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -30.90983092452136,
+            "rms_dbfs_right": -30.7500907137737,
+            "dc_left": -2.0531415939331053e-06,
+            "dc_right": -1.7246206601460776e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240003,
+            "last_nonzero_frame": 1261053,
+            "max_adjacent_sample_step": 0.30535888671875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-22.30",
+            "input_tp": "-7.89",
+            "input_lra": "16.60",
+            "input_thresh": "-34.09"
+          }
+        },
+        {
+          "file": "C.hiphop.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/C.hiphop.wav",
+            "sha256": "17e9ece796d694c18c90ff4ec88bd8cbdbdefbc17e803ad5b4a469d67f734174",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.45660400390625,
+            "peak_dbfs": -6.809205691047672,
+            "rms_dbfs_left": -27.53440669732577,
+            "rms_dbfs_right": -27.908552027068566,
+            "dc_left": 1.2394428253173827e-05,
+            "dc_right": 1.1495749155680339e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435468,
+            "max_adjacent_sample_step": 0.305023193359375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-23.34",
+            "input_tp": "-6.81",
+            "input_lra": "14.70",
+            "input_thresh": "-35.31"
+          }
+        },
+        {
+          "file": "D.hiphop.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/D.hiphop.bass.wav",
+            "sha256": "fbec68fd284f2869e574e0a405ad73234a00a34ae5ec4f54792c930ff516c7c5",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.17529296875,
+            "peak_dbfs": -15.12471007450948,
+            "rms_dbfs_left": -33.89554268385611,
+            "rms_dbfs_right": -33.851697261431816,
+            "dc_left": -4.643400510152181e-07,
+            "dc_right": -4.583199818929036e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240006,
+            "last_nonzero_frame": 1384915,
+            "max_adjacent_sample_step": 0.002777099609375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.16",
+            "input_tp": "-15.12",
+            "input_lra": "18.70",
+            "input_thresh": "-41.16"
+          }
+        },
+        {
+          "file": "D.hiphop.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/D.hiphop.drums.wav",
+            "sha256": "22495e35d106d944297a6fccc0a5b5ddb1a09922d8a77fc84df9365b1dcfbbd8",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.280120849609375,
+            "peak_dbfs": -11.053091302049694,
+            "rms_dbfs_left": -38.58674284279638,
+            "rms_dbfs_right": -37.404768007586405,
+            "dc_left": 1.0207096735636393e-05,
+            "dc_right": 1.1586209138234456e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 210385,
+            "last_nonzero_frame": 1368109,
+            "max_adjacent_sample_step": 0.07562255859375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.77",
+            "input_tp": "-11.05",
+            "input_lra": "18.00",
+            "input_thresh": "-43.74"
+          }
+        },
+        {
+          "file": "D.hiphop.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/D.hiphop.piano.wav",
+            "sha256": "38c0bbfbfe507a86a26700803ba0485abf2850c7a7076afa80d3e97ae39a86de",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.22100830078125,
+            "peak_dbfs": -13.1118282895745,
+            "rms_dbfs_left": -34.03568720824528,
+            "rms_dbfs_right": -37.57634700700776,
+            "dc_left": 7.915576299031575e-06,
+            "dc_right": 5.762994289398193e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435468,
+            "max_adjacent_sample_step": 0.02398681640625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.48",
+            "input_tp": "-13.11",
+            "input_lra": "21.30",
+            "input_thresh": "-42.40"
+          }
+        },
+        {
+          "file": "D.hiphop.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/D.hiphop.vocals.wav",
+            "sha256": "51329d4c71a826cf28d20ab5ac0827aa7a020c435c04c9da9e796e4b39f9e5f8",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -30.90983092452136,
+            "rms_dbfs_right": -30.7500907137737,
+            "dc_left": -2.0531415939331053e-06,
+            "dc_right": -1.7246206601460776e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240003,
+            "last_nonzero_frame": 1261053,
+            "max_adjacent_sample_step": 0.30535888671875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-22.30",
+            "input_tp": "-7.89",
+            "input_lra": "16.60",
+            "input_thresh": "-34.09"
+          }
+        },
+        {
+          "file": "D.hiphop.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/D.hiphop.wav",
+            "sha256": "169f3abfe04f3e732036d37cf5b7cb231aa939dfae006d21926c7dd46396cdb5",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.4608154296875,
+            "peak_dbfs": -6.7294597533309695,
+            "rms_dbfs_left": -27.529429838869582,
+            "rms_dbfs_right": -27.90063272072084,
+            "dc_left": 1.5592455863952638e-05,
+            "dc_right": 1.5137851238250733e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435468,
+            "max_adjacent_sample_step": 0.305023193359375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-23.33",
+            "input_tp": "-6.72",
+            "input_lra": "14.70",
+            "input_thresh": "-35.31"
+          }
+        },
+        {
+          "file": "E.hiphop.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/E.hiphop.bass.wav",
+            "sha256": "60568bf81ccefbd2aece3860b695b96ab967cfa8dace8ac2d29f6895007c00c5",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.177093505859375,
+            "peak_dbfs": -15.03594728790375,
+            "rms_dbfs_left": -33.89492200930256,
+            "rms_dbfs_right": -33.85140267878214,
+            "dc_left": -5.096197128295899e-07,
+            "dc_right": -4.977583885192872e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 480006,
+            "last_nonzero_frame": 1384915,
+            "max_adjacent_sample_step": 0.002899169921875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.94",
+            "input_tp": "-15.04",
+            "input_lra": "5.50",
+            "input_thresh": "-39.83"
+          }
+        },
+        {
+          "file": "E.hiphop.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/E.hiphop.drums.wav",
+            "sha256": "2df0c6c3c87ee8c805a343f8ce8df66bebc5fb24786dc270027e09ae2acd235c",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.256591796875,
+            "peak_dbfs": -11.815144638790642,
+            "rms_dbfs_left": -38.63948864233934,
+            "rms_dbfs_right": -37.460620898236485,
+            "dc_left": 9.100476900736491e-06,
+            "dc_right": 1.0317862033843994e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 210385,
+            "last_nonzero_frame": 1368170,
+            "max_adjacent_sample_step": 0.07537841796875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.88",
+            "input_tp": "-11.82",
+            "input_lra": "18.00",
+            "input_thresh": "-43.78"
+          }
+        },
+        {
+          "file": "E.hiphop.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/E.hiphop.piano.wav",
+            "sha256": "c5b2a6c1ba6b26db27012840c29f06192ec204436697846622e31855c5416e36",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.212493896484375,
+            "peak_dbfs": -13.453070795682756,
+            "rms_dbfs_left": -34.55703657817709,
+            "rms_dbfs_right": -38.091200373833786,
+            "dc_left": 5.425949891408284e-06,
+            "dc_right": 3.9427677790323896e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435740,
+            "max_adjacent_sample_step": 0.023651123046875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.10",
+            "input_tp": "-13.45",
+            "input_lra": "20.90",
+            "input_thresh": "-41.27"
+          }
+        },
+        {
+          "file": "E.hiphop.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/E.hiphop.vocals.wav",
+            "sha256": "e6d3d41994d5466fd4e10b2f95a81c54914921d99d8dd51be2b1a8b0f1ce0088",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -31.710069598478494,
+            "rms_dbfs_right": -31.710069598478494,
+            "dc_left": -4.873772462209066e-06,
+            "dc_right": -4.873772462209066e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240003,
+            "last_nonzero_frame": 953354,
+            "max_adjacent_sample_step": 0.30535888671875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-21.20",
+            "input_tp": "-7.89",
+            "input_lra": "20.10",
+            "input_thresh": "-33.38"
+          }
+        },
+        {
+          "file": "E.hiphop.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/owner-speech/E.hiphop.wav",
+            "sha256": "49093e1a5c5e4fc84da783a88498ad83243cd76df37c09945eac0122086ef113",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.400238037109375,
+            "peak_dbfs": -7.953632800666911,
+            "rms_dbfs_left": -28.020167748583155,
+            "rms_dbfs_right": -28.450746010639264,
+            "dc_left": 9.121795495351155e-06,
+            "dc_right": 8.867661158243815e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435740,
+            "max_adjacent_sample_step": 0.305389404296875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-23.93",
+            "input_tp": "-7.89",
+            "input_lra": "14.70",
+            "input_thresh": "-35.79"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "waveform_differences": {
+        "A/B": {
+          "max_pcm16_difference": 2056,
+          "rms_pcm16_difference": 77.50794851712521
+        },
+        "C/D": {
+          "max_pcm16_difference": 2146,
+          "rms_pcm16_difference": 75.31067309117157
+        },
+        "D/E": {
+          "max_pcm16_difference": 14456,
+          "rms_pcm16_difference": 588.9624717303903
+        }
+      },
+      "instrument_only_stem_checks": [
+        {
+          "pair": "A/B",
+          "instrument": "bass",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "drums",
+          "identical": false
+        },
+        {
+          "pair": "A/B",
+          "instrument": "organ",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "piano",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "vocals",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "bass",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "drums",
+          "identical": false
+        },
+        {
+          "pair": "C/D",
+          "instrument": "organ",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "piano",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "vocals",
+          "identical": true
+        }
+      ],
+      "rendered_audio": [
+        {
+          "file": "B.reggae.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/B.reggae.bass.wav",
+            "sha256": "e5be7d606e56dae32aeb1af999ce0bc12485c7ce3ceb9bf2c7178024246dafbd",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.18994140625,
+            "peak_dbfs": -14.427607019561709,
+            "rms_dbfs_left": -36.187188804667755,
+            "rms_dbfs_right": -36.1561813736005,
+            "dc_left": 1.0955333709716797e-07,
+            "dc_right": 1.1165936787923177e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 288006,
+            "last_nonzero_frame": 1413963,
+            "max_adjacent_sample_step": 0.00506591796875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.30",
+            "input_tp": "-14.43",
+            "input_lra": "18.70",
+            "input_thresh": "-40.71"
+          }
+        },
+        {
+          "file": "B.reggae.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/B.reggae.drums.wav",
+            "sha256": "0add2583c83a6f0ae1b040521a87995d86a5f8ab7f6c5689844bdf706a5218b4",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.255096435546875,
+            "peak_dbfs": -11.865912194573182,
+            "rms_dbfs_left": -41.07863587665353,
+            "rms_dbfs_right": -39.895165716536184,
+            "dc_left": 3.788948059082031e-06,
+            "dc_right": 4.303654034932454e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 252010,
+            "last_nonzero_frame": 1346882,
+            "max_adjacent_sample_step": 0.07171630859375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-32.86",
+            "input_tp": "-11.86",
+            "input_lra": "18.20",
+            "input_thresh": "-44.63"
+          }
+        },
+        {
+          "file": "B.reggae.organ.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/B.reggae.organ.wav",
+            "sha256": "fa13e4f704b1ba6a9d2ae9ef1c9588dd464b06af524bb00301dd6fdadacf2b1f",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.21490478515625,
+            "peak_dbfs": -13.35507828451105,
+            "rms_dbfs_left": -30.325618597395522,
+            "rms_dbfs_right": -32.695935773011485,
+            "dc_left": 1.8739104270935059e-06,
+            "dc_right": 1.3564626375834146e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 2,
+            "last_nonzero_frame": 1417805,
+            "max_adjacent_sample_step": 0.025421142578125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-26.47",
+            "input_tp": "-13.36",
+            "input_lra": "18.20",
+            "input_thresh": "-38.48"
+          }
+        },
+        {
+          "file": "B.reggae.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/B.reggae.piano.wav",
+            "sha256": "2cd3e90c08a318fb441b9c392178455965e981d927c8b26a5e1f93bb4f76a391",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.0,
+            "peak_dbfs": -300.0,
+            "rms_dbfs_left": -300.0,
+            "rms_dbfs_right": -300.0,
+            "dc_left": 0.0,
+            "dc_right": 0.0,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": null,
+            "last_nonzero_frame": null,
+            "max_adjacent_sample_step": 0.0,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-inf",
+            "input_tp": "-inf",
+            "input_lra": "0.00",
+            "input_thresh": "-70.00"
+          }
+        },
+        {
+          "file": "B.reggae.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/B.reggae.vocals.wav",
+            "sha256": "8cb9eb0ced30fe23034f842b2c8ebac4d9eda4a11bed8b8ba5f886ebee184330",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -30.223304010862186,
+            "rms_dbfs_right": -30.43257722163716,
+            "dc_left": -5.355278650919597e-07,
+            "dc_right": -4.720886548360189e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1218242,
+            "max_adjacent_sample_step": 0.089569091796875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-23.36",
+            "input_tp": "-7.94",
+            "input_lra": "11.50",
+            "input_thresh": "-34.12"
+          }
+        },
+        {
+          "file": "B.reggae.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/B.reggae.wav",
+            "sha256": "f364b0e4e97ebbeb3a2dff087460e25e5ba966c787771b1857466a6b7a2fa960",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.4134521484375,
+            "peak_dbfs": -7.671494939742505,
+            "rms_dbfs_left": -26.539120064710467,
+            "rms_dbfs_right": -27.43643901853259,
+            "dc_left": 5.237817764282227e-06,
+            "dc_right": 5.308489004770915e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 2,
+            "last_nonzero_frame": 1417805,
+            "max_adjacent_sample_step": 0.08984375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-23.98",
+            "input_tp": "-7.67",
+            "input_lra": "5.30",
+            "input_thresh": "-34.21"
+          }
+        },
+        {
+          "file": "C.reggae.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/C.reggae.bass.wav",
+            "sha256": "3a104d96ed7a0ba2a7fe7622aa4b68184ea21b1e9c9a377ec28080ed04346c63",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.18072509765625,
+            "peak_dbfs": -14.85963063812875,
+            "rms_dbfs_left": -36.38227786373207,
+            "rms_dbfs_right": -36.35044951856582,
+            "dc_left": 1.0643402735392253e-07,
+            "dc_right": 1.1376539866129558e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 288006,
+            "last_nonzero_frame": 1399242,
+            "max_adjacent_sample_step": 0.0052490234375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.24",
+            "input_tp": "-14.86",
+            "input_lra": "18.20",
+            "input_thresh": "-40.46"
+          }
+        },
+        {
+          "file": "C.reggae.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/C.reggae.drums.wav",
+            "sha256": "d8fdc08d276af908af013e3650bef90fca4cdd97d9c13b84ab62c40a31d702d3",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.246246337890625,
+            "peak_dbfs": -12.172604389863452,
+            "rms_dbfs_left": -41.791263251177426,
+            "rms_dbfs_right": -40.59270040061822,
+            "dc_left": 2.4605790774027506e-06,
+            "dc_right": 2.7988354365030923e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 252160,
+            "last_nonzero_frame": 1317599,
+            "max_adjacent_sample_step": 0.067657470703125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-34.19",
+            "input_tp": "-12.17",
+            "input_lra": "17.40",
+            "input_thresh": "-45.61"
+          }
+        },
+        {
+          "file": "C.reggae.organ.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/C.reggae.organ.wav",
+            "sha256": "952ced04ef56ab6578b05c79f13f160798e21f4e3a6ea6520e9ce2a12a788de7",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.186676025390625,
+            "peak_dbfs": -14.57822908923831,
+            "rms_dbfs_left": -31.189852644879284,
+            "rms_dbfs_right": -33.52403128582309,
+            "dc_left": 1.7387270927429199e-06,
+            "dc_right": 1.2628436088562012e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 2,
+            "last_nonzero_frame": 1401722,
+            "max_adjacent_sample_step": 0.017242431640625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-26.77",
+            "input_tp": "-14.58",
+            "input_lra": "22.10",
+            "input_thresh": "-39.17"
+          }
+        },
+        {
+          "file": "C.reggae.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/C.reggae.piano.wav",
+            "sha256": "2cd3e90c08a318fb441b9c392178455965e981d927c8b26a5e1f93bb4f76a391",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.0,
+            "peak_dbfs": -300.0,
+            "rms_dbfs_left": -300.0,
+            "rms_dbfs_right": -300.0,
+            "dc_left": 0.0,
+            "dc_right": 0.0,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": null,
+            "last_nonzero_frame": null,
+            "max_adjacent_sample_step": 0.0,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-inf",
+            "input_tp": "-inf",
+            "input_lra": "0.00",
+            "input_thresh": "-70.00"
+          }
+        },
+        {
+          "file": "C.reggae.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/C.reggae.vocals.wav",
+            "sha256": "a26e78b45cb385e3d82a4e8dd5253e64418931e35810506960c3de25a5d0bea5",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -30.223304010862186,
+            "rms_dbfs_right": -30.43257722163716,
+            "dc_left": -5.355278650919597e-07,
+            "dc_right": -4.720886548360189e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1218467,
+            "max_adjacent_sample_step": 0.089569091796875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-23.36",
+            "input_tp": "-7.94",
+            "input_lra": "11.50",
+            "input_thresh": "-34.12"
+          }
+        },
+        {
+          "file": "C.reggae.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/C.reggae.wav",
+            "sha256": "df29dbf1611ff39a2713ad240410c83198498145837f753e5feb8390428783fe",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.418792724609375,
+            "peak_dbfs": -7.560017432387652,
+            "rms_dbfs_left": -26.937054396154352,
+            "rms_dbfs_right": -27.74334419999917,
+            "dc_left": 3.781378269195557e-06,
+            "dc_right": 3.7040313084920246e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 2,
+            "last_nonzero_frame": 1401722,
+            "max_adjacent_sample_step": 0.08917236328125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-24.04",
+            "input_tp": "-7.56",
+            "input_lra": "4.30",
+            "input_thresh": "-34.45"
+          }
+        },
+        {
+          "file": "D.reggae.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/D.reggae.bass.wav",
+            "sha256": "3a104d96ed7a0ba2a7fe7622aa4b68184ea21b1e9c9a377ec28080ed04346c63",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.18072509765625,
+            "peak_dbfs": -14.85963063812875,
+            "rms_dbfs_left": -36.38227786373207,
+            "rms_dbfs_right": -36.35044951856582,
+            "dc_left": 1.0643402735392253e-07,
+            "dc_right": 1.1376539866129558e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 288006,
+            "last_nonzero_frame": 1399242,
+            "max_adjacent_sample_step": 0.0052490234375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.24",
+            "input_tp": "-14.86",
+            "input_lra": "18.20",
+            "input_thresh": "-40.46"
+          }
+        },
+        {
+          "file": "D.reggae.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/D.reggae.drums.wav",
+            "sha256": "1706dbb7ce442e830bfed814e99ec54de58e92b9bedad331d8062b3e1412c253",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.246246337890625,
+            "peak_dbfs": -12.172604389863452,
+            "rms_dbfs_left": -41.35302803055922,
+            "rms_dbfs_right": -40.16326572791981,
+            "dc_left": 3.4882624944051107e-06,
+            "dc_right": 3.96565596262614e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 252160,
+            "last_nonzero_frame": 1346882,
+            "max_adjacent_sample_step": 0.067657470703125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-33.44",
+            "input_tp": "-12.17",
+            "input_lra": "17.50",
+            "input_thresh": "-45.00"
+          }
+        },
+        {
+          "file": "D.reggae.organ.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/D.reggae.organ.wav",
+            "sha256": "952ced04ef56ab6578b05c79f13f160798e21f4e3a6ea6520e9ce2a12a788de7",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.186676025390625,
+            "peak_dbfs": -14.57822908923831,
+            "rms_dbfs_left": -31.189852644879284,
+            "rms_dbfs_right": -33.52403128582309,
+            "dc_left": 1.7387270927429199e-06,
+            "dc_right": 1.2628436088562012e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 2,
+            "last_nonzero_frame": 1401722,
+            "max_adjacent_sample_step": 0.017242431640625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-26.77",
+            "input_tp": "-14.58",
+            "input_lra": "22.10",
+            "input_thresh": "-39.17"
+          }
+        },
+        {
+          "file": "D.reggae.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/D.reggae.piano.wav",
+            "sha256": "2cd3e90c08a318fb441b9c392178455965e981d927c8b26a5e1f93bb4f76a391",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.0,
+            "peak_dbfs": -300.0,
+            "rms_dbfs_left": -300.0,
+            "rms_dbfs_right": -300.0,
+            "dc_left": 0.0,
+            "dc_right": 0.0,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": null,
+            "last_nonzero_frame": null,
+            "max_adjacent_sample_step": 0.0,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-inf",
+            "input_tp": "-inf",
+            "input_lra": "0.00",
+            "input_thresh": "-70.00"
+          }
+        },
+        {
+          "file": "D.reggae.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/D.reggae.vocals.wav",
+            "sha256": "a26e78b45cb385e3d82a4e8dd5253e64418931e35810506960c3de25a5d0bea5",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -30.223304010862186,
+            "rms_dbfs_right": -30.43257722163716,
+            "dc_left": -5.355278650919597e-07,
+            "dc_right": -4.720886548360189e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1218467,
+            "max_adjacent_sample_step": 0.089569091796875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-23.36",
+            "input_tp": "-7.94",
+            "input_lra": "11.50",
+            "input_thresh": "-34.12"
+          }
+        },
+        {
+          "file": "D.reggae.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/D.reggae.wav",
+            "sha256": "3e1df08ccf2b55b5c0cb415b4c96bc6ef1bac2772477e7255e3034cb324bba1b",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.41912841796875,
+            "peak_dbfs": -7.553057838030628,
+            "rms_dbfs_left": -26.922228304157684,
+            "rms_dbfs_right": -27.720387103232866,
+            "dc_left": 4.8059622446695966e-06,
+            "dc_right": 4.87367312113444e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 2,
+            "last_nonzero_frame": 1401722,
+            "max_adjacent_sample_step": 0.08917236328125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-24.00",
+            "input_tp": "-7.55",
+            "input_lra": "4.40",
+            "input_thresh": "-34.41"
+          }
+        },
+        {
+          "file": "E.reggae.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/E.reggae.bass.wav",
+            "sha256": "1771e4d06d333cdbf9334e351627d32d302f95713d6c8a08281fb2afc71ba1a0",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.19085693359375,
+            "peak_dbfs": -14.38584116105607,
+            "rms_dbfs_left": -36.38938654253842,
+            "rms_dbfs_right": -36.37211284886607,
+            "dc_left": 2.5180975596110027e-07,
+            "dc_right": 2.5681654612223306e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 549007,
+            "last_nonzero_frame": 1399242,
+            "max_adjacent_sample_step": 0.00518798828125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-27.97",
+            "input_tp": "-14.39",
+            "input_lra": "7.20",
+            "input_thresh": "-39.27"
+          }
+        },
+        {
+          "file": "E.reggae.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/E.reggae.drums.wav",
+            "sha256": "293d45a2665c30ee23053af65d394364b92260d5aeff64f3d149e8316eae0950",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.244659423828125,
+            "peak_dbfs": -12.228761027246593,
+            "rms_dbfs_left": -41.42685868633515,
+            "rms_dbfs_right": -40.23153794747978,
+            "dc_left": 4.257520039876302e-06,
+            "dc_right": 4.832406838734944e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 252160,
+            "last_nonzero_frame": 1346820,
+            "max_adjacent_sample_step": 0.0648193359375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-33.70",
+            "input_tp": "-12.23",
+            "input_lra": "16.80",
+            "input_thresh": "-45.22"
+          }
+        },
+        {
+          "file": "E.reggae.organ.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/E.reggae.organ.wav",
+            "sha256": "07e9341b69674c1c05c8d32fa7babe7252e46aa0ee61a9eee01fb4ca21be4339",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.186676025390625,
+            "peak_dbfs": -14.57822908923831,
+            "rms_dbfs_left": -31.626516182742105,
+            "rms_dbfs_right": -33.9780450325696,
+            "dc_left": 1.3146201769510905e-06,
+            "dc_right": 9.543498357137044e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 2,
+            "last_nonzero_frame": 1401722,
+            "max_adjacent_sample_step": 0.017242431640625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-26.75",
+            "input_tp": "-14.58",
+            "input_lra": "13.00",
+            "input_thresh": "-37.55"
+          }
+        },
+        {
+          "file": "E.reggae.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/E.reggae.piano.wav",
+            "sha256": "2cd3e90c08a318fb441b9c392178455965e981d927c8b26a5e1f93bb4f76a391",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.0,
+            "peak_dbfs": -300.0,
+            "rms_dbfs_left": -300.0,
+            "rms_dbfs_right": -300.0,
+            "dc_left": 0.0,
+            "dc_right": 0.0,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": null,
+            "last_nonzero_frame": null,
+            "max_adjacent_sample_step": 0.0,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-inf",
+            "input_tp": "-inf",
+            "input_lra": "0.00",
+            "input_thresh": "-70.00"
+          }
+        },
+        {
+          "file": "E.reggae.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/E.reggae.vocals.wav",
+            "sha256": "5f4ae1e76e6c3109d6ddda4651fe8f82d43f046ce624a73095537c8e73860a1c",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -30.939583862136153,
+            "rms_dbfs_right": -30.939583862136153,
+            "dc_left": -2.823670705159505e-07,
+            "dc_right": -2.823670705159505e-07,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 288002,
+            "last_nonzero_frame": 812156,
+            "max_adjacent_sample_step": 0.089569091796875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-22.74",
+            "input_tp": "-7.94",
+            "input_lra": "3.90",
+            "input_thresh": "-33.45"
+          }
+        },
+        {
+          "file": "E.reggae.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2277-149896-0026/E.reggae.wav",
+            "sha256": "23386bebcc9f8889580b8f867da660f76bc055386f6c2cb652fe208909b6f5c1",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.404937744140625,
+            "peak_dbfs": -7.852234817409034,
+            "rms_dbfs_left": -27.430731531486185,
+            "rms_dbfs_right": -28.114976192983534,
+            "dc_left": 5.5278937021891275e-06,
+            "dc_right": 5.7642459869384765e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 2,
+            "last_nonzero_frame": 1401722,
+            "max_adjacent_sample_step": 0.088592529296875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-24.35",
+            "input_tp": "-7.85",
+            "input_lra": "6.00",
+            "input_thresh": "-34.83"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "waveform_differences": {
+        "A/B": {
+          "max_pcm16_difference": 1289,
+          "rms_pcm16_difference": 70.58072369145351
+        },
+        "C/D": {
+          "max_pcm16_difference": 1288,
+          "rms_pcm16_difference": 70.1261074275602
+        },
+        "D/E": {
+          "max_pcm16_difference": 10056,
+          "rms_pcm16_difference": 543.2076968593709
+        }
+      },
+      "instrument_only_stem_checks": [
+        {
+          "pair": "A/B",
+          "instrument": "bass",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "drums",
+          "identical": false
+        },
+        {
+          "pair": "A/B",
+          "instrument": "lead",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "piano",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "vocals",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "bass",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "drums",
+          "identical": false
+        },
+        {
+          "pair": "C/D",
+          "instrument": "lead",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "piano",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "vocals",
+          "identical": true
+        }
+      ],
+      "rendered_audio": [
+        {
+          "file": "B.experimental.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/B.experimental.bass.wav",
+            "sha256": "ad587fdfcdc420ab12d77f9753b9f9a1b4d4bb4d7bd917775f1648c3eca4d8b3",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.209930419921875,
+            "peak_dbfs": -13.558492510202333,
+            "rms_dbfs_left": -30.113065447225473,
+            "rms_dbfs_right": -30.11736105310416,
+            "dc_left": -3.995928001489145e-06,
+            "dc_right": -3.981348545643091e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185812,
+            "last_nonzero_frame": 1471915,
+            "max_adjacent_sample_step": 0.00244140625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.32",
+            "input_tp": "-13.56",
+            "input_lra": "4.30",
+            "input_thresh": "-40.45"
+          }
+        },
+        {
+          "file": "B.experimental.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/B.experimental.drums.wav",
+            "sha256": "16ac15b64b6af3db84961c69fcedd13cb9a7398c8f2b3827a4ae4219cb3899f8",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.2508544921875,
+            "peak_dbfs": -12.01156234839335,
+            "rms_dbfs_left": -35.449582307266155,
+            "rms_dbfs_right": -34.25451494953639,
+            "dc_left": 1.5288545809021775e-05,
+            "dc_right": 1.7335011570947335e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185811,
+            "last_nonzero_frame": 1441590,
+            "max_adjacent_sample_step": 0.07049560546875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.14",
+            "input_tp": "-11.98",
+            "input_lra": "5.30",
+            "input_thresh": "-41.38"
+          }
+        },
+        {
+          "file": "B.experimental.lead.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/B.experimental.lead.wav",
+            "sha256": "d8cfe6eda3aed9ab74f83ae6073d63ba3aafae852f3d3d50bd9e2c6eb5d4ba59",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.061676025390625,
+            "peak_dbfs": -24.19767242888828,
+            "rms_dbfs_left": -46.926468498083736,
+            "rms_dbfs_right": -44.462264619038194,
+            "dc_left": 3.201309087890185e-08,
+            "dc_right": 5.01217007194373e-08,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 284520,
+            "last_nonzero_frame": 1259215,
+            "max_adjacent_sample_step": 0.0035400390625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-35.53",
+            "input_tp": "-24.20",
+            "input_lra": "5.70",
+            "input_thresh": "-45.96"
+          }
+        },
+        {
+          "file": "B.experimental.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/B.experimental.piano.wav",
+            "sha256": "0a3601b26fc76a54a454e9ba1b231c8703ba917068234882b94763f50c395ce7",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.222503662109375,
+            "peak_dbfs": -13.053256734487471,
+            "rms_dbfs_left": -32.54126097273562,
+            "rms_dbfs_right": -36.43055255581436,
+            "dc_left": 5.439101280303447e-06,
+            "dc_right": 3.949971859582865e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 214849,
+            "last_nonzero_frame": 1481862,
+            "max_adjacent_sample_step": 0.021392822265625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.06",
+            "input_tp": "-13.05",
+            "input_lra": "15.80",
+            "input_thresh": "-39.76"
+          }
+        },
+        {
+          "file": "B.experimental.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/B.experimental.vocals.wav",
+            "sha256": "910d761d2bd75480088d792822781d31e7b2afc52da9831e9c1c264355a8262d",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -36.55370110201083,
+            "rms_dbfs_right": -37.18574073017267,
+            "dc_left": -8.750257696896178e-06,
+            "dc_right": -8.216892603861364e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 3,
+            "last_nonzero_frame": 1347252,
+            "max_adjacent_sample_step": 0.079620361328125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.70",
+            "input_tp": "-7.94",
+            "input_lra": "15.80",
+            "input_thresh": "-39.56"
+          }
+        },
+        {
+          "file": "B.experimental.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/B.experimental.wav",
+            "sha256": "85bd83946beaa9970e1a8a3cbe279bc8ede3de49df62ada1ac6e8836198d4e77",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.422821044921875,
+            "peak_dbfs": -7.476868096829348,
+            "rms_dbfs_left": -26.884233412005006,
+            "rms_dbfs_right": -27.44860498254122,
+            "dc_left": 8.031158821780219e-06,
+            "dc_right": 9.146660758953905e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 3,
+            "last_nonzero_frame": 1481862,
+            "max_adjacent_sample_step": 0.079620361328125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-25.37",
+            "input_tp": "-7.48",
+            "input_lra": "6.90",
+            "input_thresh": "-36.16"
+          }
+        },
+        {
+          "file": "C.experimental.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/C.experimental.bass.wav",
+            "sha256": "f10ce400bb4f05a5bcd5a88da6461e195a50bf7a0f229053b615c5c8bca77509",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.204559326171875,
+            "peak_dbfs": -13.783614311319834,
+            "rms_dbfs_left": -30.24608095365114,
+            "rms_dbfs_right": -30.24959990959427,
+            "dc_left": -3.875281075863597e-06,
+            "dc_right": -3.864616473902131e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185812,
+            "last_nonzero_frame": 1468725,
+            "max_adjacent_sample_step": 0.0025634765625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.41",
+            "input_tp": "-13.78",
+            "input_lra": "4.50",
+            "input_thresh": "-40.57"
+          }
+        },
+        {
+          "file": "C.experimental.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/C.experimental.drums.wav",
+            "sha256": "9346e23b3c465c451774a842fafc507fb86511e94bf2d80ff1da140234638d57",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.25628662109375,
+            "peak_dbfs": -11.825481293155942,
+            "rms_dbfs_left": -35.60692032714174,
+            "rms_dbfs_right": -34.411114977602985,
+            "dc_left": 1.0858223306299338e-05,
+            "dc_right": 1.2316496735811338e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185811,
+            "last_nonzero_frame": 1412121,
+            "max_adjacent_sample_step": 0.07476806640625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.25",
+            "input_tp": "-11.80",
+            "input_lra": "5.50",
+            "input_thresh": "-41.40"
+          }
+        },
+        {
+          "file": "C.experimental.lead.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/C.experimental.lead.wav",
+            "sha256": "6fb06e7061cd2f33a8b87125e3a3d5086dfa0c58c0173307739a0ff511348e2f",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.05975341796875,
+            "peak_dbfs": -24.47274494985198,
+            "rms_dbfs_left": -47.09377352342997,
+            "rms_dbfs_right": -44.62400034757347,
+            "dc_left": 3.268806568658955e-08,
+            "dc_right": 4.867532613153511e-08,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 284520,
+            "last_nonzero_frame": 1259215,
+            "max_adjacent_sample_step": 0.0035400390625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-35.69",
+            "input_tp": "-24.47",
+            "input_lra": "5.50",
+            "input_thresh": "-46.13"
+          }
+        },
+        {
+          "file": "C.experimental.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/C.experimental.piano.wav",
+            "sha256": "ea5e8c733e755deb11199b9c305ddbdaa2c04a77d033c21b426284022847c1b0",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.20953369140625,
+            "peak_dbfs": -13.574922717399732,
+            "rms_dbfs_left": -32.65880379098802,
+            "rms_dbfs_right": -36.55506731213527,
+            "dc_left": 3.5894388873051127e-06,
+            "dc_right": 2.6082183668722654e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 214849,
+            "last_nonzero_frame": 1485352,
+            "max_adjacent_sample_step": 0.022308349609375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.24",
+            "input_tp": "-13.57",
+            "input_lra": "15.80",
+            "input_thresh": "-39.96"
+          }
+        },
+        {
+          "file": "C.experimental.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/C.experimental.vocals.wav",
+            "sha256": "16e3e819006fea2e15d58b30f8188c130ee8efcf3922998dea1714ac6f1074ac",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -36.55370110201083,
+            "rms_dbfs_right": -37.18574073017267,
+            "dc_left": -8.750257696896178e-06,
+            "dc_right": -8.216892603861364e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 3,
+            "last_nonzero_frame": 1347445,
+            "max_adjacent_sample_step": 0.079620361328125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.70",
+            "input_tp": "-7.94",
+            "input_lra": "15.80",
+            "input_thresh": "-39.56"
+          }
+        },
+        {
+          "file": "C.experimental.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/C.experimental.wav",
+            "sha256": "38e952d80ad1eb322775a6a7fe16a919ef054d412992580f2c608cfbeaae3d58",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.417449951171875,
+            "peak_dbfs": -7.587911708173248,
+            "rms_dbfs_left": -27.003144660734236,
+            "rms_dbfs_right": -27.5737815773515,
+            "dc_left": 1.8435683347346396e-06,
+            "dc_right": 2.8692407675023475e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 3,
+            "last_nonzero_frame": 1485352,
+            "max_adjacent_sample_step": 0.079620361328125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-25.43",
+            "input_tp": "-7.59",
+            "input_lra": "7.00",
+            "input_thresh": "-36.25"
+          }
+        },
+        {
+          "file": "D.experimental.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/D.experimental.bass.wav",
+            "sha256": "f10ce400bb4f05a5bcd5a88da6461e195a50bf7a0f229053b615c5c8bca77509",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.204559326171875,
+            "peak_dbfs": -13.783614311319834,
+            "rms_dbfs_left": -30.24608095365114,
+            "rms_dbfs_right": -30.24959990959427,
+            "dc_left": -3.875281075863597e-06,
+            "dc_right": -3.864616473902131e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185812,
+            "last_nonzero_frame": 1468725,
+            "max_adjacent_sample_step": 0.0025634765625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.41",
+            "input_tp": "-13.78",
+            "input_lra": "4.50",
+            "input_thresh": "-40.57"
+          }
+        },
+        {
+          "file": "D.experimental.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/D.experimental.drums.wav",
+            "sha256": "01c4a6ddb3a5f0fe5b72b47b1cd9fb38806d99ce3c9dd1ae05418dfae13fd437",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.257476806640625,
+            "peak_dbfs": -11.785237717050238,
+            "rms_dbfs_left": -35.49695664938194,
+            "rms_dbfs_right": -34.30329416927074,
+            "dc_left": 1.480742376610199e-05,
+            "dc_right": 1.6797519489088372e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185811,
+            "last_nonzero_frame": 1441588,
+            "max_adjacent_sample_step": 0.07476806640625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.14",
+            "input_tp": "-11.75",
+            "input_lra": "5.60",
+            "input_thresh": "-41.39"
+          }
+        },
+        {
+          "file": "D.experimental.lead.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/D.experimental.lead.wav",
+            "sha256": "6fb06e7061cd2f33a8b87125e3a3d5086dfa0c58c0173307739a0ff511348e2f",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.05975341796875,
+            "peak_dbfs": -24.47274494985198,
+            "rms_dbfs_left": -47.09377352342997,
+            "rms_dbfs_right": -44.62400034757347,
+            "dc_left": 3.268806568658955e-08,
+            "dc_right": 4.867532613153511e-08,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 284520,
+            "last_nonzero_frame": 1259215,
+            "max_adjacent_sample_step": 0.0035400390625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-35.69",
+            "input_tp": "-24.47",
+            "input_lra": "5.50",
+            "input_thresh": "-46.13"
+          }
+        },
+        {
+          "file": "D.experimental.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/D.experimental.piano.wav",
+            "sha256": "ea5e8c733e755deb11199b9c305ddbdaa2c04a77d033c21b426284022847c1b0",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.20953369140625,
+            "peak_dbfs": -13.574922717399732,
+            "rms_dbfs_left": -32.65880379098802,
+            "rms_dbfs_right": -36.55506731213527,
+            "dc_left": 3.5894388873051127e-06,
+            "dc_right": 2.6082183668722654e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 214849,
+            "last_nonzero_frame": 1485352,
+            "max_adjacent_sample_step": 0.022308349609375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.24",
+            "input_tp": "-13.57",
+            "input_lra": "15.80",
+            "input_thresh": "-39.96"
+          }
+        },
+        {
+          "file": "D.experimental.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/D.experimental.vocals.wav",
+            "sha256": "16e3e819006fea2e15d58b30f8188c130ee8efcf3922998dea1714ac6f1074ac",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -36.55370110201083,
+            "rms_dbfs_right": -37.18574073017267,
+            "dc_left": -8.750257696896178e-06,
+            "dc_right": -8.216892603861364e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 3,
+            "last_nonzero_frame": 1347445,
+            "max_adjacent_sample_step": 0.079620361328125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.70",
+            "input_tp": "-7.94",
+            "input_lra": "15.80",
+            "input_thresh": "-39.56"
+          }
+        },
+        {
+          "file": "D.experimental.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/D.experimental.wav",
+            "sha256": "86c8ab8d6749a58a8607a276939af92050e8fd77eabc79e1e62a55f7afefa20f",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.417449951171875,
+            "peak_dbfs": -7.587911708173248,
+            "rms_dbfs_left": -26.99026644898897,
+            "rms_dbfs_right": -27.55429262996659,
+            "dc_left": 5.79992352749878e-06,
+            "dc_right": 7.367542875856187e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 3,
+            "last_nonzero_frame": 1485352,
+            "max_adjacent_sample_step": 0.079620361328125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-25.41",
+            "input_tp": "-7.59",
+            "input_lra": "7.10",
+            "input_thresh": "-36.23"
+          }
+        },
+        {
+          "file": "E.experimental.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/E.experimental.bass.wav",
+            "sha256": "9fb3bb747d08e0ea9721495b805d7149cc879b6eac8c243cfe43a9e02ad0ae56",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.205078125,
+            "peak_dbfs": -13.761613238117853,
+            "rms_dbfs_left": -30.218202333914128,
+            "rms_dbfs_right": -30.219534738582233,
+            "dc_left": -3.895048195231593e-06,
+            "dc_right": -3.884981428099794e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185812,
+            "last_nonzero_frame": 1468731,
+            "max_adjacent_sample_step": 0.002593994140625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.34",
+            "input_tp": "-13.76",
+            "input_lra": "4.60",
+            "input_thresh": "-40.52"
+          }
+        },
+        {
+          "file": "E.experimental.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/E.experimental.drums.wav",
+            "sha256": "71635f6ba03f87d9e4c98c04b9fcd86e0085a3d5c8a9c346921a3d96f6ae9d6e",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.264068603515625,
+            "peak_dbfs": -11.565664624893707,
+            "rms_dbfs_left": -35.498550999093,
+            "rms_dbfs_right": -34.30514685215145,
+            "dc_left": 1.5257169122961549e-05,
+            "dc_right": 1.7308687553447513e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185811,
+            "last_nonzero_frame": 1441650,
+            "max_adjacent_sample_step": 0.076507568359375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.14",
+            "input_tp": "-11.47",
+            "input_lra": "5.50",
+            "input_thresh": "-41.39"
+          }
+        },
+        {
+          "file": "E.experimental.lead.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/E.experimental.lead.wav",
+            "sha256": "b55f2899dafdf480cb324f3dbe5f210bbd4e9d33550e8ad5069d176780a674c7",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.0,
+            "peak_dbfs": -300.0,
+            "rms_dbfs_left": -300.0,
+            "rms_dbfs_right": -300.0,
+            "dc_left": 0.0,
+            "dc_right": 0.0,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": null,
+            "last_nonzero_frame": null,
+            "max_adjacent_sample_step": 0.0,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-inf",
+            "input_tp": "-inf",
+            "input_lra": "0.00",
+            "input_thresh": "-70.00"
+          }
+        },
+        {
+          "file": "E.experimental.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/E.experimental.piano.wav",
+            "sha256": "2d458e9005cd5c9e636bb427240ec8a33882d8ef6b6326b5532d2c0be25b4e3c",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.20257568359375,
+            "peak_dbfs": -13.868253737742656,
+            "rms_dbfs_left": -32.7539143126168,
+            "rms_dbfs_right": -36.60809482664251,
+            "dc_left": 2.1893290012212852e-06,
+            "dc_right": 1.5841851586375132e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185815,
+            "last_nonzero_frame": 1485200,
+            "max_adjacent_sample_step": 0.01910400390625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.26",
+            "input_tp": "-13.86",
+            "input_lra": "10.70",
+            "input_thresh": "-39.50"
+          }
+        },
+        {
+          "file": "E.experimental.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/E.experimental.vocals.wav",
+            "sha256": "f163ec21547bb3df839408919e083bfab4d31c67e3333c09f653142f0d1eebb8",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -38.636299005499495,
+            "rms_dbfs_right": -38.636299005499495,
+            "dc_left": -6.0025509647666245e-06,
+            "dc_right": -6.0025509647666245e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 3,
+            "last_nonzero_frame": 1057429,
+            "max_adjacent_sample_step": 0.079620361328125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-26.51",
+            "input_tp": "-7.94",
+            "input_lra": "8.50",
+            "input_thresh": "-37.97"
+          }
+        },
+        {
+          "file": "E.experimental.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2035-147960-0013/E.experimental.wav",
+            "sha256": "f910ac2cb9604026ed8eb9113ac0d224b6f32ddecb737c5c5c6d768929ae7ce4",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -27.216859143269545,
+            "rms_dbfs_right": -27.75646975833533,
+            "dc_left": 7.538755057074796e-06,
+            "dc_right": 8.989468768740694e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 3,
+            "last_nonzero_frame": 1485200,
+            "max_adjacent_sample_step": 0.079620361328125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-25.77",
+            "input_tp": "-7.94",
+            "input_lra": "6.60",
+            "input_thresh": "-36.46"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "waveform_differences": {
+        "A/B": {
+          "max_pcm16_difference": 1167,
+          "rms_pcm16_difference": 46.325629598336725
+        },
+        "C/D": {
+          "max_pcm16_difference": 1110,
+          "rms_pcm16_difference": 45.799461213653345
+        },
+        "D/E": {
+          "max_pcm16_difference": 9736,
+          "rms_pcm16_difference": 505.66652034889336
+        }
+      },
+      "instrument_only_stem_checks": [
+        {
+          "pair": "A/B",
+          "instrument": "bass",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "drums",
+          "identical": false
+        },
+        {
+          "pair": "A/B",
+          "instrument": "piano",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "vocals",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "bass",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "drums",
+          "identical": false
+        },
+        {
+          "pair": "C/D",
+          "instrument": "piano",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "vocals",
+          "identical": true
+        }
+      ],
+      "rendered_audio": [
+        {
+          "file": "B.hiphop.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/B.hiphop.bass.wav",
+            "sha256": "79e1cbb9870c36e776122827c77fb73946d53c3bf860e64c88b00107d3e054d4",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.185150146484375,
+            "peak_dbfs": -14.649518800313395,
+            "rms_dbfs_left": -32.92230737455974,
+            "rms_dbfs_right": -32.884000560090094,
+            "dc_left": -1.8846789995829265e-06,
+            "dc_right": -1.8708507219950359e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240007,
+            "last_nonzero_frame": 1405800,
+            "max_adjacent_sample_step": 0.002471923828125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.70",
+            "input_tp": "-14.65",
+            "input_lra": "18.10",
+            "input_thresh": "-41.26"
+          }
+        },
+        {
+          "file": "B.hiphop.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/B.hiphop.drums.wav",
+            "sha256": "ffca2525fb5d9e96153e8879cffed82908e93736c0746ed976ce0f380541694f",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.266357421875,
+            "peak_dbfs": -11.49070394758865,
+            "rms_dbfs_left": -38.21090907248955,
+            "rms_dbfs_right": -37.03178527890864,
+            "dc_left": 1.1186758677164714e-05,
+            "dc_right": 1.2701888879140217e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 210010,
+            "last_nonzero_frame": 1368227,
+            "max_adjacent_sample_step": 0.068267822265625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.87",
+            "input_tp": "-11.49",
+            "input_lra": "16.70",
+            "input_thresh": "-43.43"
+          }
+        },
+        {
+          "file": "B.hiphop.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/B.hiphop.piano.wav",
+            "sha256": "03ae6e2ab15ba95d5ffe4ccaf6fe28ff019078c9350b8ab47acbb927584b64e7",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.22637939453125,
+            "peak_dbfs": -12.903262119342532,
+            "rms_dbfs_left": -32.38379336290345,
+            "rms_dbfs_right": -36.15531737902507,
+            "dc_left": 8.770684401194255e-06,
+            "dc_right": 6.381769975026448e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 10,
+            "last_nonzero_frame": 1428575,
+            "max_adjacent_sample_step": 0.02001953125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-27.98",
+            "input_tp": "-12.90",
+            "input_lra": "18.60",
+            "input_thresh": "-40.81"
+          }
+        },
+        {
+          "file": "B.hiphop.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/B.hiphop.vocals.wav",
+            "sha256": "2f0e46ab26d9e59f7c79420c048b834154edafb95ec1748614c32f9cb5842110",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -33.606030330032326,
+            "rms_dbfs_right": -33.87884728156603,
+            "dc_left": 3.981630007425944e-06,
+            "dc_right": 3.7757158279418943e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240010,
+            "last_nonzero_frame": 1247929,
+            "max_adjacent_sample_step": 0.0604248046875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-24.50",
+            "input_tp": "-7.95",
+            "input_lra": "10.40",
+            "input_thresh": "-35.89"
+          }
+        },
+        {
+          "file": "B.hiphop.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/B.hiphop.wav",
+            "sha256": "a5ce499a031b4b8820f508992ee1f4a6efc8583d10dfc12ba2a664f12aba4814",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.4132080078125,
+            "peak_dbfs": -7.676625412211848,
+            "rms_dbfs_left": -27.73810898014598,
+            "rms_dbfs_right": -28.60382489855774,
+            "dc_left": 2.2075255711873372e-05,
+            "dc_right": 2.0965953667958578e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 10,
+            "last_nonzero_frame": 1428575,
+            "max_adjacent_sample_step": 0.068267822265625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-24.78",
+            "input_tp": "-7.68",
+            "input_lra": "9.40",
+            "input_thresh": "-36.31"
+          }
+        },
+        {
+          "file": "C.hiphop.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/C.hiphop.bass.wav",
+            "sha256": "1af33668212b912d6089f1f0d50b1ee168750691ff0e49c867c7ff523de14133",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.178314208984375,
+            "peak_dbfs": -14.97628097298901,
+            "rms_dbfs_left": -33.100495882842914,
+            "rms_dbfs_right": -33.06153166406384,
+            "dc_left": -1.9752979278564453e-06,
+            "dc_right": -1.9676685333251953e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240007,
+            "last_nonzero_frame": 1404670,
+            "max_adjacent_sample_step": 0.00238037109375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.60",
+            "input_tp": "-14.98",
+            "input_lra": "17.80",
+            "input_thresh": "-41.45"
+          }
+        },
+        {
+          "file": "C.hiphop.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/C.hiphop.drums.wav",
+            "sha256": "27fe840667b517c1124fee6d1322be5da22a17c889931467db5801eba56b4293",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.280181884765625,
+            "peak_dbfs": -11.051198951358536,
+            "rms_dbfs_left": -38.41507684334211,
+            "rms_dbfs_right": -37.23433288718367,
+            "dc_left": 7.507582505544027e-06,
+            "dc_right": 8.519232273101807e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 210385,
+            "last_nonzero_frame": 1340335,
+            "max_adjacent_sample_step": 0.07562255859375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.67",
+            "input_tp": "-11.05",
+            "input_lra": "16.10",
+            "input_thresh": "-43.51"
+          }
+        },
+        {
+          "file": "C.hiphop.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/C.hiphop.piano.wav",
+            "sha256": "656411d7b10aa85daef77fea56e1a055526ead34ec4cbc4741d13c6f70f4337b",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.23516845703125,
+            "peak_dbfs": -12.572418605654716,
+            "rms_dbfs_left": -32.47264174945657,
+            "rms_dbfs_right": -36.23449279286868,
+            "dc_left": 7.740279038747151e-06,
+            "dc_right": 5.630433559417724e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435767,
+            "max_adjacent_sample_step": 0.020233154296875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.10",
+            "input_tp": "-12.57",
+            "input_lra": "22.60",
+            "input_thresh": "-41.08"
+          }
+        },
+        {
+          "file": "C.hiphop.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/C.hiphop.vocals.wav",
+            "sha256": "2f0e46ab26d9e59f7c79420c048b834154edafb95ec1748614c32f9cb5842110",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -33.606030330032326,
+            "rms_dbfs_right": -33.87884728156603,
+            "dc_left": 3.981630007425944e-06,
+            "dc_right": 3.7757158279418943e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240010,
+            "last_nonzero_frame": 1247929,
+            "max_adjacent_sample_step": 0.0604248046875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-24.50",
+            "input_tp": "-7.95",
+            "input_lra": "10.40",
+            "input_thresh": "-35.89"
+          }
+        },
+        {
+          "file": "C.hiphop.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/C.hiphop.wav",
+            "sha256": "672628d098dc1c425c603bfb9bf89474247f97c380c88ea99252f093fafe9641",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.42333984375,
+            "peak_dbfs": -7.466217096551658,
+            "rms_dbfs_left": -27.84712237524102,
+            "rms_dbfs_right": -28.720703889280287,
+            "dc_left": 1.729677120844523e-05,
+            "dc_right": 1.5977064768473306e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435767,
+            "max_adjacent_sample_step": 0.07635498046875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-24.78",
+            "input_tp": "-7.47",
+            "input_lra": "9.90",
+            "input_thresh": "-36.51"
+          }
+        },
+        {
+          "file": "D.hiphop.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/D.hiphop.bass.wav",
+            "sha256": "1af33668212b912d6089f1f0d50b1ee168750691ff0e49c867c7ff523de14133",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.178314208984375,
+            "peak_dbfs": -14.97628097298901,
+            "rms_dbfs_left": -33.100495882842914,
+            "rms_dbfs_right": -33.06153166406384,
+            "dc_left": -1.9752979278564453e-06,
+            "dc_right": -1.9676685333251953e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240007,
+            "last_nonzero_frame": 1404670,
+            "max_adjacent_sample_step": 0.00238037109375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.60",
+            "input_tp": "-14.98",
+            "input_lra": "17.80",
+            "input_thresh": "-41.45"
+          }
+        },
+        {
+          "file": "D.hiphop.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/D.hiphop.drums.wav",
+            "sha256": "bee7d816a224428a8c0512d41e934026d4367456e613f1f78b79473cb825c4c6",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.280120849609375,
+            "peak_dbfs": -11.053091302049694,
+            "rms_dbfs_left": -38.33722587855871,
+            "rms_dbfs_right": -37.15641583447058,
+            "dc_left": 1.0828951994578043e-05,
+            "dc_right": 1.2286086877187092e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 210385,
+            "last_nonzero_frame": 1368109,
+            "max_adjacent_sample_step": 0.07562255859375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.76",
+            "input_tp": "-11.05",
+            "input_lra": "16.20",
+            "input_thresh": "-43.52"
+          }
+        },
+        {
+          "file": "D.hiphop.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/D.hiphop.piano.wav",
+            "sha256": "656411d7b10aa85daef77fea56e1a055526ead34ec4cbc4741d13c6f70f4337b",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.23516845703125,
+            "peak_dbfs": -12.572418605654716,
+            "rms_dbfs_left": -32.47264174945657,
+            "rms_dbfs_right": -36.23449279286868,
+            "dc_left": 7.740279038747151e-06,
+            "dc_right": 5.630433559417724e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435767,
+            "max_adjacent_sample_step": 0.020233154296875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.10",
+            "input_tp": "-12.57",
+            "input_lra": "22.60",
+            "input_thresh": "-41.08"
+          }
+        },
+        {
+          "file": "D.hiphop.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/D.hiphop.vocals.wav",
+            "sha256": "2f0e46ab26d9e59f7c79420c048b834154edafb95ec1748614c32f9cb5842110",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -33.606030330032326,
+            "rms_dbfs_right": -33.87884728156603,
+            "dc_left": 3.981630007425944e-06,
+            "dc_right": 3.7757158279418943e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240010,
+            "last_nonzero_frame": 1247929,
+            "max_adjacent_sample_step": 0.0604248046875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-24.50",
+            "input_tp": "-7.95",
+            "input_lra": "10.40",
+            "input_thresh": "-35.89"
+          }
+        },
+        {
+          "file": "D.hiphop.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/D.hiphop.wav",
+            "sha256": "a2c942dfe40a696643ac467d69b4c64cdb4bb7e32ccc1f7fe9b4fcb431be7872",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.423187255859375,
+            "peak_dbfs": -7.469348388138281,
+            "rms_dbfs_left": -27.8393805214488,
+            "rms_dbfs_right": -28.708282257859842,
+            "dc_left": 2.0617465178171793e-05,
+            "dc_right": 1.9737144311269126e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435767,
+            "max_adjacent_sample_step": 0.07635498046875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-24.77",
+            "input_tp": "-7.47",
+            "input_lra": "9.90",
+            "input_thresh": "-36.49"
+          }
+        },
+        {
+          "file": "E.hiphop.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/E.hiphop.bass.wav",
+            "sha256": "77f7b32dd31b575e13ff00fbd97ddb6026bc1dc87f74f55a5972a429318e8d08",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.18560791015625,
+            "peak_dbfs": -14.628070383032092,
+            "rms_dbfs_left": -33.040832352492785,
+            "rms_dbfs_right": -33.00518838446419,
+            "dc_left": -1.6005237897237142e-06,
+            "dc_right": -1.6026496887207032e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 435570,
+            "last_nonzero_frame": 1404670,
+            "max_adjacent_sample_step": 0.002471923828125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.48",
+            "input_tp": "-14.63",
+            "input_lra": "6.80",
+            "input_thresh": "-40.42"
+          }
+        },
+        {
+          "file": "E.hiphop.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/E.hiphop.drums.wav",
+            "sha256": "8fcf4c899a19ce4497c602e8d7d890d27de48dbbbd0088e02e13d03f3b193db4",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.2662353515625,
+            "peak_dbfs": -11.494685561061104,
+            "rms_dbfs_left": -38.38935630404255,
+            "rms_dbfs_right": -37.21249795952337,
+            "dc_left": 1.1537174383799235e-05,
+            "dc_right": 1.3087848822275797e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 210385,
+            "last_nonzero_frame": 1368167,
+            "max_adjacent_sample_step": 0.075531005859375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.79",
+            "input_tp": "-11.48",
+            "input_lra": "16.20",
+            "input_thresh": "-43.54"
+          }
+        },
+        {
+          "file": "E.hiphop.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/E.hiphop.piano.wav",
+            "sha256": "645c7e0ac76bbb133aae408bc4035bcbbfa366451072664c0e90ce8624aee271",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.237274169921875,
+            "peak_dbfs": -12.494990745216857,
+            "rms_dbfs_left": -33.3984601726914,
+            "rms_dbfs_right": -37.11134532644047,
+            "dc_left": 5.767802397410075e-06,
+            "dc_right": 4.1970213254292805e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435774,
+            "max_adjacent_sample_step": 0.0201416015625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.33",
+            "input_tp": "-12.49",
+            "input_lra": "16.20",
+            "input_thresh": "-40.57"
+          }
+        },
+        {
+          "file": "E.hiphop.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/E.hiphop.vocals.wav",
+            "sha256": "fd7622b48b5969d5e3fa44cdb22d03bc304cf0f26f33aef76089d18775c9dece",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -34.11210217036428,
+            "rms_dbfs_right": -34.11210217036428,
+            "dc_left": 3.3599535624186197e-06,
+            "dc_right": 3.3599535624186197e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 240010,
+            "last_nonzero_frame": 908149,
+            "max_adjacent_sample_step": 0.0604248046875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-23.75",
+            "input_tp": "-7.95",
+            "input_lra": "11.00",
+            "input_thresh": "-35.02"
+          }
+        },
+        {
+          "file": "E.hiphop.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/ls-2086-149220-0047/E.hiphop.wav",
+            "sha256": "e038c7155b43608894e2883f4d4aaa9aca046a11384b9a66baf96a2648e19af2",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.400482177734375,
+            "peak_dbfs": -7.94833612262302,
+            "rms_dbfs_left": -28.270761607080583,
+            "rms_dbfs_right": -28.92097521151282,
+            "dc_left": 1.9081175327301027e-05,
+            "dc_right": 1.9063830375671388e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435774,
+            "max_adjacent_sample_step": 0.075347900390625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-25.17",
+            "input_tp": "-7.95",
+            "input_lra": "9.50",
+            "input_thresh": "-36.75"
+          }
+        }
+      ]
+    },
+    {
+      "id": "commons-laughter",
+      "waveform_differences": {
+        "A/B": {
+          "max_pcm16_difference": 1289,
+          "rms_pcm16_difference": 70.58077211538344
+        },
+        "C/D": {
+          "max_pcm16_difference": 1288,
+          "rms_pcm16_difference": 70.12636213057267
+        },
+        "D/E": {
+          "max_pcm16_difference": 9697,
+          "rms_pcm16_difference": 529.0355179977951
+        }
+      },
+      "instrument_only_stem_checks": [
+        {
+          "pair": "A/B",
+          "instrument": "bass",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "drums",
+          "identical": false
+        },
+        {
+          "pair": "A/B",
+          "instrument": "lead",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "piano",
+          "identical": true
+        },
+        {
+          "pair": "A/B",
+          "instrument": "vocals",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "bass",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "drums",
+          "identical": false
+        },
+        {
+          "pair": "C/D",
+          "instrument": "lead",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "piano",
+          "identical": true
+        },
+        {
+          "pair": "C/D",
+          "instrument": "vocals",
+          "identical": true
+        }
+      ],
+      "rendered_audio": [
+        {
+          "file": "B.experimental.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/B.experimental.bass.wav",
+            "sha256": "ad587fdfcdc420ab12d77f9753b9f9a1b4d4bb4d7bd917775f1648c3eca4d8b3",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.209930419921875,
+            "peak_dbfs": -13.558492510202333,
+            "rms_dbfs_left": -30.113065447225473,
+            "rms_dbfs_right": -30.11736105310416,
+            "dc_left": -3.995928001489145e-06,
+            "dc_right": -3.981348545643091e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185812,
+            "last_nonzero_frame": 1471915,
+            "max_adjacent_sample_step": 0.00244140625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.32",
+            "input_tp": "-13.56",
+            "input_lra": "4.30",
+            "input_thresh": "-40.45"
+          }
+        },
+        {
+          "file": "B.experimental.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/B.experimental.drums.wav",
+            "sha256": "16ac15b64b6af3db84961c69fcedd13cb9a7398c8f2b3827a4ae4219cb3899f8",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.2508544921875,
+            "peak_dbfs": -12.01156234839335,
+            "rms_dbfs_left": -35.449582307266155,
+            "rms_dbfs_right": -34.25451494953639,
+            "dc_left": 1.5288545809021775e-05,
+            "dc_right": 1.7335011570947335e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185811,
+            "last_nonzero_frame": 1441590,
+            "max_adjacent_sample_step": 0.07049560546875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.14",
+            "input_tp": "-11.98",
+            "input_lra": "5.30",
+            "input_thresh": "-41.38"
+          }
+        },
+        {
+          "file": "B.experimental.lead.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/B.experimental.lead.wav",
+            "sha256": "43e2755ad36822f136ff7f056f8167e948f7734bf96d1fe3172ae77474bfc8aa",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.0400390625,
+            "peak_dbfs": -27.950321998401527,
+            "rms_dbfs_left": -46.92678392043504,
+            "rms_dbfs_right": -44.46238955840778,
+            "dc_left": 3.035458135144068e-08,
+            "dc_right": 5.029526566998557e-08,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 284520,
+            "last_nonzero_frame": 1265021,
+            "max_adjacent_sample_step": 0.00250244140625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-35.90",
+            "input_tp": "-27.95",
+            "input_lra": "5.30",
+            "input_thresh": "-46.36"
+          }
+        },
+        {
+          "file": "B.experimental.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/B.experimental.piano.wav",
+            "sha256": "76a3ae966cdf2903faa91295918829ea1ed69f41e10f0c4b7e506f855257ab4b",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.222503662109375,
+            "peak_dbfs": -13.053256734487471,
+            "rms_dbfs_left": -32.55437941059826,
+            "rms_dbfs_right": -36.446654210003864,
+            "dc_left": 4.818548727109891e-06,
+            "dc_right": 3.501017187498025e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 214849,
+            "last_nonzero_frame": 1481862,
+            "max_adjacent_sample_step": 0.021392822265625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-27.92",
+            "input_tp": "-13.05",
+            "input_lra": "17.30",
+            "input_thresh": "-39.77"
+          }
+        },
+        {
+          "file": "B.experimental.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/B.experimental.vocals.wav",
+            "sha256": "b6854cf4a140c4d096c632a7f09f85f00b7abc01e9aa51cee9a499d045e0db41",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -37.664563844643666,
+            "rms_dbfs_right": -37.448888620965725,
+            "dc_left": -8.6780546774681e-07,
+            "dc_right": -1.6769074122192964e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1341887,
+            "max_adjacent_sample_step": 0.185821533203125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-27.50",
+            "input_tp": "-7.95",
+            "input_lra": "15.20",
+            "input_thresh": "-39.18"
+          }
+        },
+        {
+          "file": "B.experimental.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/B.experimental.wav",
+            "sha256": "843b63650c8228114d4061a98ca4355fddf1c568cdc56fe6d93b826fc035266a",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -26.982423227266658,
+            "rms_dbfs_right": -27.463271277273478,
+            "dc_left": 1.5291669978131645e-05,
+            "dc_right": 1.5239137653099036e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1481862,
+            "max_adjacent_sample_step": 0.185821533203125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-25.17",
+            "input_tp": "-7.95",
+            "input_lra": "3.90",
+            "input_thresh": "-36.08"
+          }
+        },
+        {
+          "file": "C.experimental.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/C.experimental.bass.wav",
+            "sha256": "f10ce400bb4f05a5bcd5a88da6461e195a50bf7a0f229053b615c5c8bca77509",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.204559326171875,
+            "peak_dbfs": -13.783614311319834,
+            "rms_dbfs_left": -30.24608095365114,
+            "rms_dbfs_right": -30.24959990959427,
+            "dc_left": -3.875281075863597e-06,
+            "dc_right": -3.864616473902131e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185812,
+            "last_nonzero_frame": 1468725,
+            "max_adjacent_sample_step": 0.0025634765625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.41",
+            "input_tp": "-13.78",
+            "input_lra": "4.50",
+            "input_thresh": "-40.57"
+          }
+        },
+        {
+          "file": "C.experimental.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/C.experimental.drums.wav",
+            "sha256": "9346e23b3c465c451774a842fafc507fb86511e94bf2d80ff1da140234638d57",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.25628662109375,
+            "peak_dbfs": -11.825481293155942,
+            "rms_dbfs_left": -35.60692032714174,
+            "rms_dbfs_right": -34.411114977602985,
+            "dc_left": 1.0858223306299338e-05,
+            "dc_right": 1.2316496735811338e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185811,
+            "last_nonzero_frame": 1412121,
+            "max_adjacent_sample_step": 0.07476806640625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.25",
+            "input_tp": "-11.80",
+            "input_lra": "5.50",
+            "input_thresh": "-41.40"
+          }
+        },
+        {
+          "file": "C.experimental.lead.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/C.experimental.lead.wav",
+            "sha256": "88f97d6155f3bf89ad6d8b4a39f07abb0be61e80f91c8e60f58fa5b3b6d979f7",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.0400390625,
+            "peak_dbfs": -27.950321998401527,
+            "rms_dbfs_left": -47.09405027449786,
+            "rms_dbfs_right": -44.62409078232915,
+            "dc_left": 3.4250150241523915e-08,
+            "dc_right": 5.152950531832877e-08,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 284520,
+            "last_nonzero_frame": 1265021,
+            "max_adjacent_sample_step": 0.00250244140625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-36.06",
+            "input_tp": "-27.95",
+            "input_lra": "5.10",
+            "input_thresh": "-46.52"
+          }
+        },
+        {
+          "file": "C.experimental.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/C.experimental.piano.wav",
+            "sha256": "a6e49f228f0e283bbded34b79898a327569fdca29b1028805e8772589296e7f2",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.20953369140625,
+            "peak_dbfs": -13.574922717399732,
+            "rms_dbfs_left": -32.670769525196334,
+            "rms_dbfs_right": -36.56977498279893,
+            "dc_left": 3.002982204397037e-06,
+            "dc_right": 2.1837170678202245e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 214849,
+            "last_nonzero_frame": 1485352,
+            "max_adjacent_sample_step": 0.022308349609375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.10",
+            "input_tp": "-13.57",
+            "input_lra": "17.20",
+            "input_thresh": "-39.97"
+          }
+        },
+        {
+          "file": "C.experimental.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/C.experimental.vocals.wav",
+            "sha256": "2b06ef04e8b2b3d7e362b31cf4d7bdba396f34d31b841ecae29e8bd9194408a5",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -37.664563844643666,
+            "rms_dbfs_right": -37.448888620965725,
+            "dc_left": -8.6780546774681e-07,
+            "dc_right": -1.6769074122192964e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1342080,
+            "max_adjacent_sample_step": 0.185821533203125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-27.51",
+            "input_tp": "-7.95",
+            "input_lra": "15.20",
+            "input_thresh": "-39.18"
+          }
+        },
+        {
+          "file": "C.experimental.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/C.experimental.wav",
+            "sha256": "78e799bd882332256d8e006b445850800190a02fd34ee93cb6f293a9fe3cec39",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -27.103200775720207,
+            "rms_dbfs_right": -27.587979394669592,
+            "dc_left": 9.137442531580342e-06,
+            "dc_right": 8.983702555383592e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1485352,
+            "max_adjacent_sample_step": 0.185821533203125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-25.24",
+            "input_tp": "-7.95",
+            "input_lra": "4.10",
+            "input_thresh": "-36.17"
+          }
+        },
+        {
+          "file": "D.experimental.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/D.experimental.bass.wav",
+            "sha256": "f10ce400bb4f05a5bcd5a88da6461e195a50bf7a0f229053b615c5c8bca77509",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.204559326171875,
+            "peak_dbfs": -13.783614311319834,
+            "rms_dbfs_left": -30.24608095365114,
+            "rms_dbfs_right": -30.24959990959427,
+            "dc_left": -3.875281075863597e-06,
+            "dc_right": -3.864616473902131e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185812,
+            "last_nonzero_frame": 1468725,
+            "max_adjacent_sample_step": 0.0025634765625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.41",
+            "input_tp": "-13.78",
+            "input_lra": "4.50",
+            "input_thresh": "-40.57"
+          }
+        },
+        {
+          "file": "D.experimental.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/D.experimental.drums.wav",
+            "sha256": "01c4a6ddb3a5f0fe5b72b47b1cd9fb38806d99ce3c9dd1ae05418dfae13fd437",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.257476806640625,
+            "peak_dbfs": -11.785237717050238,
+            "rms_dbfs_left": -35.49695664938194,
+            "rms_dbfs_right": -34.30329416927074,
+            "dc_left": 1.480742376610199e-05,
+            "dc_right": 1.6797519489088372e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185811,
+            "last_nonzero_frame": 1441588,
+            "max_adjacent_sample_step": 0.07476806640625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.14",
+            "input_tp": "-11.75",
+            "input_lra": "5.60",
+            "input_thresh": "-41.39"
+          }
+        },
+        {
+          "file": "D.experimental.lead.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/D.experimental.lead.wav",
+            "sha256": "88f97d6155f3bf89ad6d8b4a39f07abb0be61e80f91c8e60f58fa5b3b6d979f7",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.0400390625,
+            "peak_dbfs": -27.950321998401527,
+            "rms_dbfs_left": -47.09405027449786,
+            "rms_dbfs_right": -44.62409078232915,
+            "dc_left": 3.4250150241523915e-08,
+            "dc_right": 5.152950531832877e-08,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 284520,
+            "last_nonzero_frame": 1265021,
+            "max_adjacent_sample_step": 0.00250244140625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-36.06",
+            "input_tp": "-27.95",
+            "input_lra": "5.10",
+            "input_thresh": "-46.52"
+          }
+        },
+        {
+          "file": "D.experimental.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/D.experimental.piano.wav",
+            "sha256": "a6e49f228f0e283bbded34b79898a327569fdca29b1028805e8772589296e7f2",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.20953369140625,
+            "peak_dbfs": -13.574922717399732,
+            "rms_dbfs_left": -32.670769525196334,
+            "rms_dbfs_right": -36.56977498279893,
+            "dc_left": 3.002982204397037e-06,
+            "dc_right": 2.1837170678202245e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 214849,
+            "last_nonzero_frame": 1485352,
+            "max_adjacent_sample_step": 0.022308349609375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.10",
+            "input_tp": "-13.57",
+            "input_lra": "17.20",
+            "input_thresh": "-39.97"
+          }
+        },
+        {
+          "file": "D.experimental.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/D.experimental.vocals.wav",
+            "sha256": "2b06ef04e8b2b3d7e362b31cf4d7bdba396f34d31b841ecae29e8bd9194408a5",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -37.664563844643666,
+            "rms_dbfs_right": -37.448888620965725,
+            "dc_left": -8.6780546774681e-07,
+            "dc_right": -1.6769074122192964e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1342080,
+            "max_adjacent_sample_step": 0.185821533203125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-27.51",
+            "input_tp": "-7.95",
+            "input_lra": "15.20",
+            "input_thresh": "-39.18"
+          }
+        },
+        {
+          "file": "D.experimental.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/D.experimental.wav",
+            "sha256": "82881cbc3be8fb88bf6f3edbba559e757ba8a6c778205f82260dba3bb379c8ab",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -27.089879941050956,
+            "rms_dbfs_right": -27.56818453093494,
+            "dc_left": 1.3095494803860954e-05,
+            "dc_right": 1.3472265741512223e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1485352,
+            "max_adjacent_sample_step": 0.185821533203125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-25.22",
+            "input_tp": "-7.95",
+            "input_lra": "4.10",
+            "input_thresh": "-36.15"
+          }
+        },
+        {
+          "file": "E.experimental.bass.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/E.experimental.bass.wav",
+            "sha256": "9fb3bb747d08e0ea9721495b805d7149cc879b6eac8c243cfe43a9e02ad0ae56",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.205078125,
+            "peak_dbfs": -13.761613238117853,
+            "rms_dbfs_left": -30.218202333914128,
+            "rms_dbfs_right": -30.219534738582233,
+            "dc_left": -3.895048195231593e-06,
+            "dc_right": -3.884981428099794e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185812,
+            "last_nonzero_frame": 1468731,
+            "max_adjacent_sample_step": 0.002593994140625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-29.34",
+            "input_tp": "-13.76",
+            "input_lra": "4.60",
+            "input_thresh": "-40.52"
+          }
+        },
+        {
+          "file": "E.experimental.drums.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/E.experimental.drums.wav",
+            "sha256": "71635f6ba03f87d9e4c98c04b9fcd86e0085a3d5c8a9c346921a3d96f6ae9d6e",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.264068603515625,
+            "peak_dbfs": -11.565664624893707,
+            "rms_dbfs_left": -35.498550999093,
+            "rms_dbfs_right": -34.30514685215145,
+            "dc_left": 1.5257169122961549e-05,
+            "dc_right": 1.7308687553447513e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185811,
+            "last_nonzero_frame": 1441650,
+            "max_adjacent_sample_step": 0.076507568359375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-31.14",
+            "input_tp": "-11.47",
+            "input_lra": "5.50",
+            "input_thresh": "-41.39"
+          }
+        },
+        {
+          "file": "E.experimental.lead.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/E.experimental.lead.wav",
+            "sha256": "b55f2899dafdf480cb324f3dbe5f210bbd4e9d33550e8ad5069d176780a674c7",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.0,
+            "peak_dbfs": -300.0,
+            "rms_dbfs_left": -300.0,
+            "rms_dbfs_right": -300.0,
+            "dc_left": 0.0,
+            "dc_right": 0.0,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": null,
+            "last_nonzero_frame": null,
+            "max_adjacent_sample_step": 0.0,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-inf",
+            "input_tp": "-inf",
+            "input_lra": "0.00",
+            "input_thresh": "-70.00"
+          }
+        },
+        {
+          "file": "E.experimental.piano.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/E.experimental.piano.wav",
+            "sha256": "aa580cd394419958ceb07616775f165466cd59113f017a9464bc294c3669ad3f",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.20257568359375,
+            "peak_dbfs": -13.868253737742656,
+            "rms_dbfs_left": -32.73330950020232,
+            "rms_dbfs_right": -36.58417069621852,
+            "dc_left": 2.257405031825215e-06,
+            "dc_right": 1.6391666779723018e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 185815,
+            "last_nonzero_frame": 1485200,
+            "max_adjacent_sample_step": 0.01910400390625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-28.24",
+            "input_tp": "-13.86",
+            "input_lra": "10.70",
+            "input_thresh": "-39.49"
+          }
+        },
+        {
+          "file": "E.experimental.vocals.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/E.experimental.vocals.wav",
+            "sha256": "0cecc9e60d1c0a9f6e63331f78f860db41c99900eb71d570ff5ed9d9b00bf11f",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -38.74754187915401,
+            "rms_dbfs_right": -38.74754187915401,
+            "dc_left": -8.153695676867292e-08,
+            "dc_right": -8.153695676867292e-08,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1073022,
+            "max_adjacent_sample_step": 0.185821533203125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-25.13",
+            "input_tp": "-7.95",
+            "input_lra": "11.40",
+            "input_thresh": "-37.38"
+          }
+        },
+        {
+          "file": "E.experimental.wav",
+          "pcm": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-five-arm-20261020/commons-laughter/E.experimental.wav",
+            "sha256": "4407d897c70e5f495d3457a32b87993ae72837a7cc4929af7fc4f8b98949b14d",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -27.21744248641982,
+            "rms_dbfs_right": -27.761158998813936,
+            "dc_left": 1.3524026666764616e-05,
+            "dc_right": 1.4962648686875652e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1485200,
+            "max_adjacent_sample_step": 0.185821533203125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "loudness": {
+            "input_i": "-25.51",
+            "input_tp": "-7.95",
+            "input_lra": "3.90",
+            "input_thresh": "-36.38"
+          }
+        }
+      ]
+    }
+  ],
+  "instrument_probes": [
+    {
+      "file": "bass-long.wav",
+      "sha256": "6fb73be19221e67d78aad0c75f8bfbe641af4bf79e2d6d22ebdc0d360f53961f",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.04522418586493022,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -21.925605653687295,
+          "0.32-0.6s": -39.26820416211819,
+          "0.6-1.0s": -45.916053562004784
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.04522418586493022,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -21.925605653687295,
+          "0.32-0.6s": -39.26820416211819,
+          "0.6-1.0s": -45.916053562004784
+        }
+      }
+    },
+    {
+      "file": "bass-short.wav",
+      "sha256": "d20f8391da41159676f09556fdbf9df013d48107e0e6b0472d62fbf4e3c9adca",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.0,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -21.925605653687295,
+          "0.32-0.6s": -120.0,
+          "0.6-1.0s": -120.0
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.0,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -21.925605653687295,
+          "0.32-0.6s": -120.0,
+          "0.6-1.0s": -120.0
+        }
+      }
+    },
+    {
+      "file": "drums-long.wav",
+      "sha256": "bb61a863b547c5727d22729a7d1bcb83bdf2be2de8dfd473a0c0f3a91f3ac259",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.1956199311126603,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -28.712465222769318,
+          "0.32-0.6s": -36.029551693110264,
+          "0.6-1.0s": -43.722157312552135
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.1956199311126603,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -28.712465222769318,
+          "0.32-0.6s": -36.029551693110264,
+          "0.6-1.0s": -43.722157312552135
+        }
+      }
+    },
+    {
+      "file": "drums-short.wav",
+      "sha256": "df3e20a5fff9549eaaf416579318a581d998e5d39e47efdff64ac50db1d6072b",
+      "identical": false,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.0,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -28.712465222769318,
+          "0.32-0.6s": -120.0,
+          "0.6-1.0s": -120.0
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.11839190698821665,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -28.712465222769318,
+          "0.32-0.6s": -37.985367706257,
+          "0.6-1.0s": -52.45444399882353
+        }
+      }
+    },
+    {
+      "file": "guitar-long.wav",
+      "sha256": "2dc3a1dd7f21a3a67101a1b96bbf7d128c54be2c73cc45055925326bb5b19239",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.5707204331625837,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -34.43964554920041,
+          "0.32-0.6s": -38.102088512967725,
+          "0.6-1.0s": -39.925811674887164
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.5707204331625837,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -34.43964554920041,
+          "0.32-0.6s": -38.102088512967725,
+          "0.6-1.0s": -39.925811674887164
+        }
+      }
+    },
+    {
+      "file": "guitar-short.wav",
+      "sha256": "bacb47af833ca243a6ed98b35bd94703aec160a2e1dccb136638a2e73fb818ef",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.0,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -34.43964554920041,
+          "0.32-0.6s": -120.0,
+          "0.6-1.0s": -120.0
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.0,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -34.43964554920041,
+          "0.32-0.6s": -120.0,
+          "0.6-1.0s": -120.0
+        }
+      }
+    },
+    {
+      "file": "lead-long.wav",
+      "sha256": "f2eb3470d546c92b45424c272f1799e9a3899e8fbf8fac70936c3f01b9028add",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.7280616952772725,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -21.807559833228396,
+          "0.32-0.6s": -23.99656514711849,
+          "0.6-1.0s": -24.228189737203657
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.7280616952772725,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -21.807559833228396,
+          "0.32-0.6s": -23.99656514711849,
+          "0.6-1.0s": -24.228189737203657
+        }
+      }
+    },
+    {
+      "file": "lead-short.wav",
+      "sha256": "91d63be97b2a6f061515be110fd44b11b0d63ade366796deb83705669f33cec7",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.0,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -21.807559833228396,
+          "0.32-0.6s": -120.0,
+          "0.6-1.0s": -120.0
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.0,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -21.807559833228396,
+          "0.32-0.6s": -120.0,
+          "0.6-1.0s": -120.0
+        }
+      }
+    },
+    {
+      "file": "organ-long.wav",
+      "sha256": "5cd627b38b34a958f6900a7a3ec996598b3957b7ac85ae33fa55af564450e30c",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.7949627562170821,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -24.120883108881994,
+          "0.32-0.6s": -24.164337160911966,
+          "0.6-1.0s": -24.18253018933935
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.7949627562170821,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -24.120883108881994,
+          "0.32-0.6s": -24.164337160911966,
+          "0.6-1.0s": -24.18253018933935
+        }
+      }
+    },
+    {
+      "file": "organ-short.wav",
+      "sha256": "3d7ec3250e6e155c2614b199a5ad6251b19e849ce5790f9f13eb656bf6bfdf4d",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.0,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -24.120883108881994,
+          "0.32-0.6s": -120.0,
+          "0.6-1.0s": -120.0
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.0,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -24.120883108881994,
+          "0.32-0.6s": -120.0,
+          "0.6-1.0s": -120.0
+        }
+      }
+    },
+    {
+      "file": "pad-long.wav",
+      "sha256": "776f08a9fd55b2e84b21ae2077f2b49864663ec13b886e61b46427ab70affb41",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.5894741082767119,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -30.612182428013387,
+          "0.32-0.6s": -27.40245392680248,
+          "0.6-1.0s": -33.69694761621636
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.5894741082767119,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -30.612182428013387,
+          "0.32-0.6s": -27.40245392680248,
+          "0.6-1.0s": -33.69694761621636
+        }
+      }
+    },
+    {
+      "file": "pad-short.wav",
+      "sha256": "549e3f5876c7f1b8beaa254b5b44f9b0259659798b18415ba36110a61fcb09b9",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.20231742241750053,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -31.140059297309165,
+          "0.32-0.6s": -30.319022938743146,
+          "0.6-1.0s": -53.94871036814046
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.20231742241750053,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -31.140059297309165,
+          "0.32-0.6s": -30.319022938743146,
+          "0.6-1.0s": -53.94871036814046
+        }
+      }
+    },
+    {
+      "file": "piano-long.wav",
+      "sha256": "ff393ee2ad40448c2433257f549587a79794a1b4b9e36619babfce7be1747fce",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.3078302410425006,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -23.824920219214718,
+          "0.32-0.6s": -28.346584569337324,
+          "0.6-1.0s": -34.394392217881006
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.3078302410425006,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -23.824920219214718,
+          "0.32-0.6s": -28.346584569337324,
+          "0.6-1.0s": -34.394392217881006
+        }
+      }
+    },
+    {
+      "file": "piano-short.wav",
+      "sha256": "ffe49771cfdb05a1a92c8c96b91317e81eff77a0f44da7a3a59cf1c61a637822",
+      "identical": true,
+      "before": {
+        "third_note_tail_energy_after_320ms_fraction": 0.003591704577652872,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -23.824920219214718,
+          "0.32-0.6s": -48.70815640622166,
+          "0.6-1.0s": -120.0
+        }
+      },
+      "after": {
+        "third_note_tail_energy_after_320ms_fraction": 0.003591704577652872,
+        "third_note_rms_dbfs_windows": {
+          "0-0.1s": -23.824920219214718,
+          "0.32-0.6s": -48.70815640622166,
+          "0.6-1.0s": -120.0
+        }
+      }
+    }
+  ],
+  "trial_file_sha256": {
+    "commons-laughter/B.complete.json": "5d4c4370acf138d6342c721736136c7a7aab73542ac091ea2582fcc6d1c87caa",
+    "commons-laughter/B.experimental.bass.wav": "ad587fdfcdc420ab12d77f9753b9f9a1b4d4bb4d7bd917775f1648c3eca4d8b3",
+    "commons-laughter/B.experimental.drums.wav": "16ac15b64b6af3db84961c69fcedd13cb9a7398c8f2b3827a4ae4219cb3899f8",
+    "commons-laughter/B.experimental.events.tsv": "8208bdd66e2076619e7288a32d2b018a7904f256868a0e26212ad7463b5e36f9",
+    "commons-laughter/B.experimental.lead.wav": "43e2755ad36822f136ff7f056f8167e948f7734bf96d1fe3172ae77474bfc8aa",
+    "commons-laughter/B.experimental.piano.wav": "76a3ae966cdf2903faa91295918829ea1ed69f41e10f0c4b7e506f855257ab4b",
+    "commons-laughter/B.experimental.report.json": "275f928bffb5e5e588e86f9241059fa6118435613bc97e5e1b7806f052753e54",
+    "commons-laughter/B.experimental.score.json": "c8aa2954e016a4d72dcf120d10ce93ede99af443bc964462ca936cde14714c2a",
+    "commons-laughter/B.experimental.vocals.wav": "b6854cf4a140c4d096c632a7f09f85f00b7abc01e9aa51cee9a499d045e0db41",
+    "commons-laughter/B.experimental.wav": "843b63650c8228114d4061a98ca4355fddf1c568cdc56fe6d93b826fc035266a",
+    "commons-laughter/B.plan.json": "ddbd92af7b51c85f35e4719a4b00de25a61cf48f12b8d06d65df8ce25869efb9",
+    "commons-laughter/C.complete.json": "59829c9dc978c666536c626819d0e39d79200bcd4feaf313924a63b62cca78d0",
+    "commons-laughter/C.experimental.bass.wav": "f10ce400bb4f05a5bcd5a88da6461e195a50bf7a0f229053b615c5c8bca77509",
+    "commons-laughter/C.experimental.drums.wav": "9346e23b3c465c451774a842fafc507fb86511e94bf2d80ff1da140234638d57",
+    "commons-laughter/C.experimental.events.tsv": "fa853fea729f2e60df5dd2001e675c39adc0012f44db2cec6ef4df823bbc52e6",
+    "commons-laughter/C.experimental.lead.wav": "88f97d6155f3bf89ad6d8b4a39f07abb0be61e80f91c8e60f58fa5b3b6d979f7",
+    "commons-laughter/C.experimental.piano.wav": "a6e49f228f0e283bbded34b79898a327569fdca29b1028805e8772589296e7f2",
+    "commons-laughter/C.experimental.report.json": "74e8bfe64021dfa90851485859835694708f535cb461c91a78cdf97c06c65ce1",
+    "commons-laughter/C.experimental.score.json": "b4606a62690d53915057904d6668b414ea14c3b3dcb4bf429f13815ebd60c9fe",
+    "commons-laughter/C.experimental.vocals.wav": "2b06ef04e8b2b3d7e362b31cf4d7bdba396f34d31b841ecae29e8bd9194408a5",
+    "commons-laughter/C.experimental.wav": "78e799bd882332256d8e006b445850800190a02fd34ee93cb6f293a9fe3cec39",
+    "commons-laughter/C.plan.json": "af879b6055c8429dd9c8201567f51df772e90e712365497f7cd5b124cbba03f4",
+    "commons-laughter/D.complete.json": "d3845dbc42778522d9175029d54b4bbabb78f8ce9501feaa169818dde3599466",
+    "commons-laughter/D.experimental.bass.wav": "f10ce400bb4f05a5bcd5a88da6461e195a50bf7a0f229053b615c5c8bca77509",
+    "commons-laughter/D.experimental.drums.wav": "01c4a6ddb3a5f0fe5b72b47b1cd9fb38806d99ce3c9dd1ae05418dfae13fd437",
+    "commons-laughter/D.experimental.events.tsv": "fa853fea729f2e60df5dd2001e675c39adc0012f44db2cec6ef4df823bbc52e6",
+    "commons-laughter/D.experimental.lead.wav": "88f97d6155f3bf89ad6d8b4a39f07abb0be61e80f91c8e60f58fa5b3b6d979f7",
+    "commons-laughter/D.experimental.piano.wav": "a6e49f228f0e283bbded34b79898a327569fdca29b1028805e8772589296e7f2",
+    "commons-laughter/D.experimental.report.json": "94b7d79642916d152187e8010e54fe6e861d93d578eaaa1d1863b28b0cafbee6",
+    "commons-laughter/D.experimental.score.json": "b4606a62690d53915057904d6668b414ea14c3b3dcb4bf429f13815ebd60c9fe",
+    "commons-laughter/D.experimental.vocals.wav": "2b06ef04e8b2b3d7e362b31cf4d7bdba396f34d31b841ecae29e8bd9194408a5",
+    "commons-laughter/D.experimental.wav": "82881cbc3be8fb88bf6f3edbba559e757ba8a6c778205f82260dba3bb379c8ab",
+    "commons-laughter/D.plan.json": "af879b6055c8429dd9c8201567f51df772e90e712365497f7cd5b124cbba03f4",
+    "commons-laughter/E.complete.json": "6fd1f6ceb61f1e8846f4946c24618cbff6516dc4a570f0fb3e605918d6325eff",
+    "commons-laughter/E.experimental.bass.wav": "9fb3bb747d08e0ea9721495b805d7149cc879b6eac8c243cfe43a9e02ad0ae56",
+    "commons-laughter/E.experimental.drums.wav": "71635f6ba03f87d9e4c98c04b9fcd86e0085a3d5c8a9c346921a3d96f6ae9d6e",
+    "commons-laughter/E.experimental.events.tsv": "0ccd640817a0c46dfaf6a1c83c05205e2446dc92ccdca02e1b7d4bf7b214660c",
+    "commons-laughter/E.experimental.lead.wav": "b55f2899dafdf480cb324f3dbe5f210bbd4e9d33550e8ad5069d176780a674c7",
+    "commons-laughter/E.experimental.piano.wav": "aa580cd394419958ceb07616775f165466cd59113f017a9464bc294c3669ad3f",
+    "commons-laughter/E.experimental.report.json": "292687322c1ff047ab2f8e986c4a0fe06ac442c8eaceaed8198f4ea363118bd9",
+    "commons-laughter/E.experimental.score.json": "b0ffd8a4459c784b21e2c3257fa2814ae25a361729e60b7c176889376174159b",
+    "commons-laughter/E.experimental.vocals.wav": "0cecc9e60d1c0a9f6e63331f78f860db41c99900eb71d570ff5ed9d9b00bf11f",
+    "commons-laughter/E.experimental.wav": "4407d897c70e5f495d3457a32b87993ae72837a7cc4929af7fc4f8b98949b14d",
+    "commons-laughter/E.expression.json": "83a14ca13144bbe03f9387347cc95f820ae037f2550ecb0e19f6a1922231d70c",
+    "commons-laughter/E.plan.json": "bc58ed95585b770d1f89568871fc5381b2dd1c508207939cfb47205507b345e7",
+    "commons-laughter/composition.json": "b8ee9ca4e2abe983b0e9af908d4143657add74c6a83bba6b0b3cf3e1822befdd",
+    "commons-laughter/expression.json": "ebea175a0be848665fcf8b9b2b3a85a2883d9616a49b7eb6e7b869c903894501",
+    "commons-laughter/replay-B.complete.json": "7ad6638b3b3e03856ba132bc6dc9c26be0ae44a9aed681e1caa723e9f1fd57d7",
+    "commons-laughter/replay-B.experimental.events.tsv": "8208bdd66e2076619e7288a32d2b018a7904f256868a0e26212ad7463b5e36f9",
+    "commons-laughter/replay-B.experimental.report.json": "275f928bffb5e5e588e86f9241059fa6118435613bc97e5e1b7806f052753e54",
+    "commons-laughter/replay-B.experimental.score.json": "c8aa2954e016a4d72dcf120d10ce93ede99af443bc964462ca936cde14714c2a",
+    "commons-laughter/replay-B.experimental.wav": "843b63650c8228114d4061a98ca4355fddf1c568cdc56fe6d93b826fc035266a",
+    "commons-laughter/replay-D.complete.json": "96036efb39a5723d00d33b8f6fb7811870924bbda62f555e26c91da428871b23",
+    "commons-laughter/replay-D.experimental.events.tsv": "fa853fea729f2e60df5dd2001e675c39adc0012f44db2cec6ef4df823bbc52e6",
+    "commons-laughter/replay-D.experimental.report.json": "94b7d79642916d152187e8010e54fe6e861d93d578eaaa1d1863b28b0cafbee6",
+    "commons-laughter/replay-D.experimental.score.json": "b4606a62690d53915057904d6668b414ea14c3b3dcb4bf429f13815ebd60c9fe",
+    "commons-laughter/replay-D.experimental.wav": "82881cbc3be8fb88bf6f3edbba559e757ba8a6c778205f82260dba3bb379c8ab",
+    "commons-laughter/replay-E.complete.json": "83b3976bcb9ec7730dad79bb3a23afafdd097982e787c37ebbe156a5c34d1562",
+    "commons-laughter/replay-E.experimental.events.tsv": "0ccd640817a0c46dfaf6a1c83c05205e2446dc92ccdca02e1b7d4bf7b214660c",
+    "commons-laughter/replay-E.experimental.report.json": "292687322c1ff047ab2f8e986c4a0fe06ac442c8eaceaed8198f4ea363118bd9",
+    "commons-laughter/replay-E.experimental.score.json": "b0ffd8a4459c784b21e2c3257fa2814ae25a361729e60b7c176889376174159b",
+    "commons-laughter/replay-E.experimental.wav": "4407d897c70e5f495d3457a32b87993ae72837a7cc4929af7fc4f8b98949b14d",
+    "commons-laughter/replay.complete.json": "973333329a36137225d8d6be030513f0a9729e2bc72d2c92b321b3fcc2819e7e",
+    "commons-laughter/replay.experimental.events.tsv": "fa853fea729f2e60df5dd2001e675c39adc0012f44db2cec6ef4df823bbc52e6",
+    "commons-laughter/replay.experimental.report.json": "74e8bfe64021dfa90851485859835694708f535cb461c91a78cdf97c06c65ce1",
+    "commons-laughter/replay.experimental.score.json": "b4606a62690d53915057904d6668b414ea14c3b3dcb4bf429f13815ebd60c9fe",
+    "commons-laughter/replay.experimental.wav": "78e799bd882332256d8e006b445850800190a02fd34ee93cb6f293a9fe3cec39",
+    "listener/ATTRIBUTION.txt": "8a47e0e77994eb21af9cbca91ca5386e329fe05d50c6288554cf1b0c98e60aff",
+    "listener/commons-laughter-1.wav": "25d1e81b84af3a8a51684477a551295c010d7ec1f374edcf345d2da7d21905ca",
+    "listener/commons-laughter-2.wav": "97c308909d6520754d00063325505ae1f3eeefb6453dcaa704e3fd565aa6c928",
+    "listener/commons-laughter-3.wav": "81c7aee44618f87947bbf762a18b3d813bc9c9237fdd42e98ebca209688bff22",
+    "listener/commons-laughter-4.wav": "a083d362c22e7091fa655218cc47df8b97fab4aa1a946713c3142ee19af2a2ab",
+    "listener/commons-laughter-5.wav": "ce8ec79a4ee20f8ac45c42d699b7ffafd525b5ba48fd00775668dbaf66e82804",
+    "listener/commons-laughter-source.wav": "23fef28e98c10cd2c6704b53de1b35a3087622d7007a74db2685e90c1a8b793c",
+    "listener/index.html": "0291f26eb0cb44db97be1495bf239beee0846505f8e45fa341326cf809ebae54",
+    "listener/ls-2035-147960-0013-1.wav": "771630a167194b5daa11ca0223cc770c4153ec5ad4479c0351575cf3623bacb5",
+    "listener/ls-2035-147960-0013-2.wav": "54bf99aac93e765322c8d031e9b872395713a154e68b1a55e18599e0907ae69a",
+    "listener/ls-2035-147960-0013-3.wav": "54c6b0a6151a342c56176b2f0b4a1cc6fc2ee95e5033425329c69c9ae66486ca",
+    "listener/ls-2035-147960-0013-4.wav": "e70f9766a67a5a465b4a349838ab847eba72f9ceae501320ac4c992770de2426",
+    "listener/ls-2035-147960-0013-5.wav": "2d34ff8e71e25f69411cc1d9db0c0d871209fa38317a8bcaf9cd145eb982fd1c",
+    "listener/ls-2035-147960-0013-source.wav": "34f8bd54fce8acc9047e742f4246451e23ccfad02057042b6ebf78033d09052a",
+    "listener/ls-2086-149220-0047-1.wav": "3bd0e0029e9c23834f17d637da22e1b72a1c523173c24645144e4dcd725bed10",
+    "listener/ls-2086-149220-0047-2.wav": "8c0190206cb38519069dd9375595707dad69dcd8b5824c293995adb5a30889cf",
+    "listener/ls-2086-149220-0047-3.wav": "dc63eb544695c7ed97c501ad2b2cefb0f69dd314f2e81e6e10b0733abdbfd1d6",
+    "listener/ls-2086-149220-0047-4.wav": "f69860566213e90c2df803e1249bad1994f742933a44f1fc9c591640bea2fbae",
+    "listener/ls-2086-149220-0047-5.wav": "1c062e768fe22f0a0832fea0bc09dab89502f5c22a3d6325fa3b2ac9447e023e",
+    "listener/ls-2086-149220-0047-source.wav": "3f0f6fc7e6b89bbef1a49a3296dc652f3a21c9a99112409a883c69a3549040e6",
+    "listener/ls-2277-149896-0026-1.wav": "bcff417fe809beddfe49b7db0e2920941bdd4b453641680f59a573c68817a05f",
+    "listener/ls-2277-149896-0026-2.wav": "e442c5f76744a9bcc52c81229b706e2520302ea03e22e4549cf02d38a5b04c7d",
+    "listener/ls-2277-149896-0026-3.wav": "6af1f9384bc9d101ab5446861a71da3432f94c9ce0f211f064abaa033b5ed78e",
+    "listener/ls-2277-149896-0026-4.wav": "a67bb7796ed706e8eac2c09b3ecb4852ab64e2e376393271b4ccd45ed1f007fc",
+    "listener/ls-2277-149896-0026-5.wav": "71628035acedce7f304101f06f8af571f78eba0cc7e0110c55ab88f166f60540",
+    "listener/ls-2277-149896-0026-source.wav": "8231f9ec1b79bef07f3f2bbd5548c7ab8fff79a1e0bb774eab08507104be2381",
+    "listener/owner-speech-1.wav": "66c5f620ba15e8264da1a62c082b8aa600af181cba17a4e339cb875febf66034",
+    "listener/owner-speech-2.wav": "be889169b3a0363a13f6a766567e5a078e90b6ea5bdc2f8c9e6c43aa3334387a",
+    "listener/owner-speech-3.wav": "eed776f20f46b31296807a3a3a676bcc116e364239ded91767dc46fe235417b8",
+    "listener/owner-speech-4.wav": "4eff760589374c2c3d30acb6e02d85f8dd55c96556d46e3b2f917ea2094a4a46",
+    "listener/owner-speech-5.wav": "28be2eaf972f2a3e218d22fcd1f4ed23e02cd656ae1a07ebdd7e7ae05c4dde4e",
+    "listener/owner-speech-source.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "listener/packet.json": "8feafe69a73c12d67538e3debdce5e6214d0fd872823b6c653650fe85f57b1a9",
+    "listener/review.css": "f5bee9232c7ce28bb825441ff85b87ee489f9609f26ac445ddea9d51c2c87459",
+    "listener/review.js": "5fe19b1bc653dbe8971f21057b0cdb645265914cbb29342da482506224c04229",
+    "ls-2035-147960-0013/B.complete.json": "e7ac29e7a02a472b9cebaee7a59d17147d07278c99852365cdb19e97e01124b0",
+    "ls-2035-147960-0013/B.experimental.bass.wav": "ad587fdfcdc420ab12d77f9753b9f9a1b4d4bb4d7bd917775f1648c3eca4d8b3",
+    "ls-2035-147960-0013/B.experimental.drums.wav": "16ac15b64b6af3db84961c69fcedd13cb9a7398c8f2b3827a4ae4219cb3899f8",
+    "ls-2035-147960-0013/B.experimental.events.tsv": "b4fcc6a5eb27cc9b9373f4c6603494885bf94fad700281bfe1d3045df1fcd928",
+    "ls-2035-147960-0013/B.experimental.lead.wav": "d8cfe6eda3aed9ab74f83ae6073d63ba3aafae852f3d3d50bd9e2c6eb5d4ba59",
+    "ls-2035-147960-0013/B.experimental.piano.wav": "0a3601b26fc76a54a454e9ba1b231c8703ba917068234882b94763f50c395ce7",
+    "ls-2035-147960-0013/B.experimental.report.json": "7f4a5fa65ae0441f098c00c654755d00f67e2b1aa644dcdc4a6d780b61d8084d",
+    "ls-2035-147960-0013/B.experimental.score.json": "1aaf353c4772cbd3db89e191b19b98ebea6e92ae9e5069d636e62227ac72558f",
+    "ls-2035-147960-0013/B.experimental.vocals.wav": "910d761d2bd75480088d792822781d31e7b2afc52da9831e9c1c264355a8262d",
+    "ls-2035-147960-0013/B.experimental.wav": "85bd83946beaa9970e1a8a3cbe279bc8ede3de49df62ada1ac6e8836198d4e77",
+    "ls-2035-147960-0013/B.plan.json": "030bdd7a0d8bc77e405e15bd09580332c65e53764338d4e31e10877e20004043",
+    "ls-2035-147960-0013/C.complete.json": "64293c4634680130e5394ac58072a332c2892307755ae536350d95b049952be2",
+    "ls-2035-147960-0013/C.experimental.bass.wav": "f10ce400bb4f05a5bcd5a88da6461e195a50bf7a0f229053b615c5c8bca77509",
+    "ls-2035-147960-0013/C.experimental.drums.wav": "9346e23b3c465c451774a842fafc507fb86511e94bf2d80ff1da140234638d57",
+    "ls-2035-147960-0013/C.experimental.events.tsv": "2b84af23ec45111e765fbd38c922e29fae3817407403a06aa2ba3569a960ada0",
+    "ls-2035-147960-0013/C.experimental.lead.wav": "6fb06e7061cd2f33a8b87125e3a3d5086dfa0c58c0173307739a0ff511348e2f",
+    "ls-2035-147960-0013/C.experimental.piano.wav": "ea5e8c733e755deb11199b9c305ddbdaa2c04a77d033c21b426284022847c1b0",
+    "ls-2035-147960-0013/C.experimental.report.json": "01b188e94b56f45cd50f59e5e3fde2e430f2ec791df5d735e0a56e20e5b90d79",
+    "ls-2035-147960-0013/C.experimental.score.json": "3bc3b8598246ff24d6679968448f737286b389d3737a9824362414fedf95f011",
+    "ls-2035-147960-0013/C.experimental.vocals.wav": "16e3e819006fea2e15d58b30f8188c130ee8efcf3922998dea1714ac6f1074ac",
+    "ls-2035-147960-0013/C.experimental.wav": "38e952d80ad1eb322775a6a7fe16a919ef054d412992580f2c608cfbeaae3d58",
+    "ls-2035-147960-0013/C.plan.json": "6a65178db0aefc732660b8c348a6f61a7721e10d0008ae1bead08b1ae7ddaad8",
+    "ls-2035-147960-0013/D.complete.json": "0bb49f51b125afc35b0dc1d67af189e0a82d48428b0f064cff5e4f7db6f425b1",
+    "ls-2035-147960-0013/D.experimental.bass.wav": "f10ce400bb4f05a5bcd5a88da6461e195a50bf7a0f229053b615c5c8bca77509",
+    "ls-2035-147960-0013/D.experimental.drums.wav": "01c4a6ddb3a5f0fe5b72b47b1cd9fb38806d99ce3c9dd1ae05418dfae13fd437",
+    "ls-2035-147960-0013/D.experimental.events.tsv": "2b84af23ec45111e765fbd38c922e29fae3817407403a06aa2ba3569a960ada0",
+    "ls-2035-147960-0013/D.experimental.lead.wav": "6fb06e7061cd2f33a8b87125e3a3d5086dfa0c58c0173307739a0ff511348e2f",
+    "ls-2035-147960-0013/D.experimental.piano.wav": "ea5e8c733e755deb11199b9c305ddbdaa2c04a77d033c21b426284022847c1b0",
+    "ls-2035-147960-0013/D.experimental.report.json": "abbe23539464eab8030aee52bf2b533804b232cec9aab367a07c08796dd9f06c",
+    "ls-2035-147960-0013/D.experimental.score.json": "3bc3b8598246ff24d6679968448f737286b389d3737a9824362414fedf95f011",
+    "ls-2035-147960-0013/D.experimental.vocals.wav": "16e3e819006fea2e15d58b30f8188c130ee8efcf3922998dea1714ac6f1074ac",
+    "ls-2035-147960-0013/D.experimental.wav": "86c8ab8d6749a58a8607a276939af92050e8fd77eabc79e1e62a55f7afefa20f",
+    "ls-2035-147960-0013/D.plan.json": "6a65178db0aefc732660b8c348a6f61a7721e10d0008ae1bead08b1ae7ddaad8",
+    "ls-2035-147960-0013/E.complete.json": "4af1f85d1d5b80d6ad2e91eb91823decef35ee0b198f80c19039412eb222ed68",
+    "ls-2035-147960-0013/E.experimental.bass.wav": "9fb3bb747d08e0ea9721495b805d7149cc879b6eac8c243cfe43a9e02ad0ae56",
+    "ls-2035-147960-0013/E.experimental.drums.wav": "71635f6ba03f87d9e4c98c04b9fcd86e0085a3d5c8a9c346921a3d96f6ae9d6e",
+    "ls-2035-147960-0013/E.experimental.events.tsv": "73b50caa6951013648542421ca0f1de06204723be73edfb987a4fa7da31092e0",
+    "ls-2035-147960-0013/E.experimental.lead.wav": "b55f2899dafdf480cb324f3dbe5f210bbd4e9d33550e8ad5069d176780a674c7",
+    "ls-2035-147960-0013/E.experimental.piano.wav": "2d458e9005cd5c9e636bb427240ec8a33882d8ef6b6326b5532d2c0be25b4e3c",
+    "ls-2035-147960-0013/E.experimental.report.json": "3e180f86af4c772669c9b620754610400807711839350d907a2fb9330e788599",
+    "ls-2035-147960-0013/E.experimental.score.json": "189ace2e3b3d5a9e804c5b1ef115ac0b0ec68dcec9f2af980f5721ff07f395b8",
+    "ls-2035-147960-0013/E.experimental.vocals.wav": "f163ec21547bb3df839408919e083bfab4d31c67e3333c09f653142f0d1eebb8",
+    "ls-2035-147960-0013/E.experimental.wav": "f910ac2cb9604026ed8eb9113ac0d224b6f32ddecb737c5c5c6d768929ae7ce4",
+    "ls-2035-147960-0013/E.expression.json": "20dbe70b8faaa41cda1035110fb11417851bf7badaf6ac5650a9f32e0c6ef66e",
+    "ls-2035-147960-0013/E.plan.json": "1344598683958fd4020dc93682c616846ee5ae1c537935223c49ca6cc48770e2",
+    "ls-2035-147960-0013/composition.json": "5afecfc7aa05f18f3976a199ca1ffd7bb4545e8a96fb2c3e714690814fb97195",
+    "ls-2035-147960-0013/expression.json": "93fc2a300128b350371eeb4880c9e6267e37c5c2b04f051c4c353949092f716a",
+    "ls-2035-147960-0013/replay-B.complete.json": "83e63ebfefacab43ac018e42c705c4dca863079f5dac5a7105533cba373ea213",
+    "ls-2035-147960-0013/replay-B.experimental.events.tsv": "b4fcc6a5eb27cc9b9373f4c6603494885bf94fad700281bfe1d3045df1fcd928",
+    "ls-2035-147960-0013/replay-B.experimental.report.json": "7f4a5fa65ae0441f098c00c654755d00f67e2b1aa644dcdc4a6d780b61d8084d",
+    "ls-2035-147960-0013/replay-B.experimental.score.json": "1aaf353c4772cbd3db89e191b19b98ebea6e92ae9e5069d636e62227ac72558f",
+    "ls-2035-147960-0013/replay-B.experimental.wav": "85bd83946beaa9970e1a8a3cbe279bc8ede3de49df62ada1ac6e8836198d4e77",
+    "ls-2035-147960-0013/replay-D.complete.json": "96b580534a73023b3332c94d9637973e03a23b40632a7391e7a034f1c00b48af",
+    "ls-2035-147960-0013/replay-D.experimental.events.tsv": "2b84af23ec45111e765fbd38c922e29fae3817407403a06aa2ba3569a960ada0",
+    "ls-2035-147960-0013/replay-D.experimental.report.json": "abbe23539464eab8030aee52bf2b533804b232cec9aab367a07c08796dd9f06c",
+    "ls-2035-147960-0013/replay-D.experimental.score.json": "3bc3b8598246ff24d6679968448f737286b389d3737a9824362414fedf95f011",
+    "ls-2035-147960-0013/replay-D.experimental.wav": "86c8ab8d6749a58a8607a276939af92050e8fd77eabc79e1e62a55f7afefa20f",
+    "ls-2035-147960-0013/replay-E.complete.json": "cce24e8157d48d1159c41bcef754cc981a6fe45204bad71098205c50a6bd081f",
+    "ls-2035-147960-0013/replay-E.experimental.events.tsv": "73b50caa6951013648542421ca0f1de06204723be73edfb987a4fa7da31092e0",
+    "ls-2035-147960-0013/replay-E.experimental.report.json": "3e180f86af4c772669c9b620754610400807711839350d907a2fb9330e788599",
+    "ls-2035-147960-0013/replay-E.experimental.score.json": "189ace2e3b3d5a9e804c5b1ef115ac0b0ec68dcec9f2af980f5721ff07f395b8",
+    "ls-2035-147960-0013/replay-E.experimental.wav": "f910ac2cb9604026ed8eb9113ac0d224b6f32ddecb737c5c5c6d768929ae7ce4",
+    "ls-2035-147960-0013/replay.complete.json": "6f2d0f8233a933c92cd2891008513457ab86fd47eee678fb87cf95f270ab24e9",
+    "ls-2035-147960-0013/replay.experimental.events.tsv": "2b84af23ec45111e765fbd38c922e29fae3817407403a06aa2ba3569a960ada0",
+    "ls-2035-147960-0013/replay.experimental.report.json": "01b188e94b56f45cd50f59e5e3fde2e430f2ec791df5d735e0a56e20e5b90d79",
+    "ls-2035-147960-0013/replay.experimental.score.json": "3bc3b8598246ff24d6679968448f737286b389d3737a9824362414fedf95f011",
+    "ls-2035-147960-0013/replay.experimental.wav": "38e952d80ad1eb322775a6a7fe16a919ef054d412992580f2c608cfbeaae3d58",
+    "ls-2086-149220-0047/B.complete.json": "27b0539671e6c3ec5c376ba7dc1ac682e361ed852a0224279fd77ca3a3d71ee2",
+    "ls-2086-149220-0047/B.hiphop.bass.wav": "79e1cbb9870c36e776122827c77fb73946d53c3bf860e64c88b00107d3e054d4",
+    "ls-2086-149220-0047/B.hiphop.drums.wav": "ffca2525fb5d9e96153e8879cffed82908e93736c0746ed976ce0f380541694f",
+    "ls-2086-149220-0047/B.hiphop.events.tsv": "9a954e6e5bb0503edc0cfc5c66f7c486fe9ce7af4c394ea3262289105a0b37ab",
+    "ls-2086-149220-0047/B.hiphop.piano.wav": "03ae6e2ab15ba95d5ffe4ccaf6fe28ff019078c9350b8ab47acbb927584b64e7",
+    "ls-2086-149220-0047/B.hiphop.report.json": "7f2cf563dc555b9bf6f3a0053b1494bd4405e92fa495de9f7cb90fc05b8d35f0",
+    "ls-2086-149220-0047/B.hiphop.score.json": "edc0861d3d5c0e7b58d65b0e1da53abbbaf6bf58cb9cce76c0c0ac417fe1bdb5",
+    "ls-2086-149220-0047/B.hiphop.vocals.wav": "2f0e46ab26d9e59f7c79420c048b834154edafb95ec1748614c32f9cb5842110",
+    "ls-2086-149220-0047/B.hiphop.wav": "a5ce499a031b4b8820f508992ee1f4a6efc8583d10dfc12ba2a664f12aba4814",
+    "ls-2086-149220-0047/B.plan.json": "b24f1e679b998a844b0941e0ec484729964e650e34f59af32c4c8c4de0637e09",
+    "ls-2086-149220-0047/C.complete.json": "044cdbc32c78f54a539c968a6e29b1cf08b5b3ea321f61c6fddf4d1198e34072",
+    "ls-2086-149220-0047/C.hiphop.bass.wav": "1af33668212b912d6089f1f0d50b1ee168750691ff0e49c867c7ff523de14133",
+    "ls-2086-149220-0047/C.hiphop.drums.wav": "27fe840667b517c1124fee6d1322be5da22a17c889931467db5801eba56b4293",
+    "ls-2086-149220-0047/C.hiphop.events.tsv": "0499b0b1e309bb3728ef39e65d89f93c1a2b9f60b5ed8073d316bbc2be30c5ec",
+    "ls-2086-149220-0047/C.hiphop.piano.wav": "656411d7b10aa85daef77fea56e1a055526ead34ec4cbc4741d13c6f70f4337b",
+    "ls-2086-149220-0047/C.hiphop.report.json": "dfa6312c1b61645d7c3029068eda5182dc8bcaa8507cc0bbc309331c8d7b9cb6",
+    "ls-2086-149220-0047/C.hiphop.score.json": "86a6d360795f7266c0fc8d5e2b6d92af443ef5c84b368aae0af71bdab22becad",
+    "ls-2086-149220-0047/C.hiphop.vocals.wav": "2f0e46ab26d9e59f7c79420c048b834154edafb95ec1748614c32f9cb5842110",
+    "ls-2086-149220-0047/C.hiphop.wav": "672628d098dc1c425c603bfb9bf89474247f97c380c88ea99252f093fafe9641",
+    "ls-2086-149220-0047/C.plan.json": "9b5747a22ac9c73208da3a0b4c1ddfa460e3637893933b7a3a3d56bf988406d6",
+    "ls-2086-149220-0047/D.complete.json": "07c8bace312ed8a087d6e3631a805a97c8b68a176f6d326556970f56b6f6e999",
+    "ls-2086-149220-0047/D.hiphop.bass.wav": "1af33668212b912d6089f1f0d50b1ee168750691ff0e49c867c7ff523de14133",
+    "ls-2086-149220-0047/D.hiphop.drums.wav": "bee7d816a224428a8c0512d41e934026d4367456e613f1f78b79473cb825c4c6",
+    "ls-2086-149220-0047/D.hiphop.events.tsv": "0499b0b1e309bb3728ef39e65d89f93c1a2b9f60b5ed8073d316bbc2be30c5ec",
+    "ls-2086-149220-0047/D.hiphop.piano.wav": "656411d7b10aa85daef77fea56e1a055526ead34ec4cbc4741d13c6f70f4337b",
+    "ls-2086-149220-0047/D.hiphop.report.json": "151d8a4168e3ba75c5a0eefce21c1a3141c3b3dca0874d022954c6c95d3749ef",
+    "ls-2086-149220-0047/D.hiphop.score.json": "86a6d360795f7266c0fc8d5e2b6d92af443ef5c84b368aae0af71bdab22becad",
+    "ls-2086-149220-0047/D.hiphop.vocals.wav": "2f0e46ab26d9e59f7c79420c048b834154edafb95ec1748614c32f9cb5842110",
+    "ls-2086-149220-0047/D.hiphop.wav": "a2c942dfe40a696643ac467d69b4c64cdb4bb7e32ccc1f7fe9b4fcb431be7872",
+    "ls-2086-149220-0047/D.plan.json": "9b5747a22ac9c73208da3a0b4c1ddfa460e3637893933b7a3a3d56bf988406d6",
+    "ls-2086-149220-0047/E.complete.json": "5f1562686d20a5e6c96c587dd85043bd580dabb7040b91e77d2f2c064d21288c",
+    "ls-2086-149220-0047/E.expression.json": "5d138df30ed137258f7a13b975841e0003e6b2fc0e4d74c1c919023ca4ab55e1",
+    "ls-2086-149220-0047/E.hiphop.bass.wav": "77f7b32dd31b575e13ff00fbd97ddb6026bc1dc87f74f55a5972a429318e8d08",
+    "ls-2086-149220-0047/E.hiphop.drums.wav": "8fcf4c899a19ce4497c602e8d7d890d27de48dbbbd0088e02e13d03f3b193db4",
+    "ls-2086-149220-0047/E.hiphop.events.tsv": "73966fb208f066383f39d80681676c84a5f82cb2c3050030b1c06ec51f6ce1ab",
+    "ls-2086-149220-0047/E.hiphop.piano.wav": "645c7e0ac76bbb133aae408bc4035bcbbfa366451072664c0e90ce8624aee271",
+    "ls-2086-149220-0047/E.hiphop.report.json": "19a0948a8e8359ff1150e54630750bf24c1605e3a178a715afbf1465f7009167",
+    "ls-2086-149220-0047/E.hiphop.score.json": "4709edcd832c442fa7585c80232b7c9ea0a540e00d29f5eb9921940ab7aefed6",
+    "ls-2086-149220-0047/E.hiphop.vocals.wav": "fd7622b48b5969d5e3fa44cdb22d03bc304cf0f26f33aef76089d18775c9dece",
+    "ls-2086-149220-0047/E.hiphop.wav": "e038c7155b43608894e2883f4d4aaa9aca046a11384b9a66baf96a2648e19af2",
+    "ls-2086-149220-0047/E.plan.json": "4007a43cfd5d59c204bc30ec21719d2f2aaa7b11adcd37a5f9e91a3762b55464",
+    "ls-2086-149220-0047/composition.json": "e23513647080adf8e5ac380e11ddd4fc140e493fad834a555caf15440ab9b69c",
+    "ls-2086-149220-0047/expression.json": "6e78a540f39fbdcd5509aa3dfd3c83db548ff519713da1f7c194aabb36a2f7de",
+    "ls-2086-149220-0047/replay-B.complete.json": "d06202e04941750cf805c86d8831cf9b2117b73cffd0ee987f8a192ac2e24662",
+    "ls-2086-149220-0047/replay-B.hiphop.events.tsv": "9a954e6e5bb0503edc0cfc5c66f7c486fe9ce7af4c394ea3262289105a0b37ab",
+    "ls-2086-149220-0047/replay-B.hiphop.report.json": "7f2cf563dc555b9bf6f3a0053b1494bd4405e92fa495de9f7cb90fc05b8d35f0",
+    "ls-2086-149220-0047/replay-B.hiphop.score.json": "edc0861d3d5c0e7b58d65b0e1da53abbbaf6bf58cb9cce76c0c0ac417fe1bdb5",
+    "ls-2086-149220-0047/replay-B.hiphop.wav": "a5ce499a031b4b8820f508992ee1f4a6efc8583d10dfc12ba2a664f12aba4814",
+    "ls-2086-149220-0047/replay-D.complete.json": "d10055d39c2cb77fbbce34c0d861e15887a0498d0b342505dbfbc8871db3b61b",
+    "ls-2086-149220-0047/replay-D.hiphop.events.tsv": "0499b0b1e309bb3728ef39e65d89f93c1a2b9f60b5ed8073d316bbc2be30c5ec",
+    "ls-2086-149220-0047/replay-D.hiphop.report.json": "151d8a4168e3ba75c5a0eefce21c1a3141c3b3dca0874d022954c6c95d3749ef",
+    "ls-2086-149220-0047/replay-D.hiphop.score.json": "86a6d360795f7266c0fc8d5e2b6d92af443ef5c84b368aae0af71bdab22becad",
+    "ls-2086-149220-0047/replay-D.hiphop.wav": "a2c942dfe40a696643ac467d69b4c64cdb4bb7e32ccc1f7fe9b4fcb431be7872",
+    "ls-2086-149220-0047/replay-E.complete.json": "8a007d9e097d89ef19592268d55a08b6eff8c745ff4793c74ecc3d898adf3e33",
+    "ls-2086-149220-0047/replay-E.hiphop.events.tsv": "73966fb208f066383f39d80681676c84a5f82cb2c3050030b1c06ec51f6ce1ab",
+    "ls-2086-149220-0047/replay-E.hiphop.report.json": "19a0948a8e8359ff1150e54630750bf24c1605e3a178a715afbf1465f7009167",
+    "ls-2086-149220-0047/replay-E.hiphop.score.json": "4709edcd832c442fa7585c80232b7c9ea0a540e00d29f5eb9921940ab7aefed6",
+    "ls-2086-149220-0047/replay-E.hiphop.wav": "e038c7155b43608894e2883f4d4aaa9aca046a11384b9a66baf96a2648e19af2",
+    "ls-2086-149220-0047/replay.complete.json": "d72c82d8d715e73d9fe4380064725e8cfe9ac8b32f264a244244b6d8d6bbf50d",
+    "ls-2086-149220-0047/replay.hiphop.events.tsv": "0499b0b1e309bb3728ef39e65d89f93c1a2b9f60b5ed8073d316bbc2be30c5ec",
+    "ls-2086-149220-0047/replay.hiphop.report.json": "dfa6312c1b61645d7c3029068eda5182dc8bcaa8507cc0bbc309331c8d7b9cb6",
+    "ls-2086-149220-0047/replay.hiphop.score.json": "86a6d360795f7266c0fc8d5e2b6d92af443ef5c84b368aae0af71bdab22becad",
+    "ls-2086-149220-0047/replay.hiphop.wav": "672628d098dc1c425c603bfb9bf89474247f97c380c88ea99252f093fafe9641",
+    "ls-2277-149896-0026/B.complete.json": "6adee35ba8bdf69b2f14129a817ec269b59bac60d8550aece7414b3c2b5ede22",
+    "ls-2277-149896-0026/B.plan.json": "0623c890ad51ab8087cbd49046dcd4fac7f2782f0c683d4baad0912b5c0abd23",
+    "ls-2277-149896-0026/B.reggae.bass.wav": "e5be7d606e56dae32aeb1af999ce0bc12485c7ce3ceb9bf2c7178024246dafbd",
+    "ls-2277-149896-0026/B.reggae.drums.wav": "0add2583c83a6f0ae1b040521a87995d86a5f8ab7f6c5689844bdf706a5218b4",
+    "ls-2277-149896-0026/B.reggae.events.tsv": "b19bef8216cb5add038435c74ee6d44e7ac32730a1a08a3502b38c0f1951c20f",
+    "ls-2277-149896-0026/B.reggae.organ.wav": "fa13e4f704b1ba6a9d2ae9ef1c9588dd464b06af524bb00301dd6fdadacf2b1f",
+    "ls-2277-149896-0026/B.reggae.piano.wav": "2cd3e90c08a318fb441b9c392178455965e981d927c8b26a5e1f93bb4f76a391",
+    "ls-2277-149896-0026/B.reggae.report.json": "e1667f267dac7d661fb8e192e091fc084f52a35734c8632a185074e3e2e53eb3",
+    "ls-2277-149896-0026/B.reggae.score.json": "18e331458bf7c32eaee5ca9eac04199ccf29814a37e2eb5015f9567db3ff6e3a",
+    "ls-2277-149896-0026/B.reggae.vocals.wav": "8cb9eb0ced30fe23034f842b2c8ebac4d9eda4a11bed8b8ba5f886ebee184330",
+    "ls-2277-149896-0026/B.reggae.wav": "f364b0e4e97ebbeb3a2dff087460e25e5ba966c787771b1857466a6b7a2fa960",
+    "ls-2277-149896-0026/C.complete.json": "f35ce994cb01fd51a5011af7036c6bcf78fc37d2fef6ae77bc03facfb313225d",
+    "ls-2277-149896-0026/C.plan.json": "5c0456e9cf1386a64e10e7173d2fc3715e405776d0d5de11468b471de47c9627",
+    "ls-2277-149896-0026/C.reggae.bass.wav": "3a104d96ed7a0ba2a7fe7622aa4b68184ea21b1e9c9a377ec28080ed04346c63",
+    "ls-2277-149896-0026/C.reggae.drums.wav": "d8fdc08d276af908af013e3650bef90fca4cdd97d9c13b84ab62c40a31d702d3",
+    "ls-2277-149896-0026/C.reggae.events.tsv": "511bad181aef36583871c3f983cb56f63b4119f2a9b4b3a15e80ae289359a340",
+    "ls-2277-149896-0026/C.reggae.organ.wav": "952ced04ef56ab6578b05c79f13f160798e21f4e3a6ea6520e9ce2a12a788de7",
+    "ls-2277-149896-0026/C.reggae.piano.wav": "2cd3e90c08a318fb441b9c392178455965e981d927c8b26a5e1f93bb4f76a391",
+    "ls-2277-149896-0026/C.reggae.report.json": "3db69643152fb9a24cc03a490fe4c27a6b9968e8f56ebd1b75602979bfe7a45c",
+    "ls-2277-149896-0026/C.reggae.score.json": "6053344d529757ac6d630e19c53292926e24314d0f26b10d75fe48d0e800b4ce",
+    "ls-2277-149896-0026/C.reggae.vocals.wav": "a26e78b45cb385e3d82a4e8dd5253e64418931e35810506960c3de25a5d0bea5",
+    "ls-2277-149896-0026/C.reggae.wav": "df29dbf1611ff39a2713ad240410c83198498145837f753e5feb8390428783fe",
+    "ls-2277-149896-0026/D.complete.json": "4ba00799cbdf41a890aba9831bd4053eb94309c152eddba2f3f7bfe1782e9d38",
+    "ls-2277-149896-0026/D.plan.json": "5c0456e9cf1386a64e10e7173d2fc3715e405776d0d5de11468b471de47c9627",
+    "ls-2277-149896-0026/D.reggae.bass.wav": "3a104d96ed7a0ba2a7fe7622aa4b68184ea21b1e9c9a377ec28080ed04346c63",
+    "ls-2277-149896-0026/D.reggae.drums.wav": "1706dbb7ce442e830bfed814e99ec54de58e92b9bedad331d8062b3e1412c253",
+    "ls-2277-149896-0026/D.reggae.events.tsv": "511bad181aef36583871c3f983cb56f63b4119f2a9b4b3a15e80ae289359a340",
+    "ls-2277-149896-0026/D.reggae.organ.wav": "952ced04ef56ab6578b05c79f13f160798e21f4e3a6ea6520e9ce2a12a788de7",
+    "ls-2277-149896-0026/D.reggae.piano.wav": "2cd3e90c08a318fb441b9c392178455965e981d927c8b26a5e1f93bb4f76a391",
+    "ls-2277-149896-0026/D.reggae.report.json": "aeac034f65979a7ac1a54f6546d2039938dac4fa2841aad78c461acda857b6a8",
+    "ls-2277-149896-0026/D.reggae.score.json": "6053344d529757ac6d630e19c53292926e24314d0f26b10d75fe48d0e800b4ce",
+    "ls-2277-149896-0026/D.reggae.vocals.wav": "a26e78b45cb385e3d82a4e8dd5253e64418931e35810506960c3de25a5d0bea5",
+    "ls-2277-149896-0026/D.reggae.wav": "3e1df08ccf2b55b5c0cb415b4c96bc6ef1bac2772477e7255e3034cb324bba1b",
+    "ls-2277-149896-0026/E.complete.json": "3e3e907416cc6be98ee854133541a126a428151c8b089bb5b0ebfbfa6634fa42",
+    "ls-2277-149896-0026/E.expression.json": "17cc6cb4d67cf9193fc52c5731a41bd9eb4702a907457108246cd68887b5bb95",
+    "ls-2277-149896-0026/E.plan.json": "bd8491f7c4905728ce755f18089b240f3ac121afcd0b5a16a6ef0263f49f454a",
+    "ls-2277-149896-0026/E.reggae.bass.wav": "1771e4d06d333cdbf9334e351627d32d302f95713d6c8a08281fb2afc71ba1a0",
+    "ls-2277-149896-0026/E.reggae.drums.wav": "293d45a2665c30ee23053af65d394364b92260d5aeff64f3d149e8316eae0950",
+    "ls-2277-149896-0026/E.reggae.events.tsv": "32e7c6716a8fcfc59e4929dbe6da2a50eb3b9c60831c82d5c85d43cd08e9fcc8",
+    "ls-2277-149896-0026/E.reggae.organ.wav": "07e9341b69674c1c05c8d32fa7babe7252e46aa0ee61a9eee01fb4ca21be4339",
+    "ls-2277-149896-0026/E.reggae.piano.wav": "2cd3e90c08a318fb441b9c392178455965e981d927c8b26a5e1f93bb4f76a391",
+    "ls-2277-149896-0026/E.reggae.report.json": "e3ccb5f3047896fb54ead630a48bb83496e42bf9a0c0326c4767b9134b35d9a0",
+    "ls-2277-149896-0026/E.reggae.score.json": "492ad8a92d91d5e6b464c272978ba5e3282959c4dbba3cedb9ace19c2d0f08a1",
+    "ls-2277-149896-0026/E.reggae.vocals.wav": "5f4ae1e76e6c3109d6ddda4651fe8f82d43f046ce624a73095537c8e73860a1c",
+    "ls-2277-149896-0026/E.reggae.wav": "23386bebcc9f8889580b8f867da660f76bc055386f6c2cb652fe208909b6f5c1",
+    "ls-2277-149896-0026/composition.json": "95636e9eb81d6992c0c9b92fefb88431b4ef280e3487919d0b8a9413ebba900b",
+    "ls-2277-149896-0026/expression.json": "6502190aa50d98b0f9719d3ef309e4a11ab5538f23dd7cae35afb2fc7b017b6e",
+    "ls-2277-149896-0026/replay-B.complete.json": "2ab1d99024ece3fc773ba1275ed69cbb94d0ff7ba6ea7f21645552f284798e71",
+    "ls-2277-149896-0026/replay-B.reggae.events.tsv": "b19bef8216cb5add038435c74ee6d44e7ac32730a1a08a3502b38c0f1951c20f",
+    "ls-2277-149896-0026/replay-B.reggae.report.json": "e1667f267dac7d661fb8e192e091fc084f52a35734c8632a185074e3e2e53eb3",
+    "ls-2277-149896-0026/replay-B.reggae.score.json": "18e331458bf7c32eaee5ca9eac04199ccf29814a37e2eb5015f9567db3ff6e3a",
+    "ls-2277-149896-0026/replay-B.reggae.wav": "f364b0e4e97ebbeb3a2dff087460e25e5ba966c787771b1857466a6b7a2fa960",
+    "ls-2277-149896-0026/replay-D.complete.json": "75b6ff27d5d90ce0c8e2c33b4a37ee12be4dccb0b980e801a9030a4c0b4660fc",
+    "ls-2277-149896-0026/replay-D.reggae.events.tsv": "511bad181aef36583871c3f983cb56f63b4119f2a9b4b3a15e80ae289359a340",
+    "ls-2277-149896-0026/replay-D.reggae.report.json": "aeac034f65979a7ac1a54f6546d2039938dac4fa2841aad78c461acda857b6a8",
+    "ls-2277-149896-0026/replay-D.reggae.score.json": "6053344d529757ac6d630e19c53292926e24314d0f26b10d75fe48d0e800b4ce",
+    "ls-2277-149896-0026/replay-D.reggae.wav": "3e1df08ccf2b55b5c0cb415b4c96bc6ef1bac2772477e7255e3034cb324bba1b",
+    "ls-2277-149896-0026/replay-E.complete.json": "3fdbfaf33dc4dad30ef9fa1b00aab2cacbd30e8789a0c37da708f5c71b2e985b",
+    "ls-2277-149896-0026/replay-E.reggae.events.tsv": "32e7c6716a8fcfc59e4929dbe6da2a50eb3b9c60831c82d5c85d43cd08e9fcc8",
+    "ls-2277-149896-0026/replay-E.reggae.report.json": "e3ccb5f3047896fb54ead630a48bb83496e42bf9a0c0326c4767b9134b35d9a0",
+    "ls-2277-149896-0026/replay-E.reggae.score.json": "492ad8a92d91d5e6b464c272978ba5e3282959c4dbba3cedb9ace19c2d0f08a1",
+    "ls-2277-149896-0026/replay-E.reggae.wav": "23386bebcc9f8889580b8f867da660f76bc055386f6c2cb652fe208909b6f5c1",
+    "ls-2277-149896-0026/replay.complete.json": "9a647ef3b00ce025c6a0a8759a4a89621aea8e90b76f9f8a200aea84515fcd1d",
+    "ls-2277-149896-0026/replay.reggae.events.tsv": "511bad181aef36583871c3f983cb56f63b4119f2a9b4b3a15e80ae289359a340",
+    "ls-2277-149896-0026/replay.reggae.report.json": "3db69643152fb9a24cc03a490fe4c27a6b9968e8f56ebd1b75602979bfe7a45c",
+    "ls-2277-149896-0026/replay.reggae.score.json": "6053344d529757ac6d630e19c53292926e24314d0f26b10d75fe48d0e800b4ce",
+    "ls-2277-149896-0026/replay.reggae.wav": "df29dbf1611ff39a2713ad240410c83198498145837f753e5feb8390428783fe",
+    "organizer-key.json": "6b4ec36e7e8d5d82b8381d135667993c43829a5fa3895b0fbd73b7cada2e39e4",
+    "owner-speech/B.complete.json": "f52bf4cde99701d8412d5ab246a1cae4aa99c08a80c4f1b0496e27e3c6490e8a",
+    "owner-speech/B.hiphop.bass.wav": "f16420ddb4fab6a0bac329239b74be7bfc484014251f0ebe4e2dec9199916de4",
+    "owner-speech/B.hiphop.drums.wav": "44d9c19e8215e641da28c3998f7616de15145ae83b0f33c980e2c40ecfe6af18",
+    "owner-speech/B.hiphop.events.tsv": "4673d6e43d5789dea79a2f327909bada0e1065417fdf23c72ba856f94eb58f7e",
+    "owner-speech/B.hiphop.piano.wav": "b6dd0b503e14aee6d36b7f84c4a1634190ed56f614451e05964ea6d2b2deebb5",
+    "owner-speech/B.hiphop.report.json": "341c43827a179b1b957fb8e27c5aba66bde0b9d081d59c8a40ba52c3490a1305",
+    "owner-speech/B.hiphop.score.json": "933a30546db2d7370c9856731648be2b78b3ad3f0e0e8574ecaab74fb3ff926f",
+    "owner-speech/B.hiphop.vocals.wav": "9e9c439c823c1aecbbfe6ef2e9b10f93ee86a06233bf9dddbb3579c0920a800d",
+    "owner-speech/B.hiphop.wav": "e3b54ab3e9a7ee369f73f7b3079972eda20be0a276229987ae2d263102becf28",
+    "owner-speech/B.plan.json": "815095ac06d7c2a7e0eb0b8f129ccf28e0d810b058adb0b546fa360522766f98",
+    "owner-speech/C.complete.json": "d2d3f8ce78c6fd5749e3fb6cf841082a55eff3d937b3b3c0b159e5c61359995e",
+    "owner-speech/C.hiphop.bass.wav": "fbec68fd284f2869e574e0a405ad73234a00a34ae5ec4f54792c930ff516c7c5",
+    "owner-speech/C.hiphop.drums.wav": "20d4fe7a95ee1c912faf27e430591f31b80d89a49d9e0016166077d82fa2cdd7",
+    "owner-speech/C.hiphop.events.tsv": "846f04fae14cb80deec9811855e909f43781856ed0ff090385d7e588f246bcbf",
+    "owner-speech/C.hiphop.piano.wav": "38c0bbfbfe507a86a26700803ba0485abf2850c7a7076afa80d3e97ae39a86de",
+    "owner-speech/C.hiphop.report.json": "636548a6dcbbf338c03346b822a2e0e35f2c663ff651790d7fdccc8e9cf0a2c4",
+    "owner-speech/C.hiphop.score.json": "a3628a5010cd369a9bb63a9e488734237a829a1749a62d302e2efc1f274e40b2",
+    "owner-speech/C.hiphop.vocals.wav": "51329d4c71a826cf28d20ab5ac0827aa7a020c435c04c9da9e796e4b39f9e5f8",
+    "owner-speech/C.hiphop.wav": "17e9ece796d694c18c90ff4ec88bd8cbdbdefbc17e803ad5b4a469d67f734174",
+    "owner-speech/C.plan.json": "83434add9cee1c4acdff5b495d7967bac7cefd924d6521280b2b0352608c0e5b",
+    "owner-speech/D.complete.json": "9558ba09bde2f2a2c6068606b94b2436c3dd6864f3bca4fc3500de08d8804b78",
+    "owner-speech/D.hiphop.bass.wav": "fbec68fd284f2869e574e0a405ad73234a00a34ae5ec4f54792c930ff516c7c5",
+    "owner-speech/D.hiphop.drums.wav": "22495e35d106d944297a6fccc0a5b5ddb1a09922d8a77fc84df9365b1dcfbbd8",
+    "owner-speech/D.hiphop.events.tsv": "846f04fae14cb80deec9811855e909f43781856ed0ff090385d7e588f246bcbf",
+    "owner-speech/D.hiphop.piano.wav": "38c0bbfbfe507a86a26700803ba0485abf2850c7a7076afa80d3e97ae39a86de",
+    "owner-speech/D.hiphop.report.json": "50fefdc735e32e223e11935eacc8df82fbeb3f9ba04ed3b919c4352e9fc1cb53",
+    "owner-speech/D.hiphop.score.json": "a3628a5010cd369a9bb63a9e488734237a829a1749a62d302e2efc1f274e40b2",
+    "owner-speech/D.hiphop.vocals.wav": "51329d4c71a826cf28d20ab5ac0827aa7a020c435c04c9da9e796e4b39f9e5f8",
+    "owner-speech/D.hiphop.wav": "169f3abfe04f3e732036d37cf5b7cb231aa939dfae006d21926c7dd46396cdb5",
+    "owner-speech/D.plan.json": "83434add9cee1c4acdff5b495d7967bac7cefd924d6521280b2b0352608c0e5b",
+    "owner-speech/E.complete.json": "f7a6090a8d9597ee388ff7956cd3d68964db37bec5720753989e87aee90d53f0",
+    "owner-speech/E.expression.json": "3e6e4c72b39ac13533f31e780285782b7f07e6fc8fe6a4a3c867cdac31b9783e",
+    "owner-speech/E.hiphop.bass.wav": "60568bf81ccefbd2aece3860b695b96ab967cfa8dace8ac2d29f6895007c00c5",
+    "owner-speech/E.hiphop.drums.wav": "2df0c6c3c87ee8c805a343f8ce8df66bebc5fb24786dc270027e09ae2acd235c",
+    "owner-speech/E.hiphop.events.tsv": "d57c8c74457dcb6ba49a400b1f5ea2d9ac80c8a16bd5c39ec583062cc5e056d4",
+    "owner-speech/E.hiphop.piano.wav": "c5b2a6c1ba6b26db27012840c29f06192ec204436697846622e31855c5416e36",
+    "owner-speech/E.hiphop.report.json": "8021c6ca3cdcbaf08b0e0eb9746c550507b438ac3d9e449e88cc6f20b798fb5c",
+    "owner-speech/E.hiphop.score.json": "0a4d41d1645e48aa30a1ed518caf2379487cdc32bf9b7c8ae646642a5af674b1",
+    "owner-speech/E.hiphop.vocals.wav": "e6d3d41994d5466fd4e10b2f95a81c54914921d99d8dd51be2b1a8b0f1ce0088",
+    "owner-speech/E.hiphop.wav": "49093e1a5c5e4fc84da783a88498ad83243cd76df37c09945eac0122086ef113",
+    "owner-speech/E.plan.json": "3ef964fba2f3becbce5bd43af28009cbe3390e49182b05d4bb4867f64ee7eb45",
+    "owner-speech/composition.json": "a2571ca586bbac50aaf998c3e4ed9125366e588ae5b5b6822cae4b46737619ab",
+    "owner-speech/expression.json": "27945c81219061f891f4a5bbd15be29e798d84efce917081575e02922d0da5eb",
+    "owner-speech/replay-B.complete.json": "bbf86de8cb2c486dd35ac1c120b91745fe5728fa893f6632646058f7a2745fc8",
+    "owner-speech/replay-B.hiphop.events.tsv": "4673d6e43d5789dea79a2f327909bada0e1065417fdf23c72ba856f94eb58f7e",
+    "owner-speech/replay-B.hiphop.report.json": "341c43827a179b1b957fb8e27c5aba66bde0b9d081d59c8a40ba52c3490a1305",
+    "owner-speech/replay-B.hiphop.score.json": "933a30546db2d7370c9856731648be2b78b3ad3f0e0e8574ecaab74fb3ff926f",
+    "owner-speech/replay-B.hiphop.wav": "e3b54ab3e9a7ee369f73f7b3079972eda20be0a276229987ae2d263102becf28",
+    "owner-speech/replay-D.complete.json": "551dea07c3f5d4484d36d86fcd96478d067ca473f41eda62710870754a4636f9",
+    "owner-speech/replay-D.hiphop.events.tsv": "846f04fae14cb80deec9811855e909f43781856ed0ff090385d7e588f246bcbf",
+    "owner-speech/replay-D.hiphop.report.json": "50fefdc735e32e223e11935eacc8df82fbeb3f9ba04ed3b919c4352e9fc1cb53",
+    "owner-speech/replay-D.hiphop.score.json": "a3628a5010cd369a9bb63a9e488734237a829a1749a62d302e2efc1f274e40b2",
+    "owner-speech/replay-D.hiphop.wav": "169f3abfe04f3e732036d37cf5b7cb231aa939dfae006d21926c7dd46396cdb5",
+    "owner-speech/replay-E.complete.json": "8a609ca66f42fa82f07e45e307b780b663d453b696a671faba880c540d383962",
+    "owner-speech/replay-E.hiphop.events.tsv": "d57c8c74457dcb6ba49a400b1f5ea2d9ac80c8a16bd5c39ec583062cc5e056d4",
+    "owner-speech/replay-E.hiphop.report.json": "8021c6ca3cdcbaf08b0e0eb9746c550507b438ac3d9e449e88cc6f20b798fb5c",
+    "owner-speech/replay-E.hiphop.score.json": "0a4d41d1645e48aa30a1ed518caf2379487cdc32bf9b7c8ae646642a5af674b1",
+    "owner-speech/replay-E.hiphop.wav": "49093e1a5c5e4fc84da783a88498ad83243cd76df37c09945eac0122086ef113",
+    "owner-speech/replay.complete.json": "cdc8274cc9053bb1b7fe94d2e4adf0a3a084a7133255aa83cf2ce4463cf5b56f",
+    "owner-speech/replay.hiphop.events.tsv": "846f04fae14cb80deec9811855e909f43781856ed0ff090385d7e588f246bcbf",
+    "owner-speech/replay.hiphop.report.json": "636548a6dcbbf338c03346b822a2e0e35f2c663ff651790d7fdccc8e9cf0a2c4",
+    "owner-speech/replay.hiphop.score.json": "a3628a5010cd369a9bb63a9e488734237a829a1749a62d302e2efc1f274e40b2",
+    "owner-speech/replay.hiphop.wav": "17e9ece796d694c18c90ff4ec88bd8cbdbdefbc17e803ad5b4a469d67f734174",
+    "report.json": "30494b065a1d3437c64e35566d904797e09e7ba724f0f03b0483b8341008d543"
+  }
+}

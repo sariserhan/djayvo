@@ -1,0 +1,11 @@
+--- a/core/instruments/voice.cpp
++++ b/core/instruments/voice.cpp
+@@ -35,7 +35,7 @@
+ }
+ }
+ std::uint32_t release_frames(Instrument instrument,std::uint32_t rate) {
+-    const double seconds=instrument==Instrument::piano?0.30:instrument==Instrument::bass?0.16:instrument==Instrument::guitar?0.12:instrument==Instrument::pad?0.8:instrument==Instrument::lead?0.12:0.18;
++    const double seconds=instrument==Instrument::piano?0.30:instrument==Instrument::bass?0.16:instrument==Instrument::guitar?0.12:instrument==Instrument::drums?1.0:instrument==Instrument::pad?0.8:instrument==Instrument::lead?0.12:0.18;
+     return static_cast<std::uint32_t>(std::llround(seconds*rate));
+ }
+ void Voice::start(const Event& e,std::uint32_t rate) noexcept {

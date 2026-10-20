@@ -1359,3 +1359,23 @@ as accepted quality improvements. **NOT RUN:** Independent listener study,
 full B/D/E and a new composition intervention. No audio, plans, engine or
 benchmarks changed while recording feedback.
 [Exact response and scope](evidence/q0/owner-feedback.json).
+
+## Q0 continuation — five controlled conditions
+
+**PASS:** Five sources now have A/B/C/D/E mixes. The isolated native candidate
+changes only drum release; A/B and C/D plans/events and non-drum stems match.
+E preserves intact vocal calls, removes short chops and introduces recurring
+source-rhythm answers. Ten Q0 tests, three native test groups, 8,216 independent
+event-frame checks and 20 exact block-size replays pass. All 25 listening
+mixes are within 0.04 LU of −23 LUFS; maximum true peak is −5.08 dBTP.
+All five C master WAVs still match the rejected expression packet exactly.
+
+**PARTIAL:** Overall Q0, instrument realism, composition acceptance and browser
+playback. Browser form/decode/download checks pass, with the known headless
+WebKit clock limit. **FAIL:** Previous owner acceptance remains rejected.
+**NOT RUN:** New owner/independent comparison, fresh Linux/iPhone/WASM execution
+and professional-quality validation. The production engine, master, existing
+plans and recordings remain unchanged. No training, spending or deployment.
+
+[New private review](http://127.0.0.1:4200/);
+[changes, limits, evidence and commands](q0-five-arm-trial.md).

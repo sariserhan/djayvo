@@ -1,0 +1,11 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-q0-decay-20261020/build
+    Start 1: live_instruments
+1/3 Test #1: live_instruments .................   Passed    0.58 sec
+    Start 2: core
+2/3 Test #2: core .............................   Passed    0.95 sec
+    Start 3: remix_core
+3/3 Test #3: remix_core .......................   Passed    6.21 sec
+
+100% tests passed out of 3
+
+Total Test time (real) =   7.75 sec

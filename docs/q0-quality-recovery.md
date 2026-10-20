@@ -2,6 +2,12 @@
 
 2026-10-20. **Implementation: PARTIAL. Current owner listening acceptance: FAIL.**
 
+**Latest continuation:** [The five-condition trial](q0-five-arm-trial.md) now
+renders B/D/E alongside the preserved A/C controls. A copied native build tests
+longer drum decay; E tests intact vocal calls and a source-rhythm instrumental
+answer. Technical execution passes; new listening acceptance is **NOT RUN**.
+The rejected packets below remain unchanged.
+
 The technical audit, five-input baseline, instrument probes and an expression-only
 comparison are available. The owner responded “still bad” and clarified “All of
 them,” covering the baseline (4197), A/C expression comparison (4198) and
@@ -27,13 +33,13 @@ operates on copies of plans in an offline experiment.
 | SFZ/sfizz dependency investigation | PARTIAL | Local Mac build and rendering PASS after isolated compatibility fixes; production integration, distribution notice assembly and other targets NOT RUN |
 | Modular deterministic performance expression | PARTIAL | Shared onset shifts, accents, existing ghost strokes, gates, guitar muting and phrase dynamics; new fills/transitions, deeper melodic phrasing and listening acceptance remain open |
 | Groove MIDI Dataset evaluation | PASS | License/checksum review and descriptive MIDI analysis; no training or fitting |
-| Improved composition | NOT RUN | Repetition/input-response audit completed; no composition candidate promoted or rendered as an improvement |
+| Improved composition | PARTIAL | Copied-plan call/response candidate rendered; no musical improvement claimed |
 | A: existing renderer | PASS | Five native baseline mixes and stems |
-| B: improved instruments only, full mix | NOT RUN | Isolated SFZ probes are not a substitute for a controlled full-mix arm |
+| B: instrument candidate only, full mix | PASS | New isolated drum-decay arm; realism remains unproven |
 | C: expression only | PASS | Five copied plans, actual mixes/stems, deterministic replay and blind level-matched A/C packet |
-| D: instruments + expression | NOT RUN | Depends on a justified instrument intervention |
-| E: composition + D | NOT RUN | Depends on the above and a coherent composition intervention |
-| Technical event timing/replay and comparison level matching | PASS | 3,400 instrument event rows checked; zero frame errors; five exact block-size replays |
+| D: instruments + expression | PASS | Decay build with exactly C's plan/events |
+| E: composition + D | PASS | New copied composition with the same expression transform and decay build |
+| Technical event timing/replay and comparison level matching | PASS | Latest five-arm trial: 8,216 instrument event rows, zero frame errors, 20 exact block-size replays |
 | Browser listening controls | PARTIAL | Form, decoding, downloads and layouts pass; headless WebKit playback clock stalled; physical playback/listening NOT RUN |
 | Q0 Linux/iPhone/WASM audio execution | NOT RUN | Prior R0 portability evidence is retained separately; not relabeled as Q0 |
 | Current owner listening acceptance | FAIL | Owner rejects all three packets; exact replies retained; no numeric ratings or relative preference inferred |
@@ -41,12 +47,13 @@ operates on copies of plans in an offline experiment.
 
 The user required diagnosis before modifying the engine. These measurements
 identify specific mechanisms to audition but do not establish which dominates
-the perceived robotic sound. Therefore B/D/E and engine changes remain open
-rather than filling their slots with identical renders or confounded mixes.
-This is an incomplete Q0 checkpoint for review, not a completed quality milestone.
+the perceived robotic sound. The continuation tests a narrow mechanism in an
+isolated source copy; production remains unchanged. This is an incomplete Q0
+checkpoint for review, not a completed quality milestone.
 
 ## Listen locally
 
+- [Latest blind A/B/C/D/E comparison](http://127.0.0.1:4200/)
 - [Unchanged mixes, original recordings and stems](http://127.0.0.1:4197/)
 - [Isolated unchanged instruments](http://127.0.0.1:4197/instruments/)
 - [Blind A/C expression comparison](http://127.0.0.1:4198/)

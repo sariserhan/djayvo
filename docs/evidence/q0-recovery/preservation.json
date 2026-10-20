@@ -1,0 +1,10 @@
+{
+  "composition_reproduction": "PASS: five E plans unchanged",
+  "expression_control": "PASS: five C WAVs match earlier rejected packet",
+  "production_and_specs": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "jamloom_improvisation_learning_addendum_v1.md": "5bfe33e037f4d0aff6910ba3dbc55ce090e96b0ee772fdc834d94a12aa29941d",
+    "build-mac/jamloom_remix": "bd20df4c419cacc20603d48c7e96caa7db34f78385333bb77966bd3a03e22309",
+    "build-mac/libjamloom_core.a": "e0d0fe4f6f0e737ff972bde66a0a94c4794d904f4287e5ba3ec0fb63c5960a86"
+  }
+}

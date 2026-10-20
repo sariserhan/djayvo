@@ -13,6 +13,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT/'scripts'))
 from q0_expression import express
+from q0_composition import compose
 from q0_audit import loudness, inputs, level_match
 
 
@@ -40,6 +41,37 @@ class Q0(unittest.TestCase):
                     self.assertEqual(offset, 0)
                 self.assertTrue(1 <= after['velocity'] <= 127)
         self.assertNotEqual(candidate, self.plan)
+
+    def test_composition_intact_calls_and_response_space(self):
+        original = copy.deepcopy(self.plan)
+        candidate, trace = compose(self.plan)
+        self.assertEqual(original, self.plan)
+        self.assertEqual((candidate, trace), compose(self.plan))
+        for field in ('source', 'source_asset_id', 'tempo_milli_bpm', 'key', 'mix', 'sections', 'voice_clips'):
+            self.assertEqual(original[field], candidate[field])
+        self.assertEqual(candidate['voice_events'], [v for v in original['voice_events'] if v['clean']])
+        self.assertGreater(trace['removed_short_vocal_events'], 0)
+        self.assertGreaterEqual(len(trace['source_rhythm_ticks']), 2)
+        for track in candidate['tracks']:
+            for note in track['events']:
+                self.assertGreater(note['duration_ticks'], 0)
+                self.assertLessEqual(note['start_tick']+note['duration_ticks'], candidate['target_bars']*3840)
+                if track['instrument'] != 'drums':
+                    for start, stop in trace['intact_call_windows']:
+                        self.assertFalse(note['start_tick'] < stop and note['start_tick']+note['duration_ticks'] > start)
+        changed, _ = express(candidate, 4123)
+        self.assertEqual(changed['voice_events'], candidate['voice_events'])
+
+    def test_composition_rejects_unsupported_sources(self):
+        for field, value in [('voice_events', []), ('time_signature', [3, 4]), ('target_bars', 2)]:
+            plan = copy.deepcopy(self.plan); plan[field] = value
+            with self.assertRaises(ValueError): compose(plan)
+        plan = copy.deepcopy(self.plan); plan['analysis']['onsets'] = []
+        with self.assertRaises(ValueError): compose(plan)
+        for field, value in [('rate', 1.2), ('pitch_semitones', 2), ('echo_ticks', 960)]:
+            plan = copy.deepcopy(self.plan)
+            next(v for v in plan['voice_events'] if v['clean'])[field] = value
+            with self.assertRaises(ValueError): compose(plan)
 
     def test_invalid_context_and_seed(self):
         for seed in (-1, True, 2**32, 1.5):

@@ -18,10 +18,12 @@ of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.
   acceptance remain open.
 - [x] **Q005 — PASS:** GMD license/checksum and descriptive MIDI reference audit;
   official splits retained, no profile fitting or training.
-- [ ] **Q006 — NOT RUN:** Composition intervention and controlled full-mix B/D/E.
-  SFZ instrument probes are not counted as those full-mix conditions.
-- [x] **Q007 — PASS:** Eight Q0 tests, three native groups, 3,400 exact
-  instrument event rows and comparison level checks. Browser form/decode
+- [ ] **Q006 — PARTIAL:** Five controlled A/B/C/D/E sets now render. B tests
+  drum decay in an isolated source copy; E tests intact calls and rhythmic
+  instrumental answers. Listening improvement remains NOT RUN; no promotion.
+  [Full trial](docs/q0-five-arm-trial.md).
+- [x] **Q007 — PASS:** Ten Q0 tests, three native groups, 8,216 exact
+  instrument event rows, 20 exact replays and comparison level checks. Browser form/decode
   checks pass; physical playback and headless WebKit clock remain separate.
 - [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression and native/SFZ
   packets: “still bad,” clarified as “All of them.” No numeric scores, relative
