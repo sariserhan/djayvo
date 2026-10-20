@@ -4,9 +4,9 @@
 The owner requested diagnosis and controlled listening before engine changes.
 No later milestone, model training, paid service or dashboard redesign is part
 of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.md).
-Latest: [Phrase-boundary / response-timing study](docs/q0-phrase-form-study.md)
-compares five copied candidates with preserved original-score controls.
-Technical PASS; new listening NOT RUN.
+Latest: [Guitar-layer / vocal-integrity study](docs/q0-guitar-layer-study.md)
+reproduces a large velocity-boundary level drop and tests isolated attenuation.
+Technical PASS; realism and mix acceptance remain open. New listening NOT RUN.
 Prior rejected candidates remain FAIL.
 
 - [x] **Q001 — PASS:** Freeze five authorized real inputs with plans, events,
@@ -17,6 +17,9 @@ Prior rejected candidates remain FAIL.
 - [ ] **Q003 — PARTIAL:** Fourteen unchanged instrument probes; eight local SFZ
   probes, exact replays and level-matched comparisons. Licensing reviewed for
   local testing; instrument realism judgments and production integration open.
+  New guitar audit: 552 boundary pairs, six matched guitar probe pairs, eight
+  exact replays. Isolated calibration reduces the maximum half-second boundary
+  step to 0.54 dB; attack/decay and mix-balance judgments remain open.
 - [ ] **Q004 — PARTIAL:** Deterministic offline expression transform and five
   A/C comparisons render and replay. Fills, deeper phrasing and musical
   acceptance remain open.
@@ -30,10 +33,13 @@ Prior rejected candidates remain FAIL.
   expression, with intact calls and a recurring motif; no quality promotion.
   The latest copied-plan study tests padded vocal boundaries and shorter call
   sections; instrumental notes and expression stay fixed.
-- [x] **Q007 — PASS:** Latest study: twelve Q0 tests, 4,292 exact
+- [x] **Q007 — PASS:** Phrase-form study: twelve Q0 tests, 4,292 exact
   control/candidate event rows, five exact replays and comparison level checks. Earlier
   native regression results are retained separately. Browser form/decode
   checks pass; physical playback and headless WebKit clock remain separate.
+  Subsequent sampler diagnostic: three native regression groups, 552 boundary
+  pairs, unchanged forte/muted/piano controls, and exact reconstruction of the
+  owner's 1,560,000-frame vocal stem.
 - [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression, native/SFZ and
   the new five-condition packet, calling the latter “very robotic and bad quality.”
   No numeric scores, relative preferences or causal ranking inferred; no promotion.

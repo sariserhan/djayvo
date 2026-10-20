@@ -2,7 +2,15 @@
 
 2026-10-20. **Implementation: PARTIAL. Current owner listening acceptance: FAIL.**
 
-**Newest study:** [Phrase boundaries and response timing](q0-phrase-form-study.md)
+**Newest diagnostic:** [Guitar layer response and vocal integrity](q0-guitar-layer-study.md).
+Velocity 84 → 85 produces a measured 2.56–17.46 dB half-second guitar level drop
+at 48 kHz. Isolated attenuation reduces this discontinuity while preserving
+forte, muted guitar and piano. Technical **PASS**, realism **PARTIAL**, human
+acceptance **NOT RUN**. The current owner vocal stem also matches independently
+reconstructed source processing exactly. Neither result establishes overall
+musical recovery; production remains unchanged.
+
+**Previous study:** [Phrase boundaries and response timing](q0-phrase-form-study.md)
 compares five candidates against preserved original-score controls. It tests
 padded vocal intervals and bar-aligned responses, with instruments unchanged.
 Technical execution **PASS**; musical improvement and quiet-word preservation

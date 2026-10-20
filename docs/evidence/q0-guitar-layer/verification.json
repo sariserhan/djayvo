@@ -1,0 +1,225 @@
+{
+  "technical": "PASS",
+  "human_quality": "NOT RUN",
+  "boundary_summary": {
+    "baseline": {
+      "48000": {
+        "delta_db": {
+          "min_db": -17.455456406445325,
+          "max_db": -2.5559926719630455
+        },
+        "attack_delta_db": {
+          "min_db": -15.26731097845418,
+          "max_db": -1.6751543621371499
+        },
+        "one_second_delta_db": {
+          "min_db": -18.439743587296697,
+          "max_db": -2.82609177129714
+        }
+      },
+      "16000": {
+        "delta_db": {
+          "min_db": -17.20655978313505,
+          "max_db": -2.5544104992180774
+        },
+        "attack_delta_db": {
+          "min_db": -15.090773406167411,
+          "max_db": -1.6714532466696375
+        },
+        "one_second_delta_db": {
+          "min_db": -18.207837338221648,
+          "max_db": -2.824938551217508
+        }
+      }
+    },
+    "candidate": {
+      "48000": {
+        "delta_db": {
+          "min_db": -0.010263158051034168,
+          "max_db": 0.3069399158512738
+        },
+        "attack_delta_db": {
+          "min_db": 0.26076444330693627,
+          "max_db": 3.9587934419238637
+        },
+        "one_second_delta_db": {
+          "min_db": -0.994550339481548,
+          "max_db": 0.3277912123085907
+        }
+      },
+      "16000": {
+        "delta_db": {
+          "min_db": 0.08222008719875294,
+          "max_db": 0.5379061131457417
+        },
+        "attack_delta_db": {
+          "min_db": 0.2683024372398503,
+          "max_db": 4.120257001088806
+        },
+        "one_second_delta_db": {
+          "min_db": -0.7626440894791544,
+          "max_db": 0.3563766313709362
+        }
+      }
+    }
+  },
+  "decoded_audio": [
+    {
+      "file": "baseline/guitar-49-0.wav",
+      "rms_dbfs": -27.68405362699601,
+      "peak_dbfs": -9.53262295172124,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "candidate/guitar-49-0.wav",
+      "rms_dbfs": -29.301203584414367,
+      "peak_dbfs": -9.53262295172124,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "baseline/guitar-49-1.wav",
+      "rms_dbfs": -27.577045835514184,
+      "peak_dbfs": -9.438609494279232,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "candidate/guitar-49-1.wav",
+      "rms_dbfs": -28.99979841634492,
+      "peak_dbfs": -9.438609494279232,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "baseline/guitar-61-0.wav",
+      "rms_dbfs": -30.374426082682287,
+      "peak_dbfs": -9.868683902839953,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "candidate/guitar-61-0.wav",
+      "rms_dbfs": -36.284572173620965,
+      "peak_dbfs": -9.868683902839953,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "baseline/guitar-61-1-muted.wav",
+      "rms_dbfs": -40.61407968708057,
+      "peak_dbfs": -9.561265647546817,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "candidate/guitar-61-1-muted.wav",
+      "rms_dbfs": -40.61407968708057,
+      "peak_dbfs": -9.561265647546817,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "baseline/guitar-61-1.wav",
+      "rms_dbfs": -30.60253389038642,
+      "peak_dbfs": -9.687295738404739,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "candidate/guitar-61-1.wav",
+      "rms_dbfs": -36.81240129239144,
+      "peak_dbfs": -9.687295738404739,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "baseline/guitar-73-0.wav",
+      "rms_dbfs": -28.675629008849928,
+      "peak_dbfs": -9.87446541091881,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "candidate/guitar-73-0.wav",
+      "rms_dbfs": -39.0282373252851,
+      "peak_dbfs": -9.87446541091881,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "baseline/guitar-73-1.wav",
+      "rms_dbfs": -28.504689273417863,
+      "peak_dbfs": -10.03708822844857,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "candidate/guitar-73-1.wav",
+      "rms_dbfs": -42.05381720388505,
+      "peak_dbfs": -10.03708822844857,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "baseline/piano-61-1.wav",
+      "rms_dbfs": -25.831203850344416,
+      "peak_dbfs": -9.508825978923523,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "candidate/piano-61-1.wav",
+      "rms_dbfs": -25.831203850344416,
+      "peak_dbfs": -9.508825978923523,
+      "full_scale_samples": 0
+    }
+  ],
+  "waveform_differences": [
+    {
+      "probe": "guitar-49-0.wav",
+      "max_pcm16_difference": 2379.0,
+      "rms_pcm16_difference": 331.1181112691009,
+      "all_notes_velocity_85_and_above_identical": true
+    },
+    {
+      "probe": "guitar-49-1.wav",
+      "max_pcm16_difference": 2229.0,
+      "rms_pcm16_difference": 302.8967344966763,
+      "all_notes_velocity_85_and_above_identical": true
+    },
+    {
+      "probe": "guitar-61-0.wav",
+      "max_pcm16_difference": 4780.0,
+      "rms_pcm16_difference": 602.7942812747149,
+      "all_notes_velocity_85_and_above_identical": true
+    },
+    {
+      "probe": "guitar-61-1-muted.wav",
+      "max_pcm16_difference": 0.0,
+      "rms_pcm16_difference": 0.0,
+      "all_notes_velocity_85_and_above_identical": true
+    },
+    {
+      "probe": "guitar-61-1.wav",
+      "max_pcm16_difference": 4888.0,
+      "rms_pcm16_difference": 601.9202900284362,
+      "all_notes_velocity_85_and_above_identical": true
+    },
+    {
+      "probe": "guitar-73-0.wav",
+      "max_pcm16_difference": 5842.0,
+      "rms_pcm16_difference": 944.2996348264322,
+      "all_notes_velocity_85_and_above_identical": true
+    },
+    {
+      "probe": "guitar-73-1.wav",
+      "max_pcm16_difference": 6304.0,
+      "rms_pcm16_difference": 1051.410548309191,
+      "all_notes_velocity_85_and_above_identical": true
+    },
+    {
+      "probe": "piano-61-1.wav",
+      "max_pcm16_difference": 0.0,
+      "rms_pcm16_difference": 0.0,
+      "all_notes_velocity_85_and_above_identical": true
+    }
+  ],
+  "vocal_oracle_negative_tests": "PASS: overwrite, consent, hash, added sample rejected",
+  "versions": {
+    "clang": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "python": "3.15.0 (main, Oct  9 2026, 11:16:41) [Clang 21.0.0 (clang-2100.3.34.2)]",
+    "numpy": "2.5.4"
+  },
+  "script_sha256": {
+    "scripts/q0_guitar_layer_trial.py": "e693ac709a5e6d9df6c930a698c01040f55272425ce2c792cea799288b6b7253",
+    "scripts/q0_layer_probe.cpp": "f9e62a6395bb3957534306a7d8562379bb587d4e8a8782bb276b980e3bd54a19",
+    "scripts/q0_voice_integrity.py": "28a251aae7c4c3e30780e602914e47cd33876100bca44cab952c9093e8f56355"
+  }
+}

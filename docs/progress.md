@@ -1445,3 +1445,30 @@ specifications remain unchanged. No training, spending or later milestone.
 
 [Private review](http://127.0.0.1:4202/);
 [full experiment, gates and reproducible evidence](q0-phrase-form-study.md).
+
+## Q0 instrument dynamics and independent vocal integrity
+
+**PASS:** Reproduced a guitar layer discontinuity: at velocity 84 → 85, all 80
+48 kHz pitch/take pairs lose 2.56–17.46 dB of first-half-second RMS energy.
+An isolated sampler copy attenuates the medium layer at 26 root/take points.
+Across 160 guitar cases at 16/48 kHz, the maximum absolute half-second step
+falls to 0.54 dB. Forte samples, muted guitar and piano remain identical.
+Six matched guitar pairs and two raw controls were rendered; eight candidate
+WAVs replay exactly. All 16 before/after probes decode without full-scale PCM.
+Three existing native regression programs and 12 Q0 tests pass. All 78 guitar
+assets and pinned CC0 evidence verify.
+
+The independent owner vocal oracle reconstructs 1,560,000 frames from original
+source PCM, crop positions, pan/normalization and fades with zero differing
+samples. Consent, hash, overwrite and spurious-sample negative tests pass.
+This is waveform-integrity evidence, not intelligibility or naturalness.
+
+**PARTIAL:** Instrument recovery and Q0 overall. The candidate changes soft
+guitar level; attack/body differences remain. **NOT RUN:** Full-mix calibration
+acceptance, direct/physical listening and fresh Linux/iPhone/WASM execution.
+Chromium controls, twelve audio decodes, clock, mobile width and key isolation
+pass; other browser/device execution is not inferred. **FAIL:** Earlier owner
+acceptance unchanged. No production change, training, spending or later milestone.
+
+[Instrument diagnostic](http://127.0.0.1:4203/);
+[findings, calibration risks and reproducible evidence](q0-guitar-layer-study.md).

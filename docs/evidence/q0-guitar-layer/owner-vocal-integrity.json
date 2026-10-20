@@ -1,0 +1,22 @@
+{
+  "technical": "PASS",
+  "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+  "plan_sha256": "4c61dc8c56e4afe7b0db188b45a9b89d7f56b8f720a8ed37f1da453d60aa712d",
+  "stem_sha256": "524a2e2d9fb3212928f7953f150c145f3528f504563daef90d2842fb407ef4ee",
+  "frames_checked": 1560000,
+  "call_intervals_frames": [
+    [
+      205714,
+      335314
+    ],
+    [
+      822857,
+      952457
+    ]
+  ],
+  "maximum_pcm16_error": 0,
+  "different_samples": 0,
+  "method": "Independent source mono fold-down, clip coordinates, 3 ms fades, normalization/pan gain and PCM16 quantization",
+  "limits": "48 kHz PCM16 source, no transformations/overlaps/limiting. Does not test intelligibility, musicality or mix masking.",
+  "human_quality": "NOT RUN"
+}

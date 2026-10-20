@@ -1,0 +1,28 @@
+--- a/core/instruments/voice.cpp
++++ b/core/instruments/voice.cpp
+@@ -59,6 +59,25 @@
+     if (instrument_!=Instrument::drums) sample_step_*=std::exp2((pitch_-sample.root_midi)/12.0);
+     // Small deterministic performance-level variation, never oscillator noise.
+     velocity_=std::pow(e.velocity/127.0,1.45)*(0.97+(e.noise_seed%7U)*0.01);
++    // Q0 experiment: align 500 ms layer energy, attenuating the soft guitar only.
++    if (instrument_==Instrument::guitar && !e.muted && e.velocity<=84) {
++        static constexpr double layer_gain[13][2] = {
++        {0.55254733395394406, 0.5334686073326862},
++        {0.55896092157059074, 0.58578266529392387},
++        {0.73187625446923366, 0.72003707893961388},
++        {0.67688319816736076, 0.70200688148571233},
++        {0.39257810836966667, 0.37753007237288838},
++        {0.48021824781872113, 0.5264173930866225},
++        {0.38109877792348529, 0.43571055722104018},
++        {0.33681392533309845, 0.32484279963237683},
++        {0.33226729381317438, 0.21223304392156808},
++        {0.15232551625514354, 0.17832129567101862},
++        {0.16745550543849347, 0.13546821024999384},
++        {0.19448453807915236, 0.13419623693601296},
++        {0.14904064935959518, 0.19113457456646676}
++        };
++        velocity_*=layer_gain[(sample.root_midi-40)/3][sample.take];
++    }
+     // shortcut: discrete recorded layers; assess boundary jumps before adding crossfades.
+     const double brightness=e.velocity/127.0;
+     const double cutoff_hz=instrument_==Instrument::piano?1600+6400*brightness:
