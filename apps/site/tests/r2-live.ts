@@ -82,8 +82,8 @@ async function main() {
           const page = await browser.newPage();
           page.setDefaultTimeout(25000);
           // Only the HTML shell is intercepted; every R2 request goes to Cloudflare.
-          await page.route('https://jamloom.com/r2-provider-test', r => r.fulfill({ contentType: 'text/html', body: '<title>R2 provider test</title>' }));
-          await page.goto('https://jamloom.com/r2-provider-test');
+          await page.route('https://www.jamloom.com/r2-provider-test', r => r.fulfill({ contentType: 'text/html', body: '<title>R2 provider test</title>' }));
+          await page.goto('https://www.jamloom.com/r2-provider-test');
           const outcome = await page.evaluate(async ({ upload, playback, wav }) => {
             const bytes = Uint8Array.from(atob(wav), c => c.charCodeAt(0));
             const put = await fetch(upload, { method: 'PUT', headers: { 'Content-Type': 'audio/wav' }, body: bytes, signal: AbortSignal.timeout(20000) });

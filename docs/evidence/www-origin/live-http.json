@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-10-20T03:05:39.050Z",
+  "scope": "Anonymous requests only; no account or email created",
+  "checks": [
+    {
+      "url": "https://jamloom.com/account",
+      "status": 308,
+      "location": "https://www.jamloom.com/account",
+      "cacheControl": "public, max-age=0, must-revalidate"
+    },
+    {
+      "url": "https://www.jamloom.com/account/sign-in",
+      "status": 200,
+      "location": null,
+      "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+    },
+    {
+      "url": "https://www.jamloom.com/api/auth/get-session",
+      "status": 200,
+      "location": null,
+      "cacheControl": "private, no-store",
+      "body": "null"
+    },
+    {
+      "url": "https://www.jamloom.com/api/auth/sign-out",
+      "method": "POST",
+      "origin": "https://www.jamloom.com",
+      "status": 200,
+      "body": "{\"success\":true}"
+    },
+    {
+      "url": "https://www.jamloom.com/api/auth/sign-out",
+      "method": "POST",
+      "origin": "https://foreign.example",
+      "status": 200,
+      "body": "{\"success\":true}"
+    },
+    {
+      "url": "https://www.jamloom.com/api/auth/sign-out",
+      "method": "POST",
+      "origin": "https://www.jamloom.com",
+      "cookie": "invalid synthetic token; no real session",
+      "status": 200,
+      "body": "{\"success\":true}"
+    },
+    {
+      "url": "https://www.jamloom.com/api/auth/sign-out",
+      "method": "POST",
+      "origin": "https://foreign.example",
+      "cookie": "invalid synthetic token; no real session",
+      "status": 403,
+      "body": "{\"message\":\"Invalid origin\",\"code\":\"INVALID_ORIGIN\"}"
+    }
+  ]
+}

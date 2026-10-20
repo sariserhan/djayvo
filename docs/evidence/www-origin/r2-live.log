@@ -1,0 +1,15 @@
+
+> jamloom-site@0.1.0 test:r2
+> tsx tests/r2-live.ts --apply
+
+{"bucket":"jamloom-audio","testObjectId":"9b4f0493-170d-4877-819e-c3973616467b","timestamp":"2026-10-20T03:01:29.343Z","node":"v22.23.1"}
+{"gate":"signed upload and exact server read","status":"PASS"}
+{"gate":"signed Content-Type and Content-Length tampering denied","status":"PASS"}
+{"gate":"master copy, range playback and download","status":"PASS"}
+{"gate":"temporary upload expiry header; saved master has no expiry","status":"PASS"}
+{"gate":"unsigned playback denied","status":"PASS"}
+{"gate":"late staging rewrite cannot alter saved master","status":"PASS"}
+{"gate":"chromium: real R2 upload, range fetch, decode and blocked foreign origin","status":"PASS"}
+{"gate":"webkit: real R2 upload, range fetch, decode and blocked foreign origin","status":"PASS"}
+{"gate":"expired upload grant denied","status":"PASS"}
+{"gate":"test objects deleted and absence verified","status":"PASS"}

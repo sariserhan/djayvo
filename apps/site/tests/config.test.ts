@@ -23,17 +23,17 @@ test('production template binds auth and private R2 grants to Jamloom configurat
     BETTER_AUTH_SECRET: 'a'.repeat(48), RESEND_API_KEY: 'test-key', EMAIL_FROM: 'Jamloom <hello@jamloom.com>',
     R2_ACCOUNT_ID: 'a'.repeat(32), R2_ACCESS_KEY_ID: 'test-key', R2_SECRET_ACCESS_KEY: 'test-secret', VERCEL: '1' };
   const config = readConfig(env);
-  assert.equal(config.baseURL, 'https://jamloom.com');
+  assert.equal(config.baseURL, 'https://www.jamloom.com');
   assert.equal(config.emailReplyTo, 'support@jamloom.com');
   const pool = new Pool({ connectionString: env.DATABASE_URL });
   try {
-    assert.deepEqual(authOptions(config, pool).trustedOrigins, ['https://jamloom.com']);
+    assert.deepEqual(authOptions(config, pool).trustedOrigins, ['https://www.jamloom.com']);
     assert.equal(audioStore(config, env), null);
     const store = audioStore(config, { ...env, JAMLOOM_R2_ENABLED: 'true' })!;
     const grant = new URL(await store.uploadURL('uploads/test.wav', 3840044, 120));
     assert.equal(grant.hostname, `jamloom-audio.${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`);
     const [cors] = JSON.parse(readFileSync(new URL('../config/r2-cors.production.json', import.meta.url), 'utf8'));
-    assert.deepEqual(cors.AllowedOrigins, [config.baseURL]);
+    assert.deepEqual(cors.AllowedOrigins, [config.baseURL, 'https://jamloom.com']);
     assert.deepEqual(cors.AllowedMethods, ['GET', 'PUT', 'HEAD']);
     assert.ok(cors.AllowedHeaders.includes('Range'));
   } finally { await pool.end(); }

@@ -1,0 +1,96 @@
+
+> test
+> npm --prefix apps/site test
+
+
+> jamloom-site@0.1.0 test
+> tsx --test tests/config.test.ts tests/audio.test.ts tests/email.test.ts
+
+TAP version 13
+# Subtest: private save validates consent, bounded metadata and canonical metadata-free PCM
+ok 1 - private save validates consent, bounded metadata and canonical metadata-free PCM
+  ---
+  duration_ms: 126.638958
+  type: 'test'
+  ...
+# Subtest: storage is opt-in, local files cannot be hosted, R2 grants bind content length and type
+ok 2 - storage is opt-in, local files cannot be hosted, R2 grants bind content length and type
+  ---
+  duration_ms: 15.068333
+  type: 'test'
+  ...
+# Subtest: brand transition preserves legacy storage config without overriding explicit opt-outs
+ok 3 - brand transition preserves legacy storage config without overriding explicit opt-outs
+  ---
+  duration_ms: 0.193292
+  type: 'test'
+  ...
+# Subtest: production template binds auth and private R2 grants to Jamloom configuration
+ok 4 - production template binds auth and private R2 grants to Jamloom configuration
+  ---
+  duration_ms: 10.747917
+  type: 'test'
+  ...
+# Subtest: account configuration fails closed and forbids hosted development mail
+ok 5 - account configuration fails closed and forbids hosted development mail
+  ---
+  duration_ms: 0.162375
+  type: 'test'
+  ...
+# Subtest: Resend request routes replies to support and binds retry identity to the full payload
+ok 6 - Resend request routes replies to support and binds retry identity to the full payload
+  ---
+  duration_ms: 6.166417
+  type: 'test'
+  ...
+# Subtest: reply-to accepts a single mailbox and rejects malformed or injected headers
+ok 7 - reply-to accepts a single mailbox and rejects malformed or injected headers
+  ---
+  duration_ms: 0.099
+  type: 'test'
+  ...
+# Subtest: localhost can use Neon without enabling local database/storage shortcuts
+ok 8 - localhost can use Neon without enabling local database/storage shortcuts
+  ---
+  duration_ms: 0.067583
+  type: 'test'
+  ...
+# Subtest: email outbox cannot run in a hosted app even if a config is supplied directly
+ok 9 - email outbox cannot run in a hosted app even if a config is supplied directly
+  ---
+  duration_ms: 0.068083
+  type: 'test'
+  ...
+# Subtest: auth body limit measures real streamed bytes rather than trusting Content-Length
+ok 10 - auth body limit measures real streamed bytes rather than trusting Content-Length
+  ---
+  duration_ms: 1.529084
+  type: 'test'
+  ...
+# Subtest: Jamloom config accepts legacy deployment keys and gives explicit new values priority
+ok 11 - Jamloom config accepts legacy deployment keys and gives explicit new values priority
+  ---
+  duration_ms: 0.139208
+  type: 'test'
+  ...
+# Subtest: shared email layout escapes content and preserves a safe exact action URL
+ok 12 - shared email layout escapes content and preserves a safe exact action URL
+  ---
+  duration_ms: 0.5575
+  type: 'test'
+  ...
+# Subtest: both actual auth callbacks capture branded HTML and plain text in the private outbox
+ok 13 - both actual auth callbacks capture branded HTML and plain text in the private outbox
+  ---
+  duration_ms: 4.893084
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 437.763916

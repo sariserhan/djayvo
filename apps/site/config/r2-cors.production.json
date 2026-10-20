@@ -1,6 +1,6 @@
 [
   {
-    "AllowedOrigins": ["https://jamloom.com"],
+    "AllowedOrigins": ["https://www.jamloom.com", "https://jamloom.com"],
     "AllowedMethods": ["GET", "PUT", "HEAD"],
     "AllowedHeaders": ["Content-Type", "Range"],
     "ExposeHeaders": ["ETag", "Content-Length", "Content-Range", "Accept-Ranges"],

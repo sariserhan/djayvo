@@ -1,0 +1,18 @@
+{
+  "unit_tests": {
+    "status": "PASS",
+    "passed": 13,
+    "failed": 0
+  },
+  "typecheck": {
+    "status": "PASS",
+    "exit_code": 0
+  },
+  "bundle_audit": {
+    "status": "PASS",
+    "client_files_checked": 16,
+    "server_secrets_absent": "PASS",
+    "studio_assets_unchanged_except_account_link_and_offline_hashes": "PASS"
+  },
+  "scope": "Local canonical www origin configuration; not hosted signup or email delivery"
+}

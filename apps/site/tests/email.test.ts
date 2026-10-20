@@ -9,10 +9,10 @@ import { readConfig } from '../lib/config';
 import { authOptions } from '../lib/auth-options';
 
 test('shared email layout escapes content and preserves a safe exact action URL', () => {
-  const url = 'https://jamloom.com/api/auth/verify-email?token=fixture&callbackURL=%2Faccount';
+  const url = 'https://www.jamloom.com/api/auth/verify-email?token=fixture&callbackURL=%2Faccount';
   const message = { to: 'listener@example.com', subject: '<img src=x onerror=alert(1)>',
     text: '<script>bad()</script> & "quoted"', action: { label: 'Verify <email>', url } };
-  const email = renderEmail({ baseURL: 'https://jamloom.com' }, message);
+  const email = renderEmail({ baseURL: 'https://www.jamloom.com' }, message);
   assert(!email.html.includes('<script>'));
   assert(!email.html.includes('<img src=x'));
   assert.match(email.html, /&lt;script&gt;bad\(\)&lt;\/script&gt;/);
@@ -21,10 +21,10 @@ test('shared email layout escapes content and preserves a safe exact action URL'
   assert(email.text.includes(url));
   assert(email.text.includes('support@jamloom.com'));
   assert(email.html.includes('/studio/icon-192.png'));
-  for (const unsafe of ['javascript:alert(1)', 'https://evil.example/reset', 'https://jamloom.com.evil.example/reset', 'https://user:password@jamloom.com/reset']) {
-    assert.throws(() => renderEmail({ baseURL: 'https://jamloom.com' }, { ...message, action: { label: 'Go', url: unsafe } }));
+  for (const unsafe of ['javascript:alert(1)', 'https://evil.example/reset', 'https://www.jamloom.com.evil.example/reset', 'https://user:password@www.jamloom.com/reset']) {
+    assert.throws(() => renderEmail({ baseURL: 'https://www.jamloom.com' }, { ...message, action: { label: 'Go', url: unsafe } }));
   }
-  const generic = renderEmail({ baseURL: 'https://jamloom.com' }, { to: message.to, subject: 'An update', text: 'Your music is ready.' });
+  const generic = renderEmail({ baseURL: 'https://www.jamloom.com' }, { to: message.to, subject: 'An update', text: 'Your music is ready.' });
   assert(generic.html.includes('mailto:contact@jamloom.com'));
   assert(!generic.html.includes('If the button'));
 });

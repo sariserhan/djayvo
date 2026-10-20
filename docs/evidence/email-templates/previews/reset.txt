@@ -5,10 +5,10 @@ Choose a new password to get back to your music.
 If you did not request this, ignore this email. Your password will stay unchanged.
 
 Reset password:
-https://jamloom.com/account/reset-password?token=preview-only
+https://www.jamloom.com/account/reset-password?token=preview-only
 
 —
 Jamloom · Your sound. Your music.
 Need help? support@jamloom.com
 General enquiries: contact@jamloom.com
-https://jamloom.com
+https://www.jamloom.com

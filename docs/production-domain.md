@@ -1,13 +1,17 @@
 # Jamloom production domain and private audio
 
 2026-10-19. The owner reports owning `jamloom.com` and creating the R2 bucket
-`jamloom-audio`. Canonical app origin: **https://jamloom.com**. Hosting remains
+`jamloom-audio`. Canonical app origin: **https://www.jamloom.com**. Hosting remains
 Vercel; Neon stores account/track metadata; R2 stores private audio. Resend is
 now locally configured; [verification and delivery limits](resend-setup.md).
 The master specification and historical schema identities remain
 unchanged.
 
 ## Production configuration
+
+**Canonical-origin update:** Vercel already redirects apex to www and its
+Production `BETTER_AUTH_URL` is `https://www.jamloom.com`. Repository templates,
+email previews and live R2 CORS are aligned; see [www validation](www-origin.md).
 
 Use [the production variable template](../apps/site/.env.production.example) in
 Vercel's **Production** environment. Fill secrets privately; do not overwrite
@@ -17,13 +21,13 @@ The existing storage adapter and CSP take their bucket host from the R2 variable
 No runtime hostname rewrite is necessary.
 
 Add `jamloom.com` and `www.jamloom.com` to the existing Vercel project; redirect
-`www` to `https://jamloom.com`. Use the exact DNS records Vercel assigns to that
+`jamloom.com` to `https://www.jamloom.com`. Use the exact DNS records Vercel assigns to that
 project, then verify HTTPS and the redirect. Do not guess an IP or change
 Cloudflare nameservers. Domain changes require a deployment with the matching
 production origin. The owner confirms Resend domain verification; account mail
 sends from `hello@jamloom.com` with Reply-To `support@jamloom.com`. Production
-environment setup and inbox delivery still require validation before public
-registration works. Keep search indexing and catalogue gates unchanged.
+environment origin is verified; complete hosted signup/reset and inbox delivery
+still require validation. Keep search indexing and catalogue gates unchanged.
 
 ## Credentials needed
 
@@ -64,7 +68,7 @@ authenticated production workflow are still outstanding.
 - In bucket Settings → CORS Policy → JSON, use
   [r2-cors.production.json](../apps/site/config/r2-cors.production.json).
   This is **dashboard/S3 JSON**, not the Cloudflare REST API's `rules` format.
-  It permits only the canonical production origin; previews and localhost need
+  It permits the canonical www origin and the existing apex alias; previews and localhost need
   their own bucket/policy. CORS does not replace signed authorization.
 - Inspect existing lifecycle rules first. Add an expiry rule with prefix
   **`uploads/`**, age **1 day**. Preserve other rules, including multipart cleanup.
@@ -80,7 +84,7 @@ authenticated production workflow are still outstanding.
   Hosted scheduling is still outstanding.
 - With a controlled account and generated test WAV, validate real authenticated
   save/finalize, private playback/seek/download, cross-account denial and deletion.
-  Verify browser preflight from `https://jamloom.com`, signed header enforcement,
+  Verify browser preflight from `https://www.jamloom.com`, signed header enforcement,
   late staging write cleanup, and lifecycle configuration. Never log signed URLs.
   Remove only test-created records/objects. Configure usage alerts and review
   costs; application quotas are not a provider billing cap.
@@ -95,7 +99,7 @@ authenticated production workflow are still outstanding.
 | Production build | PASS | `npm run build`, including source WASM preparation. [Log](evidence/production-domain/build.log) |
 | TypeScript | PASS | `npm --prefix apps/site run typecheck`. [Log](evidence/production-domain/typecheck.log) |
 | Client secret/bundle audit | PASS | 16 client files, no server secrets; studio assets audit passes. [Log](evidence/production-domain/bundle-audit.log) |
-| Live domain/DNS/TLS and Vercel configuration | NOT RUN | No remote configuration was changed. |
+| Live domain/TLS and Vercel configuration | PASS | Subsequently checked: apex redirects to www; Production origin matches. See [current www validation](www-origin.md) for activation and auth gates. |
 | Live R2 requests, browser CORS and lifecycle configuration | PASS | Subsequently validated with supplied credentials; [live evidence](r2-live.md). |
 | Actual lifecycle deletion, scheduled cleanup and full hosted workflow | NOT RUN | See the live report for the remaining gates. |
 | Resend delivery | NOT RUN | Local sender/reply wiring prepared; domain owner-confirmed verified. [Email evidence](resend-setup.md). |

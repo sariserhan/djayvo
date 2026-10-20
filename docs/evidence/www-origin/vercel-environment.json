@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-10-20T03:01:28.775Z",
+  "productionAuthURL": "https://www.jamloom.com",
+  "sender": "Jamloom <hello@jamloom.com>",
+  "replyTo": "support@jamloom.com",
+  "localOutboxPresent": false,
+  "requiredNamesPresent": [
+    "DATABASE_URL",
+    "BETTER_AUTH_SECRET",
+    "RESEND_API_KEY"
+  ]
+}

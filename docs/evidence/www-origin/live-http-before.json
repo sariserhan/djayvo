@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-10-20T03:02:02.822Z",
+  "checks": [
+    {
+      "url": "https://jamloom.com/account",
+      "http": 308,
+      "location": "https://www.jamloom.com/account"
+    },
+    {
+      "url": "https://www.jamloom.com/account/sign-in",
+      "http": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.jamloom.com/api/auth/get-session",
+      "http": 503,
+      "location": null,
+      "body": "{\"error\":\"Accounts are temporarily unavailable.\"}"
+    }
+  ]
+}

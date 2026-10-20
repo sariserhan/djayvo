@@ -1,5 +1,15 @@
 # Jamloom: M0 continuation evidence
 
+Latest canonical domain validation — 2026-10-19:
+[www origin](www-origin.md): production template, exact Better Auth trusted origin,
+email fixtures and live R2 CORS aligned to `https://www.jamloom.com`. Thirteen
+unit tests, 54 browser email layout cases, ten live R2 checks, build, typecheck
+and client-secret audit **PASS**. Existing production release redeployed with the
+current environment: auth recovers from 503 to 200; www accepts the synthetic-cookie
+origin probe and foreign origin returns 403. Apex-to-www redirect **PASS**.
+Localhost stays unchanged; unpushed source was not published. Hosted signup/reset
+and actual email delivery **NOT RUN**; overall readiness **PARTIAL**.
+
 Latest branded email templates — 2026-10-19:
 [Responsive emails](email-templates.md) **PASS (local template scope)**. Shared
 HTML/plain-text layout includes Jamloom logo, website palette, footer, safe action

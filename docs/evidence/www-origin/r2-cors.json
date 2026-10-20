@@ -1,0 +1,60 @@
+{
+  "timestamp": "2026-10-20T03:01:14.698Z",
+  "bucket": "jamloom-audio",
+  "status": "PASS",
+  "before": {
+    "rules": [
+      {
+        "allowed": {
+          "origins": [
+            "https://jamloom.com"
+          ],
+          "methods": [
+            "GET",
+            "PUT",
+            "HEAD"
+          ],
+          "headers": [
+            "Content-Type",
+            "Range"
+          ]
+        },
+        "exposeHeaders": [
+          "ETag",
+          "Content-Length",
+          "Content-Range",
+          "Accept-Ranges"
+        ],
+        "maxAgeSeconds": 3600
+      }
+    ]
+  },
+  "after": {
+    "rules": [
+      {
+        "allowed": {
+          "origins": [
+            "https://www.jamloom.com",
+            "https://jamloom.com"
+          ],
+          "methods": [
+            "GET",
+            "PUT",
+            "HEAD"
+          ],
+          "headers": [
+            "Content-Type",
+            "Range"
+          ]
+        },
+        "exposeHeaders": [
+          "ETag",
+          "Content-Length",
+          "Content-Range",
+          "Accept-Ranges"
+        ],
+        "maxAgeSeconds": 3600
+      }
+    ]
+  }
+}

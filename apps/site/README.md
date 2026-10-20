@@ -123,7 +123,7 @@ or hosted environment. Evidence: [reviewed catalogue](../../docs/reviewed-catalo
 ### R2: provider validated; hosted release gates remain
 
 The owner created `jamloom-audio` for production. The exact production origin is
-`https://jamloom.com`; see [domain and R2 setup](../../docs/production-domain.md)
+`https://www.jamloom.com`; see [domain and R2 setup](../../docs/production-domain.md)
 for the production environment template, dashboard CORS policy and minimum
 credentials. Local and preview environments must use separate storage.
 
