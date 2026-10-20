@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Script from 'next/script';
 import { MusicPlayer } from './player';
 import '../../web/style.css';
 import './site.css';
@@ -16,5 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <nav aria-label="Main"><a href="/">Create</a><Link href="/catalogue">Music</Link><Link href="/playlists">Playlists</Link><Link href="/library">Cloud library</Link><Link href="/account">Account</Link></nav>
     </div></header>
     <main id="content" className="account-main">{children}</main>
-  </MusicPlayer></body></html>;
+  </MusicPlayer>
+    <Script src="https://cdn.visitorping.com/site/vp_QBDH92AC.js" strategy="afterInteractive" crossOrigin="anonymous" />
+  </body></html>;
 }

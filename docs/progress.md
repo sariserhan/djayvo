@@ -1,5 +1,15 @@
 # Jamloom: M0 continuation evidence
 
+Latest website analytics installation — 2026-10-19:
+[VisitorPing](visitorping.md) **PARTIAL**. Single Next.js layout integration for
+`vp_QBDH92AC`; static offline studio remains untracked and CSP is unchanged.
+Build, 13 unit tests, typecheck, secret audit and local browser deduplication
+**PASS**. Scoped production deployment and public browser checks also **PASS**:
+correct key, one load across two pages, untracked studio and auth still 200.
+Initial cached deployment failed; retry without cache succeeded. Provider serves
+a paused script; collection, dashboard installation
+check and Live Radar remain **NOT RUN** pending provider enablement and review.
+
 Latest canonical domain validation — 2026-10-19:
 [www origin](www-origin.md): production template, exact Better Auth trusted origin,
 email fixtures and live R2 CORS aligned to `https://www.jamloom.com`. Thirteen

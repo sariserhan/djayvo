@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-10-20T03:20:28.393Z",
+  "receipts": [
+    {
+      "gate": "provider script",
+      "httpStatus": 200,
+      "body": "/* VisitorPing tracking paused. */"
+    },
+    {
+      "gate": "published Next.js page",
+      "status": "PASS",
+      "url": "https://www.jamloom.com/account/sign-in",
+      "httpStatus": 200,
+      "scripts": [
+        {
+          "src": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+          "crossOrigin": "anonymous",
+          "strategy": "afterInteractive"
+        }
+      ],
+      "csp": "default-src 'self'; script-src 'self' 'nonce-M2Y4YTMzNTMtOWY3Yi00OTFhLWE4ZjctNjE3ODY3MmE1ZmIw' 'strict-dynamic'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    },
+    {
+      "gate": "published SPA navigation no duplicate load",
+      "status": "PASS",
+      "url": "https://www.jamloom.com/catalogue"
+    },
+    {
+      "gate": "apex homepage and offline studio stay untracked",
+      "status": "PASS",
+      "url": "https://www.jamloom.com/studio/index.html"
+    },
+    {
+      "gate": "existing auth endpoint",
+      "status": "PASS",
+      "httpStatus": 200
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "collection": "NOT RUN: provider tracker paused; no Live Radar access"
+}

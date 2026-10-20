@@ -1,0 +1,19 @@
+{
+  "receipts": [
+    {
+      "gate": "single Next.js installation",
+      "status": "PASS",
+      "path": "/account/sign-in"
+    },
+    {
+      "gate": "SPA navigation keeps one script and one request",
+      "status": "PASS",
+      "path": "/catalogue"
+    },
+    {
+      "gate": "offline studio remains untracked",
+      "status": "PASS"
+    }
+  ],
+  "errors": []
+}

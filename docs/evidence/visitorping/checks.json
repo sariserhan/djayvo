@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-19 America/New_York",
+  "platform": "Next.js 16.4.2 App Router; separate static offline studio",
+  "site_key": "vp_QBDH92AC",
+  "build": "PASS",
+  "unit_tests": {
+    "status": "PASS",
+    "passed": 13
+  },
+  "typecheck": "PASS",
+  "client_secret_audit": {
+    "status": "PASS",
+    "files": 16
+  },
+  "existing_installation": "No VisitorPing or tag manager found in application source or inspected public account page",
+  "security_changes": "None; supplied paused script loads under existing nonce/strict-dynamic CSP",
+  "offline_studio": "Untracked; no script injected into static pages",
+  "provider_script": {
+    "status": 200,
+    "body": "/* VisitorPing tracking paused. */",
+    "collection": "NOT RUN: provider tracking paused"
+  },
+  "dashboard": "NOT RUN: no authenticated VisitorPing dashboard connection"
+}
