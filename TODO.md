@@ -4,8 +4,9 @@
 The owner requested diagnosis and controlled listening before engine changes.
 No later milestone, model training, paid service or dashboard redesign is part
 of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.md).
-Latest: [Original score / palette study](docs/q0-authored-study.md) renders four
-controlled conditions for all five inputs. Technical PASS; new listening NOT RUN.
+Latest: [Phrase-boundary / response-timing study](docs/q0-phrase-form-study.md)
+compares five copied candidates with preserved original-score controls.
+Technical PASS; new listening NOT RUN.
 Prior rejected candidates remain FAIL.
 
 - [x] **Q001 — PASS:** Freeze five authorized real inputs with plans, events,
@@ -27,8 +28,10 @@ Prior rejected candidates remain FAIL.
   [Full trial](docs/q0-five-arm-trial.md).
   A subsequent original-score study tests acoustic/hybrid palettes and authored
   expression, with intact calls and a recurring motif; no quality promotion.
-- [x] **Q007 — PASS:** Latest study: eleven Q0 tests, 8,680 exact
-  instrument event rows, 20 exact replays and comparison level checks. Earlier
+  The latest copied-plan study tests padded vocal boundaries and shorter call
+  sections; instrumental notes and expression stay fixed.
+- [x] **Q007 — PASS:** Latest study: twelve Q0 tests, 4,292 exact
+  control/candidate event rows, five exact replays and comparison level checks. Earlier
   native regression results are retained separately. Browser form/decode
   checks pass; physical playback and headless WebKit clock remain separate.
 - [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression, native/SFZ and

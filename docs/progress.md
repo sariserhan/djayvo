@@ -1419,3 +1419,29 @@ reference-audio incorporation, paid services, deployment or dashboard redesign.
 
 [Private review](http://127.0.0.1:4201/);
 [score design, files, limitations and reproducible evidence](q0-authored-study.md).
+
+## Q0 padded vocal boundaries and phrase-length call sections
+
+**PASS:** Five copied-plan candidates preserve original recordings, complete-source
+clips and all 372 inventoried files of the prior score study. The new transform
+unions measured activity with analyzed phrases, adds 120 ms padding and falls
+back to the full source below 99.5% retained energy. Responses move together to
+bar boundaries. Only quiet hats in removed call bars are dropped; note loss or
+sustained-note truncation is rejected. The owner's response starts at 8.571
+instead of 10.714 seconds, retaining 99.9844% of original PCM energy.
+
+Five masters, 25 stems and five exact 512/113 replays completed on M5.
+All 4,292 control/candidate event rows agree exactly. Thirty decoded WAVs have
+no full-scale samples; all masters have zero limiter interventions. Ten mixes
+match −23 LUFS within 0.01 LU, maximum true peak −6.34 dBTP. Twelve tests pass.
+Chromium/WebKit form, decode, mobile width and partial-rating downloads pass.
+
+**PARTIAL:** Q0 overall and physical browser playback (known headless WebKit
+clock limitation). **FAIL:** Prior owner acceptance remains rejected.
+**NOT RUN:** New listener acceptance, quiet-word completeness, direct agent
+audition and fresh Linux/iPhone/WASM execution. Activity/energy measurements
+do not prove musical improvement. Instrument palette, production engine and
+specifications remain unchanged. No training, spending or later milestone.
+
+[Private review](http://127.0.0.1:4202/);
+[full experiment, gates and reproducible evidence](q0-phrase-form-study.md).

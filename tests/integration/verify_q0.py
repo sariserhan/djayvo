@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT/'scripts'))
 from q0_expression import express
 from q0_composition import compose
 from q0_authored_score import authored
+from q0_phrase_form import adapt
 from q0_audit import digest
 from q0_audit import loudness, inputs, level_match
 
@@ -138,6 +139,67 @@ class Q0(unittest.TestCase):
                              original['analysis']['onsets'])
             self.assertEqual([n['source_frame'] for n in trace['source_motif']],
                              [round(f/3) for f in original['analysis']['onsets']])
+
+    def test_phrase_form_copy_bounds_coordinates_and_fallback(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            for rate in (16000, 48000):
+                for quiet_background in (0, 500):
+                    path = Path(tmp)/'test-only.wav'
+                    pcm = array('h', (round(10000*math.sin(2*math.pi*180*i/rate))
+                        if .8*rate <= i < 1.8*rate else quiet_background for i in range(4*rate)))
+                    if sys.byteorder != 'little': pcm.byteswap()
+                    with wave.open(str(path), 'wb') as wav:
+                        wav.setparams((1, 2, rate, 0, 'NONE', 'not compressed'))
+                        wav.writeframes(pcm.tobytes())
+                    base = copy.deepcopy(self.plan)
+                    base['source'].update(sha256=digest(path), original_frames=4*rate,
+                        original_rate=rate, processed_frames=192000, kind='recorded', consent_confirmed=True)
+                    base['source_asset_id'] = 'sha256:'+digest(path)
+                    base['analysis']['onsets'] = [40000, 50000, 60000, 70000]
+                    base['analysis']['phrases'] = [
+                        {'start_frame': 38400, 'end_frame': 86400, 'confidence': .8}]
+                    plan, _ = authored(base, path, hybrid=True, expressive=True)
+                    frozen = copy.deepcopy(plan)
+                    candidate, trace = adapt(plan, path)
+                    self.assertEqual(plan, frozen)
+                    self.assertEqual((candidate, trace), adapt(plan, path))
+                    self.assertGreaterEqual(trace['energy_retained_fraction'], .995)
+                    self.assertEqual(trace['fallback_to_complete_source'], bool(quiet_background))
+                    self.assertEqual(candidate['voice_clips'][0], plan['voice_clips'][0])
+                    self.assertEqual(trace['trim_engine_frames'],
+                        [round(f*48000/rate) for f in trace['trim_original_frames']])
+                    self.assertLessEqual(trace['trim_engine_frames'][0], 38400-5760)
+                    self.assertGreaterEqual(trace['trim_engine_frames'][1], 86400+5760)
+                    self.assertEqual(trace['call_bars_after'], 2 if quiet_background else 1)
+                    self.assertEqual(candidate['target_bars'], 14 if quiet_background else 12)
+                    for track, old_track in zip(candidate['tracks'], plan['tracks']):
+                        if track['instrument'] != 'drums':
+                            self.assertEqual([{k:v for k,v in n.items() if k!='start_tick'} for n in track['events']],
+                                [{k:v for k,v in n.items() if k!='start_tick'} for n in old_track['events']])
+                        for note in track['events']:
+                            self.assertTrue(0 <= note['start_tick'] < note['start_tick']+
+                                            note['duration_ticks'] <= candidate['target_bars']*3840)
+                    kicks = {n['start_tick'] for t in candidate['tracks'] if t['instrument']=='drums'
+                             for n in t['events'] if n['note']==36}
+                    self.assertTrue(all(n['start_tick'] in kicks for t in candidate['tracks']
+                                        if t['instrument']=='bass' for n in t['events']))
+                    for field, value in [('consent_confirmed', False), ('sha256', '0'*64)]:
+                        bad = copy.deepcopy(plan); bad['source'][field] = value
+                        with self.assertRaises(ValueError): adapt(bad, path)
+                    for field, value in [('note', 38), ('velocity', 80)]:
+                        bad = copy.deepcopy(plan)
+                        hat = next(n for t in bad['tracks'] if t['instrument']=='drums'
+                                   for n in t['events'] if n['start_tick']==4*3840)
+                        hat[field] = value
+                        with self.assertRaises(ValueError): adapt(bad, path)
+                    bad = copy.deepcopy(plan)
+                    next(t for t in bad['tracks'] if t['instrument']=='piano')['events'].append(
+                        {'start_tick': 2*3840, 'duration_ticks': 3*3840, 'note': 60, 'velocity': 70})
+                    with self.assertRaises(ValueError): adapt(bad, path)
+                    bad = copy.deepcopy(plan); bad['sections'][1]['start_bar'] = 1
+                    with self.assertRaises(ValueError): adapt(bad, path)
+                    bad = copy.deepcopy(plan); bad['analysis']['phrases'][0]['end_frame'] = 192001
+                    with self.assertRaises(ValueError): adapt(bad, path)
 
     def test_invalid_context_and_seed(self):
         for seed in (-1, True, 2**32, 1.5):

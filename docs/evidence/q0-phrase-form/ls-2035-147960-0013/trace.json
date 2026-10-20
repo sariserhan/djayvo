@@ -1,0 +1,79 @@
+{
+  "version": "1.0-q0-phrase-form",
+  "padding_ms": 120,
+  "original_rate": 16000,
+  "original_frames": 42800,
+  "activity_seconds": [
+    0.48,
+    2.18
+  ],
+  "trim_original_frames": [
+    5760,
+    36800
+  ],
+  "trim_engine_frames": [
+    17280,
+    110400
+  ],
+  "proposed_energy_retained_fraction": 0.9994522726089805,
+  "energy_retained_fraction": 0.9994522726089805,
+  "fallback_to_complete_source": false,
+  "call_bars_before": 3,
+  "call_bars_after": 1,
+  "first_response_seconds_before": 10.714285714285714,
+  "first_response_seconds_after": 6.428571428571429,
+  "scheduled_gap_after_clip_before_seconds": 3.753571428571429,
+  "scheduled_gap_after_clip_after_seconds": 0.20285714285714285,
+  "removed_quiet_hat_events": [
+    {
+      "start_tick": 11520,
+      "duration_ticks": 120,
+      "note": 42,
+      "velocity": 34
+    },
+    {
+      "start_tick": 13440,
+      "duration_ticks": 120,
+      "note": 42,
+      "velocity": 34
+    },
+    {
+      "start_tick": 15360,
+      "duration_ticks": 120,
+      "note": 42,
+      "velocity": 34
+    },
+    {
+      "start_tick": 17280,
+      "duration_ticks": 120,
+      "note": 42,
+      "velocity": 34
+    },
+    {
+      "start_tick": 38400,
+      "duration_ticks": 120,
+      "note": 42,
+      "velocity": 44
+    },
+    {
+      "start_tick": 40320,
+      "duration_ticks": 120,
+      "note": 42,
+      "velocity": 44
+    },
+    {
+      "start_tick": 42240,
+      "duration_ticks": 120,
+      "note": 42,
+      "velocity": 44
+    },
+    {
+      "start_tick": 44160,
+      "duration_ticks": 120,
+      "note": 42,
+      "velocity": 44
+    }
+  ],
+  "limits": "Energy and detected phrases cannot prove preservation of every quiet word. Listening required.",
+  "human_quality": "NOT RUN"
+}

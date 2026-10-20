@@ -2,7 +2,13 @@
 
 2026-10-20. **Implementation: PARTIAL. Current owner listening acceptance: FAIL.**
 
-**Newest study:** [Original score and palette controls](q0-authored-study.md)
+**Newest study:** [Phrase boundaries and response timing](q0-phrase-form-study.md)
+compares five candidates against preserved original-score controls. It tests
+padded vocal intervals and bar-aligned responses, with instruments unchanged.
+Technical execution **PASS**; musical improvement and quiet-word preservation
+**NOT RUN**. This does not establish a primary perceptual cause or fix instrument realism.
+
+**Previous study:** [Original score and palette controls](q0-authored-study.md)
 now provide 20 new 36.8-second mixes using recorded guitar articulations, intact
 voice calls and phrase-derived melodic responses. Technical checks pass;
 new musical acceptance remains **NOT RUN**. Previous rejections remain **FAIL**.

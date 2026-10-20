@@ -1,0 +1,2759 @@
+{
+  "technical": "PASS",
+  "human_quality": "NOT RUN",
+  "decoded_audio": [
+    {
+      "file": "owner-speech/candidate.hiphop.bass.wav",
+      "sha256": "0717edd79dbf10551ca409958a04b4f002d865a8b45e880dbef83db12c803b34",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -18.856212758338092,
+      "rms_dbfs": -33.231711274903176
+    },
+    {
+      "file": "owner-speech/candidate.hiphop.drums.wav",
+      "sha256": "f5d5e0d8c6aec18adad0f4c8c37dc35bb6144b709fdf5421441cefae9b476c24",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -13.769371960954484,
+      "rms_dbfs": -32.76263258050071
+    },
+    {
+      "file": "owner-speech/candidate.hiphop.guitar.wav",
+      "sha256": "cb8b9147cf60307bd7de7281ef5457e0ced6cf2f587f23856b31fac7e9daa334",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -18.414519770999426,
+      "rms_dbfs": -44.83763655979223
+    },
+    {
+      "file": "owner-speech/candidate.hiphop.piano.wav",
+      "sha256": "7c98bd9f6da9433e582e1efea314b7ce0c1e65447a597076b0548785e7f97057",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -14.80407350438963,
+      "rms_dbfs": -39.36864768634176
+    },
+    {
+      "file": "owner-speech/candidate.hiphop.vocals.wav",
+      "sha256": "524a2e2d9fb3212928f7953f150c145f3528f504563daef90d2842fb407ef4ee",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.30681313014447
+    },
+    {
+      "file": "owner-speech/candidate.hiphop.wav",
+      "sha256": "e080c367e5818c00e3354a4f7ad4919f31bb33e75b595ccf86e666f3492c96c6",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -8.948251506918654,
+      "rms_dbfs": -27.680882613410528
+    },
+    {
+      "file": "ls-2277-149896-0026/candidate.reggae.bass.wav",
+      "sha256": "4cb0902ae31e2851aaeda5e94b4e64fc6e7afd6f7fb355c63caafc9e182dbafc",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -19.063141410064866,
+      "rms_dbfs": -34.183981010746216
+    },
+    {
+      "file": "ls-2277-149896-0026/candidate.reggae.drums.wav",
+      "sha256": "f23464053b636ade92f88fe20505c86afd97979d6d5a84877612167a70734aa9",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -13.574922717399732,
+      "rms_dbfs": -33.29270145973248
+    },
+    {
+      "file": "ls-2277-149896-0026/candidate.reggae.guitar.wav",
+      "sha256": "aba74f71595f46084e4109cac4b5fb75b42a4ce01ef3440c4bda818c2f944134",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -17.659852855499874,
+      "rms_dbfs": -44.59666097977716
+    },
+    {
+      "file": "ls-2277-149896-0026/candidate.reggae.piano.wav",
+      "sha256": "49cebceaf37885b14b9b7ad20ab229ae84e723a561b64e90855594abd57643f8",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -18.25694829078923,
+      "rms_dbfs": -42.843871926545745
+    },
+    {
+      "file": "ls-2277-149896-0026/candidate.reggae.vocals.wav",
+      "sha256": "11cbb6c63e00d2808d9eb454d1f4f249427204ae46603c412cdf4a7335ef86e5",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.07394681171229
+    },
+    {
+      "file": "ls-2277-149896-0026/candidate.reggae.wav",
+      "sha256": "d081db313ef377e87d30fce86d4315656b68c2eb4c755db3ead4472c5cd40596",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -28.050944831895947
+    },
+    {
+      "file": "ls-2035-147960-0013/candidate.experimental.bass.wav",
+      "sha256": "1d96871a4593a704294fec4e5f0a67b191f98427807a3baead774038ac857ac3",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -18.344134866121905,
+      "rms_dbfs": -32.48087539275057
+    },
+    {
+      "file": "ls-2035-147960-0013/candidate.experimental.drums.wav",
+      "sha256": "45d9f184b6f7906c56dc78791e4fcef36fa9998376e447c043e0838ea6b74ef6",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -13.545875004151402,
+      "rms_dbfs": -32.156694033648286
+    },
+    {
+      "file": "ls-2035-147960-0013/candidate.experimental.guitar.wav",
+      "sha256": "5c12d65c1012273f11d38f60477dbe3615f1822a5376ea2e8b54c67f0b3abe56",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -18.8353248373184,
+      "rms_dbfs": -44.4822857028538
+    },
+    {
+      "file": "ls-2035-147960-0013/candidate.experimental.piano.wav",
+      "sha256": "ec119fd96e2e0d73e6fa69f5d050145f360fd385723bacfa5d367fad67b0d835",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -16.45206031364976,
+      "rms_dbfs": -36.64832742717869
+    },
+    {
+      "file": "ls-2035-147960-0013/candidate.experimental.vocals.wav",
+      "sha256": "2742d61175afc1e24c93de0f1dd77f43a105d18b984ac6fba7ced569335f4903",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -38.49125284079098
+    },
+    {
+      "file": "ls-2035-147960-0013/candidate.experimental.wav",
+      "sha256": "7962431d59df081f29957d7b27ed00baf2fec57c63bb023cfb11f3efce67fa3b",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -8.937119079661333,
+      "rms_dbfs": -27.971117000246565
+    },
+    {
+      "file": "ls-2086-149220-0047/candidate.hiphop.bass.wav",
+      "sha256": "a0abfe9b7d930d532b8d7a208acc32d4ea479d4c5f16ef806ada392eaa0d3357",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -18.344134866121905,
+      "rms_dbfs": -33.09506860745266
+    },
+    {
+      "file": "ls-2086-149220-0047/candidate.hiphop.drums.wav",
+      "sha256": "f5d5e0d8c6aec18adad0f4c8c37dc35bb6144b709fdf5421441cefae9b476c24",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -13.769371960954484,
+      "rms_dbfs": -32.76263258050071
+    },
+    {
+      "file": "ls-2086-149220-0047/candidate.hiphop.guitar.wav",
+      "sha256": "9f9e233e3bfda83f63939036efdacb6eca71ff0ce79a60360254646f55cc1076",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -18.8353248373184,
+      "rms_dbfs": -45.09641971495156
+    },
+    {
+      "file": "ls-2086-149220-0047/candidate.hiphop.piano.wav",
+      "sha256": "fe998397420676bd9f06e18f0777f58e6df81933ebc0b26951ef349c46ac5526",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -15.388776544155842,
+      "rms_dbfs": -36.18967526176824
+    },
+    {
+      "file": "ls-2086-149220-0047/candidate.hiphop.vocals.wav",
+      "sha256": "51444312f534bb80a5cdf30882aa5c780b4352d89d307898b775d0cf11954929",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -34.70906451831463
+    },
+    {
+      "file": "ls-2086-149220-0047/candidate.hiphop.wav",
+      "sha256": "a222e5af69c74bf0ec670ebde90754693b94bfa896df70031fe7bf2dcda78983",
+      "frames": 1560000,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -8.943054598565283,
+      "rms_dbfs": -27.810123603968293
+    },
+    {
+      "file": "commons-laughter/candidate.experimental.bass.wav",
+      "sha256": "1d96871a4593a704294fec4e5f0a67b191f98427807a3baead774038ac857ac3",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -18.344134866121905,
+      "rms_dbfs": -32.48087539275057
+    },
+    {
+      "file": "commons-laughter/candidate.experimental.drums.wav",
+      "sha256": "45d9f184b6f7906c56dc78791e4fcef36fa9998376e447c043e0838ea6b74ef6",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -13.545875004151402,
+      "rms_dbfs": -32.156694033648286
+    },
+    {
+      "file": "commons-laughter/candidate.experimental.guitar.wav",
+      "sha256": "5c12d65c1012273f11d38f60477dbe3615f1822a5376ea2e8b54c67f0b3abe56",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -18.8353248373184,
+      "rms_dbfs": -44.4822857028538
+    },
+    {
+      "file": "commons-laughter/candidate.experimental.piano.wav",
+      "sha256": "04839679ada1746156a52f26c75994050777a5427349af2632c5deeebafc799b",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -16.193434442622404,
+      "rms_dbfs": -36.92126663962321
+    },
+    {
+      "file": "commons-laughter/candidate.experimental.vocals.wav",
+      "sha256": "41e37f5ce4489f9409384e172aa7f7883116681689b7caf8d6bdf4a7e1320269",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -38.608433962189665
+    },
+    {
+      "file": "commons-laughter/candidate.experimental.wav",
+      "sha256": "d8d8ae50c710d252a8439083cd647530af0111c248f643158874a61b391aacb7",
+      "frames": 1354286,
+      "sample_rate": 48000,
+      "full_scale_samples": 0,
+      "peak_dbfs": -8.939344423959271,
+      "rms_dbfs": -28.038038342992277
+    }
+  ],
+  "waveform_differences": [
+    {
+      "id": "owner-speech",
+      "control_frames": 1765714,
+      "candidate_frames": 1560000,
+      "identical_intro_frames": 205714,
+      "common_prefix_max_pcm16_difference": 12863.0,
+      "common_prefix_rms_pcm16_difference": 1729.3134580936767,
+      "interpretation": "Unequal duration/shifted form; common-prefix deltas prove change, not quality."
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "control_frames": 1765714,
+      "candidate_frames": 1765714,
+      "identical_intro_frames": 205714,
+      "common_prefix_max_pcm16_difference": 15960.0,
+      "common_prefix_rms_pcm16_difference": 1153.003361395587,
+      "interpretation": "Unequal duration/shifted form; common-prefix deltas prove change, not quality."
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "control_frames": 1765714,
+      "candidate_frames": 1354286,
+      "identical_intro_frames": 205714,
+      "common_prefix_max_pcm16_difference": 15185.0,
+      "common_prefix_rms_pcm16_difference": 1526.741390574601,
+      "interpretation": "Unequal duration/shifted form; common-prefix deltas prove change, not quality."
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "control_frames": 1765714,
+      "candidate_frames": 1560000,
+      "identical_intro_frames": 205714,
+      "common_prefix_max_pcm16_difference": 15544.0,
+      "common_prefix_rms_pcm16_difference": 1669.7336846121675,
+      "interpretation": "Unequal duration/shifted form; common-prefix deltas prove change, not quality."
+    },
+    {
+      "id": "commons-laughter",
+      "control_frames": 1765714,
+      "candidate_frames": 1354286,
+      "identical_intro_frames": 205714,
+      "common_prefix_max_pcm16_difference": 15371.0,
+      "common_prefix_rms_pcm16_difference": 1514.2431268005344,
+      "interpretation": "Unequal duration/shifted form; common-prefix deltas prove change, not quality."
+    }
+  ],
+  "event_metrics": [
+    {
+      "id": "owner-speech",
+      "before": {
+        "tempo_milli_bpm": 112000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 19,
+            "velocity_values": [
+              66,
+              77,
+              78,
+              81,
+              82,
+              83,
+              86
+            ],
+            "duration_values_ticks": [
+              90,
+              180,
+              300,
+              660,
+              1200,
+              1440
+            ],
+            "sixteenth_grid_attacks": 7,
+            "notes_per_bar": {
+              "5": 6,
+              "7": 6,
+              "12": 6,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "guitar",
+            "notes": 54,
+            "velocity_values": [
+              55,
+              56,
+              57,
+              60,
+              63,
+              64,
+              65,
+              66,
+              68
+            ],
+            "duration_values_ticks": [
+              150,
+              960
+            ],
+            "sixteenth_grid_attacks": 3,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 4,
+              "5": 6,
+              "6": 6,
+              "7": 6,
+              "8": 6,
+              "12": 6,
+              "13": 6,
+              "14": 6,
+              "15": 4
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 29,
+            "velocity_values": [
+              73,
+              79,
+              85,
+              88,
+              102
+            ],
+            "duration_values_ticks": [
+              180,
+              240,
+              420,
+              660,
+              960
+            ],
+            "sixteenth_grid_attacks": 8,
+            "notes_per_bar": {
+              "5": 4,
+              "6": 4,
+              "7": 4,
+              "8": 4,
+              "12": 4,
+              "13": 4,
+              "14": 4,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 115,
+            "velocity_values": [
+              34,
+              42,
+              44,
+              62,
+              65,
+              76,
+              82,
+              88,
+              91,
+              98,
+              105
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 64,
+            "notes_per_bar": {
+              "2": 2,
+              "3": 2,
+              "4": 2,
+              "5": 14,
+              "6": 14,
+              "7": 14,
+              "8": 16,
+              "9": 2,
+              "10": 2,
+              "11": 2,
+              "12": 14,
+              "13": 14,
+              "14": 16,
+              "15": 1
+            }
+          }
+        ],
+        "bass_attacks": 29,
+        "bass_exactly_on_kick": 29,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 7680,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 34560,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          }
+        ],
+        "sections": [
+          {
+            "name": "invitation",
+            "start_bar": 0,
+            "bars": 2
+          },
+          {
+            "name": "voice_call",
+            "start_bar": 2,
+            "bars": 3
+          },
+          {
+            "name": "answer",
+            "start_bar": 5,
+            "bars": 4
+          },
+          {
+            "name": "contrast",
+            "start_bar": 9,
+            "bars": 3
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 12,
+            "bars": 3
+          },
+          {
+            "name": "resolve",
+            "start_bar": 15,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      },
+      "after": {
+        "tempo_milli_bpm": 112000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 19,
+            "velocity_values": [
+              66,
+              77,
+              78,
+              81,
+              82,
+              83,
+              86
+            ],
+            "duration_values_ticks": [
+              90,
+              180,
+              300,
+              660,
+              1200,
+              1440
+            ],
+            "sixteenth_grid_attacks": 7,
+            "notes_per_bar": {
+              "4": 6,
+              "6": 6,
+              "10": 6,
+              "13": 1
+            }
+          },
+          {
+            "instrument": "guitar",
+            "notes": 54,
+            "velocity_values": [
+              55,
+              56,
+              57,
+              60,
+              63,
+              64,
+              65,
+              66,
+              68
+            ],
+            "duration_values_ticks": [
+              150,
+              960
+            ],
+            "sixteenth_grid_attacks": 3,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 4,
+              "4": 6,
+              "5": 6,
+              "6": 6,
+              "7": 6,
+              "10": 6,
+              "11": 6,
+              "12": 6,
+              "13": 4
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 29,
+            "velocity_values": [
+              73,
+              79,
+              85,
+              88,
+              102
+            ],
+            "duration_values_ticks": [
+              180,
+              240,
+              420,
+              660,
+              960
+            ],
+            "sixteenth_grid_attacks": 8,
+            "notes_per_bar": {
+              "4": 4,
+              "5": 4,
+              "6": 4,
+              "7": 4,
+              "10": 4,
+              "11": 4,
+              "12": 4,
+              "13": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 111,
+            "velocity_values": [
+              34,
+              42,
+              44,
+              62,
+              65,
+              76,
+              82,
+              88,
+              91,
+              98,
+              105
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 60,
+            "notes_per_bar": {
+              "2": 2,
+              "3": 2,
+              "4": 14,
+              "5": 14,
+              "6": 14,
+              "7": 16,
+              "8": 2,
+              "9": 2,
+              "10": 14,
+              "11": 14,
+              "12": 16,
+              "13": 1
+            }
+          }
+        ],
+        "bass_attacks": 29,
+        "bass_exactly_on_kick": 29,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 7680,
+            "clip_id": 1,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 30720,
+            "clip_id": 1,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 40800,
+            "end_frame": 170400,
+            "confidence": 0.65
+          }
+        ],
+        "sections": [
+          {
+            "name": "invitation",
+            "start_bar": 0,
+            "bars": 2
+          },
+          {
+            "name": "voice_call",
+            "start_bar": 2,
+            "bars": 2
+          },
+          {
+            "name": "answer",
+            "start_bar": 4,
+            "bars": 4
+          },
+          {
+            "name": "contrast",
+            "start_bar": 8,
+            "bars": 2
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 10,
+            "bars": 3
+          },
+          {
+            "name": "resolve",
+            "start_bar": 13,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      }
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "before": {
+        "tempo_milli_bpm": 112000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 19,
+            "velocity_values": [
+              66,
+              67,
+              69,
+              70,
+              71,
+              72,
+              74,
+              75,
+              76,
+              78,
+              81,
+              83,
+              86
+            ],
+            "duration_values_ticks": [
+              180,
+              420,
+              540,
+              660,
+              1200,
+              1440
+            ],
+            "sixteenth_grid_attacks": 4,
+            "notes_per_bar": {
+              "5": 5,
+              "6": 1,
+              "7": 5,
+              "8": 1,
+              "12": 5,
+              "13": 1,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "guitar",
+            "notes": 54,
+            "velocity_values": [
+              55,
+              56,
+              57,
+              60,
+              63,
+              64,
+              65,
+              66,
+              68
+            ],
+            "duration_values_ticks": [
+              150,
+              960
+            ],
+            "sixteenth_grid_attacks": 3,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 4,
+              "5": 6,
+              "6": 6,
+              "7": 6,
+              "8": 6,
+              "12": 6,
+              "13": 6,
+              "14": 6,
+              "15": 4
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 29,
+            "velocity_values": [
+              73,
+              79,
+              85,
+              88,
+              102
+            ],
+            "duration_values_ticks": [
+              180,
+              240,
+              420,
+              660,
+              960
+            ],
+            "sixteenth_grid_attacks": 8,
+            "notes_per_bar": {
+              "5": 4,
+              "6": 4,
+              "7": 4,
+              "8": 4,
+              "12": 4,
+              "13": 4,
+              "14": 4,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 115,
+            "velocity_values": [
+              34,
+              42,
+              44,
+              62,
+              65,
+              76,
+              82,
+              88,
+              91,
+              98,
+              105
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 64,
+            "notes_per_bar": {
+              "2": 2,
+              "3": 2,
+              "4": 2,
+              "5": 14,
+              "6": 14,
+              "7": 14,
+              "8": 16,
+              "9": 2,
+              "10": 2,
+              "11": 2,
+              "12": 14,
+              "13": 14,
+              "14": 16,
+              "15": 1
+            }
+          }
+        ],
+        "bass_attacks": 29,
+        "bass_exactly_on_kick": 29,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 7680,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 34560,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 236160,
+            "confidence": 1
+          }
+        ],
+        "sections": [
+          {
+            "name": "invitation",
+            "start_bar": 0,
+            "bars": 2
+          },
+          {
+            "name": "voice_call",
+            "start_bar": 2,
+            "bars": 3
+          },
+          {
+            "name": "answer",
+            "start_bar": 5,
+            "bars": 4
+          },
+          {
+            "name": "contrast",
+            "start_bar": 9,
+            "bars": 3
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 12,
+            "bars": 3
+          },
+          {
+            "name": "resolve",
+            "start_bar": 15,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      },
+      "after": {
+        "tempo_milli_bpm": 112000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 19,
+            "velocity_values": [
+              66,
+              67,
+              69,
+              70,
+              71,
+              72,
+              74,
+              75,
+              76,
+              78,
+              81,
+              83,
+              86
+            ],
+            "duration_values_ticks": [
+              180,
+              420,
+              540,
+              660,
+              1200,
+              1440
+            ],
+            "sixteenth_grid_attacks": 4,
+            "notes_per_bar": {
+              "5": 5,
+              "6": 1,
+              "7": 5,
+              "8": 1,
+              "12": 5,
+              "13": 1,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "guitar",
+            "notes": 54,
+            "velocity_values": [
+              55,
+              56,
+              57,
+              60,
+              63,
+              64,
+              65,
+              66,
+              68
+            ],
+            "duration_values_ticks": [
+              150,
+              960
+            ],
+            "sixteenth_grid_attacks": 3,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 4,
+              "5": 6,
+              "6": 6,
+              "7": 6,
+              "8": 6,
+              "12": 6,
+              "13": 6,
+              "14": 6,
+              "15": 4
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 29,
+            "velocity_values": [
+              73,
+              79,
+              85,
+              88,
+              102
+            ],
+            "duration_values_ticks": [
+              180,
+              240,
+              420,
+              660,
+              960
+            ],
+            "sixteenth_grid_attacks": 8,
+            "notes_per_bar": {
+              "5": 4,
+              "6": 4,
+              "7": 4,
+              "8": 4,
+              "12": 4,
+              "13": 4,
+              "14": 4,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 115,
+            "velocity_values": [
+              34,
+              42,
+              44,
+              62,
+              65,
+              76,
+              82,
+              88,
+              91,
+              98,
+              105
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 64,
+            "notes_per_bar": {
+              "2": 2,
+              "3": 2,
+              "4": 2,
+              "5": 14,
+              "6": 14,
+              "7": 14,
+              "8": 16,
+              "9": 2,
+              "10": 2,
+              "11": 2,
+              "12": 14,
+              "13": 14,
+              "14": 16,
+              "15": 1
+            }
+          }
+        ],
+        "bass_attacks": 29,
+        "bass_exactly_on_kick": 29,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 7680,
+            "clip_id": 1,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 34560,
+            "clip_id": 1,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 236160,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 4320,
+            "end_frame": 221280,
+            "confidence": 0.65
+          }
+        ],
+        "sections": [
+          {
+            "name": "invitation",
+            "start_bar": 0,
+            "bars": 2
+          },
+          {
+            "name": "voice_call",
+            "start_bar": 2,
+            "bars": 3
+          },
+          {
+            "name": "answer",
+            "start_bar": 5,
+            "bars": 4
+          },
+          {
+            "name": "contrast",
+            "start_bar": 9,
+            "bars": 3
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 12,
+            "bars": 3
+          },
+          {
+            "name": "resolve",
+            "start_bar": 15,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      }
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "before": {
+        "tempo_milli_bpm": 112000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 19,
+            "velocity_values": [
+              66,
+              70,
+              73,
+              74,
+              75,
+              78,
+              79,
+              81,
+              83,
+              84,
+              86
+            ],
+            "duration_values_ticks": [
+              180,
+              420,
+              660,
+              1200,
+              1440
+            ],
+            "sixteenth_grid_attacks": 10,
+            "notes_per_bar": {
+              "5": 6,
+              "7": 6,
+              "12": 6,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "guitar",
+            "notes": 54,
+            "velocity_values": [
+              55,
+              56,
+              57,
+              60,
+              63,
+              64,
+              65,
+              66,
+              68
+            ],
+            "duration_values_ticks": [
+              150,
+              960
+            ],
+            "sixteenth_grid_attacks": 3,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 4,
+              "5": 6,
+              "6": 6,
+              "7": 6,
+              "8": 6,
+              "12": 6,
+              "13": 6,
+              "14": 6,
+              "15": 4
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 29,
+            "velocity_values": [
+              73,
+              79,
+              85,
+              88,
+              102
+            ],
+            "duration_values_ticks": [
+              180,
+              240,
+              420,
+              660,
+              960
+            ],
+            "sixteenth_grid_attacks": 8,
+            "notes_per_bar": {
+              "5": 4,
+              "6": 4,
+              "7": 4,
+              "8": 4,
+              "12": 4,
+              "13": 4,
+              "14": 4,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 115,
+            "velocity_values": [
+              34,
+              42,
+              44,
+              62,
+              65,
+              76,
+              82,
+              88,
+              91,
+              98,
+              105
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 64,
+            "notes_per_bar": {
+              "2": 2,
+              "3": 2,
+              "4": 2,
+              "5": 14,
+              "6": 14,
+              "7": 14,
+              "8": 16,
+              "9": 2,
+              "10": 2,
+              "11": 2,
+              "12": 14,
+              "13": 14,
+              "14": 16,
+              "15": 1
+            }
+          }
+        ],
+        "bass_attacks": 29,
+        "bass_exactly_on_kick": 29,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 7680,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 34560,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 128400,
+            "confidence": 1
+          }
+        ],
+        "sections": [
+          {
+            "name": "invitation",
+            "start_bar": 0,
+            "bars": 2
+          },
+          {
+            "name": "voice_call",
+            "start_bar": 2,
+            "bars": 3
+          },
+          {
+            "name": "answer",
+            "start_bar": 5,
+            "bars": 4
+          },
+          {
+            "name": "contrast",
+            "start_bar": 9,
+            "bars": 3
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 12,
+            "bars": 3
+          },
+          {
+            "name": "resolve",
+            "start_bar": 15,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      },
+      "after": {
+        "tempo_milli_bpm": 112000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 19,
+            "velocity_values": [
+              66,
+              70,
+              73,
+              74,
+              75,
+              78,
+              79,
+              81,
+              83,
+              84,
+              86
+            ],
+            "duration_values_ticks": [
+              180,
+              420,
+              660,
+              1200,
+              1440
+            ],
+            "sixteenth_grid_attacks": 10,
+            "notes_per_bar": {
+              "3": 6,
+              "5": 6,
+              "8": 6,
+              "11": 1
+            }
+          },
+          {
+            "instrument": "guitar",
+            "notes": 54,
+            "velocity_values": [
+              55,
+              56,
+              57,
+              60,
+              63,
+              64,
+              65,
+              66,
+              68
+            ],
+            "duration_values_ticks": [
+              150,
+              960
+            ],
+            "sixteenth_grid_attacks": 3,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 4,
+              "3": 6,
+              "4": 6,
+              "5": 6,
+              "6": 6,
+              "8": 6,
+              "9": 6,
+              "10": 6,
+              "11": 4
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 29,
+            "velocity_values": [
+              73,
+              79,
+              85,
+              88,
+              102
+            ],
+            "duration_values_ticks": [
+              180,
+              240,
+              420,
+              660,
+              960
+            ],
+            "sixteenth_grid_attacks": 8,
+            "notes_per_bar": {
+              "3": 4,
+              "4": 4,
+              "5": 4,
+              "6": 4,
+              "8": 4,
+              "9": 4,
+              "10": 4,
+              "11": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 107,
+            "velocity_values": [
+              34,
+              42,
+              44,
+              62,
+              65,
+              76,
+              82,
+              88,
+              91,
+              98,
+              105
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 56,
+            "notes_per_bar": {
+              "2": 2,
+              "3": 14,
+              "4": 14,
+              "5": 14,
+              "6": 16,
+              "7": 2,
+              "8": 14,
+              "9": 14,
+              "10": 16,
+              "11": 1
+            }
+          }
+        ],
+        "bass_attacks": 29,
+        "bass_exactly_on_kick": 29,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 7680,
+            "clip_id": 1,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 26880,
+            "clip_id": 1,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 128400,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 17280,
+            "end_frame": 110400,
+            "confidence": 0.65
+          }
+        ],
+        "sections": [
+          {
+            "name": "invitation",
+            "start_bar": 0,
+            "bars": 2
+          },
+          {
+            "name": "voice_call",
+            "start_bar": 2,
+            "bars": 1
+          },
+          {
+            "name": "answer",
+            "start_bar": 3,
+            "bars": 4
+          },
+          {
+            "name": "contrast",
+            "start_bar": 7,
+            "bars": 1
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 8,
+            "bars": 3
+          },
+          {
+            "name": "resolve",
+            "start_bar": 11,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      }
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "before": {
+        "tempo_milli_bpm": 112000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 19,
+            "velocity_values": [
+              66,
+              75,
+              77,
+              78,
+              80,
+              81,
+              82,
+              83,
+              85,
+              86
+            ],
+            "duration_values_ticks": [
+              300,
+              660,
+              1200,
+              1440
+            ],
+            "sixteenth_grid_attacks": 7,
+            "notes_per_bar": {
+              "5": 4,
+              "6": 2,
+              "7": 4,
+              "8": 2,
+              "12": 4,
+              "13": 2,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "guitar",
+            "notes": 54,
+            "velocity_values": [
+              55,
+              56,
+              57,
+              60,
+              63,
+              64,
+              65,
+              66,
+              68
+            ],
+            "duration_values_ticks": [
+              150,
+              960
+            ],
+            "sixteenth_grid_attacks": 3,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 4,
+              "5": 6,
+              "6": 6,
+              "7": 6,
+              "8": 6,
+              "12": 6,
+              "13": 6,
+              "14": 6,
+              "15": 4
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 29,
+            "velocity_values": [
+              73,
+              79,
+              85,
+              88,
+              102
+            ],
+            "duration_values_ticks": [
+              180,
+              240,
+              420,
+              660,
+              960
+            ],
+            "sixteenth_grid_attacks": 8,
+            "notes_per_bar": {
+              "5": 4,
+              "6": 4,
+              "7": 4,
+              "8": 4,
+              "12": 4,
+              "13": 4,
+              "14": 4,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 115,
+            "velocity_values": [
+              34,
+              42,
+              44,
+              62,
+              65,
+              76,
+              82,
+              88,
+              91,
+              98,
+              105
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 64,
+            "notes_per_bar": {
+              "2": 2,
+              "3": 2,
+              "4": 2,
+              "5": 14,
+              "6": 14,
+              "7": 14,
+              "8": 16,
+              "9": 2,
+              "10": 2,
+              "11": 2,
+              "12": 14,
+              "13": 14,
+              "14": 16,
+              "15": 1
+            }
+          }
+        ],
+        "bass_attacks": 29,
+        "bass_exactly_on_kick": 29,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 7680,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 34560,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 188160,
+            "confidence": 1
+          }
+        ],
+        "sections": [
+          {
+            "name": "invitation",
+            "start_bar": 0,
+            "bars": 2
+          },
+          {
+            "name": "voice_call",
+            "start_bar": 2,
+            "bars": 3
+          },
+          {
+            "name": "answer",
+            "start_bar": 5,
+            "bars": 4
+          },
+          {
+            "name": "contrast",
+            "start_bar": 9,
+            "bars": 3
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 12,
+            "bars": 3
+          },
+          {
+            "name": "resolve",
+            "start_bar": 15,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      },
+      "after": {
+        "tempo_milli_bpm": 112000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 19,
+            "velocity_values": [
+              66,
+              75,
+              77,
+              78,
+              80,
+              81,
+              82,
+              83,
+              85,
+              86
+            ],
+            "duration_values_ticks": [
+              300,
+              660,
+              1200,
+              1440
+            ],
+            "sixteenth_grid_attacks": 7,
+            "notes_per_bar": {
+              "4": 4,
+              "5": 2,
+              "6": 4,
+              "7": 2,
+              "10": 4,
+              "11": 2,
+              "13": 1
+            }
+          },
+          {
+            "instrument": "guitar",
+            "notes": 54,
+            "velocity_values": [
+              55,
+              56,
+              57,
+              60,
+              63,
+              64,
+              65,
+              66,
+              68
+            ],
+            "duration_values_ticks": [
+              150,
+              960
+            ],
+            "sixteenth_grid_attacks": 3,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 4,
+              "4": 6,
+              "5": 6,
+              "6": 6,
+              "7": 6,
+              "10": 6,
+              "11": 6,
+              "12": 6,
+              "13": 4
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 29,
+            "velocity_values": [
+              73,
+              79,
+              85,
+              88,
+              102
+            ],
+            "duration_values_ticks": [
+              180,
+              240,
+              420,
+              660,
+              960
+            ],
+            "sixteenth_grid_attacks": 8,
+            "notes_per_bar": {
+              "4": 4,
+              "5": 4,
+              "6": 4,
+              "7": 4,
+              "10": 4,
+              "11": 4,
+              "12": 4,
+              "13": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 111,
+            "velocity_values": [
+              34,
+              42,
+              44,
+              62,
+              65,
+              76,
+              82,
+              88,
+              91,
+              98,
+              105
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 60,
+            "notes_per_bar": {
+              "2": 2,
+              "3": 2,
+              "4": 14,
+              "5": 14,
+              "6": 14,
+              "7": 16,
+              "8": 2,
+              "9": 2,
+              "10": 14,
+              "11": 14,
+              "12": 16,
+              "13": 1
+            }
+          }
+        ],
+        "bass_attacks": 29,
+        "bass_exactly_on_kick": 29,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 7680,
+            "clip_id": 1,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 30720,
+            "clip_id": 1,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 188160,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 13920,
+            "end_frame": 156000,
+            "confidence": 0.65
+          }
+        ],
+        "sections": [
+          {
+            "name": "invitation",
+            "start_bar": 0,
+            "bars": 2
+          },
+          {
+            "name": "voice_call",
+            "start_bar": 2,
+            "bars": 2
+          },
+          {
+            "name": "answer",
+            "start_bar": 4,
+            "bars": 4
+          },
+          {
+            "name": "contrast",
+            "start_bar": 8,
+            "bars": 2
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 10,
+            "bars": 3
+          },
+          {
+            "name": "resolve",
+            "start_bar": 13,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      }
+    },
+    {
+      "id": "commons-laughter",
+      "before": {
+        "tempo_milli_bpm": 112000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 19,
+            "velocity_values": [
+              66,
+              70,
+              71,
+              75,
+              76,
+              81,
+              86
+            ],
+            "duration_values_ticks": [
+              180,
+              300,
+              660,
+              1200,
+              1440
+            ],
+            "sixteenth_grid_attacks": 4,
+            "notes_per_bar": {
+              "5": 6,
+              "7": 6,
+              "12": 6,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "guitar",
+            "notes": 54,
+            "velocity_values": [
+              55,
+              56,
+              57,
+              60,
+              63,
+              64,
+              65,
+              66,
+              68
+            ],
+            "duration_values_ticks": [
+              150,
+              960
+            ],
+            "sixteenth_grid_attacks": 3,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 4,
+              "5": 6,
+              "6": 6,
+              "7": 6,
+              "8": 6,
+              "12": 6,
+              "13": 6,
+              "14": 6,
+              "15": 4
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 29,
+            "velocity_values": [
+              73,
+              79,
+              85,
+              88,
+              102
+            ],
+            "duration_values_ticks": [
+              180,
+              240,
+              420,
+              660,
+              960
+            ],
+            "sixteenth_grid_attacks": 8,
+            "notes_per_bar": {
+              "5": 4,
+              "6": 4,
+              "7": 4,
+              "8": 4,
+              "12": 4,
+              "13": 4,
+              "14": 4,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 115,
+            "velocity_values": [
+              34,
+              42,
+              44,
+              62,
+              65,
+              76,
+              82,
+              88,
+              91,
+              98,
+              105
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 64,
+            "notes_per_bar": {
+              "2": 2,
+              "3": 2,
+              "4": 2,
+              "5": 14,
+              "6": 14,
+              "7": 14,
+              "8": 16,
+              "9": 2,
+              "10": 2,
+              "11": 2,
+              "12": 14,
+              "13": 14,
+              "14": 16,
+              "15": 1
+            }
+          }
+        ],
+        "bass_attacks": 29,
+        "bass_exactly_on_kick": 29,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 7680,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 34560,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 144000,
+            "confidence": 1
+          }
+        ],
+        "sections": [
+          {
+            "name": "invitation",
+            "start_bar": 0,
+            "bars": 2
+          },
+          {
+            "name": "voice_call",
+            "start_bar": 2,
+            "bars": 3
+          },
+          {
+            "name": "answer",
+            "start_bar": 5,
+            "bars": 4
+          },
+          {
+            "name": "contrast",
+            "start_bar": 9,
+            "bars": 3
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 12,
+            "bars": 3
+          },
+          {
+            "name": "resolve",
+            "start_bar": 15,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      },
+      "after": {
+        "tempo_milli_bpm": 112000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 19,
+            "velocity_values": [
+              66,
+              70,
+              71,
+              75,
+              76,
+              81,
+              86
+            ],
+            "duration_values_ticks": [
+              180,
+              300,
+              660,
+              1200,
+              1440
+            ],
+            "sixteenth_grid_attacks": 4,
+            "notes_per_bar": {
+              "3": 6,
+              "5": 6,
+              "8": 6,
+              "11": 1
+            }
+          },
+          {
+            "instrument": "guitar",
+            "notes": 54,
+            "velocity_values": [
+              55,
+              56,
+              57,
+              60,
+              63,
+              64,
+              65,
+              66,
+              68
+            ],
+            "duration_values_ticks": [
+              150,
+              960
+            ],
+            "sixteenth_grid_attacks": 3,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 4,
+              "3": 6,
+              "4": 6,
+              "5": 6,
+              "6": 6,
+              "8": 6,
+              "9": 6,
+              "10": 6,
+              "11": 4
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 29,
+            "velocity_values": [
+              73,
+              79,
+              85,
+              88,
+              102
+            ],
+            "duration_values_ticks": [
+              180,
+              240,
+              420,
+              660,
+              960
+            ],
+            "sixteenth_grid_attacks": 8,
+            "notes_per_bar": {
+              "3": 4,
+              "4": 4,
+              "5": 4,
+              "6": 4,
+              "8": 4,
+              "9": 4,
+              "10": 4,
+              "11": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 107,
+            "velocity_values": [
+              34,
+              42,
+              44,
+              62,
+              65,
+              76,
+              82,
+              88,
+              91,
+              98,
+              105
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 56,
+            "notes_per_bar": {
+              "2": 2,
+              "3": 14,
+              "4": 14,
+              "5": 14,
+              "6": 16,
+              "7": 2,
+              "8": 14,
+              "9": 14,
+              "10": 16,
+              "11": 1
+            }
+          }
+        ],
+        "bass_attacks": 29,
+        "bass_exactly_on_kick": 29,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 7680,
+            "clip_id": 1,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 26880,
+            "clip_id": 1,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 144000,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 24480,
+            "end_frame": 115200,
+            "confidence": 0.65
+          }
+        ],
+        "sections": [
+          {
+            "name": "invitation",
+            "start_bar": 0,
+            "bars": 2
+          },
+          {
+            "name": "voice_call",
+            "start_bar": 2,
+            "bars": 1
+          },
+          {
+            "name": "answer",
+            "start_bar": 3,
+            "bars": 4
+          },
+          {
+            "name": "contrast",
+            "start_bar": 7,
+            "bars": 1
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 8,
+            "bars": 3
+          },
+          {
+            "name": "resolve",
+            "start_bar": 11,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      }
+    }
+  ],
+  "prior_study_files_unchanged": 372,
+  "reproduced_plans": 5,
+  "trial_file_sha256": {
+    "commons-laughter/candidate.complete.json": "b0b1616184ae25d0af0769300777dd04e1a5e2f122cd58c3af6acc582a377eb8",
+    "commons-laughter/candidate.experimental.bass.wav": "1d96871a4593a704294fec4e5f0a67b191f98427807a3baead774038ac857ac3",
+    "commons-laughter/candidate.experimental.drums.wav": "45d9f184b6f7906c56dc78791e4fcef36fa9998376e447c043e0838ea6b74ef6",
+    "commons-laughter/candidate.experimental.events.tsv": "1ade37d6f495a8f7a0ba15a183eacf8d5af1dfe8964014d54f458a81b3859745",
+    "commons-laughter/candidate.experimental.guitar.wav": "5c12d65c1012273f11d38f60477dbe3615f1822a5376ea2e8b54c67f0b3abe56",
+    "commons-laughter/candidate.experimental.piano.wav": "04839679ada1746156a52f26c75994050777a5427349af2632c5deeebafc799b",
+    "commons-laughter/candidate.experimental.report.json": "601b13febf539149fdd5b25080f815b5cbc5aef1282207e1a281ff76ebfe2472",
+    "commons-laughter/candidate.experimental.score.json": "35d9d958f82f4c0156bae37e17dccb299a8e631d2b79b8fe417a4cefb85b12e3",
+    "commons-laughter/candidate.experimental.vocals.wav": "41e37f5ce4489f9409384e172aa7f7883116681689b7caf8d6bdf4a7e1320269",
+    "commons-laughter/candidate.experimental.wav": "d8d8ae50c710d252a8439083cd647530af0111c248f643158874a61b391aacb7",
+    "commons-laughter/candidate.plan.json": "cdf6c4e5b2324045546b50ef2adf4e50b9e93d71e15edb1eedb3a0438a673393",
+    "commons-laughter/phrase-form.json": "7b296536908d3f64d3fab574a3c61e2183c8f748b1002608e7f6659c7bbcb511",
+    "commons-laughter/replay.complete.json": "f8679490dc08a7d4c77b3610abad0823924177ad988da019a544e938f59dd2fd",
+    "commons-laughter/replay.experimental.events.tsv": "1ade37d6f495a8f7a0ba15a183eacf8d5af1dfe8964014d54f458a81b3859745",
+    "commons-laughter/replay.experimental.report.json": "601b13febf539149fdd5b25080f815b5cbc5aef1282207e1a281ff76ebfe2472",
+    "commons-laughter/replay.experimental.score.json": "35d9d958f82f4c0156bae37e17dccb299a8e631d2b79b8fe417a4cefb85b12e3",
+    "commons-laughter/replay.experimental.wav": "d8d8ae50c710d252a8439083cd647530af0111c248f643158874a61b391aacb7",
+    "listener/ATTRIBUTION.txt": "8a47e0e77994eb21af9cbca91ca5386e329fe05d50c6288554cf1b0c98e60aff",
+    "listener/commons-laughter-1.wav": "b6553d51f78541d34472a9a13330af9a7f3550ed9c95f99641b31bd04e8f902d",
+    "listener/commons-laughter-2.wav": "a39bfafac9e6ed7c45f14e7d40dd7ee518028af0e64069f7e57a31dbd45d9b5d",
+    "listener/commons-laughter-source.wav": "23fef28e98c10cd2c6704b53de1b35a3087622d7007a74db2685e90c1a8b793c",
+    "listener/index.html": "f13c34297526f43dd42b14305e09f02451d0f520ff07b2670b8386a04bc42d3f",
+    "listener/ls-2035-147960-0013-1.wav": "2a40435532459f0ca25590fcb454b09615a85723960f9c69e7fb2c1167a18a98",
+    "listener/ls-2035-147960-0013-2.wav": "10e537199c8d9a0ad2022f4bc8152fbb14d89ebfd60d6d017455d2392d08a339",
+    "listener/ls-2035-147960-0013-source.wav": "34f8bd54fce8acc9047e742f4246451e23ccfad02057042b6ebf78033d09052a",
+    "listener/ls-2086-149220-0047-1.wav": "fead7e3f861522d5b1e06109a86d7d5a3d7b2a0f7a8f86caa545f3364920dcee",
+    "listener/ls-2086-149220-0047-2.wav": "18679de9e782586db955a6e64548fac91d6191653148f2438307804c94f38fa6",
+    "listener/ls-2086-149220-0047-source.wav": "3f0f6fc7e6b89bbef1a49a3296dc652f3a21c9a99112409a883c69a3549040e6",
+    "listener/ls-2277-149896-0026-1.wav": "083b535ce2b04212377a8a113a6915dd801047f33e5ea84e26497c54eb2dcb23",
+    "listener/ls-2277-149896-0026-2.wav": "40bd24fe84764fe8de5a77e22130a930f1322240387bb6a00f77e2a1429a7427",
+    "listener/ls-2277-149896-0026-source.wav": "8231f9ec1b79bef07f3f2bbd5548c7ab8fff79a1e0bb774eab08507104be2381",
+    "listener/owner-speech-1.wav": "196da8a8ff0b38934ada5377dd5779c8557a202ab75af266ee4a2380f4d5d975",
+    "listener/owner-speech-2.wav": "11e84325ca8cf1ae4915c6e57bce42e824eff332a19bec6c9c9792754cc54929",
+    "listener/owner-speech-source.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "listener/packet.json": "510cfd3def4b7861ae54b97fb0fa3f60ce8dbeb815715108f1dbb4b9a5dbbebd",
+    "listener/review.css": "f5bee9232c7ce28bb825441ff85b87ee489f9609f26ac445ddea9d51c2c87459",
+    "listener/review.js": "5fe19b1bc653dbe8971f21057b0cdb645265914cbb29342da482506224c04229",
+    "ls-2035-147960-0013/candidate.complete.json": "ddff4721e987952052fe9c5094576836986e9f4ff3a1912574dc2d411fc7aa60",
+    "ls-2035-147960-0013/candidate.experimental.bass.wav": "1d96871a4593a704294fec4e5f0a67b191f98427807a3baead774038ac857ac3",
+    "ls-2035-147960-0013/candidate.experimental.drums.wav": "45d9f184b6f7906c56dc78791e4fcef36fa9998376e447c043e0838ea6b74ef6",
+    "ls-2035-147960-0013/candidate.experimental.events.tsv": "9a02ef3a11123fcdc4391d3561ae2c061d92fcaef163b295f8078b0b31458c6b",
+    "ls-2035-147960-0013/candidate.experimental.guitar.wav": "5c12d65c1012273f11d38f60477dbe3615f1822a5376ea2e8b54c67f0b3abe56",
+    "ls-2035-147960-0013/candidate.experimental.piano.wav": "ec119fd96e2e0d73e6fa69f5d050145f360fd385723bacfa5d367fad67b0d835",
+    "ls-2035-147960-0013/candidate.experimental.report.json": "0cfdc0926eac7ef4149d329ea8cd09017cf7ed441437820e58da92a56c9e5ac8",
+    "ls-2035-147960-0013/candidate.experimental.score.json": "097b84cedd52d7874868dc8456a760087e014268291f9e23e24a83e49aec02ca",
+    "ls-2035-147960-0013/candidate.experimental.vocals.wav": "2742d61175afc1e24c93de0f1dd77f43a105d18b984ac6fba7ced569335f4903",
+    "ls-2035-147960-0013/candidate.experimental.wav": "7962431d59df081f29957d7b27ed00baf2fec57c63bb023cfb11f3efce67fa3b",
+    "ls-2035-147960-0013/candidate.plan.json": "707afe5c5234f6254e607d327c5d96816125ac35632d753fa25604a595dabaf9",
+    "ls-2035-147960-0013/phrase-form.json": "987bfd049e03e72c4ba4522f1bb7392d93b8815d4e8d7b1e1fcdebbe7a87e9d9",
+    "ls-2035-147960-0013/replay.complete.json": "4c9e7fa2802485855fc98c258695bfe9393dde5f85ecb93157d60d1a55de76c7",
+    "ls-2035-147960-0013/replay.experimental.events.tsv": "9a02ef3a11123fcdc4391d3561ae2c061d92fcaef163b295f8078b0b31458c6b",
+    "ls-2035-147960-0013/replay.experimental.report.json": "0cfdc0926eac7ef4149d329ea8cd09017cf7ed441437820e58da92a56c9e5ac8",
+    "ls-2035-147960-0013/replay.experimental.score.json": "097b84cedd52d7874868dc8456a760087e014268291f9e23e24a83e49aec02ca",
+    "ls-2035-147960-0013/replay.experimental.wav": "7962431d59df081f29957d7b27ed00baf2fec57c63bb023cfb11f3efce67fa3b",
+    "ls-2086-149220-0047/candidate.complete.json": "ecc2db8ef1e207d1e5d85a3b7c0d49b1f6a405838600a339a96fa164cc0cbdb5",
+    "ls-2086-149220-0047/candidate.hiphop.bass.wav": "a0abfe9b7d930d532b8d7a208acc32d4ea479d4c5f16ef806ada392eaa0d3357",
+    "ls-2086-149220-0047/candidate.hiphop.drums.wav": "f5d5e0d8c6aec18adad0f4c8c37dc35bb6144b709fdf5421441cefae9b476c24",
+    "ls-2086-149220-0047/candidate.hiphop.events.tsv": "945bda87afaa9baf8f585c385e5a24ab2f837187a63986d7623f5f3662ca5226",
+    "ls-2086-149220-0047/candidate.hiphop.guitar.wav": "9f9e233e3bfda83f63939036efdacb6eca71ff0ce79a60360254646f55cc1076",
+    "ls-2086-149220-0047/candidate.hiphop.piano.wav": "fe998397420676bd9f06e18f0777f58e6df81933ebc0b26951ef349c46ac5526",
+    "ls-2086-149220-0047/candidate.hiphop.report.json": "a4d997f075c3aed9c56b267ff3be080c24da0cd81fc853833f3de5ddd5dbb511",
+    "ls-2086-149220-0047/candidate.hiphop.score.json": "0ac3acdbc1b5802defcb3573107ea0398b4c6315ad8c891d73da7c13f7622af0",
+    "ls-2086-149220-0047/candidate.hiphop.vocals.wav": "51444312f534bb80a5cdf30882aa5c780b4352d89d307898b775d0cf11954929",
+    "ls-2086-149220-0047/candidate.hiphop.wav": "a222e5af69c74bf0ec670ebde90754693b94bfa896df70031fe7bf2dcda78983",
+    "ls-2086-149220-0047/candidate.plan.json": "434833184575aa03215056651892ac1021d17c150ff9c6563a734c9644263a53",
+    "ls-2086-149220-0047/phrase-form.json": "66ae0c05455ba2484cbf0a846f6b03b3eac92580cda96a0ce20750049a6b3d4b",
+    "ls-2086-149220-0047/replay.complete.json": "30542fc425e241baa9580e194f55f620b50c5c54f65c91134eb1b14d41a18750",
+    "ls-2086-149220-0047/replay.hiphop.events.tsv": "945bda87afaa9baf8f585c385e5a24ab2f837187a63986d7623f5f3662ca5226",
+    "ls-2086-149220-0047/replay.hiphop.report.json": "a4d997f075c3aed9c56b267ff3be080c24da0cd81fc853833f3de5ddd5dbb511",
+    "ls-2086-149220-0047/replay.hiphop.score.json": "0ac3acdbc1b5802defcb3573107ea0398b4c6315ad8c891d73da7c13f7622af0",
+    "ls-2086-149220-0047/replay.hiphop.wav": "a222e5af69c74bf0ec670ebde90754693b94bfa896df70031fe7bf2dcda78983",
+    "ls-2277-149896-0026/candidate.complete.json": "1ca87a73c4f18bdb156441cf607bcc94b928d33320bc00fbded2be6291d3b4f3",
+    "ls-2277-149896-0026/candidate.plan.json": "43facca59234625bf6828205a87891d1c179dc5b88b8400636a8e51ec09c19d9",
+    "ls-2277-149896-0026/candidate.reggae.bass.wav": "4cb0902ae31e2851aaeda5e94b4e64fc6e7afd6f7fb355c63caafc9e182dbafc",
+    "ls-2277-149896-0026/candidate.reggae.drums.wav": "f23464053b636ade92f88fe20505c86afd97979d6d5a84877612167a70734aa9",
+    "ls-2277-149896-0026/candidate.reggae.events.tsv": "76651993b05e9ed003f5ebde6449e93e2fd223ee09f4ec0d36102113a3ef45c4",
+    "ls-2277-149896-0026/candidate.reggae.guitar.wav": "aba74f71595f46084e4109cac4b5fb75b42a4ce01ef3440c4bda818c2f944134",
+    "ls-2277-149896-0026/candidate.reggae.piano.wav": "49cebceaf37885b14b9b7ad20ab229ae84e723a561b64e90855594abd57643f8",
+    "ls-2277-149896-0026/candidate.reggae.report.json": "1c419584dfa58fbe71eeaa0b7c797f81877bbe02d850a456629489eda95718ee",
+    "ls-2277-149896-0026/candidate.reggae.score.json": "ad03fb0e7a7430c0c70a54acd00689a53e4b09d2f50d687b2dfa994fc38eca94",
+    "ls-2277-149896-0026/candidate.reggae.vocals.wav": "11cbb6c63e00d2808d9eb454d1f4f249427204ae46603c412cdf4a7335ef86e5",
+    "ls-2277-149896-0026/candidate.reggae.wav": "d081db313ef377e87d30fce86d4315656b68c2eb4c755db3ead4472c5cd40596",
+    "ls-2277-149896-0026/phrase-form.json": "d8c5d51754a4b3f5cf9159ba6cd4b3eddd3c26845c37f82b9dc06cc7acbe93bd",
+    "ls-2277-149896-0026/replay.complete.json": "87c062c38551c80b2036cc9eea614c934d7a66ef0b16df1050b5cba2b76ca2c1",
+    "ls-2277-149896-0026/replay.reggae.events.tsv": "76651993b05e9ed003f5ebde6449e93e2fd223ee09f4ec0d36102113a3ef45c4",
+    "ls-2277-149896-0026/replay.reggae.report.json": "1c419584dfa58fbe71eeaa0b7c797f81877bbe02d850a456629489eda95718ee",
+    "ls-2277-149896-0026/replay.reggae.score.json": "ad03fb0e7a7430c0c70a54acd00689a53e4b09d2f50d687b2dfa994fc38eca94",
+    "ls-2277-149896-0026/replay.reggae.wav": "d081db313ef377e87d30fce86d4315656b68c2eb4c755db3ead4472c5cd40596",
+    "organizer-key.json": "3c0b55162d02f27d6241248332982cfd7107741340be1cf88ac1f6ec848a107e",
+    "owner-speech/candidate.complete.json": "8e6186f84c1f204e6ffff9c3503ba37b6ec7380fbe56f83a1b3a0ba7636b2a87",
+    "owner-speech/candidate.hiphop.bass.wav": "0717edd79dbf10551ca409958a04b4f002d865a8b45e880dbef83db12c803b34",
+    "owner-speech/candidate.hiphop.drums.wav": "f5d5e0d8c6aec18adad0f4c8c37dc35bb6144b709fdf5421441cefae9b476c24",
+    "owner-speech/candidate.hiphop.events.tsv": "9a77581de53bb45b4a15d9b8178fd9aa004bbc5dbe0c1456ca55f0b86637aef1",
+    "owner-speech/candidate.hiphop.guitar.wav": "cb8b9147cf60307bd7de7281ef5457e0ced6cf2f587f23856b31fac7e9daa334",
+    "owner-speech/candidate.hiphop.piano.wav": "7c98bd9f6da9433e582e1efea314b7ce0c1e65447a597076b0548785e7f97057",
+    "owner-speech/candidate.hiphop.report.json": "0d9fc8d48beece88174c6b7527156986a59b6073cd7493b8386d0fb3126af17e",
+    "owner-speech/candidate.hiphop.score.json": "4c61dc8c56e4afe7b0db188b45a9b89d7f56b8f720a8ed37f1da453d60aa712d",
+    "owner-speech/candidate.hiphop.vocals.wav": "524a2e2d9fb3212928f7953f150c145f3528f504563daef90d2842fb407ef4ee",
+    "owner-speech/candidate.hiphop.wav": "e080c367e5818c00e3354a4f7ad4919f31bb33e75b595ccf86e666f3492c96c6",
+    "owner-speech/candidate.plan.json": "683546ed4b91a2ed0868c1bf21f5952433b25a6aea0e0d438ed58e31bc2c6e5f",
+    "owner-speech/phrase-form.json": "afed93c3175417240f4bc2fc5ccd2e779c87e6d8a2869b31a8c33064e69a7363",
+    "owner-speech/replay.complete.json": "55834c6b3b61932cdf032723675bc912d7d9288d56064a3a025969559bbf32d9",
+    "owner-speech/replay.hiphop.events.tsv": "9a77581de53bb45b4a15d9b8178fd9aa004bbc5dbe0c1456ca55f0b86637aef1",
+    "owner-speech/replay.hiphop.report.json": "0d9fc8d48beece88174c6b7527156986a59b6073cd7493b8386d0fb3126af17e",
+    "owner-speech/replay.hiphop.score.json": "4c61dc8c56e4afe7b0db188b45a9b89d7f56b8f720a8ed37f1da453d60aa712d",
+    "owner-speech/replay.hiphop.wav": "e080c367e5818c00e3354a4f7ad4919f31bb33e75b595ccf86e666f3492c96c6",
+    "report.json": "f40c80187ba99cac80b8578bf54e940d8163d18aa5c12fe5598818532cafa6d5"
+  }
+}
