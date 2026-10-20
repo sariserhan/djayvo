@@ -122,6 +122,11 @@ or hosted environment. Evidence: [reviewed catalogue](../../docs/reviewed-catalo
 
 ### R2: disabled until live validation
 
+The owner created `jamloom-audio` for production. The exact production origin is
+`https://jamloom.com`; see [domain and R2 setup](../../docs/production-domain.md)
+for the production environment template, dashboard CORS policy and minimum
+credentials. Local and preview environments must use separate storage.
+
 The server-only AWS SDK adapter is pinned in the lockfile. To prepare a separate
 private test bucket later, use `R2_ACCOUNT_ID`, `R2_BUCKET`, `R2_ACCESS_KEY_ID`,
 `R2_SECRET_ACCESS_KEY` and explicit `JAMLOOM_R2_ENABLED=true`; unset the local audio

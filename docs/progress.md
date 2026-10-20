@@ -1,5 +1,13 @@
 # Jamloom: M0 continuation evidence
 
+Latest production domain preparation — 2026-10-19:
+[jamloom.com and private R2 setup](production-domain.md) **PASS (local configuration)**:
+production template targets `https://jamloom.com` and `jamloom-audio`; exact-origin
+dashboard CORS and least-privilege credential instructions are prepared. Ten site
+tests, production build, typecheck and bundle audit pass. Live domain deployment,
+R2 access/CORS/lifecycle/cleanup and Resend delivery remain **NOT RUN**; production
+readiness **PARTIAL**. Local settings, recordings and master remain unchanged.
+
 Latest product rename — 2026-10-19: **Jamloom** is the official product name.
 See [rename scope and validation](jamloom-rename.md). Historical evidence below
 retains its original names, paths, receipts and observations; it is not fresh

@@ -1,0 +1,123 @@
+
+> build
+> npm --prefix apps/site run build
+
+
+> jamloom-site@0.1.0 prebuild
+> npm run studio:prepare
+
+
+> jamloom-site@0.1.0 studio:prepare
+> node scripts/prepare-studio.mjs
+
+Setting up EMSDK environment (suppress these messages with EMSDK_QUIET=1)
+Adding directories to PATH:
+PATH += /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk
+PATH += /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten
+
+Setting environment variables:
+PATH = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk:/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten:/Users/serhansari/Documents/projects/djayvo/build-web-tools/python-env/bin:/Users/serhansari/Documents/projects/djayvo/build-web-tools/cmake-env/bin:/Users/serhansari/Documents/projects/djayvo/apps/site/node_modules/.bin:/Users/serhansari/Documents/projects/djayvo/apps/node_modules/.bin:/Users/serhansari/Documents/projects/djayvo/node_modules/.bin:/Users/serhansari/Documents/projects/node_modules/.bin:/Users/serhansari/Documents/node_modules/.bin:/Users/serhansari/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/serhansari/.nvm/versions/node/v22.23.1/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/opt/homebrew/opt/openjdk/bin:/Users/serhansari/.nvm/versions/node/v22.23.1/bin:/Users/serhansari/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/podman/bin:/Users/serhansari/.codex/tmp/arg0/codex-arg07otU96:/Users/serhansari/mlx-env/bin:/Users/serhansari/.unity/bin:/Users/serhansari/.cargo/bin:/Applications/CODE/iTerm.app/Contents/Resources/utilities:/opt/homebrew/share/android-commandlinetools/platform-tools:/Users/serhansari/.vscode/extensions/openai.chatgpt-26.51007.21434-darwin-arm64/bin/macos-aarch64
+EMSDK = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk
+EMSDK_NODE = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/node/24.19.0_64bit/bin/node
+EMSDK_PYTHON = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/python/3.13.3_64bit/bin/python3
+SSL_CERT_FILE = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/python/3.13.3_64bit/lib/python3.13/site-packages/certifi/cacert.pem
+emcmake: cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE=/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_CROSSCOMPILING_EMULATOR=/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/node/24.19.0_64bit/bin/node in directory /Users/serhansari/Documents/projects/djayvo
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-web
+[ 88%] Built target jamloom_core
+[100%] Built target jamloom_web
+[ 88%] Built target jamloom_core
+[100%] Built target jamloom_live
+Built dist/web. Start with: python3 scripts/web_serve.py
+{
+  "gate": "PASS",
+  "file_count": 35,
+  "bytes": 28316723,
+  "private_audio_and_test_files_absent": "PASS",
+  "license_notices": "PASS",
+  "wasm_sha256": "1aac34227acb177b11c712a39aa8c1c23ec036b9e31e35c66d4c6f04bf068c57",
+  "wasm_bytes": 14153566,
+  "files": {
+    "app.js": "e90db2bedc31aa5c0b4dd5eac8ebc4d4ca2f009edbcb0cdabf10270b7480ca52",
+    "audio.js": "5b7b18df7d733ea6b6184073e25325797135950735b81e4fae1cfee83c26968f",
+    "deck-controls.js": "c811a7c15dba3b01ddc18cdc89c74cc2c41e9bce9403f4dfdee00a39445f5868",
+    "dj.css": "5d8cc4563f7dbff75d2643dfce883089ebffa086b35e47e8ad4d57e6ae202281",
+    "dj.html": "32c6553e6e5da35296783446ce4c0f86bba96c030c7bead9532545beffa0cfac",
+    "dj.js": "1b2543419538124e3f8903650f5215970d482105d831cf8413092e885facf9c3",
+    "engine-worker.js": "1fe55ee09f35f9e691b6214cc47d18a67f0a472e8b77c2bc76c73766963d6e45",
+    "engine/jamloom_live.wasm": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8",
+    "engine/jamloom_web.mjs": "1a8b8f7d24dfa125f8f3a537424c252bc8eb4a89a781376227f82ceef944bb01",
+    "engine/jamloom_web.wasm": "1aac34227acb177b11c712a39aa8c1c23ec036b9e31e35c66d4c6f04bf068c57",
+    "icon-180.png": "669132c03c1b39d6fe12075796ae8d29211b99eee61ab4f295f8b99c1ac92f87",
+    "icon-192.png": "4dc9105a59d0382807605587d8cb9dbeb8c48328cd99831cbd0d9fb3d2d4beae",
+    "icon-512.png": "c9511bafcad57cdf30e30c3450e6b3d821b6be39b8c0d379d39761fc62fe23eb",
+    "icon.svg": "64ad0af183dcd26aaa2137756858ca66de352141e5bd5adab1960d770067e9a9",
+    "index.html": "a4513cc6af06a7cd466d883372cdc4a50d461a5ece96c0a37c83268e8f399a51",
+    "install.js": "b86760e8426882e438a31be9ab56bb12d8eb28fe54207c9f6eeea16e2e9c69bc",
+    "instrument-rack.js": "53e816231d1a352afef50518bac6362eb44bba2289768931be543261ee95c5a1",
+    "instrument-worklet.js": "efcaf45c348ccaaab926bab4b2996a925f0d27d910a6b1b904f4c857f12b4513",
+    "keyboard.js": "0d3497e1bad1616de67692455d970054ff1b5edd6dfa2b7462131eb37a0dac1a",
+    "library.js": "eb82df24592e8987e91165d3ada9d8bc2b340b397dc529ce6ce9b1bfc73c1336",
+    "licenses/BLACK-AND-GREEN-GUITARS-CC0.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "licenses/EMSCRIPTEN-LICENSE.txt": "4e932924ae86904c2ec1e8916953fb516707871b74bf05733161b0ec4772db26",
+    "licenses/VCSL-LICENSE.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "licenses/VSCO-2-CE-LICENSE.txt": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673",
+    "manifest.webmanifest": "a0e66fe1fbcd3a2f1cfcf114f5cc48f1f27a71bf06b19b6cbaba0988a91cfb94",
+    "midi.js": "3d24e2d620e0f21cfc6fa9a23d6639cb447c81b67349c9e9d6eb33081bafd613",
+    "mixer.js": "0ced222b50e021b06dc4c1e6628893298a86eea8c69344ed4ce936847f988894",
+    "novelty.js": "8aa6113f3249df76eb0cdad6149668426da577e60d19fecfa18a5f61fed00807",
+    "offline.js": "976803c76f730dcf6697204926a11b12b75c18419711c526e7fe186bd20426b7",
+    "performance-session.js": "39a7fcc6703f0034999b99d744e9d26f0be63b205dff5995e54cd10590ce0b9a",
+    "service-worker.js": "990f951dfeb184475ce8033f012b3a94f8ca3155b58591d82867bb4c23d267cd",
+    "session-analysis-worker.js": "1c2c384be76284cbeb94048d98d9c231b2a3efc5957050c023975a1cef297f42",
+    "session-analysis.js": "1ee077d19a825ad5863072cd812ff3d16a0c797f307de2fe0cd9f4c05e8ba7b6",
+    "session-transport.js": "9075b7f4a9c3925f84d762b4bf42cccb2aa76bc7469d8ecc3b8317a027224f02",
+    "style.css": "fefed94815f41b25cc6b61e9dd4437dde694b6b6de6b98462096dec8063146da"
+  },
+  "public_release": "NOT RUN"
+}
+Prepared the audited browser studio and engine.
+
+> jamloom-site@0.1.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 11ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 614ms
+  Running TypeScript ...
+  Finished TypeScript in 1285ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/4) ...
+  Generating static pages using 9 workers (1/4) 
+  Generating static pages using 9 workers (2/4) 
+  Generating static pages using 9 workers (3/4) 
+✓ Generating static pages using 9 workers (4/4) in 114ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /account
+├ ƒ /account/[action]
+├ ƒ /api/auth/[...all]
+├ ƒ /api/catalogue/[[...path]]
+├ ƒ /api/library
+├ ƒ /api/library/[id]/[action]
+├ ƒ /api/playlists/[[...path]]
+├ ƒ /catalogue
+├ ƒ /catalogue/[id]
+├ ƒ /library
+├ ƒ /playlists
+├ ƒ /playlists/[id]
+└ ƒ /review
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

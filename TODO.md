@@ -27,7 +27,7 @@ the source of truth and is not modified by this tracker.
 ## Product identity
 
 - [x] BR01: Rename current app, packages, native/WASM engine, exports, scripts and active documentation to Jamloom; preserve saved data and historical evidence. [Validation](docs/jamloom-rename.md).
-- [ ] BR02: Register/verify a domain and configure its hosted origin, email sender and deployment. Domain ownership and trademark clearance are unverified; R2 and Resend remain deferred.
+- [ ] BR02 — PARTIAL: Owner reports purchasing `jamloom.com` and creating `jamloom-audio`. Production origin/bucket template and exact-origin CORS policy prepared. Live Vercel/DNS, R2 access/CORS/lifecycle/cleanup and email delivery remain NOT RUN; Resend stays deferred. Trademark clearance is unverified. [Setup and evidence](docs/production-domain.md).
 
 ## At a glance
 

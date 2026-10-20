@@ -10,6 +10,7 @@ __pycache__/
 node_modules/
 .env*
 !.env.example
+!apps/site/.env.production.example
 .next/
 *.tsbuildinfo
 /apps/site/public/studio/

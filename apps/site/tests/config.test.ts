@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { readFileSync } from 'node:fs';
+import { parseEnv } from 'node:util';
+import { Pool } from 'pg';
 import { readConfig } from '../lib/config';
+import { authOptions } from '../lib/auth-options';
+import { audioStore } from '../lib/audio-store';
 import { sendEmail } from '../lib/email';
 import { boundedAuthRequest } from '../lib/bounded-request';
 
@@ -9,6 +14,29 @@ const local = {
   BETTER_AUTH_URL: 'http://localhost:3000', BETTER_AUTH_SECRET: 'a'.repeat(48),
   JAMLOOM_LOCAL_OUTBOX: '/tmp/jamloom-test-outbox',
 };
+test('production template binds auth and private R2 grants to Jamloom configuration', async () => {
+  const template = parseEnv(readFileSync(new URL('../.env.production.example', import.meta.url), 'utf8'));
+  assert.equal(template.JAMLOOM_R2_ENABLED, 'false');
+  assert.equal(template.JAMLOOM_CATALOGUE_ENABLED, 'false');
+  assert.throws(() => readConfig(template));
+  const env = { ...template, DATABASE_URL: 'postgresql://u:p@ep-example.neon.tech/db',
+    BETTER_AUTH_SECRET: 'a'.repeat(48), RESEND_API_KEY: 'test-key', EMAIL_FROM: 'Jamloom <hello@jamloom.com>',
+    R2_ACCOUNT_ID: 'a'.repeat(32), R2_ACCESS_KEY_ID: 'test-key', R2_SECRET_ACCESS_KEY: 'test-secret', VERCEL: '1' };
+  const config = readConfig(env);
+  assert.equal(config.baseURL, 'https://jamloom.com');
+  const pool = new Pool({ connectionString: env.DATABASE_URL });
+  try {
+    assert.deepEqual(authOptions(config, pool).trustedOrigins, ['https://jamloom.com']);
+    assert.equal(audioStore(config, env), null);
+    const store = audioStore(config, { ...env, JAMLOOM_R2_ENABLED: 'true' })!;
+    const grant = new URL(await store.uploadURL('uploads/test.wav', 3840044, 120));
+    assert.equal(grant.hostname, `jamloom-audio.${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`);
+    const [cors] = JSON.parse(readFileSync(new URL('../config/r2-cors.production.json', import.meta.url), 'utf8'));
+    assert.deepEqual(cors.AllowedOrigins, [config.baseURL]);
+    assert.deepEqual(cors.AllowedMethods, ['GET', 'PUT', 'HEAD']);
+    assert.ok(cors.AllowedHeaders.includes('Range'));
+  } finally { await pool.end(); }
+});
 test('account configuration fails closed and forbids hosted development mail', () => {
   assert.throws(() => readConfig({}));
   assert.throws(() => readConfig({ ...local, BETTER_AUTH_SECRET: 'short' }));
