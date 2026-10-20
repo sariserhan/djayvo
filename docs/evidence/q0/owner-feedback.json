@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0-q0-qualitative-feedback",
+  "reviewer": "project_owner",
+  "reviewer_count": 1,
+  "evidence_type": "direct_user_reply",
+  "responses": [
+    {
+      "prompt_scope": "Unchanged baseline, isolated instrument probes and first input stems at http://127.0.0.1:4197/",
+      "verbatim": "still bad"
+    },
+    {
+      "prompt_scope": "Clarify whether the rejection covers the baseline at 4197, newer comparisons at 4198/4199, or all of them",
+      "verbatim": "All of them"
+    }
+  ],
+  "listening_packets": [
+    {
+      "path": "renders/q0-baseline-v2-20261020",
+      "url": "http://127.0.0.1:4197/",
+      "owner_acceptance": "FAIL"
+    },
+    {
+      "path": "renders/q0-expression-20261020/listener",
+      "url": "http://127.0.0.1:4198/",
+      "packet_id": "7115db8986ead0a73ff5ecacd2005428e42bff2654a56c91c5bb087c237bf50e",
+      "owner_acceptance": "FAIL"
+    },
+    {
+      "path": "renders/q0-sfz-probes-20261020/listener",
+      "url": "http://127.0.0.1:4199/",
+      "owner_acceptance": "FAIL"
+    }
+  ],
+  "implementation_commit": "8ba06bf8f7c45ddf863f2b6496fc184afba9219b",
+  "numeric_ratings": null,
+  "pairwise_preferences": null,
+  "component_timestamps": null,
+  "independent_listener_study": "NOT RUN",
+  "main_perceptual_cause": "NOT RUN",
+  "promotion_decision": "Do not promote current candidates as accepted quality improvements.",
+  "limitations": "Qualitative rejection of all three packets, not a per-file playback log, numeric score, measured effect size or proof that candidates are equally bad. No relative improvement or causal ranking is inferred."
+}

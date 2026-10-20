@@ -1,11 +1,15 @@
 # Q0 — Musical quality recovery: diagnosis and controlled experiments
 
-2026-10-20. **Overall: PARTIAL. Substantial musical improvement: NOT RUN.**
+2026-10-20. **Implementation: PARTIAL. Current owner listening acceptance: FAIL.**
 
 The technical audit, five-input baseline, instrument probes and an expression-only
-comparison are available. No current Q0 human judgments have been collected.
-The prior R0 owner rejection remains **FAIL**; it is not replaced by these
-technical results. Main *perceptual* causes are not yet established.
+comparison are available. The owner responded “still bad” and clarified “All of
+them,” covering the baseline (4197), A/C expression comparison (4198) and
+native/SFZ probes (4199). All three packets fail owner acceptance; none is
+promoted as an accepted improvement. This is one qualitative reviewer, without
+numeric scores, pairwise preferences or component timestamps.
+Main *perceptual* causes and relative effect sizes are not yet established.
+The prior R0 owner rejection also remains **FAIL**.
 
 The shared engine, production composer, dashboard, master, learning addendum and
 existing musical plans were not changed. Nothing was trained, purchased,
@@ -19,7 +23,7 @@ operates on copies of plans in an offline experiment.
 | Audit instruments, scheduling, voice, arrangement and mix | PARTIAL | Code and rendered-waveform evidence below; human causal diagnosis pending |
 | Five representative inputs with original audio, events, stems, master and measurements | PASS | Five frozen real recordings; metadata-based conversational/phrase/laughter selection, not a listener-validated population sample |
 | Preserve existing plans and master | PASS | New output directories, source/plan hashes, immutable spec hashes |
-| Separate instrument realism evaluation | PARTIAL | 14 native probes, eight SFZ probes and 16 matched listening files; realism judgments NOT RUN |
+| Separate instrument realism evaluation | PARTIAL | Probes and measurements complete; owner rejects the packet, without instrument-specific ratings or causal ranking |
 | SFZ/sfizz dependency investigation | PARTIAL | Local Mac build and rendering PASS after isolated compatibility fixes; production integration, distribution notice assembly and other targets NOT RUN |
 | Modular deterministic performance expression | PARTIAL | Shared onset shifts, accents, existing ghost strokes, gates, guitar muting and phrase dynamics; new fills/transitions, deeper melodic phrasing and listening acceptance remain open |
 | Groove MIDI Dataset evaluation | PASS | License/checksum review and descriptive MIDI analysis; no training or fitting |
@@ -32,7 +36,8 @@ operates on copies of plans in an offline experiment.
 | Technical event timing/replay and comparison level matching | PASS | 3,400 instrument event rows checked; zero frame errors; five exact block-size replays |
 | Browser listening controls | PARTIAL | Form, decoding, downloads and layouts pass; headless WebKit playback clock stalled; physical playback/listening NOT RUN |
 | Q0 Linux/iPhone/WASM audio execution | NOT RUN | Prior R0 portability evidence is retained separately; not relabeled as Q0 |
-| Human comparative musical improvement | NOT RUN | No current Q0 listening ratings or preferences; no professional-quality claim |
+| Current owner listening acceptance | FAIL | Owner rejects all three packets; exact replies retained; no numeric ratings or relative preference inferred |
+| Formal comparative improvement / independent study | NOT RUN | Qualitative rejection is not a measured effect size or an independent study |
 
 The user required diagnosis before modifying the engine. These measurements
 identify specific mechanisms to audition but do not establish which dominates
@@ -61,6 +66,17 @@ explicitly labeled and diagnostic, not a blind preference study.
 Start with the owner-speech pair and the short/long drum probes if time is
 limited. Component/timestamp feedback is useful even without completing all
 ratings. No numerical score will be inferred from a qualitative response.
+
+### Owner review received after the initial checkpoint
+
+[Exact feedback](evidence/q0/owner-feedback.json): “still bad,” then “All of
+them” when asked to distinguish the three pages. The current candidate set
+fails acceptance. The new expression and sample-playback trials did not
+produce an acceptable result for this listener. This does not prove zero
+relative improvement, equal quality between candidates or a specific cause.
+The frozen run reports retain their original pre-listening statuses; this
+separate feedback record and the current gates above supersede those statuses
+for owner acceptance.
 
 ## What the evidence says
 
@@ -315,20 +331,22 @@ Screenshots and the browser report are written to a new temporary directory.
 
 ## Remaining work and recommendation
 
-First collect the current component diagnosis and blind A/C judgments. Use them
-to select the smallest isolated instrument intervention and a coherent
-composition intervention, then complete B/D/E with the same native mixing path
-and frozen controls. Longer vocal units, bass/drum articulation, phrase response
-and restrained contrast are hypotheses, not already accepted improvements.
+The current A/C and sample-playback candidates have been rejected. Do not repeat
+them as a new improvement or promote small parameter changes on technical
+metrics alone. Causal diagnosis and a materially different composition/instrument
+experiment remain necessary before completing B/D/E with the same native mixing
+path and frozen controls. Longer vocal units, bass/drum articulation, phrase
+response and restrained contrast remain hypotheses, not accepted improvements.
 Do not use extra random offsets or louder masters to manufacture a preference.
 
 There is no new numerical “professional quality” threshold and no change to the
 existing M1/listener benchmarks. Q0's required substantial improvement remains
-unestablished. Independent listener evidence, broader inputs, acoustic attack
+unestablished; current owner acceptance is FAIL. Independent listener evidence,
+broader inputs, acoustic attack
 timing, physical playback and fresh cross-platform execution remain open.
 No later milestone or model training is recommended until Q0's controlled
 comparison has a credible listening result.
 
 Implementation parent: `87ede36382b3ef76168b60b03f709026c7371799`.
-The Q0 implementation/evidence commit is the commit introducing this report;
-resolve it with `git log -1 --format=%H -- docs/q0-quality-recovery.md`.
+Q0 implementation/evidence commit: `8ba06bf8f7c45ddf863f2b6496fc184afba9219b`.
+Subsequent owner feedback is recorded separately without changing frozen renders.

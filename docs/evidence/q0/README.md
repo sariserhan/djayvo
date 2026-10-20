@@ -3,7 +3,8 @@
 See [Q0 report](../../q0-quality-recovery.md). Status: **PARTIAL**.
 
 This directory contains measurements, frozen event plans, technical logs and UI
-screenshots. It contains no recordings or actual listener responses. Playable
+screenshots. `owner-feedback.json` retains subsequent real qualitative feedback:
+the owner rejects all three packets. It contains no recordings. Playable
 WAVs remain local under `renders/q0-*`; see `audio-inventory.json` for hashes.
 The organizer key remains outside the served blind listener directory.
 

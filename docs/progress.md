@@ -3,9 +3,10 @@
 Current priority — 2026-10-20:
 [Q0 musical quality recovery](q0-quality-recovery.md) is **PARTIAL**.
 Five frozen real-input baselines, stems, instrument probes, optional local SFZ
-tests and an isolated expression-only comparison are available. Human causal
-diagnosis and improvement remain **NOT RUN**; prior R0 owner rejection remains
-**FAIL**. No production engine, dashboard, master or learning addendum changes.
+tests and an isolated expression-only comparison are available. Subsequent owner
+review rejects all three packets: current owner acceptance is **FAIL**.
+Human causal ranking and formal comparative improvement remain **NOT RUN**.
+No production engine, dashboard, master or learning addendum changes.
 
 Latest cached-deployment repair — 2026-10-20:
 [SDK cache recovery](deploy-cache.md): Git build `41fd759` failed when its SDK
@@ -1342,3 +1343,19 @@ or deployment. Overall Q0 remains open pending diagnosis and controlled
 listening; the user's success criterion is not claimed. The engine and all
 existing plans, recordings and immutable specifications were preserved.
 [Detailed findings, local audio links, commands and evidence](q0-quality-recovery.md).
+
+## Q0 owner review — current candidate set rejected
+
+**FAIL:** Owner acceptance of the baseline, A/C expression comparison and
+native/SFZ instrument probes. Exact feedback was “still bad,” followed by
+“All of them” when asked which of the three pages it covered.
+This is one real qualitative reviewer; no numerical scores, per-file playback
+claims, relative preference or causal explanation are inferred.
+The earlier pre-review NOT RUN statements above remain historical.
+
+**PARTIAL:** Overall Q0 implementation. Existing technical results remain valid,
+but they do not establish musical improvement. Do not promote these candidates
+as accepted quality improvements. **NOT RUN:** Independent listener study,
+full B/D/E and a new composition intervention. No audio, plans, engine or
+benchmarks changed while recording feedback.
+[Exact response and scope](evidence/q0/owner-feedback.json).

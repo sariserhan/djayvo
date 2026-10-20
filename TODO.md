@@ -1,6 +1,6 @@
 # Jamloom development tracker
 
-**Current priority — 2026-10-20: Q0 musical quality recovery, PARTIAL.**
+**Current priority — 2026-10-20: Q0 implementation PARTIAL; owner acceptance FAIL.**
 The owner requested diagnosis and controlled listening before engine changes.
 No later milestone, model training, paid service or dashboard redesign is part
 of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.md).
@@ -23,8 +23,11 @@ of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.
 - [x] **Q007 — PASS:** Eight Q0 tests, three native groups, 3,400 exact
   instrument event rows and comparison level checks. Browser form/decode
   checks pass; physical playback and headless WebKit clock remain separate.
-- [ ] **Q008 — NOT RUN:** Current Q0 human improvement/acceptance and fresh
-  Linux/iPhone/WASM Q0 audio validation. Prior R0 listening rejection remains FAIL.
+- [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression and native/SFZ
+  packets: “still bad,” clarified as “All of them.” No numeric scores, relative
+  preferences or causal ranking inferred; no candidate promotion.
+  Independent comparative study and fresh Linux/iPhone/WASM Q0 audio validation
+  remain **NOT RUN**. [Exact feedback](docs/evidence/q0/owner-feedback.json).
 
 **Research continuation — 2026-10-20:** After R0 and storage cleanup, the owner
 requested continuing model development. Local R1 offline demonstration tooling
