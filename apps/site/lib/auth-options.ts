@@ -11,20 +11,20 @@ export function authOptions(config: Config, database: Pool, background?: (task: 
     return task;
   };
   return {
-    appName: 'Djayvo', database, baseURL: config.baseURL, secret: config.secret,
+    appName: 'Jamloom', database, baseURL: config.baseURL, secret: config.secret,
     trustedOrigins: [config.baseURL],
     emailAndPassword: {
       enabled: true, requireEmailVerification: true, minPasswordLength: 12,
       maxPasswordLength: 128, revokeSessionsOnPasswordReset: true,
       sendResetPassword: ({ user, url }) => deliver({
-        to: user.email, subject: 'Reset your Djayvo password',
+        to: user.email, subject: 'Reset your Jamloom password',
         text: `Reset your password using this link:\n${url}\n\nIf you did not request this, ignore this email.`,
       }),
     },
     emailVerification: {
       sendOnSignUp: true, sendOnSignIn: true, autoSignInAfterVerification: false,
       sendVerificationEmail: ({ user, url }) => deliver({
-        to: user.email, subject: 'Verify your Djayvo email',
+        to: user.email, subject: 'Verify your Jamloom email',
         text: `Verify your email using this link:\n${url}\n\nYour recordings stay on your device unless you explicitly save them online.`,
       }),
     },

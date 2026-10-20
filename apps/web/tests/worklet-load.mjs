@@ -7,14 +7,14 @@ import { fileURLToPath } from 'node:url';
 import { chromium, webkit } from 'playwright';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
-const kind = process.env.DJAYVO_BROWSER || 'chromium';
+const kind = (process.env.JAMLOOM_BROWSER ?? process.env.DJAYVO_BROWSER) || 'chromium';
 assert.ok(['chromium', 'webkit'].includes(kind));
 const output = await fs.mkdtemp(path.join(root, `renders/worklet-load-${kind}-`));
 console.log('Artifacts:', output);
 const read = name => fs.readFile(path.join(root, name));
 const [production, wrapper, capture, engine, reference, trace] = await Promise.all([
   read('apps/web/instrument-worklet.js'), read('apps/web/tests/worklet-load.js'),
-  read('apps/web/tests/worklet-capture.js'), read('dist/web/engine/djayvo_live.wasm'),
+  read('apps/web/tests/worklet-capture.js'), read('dist/web/engine/jamloom_live.wasm'),
   read('renders/live-deadline-20261019/mac-detailed.f32'), read('renders/live-deadline-20261019/mac-detailed.tsv')
 ]);
 const events = trace.toString().trim().split('\n').slice(1).map(line => line.split('\t').map(Number));
@@ -23,7 +23,7 @@ events.forEach((e, i) => assert.ok(e.length === 6 && e.every(Number.isInteger) &
   e[0] % 128 === 0 && e[0] < 480000 && e[0] >= (i ? events[i-1][0] : 0)));
 const frames = 48000 * 60;
 const assets = new Map([
-  ['/', ['text/html', Buffer.from('<!doctype html><title>Djayvo worklet diagnostic</title><h1>Djayvo worklet diagnostic</h1><p>Sixty seconds of muted instrument processing.</p><button id="start">Start check</button><p id="status">Preparing</p>')]],
+  ['/', ['text/html', Buffer.from('<!doctype html><title>Jamloom worklet diagnostic</title><h1>Jamloom worklet diagnostic</h1><p>Sixty seconds of muted instrument processing.</p><button id="start">Start check</button><p id="status">Preparing</p>')]],
   ['/instrument.js', ['text/javascript', Buffer.concat([production, Buffer.from('\n'), wrapper])]],
   ['/capture.js', ['text/javascript', capture]], ['/engine.wasm', ['application/wasm', engine]]
 ]);
@@ -61,7 +61,7 @@ try {
   page.on('pageerror', e => errors.push(e.message));
   page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
   await page.goto(origin); await page.waitForLoadState('networkidle');
-  assert.equal(await page.title(), 'Djayvo worklet diagnostic');
+  assert.equal(await page.title(), 'Jamloom worklet diagnostic');
   await page.evaluate(async ({ events, frames }) => {
     const context = new AudioContext({ sampleRate: 48000, latencyHint: 'interactive' });
     await context.suspend();

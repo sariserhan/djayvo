@@ -1,4 +1,6 @@
-# Djayvo
+# Jamloom
+
+Formerly Djayvo. [Rename scope and compatibility](docs/jamloom-rename.md).
 
 **Current authorization — 2026-10-18:** Continue remaining local specification
 work without per-step approval. The [prepared A + C session](docs/prepared-session.md)
@@ -8,7 +10,7 @@ hosted infrastructure work remain paused; no new paid compute or deployment.
 
 **Say anything. Make music.**
 
-Djayvo turns short recordings into source-driven musical performances. The
+Jamloom turns short recordings into source-driven musical performances. The
 portable C++17 prototype loads a 2–5 s WAV, finds energetic phrases and onsets,
 preserves a clean hook, and renders three original 20–40 s arrangements:
 hip-hop, reggae, and experimental, plus explicit club, funk, call-response and
@@ -48,7 +50,7 @@ Better Auth email/password, Neon-compatible Postgres schema and Resend adapter.
 checks pass. Resend/R2 and public web deployment remain unconfigured.
 Run it at http://localhost:3000 using the linked setup instructions.
 
-**Selected product platform: [Djayvo web](apps/web/README.md).** Record/import, trim,
+**Selected product platform: [Jamloom web](apps/web/README.md).** Record/import, trim,
 generate three takes, club, funk, call-response or hybrid, play, save locally and download WAVs in the browser.
 The shared engine runs as WebAssembly without uploading audio. Start the existing
 build with `python3 scripts/web_serve.py`, then open http://localhost:4173.
@@ -99,10 +101,10 @@ ctest --test-dir build --output-on-failure
 
 # Original procedural test input; no external tools needed.
 python3 scripts/make_fixture.py --output renders/fixtures/signal.wav
-./build/djayvo_remix --input renders/fixtures/signal.wav --synthetic-fixture --output renders/demo/remix --style all --stems
+./build/jamloom_remix --input renders/fixtures/signal.wav --synthetic-fixture --output renders/demo/remix --style all --stems
 
 # A recording you have permission to process locally:
-./build/djayvo_remix --input /path/to/your-recording.wav --consent --output renders/my-remix --style all --stems
+./build/jamloom_remix --input /path/to/your-recording.wav --consent --output renders/my-remix --style all --stems
 ```
 
 `--consent` confirms permission for that recording. `--synthetic-fixture` labels
@@ -136,9 +138,9 @@ export PATH="$PWD/.venv-build/bin:$PATH"
 ```
 
 The current Mac uses installed CMake and a separate `.venv-build` Python. The C interface
-is `core/include/djayvo/djayvo_c.h`. Python >=3.9 is only for developer tools and
+is `core/include/jamloom/jamloom_c.h`. Python >=3.9 is only for developer tools and
 tests. The optional speech-fixture generator uses an external eSpeak NG
-executable, which is not linked into Djayvo.
+executable, which is not linked into Jamloom.
 
 [Build commands](docs/build.md) · [Architecture](docs/architecture.md) ·
 [Remix contract and limitations](docs/remix-architecture.md) ·

@@ -1,9 +1,9 @@
-#include "djayvo/audio.h"
+#include "jamloom/audio.h"
 #include "synth.h"
 #include <algorithm>
 #include <cmath>
 
-namespace djayvo {
+namespace jamloom {
 namespace {
 constexpr double pi = 3.14159265358979323846;
 #include "full_band_interpolation.inc"
@@ -117,4 +117,4 @@ float Voice::next() noexcept {
     ++age_;sample_position_+=sample_step_;
     return static_cast<float>(tone_*envelope*velocity_);
 }
-} // namespace djayvo
+} // namespace jamloom

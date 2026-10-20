@@ -15,9 +15,9 @@ import { audioFixture,input } from './audio-fixture';
 
 test('isolated catalogue: explicit publication, revision-bound review and private playlists',async t=>{
   const config=readConfig();assert.equal(config.local,true);assert.ok(config.outbox);
-  const admin=createPool(config.databaseURL),name='djayvo_test_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${name}"`);
+  const admin=createPool(config.databaseURL),name='jamloom_test_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${name}"`);
   const url=new URL(config.databaseURL);url.pathname='/'+name;
-  const pool=createPool(url.toString()),dir=await mkdtemp(join(tmpdir(),'djayvo-catalogue-'));
+  const pool=createPool(url.toString()),dir=await mkdtemp(join(tmpdir(),'jamloom-catalogue-'));
   const audio=new PrivateAudio(pool,localAudioStore(dir)),catalogue=new Catalogue(pool,audio),wav=audioFixture();
   const submission={artist:'Public test credit',description:'Original test mix for local checks',mood:'playful',consent:true};
   try {

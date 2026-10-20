@@ -1,5 +1,5 @@
 import { selectFresh } from './novelty.js';
-import createEngine from './engine/djayvo_web.mjs';
+import createEngine from './engine/jamloom_web.mjs';
 
 self.onmessage = async ({ data }) => {
   try {
@@ -16,8 +16,8 @@ self.onmessage = async ({ data }) => {
     self.postMessage({ type: 'rendering' });
     const styles = data.style === 'three' ? ['hiphop', 'reggae', 'experimental'] : [data.style];
     const selection = await selectFresh(data.seed, data.recent ?? [], async seed => {
-      const error = data.context ? engine.ccall('djayvo_web_session_mode', 'string', ['number', 'number', 'number', 'number', 'number'],
-        [seed, data.context.tempo, data.context.tonic, data.context.mode === 'major' ? 1 : 0, 1]) : engine.ccall('djayvo_web_render', 'string', ['number', 'number', 'number'],
+      const error = data.context ? engine.ccall('jamloom_web_session_mode', 'string', ['number', 'number', 'number', 'number', 'number'],
+        [seed, data.context.tempo, data.context.tonic, data.context.mode === 'major' ? 1 : 0, 1]) : engine.ccall('jamloom_web_render', 'string', ['number', 'number', 'number'],
         [seed, ['three', 'club', 'funk', 'call_response', 'hybrid'].indexOf(data.style), 1]);
       if (error) throw new Error(error);
       return styles.map(style => JSON.parse(engine.FS.readFile(`/mix.${style}.score.json`, { encoding: 'utf8' })));

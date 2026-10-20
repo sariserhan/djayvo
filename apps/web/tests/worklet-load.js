@@ -1,5 +1,5 @@
 // Appended to the unchanged production instrument-worklet.js by the isolated test server.
-class InstrumentLoadProbe extends DjayvoInstruments {
+class InstrumentLoadProbe extends JamloomInstruments {
   constructor(options) {
     super(options);
     this.events = options.processorOptions.events;
@@ -29,7 +29,7 @@ class InstrumentLoadProbe extends DjayvoInstruments {
     if (this.cursor === this.total) this.port.postMessage({ type: 'engine-complete',
       commands: this.commands, clock: this.clock, durations: this.durations.buffer,
       commandFrames: this.commandFrames.buffer,
-      memoryBytes: this.engine.memory.buffer.byteLength, active: this.engine.djayvo_live_active() },
+      memoryBytes: this.engine.memory.buffer.byteLength, active: this.engine.jamloom_live_active() },
       [this.durations.buffer, this.commandFrames.buffer]);
     return active;
   }

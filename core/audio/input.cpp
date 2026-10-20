@@ -1,4 +1,4 @@
-#include "djayvo/remix.h"
+#include "jamloom/remix.h"
 #include "resample_pcm.h"
 #include <algorithm>
 #include <cmath>
@@ -9,7 +9,7 @@
 #include <sstream>
 #include <stdexcept>
 
-namespace djayvo {
+namespace jamloom {
 namespace {
 std::uint32_t rotate(std::uint32_t x, unsigned n) { return (x >> n) | (x << (32U - n)); }
 std::uint16_t u16(const std::vector<std::uint8_t>& b, std::size_t i) {
@@ -192,4 +192,4 @@ std::vector<float> detail::resample_pcm(const float* source,std::size_t frames,d
     }
     return out;
 }
-} // namespace djayvo
+} // namespace jamloom

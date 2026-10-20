@@ -10,7 +10,7 @@ import tarfile
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=Path("dist/djayvo-mac-handoff.tar.gz"))
+    parser.add_argument("--output", type=Path, default=Path("dist/jamloom-mac-handoff.tar.gz"))
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     output = args.output.resolve()
@@ -32,13 +32,13 @@ def main():
             if digest(path) != artifacts[relative]["sha256"]:
                 raise ValueError(f"reference hash mismatch: {relative}")
             files.append(path)
-    bundle = output.parent / "djayvo-history.bundle"
+    bundle = output.parent / "jamloom-history.bundle"
     subprocess.run(["git", "bundle", "create", str(bundle), "main"], cwd=root, check=True)
     with tarfile.open(output, "w:gz") as archive:
-        archive.add(bundle, arcname="djayvo-transfer/repository.bundle")
-        archive.add(root / "docs/mac-agent-handoff.md", arcname="djayvo-transfer/MAC_HANDOFF.md")
+        archive.add(bundle, arcname="jamloom-transfer/repository.bundle")
+        archive.add(root / "docs/mac-agent-handoff.md", arcname="jamloom-transfer/MAC_HANDOFF.md")
         for path in files:
-            archive.add(path, arcname="djayvo-transfer/" + path.relative_to(root).as_posix())
+            archive.add(path, arcname="jamloom-transfer/" + path.relative_to(root).as_posix())
     checksum = digest(output)
     output.with_name(output.name + ".sha256").write_text(f"{checksum}  {output.name}\n")
     print(f"PASS: {output} ({output.stat().st_size} bytes)")

@@ -1,0 +1,1749 @@
+{
+  "status": "PASS",
+  "browser": "webkit",
+  "version": "26.5",
+  "checks": [
+    {
+      "name": "page identity, nonblank content, consent gating",
+      "status": "PASS"
+    },
+    {
+      "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+      "status": "PASS"
+    },
+    {
+      "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+      "status": "PASS"
+    },
+    {
+      "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+      "status": "PASS"
+    },
+    {
+      "name": "manual Play waits for actual deck metadata, then starts once and advances",
+      "status": "PASS"
+    },
+    {
+      "name": "hung audio resume reports failure, restores manual Play and cannot disrupt a successful retry",
+      "status": "PASS"
+    },
+    {
+      "name": "late completion of an older play request cannot pause a newer playback request",
+      "status": "PASS"
+    },
+    {
+      "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+      "status": "PASS"
+    },
+    {
+      "name": "real media output follows crossfader, channel level and master silence",
+      "status": "PASS"
+    },
+    {
+      "name": "pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects",
+      "status": "PASS"
+    },
+    {
+      "name": "resolved-but-stalled A start reports failure and restores controls while B keeps producing audio",
+      "status": "PASS"
+    },
+    {
+      "name": "Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry",
+      "status": "PASS"
+    },
+    {
+      "name": "rotating platter, pointer/keyboard jog, cue/hot-cue, pitch/reset, tempo/tap, key lock and actual track looping",
+      "status": "PASS"
+    },
+    {
+      "name": "rapid active pitch changes keep the latest rate; Pause All and unload cancel the queued resume, then reload plays",
+      "status": "PASS"
+    },
+    {
+      "name": "deck low EQ changes measured output",
+      "status": "PASS"
+    },
+    {
+      "name": "A/B controls change real audio independently; pause tails follow channel/master/crossfader and reset cannot revive old audio",
+      "status": "PASS"
+    },
+    {
+      "name": "hung instrument wake-up restores Prepare; retry succeeds and late completion stays inert",
+      "status": "PASS"
+    },
+    {
+      "name": "live shared-C++ AudioWorklet instruments produce chord audio while decks keep advancing; release clears sound",
+      "status": "PASS"
+    },
+    {
+      "name": "late note wake-up rejection cannot release or overwrite a newer note on the same key",
+      "status": "PASS"
+    },
+    {
+      "name": "sustain, instrument/master mute, panic and blur release work without pausing decks",
+      "status": "PASS"
+    },
+    {
+      "name": "live tone/echo controls change instrument audio; level/master silence tails; reset clears buffers even if echo is raised again, decks continue",
+      "status": "PASS"
+    },
+    {
+      "name": "talk-bass low register and live vowel spectrum, release, isolated controls and four new percussion sounds",
+      "status": "PASS"
+    },
+    {
+      "name": "octave selection, patch range limits and pointer drum pad generate real audio",
+      "status": "PASS"
+    },
+    {
+      "name": "MIDI opt-in, denied permission and late permission cancellation preserve manual controls",
+      "status": "PASS"
+    },
+    {
+      "name": "MIDI notes drive real C++ worklet audio with velocity and zero-velocity note-off",
+      "status": "PASS"
+    },
+    {
+      "name": "MIDI Learn consumes assignment without jumps; channel-specific pickup controls actual audio, manual changes rearm, unmapped/reserved CC preserve notes",
+      "status": "PASS"
+    },
+    {
+      "name": "reassignment replaces old target/controller bindings; disabled sound controls and cancelled learning ignore CC",
+      "status": "PASS"
+    },
+    {
+      "name": "learned channel and crossfader controls change media-deck PCM; tone/EQ use existing validated audio controls",
+      "status": "PASS"
+    },
+    {
+      "name": "blur cancels learning/rearms pickup; clear and input switching remove bindings without changing levels",
+      "status": "PASS"
+    },
+    {
+      "name": "all 26 allowed targets respect range endpoints/default steps; unavailable targets remain unchanged, mappings bounded by target count",
+      "status": "PASS"
+    },
+    {
+      "name": "MIDI sustain is isolated by channel and from computer/touch sustain",
+      "status": "PASS"
+    },
+    {
+      "name": "retrigger and MIDI CC123/121/120 release held and sustained voices safely",
+      "status": "PASS"
+    },
+    {
+      "name": "channel-10 drums/percussion mapping produces audio; unsupported notes and messages are ignored",
+      "status": "PASS"
+    },
+    {
+      "name": "input switching preserves computer notes; unplug clears sustain and requires explicit reconnect",
+      "status": "PASS"
+    },
+    {
+      "name": "failed/pending port opens, blur and disabling MIDI release voices without pausing decks",
+      "status": "PASS"
+    },
+    {
+      "name": "unsupported MIDI browser keeps clear fallback and existing instrument controls",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop, tablet and mobile controls render without horizontal overflow; reduced motion stops platter animation",
+      "status": "PASS"
+    },
+    {
+      "name": "injected instrument processor failure disables keys and preserves deck playback",
+      "status": "PASS"
+    },
+    {
+      "name": "pause-all and audio-context interruption require explicit resume",
+      "status": "PASS"
+    },
+    {
+      "name": "opposite-polarity stereo remains visible on output meter despite mono cancellation",
+      "status": "PASS"
+    },
+    {
+      "name": "revoking permission stops, detaches both decks and clears effect tails and controls",
+      "status": "PASS"
+    },
+    {
+      "name": "disconnected reload: deck playback/effects, Pause all clears tails, unload/reload cannot revive old audio",
+      "status": "PASS"
+    },
+    {
+      "name": "cached WASM bank and AudioWorklet produce instrument audio with server disconnected",
+      "status": "PASS"
+    },
+    {
+      "name": "cached MIDI Learn picks up, mutes/unmutes actual instrument PCM and clears on disable with server disconnected (synthetic port)",
+      "status": "PASS"
+    },
+    {
+      "name": "unload releases the deck source",
+      "status": "PASS"
+    },
+    {
+      "name": "failed graph initialization rejects repeated loads before attaching audio; no unprocessed fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "no upload/external request, URL-release errors or app console errors",
+      "status": "PASS"
+    }
+  ],
+  "signalEvidence": [
+    {
+      "crossfade": 0,
+      "levels": [
+        1,
+        1
+      ],
+      "master": 1,
+      "expected": 0.2,
+      "maxError": 4.768371580921027e-8
+    },
+    {
+      "crossfade": 1,
+      "levels": [
+        1,
+        1
+      ],
+      "master": 1,
+      "expected": -0.4,
+      "maxError": 2.384185793236071e-8
+    },
+    {
+      "crossfade": 0.5,
+      "levels": [
+        1,
+        1
+      ],
+      "master": 1,
+      "expected": -0.1,
+      "maxError": 2.3841857904605135e-8
+    },
+    {
+      "crossfade": 0.5,
+      "levels": [
+        0,
+        1
+      ],
+      "master": 1,
+      "expected": -0.2,
+      "maxError": 1.1920928966180355e-8
+    },
+    {
+      "crossfade": 0.5,
+      "levels": [
+        1,
+        1
+      ],
+      "master": 0,
+      "expected": 0,
+      "maxError": 0
+    }
+  ],
+  "fxEvidence": [
+    {
+      "mode": "dry",
+      "spacing": 300,
+      "impulses": [],
+      "peak": 0.20000004768371582,
+      "difference": 4.470348358154297e-8,
+      "stereoError": 5.960464477539063e-8,
+      "latePeak": 0,
+      "rms": 0.0009128711468206667,
+      "echoes": [
+        {
+          "expectedFrame": 62400,
+          "frame": 62400,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.06791171477079797
+        },
+        {
+          "expectedFrame": 76800,
+          "frame": 76800,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.023769100169779286
+        },
+        {
+          "expectedFrame": 91200,
+          "frame": 91200,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.00831918505942275
+        }
+      ]
+    },
+    {
+      "mode": "echo-100",
+      "spacing": 100,
+      "impulses": [
+        [
+          48000,
+          0.10000002384185791
+        ],
+        [
+          52800,
+          0.06790685653686523
+        ],
+        [
+          57600,
+          0.0237656831741333
+        ],
+        [
+          62400,
+          0.008314371109008789
+        ]
+      ],
+      "peak": 0.10000002384185791,
+      "difference": 0.09999997913837433,
+      "stereoError": 5.960464477539063e-8,
+      "latePeak": 0.008314371109008789,
+      "rms": 0.0005635690296253884,
+      "echoes": [
+        {
+          "expectedFrame": 52800,
+          "frame": 52800,
+          "value": 0.06790685653686523,
+          "sum": 0.06791174411773682,
+          "expectedValue": 0.06791171477079797
+        },
+        {
+          "expectedFrame": 57600,
+          "frame": 57600,
+          "value": 0.0237656831741333,
+          "sum": 0.023769140243530273,
+          "expectedValue": 0.023769100169779286
+        },
+        {
+          "expectedFrame": 62400,
+          "frame": 62400,
+          "value": 0.008314371109008789,
+          "sum": 0.00831913948059082,
+          "expectedValue": 0.00831918505942275
+        }
+      ]
+    },
+    {
+      "mode": "echo-300",
+      "spacing": 300,
+      "impulses": [
+        [
+          48000,
+          0.10000002384185791
+        ],
+        [
+          62400,
+          0.06787288188934326
+        ],
+        [
+          62401,
+          0.00003886222839355469
+        ],
+        [
+          76800,
+          0.023741841316223145
+        ],
+        [
+          76801,
+          0.000027179718017578125
+        ],
+        [
+          91200,
+          0.008309721946716309
+        ]
+      ],
+      "peak": 0.10000002384185791,
+      "difference": 0.09999997913837433,
+      "stereoError": 5.960464477539063e-8,
+      "latePeak": 0.06787288188934326,
+      "rms": 0.0005634614322836104,
+      "echoes": [
+        {
+          "expectedFrame": 62400,
+          "frame": 62400,
+          "value": 0.06787288188934326,
+          "sum": 0.06791174411773682,
+          "expectedValue": 0.06791171477079797
+        },
+        {
+          "expectedFrame": 76800,
+          "frame": 76800,
+          "value": 0.023741841316223145,
+          "sum": 0.023769021034240723,
+          "expectedValue": 0.023769100169779286
+        },
+        {
+          "expectedFrame": 91200,
+          "frame": 91200,
+          "value": 0.008309721946716309,
+          "sum": 0.008319258689880371,
+          "expectedValue": 0.00831918505942275
+        }
+      ]
+    },
+    {
+      "mode": "echo-800",
+      "spacing": 800,
+      "impulses": [
+        [
+          48000,
+          0.10000002384185791
+        ],
+        [
+          86400,
+          0.06787288188934326
+        ],
+        [
+          86401,
+          0.00003886222839355469
+        ],
+        [
+          124800,
+          0.023741841316223145
+        ],
+        [
+          124801,
+          0.000027179718017578125
+        ],
+        [
+          163200,
+          0.008281111717224121
+        ],
+        [
+          163201,
+          0.00003802776336669922
+        ]
+      ],
+      "peak": 0.10000002384185791,
+      "difference": 0.09999997913837433,
+      "stereoError": 5.960464477539063e-8,
+      "latePeak": 0.06787288188934326,
+      "rms": 0.0005516402506504595,
+      "echoes": [
+        {
+          "expectedFrame": 86400,
+          "frame": 86400,
+          "value": 0.06787288188934326,
+          "sum": 0.06791174411773682,
+          "expectedValue": 0.06791171477079797
+        },
+        {
+          "expectedFrame": 124800,
+          "frame": 124800,
+          "value": 0.023741841316223145,
+          "sum": 0.023769021034240723,
+          "expectedValue": 0.023769100169779286
+        },
+        {
+          "expectedFrame": 163200,
+          "frame": 163200,
+          "value": 0.008281111717224121,
+          "sum": 0.00831913948059082,
+          "expectedValue": 0.00831918505942275
+        }
+      ]
+    },
+    {
+      "mode": "tone",
+      "spacing": 300,
+      "impulses": [],
+      "peak": 0.002568960189819336,
+      "difference": 0.17577403783798218,
+      "stereoError": 5.960464477539063e-8,
+      "latePeak": 0.0024787187576293945,
+      "rms": 0.00011609950249287308,
+      "echoes": [
+        {
+          "expectedFrame": 62400,
+          "frame": 62398,
+          "value": 0.0000902414321899414,
+          "sum": 0.0003584623336791992,
+          "expectedValue": 0.06791171477079797
+        },
+        {
+          "expectedFrame": 76800,
+          "frame": 76798,
+          "value": 0.0000902414321899414,
+          "sum": 0.0003584623336791992,
+          "expectedValue": 0.023769100169779286
+        },
+        {
+          "expectedFrame": 91200,
+          "frame": 91198,
+          "value": 0.0000902414321899414,
+          "sum": 0.0003584623336791992,
+          "expectedValue": 0.00831918505942275
+        }
+      ]
+    },
+    {
+      "mode": "sweep",
+      "spacing": 300,
+      "impulses": [],
+      "peak": 0.2220202088356018,
+      "difference": 0.29539400339126587,
+      "stereoError": 5.960464477539063e-8,
+      "latePeak": 0.0024787187576293945,
+      "rms": 0.00007271537848817643,
+      "echoes": [
+        {
+          "expectedFrame": 62400,
+          "frame": 62398,
+          "value": 0.0000902414321899414,
+          "sum": 0.0003584623336791992,
+          "expectedValue": 0.06791171477079797
+        },
+        {
+          "expectedFrame": 76800,
+          "frame": 76798,
+          "value": 0.0000902414321899414,
+          "sum": 0.0003584623336791992,
+          "expectedValue": 0.023769100169779286
+        },
+        {
+          "expectedFrame": 91200,
+          "frame": 91198,
+          "value": 0.0000902414321899414,
+          "sum": 0.0003584623336791992,
+          "expectedValue": 0.00831918505942275
+        }
+      ]
+    },
+    {
+      "mode": "mute",
+      "spacing": 300,
+      "impulses": [],
+      "peak": 0.10000002384185791,
+      "difference": 0.09999997913837433,
+      "stereoError": 0,
+      "latePeak": 0,
+      "rms": 0.00045643557341033337,
+      "echoes": [
+        {
+          "expectedFrame": 62400,
+          "frame": 62400,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.06791171477079797
+        },
+        {
+          "expectedFrame": 76800,
+          "frame": 76800,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.023769100169779286
+        },
+        {
+          "expectedFrame": 91200,
+          "frame": 91200,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.00831918505942275
+        }
+      ]
+    },
+    {
+      "mode": "reset",
+      "spacing": 300,
+      "impulses": [],
+      "peak": 0.10000002384185791,
+      "difference": 0.09999997913837433,
+      "stereoError": 0,
+      "latePeak": 0,
+      "rms": 0.00045643557341033337,
+      "echoes": [
+        {
+          "expectedFrame": 62400,
+          "frame": 62400,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.06791171477079797
+        },
+        {
+          "expectedFrame": 76800,
+          "frame": 76800,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.023769100169779286
+        },
+        {
+          "expectedFrame": 91200,
+          "frame": 91200,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.00831918505942275
+        }
+      ]
+    },
+    {
+      "mode": "clear",
+      "spacing": 300,
+      "impulses": [],
+      "peak": 0.10000002384185791,
+      "difference": 0.09999997913837433,
+      "stereoError": 0,
+      "latePeak": 0,
+      "rms": 0.00045643557341033337,
+      "echoes": [
+        {
+          "expectedFrame": 62400,
+          "frame": 62400,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.06791171477079797
+        },
+        {
+          "expectedFrame": 76800,
+          "frame": 76800,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.023769100169779286
+        },
+        {
+          "expectedFrame": 91200,
+          "frame": 91200,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.00831918505942275
+        }
+      ]
+    },
+    {
+      "mode": "clear-stop-fade",
+      "spacing": 300,
+      "impulses": [],
+      "peak": 0.10000002384185791,
+      "difference": 0.09999997913837433,
+      "stereoError": 5.960464477539063e-8,
+      "latePeak": 0,
+      "rms": 0.004120596015430091,
+      "echoes": [
+        {
+          "expectedFrame": 62400,
+          "frame": 62400,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.06791171477079797
+        },
+        {
+          "expectedFrame": 76800,
+          "frame": 76800,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.023769100169779286
+        },
+        {
+          "expectedFrame": 91200,
+          "frame": 91200,
+          "value": 0,
+          "sum": 0,
+          "expectedValue": 0.00831918505942275
+        }
+      ]
+    },
+    {
+      "mode": "transition",
+      "spacing": 800,
+      "impulses": [
+        [
+          48000,
+          0.10000002384185791
+        ],
+        [
+          86400,
+          0.06787288188934326
+        ],
+        [
+          86401,
+          0.00003886222839355469
+        ],
+        [
+          124800,
+          0.023741841316223145
+        ],
+        [
+          124801,
+          0.000027179718017578125
+        ],
+        [
+          163200,
+          0.008281111717224121
+        ],
+        [
+          163201,
+          0.00003802776336669922
+        ]
+      ],
+      "peak": 0.10000002384185791,
+      "difference": 0.09999997913837433,
+      "stereoError": 5.960464477539063e-8,
+      "latePeak": 0.06787288188934326,
+      "rms": 0.0005516402506504595,
+      "echoes": [
+        {
+          "expectedFrame": 86400,
+          "frame": 86400,
+          "value": 0.06787288188934326,
+          "sum": 0.06791174411773682,
+          "expectedValue": 0.06791171477079797
+        },
+        {
+          "expectedFrame": 124800,
+          "frame": 124800,
+          "value": 0.023741841316223145,
+          "sum": 0.023769021034240723,
+          "expectedValue": 0.023769100169779286
+        },
+        {
+          "expectedFrame": 163200,
+          "frame": 163200,
+          "value": 0.008281111717224121,
+          "sum": 0.00831913948059082,
+          "expectedValue": 0.00831918505942275
+        }
+      ]
+    },
+    {
+      "file": "piano-dry.wav",
+      "peak": 0.16261142492294312,
+      "frames": 288000,
+      "rate": 48000,
+      "noteOn": [
+        0,
+        96000
+      ],
+      "noteOff": [
+        24064,
+        120064
+      ]
+    },
+    {
+      "file": "piano-echo.wav",
+      "peak": 0.09769725799560547,
+      "frames": 288000,
+      "rate": 48000,
+      "noteOn": [
+        0,
+        96000
+      ],
+      "noteOff": [
+        24064,
+        120064
+      ]
+    }
+  ],
+  "deckFXEvidence": [
+    [
+      {
+        "mode": "dry",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.20000004768371582,
+        "difference": 4.470348358154297e-8,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0,
+        "rms": 0.0009128711468206667,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "echo-100",
+        "spacing": 100,
+        "impulses": [
+          [
+            48000,
+            0.10000002384185791
+          ],
+          [
+            52800,
+            0.06790685653686523
+          ],
+          [
+            57600,
+            0.0237656831741333
+          ],
+          [
+            62400,
+            0.008314371109008789
+          ]
+        ],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.008314371109008789,
+        "rms": 0.0005635690296253884,
+        "echoes": [
+          {
+            "expectedFrame": 52800,
+            "frame": 52800,
+            "value": 0.06790685653686523,
+            "sum": 0.06791174411773682,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 57600,
+            "frame": 57600,
+            "value": 0.0237656831741333,
+            "sum": 0.023769140243530273,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0.008314371109008789,
+            "sum": 0.00831913948059082,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "echo-300",
+        "spacing": 300,
+        "impulses": [
+          [
+            48000,
+            0.10000002384185791
+          ],
+          [
+            62400,
+            0.06787288188934326
+          ],
+          [
+            62401,
+            0.00003886222839355469
+          ],
+          [
+            76800,
+            0.023741841316223145
+          ],
+          [
+            76801,
+            0.000027179718017578125
+          ],
+          [
+            91200,
+            0.008309721946716309
+          ]
+        ],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.06787288188934326,
+        "rms": 0.0005634614322836104,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0.06787288188934326,
+            "sum": 0.06791174411773682,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0.023741841316223145,
+            "sum": 0.023769021034240723,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0.008309721946716309,
+            "sum": 0.008319258689880371,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "echo-800",
+        "spacing": 800,
+        "impulses": [
+          [
+            48000,
+            0.10000002384185791
+          ],
+          [
+            86400,
+            0.06787288188934326
+          ],
+          [
+            86401,
+            0.00003886222839355469
+          ],
+          [
+            124800,
+            0.023741841316223145
+          ],
+          [
+            124801,
+            0.000027179718017578125
+          ],
+          [
+            163200,
+            0.008281111717224121
+          ],
+          [
+            163201,
+            0.00003802776336669922
+          ]
+        ],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.06787288188934326,
+        "rms": 0.0005516402506504595,
+        "echoes": [
+          {
+            "expectedFrame": 86400,
+            "frame": 86400,
+            "value": 0.06787288188934326,
+            "sum": 0.06791174411773682,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 124800,
+            "frame": 124800,
+            "value": 0.023741841316223145,
+            "sum": 0.023769021034240723,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 163200,
+            "frame": 163200,
+            "value": 0.008281111717224121,
+            "sum": 0.00831913948059082,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "tone",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.002568960189819336,
+        "difference": 0.17577403783798218,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.0024787187576293945,
+        "rms": 0.00011609950249287308,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62398,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76798,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91198,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "sweep",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.2220202088356018,
+        "difference": 0.29539400339126587,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.0024787187576293945,
+        "rms": 0.00007271537848817643,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62398,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76798,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91198,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "mute",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 0,
+        "latePeak": 0,
+        "rms": 0.00045643557341033337,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "reset",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 0,
+        "latePeak": 0,
+        "rms": 0.00045643557341033337,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "clear",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 0,
+        "latePeak": 0,
+        "rms": 0.00045643557341033337,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "clear-stop-fade",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0,
+        "rms": 0.004120596015430091,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "transition",
+        "spacing": 800,
+        "impulses": [
+          [
+            48000,
+            0.10000002384185791
+          ],
+          [
+            86400,
+            0.06787288188934326
+          ],
+          [
+            86401,
+            0.00003886222839355469
+          ],
+          [
+            124800,
+            0.023741841316223145
+          ],
+          [
+            124801,
+            0.000027179718017578125
+          ],
+          [
+            163200,
+            0.008281111717224121
+          ],
+          [
+            163201,
+            0.00003802776336669922
+          ]
+        ],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.06787288188934326,
+        "rms": 0.0005516402506504595,
+        "echoes": [
+          {
+            "expectedFrame": 86400,
+            "frame": 86400,
+            "value": 0.06787288188934326,
+            "sum": 0.06791174411773682,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 124800,
+            "frame": 124800,
+            "value": 0.023741841316223145,
+            "sum": 0.023769021034240723,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 163200,
+            "frame": 163200,
+            "value": 0.008281111717224121,
+            "sum": 0.00831913948059082,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "file": "deck-a-piano-dry.wav",
+        "peak": 0.16261142492294312,
+        "frames": 288000,
+        "rate": 48000,
+        "noteOn": [
+          0,
+          96000
+        ],
+        "noteOff": [
+          24064,
+          120064
+        ]
+      },
+      {
+        "file": "deck-a-piano-echo.wav",
+        "peak": 0.09769725799560547,
+        "frames": 288000,
+        "rate": 48000,
+        "noteOn": [
+          0,
+          96000
+        ],
+        "noteOff": [
+          24064,
+          120064
+        ]
+      }
+    ],
+    [
+      {
+        "mode": "dry",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.20000004768371582,
+        "difference": 4.470348358154297e-8,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0,
+        "rms": 0.0009128711468206667,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "echo-100",
+        "spacing": 100,
+        "impulses": [
+          [
+            48000,
+            0.10000002384185791
+          ],
+          [
+            52800,
+            0.06790685653686523
+          ],
+          [
+            57600,
+            0.0237656831741333
+          ],
+          [
+            62400,
+            0.008314371109008789
+          ]
+        ],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.008314371109008789,
+        "rms": 0.0005635690296253884,
+        "echoes": [
+          {
+            "expectedFrame": 52800,
+            "frame": 52800,
+            "value": 0.06790685653686523,
+            "sum": 0.06791174411773682,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 57600,
+            "frame": 57600,
+            "value": 0.0237656831741333,
+            "sum": 0.023769140243530273,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0.008314371109008789,
+            "sum": 0.00831913948059082,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "echo-300",
+        "spacing": 300,
+        "impulses": [
+          [
+            48000,
+            0.10000002384185791
+          ],
+          [
+            62400,
+            0.06787288188934326
+          ],
+          [
+            62401,
+            0.00003886222839355469
+          ],
+          [
+            76800,
+            0.023741841316223145
+          ],
+          [
+            76801,
+            0.000027179718017578125
+          ],
+          [
+            91200,
+            0.008309721946716309
+          ]
+        ],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.06787288188934326,
+        "rms": 0.0005634614322836104,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0.06787288188934326,
+            "sum": 0.06791174411773682,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0.023741841316223145,
+            "sum": 0.023769021034240723,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0.008309721946716309,
+            "sum": 0.008319258689880371,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "echo-800",
+        "spacing": 800,
+        "impulses": [
+          [
+            48000,
+            0.10000002384185791
+          ],
+          [
+            86400,
+            0.06787288188934326
+          ],
+          [
+            86401,
+            0.00003886222839355469
+          ],
+          [
+            124800,
+            0.023741841316223145
+          ],
+          [
+            124801,
+            0.000027179718017578125
+          ],
+          [
+            163200,
+            0.008281111717224121
+          ],
+          [
+            163201,
+            0.00003802776336669922
+          ]
+        ],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.06787288188934326,
+        "rms": 0.0005516402506504595,
+        "echoes": [
+          {
+            "expectedFrame": 86400,
+            "frame": 86400,
+            "value": 0.06787288188934326,
+            "sum": 0.06791174411773682,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 124800,
+            "frame": 124800,
+            "value": 0.023741841316223145,
+            "sum": 0.023769021034240723,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 163200,
+            "frame": 163200,
+            "value": 0.008281111717224121,
+            "sum": 0.00831913948059082,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "tone",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.002568960189819336,
+        "difference": 0.17577403783798218,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.0024787187576293945,
+        "rms": 0.00011609950249287308,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62398,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76798,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91198,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "sweep",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.2220202088356018,
+        "difference": 0.29539400339126587,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.0024787187576293945,
+        "rms": 0.00007271537848817643,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62398,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76798,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91198,
+            "value": 0.0000902414321899414,
+            "sum": 0.0003584623336791992,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "mute",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 0,
+        "latePeak": 0,
+        "rms": 0.00045643557341033337,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "reset",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 0,
+        "latePeak": 0,
+        "rms": 0.00045643557341033337,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "clear",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 0,
+        "latePeak": 0,
+        "rms": 0.00045643557341033337,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "clear-stop-fade",
+        "spacing": 300,
+        "impulses": [],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0,
+        "rms": 0.004120596015430091,
+        "echoes": [
+          {
+            "expectedFrame": 62400,
+            "frame": 62400,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 76800,
+            "frame": 76800,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 91200,
+            "frame": 91200,
+            "value": 0,
+            "sum": 0,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "mode": "transition",
+        "spacing": 800,
+        "impulses": [
+          [
+            48000,
+            0.10000002384185791
+          ],
+          [
+            86400,
+            0.06787288188934326
+          ],
+          [
+            86401,
+            0.00003886222839355469
+          ],
+          [
+            124800,
+            0.023741841316223145
+          ],
+          [
+            124801,
+            0.000027179718017578125
+          ],
+          [
+            163200,
+            0.008281111717224121
+          ],
+          [
+            163201,
+            0.00003802776336669922
+          ]
+        ],
+        "peak": 0.10000002384185791,
+        "difference": 0.09999997913837433,
+        "stereoError": 5.960464477539063e-8,
+        "latePeak": 0.06787288188934326,
+        "rms": 0.0005516402506504595,
+        "echoes": [
+          {
+            "expectedFrame": 86400,
+            "frame": 86400,
+            "value": 0.06787288188934326,
+            "sum": 0.06791174411773682,
+            "expectedValue": 0.06791171477079797
+          },
+          {
+            "expectedFrame": 124800,
+            "frame": 124800,
+            "value": 0.023741841316223145,
+            "sum": 0.023769021034240723,
+            "expectedValue": 0.023769100169779286
+          },
+          {
+            "expectedFrame": 163200,
+            "frame": 163200,
+            "value": 0.008281111717224121,
+            "sum": 0.00831913948059082,
+            "expectedValue": 0.00831918505942275
+          }
+        ]
+      },
+      {
+        "file": "deck-b-piano-dry.wav",
+        "peak": 0.16261142492294312,
+        "frames": 288000,
+        "rate": 48000,
+        "noteOn": [
+          0,
+          96000
+        ],
+        "noteOff": [
+          24064,
+          120064
+        ]
+      },
+      {
+        "file": "deck-b-piano-echo.wav",
+        "peak": 0.09769725799560547,
+        "frames": 288000,
+        "rate": 48000,
+        "noteOn": [
+          0,
+          96000
+        ],
+        "noteOff": [
+          24064,
+          120064
+        ]
+      }
+    ]
+  ],
+  "audioContext": {
+    "sampleRate": 48000,
+    "baseLatency": 0.0026666666666666666,
+    "outputLatency": 0.0018333333333333333,
+    "note": "Browser-reported values, not hardware latency measurements"
+  },
+  "actualMedia": {
+    "aPeak": 0.1499999761581421,
+    "channelSilent": 0,
+    "masterSilent": 0
+  },
+  "errors": [],
+  "warnings": [
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+  ],
+  "humanListening": "NOT RUN",
+  "physicalDeviceLatency": "NOT RUN",
+  "offlineVenueReliability": "NOT RUN"
+}

@@ -69,23 +69,23 @@ export async function verifyInstrumentFX(page, output, deck = null) {
   for (const mode of ['dry', 'echo', ...(deck === 'c' ? ['eighth', 'dotted', 'triplet'] : [])]) {
     const pcm = await page.evaluate(async ({ mode, deck }) => {
       const { createMixer, updateToneEcho, beatEchoDelay } = await import('./mixer.js');
-      const module = await WebAssembly.compile(await (await fetch('./engine/djayvo_live.wasm')).arrayBuffer());
+      const module = await WebAssembly.compile(await (await fetch('./engine/jamloom_live.wasm')).arrayBuffer());
       const { exports: core } = await WebAssembly.instantiate(module);
-      core._initialize(); core.djayvo_live_init(48000);
+      core._initialize(); core.jamloom_live_init(48000);
       const context = new OfflineAudioContext(2, 48000 * 6, 48000), mixer = createMixer(context);
       const channel = deck === null ? mixer.rack : deck === 'c' ? mixer.performance : mixer.channels[deck];
       const fx = deck === null ? mixer.rackFX : deck === 'c' ? mixer.performanceFX : mixer.strips[deck].fx;
       channel.gain.value = .65;
       updateToneEcho(context, fx, 100, mode === 'dry' ? 0 : .4, ['dry', 'echo'].includes(mode) ? 300 : beatEchoDelay(127190, mode));
       const buffer = context.createBuffer(2, 48000 * 6, 48000);
-      const pointer = core.djayvo_live_buffer();
+      const pointer = core.jamloom_live_buffer();
       for (let frame = 0; frame < buffer.length; frame += 128) {
-        if (frame === 0) [60, 64, 67].forEach((pitch, i) => core.djayvo_live_note(i + 1, 0, pitch, 100));
-        if (frame === 24064) [1, 2, 3].forEach(id => core.djayvo_live_off(id));
-        if (frame === 96000) [62, 65, 69].forEach((pitch, i) => core.djayvo_live_note(i + 4, 0, pitch, 90));
-        if (frame === 120064) [4, 5, 6].forEach(id => core.djayvo_live_off(id));
+        if (frame === 0) [60, 64, 67].forEach((pitch, i) => core.jamloom_live_note(i + 1, 0, pitch, 100));
+        if (frame === 24064) [1, 2, 3].forEach(id => core.jamloom_live_off(id));
+        if (frame === 96000) [62, 65, 69].forEach((pitch, i) => core.jamloom_live_note(i + 4, 0, pitch, 90));
+        if (frame === 120064) [4, 5, 6].forEach(id => core.jamloom_live_off(id));
         const count = Math.min(128, buffer.length - frame);
-        if (!core.djayvo_live_render(count)) throw new Error('Live render failed');
+        if (!core.jamloom_live_render(count)) throw new Error('Live render failed');
         const samples = new Float32Array(core.memory.buffer, pointer, count * 2);
         for (let channel = 0; channel < 2; channel++) for (let i = 0; i < count; i++) buffer.getChannelData(channel)[frame + i] = samples[i * 2 + channel];
       }

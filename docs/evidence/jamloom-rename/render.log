@@ -1,0 +1,5 @@
+PASS: renders/jamloom-rename/after/remix.hiphop.wav
+PASS: renders/jamloom-rename/after/remix.reggae.wav
+PASS: renders/jamloom-rename/after/remix.experimental.wav
+PASS: complete export renders/jamloom-rename/after/remix.complete.json
+Listening/recognizability: NOT RUN

@@ -1,4 +1,8 @@
-# Djayvo website and accounts
+# Jamloom website and accounts
+
+[Rename compatibility](../../docs/jamloom-rename.md): existing `DJAYVO_*`
+environment settings still work; new configuration should use `JAMLOOM_*`.
+Existing databases and storage paths do not need renaming.
 
 Next.js shell around the existing browser studio, with Better Auth email/password
 accounts and a PostgreSQL private-library foundation. Neon **Free** and Resend are
@@ -30,7 +34,7 @@ For an isolated local account database, with PostgreSQL tools already installed:
 
 ```sh
 node scripts/local-setup.mjs
-DJAYVO_MIGRATION_TARGET=127.0.0.1:55439/djayvo_local npm run db:migrate -- --apply
+JAMLOOM_MIGRATION_TARGET=127.0.0.1:55439/jamloom_local npm run db:migrate -- --apply
 npm run dev
 ```
 
@@ -43,7 +47,7 @@ Open **http://localhost:3000**.
 For an optimized local run, use `npm run build` then `npm start`.
 
 Local verification/reset messages are JSON files in the directory named by
-`DJAYVO_LOCAL_OUTBOX` in `.env.local`. Open the link from your own test message.
+`JAMLOOM_LOCAL_OUTBOX` in `.env.local`. Open the link from your own test message.
 This is development-only, not inbox delivery. Outbox content must never be served
 or committed. Cluster paths are in `build-site/local-postgres.json`; stop/start
 with `pg_ctl -D <data> stop` / `pg_ctl -D <data> -l <run>/postgres.log start`.
@@ -57,7 +61,7 @@ using 4173 to download older mixes. Neither sign-in nor sign-out deletes local m
 ### Private audio: local development
 
 Apply reviewed migration `0003_private_audio.sql` using the same explicit local
-target command above. Set `DJAYVO_LOCAL_AUDIO_DIR` to an absolute private directory
+target command above. Set `JAMLOOM_LOCAL_AUDIO_DIR` to an absolute private directory
 outside `public/`, such as `<repository>/build-site/private-audio`. This checkout
 retains that directory, but disables this adapter while using Neon. Restart the
 app after changing configuration.
@@ -71,7 +75,7 @@ online. Saving never includes the original 2–5 second recording. Only metadata
 immediately and queues file cleanup. Run this bounded job regularly in development:
 
 ```sh
-DJAYVO_CLEANUP_TARGET=127.0.0.1:55439/djayvo_local npm run audio:cleanup -- --apply
+JAMLOOM_CLEANUP_TARGET=127.0.0.1:55439/jamloom_local npm run audio:cleanup -- --apply
 ```
 
 Without the exact target and `--apply`, it only prints the target. Cleanup processes
@@ -83,8 +87,8 @@ verification and production deletion recovery remain release prerequisites.
 
 Migration `0004_catalogue.sql` adds separate submissions, revision-bound reviews,
 reports and private playlists. The catalogue is available locally; hosted use
-requires explicit `DJAYVO_CATALOGUE_ENABLED=true` after provider and rights checks.
-Set server-only `DJAYVO_REVIEWER_EMAILS` to verified reviewer emails only when
+requires explicit `JAMLOOM_CATALOGUE_ENABLED=true` after provider and rights checks.
+Set server-only `JAMLOOM_REVIEWER_EMAILS` to verified reviewer emails only when
 assigning that role. It is empty by default. Reviewers cannot approve their own
 mixes. No real reviewer is assigned in this checkout.
 
@@ -109,10 +113,10 @@ commercial reuse or model-training permission. Previously downloaded copies and
 issued short-lived links cannot be recalled.
 
 Local browser validation uses synthetic reviewer accounts only. On an isolated
-local test server, temporarily set `DJAYVO_REVIEWER_EMAILS` to
+local test server, temporarily set `JAMLOOM_REVIEWER_EMAILS` to
 `catalogue-review-chromium@example.com,catalogue-review-webkit@example.com`, then
 run `npm run test:catalogue-browser` and
-`DJAYVO_BROWSER=webkit npm run test:catalogue-browser` sequentially. Remove that
+`JAMLOOM_BROWSER=webkit npm run test:catalogue-browser` sequentially. Remove that
 temporary allowlist and restart afterward. Never use those accounts in a shared
 or hosted environment. Evidence: [reviewed catalogue](../../docs/reviewed-catalogue.md).
 
@@ -120,7 +124,7 @@ or hosted environment. Evidence: [reviewed catalogue](../../docs/reviewed-catalo
 
 The server-only AWS SDK adapter is pinned in the lockfile. To prepare a separate
 private test bucket later, use `R2_ACCOUNT_ID`, `R2_BUCKET`, `R2_ACCESS_KEY_ID`,
-`R2_SECRET_ACCESS_KEY` and explicit `DJAYVO_R2_ENABLED=true`; unset the local audio
+`R2_SECRET_ACCESS_KEY` and explicit `JAMLOOM_R2_ENABLED=true`; unset the local audio
 directory. Never expose these credentials through `NEXT_PUBLIC_*`. Keep bucket
 public access off; credentials must be scoped to the intended bucket/environment.
 Configure exact app-origin CORS for PUT/GET/HEAD, the `Content-Type` request header,
@@ -153,7 +157,7 @@ Neon Free plan, with no paid upgrade or add-on without owner approval.
 - `BETTER_AUTH_URL`: exact HTTPS app origin, without paths or wildcard preview hosts.
 - `BETTER_AUTH_SECRET`: unique cryptographically random secret of at least 32 characters.
 - `RESEND_API_KEY`, `EMAIL_FROM`: server-side sending key and verified sender.
-- Unset `DJAYVO_LOCAL_OUTBOX` on hosted environments. Configuration rejects it there.
+- Unset `JAMLOOM_LOCAL_OUTBOX` on hosted environments. Configuration rejects it there.
 
 The Resend adapter uses the HTTPS API directly, with a timeout and idempotency
 key. Next.js `after` retains background email work after the response; failures
@@ -164,7 +168,7 @@ must be tested before enabling public registration.
 
 Do not run migrations automatically during a Next.js/Vercel build. First review
 the committed SQL; run `npm run db:migrate` to display the non-secret target.
-Then provide that exact `host[:port]/database` in `DJAYVO_MIGRATION_TARGET` and
+Then provide that exact `host[:port]/database` in `JAMLOOM_MIGRATION_TARGET` and
 pass `--apply` against the intended isolated environment. Migrations are hashed,
 serialized by a transaction lock and rolled back together on failure. An applied
 file cannot be silently edited. `0001_auth.sql` was generated using Better Auth
@@ -200,11 +204,11 @@ npm run audit:bundle
 npm run db:usage
 # With the app running at the configured localhost:3000 origin:
 npm run test:browser
-DJAYVO_BROWSER=webkit npm run test:browser
+JAMLOOM_BROWSER=webkit npm run test:browser
 ```
 
 Integration tests require the local outbox and loopback Postgres. They create a
-random `djayvo_test_*` database, test real Better Auth and SQL, then drop only that
+random `jamloom_test_*` database, test real Better Auth and SQL, then drop only that
 database. Browser tests use disposable contexts and synthetic account fixtures,
 delete their account records afterward, and import the supplied synthetic speech
 fixture without regenerating it. They never send real email. Do not target a
@@ -236,7 +240,7 @@ to retry; counts contain no tokens or email addresses.
 
 ```sh
 npm run auth:cleanup  # target preview; no deletion
-DJAYVO_CLEANUP_TARGET=127.0.0.1:55439/djayvo_local npm run auth:cleanup -- --apply
+JAMLOOM_CLEANUP_TARGET=127.0.0.1:55439/jamloom_local npm run auth:cleanup -- --apply
 npm run db:usage
 ```
 

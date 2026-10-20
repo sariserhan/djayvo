@@ -208,7 +208,7 @@ for (const deck of decks) {
       if (!saved || !await verifySession(saved)) throw new Error('Saved mix is missing or damaged. Refresh the library.');
       const file = saved.files.find(file => file.name === name && file.name.endsWith('.wav'));
       if (!file) throw new Error('Saved audio is missing. Refresh the library.');
-      return new File([file.blob], `djayvo-${saved.seed}-${name}`, { type: 'audio/wav' });
+      return new File([file.blob], `jamloom-${saved.seed}-${name}`, { type: 'audio/wav' });
     });
   };
   for (const name of ['tone', 'echo', 'delay']) $(`${name}-${id}`).oninput = () => deckEffects(deck);

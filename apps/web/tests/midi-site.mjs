@@ -25,7 +25,7 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
   });
   try {
     await page.goto('http://localhost:3000/studio/dj.html');
-    assert.equal(await page.title(), 'Djayvo — DJ workspace');
+    assert.equal(await page.title(), 'Jamloom — DJ workspace');
     await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
     await page.locator('#load-instruments').click();
     await page.waitForFunction(() => document.getElementById('instrument-status').textContent.startsWith('Ready'));
@@ -48,7 +48,7 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
       await page.setViewportSize({ width, height }); await page.locator('.midi-controls').scrollIntoViewIfNeeded();
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
       screenshot = true;
-      try { await page.screenshot({ path: `/tmp/djayvo-midi-${name}-${label}.png` }); }
+      try { await page.screenshot({ path: `/tmp/jamloom-midi-${name}-${label}.png` }); }
       finally { screenshot = false; }
     }
     await page.locator('#midi-enable').click();
@@ -60,5 +60,5 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
       checks: ['page identity/content', 'actual instrument PCM from MIDI event', 'learn consumes CC; pickup master mute/unmute changes real PCM', 'disable clears mappings', 'disable releases audio', 'desktop/mobile screenshots and no overflow', 'no page/console errors'], warnings });
   } finally { await browser.close(); }
 }
-await fs.writeFile('/tmp/djayvo-midi-site.json', JSON.stringify(results, null, 2));
+await fs.writeFile('/tmp/jamloom-midi-site.json', JSON.stringify(results, null, 2));
 console.log('PASS: integrated MIDI controls, real worklet PCM and responsive screenshots in both browsers (synthetic ports)');

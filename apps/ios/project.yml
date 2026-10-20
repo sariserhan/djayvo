@@ -1,4 +1,4 @@
-name: Djayvo
+name: Jamloom
 options:
   minimumXcodeGenVersion: 2.46.0
   deploymentTarget:
@@ -16,11 +16,11 @@ settings:
     CURRENT_PROJECT_VERSION: 1
     ENABLE_USER_SCRIPT_SANDBOXING: NO
 targets:
-  Djayvo:
+  Jamloom:
     type: application
     platform: iOS
     sources:
-      - path: Djayvo
+      - path: Jamloom
       - path: ../../assets/licenses
         type: folder
         buildPhase: resources
@@ -32,8 +32,8 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.djayvo.app
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        SWIFT_OBJC_BRIDGING_HEADER: Djayvo/Bridge.h
-        INFOPLIST_FILE: Djayvo/Info.plist
+        SWIFT_OBJC_BRIDGING_HEADER: Jamloom/Bridge.h
+        INFOPLIST_FILE: Jamloom/Info.plist
         OTHER_LDFLAGS: ['$(inherited)', '-lc++']
     postBuildScripts:
       - name: Debug synthetic fixture
@@ -45,33 +45,33 @@ targets:
             cp "$fixture" "$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/synthetic-speech.wav"
           fi
         basedOnDependencyAnalysis: false
-  DjayvoTests:
+  JamloomTests:
     type: bundle.unit-test
     platform: iOS
-    sources: [DjayvoTests]
+    sources: [JamloomTests]
     dependencies:
-      - target: Djayvo
+      - target: Jamloom
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.djayvo.app.tests
         GENERATE_INFOPLIST_FILE: YES
-  DjayvoUITests:
+  JamloomUITests:
     type: bundle.ui-testing
     platform: iOS
-    sources: [DjayvoUITests]
+    sources: [JamloomUITests]
     dependencies:
-      - target: Djayvo
+      - target: Jamloom
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.djayvo.app.uitests
         GENERATE_INFOPLIST_FILE: YES
 schemes:
-  Djayvo:
+  Jamloom:
     build:
       targets:
-        Djayvo: all
+        Jamloom: all
     test:
       targets:
-        - DjayvoTests
-        - DjayvoUITests
+        - JamloomTests
+        - JamloomUITests
       gatherCoverageData: true

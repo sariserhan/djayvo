@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")/.."
-EMSDK_PATH="${DJAYVO_EMSDK:-$PWD/build-web-tools/emsdk}"
+EMSDK_PATH="${JAMLOOM_EMSDK:-${DJAYVO_EMSDK:-$PWD/build-web-tools/emsdk}}"
 if [ -x "$PWD/.venv-build/bin/cmake" ]; then PATH="$PWD/.venv-build/bin:$PATH"; export PATH; fi
 PATH="$PWD/build-web-tools/python-env/bin:$PWD/build-web-tools/cmake-env/bin:$PATH"; export PATH
 if ! python3 -c 'import sys; sys.exit(sys.version_info < (3, 10))'; then
@@ -28,14 +28,16 @@ if [ ! -f "$EMSDK_PATH/.emscripten" ]; then
 fi
 . "$EMSDK_PATH/emsdk_env.sh"
 emcc --version | head -n 1 | grep -F ' 6.0.1 ' >/dev/null || {
-  echo 'Djayvo requires Emscripten 6.0.1; activate it in DJAYVO_EMSDK.' >&2
+  echo 'Jamloom requires Emscripten 6.0.1; activate it in JAMLOOM_EMSDK.' >&2
   exit 1
 }
 emcmake cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
-cmake --build build-web --target djayvo_web djayvo_live -j 4
+cmake --build build-web --target jamloom_web jamloom_live -j 4
+# Remove only obsolete generated engines when upgrading an existing checkout.
+rm -f dist/web/engine/djayvo_web.mjs dist/web/engine/djayvo_web.wasm dist/web/engine/djayvo_live.wasm
 mkdir -p dist/web/engine dist/web/licenses
 cp apps/web/*.html apps/web/*.css apps/web/*.js apps/web/manifest.webmanifest apps/web/icon.svg apps/web/icon-180.png apps/web/icon-192.png apps/web/icon-512.png dist/web/
-cp build-web/djayvo_web.mjs build-web/djayvo_web.wasm build-web/djayvo_live.wasm dist/web/engine/
+cp build-web/jamloom_web.mjs build-web/jamloom_web.wasm build-web/jamloom_live.wasm dist/web/engine/
 cp assets/licenses/*.txt dist/web/licenses/
 cp "$EMSDK_PATH/upstream/emscripten/LICENSE" dist/web/licenses/EMSCRIPTEN-LICENSE.txt
 for notice in libc/musl/COPYRIGHT libcxx/LICENSE.TXT libcxxabi/LICENSE.TXT libunwind/LICENSE.TXT compiler-rt/LICENSE.TXT; do

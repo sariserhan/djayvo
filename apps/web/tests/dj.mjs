@@ -8,8 +8,8 @@ import { verifyInstrumentFX } from './instrument-fx.mjs';
 import { fakeMidi, verifyMidi } from './midi-browser.mjs';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
-const kind = process.env.DJAYVO_BROWSER || 'chromium';
-if (!['chromium', 'webkit'].includes(kind)) throw new Error(`Unsupported DJAYVO_BROWSER: ${kind}`);
+const kind = (process.env.JAMLOOM_BROWSER ?? process.env.DJAYVO_BROWSER) || 'chromium';
+if (!['chromium', 'webkit'].includes(kind)) throw new Error(`Unsupported JAMLOOM_BROWSER: ${kind}`);
 const output = await fs.mkdtemp(path.join(root, `renders/dj-${kind}-`));
 console.log('Artifacts:', output);
 const publicRoot = path.join(root, 'dist/web');
@@ -109,7 +109,7 @@ const a = tone(220), b = tone(440);
 let signalEvidence, fxEvidence, deckFXEvidence;
 try {
   await page.goto(`${origin}/dj.html`);
-  assert.match(await page.title(), /Djayvo — DJ workspace/);
+  assert.match(await page.title(), /Jamloom — DJ workspace/);
   await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
   assert.equal(await page.locator('#file-a').isDisabled(), true);
   assert.equal(await page.locator('#play-a').isDisabled(), true);

@@ -8,8 +8,8 @@ test('verified cache survives reinstall and serves fragment navigation without c
   const scope = 'https://example.test/studio/';
   const key = `djayvo-studio:${scope}:test-version`;
   const source = (await readFile(new URL('../../../scripts/service-worker.js', import.meta.url), 'utf8'))
-    .replace('__DJAYVO_ASSETS__', JSON.stringify({ 'index.html': { bytes: 6, sha256: 'unused-for-existing-cache' } }))
-    .replace('__DJAYVO_VERSION__', 'test-version');
+    .replace('__JAMLOOM_ASSETS__', JSON.stringify({ 'index.html': { bytes: 6, sha256: 'unused-for-existing-cache' } }))
+    .replace('__JAMLOOM_VERSION__', 'test-version');
   let requests = 0, deletions = 0;
   vm.runInNewContext(source, {
     self: { registration: { scope }, addEventListener: (name, handler) => handlers.set(name, handler) },

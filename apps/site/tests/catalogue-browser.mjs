@@ -8,8 +8,8 @@ import { audioFixture,input } from './audio-fixture.ts';
 
 process.loadEnvFile('.env.local');
 const base=process.env.BETTER_AUTH_URL,dbURL=new URL(process.env.DATABASE_URL);
-assert.equal(new URL(base).hostname,'localhost');assert.equal(dbURL.hostname,'127.0.0.1');assert.ok(process.env.DJAYVO_LOCAL_OUTBOX);assert.ok(process.env.DJAYVO_LOCAL_AUDIO_DIR);
-const kind=process.env.DJAYVO_BROWSER||'chromium';assert.ok(['chromium','webkit'].includes(kind));
+assert.equal(new URL(base).hostname,'localhost');assert.equal(dbURL.hostname,'127.0.0.1');assert.ok((process.env.JAMLOOM_LOCAL_OUTBOX ?? process.env.DJAYVO_LOCAL_OUTBOX));assert.ok((process.env.JAMLOOM_LOCAL_AUDIO_DIR ?? process.env.DJAYVO_LOCAL_AUDIO_DIR));
+const kind=(process.env.JAMLOOM_BROWSER ?? process.env.DJAYVO_BROWSER)||'chromium';assert.ok(['chromium','webkit'].includes(kind));
 const output=await mkdtemp(new URL('../../../renders/catalogue-browser-',import.meta.url).pathname);console.log('Evidence: '+output);
 const pool=new Pool({connectionString:dbURL.toString()}),browser=await (kind==='webkit'?webkit:chromium).launch();
 const contexts=await Promise.all(Array.from({length:4},(_,i)=>browser.newContext({viewport:{width:1440,height:1000},extraHTTPHeaders:{'x-real-ip':`192.0.2.${(kind==='webkit'?130:120)+i}`}})));
@@ -24,7 +24,7 @@ async function shot(page,name){capturing=true;try{await page.screenshot({path:jo
 async function post(context,path,body={}){return context.request.post(base+path,{data:body,headers:{origin:base}});}
 async function signup(context,email){
   assert.equal((await pool.query('SELECT count(*)::int n FROM "user" WHERE email=$1',[email])).rows[0].n,0,'Do not overwrite an existing account fixture.');
-  const password='Djayvo-catalogue-local-test-729';
+  const password='Jamloom-catalogue-local-test-729';
   const response=await post(context,'/api/auth/sign-up/email',{email,name:'Synthetic local test',password});assert.equal(response.status(),200);
   const user=(await response.json()).user;users.push(user.id);
   // Role fixtures only; real email verification is covered by the account browser suite.
@@ -61,7 +61,7 @@ try{
   const publicTrack=await (await anonymous.request.get(base+`/api/catalogue/${track.id}`)).json();assert.deepEqual(Object.keys(publicTrack).sort(),['artist','description','duration_ms','id','mood','strategy','title']);
   assert.deepEqual(await (await anonymous.request.get(base+`/api/catalogue/${track.id}/audio`)).body(),wav);
   check('authorized distinct reviewer confirmation publishes only explicit public fields and identical audio');
-  await ap.goto(base+'/catalogue');assert.match(await ap.title(),/Djayvo/);await ap.locator('.music-player audio').evaluate(a=>a.muted=true);
+  await ap.goto(base+'/catalogue');assert.match(await ap.title(),/Jamloom/);await ap.locator('.music-player audio').evaluate(a=>a.muted=true);
   await ap.getByRole('button',{name:'Play Local catalogue test',exact:true}).click();await ap.waitForFunction(()=>document.querySelector('.music-player audio').currentTime>.1);
   await ap.locator('.music-player audio').evaluate(a=>a.dataset.continuity='retained');
   await ap.getByRole('link',{name:'Local catalogue test',exact:true}).click();await ap.waitForURL(`**/catalogue/${track.id}`);
@@ -130,6 +130,6 @@ try{
   await writeFile(join(output,'report.json'),JSON.stringify({status:'PASS',browser:kind,browser_version:browser.version(),node:process.version,checks,errors,consoleErrors,captureWarnings,expectedValidationErrors,public_audio_byte_difference:0,human_review:'NOT RUN - synthetic workflow decisions only',live_providers:'NOT RUN'},null,2));
 }catch(error){for(let i=0;i<pages.length;i++)await shot(pages[i],`failure-${i}`).catch(()=>{});throw error;}
 finally{
-  if(users.length){const assets=(await pool.query('SELECT track_id FROM track_assets WHERE owner_id=ANY($1::text[])',[users])).rows;for(const {track_id} of assets)for(const prefix of ['uploads','masters'])await rm(join(process.env.DJAYVO_LOCAL_AUDIO_DIR,prefix,track_id+'.wav'),{force:true});await pool.query('DELETE FROM track_assets WHERE owner_id=ANY($1::text[])',[users]);await pool.query('DELETE FROM "user" WHERE id=ANY($1::text[])',[users]);}
+  if(users.length){const assets=(await pool.query('SELECT track_id FROM track_assets WHERE owner_id=ANY($1::text[])',[users])).rows;for(const {track_id} of assets)for(const prefix of ['uploads','masters'])await rm(join((process.env.JAMLOOM_LOCAL_AUDIO_DIR ?? process.env.DJAYVO_LOCAL_AUDIO_DIR),prefix,track_id+'.wav'),{force:true});await pool.query('DELETE FROM track_assets WHERE owner_id=ANY($1::text[])',[users]);await pool.query('DELETE FROM "user" WHERE id=ANY($1::text[])',[users]);}
   await pool.end();await Promise.all(contexts.map(c=>c.close()));await browser.close();
 }

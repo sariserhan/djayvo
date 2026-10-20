@@ -1,4 +1,4 @@
-#include "djayvo/audio.h"
+#include "jamloom/audio.h"
 #include <charconv>
 #include <filesystem>
 #include <iostream>
@@ -22,8 +22,8 @@ int main(int argc, char** argv) {
         for (int i = 1; i < argc; ++i) {
             const std::string arg = argv[i];
             if (arg == "--help") {
-                std::cout << "Djayvo M0a offline renderer\n"
-                          << "Usage: djayvo_render [--output PREFIX] [--seed UINT32] "
+                std::cout << "Jamloom M0a offline renderer\n"
+                          << "Usage: jamloom_render [--output PREFIX] [--seed UINT32] "
                           << "[--sample-rate 8000..192000] [--block-size 1..65536]\n"
                           << "Writes PREFIX.wav, PREFIX.score.json and PREFIX.report.json.\n";
                 return 0;
@@ -37,13 +37,13 @@ int main(int argc, char** argv) {
             else throw std::invalid_argument("unknown option: " + arg);
         }
         if (output.empty()) throw std::invalid_argument("output prefix cannot be empty");
-        auto plan = djayvo::make_demo(seed);
+        auto plan = jamloom::make_demo(seed);
         plan.sample_rate = rate;
-        const auto schedule = djayvo::compile(plan);
-        djayvo::Renderer renderer(schedule, block);
+        const auto schedule = jamloom::compile(plan);
+        jamloom::Renderer renderer(schedule, block);
         const auto parent = std::filesystem::path(output).parent_path();
         if (!parent.empty()) std::filesystem::create_directories(parent);
-        djayvo::WavWriter wav(output + ".wav", rate, schedule.total_frames);
+        jamloom::WavWriter wav(output + ".wav", rate, schedule.total_frames);
         std::vector<float> buffer(static_cast<std::size_t>(block) * 2);
         while (!renderer.finished()) {
             const auto frames = renderer.process(buffer.data(), block);
@@ -53,8 +53,8 @@ int main(int argc, char** argv) {
         wav.close();
         if (renderer.voice_overflows() || renderer.stats().nonfinite_samples)
             throw std::runtime_error("render rejected: voice overflow or nonfinite audio");
-        djayvo::write_score(plan, output + ".score.json");
-        djayvo::write_report(renderer.stats(), plan, schedule, output + ".report.json");
+        jamloom::write_score(plan, output + ".score.json");
+        jamloom::write_report(renderer.stats(), plan, schedule, output + ".report.json");
         std::cout << "PASS: " << output << ".wav (" << schedule.total_frames << " frames, "
                   << rate << " Hz, stereo PCM16)\nScore: " << output << ".score.json\nReport: "
                   << output << ".report.json\nListening validation: NOT RUN\n";

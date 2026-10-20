@@ -1,3 +1,4 @@
+// Keep the existing database identity so saved recordings survive the rename.
 const DB_NAME = 'djayvo-web-v1';
 export const MAX_SESSIONS = 10;
 
@@ -6,7 +7,7 @@ function open() {
     const request = indexedDB.open(DB_NAME, 1);
     request.onupgradeneeded = () => request.result.createObjectStore('mixes', { keyPath: 'id' });
     request.onerror = () => reject(new Error('Browser storage is unavailable. Download mixes to keep them.'));
-    request.onblocked = () => reject(new Error('Close other Djayvo tabs, then reload.'));
+    request.onblocked = () => reject(new Error('Close other Jamloom tabs, then reload.'));
     request.onsuccess = () => resolve(request.result);
   });
 }

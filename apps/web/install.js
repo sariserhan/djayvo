@@ -8,9 +8,9 @@ let installed = false;
 function refresh() {
   const standalone = display.matches || navigator.standalone === true;
   button.hidden = standalone || installed || !pending;
-  status.textContent = standalone ? 'Djayvo is open as an app.'
-    : installed ? 'Djayvo was installed. Open it from your device’s apps.'
-    : pending ? 'Add Djayvo to your device for quick access.' : guidance;
+  status.textContent = standalone ? 'Jamloom is open as an app.'
+    : installed ? 'Jamloom was installed. Open it from your device’s apps.'
+    : pending ? 'Add Jamloom to your device for quick access.' : guidance;
 }
 
 window.addEventListener('beforeinstallprompt', event => {
@@ -31,7 +31,7 @@ button.onclick = async () => {
     const { outcome } = await request.userChoice;
     refresh();
     if (!installed && !display.matches && navigator.standalone !== true && outcome === 'accepted') {
-      status.textContent = 'Finish installation in your browser, then open Djayvo from your device’s apps.';
+      status.textContent = 'Finish installation in your browser, then open Jamloom from your device’s apps.';
     }
   } catch {
     refresh();

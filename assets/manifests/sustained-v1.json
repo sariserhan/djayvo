@@ -1,5 +1,5 @@
 {
-  "name": "Djayvo original sustained instruments v1",
+  "name": "Jamloom original sustained instruments v1",
   "presets": [
     "organ",
     "pad",
@@ -11,7 +11,8 @@
   "reference_audio_used": false,
   "models": [],
   "implementation": "core/instruments/synth.h",
-  "sha256": "74e2747d8e9b4e671f3d2775aa0ad8f60be5e8244da2b50a28768bab6f8bf343",
+  "sha256": "133c74953e72c81964586205756e2444d296c5ab9feeb0bbe328d4bd5ca95722",
   "bandwidth": "Fundamentals below 0.45 times sample rate, overtones below 0.42; original harmonic weights and detuning",
-  "envelopes": "per-voice attack and cosine note-off release in core/instruments/voice.cpp; no loop/sample cutoff"
+  "envelopes": "per-voice attack and cosine note-off release in core/instruments/voice.cpp; no loop/sample cutoff",
+  "modifications": "2026-10-19: namespace renamed from djayvo to jamloom; synthesis equations unchanged."
 }

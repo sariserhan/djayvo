@@ -1,10 +1,10 @@
-#include "djayvo/remix.h"
+#include "jamloom/remix.h"
 #include <algorithm>
 #include <array>
 #include <cmath>
 #include <stdexcept>
 
-namespace djayvo {
+namespace jamloom {
 const char* strategy_name(Strategy s) {
     switch (s) {
     case Strategy::hiphop: return "hiphop";
@@ -457,4 +457,4 @@ RemixPlan make_baseline(const AudioBuffer& source,const InputAnalysis& a,std::ui
     for (int bar:{0,4,8}) r.vocals.push_back({bar*ticks_per_bar(r.music),0,-3,1,false,0,true});
     validate(r,source);return r;
 }
-} // namespace djayvo
+} // namespace jamloom

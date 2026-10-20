@@ -82,7 +82,7 @@ def main():
     (EVIDENCE / "measurements.json").write_text(json.dumps({"files": measurements, "comparisons": comparisons,
         "listening_gate": "NOT RUN", "event_frame_agreement": "NOT RUN: audio model emits no engine event trace"}, indent=2) + "\n")
     page = '''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Djayvo · GPU music trial</title><style>
+<title>Jamloom · GPU music trial</title><style>
 body{font:18px/1.6 system-ui;max-width:1100px;margin:32px auto;padding:0 24px;background:#111b20;color:#e9f0eb}
 h1{font-size:42px;line-height:1.15}h2{font-size:20px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
 article{padding:22px;background:#213039;border:1px solid #41545b;border-radius:12px}audio{width:100%}a{color:#98e8b4}

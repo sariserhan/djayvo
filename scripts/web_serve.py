@@ -21,7 +21,7 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    if not (ROOT / "engine" / "djayvo_web.wasm").is_file():
+    if not (ROOT / "engine" / "jamloom_web.wasm").is_file():
         raise SystemExit("Run sh scripts/web_build.sh first.")
-    print("Djayvo: http://localhost:4173", flush=True)
+    print("Jamloom: http://localhost:4173", flush=True)
     ThreadingHTTPServer(("127.0.0.1", 4173), Handler).serve_forever()

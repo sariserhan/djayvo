@@ -106,7 +106,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
       const buffer = await context().decodeAudioData(await file.arrayBuffer());
       if (token !== revision) return;
       validatePreparedTrack(buffer);
-      const response = await fetch('./engine/djayvo_live.wasm', { credentials: 'omit' });
+      const response = await fetch('./engine/jamloom_live.wasm', { credentials: 'omit' });
       if (!response.ok) throw new Error('Prepare the studio online once to load its engine.');
       const engine = (await WebAssembly.instantiate(await response.arrayBuffer(), {})).instance.exports;
       engine._initialize();
@@ -124,7 +124,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
       });
       if (token !== revision || !rights.checked || deck.file !== file) return;
       prepared = buffer; deck.prepared = true;
-      transport = new SessionTransport(context(), engine.djayvo_next_bar, refresh);
+      transport = new SessionTransport(context(), engine.jamloom_next_bar, refresh);
       const key = analysis.keys[0];
       $('context-analysis').textContent = `First 30 s estimate: ${analysis.tempo.bpm} BPM (pulse correlation ${analysis.tempo.confidence.toFixed(2)}); strongest triad ${notes[key.tonic]} ${key.mode}. Tempo may be half/double; triads do not establish a key. Confirm the tonic, major/minor mode and downbeat yourself. A will play at original speed.`;
       if (analysis.tempo.confidence > .3) $('session-bpm').value = analysis.tempo.bpm;
@@ -255,7 +255,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
         };
         recent = [...recent.slice(-9), key];
         download = URL.createObjectURL(new Blob([bytes], { type: 'audio/wav' }));
-        $('performance-download').href = download; $('performance-download').download = `djayvo-session-${data.seed}.wav`; $('performance-download').hidden = false;
+        $('performance-download').href = download; $('performance-download').download = `jamloom-session-${data.seed}.wav`; $('performance-download').hidden = false;
         say(`C ready in ${((performance.now() - began) / 1000).toFixed(1)} s · ${buffer.duration.toFixed(1)} s performance. Arm it when A is playing.`);
       } catch (failure) { if (token === revision) error(failure); }
       finally { if (token === revision) { busy = ''; refresh(); } }

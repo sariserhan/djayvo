@@ -141,7 +141,7 @@ public:
         auto result=parse(0);space();if (pos!=text.size()) reject("trailing JSON data");return result;
     }
 };
-djayvo::Region region(const Json& j) {
+jamloom::Region region(const Json& j) {
     j.keys({"start_frame","end_frame","confidence"});
     return {j.at("start_frame").integer(),j.at("end_frame").integer(),j.at("confidence").number()};
 }
@@ -159,9 +159,9 @@ std::string read_plan_document(const std::string& path) {
     return text;
 }
 
-djayvo::RemixPlan import_plan(const std::string& text,const djayvo::AudioBuffer& source,
-                             djayvo::Strategy strategy,std::uint32_t seed,bool synthetic,bool consent) {
-    using namespace djayvo;
+jamloom::RemixPlan import_plan(const std::string& text,const jamloom::AudioBuffer& source,
+                             jamloom::Strategy strategy,std::uint32_t seed,bool synthetic,bool consent) {
+    using namespace jamloom;
     if (synthetic==consent) reject("explicit source permission required outside plan");
     const auto j=Parser(text).run();
     j.keys({"schema_version","seed","source_asset_id","sample_rate","source","tempo_milli_bpm",

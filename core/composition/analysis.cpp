@@ -1,9 +1,9 @@
-#include "djayvo/remix.h"
+#include "jamloom/remix.h"
 #include <algorithm>
 #include <cmath>
 #include <stdexcept>
 
-namespace djayvo {
+namespace jamloom {
 InputAnalysis analyze(const AudioBuffer& source) {
     if (source.sample_rate < 8000 || source.sample_rate > 192000 || source.mono.empty() ||
         source.mono.size() > static_cast<std::size_t>(source.sample_rate) * 15)
@@ -102,4 +102,4 @@ InputAnalysis analyze(const AudioBuffer& source) {
     }
     return a;
 }
-} // namespace djayvo
+} // namespace jamloom

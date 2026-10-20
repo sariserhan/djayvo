@@ -6,7 +6,7 @@ import { join,resolve,extname } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createServer } from 'node:http';
 import { chromium,webkit } from '../apps/site/node_modules/playwright/index.mjs';
-const root=resolve(import.meta.dirname,'..'),temp=await mkdtemp(join(tmpdir(),'djayvo-review-ui-test-'));
+const root=resolve(import.meta.dirname,'..'),temp=await mkdtemp(join(tmpdir(),'jamloom-review-ui-test-'));
 const evidence=await mkdtemp(join(root,'renders/listening-ui-browser-'));console.log('Evidence: '+evidence);
 execFileSync('python3',['-c',`import sys;from pathlib import Path;sys.path.insert(0,'tests/integration');from verify_listening_review import fixture;from prepare_listening_review import build_review;p=Path(sys.argv[1]);fixture(p/'batch');build_review(p/'batch','synthetic-ui-fixture',4123,p/'packet')`,temp],{cwd:root});
 const server=createServer(async(request,response)=>{
@@ -27,7 +27,7 @@ try{
     page.on('request',r=>{if(!r.url().startsWith(base+'/')&&!r.url().startsWith('blob:'))external.push(r.url());});page.on('download',()=>downloads++);
     async function shot(name){capturing=true;try{await page.screenshot({path:join(evidence,kind+'-'+name+'.png'),fullPage:false,caret:'initial'});}finally{capturing=false;}}
     try{
-      await page.goto(base);assert.equal(await page.title(),'Djayvo blinded listening review');await page.getByRole('heading',{name:'Listen. Compare. Tell us what you hear.'}).waitFor();
+      await page.goto(base);assert.equal(await page.title(),'Jamloom blinded listening review');await page.getByRole('heading',{name:'Listen. Compare. Tell us what you hear.'}).waitFor();
       assert.equal(await page.locator('audio').count(),5);assert.equal(await page.locator('select').count(),31);
       assert.ok((await page.locator('select').evaluateAll(nodes=>nodes.map(n=>n.value))).every(v=>v===''));
       assert.equal(await page.getByRole('checkbox').isChecked(),false);assert.match(await page.locator('body').innerText(),/owner-only listening/);

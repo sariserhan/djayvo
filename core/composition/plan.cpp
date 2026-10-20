@@ -1,4 +1,4 @@
-#include "djayvo/music.h"
+#include "jamloom/music.h"
 #include <algorithm>
 #include <cmath>
 #include <fstream>
@@ -7,7 +7,7 @@
 #include <locale>
 #include <stdexcept>
 
-namespace djayvo {
+namespace jamloom {
 const char* instrument_name(Instrument instrument) {
     switch (instrument) {
     case Instrument::piano: return "piano";
@@ -196,4 +196,4 @@ void write_score(const PerformancePlan& p, const std::string& path) {
     out.flush();
     if (!out) throw std::runtime_error("cannot write score: " + path);
 }
-} // namespace djayvo
+} // namespace jamloom

@@ -13,7 +13,7 @@ export function readConfig(env: Record<string, string | undefined> = process.env
   }
   if (env.BETTER_AUTH_SECRET!.length < 32) throw new Error('Auth secret must contain at least 32 characters.');
   if (!local && !database.hostname.endsWith('.neon.tech')) throw new Error('Hosted database must use Neon.');
-  const outbox = env.DJAYVO_LOCAL_OUTBOX;
+  const outbox = env.JAMLOOM_LOCAL_OUTBOX ?? env.DJAYVO_LOCAL_OUTBOX;
   if (outbox && !localApp) throw new Error('The local email outbox is forbidden on hosted environments.');
   if (!outbox && (!env.RESEND_API_KEY || !env.EMAIL_FROM)) throw new Error('Resend is not configured.');
   if (env.EMAIL_FROM && /[\r\n]/.test(env.EMAIL_FROM)) throw new Error('Invalid sender.');

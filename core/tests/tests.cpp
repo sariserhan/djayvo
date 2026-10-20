@@ -1,4 +1,4 @@
-#include "djayvo/audio.h"
+#include "jamloom/audio.h"
 #include <algorithm>
 #include <atomic>
 #include <cmath>
@@ -33,17 +33,17 @@ template<class F> void rejects(F function) {
     try { function(); } catch (const std::exception&) { caught = true; }
     check(caught, "invalid input was accepted");
 }
-djayvo::PerformancePlan single(djayvo::Instrument instrument = djayvo::Instrument::piano,
+jamloom::PerformancePlan single(jamloom::Instrument instrument = jamloom::Instrument::piano,
                                 int pitch = 69, int velocity = 100) {
-    djayvo::PerformancePlan p;
+    jamloom::PerformancePlan p;
     p.sample_rate = 16000; p.bars = 1;
     p.sections = {{"test", 0, 1}};
     p.tracks = {{instrument, -6.0, 0.0, {{137, 960, pitch, velocity}}}};
     return p;
 }
-std::vector<float> render(const djayvo::Schedule& schedule, std::size_t block = 257,
-                           djayvo::AudioStats* stats = nullptr) {
-    djayvo::Renderer renderer(schedule, block);
+std::vector<float> render(const jamloom::Schedule& schedule, std::size_t block = 257,
+                           jamloom::AudioStats* stats = nullptr) {
+    jamloom::Renderer renderer(schedule, block);
     std::vector<float> output;
     output.reserve(static_cast<std::size_t>(schedule.total_frames) * 2);
     std::vector<float> scratch(block * 2);
@@ -57,9 +57,9 @@ std::vector<float> render(const djayvo::Schedule& schedule, std::size_t block = 
     if (stats) *stats = renderer.stats();
     return output;
 }
-std::vector<float> render(const djayvo::PerformancePlan& p, std::size_t block = 257,
-                           djayvo::AudioStats* stats = nullptr) {
-    return render(djayvo::compile(p),block,stats);
+std::vector<float> render(const jamloom::PerformancePlan& p, std::size_t block = 257,
+                           jamloom::AudioStats* stats = nullptr) {
+    return render(jamloom::compile(p),block,stats);
 }
 double energy(const std::vector<float>& audio) {
     double sum = 0; for (float x : audio) sum += static_cast<double>(x) * x;
@@ -77,18 +77,18 @@ double magnitude(const std::vector<float>& audio, std::uint32_t rate, double fre
     return std::hypot(re, im);
 }
 void timing() {
-    check(djayvo::tick_to_frame(960, 48000, 120000) == 24000, "quarter note frame mismatch");
-    check(djayvo::tick_to_frame(15360, 48000, 100000) == 460800, "four-bar duration mismatch");
+    check(jamloom::tick_to_frame(960, 48000, 120000) == 24000, "quarter note frame mismatch");
+    check(jamloom::tick_to_frame(15360, 48000, 100000) == 460800, "four-bar duration mismatch");
     // Independent long-double oracle: >24 hours, irregular tempo, 100001 grid points.
     for (std::int64_t i = 0; i <= 100000; ++i) {
-        const djayvo::Tick tick = i * 5003;
+        const jamloom::Tick tick = i * 5003;
         const long double exact = static_cast<long double>(tick) * 44100.0L * 60000.0L / (960.0L * 137123.0L);
-        const auto frame = djayvo::tick_to_frame(tick, 44100, 137123);
+        const auto frame = jamloom::tick_to_frame(tick, 44100, 137123);
         check(std::abs(static_cast<long double>(frame) - exact) <= 0.500001L, "long timeline drift > half frame");
     }
-    check(djayvo::tick_to_frame(1, 8000, 300000) == 2, "nearest-frame rounding mismatch");
-    rejects([] { djayvo::tick_to_frame(-1, 48000, 100000); });
-    rejects([] { djayvo::tick_to_frame(std::numeric_limits<djayvo::Tick>::max(), 192000, 30000); });
+    check(jamloom::tick_to_frame(1, 8000, 300000) == 2, "nearest-frame rounding mismatch");
+    rejects([] { jamloom::tick_to_frame(-1, 48000, 100000); });
+    rejects([] { jamloom::tick_to_frame(std::numeric_limits<jamloom::Tick>::max(), 192000, 30000); });
 }
 void tempo_maps() {
     auto p=single();p.bars=256;p.numerator=16;p.denominator=2;p.tempo_milli_bpm=137123;
@@ -98,27 +98,27 @@ void tempo_maps() {
     const std::uint32_t rates[]={8000,44100,48000,192000};
     const std::uint64_t expected[]={34958516,192708817,209751093,839004373};
     for (std::size_t i=0;i<4;++i) {
-        p.sample_rate=rates[i];djayvo::validate(p);
-        check(djayvo::tick_to_frame(7864320,p)==expected[i],"tempo map accumulated rounding drift");
+        p.sample_rate=rates[i];jamloom::validate(p);
+        check(jamloom::tick_to_frame(7864320,p)==expected[i],"tempo map accumulated rounding drift");
     }
     p=single();p.sample_rate=48000;p.tempo_milli_bpm=120000;p.tempo_changes={{960,90000},{1920,150000}};
     p.tracks[0].notes={{960,1440,69,90}};
-    const auto schedule=djayvo::compile(p);
+    const auto schedule=jamloom::compile(p);
     check(schedule.events[0].frame==24000 && schedule.events[1].frame==65600,"note spanning tempo boundary is mistimed");
-    check(djayvo::tick_to_frame(1920,p)==56000,"tempo change boundary moved");
+    check(jamloom::tick_to_frame(1920,p)==56000,"tempo change boundary moved");
     check(render(p,113)==render(p,257),"tempo map depends on process block");
     p=single();p.sample_rate=8000;p.tempo_milli_bpm=300000;
     for (int i=1;i<=64;++i) p.tempo_changes.push_back({i,300000});
-    for (djayvo::Tick tick=0;tick<=3840;++tick)
-        check(djayvo::tick_to_frame(tick,p)==djayvo::tick_to_frame(tick,8000,300000),"redundant tempo changes alter the clock");
-    for (const auto changes:std::vector<std::vector<djayvo::TempoChange>>{
+    for (jamloom::Tick tick=0;tick<=3840;++tick)
+        check(jamloom::tick_to_frame(tick,p)==jamloom::tick_to_frame(tick,8000,300000),"redundant tempo changes alter the clock");
+    for (const auto changes:std::vector<std::vector<jamloom::TempoChange>>{
             {{0,96000}},{{3840,96000}},{{100,96000},{100,96000}},{{100,96000},{99,96000}},{{100,29999}},{{100,300001}}}) {
-        p.tempo_changes=changes;rejects([&]{djayvo::compile(p);});
+        p.tempo_changes=changes;rejects([&]{jamloom::compile(p);});
     }
-    p.tempo_changes.assign(65,{1,96000});rejects([&]{djayvo::compile(p);});
+    p.tempo_changes.assign(65,{1,96000});rejects([&]{jamloom::compile(p);});
     p.tempo_changes={{960,90000}};
-    rejects([&]{djayvo::tick_to_frame(-1,p);});
-    rejects([&]{djayvo::tick_to_frame(std::numeric_limits<djayvo::Tick>::max(),p);});
+    rejects([&]{jamloom::tick_to_frame(-1,p);});
+    rejects([&]{jamloom::tick_to_frame(std::numeric_limits<jamloom::Tick>::max(),p);});
 }
 void mix_automation() {
     auto p=single();p.tempo_milli_bpm=120000;p.tracks[0].gain_db=-20;
@@ -126,7 +126,7 @@ void mix_automation() {
     const auto dry=render(p);
     p.tracks[0].pan=-1;
     p.tracks[0].automation={{0,-20,-1},{960,-20,1},{1920,-26,0}};
-    auto schedule=djayvo::compile(p);
+    auto schedule=jamloom::compile(p);
     const auto audio=render(schedule);
     check(audio==render(schedule,113),"automation depends on process block");
     for (std::size_t frame=0;frame<audio.size()/2;++frame) {
@@ -137,27 +137,27 @@ void mix_automation() {
         check(std::abs(audio[frame*2]-dry[frame*2]*std::sqrt(2.0)*left)<1e-7 &&
               std::abs(audio[frame*2+1]-dry[frame*2]*std::sqrt(2.0)*right)<1e-7,"mix ramp differs from independent envelope");
     }
-    djayvo::Renderer renderer(schedule,257);std::vector<float> scratch(514);
+    jamloom::Renderer renderer(schedule,257);std::vector<float> scratch(514);
     const auto before=allocations.load();
     while (!renderer.finished()) renderer.process(scratch.data(),257);
     check(allocations.load()==before,"automation allocates during render callback");
-    for (const auto points:std::vector<std::vector<djayvo::MixPoint>>{
+    for (const auto points:std::vector<std::vector<jamloom::MixPoint>>{
             {{1,-20,-1}},{{0,-19,-1}},{{0,-20,0}},{{0,-20,-1},{1,-20,0}},
             {{0,-20,-1},{960,13,0}},{{0,-20,-1},{960,-20,1.1}},{{0,-20,-1},{3841,-20,0}},
             {{0,-20,-1},{960,-20,0},{960,-20,0}},{{0,-20,-1},{960,std::numeric_limits<double>::quiet_NaN(),0}}}) {
-        p.tracks[0].automation=points;rejects([&]{djayvo::compile(p);});
+        p.tracks[0].automation=points;rejects([&]{jamloom::compile(p);});
     }
-    p.tracks[0].automation.assign(129,{0,-20,-1});rejects([&]{djayvo::compile(p);});
-    auto bad=schedule;bad.events[0].automation=1;rejects([&]{djayvo::Renderer r(bad);});
-    bad=schedule;bad.automation[0][1].frame=1;rejects([&]{djayvo::Renderer r(bad);});
-    bad=schedule;bad.automation[0][0].left=std::numeric_limits<float>::infinity();rejects([&]{djayvo::Renderer r(bad);});
+    p.tracks[0].automation.assign(129,{0,-20,-1});rejects([&]{jamloom::compile(p);});
+    auto bad=schedule;bad.events[0].automation=1;rejects([&]{jamloom::Renderer r(bad);});
+    bad=schedule;bad.automation[0][1].frame=1;rejects([&]{jamloom::Renderer r(bad);});
+    bad=schedule;bad.automation[0][0].left=std::numeric_limits<float>::infinity();rejects([&]{jamloom::Renderer r(bad);});
 }
 void scheduling() {
     auto p = single();
     p.tracks[0].notes.push_back({1097, 960, 72, 90});
-    auto s = djayvo::compile(p);
+    auto s = jamloom::compile(p);
     check(s.events.size() == 4, "event pair missing");
-    check(s.events[1].frame == s.events[2].frame && s.events[1].kind == djayvo::EventKind::note_off,
+    check(s.events[1].frame == s.events[2].frame && s.events[1].kind == jamloom::EventKind::note_off,
           "note-off must precede simultaneous note-on");
     check(s.events[0].frame == 1370, "absolute onset frame mismatch");
     auto audio = render(p, 127);
@@ -165,9 +165,9 @@ void scheduling() {
         check(audio[i * 2] == 0, "note sounded before scheduled frame/attack");
     check(audio[(s.events[0].frame + 1) * 2] != 0, "note did not start on next attack sample");
     auto only = single();
-    auto one = djayvo::compile(only);
+    auto one = jamloom::compile(only);
     auto one_audio = render(only);
-    const auto end = one.events[1].frame + djayvo::release_frames(djayvo::Instrument::piano, only.sample_rate);
+    const auto end = one.events[1].frame + jamloom::release_frames(jamloom::Instrument::piano, only.sample_rate);
     check(std::abs(one_audio[(end - 1) * 2]) < 1e-6, "release does not taper to zero");
     for (std::size_t i = static_cast<std::size_t>(end); i < one_audio.size() / 2; ++i)
         check(one_audio[i * 2] == 0, "stuck voice after note-off/release");
@@ -176,18 +176,18 @@ void scheduling() {
     auto overlap = single();
     overlap.tracks[0].notes = {{0, 240, 69, 70}, {120, 960, 69, 70}};
     const auto both = render(overlap);
-    auto isolated=djayvo::compile(overlap);
+    auto isolated=jamloom::compile(overlap);
     // Retain the second note's identity and take seed when isolating its release.
     isolated.events.erase(std::remove_if(isolated.events.begin(),isolated.events.end(),
                           [](const auto& e){return e.note_id==0;}),isolated.events.end());
     const auto second = render(isolated);
-    const auto first_end = djayvo::tick_to_frame(240, overlap.sample_rate, overlap.tempo_milli_bpm) +
-                           djayvo::release_frames(djayvo::Instrument::piano, overlap.sample_rate) + 1;
+    const auto first_end = jamloom::tick_to_frame(240, overlap.sample_rate, overlap.tempo_milli_bpm) +
+                           jamloom::release_frames(jamloom::Instrument::piano, overlap.sample_rate) + 1;
     for (std::size_t i = static_cast<std::size_t>(first_end) * 2; i < both.size(); ++i)
         check(both[i] == second[i], "note-off released a different overlapping note of the same pitch");
 }
 void deterministic() {
-    auto p = djayvo::make_demo(); p.sample_rate = 16000;
+    auto p = jamloom::make_demo(); p.sample_rate = 16000;
     const auto a = render(p, 1);
     check(a == render(p, 257), "audio depends on block size");
     check(a == render(p, 4096), "audio depends on large block size");
@@ -195,14 +195,14 @@ void deterministic() {
     ++p.seed;
     // Note-local RNG seed changes percussion independently of arrangement generation.
     check(a != render(p), "different synthesis seed produced identical audio");
-    check(djayvo::make_demo(4123).tracks[0].notes[0].velocity ==
-          djayvo::make_demo(4123).tracks[0].notes[0].velocity, "arrangement seed unstable");
+    check(jamloom::make_demo(4123).tracks[0].notes[0].velocity ==
+          jamloom::make_demo(4123).tracks[0].notes[0].velocity, "arrangement seed unstable");
 }
 void instruments() {
-    for (const auto instrument : {djayvo::Instrument::piano, djayvo::Instrument::bass}) {
-        auto p = single(instrument, instrument == djayvo::Instrument::piano ? 69 : 45);
+    for (const auto instrument : {jamloom::Instrument::piano, jamloom::Instrument::bass}) {
+        auto p = single(instrument, instrument == jamloom::Instrument::piano ? 69 : 45);
         auto a = render(p);
-        const double fundamental = instrument == djayvo::Instrument::piano ? 440.0 : 110.0;
+        const double fundamental = instrument == jamloom::Instrument::piano ? 440.0 : 110.0;
         // Recorded piano may have a stronger second partial than fundamental.
         // Require a correctly tuned harmonic series rather than a sine-like tone.
         const auto harmonic = [&](const std::vector<float>& signal,double frequency) {
@@ -229,33 +229,33 @@ void instruments() {
         };
         check(brightness(soft)<brightness(octave),"soft notes are not darker after level normalization");
     }
-    const auto kick = render(single(djayvo::Instrument::drums, 36));
-    const auto snare = render(single(djayvo::Instrument::drums, 38));
-    const auto hat = render(single(djayvo::Instrument::drums, 42));
-    const auto open = render(single(djayvo::Instrument::drums, 46));
+    const auto kick = render(single(jamloom::Instrument::drums, 36));
+    const auto snare = render(single(jamloom::Instrument::drums, 38));
+    const auto hat = render(single(jamloom::Instrument::drums, 42));
+    const auto open = render(single(jamloom::Instrument::drums, 46));
     check(energy(kick) > 1 && energy(snare) > 1 && energy(hat) > 0.1 && energy(open) > 0.1,
           "silent drum voice");
     check(kick != snare && snare != hat && hat != open, "drum sounds identical");
 }
 void sustained_instruments() {
     std::set<std::vector<float>> timbres;
-    for (auto instrument:{djayvo::Instrument::organ,djayvo::Instrument::pad,djayvo::Instrument::lead}) {
+    for (auto instrument:{jamloom::Instrument::organ,jamloom::Instrument::pad,jamloom::Instrument::lead}) {
         auto p=single(instrument,69,96);p.bars=4;p.sections={{"sustain",0,4}};
         p.tracks[0].notes={{0,9600,69,96}};
-        const auto schedule=djayvo::compile(p);const auto audio=render(schedule,113);
+        const auto schedule=jamloom::compile(p);const auto audio=render(schedule,113);
         check(audio==render(schedule,512),"synth depends on render block size");
         double sustained=0;
         for (std::size_t i=4*16000*2;i<5*16000*2;++i) {check(std::isfinite(audio[i]),"nonfinite sustained sample");sustained+=audio[i]*audio[i];}
         check(sustained>1,"synth stopped before note-off");
-        const auto off=djayvo::tick_to_frame(9600,p);
-        const auto end=off+djayvo::release_frames(instrument,p.sample_rate)+1;
+        const auto off=jamloom::tick_to_frame(9600,p);
+        const auto end=off+jamloom::release_frames(instrument,p.sample_rate)+1;
         for (std::size_t i=static_cast<std::size_t>(end)*2;i<audio.size();++i) check(audio[i]==0,"synth voice stuck after release");
         check(std::abs(audio[0])<1e-8,"synth attack starts discontinuously");timbres.insert(audio);
-        djayvo::Renderer r(schedule,113);float block[226];const auto before=allocations.load();
+        jamloom::Renderer r(schedule,113);float block[226];const auto before=allocations.load();
         while(!r.finished())r.process(block,113);
         check(allocations.load()==before,"synth allocates on audio callback");
-        auto bad=p;bad.tracks[0].electronic=true;rejects([&]{djayvo::compile(bad);});
-        bad=p;bad.tracks[0].notes[0].muted=true;rejects([&]{djayvo::compile(bad);});
+        auto bad=p;bad.tracks[0].electronic=true;rejects([&]{jamloom::compile(bad);});
+        bad=p;bad.tracks[0].notes[0].muted=true;rejects([&]{jamloom::compile(bad);});
         // At 8 kHz, MIDI 100 has only its fundamental below the harmonic cutoff.
         auto edge=single(instrument,108,96);edge.sample_rate=9600;
         check(energy(render(edge))>0,"valid near-cutoff synth note is silent");
@@ -268,8 +268,8 @@ void sustained_instruments() {
 }
 void guitar_articulation() {
     const auto note=[](int pitch,int velocity,unsigned seed,bool muted) {
-        djayvo::Event e;e.instrument=djayvo::Instrument::guitar;e.pitch=pitch;e.velocity=velocity;e.noise_seed=seed;e.muted=muted;
-        djayvo::Voice v;v.start(e,16000);std::vector<float> out(16000);
+        jamloom::Event e;e.instrument=jamloom::Instrument::guitar;e.pitch=pitch;e.velocity=velocity;e.noise_seed=seed;e.muted=muted;
+        jamloom::Voice v;v.start(e,16000);std::vector<float> out(16000);
         for (auto& x:out) {x=v.next();check(std::isfinite(x),"nonfinite guitar voice");}
         return out;
     };
@@ -281,16 +281,16 @@ void guitar_articulation() {
         check(normal!=note(pitch,100,1,false),"guitar dynamics missing");
         check(std::all_of(mute.begin()+14400,mute.end(),[](float x){return x==0;}),"staccato tail did not end");
     }
-    auto p=single();p.tracks[0].instrument=djayvo::Instrument::guitar;p.tracks[0].notes[0].pitch=60;
+    auto p=single();p.tracks[0].instrument=jamloom::Instrument::guitar;p.tracks[0].notes[0].pitch=60;
     p.tracks[0].notes[0].muted=true;
-    auto schedule=djayvo::compile(p);djayvo::Renderer renderer(schedule,113);
+    auto schedule=jamloom::compile(p);jamloom::Renderer renderer(schedule,113);
     float buffer[226];const auto before=allocations.load();
     while(!renderer.finished()) renderer.process(buffer,113);
     check(allocations.load()==before,"guitar allocates during audio processing");
-    for (int pitch:{39,80}) {auto bad=p;bad.tracks[0].notes[0].pitch=pitch;rejects([&]{djayvo::compile(bad);});}
-    auto bad=p;bad.tracks[0].electronic=true;rejects([&]{djayvo::compile(bad);});
-    bad=p;bad.tracks[0].instrument=djayvo::Instrument::piano;rejects([&]{djayvo::compile(bad);});
-    schedule.events[0].instrument=static_cast<djayvo::Instrument>(99);rejects([&]{djayvo::Renderer invalid(schedule);});
+    for (int pitch:{39,80}) {auto bad=p;bad.tracks[0].notes[0].pitch=pitch;rejects([&]{jamloom::compile(bad);});}
+    auto bad=p;bad.tracks[0].electronic=true;rejects([&]{jamloom::compile(bad);});
+    bad=p;bad.tracks[0].instrument=jamloom::Instrument::piano;rejects([&]{jamloom::compile(bad);});
+    schedule.events[0].instrument=static_cast<jamloom::Instrument>(99);rejects([&]{jamloom::Renderer invalid(schedule);});
 }
 void full_band_coefficients() {
     #include "../instruments/full_band_interpolation.inc"
@@ -312,26 +312,26 @@ void full_band_coefficients() {
     }
 }
 void reused_voice() {
-    djayvo::Voice reused;
+    jamloom::Voice reused;
     unsigned notes = 0;
     for (unsigned rate : {8000U, 16000U, 44100U, 48000U, 96000U, 192000U})
-        for (auto instrument : {djayvo::Instrument::piano, djayvo::Instrument::bass,
-                               djayvo::Instrument::guitar, djayvo::Instrument::drums,
-                               djayvo::Instrument::organ, djayvo::Instrument::pad, djayvo::Instrument::lead})
+        for (auto instrument : {jamloom::Instrument::piano, jamloom::Instrument::bass,
+                               jamloom::Instrument::guitar, jamloom::Instrument::drums,
+                               jamloom::Instrument::organ, jamloom::Instrument::pad, jamloom::Instrument::lead})
             for (int pitch : {21, 48, 60, 61, 84, 108})
                 for (unsigned repeat = 0; repeat < 3; ++repeat) {
-                    djayvo::Event event;
+                    jamloom::Event event;
                     event.instrument = instrument; event.pitch = pitch;
-                    if (instrument == djayvo::Instrument::guitar) event.pitch = 40 + pitch % 40;
-                    if (instrument == djayvo::Instrument::drums) event.pitch = repeat == 0 ? 36 : repeat == 1 ? 38 : 46;
+                    if (instrument == jamloom::Instrument::guitar) event.pitch = 40 + pitch % 40;
+                    if (instrument == jamloom::Instrument::drums) event.pitch = repeat == 0 ? 36 : repeat == 1 ? 38 : 46;
                     event.velocity = repeat == 0 ? 40 : repeat == 1 ? 95 : 127;
                     event.noise_seed = notes++; event.note_id = notes;
-                    event.muted = instrument == djayvo::Instrument::guitar && repeat == 2;
-                    event.electronic = (instrument == djayvo::Instrument::piano || instrument == djayvo::Instrument::bass ||
-                                        instrument == djayvo::Instrument::drums) && repeat == 2;
+                    event.muted = instrument == jamloom::Instrument::guitar && repeat == 2;
+                    event.electronic = (instrument == jamloom::Instrument::piano || instrument == jamloom::Instrument::bass ||
+                                        instrument == jamloom::Instrument::drums) && repeat == 2;
                     event.left_gain = static_cast<float>(repeat) * .25F;
                     event.right_gain = 1 - event.left_gain; event.automation = static_cast<int>(notes);
-                    djayvo::Voice fresh;
+                    jamloom::Voice fresh;
                     reused.start(event, rate); fresh.start(event, rate);
                     check(reused.id() == event.note_id && reused.instrument() == instrument &&
                           reused.left_gain() == event.left_gain && reused.right_gain() == event.right_gain &&
@@ -343,9 +343,9 @@ void reused_voice() {
                 }
 }
 void sample_articulation() {
-    const auto note=[](djayvo::Instrument instrument,int pitch,int velocity,std::uint32_t seed) {
-        djayvo::Event e;e.instrument=instrument;e.pitch=pitch;e.velocity=velocity;e.noise_seed=seed;
-        djayvo::Voice voice;voice.start(e,16000);
+    const auto note=[](jamloom::Instrument instrument,int pitch,int velocity,std::uint32_t seed) {
+        jamloom::Event e;e.instrument=instrument;e.pitch=pitch;e.velocity=velocity;e.noise_seed=seed;
+        jamloom::Voice voice;voice.start(e,16000);
         std::vector<float> audio(16000);
         for (auto& x:audio) {x=voice.next();check(std::isfinite(x),"nonfinite articulated voice");}
         return audio;
@@ -359,19 +359,19 @@ void sample_articulation() {
     };
     for (int pitch:{48,60,67,72,79,84,96}) {
         for (int velocity:{40,80,110}) {
-            const auto a=note(djayvo::Instrument::piano,pitch,velocity,1);
-            check(a==note(djayvo::Instrument::piano,pitch,velocity,1),"take selection is not deterministic");
-            check(shape_difference(a,note(djayvo::Instrument::piano,pitch,velocity,8))>0.01,
+            const auto a=note(jamloom::Instrument::piano,pitch,velocity,1);
+            check(a==note(jamloom::Instrument::piano,pitch,velocity,1),"take selection is not deterministic");
+            check(shape_difference(a,note(jamloom::Instrument::piano,pitch,velocity,8))>0.01,
                   "alternate piano take only changes gain");
         }
         for (int boundary:{55,95})
-            check(shape_difference(note(djayvo::Instrument::piano,pitch,boundary,1),
-                                   note(djayvo::Instrument::piano,pitch,boundary+1,1))>0.01,
+            check(shape_difference(note(jamloom::Instrument::piano,pitch,boundary,1),
+                                   note(jamloom::Instrument::piano,pitch,boundary+1,1))>0.01,
                   "piano velocity layer only changes gain/filtering");
     }
     for (int pitch:{36,38,42,46})
-        check(shape_difference(note(djayvo::Instrument::drums,pitch,80,1),
-                               note(djayvo::Instrument::drums,pitch,80,8))>0.01,
+        check(shape_difference(note(jamloom::Instrument::drums,pitch,80,1),
+                               note(jamloom::Instrument::drums,pitch,80,8))>0.01,
               "alternate drum take only changes gain");
 }
 void mixing() {
@@ -386,7 +386,7 @@ void mixing() {
     check(energy(louder) > energy(center) * 3.9, "track gain ignored");
     p.tracks[0].gain_db = 12;
     p.tracks[0].notes.assign(64, {0, 960, 69, 127});
-    djayvo::AudioStats stats;
+    jamloom::AudioStats stats;
     const auto hot = render(p, 512, &stats);
     const double ceiling = std::pow(10.0, p.ceiling_dbfs / 20);
     check(stats.pre_limiter_peak > 1 && stats.limited_samples > 0, "limiter stress did not overload mix");
@@ -395,24 +395,24 @@ void mixing() {
 }
 void validation() {
     auto p = single();
-    p.tracks[0].notes[0].duration = 0; rejects([&] { djayvo::compile(p); });
-    p = single(); p.tracks[0].notes[0].start = 3840; rejects([&] { djayvo::compile(p); });
-    p = single(); p.tracks[0].notes[0].velocity = 128; rejects([&] { djayvo::compile(p); });
-    p = single(); p.tracks[0].pan = std::numeric_limits<double>::quiet_NaN(); rejects([&] { djayvo::compile(p); });
-    p = single(); p.sections[0].start_bar = 1; rejects([&] { djayvo::compile(p); });
-    p = single(); p.denominator = 3; rejects([&] { djayvo::compile(p); });
-    p = single(); p.tempo_milli_bpm = 0; rejects([&] { djayvo::compile(p); });
-    p = single(); p.sample_rate = 0; rejects([&] { djayvo::compile(p); });
-    p = single(); p.tracks[0].notes.assign(129, {0, 960, 69, 90}); rejects([&] { djayvo::compile(p); });
+    p.tracks[0].notes[0].duration = 0; rejects([&] { jamloom::compile(p); });
+    p = single(); p.tracks[0].notes[0].start = 3840; rejects([&] { jamloom::compile(p); });
+    p = single(); p.tracks[0].notes[0].velocity = 128; rejects([&] { jamloom::compile(p); });
+    p = single(); p.tracks[0].pan = std::numeric_limits<double>::quiet_NaN(); rejects([&] { jamloom::compile(p); });
+    p = single(); p.sections[0].start_bar = 1; rejects([&] { jamloom::compile(p); });
+    p = single(); p.denominator = 3; rejects([&] { jamloom::compile(p); });
+    p = single(); p.tempo_milli_bpm = 0; rejects([&] { jamloom::compile(p); });
+    p = single(); p.sample_rate = 0; rejects([&] { jamloom::compile(p); });
+    p = single(); p.tracks[0].notes.assign(129, {0, 960, 69, 90}); rejects([&] { jamloom::compile(p); });
     p.tracks[0].notes.resize(128);
     render(p); // Capacity boundary is usable, rather than just rejecting every dense plan.
-    p = single(djayvo::Instrument::drums, 60); rejects([&] { djayvo::compile(p); });
+    p = single(jamloom::Instrument::drums, 60); rejects([&] { jamloom::compile(p); });
     p = single(); p.tracks[0].notes.clear();
     check(energy(render(p)) == 0, "empty score did not render silence");
-    auto s = djayvo::compile(p);
-    rejects([&] { djayvo::Renderer bad(s, 0); });
-    rejects([&] { djayvo::Renderer bad(s, 65537); });
-    djayvo::Renderer r(s, 17); float buffer[34]{};
+    auto s = jamloom::compile(p);
+    rejects([&] { jamloom::Renderer bad(s, 0); });
+    rejects([&] { jamloom::Renderer bad(s, 65537); });
+    jamloom::Renderer r(s, 17); float buffer[34]{};
     check(r.process(nullptr, 17) == 0 && r.process(buffer, 18) == 0 && r.process(buffer, 0) == 0,
           "invalid render request accepted");
     check(r.process(buffer, 17) == 17, "invalid request advanced render cursor");
@@ -420,17 +420,17 @@ void validation() {
 void rates_and_meter() {
     for (auto rate : {8000U, 44100U, 48000U, 96000U, 192000U}) {
         auto p = single(); p.sample_rate = rate; p.numerator = 7; p.denominator = 8;
-        check(djayvo::ticks_per_bar(p) == 3360, "7/8 bar math wrong");
-        auto s = djayvo::compile(p);
+        check(jamloom::ticks_per_bar(p) == 3360, "7/8 bar math wrong");
+        auto s = jamloom::compile(p);
         check(s.music_frames == static_cast<std::uint64_t>(rate) * 21 / 10, "meter duration wrong");
         auto a = render(p, 4096);
         check(a.size() == s.total_frames * 2 && energy(a) > 1, "rate render failed");
     }
 }
 void no_render_allocations() {
-    static_assert(sizeof(djayvo::Renderer) < 65536, "renderer must fit a mobile worker stack");
-    auto p = djayvo::make_demo(); p.sample_rate = 8000;
-    djayvo::Renderer r(djayvo::compile(p), 512);
+    static_assert(sizeof(jamloom::Renderer) < 65536, "renderer must fit a mobile worker stack");
+    auto p = jamloom::make_demo(); p.sample_rate = 8000;
+    jamloom::Renderer r(jamloom::compile(p), 512);
     float buffer[1024]{};
     const auto before = allocations.load();
     while (!r.finished()) r.process(buffer, 512);
@@ -438,10 +438,10 @@ void no_render_allocations() {
     check(before == after, "render callback allocated memory");
 }
 void wav_errors() {
-    const auto path = (std::filesystem::temp_directory_path() / "djayvo-unit-test.wav").string();
-    rejects([&] { djayvo::WavWriter bad(path, 48000, std::numeric_limits<std::uint64_t>::max()); });
+    const auto path = (std::filesystem::temp_directory_path() / "jamloom-unit-test.wav").string();
+    rejects([&] { jamloom::WavWriter bad(path, 48000, std::numeric_limits<std::uint64_t>::max()); });
     {
-        djayvo::WavWriter writer(path, 48000, 2);
+        jamloom::WavWriter writer(path, 48000, 2);
         float samples[4] = {0.1F, -0.1F, 0, 0};
         writer.write(samples, 1);
         rejects([&] { writer.close(); });

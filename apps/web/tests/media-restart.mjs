@@ -8,9 +8,9 @@ import { fileURLToPath } from 'node:url';
 import { chromium, webkit } from 'playwright';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
-const kind = process.env.DJAYVO_BROWSER || 'webkit';
+const kind = (process.env.JAMLOOM_BROWSER ?? process.env.DJAYVO_BROWSER) || 'webkit';
 assert.ok(['chromium', 'webkit'].includes(kind));
-const preload = process.env.DJAYVO_PRELOAD || 'metadata';
+const preload = (process.env.JAMLOOM_PRELOAD ?? process.env.DJAYVO_PRELOAD) || 'metadata';
 assert.ok(['auto', 'metadata'].includes(preload));
 const output = await fs.mkdtemp(path.join(root, `renders/media-restart-${kind}-`));
 console.log('Artifacts:', output);
@@ -37,7 +37,7 @@ const server = createServer((request, response) => {
     response.writeHead(request.headers.range ? 206 : 200, headers); response.end(tone.subarray(start, end + 1));
   } else if (request.url === '/') {
     response.writeHead(200, { 'Content-Type': 'text/html' });
-    response.end('<!doctype html><title>Djayvo media restart diagnostic</title><h1>Media restart diagnostic</h1><input type="file" id="file"><button id="play">Start generated tone</button><audio id="audio"></audio>');
+    response.end('<!doctype html><title>Jamloom media restart diagnostic</title><h1>Media restart diagnostic</h1><input type="file" id="file"><button id="play">Start generated tone</button><audio id="audio"></audio>');
   } else { response.writeHead(404); response.end(); }
 });
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
@@ -56,7 +56,7 @@ try {
         row.external.push(request.url());
     });
     try {
-      await page.goto(origin); assert.equal(await page.title(), 'Djayvo media restart diagnostic');
+      await page.goto(origin); assert.equal(await page.title(), 'Jamloom media restart diagnostic');
       await page.locator('h1').waitFor();
       if (source === 'input') await page.locator('#file').setInputFiles({ name: 'tone.wav', mimeType: 'audio/wav', buffer: tone });
       await page.evaluate(async ({ source, preload }) => {

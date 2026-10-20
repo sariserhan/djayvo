@@ -13,17 +13,17 @@ import { readConfig } from '../lib/config.ts';
 const config = readConfig();
 const target = new URL(config.databaseURL);
 assert.ok(config.localApp && !config.local && config.outbox, 'Requires localhost + Neon + local email outbox.');
-assert.equal(process.env.DJAYVO_NEON_TEST_TARGET, target.host + target.pathname,
-  'Set DJAYVO_NEON_TEST_TARGET to the intended Neon host/database before running.');
+assert.equal((process.env.JAMLOOM_NEON_TEST_TARGET ?? process.env.DJAYVO_NEON_TEST_TARGET), target.host + target.pathname,
+  'Set JAMLOOM_NEON_TEST_TARGET to the intended Neon host/database before running.');
 assert.ok(target.hostname.includes('-pooler.'), 'Use the pooled application URL.');
-assert.ok(!process.env.DJAYVO_LOCAL_AUDIO_DIR && process.env.DJAYVO_R2_ENABLED !== 'true',
+assert.ok(!(process.env.JAMLOOM_LOCAL_AUDIO_DIR ?? process.env.DJAYVO_LOCAL_AUDIO_DIR) && (process.env.JAMLOOM_R2_ENABLED ?? process.env.DJAYVO_R2_ENABLED) !== 'true',
   'Database smoke test must not upload audio.');
 const pool = createPool(config.databaseURL);
-const output = await mkdtemp(join(tmpdir(), 'djayvo-neon-'));
+const output = await mkdtemp(join(tmpdir(), 'jamloom-neon-'));
 console.log(`Screenshots: ${output}`);
 const run = randomUUID();
 const email = `neon-${run}@example.com`, other = `neon-other-${run}@example.com`;
-const password = `Djayvo-${randomUUID()}`;
+const password = `Jamloom-${randomUUID()}`;
 const ip = `2001:db8:${randomInt(65536).toString(16)}:${randomInt(65536).toString(16)}::1`;
 const paths = new Set();
 const mailFiles = new Set();
@@ -44,7 +44,7 @@ try {
   pass('live pooled Neon connection and five applied migrations');
   await page.goto(config.baseURL);
   await page.waitForURL('**/studio/index.html');
-  assert.match(await page.title(), /Djayvo/);
+  assert.match(await page.title(), /Jamloom/);
   assert.equal(await page.locator('#record').isDisabled(), true);
   await page.locator('#consent').check();
   assert.equal(await page.locator('#record').isEnabled(), true);

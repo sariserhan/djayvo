@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://djayvo.com/schemas/performance-plan-1.0-m0a.json",
-  "title": "Djayvo M0a offline instrumental plan (export contract)",
+  "title": "Jamloom M0a offline instrumental plan (export contract)",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "seed", "source_asset_id", "sample_rate", "ticks_per_quarter", "tempo_milli_bpm", "time_signature", "target_bars", "strategy", "tail_ms", "mix", "sections", "tracks"],

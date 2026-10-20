@@ -16,7 +16,7 @@ export function SaveMix() {
     event.preventDefault(); setBusy(true); setMessage('Checking your selected mix…'); setError('');
     try {
       const values=new FormData(event.currentTarget), file=values.get('audio') as File;
-      if (!file || file.size<3840044 || file.size>7680044) throw new Error('Choose a 20–40 second stereo WAV downloaded from Djayvo.');
+      if (!file || file.size<3840044 || file.size>7680044) throw new Error('Choose a 20–40 second stereo WAV downloaded from Jamloom.');
       const bytes=await file.arrayBuffer();
       const sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)), b=>b.toString(16).padStart(2,'0')).join('');
       const title=String(values.get('title')).trim(), strategy=String(values.get('strategy'));
@@ -51,7 +51,7 @@ export function SaveMix() {
 export function TrackControls({id,title}:{id:string;title:string}) {
   const router=useRouter(), [confirm,setConfirm]=useState(false), [busy,setBusy]=useState(false), [error,setError]=useState('');
   return <div className="track-actions"><audio controls preload="none" aria-label={`Play ${title}`} src={`/api/library/${id}/audio`}/>
-    <a href={`/api/library/${id}/audio?download=1`} download="djayvo-mix.wav">Download WAV</a>
+    <a href={`/api/library/${id}/audio?download=1`} download="jamloom-mix.wav">Download WAV</a>
     {!confirm ? <button className="secondary" onClick={()=>setConfirm(true)}>Remove from account</button> : <div><p>Remove this saved mix and any catalogue listing? Your local copy stays on your device.</p>
       <button className="danger" disabled={busy} onClick={async()=>{setBusy(true);setError('');try {await result(await fetch(`/api/library/${id}/audio`,{method:'DELETE'}));router.refresh();}catch(e){setError(e instanceof Error?e.message:'Removal failed. Try again.');}finally{setBusy(false);}}}>Confirm removal</button>
       <button className="secondary" disabled={busy} onClick={()=>setConfirm(false)}>Keep mix</button></div>}

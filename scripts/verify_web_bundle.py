@@ -11,7 +11,7 @@ def verify():
     bundle = ROOT / 'dist/web'
     expected = {p.name for pattern in ('*.html', '*.css', '*.js') for p in (ROOT / 'apps/web').glob(pattern)}
     expected |= INSTALL_ASSETS
-    expected |= {'service-worker.js', 'engine/djayvo_web.mjs', 'engine/djayvo_web.wasm', 'engine/djayvo_live.wasm',
+    expected |= {'service-worker.js', 'engine/jamloom_web.mjs', 'engine/jamloom_web.wasm', 'engine/jamloom_live.wasm',
                  'licenses/VSCO-2-CE-LICENSE.txt', 'licenses/VCSL-LICENSE.txt', 'licenses/BLACK-AND-GREEN-GUITARS-CC0.txt', 'licenses/EMSCRIPTEN-LICENSE.txt'}
     actual = {str(p.relative_to(bundle)) for p in bundle.rglob('*') if p.is_file()}
     assert actual == expected, f'Unexpected or missing public files: {actual ^ expected}'
@@ -20,7 +20,7 @@ def verify():
         if '/' not in name and name != 'service-worker.js':
             assert (bundle / name).read_bytes() == (ROOT / 'apps/web' / name).read_bytes(), f'Stale file: {name}'
     assert (bundle / 'service-worker.js').read_text() == worker_source(bundle), 'Stale offline worker'
-    wasm = (bundle / 'engine/djayvo_web.wasm').read_bytes()
+    wasm = (bundle / 'engine/jamloom_web.wasm').read_bytes()
     assert wasm[:4] == b'\0asm'
     assert len(wasm) < 16 * 1024 * 1024
     for notice in (ROOT / 'assets/licenses').glob('*.txt'):

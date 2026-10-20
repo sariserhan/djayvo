@@ -7,9 +7,9 @@ import { execFileSync } from 'node:child_process';
 import { chromium, firefox, webkit } from 'playwright';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
-const kind = process.env.DJAYVO_BROWSER || 'chromium';
-assert.ok(['chromium', 'firefox', 'webkit'].includes(kind), 'Unsupported DJAYVO_BROWSER');
-const standalone = process.env.DJAYVO_OFFLINE_ROOT === '1';
+const kind = (process.env.JAMLOOM_BROWSER ?? process.env.DJAYVO_BROWSER) || 'chromium';
+assert.ok(['chromium', 'firefox', 'webkit'].includes(kind), 'Unsupported JAMLOOM_BROWSER');
+const standalone = (process.env.JAMLOOM_OFFLINE_ROOT ?? process.env.DJAYVO_OFFLINE_ROOT) === '1';
 const mount = standalone ? '/' : '/studio/';
 const output = await fs.mkdtemp(path.join(root, `renders/web-${kind}-${standalone ? 'root-' : ''}offline-`));
 console.log('Artifacts:', output);
@@ -31,7 +31,7 @@ const server = createServer(async (req, res) => {
   if (name.includes('..') || name.includes('\\')) { res.writeHead(400); res.end(); return; }
   try {
     let bytes = await fs.readFile(path.join(bundle, name));
-    if (corrupt && name === 'engine/djayvo_web.wasm') { bytes = Buffer.from(bytes); bytes[bytes.length - 1] ^= 1; }
+    if (corrupt && name === 'engine/jamloom_web.wasm') { bytes = Buffer.from(bytes); bytes[bytes.length - 1] ^= 1; }
     res.setHeader('Content-Type', mime[path.extname(name)] || 'application/octet-stream');
     res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'");
     res.end(bytes);
@@ -72,7 +72,7 @@ async function generate(style, tracks) {
 }
 try {
   await page.goto(url);
-  assert.match(await page.title(), /Djayvo/);
+  assert.match(await page.title(), /Jamloom/);
   const manifest = await page.evaluate(async () => {
     const link = document.querySelector('link[rel=manifest]');
     const response = await fetch(link.href);
@@ -85,7 +85,7 @@ try {
     }
     return { ...value, resolved: Object.fromEntries(['id', 'scope', 'start_url'].map(key => [key, new URL(value[key], link.href).href])) };
   });
-  assert.equal(manifest.name, 'Djayvo'); assert.equal(manifest.display, 'standalone');
+  assert.equal(manifest.name, 'Jamloom'); assert.equal(manifest.display, 'standalone');
   assert.deepEqual(manifest.resolved, { id: url, scope: url, start_url: `${url}index.html` });
   await privacy();
   assert.match(await page.locator('#install-status').textContent(), /install menu|quick access/);
@@ -130,7 +130,7 @@ try {
   assert.equal(await page.evaluate(() => navigator.serviceWorker.controller.scriptURL), `${url}service-worker.js`);
   const cachedURLs = await page.evaluate(async key => (await (await caches.open(key)).keys()).map(request => request.url), initialKeys[0]);
   assert.ok(cachedURLs.every(item => item.startsWith(url) && !/\.wav$|\/api\/|\/account/.test(item)));
-  for (const file of ['engine/djayvo_web.wasm', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png', 'icon.svg']) assert.ok(cachedURLs.includes(`${url}${file}`));
+  for (const file of ['engine/jamloom_web.wasm', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png', 'icon.svg']) assert.ok(cachedURLs.includes(`${url}${file}`));
   assert.equal(await page.evaluate(async () => (await fetch('/api/private')).status), 200);
   assert.equal(await page.evaluate(async () => (await fetch('/account')).status), 200);
   assert.equal(await page.evaluate(async key => (await (await caches.open(key)).keys()).length, initialKeys[0]), cachedURLs.length);
@@ -139,7 +139,7 @@ try {
   await new Promise(resolve => { server.close(resolve); server.closeAllConnections(); });
   const beforeOffline = network.length;
   await page.goto(`${url}index.html`);
-  assert.equal(await page.evaluate(async () => (await (await fetch('./manifest.webmanifest')).json()).name), 'Djayvo');
+  assert.equal(await page.evaluate(async () => (await (await fetch('./manifest.webmanifest')).json()).name), 'Jamloom');
   await page.waitForFunction(() => document.querySelectorAll('.track').length === 1);
   assert.equal(await page.locator('#consent').isChecked(), false);
   await generate('three', 4);

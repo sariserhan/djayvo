@@ -1,4 +1,4 @@
-#include "djayvo/remix.h"
+#include "jamloom/remix.h"
 #include "resample_pcm.h"
 #include <algorithm>
 #include <cmath>
@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <stdexcept>
 
-namespace djayvo {
+namespace jamloom {
 namespace {
 std::vector<float> transform_voice(const AudioBuffer& source,const Region& clip,const VocalEvent& event) {
     const auto* begin=source.mono.data()+clip.begin;
@@ -255,4 +255,4 @@ void render_remix(const RemixPlan& p,const AudioBuffer& source,const std::string
     trace.flush();
     if (!trace) throw std::runtime_error("cannot write event trace");
 }
-} // namespace djayvo
+} // namespace jamloom

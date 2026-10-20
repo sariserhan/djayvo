@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "mount": "/studio/",
+  "browser": "chromium",
+  "version": "149.0.7827.55",
+  "checks": [
+    {
+      "name": "manifest identity/start/scope, decoded icons and responsive installation guidance",
+      "status": "PASS"
+    },
+    {
+      "name": "no cache or registration before opt-in; ordinary local generation works",
+      "status": "PASS"
+    },
+    {
+      "name": "corrupt download rejects installation and removes partial cache without touching mixes",
+      "status": "PASS"
+    },
+    {
+      "name": "Chromium manifest parsing and browser installability diagnostics have no errors",
+      "status": "PASS"
+    },
+    {
+      "name": "complete app/engine cache serves only its allowlist under /studio/; account/API responses are excluded",
+      "status": "PASS"
+    },
+    {
+      "name": "offline reload/import/three-take generation/play/seek/download succeed with no server requests",
+      "status": "PASS"
+    },
+    {
+      "name": "failed update retains the complete old studio and all saved music",
+      "status": "PASS"
+    },
+    {
+      "name": "successful update waits while the old studio remains open; no forced reload or mixed assets",
+      "status": "PASS"
+    },
+    {
+      "name": "repeated pending updates retain complete active/waiting caches; storage stays bounded",
+      "status": "PASS"
+    },
+    {
+      "name": "update activates after closing studio tabs; old owned cache removed, unrelated cache and mixes retained",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit removal unregisters only studio/cache and preserves every mix and unrelated cache",
+      "status": "PASS"
+    }
+  ],
+  "cached_asset_count": 34,
+  "errors": [],
+  "installability": {
+    "installabilityErrors": []
+  },
+  "os_install_launch": "NOT RUN",
+  "non_get_requests": [],
+  "physical_microphone": "NOT RUN",
+  "human_listening": "NOT RUN",
+  "hosting": "NOT RUN"
+}

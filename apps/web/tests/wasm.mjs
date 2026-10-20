@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import createEngine from '../../../build-web/djayvo_web.mjs';
+import createEngine from '../../../build-web/jamloom_web.mjs';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const output = await fs.mkdtemp(path.join(root, 'renders/web-wasm-'));
@@ -11,9 +11,9 @@ const results = [];
 for (const club of [0, 1, 2, 3, 4]) {
   const engine = await createEngine();
   engine.FS.writeFile('/input.wav', input);
-  const call = permission => engine.ccall('djayvo_web_render', 'string', ['number', 'number', 'number'], [4123, club, permission]);
+  const call = permission => engine.ccall('jamloom_web_render', 'string', ['number', 'number', 'number'], [4123, club, permission]);
   assert.match(call(0), /permission/);
-  assert.match(engine.ccall('djayvo_web_render', 'string', ['number','number','number'], [4123,5,2]), /permission/);
+  assert.match(engine.ccall('jamloom_web_render', 'string', ['number','number','number'], [4123,5,2]), /permission/);
   assert.equal(engine.FS.readdir('/').filter(name => name.startsWith('mix.')).length, 0);
   const started = performance.now();
   assert.equal(call(2), '');
@@ -24,7 +24,7 @@ for (const club of [0, 1, 2, 3, 4]) {
 }
 const broken = await createEngine();
 broken.FS.writeFile('/input.wav', new Uint8Array([1, 2, 3]));
-assert.match(broken.ccall('djayvo_web_render', 'string', ['number', 'number', 'number'], [1, 0, 2]), /WAV/);
+assert.match(broken.ccall('jamloom_web_render', 'string', ['number', 'number', 'number'], [1, 0, 2]), /WAV/);
 const rate=44100,frames=rate*3;
 const wav=Buffer.alloc(44+frames*2);
 wav.write('RIFF');wav.writeUInt32LE(wav.length-8,4);wav.write('WAVEfmt ',8);wav.writeUInt32LE(16,16);
@@ -32,13 +32,13 @@ wav.writeUInt16LE(1,20);wav.writeUInt16LE(1,22);wav.writeUInt32LE(rate,24);wav.w
 wav.writeUInt16LE(2,32);wav.writeUInt16LE(16,34);wav.write('data',36);wav.writeUInt32LE(frames*2,40);
 for(let i=0;i<frames;i++)wav.writeInt16LE(Math.round(5000*Math.sin(2*Math.PI*220*i/rate)),44+i*2);
 const engine=await createEngine();engine.FS.writeFile('/input.wav',wav);
-const result=engine.ccall('djayvo_web_render','string',['number','number','number'],[4123,1,2]);
+const result=engine.ccall('jamloom_web_render','string',['number','number','number'],[4123,1,2]);
 console.log(JSON.stringify({input_rate:rate,input_frames:frames,result}));assert.equal(result,'');
 const plan=JSON.parse(engine.FS.readFile('/mix.club.score.json',{encoding:'utf8'}));
 assert.equal(plan.source.processed_frames,144000);console.log('PASS: 44.1 kHz input retains three seconds in 32-bit WebAssembly');
 for(let i=0;i<frames;i++)wav.writeInt16LE(16384,44+i*2);
 const dc=await createEngine();dc.FS.writeFile('/input.wav',wav);
-assert.match(dc.ccall('djayvo_web_render','string',['number','number','number'],[4123,0,2]), /silent or too quiet/);
+assert.match(dc.ccall('jamloom_web_render','string',['number','number','number'],[4123,0,2]), /silent or too quiet/);
 assert.equal(dc.FS.readdir('/').filter(name=>name.startsWith('mix.')).length,0);
 console.log('PASS: constant offset rejected after resampling without publishing WASM mixes');
 

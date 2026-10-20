@@ -12,8 +12,8 @@ import { fakeMidi } from './midi-browser.mjs';
 import { verifyPendingStart, verifyPendingConsent } from './session-start.mjs';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
-const kind = process.env.DJAYVO_BROWSER || 'chromium';
-if (!['chromium', 'webkit'].includes(kind)) throw new Error(`Unsupported DJAYVO_BROWSER: ${kind}`);
+const kind = (process.env.JAMLOOM_BROWSER ?? process.env.DJAYVO_BROWSER) || 'chromium';
+if (!['chromium', 'webkit'].includes(kind)) throw new Error(`Unsupported JAMLOOM_BROWSER: ${kind}`);
 const output = await fs.mkdtemp(path.join(root, `renders/session-${kind}-`));
 console.log('Artifacts:', output);
 const publicRoot = path.join(root, 'dist/web');
@@ -114,7 +114,7 @@ try {
   });
   page.on('request', request => requests.push(request.url()));
   await page.goto(`${origin}/dj.html`);
-  assert.match(await page.title(), /Djayvo/);
+  assert.match(await page.title(), /Jamloom/);
   await page.locator('#performance-title').waitFor();
   assert.equal(await page.locator('#prepare-a').isDisabled(), true);
   assert.equal(await page.locator('#phrase-record').isDisabled(), true);

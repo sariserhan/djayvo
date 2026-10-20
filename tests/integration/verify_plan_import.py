@@ -18,7 +18,7 @@ from prepare_voice_transforms import add_echoes, frame_at
 
 
 def main(renderer):
-    with tempfile.TemporaryDirectory(prefix='djayvo-plan-import-') as folder:
+    with tempfile.TemporaryDirectory(prefix='jamloom-plan-import-') as folder:
         root=Path(folder)
         source=root/'signal.wav'
         make_signal(source,8000)

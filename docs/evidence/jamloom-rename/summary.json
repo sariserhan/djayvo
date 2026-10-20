@@ -1,0 +1,21 @@
+{
+  "gate": "PASS",
+  "studio_url": "http://localhost:3000/studio/dj.html",
+  "six_served_assets_match_build": true,
+  "old_evidence_master_sql_and_sources_unchanged": true,
+  "public_site_build": "PASS",
+  "web_unit_tests": 44,
+  "site_unit_tests": 9,
+  "native_suites": 15,
+  "dj_browser_checks_per_engine": 47,
+  "legacy_saved_session_checks_per_engine": 5,
+  "chromium_offline_checks": 11,
+  "before_after_wavs": 17,
+  "waveform_difference_max": 0,
+  "waveform_difference_rms": 0,
+  "event_frame_agreement": "exact",
+  "ios_unsigned_simulator_release_build": "PASS",
+  "new_linux_sanitizer_physical_device_listening_runs": "NOT RUN",
+  "hosted_rename_deployment_domain": "NOT RUN",
+  "overall_production": "PARTIAL"
+}

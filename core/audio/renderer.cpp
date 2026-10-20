@@ -1,11 +1,11 @@
-#include "djayvo/audio.h"
+#include "jamloom/audio.h"
 #include <algorithm>
 #include <cmath>
 #include <limits>
 #include <stdexcept>
 #include <utility>
 
-namespace djayvo {
+namespace jamloom {
 namespace {
 constexpr double pi = 3.14159265358979323846;
 bool before(const Event& a, const Event& b) {
@@ -184,4 +184,4 @@ std::size_t Renderer::process(float* stereo, std::size_t requested) noexcept {
     }
     return count;
 }
-} // namespace djayvo
+} // namespace jamloom

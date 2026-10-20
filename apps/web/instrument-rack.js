@@ -9,11 +9,11 @@ export const playable = (patch, pitch) => Number.isInteger(pitch) && pitch >= 21
 
 export async function createRack(context, destination) {
   if (!context.audioWorklet) throw new Error('Live instruments need AudioWorklet on HTTPS or localhost.');
-  const response = await fetch(new URL('./engine/djayvo_live.wasm', import.meta.url), { credentials: 'omit' });
+  const response = await fetch(new URL('./engine/jamloom_live.wasm', import.meta.url), { credentials: 'omit' });
   if (!response.ok) throw new Error('Could not load the instrument bank. Prepare the studio while online.');
   const module = await WebAssembly.compile(await response.arrayBuffer());
   await context.audioWorklet.addModule(new URL('./instrument-worklet.js', import.meta.url));
-  const node = new AudioWorkletNode(context, 'djayvo-instruments', {
+  const node = new AudioWorkletNode(context, 'jamloom-instruments', {
     numberOfInputs: 0, numberOfOutputs: 1, outputChannelCount: [2], processorOptions: { module },
   });
   try {

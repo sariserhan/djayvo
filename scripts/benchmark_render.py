@@ -42,7 +42,7 @@ def main():
     if not args.consent:parser.error('confirm consent for --voice')
     if args.report.exists():parser.error('report exists; preserve evidence and choose a new path')
     rows=[]
-    with tempfile.TemporaryDirectory(prefix='djayvo-benchmark-') as folder:
+    with tempfile.TemporaryDirectory(prefix='jamloom-benchmark-') as folder:
         root=Path(folder);base=root/'base.wav';make_signal(base)
         with wave.open(str(base)) as audio:
             rate=audio.getframerate();raw=audio.readframes(audio.getnframes());params=audio.getparams()

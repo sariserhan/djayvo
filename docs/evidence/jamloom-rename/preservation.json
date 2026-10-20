@@ -1,0 +1,14 @@
+{
+  "gate": "PASS",
+  "protected_file_count": 2161,
+  "protected_categories": [
+    "pre-existing evidence",
+    "SQL migrations",
+    "master specification",
+    "supplied synthetic fixture",
+    "owner source recording"
+  ],
+  "all_hashes_unchanged": true,
+  "synth_and_generator_changes": "brand-only; current provenance hashes updated",
+  "master_sha256": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2"
+}

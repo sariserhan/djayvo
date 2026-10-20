@@ -1,4 +1,4 @@
-# Djayvo web
+# Jamloom web
 
 The owner requested the web version first on 2026-10-18. Phone work is paused.
 This is a working local browser app, using the same C++17 music engine through
@@ -54,13 +54,13 @@ estimate and confirm its constant tempo/tonic/major-or-minor mode/downbeat, reco
 while A plays, and generate/preview/arm a local phrase-response performance on
 A's bar grid. C has independent level, stop and WAV download. See the
 [prepared-session guide and evidence](../../docs/prepared-session.md); run
-`node apps/web/tests/session.mjs` and repeat with `DJAYVO_BROWSER=webkit`.
+`node apps/web/tests/session.mjs` and repeat with `JAMLOOM_BROWSER=webkit`.
 If A or C shows **Starting**, its Stop button cancels the pending request; a
 failed start can be retried without reloading or losing the prepared performance.
 Cue routing and learned AI remain unimplemented. See
 [checks and limits](../../docs/dj-console.md). Run the dedicated checks with
 `node apps/web/tests/dj.mjs` (from the root), then the same command with
-`DJAYVO_BROWSER=webkit`. They start their own temporary server.
+`JAMLOOM_BROWSER=webkit`. They start their own temporary server.
 
 ## Offline use
 
@@ -71,7 +71,7 @@ needs no account. Updates wait until all studio tabs close. **Remove offline
 studio** removes only the cached app; saved mixes stay in the separate library.
 Browser storage eviction can remove either; download important music.
 
-**Privacy & credits → Add Djayvo to your device** offers installation when your
+**Privacy & credits → Add Jamloom to your device** offers installation when your
 browser supports it, with menu instructions otherwise. Installation and offline
 storage are separate choices. Installed apps may have separate storage; download
 important mixes before switching. [Installation support and checks](../../docs/web-installation.md)
@@ -91,7 +91,7 @@ venv/pip, Git, Make, tar with xz support and initial network access.
 sh scripts/web_build.sh
 ```
 
-Installed tools are reused. `DJAYVO_EMSDK` can select another SDK directory with
+Installed tools are reused. `JAMLOOM_EMSDK` can select another SDK directory with
 6.0.1 activated. CMake uses `.venv-build/bin` if present.
 Build output is `dist/web`; only that folder is served. No repository
 files, private audio, test fixtures or developer tools belong in a hosted bundle.
@@ -123,14 +123,14 @@ npm --prefix apps/web test
 node apps/web/tests/wasm.mjs
 # Keep the local server running for these commands:
 npm --prefix apps/web run test:browser
-DJAYVO_BROWSER=webkit npm --prefix apps/web run test:browser
-DJAYVO_BROWSER=firefox npm --prefix apps/web run test:browser
+JAMLOOM_BROWSER=webkit npm --prefix apps/web run test:browser
+JAMLOOM_BROWSER=firefox npm --prefix apps/web run test:browser
 node apps/web/tests/browser-render.mjs
-DJAYVO_BROWSER=webkit node apps/web/tests/browser-render.mjs
-DJAYVO_BROWSER=firefox node apps/web/tests/browser-render.mjs
+JAMLOOM_BROWSER=webkit node apps/web/tests/browser-render.mjs
+JAMLOOM_BROWSER=firefox node apps/web/tests/browser-render.mjs
 # Offline tests start their own disposable server; repeat with webkit/firefox:
-DJAYVO_BROWSER=chromium node apps/web/tests/offline.mjs
-DJAYVO_BROWSER=chromium DJAYVO_OFFLINE_ROOT=1 node apps/web/tests/offline.mjs
+JAMLOOM_BROWSER=chromium node apps/web/tests/offline.mjs
+JAMLOOM_BROWSER=chromium JAMLOOM_OFFLINE_ROOT=1 node apps/web/tests/offline.mjs
 ```
 
 Browser names are explicit: `chromium`, `webkit`, or `firefox`; unknown values

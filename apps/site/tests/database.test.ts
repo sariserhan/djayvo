@@ -20,10 +20,10 @@ test('isolated Postgres account lifecycle, schema safety and owner isolation', a
   assert.equal(base.local, true, 'Integration tests require loopback Postgres and local email.');
   assert.ok(base.outbox, 'Tests never send real emails.');
   const admin = createPool(base.databaseURL);
-  const name = `djayvo_test_${randomUUID().replaceAll('-', '')}`;
+  const name = `jamloom_test_${randomUUID().replaceAll('-', '')}`;
   await admin.query(`CREATE DATABASE "${name}"`);
   const url = new URL(base.databaseURL); url.pathname = `/${name}`;
-  const folder = await mkdtemp(join(tmpdir(), 'djayvo-accounts-'));
+  const folder = await mkdtemp(join(tmpdir(), 'jamloom-accounts-'));
   const config = { ...base, databaseURL: url.toString(), outbox: join(folder, 'mail') };
   const pool = createPool(config.databaseURL);
   try {
@@ -74,7 +74,7 @@ test('isolated Postgres account lifecycle, schema safety and owner isolation', a
       await pool.query(`DELETE FROM verification WHERE id='active-code'`);
     });
     const auth = betterAuth(authOptions(config, pool));
-    const password = 'Djayvo-local-test-password-719';
+    const password = 'Jamloom-local-test-password-719';
     let ip = 1;
     async function request(path: string, body?: object, cookie?: string, origin = config.baseURL, address?: string) {
       return auth.handler(new Request(`${config.baseURL}/api/auth${path}`, {

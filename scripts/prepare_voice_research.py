@@ -80,7 +80,7 @@ def prepare(source, score, trial, output, consent):
         cards.append(f'<section><h2>Pair {index} · {"Club" if name.startswith("club") else "Hip-hop"}</h2>'+"".join(players)+"</section>")
         rows.append([pair,"","","","","","",""])
     # Re-render a real case independently; identical files also establish exact PCM/event repeatability.
-    with tempfile.TemporaryDirectory(prefix="djayvo-voice-repeat-") as temp:
+    with tempfile.TemporaryDirectory(prefix="jamloom-voice-repeat-") as temp:
         name, scene = CASES[0]
         c = cases[name]
         repeated = arrange(source,score,trial/c["file"],Path(temp)/"repeat",c["bpm"],c["seed"],scene,consent=True)
@@ -96,7 +96,7 @@ def prepare(source, score, trial, output, consent):
         writer.writerow(["pair","preferred_A_B_tie_neither","instrument_realism_1_5","groove_1_5","voice_amount_too_much_right_too_little","voice_recognizable_yes_no","timestamp","notes"])
         writer.writerows(rows)
     page='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Djayvo · voice and space</title><style>
+<title>Jamloom · voice and space</title><style>
 body{font:18px/1.6 system-ui;max-width:1050px;margin:32px auto;padding:0 24px;background:#111b20;color:#e9f0eb}
 h1{font-size:42px;line-height:1.15}h2{font-size:22px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
 section{padding:22px;background:#213039;border:1px solid #41545b;border-radius:12px}audio{width:100%}a{color:#98e8b4}

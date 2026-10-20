@@ -172,8 +172,8 @@ def run_batch(manifest_path, output, renderer):
                         (folder/'blinded/listener/ATTRIBUTION.txt').write_text(
                             notice['attribution']+'\n'+notice['id']+'\n'+notice['url']+'\n')
                         page = folder/'blinded/listener/index.html'
-                        page.write_text(page.read_text().replace('<h1>Djayvo listening review</h1>',
-                            '<h1>Djayvo listening review</h1><p><a href="ATTRIBUTION.txt">Source credits and permissions</a></p>'))
+                        page.write_text(page.read_text().replace('<h1>Jamloom listening review</h1>',
+                            '<h1>Jamloom listening review</h1><p><a href="ATTRIBUTION.txt">Source credits and permissions</a></p>'))
                     row['packet'] = 'PASS'; row['block_id'] = key['block_id']
                 except (ValueError, OSError) as error:
                     row['packet'] = 'FAIL'; row['packet_error'] = str(error)
@@ -198,7 +198,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--manifest', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--renderer', type=Path, default=Path('build-mac/djayvo_remix'))
+    parser.add_argument('--renderer', type=Path, default=Path('build-mac/jamloom_remix'))
     args = parser.parse_args()
     try:
         result = run_batch(args.manifest, args.output, args.renderer)

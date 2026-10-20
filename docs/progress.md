@@ -1,4 +1,9 @@
-# Djayvo: M0 continuation evidence
+# Jamloom: M0 continuation evidence
+
+Latest product rename — 2026-10-19: **Jamloom** is the official product name.
+See [rename scope and validation](jamloom-rename.md). Historical evidence below
+retains its original names, paths, receipts and observations; it is not fresh
+validation of the renamed build. Use the current README for build commands.
 
 Latest manual deck start repair — 2026-10-19:
 [Metadata readiness](media-readiness.md) **PASS (bounded start ordering)**:

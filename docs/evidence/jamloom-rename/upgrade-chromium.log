@@ -1,0 +1,6 @@
+PASS: Jamloom renders the complete legacy session from the original IndexedDB identity
+PASS: recording remains opt-in; visible consent control responds
+PASS: legacy WAV plays and downloads byte-exactly with a Jamloom filename
+PASS: desktop and mobile branded studio renders without horizontal overflow
+PASS: PWA identity retained, account branding present, no runtime or framework errors
+Artifacts: /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-upgrade-chromium-k8Hu1H

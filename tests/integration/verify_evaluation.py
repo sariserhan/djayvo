@@ -23,7 +23,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--renderer', type=Path, required=True)
     args = parser.parse_args()
-    with tempfile.TemporaryDirectory(prefix='djayvo-evaluation-') as folder:
+    with tempfile.TemporaryDirectory(prefix='jamloom-evaluation-') as folder:
         root = Path(folder); source = root/'source.wav'; make_signal(source, 8000)
         silence = root/'silence.wav'
         with wave.open(str(silence), 'wb') as audio:

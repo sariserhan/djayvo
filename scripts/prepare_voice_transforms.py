@@ -96,9 +96,9 @@ def prepare(renderer, source, plan_path, output, echo=False):
                         f'<p>Mix</p><audio controls preload="metadata" src="{prefix}.wav"></audio>'
                         f'<p>Voice alone</p><audio controls preload="metadata" src="{prefix}.vocals.wav"></audio></section>')
     (output / 'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width,initial-scale=1"><title>Djayvo voice comparisons</title>'
+        '<meta name="viewport" content="width=device-width,initial-scale=1"><title>Jamloom voice comparisons</title>'
         '<style>body{max-width:760px;margin:40px auto;padding:0 20px;font:18px system-ui;background:#151515;color:#eee}'
-        'audio{width:100%}section{margin:32px 0}</style><h1>Djayvo voice comparisons</h1>'
+        'audio{width:100%}section{margin:32px 0}</style><h1>Jamloom voice comparisons</h1>'
         '<p>Private local research. Compare the opening and later responses. Full clean hooks stay unchanged. '
         'All mixes use the same arrangement and gains; loudness is not normalized. Listen for consonants, '
         'voice character, timing and rough joins. No quality rating has been recorded.</p>' + ''.join(sections) +

@@ -12,7 +12,7 @@ INSTALL_ASSETS = {'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-192.
 def worker_source(bundle):
     names = {p.name for pattern in ('*.html', '*.css', '*.js') for p in (ROOT / 'apps/web').glob(pattern)}
     names |= INSTALL_ASSETS
-    names |= {'engine/djayvo_web.mjs', 'engine/djayvo_web.wasm', 'engine/djayvo_live.wasm',
+    names |= {'engine/jamloom_web.mjs', 'engine/jamloom_web.wasm', 'engine/jamloom_live.wasm',
               'licenses/VSCO-2-CE-LICENSE.txt', 'licenses/VCSL-LICENSE.txt',
               'licenses/BLACK-AND-GREEN-GUITARS-CC0.txt', 'licenses/EMSCRIPTEN-LICENSE.txt'}
     actual = {p.relative_to(bundle).as_posix() for p in bundle.rglob('*') if p.is_file()}
@@ -29,7 +29,7 @@ def worker_source(bundle):
     template = (ROOT / 'scripts/service-worker.js').read_text()
     manifest = json.dumps(assets, sort_keys=True, separators=(',', ':'))
     version = hashlib.sha256((template + manifest).encode()).hexdigest()
-    return template.replace('__DJAYVO_ASSETS__', manifest).replace('__DJAYVO_VERSION__', version)
+    return template.replace('__JAMLOOM_ASSETS__', manifest).replace('__JAMLOOM_VERSION__', version)
 
 
 if __name__ == '__main__':

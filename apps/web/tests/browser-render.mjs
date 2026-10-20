@@ -4,14 +4,14 @@ import { fileURLToPath } from 'node:url';
 import { chromium, firefox, webkit } from 'playwright';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
-const kind = process.env.DJAYVO_BROWSER || 'chromium';
+const kind = (process.env.JAMLOOM_BROWSER ?? process.env.DJAYVO_BROWSER) || 'chromium';
 const engine = { chromium, firefox, webkit }[kind];
-if (!['chromium', 'firefox', 'webkit'].includes(kind)) throw new Error(`Unsupported DJAYVO_BROWSER: ${kind}`);
+if (!['chromium', 'firefox', 'webkit'].includes(kind)) throw new Error(`Unsupported JAMLOOM_BROWSER: ${kind}`);
 const output = await fs.mkdtemp(path.join(root, `renders/web-${kind}-engine-`));
 const browser = await engine.launch();
 try {
   const page = await browser.newPage();
-  await page.goto(process.env.DJAYVO_STUDIO_URL || 'http://localhost:4173');
+  await page.goto((process.env.JAMLOOM_STUDIO_URL ?? process.env.DJAYVO_STUDIO_URL) || 'http://localhost:4173');
   await page.exposeFunction('writeArtifact', async (name, base64) => {
     if (!/^(hiphop|reggae|experimental|club|funk|call_response|hybrid)\.(wav|score\.json|report\.json|events\.tsv)$/.test(name)) throw new Error('Unexpected artifact');
     await fs.writeFile(path.join(output, `mix.${name}`), Buffer.from(base64, 'base64'));

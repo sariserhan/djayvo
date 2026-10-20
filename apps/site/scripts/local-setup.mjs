@@ -14,16 +14,16 @@ const password = randomBytes(24).toString('hex');
 const passfile = join(run, 'init-password');
 writeFileSync(passfile, password, { mode: 0o600 });
 const data = join(run, 'data');
-execFileSync(join(bin, 'initdb'), ['-D', data, '-U', 'djayvo', '--auth=scram-sha-256', `--pwfile=${passfile}`], { stdio: 'pipe' });
+execFileSync(join(bin, 'initdb'), ['-D', data, '-U', 'jamloom', '--auth=scram-sha-256', `--pwfile=${passfile}`], { stdio: 'pipe' });
 unlinkSync(passfile);
 appendFileSync(join(data, 'postgresql.conf'), `\nlisten_addresses = '127.0.0.1'\nport = 55439\nunix_socket_directories = '${run.replaceAll("'", "''")}'\n`);
 execFileSync(join(bin, 'pg_ctl'), ['-D', data, '-l', join(run, 'postgres.log'), '-w', 'start'], { stdio: 'pipe' });
-execFileSync(join(bin, 'createdb'), ['-h', '127.0.0.1', '-p', '55439', '-U', 'djayvo', 'djayvo_local'], { env: { ...process.env, PGPASSWORD: password }, stdio: 'pipe' });
-const url = `postgresql://djayvo:${password}@127.0.0.1:55439/djayvo_local`;
+execFileSync(join(bin, 'createdb'), ['-h', '127.0.0.1', '-p', '55439', '-U', 'jamloom', 'jamloom_local'], { env: { ...process.env, PGPASSWORD: password }, stdio: 'pipe' });
+const url = `postgresql://jamloom:${password}@127.0.0.1:55439/jamloom_local`;
 writeFileSync(join(app, '.env.local'), [
   `DATABASE_URL=${url}`, `DATABASE_MIGRATION_URL=${url}`,
   'BETTER_AUTH_URL=http://localhost:3000', `BETTER_AUTH_SECRET=${randomBytes(48).toString('hex')}`,
-  `DJAYVO_LOCAL_OUTBOX=${join(run, 'outbox')}`, '',
+  `JAMLOOM_LOCAL_OUTBOX=${join(run, 'outbox')}`, '',
 ].join('\n'), { mode: 0o600, flag: 'wx' });
 writeFileSync(join(root, 'local-postgres.json'), JSON.stringify({ bin, data, run }), { mode: 0o600 });
 console.log('Created an isolated loopback Postgres cluster and private .env.local. No emails leave this Mac.');

@@ -5,24 +5,24 @@ import { sendEmail } from '../lib/email';
 import { boundedAuthRequest } from '../lib/bounded-request';
 
 const local = {
-  DATABASE_URL: 'postgresql://test:test@127.0.0.1:55439/djayvo_test',
+  DATABASE_URL: 'postgresql://test:test@127.0.0.1:55439/jamloom_test',
   BETTER_AUTH_URL: 'http://localhost:3000', BETTER_AUTH_SECRET: 'a'.repeat(48),
-  DJAYVO_LOCAL_OUTBOX: '/tmp/djayvo-test-outbox',
+  JAMLOOM_LOCAL_OUTBOX: '/tmp/jamloom-test-outbox',
 };
 test('account configuration fails closed and forbids hosted development mail', () => {
   assert.throws(() => readConfig({}));
   assert.throws(() => readConfig({ ...local, BETTER_AUTH_SECRET: 'short' }));
-  assert.throws(() => readConfig({ ...local, BETTER_AUTH_URL: 'https://djayvo.example' }));
+  assert.throws(() => readConfig({ ...local, BETTER_AUTH_URL: 'https://jamloom.example' }));
   assert.throws(() => readConfig({ ...local, VERCEL: '1' }));
   assert.throws(() => readConfig({ ...local, BETTER_AUTH_URL: 'http://localhost:3000/redirect' }));
   assert.equal(readConfig(local).local, true);
-  const hosted = { ...local, DJAYVO_LOCAL_OUTBOX: undefined, DATABASE_URL: 'postgresql://user:pass@ep-example.neon.tech/db', BETTER_AUTH_URL: 'https://djayvo.example', RESEND_API_KEY: 'test-key', EMAIL_FROM: 'Djayvo <hello@example.com>' };
+  const hosted = { ...local, JAMLOOM_LOCAL_OUTBOX: undefined, DATABASE_URL: 'postgresql://user:pass@ep-example.neon.tech/db', BETTER_AUTH_URL: 'https://jamloom.example', RESEND_API_KEY: 'test-key', EMAIL_FROM: 'Jamloom <hello@example.com>' };
   assert.equal(readConfig(hosted).local, false);
-  assert.throws(() => readConfig({ ...hosted, DJAYVO_LOCAL_OUTBOX: '/tmp/outbox' }));
-  assert.throws(() => readConfig({ ...hosted, BETTER_AUTH_URL: 'http://djayvo.example' }));
+  assert.throws(() => readConfig({ ...hosted, JAMLOOM_LOCAL_OUTBOX: '/tmp/outbox' }));
+  assert.throws(() => readConfig({ ...hosted, BETTER_AUTH_URL: 'http://jamloom.example' }));
 });
 test('Resend request uses server credentials, timeout and deterministic retry identity', async () => {
-  const config = { ...readConfig(local), local: false, outbox: undefined, resendKey: 'test-key', emailFrom: 'Djayvo <hello@example.com>' };
+  const config = { ...readConfig(local), local: false, outbox: undefined, resendKey: 'test-key', emailFrom: 'Jamloom <hello@example.com>' };
   const mail = { to: 'listener@example.com', subject: 'Verify', text: 'A test link' };
   const requests: Request[] = [];
   const fakeFetch: typeof fetch = async (url, options) => {
@@ -41,9 +41,9 @@ test('localhost can use Neon without enabling local database/storage shortcuts',
   const config = readConfig(remote);
   assert.equal(config.localApp, true);
   assert.equal(config.local, false);
-  assert.equal(config.outbox, local.DJAYVO_LOCAL_OUTBOX);
+  assert.equal(config.outbox, local.JAMLOOM_LOCAL_OUTBOX);
   assert.throws(() => readConfig({ ...remote, VERCEL: '1' }));
-  assert.throws(() => readConfig({ ...remote, BETTER_AUTH_URL: 'https://djayvo.example' }));
+  assert.throws(() => readConfig({ ...remote, BETTER_AUTH_URL: 'https://jamloom.example' }));
   assert.throws(() => readConfig({ ...remote, DATABASE_URL: 'postgresql://u:p@untrusted.example/db' }));
 });
 test('email outbox cannot run in a hosted app even if a config is supplied directly', async () => {
@@ -57,4 +57,12 @@ test('auth body limit measures real streamed bytes rather than trusting Content-
     method: 'POST', headers: { 'Content-Length': '1' }, body: 'x'.repeat(16_385),
   });
   assert.equal(await boundedAuthRequest(oversized), null);
+});
+
+test('Jamloom config accepts legacy deployment keys and gives explicit new values priority', () => {
+  const legacy = { ...local, JAMLOOM_LOCAL_OUTBOX: undefined, DJAYVO_LOCAL_OUTBOX: '/tmp/legacy-outbox' };
+  assert.equal(readConfig(legacy).outbox, '/tmp/legacy-outbox');
+  assert.equal(readConfig({ ...legacy, JAMLOOM_LOCAL_OUTBOX: '/tmp/new-outbox' }).outbox, '/tmp/new-outbox');
+  assert.throws(() => readConfig({ ...legacy, JAMLOOM_LOCAL_OUTBOX: '' }), /Resend/);
+  assert.throws(() => readConfig({ ...legacy, VERCEL: '1', BETTER_AUTH_URL: 'https://jamloom.example', DATABASE_URL: 'postgresql://u:p@ep-example.neon.tech/db' }), /forbidden/);
 });

@@ -1,0 +1,13 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-jamloom
+    Start 5: acoustic_assets
+1/4 Test #5: acoustic_assets ..................   Passed    0.54 sec
+    Start 6: sustained_assets
+2/4 Test #6: sustained_assets .................   Passed    0.02 sec
+    Start 7: guitar_assets
+3/4 Test #7: guitar_assets ....................   Passed    0.38 sec
+    Start 8: electronic_assets
+4/4 Test #8: electronic_assets ................   Passed    0.08 sec
+
+100% tests passed out of 4
+
+Total Test time (real) =   1.02 sec

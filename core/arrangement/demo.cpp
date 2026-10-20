@@ -1,7 +1,7 @@
-#include "djayvo/music.h"
+#include "jamloom/music.h"
 #include <array>
 
-namespace djayvo {
+namespace jamloom {
 namespace {
 std::uint32_t random_next(std::uint32_t& state) {
     state ^= state << 13U; state ^= state >> 17U; state ^= state << 5U;
@@ -65,4 +65,4 @@ PerformancePlan make_demo(std::uint32_t seed) {
     validate(p);
     return p;
 }
-} // namespace djayvo
+} // namespace jamloom

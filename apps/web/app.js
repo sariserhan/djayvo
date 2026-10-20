@@ -254,7 +254,7 @@ function renderLibrary() {
       const style = file.name.split('.')[0], row = element('div', '', 'track');
       const url = URL.createObjectURL(file.blob); urls.push(url);
       const audio = element('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = url; audio.setAttribute('aria-label', `Play ${names[style]} mix`);
-      const download = element('a', 'Download WAV', 'download'); download.href = url; download.download = `djayvo-${style}-${session.seed}.wav`;
+      const download = element('a', 'Download WAV', 'download'); download.href = url; download.download = `jamloom-${style}-${session.seed}.wav`;
       download.setAttribute('aria-label', `Download ${names[style]} WAV`);
       row.append(element('strong', names[style]), audio, download); section.append(row);
     }

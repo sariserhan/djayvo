@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Djayvo completed export",
+  "title": "Jamloom completed export",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "status", "source_sha256", "artifacts"],

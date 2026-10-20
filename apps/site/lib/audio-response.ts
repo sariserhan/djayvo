@@ -3,7 +3,7 @@ export const privateHeaders={'Cache-Control':'private, no-store','X-Content-Type
 export function audioResponse(request:Request,file:{data?:Buffer;url?:string},download=false) {
   if(file.url)return new Response(null,{status:307,headers:{...privateHeaders,Location:file.url}});
   const data=file.data!;
-  const common={...privateHeaders,'Content-Type':'audio/wav','Accept-Ranges':'bytes','Content-Disposition':`${download?'attachment':'inline'}; filename="djayvo-mix.wav"`};
+  const common={...privateHeaders,'Content-Type':'audio/wav','Accept-Ranges':'bytes','Content-Disposition':`${download?'attachment':'inline'}; filename="jamloom-mix.wav"`};
   const range=request.headers.get('range');
   if(!range)return new Response(new Uint8Array(data),{headers:{...common,'Content-Length':String(data.length)}});
   const match=/^bytes=(\d*)-(\d*)$/.exec(range);

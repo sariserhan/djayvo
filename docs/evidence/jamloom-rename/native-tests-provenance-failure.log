@@ -1,0 +1,52 @@
+Test project /Users/serhansari/Documents/projects/djayvo/build-jamloom
+      Start  1: live_instruments
+ 1/15 Test  #1: live_instruments .................   Passed    0.75 sec
+      Start  2: core
+ 2/15 Test  #2: core .............................   Passed    1.03 sec
+      Start  3: remix_core
+ 3/15 Test  #3: remix_core .......................   Passed    6.01 sec
+      Start  4: c_abi
+ 4/15 Test  #4: c_abi ............................   Passed    0.69 sec
+      Start  5: acoustic_assets
+ 5/15 Test  #5: acoustic_assets ..................   Passed    0.49 sec
+      Start  6: sustained_assets
+ 6/15 Test  #6: sustained_assets .................***Failed    0.03 sec
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/verify_sustained_assets.py", line 8, in <module>
+    assert hashlib.sha256((root/m['implementation']).read_bytes()).hexdigest()==m['sha256']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+      Start  7: guitar_assets
+ 7/15 Test  #7: guitar_assets ....................   Passed    0.40 sec
+      Start  8: electronic_assets
+ 8/15 Test  #8: electronic_assets ................***Failed    0.03 sec
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/verify_electronic_assets.py", line 14, in <module>
+    assert hashlib.sha256((root/'scripts/prepare_electronic_bank.py').read_bytes()).hexdigest()==manifest['generator_sha256']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+      Start  9: wav_integration
+ 9/15 Test  #9: wav_integration ..................   Passed    0.95 sec
+      Start 10: remix_integration
+10/15 Test #10: remix_integration ................   Passed    7.82 sec
+      Start 11: word_timing
+11/15 Test #11: word_timing ......................   Passed    0.21 sec
+      Start 12: tooling
+12/15 Test #12: tooling ..........................   Passed    1.88 sec
+      Start 13: listening_review
+13/15 Test #13: listening_review .................   Passed    0.06 sec
+      Start 14: evaluation_preparation
+14/15 Test #14: evaluation_preparation ...........   Passed   29.36 sec
+      Start 15: plan_import
+15/15 Test #15: plan_import ......................   Passed    6.26 sec
+
+87% tests passed, 2 tests failed out of 15
+
+Total Test time (real) =  55.98 sec
+
+The following tests FAILED:
+	  6 - sustained_assets (Failed)
+	  8 - electronic_assets (Failed)
+Errors while running CTest

@@ -1,4 +1,4 @@
-#include "djayvo/remix.h"
+#include "jamloom/remix.h"
 #include "plan_import.h"
 #include <charconv>
 #include <csignal>
@@ -26,7 +26,7 @@ int main(int argc,char** argv) {
         for (int i=1;i<argc;++i) {
             const std::string arg=argv[i];
             if (arg=="--help") {
-                std::cout<<"Djayvo offline source-driven remix\nUsage: djayvo_remix --input FILE "
+                std::cout<<"Jamloom offline source-driven remix\nUsage: jamloom_remix --input FILE "
                          <<"[--consent | --synthetic-fixture] [--output PREFIX] "
                          <<"[--style all|hiphop|reggae|experimental|baseline|club|funk|call_response|hybrid] [--stems] "
                          <<"[--seed UINT32] [--sample-rate 8000..192000] [--block-size 1..65536]\n"
@@ -57,24 +57,24 @@ int main(int argc,char** argv) {
         if (input.empty() || output.empty() || (!consent && !synthetic) || (consent && synthetic))
             throw std::invalid_argument("supply input/output and exactly one of --consent or --synthetic-fixture");
         if (!block || block>65536) throw std::invalid_argument("block size outside 1..65536");
-        std::vector<djayvo::Strategy> strategies;
-        for (auto s : {djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental})
-            if (style=="all" || style==djayvo::strategy_name(s)) strategies.push_back(s);
-        if (style=="baseline") strategies.push_back(djayvo::Strategy::baseline);
-        if (style=="club") strategies.push_back(djayvo::Strategy::club);
-        for (auto s : {djayvo::Strategy::funk,djayvo::Strategy::call_response,djayvo::Strategy::hybrid})
-            if (style==djayvo::strategy_name(s)) strategies.push_back(s);
+        std::vector<jamloom::Strategy> strategies;
+        for (auto s : {jamloom::Strategy::hiphop,jamloom::Strategy::reggae,jamloom::Strategy::experimental})
+            if (style=="all" || style==jamloom::strategy_name(s)) strategies.push_back(s);
+        if (style=="baseline") strategies.push_back(jamloom::Strategy::baseline);
+        if (style=="club") strategies.push_back(jamloom::Strategy::club);
+        for (auto s : {jamloom::Strategy::funk,jamloom::Strategy::call_response,jamloom::Strategy::hybrid})
+            if (style==jamloom::strategy_name(s)) strategies.push_back(s);
         if (strategies.empty()) throw std::invalid_argument("unknown style");
         if ((fallback && plan_path.empty()) || (!plan_path.empty() && strategies.size()!=1))
             throw std::invalid_argument("plan import requires one explicit style; fallback requires --plan");
         std::signal(SIGINT,interrupt);std::signal(SIGTERM,interrupt);
-        std::optional<djayvo::RemixPlan> plan;
-        djayvo::PlanImport receipt;
+        std::optional<jamloom::RemixPlan> plan;
+        jamloom::PlanImport receipt;
         if (!plan_path.empty()) {
-            const auto source=djayvo::resample(djayvo::read_wav(input),rate);
+            const auto source=jamloom::resample(jamloom::read_wav(input),rate);
             try {
                 const auto text=read_plan_document(plan_path);
-                receipt.candidate_sha256=djayvo::sha256(std::vector<std::uint8_t>(text.begin(),text.end()));
+                receipt.candidate_sha256=jamloom::sha256(std::vector<std::uint8_t>(text.begin(),text.end()));
                 plan=import_plan(text,source,strategies[0],seed,synthetic,consent);
                 receipt.plan=&*plan;
             } catch (const std::invalid_argument& e) {
@@ -82,12 +82,12 @@ int main(int argc,char** argv) {
                 std::cerr<<"PARTIAL: candidate plan rejected ("<<e.what()<<"); using deterministic rule fallback\n";
             }
         }
-        djayvo::remix_file(input,output,strategies,rate,seed,block,synthetic,consent,stems,{cancelled,nullptr},
+        jamloom::remix_file(input,output,strategies,rate,seed,block,synthetic,consent,stems,{cancelled,nullptr},
                           plan_path.empty()?nullptr:&receipt);
         for (const auto strategy:strategies)
-            std::cout<<"PASS: "<<output<<'.'<<djayvo::strategy_name(strategy)<<".wav\n";
+            std::cout<<"PASS: "<<output<<'.'<<jamloom::strategy_name(strategy)<<".wav\n";
         std::cout<<"PASS: complete export "<<output<<".complete.json\nListening/recognizability: NOT RUN\n";
         return 0;
-    } catch (const djayvo::RenderCancelled& e) {std::cerr<<"PARTIAL: "<<e.what()<<'\n';return 130;}
+    } catch (const jamloom::RenderCancelled& e) {std::cerr<<"PARTIAL: "<<e.what()<<'\n';return 130;}
       catch (const std::exception& e) {std::cerr<<"FAIL: "<<e.what()<<'\n';return 1;}
 }

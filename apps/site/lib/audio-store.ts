@@ -40,11 +40,12 @@ export function localAudioStore(directory: string): AudioStore {
   };
 }
 export function audioStore(config: Config, env: Record<string,string|undefined> = process.env): AudioStore | null {
-  if (env.DJAYVO_LOCAL_AUDIO_DIR) {
+  const directory = env.JAMLOOM_LOCAL_AUDIO_DIR ?? env.DJAYVO_LOCAL_AUDIO_DIR;
+  if (directory) {
     if (!config.local || env.VERCEL) throw new Error('Local audio storage is forbidden on hosted environments.');
-    return localAudioStore(env.DJAYVO_LOCAL_AUDIO_DIR);
+    return localAudioStore(directory);
   }
-  if (env.DJAYVO_R2_ENABLED !== 'true') return null;
+  if ((env.JAMLOOM_R2_ENABLED ?? env.DJAYVO_R2_ENABLED) !== 'true') return null;
   const { R2_ACCOUNT_ID: account, R2_ACCESS_KEY_ID: access, R2_SECRET_ACCESS_KEY: secret, R2_BUCKET: bucket }=env;
   if (!account || !/^[a-f0-9]{32}$/.test(account) || !access || !secret || !bucket || !/^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$/.test(bucket)) throw new Error('R2 configuration is incomplete.');
   const client=new S3Client({region:'auto',endpoint:`https://${account}.r2.cloudflarestorage.com`,
@@ -62,6 +63,6 @@ export function audioStore(config: Config, env: Record<string,string|undefined> 
     },
     async remove(key) { await client.send(new DeleteObjectCommand({Bucket:bucket,Key:key}),{abortSignal:AbortSignal.timeout(15000)}); },
     uploadURL: (key,bytes,seconds) => getSignedUrl(client,new PutObjectCommand({Bucket:bucket,Key:key,ContentType:'audio/wav',ContentLength:bytes}),{expiresIn:seconds,signableHeaders:new Set(['content-type','content-length'])}),
-    playbackURL: (key,download=false) => getSignedUrl(client,new GetObjectCommand({Bucket:bucket,Key:key,ResponseCacheControl:'private, no-store',ResponseContentDisposition:`${download?'attachment':'inline'}; filename="djayvo-mix.wav"`}),{expiresIn:60}),
+    playbackURL: (key,download=false) => getSignedUrl(client,new GetObjectCommand({Bucket:bucket,Key:key,ResponseCacheControl:'private, no-store',ResponseContentDisposition:`${download?'attachment':'inline'}; filename="jamloom-mix.wav"`}),{expiresIn:60}),
   };
 }

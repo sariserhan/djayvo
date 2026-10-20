@@ -7,6 +7,7 @@ export async function migrate(pool: Pool, directory = new URL('../migrations/', 
   try {
     await client.query('BEGIN');
     await client.query('SELECT pg_advisory_xact_lock(90418273)');
+    // Preserve the applied-migration ledger across product renames.
     await client.query('CREATE TABLE IF NOT EXISTS djayvo_migrations (name text PRIMARY KEY, sha256 text NOT NULL, applied_at timestamptz NOT NULL DEFAULT now())');
     const applied = new Map((await client.query('SELECT name, sha256 FROM djayvo_migrations')).rows.map(row => [row.name, row.sha256]));
     const files = (await readdir(directory)).filter(name => /^\d+_[a-z_]+\.sql$/.test(name)).sort();

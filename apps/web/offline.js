@@ -1,3 +1,4 @@
+// Keep the cache identity so existing offline installs can update and be removed.
 const enable = document.getElementById('offline-enable');
 const remove = document.getElementById('offline-remove');
 const status = document.getElementById('offline-status');

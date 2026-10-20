@@ -15,10 +15,10 @@ import { audioFixture, input } from './audio-fixture';
 
 test('real isolated Postgres and disk: private audio lifecycle and recovery',async t=>{
   const config=readConfig(); assert.equal(config.local,true); assert.ok(config.outbox);
-  const admin=createPool(config.databaseURL), name='djayvo_test_'+randomUUID().replaceAll('-','');
+  const admin=createPool(config.databaseURL), name='jamloom_test_'+randomUUID().replaceAll('-','');
   await admin.query(`CREATE DATABASE "${name}"`);
   const url=new URL(config.databaseURL);url.pathname='/'+name;
-  const pool=createPool(url.toString()), directory=await mkdtemp(join(tmpdir(),'djayvo-audio-'));
+  const pool=createPool(url.toString()), directory=await mkdtemp(join(tmpdir(),'jamloom-audio-'));
   const store=localAudioStore(directory), audio=new PrivateAudio(pool,store), wav=audioFixture();
   try {
     await migrate(pool);

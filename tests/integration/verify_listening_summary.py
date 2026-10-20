@@ -14,7 +14,7 @@ def reject(action):
 def main():
     assert estimate([])['mean'] is None and estimate([1])['bootstrap_95_percent'] is None
     assert estimate([0,1])==estimate([0,1])
-    with tempfile.TemporaryDirectory(prefix='djayvo-response-unit-') as temp:
+    with tempfile.TemporaryDirectory(prefix='jamloom-response-unit-') as temp:
         root=Path(temp);clips=[{'id':'fixture-a','sha256':'a'*64},{'id':'fixture-b','sha256':'b'*64}]
         freeze=json.dumps({'dataset':{'clips':clips}}).encode();(root/'freeze.json').write_bytes(freeze)
         report={'freeze_sha256':hashlib.sha256(freeze).hexdigest(),'records':[],

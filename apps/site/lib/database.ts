@@ -8,7 +8,7 @@ export function createPool(connectionString: string) {
   const pool = new Pool({
     connectionString: url.toString(), ssl: local ? false : { rejectUnauthorized: true },
     max: 2, idleTimeoutMillis: 10_000, connectionTimeoutMillis: 10_000,
-    statement_timeout: 10_000, application_name: 'djayvo',
+    statement_timeout: 10_000, application_name: 'jamloom',
     // Better Auth normalizes bigint timestamps, but string timestamps break retry arithmetic.
     types: { getTypeParser: (oid, format) => oid === types.builtins.INT8 && format !== 'binary'
       ? BigInt : types.getTypeParser(oid, format) },

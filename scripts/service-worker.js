@@ -1,7 +1,8 @@
+// Keep the cache identity so the normal waiting/activation lifecycle replaces old builds.
 // Generated with a complete, content-hashed public bundle. Never cache runtime requests.
-const ASSETS = __DJAYVO_ASSETS__;
+const ASSETS = __JAMLOOM_ASSETS__;
 const PREFIX = `djayvo-studio:${self.registration.scope}:`;
-const CACHE = PREFIX + '__DJAYVO_VERSION__';
+const CACHE = PREFIX + '__JAMLOOM_VERSION__';
 const assets = new Map(Object.entries(ASSETS).map(([name, details]) => [new URL(name, self.registration.scope).href, details]));
 
 async function verifiedResponse(url, signal) {
@@ -66,6 +67,6 @@ self.addEventListener('fetch', event => {
     if (cached) return cached;
     // Eviction/removal cannot mix a newer engine with an older open page.
     try { return await verifiedResponse(key, AbortSignal.timeout(15000)); }
-    catch { return new Response('Studio files are unavailable. Reopen Djayvo online.', { status: 503, headers: { 'Content-Type': 'text/plain' } }); }
+    catch { return new Response('Studio files are unavailable. Reopen Jamloom online.', { status: 503, headers: { 'Content-Type': 'text/plain' } }); }
   })());
 });

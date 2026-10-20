@@ -19,15 +19,15 @@ test('private save validates consent, bounded metadata and canonical metadata-fr
   assert.throws(()=>validateWav(wav.subarray(0,-1),wav.length,hash(wav)));
   const request=new Request('http://localhost',{method:'PUT',body:'12345',headers:{'Content-Length':'1'}});
   await assert.rejects(readBody(request.body,4),/too large/);
-  await assert.rejects(localAudioStore('/tmp/djayvo-unit').get('../secret',4),/Invalid object key/);
+  await assert.rejects(localAudioStore('/tmp/jamloom-unit').get('../secret',4),/Invalid object key/);
 });
 test('storage is opt-in, local files cannot be hosted, R2 grants bind content length and type',async()=>{
-  const config=readConfig({DATABASE_URL:'postgresql://u:p@127.0.0.1/db',BETTER_AUTH_URL:'http://localhost:3000',BETTER_AUTH_SECRET:'a'.repeat(48),DJAYVO_LOCAL_OUTBOX:'/tmp/mail'});
+  const config=readConfig({DATABASE_URL:'postgresql://u:p@127.0.0.1/db',BETTER_AUTH_URL:'http://localhost:3000',BETTER_AUTH_SECRET:'a'.repeat(48),JAMLOOM_LOCAL_OUTBOX:'/tmp/mail'});
   assert.equal(audioStore(config,{}),null);
-  assert.throws(()=>audioStore({...config,local:false},{DJAYVO_LOCAL_AUDIO_DIR:'/tmp/audio'}));
-  assert.throws(()=>audioStore(config,{DJAYVO_LOCAL_AUDIO_DIR:'relative'}));
-  assert.throws(()=>audioStore(config,{DJAYVO_R2_ENABLED:'true'}));
-  const store=audioStore(config,{DJAYVO_R2_ENABLED:'true',R2_ACCOUNT_ID:'a'.repeat(32),R2_BUCKET:'test-private',R2_ACCESS_KEY_ID:'test-key',R2_SECRET_ACCESS_KEY:'test-secret'})!;
+  assert.throws(()=>audioStore({...config,local:false},{JAMLOOM_LOCAL_AUDIO_DIR:'/tmp/audio'}));
+  assert.throws(()=>audioStore(config,{JAMLOOM_LOCAL_AUDIO_DIR:'relative'}));
+  assert.throws(()=>audioStore(config,{JAMLOOM_R2_ENABLED:'true'}));
+  const store=audioStore(config,{JAMLOOM_R2_ENABLED:'true',R2_ACCOUNT_ID:'a'.repeat(32),R2_BUCKET:'test-private',R2_ACCESS_KEY_ID:'test-key',R2_SECRET_ACCESS_KEY:'test-secret'})!;
   const url=new URL(await store.uploadURL('uploads/test.wav',3840044,120));
   assert.equal(url.hostname,`test-private.${'a'.repeat(32)}.r2.cloudflarestorage.com`);
   assert.equal(url.searchParams.get('X-Amz-Expires'),'120');
@@ -35,4 +35,13 @@ test('storage is opt-in, local files cannot be hosted, R2 grants bind content le
   assert.ok(url.searchParams.get('X-Amz-SignedHeaders')?.includes('content-type'));
   assert.equal(new URL(await store.playbackURL('masters/test.wav')).searchParams.get('X-Amz-Expires'),'60');
   assert.match(new URL(await store.playbackURL('masters/test.wav',true)).searchParams.get('response-content-disposition')!,/^attachment/);
+});
+
+test('brand transition preserves legacy storage config without overriding explicit opt-outs', () => {
+  const config = readConfig({DATABASE_URL:'postgresql://u:p@127.0.0.1/db', BETTER_AUTH_URL:'http://localhost:3000', BETTER_AUTH_SECRET:'a'.repeat(48), DJAYVO_LOCAL_OUTBOX:'/tmp/mail'});
+  assert.equal(audioStore(config, { DJAYVO_LOCAL_AUDIO_DIR:'/tmp/legacy-audio' })?.local, true);
+  assert.throws(() => audioStore({...config, local:false}, { DJAYVO_LOCAL_AUDIO_DIR:'/tmp/legacy-audio' }), /forbidden/);
+  assert.equal(audioStore(config, { DJAYVO_LOCAL_AUDIO_DIR:'/tmp/legacy-audio', JAMLOOM_LOCAL_AUDIO_DIR:'' }), null);
+  assert.equal(audioStore(config, { DJAYVO_R2_ENABLED:'true', JAMLOOM_R2_ENABLED:'false' }), null);
+  assert.throws(() => audioStore(config, { DJAYVO_R2_ENABLED:'true' }), /incomplete/);
 });

@@ -1,4 +1,4 @@
-#include "djayvo/remix.h"
+#include "jamloom/remix.h"
 #include <algorithm>
 #include <cmath>
 #include <fstream>
@@ -6,7 +6,7 @@
 #include <locale>
 #include <stdexcept>
 
-namespace djayvo {
+namespace jamloom {
 bool in_key(int pitch, int tonic, KeyMode mode) {
     if (mode!=KeyMode::minor && mode!=KeyMode::major) throw std::invalid_argument("unsupported key mode");
     const int degree=(pitch%12-tonic%12+24)%12;
@@ -212,4 +212,4 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
     out<<"\n  ]\n}\n"; out.flush();
     if (!out) throw std::runtime_error("cannot write remix score");
 }
-} // namespace djayvo
+} // namespace jamloom

@@ -1,5 +1,9 @@
 #!/bin/sh
 set -eu
+# Accept existing local tool configuration during the brand transition.
+JAMLOOM_PYTHON="${JAMLOOM_PYTHON-${DJAYVO_PYTHON-}}"
+JAMLOOM_REFERENCE_PREFIX="${JAMLOOM_REFERENCE_PREFIX-${DJAYVO_REFERENCE_PREFIX-}}"
+JAMLOOM_OUTPUT_DIR="${JAMLOOM_OUTPUT_DIR-${DJAYVO_OUTPUT_DIR-}}"
 if [ "$(uname -s)" != Darwin ]; then
     echo 'FAIL: run this script on the actual Mac; Linux cannot validate M0d.' >&2
     exit 1
@@ -7,9 +11,9 @@ fi
 cd "$(dirname "$0")/.."
 command -v cmake >/dev/null
 command -v python3 >/dev/null
-PYTHON=${DJAYVO_PYTHON:-$(command -v python3)}
-REFERENCE=${DJAYVO_REFERENCE_PREFIX:-renders/m0/remix}
-OUTPUT=${DJAYVO_OUTPUT_DIR:-renders/mac-$(date +%Y%m%d-%H%M%S)}
+PYTHON=${JAMLOOM_PYTHON:-$(command -v python3)}
+REFERENCE=${JAMLOOM_REFERENCE_PREFIX:-renders/m0/remix}
+OUTPUT=${JAMLOOM_OUTPUT_DIR:-renders/mac-$(date +%Y%m%d-%H%M%S)}
 if [ -e "$OUTPUT" ]; then
     echo "FAIL: output directory already exists; preserving recordings: $OUTPUT" >&2
     exit 1
@@ -34,7 +38,7 @@ cmake --build build-mac --parallel 4
 ctest --test-dir build-mac --output-on-failure
 mkdir -p "$(dirname "$OUTPUT")"
 mkdir "$OUTPUT"
-./build-mac/djayvo_remix --input renders/fixtures/synthetic-speech.wav --synthetic-fixture --output "$OUTPUT/remix" --style all --stems
+./build-mac/jamloom_remix --input renders/fixtures/synthetic-speech.wav --synthetic-fixture --output "$OUTPUT/remix" --style all --stems
 "$PYTHON" scripts/verify_export.py "$OUTPUT/remix"
 "$PYTHON" - "$OUTPUT" <<'PY'
 import json, platform, subprocess, sys
@@ -54,7 +58,7 @@ result = {'system': platform.system(), 'machine': platform.machine(),
           'compiler': command('c++', '--version'),
           'cmake': command('cmake', '--version').splitlines()[0],
           'python': sys.version, 'python_executable': sys.executable,
-          'renderer_binary': command('file', 'build-mac/djayvo_remix')}
+          'renderer_binary': command('file', 'build-mac/jamloom_remix')}
 Path(sys.argv[1], 'environment.json').write_text(json.dumps(result, indent=2) + '\n')
 PY
 "$PYTHON" scripts/compare_portability.py --reference "$REFERENCE" --candidate "$OUTPUT/remix" --candidate-metadata "$OUTPUT/environment.json" --report "$OUTPUT/portability-report.json"

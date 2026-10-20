@@ -75,7 +75,7 @@ def main(blood=False):
             differences[f'{name}-step80-vs-step160'] = delta
     (ROOT.parent / 'blind-key-private.json').write_text(json.dumps(allocation, indent=2) + '\n')
     page = '''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Djayvo adapter trial</title><style>body{font:18px/1.6 system-ui;max-width:1000px;margin:32px auto;padding:0 24px;background:#111b20;color:#e9f0eb}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px}article{padding:22px;background:#213039;border-radius:12px}audio{width:100%}:focus-visible{outline:3px solid #d7ff80;outline-offset:4px}</style>
+<title>Jamloom adapter trial</title><style>body{font:18px/1.6 system-ui;max-width:1000px;margin:32px auto;padding:0 24px;background:#111b20;color:#e9f0eb}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px}article{padding:22px;background:#213039;border-radius:12px}audio{width:100%}:focus-visible{outline:3px solid #d7ff80;outline-offset:4px}</style>
 <h1>Which version feels more musical?</h1><p>Four matched comparisons from the approved reference-training experiment.
 Each group uses the same musical brief and seed. Letter labels conceal which model made each take.</p>
 <p>Compare sound, groove, development, transitions and ending. Tell us the group and preferred version,

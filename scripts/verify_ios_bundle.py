@@ -10,7 +10,7 @@ import plistlib
 def verify(bundle):
     info = plistlib.loads((bundle / 'Info.plist').read_bytes())
     privacy = plistlib.loads((bundle / 'PrivacyInfo.xcprivacy').read_bytes())
-    assert info['CFBundleName'] == 'Djayvo'
+    assert info['CFBundleName'] == 'Jamloom'
     assert info['NSMicrophoneUsageDescription']
     assert not info.get('UIBackgroundModes'), 'Unexpected background capture entitlement'
     assert not info.get('UIFileSharingEnabled'), 'Private source library must not be exposed'
@@ -25,7 +25,7 @@ def verify(bundle):
     assert not list(bundle.rglob('*.mp3')) and not list(bundle.rglob('*.m4a'))
     executable = bundle / info['CFBundleExecutable']
     binary = executable.read_bytes()
-    assert b'--ui-testing' not in binary and b'DJAYVO_UI_TEST_LIBRARY' not in binary, 'Debug control found in Release'
+    assert b'--ui-testing' not in binary and b'JAMLOOM_UI_TEST_LIBRARY' not in binary, 'Debug control found in Release'
     assert b'synthetic-speech' not in binary, 'Fixture reference found in Release'
     repo = Path(__file__).resolve().parents[1]
     for notice in (repo / 'assets/licenses').glob('*.txt'):

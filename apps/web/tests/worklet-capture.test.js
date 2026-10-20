@@ -45,11 +45,11 @@ test('missing counter samples and altered audio remain detectable', () => {
 test('load probe dispatches on/off at exact frames across program boundaries', () => {
   let Probe, complete, renders = 0;
   const applied = [];
-  const scope = vm.createContext({ DjayvoInstruments: class {
+  const scope = vm.createContext({ JamloomInstruments: class {
     constructor() {
       this.port = { onmessage: ({ data }) => applied.push([renders * 128, data.type, data.id]),
         postMessage: data => { complete = data; } };
-      this.engine = { memory: { buffer: new ArrayBuffer(16) }, djayvo_live_active: () => 0 };
+      this.engine = { memory: { buffer: new ArrayBuffer(16) }, jamloom_live_active: () => 0 };
     }
     process() { renders++; return true; }
   }, registerProcessor: (_, cls) => { Probe = cls; } });

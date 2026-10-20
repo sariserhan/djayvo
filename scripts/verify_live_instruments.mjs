@@ -9,24 +9,24 @@ const module = await WebAssembly.compile(fs.readFileSync(wasmPath));
 assert.deepEqual(WebAssembly.Module.imports(module), []);
 const engine = (await WebAssembly.instantiate(module, {})).exports;
 engine._initialize();
-const buffer = new Float32Array(engine.memory.buffer, engine.djayvo_live_buffer(), 4096);
-assert.equal(engine.djayvo_live_init(48000), 1);
+const buffer = new Float32Array(engine.memory.buffer, engine.jamloom_live_buffer(), 4096);
+assert.equal(engine.jamloom_live_init(48000), 1);
 for (let pitch = 21; pitch <= 108; pitch++) {
-  engine.djayvo_live_init(48000); assert.equal(engine.djayvo_live_note(1, 0, pitch, 100), 1);
+  engine.jamloom_live_init(48000); assert.equal(engine.jamloom_live_note(1, 0, pitch, 100), 1);
   let energy = 0;
-  for (let block = 0; block < 32; block++) { engine.djayvo_live_render(128); for (let i = 0; i < 256; i++) energy += Math.abs(buffer[i]); }
+  for (let block = 0; block < 32; block++) { engine.jamloom_live_render(128); for (let i = 0; i < 256; i++) energy += Math.abs(buffer[i]); }
   assert.ok(energy > .001, `Silent key ${pitch}`);
 }
 const pcm = new Float32Array(13 * 750 * 256), events = [];
 let offset = 0;
 for (let patch = 0; patch < 13; patch++) {
-  engine.djayvo_live_init(48000);
+  engine.jamloom_live_init(48000);
   events.push({ patch, noteOnFrame: 0, noteOffFrame: 23936, mouthFrame: patch === 11 ? 12800 : null, totalFrames: 96000 });
   for (let block = 0; block < 750; block++) {
-    if (!block) assert.equal(engine.djayvo_live_note(1, patch, patch == 12 ? 39 : patch >= 9 ? 36 : 60, 100), 1);
-    if (patch === 11 && block === 100) assert.equal(engine.djayvo_live_mouth(1), 1);
-    if (block === 187) engine.djayvo_live_off(1);
-    engine.djayvo_live_render(128); pcm.set(buffer.subarray(0, 256), offset); offset += 256;
+    if (!block) assert.equal(engine.jamloom_live_note(1, patch, patch == 12 ? 39 : patch >= 9 ? 36 : 60, 100), 1);
+    if (patch === 11 && block === 100) assert.equal(engine.jamloom_live_mouth(1), 1);
+    if (block === 187) engine.jamloom_live_off(1);
+    engine.jamloom_live_render(128); pcm.set(buffer.subarray(0, 256), offset); offset += 256;
   }
 }
 const comparisons = [];
@@ -43,12 +43,12 @@ for (const [platform, filename] of [['macOS', nativePath], ['Linux', linuxPath]]
     comparisons.push({ platform, patch, maxAbsoluteDifference: max, rmsDifference: rms, peak });
   }
 }
-engine.djayvo_live_init(48000);
+engine.jamloom_live_init(48000);
 const noteTimes = [];
-for (let id = 1; id <= 32; id++) { const start = performance.now(); assert.equal(engine.djayvo_live_note(id, 6, 40 + id, 100), 1); noteTimes.push(performance.now() - start); }
-assert.equal(engine.djayvo_live_note(33, 6, 60, 100), 0);
+for (let id = 1; id <= 32; id++) { const start = performance.now(); assert.equal(engine.jamloom_live_note(id, 6, 40 + id, 100), 1); noteTimes.push(performance.now() - start); }
+assert.equal(engine.jamloom_live_note(33, 6, 60, 100), 0);
 const times = [];
-for (let i = 0; i < 4000; i++) { const start = performance.now(); engine.djayvo_live_render(128); if (i >= 100) times.push(performance.now() - start); }
+for (let i = 0; i < 4000; i++) { const start = performance.now(); engine.jamloom_live_render(128); if (i >= 100) times.push(performance.now() - start); }
 times.sort((a,b) => a-b);
 function writeWav(name, samples) {
 const wav = Buffer.alloc(44 + samples.length * 2);
@@ -65,17 +65,17 @@ const report = { status: 'PASS', notes: 88, patches: 13, channels: 2, sampleRate
 
 const demos = [];
 function demo(name, frames, events) {
-  engine.djayvo_live_init(48000); events.sort((a,b) => a.frame-b.frame);
+  engine.jamloom_live_init(48000); events.sort((a,b) => a.frame-b.frame);
   const samples = new Float32Array(frames*2); let cursor=0, next=0;
   while(cursor<frames) {
     while(next<events.length && events[next].frame===cursor) {
       const event=events[next++];
-      if(event.type==='on') assert.equal(engine.djayvo_live_note(event.id,event.patch,event.pitch,event.velocity),1);
-      else if(event.type==='off') engine.djayvo_live_off(event.id);
-      else assert.equal(engine.djayvo_live_mouth(event.value),1);
+      if(event.type==='on') assert.equal(engine.jamloom_live_note(event.id,event.patch,event.pitch,event.velocity),1);
+      else if(event.type==='off') engine.jamloom_live_off(event.id);
+      else assert.equal(engine.jamloom_live_mouth(event.value),1);
     }
     const count=Math.min(128,frames-cursor,next<events.length?events[next].frame-cursor:128);
-    assert.ok(count>0);engine.djayvo_live_render(count);samples.set(buffer.subarray(0,count*2),cursor*2);cursor+=count;
+    assert.ok(count>0);engine.jamloom_live_render(count);samples.set(buffer.subarray(0,count*2),cursor*2);cursor+=count;
   }
   let peak=0,square=0,step=0;
   for(let i=0;i<samples.length;i++){assert.ok(Number.isFinite(samples[i]));peak=Math.max(peak,Math.abs(samples[i]));square+=samples[i]**2;if(i>=2)step=Math.max(step,Math.abs(samples[i]-samples[i-2]));}
@@ -101,10 +101,10 @@ for(let beat=0;beat<16;beat++){
  if(beat===15)note(frame+21600,12,41,100,6000);
 }
 demo('studio-jam.wav',576000,jam);
-engine.djayvo_live_init(48000);
-for(let id=1;id<=32;id++)assert.equal(engine.djayvo_live_note(id,11,24+id,100),1);
+engine.jamloom_live_init(48000);
+for(let id=1;id<=32;id++)assert.equal(engine.jamloom_live_note(id,11,24+id,100),1);
 const talkTimes=[];
-for(let i=0;i<1100;i++){if(i%100===0)engine.djayvo_live_mouth((i%300)/200);const start=performance.now();engine.djayvo_live_render(128);if(i>=100)talkTimes.push(performance.now()-start);}
+for(let i=0;i<1100;i++){if(i%100===0)engine.jamloom_live_mouth((i%300)/200);const start=performance.now();engine.jamloom_live_render(128);if(i>=100)talkTimes.push(performance.now()-start);}
 talkTimes.sort((a,b)=>a-b);
 report.talk32VoiceTiming={p99Ms:talkTimes[990],maxMs:talkTimes.at(-1),blockBudgetMs:128/48,limitation:'Node compute only; not hardware/browser latency'};
 report.demos=demos;

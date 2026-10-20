@@ -1,8 +1,8 @@
 #pragma once
-#include "djayvo/music.h"
+#include "jamloom/music.h"
 #include <cmath>
 
-namespace djayvo {
+namespace jamloom {
 // Original partials, not recorded instruments or artist-derived sound material.
 inline double synth_sample(Instrument instrument,double time,double frequency,double rate) noexcept {
     constexpr double tau=6.28318530717958647692;
@@ -23,4 +23,4 @@ inline double synth_sample(Instrument instrument,double time,double frequency,do
     const double triangle=partial(1)-partial(3)/9+partial(5)/25-partial(7)/49+.08*partial(2);
     return .65*triangle*(.65+.35*std::exp(-time/.15));
 }
-} // namespace djayvo
+} // namespace jamloom

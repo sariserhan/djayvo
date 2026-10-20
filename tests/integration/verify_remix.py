@@ -237,7 +237,7 @@ def verify(args):
     gates["human_recording_and_recognizability"] = "NOT RUN"
     gates["human_musical_quality_and_audible_style_difference"] = "NOT RUN"
     gates["apple_m5_portability"] = "NOT RUN"
-    result = {"project": "Djayvo", "milestones": ["M0b", "M0c"], "fixture": "original procedural signal",
+    result = {"project": "Jamloom", "milestones": ["M0b", "M0c"], "fixture": "original procedural signal",
               "gates": gates, "measurements": measurements, "maximum_clean_hook_pcm_error": max(errors)}
     (args.evidence / "validation.json").write_text(json.dumps(result, indent=2) + "\n")
     for name, status in gates.items():

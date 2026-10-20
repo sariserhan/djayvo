@@ -1,4 +1,4 @@
-# Djayvo — web-studio product direction addendum
+# Jamloom — web-studio product direction addendum
 
 **Current authorization — 2026-10-18:** The owner subsequently instructed continued
 implementation through the specification. This supersedes the historical M0a
@@ -80,7 +80,7 @@ rewrite or product implementation is part of this update.
 
 ## Product objective
 
-Djayvo combines an AI musical improviser with a professional browser-based DJ
+Jamloom combines an AI musical improviser with a professional browser-based DJ
 studio. Its differentiator is transforming speech and environmental sounds into
 original musical performances that can join an ongoing DJ session. Generic song
 generation and conventional deck playback alone do not meet that objective.

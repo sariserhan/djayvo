@@ -25,16 +25,16 @@ function createServices() {
   } });
   const store=audioStore(config);
   const audio=store ? new PrivateAudio(pool,store) : null;
-  const catalogue=audio && (config.local || process.env.DJAYVO_CATALOGUE_ENABLED==='true') ? new Catalogue(pool,audio) : null;
+  const catalogue=audio && (config.local || (process.env.JAMLOOM_CATALOGUE_ENABLED ?? process.env.DJAYVO_CATALOGUE_ENABLED)==='true') ? new Catalogue(pool,audio) : null;
   return { pool, auth, config, audio, catalogue };
 }
-const globalServices = globalThis as typeof globalThis & { djayvoServices?: ReturnType<typeof createServices> };
+const globalServices = globalThis as typeof globalThis & { jamloomServices?: ReturnType<typeof createServices> };
 export function services() {
-  return globalServices.djayvoServices ??= createServices();
+  return globalServices.jamloomServices ??= createServices();
 }
 export function accountsConfigured() {
   try { readConfig(); return true; } catch { return false; }
 }
 export function isReviewer(user:{email:string;emailVerified:boolean}|undefined) {
-  return !!user?.emailVerified && (process.env.DJAYVO_REVIEWER_EMAILS??'').split(',').map(s=>s.trim().toLowerCase()).filter(Boolean).includes(user.email.toLowerCase());
+  return !!user?.emailVerified && ((process.env.JAMLOOM_REVIEWER_EMAILS ?? process.env.DJAYVO_REVIEWER_EMAILS)??'').split(',').map(s=>s.trim().toLowerCase()).filter(Boolean).includes(user.email.toLowerCase());
 }

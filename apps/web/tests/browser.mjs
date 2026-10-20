@@ -8,9 +8,9 @@ import { chromium, firefox, webkit } from 'playwright';
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const fixture = path.join(root, 'renders/fixtures/synthetic-speech.wav');
 const url = 'http://localhost:4173';
-const kind = process.env.DJAYVO_BROWSER || 'chromium';
+const kind = (process.env.JAMLOOM_BROWSER ?? process.env.DJAYVO_BROWSER) || 'chromium';
 const engine = { chromium, firefox, webkit }[kind];
-if (!['chromium', 'firefox', 'webkit'].includes(kind)) throw new Error(`Unsupported DJAYVO_BROWSER: ${kind}`);
+if (!['chromium', 'firefox', 'webkit'].includes(kind)) throw new Error(`Unsupported JAMLOOM_BROWSER: ${kind}`);
 const output = await fs.mkdtemp(path.join(root, `renders/web-${kind}-ui-`));
 console.log('Artifacts:', output);
 const browser = await engine.launch(kind === 'chromium' ? {
@@ -52,7 +52,7 @@ async function importFixture() {
 }
 try {
   await page.goto(url);
-  assert.match(await page.title(), /Djayvo/);
+  assert.match(await page.title(), /Jamloom/);
   await page.getByRole('heading', { name: 'A little voice. A whole new groove.' }).waitFor();
   assert.equal(await page.locator('#record').isDisabled(), true);
   assert.equal(await page.locator('#generate').isDisabled(), true);
@@ -115,7 +115,7 @@ try {
     await page.waitForFunction(() => document.querySelectorAll('.track').length === 5, { timeout: 90000 });
     await ready();
     assert.equal(await page.locator('#error').isVisible(), false, await page.locator('#error').textContent());
-    assert.match(await page.locator('.download').first().getAttribute('download'), new RegExp(`^djayvo-${style}-`));
+    assert.match(await page.locator('.download').first().getAttribute('download'), new RegExp(`^jamloom-${style}-`));
     await page.reload();
     await page.waitForFunction(() => document.querySelectorAll('.track').length === 5);
     await page.getByRole('button', { name: 'Delete session', exact: true }).first().click();

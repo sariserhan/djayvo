@@ -1,4 +1,4 @@
-# Djayvo applications
+# Jamloom applications
 
 [Website and accounts](site/README.md) hosts the existing browser studio inside
 the selected Next.js platform and adds locally tested email/password accounts.

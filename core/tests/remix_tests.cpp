@@ -1,5 +1,5 @@
-#include "djayvo/remix.h"
-#include "djayvo/session.h"
+#include "jamloom/remix.h"
+#include "jamloom/session.h"
 #include <algorithm>
 #include <atomic>
 #include <cmath>
@@ -36,8 +36,8 @@ template<class F> void rejects(F f) {
     bool caught=false;try {f();}catch(const std::exception&) {caught=true;}
     check(caught,"invalid remix accepted");
 }
-djayvo::AudioBuffer source() {
-    djayvo::AudioBuffer a;
+jamloom::AudioBuffer source() {
+    jamloom::AudioBuffer a;
     a.sample_rate=a.original_rate=8000;a.original_frames=24000;a.sha256=std::string(64,'0');a.mono.resize(24000);
     for (std::size_t i=0;i<a.mono.size();++i) {
         const double t=static_cast<double>(i)/a.sample_rate;
@@ -46,9 +46,9 @@ djayvo::AudioBuffer source() {
     }
     return a;
 }
-std::vector<float> render(const djayvo::RemixPlan& p,const djayvo::AudioBuffer& a,std::size_t block=512,bool vocals=false,int solo=-1) {
-    djayvo::RemixRenderer r(p,a,block,vocals,solo);
-    std::vector<float> all;all.reserve(static_cast<std::size_t>(djayvo::compile(p.music).total_frames)*2);
+std::vector<float> render(const jamloom::RemixPlan& p,const jamloom::AudioBuffer& a,std::size_t block=512,bool vocals=false,int solo=-1) {
+    jamloom::RemixRenderer r(p,a,block,vocals,solo);
+    std::vector<float> all;all.reserve(static_cast<std::size_t>(jamloom::compile(p.music).total_frames)*2);
     std::vector<float> scratch(block*2);
     while(!r.finished()) {
         const auto n=r.process(scratch.data(),block);check(n>0,"remix stalled");
@@ -62,70 +62,70 @@ void session_context() {
         for (unsigned tempo : {60000U,83920U,127190U,180000U}) {
             for (unsigned bar=0;bar<10000;bar+=13) {
                 const auto frame=static_cast<double>(17+(bar*240000ULL*rate+tempo/2)/tempo);
-                check(djayvo_next_bar(frame,17,rate,tempo)==frame,"bar boundary mismatch");
-                check(djayvo_next_bar(frame-1,17,rate,tempo)==frame,"early boundary mismatch");
-                check(djayvo_next_bar(frame+1,17,rate,tempo)>frame,"late boundary mismatch");
+                check(jamloom_next_bar(frame,17,rate,tempo)==frame,"bar boundary mismatch");
+                check(jamloom_next_bar(frame-1,17,rate,tempo)==frame,"early boundary mismatch");
+                check(jamloom_next_bar(frame+1,17,rate,tempo)>frame,"late boundary mismatch");
             }
         }
     }
-    check(djayvo_next_bar(NAN,0,48000,120000)==-1,"NaN frame accepted");
-    check(djayvo_next_bar(1.5,0,48000,120000)==-1,"fractional frame accepted");
-    check(djayvo_next_bar(0,0,48000,0)==-1,"zero tempo accepted");
-    check(djayvo_next_bar(48000.0*86400+1,0,48000,120000)==-1,"unbounded frame accepted");
-    const auto a=source(); const auto analysis=djayvo::analyze(a);
+    check(jamloom_next_bar(NAN,0,48000,120000)==-1,"NaN frame accepted");
+    check(jamloom_next_bar(1.5,0,48000,120000)==-1,"fractional frame accepted");
+    check(jamloom_next_bar(0,0,48000,0)==-1,"zero tempo accepted");
+    check(jamloom_next_bar(48000.0*86400+1,0,48000,120000)==-1,"unbounded frame accepted");
+    const auto a=source(); const auto analysis=jamloom::analyze(a);
     for (unsigned bpm : {60000U,83920U,120000U,180000U}) for (int key=60;key<=71;++key)
-        for (auto mode : {djayvo::KeyMode::minor,djayvo::KeyMode::major}) {
-        const djayvo::MusicalContext context{bpm,key,mode};
+        for (auto mode : {jamloom::KeyMode::minor,jamloom::KeyMode::major}) {
+        const jamloom::MusicalContext context{bpm,key,mode};
         for (unsigned seed : {0U,4123U,982451653U}) {
-            const auto p=djayvo::make_remix(a,analysis,djayvo::Strategy::call_response,seed,true,false,&context);
-            djayvo::validate(p,a);
+            const auto p=jamloom::make_remix(a,analysis,jamloom::Strategy::call_response,seed,true,false,&context);
+            jamloom::validate(p,a);
             check(p.music.tempo_milli_bpm==bpm && p.tonic_midi==key && p.key_mode==mode,"context lost");
             check(p.music.tempo_changes.empty(),"session must keep constant tempo");
-            const std::set<int> scale=mode==djayvo::KeyMode::major?std::set<int>{0,2,4,5,7,9,11}:std::set<int>{0,2,3,5,7,8,10};
+            const std::set<int> scale=mode==jamloom::KeyMode::major?std::set<int>{0,2,4,5,7,9,11}:std::set<int>{0,2,3,5,7,8,10};
             bool third=false;
-            for (const auto& track:p.music.tracks) if (track.instrument!=djayvo::Instrument::drums)
+            for (const auto& track:p.music.tracks) if (track.instrument!=jamloom::Instrument::drums)
                 for (const auto& note:track.notes) {
                     const int degree=(note.pitch-key+120)%12;
                     check(scale.count(degree)==1,"session note escaped declared scale");
-                    third|=degree==(mode==djayvo::KeyMode::major?4:3);
+                    third|=degree==(mode==jamloom::KeyMode::major?4:3);
                 }
             check(third,"missing mode-defining third");
-            if (mode==djayvo::KeyMode::major) {
-                auto bad=p;bad.key_mode=static_cast<djayvo::KeyMode>(2);rejects([&]{djayvo::validate(bad,a);});
+            if (mode==jamloom::KeyMode::major) {
+                auto bad=p;bad.key_mode=static_cast<jamloom::KeyMode>(2);rejects([&]{jamloom::validate(bad,a);});
                 bad=p;bad.music.tracks[0].notes[0].pitch=key+1;
-                bad.music.tracks[0].notes[0].duration=djayvo::ticks_per_quarter;
-                rejects([&]{djayvo::validate(bad,a);});
+                bad.music.tracks[0].notes[0].duration=jamloom::ticks_per_quarter;
+                rejects([&]{jamloom::validate(bad,a);});
             }
         }
     }
-    for (const auto context : {djayvo::MusicalContext{59999,60},{180001,60},{120000,59},{120000,72},{120000,60,static_cast<djayvo::KeyMode>(2)}})
-        rejects([&]{djayvo::make_remix(a,analysis,djayvo::Strategy::call_response,1,true,false,&context);});
+    for (const auto context : {jamloom::MusicalContext{59999,60},{180001,60},{120000,59},{120000,72},{120000,60,static_cast<jamloom::KeyMode>(2)}})
+        rejects([&]{jamloom::make_remix(a,analysis,jamloom::Strategy::call_response,1,true,false,&context);});
 }
 void hashes() {
-    check(djayvo::sha256({})=="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","empty SHA-256 vector");
-    check(djayvo::sha256({'a','b','c'})=="ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad","abc SHA-256 vector");
+    check(jamloom::sha256({})=="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","empty SHA-256 vector");
+    check(jamloom::sha256({'a','b','c'})=="ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad","abc SHA-256 vector");
     const std::vector<std::uint8_t> million(1000000,'a');
-    check(djayvo::sha256(million)=="cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0","multi-block SHA-256 vector");
+    check(jamloom::sha256(million)=="cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0","multi-block SHA-256 vector");
 }
 void analysis() {
-    const auto a=source(); const auto x=djayvo::analyze(a);
+    const auto a=source(); const auto x=jamloom::analyze(a);
     check(x.peak>0.25 && x.rms>0.05 && !x.phrases.empty() && x.onsets.size()>=4,"missing input features");
     check(x.pitch_hz>210 && x.pitch_hz<230 && x.pitch_confidence>0.8,"pitch estimate wrong for clean tone");
-    auto silence=a;std::fill(silence.mono.begin(),silence.mono.end(),0);rejects([&]{djayvo::analyze(silence);});
-    silence.mono[5]=std::numeric_limits<float>::infinity();rejects([&]{djayvo::analyze(silence);});
+    auto silence=a;std::fill(silence.mono.begin(),silence.mono.end(),0);rejects([&]{jamloom::analyze(silence);});
+    silence.mono[5]=std::numeric_limits<float>::infinity();rejects([&]{jamloom::analyze(silence);});
     for (const auto rate:{8000U,16000U,48000U,192000U}) {
         auto offset=a;offset.sample_rate=offset.original_rate=rate;
         offset.original_frames=rate*3U;offset.mono.resize(rate*3U);
         for (float level:{-1.0F,-0.5F,0.5F,1.0F}) {
             std::fill(offset.mono.begin(),offset.mono.end(),level);
-            rejects([&]{djayvo::analyze(offset);});
+            rejects([&]{jamloom::analyze(offset);});
         }
         for (double amplitude:{0.0001,0.001,0.02}) {
             for (std::size_t i=0;i<offset.mono.size();++i)
                 offset.mono[i]=static_cast<float>(0.5+amplitude*std::sin(6.283185307179586*220*i/rate));
             const auto original=offset.mono;
-            if (amplitude<0.002) rejects([&]{djayvo::analyze(offset);});
-            else check(!djayvo::analyze(offset).phrases.empty(),"DC offset rejected usable signal");
+            if (amplitude<0.002) rejects([&]{jamloom::analyze(offset);});
+            else check(!jamloom::analyze(offset).phrases.empty(),"DC offset rejected usable signal");
             check(offset.mono==original,"input gate modified the original recording");
         }
         for (const auto attack:{0U,rate,rate*3U-1U}) {
@@ -134,12 +134,12 @@ void analysis() {
             const auto length=rate/1000;
             const auto begin=std::min(attack,rate*3U-length);
             for (auto i=begin;i<begin+length;++i) transient.mono[i]=(i%2?0.7F:-0.7F);
-            const auto features=djayvo::analyze(transient);
+            const auto features=jamloom::analyze(transient);
             check(features.phrases.size()==1 && features.phrases[0].begin<=begin &&
                   features.phrases[0].end>=begin+length && features.phrases[0].end<=transient.mono.size(),
                   "short transient lost or padded outside source");
-            const auto plan=djayvo::make_remix(transient,features,djayvo::Strategy::hiphop,4123,true,false);
-            djayvo::validate(plan,transient);
+            const auto plan=jamloom::make_remix(transient,features,jamloom::Strategy::hiphop,4123,true,false);
+            jamloom::validate(plan,transient);
         }
     }
 }
@@ -153,13 +153,13 @@ void analysis_offset() {
                 a.mono[i]=local>=rate/4 && local<rate/2?
                     static_cast<float>(amplitude*std::sin(6.283185307179586*220*i/rate)):0;
             }
-            const auto reference=djayvo::analyze(a);
+            const auto reference=jamloom::analyze(a);
             check(reference.phrases.size()==3 && reference.onsets.size()>=3,"missing control attacks/pauses");
             for (const float dc:{-0.5F,0.5F}) {
                 auto shifted=a;
                 for (auto& sample:shifted.mono) sample+=dc;
                 const auto original=shifted.mono;
-                const auto actual=djayvo::analyze(shifted);
+                const auto actual=jamloom::analyze(shifted);
                 check(actual.onsets==reference.onsets,"DC offset changed source attacks");
                 check(actual.phrases.size()==reference.phrases.size(),"DC offset hid source pauses");
                 for (std::size_t i=0;i<reference.phrases.size();++i)
@@ -179,10 +179,10 @@ void analysis_offset() {
         state=state*1664525U+1013904223U;
         sample=static_cast<float>((static_cast<double>(state>>8)/16777216.0-0.5)*0.04);
     }
-    const auto reference=djayvo::analyze(noise);
+    const auto reference=jamloom::analyze(noise);
     check(reference.pitch_hz==0 && reference.pitch_confidence==0,"noise control has false pitch");
     for (auto& sample:noise.mono) sample+=0.5F;
-    const auto shifted=djayvo::analyze(noise);
+    const auto shifted=jamloom::analyze(noise);
     check(shifted.pitch_hz==0 && shifted.pitch_confidence==0,"DC offset invented voiced pitch in noise");
 }
 void pitch_period() {
@@ -197,12 +197,12 @@ void pitch_period() {
                         (harmonics?0.3*std::sin(2*angle)+0.1*std::sin(3*angle)+0.25:0));
                 }
                 const auto original=a.mono;
-                const auto features=djayvo::analyze(a);
+                const auto features=jamloom::analyze(a);
                 check(features.pitch_hz>0 && std::abs(1200*std::log2(features.pitch_hz/hz))<5,
                       "sustained note was assigned a later period or inaccurate pitch");
                 check(features.pitch_confidence>0.9,"periodic control lost pitch confidence");
                 const int midi=static_cast<int>(std::llround(69+12*std::log2(hz/440)));
-                const auto plan=djayvo::make_remix(a,features,djayvo::Strategy::call_response,4123,true,false);
+                const auto plan=jamloom::make_remix(a,features,jamloom::Strategy::call_response,4123,true,false);
                 check(plan.tonic_midi==60+((midi%12+12)%12),"known sustained note selected wrong key");
                 check(a.mono==original,"pitch analysis changed the source");
             }
@@ -210,11 +210,11 @@ void pitch_period() {
     }
 }
 void resampling() {
-    auto a=source(); const auto same=djayvo::resample(a,8000);
+    auto a=source(); const auto same=jamloom::resample(a,8000);
     check(same.mono==a.mono,"identity resampler changed source");
-    const auto up=djayvo::resample(a,48000);
+    const auto up=jamloom::resample(a,48000);
     check(up.mono.size()==144000 && up.sha256==a.sha256,"resampling duration/provenance");
-    const auto down=djayvo::resample(up,8000);
+    const auto down=jamloom::resample(up,8000);
     double error=0,power=0;
     for(std::size_t i=100;i<a.mono.size()-100;++i) {
         error+=std::pow(a.mono[i]-down.mono[i],2);power+=a.mono[i]*a.mono[i];
@@ -222,23 +222,23 @@ void resampling() {
     check(error/power<0.0001,"round-trip resampling error");
     auto high=up;
     for(std::size_t i=0;i<high.mono.size();++i) high.mono[i]=static_cast<float>(0.5*std::sin(6.283185307179586*6000*i/48000));
-    const auto filtered=djayvo::resample(high,8000);double square=0;
+    const auto filtered=jamloom::resample(high,8000);double square=0;
     for(std::size_t i=100;i<filtered.mono.size()-100;++i) square+=filtered.mono[i]*filtered.mono[i];
     check(std::sqrt(square/(filtered.mono.size()-200))<0.003,"downsampling aliases above-Nyquist tone");
-    const auto cd_rate=djayvo::resample(a,44100);
-    check(djayvo::resample(cd_rate,48000).mono.size()==144000,"resampling frame numerator overflow");
-    rejects([&]{djayvo::resample(a,0);});
+    const auto cd_rate=jamloom::resample(a,44100);
+    check(jamloom::resample(cd_rate,48000).mono.size()==144000,"resampling frame numerator overflow");
+    rejects([&]{jamloom::resample(a,0);});
 }
 void preservation() {
-    const auto a=source();auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+    const auto a=source();auto p=jamloom::make_remix(a,jamloom::analyze(a),jamloom::Strategy::hiphop,4123,true,false);
     const auto vocals=render(p,a,257,true);
-    const auto hook=djayvo::tick_to_frame(p.vocals[0].start,a.sample_rate,p.music.tempo_milli_bpm);
+    const auto hook=jamloom::tick_to_frame(p.vocals[0].start,a.sample_rate,p.music.tempo_milli_bpm);
     const double gain=std::pow(10.0,-3.0/20)*p.analysis.normalization_gain*std::sqrt(0.5);
     for(std::size_t i=100;i<a.mono.size()-100;++i)
         check(std::abs(vocals[(hook+i)*2]-a.mono[i]*gain)<1e-6,"clean hook was changed beyond gain/edge fades");
-    const auto frames=djayvo::compile(p.music).total_frames;
-    for(auto strategy:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club,djayvo::Strategy::funk,djayvo::Strategy::call_response,djayvo::Strategy::hybrid}) {
-        auto plan=djayvo::make_remix(a,djayvo::analyze(a),strategy,4123,true,false);
+    const auto frames=jamloom::compile(p.music).total_frames;
+    for(auto strategy:{jamloom::Strategy::hiphop,jamloom::Strategy::reggae,jamloom::Strategy::experimental,jamloom::Strategy::club,jamloom::Strategy::funk,jamloom::Strategy::call_response,jamloom::Strategy::hybrid}) {
+        auto plan=jamloom::make_remix(a,jamloom::analyze(a),strategy,4123,true,false);
         const auto audio=render(plan,a,512);
         check(audio==render(plan,a,113),"remix depends on block size");
         const double ceiling=std::pow(10.0,plan.music.ceiling_dbfs/20);
@@ -248,46 +248,46 @@ void preservation() {
     check(frames==256000,"hiphop 32-second export duration wrong");
 }
 void validation() {
-    auto a=source();const auto analysis=djayvo::analyze(a);
-    rejects([&]{djayvo::make_remix(a,analysis,djayvo::Strategy::hiphop,0,false,false);});
-    auto p=djayvo::make_remix(a,analysis,djayvo::Strategy::hiphop,0,false,true);
-    auto bad=p;bad.clips[0].end=a.mono.size()+1;rejects([&]{djayvo::validate(bad,a);});
-    bad=p;bad.vocals[0].clip=999;rejects([&]{djayvo::validate(bad,a);});
-    bad=p;bad.vocals[0].rate=0;rejects([&]{djayvo::validate(bad,a);});
-    bad=p;bad.vocals[0].reverse=true;rejects([&]{djayvo::validate(bad,a);});
-    bad=p;for(auto& e:bad.vocals)e.clean=false;rejects([&]{djayvo::validate(bad,a);});
-    bad=p;bad.source_sha256=std::string(64,'1');rejects([&]{djayvo::validate(bad,a);});
-    bad=p;bad.vocals.assign(17,p.vocals[0]);rejects([&]{djayvo::validate(bad,a);});
-    bad=p;bad.vocals[0].start=djayvo::ticks_per_bar(p.music)*p.music.bars-1;rejects([&]{djayvo::validate(bad,a);});
-    bad=p;bad.vocals[0].rate=std::numeric_limits<double>::quiet_NaN();rejects([&]{djayvo::validate(bad,a);});
+    auto a=source();const auto analysis=jamloom::analyze(a);
+    rejects([&]{jamloom::make_remix(a,analysis,jamloom::Strategy::hiphop,0,false,false);});
+    auto p=jamloom::make_remix(a,analysis,jamloom::Strategy::hiphop,0,false,true);
+    auto bad=p;bad.clips[0].end=a.mono.size()+1;rejects([&]{jamloom::validate(bad,a);});
+    bad=p;bad.vocals[0].clip=999;rejects([&]{jamloom::validate(bad,a);});
+    bad=p;bad.vocals[0].rate=0;rejects([&]{jamloom::validate(bad,a);});
+    bad=p;bad.vocals[0].reverse=true;rejects([&]{jamloom::validate(bad,a);});
+    bad=p;for(auto& e:bad.vocals)e.clean=false;rejects([&]{jamloom::validate(bad,a);});
+    bad=p;bad.source_sha256=std::string(64,'1');rejects([&]{jamloom::validate(bad,a);});
+    bad=p;bad.vocals.assign(17,p.vocals[0]);rejects([&]{jamloom::validate(bad,a);});
+    bad=p;bad.vocals[0].start=jamloom::ticks_per_bar(p.music)*p.music.bars-1;rejects([&]{jamloom::validate(bad,a);});
+    bad=p;bad.vocals[0].rate=std::numeric_limits<double>::quiet_NaN();rejects([&]{jamloom::validate(bad,a);});
     for (double mix:{-0.01,0.36,std::numeric_limits<double>::quiet_NaN()}) {
-        bad=p;bad.instrument_room_mix=mix;rejects([&]{djayvo::validate(bad,a);});
+        bad=p;bad.instrument_room_mix=mix;rejects([&]{jamloom::validate(bad,a);});
     }
     for (double duck:{-12.01,0.01,std::numeric_limits<double>::quiet_NaN()}) {
-        bad=p;bad.music.kick_duck_db=duck;rejects([&]{djayvo::validate(bad,a);});
+        bad=p;bad.music.kick_duck_db=duck;rejects([&]{jamloom::validate(bad,a);});
     }
     bad=p;bad.music.tail_ms=500;
-    bad.music.tracks[0].notes={{djayvo::ticks_per_bar(bad.music)*bad.music.bars-960,960,60,70}};
-    rejects([&]{djayvo::validate(bad,a);});
-    auto absent=analysis;absent.phrases.clear();rejects([&]{djayvo::make_remix(a,absent,djayvo::Strategy::hiphop,0,true,false);});
+    bad.music.tracks[0].notes={{jamloom::ticks_per_bar(bad.music)*bad.music.bars-960,960,60,70}};
+    rejects([&]{jamloom::validate(bad,a);});
+    auto absent=analysis;absent.phrases.clear();rejects([&]{jamloom::make_remix(a,absent,jamloom::Strategy::hiphop,0,true,false);});
     auto invalid_rate=a;invalid_rate.sample_rate=0;
-    rejects([&]{djayvo::make_remix(invalid_rate,analysis,djayvo::Strategy::hiphop,0,true,false);});
+    rejects([&]{jamloom::make_remix(invalid_rate,analysis,jamloom::Strategy::hiphop,0,true,false);});
     absent=analysis;absent.pitch_hz=std::numeric_limits<double>::infinity();
-    rejects([&]{djayvo::make_remix(a,absent,djayvo::Strategy::hiphop,0,true,false);});
+    rejects([&]{jamloom::make_remix(a,absent,jamloom::Strategy::hiphop,0,true,false);});
 }
 void vocal_spacing() {
     for (const int seconds : {2,3,5}) {
         auto a=source();a.mono.resize(static_cast<std::size_t>(a.sample_rate)*seconds);
         a.original_frames=a.mono.size();
-        auto analysis=djayvo::analyze(a);
+        auto analysis=jamloom::analyze(a);
         // These distinct onsets collapse onto one reggae offbeat.
         analysis.onsets={800,1600,2400,3200,4000,4800};
-        for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club,djayvo::Strategy::funk,djayvo::Strategy::call_response,djayvo::Strategy::hybrid}) {
-            auto p=djayvo::make_remix(a,analysis,style,4123,true,false);
-            const auto start=[&](const djayvo::VocalEvent& e) {
-                return djayvo::tick_to_frame(e.start,a.sample_rate,p.music.tempo_milli_bpm);
+        for (auto style:{jamloom::Strategy::hiphop,jamloom::Strategy::reggae,jamloom::Strategy::experimental,jamloom::Strategy::club,jamloom::Strategy::funk,jamloom::Strategy::call_response,jamloom::Strategy::hybrid}) {
+            auto p=jamloom::make_remix(a,analysis,style,4123,true,false);
+            const auto start=[&](const jamloom::VocalEvent& e) {
+                return jamloom::tick_to_frame(e.start,a.sample_rate,p.music.tempo_milli_bpm);
             };
-            const auto end=[&](const djayvo::VocalEvent& e) {
+            const auto end=[&](const jamloom::VocalEvent& e) {
                 const auto& clip=p.clips[e.clip];
                 return start(e)+static_cast<std::uint64_t>(std::ceil(static_cast<double>(clip.end-clip.begin)/e.rate));
             };
@@ -319,11 +319,11 @@ void vocal_spacing() {
     }
 }
 void varied_openings() {
-    const auto a=source();const auto analysis=djayvo::analyze(a);
-    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club,djayvo::Strategy::funk,djayvo::Strategy::call_response,djayvo::Strategy::hybrid}) {
+    const auto a=source();const auto analysis=jamloom::analyze(a);
+    for (auto style:{jamloom::Strategy::hiphop,jamloom::Strategy::reggae,jamloom::Strategy::experimental,jamloom::Strategy::club,jamloom::Strategy::funk,jamloom::Strategy::call_response,jamloom::Strategy::hybrid}) {
         bool clean_first=false,instrument_first=false,chop_first=false;
         for (std::uint32_t seed=4123;seed<4126;++seed) {
-            const auto p=djayvo::make_remix(a,analysis,style,seed,true,false);
+            const auto p=jamloom::make_remix(a,analysis,style,seed,true,false);
             const bool clean_at_zero=std::any_of(p.vocals.begin(),p.vocals.end(),[](const auto& e){return e.clean && e.start==0;});
             const bool chop_at_zero=std::any_of(p.vocals.begin(),p.vocals.end(),[](const auto& e){return !e.clean && e.start==0;});
             bool instrument_at_zero=false;
@@ -340,10 +340,10 @@ void varied_openings() {
     }
 }
 void hiphop_composition() {
-    const auto a=source();const auto features=djayvo::analyze(a);
-    using Shape=std::vector<std::tuple<int,djayvo::Tick,djayvo::Tick,int>>;
-    const auto shape=[](const djayvo::RemixPlan& p,int first,int bars,int instrument=-1) {
-        Shape result;const auto bar=djayvo::ticks_per_bar(p.music);
+    const auto a=source();const auto features=jamloom::analyze(a);
+    using Shape=std::vector<std::tuple<int,jamloom::Tick,jamloom::Tick,int>>;
+    const auto shape=[](const jamloom::RemixPlan& p,int first,int bars,int instrument=-1) {
+        Shape result;const auto bar=jamloom::ticks_per_bar(p.music);
         for (const auto& track:p.music.tracks) {
             if (instrument>=0 && static_cast<int>(track.instrument)!=instrument) continue;
             for (const auto& note:track.notes)
@@ -356,27 +356,27 @@ void hiphop_composition() {
     std::set<std::vector<int>> harmonies;
     Shape previous_groove;
     for (std::uint32_t seed=0;seed<64;++seed) {
-        const auto p=djayvo::make_remix(a,features,djayvo::Strategy::hiphop,seed,true,false);
-        const auto bar=djayvo::ticks_per_bar(p.music);
+        const auto p=jamloom::make_remix(a,features,jamloom::Strategy::hiphop,seed,true,false);
+        const auto bar=jamloom::ticks_per_bar(p.music);
         compositions.insert(shape(p,2,4));
-        const auto groove=shape(p,2,1,static_cast<int>(djayvo::Instrument::drums));
+        const auto groove=shape(p,2,1,static_cast<int>(jamloom::Instrument::drums));
         check(groove!=previous_groove,"adjacent hiphop seeds repeat the same drum rhythm");
         grooves.insert(groove);previous_groove=groove;
         std::vector<int> roots;
         for (const auto& track:p.music.tracks) for (const auto& note:track.notes) {
-            if (track.instrument==djayvo::Instrument::bass && note.start>=2*bar && note.start<6*bar && note.start%bar==0)
+            if (track.instrument==jamloom::Instrument::bass && note.start>=2*bar && note.start<6*bar && note.start%bar==0)
                 roots.push_back(note.pitch);
-            if (track.instrument!=djayvo::Instrument::drums) {
+            if (track.instrument!=jamloom::Instrument::drums) {
                 const int degree=(note.pitch-p.tonic_midi+120)%12;
                 check(degree==0 || degree==2 || degree==3 || degree==5 || degree==7 || degree==8 || degree==10,
                       "hiphop harmony escaped natural minor");
             }
         }
         harmonies.insert(roots);
-        check(shape(p,2,1,static_cast<int>(djayvo::Instrument::drums))==shape(p,4,1,static_cast<int>(djayvo::Instrument::drums)),
+        check(shape(p,2,1,static_cast<int>(jamloom::Instrument::drums))==shape(p,4,1,static_cast<int>(jamloom::Instrument::drums)),
               "hiphop groove does not recur within the phrase");
         check(shape(p,3,1)!=shape(p,9,1),"hiphop return lacks a developed response");
-        check(shape(p,2,4)==shape(djayvo::make_remix(a,features,djayvo::Strategy::hiphop,seed,true,false),2,4),
+        check(shape(p,2,4)==shape(jamloom::make_remix(a,features,jamloom::Strategy::hiphop,seed,true,false),2,4),
               "hiphop composition is not repeatable");
     }
     // Ignore velocity, sample take, voice and intro: they cannot satisfy structural variety.
@@ -386,19 +386,19 @@ void hiphop_composition() {
     check(grooves.size()>=4,"hiphop seeds share one drum rhythm");
     check(compositions.size()>=12,"hiphop seeds do not vary the musical body");
     for (const auto seed:{0U,4294967295U}) {
-        const auto p=djayvo::make_remix(a,features,djayvo::Strategy::hiphop,seed,true,false);
+        const auto p=jamloom::make_remix(a,features,jamloom::Strategy::hiphop,seed,true,false);
         check(render(p,a,113)==render(p,a,257),"hiphop edge seed render depends on block size");
     }
 }
 void remaining_style_diversity() {
-    const auto a=source();const auto features=djayvo::analyze(a);
-    using Shape=std::vector<std::tuple<int,djayvo::Tick,djayvo::Tick,int>>;
-    for (auto style:{djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club}) {
+    const auto a=source();const auto features=jamloom::analyze(a);
+    using Shape=std::vector<std::tuple<int,jamloom::Tick,jamloom::Tick,int>>;
+    for (auto style:{jamloom::Strategy::reggae,jamloom::Strategy::experimental,jamloom::Strategy::club}) {
         std::set<Shape> shapes;
         for (std::uint32_t seed=4100;seed<4164;++seed) {
-            const auto p=djayvo::make_remix(a,features,style,seed,true,false);Shape body;
+            const auto p=jamloom::make_remix(a,features,style,seed,true,false);Shape body;
             for (const auto& t:p.music.tracks) for (const auto& n:t.notes)
-                if(n.start>=2*djayvo::ticks_per_bar(p.music) && n.start<(p.music.bars-1)*djayvo::ticks_per_bar(p.music))
+                if(n.start>=2*jamloom::ticks_per_bar(p.music) && n.start<(p.music.bars-1)*jamloom::ticks_per_bar(p.music))
                     body.emplace_back(static_cast<int>(t.instrument),n.start,n.duration,n.pitch-p.tonic_midi);
             shapes.insert(body);
         }
@@ -407,38 +407,38 @@ void remaining_style_diversity() {
 }
 void dialogue_hybrid_composition() {
     auto a=source();a.mono.resize(5*a.sample_rate);a.original_frames=a.mono.size();
-    const auto features=djayvo::analyze(a);
-    using Shape=std::vector<std::tuple<int,djayvo::Tick,djayvo::Tick,int>>;
-    const auto shape=[](const djayvo::RemixPlan& p) {
+    const auto features=jamloom::analyze(a);
+    using Shape=std::vector<std::tuple<int,jamloom::Tick,jamloom::Tick,int>>;
+    const auto shape=[](const jamloom::RemixPlan& p) {
         Shape result;
         for (const auto& track:p.music.tracks) for (const auto& n:track.notes)
-            if (n.start>=2*djayvo::ticks_per_bar(p.music)) result.emplace_back(static_cast<int>(track.instrument),n.start,n.duration,n.pitch);
+            if (n.start>=2*jamloom::ticks_per_bar(p.music)) result.emplace_back(static_cast<int>(track.instrument),n.start,n.duration,n.pitch);
         return result;
     };
-    for (auto style:{djayvo::Strategy::call_response,djayvo::Strategy::hybrid}) {
+    for (auto style:{jamloom::Strategy::call_response,jamloom::Strategy::hybrid}) {
         std::set<Shape> shapes;
         for (std::uint32_t seed=4100;seed<4164;++seed) {
-            const auto p=djayvo::make_remix(a,features,style,seed,true,false);
-            const auto bar=djayvo::ticks_per_bar(p.music),q=djayvo::ticks_per_quarter;
+            const auto p=jamloom::make_remix(a,features,style,seed,true,false);
+            const auto bar=jamloom::ticks_per_bar(p.music),q=jamloom::ticks_per_quarter;
             check(p.music.bars==16,"dialogue/hybrid form changed");
             shapes.insert(shape(p));
-            check(shape(p)==shape(djayvo::make_remix(a,features,style,seed,true,false)),"new grammar is not repeatable");
-            if (style==djayvo::Strategy::call_response) {
+            check(shape(p)==shape(jamloom::make_remix(a,features,style,seed,true,false)),"new grammar is not repeatable");
+            if (style==jamloom::Strategy::call_response) {
                 unsigned answers=0;
                 for (const auto& n:p.music.tracks[0].notes) if (n.duration==q/3) {
                     ++answers;
-                    const auto begin=djayvo::tick_to_frame(n.start,p.music),end=djayvo::tick_to_frame(n.start+n.duration,p.music);
+                    const auto begin=jamloom::tick_to_frame(n.start,p.music),end=jamloom::tick_to_frame(n.start+n.duration,p.music);
                     for (const auto& e:p.vocals) {
-                        const auto call=djayvo::tick_to_frame(e.start,p.music);
-                        const auto length=djayvo::vocal_frames(e,p.clips[e.clip]);
+                        const auto call=jamloom::tick_to_frame(e.start,p.music);
+                        const auto length=jamloom::vocal_frames(e,p.clips[e.clip]);
                         check(end<=call || begin>=call+length+a.sample_rate*80/1000,"instrument answer interrupts a vocal call");
                     }
                 }
                 check(answers>=6,"dialogue has no developed instrumental answer");
             } else {
-                std::set<std::vector<djayvo::Tick>> rhythms;
+                std::set<std::vector<jamloom::Tick>> rhythms;
                 for (int b:{3,7,13}) {
-                    std::vector<djayvo::Tick> snare;
+                    std::vector<jamloom::Tick> snare;
                     for (const auto& n:p.music.tracks[2].notes)
                         if(n.pitch==38 && n.start>=b*bar && n.start<(b+1)*bar) snare.push_back(n.start-b*bar);
                     rhythms.insert(snare);
@@ -448,8 +448,8 @@ void dialogue_hybrid_composition() {
         }
         check(shapes.size()>=12,"new grammar varies only velocity/tempo/sample takes");
         auto changed=features;changed.onsets={800,3300,9100};
-        check(shape(djayvo::make_remix(a,features,style,4123,true,false))!=
-              shape(djayvo::make_remix(a,changed,style,4123,true,false)),"new grammar ignores input rhythm");
+        check(shape(jamloom::make_remix(a,features,style,4123,true,false))!=
+              shape(jamloom::make_remix(a,changed,style,4123,true,false)),"new grammar ignores input rhythm");
     }
 }
 void source_phrase_development() {
@@ -457,19 +457,19 @@ void source_phrase_development() {
     const std::vector<std::uint64_t> attacks{800,3200,8400,13600,19600};
     for (std::size_t m=0;m<attacks.size();++m) for (std::uint64_t i=0;i<640;++i)
         a.mono[attacks[m]+i]=static_cast<float>((m%2?0.1:0.3)*std::sin(6.283185307179586*220*i/a.sample_rate));
-    auto features=djayvo::analyze(a);features.onsets=attacks;
-    const auto plan=[&](const djayvo::AudioBuffer& input,const djayvo::InputAnalysis& f) {
-        return djayvo::make_remix(input,f,djayvo::Strategy::call_response,4123,true,false);
+    auto features=jamloom::analyze(a);features.onsets=attacks;
+    const auto plan=[&](const jamloom::AudioBuffer& input,const jamloom::InputAnalysis& f) {
+        return jamloom::make_remix(input,f,jamloom::Strategy::call_response,4123,true,false);
     };
-    using Phrase=std::vector<std::tuple<djayvo::Tick,djayvo::Tick,int,int>>;
-    const auto phrase=[](const djayvo::RemixPlan& p,int first) {
-        Phrase notes;const auto bar=djayvo::ticks_per_bar(p.music);
+    using Phrase=std::vector<std::tuple<jamloom::Tick,jamloom::Tick,int,int>>;
+    const auto phrase=[](const jamloom::RemixPlan& p,int first) {
+        Phrase notes;const auto bar=jamloom::ticks_per_bar(p.music);
         for (const auto& n:p.music.tracks[0].notes)
             if(n.start>=first*bar && n.start<(first+2)*bar)
                 notes.emplace_back(n.start-first*bar,n.duration,n.pitch,n.velocity);
         return notes;
     };
-    const auto p=plan(a,features);const auto bar=djayvo::ticks_per_bar(p.music);
+    const auto p=plan(a,features);const auto bar=jamloom::ticks_per_bar(p.music);
     const auto answer=phrase(p,5);
     check(answer.size()==attacks.size(),"answer loses source attacks");
     check(std::get<0>(answer.back())>=bar,"answer folds the later source accents into one bar");
@@ -491,19 +491,19 @@ void source_phrase_development() {
     auto rhythm=features;rhythm.onsets[3]+=1200;
     check(answer!=phrase(plan(a,rhythm),5),"late source rhythm does not affect the answer");
     for(const auto first:{5,13}) for(const auto& note:phrase(p,first)) {
-        const auto start=djayvo::tick_to_frame(first*bar+std::get<0>(note),p.music);
-        const auto end=djayvo::tick_to_frame(first*bar+std::get<0>(note)+std::get<1>(note),p.music);
+        const auto start=jamloom::tick_to_frame(first*bar+std::get<0>(note),p.music);
+        const auto end=jamloom::tick_to_frame(first*bar+std::get<0>(note)+std::get<1>(note),p.music);
         for(const auto& e:p.vocals) {
-            const auto call=djayvo::tick_to_frame(e.start,p.music);
-            check(end<=call || start>=call+djayvo::vocal_frames(e,p.clips[e.clip])+a.sample_rate*80/1000,
+            const auto call=jamloom::tick_to_frame(e.start,p.music);
+            check(end<=call || start>=call+jamloom::vocal_frames(e,p.clips[e.clip])+a.sample_rate*80/1000,
                   "source-derived answer overlaps the voice");
         }
     }
 }
 void funk_composition() {
-    const auto a=source();const auto features=djayvo::analyze(a);
-    using Shape=std::vector<std::tuple<int,djayvo::Tick,djayvo::Tick,int>>;
-    const auto shape=[](const djayvo::RemixPlan& p) {
+    const auto a=source();const auto features=jamloom::analyze(a);
+    using Shape=std::vector<std::tuple<int,jamloom::Tick,jamloom::Tick,int>>;
+    const auto shape=[](const jamloom::RemixPlan& p) {
         Shape result;
         for (const auto& track:p.music.tracks) for (const auto& n:track.notes)
             if (n.start>=7680 && n.start<23040)
@@ -513,7 +513,7 @@ void funk_composition() {
     std::set<Shape> shapes;
     std::set<std::uint32_t> tempos;
     for (std::uint32_t seed=0;seed<64;++seed) {
-        const auto p=djayvo::make_remix(a,features,djayvo::Strategy::funk,seed,true,false);
+        const auto p=jamloom::make_remix(a,features,jamloom::Strategy::funk,seed,true,false);
         check(p.music.bars==14 && p.music.sections[2].start_bar==8,"funk lost its break/return form");
         shapes.insert(shape(p));tempos.insert(p.music.tempo_milli_bpm);
         const auto& bass=p.music.tracks[1].notes;const auto& drums=p.music.tracks[2].notes;
@@ -524,10 +524,10 @@ void funk_composition() {
             if (n.pitch==36) check(std::any_of(bass.begin(),bass.end(),[&](const auto& b){return b.start==n.start;}),
                                   "funk kick no longer locks to the bass");
         }
-        for (const auto& track:p.music.tracks) if (track.instrument==djayvo::Instrument::guitar)
+        for (const auto& track:p.music.tracks) if (track.instrument==jamloom::Instrument::guitar)
             for (const auto& n:track.notes) if (n.start>=7680 && n.start<30720 && n.duration<=240 && n.muted) ++short_chords;
         const auto& guitar=p.music.tracks[3];
-        check(guitar.instrument==djayvo::Instrument::guitar && guitar.notes.size()%3==0,"guitar strums missing");
+        check(guitar.instrument==jamloom::Instrument::guitar && guitar.notes.size()%3==0,"guitar strums missing");
         bool up=false,down=false,normal=false,muted=false;
         for (std::size_t i=0;i<guitar.notes.size();i+=3) {
             const auto& a=guitar.notes[i];const auto& b=guitar.notes[i+1];const auto& c=guitar.notes[i+2];
@@ -538,15 +538,15 @@ void funk_composition() {
         }
         check(up && down && normal && muted,"guitar lacks strum direction or attack articulation");
         check(offbeat_bass>=12 && ghosts>=6 && short_chords>=36,"funk lost syncopation, ghost notes or stabs");
-        check(shape(p)==shape(djayvo::make_remix(a,features,djayvo::Strategy::funk,seed,true,false)),"funk is not seed repeatable");
-        for (auto other:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club})
-            check(shape(p)!=shape(djayvo::make_remix(a,features,other,seed,true,false)),"funk copies another strategy");
+        check(shape(p)==shape(jamloom::make_remix(a,features,jamloom::Strategy::funk,seed,true,false)),"funk is not seed repeatable");
+        for (auto other:{jamloom::Strategy::hiphop,jamloom::Strategy::reggae,jamloom::Strategy::experimental,jamloom::Strategy::club})
+            check(shape(p)!=shape(jamloom::make_remix(a,features,other,seed,true,false)),"funk copies another strategy");
     }
     check(shapes.size()>=12 && tempos.size()==3,"funk seeds only change velocity or sample takes");
     auto changed=features;changed.onsets={1200,3000,5700};
-    check(shape(djayvo::make_remix(a,features,djayvo::Strategy::funk,4123,true,false))!=
-          shape(djayvo::make_remix(a,changed,djayvo::Strategy::funk,4123,true,false)),"funk melody ignores input rhythm");
-    const auto p=djayvo::make_remix(a,features,djayvo::Strategy::funk,4294967295U,true,false);
+    check(shape(jamloom::make_remix(a,features,jamloom::Strategy::funk,4123,true,false))!=
+          shape(jamloom::make_remix(a,changed,jamloom::Strategy::funk,4123,true,false)),"funk melody ignores input rhythm");
+    const auto p=jamloom::make_remix(a,features,jamloom::Strategy::funk,4294967295U,true,false);
     check(!render(p,a).empty(),"maximum seed failed");
 }
 void pause_aware_chops() {
@@ -556,33 +556,33 @@ void pause_aware_chops() {
         for (std::size_t i=rate/10;i<rate*47/100;++i)
             if (i<rate*3/10 || i>=rate*31/100)
                 a.mono[i]=static_cast<float>(0.3*std::sin(6.283185307179586*220*i/rate));
-        auto features=djayvo::analyze(a);features.onsets={rate/10};
-        auto p=djayvo::make_remix(a,features,djayvo::Strategy::experimental,4123,true,false);
+        auto features=jamloom::analyze(a);features.onsets={rate/10};
+        auto p=jamloom::make_remix(a,features,jamloom::Strategy::experimental,4123,true,false);
         check(p.clips.size()==2,"single onset did not produce one chop");
         const auto clip=p.clips[1];
         check(clip.begin<=rate/10 && clip.begin>=rate*88/1000,"chop loses attack or excessive pre-roll");
         check(clip.end>=rate*47/100 && clip.end<=rate/2,"chop cuts active speech before its nearby pause");
         features.onsets.clear();
-        p=djayvo::make_remix(a,features,djayvo::Strategy::experimental,4123,true,false);
+        p=jamloom::make_remix(a,features,jamloom::Strategy::experimental,4123,true,false);
         check(p.clips[1].end>=rate*47/100 && p.clips[1].end<=features.phrases[0].end,
               "phrase fallback ignores the quiet boundary or exceeds its region");
         for (std::size_t i=0;i<a.mono.size();++i)
             a.mono[i]=static_cast<float>(0.2*std::sin(6.283185307179586*220*i/rate));
-        features=djayvo::analyze(a);features.onsets={rate/10,a.mono.size()-1};
-        p=djayvo::make_remix(a,features,djayvo::Strategy::experimental,4123,true,false);
+        features=jamloom::analyze(a);features.onsets={rate/10,a.mono.size()-1};
+        p=jamloom::make_remix(a,features,jamloom::Strategy::experimental,4123,true,false);
         check(p.clips.size()==2,"near-EOF onset creates a tiny or invalid chop");
         check(p.clips[1].end-p.clips[1].begin<=rate*260/1000,
               "unbroken sound creates an excessive chop instead of bounded fallback");
         check(p.clips[1].confidence<clip.confidence,"fallback claims the same boundary confidence as a pause");
         features.onsets.clear();features.phrases={{rate,rate+1,0.2}};
-        p=djayvo::make_remix(a,features,djayvo::Strategy::experimental,4123,true,false);
+        p=jamloom::make_remix(a,features,jamloom::Strategy::experimental,4123,true,false);
         check(p.clips[1].begin==rate && p.clips[1].end==rate+1,"tiny fallback region escapes its bounds");
     }
 }
 void offset_chops() {
     for (const unsigned rate:{8000U,44100U,48000U,192000U}) {
-        for (const auto style:{djayvo::Strategy::experimental,djayvo::Strategy::club}) {
-            const auto end=rate*(style==djayvo::Strategy::club?80ULL:47ULL)/100;
+        for (const auto style:{jamloom::Strategy::experimental,jamloom::Strategy::club}) {
+            const auto end=rate*(style==jamloom::Strategy::club?80ULL:47ULL)/100;
             for (const float offset:{0.0F,0.25F,-0.25F}) for (const bool fallback:{false,true}) {
                 auto a=source();a.sample_rate=a.original_rate=rate;
                 a.mono.assign(3*rate,offset);a.original_frames=a.mono.size();
@@ -590,9 +590,9 @@ void offset_chops() {
                     if (i<rate*3/10 || i>=rate*31/100)
                         a.mono[i]+=static_cast<float>(0.3*std::sin(6.283185307179586*200*i/rate));
                 const auto original=a.mono;
-                auto features=djayvo::analyze(a);features.onsets={rate/10};
+                auto features=jamloom::analyze(a);features.onsets={rate/10};
                 if (fallback) features.onsets.clear();
-                const auto p=djayvo::make_remix(a,features,style,4123,true,false);
+                const auto p=jamloom::make_remix(a,features,style,4123,true,false);
                 check(p.clips.size()==2,"offset changed the number of pause-ended crops");
                 const auto clip=p.clips[1];
                 check(clip.end>=end && clip.end<=end+rate*3/100 && clip.confidence==0.65,
@@ -600,16 +600,16 @@ void offset_chops() {
                 check(clip.begin<=rate/10 && clip.begin>=rate*7/100,"offset lost crop attack context");
                 check(p.clips[0].begin==0 && p.clips[0].end==a.mono.size() && a.mono==original,
                       "offset-resistant cropping changed source PCM or the complete clean hook");
-                djayvo::validate(p,a);
+                jamloom::validate(p,a);
             }
         }
     }
 }
 void no_allocations() {
     const auto a=source();
-    for (auto style:{djayvo::Strategy::experimental,djayvo::Strategy::club,djayvo::Strategy::funk,djayvo::Strategy::call_response,djayvo::Strategy::hybrid}) {
-        const auto p=djayvo::make_remix(a,djayvo::analyze(a),style,4123,true,false);
-        djayvo::RemixRenderer r(p,a,512);float buffer[1024]{};
+    for (auto style:{jamloom::Strategy::experimental,jamloom::Strategy::club,jamloom::Strategy::funk,jamloom::Strategy::call_response,jamloom::Strategy::hybrid}) {
+        const auto p=jamloom::make_remix(a,jamloom::analyze(a),style,4123,true,false);
+        jamloom::RemixRenderer r(p,a,512);float buffer[1024]{};
         const auto before=allocations.load();
         while(!r.finished()) r.process(buffer,512);
         const auto after=allocations.load();check(before==after,"sample render allocated memory");
@@ -617,7 +617,7 @@ void no_allocations() {
 }
 void active_vocals() {
     const auto a=source();
-    auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+    auto p=jamloom::make_remix(a,jamloom::analyze(a),jamloom::Strategy::hiphop,4123,true,false);
     p.analysis.normalization_gain=1;
     p.clips={{0,a.mono.size(),1},{4000,4001,.5},{4000,4100,.5},{4200,4450,.5},{4300,4800,.5},{4000,5000,.5}};
     p.vocals={{0,0,-30,1,false,0,true}};
@@ -627,12 +627,12 @@ void active_vocals() {
                            i%2!=0,(i%3-1)*.4,false});
     for (const auto start:{6000,6192}) for (int i=0;i<16;++i)
         p.vocals.push_back({start,5,-30,1,i%2!=0,0,false}); // Full pool reused at the exact preceding end frame.
-    djayvo::validate(p,a);
+    jamloom::validate(p,a);
     auto invalid=p;invalid.vocals.push_back(p.vocals[2]);
-    rejects([&]{djayvo::validate(invalid,a);}); // 17 simultaneous voices at frame zero.
-    const auto frames=djayvo::compile(p.music).total_frames;
+    rejects([&]{jamloom::validate(invalid,a);}); // 17 simultaneous voices at frame zero.
+    const auto frames=jamloom::compile(p.music).total_frames;
     const auto capture=[&](std::size_t block) {
-        djayvo::RemixRenderer renderer(p,a,block,true);
+        jamloom::RemixRenderer renderer(p,a,block,true);
         std::vector<float> samples(static_cast<std::size_t>(frames)*2);
         std::array<float,1024> scratch{};
         std::size_t position=0;
@@ -648,10 +648,10 @@ void active_vocals() {
     };
     const auto actual=capture(113);
     check(actual==capture(512),"active voice scheduling depends on block size");
-    struct Expected { std::uint64_t start,length; const djayvo::VocalEvent* event; };
+    struct Expected { std::uint64_t start,length; const jamloom::VocalEvent* event; };
     std::vector<Expected> expected;
     for (const auto& event:p.vocals)
-        expected.push_back({djayvo::tick_to_frame(event.start,p.music),djayvo::vocal_frames(event,p.clips[event.clip]),&event});
+        expected.push_back({jamloom::tick_to_frame(event.start,p.music),jamloom::vocal_frames(event,p.clips[event.clip]),&event});
     for (std::uint64_t frame=0;frame<frames;++frame) {
         double channels[2]={0,0};
         for (const auto& trigger:expected) {
@@ -673,16 +673,16 @@ void active_vocals() {
     }
 }
 void club_direction() {
-    const auto a=source();auto features=djayvo::analyze(a);
-    auto p=djayvo::make_remix(a,features,djayvo::Strategy::club,4123,true,false);
-    const auto bar=djayvo::ticks_per_bar(p.music);
+    const auto a=source();auto features=jamloom::analyze(a);
+    auto p=jamloom::make_remix(a,features,jamloom::Strategy::club,4123,true,false);
+    const auto bar=jamloom::ticks_per_bar(p.music);
     check(p.music.tempo_milli_bpm==140000 && p.music.bars==20,"club tempo/form wrong");
     check(p.music.sections.size()==6 && p.music.sections[2].name=="drop","club lacks build/drop form");
-    for (const auto& t:p.music.tracks) check(t.electronic || t.instrument==djayvo::Instrument::pad,"club selected acoustic palette");
+    for (const auto& t:p.music.tracks) check(t.electronic || t.instrument==jamloom::Instrument::pad,"club selected acoustic palette");
     for (const auto& n:p.music.tracks[1].notes)
         check((n.start>=6*bar && n.start<10*bar) || n.start>=14*bar,"bass masks build/break");
     auto altered=features;altered.onsets={800,1700,2600};
-    auto other=djayvo::make_remix(a,altered,djayvo::Strategy::club,4123,true,false);
+    auto other=jamloom::make_remix(a,altered,jamloom::Strategy::club,4123,true,false);
     bool rhythm_changed=false;
     const auto& bass=p.music.tracks[1].notes;
     const auto& other_bass=other.music.tracks[1].notes;
@@ -705,22 +705,22 @@ void club_phrasing() {
         a.mono.assign(3*rate,0);a.original_frames=a.mono.size();
         for(std::size_t i=rate/10;i<rate*8/10;++i)
             a.mono[i]=static_cast<float>(.3*std::sin(6.283185307179586*220*i/rate));
-        auto features=djayvo::analyze(a);features.onsets={rate/10,rate*3/10,rate/2};
-        auto p=djayvo::make_remix(a,features,djayvo::Strategy::club,4123,true,false);
+        auto features=jamloom::analyze(a);features.onsets={rate/10,rate*3/10,rate/2};
+        auto p=jamloom::make_remix(a,features,jamloom::Strategy::club,4123,true,false);
         check(p.clips.size()==2,"club retained several overlapping slices of the same phrase");
         check(p.clips[1].end>=rate*8/10 && p.clips[1].end<rate*85/100 && p.clips[1].confidence==.65,
               "club crops an active long phrase before the available pause");
         for (std::size_t i=0;i<a.mono.size();++i)
             a.mono[i]=static_cast<float>(0.2*std::sin(6.283185307179586*220*i/rate));
-        features=djayvo::analyze(a);
-        p=djayvo::make_remix(a,features,djayvo::Strategy::club,4123,true,false);
+        features=jamloom::analyze(a);
+        p=jamloom::make_remix(a,features,jamloom::Strategy::club,4123,true,false);
         check(p.clips.size()>=2 && p.clips[1].confidence==.3 && p.clips[1].end-p.clips[1].begin<=rate*46/100,
               "no-pause club fallback is absent, excessive or overconfident");
     }
     const auto a=source();
     for(std::uint32_t seed:{0U,4123U,4124U,4125U,4294967295U}) {
-        const auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::club,seed,true,false);
-        const auto bar=djayvo::ticks_per_bar(p.music),q=djayvo::ticks_per_quarter;
+        const auto p=jamloom::make_remix(a,jamloom::analyze(a),jamloom::Strategy::club,seed,true,false);
+        const auto bar=jamloom::ticks_per_bar(p.music),q=jamloom::ticks_per_quarter;
         for(const auto& n:p.music.tracks[2].notes)
             check(n.start<5*bar+3*q || n.start>=6*bar,"build leaves no beat of anticipation before the drop");
         for(int b=14;b<19;++b) {
@@ -732,18 +732,18 @@ void club_phrasing() {
 }
 void stem_identity() {
     const auto a=source();
-    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::club,djayvo::Strategy::funk,djayvo::Strategy::call_response,djayvo::Strategy::hybrid}) {
-        auto p=djayvo::make_remix(a,djayvo::analyze(a),style,4123,true,false);
+    for (auto style:{jamloom::Strategy::hiphop,jamloom::Strategy::reggae,jamloom::Strategy::experimental,jamloom::Strategy::club,jamloom::Strategy::funk,jamloom::Strategy::call_response,jamloom::Strategy::hybrid}) {
+        auto p=jamloom::make_remix(a,jamloom::analyze(a),style,4123,true,false);
         // Stay below the nonlinear master stages so the stems must sum to the mix.
         for (auto& track:p.music.tracks) track.gain_db-=18;
-        if (style==djayvo::Strategy::hiphop) {
+        if (style==jamloom::Strategy::hiphop) {
             p.music.tempo_changes={{15360,100000}};
             for (auto& track:p.music.tracks)
                 track.automation={{0,track.gain_db,track.pan},{15360,track.gain_db-6,0.7},{30720,track.gain_db,-0.7}};
         }
         const auto full=render(p,a,257);
         auto sum=render(p,a,113,true);
-        for(int solo=0;solo<=static_cast<int>(djayvo::Instrument::lead);++solo) {
+        for(int solo=0;solo<=static_cast<int>(jamloom::Instrument::lead);++solo) {
             const auto stem=render(p,a,113,false,solo);
             for(std::size_t i=0;i<sum.size();++i)sum[i]+=stem[i];
         }
@@ -752,7 +752,7 @@ void stem_identity() {
     }
 }
 void timeline_voice() {
-    const auto a=source();auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+    const auto a=source();auto p=jamloom::make_remix(a,jamloom::analyze(a),jamloom::Strategy::hiphop,4123,true,false);
     p.music.tempo_changes={{15360,100000}};
     p.vocals={{30720,0,-3,1,false,0,true},{14880,1,-8,1,false,0,false,0,1,720,-12}};
     const auto voice=render(p,a,257,true);
@@ -769,19 +769,19 @@ void timeline_voice() {
     }
     // Check each audible repeat against its dry trigger, including the tempo boundary.
     const auto explicit_echoes=render(p,a,113,true);
-    const auto last=djayvo::tick_to_frame(event.start+3*720,p.music);
+    const auto last=jamloom::tick_to_frame(event.start+3*720,p.music);
     for (std::size_t i=0;i<last*2;++i)
         check(std::abs(voice[i]-explicit_echoes[i])<1e-7,"echo uses the wrong tempo segment");
 }
 void export_transactions() {
     namespace fs=std::filesystem;
-    const auto root=fs::temp_directory_path()/("djayvo-export-"+std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()));
+    const auto root=fs::temp_directory_path()/("jamloom-export-"+std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()));
     check(fs::create_directory(root),"could not reserve export test directory");
     try {
         const auto input=root/"source.wav";
         const auto a=source();std::vector<float> stereo;
         for (auto x:a.mono) {stereo.push_back(x);stereo.push_back(x);}
-        djayvo::WavWriter writer(input.string(),a.sample_rate,a.mono.size());
+        jamloom::WavWriter writer(input.string(),a.sample_rate,a.mono.size());
         writer.write(stereo.data(),a.mono.size());writer.close();
         struct Context {std::string prefix;int mode;int checks=0;bool injected=false;};
         const auto callback=+[](void* opaque)->int {
@@ -797,9 +797,9 @@ void export_transactions() {
         for (int mode=0;mode<3;++mode) {
             Context c{(root/("case"+std::to_string(mode))).string(),mode};
             bool rejected=false;
-            try {djayvo::remix_file(input.string(),c.prefix,{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,
-                 djayvo::Strategy::experimental},8000,4123,257,true,false,false,{callback,&c});}
-            catch (const djayvo::RenderCancelled&) {check(mode<2,"collision misreported as cancellation");rejected=true;}
+            try {jamloom::remix_file(input.string(),c.prefix,{jamloom::Strategy::hiphop,jamloom::Strategy::reggae,
+                 jamloom::Strategy::experimental},8000,4123,257,true,false,false,{callback,&c});}
+            catch (const jamloom::RenderCancelled&) {check(mode<2,"collision misreported as cancellation");rejected=true;}
             catch (const fs::filesystem_error&) {check(mode==2,"unexpected publication I/O failure");rejected=true;}
             check(rejected,"cancelled/colliding export succeeded");
             check(!fs::exists(c.prefix+".complete.json") && !fs::exists(c.prefix+".partial"),"failed export left a completion marker or staging files");
@@ -808,20 +808,20 @@ void export_transactions() {
                 check(c.injected && text=="preserve me","publication replaced a competing file");}
         }
         const auto locked=(root/"locked").string();fs::create_directory(locked+".partial");
-        rejects([&]{djayvo::remix_file(input.string(),locked,{djayvo::Strategy::hiphop},8000,1,257,true,false,false);});
+        rejects([&]{jamloom::remix_file(input.string(),locked,{jamloom::Strategy::hiphop},8000,1,257,true,false,false);});
         check(fs::exists(locked+".partial"),"removed another export's lock");
         const auto linked=(root/"linked").string();fs::create_symlink(root/"missing.wav",linked+".hiphop.wav");
-        rejects([&]{djayvo::remix_file(input.string(),linked,{djayvo::Strategy::hiphop},8000,1,257,true,false,false);});
+        rejects([&]{jamloom::remix_file(input.string(),linked,{jamloom::Strategy::hiphop},8000,1,257,true,false,false);});
         check(fs::is_symlink(fs::symlink_status(linked+".hiphop.wav")),"removed an existing dangling symlink");
     } catch (...) {fs::remove_all(root);throw;}
     fs::remove_all(root);
 }
 void arrangement_contrast() {
-    const auto a=source();const auto analysis=djayvo::analyze(a);
-    for (auto style:{djayvo::Strategy::hiphop,djayvo::Strategy::reggae,djayvo::Strategy::experimental,djayvo::Strategy::funk})
+    const auto a=source();const auto analysis=jamloom::analyze(a);
+    for (auto style:{jamloom::Strategy::hiphop,jamloom::Strategy::reggae,jamloom::Strategy::experimental,jamloom::Strategy::funk})
         for (std::uint32_t seed:{0U,4123U,4124U,4125U,4294967295U}) {
-            const auto p=djayvo::make_remix(a,analysis,style,seed,true,false);
-            const auto bar=djayvo::ticks_per_bar(p.music);
+            const auto p=jamloom::make_remix(a,analysis,style,seed,true,false);
+            const auto bar=jamloom::ticks_per_bar(p.music);
             const auto rest=std::find_if(p.music.sections.begin(),p.music.sections.end(),[](const auto& s){return s.name=="break";});
             const auto arrival=std::find_if(p.music.sections.begin(),p.music.sections.end(),[](const auto& s){return s.name=="return";});
             check(rest!=p.music.sections.end() && arrival!=p.music.sections.end(),"arrangement lacks contrast sections");
@@ -842,7 +842,7 @@ void arrangement_contrast() {
         }
 }
 void room_processing() {
-    const auto a=source();auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+    const auto a=source();auto p=jamloom::make_remix(a,jamloom::analyze(a),jamloom::Strategy::hiphop,4123,true,false);
     for (auto& track:p.music.tracks) track.notes.clear();
     p.music.tracks[0].pan=0;p.music.tracks[0].notes={{0,960,60,90}};
     p.instrument_room_mix=0;
@@ -866,13 +866,13 @@ void independent_voice() {
         a.mono.resize(rate*3);
         for (std::size_t i=0;i<a.mono.size();++i)
             a.mono[i]=static_cast<float>(0.2*std::sin(6.283185307179586*220*static_cast<double>(i)/rate));
-        auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+        auto p=jamloom::make_remix(a,jamloom::analyze(a),jamloom::Strategy::hiphop,4123,true,false);
         for (auto& track:p.music.tracks) track.notes.clear();
         p.clips={{0,a.mono.size(),1},{0,rate,1}};
         p.vocals={{0,1,-6,1,false,0,false},{9600,0,-6,1,false,0,true}};
         const auto capture=[&](std::size_t block) {
-            djayvo::RemixRenderer renderer(p,a,block,true);
-            const auto frames=djayvo::vocal_frames(p.vocals[0],p.clips[1]);
+            jamloom::RemixRenderer renderer(p,a,block,true);
+            const auto frames=jamloom::vocal_frames(p.vocals[0],p.clips[1]);
             std::vector<float> result(static_cast<std::size_t>(frames+32)*2),buffer(block*2);
             const auto before=allocations.load();
             std::size_t offset=0;
@@ -890,7 +890,7 @@ void independent_voice() {
             auto& e=p.vocals[0];e.pitch_semitones=pitch;e.time_stretch=stretch;
             const auto pcm=capture(257);
             check(pcm==capture(113),"transform depends on block size");
-            const auto frames=djayvo::vocal_frames(e,p.clips[1]);
+            const auto frames=jamloom::vocal_frames(e,p.clips[1]);
             check(frames==static_cast<std::uint64_t>(std::ceil(rate*stretch)),"pitch changed target duration");
             const auto lo=rate/10,hi=static_cast<unsigned>(frames)-rate/10;
             unsigned crossings=0;
@@ -911,24 +911,24 @@ void independent_voice() {
         }
         auto& e=p.vocals[0];e.pitch_semitones=4;e.time_stretch=0.8;
         p.clips[1]={0,rate*80ULL/1000,1};capture(113); // minimum crop, highest pitch, shortest duration
-        p.clips[1]={0,1,1};rejects([&]{djayvo::validate(p,a);});
+        p.clips[1]={0,1,1};rejects([&]{jamloom::validate(p,a);});
         p.clips[1]={0,rate,1};
         for (double pitch:{-4.01,4.01,std::numeric_limits<double>::infinity(),std::numeric_limits<double>::quiet_NaN()}) {
-            e.pitch_semitones=pitch;rejects([&]{djayvo::validate(p,a);});
+            e.pitch_semitones=pitch;rejects([&]{jamloom::validate(p,a);});
         }
         e.pitch_semitones=0;
         for (double stretch:{0.79,1.26,std::numeric_limits<double>::infinity(),std::numeric_limits<double>::quiet_NaN()}) {
-            e.time_stretch=stretch;rejects([&]{djayvo::validate(p,a);});
+            e.time_stretch=stretch;rejects([&]{jamloom::validate(p,a);});
         }
-        e.time_stretch=1.25;e.rate=1.1;rejects([&]{djayvo::validate(p,a);});
-        e.rate=1;e.clean=true;rejects([&]{djayvo::validate(p,a);});e.clean=false;
-        e.start=djayvo::ticks_per_bar(p.music)*p.music.bars-960;
-        rejects([&]{djayvo::validate(p,a);});e.start=0;
+        e.time_stretch=1.25;e.rate=1.1;rejects([&]{jamloom::validate(p,a);});
+        e.rate=1;e.clean=true;rejects([&]{jamloom::validate(p,a);});e.clean=false;
+        e.start=jamloom::ticks_per_bar(p.music)*p.music.bars-960;
+        rejects([&]{jamloom::validate(p,a);});e.start=0;
         auto bad=p;bad.clips[1].end=rate*2;bad.vocals.insert(bad.vocals.end(),8,e);
-        rejects([&]{djayvo::validate(bad,a);}); // 22.5 seconds of transformed PCM exceeds work budget
+        rejects([&]{jamloom::validate(bad,a);}); // 22.5 seconds of transformed PCM exceeds work budget
         bad=p;bad.clips[1].end=rate*80ULL/1000;
         for (int i=1;i<33;++i) {auto copy=e;copy.start=i*240;bad.vocals.push_back(copy);}
-        rejects([&]{djayvo::validate(bad,a);});
+        rejects([&]{jamloom::validate(bad,a);});
         p.clips[1]={rate,rate*2ULL,1};std::fill(a.mono.begin()+rate,a.mono.begin()+rate*2,0);
         const auto silent=capture(257);
         check(std::all_of(silent.begin(),silent.end(),[](float x){return x==0;}),"silent crop gained noise or read outside crop");
@@ -936,7 +936,7 @@ void independent_voice() {
 }
 void instrument_reverb() {
     for (unsigned rate:{8000U,16000U,48000U,192000U}) {
-        djayvo::InstrumentReverb effect(rate);
+        jamloom::InstrumentReverb effect(rate);
         double early=0,late=0,stereo=0,peak=0;
         const auto before=allocations.load();
         for (unsigned i=0;i<rate*3;++i) {
@@ -957,9 +957,9 @@ void instrument_reverb() {
             for (double x:wet) check(std::isfinite(x) && std::abs(x)<3,"reverb feedback grows without bound");
         }
     }
-    rejects([]{djayvo::InstrumentReverb invalid(0);});
+    rejects([]{jamloom::InstrumentReverb invalid(0);});
     const auto a=source();
-    auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+    auto p=jamloom::make_remix(a,jamloom::analyze(a),jamloom::Strategy::hiphop,4123,true,false);
     p.music.tail_ms=3000;p.instrument_room_mix=0;
     for (auto& t:p.music.tracks) t.gain_db-=15;
     const auto dry=render(p,a),voice=render(p,a,257,true);
@@ -974,25 +974,25 @@ void instrument_reverb() {
     }
     for (std::size_t i=0;i<sum.size();++i) check(std::abs(sum[i]-wet[i])<2e-6,"reverb stems lost shared timing or ducking");
     for (std::size_t i=wet.size()-a.sample_rate/5;i<wet.size();++i) check(wet[i]==0,"reverb leaves truncated final tail");
-    djayvo::RemixRenderer renderer(p,a,113);float buffer[226];const auto before=allocations.load();
+    jamloom::RemixRenderer renderer(p,a,113);float buffer[226];const auto before=allocations.load();
     while(!renderer.finished()) renderer.process(buffer,113);
     check(allocations.load()==before,"reverb remix allocates in callback");
     for (double value:{-.01,.251,std::numeric_limits<double>::infinity(),std::numeric_limits<double>::quiet_NaN()}) {
-        auto bad=p;bad.instrument_reverb_mix=value;rejects([&]{djayvo::validate(bad,a);});
+        auto bad=p;bad.instrument_reverb_mix=value;rejects([&]{jamloom::validate(bad,a);});
     }
-    p.music.tail_ms=500;rejects([&]{djayvo::validate(p,a);});
+    p.music.tail_ms=500;rejects([&]{jamloom::validate(p,a);});
 }
 void vocal_echo() {
     for (const unsigned rate:{8000U,48000U}) for (const unsigned tempo:{96000U,123457U}) {
-        auto a=djayvo::resample(source(),rate);
-        auto p=djayvo::make_remix(a,djayvo::analyze(a),djayvo::Strategy::hiphop,4123,true,false);
+        auto a=jamloom::resample(source(),rate);
+        auto p=jamloom::make_remix(a,jamloom::analyze(a),jamloom::Strategy::hiphop,4123,true,false);
         p.music.tempo_milli_bpm=tempo;
         for (auto& track:p.music.tracks) track.notes.clear();
         p.analysis.normalization_gain=1;
         p.clips={{0,a.mono.size(),1},{0,rate/5,1}};
         p.vocals={{0,1,0,1,false,0,false,2,1.1},{9600,0,-6,1,false,0,true}};
-        const auto capture=[&](const djayvo::RemixPlan& plan,std::size_t block) {
-            djayvo::RemixRenderer renderer(plan,a,block,true);
+        const auto capture=[&](const jamloom::RemixPlan& plan,std::size_t block) {
+            jamloom::RemixRenderer renderer(plan,a,block,true);
             std::vector<float> result(rate*3*2),buffer(block*2);
             const auto before=allocations.load();
             std::size_t offset=0;
@@ -1006,7 +1006,7 @@ void vocal_echo() {
             return result;
         };
         const auto dry=capture(p,257);
-        for (djayvo::Tick interval:{120,960}) {
+        for (jamloom::Tick interval:{120,960}) {
             p.vocals[0].echo_ticks=interval;p.vocals[0].echo_gain_db=-6;
             const auto actual=capture(p,257);
             check(actual==capture(p,113),"echo timing depends on block size");
@@ -1023,24 +1023,24 @@ void vocal_echo() {
                 change+=std::abs(actual[i]-dry[i]);
             }
             check(change>0.1,"echo treatment has no effect");
-            const auto end=djayvo::tick_to_frame(interval*3,rate,tempo)+djayvo::vocal_frames(p.vocals[0],p.clips[1]);
+            const auto end=jamloom::tick_to_frame(interval*3,rate,tempo)+jamloom::vocal_frames(p.vocals[0],p.clips[1]);
             for (auto i=end*2;i<actual.size();++i) check(actual[static_cast<std::size_t>(i)]==0,"echo has an unbounded tail");
         }
-        auto bad=p;bad.vocals[0].echo_ticks=119;rejects([&]{djayvo::validate(bad,a);});
-        bad=p;bad.vocals[0].echo_ticks=961;rejects([&]{djayvo::validate(bad,a);});
-        bad=p;bad.vocals[0].echo_ticks=-1;rejects([&]{djayvo::validate(bad,a);});
+        auto bad=p;bad.vocals[0].echo_ticks=119;rejects([&]{jamloom::validate(bad,a);});
+        bad=p;bad.vocals[0].echo_ticks=961;rejects([&]{jamloom::validate(bad,a);});
+        bad=p;bad.vocals[0].echo_ticks=-1;rejects([&]{jamloom::validate(bad,a);});
         for (double gain:{-24.1,-5.9,std::numeric_limits<double>::quiet_NaN()}) {
-            bad=p;bad.vocals[0].echo_gain_db=gain;rejects([&]{djayvo::validate(bad,a);});
+            bad=p;bad.vocals[0].echo_gain_db=gain;rejects([&]{jamloom::validate(bad,a);});
         }
-        bad=p;bad.vocals[1].echo_ticks=480;rejects([&]{djayvo::validate(bad,a);});
-        bad=p;bad.vocals[1].start=1920;rejects([&]{djayvo::validate(bad,a);});
-        bad=p;bad.music.tail_ms=500;bad.vocals[0].start=djayvo::ticks_per_bar(p.music)*p.music.bars-960;
-        rejects([&]{djayvo::validate(bad,a);});
+        bad=p;bad.vocals[1].echo_ticks=480;rejects([&]{jamloom::validate(bad,a);});
+        bad=p;bad.vocals[1].start=1920;rejects([&]{jamloom::validate(bad,a);});
+        bad=p;bad.music.tail_ms=500;bad.vocals[0].start=jamloom::ticks_per_bar(p.music)*p.music.bars-960;
+        rejects([&]{jamloom::validate(bad,a);});
         bad=p;bad.clips[1].end=rate;bad.vocals.insert(bad.vocals.end(),5,p.vocals[0]);
         for (auto& e:bad.vocals) if (!e.clean) e.echo_ticks=120;
-        rejects([&]{djayvo::validate(bad,a);});
+        rejects([&]{jamloom::validate(bad,a);});
         bad=p;bad.clips[1].end=1;bad.vocals[0].pitch_semitones=0;bad.vocals[0].time_stretch=1;
-        bad.vocals.insert(bad.vocals.end(),256,bad.vocals[0]);rejects([&]{djayvo::validate(bad,a);});
+        bad.vocals.insert(bad.vocals.end(),256,bad.vocals[0]);rejects([&]{jamloom::validate(bad,a);});
     }
 }
 }

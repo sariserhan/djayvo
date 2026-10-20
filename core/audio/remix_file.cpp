@@ -1,4 +1,4 @@
-#include "djayvo/remix.h"
+#include "jamloom/remix.h"
 #include <algorithm>
 #include <filesystem>
 #include <fstream>
@@ -6,7 +6,7 @@
 #include <locale>
 #include <stdexcept>
 
-namespace djayvo {
+namespace jamloom {
 void remix_file(const std::string& input,const std::string& output,const std::vector<Strategy>& strategies,
                  std::uint32_t rate,std::uint32_t seed,std::size_t block,bool synthetic,bool consent,bool stems,
                  const RenderControl& control,const PlanImport* imported) {
@@ -105,4 +105,4 @@ void remix_file(const std::string& input,const std::string& output,const std::ve
     }
     clean_stage();
 }
-} // namespace djayvo
+} // namespace jamloom

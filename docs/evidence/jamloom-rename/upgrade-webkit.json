@@ -1,0 +1,32 @@
+{
+  "gate": "PASS",
+  "kind": "webkit",
+  "studio": "http://localhost:3000/studio/",
+  "checks": [
+    {
+      "name": "Jamloom renders the complete legacy session from the original IndexedDB identity",
+      "status": "PASS"
+    },
+    {
+      "name": "recording remains opt-in; visible consent control responds",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy WAV plays and downloads byte-exactly with a Jamloom filename",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop and mobile branded studio renders without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "PWA identity retained, account branding present, no runtime or framework errors",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "screenshotWarnings": [
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+  ]
+}

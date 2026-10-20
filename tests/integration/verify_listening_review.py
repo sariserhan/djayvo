@@ -29,7 +29,7 @@ def fixture(root):
 
 
 def main():
-    with tempfile.TemporaryDirectory(prefix='djayvo-listening-ui-') as tmp:
+    with tempfile.TemporaryDirectory(prefix='jamloom-listening-ui-') as tmp:
         root=Path(tmp);batch=root/'batch';listener=fixture(batch);out=root/'review'
         original={str(p.relative_to(batch)):hashlib.sha256(p.read_bytes()).hexdigest() for p in batch.rglob('*') if p.is_file()}
         manifest=build_review(batch,'synthetic-ui-fixture',4123,out)

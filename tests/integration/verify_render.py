@@ -103,7 +103,7 @@ def main():
     gates["invalid_cli_and_unwritable_destination"] = "PASS"
     gates["human_listening"] = "NOT RUN"
     gates["macos_portability"] = "NOT RUN"
-    evidence = {"project": "Djayvo", "milestone": "M0a", "gates": gates,
+    evidence = {"project": "Jamloom", "milestone": "M0a", "gates": gates,
                 "decoded_wav": measured, "engine_report": report,
                 "notes_per_track": {t["instrument"]: len(t["events"]) for t in score["tracks"]}}
     (args.output / "validation.json").write_text(json.dumps(evidence, indent=2, allow_nan=False) + "\n")

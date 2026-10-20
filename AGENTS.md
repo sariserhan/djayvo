@@ -1,4 +1,9 @@
-# Djayvo
+# Jamloom
+
+**Brand authorization — 2026-10-19:** The owner renamed Djayvo to Jamloom.
+Use Jamloom for all current product surfaces and new code. Preserve historical
+evidence, fixture provenance, storage identities and the immutable master;
+see [rename scope](docs/jamloom-rename.md).
 
 **Neon authorization and result — 2026-10-19:** The owner explicitly authorized
 Neon CLI init/deploy and database wiring on `misty-cherry-32516479`, branch
@@ -17,7 +22,7 @@ learned AI remain required. Phone and hosted-infrastructure work remain paused;
 new paid compute, publication and monetization still need explicit authorization.
 
 
-Read the complete master specification before implementation. Djayvo is the
+Read the complete master specification before implementation. Jamloom is the
 official product name. Do not modify the master specification.
 
 Historical permissions below are interpreted under the latest authorization above.

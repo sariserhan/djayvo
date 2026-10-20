@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify a completed Djayvo export before consuming its files."""
+"""Verify a completed Jamloom export before consuming its files."""
 import argparse
 import hashlib
 import json

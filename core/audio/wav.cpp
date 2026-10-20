@@ -1,4 +1,4 @@
-#include "djayvo/audio.h"
+#include "jamloom/audio.h"
 #include <algorithm>
 #include <cmath>
 #include <iomanip>
@@ -7,7 +7,7 @@
 #include <set>
 #include <stdexcept>
 
-namespace djayvo {
+namespace jamloom {
 namespace {
 void u16(std::ostream& out, std::uint16_t n) {
     const char bytes[] = {static_cast<char>(n & 255U), static_cast<char>((n >> 8U) & 255U)};
@@ -66,7 +66,7 @@ void write_report(const AudioStats& a, const PerformancePlan& p, const Schedule&
     std::string bank;
     for (const auto& name:banks) {if (!bank.empty()) bank+='+';bank+=name;}
     const bool accepted = a.frames == s.total_frames && a.nonfinite_samples == 0 && a.peak <= s.ceiling + 1e-7;
-    out << "{\n  \"project\": \"Djayvo\",\n  \"milestone\": \"" << milestone << "\",\n  \"technical_render\": \""
+    out << "{\n  \"project\": \"Jamloom\",\n  \"milestone\": \"" << milestone << "\",\n  \"technical_render\": \""
         << (accepted ? "PASS" : "FAIL") << "\",\n  \"listening_validation\": \"NOT RUN\",\n"
         << "  \"macos_portability\": \"NOT RUN\",\n  \"instrument_bank\": \"" << bank << "\",\n  \"seed\": " << p.seed
         << ",\n  \"sample_rate\": " << s.sample_rate << ",\n  \"music_frames\": " << s.music_frames
@@ -83,4 +83,4 @@ void write_report(const AudioStats& a, const PerformancePlan& p, const Schedule&
     out.flush();
     if (!out) throw std::runtime_error("cannot write report: " + path);
 }
-} // namespace djayvo
+} // namespace jamloom

@@ -28,5 +28,5 @@ for (const path of sourceFiles) {
 execFileSync('python3', ['scripts/build_offline.py', fileURLToPath(publicRoot), '--check'], { cwd: fileURLToPath(new URL('../../../', import.meta.url)), stdio: 'pipe' });
 console.log(JSON.stringify({ status: 'PASS', client_files_checked: count, server_secrets_absent: 'PASS',
   studio_assets_unchanged_except_account_link_and_offline_hashes: 'PASS',
-  wasm_sha256: createHash('sha256').update(await readFile(new URL('engine/djayvo_web.wasm', publicRoot))).digest('hex'),
+  wasm_sha256: createHash('sha256').update(await readFile(new URL('engine/jamloom_web.wasm', publicRoot))).digest('hex'),
 }, null, 2));

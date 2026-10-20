@@ -13,11 +13,11 @@ with tempfile.TemporaryDirectory() as folder:
     root=Path(folder)
     names=[p.name for pattern in ('*.html','*.css','*.js') for p in Path('apps/web').glob(pattern)]
     names += ['manifest.webmanifest','icon.svg','icon-180.png','icon-192.png','icon-512.png']
-    names += ['engine/djayvo_web.mjs','engine/djayvo_web.wasm', 'engine/djayvo_live.wasm','licenses/VSCO-2-CE-LICENSE.txt','licenses/VCSL-LICENSE.txt','licenses/BLACK-AND-GREEN-GUITARS-CC0.txt','licenses/EMSCRIPTEN-LICENSE.txt']
+    names += ['engine/jamloom_web.mjs','engine/jamloom_web.wasm', 'engine/jamloom_live.wasm','licenses/VSCO-2-CE-LICENSE.txt','licenses/VCSL-LICENSE.txt','licenses/BLACK-AND-GREEN-GUITARS-CC0.txt','licenses/EMSCRIPTEN-LICENSE.txt']
     for name in names:
         file=root/name;file.parent.mkdir(parents=True,exist_ok=True);file.write_text('public fixture')
     first=worker_source(root)
-    assert first==worker_source(root) and '__DJAYVO_' not in first
+    assert first==worker_source(root) and '__JAMLOOM_' not in first
     (root/'index.html').write_text('changed index')
     assert worker_source(root)!=first
     for name in ['private.wav','private.png','other.webmanifest']:

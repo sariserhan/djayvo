@@ -1,4 +1,4 @@
-# Djayvo development tracker
+# Jamloom development tracker
 
 **Current authorization — 2026-10-18:** The owner's latest “continue with the
 spec, finish everything” supersedes the earlier console-only increment and
@@ -23,6 +23,11 @@ The [specification completion ledger](docs/spec-status.md) lists unfinished code
 as well as missing quality/device/release evidence. Overall specification: **PARTIAL**.
 The [master specification](ai_improvisational_musician_master_spec_v1.md) remains
 the source of truth and is not modified by this tracker.
+
+## Product identity
+
+- [x] BR01: Rename current app, packages, native/WASM engine, exports, scripts and active documentation to Jamloom; preserve saved data and historical evidence. [Validation](docs/jamloom-rename.md).
+- [ ] BR02: Register/verify a domain and configure its hosted origin, email sender and deployment. Domain ownership and trademark clearance are unverified; R2 and Resend remain deferred.
 
 ## At a glance
 
@@ -183,7 +188,7 @@ closes that task only; it does not automatically pass its parent milestone.
   precise native-code cause and venue reliability remain open. Historical
   failures below are retained, not reclassified as passing.
   [New minimal native-media probes](docs/media-restart.md) reproduce EOF failure
-  outside Djayvo with Blob/File and HTTP sources; a fresh-container Blob/File
+  outside Jamloom with Blob/File and HTTP sources; a fresh-container Blob/File
   reproduction has no memory-limit events. Three candidate workarounds still
   fail local-file paths. DJ23 handles stalled starts without closing this defect.
   [Linux browser validation](docs/linux-browser.md) reproduces an EOF restart

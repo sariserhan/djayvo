@@ -1,10 +1,10 @@
 {
-  "name": "Djayvo original electronic palette v2",
+  "name": "Jamloom original electronic palette v2",
   "source": "Original equations and seeded noise in scripts/prepare_electronic_bank.py",
   "reference_audio_used": false,
   "third_party_sound_assets": false,
   "rights": "Original project material; follows the project outbound license",
-  "generator_sha256": "53ad91a22c2b8fac8271b3fddb7a5883582d68c581cda51d50da1a989053c0db",
+  "generator_sha256": "9eae4d896dec423bb11ca80d2a1e0bbd814c6441b1b262624d7f1eaa66dbdf70",
   "generated_file": "core/instruments/electronic_bank.inc",
   "generated_sha256": "de0fc29e2c222b9b6f036fae6777d069c50b88c42aee8883c512c47b49c87769",
   "samples": [

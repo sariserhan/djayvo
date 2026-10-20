@@ -1,0 +1,17 @@
+{
+  "system": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+  "cpu": "Apple M5",
+  "node": "v22.23.1",
+  "cmake": "cmake version 4.4.2",
+  "clang": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "python": "3.15.0",
+  "emscripten": "6.0.1",
+  "playwright": "1.61.1",
+  "browser_route": "Browser execution tool unavailable after discovery; existing authorized Playwright fallback",
+  "viewports": [
+    "1440x1000",
+    "390x844"
+  ],
+  "scope": "actual Mac; no Linux or physical device run for this rename"
+}

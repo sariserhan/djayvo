@@ -29,7 +29,7 @@ def rejects(function):
 
 def main():
     verify_listening_summary()
-    with tempfile.TemporaryDirectory(prefix="djayvo-tools-") as folder:
+    with tempfile.TemporaryDirectory(prefix="jamloom-tools-") as folder:
         root = Path(folder)
         source = root / "source.wav"
         make_signal(source, 8000)

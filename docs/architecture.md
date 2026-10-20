@@ -8,7 +8,7 @@ historical no-import limitation for `1.0-remix` plans (with opt-in
 The procedural voice description below is historical; current voices use the
 [acoustic bank](acoustic-review.md) with the same clock and fixed voice pool.
 
-The C++17 static library `djayvo_core` has three layers. `core/arrangement/`
+The C++17 static library `jamloom_core` has three layers. `core/arrangement/`
 constructs the original demonstration as a native `PerformancePlan`;
 `core/composition/` defines and validates musical content and exports score JSON;
 `core/audio/` compiles notes into sample-frame events and renders the resulting

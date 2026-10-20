@@ -78,7 +78,7 @@ def main():
     text.append('};')
     data=('\n'.join(text)+'\n').encode()
     path=ROOT/'core/instruments/electronic_bank.inc';path.write_bytes(data)
-    manifest={'name':'Djayvo original electronic palette v2','source':'Original equations and seeded noise in scripts/prepare_electronic_bank.py',
+    manifest={'name':'Jamloom original electronic palette v2','source':'Original equations and seeded noise in scripts/prepare_electronic_bank.py',
               'reference_audio_used':False,'third_party_sound_assets':False,'rights':'Original project material; follows the project outbound license',
               'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'generated_file':str(path.relative_to(ROOT)),
               'generated_sha256':hashlib.sha256(data).hexdigest(),'samples':entries}

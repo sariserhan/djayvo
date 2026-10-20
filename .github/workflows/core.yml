@@ -44,22 +44,22 @@ jobs:
           persist-credentials: false
       - name: Configure and build
         run: |
-          cmake -S . -B build-ci -DCMAKE_BUILD_TYPE=RelWithDebInfo -DDJAYVO_SANITIZERS=${{ matrix.sanitizers }} -DPython3_EXECUTABLE="$(command -v python3)"
+          cmake -S . -B build-ci -DCMAKE_BUILD_TYPE=RelWithDebInfo -DJAMLOOM_SANITIZERS=${{ matrix.sanitizers }} -DPython3_EXECUTABLE="$(command -v python3)"
           cmake --build build-ci --parallel 3
       - name: Test
         run: ctest --test-dir build-ci --output-on-failure
       - name: Compile iPhone release app
         if: matrix.os == 'macos-15' && matrix.sanitizers == 'OFF'
         run: |
-          xcodebuild build -project apps/ios/Djayvo.xcodeproj -scheme Djayvo -configuration Release -destination 'generic/platform=iOS' -derivedDataPath build-ios CODE_SIGNING_ALLOWED=NO
-          python3 scripts/verify_ios_bundle.py build-ios/Build/Products/Release-iphoneos/Djayvo.app
+          xcodebuild build -project apps/ios/Jamloom.xcodeproj -scheme Jamloom -configuration Release -destination 'generic/platform=iOS' -derivedDataPath build-ios CODE_SIGNING_ALLOWED=NO
+          python3 scripts/verify_ios_bundle.py build-ios/Build/Products/Release-iphoneos/Jamloom.app
       - name: Render independent CI control
         if: matrix.sanitizers == 'OFF'
         run: |
           python3 scripts/make_fixture.py --output build-ci/control/source.wav
-          ./build-ci/djayvo_remix --input build-ci/control/source.wav --synthetic-fixture --output build-ci/control/remix --style all
+          ./build-ci/jamloom_remix --input build-ci/control/source.wav --synthetic-fixture --output build-ci/control/remix --style all
           python3 scripts/verify_export.py build-ci/control/remix
-          ./build-ci/djayvo_remix --input build-ci/control/source.wav --synthetic-fixture --output build-ci/control/club --style club
+          ./build-ci/jamloom_remix --input build-ci/control/source.wav --synthetic-fixture --output build-ci/control/club --style club
           python3 scripts/verify_export.py build-ci/control/club
           uname -a > build-ci/control/toolchain.txt
           c++ --version >> build-ci/control/toolchain.txt

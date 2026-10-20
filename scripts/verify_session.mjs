@@ -3,19 +3,19 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-import createEngine from '../build-web/djayvo_web.mjs';
+import createEngine from '../build-web/jamloom_web.mjs';
 const [source, mac, linux, output, minorReference] = process.argv.slice(2);
 if (!output) throw new Error('Usage: node scripts/verify_session.mjs input.wav MAC_DIR LINUX_DIR NEW_OUTPUT [PREVIOUS_MINOR_DIR]');
 await fs.mkdir(output);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const input = await fs.readFile(source), results = [], engine = await createEngine();
 engine.FS.writeFile('/input.wav', input);
-const call = (tempo, tonic, permission, mode = 0) => engine.ccall('djayvo_web_session_mode', 'string', ['number', 'number', 'number', 'number', 'number'], [4123, tempo, tonic, mode, permission]);
+const call = (tempo, tonic, permission, mode = 0) => engine.ccall('jamloom_web_session_mode', 'string', ['number', 'number', 'number', 'number', 'number'], [4123, tempo, tonic, mode, permission]);
 assert.match(call(120000, 60, 0), /permission/);
 assert.match(call(0, 60, 1), /context/);
 assert.match(call(120000, 72, 1), /context/);
 assert.match(call(120000, 60, 1, 2), /context/);
-assert.match(engine.ccall('djayvo_web_session', 'string', ['number','number','number','number'], [4123,120000,60,0]), /permission/);
+assert.match(engine.ccall('jamloom_web_session', 'string', ['number','number','number','number'], [4123,120000,60,0]), /permission/);
 assert.equal(engine.FS.readdir('/').filter(name => name.startsWith('mix.')).length, 0);
 for (const [tempo, majorTonic] of [[60000,60],[83920,63],[120000,66],[180000,71]]) for (const mode of [0,1]) {
   const tonic = mode ? majorTonic : 60, prefix = `session-${mode ? 'major-' : ''}${tempo}`;
@@ -34,7 +34,7 @@ for (const [tempo, majorTonic] of [[60000,60],[83920,63],[120000,66],[180000,71]
   for (const track of score.tracks) if (track.instrument !== 'drums') for (const event of track.events)
     assert.ok(scale.includes((event.note - tonic + 120) % 12));
   if (!mode) {
-    assert.equal(engine.ccall('djayvo_web_session', 'string', ['number','number','number','number'], [4123,tempo,60,1]), '');
+    assert.equal(engine.ccall('jamloom_web_session', 'string', ['number','number','number','number'], [4123,tempo,60,1]), '');
     for (const ext of ['wav','score.json','events.tsv']) {
       assert.deepEqual(Buffer.from(engine.FS.readFile(`/mix.call_response.${ext}`)), wasm[ext], 'legacy minor ABI changed');
       if (minorReference) assert.deepEqual(await fs.readFile(path.join(minorReference, `${prefix}.${ext}`)), wasm[ext], 'historical minor output changed');
@@ -62,11 +62,11 @@ for (const [tempo, majorTonic] of [[60000,60],[83920,63],[120000,66],[180000,71]
 }
 const macGrid = await fs.readFile(path.join(mac, 'grid.tsv')), linuxGrid = await fs.readFile(path.join(linux, 'grid.tsv'));
 assert.deepEqual(macGrid, linuxGrid);
-const module = (await WebAssembly.instantiate(await fs.readFile('build-web/djayvo_live.wasm'), {})).instance.exports;
+const module = (await WebAssembly.instantiate(await fs.readFile('build-web/jamloom_live.wasm'), {})).instance.exports;
 module._initialize();
 for (const line of macGrid.toString().trim().split('\n')) {
   const [rate, tempo, frame] = line.split('\t').map(Number);
-  assert.equal(module.djayvo_next_bar(rate * 21600, 17, rate, tempo), frame);
+  assert.equal(module.jamloom_next_bar(rate * 21600, 17, rate, tempo), frame);
 }
 await fs.writeFile(path.join(output, 'comparison.json'), JSON.stringify({ status: 'PASS', source_sha256: hash(input), grid: 'PASS', wasm_input_rejection: 'PASS', legacy_minor_abi: 'PASS', historical_minor: minorReference ? 'PASS' : 'NOT RUN', results, listening: 'NOT RUN' }, null, 2));
 console.log('PASS: eight major/minor context plans, exact event frames, PCM tolerances and six-hour grids across Mac/Linux/WASM:', output);

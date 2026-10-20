@@ -4,7 +4,7 @@
 #include <cmath>
 #include <cstdint>
 
-namespace djayvo {
+namespace jamloom {
 // Original procedural timbres; no reference recording, voice model or sample data.
 struct PerformanceVoice {
     unsigned id = 0, patch = 0, rate = 48000, release_age = 0;
@@ -92,4 +92,4 @@ struct MouthFilter {
         return .20*carrier + 3*(bands[0].next(carrier,smoothing)+.65*bands[1].next(carrier,smoothing)+.4*bands[2].next(carrier,smoothing));
     }
 };
-} // namespace djayvo
+} // namespace jamloom

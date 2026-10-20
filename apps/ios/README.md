@@ -1,16 +1,16 @@
-# Djayvo for iPhone and iPad
+# Jamloom for iPhone and iPad
 
 Local Instant Remix prototype, iOS 17+. SwiftUI and AVFoundation call the existing
 C++17 C ABI on a worker; no audio engine is duplicated in Swift. No account,
 network SDK, analytics, paid provider or background microphone capability.
 
-Open `Djayvo.xcodeproj` in Xcode. The committed project needs no package download.
+Open `Jamloom.xcodeproj` in Xcode. The committed project needs no package download.
 `project.yml` is its source; regenerate only after project membership/settings
 changes using the already-installed XcodeGen 2.46.0:
 
 ```sh
 xcodegen generate --spec apps/ios/project.yml
-xcodebuild build -project apps/ios/Djayvo.xcodeproj -scheme Djayvo \
+xcodebuild build -project apps/ios/Jamloom.xcodeproj -scheme Jamloom \
   -configuration Release -destination 'generic/platform=iOS' \
   -derivedDataPath build-ios-device CODE_SIGNING_ALLOWED=NO
 ```
@@ -31,14 +31,14 @@ UI tests preserve a user's normal library. It is absent in Release.
 ```sh
 xcrun simctl list devices available
 # Replace SIMULATOR_UUID with an available simulator's ID.
-xcodebuild test -project apps/ios/Djayvo.xcodeproj -scheme Djayvo \
+xcodebuild test -project apps/ios/Jamloom.xcodeproj -scheme Jamloom \
   -destination 'platform=iOS Simulator,id=SIMULATOR_UUID' \
   -derivedDataPath build-ios -parallel-testing-enabled NO \
   -resultBundlePath renders/ios-validation/new-run.xcresult CODE_SIGNING_ALLOWED=NO
 ```
 
 The same checks are available through `sh scripts/ios_smoke.sh` after setting
-`DJAYVO_SIMULATOR_ID`; `DJAYVO_IOS_OUTPUT` may select a fresh evidence directory.
+`JAMLOOM_SIMULATOR_ID`; `JAMLOOM_IOS_OUTPUT` may select a fresh evidence directory.
 The Release audit also verifies privacy declarations, licenses and absence of
 Debug controls/recordings. Use a new result path each run. Tests exercise real render/export/hashes,
 consent, bounds, cancellation, recovery, persistence, tamper rejection and
@@ -76,7 +76,7 @@ the new unfinished generation folder. Sharing does not automatically publish.
 - `RemixLibrary`: private UUID sessions, atomic metadata and scoped deletion.
 - `AppModel`/`AudioSession`: worker rendering, serialized session activation,
   user-initiated microphone, bounded recording and playback/lifecycle state.
-- `DjayvoApp`: consent, capture/import, trim, generation, library and share sheet.
+- `JamloomApp`: consent, capture/import, trim, generation, library and share sheet.
 
 The shared voice pool is allocated once during renderer construction. Its old
 inline allocation exceeded normal mobile worker stack budgets; moving it to

@@ -17,7 +17,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--renderer',type=Path,required=True)
     args=parser.parse_args()
-    with tempfile.TemporaryDirectory(prefix='djayvo-recording-') as directory:
+    with tempfile.TemporaryDirectory(prefix='jamloom-recording-') as directory:
         root=Path(directory);source=root/'signal.wav';make_signal(source)
         encoded=root/'recording.m4a'
         subprocess.run(['ffmpeg','-v','error','-n','-i',str(source),'-c:a','aac',str(encoded)],check=True,timeout=20)

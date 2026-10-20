@@ -71,7 +71,7 @@ def remix_recording(source, output, renderer, consent=False, seed=4123, style="a
         verify_export(output/'remix',styles)
         cards=''.join(f'<section><h2>{style.capitalize()}</h2><audio controls preload="metadata" src="remix.{style}.wav"></audio><p><a href="remix.{style}.wav" download>Save WAV</a></p></section>' for style in styles)
         page='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Djayvo · your recording</title><style>body{font:18px/1.5 system-ui;max-width:780px;margin:40px auto;padding:0 20px;background:#f4f1eb;color:#242c29}section{background:white;padding:20px;margin:18px 0;border-radius:12px}audio{width:100%}a{color:#175b46}</style>
+<title>Jamloom · your recording</title><style>body{font:18px/1.5 system-ui;max-width:780px;margin:40px auto;padding:0 20px;background:#f4f1eb;color:#242c29}section{background:white;padding:20px;margin:18px 0;border-radius:12px}audio{width:100%}a{color:#175b46}</style>
 <h1>Your recording, remixed</h1><p>Listen for a recognizable voice, groove and natural instrument sound. Technical checks do not establish musical quality. Playback starts only when you press play.</p>'''+cards+'''<script>document.addEventListener('play',e=>{if(e.target.tagName==='AUDIO')document.querySelectorAll('audio').forEach(a=>{if(a!==e.target)a.pause()})},true)</script></html>'''
         (output/'index.html').write_text(page)
         (output/'session.json').write_text(json.dumps({'status':'complete','input':'source-provenance.json','export':'remix.complete.json','listening':'NOT RUN'},indent=2)+'\n')
@@ -84,7 +84,7 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input',type=Path,required=True)
     parser.add_argument('--output-directory',type=Path,required=True)
-    parser.add_argument('--renderer',type=Path,default=Path('build-mac/djayvo_remix'))
+    parser.add_argument('--renderer',type=Path,default=Path('build-mac/jamloom_remix'))
     parser.add_argument('--consent',action='store_true')
     parser.add_argument('--seed',type=int,default=4123)
     parser.add_argument('--style',choices=('all','hiphop','reggae','experimental','club','funk','call_response','hybrid'),default='all')
