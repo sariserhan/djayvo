@@ -19,6 +19,7 @@ from q0_expression import express
 from q0_composition import compose
 from q0_authored_score import authored
 from q0_phrase_form import adapt
+from q0_phrase_trial import guitar_renderer
 from q0_audit import digest
 from q0_audit import loudness, inputs, level_match
 
@@ -208,6 +209,23 @@ class Q0(unittest.TestCase):
                            ('tempo_changes', [{'tick': 960}]), ('tempo_milli_bpm', 0)]:
             p = copy.deepcopy(self.plan); p[key] = value
             with self.assertRaises(ValueError): express(p, 1)
+
+    def test_isolated_guitar_link_rejects_changed_inputs_before_build(self):
+        evidence = json.loads((ROOT/'docs/evidence/q0-guitar-layer/report.json').read_text())
+        expected = {ROOT/'renders/q0-guitar-layer-v2-20261020'/name: sha
+                    for name, sha in evidence['files_sha256'].items()}
+        expected.update({ROOT/name:sha for name,sha in evidence['preserved_sha256'].items()})
+        expected[ROOT/'core/instruments/voice.cpp'] = evidence['voice_source_sha256']
+        for changed in ('voice.o', 'libjamloom_core.a', 'voice.cpp'):
+            def checked_digest(path):
+                return 'changed' if Path(path).name == changed else expected[Path(path)]
+            with tempfile.TemporaryDirectory() as directory:
+                with patch('q0_phrase_trial.digest', side_effect=checked_digest), \
+                     patch('q0_phrase_trial.subprocess.run') as build:
+                    with self.assertRaises(ValueError):
+                        guitar_renderer(Path(directory))
+                    build.assert_not_called()
+                self.assertEqual(list(Path(directory).iterdir()), [])
 
     def test_note_bounds_and_clean_voice(self):
         candidate, _ = express(self.plan, 4123)

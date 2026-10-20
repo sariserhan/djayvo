@@ -1,0 +1,5 @@
+{
+  "version": "1.0-q0-guitar-mix",
+  "plan_changed": false,
+  "change": "Previously calibrated soft guitar layer only; no mix-gain compensation"
+}

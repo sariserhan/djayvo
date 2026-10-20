@@ -2,7 +2,13 @@
 
 2026-10-20. **Implementation: PARTIAL. Current owner listening acceptance: FAIL.**
 
-**Newest diagnostic:** [Guitar layer response and vocal integrity](q0-guitar-layer-study.md).
+**Newest full-mix study:** [Guitar calibration and mix balance](q0-guitar-mix-study.md)
+renders five unchanged plans through the isolated sampler. Technical **PASS**:
+non-guitar stems are identical and waveform differences are isolated to guitar.
+Guitar RMS falls 4.26–9.30 dB; this is a measured mix-balance risk, not evidence
+of musical improvement. Listening acceptance **NOT RUN**; production unchanged.
+
+**Previous diagnostic:** [Guitar layer response and vocal integrity](q0-guitar-layer-study.md).
 Velocity 84 → 85 produces a measured 2.56–17.46 dB half-second guitar level drop
 at 48 kHz. Isolated attenuation reduces this discontinuity while preserving
 forte, muted guitar and piano. Technical **PASS**, realism **PARTIAL**, human

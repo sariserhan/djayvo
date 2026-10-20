@@ -1472,3 +1472,28 @@ acceptance unchanged. No production change, training, spending or later mileston
 
 [Instrument diagnostic](http://127.0.0.1:4203/);
 [findings, calibration risks and reproducible evidence](q0-guitar-layer-study.md).
+
+## Q0 guitar calibration in full arrangements
+
+**PASS:** Five fixed phrase-form plans rendered through the pinned experimental
+sampler, producing five masters, 25 stems and five exact block-size replays.
+All scores/events remain unchanged; 4,244 control/candidate instrument rows
+have zero frame errors. All twenty non-guitar stems are byte-identical.
+Independent subtraction explains each master change by guitar alone within
+one PCM16 unit. Thirty WAVs decode without full-scale samples; zero master
+limiter interventions. Ten mixes match −23 LUFS within 0.01 LU, peak −6.34 dBTP.
+Thirteen Q0 tests pass, including rejection before linking changed artifacts.
+All 107 inventoried prior-control files remain unchanged.
+
+The calibration lowers guitar RMS by 4.26–9.30 dB in these arrangements. This
+establishes a mix-balance risk, not better instrument realism. No compensating
+track gain was added; that would also affect the unchanged muted guitar.
+
+**PARTIAL:** Overall Q0 and browser playback (known headless WebKit clock limit).
+**NOT RUN:** New musical/mix acceptance, physical audition and fresh
+Linux/iPhone/WASM execution. **FAIL:** Earlier owner acceptance remains rejected.
+The user's continuation is not recorded as listening feedback. Production,
+specifications, source recordings and prior controls remain intact.
+
+[Private full mixes](http://127.0.0.1:4204/);
+[results, gates, risks and reproduction](q0-guitar-mix-study.md).

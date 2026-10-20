@@ -1,0 +1,370 @@
+{
+  "version": "1.0-q0-guitar-mix",
+  "technical": "PASS",
+  "human_quality": "NOT RUN",
+  "packet_id": "c45422bce5025c84c8c521e12612b0c43ce0b038d0e765c4b7f73689649e94dd",
+  "records": [
+    {
+      "id": "owner-speech",
+      "style": "hiphop",
+      "changes": {
+        "version": "1.0-q0-guitar-mix",
+        "plan_changed": false,
+        "change": "Previously calibrated soft guitar layer only; no mix-gain compensation"
+      },
+      "matched": {
+        "candidate": {
+          "input_i": "-23.00",
+          "input_tp": "-7.79",
+          "input_lra": "6.10",
+          "input_thresh": "-33.65"
+        },
+        "control": {
+          "input_i": "-23.00",
+          "input_tp": "-7.64",
+          "input_lra": "5.80",
+          "input_thresh": "-33.44"
+        }
+      },
+      "target_lufs": -23.0,
+      "raw_loudness": {
+        "control": {
+          "input_i": "-24.25",
+          "input_tp": "-8.89",
+          "input_lra": "5.80",
+          "input_thresh": "-34.70"
+        },
+        "candidate": {
+          "input_i": "-24.10",
+          "input_tp": "-8.89",
+          "input_lra": "6.10",
+          "input_thresh": "-34.75"
+        }
+      },
+      "control_timing": {
+        "events": 426,
+        "maximum_frame_error": 0
+      },
+      "candidate_timing": {
+        "events": 426,
+        "maximum_frame_error": 0
+      },
+      "native": {
+        "project": "Jamloom",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1+electronic-v2+guitar-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1440000,
+        "total_frames": 1560000,
+        "duration_seconds": 32.5,
+        "events": 426,
+        "peak_linear": 0.356934010983,
+        "peak_dbfs": -8.94824135368,
+        "pre_limiter_peak_linear": 0.356934018555,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -27.6994654678,
+        "rms_dbfs_right": -27.7696670211,
+        "max_adjacent_sample_step": 0.27216181159,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "replay_512_113": "PASS",
+      "control_sha256": "e080c367e5818c00e3354a4f7ad4919f31bb33e75b595ccf86e666f3492c96c6"
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "style": "reggae",
+      "changes": {
+        "version": "1.0-q0-guitar-mix",
+        "plan_changed": false,
+        "change": "Previously calibrated soft guitar layer only; no mix-gain compensation"
+      },
+      "matched": {
+        "candidate": {
+          "input_i": "-23.00",
+          "input_tp": "-7.43",
+          "input_lra": "5.30",
+          "input_thresh": "-33.56"
+        },
+        "control": {
+          "input_i": "-23.00",
+          "input_tp": "-7.32",
+          "input_lra": "5.20",
+          "input_thresh": "-33.37"
+        }
+      },
+      "target_lufs": -23.0,
+      "raw_loudness": {
+        "control": {
+          "input_i": "-24.62",
+          "input_tp": "-8.94",
+          "input_lra": "5.20",
+          "input_thresh": "-34.99"
+        },
+        "candidate": {
+          "input_i": "-24.51",
+          "input_tp": "-8.94",
+          "input_lra": "5.30",
+          "input_thresh": "-35.07"
+        }
+      },
+      "control_timing": {
+        "events": 434,
+        "maximum_frame_error": 0
+      },
+      "candidate_timing": {
+        "events": 434,
+        "maximum_frame_error": 0
+      },
+      "native": {
+        "project": "Jamloom",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1+electronic-v2+guitar-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1645714,
+        "total_frames": 1765714,
+        "duration_seconds": 36.7857083333,
+        "events": 434,
+        "peak_linear": 0.356924802065,
+        "peak_dbfs": -8.94846545301,
+        "pre_limiter_peak_linear": 0.356924804219,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -28.1559605766,
+        "rms_dbfs_right": -28.1206546687,
+        "max_adjacent_sample_step": 0.110676772892,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "replay_512_113": "PASS",
+      "control_sha256": "d081db313ef377e87d30fce86d4315656b68c2eb4c755db3ead4472c5cd40596"
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "style": "experimental",
+      "changes": {
+        "version": "1.0-q0-guitar-mix",
+        "plan_changed": false,
+        "change": "Previously calibrated soft guitar layer only; no mix-gain compensation"
+      },
+      "matched": {
+        "candidate": {
+          "input_i": "-23.00",
+          "input_tp": "-6.51",
+          "input_lra": "14.20",
+          "input_thresh": "-33.45"
+        },
+        "control": {
+          "input_i": "-23.00",
+          "input_tp": "-6.34",
+          "input_lra": "13.30",
+          "input_thresh": "-33.25"
+        }
+      },
+      "target_lufs": -23.0,
+      "raw_loudness": {
+        "control": {
+          "input_i": "-25.59",
+          "input_tp": "-8.93",
+          "input_lra": "13.30",
+          "input_thresh": "-35.80"
+        },
+        "candidate": {
+          "input_i": "-25.42",
+          "input_tp": "-8.93",
+          "input_lra": "14.20",
+          "input_thresh": "-35.87"
+        }
+      },
+      "control_timing": {
+        "events": 418,
+        "maximum_frame_error": 0
+      },
+      "candidate_timing": {
+        "events": 418,
+        "maximum_frame_error": 0
+      },
+      "native": {
+        "project": "Jamloom",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1+electronic-v2+guitar-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1234286,
+        "total_frames": 1354286,
+        "duration_seconds": 28.2142916667,
+        "events": 418,
+        "peak_linear": 0.357397913933,
+        "peak_dbfs": -8.93695973443,
+        "pre_limiter_peak_linear": 0.357397920799,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -27.9139290241,
+        "rms_dbfs_right": -28.1514976218,
+        "max_adjacent_sample_step": 0.107946835458,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "replay_512_113": "PASS",
+      "control_sha256": "7962431d59df081f29957d7b27ed00baf2fec57c63bb023cfb11f3efce67fa3b"
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "style": "hiphop",
+      "changes": {
+        "version": "1.0-q0-guitar-mix",
+        "plan_changed": false,
+        "change": "Previously calibrated soft guitar layer only; no mix-gain compensation"
+      },
+      "matched": {
+        "control": {
+          "input_i": "-22.99",
+          "input_tp": "-7.03",
+          "input_lra": "5.00",
+          "input_thresh": "-33.51"
+        },
+        "candidate": {
+          "input_i": "-23.00",
+          "input_tp": "-7.20",
+          "input_lra": "5.50",
+          "input_thresh": "-33.72"
+        }
+      },
+      "target_lufs": -23.0,
+      "raw_loudness": {
+        "control": {
+          "input_i": "-24.91",
+          "input_tp": "-8.94",
+          "input_lra": "5.00",
+          "input_thresh": "-35.40"
+        },
+        "candidate": {
+          "input_i": "-24.74",
+          "input_tp": "-8.94",
+          "input_lra": "5.60",
+          "input_thresh": "-35.46"
+        }
+      },
+      "control_timing": {
+        "events": 426,
+        "maximum_frame_error": 0
+      },
+      "candidate_timing": {
+        "events": 426,
+        "maximum_frame_error": 0
+      },
+      "native": {
+        "project": "Jamloom",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1+electronic-v2+guitar-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1440000,
+        "total_frames": 1560000,
+        "duration_seconds": 32.5,
+        "events": 426,
+        "peak_linear": 0.357156932354,
+        "peak_dbfs": -8.94281831754,
+        "pre_limiter_peak_linear": 0.357156942667,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -27.7284069128,
+        "rms_dbfs_right": -27.9961172476,
+        "max_adjacent_sample_step": 0.107045978308,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "replay_512_113": "PASS",
+      "control_sha256": "a222e5af69c74bf0ec670ebde90754693b94bfa896df70031fe7bf2dcda78983"
+    },
+    {
+      "id": "commons-laughter",
+      "style": "experimental",
+      "changes": {
+        "version": "1.0-q0-guitar-mix",
+        "plan_changed": false,
+        "change": "Previously calibrated soft guitar layer only; no mix-gain compensation"
+      },
+      "matched": {
+        "candidate": {
+          "input_i": "-23.00",
+          "input_tp": "-6.71",
+          "input_lra": "14.00",
+          "input_thresh": "-33.53"
+        },
+        "control": {
+          "input_i": "-22.99",
+          "input_tp": "-6.53",
+          "input_lra": "13.20",
+          "input_thresh": "-33.30"
+        }
+      },
+      "target_lufs": -23.0,
+      "raw_loudness": {
+        "control": {
+          "input_i": "-25.41",
+          "input_tp": "-8.94",
+          "input_lra": "13.20",
+          "input_thresh": "-35.70"
+        },
+        "candidate": {
+          "input_i": "-25.23",
+          "input_tp": "-8.94",
+          "input_lra": "14.10",
+          "input_thresh": "-35.76"
+        }
+      },
+      "control_timing": {
+        "events": 418,
+        "maximum_frame_error": 0
+      },
+      "candidate_timing": {
+        "events": 418,
+        "maximum_frame_error": 0
+      },
+      "native": {
+        "project": "Jamloom",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1+electronic-v2+guitar-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1234286,
+        "total_frames": 1354286,
+        "duration_seconds": 28.2142916667,
+        "events": 418,
+        "peak_linear": 0.357298195362,
+        "peak_dbfs": -8.93938354644,
+        "pre_limiter_peak_linear": 0.35729820379,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -27.9990685932,
+        "rms_dbfs_right": -28.2011879651,
+        "max_adjacent_sample_step": 0.165691629052,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "replay_512_113": "PASS",
+      "control_sha256": "d8d8ae50c710d252a8439083cd647530af0111c248f643158874a61b391aacb7"
+    }
+  ],
+  "renderer_sha256": "685dcb7ca98ce5560a02e7deb4fca03aad17261311a48582283a8af2d8591d8e",
+  "production_changed": false
+}

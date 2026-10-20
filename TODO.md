@@ -4,9 +4,10 @@
 The owner requested diagnosis and controlled listening before engine changes.
 No later milestone, model training, paid service or dashboard redesign is part
 of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.md).
-Latest: [Guitar-layer / vocal-integrity study](docs/q0-guitar-layer-study.md)
-reproduces a large velocity-boundary level drop and tests isolated attenuation.
-Technical PASS; realism and mix acceptance remain open. New listening NOT RUN.
+Latest: [Guitar calibration in full mixes](docs/q0-guitar-mix-study.md)
+compares five unchanged scores through existing/calibrated samplers. Non-guitar
+stems remain identical; guitar RMS falls 4.26–9.30 dB. Technical PASS;
+realism and mix acceptance remain open. New listening NOT RUN.
 Prior rejected candidates remain FAIL.
 
 - [x] **Q001 — PASS:** Freeze five authorized real inputs with plans, events,
@@ -20,6 +21,8 @@ Prior rejected candidates remain FAIL.
   New guitar audit: 552 boundary pairs, six matched guitar probe pairs, eight
   exact replays. Isolated calibration reduces the maximum half-second boundary
   step to 0.54 dB; attack/decay and mix-balance judgments remain open.
+  Full-mix follow-up: five candidates and 25 stems; guitar-only waveform change
+  verified. No production promotion; attenuation changes existing mix balance.
 - [ ] **Q004 — PARTIAL:** Deterministic offline expression transform and five
   A/C comparisons render and replay. Fills, deeper phrasing and musical
   acceptance remain open.
@@ -40,6 +43,9 @@ Prior rejected candidates remain FAIL.
   Subsequent sampler diagnostic: three native regression groups, 552 boundary
   pairs, unchanged forte/muted/piano controls, and exact reconstruction of the
   owner's 1,560,000-frame vocal stem.
+  Latest full-mix follow-up: 13 Q0 tests, five exact replays, 4,244 event rows
+  and 20 unchanged non-guitar stems. Master delta matches guitar delta within
+  one PCM16 unit.
 - [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression, native/SFZ and
   the new five-condition packet, calling the latter “very robotic and bad quality.”
   No numeric scores, relative preferences or causal ranking inferred; no promotion.

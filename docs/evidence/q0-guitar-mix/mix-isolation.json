@@ -1,0 +1,39 @@
+{
+  "technical": "PASS",
+  "human_quality": "NOT RUN",
+  "method": "Candidate minus control master compared with candidate minus control guitar stem",
+  "tolerance_pcm16_units": 3,
+  "records": [
+    {
+      "id": "owner-speech",
+      "max_pcm16_residual": 1.0,
+      "rms_pcm16_residual": 0.1057452187195775,
+      "master_rms_change_db": -0.053807815468152054
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "max_pcm16_residual": 1.0,
+      "rms_pcm16_residual": 0.09907073068673793,
+      "master_rms_change_db": -0.08759080993306248
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "max_pcm16_residual": 1.0,
+      "rms_pcm16_residual": 0.11410908521641723,
+      "master_rms_change_db": -0.0602367915718581
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "max_pcm16_residual": 1.0,
+      "rms_pcm16_residual": 0.10659803481134643,
+      "master_rms_change_db": -0.05033888739992436
+    },
+    {
+      "id": "commons-laughter",
+      "max_pcm16_residual": 1.0,
+      "rms_pcm16_residual": 0.11419156027867923,
+      "master_rms_change_db": -0.06117877728539976
+    }
+  ],
+  "limits": "Verifies source of waveform change; does not rank musical quality or prove subjective balance."
+}
