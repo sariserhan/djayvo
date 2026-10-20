@@ -1,0 +1,10 @@
+PASS: renders/r0-natural-voice-diagnostic-20261020/remix.hiphop.wav
+PASS: renders/r0-natural-voice-diagnostic-20261020/remix.reggae.wav
+PASS: renders/r0-natural-voice-diagnostic-20261020/remix.experimental.wav
+PASS: complete export renders/r0-natural-voice-diagnostic-20261020/remix.complete.json
+Listening/recognizability: NOT RUN
+PASS: renders/r0-natural-voice-diagnostic-20261020/control.baseline.wav
+PASS: complete export renders/r0-natural-voice-diagnostic-20261020/control.complete.json
+Listening/recognizability: NOT RUN
+PASS: blinded pilot assets prepared in renders/r0-natural-voice-diagnostic-20261020/review/listener
+NOT RUN: human listening and M1 quality gate

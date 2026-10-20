@@ -1,0 +1,6 @@
+PASS: /out/r0-portability-20261020/remix.hiphop.wav
+PASS: /out/r0-portability-20261020/remix.reggae.wav
+PASS: /out/r0-portability-20261020/remix.experimental.wav
+PASS: complete export /out/r0-portability-20261020/remix.complete.json
+Listening/recognizability: NOT RUN
+PASS: 26 complete, unchanged export artifacts

@@ -4,6 +4,7 @@ The shared C++ engine executes validated musical decisions. R0 reuses its rule
 planner; R1 adds offline demonstration capture for future supervised decisions.
 
 - [R0 foundation and evidence](../docs/r0-report.md)
+- [R0 fresh portability checks and failed owner listening acceptance](../docs/r0-validation-followup.md)
 - [R1 demonstration workflow, limitations and next gates](../docs/r1-demonstrations.md)
 - [R1 live browser instrument capture and exact replay](../docs/r1-instrument-capture.md)
 - [R1 private source/response pairs](../docs/r1-phrase-response.md)

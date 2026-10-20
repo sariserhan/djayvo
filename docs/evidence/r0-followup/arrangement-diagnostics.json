@@ -1,0 +1,163 @@
+{
+  "hiphop": {
+    "source_kind": "synthetic",
+    "voice_events": 7,
+    "voice_rate_values": [
+      1
+    ],
+    "pitch_values": [
+      0
+    ],
+    "stretch_values": [
+      1
+    ],
+    "reversed_events": 0,
+    "instrument_event_rows": 340,
+    "tracks": [
+      {
+        "instrument": "piano",
+        "notes": 63,
+        "on_sixteenth_grid": 25,
+        "unique_durations": 9,
+        "unique_velocities": 33,
+        "velocity_range": [
+          40,
+          84
+        ]
+      },
+      {
+        "instrument": "bass",
+        "notes": 22,
+        "on_sixteenth_grid": 22,
+        "unique_durations": 4,
+        "unique_velocities": 17,
+        "velocity_range": [
+          76,
+          107
+        ]
+      },
+      {
+        "instrument": "drums",
+        "notes": 85,
+        "on_sixteenth_grid": 65,
+        "unique_durations": 2,
+        "unique_velocities": 43,
+        "velocity_range": [
+          40,
+          115
+        ]
+      }
+    ]
+  },
+  "reggae": {
+    "source_kind": "synthetic",
+    "voice_events": 6,
+    "voice_rate_values": [
+      1
+    ],
+    "pitch_values": [
+      0
+    ],
+    "stretch_values": [
+      1
+    ],
+    "reversed_events": 0,
+    "instrument_event_rows": 304,
+    "tracks": [
+      {
+        "instrument": "organ",
+        "notes": 79,
+        "on_sixteenth_grid": 29,
+        "unique_durations": 7,
+        "unique_velocities": 35,
+        "velocity_range": [
+          42,
+          86
+        ]
+      },
+      {
+        "instrument": "bass",
+        "notes": 16,
+        "on_sixteenth_grid": 16,
+        "unique_durations": 3,
+        "unique_velocities": 12,
+        "velocity_range": [
+          85,
+          106
+        ]
+      },
+      {
+        "instrument": "drums",
+        "notes": 57,
+        "on_sixteenth_grid": 57,
+        "unique_durations": 2,
+        "unique_velocities": 33,
+        "velocity_range": [
+          40,
+          114
+        ]
+      }
+    ]
+  },
+  "experimental": {
+    "source_kind": "synthetic",
+    "voice_events": 12,
+    "voice_rate_values": [
+      1
+    ],
+    "pitch_values": [
+      0
+    ],
+    "stretch_values": [
+      1
+    ],
+    "reversed_events": 0,
+    "instrument_event_rows": 358,
+    "tracks": [
+      {
+        "instrument": "piano",
+        "notes": 51,
+        "on_sixteenth_grid": 17,
+        "unique_durations": 9,
+        "unique_velocities": 28,
+        "velocity_range": [
+          43,
+          89
+        ]
+      },
+      {
+        "instrument": "bass",
+        "notes": 23,
+        "on_sixteenth_grid": 23,
+        "unique_durations": 3,
+        "unique_velocities": 16,
+        "velocity_range": [
+          83,
+          113
+        ]
+      },
+      {
+        "instrument": "drums",
+        "notes": 95,
+        "on_sixteenth_grid": 95,
+        "unique_durations": 2,
+        "unique_velocities": 44,
+        "velocity_range": [
+          40,
+          118
+        ]
+      },
+      {
+        "instrument": "lead",
+        "notes": 10,
+        "on_sixteenth_grid": 10,
+        "unique_durations": 1,
+        "unique_velocities": 7,
+        "velocity_range": [
+          60,
+          70
+        ]
+      }
+    ]
+  }
+}

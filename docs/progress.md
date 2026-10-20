@@ -1270,3 +1270,30 @@ full native/Next rebuild, model training, paid compute or deployment. M5 / 16 Gi
 macOS 26.7.1 / Node 22.23.1 / Playwright 1.61.1, Chromium 149.0.7827.55 and WebKit
 26.5. Specs, synthetic fixture and native WASM hashes preserved.
 [Report, playable probes and retained evidence](r1-source-inventory.md).
+
+## 2026-10-20 — R0 portability closure and actual owner quality rejection
+
+**PASS:** Existing stopped Colima Linux VM restored for fresh native execution,
+then stopped again to release memory. Actual M5 and Linux arm64 container each
+pass 15/15 native groups; 11 R0 tests rerun on Mac. Current Mac smoke command
+passes using its existing explicit R0 reference override. All three R0
+arrangements match on Mac, Linux, Chromium and WebKit: identical decisions, 1,002
+instrument-event rows per target, and WAV bytes (maximum/RMS error zero).
+Historical M0 comparison remains **FAIL** because its musical decisions differ;
+no reference recordings or tolerances replaced.
+
+**FAIL:** Owner listening acceptance of the four original R0 candidates.
+Feedback: all sound awkward and robotic in voices and instruments. One
+qualitative reviewer, no invented recognition scores or preference statistics.
+The packet uses synthetic speech; inspection shows no vocal pitch/stretch/reverse
+transforms, so those cannot explain this set via those effects. Fixed-grid bass
+and drum parts, limited instrument articulation and arrangement behavior require
+listening-led investigation. These observations are not proven causal findings.
+
+**PARTIAL:** Overall R0 acceptance. A separate natural-voice diagnostic uses the
+owner's previously consented speech with the unchanged engine, at
+`http://127.0.0.1:4196/`; it is not an improved model or accepted musical result.
+**NOT RUN:** Independent listener study, natural-voice packet quality, physical
+Intel/iPhone, Linux Python R0 harness (jsonschema absent), fresh WASM compilation,
+model training, paid services or deployment. No production code, specs or
+original recordings changed. [Report and exact evidence](r0-validation-followup.md).

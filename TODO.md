@@ -849,8 +849,8 @@ it does not waive the remaining quality, rights or training gates.
 - [x] **IR03 — PASS:** Fail-closed provenance ledger and five synthetic/original evaluation records; training disabled.
 - [x] **IR04 — PASS:** Three structurally distinct plans, actual WAVs/stems/control, exact block-size replay and timing checks.
 - [x] **IR05 — PASS:** M5 native 15/15 suites and current-build comparison; R0 11-test suite.
-- [ ] **IR06 — PARTIAL:** Overall evidence; historical M0 reference comparison FAIL (different arrangements), current Linux execution NOT RUN.
-- [ ] **IR07 — NOT RUN:** Independent human musical-quality/recognition/preferences. Blank protocol/materials prepared; no scores invented.
+- [ ] **IR06 — PARTIAL:** Current Mac/Linux-VM/Chromium/WebKit three-arrangement plan/event/WAV parity PASS (exact bytes); 15/15 native groups per OS and 11 R0 tests pass. Historical M0 comparison remains FAIL (different arrangements). Physical Intel workstation/iPhone and independent quality study NOT RUN. [Follow-up](docs/r0-validation-followup.md).
+- [ ] **IR07 — FAIL:** Owner rejects all four original R0 candidates as awkward/robotic in voice and instruments (one qualitative reviewer; no numeric ratings inferred). Independent human musical-quality/recognition/preferences remain NOT RUN. Separate unchanged-engine natural-voice diagnostic prepared for private audition, quality NOT RUN. [Feedback and diagnosis](docs/r0-validation-followup.md).
 - [ ] **IR08 — PARTIAL:** R1 offline capture tooling now implemented under the owner's continuation; expert corpus and live capture remain open. Model training NOT RUN.
 
 ## R1 — first-party demonstration workflow (2026-10-20)

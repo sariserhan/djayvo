@@ -1,14 +1,20 @@
 # Jamloom R0 report — 2026-10-20
 
+**Current follow-up:** [Fresh portability and owner listening results](r0-validation-followup.md)
+close the available Mac/Linux-VM/Chromium/WebKit execution checks with exact
+three-arrangement agreement. The owner rejected all four original listening
+candidates as robotic: owner acceptance **FAIL**, independent study **NOT RUN**.
+Overall acceptance remains **PARTIAL**. The report below is the original R0
+delivery snapshot; its historical failures and milestone state are preserved.
+
 **R0 implementation is complete; overall evidence status: PARTIAL.** The available
 foundation gates pass, but the original smoke command's historical-reference
 comparison fails, current Linux execution is unavailable, and no human listening
 study was performed. Stop here for review. No R1 collection or model training
 has started. This report does not claim improved or professional musical quality.
 
-Branch: `main`. Base commit: `d003751`. The R0 implementation/evidence commit is
-the commit containing this report (`git log -1 --format=%H -- docs/r0-report.md`);
-the delivery message records its exact hash. Changes are local; no push/deploy.
+Branch: `main`. Base commit: `d003751`. Original R0 implementation/evidence commit:
+`c7b1b6a0ae1d59cd42116877f8d7039b4f846dd3`. Changes are local; no push/deploy.
 
 Both specifications were read completely. The user-supplied root addendum is
 preserved. The original master is unchanged: SHA256

@@ -1,0 +1,12 @@
+[
+  {
+    "url": "http://127.0.0.1:4195/",
+    "gate": "PASS",
+    "checks": "HTML and all five WAVs served byte-identically; not human listening evidence"
+  },
+  {
+    "url": "http://127.0.0.1:4196/",
+    "gate": "PASS",
+    "checks": "HTML and all five WAVs served byte-identically; not human listening evidence"
+  }
+]

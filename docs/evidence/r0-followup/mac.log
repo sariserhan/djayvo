@@ -1,0 +1,112 @@
+-- Configuring done (0.2s)
+-- Generating done (0.1s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-mac
+[ 50%] Built target jamloom_core
+[ 63%] Built target jamloom_live_tests
+[ 70%] Built target jamloom_session_render
+[ 70%] Built target jamloom_render
+[ 80%] Built target jamloom_remix
+[ 86%] Built target jamloom_c_smoke
+[100%] Built target jamloom_remix_tests
+[100%] Built target jamloom_tests
+Test project /Users/serhansari/Documents/projects/djayvo/build-mac
+      Start  1: live_instruments
+ 1/15 Test  #1: live_instruments .................   Passed    0.25 sec
+      Start  2: core
+ 2/15 Test  #2: core .............................   Passed    0.52 sec
+      Start  3: remix_core
+ 3/15 Test  #3: remix_core .......................   Passed    4.84 sec
+      Start  4: c_abi
+ 4/15 Test  #4: c_abi ............................   Passed    0.40 sec
+      Start  5: acoustic_assets
+ 5/15 Test  #5: acoustic_assets ..................   Passed    0.43 sec
+      Start  6: sustained_assets
+ 6/15 Test  #6: sustained_assets .................   Passed    0.02 sec
+      Start  7: guitar_assets
+ 7/15 Test  #7: guitar_assets ....................   Passed    0.37 sec
+      Start  8: electronic_assets
+ 8/15 Test  #8: electronic_assets ................   Passed    0.08 sec
+      Start  9: wav_integration
+ 9/15 Test  #9: wav_integration ..................   Passed    0.57 sec
+      Start 10: remix_integration
+10/15 Test #10: remix_integration ................   Passed    3.82 sec
+      Start 11: word_timing
+11/15 Test #11: word_timing ......................   Passed    0.12 sec
+      Start 12: tooling
+12/15 Test #12: tooling ..........................   Passed    1.08 sec
+      Start 13: listening_review
+13/15 Test #13: listening_review .................   Passed    0.04 sec
+      Start 14: evaluation_preparation
+14/15 Test #14: evaluation_preparation ...........   Passed   12.18 sec
+      Start 15: plan_import
+15/15 Test #15: plan_import ......................   Passed    4.90 sec
+
+100% tests passed out of 15
+
+Total Test time (real) =  29.62 sec
+PASS: renders/r0-portability-mac-20261020/remix.hiphop.wav
+PASS: renders/r0-portability-mac-20261020/remix.reggae.wav
+PASS: renders/r0-portability-mac-20261020/remix.experimental.wav
+PASS: complete export renders/r0-portability-mac-20261020/remix.complete.json
+Listening/recognizability: NOT RUN
+PASS: 26 complete, unchanged export artifacts
+{
+  "comparisons": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "candidate_environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "cpu_brand": "Apple M5",
+    "memory_bytes": 17179869184,
+    "cpu_cores": 10,
+    "macos_version": "26.7.1",
+    "macos_build": "25G241",
+    "kernel_release": "25.6.0",
+    "xcode": "Xcode 27.1\nBuild version 27A9275",
+    "developer_directory": "/Applications/Xcode.app/Contents/Developer",
+    "sdk_version": "27.0",
+    "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "cmake": "cmake version 4.4.2",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "python_executable": "/Users/serhansari/Documents/projects/djayvo/.venv-build/bin/python",
+    "renderer_binary": "build-mac/jamloom_remix: Mach-O 64-bit executable arm64"
+  },
+  "comparison_gate": "PASS",
+  "apple_m5_gate": "PASS",
+  "tolerances": {
+    "maximum_pcm_error": 0.001,
+    "rms_pcm_error": 0.0001
+  },
+  "listening_gate": "NOT RUN"
+}
+Audition the three Mac renders and record real listening observations separately.

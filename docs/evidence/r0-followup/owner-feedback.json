@@ -1,0 +1,13 @@
+{
+  "status": "FAIL",
+  "gate": "owner_listening_acceptance",
+  "reviewer_count": 1,
+  "reviewer_role": "project_owner",
+  "block_id": "23719ea28e95b1e222c4df87",
+  "scope": "all four candidates A-D in the existing R0 synthetic-speech packet",
+  "verbatim": "all of them are awkard, too robotic the voice and background instruments and everything are too robotic",
+  "recognizability": "NOT REPORTED",
+  "numeric_ratings": "NOT COLLECTED",
+  "independent_study": "NOT RUN",
+  "interpretation": "No candidate accepted in this owner audition; no statistical population inference or invented scores."
+}

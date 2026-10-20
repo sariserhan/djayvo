@@ -1,0 +1,53 @@
+{
+  "comparisons": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "candidate_environment": {
+    "system": "Linux",
+    "machine": "aarch64",
+    "kernel": "6.8.0-117-generic",
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 12 (bookworm)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"12\"\nVERSION=\"12 (bookworm)\"\nVERSION_CODENAME=bookworm\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+    "compiler": "c++ (Debian 12.2.0-14+deb12u1) 12.2.0\nCopyright (C) 2022 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "cmake": "cmake version 3.25.1\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+    "python": "3.11.2 (main, Oct  7 2026, 12:35:07) [GCC 12.2.0]",
+    "environment_scope": "Debian arm64 container in existing Colima Linux VM on Apple M5; not physical Linux workstation",
+    "renderer_sha256": "f7bfe2954c635b12f027d467b9c439380f4d45e34540cfc695003acd61749eae",
+    "renderer_elf_header_hex": "7f454c460201010000000000000000000300b700"
+  },
+  "comparison_gate": "PASS",
+  "apple_m5_gate": "NOT RUN",
+  "tolerances": {
+    "maximum_pcm_error": 0.001,
+    "rms_pcm_error": 0.0001
+  },
+  "listening_gate": "NOT RUN"
+}

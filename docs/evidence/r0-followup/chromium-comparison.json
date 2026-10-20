@@ -1,0 +1,72 @@
+{
+  "comparisons": {
+    "hiphop": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "reggae": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1536000,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    },
+    "experimental": {
+      "status": "PASS",
+      "sample_rate": 48000,
+      "frames": 1582452,
+      "event_frames": "PASS",
+      "plan_decisions": "PASS",
+      "maximum_pcm_error": 0.0,
+      "rms_pcm_error": 0.0,
+      "byte_identical_wav": true
+    }
+  },
+  "candidate_environment": {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "results": [
+      {
+        "style": "three",
+        "seconds": 2.696199999988079,
+        "artifacts": 12
+      },
+      {
+        "style": "club",
+        "seconds": 1.7632999999821186,
+        "artifacts": 4
+      },
+      {
+        "style": "funk",
+        "seconds": 1.4627999999821186,
+        "artifacts": 4
+      },
+      {
+        "style": "call_response",
+        "seconds": 1.6195,
+        "artifacts": 4
+      },
+      {
+        "style": "hybrid",
+        "seconds": 1.733699999988079,
+        "artifacts": 4
+      }
+    ]
+  },
+  "comparison_gate": "PASS",
+  "apple_m5_gate": "NOT RUN",
+  "tolerances": {
+    "maximum_pcm_error": 0.001,
+    "rms_pcm_error": 0.0001
+  },
+  "listening_gate": "NOT RUN"
+}
