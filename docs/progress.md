@@ -1209,3 +1209,33 @@ not training authorization. **NOT RUN:** human musical-quality evaluation,
 physical latency/MIDI/venue, new Linux/iPhone execution, full Next rebuild, model
 training, paid compute and deployment. Immutable specs, fixture and native WASM
 unchanged. [Report, playable probes and exact evidence](r1-mix-automation.md).
+
+## 2026-10-20 — R1 mixer effect/reset capture
+
+**PASS:** Private `2.0-mix-automation` capture adds tone, echo amount, exact delay
+spacing and buffer-reset operations on A/B/C/instruments to gain/EQ schedules.
+Initial requested effect targets are frozen. V1 downloads still validate.
+Controls share the 4096-event cap. Partial effect scheduling/graph failures now
+invalidate the whole trace while keeping the WAV and reporting its incompleteness;
+original errors still propagate. Timing represents scheduling arguments, not a
+sample-level graph acknowledgement. Existing consent/deletion/privacy preserved.
+
+**PASS:** 67 unit tests; ten recording checks each in Chromium/WebKit; 48 DJ
+checks including actual disconnected capture; 39 prepared-session checks. Seventy-
+five echo positions across all channels and C beat divisions are within one sample
+frame (maximum 0.4736221401). Capture versus destination PCM max/RMS difference is
+zero in each browser. Actual 30-second capture caps pass. Desktop/mobile inspected;
+41-file bundle audit and localhost source-byte checks pass. Initial test input
+175 ms violated the manual slider's 10 ms step; corrected to 170 without relaxing
+production behavior. Initial failure logs retained.
+
+**PARTIAL:** Cross-browser reference max/RMS 2158 / 12.9222712904 PCM16 units;
+previous-run WebKit reference is identical and Chromium differs at eleven channel
+samples by at most one unit. No cause or bit identity asserted. R1 still needs
+transport/source provenance, aligned stems and reviewed expert demonstrations.
+**NOT RUN:** Human musical quality, physical latency/MIDI/venue, new Linux/iPhone
+runs, native/Next rebuild, model training, paid compute or deployment. M5/macOS
+26.7.1, Playwright 1.61.1, Chromium 149.0.7827.55/WebKit 26.5; Node 22.23.1 for
+all final checks (initial orchestrated runs resolved Homebrew Node 26.3.0; final
+runs pin the existing project executable, no environment changes). Immutable specifications, fixture and
+native WASM preserved. [Report and reproducible evidence](r1-effect-capture.md).

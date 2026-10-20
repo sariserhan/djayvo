@@ -144,3 +144,5 @@ no full Next build or native recompile was needed for this browser-only change.
 Next R1 increment: remaining effect/transport actions and hash-linked source
 provenance, then reviewed, permissioned expert demonstrations. These recordings
 are not yet a training-ready corpus or proof of better musical improvisation.
+
+The [effect-capture follow-up](r1-effect-capture.md) adds tone/echo/reset events in v2, retaining validation of these v1 artifacts. Transport/source replay remains unfinished.

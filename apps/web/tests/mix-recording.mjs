@@ -48,9 +48,11 @@ try {
   assert.equal(await page.title(), 'Jamloom — DJ workspace');
   assert.equal(await page.locator('#mix-record-start').isDisabled(), true);
   const reference = await page.evaluate(async () => {
-    const { createMixer, updateToneEcho } = await import('./mixer.js');
+    const { createMixer, updateToneEcho, clearEcho } = await import('./mixer.js');
+    const { MixAutomation } = await import('./mix-automation.js');
     const { stereoWav, sha256 } = await import('./live-take.js');
     const context = new OfflineAudioContext(2, 48000, 48000), mixer = createMixer(context);
+    const trace = new MixAutomation(mixer, context); mixer.automationTrace = trace;
     await context.audioWorklet.addModule('./mix-recording-worklet.js');
     const node = new AudioWorkletNode(context,'jamloom-mix-recording',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[2],channelCount:2,channelCountMode:'explicit'});
     const sink=context.createGain(); sink.gain.value=0; mixer.meter.connect(node); node.connect(sink); sink.connect(context.destination);
@@ -69,7 +71,7 @@ try {
       }
       source.buffer=buffer; source.connect(route.input); source.start();
     });
-    const stop=context.suspend(.75).then(()=>{node.port.postMessage({type:'stop'});return context.resume();});
+    const stop=context.suspend(.75).then(()=>{routes.forEach(route=>clearEcho(context,route.fx));node.port.postMessage({type:'stop'});return context.resume();});
     const rendered=await context.startRendering(); await stop;
     let timeout; const data=await Promise.race([done,new Promise((_,reject)=>{timeout=setTimeout(()=>reject(new Error('Offline recorder did not finish')),5000);})]); clearTimeout(timeout);
     let maximum=0,square=0,peak=0,tail=0,stereoDifference=0;
@@ -81,13 +83,21 @@ try {
       if(c===1)stereoDifference=Math.max(stereoDifference,Math.abs(got-data.samples[f*2]));
     }
     const wav=stereoWav(data.samples,data.frames,data.rate), reference=stereoWav(expected,data.frames,data.rate);
+    const capturedHash=await sha256(wav);
+    const effectTrace=trace.finish({wav_sha256:capturedHash,sample_rate:data.rate,observed_context_start_frame:data.first});
     const bytes=new Uint8Array(wav); let binary=''; for(let i=0;i<bytes.length;i+=16384)binary+=String.fromCharCode(...bytes.subarray(i,i+16384));
     return {maximum,rms:Math.sqrt(square/(data.frames*2)),frames:data.frames,first:data.first,
       timestampDiscontinuities:data.discontinuities,peak,tail,stereoDifference,
-      capturedHash:await sha256(wav),referenceHash:await sha256(reference),wav:btoa(binary)};
+      capturedHash,effectTrace,referenceHash:await sha256(reference),wav:btoa(binary)};
   });
   assert.equal(reference.maximum,0); assert.equal(reference.rms,0); assert.equal(reference.first,0);
   assert.equal(reference.capturedHash,reference.referenceHash);
+  validateMixAutomation(reference.effectTrace,{wav_sha256:reference.capturedHash,sample_rate:48000,observed_context_start_frame:reference.first});
+  for(const target of ['a','b','c','rack']) {
+    assert.ok(reference.effectTrace.events.some(e=>e.kind==='tone_echo' && e.target===target && e.echo===.3));
+    assert.ok(reference.effectTrace.events.some(e=>e.kind==='clear_echo' && e.target===target && e.spacing_ms===100));
+  }
+  checks.push('actual A/B/C/rack effect schedules and echo buffer resets captured in versioned WAV-linked trace');
   assert.ok(reference.frames>=36000 && reference.frames<=48000);
   assert.ok(reference.peak>.8 && reference.peak<1 && reference.tail===0 && reference.stereoDifference>.01);
   await fs.writeFile(path.join(output,'post-limiter-reference.wav'),Buffer.from(reference.wav,'base64')); delete reference.wav;
@@ -108,6 +118,10 @@ try {
   for (const [id,value] of [['eq-a-0','-6'],['c-level','0.3'],['rack-level','0.5']]) {
     await page.locator(`#${id}`).fill(value); await page.locator(`#${id}`).dispatchEvent('input');
   }
+  for (const [id,value] of [['tone-a','50'],['echo-a','0.25'],['delay-a','170'],['rack-echo','0.3']]) {
+    await page.locator(`#${id}`).fill(value); await page.locator(`#${id}`).dispatchEvent('input');
+  }
+  await page.locator('#fx-reset-a').click(); await page.locator('#rack-fx-reset').click();
   await page.locator('#master').fill('0'); await page.locator('#master').dispatchEvent('input');
   await page.waitForTimeout(300); await page.locator('#mix-record-stop').click();
   await page.locator('#mix-record-wav').waitFor({state:'visible'});
@@ -122,6 +136,11 @@ try {
   const automation=validateMixAutomation(JSON.parse(await fs.readFile(path.join(output,'controls.json'),'utf8')),receipt);
   for (const [target,value] of [['eq-a-0',-6],['c',.3*.75*.8],['rack',.5*.75]])
     assert.ok(automation.events.some(e=>e.target===target && e.value===value));
+  assert.equal(automation.schema_version,'2.0-mix-automation');
+  for (const target of ['a','rack']) {
+    assert.ok(automation.events.some(e=>e.kind==='tone_echo' && e.target===target && e.echo>0));
+    assert.ok(automation.events.some(e=>e.kind==='clear_echo' && e.target===target));
+  }
   const mute=automation.events.filter(e=>e.target==='a' && e.value===0).at(-1);
   assert.ok(mute);
   const muteFrame=mute.context_frame-receipt.observed_context_start_frame;
@@ -201,6 +220,21 @@ try {
   assert.match(await page.locator('#mix-record-status').textContent(),/trace exceeded its limit/);
   await page.locator('#mix-record-delete').click();
   checks.push('automation overflow discards only control trace, keeps WAV and reports the limit');
+  await page.locator('#mix-record-start').click(); await recording();
+  const failure=await page.evaluate(()=>{
+    const original=AudioParam.prototype.setTargetAtTime; let calls=0;
+    AudioParam.prototype.setTargetAtTime=function(...args){if(++calls===2)throw new Error('Injected partial FX failure');return original.apply(this,args);};
+    try { document.getElementById('rack-echo').oninput(); return 'missing failure'; }
+    catch(error) { return error.message; }
+    finally { AudioParam.prototype.setTargetAtTime=original; }
+  });
+  assert.equal(failure,'Injected partial FX failure');
+  await page.waitForTimeout(150); await page.locator('#mix-record-stop').click();
+  await page.locator('#mix-record-wav').waitFor({state:'visible'});
+  assert.equal(await page.locator('#mix-record-automation').getAttribute('href'),null);
+  assert.match(await page.locator('#mix-record-status').textContent(),/trace was incomplete/);
+  await page.locator('#mix-record-delete').click();
+  checks.push('partial AudioParam effect failure discards incomplete trace, keeps validated WAV, permits retry');
   await page.locator('#mix-record-start').click(); await recording();
   await page.locator('#mix-record-wav').waitFor({state:'visible',timeout:35000});
   const autoDownload=page.waitForEvent('download'); await page.locator('#mix-record-json').click();

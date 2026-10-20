@@ -30,7 +30,7 @@ export function attachMixRecording({ graph, context, mixer }) {
   }
   function disconnect(completed = false) {
     clearInterval(timer);
-    if (mixer()) mixer().gainTrace = undefined;
+    if (mixer()) mixer().automationTrace = undefined;
     if (node) {
       const port = node.port;
       node.removeEventListener('processorerror', nodeError);
@@ -68,7 +68,7 @@ export function attachMixRecording({ graph, context, mixer }) {
       if (!loaded) { await context().audioWorklet.addModule('./mix-recording-worklet.js'); loaded = true; }
       if (token !== version || !$('mix-record-consent').checked) return;
       const automation = new MixAutomation(mixer(), context());
-      mixer().gainTrace = automation;
+      mixer().automationTrace = automation;
       node = new AudioWorkletNode(context(), 'jamloom-mix-recording', {
         numberOfInputs: 1, numberOfOutputs: 1, outputChannelCount: [2], channelCount: 2, channelCountMode: 'explicit',
       });
@@ -103,7 +103,7 @@ export function attachMixRecording({ graph, context, mixer }) {
             for (const [i, id] of ['mix-record-wav', 'mix-record-json', 'mix-record-automation'].entries()) { if (urls[i]) { $(id).href = urls[i]; $(id).hidden = false; } }
             $('mix-record-player').src = urls[0]; $('mix-record-player').hidden = false;
             state = 'ready'; refresh();
-            $('mix-record-status').textContent = `${(data.frames / data.rate).toFixed(1)} seconds · Private studio mix ready.${data.capped ? ' Recording reached its 30-second limit.' : ''}${trace ? '' : ' Control trace exceeded its limit and was discarded; WAV retained.'}`;
+            $('mix-record-status').textContent = `${(data.frames / data.rate).toFixed(1)} seconds · Private studio mix ready.${data.capped ? ' Recording reached its 30-second limit.' : ''}${trace ? '' : automation.overflow ? ' Control trace exceeded its limit and was discarded; WAV retained.' : ' Control trace was incomplete and discarded; WAV retained.'}`;
           } catch { if (token === version) clear('Could not validate the recording. It was discarded.'); }
         }
       };

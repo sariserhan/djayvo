@@ -1,0 +1,448 @@
+{
+  "status": "PASS",
+  "browser": "chromium",
+  "version": "149.0.7827.55",
+  "url": "http://127.0.0.1:53497/dj.html",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "checks": [
+    "actual A/B/C/rack effect schedules and echo buffer resets captured in versioned WAV-linked trace",
+    "actual four-channel mixer tap matches destination PCM exactly, preserves stereo, includes limiter/FX/faders and mutes",
+    "scheduled gain/EQ targets link to WAV clock and hash; master mute reaches zero PCM after smoothing",
+    "consented deck + live instruments produce playable hash-bound WAV; master mute captured; stop leaves deck playing",
+    "desktop/mobile controls render without horizontal overflow",
+    "music/voice/capture withdrawal and source replacement discard captures; delayed hashes cannot restore exports",
+    "focus loss, audio suspension and recorder failure discard unfinished capture; instruments keep sounding, retry/delete work",
+    "automation overflow discards only control trace, keeps WAV and reports the limit",
+    "partial AudioParam effect failure discards incomplete trace, keeps validated WAV, permits retry",
+    "real 30-second UI timer stops automatically within the audio buffer cap"
+  ],
+  "reference": {
+    "maximum": 0,
+    "rms": 0,
+    "frames": 36096,
+    "first": 0,
+    "timestampDiscontinuities": 0,
+    "peak": 0.9523188471794128,
+    "tail": 0,
+    "stereoDifference": 1.7332295179367065,
+    "capturedHash": "d1e45f081c5b0cb18833c8160d8652c0c3c65aa7e4066cdf4be5a8808bb74956",
+    "effectTrace": {
+      "schema_version": "2.0-mix-automation",
+      "scope": "scheduled_gain_eq_fx_controls",
+      "training_authorized": false,
+      "wav_sha256": "d1e45f081c5b0cb18833c8160d8652c0c3c65aa7e4066cdf4be5a8808bb74956",
+      "sample_rate": 48000,
+      "observed_context_start_frame": 0,
+      "snapshot_context_frame": 0,
+      "initial_targets": {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "rack": 0,
+        "eq-a-0": 0,
+        "eq-a-1": 0,
+        "eq-a-2": 0,
+        "eq-b-0": 0,
+        "eq-b-1": 0,
+        "eq-b-2": 0
+      },
+      "initial_effects": {
+        "a": {
+          "tone": 100,
+          "echo": 0,
+          "spacing_ms": 300
+        },
+        "b": {
+          "tone": 100,
+          "echo": 0,
+          "spacing_ms": 300
+        },
+        "c": {
+          "tone": 100,
+          "echo": 0,
+          "spacing_ms": 300
+        },
+        "rack": {
+          "tone": 100,
+          "echo": 0,
+          "spacing_ms": 300
+        }
+      },
+      "events": [
+        {
+          "kind": "tone_echo",
+          "target": "a",
+          "context_frame": 0,
+          "tone": 70,
+          "echo": 0.3,
+          "spacing_ms": 100,
+          "held_frequency_hz": 24000
+        },
+        {
+          "kind": "tone_echo",
+          "target": "b",
+          "context_frame": 0,
+          "tone": 80,
+          "echo": 0.3,
+          "spacing_ms": 100,
+          "held_frequency_hz": 24000
+        },
+        {
+          "kind": "tone_echo",
+          "target": "c",
+          "context_frame": 0,
+          "tone": 90,
+          "echo": 0.3,
+          "spacing_ms": 100,
+          "held_frequency_hz": 24000
+        },
+        {
+          "kind": "tone_echo",
+          "target": "rack",
+          "context_frame": 0,
+          "tone": 100,
+          "echo": 0.3,
+          "spacing_ms": 100,
+          "held_frequency_hz": 24000
+        },
+        {
+          "kind": "clear_echo",
+          "target": "a",
+          "context_frame": 36096,
+          "spacing_ms": 100
+        },
+        {
+          "kind": "clear_echo",
+          "target": "b",
+          "context_frame": 36096,
+          "spacing_ms": 100
+        },
+        {
+          "kind": "clear_echo",
+          "target": "c",
+          "context_frame": 36096,
+          "spacing_ms": 100
+        },
+        {
+          "kind": "clear_echo",
+          "target": "rack",
+          "context_frame": 36096,
+          "spacing_ms": 100
+        }
+      ]
+    },
+    "referenceHash": "d1e45f081c5b0cb18833c8160d8652c0c3c65aa7e4066cdf4be5a8808bb74956"
+  },
+  "receipt": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 34304,
+    "wav_sha256": "29d8d833dfe62047f5261c64545ee12bfd13d989e83f64fbc562b59a8653978f",
+    "observed_context_start_frame": 13056,
+    "timestamp_discontinuities": 0,
+    "limit_reached": false
+  },
+  "automation": {
+    "schema_version": "2.0-mix-automation",
+    "scope": "scheduled_gain_eq_fx_controls",
+    "training_authorized": false,
+    "wav_sha256": "29d8d833dfe62047f5261c64545ee12bfd13d989e83f64fbc562b59a8653978f",
+    "sample_rate": 48000,
+    "observed_context_start_frame": 13056,
+    "snapshot_context_frame": 13056,
+    "initial_targets": {
+      "a": 0.6000000000000001,
+      "b": 0,
+      "c": 0.30000000000000004,
+      "rack": 0.48750000000000004,
+      "eq-a-0": 0,
+      "eq-a-1": 0,
+      "eq-a-2": 0,
+      "eq-b-0": 0,
+      "eq-b-1": 0,
+      "eq-b-2": 0
+    },
+    "initial_effects": {
+      "a": {
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300
+      },
+      "b": {
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300
+      },
+      "c": {
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300
+      },
+      "rack": {
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300
+      }
+    },
+    "events": [
+      {
+        "kind": "gain",
+        "context_frame": 26368,
+        "target": "eq-a-0",
+        "value": -6
+      },
+      {
+        "kind": "gain",
+        "context_frame": 26624,
+        "target": "eq-a-0",
+        "value": -6
+      },
+      {
+        "kind": "gain",
+        "context_frame": 26880,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "kind": "gain",
+        "context_frame": 27136,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "kind": "gain",
+        "context_frame": 27392,
+        "target": "a",
+        "value": 0.6000000000000001
+      },
+      {
+        "kind": "gain",
+        "context_frame": 27392,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 27392,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "kind": "gain",
+        "context_frame": 27392,
+        "target": "rack",
+        "value": 0.375
+      },
+      {
+        "kind": "gain",
+        "context_frame": 27392,
+        "target": "a",
+        "value": 0.6000000000000001
+      },
+      {
+        "kind": "gain",
+        "context_frame": 27392,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 27392,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "kind": "gain",
+        "context_frame": 27392,
+        "target": "rack",
+        "value": 0.375
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 27648,
+        "tone": 50,
+        "echo": 0,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 27648,
+        "tone": 50,
+        "echo": 0,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 27904,
+        "tone": 50,
+        "echo": 0.25,
+        "spacing_ms": 300,
+        "held_frequency_hz": 15456.32421875
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 27904,
+        "tone": 50,
+        "echo": 0.25,
+        "spacing_ms": 300,
+        "held_frequency_hz": 15456.32421875
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 27904,
+        "tone": 50,
+        "echo": 0.25,
+        "spacing_ms": 170,
+        "held_frequency_hz": 15456.32421875
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 27904,
+        "tone": 50,
+        "echo": 0.25,
+        "spacing_ms": 170,
+        "held_frequency_hz": 15456.32421875
+      },
+      {
+        "kind": "tone_echo",
+        "target": "rack",
+        "context_frame": 27904,
+        "tone": 100,
+        "echo": 0.3,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "tone_echo",
+        "target": "rack",
+        "context_frame": 27904,
+        "tone": 100,
+        "echo": 0.3,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "clear_echo",
+        "target": "a",
+        "context_frame": 29696,
+        "spacing_ms": 170
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 29696,
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300,
+        "held_frequency_hz": 2000
+      },
+      {
+        "kind": "clear_echo",
+        "target": "rack",
+        "context_frame": 31488,
+        "spacing_ms": 300
+      },
+      {
+        "kind": "tone_echo",
+        "target": "rack",
+        "context_frame": 31488,
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "gain",
+        "context_frame": 31744,
+        "target": "a",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 31744,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 31744,
+        "target": "c",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 31744,
+        "target": "rack",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 31744,
+        "target": "a",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 31744,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 31744,
+        "target": "c",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 31744,
+        "target": "rack",
+        "value": 0
+      }
+    ]
+  },
+  "muteFrame": 18688,
+  "automatic": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 1440000,
+    "wav_sha256": "17e181b8c513a37f62fadcaa1dd973b02769d1a2d0ed999a5317bdf34076b8b3",
+    "observed_context_start_frame": 148992,
+    "timestamp_discontinuities": 2,
+    "limit_reached": true
+  },
+  "peak": 0.168426513671875,
+  "tail": 0,
+  "errors": [],
+  "external": [],
+  "warnings": [],
+  "physicalDevices": "NOT RUN",
+  "humanQuality": "NOT RUN",
+  "training": "NOT RUN",
+  "liveMixReplay": "NOT RUN: no complete automation/source trace"
+}

@@ -1,0 +1,267 @@
+{
+  "schema_version": "2.0-mix-automation",
+  "scope": "scheduled_gain_eq_fx_controls",
+  "training_authorized": false,
+  "wav_sha256": "29d8d833dfe62047f5261c64545ee12bfd13d989e83f64fbc562b59a8653978f",
+  "sample_rate": 48000,
+  "observed_context_start_frame": 13056,
+  "snapshot_context_frame": 13056,
+  "initial_targets": {
+    "a": 0.6000000000000001,
+    "b": 0,
+    "c": 0.30000000000000004,
+    "rack": 0.48750000000000004,
+    "eq-a-0": 0,
+    "eq-a-1": 0,
+    "eq-a-2": 0,
+    "eq-b-0": 0,
+    "eq-b-1": 0,
+    "eq-b-2": 0
+  },
+  "initial_effects": {
+    "a": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    },
+    "b": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    },
+    "c": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    },
+    "rack": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    }
+  },
+  "events": [
+    {
+      "kind": "gain",
+      "context_frame": 26368,
+      "target": "eq-a-0",
+      "value": -6
+    },
+    {
+      "kind": "gain",
+      "context_frame": 26624,
+      "target": "eq-a-0",
+      "value": -6
+    },
+    {
+      "kind": "gain",
+      "context_frame": 26880,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "kind": "gain",
+      "context_frame": 27136,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "kind": "gain",
+      "context_frame": 27392,
+      "target": "a",
+      "value": 0.6000000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 27392,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 27392,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "kind": "gain",
+      "context_frame": 27392,
+      "target": "rack",
+      "value": 0.375
+    },
+    {
+      "kind": "gain",
+      "context_frame": 27392,
+      "target": "a",
+      "value": 0.6000000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 27392,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 27392,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "kind": "gain",
+      "context_frame": 27392,
+      "target": "rack",
+      "value": 0.375
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 27648,
+      "tone": 50,
+      "echo": 0,
+      "spacing_ms": 300,
+      "held_frequency_hz": 24000
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 27648,
+      "tone": 50,
+      "echo": 0,
+      "spacing_ms": 300,
+      "held_frequency_hz": 24000
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 27904,
+      "tone": 50,
+      "echo": 0.25,
+      "spacing_ms": 300,
+      "held_frequency_hz": 15456.32421875
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 27904,
+      "tone": 50,
+      "echo": 0.25,
+      "spacing_ms": 300,
+      "held_frequency_hz": 15456.32421875
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 27904,
+      "tone": 50,
+      "echo": 0.25,
+      "spacing_ms": 170,
+      "held_frequency_hz": 15456.32421875
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 27904,
+      "tone": 50,
+      "echo": 0.25,
+      "spacing_ms": 170,
+      "held_frequency_hz": 15456.32421875
+    },
+    {
+      "kind": "tone_echo",
+      "target": "rack",
+      "context_frame": 27904,
+      "tone": 100,
+      "echo": 0.3,
+      "spacing_ms": 300,
+      "held_frequency_hz": 24000
+    },
+    {
+      "kind": "tone_echo",
+      "target": "rack",
+      "context_frame": 27904,
+      "tone": 100,
+      "echo": 0.3,
+      "spacing_ms": 300,
+      "held_frequency_hz": 24000
+    },
+    {
+      "kind": "clear_echo",
+      "target": "a",
+      "context_frame": 29696,
+      "spacing_ms": 170
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 29696,
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300,
+      "held_frequency_hz": 2000
+    },
+    {
+      "kind": "clear_echo",
+      "target": "rack",
+      "context_frame": 31488,
+      "spacing_ms": 300
+    },
+    {
+      "kind": "tone_echo",
+      "target": "rack",
+      "context_frame": 31488,
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300,
+      "held_frequency_hz": 24000
+    },
+    {
+      "kind": "gain",
+      "context_frame": 31744,
+      "target": "a",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 31744,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 31744,
+      "target": "c",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 31744,
+      "target": "rack",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 31744,
+      "target": "a",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 31744,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 31744,
+      "target": "c",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 31744,
+      "target": "rack",
+      "value": 0
+    }
+  ]
+}

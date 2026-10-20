@@ -10,7 +10,7 @@ export function setMixerGain(context, mixer, target, value) {
   const time = context.currentTime;
   mixer.gainParams[target].setTargetAtTime(value, time, .005);
   mixer.gainTargets[target] = value;
-  mixer.gainTrace?.record(target, value, Math.round(time * context.sampleRate));
+  mixer.automationTrace?.record(target, value, Math.round(time * context.sampleRate));
 }
 
 export function mixGains(crossfade, levels, master) {
@@ -28,22 +28,31 @@ export function beatEchoDelay(tempoMilliBpm, division) {
   return 60000000 * beats / tempoMilliBpm;
 }
 
+export function validToneEcho(tone, echo, milliseconds) {
+  return Number.isFinite(tone) && tone >= 0 && tone <= 100 &&
+    Number.isFinite(echo) && echo >= 0 && echo <= .5 &&
+    Number.isFinite(milliseconds) && milliseconds >= 100 && milliseconds <= 800;
+}
+
 export function updateToneEcho(context, fx, tone, echo, milliseconds) {
-  if (!Number.isFinite(tone) || tone < 0 || tone > 100 ||
-      !Number.isFinite(echo) || echo < 0 || echo > .5 ||
-      !Number.isFinite(milliseconds) || milliseconds < 100 || milliseconds > 800)
+  if (!validToneEcho(tone, echo, milliseconds))
     throw new Error('Tone/echo controls are outside their allowed range.');
   const frequency = tone === 100 ? context.sampleRate / 2 : Math.min(context.sampleRate / 2, 200 * 100 ** (tone / 100));
   const now = context.currentTime;
   // WebKit's target smoothing skews stereo channels during a filter sweep.
   const heldFrequency = fx.input.frequency.value;
-  fx.input.frequency.cancelScheduledValues(now);
-  fx.input.frequency.setValueAtTime(heldFrequency, now);
-  fx.input.frequency.exponentialRampToValueAtTime(frequency, now + .03);
-  fx.dry.gain.setTargetAtTime(1 - echo, now, .01);
-  fx.wet.gain.setTargetAtTime(echo, now, .01);
+  try {
+    fx.input.frequency.cancelScheduledValues(now);
+    fx.input.frequency.setValueAtTime(heldFrequency, now);
+    fx.input.frequency.exponentialRampToValueAtTime(frequency, now + .03);
+    fx.dry.gain.setTargetAtTime(1 - echo, now, .01);
+    fx.wet.gain.setTargetAtTime(echo, now, .01);
+    fx.delays.forEach((delay, i) => delay.delayTime.setTargetAtTime(milliseconds * (i + 1) / 1000, now, .03));
+  } catch (error) { fx.mixer?.automationTrace?.invalidate(); throw error; }
   fx.spacing = milliseconds;
-  fx.delays.forEach((delay, i) => delay.delayTime.setTargetAtTime(milliseconds * (i + 1) / 1000, now, .03));
+  fx.targets = { tone, echo, spacing_ms: milliseconds };
+  fx.mixer?.automationTrace?.append({ kind: 'tone_echo', target: fx.target,
+    context_frame: Math.round(now * context.sampleRate), ...fx.targets, held_frequency_hz: heldFrequency });
 }
 
 function createToneEcho(context, destination) {
@@ -62,23 +71,28 @@ function createToneEcho(context, destination) {
     taps.push(gain);
     return delay;
   });
-  return { input, dry, wet, delays, taps, send, spacing: 300 };
+  return { input, dry, wet, delays, taps, send, spacing: 300, targets: { tone: 100, echo: 0, spacing_ms: 300 } };
 }
 
 export function clearEcho(context, fx) {
   // Replacing delay buffers prevents an old track resurfacing when echo is raised again.
   // Prepared transport releases over 5 ms; keep that stop fade out of the fresh buffers.
-  fx.send.gain.cancelScheduledValues(context.currentTime);
-  fx.send.gain.setValueAtTime(0, context.currentTime);
-  fx.send.gain.setValueAtTime(1, context.currentTime + .01);
-  fx.delays = fx.delays.map((previous, i) => {
-    const delay = context.createDelay(2.4);
-    // Preserve the requested spacing, not an intermediate value from an interrupted ramp.
-    delay.delayTime.value = fx.spacing * (i + 1) / 1000;
-    fx.send.disconnect(previous); previous.disconnect();
-    fx.send.connect(delay); delay.connect(fx.taps[i]);
-    return delay;
-  });
+  const now = context.currentTime;
+  try {
+    fx.send.gain.cancelScheduledValues(now);
+    fx.send.gain.setValueAtTime(0, now);
+    fx.send.gain.setValueAtTime(1, now + .01);
+    fx.delays = fx.delays.map((previous, i) => {
+      const delay = context.createDelay(2.4);
+      // Preserve the requested spacing, not an intermediate value from an interrupted ramp.
+      delay.delayTime.value = fx.spacing * (i + 1) / 1000;
+      fx.send.disconnect(previous); previous.disconnect();
+      fx.send.connect(delay); delay.connect(fx.taps[i]);
+      return delay;
+    });
+  } catch (error) { fx.mixer?.automationTrace?.invalidate(); throw error; }
+  fx.mixer?.automationTrace?.append({ kind: 'clear_echo', target: fx.target,
+    context_frame: Math.round(now * context.sampleRate), spacing_ms: fx.spacing });
 }
 
 export function createMixer(context) {
@@ -116,7 +130,10 @@ export function createMixer(context) {
   const gainParams = { a: channels[0].gain, b: channels[1].gain, c: performance.gain, rack: rack.gain };
   strips.forEach((strip, index) => strip.eq.forEach((filter, band) => { gainParams[`eq-${index ? 'b' : 'a'}-${band}`] = filter.gain; }));
   const gainTargets = Object.fromEntries(MIX_GAIN_TARGETS.map(target => [target, 0]));
-  return { channels, meter, stereoMeters, strips, rack, rackFX, performance, performanceFX, gainParams, gainTargets };
+  const effects = { a: strips[0].fx, b: strips[1].fx, c: performanceFX, rack: rackFX };
+  const mixer = { channels, meter, stereoMeters, strips, rack, rackFX, performance, performanceFX, gainParams, gainTargets, effects };
+  for (const [target, fx] of Object.entries(effects)) { fx.target = target; fx.mixer = mixer; }
+  return mixer;
 }
 
 export function updateMixer(context, mixer, crossfade, levels, master) {

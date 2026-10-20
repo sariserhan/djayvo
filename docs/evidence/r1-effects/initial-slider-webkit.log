@@ -1,0 +1,24 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/mix-recording-webkit-zYKc0q
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.fill: Error: Malformed value
+Call log:
+[2m  - waiting for locator('#delay-a')[22m
+[2m    - locator resolved to <input min="100" max="800" step="10" value="300" id="delay-a" type="range"/>[22m
+[2m    - fill("175")[22m
+[2m  - attempting fill action[22m
+[2m    - waiting for element to be visible, enabled and editable[22m
+
+    at /Users/serhansari/Documents/projects/djayvo/apps/web/tests/mix-recording.mjs:122:34 {
+  log: [
+    "  - waiting for locator('#delay-a')",
+    '    - locator resolved to <input min="100" max="800" step="10" value="300" id="delay-a" type="range"/>',
+    '    - fill("175")',
+    '  - attempting fill action',
+    '    - waiting for element to be visible, enabled and editable'
+  ]
+}
+
+Node.js v26.3.0

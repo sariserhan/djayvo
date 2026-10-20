@@ -600,6 +600,8 @@ try {
   await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('a');
   await page.waitForTimeout(200); await page.keyboard.up('a'); await page.waitForTimeout(150);
   await page.locator('#rack-level').fill('0.6'); await page.locator('#rack-level').dispatchEvent('input');
+  await page.locator('#rack-echo').fill('0.3'); await page.locator('#rack-echo').dispatchEvent('input');
+  await page.locator('#rack-fx-reset').click();
   await page.locator('#mix-record-stop').click(); await page.locator('#mix-record-wav').waitFor({state:'visible'});
   for (const [id,name] of [['mix-record-wav','offline-mix.wav'],['mix-record-json','offline-mix.json'],['mix-record-automation','offline-controls.json']]) {
     const promise=page.waitForEvent('download'); await page.locator(`#${id}`).click();
@@ -608,6 +610,8 @@ try {
   const offlineReceipt=validateMixRecording(JSON.parse(await fs.readFile(path.join(output,'offline-mix.json'),'utf8')));
   const offlineControls=validateMixAutomation(JSON.parse(await fs.readFile(path.join(output,'offline-controls.json'),'utf8')),offlineReceipt);
   assert.ok(offlineControls.events.some(e=>e.target==='rack' && e.value>0));
+  assert.ok(offlineControls.events.some(e=>e.target==='rack' && e.kind==='tone_echo' && e.echo===.3));
+  assert.ok(offlineControls.events.some(e=>e.target==='rack' && e.kind==='clear_echo'));
   const offlineWav=await fs.readFile(path.join(output,'offline-mix.wav'));
   assert.equal(await sha256(offlineWav),offlineReceipt.wav_sha256);
   let offlinePeak=0; for(let i=44;i<offlineWav.length;i+=2)offlinePeak=Math.max(offlinePeak,Math.abs(offlineWav.readInt16LE(i)));
@@ -616,7 +620,7 @@ try {
   await page.waitForFunction(()=>document.getElementById('mix-record-player').currentTime>0);
   await page.locator('#mix-record-delete').click();
   assert.equal(serverRequests.length,requestsBeforeDisconnect);
-  check('cached mix recorder captures, downloads and plays hash-verified PCM and gain automation with server disconnected');
+  check('cached mix recorder captures, downloads and plays hash-verified PCM and gain/effect/reset automation with server disconnected');
   await page.locator('#clear-a').click();
   assert.equal(await page.locator('#audio-a').getAttribute('src'), null);
   check('unload releases the deck source');

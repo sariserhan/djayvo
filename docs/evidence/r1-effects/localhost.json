@@ -1,0 +1,22 @@
+{
+  "dj.html": {
+    "status": 200,
+    "sha256": "1c0b239a752c8f3ff9ee6c5a0182d527147ecd909ce2c0558dfff5ad73c60e27",
+    "source_identical": true
+  },
+  "mixer.js": {
+    "status": 200,
+    "sha256": "2f2ddac65504a6968744ccde5a15110ba4583cbb241f869eadb55bec95f5b763",
+    "source_identical": true
+  },
+  "mix-automation.js": {
+    "status": 200,
+    "sha256": "d0792314dd83245acac7631f1e33aec571284e4859f6a417778fc4e3e075bce0",
+    "source_identical": true
+  },
+  "mix-recording.js": {
+    "status": 200,
+    "sha256": "890e9de688e6a7f70a169d8a2749c437c463554074967497333ace9101a0909f",
+    "source_identical": true
+  }
+}

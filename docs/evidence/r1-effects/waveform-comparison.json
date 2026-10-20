@@ -1,0 +1,26 @@
+{
+  "cross_browser": {
+    "common_frames": 36096,
+    "frames_a": 36096,
+    "frames_b": 48000,
+    "max_pcm16": 2158,
+    "rms_pcm16": 12.922271290350563,
+    "different_channel_samples": 15324
+  },
+  "chromium_versus_previous": {
+    "common_frames": 36096,
+    "frames_a": 36096,
+    "frames_b": 36096,
+    "max_pcm16": 1,
+    "rms_pcm16": 0.01234388325854993,
+    "different_channel_samples": 11
+  },
+  "webkit_versus_previous": {
+    "common_frames": 48000,
+    "frames_a": 48000,
+    "frames_b": 48000,
+    "max_pcm16": 0,
+    "rms_pcm16": 0.0,
+    "different_channel_samples": 0
+  }
+}
