@@ -1,0 +1,90 @@
+✔ audio resume clears its deadline on success and rejects a still-suspended context (1.06892ms)
+✔ audio resume retains synchronous and asynchronous errors and clears the deadline (1.165965ms)
+✔ hung audio resume times out and late completion cannot revive its caller (0.628485ms)
+✔ decimal selections preserve the exact two-second boundary (0.567982ms)
+✔ WAV is bounded PCM16 mono with finite samples and safe clipping (2.372307ms)
+✔ browser.mjs rejects unknown browsers before launching (312.673987ms)
+✔ browser-render.mjs rejects unknown browsers before launching (274.697039ms)
+✔ rapid rates are coalesced until pause completes, then resume at the latest rate (1.037208ms)
+✔ Pause All keeps the requested rate but cancels the pending resume (0.672485ms)
+✔ unload/replacement cannot inherit a pending rate or resume from the old source (0.259344ms)
+✔ an immediate manual Play is safely paused again before applying its pending rate (0.240677ms)
+✔ installation is optional, capability-driven and never confuses acceptance with completion (0.925579ms)
+✔ standalone platforms, prompt rejection and installation during a pending prompt remain honest (0.95883ms)
+✔ instrument map covers full piano and respects guitar bank limits (0.556523ms)
+✔ tempo match uses other deck effective tempo and rejects impossible matches (0.138464ms)
+✔ funk sessions verify complete hashed artifacts and reject mislabeled or corrupted files (4.155125ms)
+✔ call_response sessions verify complete hashed artifacts and reject mislabeled or corrupted files (1.278676ms)
+✔ hybrid sessions verify complete hashed artifacts and reject mislabeled or corrupted files (0.814116ms)
+✔ malformed stored file entries are withheld instead of aborting library recovery (0.078837ms)
+✔ Play waits for the actual deck metadata and starts exactly once (0.903745ms)
+✔ cancelled metadata waits cannot start a later source (0.666943ms)
+✔ missing or rejected metadata fails within the existing start deadline (0.655568ms)
+✔ resolved play must advance without seeking; successful/short playback cleans up timers (0.284428ms)
+✔ stuck seeking and unresolved play both fail within the start deadline (0.475644ms)
+✔ cancellation clears timers and ignores late completion or rejection (0.437434ms)
+✔ native synchronous and asynchronous playback errors retain their message and clean up (0.638609ms)
+✔ MIDI decodes note-off forms, velocity, channel boundaries and only supported controls (0.592774ms)
+✔ absolute CC pickup prevents jumps, follows crossings and rearms after screen changes (0.187174ms)
+✔ beat echo converts validated performance tempo without rounding to the manual slider step (0.442601ms)
+✔ linear blend bounds coherent summed peaks and supports channel/master silence (0.745863ms)
+✔ track limits reject empty, oversized and nonaudio files before decoding (0.119171ms)
+✔ effect boundaries reject nonfinite and out-of-range controls before touching audio (0.144089ms)
+✔ prepared track rejects decoded limits and nonfinite samples beyond the analysis window (18.974428ms)
+✔ composition identity ignores cosmetic changes, ordering and transposition; detects musical changes (12.146238ms)
+✔ selection retries only duplicates, records the actual seed and bounds exhaustion before publishing (2.257591ms)
+✖ offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets (35.282541ms)
+✖ verified cache survives reinstall and serves fragment navigation without caching private URLs (1.416849ms)
+✔ continuity diagnostic counts frame gaps, bounds its trace and resets the measurement window (2.042207ms)
+✔ bounded context heuristic finds pulse and triad, and treats silence as uncertain (42.943307ms)
+✔ transport cancels future C, rejects late/short contexts and preserves A on C failure (0.355472ms)
+✔ worklet capture keeps both channels and every independent frame (1.982455ms)
+✔ stale browser timestamps do not become false missing-sample claims (1.220341ms)
+✔ missing counter samples and altered audio remain detectable (1.500851ms)
+✔ load probe dispatches on/off at exact frames across program boundaries (4.412844ms)
+ℹ tests 44
+ℹ suites 0
+ℹ pass 42
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1055.614125
+
+✖ failing tests:
+
+test at apps/web/tests/offline-build.test.js:6:1
+✖ offline build is deterministic, binds every public byte and rejects extra files, symlinks and oversized assets (35.282541ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<stdin>", line 5, in <module>
+  ModuleNotFoundError: No module named 'build_offline'
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///work/apps/web/tests/offline-build.test.js:35:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/tests/offline-cache.test.js:6:1
+✖ verified cache survives reinstall and serves fragment navigation without caching private URLs (1.416849ms)
+  Error: ENOENT: no such file or directory, open '/work/scripts/service-worker.js'
+      at async open (node:internal/fs/promises:640:25)
+      at async readFile (node:internal/fs/promises:1290:14)
+      at async TestContext.<anonymous> (file:///work/apps/web/tests/offline-cache.test.js:10:19)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/work/scripts/service-worker.js'
+  }

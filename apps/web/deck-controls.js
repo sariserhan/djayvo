@@ -2,20 +2,29 @@ const $ = id => document.getElementById(id);
 export function playMedia(audio, current) {
   return new Promise((resolve, reject) => {
     const position = audio.currentTime;
-    let pending = true, played = false;
+    let pending = true, requested = false, played = false;
     const finish = error => {
       if (!pending) return;
       pending = false; clearInterval(poll); clearTimeout(timer);
       error ? reject(error) : resolve();
     };
+    const begin = () => {
+      if (!current()) { finish(); return; }
+      if (audio.error) { finish(new Error(audio.error.message || 'This browser cannot open that track.')); return; }
+      // Let metadata preload finish before Play promotes the native decoder to eager loading.
+      if (requested || audio.readyState < 1) return;
+      requested = true;
+      try { Promise.resolve(audio.play()).then(() => { played = true; }, finish); }
+      catch (error) { finish(error); }
+    };
     // A resolved play promise can still leave WebKit stuck seeking at EOF.
     const poll = setInterval(() => {
       if (!current()) finish();
       else if (played && (audio.ended || (!audio.paused && !audio.seeking && audio.currentTime !== position))) finish();
+      else begin();
     }, 50);
     const timer = setTimeout(() => finish(new Error('The track did not begin playing. Unload it and try again.')), 10000);
-    try { Promise.resolve(audio.play()).then(() => { played = true; }, finish); }
-    catch (error) { finish(error); }
+    begin();
   });
 }
 export function tempoRate(own, other, otherRate) {

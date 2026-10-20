@@ -1,0 +1,35 @@
+{
+  "baseline": {
+    "status": "FAIL",
+    "passed_checks": 12,
+    "receipt": "renders/media-replace-linux-CUpfqp/dj-webkit-oxNCl2/failure.json",
+    "sha256": "ec29c5bbae270588cd0b75e7de866a070b75be9b9dcc98ee8ce282acda84c7f2"
+  },
+  "diagnostic": {
+    "status": "FAIL",
+    "passed_checks": 38,
+    "receipt": "renders/media-replace-linux-CUpfqp/dj-webkit-nYAOkK/failure.json",
+    "sha256": "523d38fee53c4623e7045179157bd978448e8128d2350c01e50578ff4dc7366d"
+  },
+  "candidate": {
+    "status": "PASS",
+    "passed_checks": 46,
+    "receipt": "renders/media-replace-linux-CUpfqp/dj-webkit-2eaJzb/report.json",
+    "sha256": "8838fe7a61a9662204b3b4ef6f175d8f88dcd4a4f4187769b91b01835084b34f"
+  },
+  "decoder.log": {
+    "path": "renders/media-replace-linux-CUpfqp/decoder.log",
+    "bytes": 18619,
+    "sha256": "99acd44ee93628c7cfa5ebbc21fcf4375142a8f1eae598c0e243f81790105b5a"
+  },
+  "candidate-decoder.log": {
+    "path": "renders/media-replace-linux-CUpfqp/candidate-decoder.log",
+    "bytes": 39061,
+    "sha256": "ac9ab86ff7ee5fc05ceff219a038a9a615c720ddf1b066f5f1f8e29568a8b304"
+  },
+  "final-decoder.log": {
+    "path": "renders/media-replace-linux-CUpfqp/final-decoder.log",
+    "bytes": 2803,
+    "sha256": "f65742a6cbd7a1fd71566962ec38fb720744aa973e0a81b5c3fbfc7b440f1d7a"
+  }
+}

@@ -1,5 +1,16 @@
 # Djayvo: M0 continuation evidence
 
+Latest manual deck start repair — 2026-10-19:
+[Metadata readiness](media-readiness.md) **PASS (bounded start ordering)**:
+Play waits for the actual deck metadata before asking the native decoder to play;
+the existing deadline, cancellation and progress checks remain. Three new unit
+regressions fail against the old helper and pass with the fix. The report records
+browser/build/PCM gates and all intermediate failures. Broader Linux WebKit
+transport reliability stays **PARTIAL** after an intermittent cue mismatch and
+2 GiB container OOM failures; a larger functional-test container does not qualify
+that smaller memory budget. Physical audio, listening, production and hosted
+service gates remain open. Master, engine and source recordings are unchanged.
+
 Latest local product increment — 2026-10-19:
 [Save and reuse performances](saved-mixes.md) connects generated C to the existing
 browser library and loads verified saved mixes into A/B. Explicit local saving,

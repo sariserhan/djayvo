@@ -1,0 +1,117 @@
+
+> djayvo-site@0.1.0 prebuild
+> npm run studio:prepare
+
+
+> djayvo-site@0.1.0 studio:prepare
+> node scripts/prepare-studio.mjs
+
+Setting up EMSDK environment (suppress these messages with EMSDK_QUIET=1)
+Adding directories to PATH:
+PATH += /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk
+PATH += /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten
+
+Setting environment variables:
+PATH = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk:/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten:/Users/serhansari/Documents/projects/djayvo/build-vercel-mac/build-web-tools/python-env/bin:/Users/serhansari/Documents/projects/djayvo/build-vercel-mac/build-web-tools/cmake-env/bin:/Users/serhansari/Documents/projects/djayvo/build-vercel-mac/apps/site/node_modules/.bin:/Users/serhansari/Documents/projects/djayvo/build-vercel-mac/apps/node_modules/.bin:/Users/serhansari/Documents/projects/djayvo/build-vercel-mac/node_modules/.bin:/Users/serhansari/Documents/projects/djayvo/node_modules/.bin:/Users/serhansari/Documents/projects/node_modules/.bin:/Users/serhansari/Documents/node_modules/.bin:/Users/serhansari/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/serhansari/.nvm/versions/node/v22.23.1/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/Users/serhansari/.nvm/versions/node/v22.23.1/bin:/opt/homebrew/opt/openjdk/bin:/Users/serhansari/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/podman/bin:/Users/serhansari/.codex/tmp/arg0/codex-arg07otU96:/Users/serhansari/mlx-env/bin:/Users/serhansari/.unity/bin:/Users/serhansari/.cargo/bin:/Applications/CODE/iTerm.app/Contents/Resources/utilities:/opt/homebrew/share/android-commandlinetools/platform-tools:/Users/serhansari/.vscode/extensions/openai.chatgpt-26.51007.21434-darwin-arm64/bin/macos-aarch64
+EMSDK = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk
+EMSDK_NODE = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/node/24.19.0_64bit/bin/node
+EMSDK_PYTHON = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/python/3.13.3_64bit/bin/python3
+SSL_CERT_FILE = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/python/3.13.3_64bit/lib/python3.13/site-packages/certifi/cacert.pem
+emcmake: cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE=/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_CROSSCOMPILING_EMULATOR=/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/node/24.19.0_64bit/bin/node in directory /Users/serhansari/Documents/projects/djayvo/build-vercel-mac
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-vercel-mac/build-web
+[ 88%] Built target djayvo_core
+[100%] Built target djayvo_web
+[ 88%] Built target djayvo_core
+[100%] Built target djayvo_live
+Built dist/web. Start with: python3 scripts/web_serve.py
+{
+  "gate": "PASS",
+  "file_count": 35,
+  "bytes": 28316405,
+  "private_audio_and_test_files_absent": "PASS",
+  "license_notices": "PASS",
+  "wasm_sha256": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1",
+  "wasm_bytes": 14153566,
+  "files": {
+    "app.js": "f9ade573c8bf6f654769244df79e794adfb9dc4f34c4f7d9065b5a8ee1098b6b",
+    "audio.js": "5b7b18df7d733ea6b6184073e25325797135950735b81e4fae1cfee83c26968f",
+    "deck-controls.js": "c811a7c15dba3b01ddc18cdc89c74cc2c41e9bce9403f4dfdee00a39445f5868",
+    "dj.css": "5d8cc4563f7dbff75d2643dfce883089ebffa086b35e47e8ad4d57e6ae202281",
+    "dj.html": "5e7c48b8a1f1c82f79beba1f26ad752c57cb6024d26f2caa583be0fa71c2054c",
+    "dj.js": "1c5a74e385eb282b9146fe7a84c0ace13edca4c047b8d7f397bdd93d7bab1948",
+    "engine-worker.js": "8a6f2925cb074f8aca8bd92a22ab4953c79d49b27bb96042e67fef23185b64c1",
+    "engine/djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "engine/djayvo_web.mjs": "ae99a78f24bbd233a428c2f86baac1969a8425987d6ca3e64530a7f0034c5c66",
+    "engine/djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1",
+    "icon-180.png": "669132c03c1b39d6fe12075796ae8d29211b99eee61ab4f295f8b99c1ac92f87",
+    "icon-192.png": "4dc9105a59d0382807605587d8cb9dbeb8c48328cd99831cbd0d9fb3d2d4beae",
+    "icon-512.png": "c9511bafcad57cdf30e30c3450e6b3d821b6be39b8c0d379d39761fc62fe23eb",
+    "icon.svg": "64ad0af183dcd26aaa2137756858ca66de352141e5bd5adab1960d770067e9a9",
+    "index.html": "85734dcddb038146c58f43f6c9c9c193c84e0c41021cad30188ca8c5e12b60dd",
+    "install.js": "2eece58b307a28e8812bdc9212fe361dfd1ccc1582ee650b1bb84ea9af66a3ba",
+    "instrument-rack.js": "b14a24c5342704c4ec3d2c19777eecf46eaaa56d86ed459fdbf24a0c43b98a26",
+    "instrument-worklet.js": "d015a9d934d2741fe72a5dda30e8cd0ff893a95b23fa498ba63a32a4af2e9642",
+    "keyboard.js": "0d3497e1bad1616de67692455d970054ff1b5edd6dfa2b7462131eb37a0dac1a",
+    "library.js": "cccaa6b1b26642c42e778f19782077169c40621e455ff109f168d815cbe21ed3",
+    "licenses/BLACK-AND-GREEN-GUITARS-CC0.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "licenses/EMSCRIPTEN-LICENSE.txt": "4e932924ae86904c2ec1e8916953fb516707871b74bf05733161b0ec4772db26",
+    "licenses/VCSL-LICENSE.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "licenses/VSCO-2-CE-LICENSE.txt": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673",
+    "manifest.webmanifest": "010ca647071dba96e40ac4e0a965e569ca4e1ad5d9d8f9b91ed536ed4a856f59",
+    "midi.js": "3d24e2d620e0f21cfc6fa9a23d6639cb447c81b67349c9e9d6eb33081bafd613",
+    "mixer.js": "0ced222b50e021b06dc4c1e6628893298a86eea8c69344ed4ce936847f988894",
+    "novelty.js": "8aa6113f3249df76eb0cdad6149668426da577e60d19fecfa18a5f61fed00807",
+    "offline.js": "fb682625e62b90681b5bcf7b635ba7e4d33547dc5a7349f5b55ef9b8c1dbc9e2",
+    "performance-session.js": "729d3b04adf8da5c070a61d39339185159b83e2722699fbecd06f1d878192404",
+    "service-worker.js": "7cbb64ab304b0aa23013345e29633b093112686897d0b2793383d05468dbd13f",
+    "session-analysis-worker.js": "1c2c384be76284cbeb94048d98d9c231b2a3efc5957050c023975a1cef297f42",
+    "session-analysis.js": "1ee077d19a825ad5863072cd812ff3d16a0c797f307de2fe0cd9f4c05e8ba7b6",
+    "session-transport.js": "9075b7f4a9c3925f84d762b4bf42cccb2aa76bc7469d8ecc3b8317a027224f02",
+    "style.css": "fefed94815f41b25cc6b61e9dd4437dde694b6b6de6b98462096dec8063146da"
+  },
+  "public_release": "NOT RUN"
+}
+Prepared the audited browser studio and engine.
+
+> djayvo-site@0.1.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+✓ Running next.config.ts took 62ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 453ms
+  Running TypeScript ...
+  Finished TypeScript in 1628ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/4) ...
+  Generating static pages using 9 workers (1/4)
+  Generating static pages using 9 workers (2/4)
+  Generating static pages using 9 workers (3/4)
+✓ Generating static pages using 9 workers (4/4) in 196ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /account
+├ ƒ /account/[action]
+├ ƒ /api/auth/[...all]
+├ ƒ /api/catalogue/[[...path]]
+├ ƒ /api/library
+├ ƒ /api/library/[id]/[action]
+├ ƒ /api/playlists/[[...path]]
+├ ƒ /catalogue
+├ ƒ /catalogue/[id]
+├ ƒ /library
+├ ƒ /playlists
+├ ƒ /playlists/[id]
+└ ƒ /review
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

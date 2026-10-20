@@ -1,0 +1,26 @@
+[
+  {
+    "url": "http://localhost:3000/studio/dj.html",
+    "status": 200,
+    "sha256": "5e7c48b8a1f1c82f79beba1f26ad752c57cb6024d26f2caa583be0fa71c2054c",
+    "bytes": 22982
+  },
+  {
+    "url": "http://localhost:3000/studio/deck-controls.js",
+    "status": 200,
+    "sha256": "c811a7c15dba3b01ddc18cdc89c74cc2c41e9bce9403f4dfdee00a39445f5868",
+    "bytes": 8955
+  },
+  {
+    "url": "http://localhost:3000/studio/engine/djayvo_live.wasm",
+    "status": 200,
+    "sha256": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "bytes": 13801599
+  },
+  {
+    "url": "http://localhost:3000/studio/engine/djayvo_web.wasm",
+    "status": 200,
+    "sha256": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1",
+    "bytes": 14153566
+  }
+]

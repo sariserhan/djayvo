@@ -1,0 +1,86 @@
+{
+  "message": "The expression evaluated to a falsy value:\n\n  assert.ok(Math.abs(await page.locator('#audio-a').evaluate(a => a.currentTime) - 8) < .2)\n",
+  "stack": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(Math.abs(await page.locator('#audio-a').evaluate(a => a.currentTime) - 8) < .2)\n\n    at file:///work/apps/web/tests/dj.mjs:267:10",
+  "checks": [
+    {
+      "name": "page identity, nonblank content, consent gating",
+      "status": "PASS"
+    },
+    {
+      "name": "real offline stereo PCM: A/B endpoints, center, channel mute, master mute",
+      "status": "PASS"
+    },
+    {
+      "name": "instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs",
+      "status": "PASS"
+    },
+    {
+      "name": "both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs",
+      "status": "PASS"
+    },
+    {
+      "name": "manual Play waits for actual deck metadata, then starts once and advances",
+      "status": "PASS"
+    },
+    {
+      "name": "hung audio resume reports failure, restores manual Play and cannot disrupt a successful retry",
+      "status": "PASS"
+    },
+    {
+      "name": "late completion of an older play request cannot pause a newer playback request",
+      "status": "PASS"
+    },
+    {
+      "name": "two media decks advance independently; active-track replacement blocked; actual mix signal present",
+      "status": "PASS"
+    },
+    {
+      "name": "real media output follows crossfader, channel level and master silence",
+      "status": "PASS"
+    },
+    {
+      "name": "pause/seek one deck and reject corrupt replacement while other deck continues, preserving effects",
+      "status": "PASS"
+    },
+    {
+      "name": "resolved-but-stalled A start reports failure and restores controls while B keeps producing audio",
+      "status": "PASS"
+    },
+    {
+      "name": "Pause All cancels an unresolved start; late rejection cannot pause or overwrite a successful retry",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+  ],
+  "state": {
+    "instruments": "Prepare the cleared sound bank, then play with your mouse, touch or computer keyboard.",
+    "deckError": "",
+    "decks": [
+      {
+        "time": 9.152,
+        "paused": true,
+        "seeking": false,
+        "ended": false,
+        "rate": 1,
+        "readyState": 3,
+        "networkState": 2,
+        "error": null
+      },
+      {
+        "time": 13.909333334,
+        "paused": false,
+        "seeking": false,
+        "ended": false,
+        "rate": 1,
+        "readyState": 3,
+        "networkState": 2,
+        "error": null
+      }
+    ],
+    "meter": 0.14968037605285645
+  }
+}

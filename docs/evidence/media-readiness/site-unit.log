@@ -1,0 +1,56 @@
+
+> djayvo-site@0.1.0 test
+> tsx --test tests/config.test.ts tests/audio.test.ts
+
+TAP version 13
+# Subtest: private save validates consent, bounded metadata and canonical metadata-free PCM
+ok 1 - private save validates consent, bounded metadata and canonical metadata-free PCM
+  ---
+  duration_ms: 109.728875
+  type: 'test'
+  ...
+# Subtest: storage is opt-in, local files cannot be hosted, R2 grants bind content length and type
+ok 2 - storage is opt-in, local files cannot be hosted, R2 grants bind content length and type
+  ---
+  duration_ms: 11.394
+  type: 'test'
+  ...
+# Subtest: account configuration fails closed and forbids hosted development mail
+ok 3 - account configuration fails closed and forbids hosted development mail
+  ---
+  duration_ms: 0.84975
+  type: 'test'
+  ...
+# Subtest: Resend request uses server credentials, timeout and deterministic retry identity
+ok 4 - Resend request uses server credentials, timeout and deterministic retry identity
+  ---
+  duration_ms: 10.840208
+  type: 'test'
+  ...
+# Subtest: localhost can use Neon without enabling local database/storage shortcuts
+ok 5 - localhost can use Neon without enabling local database/storage shortcuts
+  ---
+  duration_ms: 0.1325
+  type: 'test'
+  ...
+# Subtest: email outbox cannot run in a hosted app even if a config is supplied directly
+ok 6 - email outbox cannot run in a hosted app even if a config is supplied directly
+  ---
+  duration_ms: 0.066292
+  type: 'test'
+  ...
+# Subtest: auth body limit measures real streamed bytes rather than trusting Content-Length
+ok 7 - auth body limit measures real streamed bytes rather than trusting Content-Length
+  ---
+  duration_ms: 1.43
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 290.594

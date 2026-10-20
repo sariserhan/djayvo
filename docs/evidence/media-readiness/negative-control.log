@@ -1,0 +1,114 @@
+TAP version 13
+# Subtest: Play waits for the actual deck metadata and starts exactly once
+not ok 1 - Play waits for the actual deck metadata and starts exactly once
+  ---
+  duration_ms: 1.646333
+  type: 'test'
+  location: '/Users/serhansari/Documents/projects/djayvo/renders/media-replace-linux-CUpfqp/baseline-media-start.test.mjs:19:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+
+    1 !== 0
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/serhansari/Documents/projects/djayvo/renders/media-replace-linux-CUpfqp/baseline-media-start.test.mjs:23:22)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: cancelled metadata waits cannot start a later source
+not ok 2 - cancelled metadata waits cannot start a later source
+  ---
+  duration_ms: 0.385416
+  type: 'test'
+  location: '/Users/serhansari/Documents/projects/djayvo/renders/media-replace-linux-CUpfqp/baseline-media-start.test.mjs:29:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+
+    1 !== 0
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/serhansari/Documents/projects/djayvo/renders/media-replace-linux-CUpfqp/baseline-media-start.test.mjs:34:44)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: missing or rejected metadata fails within the existing start deadline
+not ok 3 - missing or rejected metadata fails within the existing start deadline
+  ---
+  duration_ms: 0.408667
+  type: 'test'
+  location: '/Users/serhansari/Documents/projects/djayvo/renders/media-replace-linux-CUpfqp/baseline-media-start.test.mjs:37:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /did not begin playing/. Input:
+
+    'Error: must not play before metadata'
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'must not play before metadata'
+  stack: |-
+    media.play (file:///Users/serhansari/Documents/projects/djayvo/renders/media-replace-linux-CUpfqp/baseline-media-start.test.mjs:40:32)
+    evalmachine.<anonymous>:17:33
+    new Promise (<anonymous>)
+    Object.playMedia [as start] (evalmachine.<anonymous>:3:10)
+    TestContext.<anonymous> (file:///Users/serhansari/Documents/projects/djayvo/renders/media-replace-linux-CUpfqp/baseline-media-start.test.mjs:41:37)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (file:///Users/serhansari/Documents/projects/djayvo/renders/media-replace-linux-CUpfqp/baseline-media-start.test.mjs:43:36)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: resolved play must advance without seeking; successful/short playback cleans up timers
+ok 4 - resolved play must advance without seeking; successful/short playback cleans up timers
+  ---
+  duration_ms: 0.32
+  type: 'test'
+  ...
+# Subtest: stuck seeking and unresolved play both fail within the start deadline
+ok 5 - stuck seeking and unresolved play both fail within the start deadline
+  ---
+  duration_ms: 0.461
+  type: 'test'
+  ...
+# Subtest: cancellation clears timers and ignores late completion or rejection
+ok 6 - cancellation clears timers and ignores late completion or rejection
+  ---
+  duration_ms: 0.812167
+  type: 'test'
+  ...
+# Subtest: native synchronous and asynchronous playback errors retain their message and clean up
+ok 7 - native synchronous and asynchronous playback errors retain their message and clean up
+  ---
+  duration_ms: 0.638875
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 4
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 42.751625

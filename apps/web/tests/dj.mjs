@@ -149,6 +149,21 @@ try {
   await page.locator('#file-b').setInputFiles(b);
   await page.waitForFunction(() => !document.querySelector('#play-b').disabled);
   await page.evaluate(() => {
+    const audio = document.querySelector('#audio-a'), play = audio.play.bind(audio);
+    window.metadataPlayCalls = 0;
+    Object.defineProperty(audio, 'readyState', { configurable: true, get: () => 0 });
+    audio.play = () => { window.metadataPlayCalls++; return play(); };
+  });
+  await page.locator('#play-a').click(); await page.waitForTimeout(150);
+  assert.equal(await page.locator('#state-a').textContent(), 'Starting…');
+  assert.equal(await page.evaluate(() => window.metadataPlayCalls), 0);
+  await page.evaluate(() => { delete document.querySelector('#audio-a').readyState; });
+  await page.waitForFunction(() => !document.querySelector('#play-a').disabled && document.querySelector('#audio-a').currentTime > .05);
+  assert.equal(await page.evaluate(() => window.metadataPlayCalls), 1);
+  await page.locator('#play-a').click();
+  await page.evaluate(() => { delete document.querySelector('#audio-a').play; });
+  check('manual Play waits for actual deck metadata, then starts once and advances');
+  await page.evaluate(() => {
     const resume = testAudioContext.resume.bind(testAudioContext);
     testAudioContext.resume = () => {
       testAudioContext.resume = resume;
@@ -601,6 +616,6 @@ try {
     signalEvidence, fxEvidence, deckFXEvidence, audioContext: audioContextEvidence, actualMedia: { aPeak, channelSilent, masterSilent }, errors, warnings,
     humanListening: 'NOT RUN', physicalDeviceLatency: 'NOT RUN', offlineVenueReliability: 'NOT RUN' }, null, 2));
 } catch (error) {
-  await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings, state: await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({ instruments: document.querySelector('#instrument-status').textContent, loopTrace: window.loopTrace, deckError: document.getElementById('error-a').textContent, decks: [...document.querySelectorAll('audio')].map(a => ({time:a.currentTime,paused:a.paused,seeking:a.seeking,ended:a.ended,rate:a.playbackRate,readyState:a.readyState})), meter:document.querySelector('#output-meter').value })).catch(() => null)]) }, null, 2));
+  await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings, state: await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({ instruments: document.querySelector('#instrument-status').textContent, loopTrace: window.loopTrace, deckError: document.getElementById('error-a').textContent, decks: [...document.querySelectorAll('audio')].map(a => ({time:a.currentTime,paused:a.paused,seeking:a.seeking,ended:a.ended,rate:a.playbackRate,readyState:a.readyState,networkState:a.networkState,error:a.error && {code:a.error.code,message:a.error.message}})), meter:document.querySelector('#output-meter').value })).catch(() => null)]) }, null, 2));
   throw error;
 } finally { await browser.close(); server.closeAllConnections(); server.close(); }

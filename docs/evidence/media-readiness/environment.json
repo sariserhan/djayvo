@@ -1,0 +1,31 @@
+{
+  "linux_artifacts": "renders/media-ready-linux-KnyNUA",
+  "mac": {
+    "os": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241",
+    "cpu": "Apple M5",
+    "ram_bytes": "17179869184",
+    "node": "v22.23.1",
+    "playwright": "1.61.1",
+    "next": "16.4.2",
+    "cmake": "cmake version 4.4.2",
+    "emscripten": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.1 (25e4e8d6550d392ba9e0c2936bce7cf41ee47cc0)"
+  },
+  "linux": "Linux 3c06b780aa9f 6.8.0-117-generic #117-Ubuntu SMP PREEMPT_DYNAMIC Thu May  7 17:26:37 UTC 2026 aarch64 aarch64 aarch64 GNU/Linux\nv24.17.0\npulseaudio 16.1\nlibgstreamer1.0-0:arm64\t1.24.2-1ubuntu0.1\nPRETTY_NAME=\"Ubuntu 24.04.4 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.4 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo",
+  "browser_automation": "Existing Playwright fallback; Browser execution tool unavailable after discovery.",
+  "scope": "Virtual Linux ARM64 audio sink, not physical audio or Safari.",
+  "initial_linux_artifacts": "renders/media-replace-linux-CUpfqp",
+  "initial_limits": {
+    "vm_cpus": 2,
+    "vm_ram_gib": 3,
+    "container_ram_gib": 2,
+    "container_shm_gib": 1,
+    "network": "none"
+  },
+  "final_limits": {
+    "vm_cpus": 2,
+    "vm_ram_gib": 4,
+    "container_ram_gib": 3,
+    "container_shm_gib": 1,
+    "network": "none"
+  }
+}

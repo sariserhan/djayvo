@@ -1,0 +1,817 @@
+{
+  "protected_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "core/include/djayvo/audio.h": "0b556b7f731d5bbf257d152dae1b591311283ffd8366fe98ba66e20df7a2c523",
+    "core/instruments/voice.cpp": "d0bc8893083ac9f14a94f53e6f561a4316b0e09584e86361f4101b47a4b52120",
+    "core/tests/tests.cpp": "396d770309332e747a130291e01df51348e2fe185454ab49a53ef5e38bdebc09",
+    "core/instruments/full_band_interpolation.inc": "b5188a1756bb48d352361601443644e17088e6df3ade3b2682126afb6875a547",
+    "dist/web/engine/djayvo_live.wasm": "a77b52002a840faa4c1a0fae90955a9149ccd63abeae09923f69dd1d4c0c803c",
+    "dist/web/engine/djayvo_web.wasm": "469a5f4758045056a40d1b0e8b3708bd1856f8956b8cff82341da7b3a9620db1"
+  },
+  "sources": {
+    "apps/web/deck-controls.js": "c811a7c15dba3b01ddc18cdc89c74cc2c41e9bce9403f4dfdee00a39445f5868",
+    "apps/web/dj.js": "1c5a74e385eb282b9146fe7a84c0ace13edca4c047b8d7f397bdd93d7bab1948",
+    "apps/web/mixer.js": "0ced222b50e021b06dc4c1e6628893298a86eea8c69344ed4ce936847f988894"
+  },
+  "runs": {
+    "mac-chromium": {
+      "status": "PASS",
+      "checks": 47,
+      "version": "149.0.7827.55",
+      "receipt": "renders/dj-chromium-bxC464/report.json",
+      "sha256": "71e2fab602cbb0fc45a225e7befcf4755c4412ba8823ed5161d22da1ce63d093",
+      "log_sha256": "5a45b32021d75f5d3147f35d96c0ab74a057ab3cc0ab20a5e991e364e61f6940",
+      "echo_frames": [
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ]
+      ],
+      "console_errors": [],
+      "screenshot_csp_warnings": 0
+    },
+    "mac-webkit": {
+      "status": "PASS",
+      "checks": 47,
+      "version": "26.5",
+      "receipt": "renders/dj-webkit-zwfkXh/report.json",
+      "sha256": "cc8b26409ecd9f021f80dc82616814fe76844c99d928cc058163a801f5d5da20",
+      "log_sha256": "ecd4c252a9ff284071d986658e2c5c6dd57f856f5868b486a6e8cb93fd306ed1",
+      "echo_frames": [
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ]
+      ],
+      "console_errors": [],
+      "screenshot_csp_warnings": 4
+    },
+    "linux-chromium": {
+      "status": "PASS",
+      "checks": 47,
+      "version": "149.0.7827.0",
+      "receipt": "renders/media-ready-linux-KnyNUA/dj-chromium-n7kP1w/report.json",
+      "sha256": "6304e0f5f2e01119a16fb4800e85fa05a396676f031423616c622f6bb8e1b033",
+      "log_sha256": "d3fb8e73a171cda1d053c0f6aff2b39fa9c4693379ddc15b949b3fb0ba0ac9e6",
+      "echo_frames": [
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ]
+      ],
+      "console_errors": [],
+      "screenshot_csp_warnings": 0
+    },
+    "linux-webkit": {
+      "status": "PASS",
+      "checks": 47,
+      "version": "26.5",
+      "receipt": "renders/media-ready-linux-KnyNUA/dj-webkit-W7c5Yb/report.json",
+      "sha256": "2ace8f7e18bea6a1746c288975160ffe7ec49d6d1b5f8ff9407755d0a2bda63c",
+      "log_sha256": "31451155cdc240c7a3e39327e48179a53fe815fe8a2f1dcff4feff1659379bf4",
+      "echo_frames": [
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          52800,
+          52800
+        ],
+        [
+          57600,
+          57600
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          62400,
+          62400
+        ],
+        [
+          76800,
+          76800
+        ],
+        [
+          91200,
+          91200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ],
+        [
+          86400,
+          86400
+        ],
+        [
+          124800,
+          124800
+        ],
+        [
+          163200,
+          163200
+        ]
+      ],
+      "console_errors": [],
+      "screenshot_csp_warnings": 4
+    }
+  },
+  "waveforms": {
+    "mac-chromium": {
+      "run": "renders/dj-chromium-bxC464",
+      "baseline": "renders/dj-chromium-tA8O3A",
+      "files": {
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        }
+      }
+    },
+    "mac-webkit": {
+      "run": "renders/dj-webkit-zwfkXh",
+      "baseline": "renders/dj-webkit-5B381h",
+      "files": {
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        }
+      }
+    },
+    "linux-chromium": {
+      "run": "renders/media-ready-linux-KnyNUA/dj-chromium-n7kP1w",
+      "baseline": "renders/dj-chromium-tA8O3A",
+      "files": {
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        },
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+        }
+      }
+    },
+    "linux-webkit": {
+      "run": "renders/media-ready-linux-KnyNUA/dj-webkit-W7c5Yb",
+      "baseline": "renders/dj-webkit-5B381h",
+      "files": {
+        "deck-a-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-a-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "deck-b-piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "deck-b-piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        },
+        "piano-dry.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+        },
+        "piano-echo.wav": {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "sha256": "5d4327404d7a5df227b5fe5b976afe31a5c009e14cc7c49e4ef06e3640cdaa45"
+        }
+      }
+    }
+  },
+  "physical_audio": "NOT RUN",
+  "listening": "NOT RUN",
+  "prepared_session_rerun": "NOT RUN",
+  "production": "PARTIAL",
+  "r2": "NOT RUN",
+  "resend": "NOT RUN",
+  "deployment": "NOT RUN",
+  "unit_tests": {
+    "unit-mac": {
+      "status": "PASS",
+      "passed": 44,
+      "log_sha256": "69d4213364316c3c05cccb9cbe0dddf28b477a61b321977b7f869e271edab2c8"
+    },
+    "unit-linux": {
+      "status": "PASS",
+      "passed": 44,
+      "log_sha256": "28077c5345ff6d330e78a8c8d6a12c0c431cdd234bcdaa228456dafbbae94d91"
+    },
+    "site-unit": {
+      "status": "PASS",
+      "passed": 7,
+      "log_sha256": "aa8d92a20701f53db2fe3f3e71178c48c39a9040f1dd539fdfc1c019fbfb3e61"
+    }
+  },
+  "waveform_count": 24,
+  "waveform_gate": "PASS",
+  "echo_frame_gate": "PASS"
+}

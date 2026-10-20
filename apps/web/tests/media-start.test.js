@@ -14,7 +14,35 @@ function setup() {
     for (const [id, timer] of [...timers]) if (timers.has(id) && timer.delay <= milliseconds) timer.fn();
   } };
 }
-const audio = () => ({ currentTime: 0, paused: false, seeking: false, ended: false, play: () => Promise.resolve() });
+const audio = () => ({ currentTime: 0, paused: false, seeking: false, ended: false, readyState: 1, play: () => Promise.resolve() });
+
+test('Play waits for the actual deck metadata and starts exactly once', async () => {
+  const h = setup(), media = audio(); let calls = 0;
+  media.readyState = 0; media.play = () => { calls++; return Promise.resolve(); };
+  const pending = h.start(media, () => true);
+  h.tick(50); assert.equal(calls, 0);
+  media.readyState = 1; h.tick(50); h.tick(50); assert.equal(calls, 1);
+  await Promise.resolve(); media.currentTime = .1; h.tick(50); await pending;
+  assert.equal(h.timers.size, 0);
+});
+
+test('cancelled metadata waits cannot start a later source', async () => {
+  const h = setup(), media = audio(); let current = true, calls = 0;
+  media.readyState = 0; media.play = () => { calls++; return Promise.resolve(); };
+  const pending = h.start(media, () => current);
+  current = false; h.tick(50); await pending;
+  media.readyState = 1; h.tick(50); assert.equal(calls, 0); assert.equal(h.timers.size, 0);
+});
+
+test('missing or rejected metadata fails within the existing start deadline', async () => {
+  for (const rejected of [false, true]) {
+    const h = setup(), media = audio(); media.readyState = 0;
+    media.play = () => { throw Error('must not play before metadata'); };
+    const failed = assert.rejects(h.start(media, () => true), rejected ? /bad header/ : /did not begin playing/);
+    if (rejected) media.error = { message: 'bad header' };
+    h.tick(rejected ? 50 : 10000); await failed; assert.equal(h.timers.size, 0);
+  }
+});
 
 test('resolved play must advance without seeking; successful/short playback cleans up timers', async () => {
   const h = setup(), media = audio(); let settled = false;

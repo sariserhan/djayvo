@@ -46,6 +46,14 @@ closes that task only; it does not automatically pass its parent milestone.
 
 ## DJ studio development
 
+- [x] **DJ27 — PASS (bounded start ordering):** [Actual deck metadata readiness](docs/media-readiness.md).
+  Manual Play waits for its own media metadata, starts once, preserves the existing
+  ten-second deadline and cannot start a superseded track after cancellation.
+  Three negative controls expose the old behavior; 44 unit checks pass per OS.
+  Browser/build/PCM receipts and intermediate failures are retained in the report.
+  Broader Linux WebKit reliability remains DJ14 **PARTIAL**, including a cue mismatch
+  and two 2 GiB container OOM failures. R2/Resend, physical audio and listening stay deferred.
+
 - [x] **DJ26 — PASS (local save/reuse implementation):** [Saved performances](docs/saved-mixes.md).
   Explicit Save C, shared ten-session browser library, load into paused A/B,
   revalidation on load, cancellation/permission guards, quota retry and Voice
@@ -162,7 +170,10 @@ closes that task only; it does not automatically pass its parent milestone.
   clear/cancel/input lifecycle and existing audio/permission paths. 80 final DJ,
   38 session, 24 unit checks and integrated/offline behavior pass. Physical MIDI
   and latency NOT RUN; native Web MIDI unavailable in tested WebKit.
-- [ ] **DJ14 — PARTIAL (latest full Linux WebKit studio FAIL):**
+- [ ] **DJ14 — PARTIAL (intermittent Linux WebKit failures remain):**
+  [DJ27](docs/media-readiness.md) gates native Play on actual metadata readiness.
+  Preserve the separate cue mismatch and 2 GiB test-capacity failures; later
+  passing functional runs do not establish sustained transport reliability.
   [DJ25 evidence](docs/audio-resume.md) retains a valid reload rejection after
   rapid pitch changes and a fresh-container browser crash later in the suite.
   Fresh run reached its 2 GiB memory limit without OOM kills; cause unproven.

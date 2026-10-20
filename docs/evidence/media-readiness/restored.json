@@ -1,0 +1,13 @@
+{
+  "profile": {
+    "name": "djayvo",
+    "status": "Stopped",
+    "arch": "aarch64",
+    "cpus": 2,
+    "memory": 3221225472,
+    "disk": 17179869184,
+    "runtime": "docker"
+  },
+  "docker_context": "desktop-linux",
+  "status": "PASS"
+}
