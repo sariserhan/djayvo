@@ -10,6 +10,11 @@ proof of identical quality. [Exact feedback](evidence/q0-guitar-single/owner-fee
 The new full five-condition packet has no submitted listening results yet.
 No production change is promoted.
 
+Subsequent [Linux/review follow-up](q0-linux-review-followup.md) closes local
+Linux ARM64 execution with five byte-identical renders and prepares a
+licensed-source packet excluding private owner voice. The regression suite
+now has 17 passing tests. “Continue” supplied no new quality judgment.
+
 This review consolidates the requested steps rather than treating each small
 experiment as a completed musical recovery milestone.
 
@@ -107,7 +112,8 @@ Packet:
 | Source/spec/core preservation | PASS | Permissions rechecked, frozen specification/library/renderer hashes and trial inventories verified |
 | New listening results | NOT RUN | Results validator reports zero submitted candidate ratings |
 | Latest guitar improvement | FAIL | One owner: “Neither is substantially better” |
-| Fresh Linux/iPhone/AudioWorklet execution | NOT RUN | Node/WASM on Mac is not those environments |
+| Linux ARM64 follow-up | PASS | Fresh GCC build and five exact Mac/Linux comparisons; see linked follow-up |
+| Physical Intel Linux/iPhone/AudioWorklet execution | NOT RUN | Local ARM64 VM and Node/WASM do not establish those targets |
 
 Five WAVs being byte-identical across native/WASM is this run's observation,
 not a universal portability guarantee. The established maximum/RMS normalized

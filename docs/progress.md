@@ -1565,3 +1565,33 @@ demonstrated, so Q0 is not closed. No training, spending, release or later miles
 
 [Current private review](http://127.0.0.1:4207/);
 [requirement-by-requirement completion review](q0-completion-review.md).
+
+## Q0 Linux portability and independent-review preparation
+
+**PASS:** Started the existing stopped project Colima VM/container, built the
+frozen isolated Q0 decay renderer using GCC 12.2.0 on Debian 12 aarch64, and
+passed all three native regression groups. All five E plans rendered actual
+WAV/score/event/report/receipt exports. Their WAVs are byte-identical to Mac,
+with maximum/RMS PCM error zero and 1,432 exact instrument-event rows.
+No threshold changed. The container and VM were stopped again; the active
+Docker context remains `desktop-linux`. No images/packages or cloud compute
+were acquired. The repository mount was read-only.
+
+**PASS:** Prepared a separate four-source review packet from the existing
+licensed LibriSpeech/laughter sources. Twenty matched mixes plus four original
+recordings retain exact hashes. Private owner voice, its HTML section and its
+audio URL are absent; its source request returns 404. Attribution is retained,
+and the organizer key is outside the served directory. Chromium/WebKit forms,
+decode, blank/partial ratings and local download checks pass. Seventeen Q0
+regression tests pass, including explicit permission/license exclusion cases.
+
+**PARTIAL:** Overall Q0 and browser physical playback; headless WebKit clock
+limitation remains. **NOT RUN:** Independent panel, new musical acceptance,
+physical Intel Linux/iPhone/AudioWorklet execution. The owner's latest answer
+“continue” is work authorization, not a quality vote. Prior guitar improvement
+judgment remains **FAIL**. No publication, messaging, training or production
+promotion occurred.
+
+[Independent-review preview](http://127.0.0.1:4208/);
+[private owner comparison remains unchanged](http://127.0.0.1:4207/);
+[execution details, gates and reproduction](q0-linux-review-followup.md).

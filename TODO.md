@@ -4,7 +4,11 @@
 The owner requested diagnosis and controlled listening before engine changes.
 No later milestone, model training, paid service or dashboard redesign is part
 of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.md).
-Latest: [Q0 completion review](docs/q0-completion-review.md).
+Latest: [Linux and review preparation](docs/q0-linux-review-followup.md):
+three Linux native test groups pass; five E WAVs, plans and event schedules
+match Mac exactly. A four-source independent-review packet excludes private
+owner audio. Seventeen regression tests pass; no new listening verdict.
+[Q0 completion review](docs/q0-completion-review.md).
 V2 expression adds phrase release, coordinated bass accents and guarded fills;
 all five A/B/C/D/E blocks render and replay. Five E native/WASM WAVs are
 byte-identical. A validated listening-results workflow is ready.
@@ -62,13 +66,17 @@ Prior rejected candidates remain FAIL.
   V2 performance: 16 tests, three native groups, 8,264 event rows, twenty exact
   replays, 112 masters/stems decoded; five E native/WASM WAVs byte-identical,
   with 1,432 exact event rows. Seven descriptive acoustic-attack measurements.
+  Linux follow-up: fresh GCC build and three native groups, five byte-identical
+  E WAVs and 1,432 exact event rows. Permission-filtered review preparation and
+  17 Q0 regression tests pass.
 - [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression, native/SFZ and
   the new five-condition packet, calling the latter “very robotic and bad quality.”
   No numeric scores, relative preferences or causal ranking inferred; no promotion.
   [Reference reassessment](docs/q0-reference-reassessment.md): seven source
   hashes checked; f newly analyzed; direct listening/annotation remains NOT RUN.
-  Independent comparative study and fresh Linux/iPhone/AudioWorklet Q0 execution
-  remain **NOT RUN**; offline Node/WASM E rendering now **PASS**.
+  Independent comparative study and physical Intel Linux/iPhone/AudioWorklet
+  execution remain **NOT RUN**; local Linux ARM64 and Node/WASM E rendering
+  now **PASS**. Independent-review preparation PASS is not actual listening.
   [Original feedback](docs/evidence/q0/owner-feedback.json);
   [guitar-pair rejection](docs/evidence/q0-guitar-single/owner-feedback.json).
 

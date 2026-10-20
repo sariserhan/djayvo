@@ -7,8 +7,10 @@ import {join} from 'node:path';
 const out=await mkdtemp(join(tmpdir(),'jamloom-q0-ui-'));
 const base=process.env.Q0_REVIEW_URL||'http://127.0.0.1:4198/';
 const candidates=Number(process.env.Q0_CANDIDATES||2);
+const sources=Number(process.env.Q0_SOURCES||5);
 assert.equal(new URL(base).hostname,'127.0.0.1');
 assert.ok([2,4,5].includes(candidates));
+assert.ok([4,5].includes(sources));
 const report=[];
 for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]) {
  const browser=await engine.launch(); const page=await browser.newPage({viewport:{width:1440,height:1000}});
@@ -20,7 +22,13 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]) {
   await page.goto(base);
   assert.equal(await page.title(),'Q0 blind expression diagnostic');
   await page.getByText('Packet ready. Ratings stay on this device.',{exact:true}).waitFor();
-  assert.equal(await page.locator('audio').count(),5*(candidates+1)); assert.equal(await page.locator('select').count(),30*candidates);
+  assert.equal(await page.locator('audio').count(),sources*(candidates+1)); assert.equal(await page.locator('select').count(),6*sources*candidates);
+  if(sources===4) {
+   assert.equal(await page.locator('section h2').filter({hasText:'owner-speech'}).count(),0);
+   assert.equal((await page.request.get(base+'owner-speech-source.wav')).status(),404);
+   const packet=await(await page.request.get(base+'packet.json')).json();
+   assert.ok(Object.keys(packet.audio_sha256).every(name=>!name.startsWith('owner-speech')));
+  }
   assert.ok((await page.locator('select').evaluateAll(ns=>ns.map(n=>n.value))).every(v=>v===''));
   assert.equal(await page.locator('form').evaluate(f=>f.checkValidity()),false);
   assert.equal(await page.getByRole('checkbox').isChecked(),false);
@@ -47,7 +55,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]) {
   const data=JSON.parse(await readFile(file,'utf8'));
   const packet=await(await page.request.get(base+'packet.json')).json();
   assert.equal(data.packet_id,packet.packet_id);assert.equal(data.ratings.reviewer,'UI_FIXTURE_ONLY');
-  assert.equal(Object.keys(data.ratings).filter(k=>!k.endsWith('/notes')&&!['reviewer','listened'].includes(k)).length,30*candidates);
+  assert.equal(Object.keys(data.ratings).filter(k=>!k.endsWith('/notes')&&!['reviewer','listened'].includes(k)).length,6*sources*candidates);
   if(optionalRatings) assert.equal(Object.entries(data.ratings).filter(([k,v])=>!['reviewer','listened'].includes(k)&&!k.endsWith('/notes')&&v!=='').length,6);
   if(await page.locator('input[name="listened"]').count()) assert.equal(data.ratings.listened,'yes');
   await rm(file);

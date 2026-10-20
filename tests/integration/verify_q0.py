@@ -19,6 +19,7 @@ sys.path.insert(0, str(ROOT/'scripts'))
 from q0_expression import express
 from q0_performance import perform
 from q0_listening_results import summarize, DIMENSIONS
+from q0_independent_packet import reviewable
 from q0_composition import compose
 from q0_authored_score import authored
 from q0_phrase_form import adapt
@@ -31,6 +32,18 @@ from q0_audit import loudness, inputs, level_match
 class Q0(unittest.TestCase):
     def setUp(self):
         self.plan = json.loads((ROOT/'docs/evidence/r0/hiphop.plan.json').read_text())['execution']
+
+    def test_independent_review_requires_license_and_explicit_scope(self):
+        rights = {'consent': {'local_processing': True, 'review_scope': 'independent_reviewers'},
+                  'license': {'id': 'CC-BY-4.0', 'attribution': 'Test-only attribution'}}
+        self.assertTrue(reviewable(rights))
+        for permission in ('Owner requested local use', {}, {'local_processing': True},
+                           {'local_processing': True, 'review_scope': 'owner_only'},
+                           {'local_processing': False, 'review_scope': 'independent_reviewers'}):
+            self.assertFalse(reviewable({**rights, 'consent': permission}))
+        for license in ({}, {'id': 'unknown', 'attribution': 'Test'},
+                        {'id': 'CC0-1.0', 'attribution': ''}):
+            self.assertFalse(reviewable({**rights, 'license': license}))
 
     def test_repeatable_non_mutating_shared_clock(self):
         frozen = copy.deepcopy(self.plan)

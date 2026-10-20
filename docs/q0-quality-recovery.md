@@ -2,6 +2,11 @@
 
 2026-10-20. **Implementation: PARTIAL. Current owner listening acceptance: FAIL.**
 
+**Latest execution/evaluation follow-up:** [Linux and independent-review preparation](q0-linux-review-followup.md).
+Linux ARM64 build/tests and five exact waveform/event comparisons **PASS**.
+Four cleared sources are ready for independent review, with private owner audio
+excluded. Seventeen Q0 tests pass. No new listening result or production change.
+
 **Current consolidated status:** [Q0 completion review](q0-completion-review.md).
 V2 expression adds guarded transition fills, melodic phrase shaping and
 bass/kick accent relationships. Five A/B/C/D/E blocks, twenty exact replays,
@@ -84,7 +89,8 @@ operates on copies of plans in an offline experiment.
 | Technical event timing/replay and comparison level matching | PASS | V2 five-arm trial: 8,264 instrument event rows, zero frame errors, 20 exact block-size replays |
 | Browser listening controls | PARTIAL | Form, decoding, downloads and layouts pass; headless WebKit playback clock stalled; physical playback/listening NOT RUN |
 | Q0 Node/WebAssembly audio execution | PASS | Five imported E plans, byte-identical native/WASM WAVs, 1,432 agreeing event rows; not browser real-time execution |
-| Q0 Linux/iPhone/AudioWorklet execution | NOT RUN | No result inferred from Mac or Node |
+| Q0 Linux ARM64 execution | PASS | Actual local GCC build, three native groups, five exact Mac/Linux WAVs and 1,432 exact event rows |
+| Q0 physical Intel Linux/iPhone/AudioWorklet execution | NOT RUN | No result inferred from the ARM64 VM or Node |
 | Current owner listening acceptance | FAIL | Owner rejects all three packets; exact replies retained; no numeric ratings or relative preference inferred |
 | Formal comparative improvement / independent study | NOT RUN | Qualitative rejection is not a measured effect size or an independent study |
 
@@ -394,8 +400,8 @@ Do not use extra random offsets or louder masters to manufacture a preference.
 There is no new numerical “professional quality” threshold and no change to the
 existing M1/listener benchmarks. Q0's required substantial improvement remains
 unestablished; current owner acceptance is FAIL. Independent listener evidence,
-broader inputs, perceived attack timing, physical playback and fresh Linux/iPhone
-execution remain open. Descriptive attack thresholds and Node/WASM parity now
+broader inputs, perceived attack timing, physical playback and physical Intel
+Linux/iPhone execution remain open. Descriptive attack thresholds, Linux ARM64 and Node/WASM parity now
 have evidence in the completion review.
 No later milestone or model training is recommended until Q0's controlled
 comparison has a credible listening result.
