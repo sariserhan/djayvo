@@ -14,9 +14,10 @@ from q0_phrase_form import adapt
 from verify_export import verify_export
 
 
-def guitar_renderer(output):
-    experiment = ROOT/'renders/q0-guitar-layer-v2-20261020'
-    evidence = json.loads((ROOT/'docs/evidence/q0-guitar-layer/report.json').read_text())
+def guitar_renderer(output, single_layer=False):
+    experiment = ROOT/('renders/q0-guitar-single-20261020' if single_layer else 'renders/q0-guitar-layer-v2-20261020')
+    evidence_name = 'q0-guitar-single' if single_layer else 'q0-guitar-layer'
+    evidence = json.loads((ROOT/f'docs/evidence/{evidence_name}/report.json').read_text())
     for name in ('voice.o', 'voice.cpp', 'candidate.patch'):
         if digest(experiment/name) != evidence['files_sha256'][name]:
             raise ValueError('Calibrated sampler artifact changed')

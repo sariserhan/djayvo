@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Isolated guitar-layer attenuation experiment; uses local pinned assets only."""
+"""Isolated guitar dynamics experiments using local pinned assets only."""
 import argparse
 import csv
 import difflib
@@ -12,7 +12,7 @@ import subprocess
 from q0_audit import ROOT, digest, level_match, loudness, write
 
 
-def run(output):
+def run(output, single_layer=False):
     if output.exists():
         raise ValueError('Choose a fresh output directory')
     preservation = json.loads((ROOT/'docs/evidence/q0-phrase-form/preservation.json').read_text())
@@ -37,17 +37,18 @@ def run(output):
 
     baseline = execute('baseline')
     calibration = {}
-    for pitch in range(40, 77, 3):
-        for take in (0, 1):
-            row = next(r for r in baseline if r['instrument']=='guitar' and
-                       int(r['rate'])==48000 and int(r['pitch'])==pitch and int(r['take'])==take)
-            # Match the two layers at their boundary; keep the velocity power law.
-            gain = float(row['rms_after'])/float(row['rms_before'])*(84/85)**1.45
-            if not 0 < gain <= 1:
-                raise ValueError('Calibration must attenuate only')
-            calibration[pitch, take] = gain
-    table = ',\n'.join('        {'+', '.join(f'{calibration[p,t]:.17g}' for t in (0, 1))+'}'
-                      for p in range(40, 77, 3))
+    if not single_layer:
+        for pitch in range(40, 77, 3):
+            for take in (0, 1):
+                row = next(r for r in baseline if r['instrument']=='guitar' and
+                           int(r['rate'])==48000 and int(r['pitch'])==pitch and int(r['take'])==take)
+                # Match the two layers at their boundary; keep the velocity power law.
+                gain = float(row['rms_after'])/float(row['rms_before'])*(84/85)**1.45
+                if not 0 < gain <= 1:
+                    raise ValueError('Calibration must attenuate only')
+                calibration[pitch, take] = gain
+    table = '' if single_layer else ',\n'.join(
+        '        {'+', '.join(f'{calibration[p,t]:.17g}' for t in (0, 1))+'}' for p in range(40, 77, 3))
     voice_path = ROOT/'core/instruments/voice.cpp'
     before = voice_path.read_text()
     marker = '    // shortcut: discrete recorded layers; assess boundary jumps before adding crossfades.'
@@ -61,7 +62,13 @@ TABLE
         velocity_*=layer_gain[(sample.root_midi-40)/3][sample.take];
     }
 '''.replace('TABLE', table)
-    after = before.replace(marker, patch+marker)
+    if single_layer:
+        selection = '(muted?127:velocity<=84?84:127)'
+        if before.count(selection) != 1:
+            raise ValueError('Unexpected guitar layer selection')
+        after = before.replace(selection, '(muted?127:84)')
+    else:
+        after = before.replace(marker, patch+marker)
     (output/'voice.cpp').write_text(after)
     (output/'candidate.patch').write_text(''.join(difflib.unified_diff(
         before.splitlines(True), after.splitlines(True), fromfile='a/core/instruments/voice.cpp',
@@ -80,11 +87,14 @@ TABLE
         if a['instrument']=='piano' and a != b:
             raise ValueError('Piano changed')
         if a['instrument']=='guitar':
-            if a['rms_after'] != b['rms_after']:
-                raise ValueError('Strong layer changed')
+            preserved = 'rms_before' if single_layer else 'rms_after'
+            if a[preserved] != b[preserved]:
+                raise ValueError('Preserved guitar layer changed')
             if abs(float(b['delta_db'])) >= abs(float(a['delta_db'])):
                 raise ValueError('Layer step did not shrink')
-            if b['rate']=='48000' and int(b['pitch']) in range(40, 77, 3):
+            if single_layer and not 0 < float(b['delta_db']) < 1:
+                raise ValueError('Expected a positive sub-dB velocity step')
+            if not single_layer and b['rate']=='48000' and int(b['pitch']) in range(40, 77, 3):
                 expected = 20*1.45*math.log10(85/84)
                 if abs(float(b['delta_db'])-expected) > 1e-5:
                     raise ValueError('Sample-root calibration differs from its target')
@@ -94,6 +104,12 @@ TABLE
             raise ValueError('Audio replay differs')
         if ('piano' in path.name or 'muted' in path.name) and digest(path) != digest(output/'baseline'/path.name):
             raise ValueError('Unaffected articulation changed')
+        if single_layer:
+            from q0_measure_comparisons import pcm
+            _, baseline_pcm = pcm(output/'baseline'/path.name)
+            _, candidate_pcm = pcm(path)
+            if baseline_pcm[:5*48000*2] != candidate_pcm[:5*48000*2]:
+                raise ValueError('Soft notes changed')
     with (output/'native-tests.log').open('x') as log:
         for name in ('tests', 'remix_tests', 'live_tests'):
             binary = output/name
@@ -130,15 +146,20 @@ TABLE
     write(output/'organizer-key.json', keys)
     audio = {p.name:digest(p) for p in sorted(listener.glob('*.wav'))}
     write(listener/'packet.json', {'audio_sha256': audio, 'human_quality': 'NOT RUN'})
-    write(output/'report.json', {'version': '1.0-q0-guitar-layer', 'human_quality': 'NOT RUN',
-        'calibration_window_ms': 500, 'method': 'Attenuate soft layer at each sampled root/take; preserve forte and muted samples',
-        'gain': [{'root':p,'take':t,'amplitude':g,'db':20*math.log10(g)} for (p,t),g in calibration.items()],
+    write(output/'report.json', {'version': '1.0-q0-guitar-single-layer' if single_layer else '1.0-q0-guitar-layer', 'human_quality': 'NOT RUN',
+        'calibration_window_ms': None if single_layer else 500,
+        'method': 'Use the existing medium recorded layer at all unmuted guitar velocities; retain gain/tone response' if single_layer else
+                  'Attenuate soft layer at each sampled root/take; preserve forte and muted samples',
+        'gain': [] if single_layer else [{'root':p,'take':t,'amplitude':g,'db':20*math.log10(g)} for (p,t),g in calibration.items()],
         'candidate_boundaries': changes, 'matching': levels, 'replay': 'PASS',
-        'piano_forte_and_muted_preservation': 'PASS', 'production_changed': False,
+        'preserved_components': ['piano','muted guitar', 'soft guitar' if single_layer else 'forte guitar'],
+        'component_preservation': 'PASS', 'production_changed': False,
+        **({'piano_forte_and_muted_preservation':'PASS'} if not single_layer else {}),
         'files_sha256': {str(p.relative_to(output)):digest(p) for p in sorted(output.rglob('*'))
                          if p.is_file() and p.name != 'INCOMPLETE'},
         'preserved_sha256': preservation, 'voice_source_sha256': digest(voice_path),
-        'limits': '500 ms RMS calibration is not perceived loudness, articulation realism or musical acceptance. '
+        'limits': 'The single-layer candidate removes the separate recorded forte timbre. Gain/filter response is not a substitute for all articulations; listening required.' if single_layer else
+                  '500 ms RMS calibration is not perceived loudness, articulation realism or musical acceptance. '
                   'Transposed notes and other time windows are evaluation conditions, not calibration targets.'})
     (output/'INCOMPLETE').unlink()
     print('PASS: isolated build, 552 boundary pairs per build, eight exact probe replays, three native test groups. Listening NOT RUN.')
@@ -147,4 +168,6 @@ TABLE
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
-    run(p.parse_args().output.resolve())
+    p.add_argument('--single-layer', action='store_true', help='Preserve soft notes; use their recorded layer at higher velocities')
+    args = p.parse_args()
+    run(args.output.resolve(), args.single_layer)

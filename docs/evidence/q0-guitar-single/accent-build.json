@@ -1,0 +1,28 @@
+{
+  "command": [
+    "clang++",
+    "-std=c++17",
+    "-O3",
+    "-DNDEBUG",
+    "-fno-fast-math",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-I/Users/serhansari/Documents/projects/djayvo/core/include",
+    "/Users/serhansari/Documents/projects/djayvo/tools/cli/remix_main.cpp",
+    "/Users/serhansari/Documents/projects/djayvo/tools/cli/plan_import.cpp",
+    "/Users/serhansari/Documents/projects/djayvo/renders/q0-guitar-single-20261020/voice.o",
+    "/Users/serhansari/Documents/projects/djayvo/build-mac/libjamloom_core.a",
+    "-o",
+    "/Users/serhansari/Documents/projects/djayvo/renders/q0-guitar-accents-20261020/jamloom_remix"
+  ],
+  "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+  "renderer_sha256": "99a6caf267f9c288a539de50fa9e5dd20354bda088a4957e97a214c20438b1d8",
+  "inputs_sha256": {
+    "/Users/serhansari/Documents/projects/djayvo/tools/cli/remix_main.cpp": "55f0bcc0bca814c18419c4a8019a121c8d4625ef526b97f6f0b913860571d4a7",
+    "/Users/serhansari/Documents/projects/djayvo/tools/cli/plan_import.cpp": "c90a3de515752888a534909678c663a1a929b8599a9953a3f20f2400446832fc",
+    "/Users/serhansari/Documents/projects/djayvo/renders/q0-guitar-single-20261020/voice.o": "a29100aa95dd634d9c420f4d06b24d6a161d6b4e4b1745cb8e792b612f56384c",
+    "/Users/serhansari/Documents/projects/djayvo/build-mac/libjamloom_core.a": "e0d0fe4f6f0e737ff972bde66a0a94c4794d904f4287e5ba3ec0fb63c5960a86"
+  },
+  "production_changed": false
+}

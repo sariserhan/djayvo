@@ -1,0 +1,11 @@
+--- a/core/instruments/voice.cpp
++++ b/core/instruments/voice.cpp
+@@ -21,7 +21,7 @@
+ #include "electronic_bank.inc"
+ #include "guitar_bank.inc"
+ const InstrumentSample& select_sample(Instrument instrument,int pitch,int velocity,std::uint32_t seed,bool electronic,bool muted) noexcept {
+-    const int layer=instrument==Instrument::guitar?(muted?127:velocity<=84?84:127):!electronic && instrument==Instrument::piano?(velocity<=55?55:velocity<=95?95:127):127;
++    const int layer=instrument==Instrument::guitar?(muted?127:84):!electronic && instrument==Instrument::piano?(velocity<=55?55:velocity<=95?95:127):127;
+     const unsigned take=(instrument==Instrument::bass || (electronic && instrument==Instrument::piano))?0:seed%2U;
+     const InstrumentSample* best=nullptr;
+     const auto* bank=instrument==Instrument::guitar?guitar_samples:electronic?electronic_samples:samples;

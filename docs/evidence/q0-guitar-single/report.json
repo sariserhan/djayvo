@@ -1,0 +1,1493 @@
+{
+  "version": "1.0-q0-guitar-single-layer",
+  "human_quality": "NOT RUN",
+  "calibration_window_ms": null,
+  "method": "Use the existing medium recorded layer at all unmuted guitar velocities; retain gain/tone response",
+  "gain": [],
+  "candidate_boundaries": [
+    {
+      "rate": "48000",
+      "pitch": "40",
+      "take": "0",
+      "delta_db": "0.14918563265221207",
+      "attack_delta_db": "0.14923799636683241",
+      "one_second_delta_db": "0.14916303448831719"
+    },
+    {
+      "rate": "48000",
+      "pitch": "40",
+      "take": "1",
+      "delta_db": "0.14917277565213513",
+      "attack_delta_db": "0.14924103450934972",
+      "one_second_delta_db": "0.14915084303748932"
+    },
+    {
+      "rate": "48000",
+      "pitch": "41",
+      "take": "0",
+      "delta_db": "0.14920122319925824",
+      "attack_delta_db": "0.14928327461083771",
+      "one_second_delta_db": "0.1491743541349978"
+    },
+    {
+      "rate": "48000",
+      "pitch": "41",
+      "take": "1",
+      "delta_db": "0.14918570320705424",
+      "attack_delta_db": "0.14930280170128496",
+      "one_second_delta_db": "0.1491613241926176"
+    },
+    {
+      "rate": "48000",
+      "pitch": "42",
+      "take": "0",
+      "delta_db": "0.14915063301243356",
+      "attack_delta_db": "0.14923397799442029",
+      "one_second_delta_db": "0.14913366071933612"
+    },
+    {
+      "rate": "48000",
+      "pitch": "42",
+      "take": "1",
+      "delta_db": "0.14915310293027426",
+      "attack_delta_db": "0.14927062892178744",
+      "one_second_delta_db": "0.14913092886457513"
+    },
+    {
+      "rate": "48000",
+      "pitch": "43",
+      "take": "0",
+      "delta_db": "0.1491581755645574",
+      "attack_delta_db": "0.14922839401853211",
+      "one_second_delta_db": "0.14914198533417727"
+    },
+    {
+      "rate": "48000",
+      "pitch": "43",
+      "take": "1",
+      "delta_db": "0.14915832199208506",
+      "attack_delta_db": "0.1492496143495855",
+      "one_second_delta_db": "0.14913854059928738"
+    },
+    {
+      "rate": "48000",
+      "pitch": "44",
+      "take": "0",
+      "delta_db": "0.14916917262549326",
+      "attack_delta_db": "0.14927769929624596",
+      "one_second_delta_db": "0.1491516014104334"
+    },
+    {
+      "rate": "48000",
+      "pitch": "44",
+      "take": "1",
+      "delta_db": "0.14916870886826047",
+      "attack_delta_db": "0.14929746906150929",
+      "one_second_delta_db": "0.14914737065912639"
+    },
+    {
+      "rate": "48000",
+      "pitch": "45",
+      "take": "0",
+      "delta_db": "0.14930931514387483",
+      "attack_delta_db": "0.1494008097564373",
+      "one_second_delta_db": "0.14928207052302678"
+    },
+    {
+      "rate": "48000",
+      "pitch": "45",
+      "take": "1",
+      "delta_db": "0.14929989888553089",
+      "attack_delta_db": "0.14938737618889444",
+      "one_second_delta_db": "0.14926862757702494"
+    },
+    {
+      "rate": "48000",
+      "pitch": "46",
+      "take": "0",
+      "delta_db": "0.14933709616146626",
+      "attack_delta_db": "0.14946546666614779",
+      "one_second_delta_db": "0.14930727489476553"
+    },
+    {
+      "rate": "48000",
+      "pitch": "46",
+      "take": "1",
+      "delta_db": "0.14932615378213884",
+      "attack_delta_db": "0.14946913667634651",
+      "one_second_delta_db": "0.14929167682461203"
+    },
+    {
+      "rate": "48000",
+      "pitch": "47",
+      "take": "0",
+      "delta_db": "0.14937155723418549",
+      "attack_delta_db": "0.14948704881058619",
+      "one_second_delta_db": "0.14933515858199595"
+    },
+    {
+      "rate": "48000",
+      "pitch": "47",
+      "take": "1",
+      "delta_db": "0.14935707293518244",
+      "attack_delta_db": "0.14947164403668534",
+      "one_second_delta_db": "0.14931714405420132"
+    },
+    {
+      "rate": "48000",
+      "pitch": "48",
+      "take": "0",
+      "delta_db": "0.1492808983858239",
+      "attack_delta_db": "0.14944838440457725",
+      "one_second_delta_db": "0.14924631164363983"
+    },
+    {
+      "rate": "48000",
+      "pitch": "48",
+      "take": "1",
+      "delta_db": "0.14921699270520669",
+      "attack_delta_db": "0.14935958323668247",
+      "one_second_delta_db": "0.1491908009543868"
+    },
+    {
+      "rate": "48000",
+      "pitch": "49",
+      "take": "0",
+      "delta_db": "0.14931095643758413",
+      "attack_delta_db": "0.14946109692207024",
+      "one_second_delta_db": "0.1492687727709795"
+    },
+    {
+      "rate": "48000",
+      "pitch": "49",
+      "take": "1",
+      "delta_db": "0.14923669446858834",
+      "attack_delta_db": "0.14937289613766677",
+      "one_second_delta_db": "0.14920745483347631"
+    },
+    {
+      "rate": "48000",
+      "pitch": "50",
+      "take": "0",
+      "delta_db": "0.14932952411022102",
+      "attack_delta_db": "0.1494959733941196",
+      "one_second_delta_db": "0.14928795125434799"
+    },
+    {
+      "rate": "48000",
+      "pitch": "50",
+      "take": "1",
+      "delta_db": "0.14925086834626652",
+      "attack_delta_db": "0.14939638873931821",
+      "one_second_delta_db": "0.14922157750989701"
+    },
+    {
+      "rate": "48000",
+      "pitch": "51",
+      "take": "0",
+      "delta_db": "0.14935799978934272",
+      "attack_delta_db": "0.14949371622658947",
+      "one_second_delta_db": "0.14932211500861248"
+    },
+    {
+      "rate": "48000",
+      "pitch": "51",
+      "take": "1",
+      "delta_db": "0.14935492378010931",
+      "attack_delta_db": "0.14944998734716589",
+      "one_second_delta_db": "0.14931961421619649"
+    },
+    {
+      "rate": "48000",
+      "pitch": "52",
+      "take": "0",
+      "delta_db": "0.14938840110229101",
+      "attack_delta_db": "0.14954513891053275",
+      "one_second_delta_db": "0.1493516841605893"
+    },
+    {
+      "rate": "48000",
+      "pitch": "52",
+      "take": "1",
+      "delta_db": "0.14938543696311546",
+      "attack_delta_db": "0.14950563237038239",
+      "one_second_delta_db": "0.14934831439760493"
+    },
+    {
+      "rate": "48000",
+      "pitch": "53",
+      "take": "0",
+      "delta_db": "0.14942331244544976",
+      "attack_delta_db": "0.14959623223060106",
+      "one_second_delta_db": "0.14938452328366542"
+    },
+    {
+      "rate": "48000",
+      "pitch": "53",
+      "take": "1",
+      "delta_db": "0.14942036616245899",
+      "attack_delta_db": "0.14953521811152001",
+      "one_second_delta_db": "0.14938001529744016"
+    },
+    {
+      "rate": "48000",
+      "pitch": "54",
+      "take": "0",
+      "delta_db": "0.14966736126507296",
+      "attack_delta_db": "0.14980286282147576",
+      "one_second_delta_db": "0.14961701008038619"
+    },
+    {
+      "rate": "48000",
+      "pitch": "54",
+      "take": "1",
+      "delta_db": "0.14965667947835415",
+      "attack_delta_db": "0.14980558502685706",
+      "one_second_delta_db": "0.14961632628431165"
+    },
+    {
+      "rate": "48000",
+      "pitch": "55",
+      "take": "0",
+      "delta_db": "0.14973117817689344",
+      "attack_delta_db": "0.14987719734128402",
+      "one_second_delta_db": "0.14967701318279639"
+    },
+    {
+      "rate": "48000",
+      "pitch": "55",
+      "take": "1",
+      "delta_db": "0.14972327281572922",
+      "attack_delta_db": "0.14983394963725413",
+      "one_second_delta_db": "0.14967732276210319"
+    },
+    {
+      "rate": "48000",
+      "pitch": "56",
+      "take": "0",
+      "delta_db": "0.14980788238072174",
+      "attack_delta_db": "0.14996189733593795",
+      "one_second_delta_db": "0.14974432318766806"
+    },
+    {
+      "rate": "48000",
+      "pitch": "56",
+      "take": "1",
+      "delta_db": "0.14979289045103369",
+      "attack_delta_db": "0.14991252218098611",
+      "one_second_delta_db": "0.1497469879965857"
+    },
+    {
+      "rate": "48000",
+      "pitch": "57",
+      "take": "0",
+      "delta_db": "0.1495767883556679",
+      "attack_delta_db": "0.14967336742950582",
+      "one_second_delta_db": "0.14953847875073908"
+    },
+    {
+      "rate": "48000",
+      "pitch": "57",
+      "take": "1",
+      "delta_db": "0.14949872577282938",
+      "attack_delta_db": "0.14956473540557702",
+      "one_second_delta_db": "0.14946778476616318"
+    },
+    {
+      "rate": "48000",
+      "pitch": "58",
+      "take": "0",
+      "delta_db": "0.14963491334973056",
+      "attack_delta_db": "0.14973455799922217",
+      "one_second_delta_db": "0.14959070651632056"
+    },
+    {
+      "rate": "48000",
+      "pitch": "58",
+      "take": "1",
+      "delta_db": "0.14954667436908389",
+      "attack_delta_db": "0.14966199094804888",
+      "one_second_delta_db": "0.14951436317493308"
+    },
+    {
+      "rate": "48000",
+      "pitch": "59",
+      "take": "0",
+      "delta_db": "0.14969914005497559",
+      "attack_delta_db": "0.14981139845252414",
+      "one_second_delta_db": "0.1496500061046134"
+    },
+    {
+      "rate": "48000",
+      "pitch": "59",
+      "take": "1",
+      "delta_db": "0.14960064460086525",
+      "attack_delta_db": "0.14968191348573329",
+      "one_second_delta_db": "0.14956567407352342"
+    },
+    {
+      "rate": "48000",
+      "pitch": "60",
+      "take": "0",
+      "delta_db": "0.15006271037394842",
+      "attack_delta_db": "0.1503911633708106",
+      "one_second_delta_db": "0.1499427371297743"
+    },
+    {
+      "rate": "48000",
+      "pitch": "60",
+      "take": "1",
+      "delta_db": "0.15008783256368011",
+      "attack_delta_db": "0.15043218773465092",
+      "one_second_delta_db": "0.14996640669473854"
+    },
+    {
+      "rate": "48000",
+      "pitch": "61",
+      "take": "0",
+      "delta_db": "0.15015978368482866",
+      "attack_delta_db": "0.15055732515141634",
+      "one_second_delta_db": "0.15003161056600448"
+    },
+    {
+      "rate": "48000",
+      "pitch": "61",
+      "take": "1",
+      "delta_db": "0.15018841643880479",
+      "attack_delta_db": "0.15056432096203798",
+      "one_second_delta_db": "0.1500593019467503"
+    },
+    {
+      "rate": "48000",
+      "pitch": "62",
+      "take": "0",
+      "delta_db": "0.15026290358022715",
+      "attack_delta_db": "0.15065170664586025",
+      "one_second_delta_db": "0.15012877423658094"
+    },
+    {
+      "rate": "48000",
+      "pitch": "62",
+      "take": "1",
+      "delta_db": "0.15029318158517732",
+      "attack_delta_db": "0.15069777567281689",
+      "one_second_delta_db": "0.15015731797703902"
+    },
+    {
+      "rate": "48000",
+      "pitch": "63",
+      "take": "0",
+      "delta_db": "0.15058302108674146",
+      "attack_delta_db": "0.15120950465755423",
+      "one_second_delta_db": "0.15036275192755288"
+    },
+    {
+      "rate": "48000",
+      "pitch": "63",
+      "take": "1",
+      "delta_db": "0.15005547202172992",
+      "attack_delta_db": "0.15020275481904241",
+      "one_second_delta_db": "0.14997456483855376"
+    },
+    {
+      "rate": "48000",
+      "pitch": "64",
+      "take": "0",
+      "delta_db": "0.15071348826661476",
+      "attack_delta_db": "0.15140362117648945",
+      "one_second_delta_db": "0.15048232917441343"
+    },
+    {
+      "rate": "48000",
+      "pitch": "64",
+      "take": "1",
+      "delta_db": "0.15015685954925717",
+      "attack_delta_db": "0.15031823455777377",
+      "one_second_delta_db": "0.15006817322321206"
+    },
+    {
+      "rate": "48000",
+      "pitch": "65",
+      "take": "0",
+      "delta_db": "0.15085289654795092",
+      "attack_delta_db": "0.15158646162927109",
+      "one_second_delta_db": "0.1506125003220973"
+    },
+    {
+      "rate": "48000",
+      "pitch": "65",
+      "take": "1",
+      "delta_db": "0.1502687452909526",
+      "attack_delta_db": "0.1504448191895571",
+      "one_second_delta_db": "0.15017412109620851"
+    },
+    {
+      "rate": "48000",
+      "pitch": "66",
+      "take": "0",
+      "delta_db": "0.15003998648718186",
+      "attack_delta_db": "0.15038249162304695",
+      "one_second_delta_db": "0.14986349507493354"
+    },
+    {
+      "rate": "48000",
+      "pitch": "66",
+      "take": "1",
+      "delta_db": "0.15003324214492753",
+      "attack_delta_db": "0.15031157817599167",
+      "one_second_delta_db": "0.14983140001670625"
+    },
+    {
+      "rate": "48000",
+      "pitch": "67",
+      "take": "0",
+      "delta_db": "0.15012704003330787",
+      "attack_delta_db": "0.15052559781357117",
+      "one_second_delta_db": "0.14994530652705815"
+    },
+    {
+      "rate": "48000",
+      "pitch": "67",
+      "take": "1",
+      "delta_db": "0.15012054945318537",
+      "attack_delta_db": "0.15042898190894805",
+      "one_second_delta_db": "0.14990796699345824"
+    },
+    {
+      "rate": "48000",
+      "pitch": "68",
+      "take": "0",
+      "delta_db": "0.15021558956143907",
+      "attack_delta_db": "0.1506848693701357",
+      "one_second_delta_db": "0.15003640835914644"
+    },
+    {
+      "rate": "48000",
+      "pitch": "68",
+      "take": "1",
+      "delta_db": "0.15021533993974723",
+      "attack_delta_db": "0.15057427648517374",
+      "one_second_delta_db": "0.14999147868936127"
+    },
+    {
+      "rate": "48000",
+      "pitch": "69",
+      "take": "0",
+      "delta_db": "0.15054705032292415",
+      "attack_delta_db": "0.15075396823945961",
+      "one_second_delta_db": "0.15049672608564701"
+    },
+    {
+      "rate": "48000",
+      "pitch": "69",
+      "take": "1",
+      "delta_db": "0.15026229257922671",
+      "attack_delta_db": "0.15043452816197911",
+      "one_second_delta_db": "0.15023829171501096"
+    },
+    {
+      "rate": "48000",
+      "pitch": "70",
+      "take": "0",
+      "delta_db": "0.15069594801865285",
+      "attack_delta_db": "0.15090997334100045",
+      "one_second_delta_db": "0.15064923447089182"
+    },
+    {
+      "rate": "48000",
+      "pitch": "70",
+      "take": "1",
+      "delta_db": "0.15038926740174788",
+      "attack_delta_db": "0.15053301083301959",
+      "one_second_delta_db": "0.15037102487853415"
+    },
+    {
+      "rate": "48000",
+      "pitch": "71",
+      "take": "0",
+      "delta_db": "0.15085776063479975",
+      "attack_delta_db": "0.15110331010953423",
+      "one_second_delta_db": "0.15081611867799644"
+    },
+    {
+      "rate": "48000",
+      "pitch": "71",
+      "take": "1",
+      "delta_db": "0.15053700492221095",
+      "attack_delta_db": "0.15068250218750803",
+      "one_second_delta_db": "0.1505188521633149"
+    },
+    {
+      "rate": "48000",
+      "pitch": "72",
+      "take": "0",
+      "delta_db": "0.15044108295516936",
+      "attack_delta_db": "0.15084942937606693",
+      "one_second_delta_db": "0.15024891371213256"
+    },
+    {
+      "rate": "48000",
+      "pitch": "72",
+      "take": "1",
+      "delta_db": "0.15034817965443759",
+      "attack_delta_db": "0.15072240090603894",
+      "one_second_delta_db": "0.15017858957290295"
+    },
+    {
+      "rate": "48000",
+      "pitch": "73",
+      "take": "0",
+      "delta_db": "0.15055287811898158",
+      "attack_delta_db": "0.15098178015110639",
+      "one_second_delta_db": "0.15035474710718766"
+    },
+    {
+      "rate": "48000",
+      "pitch": "73",
+      "take": "1",
+      "delta_db": "0.15046062515129535",
+      "attack_delta_db": "0.15088796786372799",
+      "one_second_delta_db": "0.15028598465954579"
+    },
+    {
+      "rate": "48000",
+      "pitch": "74",
+      "take": "0",
+      "delta_db": "0.15067413055769469",
+      "attack_delta_db": "0.1511633574859193",
+      "one_second_delta_db": "0.15046987649902327"
+    },
+    {
+      "rate": "48000",
+      "pitch": "74",
+      "take": "1",
+      "delta_db": "0.15058647061113389",
+      "attack_delta_db": "0.15104292360009763",
+      "one_second_delta_db": "0.15040357718809283"
+    },
+    {
+      "rate": "48000",
+      "pitch": "75",
+      "take": "0",
+      "delta_db": "0.15025878235095078",
+      "attack_delta_db": "0.15042978140933366",
+      "one_second_delta_db": "0.15016129658244526"
+    },
+    {
+      "rate": "48000",
+      "pitch": "75",
+      "take": "1",
+      "delta_db": "0.15030356617957552",
+      "attack_delta_db": "0.15055684785664716",
+      "one_second_delta_db": "0.15019796099471755"
+    },
+    {
+      "rate": "48000",
+      "pitch": "76",
+      "take": "0",
+      "delta_db": "0.15037520329293902",
+      "attack_delta_db": "0.15057604916364545",
+      "one_second_delta_db": "0.15027650674799473"
+    },
+    {
+      "rate": "48000",
+      "pitch": "76",
+      "take": "1",
+      "delta_db": "0.15041992319067721",
+      "attack_delta_db": "0.15068796141328886",
+      "one_second_delta_db": "0.15031364776487599"
+    },
+    {
+      "rate": "48000",
+      "pitch": "77",
+      "take": "0",
+      "delta_db": "0.15050177625727906",
+      "attack_delta_db": "0.15072879981435736",
+      "one_second_delta_db": "0.15040292622474802"
+    },
+    {
+      "rate": "48000",
+      "pitch": "77",
+      "take": "1",
+      "delta_db": "0.15054876355370828",
+      "attack_delta_db": "0.15084421366825138",
+      "one_second_delta_db": "0.15044152750740711"
+    },
+    {
+      "rate": "48000",
+      "pitch": "78",
+      "take": "0",
+      "delta_db": "0.15064190400004213",
+      "attack_delta_db": "0.15089909871846308",
+      "one_second_delta_db": "0.15054311790971281"
+    },
+    {
+      "rate": "48000",
+      "pitch": "78",
+      "take": "1",
+      "delta_db": "0.1506886034387501",
+      "attack_delta_db": "0.15100238630373208",
+      "one_second_delta_db": "0.15058179702352595"
+    },
+    {
+      "rate": "48000",
+      "pitch": "79",
+      "take": "0",
+      "delta_db": "0.15079455390829039",
+      "attack_delta_db": "0.15106549411243098",
+      "one_second_delta_db": "0.15069781155156131"
+    },
+    {
+      "rate": "48000",
+      "pitch": "79",
+      "take": "1",
+      "delta_db": "0.15084239206556815",
+      "attack_delta_db": "0.15119362330921068",
+      "one_second_delta_db": "0.15073645988136966"
+    },
+    {
+      "rate": "16000",
+      "pitch": "40",
+      "take": "0",
+      "delta_db": "0.14917593542774515",
+      "attack_delta_db": "0.14922502909662211",
+      "one_second_delta_db": "0.14915494446056252"
+    },
+    {
+      "rate": "16000",
+      "pitch": "40",
+      "take": "1",
+      "delta_db": "0.149164021971112",
+      "attack_delta_db": "0.14922771673853752",
+      "one_second_delta_db": "0.14914359547007036"
+    },
+    {
+      "rate": "16000",
+      "pitch": "41",
+      "take": "0",
+      "delta_db": "0.14919040408792889",
+      "attack_delta_db": "0.14926100402074499",
+      "one_second_delta_db": "0.14916541320370491"
+    },
+    {
+      "rate": "16000",
+      "pitch": "41",
+      "take": "1",
+      "delta_db": "0.14917603673930693",
+      "attack_delta_db": "0.14927610475068429",
+      "one_second_delta_db": "0.14915326922146904"
+    },
+    {
+      "rate": "16000",
+      "pitch": "42",
+      "take": "0",
+      "delta_db": "0.14914282465655401",
+      "attack_delta_db": "0.14921546453606963",
+      "one_second_delta_db": "0.14912753433117376"
+    },
+    {
+      "rate": "16000",
+      "pitch": "42",
+      "take": "1",
+      "delta_db": "0.14914490011009834",
+      "attack_delta_db": "0.14924848157061207",
+      "one_second_delta_db": "0.14912512687852755"
+    },
+    {
+      "rate": "16000",
+      "pitch": "43",
+      "take": "0",
+      "delta_db": "0.14915049817870352",
+      "attack_delta_db": "0.14921608486831645",
+      "one_second_delta_db": "0.14913539708120119"
+    },
+    {
+      "rate": "16000",
+      "pitch": "43",
+      "take": "1",
+      "delta_db": "0.14915081991745449",
+      "attack_delta_db": "0.14923621771621104",
+      "one_second_delta_db": "0.14913232848220531"
+    },
+    {
+      "rate": "16000",
+      "pitch": "44",
+      "take": "0",
+      "delta_db": "0.14916071087950217",
+      "attack_delta_db": "0.14925442822645901",
+      "one_second_delta_db": "0.14914432570951758"
+    },
+    {
+      "rate": "16000",
+      "pitch": "44",
+      "take": "1",
+      "delta_db": "0.1491604262177128",
+      "attack_delta_db": "0.14927380336331533",
+      "one_second_delta_db": "0.14914049845475819"
+    },
+    {
+      "rate": "16000",
+      "pitch": "45",
+      "take": "0",
+      "delta_db": "0.14929067408937802",
+      "attack_delta_db": "0.14937625425530932",
+      "one_second_delta_db": "0.14926524351454662"
+    },
+    {
+      "rate": "16000",
+      "pitch": "45",
+      "take": "1",
+      "delta_db": "0.14928203675258866",
+      "attack_delta_db": "0.14936390230994437",
+      "one_second_delta_db": "0.1492528382194612"
+    },
+    {
+      "rate": "16000",
+      "pitch": "46",
+      "take": "0",
+      "delta_db": "0.14931675264315272",
+      "attack_delta_db": "0.14943104648840366",
+      "one_second_delta_db": "0.14928883465374673"
+    },
+    {
+      "rate": "16000",
+      "pitch": "46",
+      "take": "1",
+      "delta_db": "0.1493067394090471",
+      "attack_delta_db": "0.14943185669711304",
+      "one_second_delta_db": "0.14927449217710723"
+    },
+    {
+      "rate": "16000",
+      "pitch": "47",
+      "take": "0",
+      "delta_db": "0.14934801925950705",
+      "attack_delta_db": "0.14945674436458239",
+      "one_second_delta_db": "0.14931493368237736"
+    },
+    {
+      "rate": "16000",
+      "pitch": "47",
+      "take": "1",
+      "delta_db": "0.14933510017472096",
+      "attack_delta_db": "0.14944313483054067",
+      "one_second_delta_db": "0.14929838851274391"
+    },
+    {
+      "rate": "16000",
+      "pitch": "48",
+      "take": "0",
+      "delta_db": "0.14926412356551888",
+      "attack_delta_db": "0.14941326655055309",
+      "one_second_delta_db": "0.14923191573694228"
+    },
+    {
+      "rate": "16000",
+      "pitch": "48",
+      "take": "1",
+      "delta_db": "0.14920459818291104",
+      "attack_delta_db": "0.1493328785660189",
+      "one_second_delta_db": "0.14918053019018318"
+    },
+    {
+      "rate": "16000",
+      "pitch": "49",
+      "take": "0",
+      "delta_db": "0.14929086709968997",
+      "attack_delta_db": "0.14943264576210524",
+      "one_second_delta_db": "0.14925233873070731"
+    },
+    {
+      "rate": "16000",
+      "pitch": "49",
+      "take": "1",
+      "delta_db": "0.14922242337367886",
+      "attack_delta_db": "0.14934979558451575",
+      "one_second_delta_db": "0.14919556704629958"
+    },
+    {
+      "rate": "16000",
+      "pitch": "50",
+      "take": "0",
+      "delta_db": "0.14930991233151006",
+      "attack_delta_db": "0.14946573180117373",
+      "one_second_delta_db": "0.14927097371043624"
+    },
+    {
+      "rate": "16000",
+      "pitch": "50",
+      "take": "1",
+      "delta_db": "0.14923656720201769",
+      "attack_delta_db": "0.14937246019113634",
+      "one_second_delta_db": "0.14920920784752534"
+    },
+    {
+      "rate": "16000",
+      "pitch": "51",
+      "take": "0",
+      "delta_db": "0.14933609656177263",
+      "attack_delta_db": "0.14945714508046884",
+      "one_second_delta_db": "0.14930262981371537"
+    },
+    {
+      "rate": "16000",
+      "pitch": "51",
+      "take": "1",
+      "delta_db": "0.14933395225056323",
+      "attack_delta_db": "0.14941539845832424",
+      "one_second_delta_db": "0.14930078697201921"
+    },
+    {
+      "rate": "16000",
+      "pitch": "52",
+      "take": "0",
+      "delta_db": "0.14936480212120976",
+      "attack_delta_db": "0.14950528831362225",
+      "one_second_delta_db": "0.14933025841433267"
+    },
+    {
+      "rate": "16000",
+      "pitch": "52",
+      "take": "1",
+      "delta_db": "0.14936279396174773",
+      "attack_delta_db": "0.1494650840807788",
+      "one_second_delta_db": "0.14932773940663152"
+    },
+    {
+      "rate": "16000",
+      "pitch": "53",
+      "take": "0",
+      "delta_db": "0.14939754873949659",
+      "attack_delta_db": "0.14955273811227779",
+      "one_second_delta_db": "0.14936097507592183"
+    },
+    {
+      "rate": "16000",
+      "pitch": "53",
+      "take": "1",
+      "delta_db": "0.14939547638225603",
+      "attack_delta_db": "0.14949569164944104",
+      "one_second_delta_db": "0.14935746511739825"
+    },
+    {
+      "rate": "16000",
+      "pitch": "54",
+      "take": "0",
+      "delta_db": "0.14962580359299282",
+      "attack_delta_db": "0.1497542772897148",
+      "one_second_delta_db": "0.14957801586174022"
+    },
+    {
+      "rate": "16000",
+      "pitch": "54",
+      "take": "1",
+      "delta_db": "0.1496154660526533",
+      "attack_delta_db": "0.14974559054037023",
+      "one_second_delta_db": "0.1495770975049068"
+    },
+    {
+      "rate": "16000",
+      "pitch": "55",
+      "take": "0",
+      "delta_db": "0.14968589101705623",
+      "attack_delta_db": "0.14982517531029474",
+      "one_second_delta_db": "0.14963448933013151"
+    },
+    {
+      "rate": "16000",
+      "pitch": "55",
+      "take": "1",
+      "delta_db": "0.14967781461970006",
+      "attack_delta_db": "0.14978355246142744",
+      "one_second_delta_db": "0.14963438939273829"
+    },
+    {
+      "rate": "16000",
+      "pitch": "56",
+      "take": "0",
+      "delta_db": "0.14975661170054372",
+      "attack_delta_db": "0.14990574527725115",
+      "one_second_delta_db": "0.14969740374146356"
+    },
+    {
+      "rate": "16000",
+      "pitch": "56",
+      "take": "1",
+      "delta_db": "0.14974366237207795",
+      "attack_delta_db": "0.14985845273498288",
+      "one_second_delta_db": "0.14969925858149599"
+    },
+    {
+      "rate": "16000",
+      "pitch": "57",
+      "take": "0",
+      "delta_db": "0.14954028411986162",
+      "attack_delta_db": "0.14963199178777417",
+      "one_second_delta_db": "0.14950396912851124"
+    },
+    {
+      "rate": "16000",
+      "pitch": "57",
+      "take": "1",
+      "delta_db": "0.14946680856021877",
+      "attack_delta_db": "0.14952939793607462",
+      "one_second_delta_db": "0.1494379496791966"
+    },
+    {
+      "rate": "16000",
+      "pitch": "58",
+      "take": "0",
+      "delta_db": "0.1495946231888613",
+      "attack_delta_db": "0.14969000685830558",
+      "one_second_delta_db": "0.14955321588814224"
+    },
+    {
+      "rate": "16000",
+      "pitch": "58",
+      "take": "1",
+      "delta_db": "0.14951196628438013",
+      "attack_delta_db": "0.14961011204474525",
+      "one_second_delta_db": "0.14948151575494056"
+    },
+    {
+      "rate": "16000",
+      "pitch": "59",
+      "take": "0",
+      "delta_db": "0.14965434511458914",
+      "attack_delta_db": "0.14976231933836631",
+      "one_second_delta_db": "0.14960862391019505"
+    },
+    {
+      "rate": "16000",
+      "pitch": "59",
+      "take": "1",
+      "delta_db": "0.14956250849405889",
+      "attack_delta_db": "0.14963970108583882",
+      "one_second_delta_db": "0.14952954133016555"
+    },
+    {
+      "rate": "16000",
+      "pitch": "60",
+      "take": "0",
+      "delta_db": "0.14999799468394076",
+      "attack_delta_db": "0.15031094139283077",
+      "one_second_delta_db": "0.14988406307496138"
+    },
+    {
+      "rate": "16000",
+      "pitch": "60",
+      "take": "1",
+      "delta_db": "0.15002159704686854",
+      "attack_delta_db": "0.15034994359165563",
+      "one_second_delta_db": "0.14990622774177007"
+    },
+    {
+      "rate": "16000",
+      "pitch": "61",
+      "take": "0",
+      "delta_db": "0.15008923020018045",
+      "attack_delta_db": "0.15046186060655076",
+      "one_second_delta_db": "0.14996755530574876"
+    },
+    {
+      "rate": "16000",
+      "pitch": "61",
+      "take": "1",
+      "delta_db": "0.15011550178045449",
+      "attack_delta_db": "0.15047323451827704",
+      "one_second_delta_db": "0.14999294282521625"
+    },
+    {
+      "rate": "16000",
+      "pitch": "62",
+      "take": "0",
+      "delta_db": "0.15018600712096861",
+      "attack_delta_db": "0.15055688953776372",
+      "one_second_delta_db": "0.15005852669510811"
+    },
+    {
+      "rate": "16000",
+      "pitch": "62",
+      "take": "1",
+      "delta_db": "0.15021398403281969",
+      "attack_delta_db": "0.15059841869436832",
+      "one_second_delta_db": "0.15008495362834445"
+    },
+    {
+      "rate": "16000",
+      "pitch": "63",
+      "take": "0",
+      "delta_db": "0.15049315303809435",
+      "attack_delta_db": "0.1510919025362108",
+      "one_second_delta_db": "0.15028240636917564"
+    },
+    {
+      "rate": "16000",
+      "pitch": "63",
+      "take": "1",
+      "delta_db": "0.14998483418059549",
+      "attack_delta_db": "0.15012113662779708",
+      "one_second_delta_db": "0.14990861395107463"
+    },
+    {
+      "rate": "16000",
+      "pitch": "64",
+      "take": "0",
+      "delta_db": "0.15061748009308795",
+      "attack_delta_db": "0.15127597617852812",
+      "one_second_delta_db": "0.1503959684249474"
+    },
+    {
+      "rate": "16000",
+      "pitch": "64",
+      "take": "1",
+      "delta_db": "0.15007874865533036",
+      "attack_delta_db": "0.15022712645758865",
+      "one_second_delta_db": "0.14999591281301006"
+    },
+    {
+      "rate": "16000",
+      "pitch": "65",
+      "take": "0",
+      "delta_db": "0.15075185231845176",
+      "attack_delta_db": "0.1514565143671297",
+      "one_second_delta_db": "0.15052065121102126"
+    },
+    {
+      "rate": "16000",
+      "pitch": "65",
+      "take": "1",
+      "delta_db": "0.15018342672910376",
+      "attack_delta_db": "0.15034559788684032",
+      "one_second_delta_db": "0.15009492590711915"
+    },
+    {
+      "rate": "16000",
+      "pitch": "66",
+      "take": "0",
+      "delta_db": "0.14997438154217144",
+      "attack_delta_db": "0.15029852376076444",
+      "one_second_delta_db": "0.14980904578333876"
+    },
+    {
+      "rate": "16000",
+      "pitch": "66",
+      "take": "1",
+      "delta_db": "0.14996807324270395",
+      "attack_delta_db": "0.1502296909887518",
+      "one_second_delta_db": "0.14977808492437047"
+    },
+    {
+      "rate": "16000",
+      "pitch": "67",
+      "take": "0",
+      "delta_db": "0.15005596386906486",
+      "attack_delta_db": "0.1504305327514292",
+      "one_second_delta_db": "0.14988588077060969"
+    },
+    {
+      "rate": "16000",
+      "pitch": "67",
+      "take": "1",
+      "delta_db": "0.15005016708594748",
+      "attack_delta_db": "0.15034212931033966",
+      "one_second_delta_db": "0.14984977429539476"
+    },
+    {
+      "rate": "16000",
+      "pitch": "68",
+      "take": "0",
+      "delta_db": "0.15014154989168096",
+      "attack_delta_db": "0.15058121760991497",
+      "one_second_delta_db": "0.14997185686169084"
+    },
+    {
+      "rate": "16000",
+      "pitch": "68",
+      "take": "1",
+      "delta_db": "0.15013956954104715",
+      "attack_delta_db": "0.15047815598324746",
+      "one_second_delta_db": "0.14992885783196586"
+    },
+    {
+      "rate": "16000",
+      "pitch": "69",
+      "take": "0",
+      "delta_db": "0.15045463918356286",
+      "attack_delta_db": "0.15065338284777247",
+      "one_second_delta_db": "0.15040421969528256"
+    },
+    {
+      "rate": "16000",
+      "pitch": "69",
+      "take": "1",
+      "delta_db": "0.1501795699368359",
+      "attack_delta_db": "0.15033848401197558",
+      "one_second_delta_db": "0.15015613170179112"
+    },
+    {
+      "rate": "16000",
+      "pitch": "70",
+      "take": "0",
+      "delta_db": "0.15059518615006939",
+      "attack_delta_db": "0.15080122684966399",
+      "one_second_delta_db": "0.15054767830621521"
+    },
+    {
+      "rate": "16000",
+      "pitch": "70",
+      "take": "1",
+      "delta_db": "0.15029898081848442",
+      "attack_delta_db": "0.15043856870102704",
+      "one_second_delta_db": "0.15028021767872579"
+    },
+    {
+      "rate": "16000",
+      "pitch": "71",
+      "take": "0",
+      "delta_db": "0.15074918823127356",
+      "attack_delta_db": "0.15098094580507787",
+      "one_second_delta_db": "0.15070572505944435"
+    },
+    {
+      "rate": "16000",
+      "pitch": "71",
+      "take": "1",
+      "delta_db": "0.15043683956304729",
+      "attack_delta_db": "0.15058019616879556",
+      "one_second_delta_db": "0.15041871675777579"
+    },
+    {
+      "rate": "16000",
+      "pitch": "72",
+      "take": "0",
+      "delta_db": "0.15036466532474616",
+      "attack_delta_db": "0.15074887245069929",
+      "one_second_delta_db": "0.15018118060263075"
+    },
+    {
+      "rate": "16000",
+      "pitch": "72",
+      "take": "1",
+      "delta_db": "0.15026902825894886",
+      "attack_delta_db": "0.15061893970175305",
+      "one_second_delta_db": "0.15010850971237405"
+    },
+    {
+      "rate": "16000",
+      "pitch": "73",
+      "take": "0",
+      "delta_db": "0.15047174086504322",
+      "attack_delta_db": "0.15087820589257306",
+      "one_second_delta_db": "0.1502819522768461"
+    },
+    {
+      "rate": "16000",
+      "pitch": "73",
+      "take": "1",
+      "delta_db": "0.15037621235294929",
+      "attack_delta_db": "0.15077773016570681",
+      "one_second_delta_db": "0.15020986416856436"
+    },
+    {
+      "rate": "16000",
+      "pitch": "74",
+      "take": "0",
+      "delta_db": "0.15058922023116167",
+      "attack_delta_db": "0.15105380131244797",
+      "one_second_delta_db": "0.15039278604711634"
+    },
+    {
+      "rate": "16000",
+      "pitch": "74",
+      "take": "1",
+      "delta_db": "0.15049573380860393",
+      "attack_delta_db": "0.15092851499048271",
+      "one_second_delta_db": "0.15032148554162506"
+    },
+    {
+      "rate": "16000",
+      "pitch": "75",
+      "take": "0",
+      "delta_db": "0.15018276386299939",
+      "attack_delta_db": "0.15034597173319225",
+      "one_second_delta_db": "0.15008887720485359"
+    },
+    {
+      "rate": "16000",
+      "pitch": "75",
+      "take": "1",
+      "delta_db": "0.15022773389923885",
+      "attack_delta_db": "0.1504652842204732",
+      "one_second_delta_db": "0.15012573546426086"
+    },
+    {
+      "rate": "16000",
+      "pitch": "76",
+      "take": "0",
+      "delta_db": "0.15029195672727136",
+      "attack_delta_db": "0.15048231210938323",
+      "one_second_delta_db": "0.15019677333927575"
+    },
+    {
+      "rate": "16000",
+      "pitch": "76",
+      "take": "1",
+      "delta_db": "0.15033815746492871",
+      "attack_delta_db": "0.15059348367292527",
+      "one_second_delta_db": "0.15023497064033239"
+    },
+    {
+      "rate": "16000",
+      "pitch": "77",
+      "take": "0",
+      "delta_db": "0.15041204418300297",
+      "attack_delta_db": "0.15062542193375256",
+      "one_second_delta_db": "0.15031599964264075"
+    },
+    {
+      "rate": "16000",
+      "pitch": "77",
+      "take": "1",
+      "delta_db": "0.15046113174363865",
+      "attack_delta_db": "0.15074551872130482",
+      "one_second_delta_db": "0.1503563711882194"
+    },
+    {
+      "rate": "16000",
+      "pitch": "78",
+      "take": "0",
+      "delta_db": "0.15054527713626489",
+      "attack_delta_db": "0.15078690934769126",
+      "one_second_delta_db": "0.15044871784032782"
+    },
+    {
+      "rate": "16000",
+      "pitch": "78",
+      "take": "1",
+      "delta_db": "0.1505955705496638",
+      "attack_delta_db": "0.1509011158086761",
+      "one_second_delta_db": "0.15049023825527119"
+    },
+    {
+      "rate": "16000",
+      "pitch": "79",
+      "take": "0",
+      "delta_db": "0.15069085582598274",
+      "attack_delta_db": "0.150953314760537",
+      "one_second_delta_db": "0.15059517301793157"
+    },
+    {
+      "rate": "16000",
+      "pitch": "79",
+      "take": "1",
+      "delta_db": "0.15074217229801118",
+      "attack_delta_db": "0.15108418576232308",
+      "one_second_delta_db": "0.15063711370007279"
+    }
+  ],
+  "matching": [
+    {
+      "code": "guitar-49-0-1",
+      "target_lufs": -23.0,
+      "gain_db": -0.5899999999999999,
+      "matched": {
+        "input_i": "-22.99",
+        "input_tp": "-10.13",
+        "input_lra": "2.50",
+        "input_thresh": "-33.43"
+      }
+    },
+    {
+      "code": "guitar-49-0-2",
+      "target_lufs": -23.0,
+      "gain_db": 1.6999999999999993,
+      "matched": {
+        "input_i": "-23.00",
+        "input_tp": "-7.82",
+        "input_lra": "1.80",
+        "input_thresh": "-33.44"
+      }
+    },
+    {
+      "code": "guitar-49-1-1",
+      "target_lufs": -23.0,
+      "gain_db": -0.41000000000000014,
+      "matched": {
+        "input_i": "-23.00",
+        "input_tp": "-9.83",
+        "input_lra": "2.50",
+        "input_thresh": "-33.44"
+      }
+    },
+    {
+      "code": "guitar-49-1-2",
+      "target_lufs": -23.0,
+      "gain_db": 1.5899999999999999,
+      "matched": {
+        "input_i": "-23.00",
+        "input_tp": "-7.85",
+        "input_lra": "1.40",
+        "input_thresh": "-33.44"
+      }
+    },
+    {
+      "code": "guitar-61-0-1",
+      "target_lufs": -23.0,
+      "gain_db": -0.129999999999999,
+      "matched": {
+        "input_i": "-23.01",
+        "input_tp": "-9.81",
+        "input_lra": "2.50",
+        "input_thresh": "-33.53"
+      }
+    },
+    {
+      "code": "guitar-61-0-2",
+      "target_lufs": -23.0,
+      "gain_db": 4.25,
+      "matched": {
+        "input_i": "-23.00",
+        "input_tp": "-5.56",
+        "input_lra": "7.10",
+        "input_thresh": "-33.58"
+      }
+    },
+    {
+      "code": "guitar-61-1-1",
+      "target_lufs": -23.0,
+      "gain_db": 0.030000000000001137,
+      "matched": {
+        "input_i": "-23.00",
+        "input_tp": "-9.59",
+        "input_lra": "2.50",
+        "input_thresh": "-33.52"
+      }
+    },
+    {
+      "code": "guitar-61-1-2",
+      "target_lufs": -23.0,
+      "gain_db": 4.489999999999998,
+      "matched": {
+        "input_i": "-23.01",
+        "input_tp": "-5.16",
+        "input_lra": "7.40",
+        "input_thresh": "-33.58"
+      }
+    },
+    {
+      "code": "guitar-73-0-1",
+      "target_lufs": -23.0,
+      "gain_db": -2.4800000000000004,
+      "matched": {
+        "input_i": "-22.99",
+        "input_tp": "-12.12",
+        "input_lra": "2.60",
+        "input_thresh": "-33.52"
+      }
+    },
+    {
+      "code": "guitar-73-0-2",
+      "target_lufs": -23.0,
+      "gain_db": 1.9899999999999984,
+      "matched": {
+        "input_i": "-23.05",
+        "input_tp": "-7.88",
+        "input_lra": "10.70",
+        "input_thresh": "-34.25"
+      }
+    },
+    {
+      "code": "guitar-73-1-1",
+      "target_lufs": -23.0,
+      "gain_db": -2.780000000000001,
+      "matched": {
+        "input_i": "-23.00",
+        "input_tp": "-12.37",
+        "input_lra": "2.60",
+        "input_thresh": "-33.56"
+      }
+    },
+    {
+      "code": "guitar-73-1-2",
+      "target_lufs": -23.0,
+      "gain_db": 1.3099999999999987,
+      "matched": {
+        "input_i": "-23.01",
+        "input_tp": "-8.68",
+        "input_lra": "13.80",
+        "input_thresh": "-34.94"
+      }
+    }
+  ],
+  "replay": "PASS",
+  "preserved_components": [
+    "piano",
+    "muted guitar",
+    "soft guitar"
+  ],
+  "component_preservation": "PASS",
+  "production_changed": false,
+  "files_sha256": {
+    "baseline/guitar-49-0.wav": "3c4eef0c3951c3dc1cfa64e97d9d80ef4414e99d3e89e1a6d44f4aa7b3492683",
+    "baseline/guitar-49-1.wav": "6213a9234ecd0888a9c5e7f688232887d9beb5e32abaa02aa9c588a1206b6f57",
+    "baseline/guitar-61-0.wav": "233f434c8e4dea6348e01a3c25bdffe3b0f4a0d3f7dd63a0276844531612f474",
+    "baseline/guitar-61-1-muted.wav": "6b687c9b9f8bcab7ae27dffb65ca2760dba5a6f4a2348577b86e3080dbb30e88",
+    "baseline/guitar-61-1.wav": "21051ae8bb3eaa127cd845f39dea2f3030d5bbb7e5dd5408e0bed56ffc2f7b8c",
+    "baseline/guitar-73-0.wav": "2ee45b309a8d6354400ee5449724fed8f4e351be6bfcce67bd18e7b470d771e2",
+    "baseline/guitar-73-1.wav": "ac43c459e9756f7607254946872d5cdebfd6d0a27462c373ad98e73a7daf6624",
+    "baseline/piano-61-1.wav": "1669d36ba0538e19dce4274c0300232e46e8d7e5bc9faf987768edf69996be1d",
+    "baseline-probe": "44aae4958cdf96b09aaeb27c25101f1ace396ef789e911e3e2da84e60f033b9d",
+    "baseline.csv": "306df00f494ed5ea66cad8d50665fc7a99bf2913209b09f73b68bfc11d2134f5",
+    "candidate/guitar-49-0.wav": "343678fbcf5159d2d215999f55ac9fe0f9bd24d0dc709377b3c85d41caf4ec46",
+    "candidate/guitar-49-1.wav": "676c9352c056956f52229c1264bcb8227f80578f26d73d2d78dcb028b10f5926",
+    "candidate/guitar-61-0.wav": "136e557b897f89b79dcd0a7e570140a2268dc0f4ee2665c614c3063efd581cff",
+    "candidate/guitar-61-1-muted.wav": "6b687c9b9f8bcab7ae27dffb65ca2760dba5a6f4a2348577b86e3080dbb30e88",
+    "candidate/guitar-61-1.wav": "ed81fdea88508c7846dc0c15656286abe5ef9e790e85630411f7ac21207bb5c8",
+    "candidate/guitar-73-0.wav": "6b6405df633da6284281a179ef2a812a4755a94cceb5cc3bd98b1c87b4d04d87",
+    "candidate/guitar-73-1.wav": "38057a734ec791a673e34401e40c075812e70ca837f13d75d0c19ffc94d2b835",
+    "candidate/piano-61-1.wav": "1669d36ba0538e19dce4274c0300232e46e8d7e5bc9faf987768edf69996be1d",
+    "candidate-probe": "a16c9be48f6bc561eb4b2bd09b301ee0e9572be4c91dfc48eb7d3ae467aa15df",
+    "candidate.csv": "9c974da9d6188bfabdffc82aebedfb18a5a9da2e5160382ce48b107fa55e42d6",
+    "candidate.patch": "3b9267ed54a7f6ee996a0ad008dd1820101de4724f1cb817fa6adfb88dc5acad",
+    "listener/guitar-49-0-1.wav": "81fb31b062fc9112f1b37149a87395269d5061a698a75a70afe01427910bf100",
+    "listener/guitar-49-0-2.wav": "2fa8513cc57b239d101d4516596a9c3db2f9095ba8a9251108787e4b405be4d2",
+    "listener/guitar-49-1-1.wav": "1f6a0519a92281057df97c14ead8db0d447026f6b103f643c367148bdca853fe",
+    "listener/guitar-49-1-2.wav": "83e4482508a27996de75d9405262a7ae0cb927cc33609faed3db83a1ca4c0bfc",
+    "listener/guitar-61-0-1.wav": "56a503006480adb66a9a02128429a08966f5c67de754b03f8a492f230c7bcb35",
+    "listener/guitar-61-0-2.wav": "e81abfcd7c2a82aeb93ab66a815267d7949a9026083afc23089315972e2ac81e",
+    "listener/guitar-61-1-1.wav": "9133ba78b50b562797f4dd65b49aa5d237a9862d1968b3f00a796cb7ad844a90",
+    "listener/guitar-61-1-2.wav": "db0fc4e339a16f001d7c303626da60c438f4f7b5493e8937145874ea78958746",
+    "listener/guitar-73-0-1.wav": "e317da87e484b052aebcbc292dc02d9e40c95625fcacdd2e675ba75c228a9d09",
+    "listener/guitar-73-0-2.wav": "0a7cc24e691cbfe0a8e735457268a589732157a86b55bb4ac65001fa491fd976",
+    "listener/guitar-73-1-1.wav": "ff5a5d16dadccb0013d8e469d3b27627845fdd4858558ea9dae606d573753ad7",
+    "listener/guitar-73-1-2.wav": "1621406fe949553ab43523837f02d3085cb989569d45f34a6c91eb7b2e1e2dab",
+    "listener/index.html": "3a589bc477acab777d8c9c4d9969e503a3fc5f82be85a43820cbb1d272681fe3",
+    "listener/packet.json": "6e8c4ba44bcff503d2cbb1bddc06af3f0f15d22bacae31f5863d16e59a58bf79",
+    "live_tests": "c00c0edcc9b044189d99c7b5548f5b86339148719c598463e24b873352ea5e51",
+    "native-tests.log": "c0b7d8e2a4a6897a65e766a373ec560fb323ce6636242bd0ed86d81c1e9bfabf",
+    "organizer-key.json": "fcce2207475709b6e0ccfe045554909012b8d26a20491f7e031192000d6de5fa",
+    "remix_tests": "bd216fc8c3fde4ebce7387c12a0ba6a2fd529ce255f56124f77b09012b41e2a7",
+    "replay/guitar-49-0.wav": "343678fbcf5159d2d215999f55ac9fe0f9bd24d0dc709377b3c85d41caf4ec46",
+    "replay/guitar-49-1.wav": "676c9352c056956f52229c1264bcb8227f80578f26d73d2d78dcb028b10f5926",
+    "replay/guitar-61-0.wav": "136e557b897f89b79dcd0a7e570140a2268dc0f4ee2665c614c3063efd581cff",
+    "replay/guitar-61-1-muted.wav": "6b687c9b9f8bcab7ae27dffb65ca2760dba5a6f4a2348577b86e3080dbb30e88",
+    "replay/guitar-61-1.wav": "ed81fdea88508c7846dc0c15656286abe5ef9e790e85630411f7ac21207bb5c8",
+    "replay/guitar-73-0.wav": "6b6405df633da6284281a179ef2a812a4755a94cceb5cc3bd98b1c87b4d04d87",
+    "replay/guitar-73-1.wav": "38057a734ec791a673e34401e40c075812e70ca837f13d75d0c19ffc94d2b835",
+    "replay/piano-61-1.wav": "1669d36ba0538e19dce4274c0300232e46e8d7e5bc9faf987768edf69996be1d",
+    "replay-probe": "0e6cd488d370040f5a4b79d5d3fccadc232ce6932eba1db2b0af8d3e20efe868",
+    "replay.csv": "9c974da9d6188bfabdffc82aebedfb18a5a9da2e5160382ce48b107fa55e42d6",
+    "tests": "c4ff9e9337dbf2472314b7a80b527b290821f66ae7de9e94427b097a69f578fb",
+    "voice.cpp": "39f270726673d451dd8fe279a2a8eb43eac65a156c289f3d56d967d25b17bfbc",
+    "voice.o": "a29100aa95dd634d9c420f4d06b24d6a161d6b4e4b1745cb8e792b612f56384c"
+  },
+  "preserved_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "jamloom_improvisation_learning_addendum_v1.md": "5bfe33e037f4d0aff6910ba3dbc55ce090e96b0ee772fdc834d94a12aa29941d",
+    "build-mac/jamloom_remix": "bd20df4c419cacc20603d48c7e96caa7db34f78385333bb77966bd3a03e22309",
+    "build-mac/libjamloom_core.a": "e0d0fe4f6f0e737ff972bde66a0a94c4794d904f4287e5ba3ec0fb63c5960a86"
+  },
+  "voice_source_sha256": "f9db695b9ce37c9f068a2eb22788c2af512f0e62e72aede09ee62a02f2eaf935",
+  "limits": "The single-layer candidate removes the separate recorded forte timbre. Gain/filter response is not a substitute for all articulations; listening required."
+}

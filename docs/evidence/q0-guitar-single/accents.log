@@ -1,0 +1,25 @@
+PASS: /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-q0-preservation-a67tl0r7/check.hiphop.wav
+PASS: complete export /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-q0-preservation-a67tl0r7/check.complete.json
+Listening/recognizability: NOT RUN
+PASS: /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-q0-preservation-abhek99x/check.reggae.wav
+PASS: complete export /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-q0-preservation-abhek99x/check.complete.json
+Listening/recognizability: NOT RUN
+PASS: /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-q0-preservation-wnz874gp/check.experimental.wav
+PASS: complete export /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-q0-preservation-wnz874gp/check.complete.json
+Listening/recognizability: NOT RUN
+PASS: /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-q0-preservation-u4aqesvo/check.hiphop.wav
+PASS: complete export /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-q0-preservation-u4aqesvo/check.complete.json
+Listening/recognizability: NOT RUN
+PASS: /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-q0-preservation-9c8j7j61/check.experimental.wav
+PASS: complete export /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-q0-preservation-9c8j7j61/check.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-guitar-accents-20261020/control.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-guitar-accents-20261020/control.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-guitar-accents-20261020/candidate.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-guitar-accents-20261020/candidate.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-guitar-accents-20261020/replay.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-guitar-accents-20261020/replay.complete.json
+Listening/recognizability: NOT RUN
+PASS: five existing mixes unchanged; same-score accent pair and exact replay; listening NOT RUN

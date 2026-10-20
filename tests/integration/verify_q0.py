@@ -20,6 +20,7 @@ from q0_composition import compose
 from q0_authored_score import authored
 from q0_phrase_form import adapt
 from q0_phrase_trial import guitar_renderer
+from q0_guitar_accent_trial import accents
 from q0_audit import digest
 from q0_audit import loudness, inputs, level_match
 
@@ -226,6 +227,31 @@ class Q0(unittest.TestCase):
                         guitar_renderer(Path(directory))
                     build.assert_not_called()
                 self.assertEqual(list(Path(directory).iterdir()), [])
+
+    def test_guitar_accents_change_only_twelve_velocities(self):
+        plan = json.loads((ROOT/'docs/evidence/q0-phrase-form/owner-speech/score.json').read_text())
+        original = copy.deepcopy(plan)
+        candidate = accents(plan)
+        self.assertEqual(plan, original)
+        changes = []
+        for a, b in zip(plan['tracks'], candidate['tracks']):
+            if a['instrument'] != 'guitar':
+                self.assertEqual(a, b)
+            for old, new in zip(a['events'], b['events']):
+                if old != new:
+                    self.assertFalse(old.get('muted', False))
+                    self.assertEqual({k:v for k,v in old.items() if k!='velocity'},
+                                     {k:v for k,v in new.items() if k!='velocity'})
+                    changes.append(new['velocity'])
+        self.assertEqual(len(changes), 12)
+        self.assertEqual(sum(v>84 for v in changes), 6)
+        candidate['tracks'] = copy.deepcopy(plan['tracks'])
+        self.assertEqual(candidate, plan)
+        bad = copy.deepcopy(plan); bad['tracks'] = []
+        with self.assertRaises(ValueError): accents(bad)
+        bad = copy.deepcopy(plan)
+        next(t for t in bad['tracks'] if t['instrument']=='guitar')['events'][0]['start_tick'] += 1
+        with self.assertRaises(ValueError): accents(bad)
 
     def test_note_bounds_and_clean_voice(self):
         candidate, _ = express(self.plan, 4123)

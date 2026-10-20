@@ -4,10 +4,11 @@
 The owner requested diagnosis and controlled listening before engine changes.
 No later milestone, model training, paid service or dashboard redesign is part
 of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.md).
-Latest: [Guitar calibration in full mixes](docs/q0-guitar-mix-study.md)
-compares five unchanged scores through existing/calibrated samplers. Non-guitar
-stems remain identical; guitar RMS falls 4.26–9.30 dB. Technical PASS;
-realism and mix acceptance remain open. New listening NOT RUN.
+Latest: [Guitar dynamics without reducing existing mixes](docs/q0-guitar-single-study.md)
+tests using the ordinary recorded guitar layer at higher velocities. Five
+existing mixes stay byte-identical; a same-score accent pair isolates its
+effect. Technical PASS; the separate forte timbre is sacrificed.
+Realism and mix acceptance remain open. New listening NOT RUN.
 Prior rejected candidates remain FAIL.
 
 - [x] **Q001 — PASS:** Freeze five authorized real inputs with plans, events,
@@ -23,6 +24,9 @@ Prior rejected candidates remain FAIL.
   step to 0.54 dB; attack/decay and mix-balance judgments remain open.
   Full-mix follow-up: five candidates and 25 stems; guitar-only waveform change
   verified. No production promotion; attenuation changes existing mix balance.
+  Single-layer alternative: positive ~0.15 dB boundary steps, exact existing
+  mix preservation and one controlled accent pair. Forte timbre tradeoff
+  requires listening; no production promotion.
 - [ ] **Q004 — PARTIAL:** Deterministic offline expression transform and five
   A/C comparisons render and replay. Fills, deeper phrasing and musical
   acceptance remain open.
@@ -46,6 +50,9 @@ Prior rejected candidates remain FAIL.
   Latest full-mix follow-up: 13 Q0 tests, five exact replays, 4,244 event rows
   and 20 unchanged non-guitar stems. Master delta matches guitar delta within
   one PCM16 unit.
+  Latest single-layer study: 14 Q0 tests, three native test groups, five exact
+  old-mix re-renders, eight probe replays and one accent replay. All 1,278
+  accent event rows have zero frame error; non-guitar stems are unchanged.
 - [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression, native/SFZ and
   the new five-condition packet, calling the latter “very robotic and bad quality.”
   No numeric scores, relative preferences or causal ranking inferred; no promotion.

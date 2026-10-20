@@ -1497,3 +1497,32 @@ specifications, source recordings and prior controls remain intact.
 
 [Private full mixes](http://127.0.0.1:4204/);
 [results, gates, risks and reproduction](q0-guitar-mix-study.md).
+
+## Q0 guitar dynamics with existing-mix preservation
+
+**PASS:** An isolated sampler uses the ordinary guitar recording at higher
+velocities while retaining gain/filter response and muted samples. All 160
+guitar boundary steps become positive, approximately 0.15 dB. Piano and muted
+probes, soft-note prefixes and all five previous WAV/score/event exports are
+unchanged. Eight probe replays, three native regression groups and 14 Q0 tests
+pass.
+
+One copied owner plan introduces twelve intentional guitar velocity edits,
+six above 84. Both samplers render the same accent score. Two masters and ten
+stems are exported; candidate replay at blocks 512/113 is exact. All 1,278
+instrument event rows have zero frame error. Non-guitar stems match; the master
+difference is explained by guitar within one PCM16 unit. Guitar RMS rises
+2.336 dB. Listening mixes both measure −23.00 LUFS, peaks −7.62/−7.70 dBTP.
+Twenty-eight raw audio files decode without full-scale samples; native masters
+report zero limiting/nonfinite samples. Chromium checks pass for both pages.
+
+**PARTIAL:** Q0 recovery. The candidate removes the separate recorded forte
+timbre; it is not promoted. Preserved existing mixes cannot demonstrate an
+improvement. **NOT RUN:** New musical acceptance, physical/direct listening,
+fresh other-browser/Linux/iPhone/WASM execution. **FAIL:** Earlier owner
+acceptance unchanged. Specifications, production and prior plans remain intact;
+no spending, training or later milestone.
+
+[Private accent pair](http://127.0.0.1:4206/);
+[isolated probes](http://127.0.0.1:4205/);
+[results, gates and reproduction](q0-guitar-single-study.md).

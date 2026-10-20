@@ -2,7 +2,14 @@
 
 2026-10-20. **Implementation: PARTIAL. Current owner listening acceptance: FAIL.**
 
-**Newest full-mix study:** [Guitar calibration and mix balance](q0-guitar-mix-study.md)
+**Newest study:** [Guitar dynamics with existing-mix preservation](q0-guitar-single-study.md)
+tests retaining the ordinary recorded layer at higher velocities. Technical
+**PASS**: ~0.15 dB positive boundary steps, five byte-identical existing mixes,
+and one same-score accent comparison with changes isolated to guitar.
+The separate forte timbre is lost; realism and musical acceptance **NOT RUN**.
+No production change or overall quality claim.
+
+**Previous full-mix study:** [Guitar calibration and mix balance](q0-guitar-mix-study.md)
 renders five unchanged plans through the isolated sampler. Technical **PASS**:
 non-guitar stems are identical and waveform differences are isolated to guitar.
 Guitar RMS falls 4.26–9.30 dB; this is a measured mix-balance risk, not evidence

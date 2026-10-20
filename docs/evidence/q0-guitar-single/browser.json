@@ -1,0 +1,31 @@
+{
+  "technical": "PASS",
+  "browser": "Chromium",
+  "version": "149.0.7827.55",
+  "audio_files": 12,
+  "durations": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+  ],
+  "checks": [
+    "390px responsive width",
+    "all audio metadata decode",
+    "muted playback advances",
+    "automatic pause",
+    "organizer key not served",
+    "no page errors or external requests"
+  ],
+  "human_listening": "NOT RUN",
+  "physical_output": "NOT RUN",
+  "other_browsers": "NOT RUN in this diagnostic"
+}

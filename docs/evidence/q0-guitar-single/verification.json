@@ -1,0 +1,274 @@
+{
+  "technical": "PASS",
+  "human_quality": "NOT RUN",
+  "decoded_audio": [
+    {
+      "file": "renders/q0-guitar-single-20261020/baseline/guitar-49-0.wav",
+      "sha256": "3c4eef0c3951c3dc1cfa64e97d9d80ef4414e99d3e89e1a6d44f4aa7b3492683",
+      "frames": 480000,
+      "peak_dbfs": -9.53262295172124,
+      "rms_dbfs": -27.68405362699601,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/candidate/guitar-49-0.wav",
+      "sha256": "343678fbcf5159d2d215999f55ac9fe0f9bd24d0dc709377b3c85d41caf4ec46",
+      "frames": 480000,
+      "peak_dbfs": -9.538184972445212,
+      "rms_dbfs": -25.827596126206295,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/baseline/guitar-49-1.wav",
+      "sha256": "6213a9234ecd0888a9c5e7f688232887d9beb5e32abaa02aa9c588a1206b6f57",
+      "frames": 480000,
+      "peak_dbfs": -9.438609494279232,
+      "rms_dbfs": -27.577045835514184,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/candidate/guitar-49-1.wav",
+      "sha256": "676c9352c056956f52229c1264bcb8227f80578f26d73d2d78dcb028b10f5926",
+      "frames": 480000,
+      "peak_dbfs": -9.421339757723622,
+      "rms_dbfs": -25.89894159571277,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/baseline/guitar-61-0.wav",
+      "sha256": "233f434c8e4dea6348e01a3c25bdffe3b0f4a0d3f7dd63a0276844531612f474",
+      "frames": 480000,
+      "peak_dbfs": -9.868683902839953,
+      "rms_dbfs": -30.374426082682287,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/candidate/guitar-61-0.wav",
+      "sha256": "136e557b897f89b79dcd0a7e570140a2268dc0f4ee2665c614c3063efd581cff",
+      "frames": 480000,
+      "peak_dbfs": -9.681637441478898,
+      "rms_dbfs": -26.861809106738246,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/baseline/guitar-61-1-muted.wav",
+      "sha256": "6b687c9b9f8bcab7ae27dffb65ca2760dba5a6f4a2348577b86e3080dbb30e88",
+      "frames": 480000,
+      "peak_dbfs": -9.561265647546817,
+      "rms_dbfs": -40.61407968708057,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/candidate/guitar-61-1-muted.wav",
+      "sha256": "6b687c9b9f8bcab7ae27dffb65ca2760dba5a6f4a2348577b86e3080dbb30e88",
+      "frames": 480000,
+      "peak_dbfs": -9.561265647546817,
+      "rms_dbfs": -40.61407968708057,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/baseline/guitar-61-1.wav",
+      "sha256": "21051ae8bb3eaa127cd845f39dea2f3030d5bbb7e5dd5408e0bed56ffc2f7b8c",
+      "frames": 480000,
+      "peak_dbfs": -9.687295738404739,
+      "rms_dbfs": -30.60253389038642,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/candidate/guitar-61-1.wav",
+      "sha256": "ed81fdea88508c7846dc0c15656286abe5ef9e790e85630411f7ac21207bb5c8",
+      "frames": 480000,
+      "peak_dbfs": -9.622045530257395,
+      "rms_dbfs": -27.02953949424961,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/baseline/guitar-73-0.wav",
+      "sha256": "2ee45b309a8d6354400ee5449724fed8f4e351be6bfcce67bd18e7b470d771e2",
+      "frames": 480000,
+      "peak_dbfs": -9.87446541091881,
+      "rms_dbfs": -28.675629008849928,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/candidate/guitar-73-0.wav",
+      "sha256": "6b6405df633da6284281a179ef2a812a4755a94cceb5cc3bd98b1c87b4d04d87",
+      "frames": 480000,
+      "peak_dbfs": -9.640523589455364,
+      "rms_dbfs": -24.6483665339856,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/baseline/guitar-73-1.wav",
+      "sha256": "ac43c459e9756f7607254946872d5cdebfd6d0a27462c373ad98e73a7daf6624",
+      "frames": 480000,
+      "peak_dbfs": -10.03708822844857,
+      "rms_dbfs": -28.504689273417863,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/candidate/guitar-73-1.wav",
+      "sha256": "38057a734ec791a673e34401e40c075812e70ca837f13d75d0c19ffc94d2b835",
+      "frames": 480000,
+      "peak_dbfs": -9.614825672372977,
+      "rms_dbfs": -24.342823572740578,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/baseline/piano-61-1.wav",
+      "sha256": "1669d36ba0538e19dce4274c0300232e46e8d7e5bc9faf987768edf69996be1d",
+      "frames": 480000,
+      "peak_dbfs": -9.508825978923523,
+      "rms_dbfs": -25.831203850344416,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-single-20261020/candidate/piano-61-1.wav",
+      "sha256": "1669d36ba0538e19dce4274c0300232e46e8d7e5bc9faf987768edf69996be1d",
+      "frames": 480000,
+      "peak_dbfs": -9.508825978923523,
+      "rms_dbfs": -25.831203850344416,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/control.hiphop.bass.wav",
+      "sha256": "0717edd79dbf10551ca409958a04b4f002d865a8b45e880dbef83db12c803b34",
+      "frames": 1560000,
+      "peak_dbfs": -18.856212758338092,
+      "rms_dbfs": -33.231711274903176,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/control.hiphop.drums.wav",
+      "sha256": "f5d5e0d8c6aec18adad0f4c8c37dc35bb6144b709fdf5421441cefae9b476c24",
+      "frames": 1560000,
+      "peak_dbfs": -13.769371960954484,
+      "rms_dbfs": -32.76263258050071,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/control.hiphop.guitar.wav",
+      "sha256": "0dbe5f8a53b9b2d2d65996bb4ac38fec05e4b5626f3ecc45fa1ba85e838b87e8",
+      "frames": 1560000,
+      "peak_dbfs": -16.017374522403735,
+      "rms_dbfs": -43.443676264340354,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/control.hiphop.piano.wav",
+      "sha256": "7c98bd9f6da9433e582e1efea314b7ce0c1e65447a597076b0548785e7f97057",
+      "frames": 1560000,
+      "peak_dbfs": -14.80407350438963,
+      "rms_dbfs": -39.36864768634176,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/control.hiphop.vocals.wav",
+      "sha256": "524a2e2d9fb3212928f7953f150c145f3528f504563daef90d2842fb407ef4ee",
+      "frames": 1560000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.30681313014447,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/control.hiphop.wav",
+      "sha256": "8e9c235ad0bacca33e025f2d6f598de575b7eae0e1fb035b9a2dacbc1b9acc2e",
+      "frames": 1560000,
+      "peak_dbfs": -8.948251506918654,
+      "rms_dbfs": -27.66113397804309,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/candidate.hiphop.bass.wav",
+      "sha256": "0717edd79dbf10551ca409958a04b4f002d865a8b45e880dbef83db12c803b34",
+      "frames": 1560000,
+      "peak_dbfs": -18.856212758338092,
+      "rms_dbfs": -33.231711274903176,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/candidate.hiphop.drums.wav",
+      "sha256": "f5d5e0d8c6aec18adad0f4c8c37dc35bb6144b709fdf5421441cefae9b476c24",
+      "frames": 1560000,
+      "peak_dbfs": -13.769371960954484,
+      "rms_dbfs": -32.76263258050071,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/candidate.hiphop.guitar.wav",
+      "sha256": "ec648002f86c7dd0d119f47631dfc0906db7c79b0e3d410333e7b36355300b52",
+      "frames": 1560000,
+      "peak_dbfs": -14.316674609564382,
+      "rms_dbfs": -41.10749421938316,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/candidate.hiphop.piano.wav",
+      "sha256": "7c98bd9f6da9433e582e1efea314b7ce0c1e65447a597076b0548785e7f97057",
+      "frames": 1560000,
+      "peak_dbfs": -14.80407350438963,
+      "rms_dbfs": -39.36864768634176,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/candidate.hiphop.vocals.wav",
+      "sha256": "524a2e2d9fb3212928f7953f150c145f3528f504563daef90d2842fb407ef4ee",
+      "frames": 1560000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.30681313014447,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "renders/q0-guitar-accents-20261020/candidate.hiphop.wav",
+      "sha256": "522e1135d08d0e1d12205a8480350b0c45ebcfc91c8a048308cf9f2b209a1a09",
+      "frames": 1560000,
+      "peak_dbfs": -8.948251506918654,
+      "rms_dbfs": -27.572339410054827,
+      "full_scale_samples": 0
+    }
+  ],
+  "existing_mix_preservation": "PASS: five exact WAV/score/event re-renders",
+  "accent_mix_guitar_rms_change_db": 2.33618204495719,
+  "accent_master_max_pcm16_difference": 6202.0,
+  "accent_master_rms_pcm16_difference": 274.54637048322604,
+  "accent_mix_isolation_max_pcm16_residual": 1.0,
+  "accent_trial_sha256": {
+    "accent.plan.json": "d2e58d6961f6e3ea2587060870172366ae7556573d00eea892d190fbc697ae0c",
+    "build.json": "ac307c0c1a95f656ae178fb626084407772aa0cda805ae083a478c3407614fb5",
+    "candidate.complete.json": "51184155ab05ea8ba870b1a46efff4ede58bddedeedb80ffe26f78893de18167",
+    "candidate.hiphop.bass.wav": "0717edd79dbf10551ca409958a04b4f002d865a8b45e880dbef83db12c803b34",
+    "candidate.hiphop.drums.wav": "f5d5e0d8c6aec18adad0f4c8c37dc35bb6144b709fdf5421441cefae9b476c24",
+    "candidate.hiphop.events.tsv": "fcfb094a0b5817700c166e573c1a69d44ac45a45a156cde61f50c2d0b0e7a3dd",
+    "candidate.hiphop.guitar.wav": "ec648002f86c7dd0d119f47631dfc0906db7c79b0e3d410333e7b36355300b52",
+    "candidate.hiphop.piano.wav": "7c98bd9f6da9433e582e1efea314b7ce0c1e65447a597076b0548785e7f97057",
+    "candidate.hiphop.report.json": "60b064bc0062fc7310484014e40b2fc5291c91e10e81260acc05a58619c355c4",
+    "candidate.hiphop.score.json": "84477613f9b177468148052cfa7ba6e8f9a85e1bc29d604314ff67cbdd118ca3",
+    "candidate.hiphop.vocals.wav": "524a2e2d9fb3212928f7953f150c145f3528f504563daef90d2842fb407ef4ee",
+    "candidate.hiphop.wav": "522e1135d08d0e1d12205a8480350b0c45ebcfc91c8a048308cf9f2b209a1a09",
+    "control.complete.json": "ed8d2b17ce453cc66bc92caa4826f45946fa31198f7e21dcc2de52350ad92f49",
+    "control.hiphop.bass.wav": "0717edd79dbf10551ca409958a04b4f002d865a8b45e880dbef83db12c803b34",
+    "control.hiphop.drums.wav": "f5d5e0d8c6aec18adad0f4c8c37dc35bb6144b709fdf5421441cefae9b476c24",
+    "control.hiphop.events.tsv": "fcfb094a0b5817700c166e573c1a69d44ac45a45a156cde61f50c2d0b0e7a3dd",
+    "control.hiphop.guitar.wav": "0dbe5f8a53b9b2d2d65996bb4ac38fec05e4b5626f3ecc45fa1ba85e838b87e8",
+    "control.hiphop.piano.wav": "7c98bd9f6da9433e582e1efea314b7ce0c1e65447a597076b0548785e7f97057",
+    "control.hiphop.report.json": "340a0c43fcd5107cc29d273745d5ffcb31ab686ca01254be2fcf6bba77467f7f",
+    "control.hiphop.score.json": "84477613f9b177468148052cfa7ba6e8f9a85e1bc29d604314ff67cbdd118ca3",
+    "control.hiphop.vocals.wav": "524a2e2d9fb3212928f7953f150c145f3528f504563daef90d2842fb407ef4ee",
+    "control.hiphop.wav": "8e9c235ad0bacca33e025f2d6f598de575b7eae0e1fb035b9a2dacbc1b9acc2e",
+    "jamloom_remix": "99a6caf267f9c288a539de50fa9e5dd20354bda088a4957e97a214c20438b1d8",
+    "listener/ATTRIBUTION.txt": "8a47e0e77994eb21af9cbca91ca5386e329fe05d50c6288554cf1b0c98e60aff",
+    "listener/candidate-1.wav": "7c85af1cbce1766770fc3f087e3eb243dbcda3e70dc7571e6b356906c9504c6d",
+    "listener/candidate-2.wav": "3b60270862f9c4790500e88efea532225dffe761dd1176043c988165e9f7ecdc",
+    "listener/index.html": "ca1e3068bdb16e3f00bc678544f9a83173b1469fb19444b4a8961db587cc11f4",
+    "listener/packet.json": "3e862b4f28a3cc67313558c96ef4d5814c7f1cf9cb86ec6ceff54a477604429d",
+    "listener/source.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "organizer-key.json": "92a589cf08f266ad296aef2912d27a18f04b082742a870508f0b5b380b176165",
+    "replay.complete.json": "913687cac724b6a68a6c9d9d2a9b71cbffd3d62d7c164cd40f971b8fe1c147cc",
+    "replay.hiphop.events.tsv": "fcfb094a0b5817700c166e573c1a69d44ac45a45a156cde61f50c2d0b0e7a3dd",
+    "replay.hiphop.report.json": "60b064bc0062fc7310484014e40b2fc5291c91e10e81260acc05a58619c355c4",
+    "replay.hiphop.score.json": "84477613f9b177468148052cfa7ba6e8f9a85e1bc29d604314ff67cbdd118ca3",
+    "replay.hiphop.wav": "522e1135d08d0e1d12205a8480350b0c45ebcfc91c8a048308cf9f2b209a1a09",
+    "report.json": "aa9895cab8c0a375a44db398edb6562d51b8d4aec5697d12cde82b4083af39ca"
+  },
+  "limits": "The five preserved mixes cannot demonstrate improvement. One accent plan and isolated probes need listening."
+}

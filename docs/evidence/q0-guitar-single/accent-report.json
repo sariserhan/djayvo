@@ -1,0 +1,180 @@
+{
+  "version": "1.0-q0-guitar-accents",
+  "technical": "PASS",
+  "human_quality": "NOT RUN",
+  "preserved_existing_mixes": [
+    {
+      "id": "owner-speech",
+      "hashes": {
+        "wav": "e080c367e5818c00e3354a4f7ad4919f31bb33e75b595ccf86e666f3492c96c6",
+        "score.json": "4c61dc8c56e4afe7b0db188b45a9b89d7f56b8f720a8ed37f1da453d60aa712d",
+        "events.tsv": "9a77581de53bb45b4a15d9b8178fd9aa004bbc5dbe0c1456ca55f0b86637aef1"
+      },
+      "result": "PASS",
+      "temporary_check_exports": "Removed by test harness; identical original controls retained"
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "hashes": {
+        "wav": "d081db313ef377e87d30fce86d4315656b68c2eb4c755db3ead4472c5cd40596",
+        "score.json": "ad03fb0e7a7430c0c70a54acd00689a53e4b09d2f50d687b2dfa994fc38eca94",
+        "events.tsv": "76651993b05e9ed003f5ebde6449e93e2fd223ee09f4ec0d36102113a3ef45c4"
+      },
+      "result": "PASS",
+      "temporary_check_exports": "Removed by test harness; identical original controls retained"
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "hashes": {
+        "wav": "7962431d59df081f29957d7b27ed00baf2fec57c63bb023cfb11f3efce67fa3b",
+        "score.json": "097b84cedd52d7874868dc8456a760087e014268291f9e23e24a83e49aec02ca",
+        "events.tsv": "9a02ef3a11123fcdc4391d3561ae2c061d92fcaef163b295f8078b0b31458c6b"
+      },
+      "result": "PASS",
+      "temporary_check_exports": "Removed by test harness; identical original controls retained"
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "hashes": {
+        "wav": "a222e5af69c74bf0ec670ebde90754693b94bfa896df70031fe7bf2dcda78983",
+        "score.json": "0ac3acdbc1b5802defcb3573107ea0398b4c6315ad8c891d73da7c13f7622af0",
+        "events.tsv": "945bda87afaa9baf8f585c385e5a24ab2f837187a63986d7623f5f3662ca5226"
+      },
+      "result": "PASS",
+      "temporary_check_exports": "Removed by test harness; identical original controls retained"
+    },
+    {
+      "id": "commons-laughter",
+      "hashes": {
+        "wav": "d8d8ae50c710d252a8439083cd647530af0111c248f643158874a61b391aacb7",
+        "score.json": "35d9d958f82f4c0156bae37e17dccb299a8e631d2b79b8fe417a4cefb85b12e3",
+        "events.tsv": "1ade37d6f495a8f7a0ba15a183eacf8d5af1dfe8964014d54f458a81b3859745"
+      },
+      "result": "PASS",
+      "temporary_check_exports": "Removed by test harness; identical original controls retained"
+    }
+  ],
+  "results": {
+    "control": {
+      "timing": {
+        "events": 426,
+        "maximum_frame_error": 0
+      },
+      "native": {
+        "project": "Jamloom",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1+electronic-v2+guitar-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1440000,
+        "total_frames": 1560000,
+        "duration_seconds": 32.5,
+        "events": 426,
+        "peak_linear": 0.356934010983,
+        "peak_dbfs": -8.94824135368,
+        "pre_limiter_peak_linear": 0.356934018555,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -27.6559577795,
+        "rms_dbfs_right": -27.6657840922,
+        "max_adjacent_sample_step": 0.27216181159,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "raw_loudness": {
+        "input_i": "-24.27",
+        "input_tp": "-8.89",
+        "input_lra": "5.90",
+        "input_thresh": "-34.69"
+      },
+      "matched": {
+        "input_i": "-23.00",
+        "input_tp": "-7.62",
+        "input_lra": "5.90",
+        "input_thresh": "-33.43"
+      },
+      "matching_gain_db": 1.2699999999999996
+    },
+    "candidate": {
+      "timing": {
+        "events": 426,
+        "maximum_frame_error": 0
+      },
+      "native": {
+        "project": "Jamloom",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1+electronic-v2+guitar-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1440000,
+        "total_frames": 1560000,
+        "duration_seconds": 32.5,
+        "events": 426,
+        "peak_linear": 0.356934010983,
+        "peak_dbfs": -8.94824135368,
+        "pre_limiter_peak_linear": 0.356934018555,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -27.5964674514,
+        "rms_dbfs_right": -27.5478152321,
+        "max_adjacent_sample_step": 0.27216181159,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      },
+      "raw_loudness": {
+        "input_i": "-24.19",
+        "input_tp": "-8.89",
+        "input_lra": "5.40",
+        "input_thresh": "-34.60"
+      },
+      "matched": {
+        "input_i": "-23.00",
+        "input_tp": "-7.70",
+        "input_lra": "5.40",
+        "input_thresh": "-33.41"
+      },
+      "matching_gain_db": 1.1900000000000013
+    },
+    "replay": {
+      "timing": {
+        "events": 426,
+        "maximum_frame_error": 0
+      },
+      "native": {
+        "project": "Jamloom",
+        "milestone": "M0b/M0c",
+        "technical_render": "PASS",
+        "listening_validation": "NOT RUN",
+        "macos_portability": "NOT RUN",
+        "instrument_bank": "acoustic-v1+electronic-v2+guitar-v1",
+        "seed": 4123,
+        "sample_rate": 48000,
+        "music_frames": 1440000,
+        "total_frames": 1560000,
+        "duration_seconds": 32.5,
+        "events": 426,
+        "peak_linear": 0.356934010983,
+        "peak_dbfs": -8.94824135368,
+        "pre_limiter_peak_linear": 0.356934018555,
+        "ceiling_dbfs": -1,
+        "rms_dbfs_left": -27.5964674514,
+        "rms_dbfs_right": -27.5478152321,
+        "max_adjacent_sample_step": 0.27216181159,
+        "limited_samples": 0,
+        "nonfinite_samples": 0,
+        "loudness_method": "unweighted RMS; not integrated LUFS"
+      }
+    }
+  },
+  "target_lufs": -23.0,
+  "packet_id": "660796b7622e172b82d81d1e4fd4a95f2caac4b7d281d5f21d2c0c1aa517e635",
+  "original_plan_sha256": "4c61dc8c56e4afe7b0db188b45a9b89d7f56b8f720a8ed37f1da453d60aa712d",
+  "accent_plan_sha256": "d2e58d6961f6e3ea2587060870172366ae7556573d00eea892d190fbc697ae0c",
+  "production_changed": false
+}

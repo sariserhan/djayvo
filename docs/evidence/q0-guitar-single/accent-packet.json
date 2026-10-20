@@ -1,0 +1,8 @@
+{
+  "packet_id": "660796b7622e172b82d81d1e4fd4a95f2caac4b7d281d5f21d2c0c1aa517e635",
+  "audio_sha256": {
+    "candidate-1.wav": "7c85af1cbce1766770fc3f087e3eb243dbcda3e70dc7571e6b356906c9504c6d",
+    "candidate-2.wav": "3b60270862f9c4790500e88efea532225dffe761dd1176043c988165e9f7ecdc",
+    "source.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  }
+}
