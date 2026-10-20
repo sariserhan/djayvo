@@ -1,5 +1,15 @@
 # Jamloom: M0 continuation evidence
 
+Final Q0 review — 2026-10-20: **Musical recovery FAIL; full requirement
+coverage PARTIAL.** The owner rejected the latest 4211 owner-speech pair as
+“Both still bad.” The final report records every requested step, implementation,
+playable output, measurement, license finding and unresolved issue. Fresh
+verification passes for 732 retained file hashes, 25 five-condition exports
+and five latest candidate exports. No new audio, numeric ratings, model training,
+production promotion or later milestone. Independent study and an accepted
+creative control remain open. [Final Q0 report](q0-final-report.md).
+Earlier checkpoints below retain their historical statuses.
+
 Current priority — 2026-10-20:
 [Q0 musical quality recovery](q0-quality-recovery.md) is **PARTIAL**.
 Five frozen real-input baselines, stems, instrument probes, optional local SFZ

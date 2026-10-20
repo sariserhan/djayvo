@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-20",
+  "packet_id": "31e681c3d69e5d85f161c55531a041785fd1a3d194d72f91011ebef26368ed6c",
+  "review_url": "http://127.0.0.1:4211/",
+  "question": "For Q0\u2019s remaining quality gate, please compare the two candidates for your voice at http://127.0.0.1:4211/. Does either sound substantially more creative and coherent, or are both still bad? I\u2019m assembling the final five-condition package and evidence while you listen.",
+  "answer": "Both still bad",
+  "source_scope": [
+    "owner-speech"
+  ],
+  "reviewer": "owner",
+  "reviewer_count": 1,
+  "substantial_improvement_gate": "FAIL",
+  "numeric_scores_inferred": false,
+  "independent_panel": "NOT RUN",
+  "interpretation": "Both owner-speech candidates rejected. No ranking, numeric score, component timestamp, other-source verdict or independent reviewer is inferred. The later reggae correction leaves this owner-speech arrangement unchanged.",
+  "audio_sha256": {
+    "owner-speech-1.wav": "ab80b5f74f5bcca1bc77784f5c1c6d3c00ca109e32f5c4c8029340e719b36d1f",
+    "owner-speech-2.wav": "05c37f53941621d55724b1b78b463cd6eeb47f5df8581bd39af00a12e5c7a1d3",
+    "owner-speech-source.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427"
+  }
+}

@@ -1,40 +1,21 @@
 # Jamloom development tracker
 
-**Current priority — 2026-10-20: Q0 implementation PARTIAL; owner acceptance FAIL.**
-Latest technical follow-up: [motif completion](docs/q0-motif-completion.md)
-fixes a developed note lost during final rest processing and checks performed
-events rather than intended traces. Four plans remain identical; one corrected
-reggae render is retained separately. Existing 4211 audio remains frozen.
-Latest: the owner rejects the full 4207/4209 comparison, identifies Candidate 1
-as worst, and says the other instruments are okay but musical creativity is bad.
-[Exact feedback](docs/evidence/q0-development/owner-feedback.json).
-A new [composition-only study](docs/q0-source-development.md) holds the sound
-palette, renderer, tempo and mix settings fixed while developing a source-derived
-motif and repeated vocal hook. Five actual pairs/stems, exact replays, 3,034 event
-rows, and byte-identical Mac/Linux/WASM candidate WAVs pass. Seventeen expanded
-tests pass. [New listening page](http://127.0.0.1:4211/): acceptance NOT RUN.
-The unused instrument-library research was stopped before integration.
-Final local checkpoint: the listening form now blocks incomplete candidate
-scores before download; notes alone and unheard candidates remain supported.
-Seventeen tests and Chromium/WebKit form checks pass. Frozen native/WASM and
-Linux evidence is reverified. [Private corrected form](http://127.0.0.1:4209/)
-uses the exact same audio as 4207; this is not a new quality experiment.
-[Final gates and remaining work](docs/q0-completion-review.md#final-local-checkpoint--2026-10-20).
-No accepted improvement or independent panel exists; Q0 is not closed as passed.
-The owner requested diagnosis and controlled listening before engine changes.
-No later milestone, model training, paid service or dashboard redesign is part
-of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.md).
-Latest: [Linux and review preparation](docs/q0-linux-review-followup.md):
-three Linux native test groups pass; five E WAVs, plans and event schedules
-match Mac exactly. A four-source independent-review packet excludes private
-owner audio. Seventeen regression tests pass; no new listening verdict.
-[Q0 completion review](docs/q0-completion-review.md).
-V2 expression adds phrase release, coordinated bass accents and guarded fills;
-all five A/B/C/D/E blocks render and replay. Five E native/WASM WAVs are
-byte-identical. A validated listening-results workflow is ready.
-The owner rejected substantial improvement in the guitar pair; new full-packet
-listening is NOT RUN. Q0 cannot close on technical execution alone.
-Prior rejected candidates remain FAIL.
+**Q0 final review — 2026-10-20: musical recovery FAIL; requirement coverage PARTIAL.**
+The owner rejected both latest owner-speech compositions at 4211: “Both still
+bad.” This is a received negative judgment, not pending owner feedback.
+[Final Q0 report](docs/q0-final-report.md) consolidates all seven requested
+steps, source files, playable outputs, licenses, actual tests, failures and
+remaining limitations. Final verification passes for 732 retained file hashes,
+25 five-condition exports and five latest candidate exports. Technical results
+do not satisfy the musical-quality criterion. No production promotion, training,
+paid services or later milestone. Stop this experiment series for review.
+
+[Latest exact feedback](docs/evidence/q0-final/owner-feedback.json).
+Existing comparisons and plans remain frozen; the corrected reggae note remains
+an unreviewed technical correction. The owner-speech pair is unchanged by it.
+Independent scored listening, an accepted creative control and successful
+musical recovery remain open. The following technical completions are not a
+claim that Q0 passed.
 
 - [x] **Q001 — PASS:** Freeze five authorized real inputs with plans, events,
   masters, instrument/vocal stems, hashes and loudness/clipping measurements.
@@ -69,7 +50,7 @@ Prior rejected candidates remain FAIL.
   The latest copied-plan study tests padded vocal boundaries and shorter call
   sections; instrumental notes and expression stay fixed.
   V2 full trial supplies 25 matched mixes with source/tempo controls and
-  packet-bound result validation; musical improvement remains NOT RUN.
+  packet-bound result validation; owner musical acceptance FAIL.
 - [x] **Q007 — PASS:** Phrase-form study: twelve Q0 tests, 4,292 exact
   control/candidate event rows, five exact replays and comparison level checks. Earlier
   native regression results are retained separately. Browser form/decode
@@ -102,19 +83,24 @@ Prior rejected candidates remain FAIL.
   now **PASS**. Independent-review preparation PASS is not actual listening.
   [Original feedback](docs/evidence/q0/owner-feedback.json);
   [guitar-pair rejection](docs/evidence/q0-guitar-single/owner-feedback.json).
-- [ ] **Q009 — PARTIAL:** Source-motif development and padded adjacent-word
+- [ ] **Q009 — FAIL:** Source-motif development and padded adjacent-word
   hooks render through the unchanged Q0 engine. Same instrument patches/gains,
   tempo, duration and mix; notes/form/voice placement change. Five corrected
   candidates had six intended motif notes; the final-score audit found one lost
   reggae note, now fixed and tested against actual performed events, with deterministic replay
   and actual native/Linux/WASM agreement. Prior full-packet creativity FAIL;
-  new composition preference and independent listening NOT RUN.
+  latest owner-speech pair rejected as “Both still bad”; independent listening NOT RUN.
   [Report, files and reproduction](docs/q0-source-development.md).
 - [x] **Q010 — PASS:** Final motif/rest conflict reproduced and corrected;
   intended/performed trace linkage, 18 regression tests, one corrected native
   render with exact replay/WASM/Linux parity, and four unchanged plans. Existing
   packet preserved; sample-seed coupling measured, no musical quality claim.
   [Correction and evidence](docs/q0-motif-completion.md).
+
+- [x] **Q011 — PASS:** Final Q0 report, exact latest rejection and 732-file
+  delivery verification recorded. Overall musical-recovery success **FAIL**;
+  remaining requirements stay open and no later milestone is started.
+  [Final report](docs/q0-final-report.md).
 
 **Research continuation — 2026-10-20:** After R0 and storage cleanup, the owner
 requested continuing model development. Local R1 offline demonstration tooling

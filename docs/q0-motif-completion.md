@@ -1,5 +1,11 @@
 # Q0 — keep the performed motif complete
 
+**Final review — 2026-10-20:** [Q0 final report](q0-final-report.md)
+supersedes this checkpoint's pending owner-listening status. The latest 4211
+owner-speech pair was rejected: “Both still bad.” Musical recovery is **FAIL**;
+independent scored evaluation remains **NOT RUN**. Historical technical evidence
+below is preserved, not promoted as a quality pass.
+
 2026-10-20. **Technical correction PASS; musical acceptance NOT RUN; overall
 Q0 PARTIAL.** The latest received owner rejection remains FAIL. “Continue”
 authorizes work and supplies no new listening result.

@@ -1,0 +1,56 @@
+{
+  "artifact_verification": "PASS",
+  "quality_gate": "FAIL",
+  "formal_independent_study": "NOT RUN",
+  "checked_files": 732,
+  "source_count": 5,
+  "records": [
+    {
+      "id": "owner-speech",
+      "five_condition_events": 1646,
+      "latest_candidate": "renders/q0-development-v2-20261020/owner-speech",
+      "latest_event_check": {
+        "events": 284,
+        "maximum_frame_error": 0
+      }
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "five_condition_events": 1432,
+      "latest_candidate": "renders/q0-motif-completion-v2-20261020/ls-2277-149896-0026",
+      "latest_event_check": {
+        "events": 168,
+        "maximum_frame_error": 0
+      }
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "five_condition_events": 1768,
+      "latest_candidate": "renders/q0-development-v2-20261020/ls-2035-147960-0013",
+      "latest_event_check": {
+        "events": 432,
+        "maximum_frame_error": 0
+      }
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "five_condition_events": 1650,
+      "latest_candidate": "renders/q0-development-v2-20261020/ls-2086-149220-0047",
+      "latest_event_check": {
+        "events": 284,
+        "maximum_frame_error": 0
+      }
+    },
+    {
+      "id": "commons-laughter",
+      "five_condition_events": 1768,
+      "latest_candidate": "renders/q0-development-v2-20261020/commons-laughter",
+      "latest_event_check": {
+        "events": 436,
+        "maximum_frame_error": 0
+      }
+    }
+  ],
+  "feedback_sha256": "54f0e14fc3a900b18795c190cc89962bdd3ae239769a58d4568513620ab574da",
+  "limits": "Revalidation of existing execution artifacts, not new platform execution or listening. No invented ratings or benchmark changes."
+}
