@@ -113,7 +113,7 @@ try {
   await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
   assert.equal(await page.locator('#file-a').isDisabled(), true);
   assert.equal(await page.locator('#play-a').isDisabled(), true);
-  assert.deepEqual(await page.locator('audio').evaluateAll(nodes => nodes.map(audio => audio.preload)), ['metadata', 'metadata']);
+  assert.deepEqual(await page.locator('#audio-a, #audio-b').evaluateAll(nodes => nodes.map(audio => audio.preload)), ['metadata', 'metadata']);
   check('page identity, nonblank content, consent gating');
   signalEvidence = [];
   // Keep each signal experiment small; the combined nested loop triggered a
@@ -314,7 +314,7 @@ try {
     document.querySelector('#pause-all').click();
   });
   await page.waitForTimeout(100);
-  assert.deepEqual(await page.locator('audio').evaluateAll(nodes => nodes.map(audio => audio.paused)), [true, true]);
+  assert.deepEqual(await page.locator('#audio-a, #audio-b').evaluateAll(nodes => nodes.map(audio => audio.paused)), [true, true]);
   await page.locator('#play-a').click(); await page.locator('#play-b').click();
   await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
   await page.evaluate(() => {

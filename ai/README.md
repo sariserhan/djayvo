@@ -5,6 +5,7 @@ planner; R1 adds offline demonstration capture for future supervised decisions.
 
 - [R0 foundation and evidence](../docs/r0-report.md)
 - [R1 demonstration workflow, limitations and next gates](../docs/r1-demonstrations.md)
+- [R1 live browser instrument capture and exact replay](../docs/r1-instrument-capture.md)
 - [Musical architecture](../docs/improvisation_architecture.md)
 
 R1 exports are evaluation-only. No reviewed expert corpus, trained planner or

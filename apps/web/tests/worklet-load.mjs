@@ -25,6 +25,7 @@ const frames = 48000 * 60;
 const assets = new Map([
   ['/', ['text/html', Buffer.from('<!doctype html><title>Jamloom worklet diagnostic</title><h1>Jamloom worklet diagnostic</h1><p>Sixty seconds of muted instrument processing.</p><button id="start">Start check</button><p id="status">Preparing</p>')]],
   ['/instrument.js', ['text/javascript', Buffer.concat([production, Buffer.from('\n'), wrapper])]],
+  ['/live-take.js', ['text/javascript', await read('apps/web/live-take.js')]],
   ['/capture.js', ['text/javascript', capture]], ['/engine.wasm', ['application/wasm', engine]]
 ]);
 const uploads = new Map([['/capture', ['capture.f32', frames * 8]],

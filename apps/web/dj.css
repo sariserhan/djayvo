@@ -142,6 +142,10 @@ input::file-selector-button { background:#25313b; border:1px solid #50616e; colo
 .midi-learn-controls { display:flex; flex-wrap:wrap; gap:12px; align-items:end; width:100%; }
 #midi-bindings { width:100%; margin:0; padding-left:20px; font:12px ui-monospace,Menlo,monospace; line-height:1.8; overflow-wrap:anywhere; }
 #midi-bindings:empty { display:none; }
+.instrument-take { margin: 1.5rem 0; padding: clamp(12px, 3vw, 24px); border: 1px solid #405947; border-radius: 12px; min-width: 0; }
+.instrument-take legend { padding: 0 8px; font-weight: 700; }
+.instrument-take audio { width: min(100%, 520px); margin: 8px 0; }
+.instrument-take .session-actions { flex-wrap: wrap; gap: 12px; }
 .instrument-controls select,.midi-controls select,.deck-effects select,.session-context select { appearance:none; min-height:48px; padding-right:36px; background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%); background-position:calc(100% - 19px) center,calc(100% - 14px) center; background-size:5px 5px; background-repeat:no-repeat; }
 
 #saved-mixes { margin: 2rem 0; padding: clamp(1rem, 3vw, 2rem); border: 1px solid #405947; border-radius: 16px; }

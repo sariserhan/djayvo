@@ -103,7 +103,7 @@ function audioGraph() {
   }
   context.onstatechange = () => {
     if (context.state !== 'running') {
-      keyboard.panic(); decks.forEach(pause); clearDeckEchoes();
+      keyboard.panic(); keyboard.interrupt(); decks.forEach(pause); clearDeckEchoes();
       $('mixer-status').textContent = 'Audio was interrupted. Press Play when you are ready to resume.';
     }
   };

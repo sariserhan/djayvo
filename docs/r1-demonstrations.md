@@ -1,5 +1,9 @@
 # R1 — offline demonstration capture, 2026-10-20
 
+Subsequent continuation: [private live instrument takes](r1-instrument-capture.md)
+now provide browser keyboard/drum capture. This report retains the original
+offline increment's scope and evidence.
+
 **Overall R1: PARTIAL.** Jamloom can now capture and replay a sequence of musical
 edits and export input/state → action → next-state examples. This is data tooling,
 not a newly trained or musically improved model. There are **zero reviewed expert

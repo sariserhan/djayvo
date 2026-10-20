@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "test_inputs": "automated keys and simulated MIDI; no human expert performance",
+  "live_engine_sha256": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8",
+  "artifacts": [
+    {
+      "path": "renders/instrument-take-chromium-jseEmq/take.json",
+      "bytes": 1689,
+      "sha256": "9414b78221d0963102717adec6b71889981a62b0c915351494d407b3b0281e2d"
+    },
+    {
+      "path": "renders/instrument-take-chromium-jseEmq/take.wav",
+      "bytes": 200748,
+      "sha256": "f131c858252821c77eccc828b4edc37fdae68c3f5ceb573c18b095daa2fb1763"
+    },
+    {
+      "path": "renders/instrument-take-chromium-jseEmq/desktop.png",
+      "bytes": 125687,
+      "sha256": "a364d87812de905af259ba7206047014bf4cfeb02df78aad2553ccd83c751e55"
+    },
+    {
+      "path": "renders/instrument-take-chromium-jseEmq/mobile.png",
+      "bytes": 67700,
+      "sha256": "36bbf12c55e9e605af1b5c76236a77d895a7cfeca53ac504f7200c721a83f761"
+    },
+    {
+      "path": "renders/instrument-take-webkit-lAefsz/take.json",
+      "bytes": 1688,
+      "sha256": "618836b90411ebf4ab69d86ceeaee6274022a1e412e8dc5490077bdfbff1b2a3"
+    },
+    {
+      "path": "renders/instrument-take-webkit-lAefsz/take.wav",
+      "bytes": 198188,
+      "sha256": "723229113deceb23e36761c62a74969f80c861fa7d52537c377bdaff436b0afa"
+    },
+    {
+      "path": "renders/instrument-take-webkit-lAefsz/desktop.png",
+      "bytes": 155265,
+      "sha256": "905db273758d10a556c2cfdd9abce8a09b15cc9421a499f3cf177aa817696b17"
+    },
+    {
+      "path": "renders/instrument-take-webkit-lAefsz/mobile.png",
+      "bytes": 81009,
+      "sha256": "e23c1bdf0d53c2ee95b4705f872e680e8324a6c71b618d5b85cab7b82eff795d"
+    }
+  ],
+  "public_release": "NOT RUN",
+  "model_training": "NOT RUN",
+  "preserved_inputs": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "jamloom_improvisation_learning_addendum_v1.md": "5bfe33e037f4d0aff6910ba3dbc55ce090e96b0ee772fdc834d94a12aa29941d",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e"
+  }
+}

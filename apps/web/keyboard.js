@@ -2,6 +2,7 @@ import { PATCHES, DRUMS, PERCUSSION, noteName, playable, createRack } from './in
 import { updateToneEcho, clearEcho } from './mixer.js';
 import { attachMidi } from './midi.js';
 import { resumeAudio } from './audio.js';
+import { attachInstrumentTake } from './instrument-take.js';
 const $ = id => document.getElementById(id);
 export function attachKeyboard({ graph, context, mixer, levels, masterControls }) {
   let node, loading = false, nextId = 1, root = 60;
@@ -32,6 +33,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
     $('sustain').setAttribute('aria-pressed', 'false');
     for (const button of document.querySelectorAll('.piano-key,.drum-pad')) button.setAttribute('aria-pressed', 'false');
   }
+  const take = attachInstrumentTake({ context, getNode: () => node, panic });
   async function press(token, button, pitch, patch, velocity = Number($('velocity').value), group = 'local') {
     if (!node || held.has(token) || !button || button.disabled) return;
     const note = { id: nextId++, button, group };
@@ -72,6 +74,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
     bind(button, pitch, patch); pads.set(`${patch}-${pitch}`, button); $('drum-pads').append(button);
   }
   function availability() {
+    take.refresh();
     for (const id of ['patch', 'velocity', 'rack-level', 'sustain', 'panic', 'octave-down', 'octave-up', 'rack-tone', 'rack-echo', 'rack-delay', 'rack-fx-reset']) $(id).disabled = !node;
     for (const [pitch, button] of keys) button.disabled = !node || !playable(Number($('patch').value), pitch);
     for (const button of $('drum-pads').children) button.disabled = !node;
@@ -94,10 +97,14 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
     try {
       graph(); await resumeAudio(context()); node = await createRack(context(), mixer().rackFX.input);
       node.addEventListener('processorerror', () => {
+        take.clear('Instrument engine interrupted. Take discarded.');
         panic(); node.disconnect(); node.port.close(); node = null; availability(); masterControls();
         status('The instrument engine stopped. Your decks remain available. Reload to prepare instruments again.');
       }, { once: true });
-      node.port.onmessage = ({ data }) => { if (data.type === 'rejected') status('Voice limit reached. Release notes or use All notes off.'); };
+      node.port.onmessage = ({ data }) => {
+        if (data.type === 'rejected') status('Voice limit reached. Release notes or use All notes off.');
+        take.message(data);
+      };
       levels(); availability(); octave(0); masterControls();
       $('load-instruments').textContent = 'Instruments ready'; status('Ready · 88 keys, ten sounds and twelve drum pads.');
     } catch (error) { status(error.message); $('load-instruments').disabled = false; }
@@ -161,5 +168,5 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls }
   window.addEventListener('keyup', event => release(`key-${event.code}`));
   window.addEventListener('blur', panic); window.addEventListener('pagehide', panic);
   document.addEventListener('visibilitychange', () => { if (document.hidden) panic(); });
-  return { ready: () => !!node, panic };
+  return { ready: () => !!node, panic, interrupt: take.interrupt };
 }

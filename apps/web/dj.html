@@ -83,6 +83,15 @@
 <label>Echo spacing <output id="rack-delay-value">300 ms</output><input id="rack-delay" type="range" min="100" max="800" step="10" value="300" disabled></label>
 <button id="rack-fx-reset" class="small-button" disabled>Reset effects</button><p>Keys &amp; pads only · soften the tone or add repeating echoes.</p></fieldset>
 <p id="talk-help" class="pad-help">Talk bass: select the sound, hold a low note and move Mouth shape from OO through AH to EE. Original synth; no microphone or physical tube required.</p>
+<fieldset class="instrument-take"><legend>Keep an instrument take</legend>
+<p>Capture up to 30 seconds of keys, drums and talk bass before channel effects and volume. Decks, microphone, tone and echo are not recorded. Starting releases held notes; release notes before stopping to keep their tails.</p>
+<label class="consent"><input id="take-consent" type="checkbox"><span>I agree to capture my playing locally. Nothing is uploaded or used for training.</span></label>
+<div class="session-actions"><button id="take-start" class="small-button" disabled>Record instrument take</button><button id="take-stop" class="small-button" disabled>Stop take</button><button id="take-delete" class="small-button" disabled>Delete take</button></div>
+<p id="take-status" role="status">Enable instruments and confirm capture permission to begin.</p>
+<audio id="take-player" controls hidden aria-label="Recorded instrument take"></audio>
+<div class="session-actions"><a id="take-wav" download="jamloom-instrument-take.wav" hidden>Download take WAV</a><a id="take-trace" download="jamloom-instrument-take.json" hidden>Download musical actions</a></div>
+<p class="pad-help">Your take stays in this tab until you download it. Leaving the tab during capture discards an incomplete take. Delete or uncheck permission to clear it here; downloaded copies must be deleted separately. These captures need separate rights and musician review before any learning use.</p>
+</fieldset>
 <fieldset class="midi-controls"><legend>MIDI controller</legend>
 <button id="midi-enable" class="small-button">Enable MIDI</button>
 <label>Input<select id="midi-input" disabled><option value="">Choose an input</option></select></label>

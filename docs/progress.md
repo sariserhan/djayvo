@@ -1074,3 +1074,31 @@ permissioned expert traces and a diverse stratified corpus are unfinished.
 third-party ingestion and paid compute ($0). No changes to web/iPhone/C++ audio,
 no new dependencies and no push/deploy. No claim of improved musical quality.
 [Full guide and exact evidence](r1-demonstrations.md).
+
+## 2026-10-20 — R1 private live instrument takes
+
+**PASS:** Connected opt-in demonstration capture to the browser's existing
+keyboard/touch/MIDI/drum controls and actual shared-engine AudioWorklet output.
+Capture records only accepted commands at engine-relative sample frames, including
+talk-bass shaping and effective sustain release timing. Private WAV/action
+downloads, playback and deletion work; consent withdrawal, lost focus, audio
+interruption or engine failure discard incomplete takes. Fixed 30-second and
+4,096-event limits; recording off by default; no upload, training permission or
+persistent storage implied.
+
+**PASS:** 50 web unit tests, Chromium/WebKit capture flows at 1440×1000 and
+390×844, 47 Chromium DJ regressions and public bundle/offline-manifest audit.
+Each actual captured browser WAV replays byte-for-byte using its accepted-command
+trace and pinned shared-engine WASM; max/RMS PCM16 error zero. Two known WebKit
+screenshot-tool stylesheet warnings are retained separately; app errors and
+external requests are absent. The old two-audio-element test was narrowed to
+the actual A/B deck players after the new take preview exposed that assumption.
+
+**PARTIAL:** R1 overall. This captures instruments before channel effects/volume;
+source microphone pairing, full-mix/automation context and a reviewed expert
+corpus remain. **NOT RUN:** model training, human musical quality, physical MIDI,
+hardware latency, sustained live capture deadlines, current Linux/iPhone parity
+and public deployment. Both specifications, existing recordings, C++ engine and
+security policies remain unchanged. Existing local website/standalone studio
+assets refreshed without compiler-cache regeneration.
+[Full report and reproducible evidence](r1-instrument-capture.md).

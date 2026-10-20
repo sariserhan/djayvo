@@ -1,0 +1,27 @@
+Artifacts: /Users/serhansari/Documents/projects/djayvo/renders/dj-chromium-MWxcXe
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
+    'metadata',
+    'metadata',
++   'metadata'
+  ]
+
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/web/tests/dj.mjs:116:10
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processImmediate (node:internal/timers:452:9)
+    at process.callbackTrampoline (node:internal/async_hooks:130:17) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [ 'metadata', 'metadata', 'metadata' ],
+  expected: [ 'metadata', 'metadata' ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

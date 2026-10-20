@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "browser": "chromium",
+  "version": "149.0.7827.55",
+  "url": "http://127.0.0.1:51621/dj.html",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "checks": [
+    "consent-gated keyboard, mouth and simulated MIDI recording; playable WAV and exact replay",
+    "desktop/mobile capture controls render without horizontal overflow",
+    "delete and permission withdrawal discard local take without restoring stale export",
+    "focus loss, audio suspension and worklet failure discard incomplete capture"
+  ],
+  "errors": [],
+  "external": [],
+  "warnings": [],
+  "frames": 50176,
+  "rate": 48000,
+  "acceptedCommands": 11,
+  "peak": 0.347503662109375,
+  "replay": "byte-identical WAV; max and RMS PCM difference 0",
+  "physicalMidi": "NOT RUN",
+  "humanQuality": "NOT RUN",
+  "training": "NOT RUN",
+  "scope": "private dry instrument capture; simulated input, actual browser/worklet audio"
+}
