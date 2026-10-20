@@ -1,0 +1,20 @@
+{
+  "cross_browser": {
+    "common_frames": 36096,
+    "max_pcm16": 2158,
+    "rms_pcm16": 12.92218982235459,
+    "different_channel_samples": 15322
+  },
+  "chromium_previous": {
+    "common_frames": 36096,
+    "max_pcm16": 1,
+    "rms_pcm16": 0.012892765578234917,
+    "different_channel_samples": 12
+  },
+  "webkit_previous": {
+    "common_frames": 48000,
+    "max_pcm16": 0,
+    "rms_pcm16": 0.0,
+    "different_channel_samples": 0
+  }
+}

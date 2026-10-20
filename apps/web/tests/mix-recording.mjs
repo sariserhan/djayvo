@@ -5,6 +5,7 @@ import { createServer } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { chromium, webkit } from 'playwright';
 import { stereoWav, sha256 } from '../live-take.js';
+import { validateMixSources } from '../mix-sources.js';
 import { validateMixAutomation } from '../mix-automation.js';
 import { validateMixRecording } from '../mix-recording.js';
 
@@ -114,6 +115,10 @@ try {
   await page.locator('#mix-record-consent').check(); await page.locator('#mix-record-start').click();
   const recording=()=>page.waitForFunction(()=>!document.getElementById('mix-record-stop').disabled);
   await recording();
+  const bWav=Buffer.from(stereoWav(pcm.slice(0,48000*2),48000,48000));
+  await page.locator('#file-b').setInputFiles({name:'temporary-source.wav',mimeType:'audio/wav',buffer:bWav});
+  await page.waitForFunction(()=>!document.getElementById('play-b').disabled);
+  await page.locator('#clear-b').click();
   await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('a'); await page.waitForTimeout(250); await page.keyboard.up('a');
   for (const [id,value] of [['eq-a-0','-6'],['c-level','0.3'],['rack-level','0.5']]) {
     await page.locator(`#${id}`).fill(value); await page.locator(`#${id}`).dispatchEvent('input');
@@ -126,13 +131,24 @@ try {
   await page.waitForTimeout(300); await page.locator('#mix-record-stop').click();
   await page.locator('#mix-record-wav').waitFor({state:'visible'});
   assert.equal(await page.locator('#state-a').textContent(),'Playing');
-  for(const [id,name] of [['mix-record-wav','mix.wav'],['mix-record-json','mix.json'],['mix-record-automation','controls.json']]) {
+  for(const [id,name] of [['mix-record-wav','mix.wav'],['mix-record-json','mix.json'],['mix-record-automation','controls.json'],['mix-record-sources','sources.json']]) {
     const promise=page.waitForEvent('download'); await page.locator(`#${id}`).click();
     await(await promise).saveAs(path.join(output,name));
   }
   const receipt=validateMixRecording(JSON.parse(await fs.readFile(path.join(output,'mix.json'),'utf8')));
   const wav=await fs.readFile(path.join(output,'mix.wav')); assert.equal(await sha256(wav),receipt.wav_sha256);
   assert.equal(wav.length,44+receipt.frames*4); assert.equal(receipt.training_authorized,false);
+  const sources=validateMixSources(JSON.parse(await fs.readFile(path.join(output,'sources.json'),'utf8')),receipt);
+  const aHash=await sha256(stereoWav(pcm,48000*4,48000)), bHash=await sha256(bWav);
+  assert.ok(sources.assets.some(a=>a.kind==='local_audio' && a.sha256===aHash));
+  const bIndex=sources.assets.findIndex(a=>a.kind==='local_audio' && a.sha256===bHash);
+  assert.ok(bIndex>=0 && sources.snapshots.some(snapshot=>snapshot.b===bIndex));
+  assert.equal(sources.snapshots.at(-1).b,null);
+  const engine=await fs.readFile(path.join(publicRoot,'engine/jamloom_live.wasm')), awaitedEngineHash=await sha256(engine);
+  assert.ok(sources.assets.some(a=>a.kind==='instrument_engine' && a.sha256===awaitedEngineHash && a.bytes===engine.length));
+  assert.equal(sources.rights_verified,false); assert.equal(sources.training_authorized,false);
+  assert.ok(!JSON.stringify(sources).includes('temporary-source.wav'));
+  checks.push('source inventory hashes exact A/B files and loaded bank, retains mid-recording unload history without filenames or inferred rights');
   const automation=validateMixAutomation(JSON.parse(await fs.readFile(path.join(output,'controls.json'),'utf8')),receipt);
   for (const [target,value] of [['eq-a-0',-6],['c',.3*.75*.8],['rack',.5*.75]])
     assert.ok(automation.events.some(e=>e.target===target && e.value===value));
@@ -162,9 +178,46 @@ try {
     takingScreenshot=true; try{await page.screenshot({path:path.join(output,name)});}finally{takingScreenshot=false;}
   }
   checks.push('desktop/mobile controls render without horizontal overflow');
+  await page.locator('#mix-record-delete').click();
+  await page.locator('#mix-record-start').click(); await recording();
+  await page.evaluate(()=>{
+    const original=File.prototype.arrayBuffer;
+    File.prototype.arrayBuffer=async function(){await new Promise(resolve=>window.releaseSourceRead=resolve);File.prototype.arrayBuffer=original;return original.call(this);};
+  });
+  await page.waitForTimeout(150); await page.locator('#mix-record-stop').click();
+  await page.waitForFunction(()=>typeof releaseSourceRead==='function');
+  assert.equal(await page.locator('#mix-record-wav').isVisible(),true);
+  await page.locator('#mix-record-consent').uncheck(); await page.evaluate(()=>releaseSourceRead());
+  await page.waitForTimeout(150);
+  assert.equal(await page.locator('#mix-record-sources').getAttribute('href'),null);
+  assert.equal(await page.locator('#mix-record-wav').getAttribute('href'),null);
+  await page.locator('#mix-record-consent').check();
+  await page.locator('#mix-record-start').click(); await recording();
+  await page.evaluate(()=>{
+    const original=File.prototype.arrayBuffer;
+    File.prototype.arrayBuffer=async function(){File.prototype.arrayBuffer=original;throw new Error('Injected source read failure');};
+  });
+  await page.waitForTimeout(150); await page.locator('#mix-record-stop').click();
+  await page.waitForFunction(()=>document.getElementById('mix-record-status').textContent.includes('Source details unavailable'));
+  assert.equal(await page.locator('#mix-record-wav').isVisible(),true);
+  assert.equal(await page.locator('#mix-record-automation').isVisible(),true);
+  assert.equal(await page.locator('#mix-record-sources').isVisible(),false);
+  await page.locator('#mix-record-delete').click();
+  await page.locator('#mix-record-start').click(); await recording();
+  await page.evaluate(()=>{
+    const original=File.prototype.arrayBuffer;
+    File.prototype.arrayBuffer=async function(){await new Promise(resolve=>window.releaseTimedSource=resolve);File.prototype.arrayBuffer=original;return original.call(this);};
+  });
+  await page.waitForTimeout(150); await page.locator('#mix-record-stop').click();
+  await page.waitForFunction(()=>document.getElementById('mix-record-status').textContent.includes('Source details unavailable'),null,{timeout:15000});
+  assert.equal(await page.locator('#mix-record-wav').isVisible(),true);
+  await page.evaluate(()=>releaseTimedSource()); await page.waitForTimeout(150);
+  assert.equal(await page.locator('#mix-record-sources').getAttribute('href'),null);
+  checks.push('delayed source hashing cannot restore revoked exports; read failure and real 10-second deadline preserve WAV and controls');
   await page.locator('#music-rights').uncheck();
   assert.equal(await page.locator('#mix-record-wav').isVisible(),false);
   assert.equal(await page.locator('#mix-record-player').getAttribute('src'),null);
+  assert.equal(await page.locator('#mix-record-sources').getAttribute('href'),null);
   assert.equal(await page.locator('#mix-record-automation').getAttribute('href'),null);
   await page.locator('#mix-record-start').click(); await recording();
   await page.evaluate(()=>{
@@ -245,7 +298,7 @@ try {
   checks.push('real 30-second UI timer stops automatically within the audio buffer cap');
   assert.deepEqual(errors,[]); assert.deepEqual(external,[]);
   await fs.writeFile(path.join(output,'report.json'),JSON.stringify({status:'PASS',browser:kind,version:browser.version(),url,
-    viewports:[[1440,1000],[390,844]],checks,reference,receipt,automation,muteFrame,automatic,peak,tail,errors,external,warnings,
+    viewports:[[1440,1000],[390,844]],checks,reference,receipt,automation,sources,muteFrame,automatic,peak,tail,errors,external,warnings,
     physicalDevices:'NOT RUN',humanQuality:'NOT RUN',training:'NOT RUN',liveMixReplay:'NOT RUN: no complete automation/source trace'},null,2));
   console.log(JSON.stringify({status:'PASS',output,checks}));
 } finally {await browser?.close();await new Promise(resolve=>server.close(resolve));}

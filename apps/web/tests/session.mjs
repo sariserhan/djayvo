@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import { validateMixSources } from '../mix-sources.js';
+import { validateMixRecording } from '../mix-recording.js';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -50,7 +52,10 @@ await context.addInitScript(() => {
       });
     }
     postMessage(data, transfer) {
-      if (data?.style === 'call_response') window.historyCounts.push(data.recent.length);
+      if (data?.style === 'call_response') {
+        window.historyCounts.push(data.recent.length);
+        window.sourceWavHash=crypto.subtle.digest('SHA-256',data.wav).then(bytes=>Array.from(new Uint8Array(bytes),n=>n.toString(16).padStart(2,'0')).join(''));
+      }
       return super.postMessage(data, transfer);
     }
   };
@@ -195,6 +200,22 @@ try {
   const downloaded = page.waitForEvent('download');
   await page.locator('#performance-download').click();
   await (await downloaded).saveAs(path.join(output, 'consented-performance.wav'));
+  await page.locator('#mix-record-consent').check(); await page.locator('#mix-record-start').click();
+  await page.waitForFunction(()=>!document.getElementById('mix-record-stop').disabled);
+  await page.waitForTimeout(250); await page.locator('#mix-record-stop').click();
+  await page.locator('#mix-record-sources').waitFor({state:'visible'});
+  for(const [id,name] of [['mix-record-json','mix-receipt.json'],['mix-record-sources','mix-sources.json']]) {
+    const download=page.waitForEvent('download'); await page.locator(`#${id}`).click(); await(await download).saveAs(path.join(output,name));
+  }
+  const sourceReceipt=validateMixRecording(JSON.parse(await fs.readFile(path.join(output,'mix-receipt.json'),'utf8')));
+  const sourceInventory=validateMixSources(JSON.parse(await fs.readFile(path.join(output,'mix-sources.json'),'utf8')),sourceReceipt);
+  const cHash=createHash('sha256').update(await fs.readFile(path.join(output,'consented-performance.wav'))).digest('hex');
+  const phraseHash=await page.evaluate(()=>sourceWavHash);
+  assert.ok(sourceInventory.assets.some(a=>a.kind==='generated_wav' && a.sha256===cHash));
+  assert.ok(sourceInventory.assets.some(a=>a.kind==='normalized_phrase_wav' && a.sha256===phraseHash));
+  assert.ok(sourceInventory.assets.some(a=>a.kind==='local_audio' && a.sha256===createHash('sha256').update(wav).digest('hex')));
+  await page.locator('#mix-record-delete').click();
+  check('private source inventory links exact prepared-A file, generated C WAV and normalized phrase bytes sent to the planner');
   const savedMix = await verifyPerformanceSave(page, check, createHash('sha256').update(await fs.readFile(path.join(output, 'consented-performance.wav'))).digest('hex'));
   assert.equal(await page.locator('#session-stop').isDisabled(), false);
   await page.locator('#echo-c').fill('0.4'); await page.locator('#echo-c').dispatchEvent('input');

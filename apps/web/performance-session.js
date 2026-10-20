@@ -6,10 +6,10 @@ import { saveSession, verifySession } from './library.js';
 
 const $ = id => document.getElementById(id);
 const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
-export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights, onSaved, onPhraseChanged = () => {} }) {
+export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights, onSaved, onPhraseChanged = () => {}, onSourcesChanged = () => {} }) {
   let prepared, transport, samples, performanceBuffer, download, busy = '', starting = '', revision = 0, startVersion = 0;
   let savedPerformance, saving = false, saved = false;
-  let sourceOrigin;
+  let sourceOrigin, phraseBlob;
   let worker, timer, recorder, stream, recordingAt, generationContext, recent = [], wasA = false, wasC = false;
   const error = failure => { $('performance-error').textContent = failure.message || String(failure); };
   const say = text => { $('performance-status').textContent = text; };
@@ -69,7 +69,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     controls(deck);
   }
   function clearPerformance() {
-    savedPerformance = undefined; saved = false;
+    savedPerformance = undefined; saved = false; onSourcesChanged();
     $('performance-save-status').textContent = '';
     transport?.stopC(); performanceBuffer = undefined; generationContext = undefined;
     effects(true);
@@ -94,7 +94,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     startVersion++; starting = ''; transport?.stop(); clearCEcho(); refresh();
   }
   function deletePhrase() {
-    cancel(); samples = undefined; sourceOrigin = undefined; onPhraseChanged();
+    cancel(); samples = undefined; sourceOrigin = undefined; phraseBlob = undefined; onPhraseChanged();
     recent = []; clearPerformance(); $('phrase-status').textContent = 'Phrase and C deleted from this tab.'; refresh();
   }
   $('prepare-a').onclick = async () => {
@@ -165,8 +165,8 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
       const decoded = await decodeAudio(blob, recorded);
       if (token !== revision || !permitted()) return;
       if (decoded.length > 5 * 48000) throw new Error('Import a 2–5 second phrase. Trim longer recordings in Voice studio first.');
-      encodeWav(decoded);
-      clearPerformance(); samples = decoded; sourceOrigin = recorded ? 'microphone' : 'imported_file'; onPhraseChanged();
+      const normalized = new Blob([encodeWav(decoded)], { type: 'audio/wav' });
+      clearPerformance(); samples = decoded; phraseBlob = normalized; sourceOrigin = recorded ? 'microphone' : 'imported_file'; onPhraseChanged();
       $('phrase-status').textContent = `${(samples.length / 48000).toFixed(2)} s phrase ready · held only in this tab.`;
     } catch (failure) { if (token === revision) error(failure); }
     finally { if (token === revision) { busy = ''; refresh(); } }
@@ -256,6 +256,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
           files: data.files.map(file => ({ name: file.name, sha256: file.sha256,
             blob: new Blob([file.bytes], { type: file.name.endsWith('.wav') ? 'audio/wav' : 'application/octet-stream' }) })),
         };
+        onSourcesChanged();
         recent = [...recent.slice(-9), key];
         download = URL.createObjectURL(new Blob([bytes], { type: 'audio/wav' }));
         $('performance-download').href = download; $('performance-download').download = `jamloom-session-${data.seed}.wav`; $('performance-download').hidden = false;
@@ -308,5 +309,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
       context: confirmed() ? { tempo_milli_bpm: c.tempo, tonic_midi: c.tonic, mode: c.mode,
         beats_per_bar: 4, downbeat_seconds: Number($('session-downbeat').value), status: 'user_confirmed' } : null };
   }
-  return { reset, stop, refresh, phraseSource };
+  return { reset, stop, refresh, phraseSource, mixSources: () => ({
+    c: savedPerformance?.files.find(file => file.name.endsWith('.wav'))?.blob, phrase: phraseBlob,
+  }) };
 }

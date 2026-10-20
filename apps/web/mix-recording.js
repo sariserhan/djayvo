@@ -1,5 +1,6 @@
 import { TAKE_SECONDS, stereoWav, sha256 } from './live-take.js';
 import { MixAutomation } from './mix-automation.js';
+import { MixSources } from './mix-sources.js';
 import { resumeAudio } from './audio.js';
 
 export function validateMixRecording(recording) {
@@ -20,9 +21,10 @@ export function validateMixRecording(recording) {
   return recording;
 }
 
-export function attachMixRecording({ graph, context, mixer }) {
+export function attachMixRecording({ graph, context, mixer, getSources }) {
   const $ = id => document.getElementById(id);
   let state = 'idle', version = 0, node, sink, nodeError, timer, started, loaded = false, urls = [];
+  let sourceCapture, sourceJob;
   function refresh() {
     $('mix-record-start').disabled = state !== 'idle' || !$('mix-record-consent').checked;
     $('mix-record-stop').disabled = state !== 'recording';
@@ -30,6 +32,8 @@ export function attachMixRecording({ graph, context, mixer }) {
   }
   function disconnect(completed = false) {
     clearInterval(timer);
+    sourceCapture = undefined;
+    if (!completed) { sourceJob?.cancel(); sourceJob = undefined; }
     if (mixer()) mixer().automationTrace = undefined;
     if (node) {
       const port = node.port;
@@ -46,7 +50,7 @@ export function attachMixRecording({ graph, context, mixer }) {
   function clear(text = 'Mix recording deleted from this tab. Downloaded copies remain on your device.') {
     version++; disconnect(); state = 'idle';
     const player = $('mix-record-player'); player.pause(); player.removeAttribute('src'); player.load(); player.hidden = true;
-    for (const id of ['mix-record-wav', 'mix-record-json', 'mix-record-automation']) { $(id).hidden = true; $(id).removeAttribute('href'); }
+    for (const id of ['mix-record-wav', 'mix-record-json', 'mix-record-automation', 'mix-record-sources']) { $(id).hidden = true; $(id).removeAttribute('href'); }
     urls.forEach(url => URL.revokeObjectURL(url)); urls = [];
     $('mix-record-status').textContent = text; refresh();
   }
@@ -56,6 +60,22 @@ export function attachMixRecording({ graph, context, mixer }) {
     $('mix-record-status').textContent = 'Preparing your private WAV…';
     node.port.postMessage({ type: 'stop' });
     timer = setTimeout(() => clear('Recorder did not finish. Recording discarded; playback is unaffected.'), 5000);
+  }
+  async function publishSources(inventory, receipt, token) {
+    let deadline;
+    const status = $('mix-record-status').textContent;
+    $('mix-record-status').textContent = status + ' Checking source details…';
+    try {
+      const sources = await Promise.race([inventory.finish(receipt), new Promise((_, reject) => {
+        deadline = setTimeout(() => { inventory.cancel(); reject(new Error('Source hashing timed out')); }, 10000);
+      })]);
+      if (token !== version || !$('mix-record-consent').checked) return;
+      const url = URL.createObjectURL(new Blob([JSON.stringify(sources, null, 2)], { type: 'application/json' }));
+      urls.push(url); $('mix-record-sources').href = url; $('mix-record-sources').hidden = false;
+      $('mix-record-status').textContent = status + ' Source details ready.';
+    } catch {
+      if (token === version) $('mix-record-status').textContent = status + ' Source details unavailable; WAV retained.';
+    } finally { clearTimeout(deadline); if (sourceJob === inventory) sourceJob = undefined; }
   }
   $('mix-record-start').onclick = async () => {
     if (state !== 'idle' || !$('mix-record-consent').checked) return;
@@ -69,6 +89,8 @@ export function attachMixRecording({ graph, context, mixer }) {
       if (token !== version || !$('mix-record-consent').checked) return;
       const automation = new MixAutomation(mixer(), context());
       mixer().automationTrace = automation;
+      const inventory = new MixSources();
+      sourceCapture = sourceJob = inventory; inventory.record(getSources(), context());
       node = new AudioWorkletNode(context(), 'jamloom-mix-recording', {
         numberOfInputs: 1, numberOfOutputs: 1, outputChannelCount: [2], channelCount: 2, channelCountMode: 'explicit',
       });
@@ -104,6 +126,7 @@ export function attachMixRecording({ graph, context, mixer }) {
             $('mix-record-player').src = urls[0]; $('mix-record-player').hidden = false;
             state = 'ready'; refresh();
             $('mix-record-status').textContent = `${(data.frames / data.rate).toFixed(1)} seconds · Private studio mix ready.${data.capped ? ' Recording reached its 30-second limit.' : ''}${trace ? '' : automation.overflow ? ' Control trace exceeded its limit and was discarded; WAV retained.' : ' Control trace was incomplete and discarded; WAV retained.'}`;
+            void publishSources(inventory, receipt, token);
           } catch { if (token === version) clear('Could not validate the recording. It was discarded.'); }
         }
       };
@@ -123,5 +146,6 @@ export function attachMixRecording({ graph, context, mixer }) {
   document.addEventListener('visibilitychange', () => { if (document.hidden) interrupt(); });
   window.addEventListener('pagehide', () => clear());
   refresh();
-  return { interrupt, sourceChanged: () => { if (state !== 'idle') clear('Source phrase changed or deleted. Mix recording discarded.'); } };
+  return { interrupt, sourcesChanged: () => sourceCapture?.record(getSources(), context()),
+    sourceChanged: () => { if (state !== 'idle') clear('Source phrase changed or deleted. Mix recording discarded.'); } };
 }

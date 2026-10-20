@@ -7,6 +7,7 @@ import { chromium, webkit } from 'playwright';
 import { verifyInstrumentFX } from './instrument-fx.mjs';
 import { fakeMidi, verifyMidi } from './midi-browser.mjs';
 import { sha256 } from '../live-take.js';
+import { validateMixSources } from '../mix-sources.js';
 import { validateMixAutomation } from '../mix-automation.js';
 import { validateMixRecording } from '../mix-recording.js';
 
@@ -603,7 +604,7 @@ try {
   await page.locator('#rack-echo').fill('0.3'); await page.locator('#rack-echo').dispatchEvent('input');
   await page.locator('#rack-fx-reset').click();
   await page.locator('#mix-record-stop').click(); await page.locator('#mix-record-wav').waitFor({state:'visible'});
-  for (const [id,name] of [['mix-record-wav','offline-mix.wav'],['mix-record-json','offline-mix.json'],['mix-record-automation','offline-controls.json']]) {
+  for (const [id,name] of [['mix-record-wav','offline-mix.wav'],['mix-record-json','offline-mix.json'],['mix-record-automation','offline-controls.json'],['mix-record-sources','offline-sources.json']]) {
     const promise=page.waitForEvent('download'); await page.locator(`#${id}`).click();
     await(await promise).saveAs(path.join(output,name));
   }
@@ -612,6 +613,8 @@ try {
   assert.ok(offlineControls.events.some(e=>e.target==='rack' && e.value>0));
   assert.ok(offlineControls.events.some(e=>e.target==='rack' && e.kind==='tone_echo' && e.echo===.3));
   assert.ok(offlineControls.events.some(e=>e.target==='rack' && e.kind==='clear_echo'));
+  const offlineSources=validateMixSources(JSON.parse(await fs.readFile(path.join(output,'offline-sources.json'),'utf8')),offlineReceipt);
+  assert.ok(offlineSources.assets.some(asset=>asset.kind==='instrument_engine'));
   const offlineWav=await fs.readFile(path.join(output,'offline-mix.wav'));
   assert.equal(await sha256(offlineWav),offlineReceipt.wav_sha256);
   let offlinePeak=0; for(let i=44;i<offlineWav.length;i+=2)offlinePeak=Math.max(offlinePeak,Math.abs(offlineWav.readInt16LE(i)));
@@ -620,7 +623,7 @@ try {
   await page.waitForFunction(()=>document.getElementById('mix-record-player').currentTime>0);
   await page.locator('#mix-record-delete').click();
   assert.equal(serverRequests.length,requestsBeforeDisconnect);
-  check('cached mix recorder captures, downloads and plays hash-verified PCM and gain/effect/reset automation with server disconnected');
+  check('cached mix recorder captures, downloads and plays hash-verified PCM and gain/effect/reset automation plus source fingerprints with server disconnected');
   await page.locator('#clear-a').click();
   assert.equal(await page.locator('#audio-a').getAttribute('src'), null);
   check('unload releases the deck source');

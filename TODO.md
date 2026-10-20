@@ -859,7 +859,7 @@ it does not waive the remaining quality, rights or training gates.
 - [x] **IR10 — PASS:** Rights declarations/evidence hashes, speaker opt-in boundaries, withdrawal/expiry and cross-ledger source/session/speaker/performer/phrase/arrangement split guards.
 - [x] **IR11 — PASS:** Six evaluation-only state/action/next-state examples, current-consent revalidation, one playable WAV, exact 512/113-block replay and 304 independently checked instrument events.
 - [x] **IR12 — PASS:** 14 new capture tests and 11 unchanged R0 tests on M5. [Report/logs](docs/r1-demonstrations.md).
-- [ ] **IR13 — PARTIAL:** Browser instrument actions/dry PCM, source-phrase pairs and post-limiter full-mix WAV capture now implemented. Gain/EQ/effect/reset schedules are now linked to WAV frames; transport traces, source provenance, aligned stems and source/response alignment remain. [Evidence](docs/r1-effect-capture.md).
+- [ ] **IR13 — PARTIAL:** Browser instrument actions/dry PCM, source-phrase pairs and post-limiter full-mix WAV capture now implemented. Gain/EQ/effect/reset schedules and loaded-source fingerprints link to the WAV; transport traces, complete derivation/verified rights, aligned stems and source/response alignment remain. [Evidence](docs/r1-source-inventory.md).
 - [ ] **IR14 — NOT RUN:** Permissioned expert demonstrations, verified human review, diverse stratified corpus and near-duplicate detection.
 - [ ] **IR15 — NOT RUN:** R2 human comparison / R3 training. No training-authorized examples exported, no new model or paid compute; require their gates and authorization.
 - [x] **IR16 — PASS:** Opt-in local instrument take, playback/WAV/action download/delete, bounded capture, cancellation on lost focus/audio/engine failure, exact shared-engine replay.
@@ -874,6 +874,9 @@ it does not waive the remaining quality, rights or training gates.
 
 - [x] **IR24 — PASS:** Versioned gain/EQ/effect/reset trace across A/B/C/instruments, backward validation of v1 downloads, frozen requested effect state, shared action cap and fail-closed partial-effect handling while retaining WAV.
 - [x] **IR25 — PASS:** 67 unit tests; ten recorder checks each in Chromium/WebKit; 48 offline-inclusive DJ and 39 prepared-session checks; 75 echo positions within one sample frame; exact per-browser capture/destination PCM. Historical/cross-browser PCM identity PARTIAL; model training NOT RUN. [Report](docs/r1-effect-capture.md).
+
+- [x] **IR26 — PASS:** Private versioned source inventory links exact A/B/C/normalized phrase/native bank bytes to a mix WAV, retaining loaded/unloaded history without filenames or inferred rights. Bounded deferred hashing; cancellation, read failure and timeout preserve WAV/control availability.
+- [x] **IR27 — PASS:** 73 unit tests; 12 capture checks each in Chromium/WebKit; 48 offline-inclusive DJ and 40 prepared-session checks; exact source hash checks, 42-file public audit and localhost source equality. Initial Chromium timed capture had two clock discontinuities; isolated repeat had zero. Clock/PCM parity and R1 remain PARTIAL; human quality/training NOT RUN. [Report](docs/r1-source-inventory.md).
 
 ## Storage maintenance — 2026-10-20
 

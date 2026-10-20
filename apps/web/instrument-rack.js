@@ -26,7 +26,7 @@ export async function createRack(context, destination) {
       node.port.onmessage = ({ data }) => { if (data.type === 'ready') { clearTimeout(timer); node.removeEventListener('processorerror', failed); resolve(); } };
     });
     node.connect(destination);
-    node.engineHash = engineHash;
+    node.engineHash = engineHash; node.engineBytes = bytes.byteLength;
     return node;
   } catch (error) { node.port.close(); node.disconnect(); throw error; }
 }

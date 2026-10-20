@@ -164,3 +164,7 @@ listed in `artifacts.json` for every command.
 Next R1 work: transport actions and hash-linked source provenance, followed by
 permissioned, expert-reviewed demonstrations. R2 evaluation and learned-model
 training remain separate gated work.
+
+Follow-up: [loaded-source fingerprint capture](r1-source-inventory.md) now
+identifies loaded A/B/C/phrase/bank bytes. It does not establish audibility,
+complete derivation, verified licensing or training authorization.

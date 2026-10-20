@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0-mix-sources",
+  "scope": "loaded_assets",
+  "permission": "user_attested_private_mix",
+  "rights_verified": false,
+  "training_authorized": false,
+  "wav_sha256": "acbbf2ad68232845195d79899b336b8f21bdb7aaa563dee7d3ac91eeecded3b1",
+  "sample_rate": 48000,
+  "observed_context_start_frame": 252672,
+  "assets": [
+    {
+      "kind": "local_audio",
+      "bytes": 5760044,
+      "sha256": "14110ddf83eaf7ce15346ef0a66f7d5ba2b714e083a056fe996d8f6d38106e0e"
+    },
+    {
+      "kind": "instrument_engine",
+      "bytes": 13801608,
+      "sha256": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8"
+    }
+  ],
+  "snapshots": [
+    {
+      "context_frame": 252672,
+      "a": 0,
+      "b": null,
+      "c": null,
+      "phrase": null,
+      "rack": 1
+    }
+  ]
+}

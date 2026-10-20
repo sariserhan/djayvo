@@ -1239,3 +1239,34 @@ runs, native/Next rebuild, model training, paid compute or deployment. M5/macOS
 all final checks (initial orchestrated runs resolved Homebrew Node 26.3.0; final
 runs pin the existing project executable, no environment changes). Immutable specifications, fixture and
 native WASM preserved. [Report and reproducible evidence](r1-effect-capture.md).
+
+## 2026-10-20 — R1 private loaded-source inventory
+
+**PASS:** Separate `1.0-mix-sources` download links exact loaded A/B files,
+generated C WAV, normalized planner phrase and native instrument engine to the
+recorded mix WAV. Bounded snapshots retain source changes/unloads. No filenames
+or audio payloads; rights verification and training authorization remain false.
+Sequential hashing starts after capture, with a ten-second deadline. Failed,
+cancelled or late hashing cannot revive deleted exports or discard the ready WAV.
+
+**PASS:** 73 unit tests, 12 recording checks each in Chromium/WebKit, 48 DJ
+checks including actual disconnected capture and 40 prepared-session checks.
+Exact C/phrase/A fingerprints validated against downloaded/worker-input bytes.
+Capture/destination PCM difference is zero within both browsers. Both timed caps
+reach 1,440,000 frames. Forty-two-file bundle audit, seven source-identical
+localhost assets and desktop/mobile inspection pass. No app runtime errors.
+
+**PARTIAL:** Initial concurrent Chromium timed capture reports two context clock
+discontinuities; isolated rerun passes all 12 checks with zero and the same timed
+WAV hash. Prepared-session probe reports two context clock anomalies, but zero
+independent signal-frame gaps and silent blocks. Cross-browser common-prefix
+max/RMS differences are 2,158 / 12.9221898224 PCM16 units. These results establish
+neither physical glitch-free performance nor identical browser DSP. Overall R1
+still needs transport, complete provenance/rights, aligned stems and reviewed
+expert demonstrations.
+
+**NOT RUN:** Human musical quality, physical latency/MIDI/venue, new Linux/iPhone,
+full native/Next rebuild, model training, paid compute or deployment. M5 / 16 GiB /
+macOS 26.7.1 / Node 22.23.1 / Playwright 1.61.1, Chromium 149.0.7827.55 and WebKit
+26.5. Specs, synthetic fixture and native WASM hashes preserved.
+[Report, playable probes and retained evidence](r1-source-inventory.md).

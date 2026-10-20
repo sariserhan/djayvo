@@ -4,7 +4,7 @@ import { attachMidi } from './midi.js';
 import { resumeAudio } from './audio.js';
 import { attachInstrumentTake } from './instrument-take.js';
 const $ = id => document.getElementById(id);
-export function attachKeyboard({ graph, context, mixer, levels, masterControls, getPhrase }) {
+export function attachKeyboard({ graph, context, mixer, levels, masterControls, getPhrase, onSourcesChanged = () => {} }) {
   let node, loading = false, nextId = 1, root = 60;
   const held = new Map(), deferred = new Map(), pedals = new Set(), keys = new Map(), pads = new Map();
   const letters = 'awsedftgyhujk';
@@ -98,14 +98,14 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
       graph(); await resumeAudio(context()); node = await createRack(context(), mixer().rackFX.input);
       node.addEventListener('processorerror', () => {
         take.clear('Instrument engine interrupted. Take discarded.');
-        panic(); node.disconnect(); node.port.close(); node = null; availability(); masterControls();
+        panic(); node.disconnect(); node.port.close(); node = null; onSourcesChanged(); availability(); masterControls();
         status('The instrument engine stopped. Your decks remain available. Reload to prepare instruments again.');
       }, { once: true });
       node.port.onmessage = ({ data }) => {
         if (data.type === 'rejected') status('Voice limit reached. Release notes or use All notes off.');
         take.message(data);
       };
-      levels(); availability(); octave(0); masterControls();
+      onSourcesChanged(); levels(); availability(); octave(0); masterControls();
       $('load-instruments').textContent = 'Instruments ready'; status('Ready · 88 keys, ten sounds and twelve drum pads.');
     } catch (error) { status(error.message); $('load-instruments').disabled = false; }
     finally { loading = false; }
@@ -168,5 +168,5 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
   window.addEventListener('keyup', event => release(`key-${event.code}`));
   window.addEventListener('blur', panic); window.addEventListener('pagehide', panic);
   document.addEventListener('visibilitychange', () => { if (document.hidden) panic(); });
-  return { ready: () => !!node, panic, interrupt: take.interrupt, sourceChanged: take.sourceChanged };
+  return { ready: () => !!node, sourceAsset: () => node ? { sha256: node.engineHash, bytes: node.engineBytes } : null, panic, interrupt: take.interrupt, sourceChanged: take.sourceChanged };
 }

@@ -52,8 +52,8 @@
 <div class="session-actions"><button id="mix-record-start" class="small-button" disabled>Record mix</button><button id="mix-record-stop" class="small-button" disabled>Stop recording</button><button id="mix-record-delete" class="small-button" disabled>Delete recording</button></div>
 <p id="mix-record-status" role="status">Confirm recording permission to begin. Playback continues when recording stops.</p>
 <audio id="mix-record-player" controls hidden aria-label="Recorded studio mix"></audio>
-<div class="session-actions"><a id="mix-record-wav" download="jamloom-studio-mix.wav" hidden>Download mix WAV</a><a id="mix-record-json" download="jamloom-studio-mix.json" hidden>Download recording details</a><a id="mix-record-automation" download="jamloom-mix-controls.json" hidden>Download mixer controls</a></div>
-<p class="hint">Control details include scheduled fader gains, EQ, tone and echo changes, plus echo resets. They do not replay the full performance or authorize training.</p>
+<div class="session-actions"><a id="mix-record-wav" download="jamloom-studio-mix.wav" hidden>Download mix WAV</a><a id="mix-record-json" download="jamloom-studio-mix.json" hidden>Download recording details</a><a id="mix-record-automation" download="jamloom-mix-controls.json" hidden>Download mixer controls</a><a id="mix-record-sources" download="jamloom-mix-sources.json" hidden>Download source details</a></div>
+<p class="hint">Control details include scheduled fader gains, EQ, tone and echo changes, plus echo resets. They do not replay the full performance or authorize training. Source details contain local fingerprints of loaded assets, without filenames or audio. They do not verify ownership or licensing.</p>
 <p class="hint">Recordings stay in this tab until downloaded. Changing or deleting the source phrase, or removing recording/music/voice permission, discards the recording here. Leaving this tab during capture discards the unfinished recording. Downloaded copies must be deleted separately.</p>
 </fieldset>
 <section id="saved-mixes" aria-labelledby="saved-mixes-title">

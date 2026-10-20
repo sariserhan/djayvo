@@ -1,0 +1,41 @@
+{
+  "gate": "PASS",
+  "url": "http://127.0.0.1:3000/studio/dj.html",
+  "source_equal": [
+    {
+      "file": "dj.html",
+      "status": 200,
+      "sha256": "cd19c51964c04b6dd6b3ccd140db2fa48c99886b379bca4b6157a455c4f50c64"
+    },
+    {
+      "file": "dj.js",
+      "status": 200,
+      "sha256": "5a83e620db6b674044c734eb37196f325d9f40f1745780c0f914961827d9ab80"
+    },
+    {
+      "file": "mix-recording.js",
+      "status": 200,
+      "sha256": "fca8c8c20b618ceafcfc7136ceba2fa0edf56d2b1b691e12b2d15297b9085511"
+    },
+    {
+      "file": "mix-sources.js",
+      "status": 200,
+      "sha256": "0feb7321f1b6bcce3488877b3aa9e431b1e779cf7629bb2c652d82039d9b0dec"
+    },
+    {
+      "file": "keyboard.js",
+      "status": 200,
+      "sha256": "f060aa359241514252e470d09b86d98c3458ae5e0c5661169e0d2d5e02813a88"
+    },
+    {
+      "file": "instrument-rack.js",
+      "status": 200,
+      "sha256": "cd4a53ebdd97fe55ccc64c06e3ec9ea9f2ed9f2a508a73903af06258a4926f47"
+    },
+    {
+      "file": "performance-session.js",
+      "status": 200,
+      "sha256": "e40f654517a876e8eea2ca07968cb293493b7d2f2e79bf673d809969cf3ad10e"
+    }
+  ]
+}

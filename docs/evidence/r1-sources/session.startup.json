@@ -1,0 +1,20 @@
+[
+  {
+    "channel": "a",
+    "status": "PASS",
+    "cancelledStarts": 0,
+    "successfulStarts": 3,
+    "staleFailureIgnored": true,
+    "currentFailureRecoverable": true,
+    "resumeTimeoutRecoverable": true
+  },
+  {
+    "channel": "c",
+    "status": "PASS",
+    "cancelledStarts": 0,
+    "successfulStarts": 3,
+    "staleFailureIgnored": true,
+    "currentFailureRecoverable": true,
+    "resumeTimeoutRecoverable": true
+  }
+]

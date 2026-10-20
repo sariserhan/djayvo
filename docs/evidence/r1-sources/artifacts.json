@@ -1,0 +1,228 @@
+{
+  "chromium": {
+    "directory": "renders/mix-recording-chromium-saqYGu",
+    "checks": 12,
+    "files": {
+      "sources.json": {
+        "bytes": 1198,
+        "sha256": "79ed18657b0f81e15ce55e8c503a24c4f7b248641cd2b1c563a1561d4dbfcd47"
+      },
+      "automatic-stop.json": {
+        "bytes": 427,
+        "sha256": "c8435c594fc50fe501126eeb1aa228973383608d0e167fdd31e42429cad591a5"
+      },
+      "controls.json": {
+        "bytes": 6439,
+        "sha256": "ff6707e67c3c811cc5cc75a85786ae54c7a5cf56cb037f9f43a0acb7185206bf"
+      },
+      "report.json": {
+        "bytes": 14037,
+        "sha256": "c4cc8275de4d62edaeb4a2a67f64c71ed9907a35da6183cb4650812ca7a24107"
+      },
+      "post-limiter-reference.wav": {
+        "bytes": 144428,
+        "sha256": "a61921dd9db8b7348ad78ca3c643cb7167cc317d8373837526a705e0d7ba4be4"
+      },
+      "mix.wav": {
+        "bytes": 150572,
+        "sha256": "3d17bf5f28d219df7c2d1e283a4cec4da43fe8e72c4d675774a68d08ba057a83"
+      },
+      "mix.json": {
+        "bytes": 425,
+        "sha256": "1855c57e349cd83f92df43aaebfb26666e081cacbe2dc54519b73b3aa105f527"
+      }
+    }
+  },
+  "webkit": {
+    "directory": "renders/mix-recording-webkit-Jbn66f",
+    "checks": 12,
+    "files": {
+      "sources.json": {
+        "bytes": 1198,
+        "sha256": "f63770516dcfff4a8c91294fb3d8016d70441ada709fb3c725fe215fa0c0a528"
+      },
+      "automatic-stop.json": {
+        "bytes": 427,
+        "sha256": "10ebdd5747935b67c7bd40181e4a0995ad74cb55981d99d473b423facf225368"
+      },
+      "controls.json": {
+        "bytes": 6426,
+        "sha256": "d9230aed5942d4ead2b812273844b4c64b59e6b86efe307528b5a1358d293c7c"
+      },
+      "report.json": {
+        "bytes": 14334,
+        "sha256": "b96d6019df76dd20de678b1a20d19075002677cca958b902e74f722e427cfca0"
+      },
+      "post-limiter-reference.wav": {
+        "bytes": 192044,
+        "sha256": "516d1fdd0ac3f8817c0ef1452dd5cd3cd063de3509fedcca5164880cb7ad5cee"
+      },
+      "mix.wav": {
+        "bytes": 172588,
+        "sha256": "9dc069b930c74ce2889e6f7e61fe0f8a0480a6ea0a92bc8d57b12edd504e7036"
+      },
+      "mix.json": {
+        "bytes": 425,
+        "sha256": "c43fb4772b283abd16330fa8877db562bce2ad29c2d4131e00fa2eb5cecc0dfc"
+      }
+    }
+  },
+  "dj": {
+    "directory": "renders/dj-chromium-aBCVq2",
+    "checks": 48,
+    "files": {
+      "deck-a-piano-echo.wav": {
+        "bytes": 1152044,
+        "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+      },
+      "offline-mix.json": {
+        "bytes": 426,
+        "sha256": "789709dbb3312e0a0226e8cb80ad84339aa0d04faf1074112c7f2383268fc6c6"
+      },
+      "piano-echo.wav": {
+        "bytes": 1152044,
+        "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+      },
+      "report.json": {
+        "bytes": 44050,
+        "sha256": "c6c863ef9417bcb97367a691609ae5285449d3ef12efea6267bd37f730d41865"
+      },
+      "offline-sources.json": {
+        "bytes": 798,
+        "sha256": "c6953798e731d58b2f984132025f595e2e3da4829245e4f80778bcc1811eabc8"
+      },
+      "deck-b-piano-echo.wav": {
+        "bytes": 1152044,
+        "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+      },
+      "deck-a-piano-dry.wav": {
+        "bytes": 1152044,
+        "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+      },
+      "offline-mix.wav": {
+        "bytes": 86060,
+        "sha256": "acbbf2ad68232845195d79899b336b8f21bdb7aaa563dee7d3ac91eeecded3b1"
+      },
+      "piano-dry.wav": {
+        "bytes": 1152044,
+        "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+      },
+      "deck-b-piano-dry.wav": {
+        "bytes": 1152044,
+        "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+      },
+      "offline-controls.json": {
+        "bytes": 2519,
+        "sha256": "801a1ee34e12aa429e8ea34c3f91f16aaab9ac5fe8e92e142112923c12af64f9"
+      }
+    }
+  },
+  "session": {
+    "directory": "renders/session-chromium-a6GRiM",
+    "checks": 40,
+    "files": {
+      "continuity.json": {
+        "bytes": 534,
+        "sha256": "dcb53f4ede50b8a46a55ab548db267eb53f9d63f30961e65be2a6e3ede03bd3f"
+      },
+      "deck-c-piano-dotted.wav": {
+        "bytes": 1152044,
+        "sha256": "00fa4a2401b04dc8d6bf3d944a3c26752ab653c99485de9b6599aad3b2c8c3fa"
+      },
+      "timing.json": {
+        "bytes": 1241,
+        "sha256": "c923f0a7efe6d7fb2710f4a95ce39213171e70c5af8abb177e0e87441eecf408"
+      },
+      "report.json": {
+        "bytes": 8345,
+        "sha256": "756dad71c1cb5ba9c531f181457db560056c90bde6bb826bb1093d9f259c4a78"
+      },
+      "startup.json": {
+        "bytes": 428,
+        "sha256": "7becb7a8cd22051c22d0d083e38700f7b9278089dbe9c64bbbfef26e3602e346"
+      },
+      "deck-c-piano-triplet.wav": {
+        "bytes": 1152044,
+        "sha256": "8b1157a97a18f694ff68c76af5b12f478232387210ae45b3c9078c59c6ebeba3"
+      },
+      "consented-performance.wav": {
+        "bytes": 5760044,
+        "sha256": "811cce936085f09396f7e7e8dd2fb9a99d4766698f1fde65ceb8a9975fc5f42f"
+      },
+      "performance-fx.json": {
+        "bytes": 21868,
+        "sha256": "2ba054f70645cabb940462c503f39c776dd878f00bf25e07fa1447d7cf53fe6e"
+      },
+      "deck-c-piano-dry.wav": {
+        "bytes": 1152044,
+        "sha256": "736e3408653266c831f27e0e0e10886d63b6660f83ffdac92720a806031bd314"
+      },
+      "mix-receipt.json": {
+        "bytes": 426,
+        "sha256": "ee48d3fb7f8c1b95732ea099c6bb2e28205195ada56d258a3908de270287c07a"
+      },
+      "deck-c-piano-echo.wav": {
+        "bytes": 1152044,
+        "sha256": "596fb0e404a8b79df8ae3571d138622b9675e583fc29dfa6b51280b21cef1175"
+      },
+      "deck-c-piano-eighth.wav": {
+        "bytes": 1152044,
+        "sha256": "cc5ccde681b66ca97fa3333189b30e0fc69db604288be45925c473e596c41c13"
+      },
+      "mix-sources.json": {
+        "bytes": 948,
+        "sha256": "525582ad90d050a63c1f5f78d83f5791d1d11f9d50e9bff3c269ba0126cc5845"
+      }
+    }
+  },
+  "preserved": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "jamloom_improvisation_learning_addendum_v1.md": "5bfe33e037f4d0aff6910ba3dbc55ce090e96b0ee772fdc834d94a12aa29941d",
+    "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+    "dist/web/engine/jamloom_live.wasm": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8"
+  },
+  "runtime": {
+    "node_executable": "/Users/serhansari/.nvm/versions/node/v22.23.1/bin/node",
+    "node": "22.23.1",
+    "playwright": "1.61.1",
+    "machine": "arm64",
+    "macos": "26.7.1",
+    "os_build": "25G241",
+    "cpu": "Apple M5",
+    "memory_bytes": 17179869184
+  },
+  "chromium-isolated": {
+    "directory": "renders/mix-recording-chromium-JsBzTD",
+    "checks": 12,
+    "files": {
+      "sources.json": {
+        "bytes": 1198,
+        "sha256": "bdbd3e477edd3a385fe72bb2ff8e7f623e0db77f0a9d10fa2da3314169399965"
+      },
+      "automatic-stop.json": {
+        "bytes": 427,
+        "sha256": "0119173c158ac7d2ef9c021f1898664660f3ee8b21a04a116b397eac60ca2fa5"
+      },
+      "controls.json": {
+        "bytes": 6406,
+        "sha256": "d67f4b78b056dd56b70f6525441c2a7104fd45be49d719923963ed760e3a7c82"
+      },
+      "report.json": {
+        "bytes": 14004,
+        "sha256": "8a679a56b7d1118f53648ecce109d34ab2f9f91a808cf8920381604a92322b3f"
+      },
+      "post-limiter-reference.wav": {
+        "bytes": 144428,
+        "sha256": "d0a0ef4c3eddd2f23c125d3ac8b8ee8778c21462d4cce23cb3045fab60e0ef16"
+      },
+      "mix.wav": {
+        "bytes": 144428,
+        "sha256": "0162063ff9824cbd2bf736fc530b228d4a6e90f683563a13f8a36e92dbfa4f35"
+      },
+      "mix.json": {
+        "bytes": 425,
+        "sha256": "a89bf98f67a1c8947a1cd0498e483090ee880a5ae40f6e88e6c8a6301e26ad90"
+      }
+    }
+  }
+}

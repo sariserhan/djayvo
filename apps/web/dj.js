@@ -76,7 +76,7 @@ function unload(deck) {
   pause(deck); deck.loading?.abort(); deck.loading = null;
   deck.audio.removeAttribute('src'); deck.audio.load();
   if (deck.url) URL.revokeObjectURL(deck.url);
-  deck.url = null; deck.duration = 0; deck.resetTransport?.(); deckEffects(deck, true);
+  deck.url = null; deck.duration = 0; mixRecording.sourcesChanged(); deck.resetTransport?.(); deckEffects(deck, true);
   $(`file-${deck.id}`).value = '';
   $(`name-${deck.id}`).textContent = deck.id === 'a' ? 'Choose your opening track' : 'Choose what comes next';
   $(`error-${deck.id}`).textContent = '';
@@ -115,8 +115,9 @@ function masterControls() {
   for (const id of ['crossfade', 'pause-all']) $(id).disabled = !rights.checked;
   $('master').disabled = !rights.checked && !keyboard.ready();
 }
-const keyboard = attachKeyboard({ graph: audioGraph, context: () => context, mixer: () => mixer, levels, masterControls, getPhrase: () => session?.phraseSource() });
-const mixRecording = attachMixRecording({ graph: audioGraph, context: () => context, mixer: () => mixer });
+const keyboard = attachKeyboard({ graph: audioGraph, context: () => context, mixer: () => mixer, levels, masterControls, getPhrase: () => session?.phraseSource(), onSourcesChanged: () => mixRecording.sourcesChanged() });
+const mixRecording = attachMixRecording({ graph: audioGraph, context: () => context, mixer: () => mixer,
+  getSources: () => ({ a: decks[0].file, b: decks[1].file, ...session?.mixSources(), rack: keyboard.sourceAsset() }) });
 async function start(deck) {
     const { id, audio } = deck;
     if (!rights.checked || !deck.url || deck.loading || deck.starting || deck.prepared || deck.preparing) return;
@@ -163,7 +164,7 @@ async function loadTrack(deck, getFile) {
     audioGraph();
     const previous = deck.url, url = URL.createObjectURL(file);
     audio.removeAttribute('src'); audio.load();
-    deck.file = file; deck.url = url; deck.duration = duration; audio.src = url; deck.resetTransport(); deckEffects(deck, true);
+    deck.file = file; deck.url = url; deck.duration = duration; audio.src = url; mixRecording.sourcesChanged(); deck.resetTransport(); deckEffects(deck, true);
     if (previous) URL.revokeObjectURL(previous);
     $(`name-${id}`).textContent = file.name;
   } catch (error) {
@@ -230,7 +231,7 @@ for (const deck of decks) {
     if (deck.url) { pause(deck); $(`error-${id}`).textContent = 'Track playback failed. Unload it and try another file.'; }
   });
 }
-session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onPhraseChanged: () => { keyboard.sourceChanged(); mixRecording.sourceChanged(); }, onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
+session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onPhraseChanged: () => { keyboard.sourceChanged(); mixRecording.sourceChanged(); }, onSourcesChanged: () => mixRecording.sourcesChanged(), onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
 $('crossfade').oninput = $('master').oninput = levels;
 $('pause-all').onclick = () => { decks.forEach(pause); clearDeckEchoes(); $('mixer-status').textContent = 'All decks paused.'; };
 window.addEventListener('pagehide', event => {
