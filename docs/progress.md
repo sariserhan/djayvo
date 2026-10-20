@@ -1,5 +1,14 @@
 # Jamloom: M0 continuation evidence
 
+Latest public interface refinement — 2026-10-19:
+[Sharper responsive UI](public-ui.md). Main build/typecheck/14 tests and bundle
+audit **PASS**; 56 Chromium/WebKit layout cases plus keyboard, consent/import,
+form/filter and simulated player layout checks **PASS**. Chromium voice (21) and
+DJ (47) regressions **PASS**, including offline audio. Twelve additional dropdown
+checks **PASS**. Scoped Vercel deployment and live desktop/mobile browser checks
+**PASS**; auth, tracker transport and security checks remain green. Physical devices and owner visual acceptance
+remain **NOT RUN**; no new musical-quality claim.
+
 Latest public branding and tracker connection — 2026-10-19:
 [Public Jamloom release](brand-live.md). Local remote and Vercel Git integration
 now use `sariserhan/jamloom` with the same repository ID. Approved branding is

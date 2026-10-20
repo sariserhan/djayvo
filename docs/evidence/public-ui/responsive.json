@@ -1,0 +1,408 @@
+{
+  "base": "http://127.0.0.1:4300",
+  "checks": [
+    {
+      "browser": "chromium",
+      "route": "/studio/index.html",
+      "width": 320,
+      "height": 740,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/dj.html",
+      "width": 320,
+      "height": 740,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/account/sign-in",
+      "width": 320,
+      "height": 740,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/catalogue",
+      "width": 320,
+      "height": 740,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/index.html",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/dj.html",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/account/sign-in",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/catalogue",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/index.html",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/dj.html",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/account/sign-in",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/catalogue",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/index.html",
+      "width": 1024,
+      "height": 768,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/dj.html",
+      "width": 1024,
+      "height": 768,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/account/sign-in",
+      "width": 1024,
+      "height": 768,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/catalogue",
+      "width": 1024,
+      "height": 768,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/index.html",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/dj.html",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/account/sign-in",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/catalogue",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/index.html",
+      "width": 1920,
+      "height": 1080,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/dj.html",
+      "width": 1920,
+      "height": 1080,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/account/sign-in",
+      "width": 1920,
+      "height": 1080,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/catalogue",
+      "width": 1920,
+      "height": 1080,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/index.html",
+      "width": 900,
+      "height": 480,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/dj.html",
+      "width": 900,
+      "height": 480,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/account/sign-in",
+      "width": 900,
+      "height": 480,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/catalogue",
+      "width": 900,
+      "height": 480,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "interaction": "Consent, privacy keyboard focus return, direction selection, real WAV import, clear recording, required account validation, filter navigation, simulated player/footer layout",
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/index.html",
+      "width": 320,
+      "height": 740,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/dj.html",
+      "width": 320,
+      "height": 740,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/account/sign-in",
+      "width": 320,
+      "height": 740,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/catalogue",
+      "width": 320,
+      "height": 740,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/index.html",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/dj.html",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/account/sign-in",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/catalogue",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/index.html",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/dj.html",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/account/sign-in",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/catalogue",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/index.html",
+      "width": 1024,
+      "height": 768,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/dj.html",
+      "width": 1024,
+      "height": 768,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/account/sign-in",
+      "width": 1024,
+      "height": 768,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/catalogue",
+      "width": 1024,
+      "height": 768,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/index.html",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/dj.html",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/account/sign-in",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/catalogue",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/index.html",
+      "width": 1920,
+      "height": 1080,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/dj.html",
+      "width": 1920,
+      "height": 1080,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/account/sign-in",
+      "width": 1920,
+      "height": 1080,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/catalogue",
+      "width": 1920,
+      "height": 1080,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/index.html",
+      "width": 900,
+      "height": 480,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/dj.html",
+      "width": 900,
+      "height": 480,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/account/sign-in",
+      "width": 900,
+      "height": 480,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/catalogue",
+      "width": 900,
+      "height": 480,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "interaction": "Consent, privacy keyboard focus return, direction selection, real WAV import, clear recording, required account validation, filter navigation, simulated player/footer layout",
+      "status": "PASS"
+    }
+  ],
+  "errors": []
+}

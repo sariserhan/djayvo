@@ -11,12 +11,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <html lang="en"><body><MusicPlayer>
+  return <html lang="en"><body className="site-shell"><MusicPlayer>
     <a className="skip" href="#content">Skip to content</a>
-    <header><div className="header-inner"><a className="brand" href="/">jamloom</a>
+    <header><div className="header-inner"><a className="brand" href="/" aria-label="Jamloom home"><img src="/studio/icon.svg" alt="" width="34" height="34" />jamloom</a>
       <nav aria-label="Main"><a href="/">Create</a><Link href="/catalogue">Music</Link><Link href="/playlists">Playlists</Link><Link href="/library">Cloud library</Link><Link href="/account">Account</Link></nav>
     </div></header>
     <main id="content" className="account-main">{children}</main>
+    <footer className="site-footer"><span>Make something yours.</span><a href="/studio/dj.html">Open DJ workspace <span aria-hidden="true">↗</span></a></footer>
   </MusicPlayer>
     <Script src="https://cdn.visitorping.com/site/vp_QBDH92AC.js" strategy="afterInteractive" crossOrigin="anonymous" />
   </body></html>;

@@ -29,6 +29,10 @@ the source of truth and is not modified by this tracker.
 - [x] BR01: Rename current app, packages, native/WASM engine, exports, scripts and active documentation to Jamloom; preserve saved data and historical evidence. [Validation](docs/jamloom-rename.md). [Public release and renamed GitHub connection](docs/brand-live.md).
 - [ ] BR02 — PARTIAL: Owner reports purchasing `jamloom.com`; `jamloom-audio` confirmed live. Production origin prepared; private R2 access, CORS, lifecycle configuration and 10 provider gates PASS. Resend domain owner-confirmed Verified; hello sender/support Reply-To configured. Shared branded email templates pass 54 browser layout cases; real inbox clients/delivery remain NOT RUN. Canonical www origin, Vercel settings and live R2 CORS aligned; existing production release redeployed, live auth/redirect/origin checks PASS; [www validation](docs/www-origin.md). Hosted account/email workflow, actual lifecycle expiry and scheduled cleanup remain NOT RUN. Trademark clearance is unverified. [Setup](docs/production-domain.md), [R2 evidence](docs/r2-live.md), [email setup](docs/resend-setup.md), [templates](docs/email-templates.md).
 
+## Public interface
+
+- [x] **UI01 — PASS (implementation/public validation):** Refine the voice studio, DJ workspace, account and catalogue layouts; 56 Chromium/WebKit layout cases, keyboard/form checks, 21 voice and 47 DJ regression checks pass. [Evidence](docs/public-ui.md). Scoped Vercel deployment and live desktop/mobile checks PASS; physical-device and owner visual acceptance remain NOT RUN.
+
 ## Website analytics
 
 - [ ] **AN01 — PARTIAL:** Install VisitorPing site `vp_QBDH92AC` once in the Next.js

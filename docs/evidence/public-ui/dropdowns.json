@@ -1,0 +1,86 @@
+[
+  {
+    "kind": "chromium",
+    "width": 320,
+    "route": "/catalogue",
+    "status": "PASS",
+    "selects": 2
+  },
+  {
+    "kind": "chromium",
+    "width": 320,
+    "route": "/studio/dj.html",
+    "status": "PASS",
+    "selects": 8
+  },
+  {
+    "kind": "chromium",
+    "width": 390,
+    "route": "/catalogue",
+    "status": "PASS",
+    "selects": 2
+  },
+  {
+    "kind": "chromium",
+    "width": 390,
+    "route": "/studio/dj.html",
+    "status": "PASS",
+    "selects": 8
+  },
+  {
+    "kind": "chromium",
+    "width": 1440,
+    "route": "/catalogue",
+    "status": "PASS",
+    "selects": 2
+  },
+  {
+    "kind": "chromium",
+    "width": 1440,
+    "route": "/studio/dj.html",
+    "status": "PASS",
+    "selects": 8
+  },
+  {
+    "kind": "webkit",
+    "width": 320,
+    "route": "/catalogue",
+    "status": "PASS",
+    "selects": 2
+  },
+  {
+    "kind": "webkit",
+    "width": 320,
+    "route": "/studio/dj.html",
+    "status": "PASS",
+    "selects": 8
+  },
+  {
+    "kind": "webkit",
+    "width": 390,
+    "route": "/catalogue",
+    "status": "PASS",
+    "selects": 2
+  },
+  {
+    "kind": "webkit",
+    "width": 390,
+    "route": "/studio/dj.html",
+    "status": "PASS",
+    "selects": 8
+  },
+  {
+    "kind": "webkit",
+    "width": 1440,
+    "route": "/catalogue",
+    "status": "PASS",
+    "selects": 2
+  },
+  {
+    "kind": "webkit",
+    "width": 1440,
+    "route": "/studio/dj.html",
+    "status": "PASS",
+    "selects": 8
+  }
+]

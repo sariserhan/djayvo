@@ -1,0 +1,66 @@
+{
+  "timestamp": "2026-10-20T03:54:30.893Z",
+  "gates": [
+    {
+      "browser": "chromium",
+      "route": "/studio/index.html",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/studio/dj.html",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/account/sign-in",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "chromium",
+      "route": "/catalogue",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/index.html",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/studio/dj.html",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/account/sign-in",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "route": "/catalogue",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "gate": "Live auth endpoint and apex redirect",
+      "status": "PASS"
+    }
+  ],
+  "errors": []
+}
