@@ -176,7 +176,12 @@ Neon Free plan, with no paid upgrade or add-on without owner approval.
 - Unset `JAMLOOM_LOCAL_OUTBOX` on hosted environments. Configuration rejects it there.
 
 The Resend adapter uses the HTTPS API directly, with a timeout and idempotency
-key. Next.js `after` retains background email work after the response; failures
+key. Every message sent through `sendEmail` receives the shared branded HTML and
+plain-text layout. Supply `action: { label, url }` for an app action button;
+the URL must match the configured origin. Both auth callbacks use it. Previews
+and responsive checks: `npm run test:email-browser` and
+[email template evidence](../../docs/email-templates.md).
+Next.js `after` retains background email work after the response; failures
 log a generic operational error without addresses, tokens or provider response
 bodies. Users can request another verification/reset link. This is not a durable
 mail queue or proof of delivery. Provider domain setup and real inbox delivery

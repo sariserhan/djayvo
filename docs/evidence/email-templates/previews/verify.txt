@@ -1,0 +1,14 @@
+Verify your Jamloom email
+
+Confirm your email to finish setting up your Jamloom account.
+
+Your recordings stay on your device unless you explicitly save them online. If you did not create this account, ignore this email.
+
+Verify email:
+https://jamloom.com/api/auth/verify-email?token=preview-only&callbackURL=%2Faccount
+
+—
+Jamloom · Your sound. Your music.
+Need help? support@jamloom.com
+General enquiries: contact@jamloom.com
+https://jamloom.com

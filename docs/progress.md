@@ -1,5 +1,13 @@
 # Jamloom: M0 continuation evidence
 
+Latest branded email templates — 2026-10-19:
+[Responsive emails](email-templates.md) **PASS (local template scope)**. Shared
+HTML/plain-text layout includes Jamloom logo, website palette, footer, safe action
+buttons and fallback links for every app email. Verification/reset callbacks are
+wired; 13 site tests, 54 Chromium/WebKit layout cases, build, typecheck and secret
+audit pass. Actual inbox-client rendering and provider delivery remain **NOT RUN**;
+overall email readiness **PARTIAL**. No emails sent or deployment changed.
+
 Latest email configuration — 2026-10-19:
 [Resend setup](resend-setup.md) **PARTIAL** overall. Sending key present; owner
 confirms domain Verified. Account emails now use `hello@jamloom.com` with

@@ -27,7 +27,7 @@ the source of truth and is not modified by this tracker.
 ## Product identity
 
 - [x] BR01: Rename current app, packages, native/WASM engine, exports, scripts and active documentation to Jamloom; preserve saved data and historical evidence. [Validation](docs/jamloom-rename.md).
-- [ ] BR02 — PARTIAL: Owner reports purchasing `jamloom.com`; `jamloom-audio` confirmed live. Production origin prepared; private R2 access, CORS, lifecycle configuration and 10 provider gates PASS. Resend domain owner-confirmed Verified; hello sender/support Reply-To configured. Live Vercel/DNS, actual lifecycle expiry, scheduled cleanup and email delivery remain NOT RUN. Trademark clearance is unverified. [Setup](docs/production-domain.md), [R2 evidence](docs/r2-live.md), [email evidence](docs/resend-setup.md).
+- [ ] BR02 — PARTIAL: Owner reports purchasing `jamloom.com`; `jamloom-audio` confirmed live. Production origin prepared; private R2 access, CORS, lifecycle configuration and 10 provider gates PASS. Resend domain owner-confirmed Verified; hello sender/support Reply-To configured. Shared branded email templates pass 54 browser layout cases; real inbox clients/delivery remain NOT RUN. Live Vercel/DNS, actual lifecycle expiry and scheduled cleanup remain NOT RUN. Trademark clearance is unverified. [Setup](docs/production-domain.md), [R2 evidence](docs/r2-live.md), [email setup](docs/resend-setup.md), [templates](docs/email-templates.md).
 
 ## At a glance
 

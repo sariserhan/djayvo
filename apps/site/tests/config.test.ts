@@ -58,7 +58,14 @@ test('Resend request routes replies to support and binds retry identity to the f
     const request = new Request(url, options); requests.push(request);
     assert.equal(request.url, 'https://api.resend.com/emails');
     assert.equal(request.headers.get('authorization'), 'Bearer test-key');
-    assert.deepEqual(await request.json(), { from: config.emailFrom, to: [mail.to], subject: mail.subject, text: mail.text, reply_to: config.emailReplyTo });
+    const payload = await request.json();
+    assert.equal(payload.from, config.emailFrom);
+    assert.deepEqual(payload.to, [mail.to]);
+    assert.equal(payload.subject, mail.subject);
+    assert.equal(payload.reply_to, config.emailReplyTo);
+    assert.ok(payload.text.includes(mail.text));
+    assert.match(payload.html, /<!doctype html>/);
+    assert.match(payload.html, /mailto:support@jamloom.com/);
     return Response.json({ id: 'local-test' });
   };
   await sendEmail(config, mail, fakeFetch); await sendEmail(config, mail, fakeFetch);

@@ -18,14 +18,16 @@ export function authOptions(config: Config, database: Pool, background?: (task: 
       maxPasswordLength: 128, revokeSessionsOnPasswordReset: true,
       sendResetPassword: ({ user, url }) => deliver({
         to: user.email, subject: 'Reset your Jamloom password',
-        text: `Reset your password using this link:\n${url}\n\nIf you did not request this, ignore this email.`,
+        text: 'Choose a new password to get back to your music.\n\nIf you did not request this, ignore this email. Your password will stay unchanged.',
+        action: { label: 'Reset password', url },
       }),
     },
     emailVerification: {
       sendOnSignUp: true, sendOnSignIn: true, autoSignInAfterVerification: false,
       sendVerificationEmail: ({ user, url }) => deliver({
         to: user.email, subject: 'Verify your Jamloom email',
-        text: `Verify your email using this link:\n${url}\n\nYour recordings stay on your device unless you explicitly save them online.`,
+        text: 'Confirm your email to finish setting up your Jamloom account.\n\nYour recordings stay on your device unless you explicitly save them online. If you did not create this account, ignore this email.',
+        action: { label: 'Verify email', url },
       }),
     },
     session: { expiresIn: 60 * 60 * 24 * 7, updateAge: 60 * 60 * 24, cookieCache: { enabled: false } },

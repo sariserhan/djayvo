@@ -7,6 +7,9 @@ addresses, including **hello**, **info** and **alert**, are sending-only.
 
 Current account verification/reset mail uses:
 
+All app mail now also receives the [shared responsive HTML/plain-text template](email-templates.md),
+including the Jamloom logo, website palette and receiving-mailbox footer.
+
 ```dotenv
 EMAIL_FROM="Jamloom <hello@jamloom.com>"
 EMAIL_REPLY_TO=support@jamloom.com

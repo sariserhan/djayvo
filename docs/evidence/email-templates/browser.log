@@ -1,0 +1,5 @@
+
+> jamloom-site@0.1.0 test:email-browser
+> tsx tests/email-browser.ts
+
+PASS: 54 browser/layout cases; previews and screenshots in docs/evidence/email-templates.

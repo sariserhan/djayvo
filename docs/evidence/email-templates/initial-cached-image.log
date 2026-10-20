@@ -1,0 +1,22 @@
+
+> jamloom-site@0.1.0 test:email-browser
+> tsx tests/email-browser.ts
+
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+192 !== 0
+
+    at <anonymous> (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/email-browser.ts:75:52) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 192,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

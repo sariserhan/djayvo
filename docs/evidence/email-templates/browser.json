@@ -1,0 +1,493 @@
+{
+  "status": "PASS",
+  "cases": 54,
+  "scope": "Browser layout checks, not Gmail/Outlook/Apple Mail inbox rendering.",
+  "results": [
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "verify",
+      "mode": "narrow",
+      "width": 200,
+      "height": 300,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "verify",
+      "mode": "small",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "verify",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "verify",
+      "mode": "tablet",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "verify",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 900,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "verify",
+      "mode": "landscape",
+      "width": 812,
+      "height": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "verify",
+      "mode": "images-blocked",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "verify",
+      "mode": "large-text",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "verify",
+      "mode": "inline-only",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "reset",
+      "mode": "narrow",
+      "width": 200,
+      "height": 300,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "reset",
+      "mode": "small",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "reset",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "reset",
+      "mode": "tablet",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "reset",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 900,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "reset",
+      "mode": "landscape",
+      "width": 812,
+      "height": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "reset",
+      "mode": "images-blocked",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "reset",
+      "mode": "large-text",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "reset",
+      "mode": "inline-only",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "long-content",
+      "mode": "narrow",
+      "width": 200,
+      "height": 300,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "long-content",
+      "mode": "small",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "long-content",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "long-content",
+      "mode": "tablet",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "long-content",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 900,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "long-content",
+      "mode": "landscape",
+      "width": 812,
+      "height": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "long-content",
+      "mode": "images-blocked",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "long-content",
+      "mode": "large-text",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "version": "149.0.7827.55",
+      "template": "long-content",
+      "mode": "inline-only",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "verify",
+      "mode": "narrow",
+      "width": 200,
+      "height": 300,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "verify",
+      "mode": "small",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "verify",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "verify",
+      "mode": "tablet",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "verify",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 900,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "verify",
+      "mode": "landscape",
+      "width": 812,
+      "height": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "verify",
+      "mode": "images-blocked",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "verify",
+      "mode": "large-text",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "verify",
+      "mode": "inline-only",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "reset",
+      "mode": "narrow",
+      "width": 200,
+      "height": 300,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "reset",
+      "mode": "small",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "reset",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "reset",
+      "mode": "tablet",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "reset",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 900,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "reset",
+      "mode": "landscape",
+      "width": 812,
+      "height": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "reset",
+      "mode": "images-blocked",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "reset",
+      "mode": "large-text",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "reset",
+      "mode": "inline-only",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "long-content",
+      "mode": "narrow",
+      "width": 200,
+      "height": 300,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "long-content",
+      "mode": "small",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "long-content",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "long-content",
+      "mode": "tablet",
+      "width": 768,
+      "height": 1024,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "long-content",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 900,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "long-content",
+      "mode": "landscape",
+      "width": 812,
+      "height": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "long-content",
+      "mode": "images-blocked",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "long-content",
+      "mode": "large-text",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.5",
+      "template": "long-content",
+      "mode": "inline-only",
+      "width": 320,
+      "height": 568,
+      "status": "PASS"
+    }
+  ]
+}
