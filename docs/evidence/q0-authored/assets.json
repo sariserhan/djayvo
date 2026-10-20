@@ -1,0 +1,19 @@
+{
+  "checks": [
+    {
+      "command": ".venv-q0/bin/python scripts/verify_electronic_assets.py",
+      "exit_code": 0,
+      "output": "PASS: 14 original electronic samples, selector coverage, PCM/fade bounds and generator/bank hashes"
+    },
+    {
+      "command": ".venv-q0/bin/python scripts/verify_acoustic_assets.py",
+      "exit_code": 0,
+      "output": "PASS: 53 pinned CC0 samples, layer/take coverage, compiled PCM hashes, fades, bounds, and license notices"
+    },
+    {
+      "command": ".venv-q0/bin/python scripts/verify_guitar_assets.py",
+      "exit_code": 0,
+      "output": "PASS: 78 recorded guitar samples, pitch/layer/take/articulation coverage, PCM hashes, fades and pinned CC0 evidence"
+    }
+  ]
+}

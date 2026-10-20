@@ -4,6 +4,9 @@
 The owner requested diagnosis and controlled listening before engine changes.
 No later milestone, model training, paid service or dashboard redesign is part
 of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.md).
+Latest: [Original score / palette study](docs/q0-authored-study.md) renders four
+controlled conditions for all five inputs. Technical PASS; new listening NOT RUN.
+Prior rejected candidates remain FAIL.
 
 - [x] **Q001 — PASS:** Freeze five authorized real inputs with plans, events,
   masters, instrument/vocal stems, hashes and loudness/clipping measurements.
@@ -22,8 +25,11 @@ of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.
   drum decay in an isolated source copy; E tests intact calls and rhythmic
   instrumental answers. Owner acceptance FAIL; no promotion.
   [Full trial](docs/q0-five-arm-trial.md).
-- [x] **Q007 — PASS:** Ten Q0 tests, three native groups, 8,216 exact
-  instrument event rows, 20 exact replays and comparison level checks. Browser form/decode
+  A subsequent original-score study tests acoustic/hybrid palettes and authored
+  expression, with intact calls and a recurring motif; no quality promotion.
+- [x] **Q007 — PASS:** Latest study: eleven Q0 tests, 8,680 exact
+  instrument event rows, 20 exact replays and comparison level checks. Earlier
+  native regression results are retained separately. Browser form/decode
   checks pass; physical playback and headless WebKit clock remain separate.
 - [ ] **Q008 — FAIL:** Owner rejects baseline, A/C expression, native/SFZ and
   the new five-condition packet, calling the latter “very robotic and bad quality.”

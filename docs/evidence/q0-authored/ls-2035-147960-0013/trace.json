@@ -1,0 +1,52 @@
+{
+  "version": "1.0-q0-original-score",
+  "hybrid_palette": false,
+  "authored_expression": true,
+  "source_motif": [
+    {
+      "tick": 0,
+      "analysis_frame_48khz": 24000,
+      "source_frame": 8000,
+      "velocity": 83
+    },
+    {
+      "tick": 240,
+      "analysis_frame_48khz": 29760,
+      "source_frame": 9920,
+      "velocity": 86
+    },
+    {
+      "tick": 720,
+      "analysis_frame_48khz": 42240,
+      "source_frame": 14080,
+      "velocity": 75
+    },
+    {
+      "tick": 1440,
+      "analysis_frame_48khz": 62880,
+      "source_frame": 20960,
+      "velocity": 78
+    },
+    {
+      "tick": 1680,
+      "analysis_frame_48khz": 70560,
+      "source_frame": 23520,
+      "velocity": 84
+    },
+    {
+      "tick": 2160,
+      "analysis_frame_48khz": 82560,
+      "source_frame": 27520,
+      "velocity": 79
+    }
+  ],
+  "harmony": [
+    "minor7",
+    "flat6_major7",
+    "minor4_7",
+    "minor5_7"
+  ],
+  "reference_audio_used": false,
+  "human_quality": "NOT RUN",
+  "limits": "Developer-authored hypothesis, not a musician-approved score or trained improviser."
+}

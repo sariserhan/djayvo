@@ -8,7 +8,7 @@ const out=await mkdtemp(join(tmpdir(),'jamloom-q0-ui-'));
 const base=process.env.Q0_REVIEW_URL||'http://127.0.0.1:4198/';
 const candidates=Number(process.env.Q0_CANDIDATES||2);
 assert.equal(new URL(base).hostname,'127.0.0.1');
-assert.ok([2,5].includes(candidates));
+assert.ok([2,4,5].includes(candidates));
 const report=[];
 for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]) {
  const browser=await engine.launch(); const page=await browser.newPage({viewport:{width:1440,height:1000}});
@@ -38,7 +38,8 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]) {
   assert.equal(await page.locator('audio').nth(1).evaluate(a=>a.paused),true);
   await page.locator('audio').nth(2).evaluate(a=>a.pause());
   await page.getByLabel('Reviewer code').fill('UI_FIXTURE_ONLY');
-  for(const s of await page.locator('select').all()) await s.selectOption('3');
+  if(candidates===4) await page.locator('select').first().selectOption('3');
+  else for(const s of await page.locator('select').all()) await s.selectOption('3');
   await page.getByRole('checkbox').check();
   const download=page.waitForEvent('download'); await page.getByRole('button').click();
   const file=join(out,name+'-synthetic-ui-ratings.json');await (await download).saveAs(file);
@@ -46,11 +47,12 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]) {
   const packet=await(await page.request.get(base+'packet.json')).json();
   assert.equal(data.packet_id,packet.packet_id);assert.equal(data.ratings.reviewer,'UI_FIXTURE_ONLY');
   assert.equal(Object.keys(data.ratings).filter(k=>!k.endsWith('/notes')&&k!=='reviewer').length,30*candidates);
+  if(candidates===4) assert.equal(Object.entries(data.ratings).filter(([k,v])=>k!=='reviewer'&&!k.endsWith('/notes')&&v!=='').length,1);
   await rm(file);
   assert.equal((await page.request.get(base+'organizer-key.json')).status(),404);
   await page.reload();assert.ok((await page.locator('select').evaluateAll(ns=>ns.map(n=>n.value))).every(v=>v===''));
   assert.deepEqual(errors,[]);assert.deepEqual(consoleErrors,[]);assert.deepEqual(external,[]);
-  report.push({browser:name,version:browser.version(),status:name==='chromium'?'PASS':'PARTIAL',viewports:['1440x1000','390x844'],checks:['blank required ratings','muted audio decode and automatic pause','responsive width','packet-bound local download','organizer key not served','reload clears ratings','no page errors or external requests'],playback_clock:name==='chromium'?'PASS: muted playback advances':'PARTIAL: headless WebKit decodes but clock stalled in prior run',human_listening:'NOT RUN',physical_audio:'NOT RUN; unmuted headless clock stalled, muted automated playback used',ratings:'Synthetic UI fixtures deleted; never study evidence'});
+  report.push({browser:name,version:browser.version(),status:name==='chromium'?'PASS':'PARTIAL',viewports:['1440x1000','390x844'],checks:[candidates===4?'partial ratings preserve missing values':'blank required ratings','muted audio decode and automatic pause','responsive width','packet-bound local download','organizer key not served','reload clears ratings','no page errors or external requests'],playback_clock:name==='chromium'?'PASS: muted playback advances':'PARTIAL: headless WebKit decodes but clock stalled in prior run',human_listening:'NOT RUN',physical_audio:'NOT RUN; unmuted headless clock stalled, muted automated playback used',ratings:'Synthetic UI fixtures deleted; never study evidence'});
  } finally {await browser.close();}
 }
 await writeFile(join(out,'report.json'),JSON.stringify({browser_plugin:'Invocation unavailable: Node JS tool not exposed; existing project Playwright used for authorized reproducible tests',results:report},null,2));

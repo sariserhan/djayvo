@@ -2,6 +2,11 @@
 
 2026-10-20. **Implementation: PARTIAL. Current owner listening acceptance: FAIL.**
 
+**Newest study:** [Original score and palette controls](q0-authored-study.md)
+now provide 20 new 36.8-second mixes using recorded guitar articulations, intact
+voice calls and phrase-derived melodic responses. Technical checks pass;
+new musical acceptance remains **NOT RUN**. Previous rejections remain **FAIL**.
+
 **Latest continuation:** [The five-condition trial](q0-five-arm-trial.md) now
 renders B/D/E alongside the preserved A/C controls. A copied native build tests
 longer drum decay; E tests intact vocal calls and a source-rhythm instrumental

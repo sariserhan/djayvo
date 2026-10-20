@@ -3,17 +3,22 @@
 import copy
 import io
 import json
+import math
+from array import array
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
+import wave
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT/'scripts'))
 from q0_expression import express
 from q0_composition import compose
+from q0_authored_score import authored
+from q0_audit import digest
 from q0_audit import loudness, inputs, level_match
 
 
@@ -72,6 +77,67 @@ class Q0(unittest.TestCase):
             plan = copy.deepcopy(self.plan)
             next(v for v in plan['voice_events'] if v['clean'])[field] = value
             with self.assertRaises(ValueError): compose(plan)
+
+    def test_authored_study_isolates_palette_and_preserves_call_space(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp)/'test-only.wav'
+            with wave.open(str(path), 'wb') as wav:
+                wav.setparams((1, 2, 48000, 0, 'NONE', 'not compressed'))
+                pcm = array('h', (round(9000*math.sin(2*math.pi*180*i/48000))
+                                 for i in range(96000)))
+                if sys.byteorder != 'little': pcm.byteswap()
+                wav.writeframes(pcm.tobytes())
+            plan = copy.deepcopy(self.plan)
+            plan['source'].update(sha256=digest(path), original_frames=96000,
+                                  original_rate=48000, processed_frames=96000,
+                                  kind='recorded', consent_confirmed=True)
+            plan['source_asset_id'] = 'sha256:'+digest(path)
+            plan['analysis']['onsets'] = [1000, 6000, 18000, 29000, 47000, 71000]
+            original = copy.deepcopy(plan)
+            a, _ = authored(plan, path, hybrid=False, expressive=True)
+            b, _ = authored(plan, path, hybrid=True, expressive=True)
+            self.assertEqual(plan, original)
+            self.assertEqual(a, authored(plan, path, hybrid=False, expressive=True)[0])
+            for track in b['tracks']:
+                track.pop('sound', None)
+            self.assertEqual(a, b)
+            flat, _ = authored(plan, path, hybrid=False, expressive=False)
+            for before, after in zip(flat['tracks'], a['tracks']):
+                self.assertEqual([n['note'] for n in before['events']], [n['note'] for n in after['events']])
+                for n in after['events']:
+                    self.assertGreater(n['duration_ticks'], 0)
+                    self.assertLessEqual(n['start_tick']+n['duration_ticks'], 16*3840)
+            bass = next(t for t in a['tracks'] if t['instrument'] == 'bass')
+            kicks = {n['start_tick'] for t in a['tracks'] if t['instrument'] == 'drums'
+                     for n in t['events'] if n['note'] == 36}
+            self.assertTrue(all(n['start_tick'] in kicks for n in bass['events']))
+            for voice in a['voice_events']:
+                stop = voice['start_tick']+96000*112000*960/(60000*48000)
+                for track in a['tracks']:
+                    if track['instrument'] != 'drums':
+                        self.assertFalse(any(n['start_tick'] < stop and
+                            n['start_tick']+n['duration_ticks'] > voice['start_tick']
+                            for n in track['events']))
+            plan['source']['consent_confirmed'] = False
+            with self.assertRaises(ValueError): authored(plan, path, hybrid=True, expressive=True)
+            plan['source']['consent_confirmed'] = True
+            plan['source']['sha256'] = '0'*64
+            with self.assertRaises(ValueError): authored(plan, path, hybrid=True, expressive=True)
+            plan['source']['sha256'] = digest(path)
+            plan['analysis']['onsets'] = [96000]
+            with self.assertRaises(ValueError): authored(plan, path, hybrid=True, expressive=True)
+            low_rate = Path(tmp)/'test-only-16k.wav'
+            with wave.open(str(low_rate), 'wb') as wav:
+                wav.setparams((1, 2, 16000, 0, 'NONE', 'not compressed'))
+                wav.writeframes(pcm[::3].tobytes())
+            plan = copy.deepcopy(original)
+            plan['source'].update(sha256=digest(low_rate), original_rate=16000, original_frames=32000)
+            plan['source_asset_id'] = 'sha256:'+digest(low_rate)
+            _, trace = authored(plan, low_rate, hybrid=True, expressive=True)
+            self.assertEqual([n['analysis_frame_48khz'] for n in trace['source_motif']],
+                             original['analysis']['onsets'])
+            self.assertEqual([n['source_frame'] for n in trace['source_motif']],
+                             [round(f/3) for f in original['analysis']['onsets']])
 
     def test_invalid_context_and_seed(self):
         for seed in (-1, True, 2**32, 1.5):

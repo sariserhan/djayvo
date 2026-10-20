@@ -1,0 +1,1644 @@
+{
+  "technical": "PASS",
+  "human_quality": "NOT RUN",
+  "decoded_audio": [
+    {
+      "file": "owner-speech/acoustic-grid.hiphop.bass.wav",
+      "sha256": "d6f0de0e0269d2d1a301362b57d3d8e73900a7ce59e41fda67376f4d3f4477bb",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -19.447513998523714,
+      "rms_dbfs": -36.11814723709192,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/acoustic-grid.hiphop.guitar.wav",
+      "sha256": "dcf46c0ba5f6c6808df46a618ef34451d6621008ca034380e9409c93c6414d30",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.53522096539189,
+      "rms_dbfs": -45.652426978727966,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/acoustic-grid.hiphop.piano.wav",
+      "sha256": "b657504f120adcd95d3ad29cc90cc8a9a871a50a888bafa4a3365c8979f9d163",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.90419490227773,
+      "rms_dbfs": -41.17681083186604,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/acoustic-grid.hiphop.wav",
+      "sha256": "fa30b791fff821657d8f62daf6a09c67184f945f2fa1e569a3188c9d7dece127",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -29.894235415401273,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/acoustic-grid.hiphop.drums.wav",
+      "sha256": "b3e3b705716e7047f31a066105862559408949710b5123cfc54dc838bb8644a3",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.081291117225327,
+      "rms_dbfs": -38.101342712102735,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/acoustic-grid.hiphop.vocals.wav",
+      "sha256": "33c65f17182b93a3ebe7af8592795198ba31353f62b5050aaf4b785723e2a22c",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.84408294155084,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/acoustic-phrased.hiphop.guitar.wav",
+      "sha256": "4836d245402ed5fcf77076d23d58a1ceb5aff44d3ad7244cec04f4e00f4d7fc6",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.414519770999426,
+      "rms_dbfs": -45.37875497135189,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/acoustic-phrased.hiphop.drums.wav",
+      "sha256": "5324f5f27cef06a4bde1926fc6245bd76fa763d6d87d53d6fcebe4afa2574862",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.738738464415862,
+      "rms_dbfs": -37.615660634442406,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/acoustic-phrased.hiphop.piano.wav",
+      "sha256": "163b2a536230096bf3fd1d3575e0a546429bd075ff65e20e586221ccfe2d292c",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.93771650892289,
+      "rms_dbfs": -39.907347673413426,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/acoustic-phrased.hiphop.wav",
+      "sha256": "869b64894a9d9da6932502b5bc67a29d306260c21ab838200ad258759d58ade2",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -29.736208008385926,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/acoustic-phrased.hiphop.bass.wav",
+      "sha256": "1bfc59c879b7980941ba00b4cf8cd288d02c0160628d8a50856d536e4ac7859c",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.220157373979895,
+      "rms_dbfs": -36.20356649852544,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/acoustic-phrased.hiphop.vocals.wav",
+      "sha256": "33c65f17182b93a3ebe7af8592795198ba31353f62b5050aaf4b785723e2a22c",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.84408294155084,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-grid.hiphop.vocals.wav",
+      "sha256": "33c65f17182b93a3ebe7af8592795198ba31353f62b5050aaf4b785723e2a22c",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.84408294155084,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-grid.hiphop.bass.wav",
+      "sha256": "ab49774e41733adc5765c774ac6546e32981e50a7500bdc7c2c672a8309876bb",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -20.1249482525723,
+      "rms_dbfs": -34.378562983039,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-grid.hiphop.wav",
+      "sha256": "d2d8def89721c30d5e80d543ab1fa60cd1f80de4648fee98ffd5bf5ccb139594",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -28.77318475030414,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-grid.hiphop.guitar.wav",
+      "sha256": "dcf46c0ba5f6c6808df46a618ef34451d6621008ca034380e9409c93c6414d30",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.53522096539189,
+      "rms_dbfs": -45.652426978727966,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-grid.hiphop.drums.wav",
+      "sha256": "7b0bcb725b6e912667037029422d5ddb2d6a78a9d413ecca9196d42ee74b18a4",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.569713510479701,
+      "rms_dbfs": -34.41636382121858,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-grid.hiphop.piano.wav",
+      "sha256": "b657504f120adcd95d3ad29cc90cc8a9a871a50a888bafa4a3365c8979f9d163",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.90419490227773,
+      "rms_dbfs": -41.17681083186604,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-phrased.hiphop.guitar.wav",
+      "sha256": "4836d245402ed5fcf77076d23d58a1ceb5aff44d3ad7244cec04f4e00f4d7fc6",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.414519770999426,
+      "rms_dbfs": -45.37875497135189,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-phrased.hiphop.wav",
+      "sha256": "c26591634cbff9c3c77bd53e21d8384ba94291f0dbcf493ff0824a377038880d",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -28.21578670601187,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-phrased.hiphop.drums.wav",
+      "sha256": "3abf53180e92061133e3573cc794fbbce02f36c5a458cc9d18f7e8829c36a379",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -13.574922717399732,
+      "rms_dbfs": -33.29270146452141,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-phrased.hiphop.piano.wav",
+      "sha256": "163b2a536230096bf3fd1d3575e0a546429bd075ff65e20e586221ccfe2d292c",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.93771650892289,
+      "rms_dbfs": -39.907347673413426,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-phrased.hiphop.bass.wav",
+      "sha256": "a41c97155f4cd9fb336824ca440b518f6ea7a0dd85eb55fd4479bf1cc22aa90d",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.856212758338092,
+      "rms_dbfs": -33.76970862903553,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "owner-speech/hybrid-phrased.hiphop.vocals.wav",
+      "sha256": "33c65f17182b93a3ebe7af8592795198ba31353f62b5050aaf4b785723e2a22c",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.84408294155084,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-grid.reggae.drums.wav",
+      "sha256": "b3e3b705716e7047f31a066105862559408949710b5123cfc54dc838bb8644a3",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.081291117225327,
+      "rms_dbfs": -38.101342712102735,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-grid.reggae.piano.wav",
+      "sha256": "191896514c8c58eba4e7f38c0f82acf27918e0c96203513d096edfdb7e14f77a",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.718768015185294,
+      "rms_dbfs": -42.91439291913996,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-grid.reggae.guitar.wav",
+      "sha256": "bca88d98e7c75638c567dd36d2ca65f87744d49557f83d9c8c074af38e46365d",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -15.514388127900009,
+      "rms_dbfs": -44.85720615979492,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-grid.reggae.wav",
+      "sha256": "2a886e707cfdf49ae3d95cd53b3fa542f46d27818e0d41c425536218dc1092e2",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948251506918654,
+      "rms_dbfs": -29.765249801601964,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-grid.reggae.bass.wav",
+      "sha256": "7eff001642aca0389c4e8415c1ebfa0d27aabd66062b3004cdde69ad3cf2c220",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -20.047311489891474,
+      "rms_dbfs": -37.17342136720636,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-grid.reggae.vocals.wav",
+      "sha256": "e84b4d9c200e35a41f19ba40813d287ef5e1f8ac1473f0fefe804985f182db92",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.073595106405264,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-phrased.reggae.guitar.wav",
+      "sha256": "aba74f71595f46084e4109cac4b5fb75b42a4ce01ef3440c4bda818c2f944134",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.659852855499874,
+      "rms_dbfs": -44.59666097977716,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-phrased.reggae.bass.wav",
+      "sha256": "4671c0af9fb5fe067562764c85b787427299e72d63149c093ca140808a1db072",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.55702410476946,
+      "rms_dbfs": -37.24055353975143,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-phrased.reggae.piano.wav",
+      "sha256": "49cebceaf37885b14b9b7ad20ab229ae84e723a561b64e90855594abd57643f8",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.25694829078923,
+      "rms_dbfs": -42.843871926545745,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-phrased.reggae.drums.wav",
+      "sha256": "5324f5f27cef06a4bde1926fc6245bd76fa763d6d87d53d6fcebe4afa2574862",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.738738464415862,
+      "rms_dbfs": -37.615660634442406,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-phrased.reggae.wav",
+      "sha256": "71c15f5a6b8cf5190a9e4e07e328647fb7d5f4d7dec91b137971950ea8114891",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948251506918654,
+      "rms_dbfs": -29.698201475254116,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/acoustic-phrased.reggae.vocals.wav",
+      "sha256": "e84b4d9c200e35a41f19ba40813d287ef5e1f8ac1473f0fefe804985f182db92",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.073595106405264,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-grid.reggae.vocals.wav",
+      "sha256": "e84b4d9c200e35a41f19ba40813d287ef5e1f8ac1473f0fefe804985f182db92",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.073595106405264,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-grid.reggae.wav",
+      "sha256": "674587676040f4bb3318327b96cef65a426eb800a92df53f29e957ac336f5b7b",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948251506918654,
+      "rms_dbfs": -28.524618624909962,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-grid.reggae.piano.wav",
+      "sha256": "191896514c8c58eba4e7f38c0f82acf27918e0c96203513d096edfdb7e14f77a",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.718768015185294,
+      "rms_dbfs": -42.91439291913996,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-grid.reggae.drums.wav",
+      "sha256": "7b0bcb725b6e912667037029422d5ddb2d6a78a9d413ecca9196d42ee74b18a4",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.569713510479701,
+      "rms_dbfs": -34.41636382121858,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-grid.reggae.bass.wav",
+      "sha256": "a7730d2ac44dae1ebb452b28ac86acf54620a89f8cfb9fc8355fbbd14c7e9a23",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -20.651527027019284,
+      "rms_dbfs": -34.72408467295616,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-grid.reggae.guitar.wav",
+      "sha256": "bca88d98e7c75638c567dd36d2ca65f87744d49557f83d9c8c074af38e46365d",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -15.514388127900009,
+      "rms_dbfs": -44.85720615979492,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-phrased.reggae.bass.wav",
+      "sha256": "4cb0902ae31e2851aaeda5e94b4e64fc6e7afd6f7fb355c63caafc9e182dbafc",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -19.063141410064866,
+      "rms_dbfs": -34.183981010746216,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-phrased.reggae.guitar.wav",
+      "sha256": "aba74f71595f46084e4109cac4b5fb75b42a4ce01ef3440c4bda818c2f944134",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.659852855499874,
+      "rms_dbfs": -44.59666097977716,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-phrased.reggae.wav",
+      "sha256": "e2d28937057e25159bd1ca4a574e06e6b0d10846c8dbd59c8356fdd1ca30f720",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -28.050961058897204,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-phrased.reggae.piano.wav",
+      "sha256": "49cebceaf37885b14b9b7ad20ab229ae84e723a561b64e90855594abd57643f8",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.25694829078923,
+      "rms_dbfs": -42.843871926545745,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-phrased.reggae.drums.wav",
+      "sha256": "3abf53180e92061133e3573cc794fbbce02f36c5a458cc9d18f7e8829c36a379",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -13.574922717399732,
+      "rms_dbfs": -33.29270146452141,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2277-149896-0026/hybrid-phrased.reggae.vocals.wav",
+      "sha256": "e84b4d9c200e35a41f19ba40813d287ef5e1f8ac1473f0fefe804985f182db92",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -32.073595106405264,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-grid.experimental.vocals.wav",
+      "sha256": "4cd3308531d9045ccd24cd148cb3cc45d73491d7db3f9f6d225390d7bf6399be",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -39.640919587439555,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-grid.experimental.drums.wav",
+      "sha256": "1c53927b382c69c553ed42b638e86aa3ad4a4afb51272dcc98ebee9ac4fd5d0c",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.081291117225327,
+      "rms_dbfs": -38.064457080559,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-grid.experimental.piano.wav",
+      "sha256": "09f3194a19288f8aecb179e67b370af9ab31cc4b66144c78d1527243b7dde150",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.384846455060654,
+      "rms_dbfs": -38.704349405959455,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-grid.experimental.wav",
+      "sha256": "bc0a5be77c4d8a13bebe7721ca4749e8218a5d2b96b077f1fe289e605ae05ce9",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -31.41051120374502,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-grid.experimental.bass.wav",
+      "sha256": "eeb47d9ed6a7e4133172919f8154d0464640bd348a3824e46cfc663411689a09",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -19.1708933180854,
+      "rms_dbfs": -35.36196920661788,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-grid.experimental.guitar.wav",
+      "sha256": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.889629986308563,
+      "rms_dbfs": -45.700838868007935,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-phrased.experimental.wav",
+      "sha256": "0378b34fbd283989fa0b6ec9925f033f11a4f02c832675e67bb2dbef3b4616a2",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948251506918654,
+      "rms_dbfs": -31.104370746457334,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-phrased.experimental.piano.wav",
+      "sha256": "6c7611ab6009c3f73b291a000470ec147290c3d859dfb9a3013d704e0e6429b0",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.52104544276871,
+      "rms_dbfs": -37.80054708168877,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-phrased.experimental.drums.wav",
+      "sha256": "304e7cef91ba26e5568bed45cb91f3d20c974209178605934790dec8e15f917d",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.738738464415862,
+      "rms_dbfs": -37.61362787289232,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-phrased.experimental.guitar.wav",
+      "sha256": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.8353248373184,
+      "rms_dbfs": -45.63342675161309,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-phrased.experimental.vocals.wav",
+      "sha256": "4cd3308531d9045ccd24cd148cb3cc45d73491d7db3f9f6d225390d7bf6399be",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -39.640919587439555,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/acoustic-phrased.experimental.bass.wav",
+      "sha256": "48f3d8f9a04f3df6d530c978de426e5446d59b9ef66e238a005aa3c235d76d9b",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.531230205092847,
+      "rms_dbfs": -35.34039307340299,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-grid.experimental.bass.wav",
+      "sha256": "de60ca590f9fc9ebc56d635b4b37cadd57d04e3d3130523b02cc3a628691919d",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -19.896708261629637,
+      "rms_dbfs": -34.27145055074422,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-grid.experimental.vocals.wav",
+      "sha256": "4cd3308531d9045ccd24cd148cb3cc45d73491d7db3f9f6d225390d7bf6399be",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -39.640919587439555,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-grid.experimental.guitar.wav",
+      "sha256": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.889629986308563,
+      "rms_dbfs": -45.700838868007935,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-grid.experimental.wav",
+      "sha256": "2fe2e0401d5bfe69b5e266d4b3b8a59b5fcd7fa7b4445a092fe761e646c6dd86",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -29.894750904275732,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-grid.experimental.piano.wav",
+      "sha256": "09f3194a19288f8aecb179e67b370af9ab31cc4b66144c78d1527243b7dde150",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.384846455060654,
+      "rms_dbfs": -38.704349405959455,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-grid.experimental.drums.wav",
+      "sha256": "4c8da75c31e6a677aaca741f8bda133411dae7d7ccf31138ef97c7a0ab84f2b0",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.569713510479701,
+      "rms_dbfs": -34.40030518490681,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-phrased.experimental.bass.wav",
+      "sha256": "21b60559c7884a2b3ce314583074d16b99c5f665ab1abc187e5ead16fd396592",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.344134866121905,
+      "rms_dbfs": -33.63303717495566,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-phrased.experimental.vocals.wav",
+      "sha256": "4cd3308531d9045ccd24cd148cb3cc45d73491d7db3f9f6d225390d7bf6399be",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -39.640919587439555,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-phrased.experimental.wav",
+      "sha256": "43f0696b77dbc9f4b31ec02f2a4b6b4d19eeccb6deef289810a80f57f0c5c1b7",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -29.116217222009016,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-phrased.experimental.drums.wav",
+      "sha256": "f8d7b71dd7625a742f150015095b333a4393f07ea2517f0a5c51a14f316d727a",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -13.574922717399732,
+      "rms_dbfs": -33.29195627202139,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-phrased.experimental.piano.wav",
+      "sha256": "6c7611ab6009c3f73b291a000470ec147290c3d859dfb9a3013d704e0e6429b0",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.52104544276871,
+      "rms_dbfs": -37.80054708168877,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2035-147960-0013/hybrid-phrased.experimental.guitar.wav",
+      "sha256": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.8353248373184,
+      "rms_dbfs": -45.63342675161309,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-grid.hiphop.bass.wav",
+      "sha256": "eeb47d9ed6a7e4133172919f8154d0464640bd348a3824e46cfc663411689a09",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -19.1708933180854,
+      "rms_dbfs": -35.36196920661788,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-grid.hiphop.guitar.wav",
+      "sha256": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.889629986308563,
+      "rms_dbfs": -45.700838868007935,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-grid.hiphop.piano.wav",
+      "sha256": "cac3ce55a3d41a4800aa7130a9fc05d47b423dab02f168d060007e6e74e19078",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.95807190896403,
+      "rms_dbfs": -38.123237359394764,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-grid.hiphop.wav",
+      "sha256": "4bb70489833c20f81240f6064234581343bb73c81b54b26c7ccb473d4ea367f3",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948251506918654,
+      "rms_dbfs": -30.310125523056914,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-grid.hiphop.drums.wav",
+      "sha256": "caa81dae9fc207bec7864cae7417739b8c5c351882210407230bf994b9c6b346",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.081291117225327,
+      "rms_dbfs": -38.082033108124456,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-grid.hiphop.vocals.wav",
+      "sha256": "e01d623250a5cf884d5f62005ca6274256d97c890d75370c039f00fa673d92a4",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -35.24611006876421,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-phrased.hiphop.guitar.wav",
+      "sha256": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.8353248373184,
+      "rms_dbfs": -45.63342675161309,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-phrased.hiphop.drums.wav",
+      "sha256": "5ab10db1bf393870383bfb43575d5a5e14bc859d455c81e317ed98fb7f8786fe",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.738738464415862,
+      "rms_dbfs": -37.61459803748228,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-phrased.hiphop.piano.wav",
+      "sha256": "ee8b987422a45a015fed6b4f8a576bbe042d4d99d9b67265bede40e4c6513653",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -15.388776544155842,
+      "rms_dbfs": -36.727620584405386,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-phrased.hiphop.wav",
+      "sha256": "e00c6ac36e6c8619823650c0afdf5f9e2526ddf72b6ffded708f92d434a78c7b",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -29.9449395620649,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-phrased.hiphop.bass.wav",
+      "sha256": "48f3d8f9a04f3df6d530c978de426e5446d59b9ef66e238a005aa3c235d76d9b",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.531230205092847,
+      "rms_dbfs": -35.34039307340299,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/acoustic-phrased.hiphop.vocals.wav",
+      "sha256": "e01d623250a5cf884d5f62005ca6274256d97c890d75370c039f00fa673d92a4",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -35.24611006876421,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-grid.hiphop.vocals.wav",
+      "sha256": "e01d623250a5cf884d5f62005ca6274256d97c890d75370c039f00fa673d92a4",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -35.24611006876421,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-grid.hiphop.bass.wav",
+      "sha256": "de60ca590f9fc9ebc56d635b4b37cadd57d04e3d3130523b02cc3a628691919d",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -19.896708261629637,
+      "rms_dbfs": -34.27145055074422,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-grid.hiphop.wav",
+      "sha256": "63e08bf8aa310bbddd6ec12f401d1596f2b6866486023061e5fdc57240282783",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948251506918654,
+      "rms_dbfs": -29.077627005805038,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-grid.hiphop.guitar.wav",
+      "sha256": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.889629986308563,
+      "rms_dbfs": -45.700838868007935,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-grid.hiphop.drums.wav",
+      "sha256": "34ef1d6c2a394eb81b86688e014053c8f5cc59b6a08ad887d65e2390eb492bc4",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.569713510479701,
+      "rms_dbfs": -34.40652837011548,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-grid.hiphop.piano.wav",
+      "sha256": "cac3ce55a3d41a4800aa7130a9fc05d47b423dab02f168d060007e6e74e19078",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.95807190896403,
+      "rms_dbfs": -38.123237359394764,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-phrased.hiphop.guitar.wav",
+      "sha256": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.8353248373184,
+      "rms_dbfs": -45.63342675161309,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-phrased.hiphop.wav",
+      "sha256": "a35e6d60c671981f7b7b39c9e538e27f64604e313f459b3b606047c3aeb406f5",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948251506918654,
+      "rms_dbfs": -28.346357056666008,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-phrased.hiphop.drums.wav",
+      "sha256": "218b5f41fe91430831ecee2bd93076c08d7d283c5a0493ff709b1c339584c90b",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -13.574922717399732,
+      "rms_dbfs": -33.2922462666146,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-phrased.hiphop.piano.wav",
+      "sha256": "ee8b987422a45a015fed6b4f8a576bbe042d4d99d9b67265bede40e4c6513653",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -15.388776544155842,
+      "rms_dbfs": -36.727620584405386,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-phrased.hiphop.bass.wav",
+      "sha256": "21b60559c7884a2b3ce314583074d16b99c5f665ab1abc187e5ead16fd396592",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.344134866121905,
+      "rms_dbfs": -33.63303717495566,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "ls-2086-149220-0047/hybrid-phrased.hiphop.vocals.wav",
+      "sha256": "e01d623250a5cf884d5f62005ca6274256d97c890d75370c039f00fa673d92a4",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -35.24611006876421,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-grid.experimental.vocals.wav",
+      "sha256": "3e6ef2a41cf832eea96715fc6094ef5a8e70f9087e5a555adf70f1f4f60d4e74",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -39.752144271648866,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-grid.experimental.drums.wav",
+      "sha256": "1c53927b382c69c553ed42b638e86aa3ad4a4afb51272dcc98ebee9ac4fd5d0c",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.081291117225327,
+      "rms_dbfs": -38.064457080559,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-grid.experimental.piano.wav",
+      "sha256": "e5cc2e152e78b6011335242b1dda9734a49b4b9c0f0a21ec5814572464bc8921",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.62466279641675,
+      "rms_dbfs": -38.56225628560628,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-grid.experimental.wav",
+      "sha256": "6904548d55fb5e79af1409e957894e414ddf2a69e14a59467d1752b7574aec60",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -31.400516092707154,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-grid.experimental.bass.wav",
+      "sha256": "eeb47d9ed6a7e4133172919f8154d0464640bd348a3824e46cfc663411689a09",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -19.1708933180854,
+      "rms_dbfs": -35.36196920661788,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-grid.experimental.guitar.wav",
+      "sha256": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.889629986308563,
+      "rms_dbfs": -45.700838868007935,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-phrased.experimental.wav",
+      "sha256": "ebcdec27e298259c7f79f6656623e3fbc7048d33372d59e397baf003ef25e967",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -31.169797149605397,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-phrased.experimental.piano.wav",
+      "sha256": "8c52dc0a486a918970f50081d4eaad5eb97c4377547c7b40191de44225a43acf",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.200277767489347,
+      "rms_dbfs": -38.07352456070411,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-phrased.experimental.drums.wav",
+      "sha256": "304e7cef91ba26e5568bed45cb91f3d20c974209178605934790dec8e15f917d",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.738738464415862,
+      "rms_dbfs": -37.61362787289232,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-phrased.experimental.guitar.wav",
+      "sha256": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.8353248373184,
+      "rms_dbfs": -45.63342675161309,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-phrased.experimental.vocals.wav",
+      "sha256": "3e6ef2a41cf832eea96715fc6094ef5a8e70f9087e5a555adf70f1f4f60d4e74",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -39.752144271648866,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/acoustic-phrased.experimental.bass.wav",
+      "sha256": "48f3d8f9a04f3df6d530c978de426e5446d59b9ef66e238a005aa3c235d76d9b",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.531230205092847,
+      "rms_dbfs": -35.34039307340299,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-grid.experimental.bass.wav",
+      "sha256": "de60ca590f9fc9ebc56d635b4b37cadd57d04e3d3130523b02cc3a628691919d",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -19.896708261629637,
+      "rms_dbfs": -34.27145055074422,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-grid.experimental.vocals.wav",
+      "sha256": "3e6ef2a41cf832eea96715fc6094ef5a8e70f9087e5a555adf70f1f4f60d4e74",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -39.752144271648866,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-grid.experimental.guitar.wav",
+      "sha256": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -17.889629986308563,
+      "rms_dbfs": -45.700838868007935,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-grid.experimental.wav",
+      "sha256": "e965572b9036e9161be67a21855875cf1cbf512f7b8462b5344678758754b9c8",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -29.868396563246456,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-grid.experimental.piano.wav",
+      "sha256": "e5cc2e152e78b6011335242b1dda9734a49b4b9c0f0a21ec5814572464bc8921",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.62466279641675,
+      "rms_dbfs": -38.56225628560628,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-grid.experimental.drums.wav",
+      "sha256": "4c8da75c31e6a677aaca741f8bda133411dae7d7ccf31138ef97c7a0ab84f2b0",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -14.569713510479701,
+      "rms_dbfs": -34.40030518490681,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-phrased.experimental.bass.wav",
+      "sha256": "21b60559c7884a2b3ce314583074d16b99c5f665ab1abc187e5ead16fd396592",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.344134866121905,
+      "rms_dbfs": -33.63303717495566,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-phrased.experimental.vocals.wav",
+      "sha256": "3e6ef2a41cf832eea96715fc6094ef5a8e70f9087e5a555adf70f1f4f60d4e74",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -39.752144271648866,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-phrased.experimental.wav",
+      "sha256": "8d976cc1291fbf3930d89b12a76ff3ab6da22bbea0a34314d0974660aa08b4e3",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -8.948994176290922,
+      "rms_dbfs": -29.183777127068318,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-phrased.experimental.drums.wav",
+      "sha256": "f8d7b71dd7625a742f150015095b333a4393f07ea2517f0a5c51a14f316d727a",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -13.574922717399732,
+      "rms_dbfs": -33.29195627202139,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-phrased.experimental.piano.wav",
+      "sha256": "8c52dc0a486a918970f50081d4eaad5eb97c4377547c7b40191de44225a43acf",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -16.200277767489347,
+      "rms_dbfs": -38.07352456070411,
+      "full_scale_samples": 0
+    },
+    {
+      "file": "commons-laughter/hybrid-phrased.experimental.guitar.wav",
+      "sha256": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+      "frames": 1765714,
+      "sample_rate": 48000,
+      "peak_dbfs": -18.8353248373184,
+      "rms_dbfs": -45.63342675161309,
+      "full_scale_samples": 0
+    }
+  ],
+  "waveform_differences": [
+    {
+      "id": "owner-speech",
+      "pair": [
+        "acoustic-grid",
+        "acoustic-phrased"
+      ],
+      "max_pcm16_difference": 8763.0,
+      "rms_pcm16_difference": 756.5476729797008
+    },
+    {
+      "id": "owner-speech",
+      "pair": [
+        "hybrid-grid",
+        "hybrid-phrased"
+      ],
+      "max_pcm16_difference": 10567.0,
+      "rms_pcm16_difference": 1041.52769595605
+    },
+    {
+      "id": "owner-speech",
+      "pair": [
+        "acoustic-grid",
+        "hybrid-grid"
+      ],
+      "max_pcm16_difference": 10391.0,
+      "rms_pcm16_difference": 1188.322926913683
+    },
+    {
+      "id": "owner-speech",
+      "pair": [
+        "acoustic-phrased",
+        "hybrid-phrased"
+      ],
+      "max_pcm16_difference": 12213.0,
+      "rms_pcm16_difference": 1303.3876749151734
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "pair": [
+        "acoustic-grid",
+        "acoustic-phrased"
+      ],
+      "max_pcm16_difference": 7757.0,
+      "rms_pcm16_difference": 694.1443275504633
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "pair": [
+        "hybrid-grid",
+        "hybrid-phrased"
+      ],
+      "max_pcm16_difference": 12327.0,
+      "rms_pcm16_difference": 1039.5921610974513
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "pair": [
+        "acoustic-grid",
+        "hybrid-grid"
+      ],
+      "max_pcm16_difference": 10959.0,
+      "rms_pcm16_difference": 1139.73516689416
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "pair": [
+        "acoustic-phrased",
+        "hybrid-phrased"
+      ],
+      "max_pcm16_difference": 12842.0,
+      "rms_pcm16_difference": 1249.58405547197
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "pair": [
+        "acoustic-grid",
+        "acoustic-phrased"
+      ],
+      "max_pcm16_difference": 8422.0,
+      "rms_pcm16_difference": 794.6886962903081
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "pair": [
+        "hybrid-grid",
+        "hybrid-phrased"
+      ],
+      "max_pcm16_difference": 11285.0,
+      "rms_pcm16_difference": 1085.6044920513891
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "pair": [
+        "acoustic-grid",
+        "hybrid-grid"
+      ],
+      "max_pcm16_difference": 10087.0,
+      "rms_pcm16_difference": 1255.542358452693
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "pair": [
+        "acoustic-phrased",
+        "hybrid-phrased"
+      ],
+      "max_pcm16_difference": 12120.0,
+      "rms_pcm16_difference": 1368.5124395165492
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "pair": [
+        "acoustic-grid",
+        "acoustic-phrased"
+      ],
+      "max_pcm16_difference": 8422.0,
+      "rms_pcm16_difference": 792.3321009733693
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "pair": [
+        "hybrid-grid",
+        "hybrid-phrased"
+      ],
+      "max_pcm16_difference": 11276.0,
+      "rms_pcm16_difference": 1084.1331809513651
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "pair": [
+        "acoustic-grid",
+        "hybrid-grid"
+      ],
+      "max_pcm16_difference": 10087.0,
+      "rms_pcm16_difference": 1255.0231424179499
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "pair": [
+        "acoustic-phrased",
+        "hybrid-phrased"
+      ],
+      "max_pcm16_difference": 12120.0,
+      "rms_pcm16_difference": 1368.4830927869464
+    },
+    {
+      "id": "commons-laughter",
+      "pair": [
+        "acoustic-grid",
+        "acoustic-phrased"
+      ],
+      "max_pcm16_difference": 8422.0,
+      "rms_pcm16_difference": 779.8677242460408
+    },
+    {
+      "id": "commons-laughter",
+      "pair": [
+        "hybrid-grid",
+        "hybrid-phrased"
+      ],
+      "max_pcm16_difference": 11204.0,
+      "rms_pcm16_difference": 1073.1396268485132
+    },
+    {
+      "id": "commons-laughter",
+      "pair": [
+        "acoustic-grid",
+        "hybrid-grid"
+      ],
+      "max_pcm16_difference": 10086.0,
+      "rms_pcm16_difference": 1255.5424087467086
+    },
+    {
+      "id": "commons-laughter",
+      "pair": [
+        "acoustic-phrased",
+        "hybrid-phrased"
+      ],
+      "max_pcm16_difference": 12120.0,
+      "rms_pcm16_difference": 1368.5119415574218
+    }
+  ],
+  "identical_vocal_stems_all_conditions": "PASS",
+  "plan_reproduction": "PASS: 20 plans",
+  "trial_file_sha256": {
+    "commons-laughter/acoustic-grid.complete.json": "966e7ceaf2627edb8a49bcb4e03800139e228e70d82e3b74168a90615f1f1381",
+    "commons-laughter/acoustic-grid.experimental.bass.wav": "eeb47d9ed6a7e4133172919f8154d0464640bd348a3824e46cfc663411689a09",
+    "commons-laughter/acoustic-grid.experimental.drums.wav": "1c53927b382c69c553ed42b638e86aa3ad4a4afb51272dcc98ebee9ac4fd5d0c",
+    "commons-laughter/acoustic-grid.experimental.events.tsv": "ffe0cc7daa2871519eb340db947adf480eee22d61b3daf0ed746e9e396e2ea55",
+    "commons-laughter/acoustic-grid.experimental.guitar.wav": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+    "commons-laughter/acoustic-grid.experimental.piano.wav": "e5cc2e152e78b6011335242b1dda9734a49b4b9c0f0a21ec5814572464bc8921",
+    "commons-laughter/acoustic-grid.experimental.report.json": "69770c8f39192ad01022a3a865e9b4afabbbaf0fafa06c18109a20178c26df75",
+    "commons-laughter/acoustic-grid.experimental.score.json": "232e7e365fa2bf3c758f8bbd393fb93dcef7699afa7536a87a812ff007b3ac50",
+    "commons-laughter/acoustic-grid.experimental.vocals.wav": "3e6ef2a41cf832eea96715fc6094ef5a8e70f9087e5a555adf70f1f4f60d4e74",
+    "commons-laughter/acoustic-grid.experimental.wav": "6904548d55fb5e79af1409e957894e414ddf2a69e14a59467d1752b7574aec60",
+    "commons-laughter/acoustic-grid.plan.json": "5a260cadccc34809871f2b0c905679d5fc699f53ac61e550c261e22b53c3907e",
+    "commons-laughter/acoustic-grid.trace.json": "86bbd311497a947c8b509c956d3e0d0c6ba4cc4b174fafdc64c7646e4ea71e6f",
+    "commons-laughter/acoustic-phrased.complete.json": "005bd01cf8cfb65d2e43ccbac0efdd028278f855fd916a82b6353f9d45e66e6e",
+    "commons-laughter/acoustic-phrased.experimental.bass.wav": "48f3d8f9a04f3df6d530c978de426e5446d59b9ef66e238a005aa3c235d76d9b",
+    "commons-laughter/acoustic-phrased.experimental.drums.wav": "304e7cef91ba26e5568bed45cb91f3d20c974209178605934790dec8e15f917d",
+    "commons-laughter/acoustic-phrased.experimental.events.tsv": "3ce01f81b0108bfd80455c73a2b86e1840bba1e2b0f270a1cea021095f88be26",
+    "commons-laughter/acoustic-phrased.experimental.guitar.wav": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+    "commons-laughter/acoustic-phrased.experimental.piano.wav": "8c52dc0a486a918970f50081d4eaad5eb97c4377547c7b40191de44225a43acf",
+    "commons-laughter/acoustic-phrased.experimental.report.json": "587385ea9b05d92b67e5e5d3f24032cd32fe6ce48775e894fb50718218046af5",
+    "commons-laughter/acoustic-phrased.experimental.score.json": "8329c7740cdb01f7a1612c3bce4e522847b12c063be71407cf90d9071804ef4f",
+    "commons-laughter/acoustic-phrased.experimental.vocals.wav": "3e6ef2a41cf832eea96715fc6094ef5a8e70f9087e5a555adf70f1f4f60d4e74",
+    "commons-laughter/acoustic-phrased.experimental.wav": "ebcdec27e298259c7f79f6656623e3fbc7048d33372d59e397baf003ef25e967",
+    "commons-laughter/acoustic-phrased.plan.json": "1a561f843caf746baee28222548918effaa5884cbd8efa6fb748cb3da1b8385e",
+    "commons-laughter/acoustic-phrased.trace.json": "6a2f5d4eafd9b04b7788e65ce6b92cf0031a90a5cf2dc01d4d99f38ceffa584e",
+    "commons-laughter/hybrid-grid.complete.json": "c2c6672e724b89a89f4995ed925c73551c1291420aa47ad724ff7dc9a7622a14",
+    "commons-laughter/hybrid-grid.experimental.bass.wav": "de60ca590f9fc9ebc56d635b4b37cadd57d04e3d3130523b02cc3a628691919d",
+    "commons-laughter/hybrid-grid.experimental.drums.wav": "4c8da75c31e6a677aaca741f8bda133411dae7d7ccf31138ef97c7a0ab84f2b0",
+    "commons-laughter/hybrid-grid.experimental.events.tsv": "ffe0cc7daa2871519eb340db947adf480eee22d61b3daf0ed746e9e396e2ea55",
+    "commons-laughter/hybrid-grid.experimental.guitar.wav": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+    "commons-laughter/hybrid-grid.experimental.piano.wav": "e5cc2e152e78b6011335242b1dda9734a49b4b9c0f0a21ec5814572464bc8921",
+    "commons-laughter/hybrid-grid.experimental.report.json": "c3bfa1481b184219448298e22f5d1fc38d3530defe3791a17d048c13fe108d48",
+    "commons-laughter/hybrid-grid.experimental.score.json": "9eb90746b521efc49d95efea0e4f65f7d4a6cbe1bb1a1f8ded54728db0c7b625",
+    "commons-laughter/hybrid-grid.experimental.vocals.wav": "3e6ef2a41cf832eea96715fc6094ef5a8e70f9087e5a555adf70f1f4f60d4e74",
+    "commons-laughter/hybrid-grid.experimental.wav": "e965572b9036e9161be67a21855875cf1cbf512f7b8462b5344678758754b9c8",
+    "commons-laughter/hybrid-grid.plan.json": "cca927c1f4e9b802d4b5789cc1f25f6499768f8e2ce7f4de1c81b62236bc07ce",
+    "commons-laughter/hybrid-grid.trace.json": "61046d3fdf846150f79c639628c25a977030d67cec4467f1e2aedfc8d8088d23",
+    "commons-laughter/hybrid-phrased.complete.json": "9d134199bc451f7722de48ed932d0703598a8109ff2f502339ac26029acdae3c",
+    "commons-laughter/hybrid-phrased.experimental.bass.wav": "21b60559c7884a2b3ce314583074d16b99c5f665ab1abc187e5ead16fd396592",
+    "commons-laughter/hybrid-phrased.experimental.drums.wav": "f8d7b71dd7625a742f150015095b333a4393f07ea2517f0a5c51a14f316d727a",
+    "commons-laughter/hybrid-phrased.experimental.events.tsv": "3ce01f81b0108bfd80455c73a2b86e1840bba1e2b0f270a1cea021095f88be26",
+    "commons-laughter/hybrid-phrased.experimental.guitar.wav": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+    "commons-laughter/hybrid-phrased.experimental.piano.wav": "8c52dc0a486a918970f50081d4eaad5eb97c4377547c7b40191de44225a43acf",
+    "commons-laughter/hybrid-phrased.experimental.report.json": "06874da9fde3c1ca0c3c784a8b68abf2e31803b3bf6440cfc37488832040d5f2",
+    "commons-laughter/hybrid-phrased.experimental.score.json": "6c7fe3461d3a7eaaaae856b704cd70458cc9d07d0d7406cda209acb9eded0909",
+    "commons-laughter/hybrid-phrased.experimental.vocals.wav": "3e6ef2a41cf832eea96715fc6094ef5a8e70f9087e5a555adf70f1f4f60d4e74",
+    "commons-laughter/hybrid-phrased.experimental.wav": "8d976cc1291fbf3930d89b12a76ff3ab6da22bbea0a34314d0974660aa08b4e3",
+    "commons-laughter/hybrid-phrased.plan.json": "8168debc19e8f23f377f61c13d096f32a7866d3c3149b10a2deb15f06a61c5d9",
+    "commons-laughter/hybrid-phrased.trace.json": "1642f6f812844ee68e59d87bbc6b39aa9c579fc7b6780a86a87e9b0f8e7e0a2d",
+    "commons-laughter/replay-acoustic-grid.complete.json": "cbfccd6744deb270e6c7061ef2cf6107652521fa20ab83c0c3a094cbf1e02cf7",
+    "commons-laughter/replay-acoustic-grid.experimental.events.tsv": "ffe0cc7daa2871519eb340db947adf480eee22d61b3daf0ed746e9e396e2ea55",
+    "commons-laughter/replay-acoustic-grid.experimental.report.json": "69770c8f39192ad01022a3a865e9b4afabbbaf0fafa06c18109a20178c26df75",
+    "commons-laughter/replay-acoustic-grid.experimental.score.json": "232e7e365fa2bf3c758f8bbd393fb93dcef7699afa7536a87a812ff007b3ac50",
+    "commons-laughter/replay-acoustic-grid.experimental.wav": "6904548d55fb5e79af1409e957894e414ddf2a69e14a59467d1752b7574aec60",
+    "commons-laughter/replay-acoustic-phrased.complete.json": "4fe59ee648bc49b30aa41f2393c164a012e318cfd644ad7d7d815d4cc9a073a7",
+    "commons-laughter/replay-acoustic-phrased.experimental.events.tsv": "3ce01f81b0108bfd80455c73a2b86e1840bba1e2b0f270a1cea021095f88be26",
+    "commons-laughter/replay-acoustic-phrased.experimental.report.json": "587385ea9b05d92b67e5e5d3f24032cd32fe6ce48775e894fb50718218046af5",
+    "commons-laughter/replay-acoustic-phrased.experimental.score.json": "8329c7740cdb01f7a1612c3bce4e522847b12c063be71407cf90d9071804ef4f",
+    "commons-laughter/replay-acoustic-phrased.experimental.wav": "ebcdec27e298259c7f79f6656623e3fbc7048d33372d59e397baf003ef25e967",
+    "commons-laughter/replay-hybrid-grid.complete.json": "fff204f0780f03ba98f7e00bf0aedc9e9257d4f041def59807cf2af9dcad941b",
+    "commons-laughter/replay-hybrid-grid.experimental.events.tsv": "ffe0cc7daa2871519eb340db947adf480eee22d61b3daf0ed746e9e396e2ea55",
+    "commons-laughter/replay-hybrid-grid.experimental.report.json": "c3bfa1481b184219448298e22f5d1fc38d3530defe3791a17d048c13fe108d48",
+    "commons-laughter/replay-hybrid-grid.experimental.score.json": "9eb90746b521efc49d95efea0e4f65f7d4a6cbe1bb1a1f8ded54728db0c7b625",
+    "commons-laughter/replay-hybrid-grid.experimental.wav": "e965572b9036e9161be67a21855875cf1cbf512f7b8462b5344678758754b9c8",
+    "commons-laughter/replay-hybrid-phrased.complete.json": "93a80a65767236062e1ad4ca9e46cec692ff2223632f4a7aeb8fb891f084fc54",
+    "commons-laughter/replay-hybrid-phrased.experimental.events.tsv": "3ce01f81b0108bfd80455c73a2b86e1840bba1e2b0f270a1cea021095f88be26",
+    "commons-laughter/replay-hybrid-phrased.experimental.report.json": "06874da9fde3c1ca0c3c784a8b68abf2e31803b3bf6440cfc37488832040d5f2",
+    "commons-laughter/replay-hybrid-phrased.experimental.score.json": "6c7fe3461d3a7eaaaae856b704cd70458cc9d07d0d7406cda209acb9eded0909",
+    "commons-laughter/replay-hybrid-phrased.experimental.wav": "8d976cc1291fbf3930d89b12a76ff3ab6da22bbea0a34314d0974660aa08b4e3",
+    "listener/ATTRIBUTION.txt": "8a47e0e77994eb21af9cbca91ca5386e329fe05d50c6288554cf1b0c98e60aff",
+    "listener/commons-laughter-1.wav": "a46558bdcd8041c4a693c939226ca119e1094a4077be56b7a9c2795009ec433f",
+    "listener/commons-laughter-2.wav": "b6553d51f78541d34472a9a13330af9a7f3550ed9c95f99641b31bd04e8f902d",
+    "listener/commons-laughter-3.wav": "d19cec8625fceb4a7ddc58edb61a574e47b49ef2b32d41a1c2a4e24f27b8a950",
+    "listener/commons-laughter-4.wav": "fe196b64ceaa6e9a1ee0c7d0a7a94fe18602fb6bd443789ac326647ac75b185a",
+    "listener/commons-laughter-source.wav": "23fef28e98c10cd2c6704b53de1b35a3087622d7007a74db2685e90c1a8b793c",
+    "listener/index.html": "a7897f0bc1d04e3277c544b29d36eb484181398deaabdcc0dfe62fd99e3501ab",
+    "listener/ls-2035-147960-0013-1.wav": "cc4ada18aa4024724117f3694f1945d10e808ae4bd389b8e1747d3ccee8fcf96",
+    "listener/ls-2035-147960-0013-2.wav": "10e537199c8d9a0ad2022f4bc8152fbb14d89ebfd60d6d017455d2392d08a339",
+    "listener/ls-2035-147960-0013-3.wav": "c45ed765a587757c8c51d8b9f7a4b98d9ba056468a4f75628b71640ca65e7b9c",
+    "listener/ls-2035-147960-0013-4.wav": "655e470b2f2de52fb8b0acf54a853ff5a86813ee03289d2af57de9105fa33a23",
+    "listener/ls-2035-147960-0013-source.wav": "34f8bd54fce8acc9047e742f4246451e23ccfad02057042b6ebf78033d09052a",
+    "listener/ls-2086-149220-0047-1.wav": "e9ded117bfec42a88877461370ccd56ff9eb3e25942c74a2843c411db2829700",
+    "listener/ls-2086-149220-0047-2.wav": "dfa04faabbdd841147192ebbe92898bf191755f52b461f72c85a6cfc2ce2119f",
+    "listener/ls-2086-149220-0047-3.wav": "fead7e3f861522d5b1e06109a86d7d5a3d7b2a0f7a8f86caa545f3364920dcee",
+    "listener/ls-2086-149220-0047-4.wav": "ed29e94a1a94c4fc8a3d93b0b34e71f3ab4e8947fb07b74d3accaf7d60b6baa7",
+    "listener/ls-2086-149220-0047-source.wav": "3f0f6fc7e6b89bbef1a49a3296dc652f3a21c9a99112409a883c69a3549040e6",
+    "listener/ls-2277-149896-0026-1.wav": "6fb908fa90eaae53894d86c016e7b0d806f5c7539c70c37b31c9a4038ee2a73f",
+    "listener/ls-2277-149896-0026-2.wav": "8aadcc84bf2cca253f097c793fdfb89c5a55dad20ddc54f080ca86dcab51b1bb",
+    "listener/ls-2277-149896-0026-3.wav": "5c609363156299e512d5450352f436eb131418a293c2d0544957257845a7480e",
+    "listener/ls-2277-149896-0026-4.wav": "40bd24fe84764fe8de5a77e22130a930f1322240387bb6a00f77e2a1429a7427",
+    "listener/ls-2277-149896-0026-source.wav": "8231f9ec1b79bef07f3f2bbd5548c7ab8fff79a1e0bb774eab08507104be2381",
+    "listener/owner-speech-1.wav": "b5f918ed65b8d97bf0765f911509ddfdb4bd1f312860bb70c553bbcde7d8621e",
+    "listener/owner-speech-2.wav": "11e84325ca8cf1ae4915c6e57bce42e824eff332a19bec6c9c9792754cc54929",
+    "listener/owner-speech-3.wav": "4a9afb0e76871b3a43cf622cf660861f00ae456273cdbcc9c0bfe8fce177297c",
+    "listener/owner-speech-4.wav": "4947d59c24b0f78bdffbb323a817369bdfca2ac95ef04e1af15bd19973530854",
+    "listener/owner-speech-source.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "listener/packet.json": "82217d1c0e5037e50df6f1de2ff0dc6c707f577f288c8df1443f76591c4e2a08",
+    "listener/review.css": "f5bee9232c7ce28bb825441ff85b87ee489f9609f26ac445ddea9d51c2c87459",
+    "listener/review.js": "5fe19b1bc653dbe8971f21057b0cdb645265914cbb29342da482506224c04229",
+    "ls-2035-147960-0013/acoustic-grid.complete.json": "3841be7eafa0342e780334292537023027487eeb847b3fa4176eac79b23d2bd5",
+    "ls-2035-147960-0013/acoustic-grid.experimental.bass.wav": "eeb47d9ed6a7e4133172919f8154d0464640bd348a3824e46cfc663411689a09",
+    "ls-2035-147960-0013/acoustic-grid.experimental.drums.wav": "1c53927b382c69c553ed42b638e86aa3ad4a4afb51272dcc98ebee9ac4fd5d0c",
+    "ls-2035-147960-0013/acoustic-grid.experimental.events.tsv": "edfa215cf9fc5e324b77f54d02fde2ecbc1206af8ed8b24ab3b260f99fd003ca",
+    "ls-2035-147960-0013/acoustic-grid.experimental.guitar.wav": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+    "ls-2035-147960-0013/acoustic-grid.experimental.piano.wav": "09f3194a19288f8aecb179e67b370af9ab31cc4b66144c78d1527243b7dde150",
+    "ls-2035-147960-0013/acoustic-grid.experimental.report.json": "afed1f7d85561851f1e95e74a7830e84fb99720406c03877fe6491fd6e8d612e",
+    "ls-2035-147960-0013/acoustic-grid.experimental.score.json": "455a57107ed3975d2ccdb98bd2afbf4f12a7280ea0caf6df4511f26162535dc1",
+    "ls-2035-147960-0013/acoustic-grid.experimental.vocals.wav": "4cd3308531d9045ccd24cd148cb3cc45d73491d7db3f9f6d225390d7bf6399be",
+    "ls-2035-147960-0013/acoustic-grid.experimental.wav": "bc0a5be77c4d8a13bebe7721ca4749e8218a5d2b96b077f1fe289e605ae05ce9",
+    "ls-2035-147960-0013/acoustic-grid.plan.json": "47bad86228be085cec8a355bbb4c1664ed88d1af28eb285733a12cc94d3ac6aa",
+    "ls-2035-147960-0013/acoustic-grid.trace.json": "1dd410db0aa7bbbd7029559b3f314a3c4b37179bacd6d9dc50d694a242f8d36c",
+    "ls-2035-147960-0013/acoustic-phrased.complete.json": "18495c0391339c9cb559a90130d22cb6e36709f8ee4d59b12bfb5fd72696741e",
+    "ls-2035-147960-0013/acoustic-phrased.experimental.bass.wav": "48f3d8f9a04f3df6d530c978de426e5446d59b9ef66e238a005aa3c235d76d9b",
+    "ls-2035-147960-0013/acoustic-phrased.experimental.drums.wav": "304e7cef91ba26e5568bed45cb91f3d20c974209178605934790dec8e15f917d",
+    "ls-2035-147960-0013/acoustic-phrased.experimental.events.tsv": "8e4327ea1fd7450f7c48db533f9f3c24d8e0d7e49a4630b5dcc174c67b11e920",
+    "ls-2035-147960-0013/acoustic-phrased.experimental.guitar.wav": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+    "ls-2035-147960-0013/acoustic-phrased.experimental.piano.wav": "6c7611ab6009c3f73b291a000470ec147290c3d859dfb9a3013d704e0e6429b0",
+    "ls-2035-147960-0013/acoustic-phrased.experimental.report.json": "1e377aaf7e246a0b004882f1f2395d1497bb5682a516d7d4750f1771db154e9a",
+    "ls-2035-147960-0013/acoustic-phrased.experimental.score.json": "6ce2e3d165402f13eb1e647a2682c0123bfc9eeac2cd9950c4aecec7748b02cc",
+    "ls-2035-147960-0013/acoustic-phrased.experimental.vocals.wav": "4cd3308531d9045ccd24cd148cb3cc45d73491d7db3f9f6d225390d7bf6399be",
+    "ls-2035-147960-0013/acoustic-phrased.experimental.wav": "0378b34fbd283989fa0b6ec9925f033f11a4f02c832675e67bb2dbef3b4616a2",
+    "ls-2035-147960-0013/acoustic-phrased.plan.json": "c744f27f80496025e5e29c3733244643139ec014fb80596b436b8291c2993798",
+    "ls-2035-147960-0013/acoustic-phrased.trace.json": "1367656423cb892967e61face29fb2467102b82ed03e0b3f1ae9ddb52b954aa8",
+    "ls-2035-147960-0013/hybrid-grid.complete.json": "e56d24a341031faf4d9fd40a1eeb40cbdb3eb8eafd232f84a2ebb4e9c68a3805",
+    "ls-2035-147960-0013/hybrid-grid.experimental.bass.wav": "de60ca590f9fc9ebc56d635b4b37cadd57d04e3d3130523b02cc3a628691919d",
+    "ls-2035-147960-0013/hybrid-grid.experimental.drums.wav": "4c8da75c31e6a677aaca741f8bda133411dae7d7ccf31138ef97c7a0ab84f2b0",
+    "ls-2035-147960-0013/hybrid-grid.experimental.events.tsv": "edfa215cf9fc5e324b77f54d02fde2ecbc1206af8ed8b24ab3b260f99fd003ca",
+    "ls-2035-147960-0013/hybrid-grid.experimental.guitar.wav": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+    "ls-2035-147960-0013/hybrid-grid.experimental.piano.wav": "09f3194a19288f8aecb179e67b370af9ab31cc4b66144c78d1527243b7dde150",
+    "ls-2035-147960-0013/hybrid-grid.experimental.report.json": "51908eca761c1d0c948798ade7683cc0e8e1f59ea6858894fad59f4f96ab24ef",
+    "ls-2035-147960-0013/hybrid-grid.experimental.score.json": "2d4f4415cb8cba9bb432ee0ebc13ecef1115935aaf608214e015510eb6b163c9",
+    "ls-2035-147960-0013/hybrid-grid.experimental.vocals.wav": "4cd3308531d9045ccd24cd148cb3cc45d73491d7db3f9f6d225390d7bf6399be",
+    "ls-2035-147960-0013/hybrid-grid.experimental.wav": "2fe2e0401d5bfe69b5e266d4b3b8a59b5fcd7fa7b4445a092fe761e646c6dd86",
+    "ls-2035-147960-0013/hybrid-grid.plan.json": "de303a8b3f4f0bec10565f842c7f1443200c6b32d26219a7815ff19268076a52",
+    "ls-2035-147960-0013/hybrid-grid.trace.json": "6dd7584aa7b7784f9ce59d73356db23ca006ecd1091f61a027c25b54bd4aceda",
+    "ls-2035-147960-0013/hybrid-phrased.complete.json": "8bf6e7c3fd7ce0a67bd9a1f0b4f43e3b4a45f052f7d606bb8781de392fe92db8",
+    "ls-2035-147960-0013/hybrid-phrased.experimental.bass.wav": "21b60559c7884a2b3ce314583074d16b99c5f665ab1abc187e5ead16fd396592",
+    "ls-2035-147960-0013/hybrid-phrased.experimental.drums.wav": "f8d7b71dd7625a742f150015095b333a4393f07ea2517f0a5c51a14f316d727a",
+    "ls-2035-147960-0013/hybrid-phrased.experimental.events.tsv": "8e4327ea1fd7450f7c48db533f9f3c24d8e0d7e49a4630b5dcc174c67b11e920",
+    "ls-2035-147960-0013/hybrid-phrased.experimental.guitar.wav": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+    "ls-2035-147960-0013/hybrid-phrased.experimental.piano.wav": "6c7611ab6009c3f73b291a000470ec147290c3d859dfb9a3013d704e0e6429b0",
+    "ls-2035-147960-0013/hybrid-phrased.experimental.report.json": "f1d4fa251e587b0f00def97c063f3f13009b5a5306731c975c3e919c04bbd573",
+    "ls-2035-147960-0013/hybrid-phrased.experimental.score.json": "a24db10426fde800a18d5c251f6861c1e1478e833cce07b401c2794511636a24",
+    "ls-2035-147960-0013/hybrid-phrased.experimental.vocals.wav": "4cd3308531d9045ccd24cd148cb3cc45d73491d7db3f9f6d225390d7bf6399be",
+    "ls-2035-147960-0013/hybrid-phrased.experimental.wav": "43f0696b77dbc9f4b31ec02f2a4b6b4d19eeccb6deef289810a80f57f0c5c1b7",
+    "ls-2035-147960-0013/hybrid-phrased.plan.json": "c5081dca552d70c08f1e7345c7d2cfc9cc3b46ce0858a781f5710dbf6ba43e9e",
+    "ls-2035-147960-0013/hybrid-phrased.trace.json": "98d2173830f47d9430eafaae762bda30b52fbee982f2c17cdb17372b0ca89d2a",
+    "ls-2035-147960-0013/replay-acoustic-grid.complete.json": "cf2203acb9f8ca20b2f01499be09194ffe24a294686a0630e2706123739f06cf",
+    "ls-2035-147960-0013/replay-acoustic-grid.experimental.events.tsv": "edfa215cf9fc5e324b77f54d02fde2ecbc1206af8ed8b24ab3b260f99fd003ca",
+    "ls-2035-147960-0013/replay-acoustic-grid.experimental.report.json": "afed1f7d85561851f1e95e74a7830e84fb99720406c03877fe6491fd6e8d612e",
+    "ls-2035-147960-0013/replay-acoustic-grid.experimental.score.json": "455a57107ed3975d2ccdb98bd2afbf4f12a7280ea0caf6df4511f26162535dc1",
+    "ls-2035-147960-0013/replay-acoustic-grid.experimental.wav": "bc0a5be77c4d8a13bebe7721ca4749e8218a5d2b96b077f1fe289e605ae05ce9",
+    "ls-2035-147960-0013/replay-acoustic-phrased.complete.json": "8a991589865f256c489a3f27dbc6ae9818e595b1e2fe7e33c6e490053cd11cc6",
+    "ls-2035-147960-0013/replay-acoustic-phrased.experimental.events.tsv": "8e4327ea1fd7450f7c48db533f9f3c24d8e0d7e49a4630b5dcc174c67b11e920",
+    "ls-2035-147960-0013/replay-acoustic-phrased.experimental.report.json": "1e377aaf7e246a0b004882f1f2395d1497bb5682a516d7d4750f1771db154e9a",
+    "ls-2035-147960-0013/replay-acoustic-phrased.experimental.score.json": "6ce2e3d165402f13eb1e647a2682c0123bfc9eeac2cd9950c4aecec7748b02cc",
+    "ls-2035-147960-0013/replay-acoustic-phrased.experimental.wav": "0378b34fbd283989fa0b6ec9925f033f11a4f02c832675e67bb2dbef3b4616a2",
+    "ls-2035-147960-0013/replay-hybrid-grid.complete.json": "d90e02860734aaed2dcca213fe20fbb729290f4af824873a424a27b6ff4f715e",
+    "ls-2035-147960-0013/replay-hybrid-grid.experimental.events.tsv": "edfa215cf9fc5e324b77f54d02fde2ecbc1206af8ed8b24ab3b260f99fd003ca",
+    "ls-2035-147960-0013/replay-hybrid-grid.experimental.report.json": "51908eca761c1d0c948798ade7683cc0e8e1f59ea6858894fad59f4f96ab24ef",
+    "ls-2035-147960-0013/replay-hybrid-grid.experimental.score.json": "2d4f4415cb8cba9bb432ee0ebc13ecef1115935aaf608214e015510eb6b163c9",
+    "ls-2035-147960-0013/replay-hybrid-grid.experimental.wav": "2fe2e0401d5bfe69b5e266d4b3b8a59b5fcd7fa7b4445a092fe761e646c6dd86",
+    "ls-2035-147960-0013/replay-hybrid-phrased.complete.json": "c3fb1dcada3a7f801fdf8bf4d61f042d94261ce2bf366b54f26692f37aa03bb4",
+    "ls-2035-147960-0013/replay-hybrid-phrased.experimental.events.tsv": "8e4327ea1fd7450f7c48db533f9f3c24d8e0d7e49a4630b5dcc174c67b11e920",
+    "ls-2035-147960-0013/replay-hybrid-phrased.experimental.report.json": "f1d4fa251e587b0f00def97c063f3f13009b5a5306731c975c3e919c04bbd573",
+    "ls-2035-147960-0013/replay-hybrid-phrased.experimental.score.json": "a24db10426fde800a18d5c251f6861c1e1478e833cce07b401c2794511636a24",
+    "ls-2035-147960-0013/replay-hybrid-phrased.experimental.wav": "43f0696b77dbc9f4b31ec02f2a4b6b4d19eeccb6deef289810a80f57f0c5c1b7",
+    "ls-2086-149220-0047/acoustic-grid.complete.json": "45d0e0d4fc4949dacf5675ea430ce5d743e42da76784dcee68bd0a4c61ef6f61",
+    "ls-2086-149220-0047/acoustic-grid.hiphop.bass.wav": "eeb47d9ed6a7e4133172919f8154d0464640bd348a3824e46cfc663411689a09",
+    "ls-2086-149220-0047/acoustic-grid.hiphop.drums.wav": "caa81dae9fc207bec7864cae7417739b8c5c351882210407230bf994b9c6b346",
+    "ls-2086-149220-0047/acoustic-grid.hiphop.events.tsv": "aa87d443b0aaf122b73781cd5426f4d9df8bc3b0e3f5a02800cfefd05f2ec3f8",
+    "ls-2086-149220-0047/acoustic-grid.hiphop.guitar.wav": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+    "ls-2086-149220-0047/acoustic-grid.hiphop.piano.wav": "cac3ce55a3d41a4800aa7130a9fc05d47b423dab02f168d060007e6e74e19078",
+    "ls-2086-149220-0047/acoustic-grid.hiphop.report.json": "0cccf0daf9e5fec95d14176cff3026b96648665518be44687f75b9bf6d32a614",
+    "ls-2086-149220-0047/acoustic-grid.hiphop.score.json": "e68083f0905a267f424e453f8cde0907f8cb55fc1116794e2c057120ee56fd1b",
+    "ls-2086-149220-0047/acoustic-grid.hiphop.vocals.wav": "e01d623250a5cf884d5f62005ca6274256d97c890d75370c039f00fa673d92a4",
+    "ls-2086-149220-0047/acoustic-grid.hiphop.wav": "4bb70489833c20f81240f6064234581343bb73c81b54b26c7ccb473d4ea367f3",
+    "ls-2086-149220-0047/acoustic-grid.plan.json": "a0dea5302e0a3433f38ff4384ab7663b56fd92fea55f576c71c79978050c267d",
+    "ls-2086-149220-0047/acoustic-grid.trace.json": "53dbf5068391bfed2b5096a51ebbaaa0b56562ec9f1eb31afa46d36a011416c2",
+    "ls-2086-149220-0047/acoustic-phrased.complete.json": "38cb8b050c88f250ec13dd754114b4420dafa4c7c508dddca023c14ec04074d8",
+    "ls-2086-149220-0047/acoustic-phrased.hiphop.bass.wav": "48f3d8f9a04f3df6d530c978de426e5446d59b9ef66e238a005aa3c235d76d9b",
+    "ls-2086-149220-0047/acoustic-phrased.hiphop.drums.wav": "5ab10db1bf393870383bfb43575d5a5e14bc859d455c81e317ed98fb7f8786fe",
+    "ls-2086-149220-0047/acoustic-phrased.hiphop.events.tsv": "bb4fff079bcbf3ab33e13b84fd128b5dcb17eb659265af1601244c239459f2f5",
+    "ls-2086-149220-0047/acoustic-phrased.hiphop.guitar.wav": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+    "ls-2086-149220-0047/acoustic-phrased.hiphop.piano.wav": "ee8b987422a45a015fed6b4f8a576bbe042d4d99d9b67265bede40e4c6513653",
+    "ls-2086-149220-0047/acoustic-phrased.hiphop.report.json": "4c311d511bcad80b928460754fb1c5dd0f1d061f5f711a226d9ccf9aa7ba189a",
+    "ls-2086-149220-0047/acoustic-phrased.hiphop.score.json": "b1671211d652fecc18c360845d06804375f8e8071b86fbab85f32ee237a91373",
+    "ls-2086-149220-0047/acoustic-phrased.hiphop.vocals.wav": "e01d623250a5cf884d5f62005ca6274256d97c890d75370c039f00fa673d92a4",
+    "ls-2086-149220-0047/acoustic-phrased.hiphop.wav": "e00c6ac36e6c8619823650c0afdf5f9e2526ddf72b6ffded708f92d434a78c7b",
+    "ls-2086-149220-0047/acoustic-phrased.plan.json": "1b34bc7556fe461a022ca462bf6cdf31405f2538514fd2dc55c841d827c1a032",
+    "ls-2086-149220-0047/acoustic-phrased.trace.json": "1250ef83c45db060a27bb5cc99fc206e85c5d0a9ca20350f2916c30cf2a757fd",
+    "ls-2086-149220-0047/hybrid-grid.complete.json": "7edd48183b77dc1f70815e80d30f18fb6ca3549102a908f31a0d1184bf00221e",
+    "ls-2086-149220-0047/hybrid-grid.hiphop.bass.wav": "de60ca590f9fc9ebc56d635b4b37cadd57d04e3d3130523b02cc3a628691919d",
+    "ls-2086-149220-0047/hybrid-grid.hiphop.drums.wav": "34ef1d6c2a394eb81b86688e014053c8f5cc59b6a08ad887d65e2390eb492bc4",
+    "ls-2086-149220-0047/hybrid-grid.hiphop.events.tsv": "aa87d443b0aaf122b73781cd5426f4d9df8bc3b0e3f5a02800cfefd05f2ec3f8",
+    "ls-2086-149220-0047/hybrid-grid.hiphop.guitar.wav": "af664a7a25b40c18054aea0c5951dcb78f096b0843358ffdeacf29f909b150f3",
+    "ls-2086-149220-0047/hybrid-grid.hiphop.piano.wav": "cac3ce55a3d41a4800aa7130a9fc05d47b423dab02f168d060007e6e74e19078",
+    "ls-2086-149220-0047/hybrid-grid.hiphop.report.json": "6277cdd61b7badddc21f047200d3a769f42c759d8b2bee24b077dff3a97f9aad",
+    "ls-2086-149220-0047/hybrid-grid.hiphop.score.json": "c2ce2119eae2f9c17fd4646840bf59ef101eaff0da276b36a55f2687320c914a",
+    "ls-2086-149220-0047/hybrid-grid.hiphop.vocals.wav": "e01d623250a5cf884d5f62005ca6274256d97c890d75370c039f00fa673d92a4",
+    "ls-2086-149220-0047/hybrid-grid.hiphop.wav": "63e08bf8aa310bbddd6ec12f401d1596f2b6866486023061e5fdc57240282783",
+    "ls-2086-149220-0047/hybrid-grid.plan.json": "20060957b1dc11c98867a72ac188a45a60971f720d0272a58f45b2fa8b713553",
+    "ls-2086-149220-0047/hybrid-grid.trace.json": "4995f567ccf8fb4e35bc0a5a062c67a3a0eafe47b672fac3f9861fa577311879",
+    "ls-2086-149220-0047/hybrid-phrased.complete.json": "461786f532f115c828fe2ba11f053d68f686012ed9cefa9305b44aac0d8f8410",
+    "ls-2086-149220-0047/hybrid-phrased.hiphop.bass.wav": "21b60559c7884a2b3ce314583074d16b99c5f665ab1abc187e5ead16fd396592",
+    "ls-2086-149220-0047/hybrid-phrased.hiphop.drums.wav": "218b5f41fe91430831ecee2bd93076c08d7d283c5a0493ff709b1c339584c90b",
+    "ls-2086-149220-0047/hybrid-phrased.hiphop.events.tsv": "bb4fff079bcbf3ab33e13b84fd128b5dcb17eb659265af1601244c239459f2f5",
+    "ls-2086-149220-0047/hybrid-phrased.hiphop.guitar.wav": "2d537d134d4d8a05d867be72614a394cecdd3d6c205758334a7d3dd2ad4e9e4f",
+    "ls-2086-149220-0047/hybrid-phrased.hiphop.piano.wav": "ee8b987422a45a015fed6b4f8a576bbe042d4d99d9b67265bede40e4c6513653",
+    "ls-2086-149220-0047/hybrid-phrased.hiphop.report.json": "78742ca94d029c89834e6c3c6566415437a498e24b3e461385d049c25771985f",
+    "ls-2086-149220-0047/hybrid-phrased.hiphop.score.json": "39e06b145b05cfde8858f21bb7cad17b29f76793f62baf968f53170f509275ca",
+    "ls-2086-149220-0047/hybrid-phrased.hiphop.vocals.wav": "e01d623250a5cf884d5f62005ca6274256d97c890d75370c039f00fa673d92a4",
+    "ls-2086-149220-0047/hybrid-phrased.hiphop.wav": "a35e6d60c671981f7b7b39c9e538e27f64604e313f459b3b606047c3aeb406f5",
+    "ls-2086-149220-0047/hybrid-phrased.plan.json": "5ef5d0e4096e0197c2c5fda8b07f76f04ff824a340b7434a03f93bc447a42774",
+    "ls-2086-149220-0047/hybrid-phrased.trace.json": "eb373a01703e25bf8c97279c86001036525498fce81bc924f1930d9dc0b4a142",
+    "ls-2086-149220-0047/replay-acoustic-grid.complete.json": "a58cd29820957e85111d703b2de9dd6aca05fa7f04285976baab432817599b94",
+    "ls-2086-149220-0047/replay-acoustic-grid.hiphop.events.tsv": "aa87d443b0aaf122b73781cd5426f4d9df8bc3b0e3f5a02800cfefd05f2ec3f8",
+    "ls-2086-149220-0047/replay-acoustic-grid.hiphop.report.json": "0cccf0daf9e5fec95d14176cff3026b96648665518be44687f75b9bf6d32a614",
+    "ls-2086-149220-0047/replay-acoustic-grid.hiphop.score.json": "e68083f0905a267f424e453f8cde0907f8cb55fc1116794e2c057120ee56fd1b",
+    "ls-2086-149220-0047/replay-acoustic-grid.hiphop.wav": "4bb70489833c20f81240f6064234581343bb73c81b54b26c7ccb473d4ea367f3",
+    "ls-2086-149220-0047/replay-acoustic-phrased.complete.json": "47878ba8cf4a486b1158772a99f24c1f7a14693fcc0a6dc076079ede83085feb",
+    "ls-2086-149220-0047/replay-acoustic-phrased.hiphop.events.tsv": "bb4fff079bcbf3ab33e13b84fd128b5dcb17eb659265af1601244c239459f2f5",
+    "ls-2086-149220-0047/replay-acoustic-phrased.hiphop.report.json": "4c311d511bcad80b928460754fb1c5dd0f1d061f5f711a226d9ccf9aa7ba189a",
+    "ls-2086-149220-0047/replay-acoustic-phrased.hiphop.score.json": "b1671211d652fecc18c360845d06804375f8e8071b86fbab85f32ee237a91373",
+    "ls-2086-149220-0047/replay-acoustic-phrased.hiphop.wav": "e00c6ac36e6c8619823650c0afdf5f9e2526ddf72b6ffded708f92d434a78c7b",
+    "ls-2086-149220-0047/replay-hybrid-grid.complete.json": "d3fcb93f5fc742cbe189af378f51d9d6ec44b8690e5477727a164ad6ac9aaf50",
+    "ls-2086-149220-0047/replay-hybrid-grid.hiphop.events.tsv": "aa87d443b0aaf122b73781cd5426f4d9df8bc3b0e3f5a02800cfefd05f2ec3f8",
+    "ls-2086-149220-0047/replay-hybrid-grid.hiphop.report.json": "6277cdd61b7badddc21f047200d3a769f42c759d8b2bee24b077dff3a97f9aad",
+    "ls-2086-149220-0047/replay-hybrid-grid.hiphop.score.json": "c2ce2119eae2f9c17fd4646840bf59ef101eaff0da276b36a55f2687320c914a",
+    "ls-2086-149220-0047/replay-hybrid-grid.hiphop.wav": "63e08bf8aa310bbddd6ec12f401d1596f2b6866486023061e5fdc57240282783",
+    "ls-2086-149220-0047/replay-hybrid-phrased.complete.json": "f9983702b38698f823a27cea92d2bf951fa253c5b12ac2f75f1085bd53836e75",
+    "ls-2086-149220-0047/replay-hybrid-phrased.hiphop.events.tsv": "bb4fff079bcbf3ab33e13b84fd128b5dcb17eb659265af1601244c239459f2f5",
+    "ls-2086-149220-0047/replay-hybrid-phrased.hiphop.report.json": "78742ca94d029c89834e6c3c6566415437a498e24b3e461385d049c25771985f",
+    "ls-2086-149220-0047/replay-hybrid-phrased.hiphop.score.json": "39e06b145b05cfde8858f21bb7cad17b29f76793f62baf968f53170f509275ca",
+    "ls-2086-149220-0047/replay-hybrid-phrased.hiphop.wav": "a35e6d60c671981f7b7b39c9e538e27f64604e313f459b3b606047c3aeb406f5",
+    "ls-2277-149896-0026/acoustic-grid.complete.json": "02ab756a8dbb00bd207488bdf52206e3b66fd5f1fd7df652e8da2dcd5be88c7a",
+    "ls-2277-149896-0026/acoustic-grid.plan.json": "61c996dd579829f0505f422c65a1df0c15d571363de20a369381fad4556ecbe1",
+    "ls-2277-149896-0026/acoustic-grid.reggae.bass.wav": "7eff001642aca0389c4e8415c1ebfa0d27aabd66062b3004cdde69ad3cf2c220",
+    "ls-2277-149896-0026/acoustic-grid.reggae.drums.wav": "b3e3b705716e7047f31a066105862559408949710b5123cfc54dc838bb8644a3",
+    "ls-2277-149896-0026/acoustic-grid.reggae.events.tsv": "2fef66cbec3727ffa9fe1e55f674f568d7df421e61394b97d13fd5300035feec",
+    "ls-2277-149896-0026/acoustic-grid.reggae.guitar.wav": "bca88d98e7c75638c567dd36d2ca65f87744d49557f83d9c8c074af38e46365d",
+    "ls-2277-149896-0026/acoustic-grid.reggae.piano.wav": "191896514c8c58eba4e7f38c0f82acf27918e0c96203513d096edfdb7e14f77a",
+    "ls-2277-149896-0026/acoustic-grid.reggae.report.json": "c0045cd6d245a4c25e32d2748e43668c9ef5494a449513d6681ad42e7ded02eb",
+    "ls-2277-149896-0026/acoustic-grid.reggae.score.json": "4ccb9069c142b816cb0382e03d2a9e85fab09407281af1201e82f1442a8cce9f",
+    "ls-2277-149896-0026/acoustic-grid.reggae.vocals.wav": "e84b4d9c200e35a41f19ba40813d287ef5e1f8ac1473f0fefe804985f182db92",
+    "ls-2277-149896-0026/acoustic-grid.reggae.wav": "2a886e707cfdf49ae3d95cd53b3fa542f46d27818e0d41c425536218dc1092e2",
+    "ls-2277-149896-0026/acoustic-grid.trace.json": "cf371b07fcb6993cb124cb76774dd697ef7c1908d70f9f2b68869f5a66edf032",
+    "ls-2277-149896-0026/acoustic-phrased.complete.json": "6445788be2544527b489ddeda9552da6843ed7ed54bca90101f8092aa9b05108",
+    "ls-2277-149896-0026/acoustic-phrased.plan.json": "f734d98e25cbc77680245ab11ed77b387a9c13b25bcc34d2bf770c5cec1f78eb",
+    "ls-2277-149896-0026/acoustic-phrased.reggae.bass.wav": "4671c0af9fb5fe067562764c85b787427299e72d63149c093ca140808a1db072",
+    "ls-2277-149896-0026/acoustic-phrased.reggae.drums.wav": "5324f5f27cef06a4bde1926fc6245bd76fa763d6d87d53d6fcebe4afa2574862",
+    "ls-2277-149896-0026/acoustic-phrased.reggae.events.tsv": "76651993b05e9ed003f5ebde6449e93e2fd223ee09f4ec0d36102113a3ef45c4",
+    "ls-2277-149896-0026/acoustic-phrased.reggae.guitar.wav": "aba74f71595f46084e4109cac4b5fb75b42a4ce01ef3440c4bda818c2f944134",
+    "ls-2277-149896-0026/acoustic-phrased.reggae.piano.wav": "49cebceaf37885b14b9b7ad20ab229ae84e723a561b64e90855594abd57643f8",
+    "ls-2277-149896-0026/acoustic-phrased.reggae.report.json": "ff5dbf45f1c70eb90da86966b35172a0340aece02bfdcbef5b1e540c72f790f4",
+    "ls-2277-149896-0026/acoustic-phrased.reggae.score.json": "a608c79d2f23085fdd2f2afe9c97114757d290a1a7a420825dab66b131b8aaaf",
+    "ls-2277-149896-0026/acoustic-phrased.reggae.vocals.wav": "e84b4d9c200e35a41f19ba40813d287ef5e1f8ac1473f0fefe804985f182db92",
+    "ls-2277-149896-0026/acoustic-phrased.reggae.wav": "71c15f5a6b8cf5190a9e4e07e328647fb7d5f4d7dec91b137971950ea8114891",
+    "ls-2277-149896-0026/acoustic-phrased.trace.json": "7d691538436dc3e808c1aa47c34ed5fcd90ed48ab1a907f33e5378c416df197d",
+    "ls-2277-149896-0026/hybrid-grid.complete.json": "43e231dc0e9d940f83039693682dda60313aed517d43fc1879777b80fe080dc8",
+    "ls-2277-149896-0026/hybrid-grid.plan.json": "73eef8a0dddf753a4dd46b510bdb5fdfd930732a533fa0911e588bdc30ab00a1",
+    "ls-2277-149896-0026/hybrid-grid.reggae.bass.wav": "a7730d2ac44dae1ebb452b28ac86acf54620a89f8cfb9fc8355fbbd14c7e9a23",
+    "ls-2277-149896-0026/hybrid-grid.reggae.drums.wav": "7b0bcb725b6e912667037029422d5ddb2d6a78a9d413ecca9196d42ee74b18a4",
+    "ls-2277-149896-0026/hybrid-grid.reggae.events.tsv": "2fef66cbec3727ffa9fe1e55f674f568d7df421e61394b97d13fd5300035feec",
+    "ls-2277-149896-0026/hybrid-grid.reggae.guitar.wav": "bca88d98e7c75638c567dd36d2ca65f87744d49557f83d9c8c074af38e46365d",
+    "ls-2277-149896-0026/hybrid-grid.reggae.piano.wav": "191896514c8c58eba4e7f38c0f82acf27918e0c96203513d096edfdb7e14f77a",
+    "ls-2277-149896-0026/hybrid-grid.reggae.report.json": "a2f8d12ea696268a0194ee8949ed36f1a9f1b6abf8ceb47ac4ff88edeb7a3f26",
+    "ls-2277-149896-0026/hybrid-grid.reggae.score.json": "7446128371cb732092ed0822f63c758ed4a6cd5bc7ceaaf70d931c0cd5dacfd7",
+    "ls-2277-149896-0026/hybrid-grid.reggae.vocals.wav": "e84b4d9c200e35a41f19ba40813d287ef5e1f8ac1473f0fefe804985f182db92",
+    "ls-2277-149896-0026/hybrid-grid.reggae.wav": "674587676040f4bb3318327b96cef65a426eb800a92df53f29e957ac336f5b7b",
+    "ls-2277-149896-0026/hybrid-grid.trace.json": "7039a7a89618dcab7a83e1082b409bf394d0db3eda01b2f7988de7e9517f9454",
+    "ls-2277-149896-0026/hybrid-phrased.complete.json": "0ccab124f005cab760848fd03e6a20cab21d5121b00a82132297f0c1e320592c",
+    "ls-2277-149896-0026/hybrid-phrased.plan.json": "b1192705b163b208245f434811c2100a818c4545463792a2fc47c9db237e3385",
+    "ls-2277-149896-0026/hybrid-phrased.reggae.bass.wav": "4cb0902ae31e2851aaeda5e94b4e64fc6e7afd6f7fb355c63caafc9e182dbafc",
+    "ls-2277-149896-0026/hybrid-phrased.reggae.drums.wav": "3abf53180e92061133e3573cc794fbbce02f36c5a458cc9d18f7e8829c36a379",
+    "ls-2277-149896-0026/hybrid-phrased.reggae.events.tsv": "76651993b05e9ed003f5ebde6449e93e2fd223ee09f4ec0d36102113a3ef45c4",
+    "ls-2277-149896-0026/hybrid-phrased.reggae.guitar.wav": "aba74f71595f46084e4109cac4b5fb75b42a4ce01ef3440c4bda818c2f944134",
+    "ls-2277-149896-0026/hybrid-phrased.reggae.piano.wav": "49cebceaf37885b14b9b7ad20ab229ae84e723a561b64e90855594abd57643f8",
+    "ls-2277-149896-0026/hybrid-phrased.reggae.report.json": "68f5701f328a7991b326a1699e08117faa357ebf9cc057dc13b6a69a729caeb5",
+    "ls-2277-149896-0026/hybrid-phrased.reggae.score.json": "2a55fe823f52029f3a8efc27ed19f14cdff15d8df7674449e99529522fec2e0e",
+    "ls-2277-149896-0026/hybrid-phrased.reggae.vocals.wav": "e84b4d9c200e35a41f19ba40813d287ef5e1f8ac1473f0fefe804985f182db92",
+    "ls-2277-149896-0026/hybrid-phrased.reggae.wav": "e2d28937057e25159bd1ca4a574e06e6b0d10846c8dbd59c8356fdd1ca30f720",
+    "ls-2277-149896-0026/hybrid-phrased.trace.json": "04b35649f86efbe8eec5577c014633fde977dca17cfae74a55a2dd6f74da9de0",
+    "ls-2277-149896-0026/replay-acoustic-grid.complete.json": "a122f210e799c831bc32da39939d1e299b369e34405d4f838f6d372e00be3b02",
+    "ls-2277-149896-0026/replay-acoustic-grid.reggae.events.tsv": "2fef66cbec3727ffa9fe1e55f674f568d7df421e61394b97d13fd5300035feec",
+    "ls-2277-149896-0026/replay-acoustic-grid.reggae.report.json": "c0045cd6d245a4c25e32d2748e43668c9ef5494a449513d6681ad42e7ded02eb",
+    "ls-2277-149896-0026/replay-acoustic-grid.reggae.score.json": "4ccb9069c142b816cb0382e03d2a9e85fab09407281af1201e82f1442a8cce9f",
+    "ls-2277-149896-0026/replay-acoustic-grid.reggae.wav": "2a886e707cfdf49ae3d95cd53b3fa542f46d27818e0d41c425536218dc1092e2",
+    "ls-2277-149896-0026/replay-acoustic-phrased.complete.json": "3be20a5a17b493965ab5d895f118755ee3630049302e3e24e125583cf72c51d5",
+    "ls-2277-149896-0026/replay-acoustic-phrased.reggae.events.tsv": "76651993b05e9ed003f5ebde6449e93e2fd223ee09f4ec0d36102113a3ef45c4",
+    "ls-2277-149896-0026/replay-acoustic-phrased.reggae.report.json": "ff5dbf45f1c70eb90da86966b35172a0340aece02bfdcbef5b1e540c72f790f4",
+    "ls-2277-149896-0026/replay-acoustic-phrased.reggae.score.json": "a608c79d2f23085fdd2f2afe9c97114757d290a1a7a420825dab66b131b8aaaf",
+    "ls-2277-149896-0026/replay-acoustic-phrased.reggae.wav": "71c15f5a6b8cf5190a9e4e07e328647fb7d5f4d7dec91b137971950ea8114891",
+    "ls-2277-149896-0026/replay-hybrid-grid.complete.json": "074c90b3d732841e3082bd54cb8f9b87570e082904e6f0c4407f8b3bf067ebbc",
+    "ls-2277-149896-0026/replay-hybrid-grid.reggae.events.tsv": "2fef66cbec3727ffa9fe1e55f674f568d7df421e61394b97d13fd5300035feec",
+    "ls-2277-149896-0026/replay-hybrid-grid.reggae.report.json": "a2f8d12ea696268a0194ee8949ed36f1a9f1b6abf8ceb47ac4ff88edeb7a3f26",
+    "ls-2277-149896-0026/replay-hybrid-grid.reggae.score.json": "7446128371cb732092ed0822f63c758ed4a6cd5bc7ceaaf70d931c0cd5dacfd7",
+    "ls-2277-149896-0026/replay-hybrid-grid.reggae.wav": "674587676040f4bb3318327b96cef65a426eb800a92df53f29e957ac336f5b7b",
+    "ls-2277-149896-0026/replay-hybrid-phrased.complete.json": "6afb6495ca8a147b1c2440e645be7e4b18402e49d5caabb3937465947884a41c",
+    "ls-2277-149896-0026/replay-hybrid-phrased.reggae.events.tsv": "76651993b05e9ed003f5ebde6449e93e2fd223ee09f4ec0d36102113a3ef45c4",
+    "ls-2277-149896-0026/replay-hybrid-phrased.reggae.report.json": "68f5701f328a7991b326a1699e08117faa357ebf9cc057dc13b6a69a729caeb5",
+    "ls-2277-149896-0026/replay-hybrid-phrased.reggae.score.json": "2a55fe823f52029f3a8efc27ed19f14cdff15d8df7674449e99529522fec2e0e",
+    "ls-2277-149896-0026/replay-hybrid-phrased.reggae.wav": "e2d28937057e25159bd1ca4a574e06e6b0d10846c8dbd59c8356fdd1ca30f720",
+    "organizer-key.json": "9a706808506684e7c16bb8c01f51b50b83832e82b4e55a82a8ad0d2126b54176",
+    "owner-speech/acoustic-grid.complete.json": "929bc385ce4d932ab103c84bac35b7271d713f63cf137920649fa92a75ea1386",
+    "owner-speech/acoustic-grid.hiphop.bass.wav": "d6f0de0e0269d2d1a301362b57d3d8e73900a7ce59e41fda67376f4d3f4477bb",
+    "owner-speech/acoustic-grid.hiphop.drums.wav": "b3e3b705716e7047f31a066105862559408949710b5123cfc54dc838bb8644a3",
+    "owner-speech/acoustic-grid.hiphop.events.tsv": "3adc33fd73e2da9c695e24593635bd1e18480366b9e89d5068072144b27e3151",
+    "owner-speech/acoustic-grid.hiphop.guitar.wav": "dcf46c0ba5f6c6808df46a618ef34451d6621008ca034380e9409c93c6414d30",
+    "owner-speech/acoustic-grid.hiphop.piano.wav": "b657504f120adcd95d3ad29cc90cc8a9a871a50a888bafa4a3365c8979f9d163",
+    "owner-speech/acoustic-grid.hiphop.report.json": "bd684db462e52eebce670d9ed985355a462f1064187abe75364848d839c9fb30",
+    "owner-speech/acoustic-grid.hiphop.score.json": "ce1f536a711c8c98a242023f00d03ad9fb49cfc78516e27c1723b85cce828923",
+    "owner-speech/acoustic-grid.hiphop.vocals.wav": "33c65f17182b93a3ebe7af8592795198ba31353f62b5050aaf4b785723e2a22c",
+    "owner-speech/acoustic-grid.hiphop.wav": "fa30b791fff821657d8f62daf6a09c67184f945f2fa1e569a3188c9d7dece127",
+    "owner-speech/acoustic-grid.plan.json": "558e62bfb9d56d4694071a28b1b2809ae0cd80c89fddce29c24c29cf885bb954",
+    "owner-speech/acoustic-grid.trace.json": "829977ffe8036dfefb445869a11b6c6fd1778ae561f09fe9c6b73f6b9f8423b9",
+    "owner-speech/acoustic-phrased.complete.json": "3639f82231df8176f5371828b9e2be31f269734712c420511d74238ce5a1fb73",
+    "owner-speech/acoustic-phrased.hiphop.bass.wav": "1bfc59c879b7980941ba00b4cf8cd288d02c0160628d8a50856d536e4ac7859c",
+    "owner-speech/acoustic-phrased.hiphop.drums.wav": "5324f5f27cef06a4bde1926fc6245bd76fa763d6d87d53d6fcebe4afa2574862",
+    "owner-speech/acoustic-phrased.hiphop.events.tsv": "33c8c0687ba3971873943f5a594754cc12500d1f75f5dbfc902ae85c96a16037",
+    "owner-speech/acoustic-phrased.hiphop.guitar.wav": "4836d245402ed5fcf77076d23d58a1ceb5aff44d3ad7244cec04f4e00f4d7fc6",
+    "owner-speech/acoustic-phrased.hiphop.piano.wav": "163b2a536230096bf3fd1d3575e0a546429bd075ff65e20e586221ccfe2d292c",
+    "owner-speech/acoustic-phrased.hiphop.report.json": "a45878824adbd5e5d1fa40a7794f6f7109e1990413b4fccf87bcd2535319fc25",
+    "owner-speech/acoustic-phrased.hiphop.score.json": "6c87a9da477ea9033fa303a8c50b4467c4c6b222a3636a6f1a917d69888a82bc",
+    "owner-speech/acoustic-phrased.hiphop.vocals.wav": "33c65f17182b93a3ebe7af8592795198ba31353f62b5050aaf4b785723e2a22c",
+    "owner-speech/acoustic-phrased.hiphop.wav": "869b64894a9d9da6932502b5bc67a29d306260c21ab838200ad258759d58ade2",
+    "owner-speech/acoustic-phrased.plan.json": "04c6f9c4ff7e344fcf3ed834490acb0c1969e646b4cef3b2758bc0af086b5a6c",
+    "owner-speech/acoustic-phrased.trace.json": "1ec98bb7ebb1d3acc524a9ff4150d2f52960d8bdc43c9f8d57924e830870cc5c",
+    "owner-speech/hybrid-grid.complete.json": "d0c7179b65eb714481696dfa5f9946a746037780dd113e39b2954488ca267eae",
+    "owner-speech/hybrid-grid.hiphop.bass.wav": "ab49774e41733adc5765c774ac6546e32981e50a7500bdc7c2c672a8309876bb",
+    "owner-speech/hybrid-grid.hiphop.drums.wav": "7b0bcb725b6e912667037029422d5ddb2d6a78a9d413ecca9196d42ee74b18a4",
+    "owner-speech/hybrid-grid.hiphop.events.tsv": "3adc33fd73e2da9c695e24593635bd1e18480366b9e89d5068072144b27e3151",
+    "owner-speech/hybrid-grid.hiphop.guitar.wav": "dcf46c0ba5f6c6808df46a618ef34451d6621008ca034380e9409c93c6414d30",
+    "owner-speech/hybrid-grid.hiphop.piano.wav": "b657504f120adcd95d3ad29cc90cc8a9a871a50a888bafa4a3365c8979f9d163",
+    "owner-speech/hybrid-grid.hiphop.report.json": "15748146014a3cb3c40593fdbcbb2032d8042084f0647c17201f4f8416fa26e0",
+    "owner-speech/hybrid-grid.hiphop.score.json": "901236c817a98e632e0b903de280a0d378aed3a4a9e01958d9c145c8f6380fb2",
+    "owner-speech/hybrid-grid.hiphop.vocals.wav": "33c65f17182b93a3ebe7af8592795198ba31353f62b5050aaf4b785723e2a22c",
+    "owner-speech/hybrid-grid.hiphop.wav": "d2d8def89721c30d5e80d543ab1fa60cd1f80de4648fee98ffd5bf5ccb139594",
+    "owner-speech/hybrid-grid.plan.json": "ede346504e8d02b0838da85bd13341a0cd0fbd712ba0c7d7f1b61b205895346a",
+    "owner-speech/hybrid-grid.trace.json": "c00d7df8c11f902676c248a94735f3101b2fdcc1244ea8fd2be5ce066e0a894b",
+    "owner-speech/hybrid-phrased.complete.json": "86e9d7ca0b014752d54ab873fd8d81a83c0f753e06c3ee1692c2bc686191528a",
+    "owner-speech/hybrid-phrased.hiphop.bass.wav": "a41c97155f4cd9fb336824ca440b518f6ea7a0dd85eb55fd4479bf1cc22aa90d",
+    "owner-speech/hybrid-phrased.hiphop.drums.wav": "3abf53180e92061133e3573cc794fbbce02f36c5a458cc9d18f7e8829c36a379",
+    "owner-speech/hybrid-phrased.hiphop.events.tsv": "33c8c0687ba3971873943f5a594754cc12500d1f75f5dbfc902ae85c96a16037",
+    "owner-speech/hybrid-phrased.hiphop.guitar.wav": "4836d245402ed5fcf77076d23d58a1ceb5aff44d3ad7244cec04f4e00f4d7fc6",
+    "owner-speech/hybrid-phrased.hiphop.piano.wav": "163b2a536230096bf3fd1d3575e0a546429bd075ff65e20e586221ccfe2d292c",
+    "owner-speech/hybrid-phrased.hiphop.report.json": "8d47b27eaeea10f6ad42b19aa1a0c77a7f6f79dea289c3e07048d41c328d322a",
+    "owner-speech/hybrid-phrased.hiphop.score.json": "0a315fdf079bbe00edb3a788bd7738470ee99ee64e0b8f6cd64af61a30ada308",
+    "owner-speech/hybrid-phrased.hiphop.vocals.wav": "33c65f17182b93a3ebe7af8592795198ba31353f62b5050aaf4b785723e2a22c",
+    "owner-speech/hybrid-phrased.hiphop.wav": "c26591634cbff9c3c77bd53e21d8384ba94291f0dbcf493ff0824a377038880d",
+    "owner-speech/hybrid-phrased.plan.json": "54241dfeda9a72556a5230c7241b1868fe42f9a89a7edb25491848d5b8ea9fa6",
+    "owner-speech/hybrid-phrased.trace.json": "5d64bba8c9b2b642b42e5a1ee7c7a02b469442c4b67654ac03f4ab2fdd3cd31e",
+    "owner-speech/replay-acoustic-grid.complete.json": "d8544f35cb925828db44605dac00a533bf9dfc6886f09315ec8a974af4c38cbc",
+    "owner-speech/replay-acoustic-grid.hiphop.events.tsv": "3adc33fd73e2da9c695e24593635bd1e18480366b9e89d5068072144b27e3151",
+    "owner-speech/replay-acoustic-grid.hiphop.report.json": "bd684db462e52eebce670d9ed985355a462f1064187abe75364848d839c9fb30",
+    "owner-speech/replay-acoustic-grid.hiphop.score.json": "ce1f536a711c8c98a242023f00d03ad9fb49cfc78516e27c1723b85cce828923",
+    "owner-speech/replay-acoustic-grid.hiphop.wav": "fa30b791fff821657d8f62daf6a09c67184f945f2fa1e569a3188c9d7dece127",
+    "owner-speech/replay-acoustic-phrased.complete.json": "782ae26e8ababe92f37bc52e782d4bc62adcc90d8d96b9cd67032cf10f74a3d2",
+    "owner-speech/replay-acoustic-phrased.hiphop.events.tsv": "33c8c0687ba3971873943f5a594754cc12500d1f75f5dbfc902ae85c96a16037",
+    "owner-speech/replay-acoustic-phrased.hiphop.report.json": "a45878824adbd5e5d1fa40a7794f6f7109e1990413b4fccf87bcd2535319fc25",
+    "owner-speech/replay-acoustic-phrased.hiphop.score.json": "6c87a9da477ea9033fa303a8c50b4467c4c6b222a3636a6f1a917d69888a82bc",
+    "owner-speech/replay-acoustic-phrased.hiphop.wav": "869b64894a9d9da6932502b5bc67a29d306260c21ab838200ad258759d58ade2",
+    "owner-speech/replay-hybrid-grid.complete.json": "13e6f22d4d3239d1adfcec2734392c056b37e872fabf5cddaccfb331d4a57bec",
+    "owner-speech/replay-hybrid-grid.hiphop.events.tsv": "3adc33fd73e2da9c695e24593635bd1e18480366b9e89d5068072144b27e3151",
+    "owner-speech/replay-hybrid-grid.hiphop.report.json": "15748146014a3cb3c40593fdbcbb2032d8042084f0647c17201f4f8416fa26e0",
+    "owner-speech/replay-hybrid-grid.hiphop.score.json": "901236c817a98e632e0b903de280a0d378aed3a4a9e01958d9c145c8f6380fb2",
+    "owner-speech/replay-hybrid-grid.hiphop.wav": "d2d8def89721c30d5e80d543ab1fa60cd1f80de4648fee98ffd5bf5ccb139594",
+    "owner-speech/replay-hybrid-phrased.complete.json": "a453ed456308b6633a1117beb8160b0511ac26deef742417f32769b8db2f1f23",
+    "owner-speech/replay-hybrid-phrased.hiphop.events.tsv": "33c8c0687ba3971873943f5a594754cc12500d1f75f5dbfc902ae85c96a16037",
+    "owner-speech/replay-hybrid-phrased.hiphop.report.json": "8d47b27eaeea10f6ad42b19aa1a0c77a7f6f79dea289c3e07048d41c328d322a",
+    "owner-speech/replay-hybrid-phrased.hiphop.score.json": "0a315fdf079bbe00edb3a788bd7738470ee99ee64e0b8f6cd64af61a30ada308",
+    "owner-speech/replay-hybrid-phrased.hiphop.wav": "c26591634cbff9c3c77bd53e21d8384ba94291f0dbcf493ff0824a377038880d",
+    "report.json": "067e4f6a8fe398a2e8e2876b53907ac29816e24ed295879b211b22fc4e781ac6"
+  }
+}

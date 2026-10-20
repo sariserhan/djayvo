@@ -1396,3 +1396,26 @@ dominant perceptual cause. No audio-perception tool is available in this session
 No engine changes, new renders, training, uploads or spending in this reassessment.
 
 [Findings and next controlled experiment](q0-reference-reassessment.md).
+
+## Q0 original score and palette study
+
+**PASS:** Twenty native mixes and 100 stems from five authorized inputs, with
+four fixed-score conditions: acoustic/hybrid bass-drums by grid/authored
+expression. An original form introduces harmony, preserves two intact voice
+calls, develops a source-rhythm piano motif, uses recorded muted guitar,
+coordinates bass/kick and resolves with space. No production engine changes.
+All 20 block-size replays match; 8,680 event rows have zero frame errors;
+all mixes match −23 LUFS within 0.02 LU, with maximum true peak −4.13 dBTP.
+Eleven Q0 tests and all three instrument asset checks pass.
+
+A first partial batch exposed original 16 kHz source versus 48 kHz analysis
+coordinates; fixed and regression-tested without resampling or changing files.
+That batch remains INCOMPLETE and is not listening evidence.
+
+**PARTIAL:** Q0 overall and browser playback (known headless WebKit clock limit).
+**FAIL:** Prior owner acceptance remains unchanged. **NOT RUN:** New listener
+acceptance, musician approval and fresh Linux/iPhone/WASM execution. No training,
+reference-audio incorporation, paid services, deployment or dashboard redesign.
+
+[Private review](http://127.0.0.1:4201/);
+[score design, files, limitations and reproducible evidence](q0-authored-study.md).

@@ -1,0 +1,36 @@
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/acoustic-grid.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/acoustic-grid.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/replay-acoustic-grid.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/replay-acoustic-grid.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/acoustic-phrased.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/acoustic-phrased.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/replay-acoustic-phrased.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/replay-acoustic-phrased.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/hybrid-grid.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/hybrid-grid.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/replay-hybrid-grid.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/replay-hybrid-grid.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/hybrid-phrased.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/hybrid-phrased.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/replay-hybrid-phrased.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-authored-20261020/owner-speech/replay-hybrid-phrased.complete.json
+Listening/recognizability: NOT RUN
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/q0_authored_trial.py", line 127, in <module>
+    run(parser.parse_args().output.resolve())
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/q0_authored_trial.py", line 43, in run
+    plan, trace = authored(p, source, hybrid=hybrid, expressive=expressive)
+                  ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/q0_authored_score.py", line 61, in authored
+    phrase = motif(plan, source)
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/q0_authored_score.py", line 25, in motif
+    raise ValueError('Expected bounded source PCM16')
+ValueError: Expected bounded source PCM16
