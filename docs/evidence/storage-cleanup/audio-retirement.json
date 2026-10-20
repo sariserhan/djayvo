@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-20",
+  "authorization": "Owner explicitly requested deletion of older-version WAVs",
+  "wav_files_deleted": 6789,
+  "logical_bytes_deleted": 43660643492,
+  "skipped": [],
+  "audit_path": "build-cleanup-20261020/retired-wavs.jsonl",
+  "note": "Old export metadata is preserved as .retired-export.json; it records historical completion only. Scores, test reports and original inputs remain. Audio paths in historical review pages may now be absent.",
+  "status": "PASS",
+  "retired_export_markers_count": 1202,
+  "deletion_inventory": "retired-wavs.jsonl.gz",
+  "uncompressed_inventory_sha256": "99d0af12b530dc7c03faf084c45d04a3c33a0851c9686f702d48e1f7c43d30bf",
+  "retained_current_exports": "PASS: 26 R0 artifacts and 26 Mac smoke artifacts unchanged",
+  "dataset_records": "PASS: all five current records",
+  "local_studio": "PASS: HTTP 200 on port 3000",
+  "protection": "Original source/input recordings, instrument banks, references, m0 fixture/control, current R0 final renders/fixtures, scores and reports retained; uncertain-origin files left untouched."
+}

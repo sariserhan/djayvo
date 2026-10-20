@@ -852,3 +852,10 @@ Latest authorization is R0 only; stop for review before R1/data collection/train
   retained. Current studio HTTP 200; fixture, pinned R0 implementation/binary and
   26 export artifacts unchanged. Free disk space approximately 8.8 → 19 GiB.
   [Cleanup receipt](docs/evidence/storage-cleanup/report.json).
+
+- [x] **ST02 — PASS:** Owner-authorized retirement of 6,789 older generated WAVs
+  (40.66 GiB logical file data). Kept original inputs, instrument assets, M0
+  smoke-test references and current R0 final examples. Project reports ~10 GiB
+  (down from ~51 GiB); disk free ~66 GiB. Retained per-file hashes and renamed
+  1,202 historical completion records to `.retired-export.json`. Historical
+  audition pages may no longer have audio. [Receipt](docs/evidence/storage-cleanup/audio-retirement.json).

@@ -1021,3 +1021,26 @@ database changes. Subsequent builds can regenerate caches. Complete local cleanu
 audit: ignored `build-cleanup-20261020/`; compact [receipt](evidence/storage-cleanup/report.json).
 Full builds were not rerun because this was storage-only maintenance. R0's review
 stop and its outstanding human/cross-platform evidence are unchanged.
+
+## 2026-10-20 — owner-authorized retirement of older WAV versions
+
+**PASS:** The owner subsequently authorized deleting older WAV versions,
+superseding blanket retention of generated historical audio. Deleted 6,789
+identified engine exports, stems and historical listening candidates (40.66 GiB
+logical data). Original recordings/input files, reference and instrument assets,
+M0 smoke-test control files, and current R0 final examples/fixtures remain. Files
+with uncertain provenance were left untouched. No Downloads files were changed.
+
+The project now reports approximately 10 GiB, including 7.1 GiB in `renders`,
+versus 51 GiB before retirement; system free disk is approximately 66 GiB.
+Copy-on-write sharing and concurrent system activity mean logical removed bytes
+are not equal to a measured physical free-space delta.
+
+Preserved scores/reports and a compressed per-file path/size/SHA256 inventory.
+Renamed 1,202 affected completion records to `.retired-export.json` so they cannot
+be mistaken for currently complete exports. Historical review pages and old
+replay comparisons may require regeneration before use. Current R0 exports
+(26 artifacts), Mac smoke exports (26 artifacts), the preserved speech fixture
+and all five dataset records validate; studio on localhost:3000 returns HTTP 200.
+No source or milestone implementation changed, and no full rebuild was run.
+[Retirement receipt](evidence/storage-cleanup/audio-retirement.json).
