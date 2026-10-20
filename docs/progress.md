@@ -1637,7 +1637,8 @@ No training, new inference or production code changes.
 without clipping, limiting or nonfinite samples. Ten matched mixes measure
 −23.05 to −23.00 LUFS, maximum true peak −5.03 dBTP. Seventeen expanded tests
 pass. A first draft crowded out developed notes; the corrected version reserves
-hook/answer space and retains all six developed notes for every source.
+hook/answer space. A later final-score audit found that one of the six intended
+reggae notes was still removed by the rest pass; see the correction below.
 
 **PASS:** Actual new Node/WASM and Linux ARM64 execution produce five
 byte-identical WAVs relative to Mac, with 1,602 exact candidate event rows.
@@ -1652,3 +1653,23 @@ after the owner clarified that composition was the priority. Its downloaded
 source cache stays ignored; no new samples enter these renders.
 [New private comparison](http://127.0.0.1:4211/);
 [full report, evidence, source files and reproducible commands](q0-source-development.md).
+
+## Q0 final performed-motif correction
+
+**PASS:** Reproduced a missing reggae melody note after expression/rest
+processing. The planner now fits the full developed rhythm before the pause
+and links each motif event to the final score. Eighteen tests pass, including
+three groove profiles, seeded depths and simulated post-processing note loss.
+Four cohort plans are identical; only the corrected reggae source was rendered.
+Native block replay, Node/WASM and actual Linux ARM64 match exactly, with 168
+exact instrument event rows. Three Linux native test groups pass. Six
+master/stem WAVs decode without clipping or limiting.
+
+The first stem-isolation assertion failed: global note IDs seed sample takes
+and small gain differences, so adding the organ note also changes bass/drum
+PCM despite unchanged score data. All differences are measured and disclosed;
+the engine remains unchanged. Historical comparisons, including 4211, remain
+frozen. No new listening judgment, professional-quality claim or training.
+**PARTIAL:** Overall Q0. **FAIL:** Latest prior owner acceptance.
+**NOT RUN:** New musical acceptance and physical-device checks.
+[Report and reproducible correction](q0-motif-completion.md).

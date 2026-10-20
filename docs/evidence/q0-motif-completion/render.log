@@ -1,0 +1,11 @@
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-motif-completion-20261020/ls-2277-149896-0026/candidate.reggae.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-motif-completion-20261020/ls-2277-149896-0026/candidate.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-motif-completion-20261020/ls-2277-149896-0026/replay.reggae.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-motif-completion-20261020/ls-2277-149896-0026/replay.complete.json
+Listening/recognizability: NOT RUN
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/docs/evidence/q0-motif-completion/run.py", line 78, in <module>
+    assert digest(folder/name)==digest(prior/ident/name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

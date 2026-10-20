@@ -1,0 +1,7 @@
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-motif-completion-v2-20261020/ls-2277-149896-0026/candidate.reggae.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-motif-completion-v2-20261020/ls-2277-149896-0026/candidate.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-motif-completion-v2-20261020/ls-2277-149896-0026/replay.reggae.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-motif-completion-v2-20261020/ls-2277-149896-0026/replay.complete.json
+Listening/recognizability: NOT RUN
+PASS: five final-score audits; one missing motif note reproduced and fixed; four plans unchanged; corrected native/WASM render and exact replay; old packet preserved; quality NOT RUN

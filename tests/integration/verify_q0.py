@@ -193,6 +193,46 @@ class Q0(unittest.TestCase):
             next(v for v in plan['voice_events'] if v['clean'])[field] = value
             with self.assertRaises(ValueError): compose(plan)
 
+    def test_development_survives_final_rests_and_expression(self):
+        phrase = [{'tick':tick,'degree':degree,'velocity':80,'analysis_frame_48khz':i*1000}
+                  for i,(tick,degree) in enumerate(zip([0,480,600,1920,3000,3600],[3,0,0,3,0,0]))]
+        plan=copy.deepcopy(self.plan)
+        plan.update(target_bars=10,strategy='reggae')
+        plan['source']['processed_frames']=96000
+        with patch('q0_development.prosody',return_value=(phrase,None,{})):
+            candidate,trace=develop(plan,Path('unused-test-source'))
+        harmonic=next(t for t in candidate['tracks'] if t['instrument']=='piano')
+        statement=next(s for s in trace['statements'] if s['kind']=='development')
+        self.assertEqual(len(statement['events']),6)
+        for event in statement['events']:
+            self.assertTrue(any(n['note']==event['note'] and abs(n['start_tick']-event['tick'])<100
+                                for n in harmonic['events']),f'Dropped motif event: {event}')
+        self.assertEqual(len(statement['performed_events']),6)
+        self.assertTrue(all(n in harmonic['events'] for n in statement['performed_events']))
+        for n in statement['performed_events']:
+            for start,stop in trace['intentional_rest_windows']:
+                self.assertFalse(n['start_tick']<stop and n['start_tick']+n['duration_ticks']>start)
+        # Exercise a six-beat motif, all groove profiles and each seeded timing depth.
+        phrase[-1]['tick']=5760
+        for style in ('hiphop','reggae','experimental'):
+            for seed in (0,1,2):
+                plan.update(strategy=style,seed=seed)
+                with self.subTest(style=style,seed=seed), patch('q0_development.prosody',return_value=(phrase,None,{})):
+                    result,trace=develop(plan,Path('unused-test-source'))
+                    notes=next(t['events'] for t in result['tracks'] if t['instrument']=='piano')
+                    played=next(s['performed_events'] for s in trace['statements'] if s['kind']=='development')
+                    self.assertEqual(len(played),6)
+                    self.assertEqual(len({n['start_tick'] for n in played}),6)
+                    self.assertTrue(all(n in notes for n in played))
+        actual_perform=perform
+        def lose_note(original,seed):
+            result,trace=actual_perform(original,seed)
+            next(t for t in result['tracks'] if t['instrument']=='piano')['events'].clear()
+            return result,trace
+        with patch('q0_development.prosody',return_value=(phrase,None,{})), patch('q0_development.perform',side_effect=lose_note):
+            with self.assertRaisesRegex(ValueError,'Motif event was lost'):
+                develop(plan,Path('unused-test-source'))
+
     def test_authored_study_isolates_palette_and_preserves_call_space(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp)/'test-only.wav'

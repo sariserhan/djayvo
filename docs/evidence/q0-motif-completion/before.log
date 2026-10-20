@@ -1,0 +1,17 @@
+test_development_survives_final_rests_and_expression (__main__.Q0.test_development_survives_final_rests_and_expression) ... FAIL
+
+======================================================================
+FAIL: test_development_survives_final_rests_and_expression (__main__.Q0.test_development_survives_final_rests_and_expression)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/integration/verify_q0.py", line 208, in test_development_survives_final_rests_and_expression
+    self.assertTrue(any(n['note']==event['note'] and abs(n['start_tick']-event['tick'])<100
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        for n in harmonic['events']),f'Dropped motif event: {event}')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Dropped motif event: {'tick': 32760, 'note': 75, 'source_frame': 5000}
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=1)

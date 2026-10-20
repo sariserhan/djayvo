@@ -80,7 +80,7 @@ def run(trial, output):
         'files_sha256': {p.name: digest(p) for p in sorted(output.iterdir()) if p.is_file() and p.name != 'INCOMPLETE'},
         'human_quality': 'NOT RUN'})
     (output/'INCOMPLETE').unlink()
-    print('PASS: three Linux native test groups; five same-plan Linux/Mac waveform and event comparisons')
+    print(f'PASS: three Linux native test groups; {len(rows)} same-plan Linux/Mac waveform and event comparisons')
 
 
 if __name__ == '__main__':

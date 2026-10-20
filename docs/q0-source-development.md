@@ -3,6 +3,11 @@
 2026-10-20. **Overall Q0: PARTIAL. Previous full-packet creativity/quality:
 FAIL. New composition acceptance: NOT RUN.**
 
+**Follow-up correction:** The six-note count below originally checked intended
+traces, not final performed notes. One reggae note was removed by the rest pass.
+[Final-score audit and correction](q0-motif-completion.md) fixes that conflict
+and verifies actual performed events. The existing 4211 audio remains frozen.
+
 The owner reviewed the unchanged 4207/4209 audio and said:
 “they are all still bad, the worst is candidate 1, intsruments are okay on the
 other ones but the creativity is bad for all the songs not only quality”.
@@ -49,7 +54,8 @@ The first development render revealed that voice hooks suppressed all but
 one to three developed notes in the speech cases. This was an event-data
 finding, not a listening judgment. The corrected v2 schedules the melody after
 the hook and omits the second short hook where the remaining form is too
-short. All five final plans now retain the full six-note developed answer.
+short. All five intended traces retain six notes; the later final-score audit
+found that the reggae rest pass still removed one, as corrected above.
 The first render/log remains preserved; it is not the listening candidate.
 
 `scripts/q0_development_trial.py` renders five pairs, with stems and exact

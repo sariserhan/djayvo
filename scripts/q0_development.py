@@ -151,20 +151,28 @@ def develop(original, source, words=None):
             for track in tracks.values():
                 track['events']=[n for n in track['events'] if not base+1920<=n['start_tick']<base+BAR]
     statements=[]
+    rests = [(b*BAR+1920,(b+1)*BAR) for b in (contrast-1,final-1)]
     entries=[(0,'foreshadow'),(answer,'statement')]
     if answer+4<=contrast:entries.append((answer+2,'answer_variation'))
     entries += [(returning,'return'),(returning+2,'development')]
     for bar,kind in entries:
         if bar>=final:continue
         chosen=phrase[:2] if kind=='foreshadow' else phrase
+        offsets=[point['tick']//2 if kind in ('foreshadow','development') else point['tick']
+                 for point in chosen]
+        if kind=='development':
+            hook_stop=max((stop for start,stop in windows if start==bar*BAR),default=bar*BAR)
+            lead=math.ceil((hook_stop-bar*BAR)/Q)*Q+240
+            stop=min([a for a,_ in rests if a>=bar*BAR]+[final*BAR])
+            available=stop-bar*BAR-lead-240
+            if available<60*(len(chosen)-1):
+                raise ValueError('Insufficient room for a complete developed motif before the rest')
+            # Fit the whole idea before the planned stop; retain room for its final release.
+            scale=min(1,available/max(1,offsets[-1]))
+            offsets=[lead+round(offset*scale/15)*15 for offset in offsets]
         emitted=[]
         for i,point in enumerate(chosen):
-            offset=point['tick']
-            if kind=='foreshadow': offset//=2
-            if kind=='development':
-                hook_stop=max((stop for start,stop in windows if start==bar*BAR),default=bar*BAR)
-                offset=offset//2+math.ceil((hook_stop-bar*BAR)/Q)*Q+240
-            tick=bar*BAR+offset
+            tick=bar*BAR+offsets[i]
             if tick>=final*BAR:continue
             next_offset=chosen[i+1]['tick'] if i+1<len(chosen) else 2*BAR
             gap=max(120,next_offset-point['tick'])
@@ -179,7 +187,6 @@ def develop(original, source, words=None):
     for track in tracks.values():
         track['events'].sort(key=lambda n:(n['start_tick'],n['note']))
     expressed, expression = perform(p,p['seed'])
-    rests = [(b*BAR+1920,(b+1)*BAR) for b in (contrast-1,final-1)]
     removed = []
     for track in expressed['tracks']:
         kept = []
@@ -192,7 +199,21 @@ def develop(original, source, words=None):
                     n['duration_ticks']=a-n['start_tick']
             kept.append(n)
         track['events']=kept
-    return expressed, {'version':'1.0-q0-source-development','source_motif':phrase,
+    harmonic_index=next(i for i,t in enumerate(p['tracks']) if t['instrument']==harmonic)
+    final_notes=expressed['tracks'][harmonic_index]['events']
+    for statement in statements:
+        statement['performed_events']=[]
+        for event in statement['events']:
+            matches=[c['after'] for c in expression['groove']['changes'] if c['track']==harmonic_index
+                     and c['before']['start_tick']==event['tick'] and c['before']['note']==event['note']]
+            if len(matches)!=1:
+                raise ValueError('Ambiguous motif event after expression')
+            matches=[n for n in final_notes if n['start_tick']==matches[0]['start_tick']
+                     and n['note']==event['note']]
+            if len(matches)!=1:
+                raise ValueError('Motif event was lost during final expression/rest processing')
+            statement['performed_events'].append(copy.deepcopy(matches[0]))
+    return expressed, {'version':'1.1-q0-source-development','source_motif':phrase,
         'source_analysis':analysis,'hook':hook,'statements':statements,'voice_windows':windows,
         'first_answer_bar':answer,'expression':expression,
         'intentional_rest_windows':rests,'suppressed_pickups':removed,

@@ -10,6 +10,11 @@ and supplies five new controlled comparisons at 4211, with unchanged instruments
 actual stems, exact replays and Mac/Linux/WASM parity. New acceptance remains
 NOT RUN. The historical checkpoint below predates this latest feedback.
 
+[Performed-motif follow-up](q0-motif-completion.md) corrects one final reggae
+note that the source-development trace counted before the rest pass removed
+it. Eighteen tests and a separate corrected render pass; 4211 remains frozen.
+This is technical correctness evidence, not musical acceptance.
+
 Q0 cannot be closed as passed on technical results. The owner heard the
 guitar-accent pair and answered **“Neither is substantially better.”**
 That is a failed improvement result for that packet, not a numeric rating or

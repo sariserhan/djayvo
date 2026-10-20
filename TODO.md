@@ -1,6 +1,10 @@
 # Jamloom development tracker
 
 **Current priority — 2026-10-20: Q0 implementation PARTIAL; owner acceptance FAIL.**
+Latest technical follow-up: [motif completion](docs/q0-motif-completion.md)
+fixes a developed note lost during final rest processing and checks performed
+events rather than intended traces. Four plans remain identical; one corrected
+reggae render is retained separately. Existing 4211 audio remains frozen.
 Latest: the owner rejects the full 4207/4209 comparison, identifies Candidate 1
 as worst, and says the other instruments are okay but musical creativity is bad.
 [Exact feedback](docs/evidence/q0-development/owner-feedback.json).
@@ -101,10 +105,16 @@ Prior rejected candidates remain FAIL.
 - [ ] **Q009 — PARTIAL:** Source-motif development and padded adjacent-word
   hooks render through the unchanged Q0 engine. Same instrument patches/gains,
   tempo, duration and mix; notes/form/voice placement change. Five corrected
-  candidates each retain six developed motif notes, with deterministic replay
+  candidates had six intended motif notes; the final-score audit found one lost
+  reggae note, now fixed and tested against actual performed events, with deterministic replay
   and actual native/Linux/WASM agreement. Prior full-packet creativity FAIL;
   new composition preference and independent listening NOT RUN.
   [Report, files and reproduction](docs/q0-source-development.md).
+- [x] **Q010 — PASS:** Final motif/rest conflict reproduced and corrected;
+  intended/performed trace linkage, 18 regression tests, one corrected native
+  render with exact replay/WASM/Linux parity, and four unchanged plans. Existing
+  packet preserved; sample-seed coupling measured, no musical quality claim.
+  [Correction and evidence](docs/q0-motif-completion.md).
 
 **Research continuation — 2026-10-20:** After R0 and storage cleanup, the owner
 requested continuing model development. Local R1 offline demonstration tooling
