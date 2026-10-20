@@ -1,5 +1,14 @@
 # Jamloom development tracker
 
+**Current focus — 2026-10-20:** Improvisation/Q0 paused at the owner's request.
+Standalone song [Night Current](docs/night-current.md) delivered locally: 2:01,
+140 BPM, WAV/MP3 and player at 4212. Render/export/browser checks **PASS**;
+human listening **NOT RUN**. No new training, spending or production integration.
+
+- [x] Arrange and export the standalone instrumental with provenance and credits.
+- [x] Verify audio files, Downloads copies and browser playback controls.
+- [ ] Listen to the new song and judge its musical quality.
+
 **Q0 final review — 2026-10-20: musical recovery FAIL; requirement coverage PARTIAL.**
 The owner rejected both latest owner-speech compositions at 4211: “Both still
 bad.” This is a received negative judgment, not pending owner feedback.

@@ -1,0 +1,854 @@
+{
+  "title": "Night Current",
+  "bpm": 140,
+  "duration_seconds": 120.5714375,
+  "form": [
+    {
+      "name": "Intro",
+      "start_seconds": 0.0,
+      "bar": 0
+    },
+    {
+      "name": "Build",
+      "start_seconds": 13.714285714285714,
+      "bar": 8
+    },
+    {
+      "name": "Drop 1",
+      "start_seconds": 27.428571428571427,
+      "bar": 16
+    },
+    {
+      "name": "Breakdown",
+      "start_seconds": 54.857142857142854,
+      "bar": 32
+    },
+    {
+      "name": "Rebuild",
+      "start_seconds": 68.57142857142857,
+      "bar": 40
+    },
+    {
+      "name": "Drop 2",
+      "start_seconds": 75.42857142857143,
+      "bar": 44
+    },
+    {
+      "name": "Outro",
+      "start_seconds": 102.85714285714285,
+      "bar": 60
+    }
+  ],
+  "source": {
+    "file": "renders/cloud-trial-20261018/club-seed-7441.wav",
+    "sha256": "7d26706f5d0ed0ad597e8013832e20b9e3d3ecd425794d32737c3ffb320d56e6",
+    "generation": "Existing pretrained ACE-Step output; no adapter or reference audio input",
+    "seed": 7441
+  },
+  "snare_samples": {
+    "drums_38_v45_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl13.flac",
+      "sha256": "dc38d9a5fb82334cc4e355abb6637ebc647a8d0e200a40a1fe55a108ea1c97ff",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl13.flac"
+    },
+    "drums_38_v34_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl10.flac",
+      "sha256": "6cc5a666fb7a72817fb8abb6dd0ce19fe7b83f560eb4b8f1db6ba75f05357fc9",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl10.flac"
+    },
+    "drums_38_v38_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl11.flac",
+      "sha256": "c0cf2badfb4754b1a6ec319f25e0bd163966f8d22e1f46b6b3615d667163cd0d",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl11.flac"
+    },
+    "bass_38_v40_t0": {
+      "repo": "karoryfer.fashionbass",
+      "commit": "0703973b300a6bacb837602be9b588ab64732a72",
+      "path": "notes/d2_pp_rr1.wav",
+      "sha256": "c0e653e203d914aeae6b6fc3caa88241f95d4901733ababc4f890462255832df",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/karoryfer.fashionbass/0703973b300a6bacb837602be9b588ab64732a72/notes/d2_pp_rr1.wav"
+    },
+    "drums_38_v52_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl15.flac",
+      "sha256": "a4edeed14ddd7859be556e4de9cedc0e96b516a628dc5778cece626281a513fd",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl15.flac"
+    },
+    "drums_38_v41_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl12.flac",
+      "sha256": "fb0ac55618a3dcd2317c74dc53c9607b0e0fe2957161d55de077794b976636a7",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl12.flac"
+    },
+    "drums_38_v48_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl14.flac",
+      "sha256": "939edc3f6391275bb5c6347999d44a7f192f56ba5c8548a771ea5d4cd19b7f9f",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl14.flac"
+    },
+    "drums_38_v59_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl17.flac",
+      "sha256": "276e357d2532f0fbb62e1ba179085450c9f70cd328b794ffeab499af66608444",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl17.flac"
+    },
+    "bass_38_v65_t0": {
+      "repo": "karoryfer.fashionbass",
+      "commit": "0703973b300a6bacb837602be9b588ab64732a72",
+      "path": "notes/d2_p_rr1.wav",
+      "sha256": "c680471a68a006dc77c6688da72e6f8739446dda2c475f4a193f235f0da26956",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/karoryfer.fashionbass/0703973b300a6bacb837602be9b588ab64732a72/notes/d2_p_rr1.wav"
+    },
+    "drums_38_v55_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl16.flac",
+      "sha256": "dd4e1de6e84465f94b26e8dbdfdf0f4e72999a7d5ed348a76ab9c8a73d74da79",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl16.flac"
+    },
+    "drums_38_v73_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl21.flac",
+      "sha256": "284e440372d5d654aa8b257d4616a8f07b98c601d13b5ec22f6df45f811152b5",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl21.flac"
+    },
+    "drums_38_v63_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl18.flac",
+      "sha256": "482fe977e0d07dd85bffe94b3cecad6916ba9b7e51db24e8fcb0051171bb75b6",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl18.flac"
+    },
+    "drums_38_v66_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl19.flac",
+      "sha256": "a1087c8676b6949a13b26e8856bc26da846f153c5f552276560bcc2953cf93bf",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl19.flac"
+    },
+    "drums_38_v80_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl23.flac",
+      "sha256": "ae24195a251b7ac3616f7fd63958ed387ef8258ead28df818b4852f604d17b14",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl23.flac"
+    },
+    "drums_38_v70_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl20.flac",
+      "sha256": "7359d9dfb4f18a05e318d4d8aff59d0f77112e973056854b478d2023b3b59af4",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl20.flac"
+    },
+    "drums_38_v87_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl25.flac",
+      "sha256": "d88f0b22c50d368bf54ad0c1416a96e11933d5b69b79fd2d2ecf4e9f40689033",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl25.flac"
+    },
+    "drums_38_v77_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl22.flac",
+      "sha256": "7c01f6d0a6243aad309fb13e3eff881fa518ddf99fc9923e0c5a6c297fbe05e6",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl22.flac"
+    },
+    "drums_38_v91_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl26.flac",
+      "sha256": "8d1d69d9f219539c395e3e0b7f5bf1966460a7b5e44268c554c98fb374b98282",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl26.flac"
+    },
+    "drums_38_v84_tshared1": {
+      "repo": "virtuosity_drums",
+      "commit": "9f04cf9a734527edfbb0a4eee1f674e45bbf71bc",
+      "path": "Samples/mid/snare/mid_snare_center_vl24.flac",
+      "sha256": "ecb864c8354eadb761c9b77bdbdc1b35294dc73f95e83e4ee50eb4f2b8bda21d",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/virtuosity_drums/9f04cf9a734527edfbb0a4eee1f674e45bbf71bc/Samples/mid/snare/mid_snare_center_vl24.flac"
+    },
+    "bass_38_v85_t0": {
+      "repo": "karoryfer.fashionbass",
+      "commit": "0703973b300a6bacb837602be9b588ab64732a72",
+      "path": "notes/d2_mf_rr1.wav",
+      "sha256": "7c1d96d50d86ebb93475ff6ce2719029fb73256b2e7a486f3375928cbb5c9bd4",
+      "url": "https://raw.githubusercontent.com/sfzinstruments/karoryfer.fashionbass/0703973b300a6bacb837602be9b588ab64732a72/notes/d2_mf_rr1.wav"
+    }
+  },
+  "sample_credit": "Virtuosity Drums: Versilian Studios, Karoryfer Samples, drummer Austin McMahon. Fashionbass: D. Smolken / Karoryfer Lecolds.",
+  "sample_license": "CC0-1.0",
+  "edits": [
+    {
+      "label": "filtered introduction",
+      "start_frame": 0,
+      "frames": 329143,
+      "source_bar": 0
+    },
+    {
+      "label": "filtered introduction",
+      "start_frame": 329143,
+      "frames": 329143,
+      "source_bar": 2
+    },
+    {
+      "label": "rising groove",
+      "start_frame": 658286,
+      "frames": 329143,
+      "source_bar": 4
+    },
+    {
+      "label": "rising groove",
+      "start_frame": 987429,
+      "frames": 329143,
+      "source_bar": 6
+    },
+    {
+      "label": "first drop",
+      "start_frame": 1316571,
+      "frames": 329143,
+      "source_bar": 8
+    },
+    {
+      "label": "first drop",
+      "start_frame": 1645714,
+      "frames": 329142,
+      "source_bar": 12
+    },
+    {
+      "label": "first drop",
+      "start_frame": 1974857,
+      "frames": 329143,
+      "source_bar": 8
+    },
+    {
+      "label": "first drop",
+      "start_frame": 2304000,
+      "frames": 329143,
+      "source_bar": 10
+    },
+    {
+      "label": "breakdown",
+      "start_frame": 2633143,
+      "frames": 329143,
+      "source_bar": 0
+    },
+    {
+      "label": "breakdown echo",
+      "start_frame": 2633143,
+      "frames": 360000,
+      "source_bar": 0
+    },
+    {
+      "label": "breakdown echo",
+      "start_frame": 2633143,
+      "frames": 390857,
+      "source_bar": 0
+    },
+    {
+      "label": "breakdown echo",
+      "start_frame": 2633143,
+      "frames": 421714,
+      "source_bar": 0
+    },
+    {
+      "label": "breakdown",
+      "start_frame": 2962286,
+      "frames": 329143,
+      "source_bar": 2
+    },
+    {
+      "label": "breakdown echo",
+      "start_frame": 2962286,
+      "frames": 360000,
+      "source_bar": 2
+    },
+    {
+      "label": "breakdown echo",
+      "start_frame": 2962286,
+      "frames": 390857,
+      "source_bar": 2
+    },
+    {
+      "label": "breakdown echo",
+      "start_frame": 2962286,
+      "frames": 421714,
+      "source_bar": 2
+    },
+    {
+      "label": "second build",
+      "start_frame": 3291429,
+      "frames": 329143,
+      "source_bar": 4
+    },
+    {
+      "label": "changed return",
+      "start_frame": 3620571,
+      "frames": 329143,
+      "source_bar": 8
+    },
+    {
+      "label": "changed return",
+      "start_frame": 3949714,
+      "frames": 329143,
+      "source_bar": 10
+    },
+    {
+      "label": "changed return",
+      "start_frame": 4278857,
+      "frames": 329142,
+      "source_bar": 12
+    },
+    {
+      "label": "changed return",
+      "start_frame": 4608000,
+      "frames": 329143,
+      "source_bar": 8
+    },
+    {
+      "label": "outro",
+      "start_frame": 4937143,
+      "frames": 329143,
+      "source_bar": 8
+    },
+    {
+      "label": "outro",
+      "start_frame": 5266286,
+      "frames": 329143,
+      "source_bar": 0
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 987429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 997714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1008000,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1018286,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1028571,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1038857,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1049143,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1059429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1069714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1080000,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1090286,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1100571,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1110857,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1121143,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1131429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1141714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1152000,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1162286,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1172571,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1182857,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1193143,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1203429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1213714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1224000,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1234286,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1244571,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1254857,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1265143,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1275429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 1285714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 1275429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 1280571,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 1285714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 1290857,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 1296000,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 1301143,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "riser",
+      "start_frame": 987429,
+      "frames": 329143,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3291429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3301714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3312000,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3322286,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3332571,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3342857,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3353143,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3363429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3373714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3384000,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3394286,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3404571,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3414857,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3425143,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3435429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3445714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3456000,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3466286,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3476571,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3486857,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3497143,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3507429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3517714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3528000,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3538286,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3548571,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3558857,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3569143,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3579429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "snare lift",
+      "start_frame": 3589714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 3579429,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 3584571,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 3589714,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 3594857,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 3600000,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "roll pickup",
+      "start_frame": 3605143,
+      "frames": 31200,
+      "source_bar": null
+    },
+    {
+      "label": "riser",
+      "start_frame": 3291429,
+      "frames": 329143,
+      "source_bar": null
+    },
+    {
+      "label": "drop air",
+      "start_frame": 1316571,
+      "frames": 72000,
+      "source_bar": null
+    },
+    {
+      "label": "drop air",
+      "start_frame": 3620571,
+      "frames": 72000,
+      "source_bar": null
+    },
+    {
+      "label": "final motif",
+      "start_frame": 5554286,
+      "frames": 41143,
+      "source_bar": null
+    },
+    {
+      "label": "ending echo",
+      "start_frame": 5574857,
+      "frames": 41143,
+      "source_bar": null
+    },
+    {
+      "label": "ending echo",
+      "start_frame": 5595429,
+      "frames": 41143,
+      "source_bar": null
+    },
+    {
+      "label": "ending echo",
+      "start_frame": 5616000,
+      "frames": 41143,
+      "source_bar": null
+    },
+    {
+      "label": "ending echo",
+      "start_frame": 5636571,
+      "frames": 41143,
+      "source_bar": null
+    },
+    {
+      "label": "ending echo",
+      "start_frame": 5657143,
+      "frames": 41143,
+      "source_bar": null
+    }
+  ],
+  "mastering_gain_db": 8,
+  "levels": {
+    "Night Current.wav": {
+      "input_i": "-15.09",
+      "input_tp": "-1.21",
+      "input_lra": "13.00",
+      "input_thresh": "-26.18"
+    },
+    "Night Current.mp3": {
+      "input_i": "-15.09",
+      "input_tp": "-1.14",
+      "input_lra": "13.00",
+      "input_thresh": "-26.18"
+    }
+  },
+  "technical": "PASS",
+  "listening": "NOT RUN",
+  "limits": "Authored arrangement of existing original generated material, not a fresh model generation or new improvisation algorithm. Beat grid estimated from audio; perceived groove and quality need listening.",
+  "reference_audio_in_output": false,
+  "new_paid_compute": false,
+  "new_training": false,
+  "script_sha256": "c8e4daae33b5c382c2324ed5ffb045f5296d62cd3fcde91b65454f8e2a291815",
+  "files_sha256": {
+    "premaster.wav": "f67e3e93427fd682eef29722e3bb860826202505bd7bae7a7ce39016d7095854",
+    "snare-builds.wav": "c3813f05071db4f7fc3a3de7ded897b1534f17695bd7f146bd9e4654031c9f11",
+    "transitions.wav": "4e58ee60dc2fe587beaefaed317ae44d5589fe706ec195362b8a3f6ff1f24ab2",
+    "arrangement.wav": "72a54ef2a6e295189396d6732c8405e6e9378146c44e66220c51540bade874fa",
+    "Night Current.wav": "90aaca2ebf63051197188151ce1e2d99d897e4adb70442957dd13ac9a12aefd1",
+    "Night Current.mp3": "c534668d8102cb170344f6c3165a1ffb025955f6e830c31f1de9557c7897a4d1"
+  }
+}

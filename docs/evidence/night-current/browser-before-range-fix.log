@@ -1,0 +1,54 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   'blob:http://127.0.0.1:4212/64d03b64-dcd9-419a-8f14-64f3ebe583d3',
++   'blob:http://127.0.0.1:4212/ef1ae3c2-0245-483b-9fcb-c94ce3621a34',
++   'blob:http://127.0.0.1:4212/9d486900-c2d7-4d82-8ace-4a15a1c0a5d1',
++   'blob:http://127.0.0.1:4212/b938ff1d-668d-485a-b057-ee85b8c39970',
++   'blob:http://127.0.0.1:4212/f32ec4d5-6e8f-4fd5-8ffa-ce448d8f0292',
++   'blob:http://127.0.0.1:4212/43164d9e-0486-4e1b-8f95-a3fa08bd2da2',
++   'blob:http://127.0.0.1:4212/bd581241-919a-4370-b9ef-e9a4c22f492a',
++   'blob:http://127.0.0.1:4212/2bb98639-8cb6-46b0-af22-be02a299b175',
++   'blob:http://127.0.0.1:4212/975f5c1f-0fc2-4cae-b330-fcfbe27fcdf1',
++   'blob:http://127.0.0.1:4212/f64f97f5-e762-4960-aeb3-f74094b88932',
++   'blob:http://127.0.0.1:4212/00316888-db5a-4df8-919b-5856f6a2bd49',
++   'blob:http://127.0.0.1:4212/1d451e29-adeb-485f-ac5c-d0e8b890c88d',
++   'blob:http://127.0.0.1:4212/99ada9f3-b6ca-498e-96bf-e4949b5f380d',
++   'blob:http://127.0.0.1:4212/5e1866e6-3922-4a3c-a7f4-4a6c2390ea77',
++   'blob:http://127.0.0.1:4212/4c60ba01-09e6-4bb6-8596-63f2370849f7',
++   'blob:http://127.0.0.1:4212/855ef8a5-1b0f-442a-ab0f-90ed47c32ea8'
++ ]
+- []
+
+    at file:///Users/serhansari/Documents/projects/djayvo/docs/evidence/night-current/check.mjs:29:38 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'blob:http://127.0.0.1:4212/64d03b64-dcd9-419a-8f14-64f3ebe583d3',
+    'blob:http://127.0.0.1:4212/ef1ae3c2-0245-483b-9fcb-c94ce3621a34',
+    'blob:http://127.0.0.1:4212/9d486900-c2d7-4d82-8ace-4a15a1c0a5d1',
+    'blob:http://127.0.0.1:4212/b938ff1d-668d-485a-b057-ee85b8c39970',
+    'blob:http://127.0.0.1:4212/f32ec4d5-6e8f-4fd5-8ffa-ce448d8f0292',
+    'blob:http://127.0.0.1:4212/43164d9e-0486-4e1b-8f95-a3fa08bd2da2',
+    'blob:http://127.0.0.1:4212/bd581241-919a-4370-b9ef-e9a4c22f492a',
+    'blob:http://127.0.0.1:4212/2bb98639-8cb6-46b0-af22-be02a299b175',
+    'blob:http://127.0.0.1:4212/975f5c1f-0fc2-4cae-b330-fcfbe27fcdf1',
+    'blob:http://127.0.0.1:4212/f64f97f5-e762-4960-aeb3-f74094b88932',
+    'blob:http://127.0.0.1:4212/00316888-db5a-4df8-919b-5856f6a2bd49',
+    'blob:http://127.0.0.1:4212/1d451e29-adeb-485f-ac5c-d0e8b890c88d',
+    'blob:http://127.0.0.1:4212/99ada9f3-b6ca-498e-96bf-e4949b5f380d',
+    'blob:http://127.0.0.1:4212/5e1866e6-3922-4a3c-a7f4-4a6c2390ea77',
+    'blob:http://127.0.0.1:4212/4c60ba01-09e6-4bb6-8596-63f2370849f7',
+    'blob:http://127.0.0.1:4212/855ef8a5-1b0f-442a-ab0f-90ed47c32ea8'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

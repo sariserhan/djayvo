@@ -1,5 +1,14 @@
 # Jamloom: M0 continuation evidence
 
+Current owner direction — 2026-10-20: **Improvisation/Q0 paused.**
+[Night Current](night-current.md) is a standalone 2:01, 140 BPM bass instrumental,
+arranged locally from existing original generated material with recorded CC0
+snare accents. WAV/MP3, mix buses, edit frames and provenance retained.
+Render, decoding, file hashes, Downloads copies, HTTP seeking and Chromium/WebKit
+player checks **PASS**. Human listening **NOT RUN**; musical alignment **PARTIAL**
+pending listening to the estimated beat grid. No new spending, training or
+production changes. Q0's historical rejection below remains unchanged.
+
 Final Q0 review — 2026-10-20: **Musical recovery FAIL; full requirement
 coverage PARTIAL.** The owner rejected the latest 4211 owner-speech pair as
 “Both still bad.” The final report records every requested step, implementation,
@@ -10,7 +19,7 @@ production promotion or later milestone. Independent study and an accepted
 creative control remain open. [Final Q0 report](q0-final-report.md).
 Earlier checkpoints below retain their historical statuses.
 
-Current priority — 2026-10-20:
+Earlier priority — 2026-10-20 (now paused):
 [Q0 musical quality recovery](q0-quality-recovery.md) is **PARTIAL**.
 Five frozen real-input baselines, stems, instrument probes, optional local SFZ
 tests and an isolated expression-only comparison are available. Subsequent owner

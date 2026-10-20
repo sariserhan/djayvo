@@ -1,0 +1,23 @@
+{
+  "technical": "PASS",
+  "audio": [
+    {
+      "file": "Night Current.wav",
+      "duration": 120.5714375,
+      "max_abs_sample": 0.8420394659042358,
+      "full_scale_samples": 0,
+      "tail_50ms_peak": 0.0,
+      "download_verified": true
+    },
+    {
+      "file": "Night Current.mp3",
+      "duration": 120.5714375,
+      "max_abs_sample": 0.856510579586029,
+      "full_scale_samples": 0,
+      "tail_50ms_peak": 0.0,
+      "download_verified": true
+    }
+  ],
+  "ranges": "PASS",
+  "listening": "NOT RUN"
+}
