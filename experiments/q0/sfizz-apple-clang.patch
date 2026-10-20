@@ -1,0 +1,24 @@
+diff --git a/external/atomic_queue/include/atomic_queue/atomic_queue.h b/external/atomic_queue/include/atomic_queue/atomic_queue.h
+index 21dc029..8b6f2c5 100644
+--- a/external/atomic_queue/include/atomic_queue/atomic_queue.h
++++ b/external/atomic_queue/include/atomic_queue/atomic_queue.h
+@@ -393,3 +393,3 @@ class AtomicQueue2 : public AtomicQueueCommon<AtomicQueue2<T, SIZE, MINIMIZE_CON
+         unsigned index = details::remap_index<SHUFFLE_BITS>(tail % size_);
+-        return Base::template do_pop_any(states_[index], elements_[index]);
++        return Base::do_pop_any(states_[index], elements_[index]);
+     }
+@@ -399,3 +399,3 @@ class AtomicQueue2 : public AtomicQueueCommon<AtomicQueue2<T, SIZE, MINIMIZE_CON
+         unsigned index = details::remap_index<SHUFFLE_BITS>(head % size_);
+-        Base::template do_push_any(std::forward<U>(element), states_[index], elements_[index]);
++        Base::do_push_any(std::forward<U>(element), states_[index], elements_[index]);
+     }
+@@ -521,3 +521,3 @@ class AtomicQueueB2 : public AtomicQueueCommon<AtomicQueueB2<T, A, MAXIMIZE_THRO
+         unsigned index = details::remap_index<SHUFFLE_BITS>(tail & (size_ - 1));
+-        return Base::template do_pop_any(states_[index], elements_[index]);
++        return Base::do_pop_any(states_[index], elements_[index]);
+     }
+@@ -527,3 +527,3 @@ class AtomicQueueB2 : public AtomicQueueCommon<AtomicQueueB2<T, A, MAXIMIZE_THRO
+         unsigned index = details::remap_index<SHUFFLE_BITS>(head & (size_ - 1));
+-        Base::template do_push_any(std::forward<U>(element), states_[index], elements_[index]);
++        Base::do_push_any(std::forward<U>(element), states_[index], elements_[index]);
+     }

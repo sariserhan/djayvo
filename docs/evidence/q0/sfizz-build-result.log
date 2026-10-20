@@ -1,0 +1,12 @@
+t<bool, __is_trivially_relocatable(T)> {};
+      |                                    ^
+/Users/serhansari/Documents/projects/djayvo/build-q0-tools/sfizz/src/sfizz/sfizz_wrapper.cpp:394:12: warning: address of stack memory associated with local variable 'keyLabels' returned [-Wreturn-stack-address]
+  394 |     return keyLabels[label_index].second.c_str();
+      |            ^~~~~~~~~
+/Users/serhansari/Documents/projects/djayvo/build-q0-tools/sfizz/src/sfizz/sfizz_wrapper.cpp:428:12: warning: address of stack memory associated with local variable 'ccLabels' returned [-Wreturn-stack-address]
+  428 |     return ccLabels[label_index].second.c_str();
+      |            ^~~~~~~~
+2 warnings generated.
+4 warnings generated.
+[100%] Linking CXX shared library ../library/lib/libsfizz.dylib
+[100%] Built target sfizz_shared

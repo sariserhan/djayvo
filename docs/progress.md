@@ -1,5 +1,12 @@
 # Jamloom: M0 continuation evidence
 
+Current priority — 2026-10-20:
+[Q0 musical quality recovery](q0-quality-recovery.md) is **PARTIAL**.
+Five frozen real-input baselines, stems, instrument probes, optional local SFZ
+tests and an isolated expression-only comparison are available. Human causal
+diagnosis and improvement remain **NOT RUN**; prior R0 owner rejection remains
+**FAIL**. No production engine, dashboard, master or learning addendum changes.
+
 Latest cached-deployment repair — 2026-10-20:
 [SDK cache recovery](deploy-cache.md): Git build `41fd759` failed when its SDK
 clone collided with an incomplete restored tools directory. Regression reproduction
@@ -1297,3 +1304,41 @@ owner's previously consented speech with the unchanged engine, at
 Intel/iPhone, Linux Python R0 harness (jsonschema absent), fresh WASM compilation,
 model training, paid services or deployment. No production code, specs or
 original recordings changed. [Report and exact evidence](r0-validation-followup.md).
+
+## 2026-10-20 — Q0 baseline, instrument audit and expression diagnostic
+
+**PASS:** Five authorized real inputs exported with original PCM, frozen plans,
+event data, drum/bass/harmonic/vocal stems and final WAVs. Fourteen unchanged
+instrument probes and eight optional SFZ probes are playable. All eight SFZ
+replays match exactly; one-shot drum short/long probes are identical.
+Five C expression renders match byte-for-byte across 512/113 block sizes.
+All 3,400 A/C instrument event rows agree with independently calculated frames.
+Eight Q0 tests and three focused native groups pass. A/C listening copies
+measure −23.01 to −22.99 LUFS, with no quality score inferred from levels.
+
+**PARTIAL:** Audit identifies a measurable short drum-release truncation,
+limited recorded velocity layers, fixed-grid parts and repeated component
+patterns. It does not establish the main audible cause. Two pairs share
+component events, not whole arrangements; keys and some melodic timing do
+respond to input. The offline expression prototype uses coordinated shifts,
+existing accents/ghost strokes, gate articulation and phrase dynamics.
+New fills and richer melodic phrasing remain open.
+
+**PASS:** GMD public-license/checksum review and descriptive analysis of 1,138
+constant-tempo 4/4 MIDI files, keeping the official splits separate. Twelve
+files excluded and listed. No training or profile fitting. Existing CC0 samples
+verified before SFZ use; sfizz remains a separate local tool with retained
+Apple Silicon/Clang compatibility changes. Shipping notice assembly,
+integration and additional target execution remain **NOT RUN**.
+
+**PARTIAL:** Chromium/WebKit form, decoding, mobile layout and local download
+checks pass. HTML reviewer-code validation was fixed. Headless WebKit playback
+clock stalled; physical playback/listening remains **NOT RUN**. Synthetic UI
+ratings were deleted and are not study data.
+
+**NOT RUN:** Controlled full-mix B/D/E, composition intervention, Q0 listener
+improvement, fresh Linux/iPhone/WASM audio execution, paid services, training
+or deployment. Overall Q0 remains open pending diagnosis and controlled
+listening; the user's success criterion is not claimed. The engine and all
+existing plans, recordings and immutable specifications were preserved.
+[Detailed findings, local audio links, commands and evidence](q0-quality-recovery.md).

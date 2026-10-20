@@ -1,0 +1,13 @@
+{
+  "version": "1.0-q0-expression",
+  "basis": "Original hand-authored experimental hypotheses, not fitted to GMD or listener results.",
+  "profiles": {
+    "hiphop": {"offbeat_ms": 12, "backbeat_ms": 8, "bass_gate": 0.92, "harmonic_gate": 1.08},
+    "reggae": {"offbeat_ms": 5, "backbeat_ms": 3, "bass_gate": 0.85, "harmonic_gate": 0.85},
+    "experimental": {"offbeat_ms": 4, "backbeat_ms": 0, "bass_gate": 0.95, "harmonic_gate": 1.05}
+  },
+  "phrase_velocity_curve": [-3, 0, 2, -2],
+  "seed_depth_percent": [90, 100, 110],
+  "maximum_offset_ms": 20,
+  "quality_status": "NOT RUN"
+}

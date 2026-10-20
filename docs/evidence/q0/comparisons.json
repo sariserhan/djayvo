@@ -1,0 +1,169 @@
+{
+  "status": "PASS",
+  "records": [
+    {
+      "id": "owner-speech",
+      "A_timing": {
+        "events": 340,
+        "maximum_frame_error": 0
+      },
+      "C_timing": {
+        "events": 340,
+        "maximum_frame_error": 0
+      },
+      "raw_A_C_max_pcm16_difference": 11474,
+      "raw_A_C_rms_pcm16_difference": 760.1398255655386,
+      "max_instrument_start_shift_ms": 11.71875,
+      "nonclean_voice_durations_seconds": [
+        0.1335,
+        0.25104166666666666,
+        0.2359375,
+        0.5160416666666666,
+        0.4130625,
+        0.32275
+      ],
+      "vocal_rate_pitch_stretch_reverse_changes": 0,
+      "human_quality": "NOT RUN"
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "A_timing": {
+        "events": 304,
+        "maximum_frame_error": 0
+      },
+      "C_timing": {
+        "events": 304,
+        "maximum_frame_error": 0
+      },
+      "raw_A_C_max_pcm16_difference": 21211,
+      "raw_A_C_rms_pcm16_difference": 946.5600673757533,
+      "max_instrument_start_shift_ms": 4.6875,
+      "nonclean_voice_durations_seconds": [
+        0.36452083333333335,
+        0.2450625,
+        0.18439583333333334,
+        0.21660416666666665,
+        0.21660416666666665,
+        0.2551041666666667
+      ],
+      "vocal_rate_pitch_stretch_reverse_changes": 0,
+      "human_quality": "NOT RUN"
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "A_timing": {
+        "events": 358,
+        "maximum_frame_error": 0
+      },
+      "C_timing": {
+        "events": 358,
+        "maximum_frame_error": 0
+      },
+      "raw_A_C_max_pcm16_difference": 15948,
+      "raw_A_C_rms_pcm16_difference": 271.3395169681396,
+      "max_instrument_start_shift_ms": 4.032258064516129,
+      "nonclean_voice_durations_seconds": [
+        0.15439583333333334,
+        0.182,
+        0.13620833333333332,
+        0.16747916666666668,
+        0.455,
+        0.24522916666666666,
+        0.13354166666666667,
+        0.13620833333333332,
+        0.16747916666666668,
+        0.455,
+        0.455,
+        0.24522916666666666
+      ],
+      "vocal_rate_pitch_stretch_reverse_changes": 0,
+      "human_quality": "NOT RUN"
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "A_timing": {
+        "events": 340,
+        "maximum_frame_error": 0
+      },
+      "C_timing": {
+        "events": 340,
+        "maximum_frame_error": 0
+      },
+      "raw_A_C_max_pcm16_difference": 8368,
+      "raw_A_C_rms_pcm16_difference": 436.5458295656917,
+      "max_instrument_start_shift_ms": 11.71875,
+      "nonclean_voice_durations_seconds": [
+        0.13460416666666666,
+        0.3867291666666667,
+        0.13729166666666667,
+        0.2173125
+      ],
+      "vocal_rate_pitch_stretch_reverse_changes": 0,
+      "human_quality": "NOT RUN"
+    },
+    {
+      "id": "commons-laughter",
+      "A_timing": {
+        "events": 358,
+        "maximum_frame_error": 0
+      },
+      "C_timing": {
+        "events": 358,
+        "maximum_frame_error": 0
+      },
+      "raw_A_C_max_pcm16_difference": 8031,
+      "raw_A_C_rms_pcm16_difference": 147.64985072973997,
+      "max_instrument_start_shift_ms": 4.032258064516129,
+      "nonclean_voice_durations_seconds": [
+        0.13566666666666666,
+        0.13404166666666667,
+        0.13527083333333334,
+        0.1378125,
+        0.13358333333333333,
+        0.1335,
+        0.133625,
+        0.3448333333333333,
+        0.13404166666666667,
+        0.13527083333333334,
+        0.1378125,
+        0.1378125,
+        0.13358333333333333,
+        0.1335
+      ],
+      "vocal_rate_pitch_stretch_reverse_changes": 0,
+      "human_quality": "NOT RUN"
+    }
+  ],
+  "identical_instrument_track_groups": [],
+  "identical_component_events": [
+    {
+      "instrument": "drums",
+      "inputs": [
+        "owner-speech",
+        "ls-2086-149220-0047"
+      ]
+    },
+    {
+      "instrument": "piano",
+      "inputs": [
+        "ls-2035-147960-0013",
+        "commons-laughter"
+      ]
+    },
+    {
+      "instrument": "bass",
+      "inputs": [
+        "ls-2035-147960-0013",
+        "commons-laughter"
+      ]
+    },
+    {
+      "instrument": "drums",
+      "inputs": [
+        "ls-2035-147960-0013",
+        "commons-laughter"
+      ]
+    }
+  ],
+  "interpretation": "Event-frame agreement checks scheduling data, not acoustic attack latency. Waveform differences do not establish improvement. Shared component events show repeated templates within these fixed-seed/style pairs, not wholly input-independent arrangements or identical output across seeds."
+}

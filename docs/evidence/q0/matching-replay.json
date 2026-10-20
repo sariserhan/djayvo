@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "records": [
+    {
+      "code": "owner-speech-1",
+      "wav_match": "PASS"
+    },
+    {
+      "code": "owner-speech-2",
+      "wav_match": "PASS"
+    },
+    {
+      "code": "ls-2277-149896-0026-1",
+      "wav_match": "PASS"
+    },
+    {
+      "code": "ls-2277-149896-0026-2",
+      "wav_match": "PASS"
+    },
+    {
+      "code": "ls-2035-147960-0013-1",
+      "wav_match": "PASS"
+    },
+    {
+      "code": "ls-2035-147960-0013-2",
+      "wav_match": "PASS"
+    },
+    {
+      "code": "ls-2086-149220-0047-1",
+      "wav_match": "PASS"
+    },
+    {
+      "code": "ls-2086-149220-0047-2",
+      "wav_match": "PASS"
+    },
+    {
+      "code": "commons-laughter-1",
+      "wav_match": "PASS"
+    },
+    {
+      "code": "commons-laughter-2",
+      "wav_match": "PASS"
+    }
+  ]
+}

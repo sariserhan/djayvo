@@ -1,0 +1,20 @@
+{
+  "platform": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+  "cpu": "Apple M5",
+  "memory_bytes": 17179869184,
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t26.7.1\nBuildVersion:\t\t25G241",
+  "xcode": "Xcode 27.1\nBuild version 27A9275",
+  "clang": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+  "cmake": "cmake version 4.4.2",
+  "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "q0_python": "Python 3.14.6",
+  "node": "v22.23.1",
+  "base_commit": "87ede36382b3ef76168b60b03f709026c7371799",
+  "sfizz_commit": "4e70dc0bef53b41f2853ed46e26f5911114c92d0",
+  "sfizz_patch_sha256": "a7458a4358912f8aa53557418549d4c09af6e33d1350234319987e3084cddd5d",
+  "renderer_sha256": "bd20df4c419cacc20603d48c7e96caa7db34f78385333bb77966bd3a03e22309",
+  "core_library_sha256": "e0d0fe4f6f0e737ff972bde66a0a94c4794d904f4287e5ba3ec0fb63c5960a86",
+  "master_sha256": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+  "addendum_sha256": "5bfe33e037f4d0aff6910ba3dbc55ce090e96b0ee772fdc834d94a12aa29941d"
+}

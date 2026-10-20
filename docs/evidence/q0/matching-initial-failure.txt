@@ -1,0 +1,1 @@
+First SFZ probe matching attempt rejected bass-long-native: measured -23.17 LUFS vs target -23.00, beyond the unchanged 0.15 LU tolerance. Added bounded remeasurement of a fixed gain applied to original audio. Failed outputs retained locally under listener-incomplete-gate-diagnostic; excluded from accepted inventory.

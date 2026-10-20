@@ -1,0 +1,25 @@
+[  0%] Building CXX object CMakeFiles/sfizz_tunings.dir/src/external/tunings/src/Tunings.cpp.o
+[  1%] Building CXX object CMakeFiles/sfizz_cpuid.dir/src/external/cpuid/src/cpuid/cpuinfo.cpp.o
+[  1%] Building C object CMakeFiles/sfizz_kissfft.dir/src/external/kiss_fft/kiss_fft.c.o
+[  2%] Building C object CMakeFiles/sfizz_cephes.dir/external/cephes/src/chbevl.c.o
+clang: error: unsupported option '-mfpu=' for target 'arm64-apple-darwin25.6.0'
+clang: error: unsupported option '-mfloat-abi=' for target 'arm64-apple-darwin25.6.0'
+clang: error: unsupported option '-mfpu=' for target 'arm64-apple-darwin25.6.0'
+clang: error: unsupported option '-mfloat-abi=' for target 'arm64-apple-darwin25.6.0'
+clangclang: warning: clang++: argument unused during compilation: '-stdlib=libc++' [-Wunused-command-line-argument]
+error: unsupported option '-mfpu=' for target 'arm64-apple-darwin25.6.0'
+clang++clang++: error: unsupported option '-mfloat-abi=' for target 'arm64-apple-darwin25.6.0'
+: : warning: argument unused during compilation: '-stdlib=libc++' [-Wunused-command-line-argument]
+error: unsupported option '-mfpu=' for target 'arm64-apple-darwin25.6.0'
+clang++: error: unsupported option '-mfloat-abi=' for target 'arm64-apple-darwin25.6.0'
+make[3]: make[3]: *** [CMakeFiles/sfizz_cpuid.dir/src/external/cpuid/src/cpuid/cpuinfo.cpp.o] Error 1
+*** [CMakeFiles/sfizz_tunings.dir/src/external/tunings/src/Tunings.cpp.o] Error 1
+make[3]: *** [CMakeFiles/sfizz_cephes.dir/external/cephes/src/chbevl.c.o] Error 1
+make[3]: *** [CMakeFiles/sfizz_kissfft.dir/src/external/kiss_fft/kiss_fft.c.o] Error 1
+make[2]: *** [CMakeFiles/sfizz_cephes.dir/all] Error 2
+make[2]: *** Waiting for unfinished jobs....
+make[2]: *** [CMakeFiles/sfizz_cpuid.dir/all] Error 2
+make[2]: *** [CMakeFiles/sfizz_tunings.dir/all] Error 2
+make[2]: *** [CMakeFiles/sfizz_kissfft.dir/all] Error 2
+make[1]: *** [src/CMakeFiles/sfizz_shared.dir/rule] Error 2
+make: *** [sfizz_shared] Error 2

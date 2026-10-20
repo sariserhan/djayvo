@@ -1,0 +1,49 @@
+{
+  "browser_plugin": "Invocation unavailable: Node JS tool not exposed; existing project Playwright used for authorized reproducible tests",
+  "results": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "status": "PASS",
+      "viewports": [
+        "1440x1000",
+        "390x844"
+      ],
+      "checks": [
+        "blank required ratings",
+        "muted audio decode and automatic pause",
+        "responsive width",
+        "packet-bound local download",
+        "organizer key not served",
+        "reload clears ratings",
+        "no page errors or external requests"
+      ],
+      "playback_clock": "PASS: muted playback advances",
+      "human_listening": "NOT RUN",
+      "physical_audio": "NOT RUN; unmuted headless clock stalled, muted automated playback used",
+      "ratings": "Synthetic UI fixtures deleted; never study evidence"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "status": "PARTIAL",
+      "viewports": [
+        "1440x1000",
+        "390x844"
+      ],
+      "checks": [
+        "blank required ratings",
+        "muted audio decode and automatic pause",
+        "responsive width",
+        "packet-bound local download",
+        "organizer key not served",
+        "reload clears ratings",
+        "no page errors or external requests"
+      ],
+      "playback_clock": "PARTIAL: headless WebKit decodes but clock stalled in prior run",
+      "human_listening": "NOT RUN",
+      "physical_audio": "NOT RUN; unmuted headless clock stalled, muted automated playback used",
+      "ratings": "Synthetic UI fixtures deleted; never study evidence"
+    }
+  ]
+}

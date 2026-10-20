@@ -1,5 +1,31 @@
 # Jamloom development tracker
 
+**Current priority — 2026-10-20: Q0 musical quality recovery, PARTIAL.**
+The owner requested diagnosis and controlled listening before engine changes.
+No later milestone, model training, paid service or dashboard redesign is part
+of this checkpoint. [Q0 report and reproducible audio](docs/q0-quality-recovery.md).
+
+- [x] **Q001 — PASS:** Freeze five authorized real inputs with plans, events,
+  masters, instrument/vocal stems, hashes and loudness/clipping measurements.
+- [ ] **Q002 — PARTIAL:** Audit completed; short drum-tail gating, limited
+  recorded articulations and repeated component patterns measured. Human causal
+  ranking of the robotic sound is not established.
+- [ ] **Q003 — PARTIAL:** Fourteen unchanged instrument probes; eight local SFZ
+  probes, exact replays and level-matched comparisons. Licensing reviewed for
+  local testing; instrument realism judgments and production integration open.
+- [ ] **Q004 — PARTIAL:** Deterministic offline expression transform and five
+  A/C comparisons render and replay. Fills, deeper phrasing and musical
+  acceptance remain open.
+- [x] **Q005 — PASS:** GMD license/checksum and descriptive MIDI reference audit;
+  official splits retained, no profile fitting or training.
+- [ ] **Q006 — NOT RUN:** Composition intervention and controlled full-mix B/D/E.
+  SFZ instrument probes are not counted as those full-mix conditions.
+- [x] **Q007 — PASS:** Eight Q0 tests, three native groups, 3,400 exact
+  instrument event rows and comparison level checks. Browser form/decode
+  checks pass; physical playback and headless WebKit clock remain separate.
+- [ ] **Q008 — NOT RUN:** Current Q0 human improvement/acceptance and fresh
+  Linux/iPhone/WASM Q0 audio validation. Prior R0 listening rejection remains FAIL.
+
 **Research continuation — 2026-10-20:** After R0 and storage cleanup, the owner
 requested continuing model development. Local R1 offline demonstration tooling
 is implemented; corpus/live capture remain **PARTIAL**. R2/R3 model experiments,

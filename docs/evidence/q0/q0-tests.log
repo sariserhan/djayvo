@@ -1,0 +1,16 @@
+test_event_frames_fail_on_missing_or_mistimed_rows (__main__.Q0.test_event_frames_fail_on_missing_or_mistimed_rows) ... /Users/serhansari/Documents/projects/djayvo/scripts/q0_measure_comparisons.py:18: ResourceWarning: unclosed file <_io.TextIOWrapper name='/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/tmp6njo3q9r/events.tsv' mode='r' encoding='UTF-8'>
+  rows = list(csv.DictReader(path.open(), delimiter='\t'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_ffmpeg_trailing_status_not_part_of_json (__main__.Q0.test_ffmpeg_trailing_status_not_part_of_json) ... ok
+test_gmd_tick_measurement_and_exclusions (__main__.Q0.test_gmd_tick_measurement_and_exclusions) ... ok
+test_invalid_context_and_seed (__main__.Q0.test_invalid_context_and_seed) ... ok
+test_level_matching_remeasures_from_original_and_fails_closed (__main__.Q0.test_level_matching_remeasures_from_original_and_fails_closed) ... ok
+test_note_bounds_and_clean_voice (__main__.Q0.test_note_bounds_and_clean_voice) ... ok
+test_repeatable_non_mutating_shared_clock (__main__.Q0.test_repeatable_non_mutating_shared_clock) ... ok
+test_source_rights_and_integrity (__main__.Q0.test_source_rights_and_integrity) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.045s
+
+OK

@@ -1,0 +1,229 @@
+{
+  "human_realism": "NOT RUN",
+  "records": [
+    {
+      "file": "bass-long.wav",
+      "sha256": "6fb73be19221e67d78aad0c75f8bfbe641af4bf79e2d6d22ebdc0d360f53961f",
+      "loudness": {
+        "input_i": "-29.77",
+        "input_tp": "-14.98",
+        "input_lra": "7.10",
+        "input_thresh": "-42.72"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.04522418586493022,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -21.925605653687295,
+        "0.32-0.6s": -39.26820416211819,
+        "0.6-1.0s": -45.916053562004784
+      }
+    },
+    {
+      "file": "bass-short.wav",
+      "sha256": "d20f8391da41159676f09556fdbf9df013d48107e0e6b0472d62fbf4e3c9adca",
+      "loudness": {
+        "input_i": "-28.84",
+        "input_tp": "-14.98",
+        "input_lra": "7.10",
+        "input_thresh": "-40.01"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.0,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -21.925605653687295,
+        "0.32-0.6s": -120.0,
+        "0.6-1.0s": -120.0
+      }
+    },
+    {
+      "file": "drums-long.wav",
+      "sha256": "bb61a863b547c5727d22729a7d1bcb83bdf2be2de8dfd473a0c0f3a91f3ac259",
+      "loudness": {
+        "input_i": "-29.23",
+        "input_tp": "-15.99",
+        "input_lra": "8.10",
+        "input_thresh": "-40.90"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.1956199311126603,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -28.712465222769318,
+        "0.32-0.6s": -36.029551693110264,
+        "0.6-1.0s": -43.722157312552135
+      }
+    },
+    {
+      "file": "drums-short.wav",
+      "sha256": "3f9b7b8fdf9cd782fa90cb56895d516db1f2530019257759e4be04d673ba677b",
+      "loudness": {
+        "input_i": "-28.39",
+        "input_tp": "-15.99",
+        "input_lra": "8.10",
+        "input_thresh": "-39.78"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.0,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -28.712465222769318,
+        "0.32-0.6s": -120.0,
+        "0.6-1.0s": -120.0
+      }
+    },
+    {
+      "file": "guitar-long.wav",
+      "sha256": "2dc3a1dd7f21a3a67101a1b96bbf7d128c54be2c73cc45055925326bb5b19239",
+      "loudness": {
+        "input_i": "-34.91",
+        "input_tp": "-15.18",
+        "input_lra": "8.80",
+        "input_thresh": "-45.42"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.5707204331625837,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -34.43964554920041,
+        "0.32-0.6s": -38.102088512967725,
+        "0.6-1.0s": -39.925811674887164
+      }
+    },
+    {
+      "file": "guitar-short.wav",
+      "sha256": "bacb47af833ca243a6ed98b35bd94703aec160a2e1dccb136638a2e73fb818ef",
+      "loudness": {
+        "input_i": "-35.06",
+        "input_tp": "-15.18",
+        "input_lra": "5.30",
+        "input_thresh": "-45.97"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.0,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -34.43964554920041,
+        "0.32-0.6s": -120.0,
+        "0.6-1.0s": -120.0
+      }
+    },
+    {
+      "file": "lead-long.wav",
+      "sha256": "f2eb3470d546c92b45424c272f1799e9a3899e8fbf8fac70936c3f01b9028add",
+      "loudness": {
+        "input_i": "-24.04",
+        "input_tp": "-16.48",
+        "input_lra": "8.10",
+        "input_thresh": "-34.84"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.7280616952772725,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -21.807559833228396,
+        "0.32-0.6s": -23.99656514711849,
+        "0.6-1.0s": -24.228189737203657
+      }
+    },
+    {
+      "file": "lead-short.wav",
+      "sha256": "91d63be97b2a6f061515be110fd44b11b0d63ade366796deb83705669f33cec7",
+      "loudness": {
+        "input_i": "-25.97",
+        "input_tp": "-16.48",
+        "input_lra": "7.20",
+        "input_thresh": "-37.13"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.0,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -21.807559833228396,
+        "0.32-0.6s": -120.0,
+        "0.6-1.0s": -120.0
+      }
+    },
+    {
+      "file": "organ-long.wav",
+      "sha256": "5cd627b38b34a958f6900a7a3ec996598b3957b7ac85ae33fa55af564450e30c",
+      "loudness": {
+        "input_i": "-24.61",
+        "input_tp": "-19.49",
+        "input_lra": "7.40",
+        "input_thresh": "-35.07"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.7949627562170821,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -24.120883108881994,
+        "0.32-0.6s": -24.164337160911966,
+        "0.6-1.0s": -24.18253018933935
+      }
+    },
+    {
+      "file": "organ-short.wav",
+      "sha256": "3d7ec3250e6e155c2614b199a5ad6251b19e849ce5790f9f13eb656bf6bfdf4d",
+      "loudness": {
+        "input_i": "-27.93",
+        "input_tp": "-19.49",
+        "input_lra": "7.20",
+        "input_thresh": "-38.57"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.0,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -24.120883108881994,
+        "0.32-0.6s": -120.0,
+        "0.6-1.0s": -120.0
+      }
+    },
+    {
+      "file": "pad-long.wav",
+      "sha256": "776f08a9fd55b2e84b21ae2077f2b49864663ec13b886e61b46427ab70affb41",
+      "loudness": {
+        "input_i": "-28.23",
+        "input_tp": "-18.77",
+        "input_lra": "7.20",
+        "input_thresh": "-39.03"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.5894741082767119,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -30.612182428013387,
+        "0.32-0.6s": -27.40245392680248,
+        "0.6-1.0s": -33.69694761621636
+      }
+    },
+    {
+      "file": "pad-short.wav",
+      "sha256": "549e3f5876c7f1b8beaa254b5b44f9b0259659798b18415ba36110a61fcb09b9",
+      "loudness": {
+        "input_i": "-27.15",
+        "input_tp": "-18.99",
+        "input_lra": "7.20",
+        "input_thresh": "-39.20"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.20231742241750053,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -31.140059297309165,
+        "0.32-0.6s": -30.319022938743146,
+        "0.6-1.0s": -53.94871036814046
+      }
+    },
+    {
+      "file": "piano-long.wav",
+      "sha256": "ff393ee2ad40448c2433257f549587a79794a1b4b9e36619babfce7be1747fce",
+      "loudness": {
+        "input_i": "-27.89",
+        "input_tp": "-15.05",
+        "input_lra": "22.20",
+        "input_thresh": "-40.82"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.3078302410425006,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -23.824920219214718,
+        "0.32-0.6s": -28.346584569337324,
+        "0.6-1.0s": -34.394392217881006
+      }
+    },
+    {
+      "file": "piano-short.wav",
+      "sha256": "ffe49771cfdb05a1a92c8c96b91317e81eff77a0f44da7a3a59cf1c61a637822",
+      "loudness": {
+        "input_i": "-26.70",
+        "input_tp": "-15.05",
+        "input_lra": "6.70",
+        "input_thresh": "-37.86"
+      },
+      "third_note_tail_energy_after_320ms_fraction": 0.003591704577652872,
+      "third_note_rms_dbfs_windows": {
+        "0-0.1s": -23.824920219214718,
+        "0.32-0.6s": -48.70815640622166,
+        "0.6-1.0s": -120.0
+      }
+    }
+  ]
+}

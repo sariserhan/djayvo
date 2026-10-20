@@ -1,0 +1,27 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   'Pattern attribute value [A-Za-z0-9_-]{1,64} is not a valid regular expression: Uncaught SyntaxError: Invalid regular expression: /[A-Za-z0-9_-]{1,64}/v: Invalid character in character class'
++ ]
+- []
+
+    at file:///Users/serhansari/Documents/projects/djayvo/tests/q0_review_browser.mjs:46:38
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processImmediate (node:internal/timers:452:9)
+    at process.callbackTrampoline (node:internal/async_hooks:130:17) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'Pattern attribute value [A-Za-z0-9_-]{1,64} is not a valid regular expression: Uncaught SyntaxError: Invalid regular expression: /[A-Za-z0-9_-]{1,64}/v: Invalid character in character class'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

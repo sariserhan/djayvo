@@ -1,0 +1,198 @@
+{
+  "technical": "PASS",
+  "human_preference": "NOT RUN",
+  "records": [
+    {
+      "file": "piano-short-native.wav",
+      "sha256": "acdc03e19e5242ed2ad1f8dba6a811864091f9a397ea148fe5a5e6fc5ff50db3",
+      "target_lufs": -23.0,
+      "gain_db": 3.6999999999999993,
+      "matched": {
+        "input_i": "-23.00",
+        "input_tp": "-11.35",
+        "input_lra": "6.70",
+        "input_thresh": "-34.16"
+      }
+    },
+    {
+      "file": "piano-short-sfz.wav",
+      "sha256": "a50b5b257f7104c9345a550461fbc42294d6303341e8845a60701477806f0c69",
+      "target_lufs": -23.0,
+      "gain_db": 5.120000000000001,
+      "matched": {
+        "input_i": "-23.02",
+        "input_tp": "-10.64",
+        "input_lra": "20.00",
+        "input_thresh": "-35.77"
+      }
+    },
+    {
+      "file": "piano-long-native.wav",
+      "sha256": "ea37394f760fb0a7585261550ce0f3389501f9c1c7b266f5c93742cd8b06cce4",
+      "target_lufs": -23.0,
+      "gain_db": 4.890000000000001,
+      "matched": {
+        "input_i": "-22.99",
+        "input_tp": "-10.16",
+        "input_lra": "22.20",
+        "input_thresh": "-35.92"
+      }
+    },
+    {
+      "file": "piano-long-sfz.wav",
+      "sha256": "8d38fce296d41927150885a28e05eb93809cf78f099323229f2d7974d2a6edb7",
+      "target_lufs": -23.0,
+      "gain_db": 5.469999999999999,
+      "matched": {
+        "input_i": "-23.13",
+        "input_tp": "-10.29",
+        "input_lra": "22.80",
+        "input_thresh": "-36.55"
+      }
+    },
+    {
+      "file": "bass-short-native.wav",
+      "sha256": "f0e0c70fa32f227f1230b3e55326bf0cf285b96b650e581ddeee7a0a749da2f9",
+      "target_lufs": -23.0,
+      "gain_db": 5.84,
+      "matched": {
+        "input_i": "-23.01",
+        "input_tp": "-9.14",
+        "input_lra": "7.10",
+        "input_thresh": "-34.17"
+      }
+    },
+    {
+      "file": "bass-short-sfz.wav",
+      "sha256": "d6054bf0ad530a73c63bed05804eceec90e48ab47a4f70f649b38ad90ae62dd0",
+      "target_lufs": -23.0,
+      "gain_db": 36.15,
+      "matched": {
+        "input_i": "-23.03",
+        "input_tp": "-9.04",
+        "input_lra": "9.30",
+        "input_thresh": "-33.84"
+      }
+    },
+    {
+      "file": "bass-long-native.wav",
+      "sha256": "90e1fd6e11e7f9f67453641b8dcafc056a701b45b49433b2cb3515524ff8e48d",
+      "target_lufs": -23.0,
+      "gain_db": 6.940000000000001,
+      "matched": {
+        "input_i": "-22.99",
+        "input_tp": "-8.04",
+        "input_lra": "7.10",
+        "input_thresh": "-36.04"
+      }
+    },
+    {
+      "file": "bass-long-sfz.wav",
+      "sha256": "a5d0a8f484ae6cfd7e27599e77b56cec26f68b7b67436a16063c4c80243772a1",
+      "target_lufs": -23.0,
+      "gain_db": 37.269999999999996,
+      "matched": {
+        "input_i": "-23.00",
+        "input_tp": "-7.92",
+        "input_lra": "9.40",
+        "input_thresh": "-36.14"
+      }
+    },
+    {
+      "file": "drums-short-native.wav",
+      "sha256": "8f2cb71fe08cb58d56c6bbc368b144f4f31088ffbd53cd4e46da4646ad9f8395",
+      "target_lufs": -23.0,
+      "gain_db": 5.390000000000001,
+      "matched": {
+        "input_i": "-23.04",
+        "input_tp": "-10.60",
+        "input_lra": "8.10",
+        "input_thresh": "-34.43"
+      }
+    },
+    {
+      "file": "drums-short-sfz.wav",
+      "sha256": "9e79e9aeb7c56cea7107c35734059e55a72d15da74415ebf46b1a30a68db7383",
+      "target_lufs": -23.0,
+      "gain_db": 16.74,
+      "matched": {
+        "input_i": "-23.10",
+        "input_tp": "-7.59",
+        "input_lra": "8.60",
+        "input_thresh": "-36.78"
+      }
+    },
+    {
+      "file": "drums-long-native.wav",
+      "sha256": "b5b468c8150acdaa8f8d2ce91419cffb0284cffb414aa0871a2d62edf833f6c7",
+      "target_lufs": -23.0,
+      "gain_db": 6.23,
+      "matched": {
+        "input_i": "-23.00",
+        "input_tp": "-9.76",
+        "input_lra": "8.10",
+        "input_thresh": "-34.67"
+      }
+    },
+    {
+      "file": "drums-long-sfz.wav",
+      "sha256": "9e79e9aeb7c56cea7107c35734059e55a72d15da74415ebf46b1a30a68db7383",
+      "target_lufs": -23.0,
+      "gain_db": 16.74,
+      "matched": {
+        "input_i": "-23.10",
+        "input_tp": "-7.59",
+        "input_lra": "8.60",
+        "input_thresh": "-36.78"
+      }
+    },
+    {
+      "file": "guitar-short-native.wav",
+      "sha256": "5793130e0f5961e81e07de68343cb0365bad93e1fc30dfbcb47b4383403f74b2",
+      "target_lufs": -24.08,
+      "gain_db": 10.980000000000004,
+      "matched": {
+        "input_i": "-24.06",
+        "input_tp": "-4.20",
+        "input_lra": "5.20",
+        "input_thresh": "-34.97"
+      }
+    },
+    {
+      "file": "guitar-short-sfz.wav",
+      "sha256": "2f3b4e77f3d4799cefe9931c55cf1d637147d8ab21a3deb5483f482c9ccd94e3",
+      "target_lufs": -24.08,
+      "gain_db": 15.75,
+      "matched": {
+        "input_i": "-24.04",
+        "input_tp": "-2.00",
+        "input_lra": "15.60",
+        "input_thresh": "-35.17"
+      }
+    },
+    {
+      "file": "guitar-long-native.wav",
+      "sha256": "cd36946cf37a3b3c6dbb865002fb14fbad34b6abbf111fc9b61f5a092187dc26",
+      "target_lufs": -24.840000000000003,
+      "gain_db": 10.069999999999993,
+      "matched": {
+        "input_i": "-24.84",
+        "input_tp": "-5.11",
+        "input_lra": "8.80",
+        "input_thresh": "-35.56"
+      }
+    },
+    {
+      "file": "guitar-long-sfz.wav",
+      "sha256": "fea6ce12e8d19be800fa0853995b60fa07c90d0a47dfdb278ebaf932d6ecd476",
+      "target_lufs": -24.840000000000003,
+      "gain_db": 15.75,
+      "matched": {
+        "input_i": "-24.94",
+        "input_tp": "-2.00",
+        "input_lra": "12.20",
+        "input_thresh": "-37.17"
+      }
+    }
+  ]
+}
