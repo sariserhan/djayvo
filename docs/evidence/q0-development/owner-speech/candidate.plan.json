@@ -1,0 +1,1013 @@
+{
+  "schema_version": "1.0-remix",
+  "seed": 4123,
+  "source_asset_id": "sha256:7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+  "sample_rate": 48000,
+  "source": {
+    "sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "original_rate": 48000,
+    "original_frames": 233376,
+    "processed_frames": 233376,
+    "kind": "recorded",
+    "consent_confirmed": true
+  },
+  "tempo_milli_bpm": 96000,
+  "ticks_per_quarter": 960,
+  "time_signature": [
+    4,
+    4
+  ],
+  "target_bars": 12,
+  "tail_ms": 2000,
+  "strategy": "hiphop",
+  "key": {
+    "tonic_midi": 62,
+    "mode": "minor"
+  },
+  "mix": {
+    "master_target_peak_dbfs": -1,
+    "clean_hook_instrument_duck_db": -16.4781748189,
+    "instrument_room_mix": 0.18
+  },
+  "analysis": {
+    "peak": 0.263824462890625,
+    "rms": 0.0327692650861101,
+    "normalization_gain": 3.032319259687681,
+    "pitch_hz": 145.4163750517143,
+    "pitch_confidence": 0.8650947006251257,
+    "onsets": [
+      47520,
+      56640,
+      60960,
+      65760,
+      71040,
+      82560,
+      92160,
+      98880,
+      102720,
+      119520,
+      124320,
+      128640,
+      137280,
+      145920,
+      159840
+    ],
+    "phrases": [
+      {
+        "start_frame": 46560,
+        "end_frame": 164640,
+        "confidence": 0.65
+      }
+    ]
+  },
+  "sections": [
+    {
+      "name": "teaser",
+      "start_bar": 0,
+      "bars": 1
+    },
+    {
+      "name": "source_call",
+      "start_bar": 1,
+      "bars": 2
+    },
+    {
+      "name": "statement",
+      "start_bar": 3,
+      "bars": 3
+    },
+    {
+      "name": "contrast",
+      "start_bar": 6,
+      "bars": 1
+    },
+    {
+      "name": "developed_return",
+      "start_bar": 7,
+      "bars": 4
+    },
+    {
+      "name": "resolution",
+      "start_bar": 11,
+      "bars": 1
+    }
+  ],
+  "voice_clips": [
+    {
+      "id": 0,
+      "start_frame": 0,
+      "end_frame": 233376,
+      "confidence": 1
+    },
+    {
+      "id": 1,
+      "start_frame": 59520,
+      "end_frame": 91200,
+      "confidence": 0.9922762513160706
+    }
+  ],
+  "voice_events": [
+    {
+      "start_tick": 3840,
+      "clip_id": 0,
+      "gain_db": -4,
+      "rate": 1,
+      "reverse": false,
+      "pan": 0,
+      "clean": true
+    },
+    {
+      "start_tick": 23040,
+      "clip_id": 1,
+      "gain_db": -7,
+      "rate": 1,
+      "reverse": false,
+      "pan": 0,
+      "clean": false
+    },
+    {
+      "start_tick": 34560,
+      "clip_id": 1,
+      "gain_db": -7,
+      "rate": 1,
+      "reverse": false,
+      "pan": 0,
+      "clean": false
+    }
+  ],
+  "tracks": [
+    {
+      "instrument": "piano",
+      "gain_db": -10,
+      "pan": -0.2,
+      "events": [
+        {
+          "start_tick": 0,
+          "duration_ticks": 97,
+          "note": 60,
+          "velocity": 72
+        },
+        {
+          "start_tick": 120,
+          "duration_ticks": 1037,
+          "note": 62,
+          "velocity": 76
+        },
+        {
+          "start_tick": 498,
+          "duration_ticks": 622,
+          "note": 50,
+          "velocity": 38
+        },
+        {
+          "start_tick": 498,
+          "duration_ticks": 622,
+          "note": 53,
+          "velocity": 38
+        },
+        {
+          "start_tick": 11520,
+          "duration_ticks": 227,
+          "note": 60,
+          "velocity": 81
+        },
+        {
+          "start_tick": 11760,
+          "duration_ticks": 227,
+          "note": 62,
+          "velocity": 81
+        },
+        {
+          "start_tick": 12018,
+          "duration_ticks": 778,
+          "note": 50,
+          "velocity": 50
+        },
+        {
+          "start_tick": 12018,
+          "duration_ticks": 778,
+          "note": 53,
+          "velocity": 50
+        },
+        {
+          "start_tick": 12018,
+          "duration_ticks": 97,
+          "note": 62,
+          "velocity": 88
+        },
+        {
+          "start_tick": 12138,
+          "duration_ticks": 518,
+          "note": 65,
+          "velocity": 74
+        },
+        {
+          "start_tick": 13920,
+          "duration_ticks": 227,
+          "note": 60,
+          "velocity": 80
+        },
+        {
+          "start_tick": 14160,
+          "duration_ticks": 829,
+          "note": 62,
+          "velocity": 77
+        },
+        {
+          "start_tick": 26880,
+          "duration_ticks": 227,
+          "note": 60,
+          "velocity": 81
+        },
+        {
+          "start_tick": 27120,
+          "duration_ticks": 227,
+          "note": 62,
+          "velocity": 81
+        },
+        {
+          "start_tick": 27378,
+          "duration_ticks": 778,
+          "note": 46,
+          "velocity": 50
+        },
+        {
+          "start_tick": 27378,
+          "duration_ticks": 778,
+          "note": 50,
+          "velocity": 50
+        },
+        {
+          "start_tick": 27378,
+          "duration_ticks": 97,
+          "note": 62,
+          "velocity": 88
+        },
+        {
+          "start_tick": 27498,
+          "duration_ticks": 518,
+          "note": 65,
+          "velocity": 74
+        },
+        {
+          "start_tick": 29280,
+          "duration_ticks": 227,
+          "note": 60,
+          "velocity": 80
+        },
+        {
+          "start_tick": 29520,
+          "duration_ticks": 829,
+          "note": 62,
+          "velocity": 77
+        },
+        {
+          "start_tick": 36720,
+          "duration_ticks": 97,
+          "note": 72,
+          "velocity": 83
+        },
+        {
+          "start_tick": 36840,
+          "duration_ticks": 97,
+          "note": 74,
+          "velocity": 83
+        },
+        {
+          "start_tick": 36960,
+          "duration_ticks": 65,
+          "note": 74,
+          "velocity": 90
+        },
+        {
+          "start_tick": 37038,
+          "duration_ticks": 648,
+          "note": 77,
+          "velocity": 87
+        },
+        {
+          "start_tick": 37938,
+          "duration_ticks": 97,
+          "note": 72,
+          "velocity": 82
+        },
+        {
+          "start_tick": 38058,
+          "duration_ticks": 829,
+          "note": 74,
+          "velocity": 79
+        },
+        {
+          "start_tick": 42240,
+          "duration_ticks": 1555,
+          "note": 62,
+          "velocity": 61
+        }
+      ]
+    },
+    {
+      "instrument": "bass",
+      "gain_db": -8,
+      "pan": 0,
+      "events": [
+        {
+          "start_tick": 0,
+          "duration_ticks": 607,
+          "note": 38,
+          "velocity": 86
+        },
+        {
+          "start_tick": 11520,
+          "duration_ticks": 607,
+          "note": 38,
+          "velocity": 87
+        },
+        {
+          "start_tick": 13200,
+          "duration_ticks": 386,
+          "note": 38,
+          "velocity": 73
+        },
+        {
+          "start_tick": 13920,
+          "duration_ticks": 386,
+          "note": 38,
+          "velocity": 73
+        },
+        {
+          "start_tick": 14898,
+          "duration_ticks": 221,
+          "note": 45,
+          "velocity": 61
+        },
+        {
+          "start_tick": 15360,
+          "duration_ticks": 607,
+          "note": 38,
+          "velocity": 86
+        },
+        {
+          "start_tick": 17040,
+          "duration_ticks": 386,
+          "note": 38,
+          "velocity": 72
+        },
+        {
+          "start_tick": 17760,
+          "duration_ticks": 386,
+          "note": 38,
+          "velocity": 72
+        },
+        {
+          "start_tick": 19200,
+          "duration_ticks": 607,
+          "note": 38,
+          "velocity": 89
+        },
+        {
+          "start_tick": 20880,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 75
+        },
+        {
+          "start_tick": 23040,
+          "duration_ticks": 607,
+          "note": 38,
+          "velocity": 91
+        },
+        {
+          "start_tick": 26880,
+          "duration_ticks": 607,
+          "note": 34,
+          "velocity": 87
+        },
+        {
+          "start_tick": 28560,
+          "duration_ticks": 386,
+          "note": 34,
+          "velocity": 73
+        },
+        {
+          "start_tick": 29280,
+          "duration_ticks": 386,
+          "note": 34,
+          "velocity": 73
+        },
+        {
+          "start_tick": 30258,
+          "duration_ticks": 221,
+          "note": 41,
+          "velocity": 61
+        },
+        {
+          "start_tick": 30720,
+          "duration_ticks": 607,
+          "note": 34,
+          "velocity": 86
+        },
+        {
+          "start_tick": 32400,
+          "duration_ticks": 386,
+          "note": 34,
+          "velocity": 72
+        },
+        {
+          "start_tick": 33120,
+          "duration_ticks": 386,
+          "note": 34,
+          "velocity": 72
+        },
+        {
+          "start_tick": 34560,
+          "duration_ticks": 607,
+          "note": 31,
+          "velocity": 89
+        },
+        {
+          "start_tick": 36240,
+          "duration_ticks": 386,
+          "note": 31,
+          "velocity": 75
+        },
+        {
+          "start_tick": 36960,
+          "duration_ticks": 386,
+          "note": 31,
+          "velocity": 75
+        },
+        {
+          "start_tick": 37938,
+          "duration_ticks": 221,
+          "note": 38,
+          "velocity": 63
+        },
+        {
+          "start_tick": 38400,
+          "duration_ticks": 607,
+          "note": 31,
+          "velocity": 91
+        },
+        {
+          "start_tick": 40080,
+          "duration_ticks": 240,
+          "note": 31,
+          "velocity": 77
+        },
+        {
+          "start_tick": 42240,
+          "duration_ticks": 607,
+          "note": 38,
+          "velocity": 87
+        }
+      ]
+    },
+    {
+      "instrument": "drums",
+      "gain_db": -9,
+      "pan": 0.08,
+      "events": [
+        {
+          "start_tick": 0,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 73
+        },
+        {
+          "start_tick": 3120,
+          "duration_ticks": 120,
+          "note": 38,
+          "velocity": 23
+        },
+        {
+          "start_tick": 3600,
+          "duration_ticks": 120,
+          "note": 38,
+          "velocity": 51
+        },
+        {
+          "start_tick": 3840,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 39
+        },
+        {
+          "start_tick": 5760,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 39
+        },
+        {
+          "start_tick": 7680,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 41
+        },
+        {
+          "start_tick": 9600,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 41
+        },
+        {
+          "start_tick": 11520,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 89
+        },
+        {
+          "start_tick": 11520,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 60
+        },
+        {
+          "start_tick": 12018,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 31
+        },
+        {
+          "start_tick": 12492,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 90
+        },
+        {
+          "start_tick": 12492,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 60
+        },
+        {
+          "start_tick": 12978,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 31
+        },
+        {
+          "start_tick": 13200,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 89
+        },
+        {
+          "start_tick": 13440,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 60
+        },
+        {
+          "start_tick": 13920,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 89
+        },
+        {
+          "start_tick": 13920,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 31
+        },
+        {
+          "start_tick": 14412,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 90
+        },
+        {
+          "start_tick": 14412,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 60
+        },
+        {
+          "start_tick": 14898,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 31
+        },
+        {
+          "start_tick": 15360,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 88
+        },
+        {
+          "start_tick": 15360,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 59
+        },
+        {
+          "start_tick": 15858,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 30
+        },
+        {
+          "start_tick": 16332,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 89
+        },
+        {
+          "start_tick": 16332,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 59
+        },
+        {
+          "start_tick": 16818,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 30
+        },
+        {
+          "start_tick": 17040,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 88
+        },
+        {
+          "start_tick": 17280,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 59
+        },
+        {
+          "start_tick": 17760,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 88
+        },
+        {
+          "start_tick": 17760,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 30
+        },
+        {
+          "start_tick": 18252,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 89
+        },
+        {
+          "start_tick": 18252,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 59
+        },
+        {
+          "start_tick": 18738,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 30
+        },
+        {
+          "start_tick": 19200,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 91
+        },
+        {
+          "start_tick": 19200,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 62
+        },
+        {
+          "start_tick": 19698,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 33
+        },
+        {
+          "start_tick": 20172,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 92
+        },
+        {
+          "start_tick": 20172,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 62
+        },
+        {
+          "start_tick": 20658,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 33
+        },
+        {
+          "start_tick": 20880,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 91
+        },
+        {
+          "start_tick": 23040,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 78
+        },
+        {
+          "start_tick": 26160,
+          "duration_ticks": 120,
+          "note": 38,
+          "velocity": 28
+        },
+        {
+          "start_tick": 26640,
+          "duration_ticks": 120,
+          "note": 38,
+          "velocity": 56
+        },
+        {
+          "start_tick": 26880,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 89
+        },
+        {
+          "start_tick": 26880,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 60
+        },
+        {
+          "start_tick": 27378,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 31
+        },
+        {
+          "start_tick": 27852,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 90
+        },
+        {
+          "start_tick": 27852,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 60
+        },
+        {
+          "start_tick": 28338,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 31
+        },
+        {
+          "start_tick": 28560,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 89
+        },
+        {
+          "start_tick": 28800,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 60
+        },
+        {
+          "start_tick": 29280,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 89
+        },
+        {
+          "start_tick": 29280,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 31
+        },
+        {
+          "start_tick": 29772,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 90
+        },
+        {
+          "start_tick": 29772,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 60
+        },
+        {
+          "start_tick": 30258,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 31
+        },
+        {
+          "start_tick": 30720,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 88
+        },
+        {
+          "start_tick": 30720,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 59
+        },
+        {
+          "start_tick": 31218,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 30
+        },
+        {
+          "start_tick": 31692,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 89
+        },
+        {
+          "start_tick": 31692,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 59
+        },
+        {
+          "start_tick": 32178,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 30
+        },
+        {
+          "start_tick": 32400,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 88
+        },
+        {
+          "start_tick": 32640,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 59
+        },
+        {
+          "start_tick": 33120,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 88
+        },
+        {
+          "start_tick": 33120,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 30
+        },
+        {
+          "start_tick": 33612,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 89
+        },
+        {
+          "start_tick": 33612,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 59
+        },
+        {
+          "start_tick": 34098,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 30
+        },
+        {
+          "start_tick": 34560,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 91
+        },
+        {
+          "start_tick": 34560,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 62
+        },
+        {
+          "start_tick": 35058,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 33
+        },
+        {
+          "start_tick": 35532,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 92
+        },
+        {
+          "start_tick": 35532,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 62
+        },
+        {
+          "start_tick": 36018,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 33
+        },
+        {
+          "start_tick": 36240,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 91
+        },
+        {
+          "start_tick": 36480,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 62
+        },
+        {
+          "start_tick": 36960,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 91
+        },
+        {
+          "start_tick": 36960,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 33
+        },
+        {
+          "start_tick": 37452,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 92
+        },
+        {
+          "start_tick": 37452,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 62
+        },
+        {
+          "start_tick": 37938,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 33
+        },
+        {
+          "start_tick": 38400,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 93
+        },
+        {
+          "start_tick": 38400,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 64
+        },
+        {
+          "start_tick": 38898,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 35
+        },
+        {
+          "start_tick": 39372,
+          "duration_ticks": 240,
+          "note": 38,
+          "velocity": 94
+        },
+        {
+          "start_tick": 39372,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 64
+        },
+        {
+          "start_tick": 39858,
+          "duration_ticks": 120,
+          "note": 42,
+          "velocity": 35
+        },
+        {
+          "start_tick": 40080,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 93
+        },
+        {
+          "start_tick": 42240,
+          "duration_ticks": 240,
+          "note": 36,
+          "velocity": 74
+        }
+      ]
+    }
+  ]
+}

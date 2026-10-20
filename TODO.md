@@ -1,6 +1,15 @@
 # Jamloom development tracker
 
 **Current priority — 2026-10-20: Q0 implementation PARTIAL; owner acceptance FAIL.**
+Latest: the owner rejects the full 4207/4209 comparison, identifies Candidate 1
+as worst, and says the other instruments are okay but musical creativity is bad.
+[Exact feedback](docs/evidence/q0-development/owner-feedback.json).
+A new [composition-only study](docs/q0-source-development.md) holds the sound
+palette, renderer, tempo and mix settings fixed while developing a source-derived
+motif and repeated vocal hook. Five actual pairs/stems, exact replays, 3,034 event
+rows, and byte-identical Mac/Linux/WASM candidate WAVs pass. Seventeen expanded
+tests pass. [New listening page](http://127.0.0.1:4211/): acceptance NOT RUN.
+The unused instrument-library research was stopped before integration.
 Final local checkpoint: the listening form now blocks incomplete candidate
 scores before download; notes alone and unheard candidates remain supported.
 Seventeen tests and Chromium/WebKit form checks pass. Frozen native/WASM and
@@ -89,6 +98,13 @@ Prior rejected candidates remain FAIL.
   now **PASS**. Independent-review preparation PASS is not actual listening.
   [Original feedback](docs/evidence/q0/owner-feedback.json);
   [guitar-pair rejection](docs/evidence/q0-guitar-single/owner-feedback.json).
+- [ ] **Q009 — PARTIAL:** Source-motif development and padded adjacent-word
+  hooks render through the unchanged Q0 engine. Same instrument patches/gains,
+  tempo, duration and mix; notes/form/voice placement change. Five corrected
+  candidates each retain six developed motif notes, with deterministic replay
+  and actual native/Linux/WASM agreement. Prior full-packet creativity FAIL;
+  new composition preference and independent listening NOT RUN.
+  [Report, files and reproduction](docs/q0-source-development.md).
 
 **Research continuation — 2026-10-20:** After R0 and storage cleanup, the owner
 requested continuing model development. Local R1 offline demonstration tooling

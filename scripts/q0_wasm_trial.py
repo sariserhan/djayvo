@@ -18,8 +18,12 @@ def run(trial, build, sdk, output):
         raise ValueError('Choose fresh output and complete native artifacts')
     report = json.loads((trial/'report.json').read_text())
     manifest = json.loads((build/'build-manifest.json').read_text())
-    if report['instrument_build'] != manifest:
+    development = report.get('version') == '1.0-q0-development'
+    identity_matches = (report.get('renderer_sha256') == manifest['renderer_sha256'] if development
+                        else report['instrument_build'] == manifest)
+    if not identity_matches:
         raise ValueError('Native build identity differs')
+    prefix = 'candidate' if development else 'E'
     for name, sha in manifest['source_sha256'].items():
         if digest(build/'source'/name) != sha:
             raise ValueError('Isolated source changed')
@@ -51,11 +55,11 @@ def run(trial, build, sdk, output):
         wav = ROOT/'renders/q0-baseline-v2-20261020'/ident/'source.wav'
         if digest(wav) != rights[ident]:
             raise ValueError('Source authorization/hash mismatch')
-        plan_path = trial/ident/'E.plan.json'
+        plan_path = trial/ident/(prefix+'.plan.json')
         candidate = output/(ident+'.'+style)
         subprocess.run([node, str(binary), str(wav), str(plan_path), style,
             str(candidate), '--consent'], check=True, timeout=120)
-        row = compare(trial/ident/('E.'+style), candidate)
+        row = compare(trial/ident/(prefix+'.'+style), candidate)
         row.update(id=ident, timing=timing(json.loads(plan_path.read_text()),
             Path(str(candidate)+'.events.tsv')))
         rows.append(row)

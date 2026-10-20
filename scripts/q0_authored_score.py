@@ -11,7 +11,9 @@ from q0_audit import digest
 Q, BAR = 960, 3840
 
 
-def motif(plan, source):
+def motif(plan, source, *, tempo_milli_bpm=112000):
+    if type(tempo_milli_bpm) is not int or not 60000 <= tempo_milli_bpm <= 180000:
+        raise ValueError('Unsupported motif tempo')
     if (plan['sample_rate'] != 48000 or plan['source']['kind'] != 'recorded' or
             plan['source']['consent_confirmed'] is not True or
             digest(source) != plan['source']['sha256']):
@@ -34,7 +36,7 @@ def motif(plan, source):
     if sorted(set(onsets)) != onsets:
         raise ValueError('Source onsets must be ordered and unique')
     # Preserve chronological rhythm; compress only phrases exceeding six beats.
-    ticks_per_frame = 112000*Q/(60000*48000)
+    ticks_per_frame = tempo_milli_bpm*Q/(60000*48000)
     scale = min(1, 6*Q/max(1, (onsets[-1]-onsets[0])*ticks_per_frame))
     choices = {}
     for f in onsets:

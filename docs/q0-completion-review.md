@@ -3,6 +3,13 @@
 2026-10-20. **Overall Q0: PARTIAL. Demonstrated substantial musical recovery:
 not established. Latest received improvement judgment: FAIL.**
 
+**Latest:** The owner has now rejected the full 4207/4209 packet too, identifying
+weak creativity while accepting the instrument sounds of the other candidates.
+[Source-motif composition study](q0-source-development.md) records that feedback
+and supplies five new controlled comparisons at 4211, with unchanged instruments,
+actual stems, exact replays and Mac/Linux/WASM parity. New acceptance remains
+NOT RUN. The historical checkpoint below predates this latest feedback.
+
 Q0 cannot be closed as passed on technical results. The owner heard the
 guitar-accent pair and answered **“Neither is substantially better.”**
 That is a failed improvement result for that packet, not a numeric rating or

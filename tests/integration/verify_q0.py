@@ -22,6 +22,7 @@ from q0_listening_results import summarize, DIMENSIONS
 from q0_independent_packet import reviewable
 from q0_composition import compose
 from q0_authored_score import authored
+from q0_development import develop
 from q0_phrase_form import adapt
 from q0_phrase_trial import guitar_renderer
 from q0_guitar_accent_trial import accents
@@ -208,6 +209,36 @@ class Q0(unittest.TestCase):
             plan['source_asset_id'] = 'sha256:'+digest(path)
             plan['analysis']['onsets'] = [1000, 6000, 18000, 29000, 47000, 71000]
             original = copy.deepcopy(plan)
+            words = {'source_sha256':digest(path),'source_rate':48000,'source_frames':96000,
+                     'words':[{'start_frame':1000,'end_frame':24000,'confidence':.95},
+                              {'start_frame':24000,'end_frame':48000,'confidence':.98}]}
+            developed, development = develop(plan,path,words)
+            self.assertEqual((developed,development),develop(plan,path,words))
+            self.assertEqual(plan,original)
+            for field in ('source','tempo_milli_bpm','target_bars','tail_ms','mix'):
+                self.assertEqual(developed[field],plan[field])
+            self.assertTrue(development['hook'])
+            self.assertTrue(development['source_analysis']['pitch_contour_used'])
+            for a,b in zip(plan['tracks'],developed['tracks']):
+                self.assertEqual({k:v for k,v in a.items() if k!='events'},
+                                 {k:v for k,v in b.items() if k!='events'})
+                for n in b['events']:
+                    self.assertTrue(0<=n['start_tick']<n['start_tick']+n['duration_ticks']<=plan['target_bars']*3840)
+                    for lo,hi in development['intentional_rest_windows']:
+                        self.assertFalse(lo<=n['start_tick']<hi)
+            statement = next(s for s in development['statements'] if s['kind']=='statement')['events']
+            returning = next(s for s in development['statements'] if s['kind']=='return')['events']
+            transformed = next(s for s in development['statements'] if s['kind']=='development')['events']
+            self.assertEqual(len(transformed),len(statement))
+            self.assertEqual([n['note'] for n in statement],[n['note'] for n in returning])
+            self.assertEqual([n['tick']-statement[0]['tick'] for n in statement],
+                             [n['tick']-returning[0]['tick'] for n in returning])
+            self.assertIsNone(develop(plan,path)[1]['hook'])
+            with self.assertRaises(ValueError): develop(plan,path,{**words,'source_sha256':'0'*64})
+            badwords=copy.deepcopy(words);badwords['words'][1]['start_frame']=0
+            with self.assertRaises(ValueError): develop(plan,path,badwords)
+            changed=copy.deepcopy(plan);changed['analysis']['onsets']=[1000,12000,27000,50000,80000]
+            self.assertNotEqual(development['source_motif'],develop(changed,path,words)[1]['source_motif'])
             a, _ = authored(plan, path, hybrid=False, expressive=True)
             b, _ = authored(plan, path, hybrid=True, expressive=True)
             self.assertEqual(plan, original)

@@ -19,8 +19,12 @@ def run(trial, output):
     build = ROOT/'build-q0-decay-20261020'
     report = json.loads((trial/'report.json').read_text())
     manifest = json.loads((build/'build-manifest.json').read_text())
-    if (trial/'INCOMPLETE').exists() or (build/'INCOMPLETE').exists() or report['instrument_build'] != manifest:
+    development = report.get('version') == '1.0-q0-development'
+    identity_matches = (report.get('renderer_sha256') == manifest['renderer_sha256'] if development
+                        else report['instrument_build'] == manifest)
+    if (trial/'INCOMPLETE').exists() or (build/'INCOMPLETE').exists() or not identity_matches:
         raise ValueError('Incomplete or changed native experiment')
+    prefix = 'candidate' if development else 'E'
     for name, sha in manifest['source_sha256'].items():
         if digest(build/'source'/name) != sha:
             raise ValueError('Frozen source changed')
@@ -60,7 +64,7 @@ def run(trial, output):
         source = ROOT/'renders/q0-baseline-v2-20261020'/ident/'source.wav'
         if digest(source) != rights[ident]:
             raise ValueError('Source permission/hash changed')
-        plan_path = trial/ident/'E.plan.json'
+        plan_path = trial/ident/(prefix+'.plan.json')
         plan = json.loads(plan_path.read_text())
         execute([target+'/jamloom_remix', '--input', '/src/'+str(source.relative_to(ROOT)),
             '--consent', '--plan', '/src/'+str(plan_path.relative_to(ROOT)),
@@ -68,7 +72,7 @@ def run(trial, output):
             '--output', '/out/'+output.name+'/'+ident], timeout=120)
         verify_export(output/ident, (style,))
         candidate = output/(ident+'.'+style)
-        rows.append({'id': ident, **compare(trial/ident/('E.'+style), candidate),
+        rows.append({'id': ident, **compare(trial/ident/(prefix+'.'+style), candidate),
             'timing': timing(plan, Path(str(candidate)+'.events.tsv'))})
     write(output/'report.json', {'status': 'PASS', 'environment': environment,
         'build_source_manifest': manifest, 'commands': commands, 'comparisons': rows,

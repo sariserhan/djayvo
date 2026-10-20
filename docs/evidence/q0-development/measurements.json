@@ -1,0 +1,406 @@
+{
+  "technical": "PASS",
+  "human_quality": "NOT RUN",
+  "records": [
+    {
+      "id": "owner-speech",
+      "timing": {
+        "events": 284,
+        "maximum_frame_error": 0
+      },
+      "audio": [
+        {
+          "file": "candidate.hiphop.bass.wav",
+          "sha256": "f25484a1dd719a39d81e210b011c2c5c391b0203cccb3bc75ebe67dce17d9e4b",
+          "frames": 1536000,
+          "max_abs_pcm16": 4927.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.hiphop.drums.wav",
+          "sha256": "743ab1a8be495bf3e536b8ea16d7541f144b566362fa8575debe1e2bf5c3b42e",
+          "frames": 1536000,
+          "max_abs_pcm16": 6185.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.hiphop.piano.wav",
+          "sha256": "e7f183911be31504b29f450badc9f75a65b49a5c163c94442223eab1c4ce39eb",
+          "frames": 1536000,
+          "max_abs_pcm16": 6715.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.hiphop.vocals.wav",
+          "sha256": "084faa8b4fb9ff2b9a3e89310b5049d63852093c8a840cde84de5d75f01df17c",
+          "frames": 1536000,
+          "max_abs_pcm16": 11695.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.hiphop.wav",
+          "sha256": "c316dfe6bbd418e09fc910cd745a2f3be5ec27fed93f1dadb45e8f3cbe2e4ec1",
+          "frames": 1536000,
+          "max_abs_pcm16": 11692.0,
+          "full_scale_samples": 0
+        }
+      ],
+      "max_pcm16_difference": 14789.0,
+      "rms_pcm16_difference": 1637.1570939505045,
+      "source_analysis": {
+        "voiced_motif_points": 6,
+        "pitch_contour_used": true,
+        "hook_candidates": 4,
+        "hook_bounds": "Padded, unverified adjacent-word estimates"
+      },
+      "development_notes": 6
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "timing": {
+        "events": 166,
+        "maximum_frame_error": 0
+      },
+      "audio": [
+        {
+          "file": "candidate.reggae.bass.wav",
+          "sha256": "696a293b28e103945dae161da6a4bd31b1e8432b6f100b953a7fc1e023b081bc",
+          "frames": 1536000,
+          "max_abs_pcm16": 4713.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.reggae.drums.wav",
+          "sha256": "27d9f062dd4b1633a81ef53f036c06d0928bea77979e26b2240350805d7c7d59",
+          "frames": 1536000,
+          "max_abs_pcm16": 7299.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.reggae.organ.wav",
+          "sha256": "df9617c6ead1969d60479aabb18c0e84a0a9ec5a141cf8f176e232a49d6b2a0f",
+          "frames": 1536000,
+          "max_abs_pcm16": 4903.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.reggae.piano.wav",
+          "sha256": "2cd3e90c08a318fb441b9c392178455965e981d927c8b26a5e1f93bb4f76a391",
+          "frames": 1536000,
+          "max_abs_pcm16": 0.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.reggae.vocals.wav",
+          "sha256": "557978e7d10cbb5252ea21bf4b47a8581abd6576ebef19698aaebbcd28cee261",
+          "frames": 1536000,
+          "max_abs_pcm16": 11695.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.reggae.wav",
+          "sha256": "cee3afd63efd42b38bc804099ad1c950d77aa1129d71798df5adbc54e71921c2",
+          "frames": 1536000,
+          "max_abs_pcm16": 11695.0,
+          "full_scale_samples": 0
+        }
+      ],
+      "max_pcm16_difference": 14500.0,
+      "rms_pcm16_difference": 1594.2061944439058,
+      "source_analysis": {
+        "voiced_motif_points": 5,
+        "pitch_contour_used": true,
+        "hook_candidates": 11,
+        "hook_bounds": "Padded, unverified adjacent-word estimates"
+      },
+      "development_notes": 6
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "timing": {
+        "events": 432,
+        "maximum_frame_error": 0
+      },
+      "audio": [
+        {
+          "file": "candidate.experimental.bass.wav",
+          "sha256": "e54eba79bd12718efc3d5e5c692070e4063acffc2b6d469c000aeea618571897",
+          "frames": 1582452,
+          "max_abs_pcm16": 4943.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.experimental.drums.wav",
+          "sha256": "c5a81615650d17d89b7a98a140774c1ccc99ad32a2243c66f6cdd008cfbcba89",
+          "frames": 1582452,
+          "max_abs_pcm16": 6012.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.experimental.lead.wav",
+          "sha256": "b55f2899dafdf480cb324f3dbe5f210bbd4e9d33550e8ad5069d176780a674c7",
+          "frames": 1582452,
+          "max_abs_pcm16": 0.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.experimental.piano.wav",
+          "sha256": "8e5b7d46c2552a152915a687245e9459beaba0fe3cfcbae8134d279a80de9d4b",
+          "frames": 1582452,
+          "max_abs_pcm16": 7205.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.experimental.vocals.wav",
+          "sha256": "8b18cef3d76d61c8f0d46716639f107085e3e2bc0a7b9b293d73d421f1db4eeb",
+          "frames": 1582452,
+          "max_abs_pcm16": 11695.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.experimental.wav",
+          "sha256": "6148fa9ffea05adedd1795b772407650a32f6cf3d0027a267129402961f1b151",
+          "frames": 1582452,
+          "max_abs_pcm16": 11695.0,
+          "full_scale_samples": 0
+        }
+      ],
+      "max_pcm16_difference": 12662.0,
+      "rms_pcm16_difference": 1728.5075406169099,
+      "source_analysis": {
+        "voiced_motif_points": 6,
+        "pitch_contour_used": true,
+        "hook_candidates": 3,
+        "hook_bounds": "Padded, unverified adjacent-word estimates"
+      },
+      "development_notes": 6
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "timing": {
+        "events": 284,
+        "maximum_frame_error": 0
+      },
+      "audio": [
+        {
+          "file": "candidate.hiphop.bass.wav",
+          "sha256": "7b40b08b9136d21809f78d1fdeb5ab8f79c52c86389523e3adbdc9100e1f65c7",
+          "frames": 1536000,
+          "max_abs_pcm16": 4974.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.hiphop.drums.wav",
+          "sha256": "c5bf1b2e49b1cabb62c9cd6db6f76e9d74c4b782426a28f08c08f67edafa0715",
+          "frames": 1536000,
+          "max_abs_pcm16": 6185.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.hiphop.piano.wav",
+          "sha256": "b3a1d0514d2403df47fbe1a92a4cd4654a17a58640c4b082f8d92e892c9cebbf",
+          "frames": 1536000,
+          "max_abs_pcm16": 5864.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.hiphop.vocals.wav",
+          "sha256": "49427b6ad2b26b889f9c6f3e988d69a01293b844824ea102e33d831c38045d34",
+          "frames": 1536000,
+          "max_abs_pcm16": 11695.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.hiphop.wav",
+          "sha256": "44521c4f192959ef2cf6566aa2fd9d50f859ff46698e6d63cac571509c9f7481",
+          "frames": 1536000,
+          "max_abs_pcm16": 11695.0,
+          "full_scale_samples": 0
+        }
+      ],
+      "max_pcm16_difference": 14142.0,
+      "rms_pcm16_difference": 1569.4958054236758,
+      "source_analysis": {
+        "voiced_motif_points": 4,
+        "pitch_contour_used": true,
+        "hook_candidates": 6,
+        "hook_bounds": "Padded, unverified adjacent-word estimates"
+      },
+      "development_notes": 6
+    },
+    {
+      "id": "commons-laughter",
+      "timing": {
+        "events": 436,
+        "maximum_frame_error": 0
+      },
+      "audio": [
+        {
+          "file": "candidate.experimental.bass.wav",
+          "sha256": "3258e785224606654d37fab8ac0c59d8587df06ad2decd07722ee62d94998371",
+          "frames": 1582452,
+          "max_abs_pcm16": 4925.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.experimental.drums.wav",
+          "sha256": "9049922e5c90115a6569c82b86e2a3a91463169c752be63e5f54ac57b0ccaf68",
+          "frames": 1582452,
+          "max_abs_pcm16": 6084.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.experimental.lead.wav",
+          "sha256": "b55f2899dafdf480cb324f3dbe5f210bbd4e9d33550e8ad5069d176780a674c7",
+          "frames": 1582452,
+          "max_abs_pcm16": 0.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.experimental.piano.wav",
+          "sha256": "f6c73e3f66a9f6783adc1f0c3458bc6c348bc0a56971eef7b4293ccf93c09458",
+          "frames": 1582452,
+          "max_abs_pcm16": 6240.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.experimental.vocals.wav",
+          "sha256": "71b27a90fca0c7218d5d03f4bc40cb58f1da08dd7b87debdee6b6cedded3073d",
+          "frames": 1582452,
+          "max_abs_pcm16": 11695.0,
+          "full_scale_samples": 0
+        },
+        {
+          "file": "candidate.experimental.wav",
+          "sha256": "4817d70299827fba30edd40db49fbdafb12d09322cb1cefc5ed58ab9e734df6e",
+          "frames": 1582452,
+          "max_abs_pcm16": 11695.0,
+          "full_scale_samples": 0
+        }
+      ],
+      "max_pcm16_difference": 13586.0,
+      "rms_pcm16_difference": 1708.0381032052892,
+      "source_analysis": {
+        "voiced_motif_points": 2,
+        "pitch_contour_used": false,
+        "hook_candidates": 0,
+        "hook_bounds": "No word hook: use intact source only"
+      },
+      "development_notes": 6
+    }
+  ],
+  "trial_file_sha256": {
+    "commons-laughter/candidate.complete.json": "0143797fa31b146716308ce96c86b86bca97ad44d71481a12d4a5c25fefde4af",
+    "commons-laughter/candidate.experimental.bass.wav": "3258e785224606654d37fab8ac0c59d8587df06ad2decd07722ee62d94998371",
+    "commons-laughter/candidate.experimental.drums.wav": "9049922e5c90115a6569c82b86e2a3a91463169c752be63e5f54ac57b0ccaf68",
+    "commons-laughter/candidate.experimental.events.tsv": "ee8e88b47117c50a0bb6994ad5cee1583aa91c8c5b02590615bede33079fc70f",
+    "commons-laughter/candidate.experimental.lead.wav": "b55f2899dafdf480cb324f3dbe5f210bbd4e9d33550e8ad5069d176780a674c7",
+    "commons-laughter/candidate.experimental.piano.wav": "f6c73e3f66a9f6783adc1f0c3458bc6c348bc0a56971eef7b4293ccf93c09458",
+    "commons-laughter/candidate.experimental.report.json": "d80dcbe6fa4d0b76b241c5a7d63767dd8dc487604c7dacd67a754e1d8b31b60b",
+    "commons-laughter/candidate.experimental.score.json": "06550fec7e47eb2345a126bce3c11383a140a9e77f718dcefbd35facc102b49c",
+    "commons-laughter/candidate.experimental.vocals.wav": "71b27a90fca0c7218d5d03f4bc40cb58f1da08dd7b87debdee6b6cedded3073d",
+    "commons-laughter/candidate.experimental.wav": "4817d70299827fba30edd40db49fbdafb12d09322cb1cefc5ed58ab9e734df6e",
+    "commons-laughter/candidate.plan.json": "dfee96b3675c1921d0611727f54c1f0643d9945b257cdca748eb3fb17988974a",
+    "commons-laughter/development.json": "f1fff509295fc6d4e68069ed30b1973b6c4ac615ab0846377ad6c249c2731416",
+    "commons-laughter/replay.complete.json": "697066281fd8ec2f069344e81140b56cea6875193a14931d0787c9ac14affca6",
+    "commons-laughter/replay.experimental.events.tsv": "ee8e88b47117c50a0bb6994ad5cee1583aa91c8c5b02590615bede33079fc70f",
+    "commons-laughter/replay.experimental.report.json": "d80dcbe6fa4d0b76b241c5a7d63767dd8dc487604c7dacd67a754e1d8b31b60b",
+    "commons-laughter/replay.experimental.score.json": "06550fec7e47eb2345a126bce3c11383a140a9e77f718dcefbd35facc102b49c",
+    "commons-laughter/replay.experimental.wav": "4817d70299827fba30edd40db49fbdafb12d09322cb1cefc5ed58ab9e734df6e",
+    "listener/ATTRIBUTION.txt": "8a47e0e77994eb21af9cbca91ca5386e329fe05d50c6288554cf1b0c98e60aff",
+    "listener/commons-laughter-1.wav": "7769b322a356505a719abd10803240f384167c711306756878820c215d31759e",
+    "listener/commons-laughter-2.wav": "00d7762a3ebb2eb733158ac678a2b62439874539f8133c83aac8ff11c838217b",
+    "listener/commons-laughter-source.wav": "23fef28e98c10cd2c6704b53de1b35a3087622d7007a74db2685e90c1a8b793c",
+    "listener/index.html": "c6e08309aacd4555d51a0af5c0dee6e41b109852dd24e648bb5c16076b846716",
+    "listener/ls-2035-147960-0013-1.wav": "a3216c8c3b01a3524ac21c24d57f9ccb3662efd3dd1118f56de465e4c8c42b38",
+    "listener/ls-2035-147960-0013-2.wav": "80e216c00e037008a61074cf091a78cae4fa8c4000362b5360127a3feb69e91c",
+    "listener/ls-2035-147960-0013-source.wav": "34f8bd54fce8acc9047e742f4246451e23ccfad02057042b6ebf78033d09052a",
+    "listener/ls-2086-149220-0047-1.wav": "49bdbcac4c622aa5ca7e840dc3299afb54e597db595b692e8aac93eaf594fc2d",
+    "listener/ls-2086-149220-0047-2.wav": "597ba68147898b0e7dd56856b4bba5aa5f69e3f99bb943c0946ae23b06002efc",
+    "listener/ls-2086-149220-0047-source.wav": "3f0f6fc7e6b89bbef1a49a3296dc652f3a21c9a99112409a883c69a3549040e6",
+    "listener/ls-2277-149896-0026-1.wav": "27ebe4ff8ea1abfad7a146d1a54283afa975368b38b3d1c26a9f6c40e10fae0c",
+    "listener/ls-2277-149896-0026-2.wav": "6f5d7a648d2ca5f45723952bdb53f232c79ab3e7ff94c999926751f92c791c5a",
+    "listener/ls-2277-149896-0026-source.wav": "8231f9ec1b79bef07f3f2bbd5548c7ab8fff79a1e0bb774eab08507104be2381",
+    "listener/owner-speech-1.wav": "ab80b5f74f5bcca1bc77784f5c1c6d3c00ca109e32f5c4c8029340e719b36d1f",
+    "listener/owner-speech-2.wav": "05c37f53941621d55724b1b78b463cd6eeb47f5df8581bd39af00a12e5c7a1d3",
+    "listener/owner-speech-source.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "listener/packet.json": "4b3e5fd3de7591557d8d256123a8dd4ab9ada7c07bbb2de189410094910aca7d",
+    "listener/review.css": "f5bee9232c7ce28bb825441ff85b87ee489f9609f26ac445ddea9d51c2c87459",
+    "listener/review.js": "81939c9a0344ebc36ae5431c4aedcbd3e8153be9fd79e5b321c8312a41e49d80",
+    "listening-results.json": "3828cabcdad788f3384747e48be5befc1aab90f7a909db2b06097173e373dbc3",
+    "ls-2035-147960-0013/candidate.complete.json": "37d727fd64ab5b753ee293be63bd284ad7ba270ff3a421d45fcec1b71c1e06ab",
+    "ls-2035-147960-0013/candidate.experimental.bass.wav": "e54eba79bd12718efc3d5e5c692070e4063acffc2b6d469c000aeea618571897",
+    "ls-2035-147960-0013/candidate.experimental.drums.wav": "c5a81615650d17d89b7a98a140774c1ccc99ad32a2243c66f6cdd008cfbcba89",
+    "ls-2035-147960-0013/candidate.experimental.events.tsv": "dd3f7a5a06a2e1d2ee76a9d3b2fb7191e8a248a751259fdd854f8edd3d5f5199",
+    "ls-2035-147960-0013/candidate.experimental.lead.wav": "b55f2899dafdf480cb324f3dbe5f210bbd4e9d33550e8ad5069d176780a674c7",
+    "ls-2035-147960-0013/candidate.experimental.piano.wav": "8e5b7d46c2552a152915a687245e9459beaba0fe3cfcbae8134d279a80de9d4b",
+    "ls-2035-147960-0013/candidate.experimental.report.json": "d8644aa5d403e4aaba607b19c482ba6a481c7787fdc231dba0886653e345cdd8",
+    "ls-2035-147960-0013/candidate.experimental.score.json": "e95b71814f8ef3427a6acd5392aceb201c4ea92d2e1ca2561e0fb59aa96ad454",
+    "ls-2035-147960-0013/candidate.experimental.vocals.wav": "8b18cef3d76d61c8f0d46716639f107085e3e2bc0a7b9b293d73d421f1db4eeb",
+    "ls-2035-147960-0013/candidate.experimental.wav": "6148fa9ffea05adedd1795b772407650a32f6cf3d0027a267129402961f1b151",
+    "ls-2035-147960-0013/candidate.plan.json": "de4739b14f0200017cf1373b2589e52e94852c1d5d9d012a2a16a0d1db91d193",
+    "ls-2035-147960-0013/development.json": "441dfd1476044393a0df4df407eb91441f07fbff3b38fd0f9ee84fc90873c300",
+    "ls-2035-147960-0013/replay.complete.json": "4ac7b531e7ae0f93e4eb14863443b0b95c35d3fd2a6073bcec2d921456fed4c1",
+    "ls-2035-147960-0013/replay.experimental.events.tsv": "dd3f7a5a06a2e1d2ee76a9d3b2fb7191e8a248a751259fdd854f8edd3d5f5199",
+    "ls-2035-147960-0013/replay.experimental.report.json": "d8644aa5d403e4aaba607b19c482ba6a481c7787fdc231dba0886653e345cdd8",
+    "ls-2035-147960-0013/replay.experimental.score.json": "e95b71814f8ef3427a6acd5392aceb201c4ea92d2e1ca2561e0fb59aa96ad454",
+    "ls-2035-147960-0013/replay.experimental.wav": "6148fa9ffea05adedd1795b772407650a32f6cf3d0027a267129402961f1b151",
+    "ls-2086-149220-0047/candidate.complete.json": "cf4cdb447656f2c607d03d934d6963ba5fea2d3f913e0d7068f0fd7656fbfbb8",
+    "ls-2086-149220-0047/candidate.hiphop.bass.wav": "7b40b08b9136d21809f78d1fdeb5ab8f79c52c86389523e3adbdc9100e1f65c7",
+    "ls-2086-149220-0047/candidate.hiphop.drums.wav": "c5bf1b2e49b1cabb62c9cd6db6f76e9d74c4b782426a28f08c08f67edafa0715",
+    "ls-2086-149220-0047/candidate.hiphop.events.tsv": "0754e63dd777c199db2b926c4a12bd1ea2e5448a85f618f9b85466ec918da09d",
+    "ls-2086-149220-0047/candidate.hiphop.piano.wav": "b3a1d0514d2403df47fbe1a92a4cd4654a17a58640c4b082f8d92e892c9cebbf",
+    "ls-2086-149220-0047/candidate.hiphop.report.json": "26846d31456b0571fc4776c467d18ff5440f1df5bb79609d82eaf952a75caaf1",
+    "ls-2086-149220-0047/candidate.hiphop.score.json": "8d96b12a9f644170e578b71ba17bd2a353aa2d780c583fed7f849cfb2b5f5a27",
+    "ls-2086-149220-0047/candidate.hiphop.vocals.wav": "49427b6ad2b26b889f9c6f3e988d69a01293b844824ea102e33d831c38045d34",
+    "ls-2086-149220-0047/candidate.hiphop.wav": "44521c4f192959ef2cf6566aa2fd9d50f859ff46698e6d63cac571509c9f7481",
+    "ls-2086-149220-0047/candidate.plan.json": "80254edeee4a5c4926c8a86a0a955da800485d6e8c5875d093d097fa49a15f32",
+    "ls-2086-149220-0047/development.json": "1cd4107c4dcf20755cd46dd307ff80e341c674052e8f73164f880380522b4848",
+    "ls-2086-149220-0047/replay.complete.json": "5f524958501d35307a635281fe54f15c95ab2b57b5a98eef8c2fb38d59dc8155",
+    "ls-2086-149220-0047/replay.hiphop.events.tsv": "0754e63dd777c199db2b926c4a12bd1ea2e5448a85f618f9b85466ec918da09d",
+    "ls-2086-149220-0047/replay.hiphop.report.json": "26846d31456b0571fc4776c467d18ff5440f1df5bb79609d82eaf952a75caaf1",
+    "ls-2086-149220-0047/replay.hiphop.score.json": "8d96b12a9f644170e578b71ba17bd2a353aa2d780c583fed7f849cfb2b5f5a27",
+    "ls-2086-149220-0047/replay.hiphop.wav": "44521c4f192959ef2cf6566aa2fd9d50f859ff46698e6d63cac571509c9f7481",
+    "ls-2277-149896-0026/candidate.complete.json": "c242a6b374a2d5c790810781aa35c74dec54a4d94753e7c63feae2b9e3c156a0",
+    "ls-2277-149896-0026/candidate.plan.json": "7179fc3906f47fdcc047d0855c61478d75ff5614fb024555792da77e4a9430e2",
+    "ls-2277-149896-0026/candidate.reggae.bass.wav": "696a293b28e103945dae161da6a4bd31b1e8432b6f100b953a7fc1e023b081bc",
+    "ls-2277-149896-0026/candidate.reggae.drums.wav": "27d9f062dd4b1633a81ef53f036c06d0928bea77979e26b2240350805d7c7d59",
+    "ls-2277-149896-0026/candidate.reggae.events.tsv": "b37f7b5602a7bd763ab0b03e970eeac497d9691b128ab27cfe34cb7dabc3ec14",
+    "ls-2277-149896-0026/candidate.reggae.organ.wav": "df9617c6ead1969d60479aabb18c0e84a0a9ec5a141cf8f176e232a49d6b2a0f",
+    "ls-2277-149896-0026/candidate.reggae.piano.wav": "2cd3e90c08a318fb441b9c392178455965e981d927c8b26a5e1f93bb4f76a391",
+    "ls-2277-149896-0026/candidate.reggae.report.json": "57fd8ba1d296549952f95218702c114a1798cf60fdd27a1d9ae4d7ab80d9fb97",
+    "ls-2277-149896-0026/candidate.reggae.score.json": "52263d11e3311f6f76174f58e2c397ef6871ce0eae25e14b993f2920ca95ecd9",
+    "ls-2277-149896-0026/candidate.reggae.vocals.wav": "557978e7d10cbb5252ea21bf4b47a8581abd6576ebef19698aaebbcd28cee261",
+    "ls-2277-149896-0026/candidate.reggae.wav": "cee3afd63efd42b38bc804099ad1c950d77aa1129d71798df5adbc54e71921c2",
+    "ls-2277-149896-0026/development.json": "b7495cbe172860cfeaf29717d0df82780def6d8ec4d18295e06fbdcae5601dd9",
+    "ls-2277-149896-0026/replay.complete.json": "481cbca76805e3c4b67bf6452fd4d974c729757e5806270be387fa6c7496e11a",
+    "ls-2277-149896-0026/replay.reggae.events.tsv": "b37f7b5602a7bd763ab0b03e970eeac497d9691b128ab27cfe34cb7dabc3ec14",
+    "ls-2277-149896-0026/replay.reggae.report.json": "57fd8ba1d296549952f95218702c114a1798cf60fdd27a1d9ae4d7ab80d9fb97",
+    "ls-2277-149896-0026/replay.reggae.score.json": "52263d11e3311f6f76174f58e2c397ef6871ce0eae25e14b993f2920ca95ecd9",
+    "ls-2277-149896-0026/replay.reggae.wav": "cee3afd63efd42b38bc804099ad1c950d77aa1129d71798df5adbc54e71921c2",
+    "organizer-key.json": "6d17e0930a43ead0960c191ec146c9822d32621dc05d2ccf32cd2748398c4329",
+    "owner-speech/candidate.complete.json": "bc407783c1097721424cebccedd631ee73f2867a89b4dda38b1701a19a9f9e7f",
+    "owner-speech/candidate.hiphop.bass.wav": "f25484a1dd719a39d81e210b011c2c5c391b0203cccb3bc75ebe67dce17d9e4b",
+    "owner-speech/candidate.hiphop.drums.wav": "743ab1a8be495bf3e536b8ea16d7541f144b566362fa8575debe1e2bf5c3b42e",
+    "owner-speech/candidate.hiphop.events.tsv": "5be92e695912bffbfe4223b5b3bb8493daafec3ec563aced48cd8130c9301700",
+    "owner-speech/candidate.hiphop.piano.wav": "e7f183911be31504b29f450badc9f75a65b49a5c163c94442223eab1c4ce39eb",
+    "owner-speech/candidate.hiphop.report.json": "a88c5a6a7b8cc3e7c76d09fe3cab2fed93c7d83bdcf92a3f97fbc86f984e4201",
+    "owner-speech/candidate.hiphop.score.json": "1fa4b40b39c1b2514642d5ee95dc9aec6ab92b1f77df0b566b04d31b4da0e2bd",
+    "owner-speech/candidate.hiphop.vocals.wav": "084faa8b4fb9ff2b9a3e89310b5049d63852093c8a840cde84de5d75f01df17c",
+    "owner-speech/candidate.hiphop.wav": "c316dfe6bbd418e09fc910cd745a2f3be5ec27fed93f1dadb45e8f3cbe2e4ec1",
+    "owner-speech/candidate.plan.json": "1b0c37e0f7828285024c1249cc8109320de8d5eaca8770d662a6f07e01ed2fb7",
+    "owner-speech/development.json": "76f93c5b2258fc142438b165d9724f5d2367e56556bd374af1cd14f24e5c0812",
+    "owner-speech/replay.complete.json": "98bb203dcf1740524bfe4b9a1527b498ad3c34df2f79e772ef4a0726399cdcf9",
+    "owner-speech/replay.hiphop.events.tsv": "5be92e695912bffbfe4223b5b3bb8493daafec3ec563aced48cd8130c9301700",
+    "owner-speech/replay.hiphop.report.json": "a88c5a6a7b8cc3e7c76d09fe3cab2fed93c7d83bdcf92a3f97fbc86f984e4201",
+    "owner-speech/replay.hiphop.score.json": "1fa4b40b39c1b2514642d5ee95dc9aec6ab92b1f77df0b566b04d31b4da0e2bd",
+    "owner-speech/replay.hiphop.wav": "c316dfe6bbd418e09fc910cd745a2f3be5ec27fed93f1dadb45e8f3cbe2e4ec1",
+    "report.json": "a6ee84f9b6603874fd98e4a8ba30e964b80567baf01d1e00ca1c50a94931be53"
+  },
+  "preserved_sha256": {
+    "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+    "jamloom_improvisation_learning_addendum_v1.md": "5bfe33e037f4d0aff6910ba3dbc55ce090e96b0ee772fdc834d94a12aa29941d",
+    "build-mac/jamloom_remix": "bd20df4c419cacc20603d48c7e96caa7db34f78385333bb77966bd3a03e22309",
+    "build-mac/libjamloom_core.a": "e0d0fe4f6f0e737ff972bde66a0a94c4794d904f4287e5ba3ec0fb63c5960a86"
+  }
+}

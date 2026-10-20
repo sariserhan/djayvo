@@ -1,0 +1,1654 @@
+{
+  "version": "1.0-q0-development",
+  "technical": "PASS",
+  "human_quality": "NOT RUN",
+  "packet_id": "31e681c3d69e5d85f161c55531a041785fd1a3d194d72f91011ebef26368ed6c",
+  "records": [
+    {
+      "id": "owner-speech",
+      "style": "hiphop",
+      "arms": {
+        "A": {
+          "raw": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-performance-20261020/owner-speech/E.hiphop.wav",
+            "sha256": "209a148f3d78b67ca7274bf67f599f9d809815f5b5337a496c8db69f8a2d6994",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.40087890625,
+            "peak_dbfs": -7.939735903687048,
+            "rms_dbfs_left": -28.000558348339748,
+            "rms_dbfs_right": -28.4266317638166,
+            "dc_left": 1.2655099232991536e-05,
+            "dc_right": 1.2188514073689778e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435740,
+            "max_adjacent_sample_step": 0.305389404296875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "raw_loudness": {
+            "input_i": "-23.91",
+            "input_tp": "-7.88",
+            "input_lra": "14.70",
+            "input_thresh": "-35.79"
+          },
+          "matched_loudness": {
+            "input_i": "-23.05",
+            "input_tp": "-6.97",
+            "input_lra": "14.70",
+            "input_thresh": "-34.99"
+          }
+        },
+        "B": {
+          "raw": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/owner-speech/candidate.hiphop.wav",
+            "sha256": "c316dfe6bbd418e09fc910cd745a2f3be5ec27fed93f1dadb45e8f3cbe2e4ec1",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.3568115234375,
+            "peak_dbfs": -8.951222565486383,
+            "rms_dbfs_left": -29.119322025472542,
+            "rms_dbfs_right": -29.54715987374525,
+            "dc_left": 1.741756995519002e-05,
+            "dc_right": 1.5897432963053387e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 8,
+            "last_nonzero_frame": 1386498,
+            "max_adjacent_sample_step": 0.27215576171875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "raw_loudness": {
+            "input_i": "-25.68",
+            "input_tp": "-8.89",
+            "input_lra": "6.90",
+            "input_thresh": "-36.78"
+          },
+          "matched_loudness": {
+            "input_i": "-23.01",
+            "input_tp": "-6.21",
+            "input_lra": "7.00",
+            "input_thresh": "-34.25"
+          }
+        }
+      },
+      "target_lufs": -23.0,
+      "control_timing": {
+        "events": 278,
+        "maximum_frame_error": 0
+      },
+      "candidate_timing": {
+        "events": 284,
+        "maximum_frame_error": 0
+      },
+      "candidate_metrics": {
+        "tempo_milli_bpm": 96000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 27,
+            "velocity_values": [
+              38,
+              50,
+              61,
+              72,
+              74,
+              76,
+              77,
+              79,
+              80,
+              81,
+              82,
+              83,
+              87,
+              88,
+              90
+            ],
+            "duration_values_ticks": [
+              65,
+              97,
+              227,
+              518,
+              622,
+              648,
+              778,
+              829,
+              1037,
+              1555
+            ],
+            "sixteenth_grid_attacks": 12,
+            "notes_per_bar": {
+              "0": 4,
+              "3": 8,
+              "7": 8,
+              "9": 6,
+              "11": 1
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 25,
+            "velocity_values": [
+              61,
+              63,
+              72,
+              73,
+              75,
+              77,
+              86,
+              87,
+              89,
+              91
+            ],
+            "duration_values_ticks": [
+              221,
+              240,
+              386,
+              607
+            ],
+            "sixteenth_grid_attacks": 22,
+            "notes_per_bar": {
+              "0": 1,
+              "3": 4,
+              "4": 3,
+              "5": 2,
+              "6": 1,
+              "7": 4,
+              "8": 3,
+              "9": 4,
+              "10": 2,
+              "11": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 90,
+            "velocity_values": [
+              23,
+              28,
+              30,
+              31,
+              33,
+              35,
+              39,
+              41,
+              51,
+              56,
+              59,
+              60,
+              62,
+              64,
+              73,
+              74,
+              78,
+              88,
+              89,
+              90,
+              91,
+              92,
+              93,
+              94
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 47,
+            "notes_per_bar": {
+              "0": 3,
+              "1": 2,
+              "2": 2,
+              "3": 13,
+              "4": 13,
+              "5": 7,
+              "6": 3,
+              "7": 13,
+              "8": 13,
+              "9": 13,
+              "10": 7,
+              "11": 1
+            }
+          }
+        ],
+        "bass_attacks": 25,
+        "bass_exactly_on_kick": 22,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          462,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          462,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          462,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 3840,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 23040,
+            "clip_id": 1,
+            "gain_db": -7,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          },
+          {
+            "start_tick": 34560,
+            "clip_id": 1,
+            "gain_db": -7,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 59520,
+            "end_frame": 91200,
+            "confidence": 0.9922762513160706
+          }
+        ],
+        "sections": [
+          {
+            "name": "teaser",
+            "start_bar": 0,
+            "bars": 1
+          },
+          {
+            "name": "source_call",
+            "start_bar": 1,
+            "bars": 2
+          },
+          {
+            "name": "statement",
+            "start_bar": 3,
+            "bars": 3
+          },
+          {
+            "name": "contrast",
+            "start_bar": 6,
+            "bars": 1
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 7,
+            "bars": 4
+          },
+          {
+            "name": "resolution",
+            "start_bar": 11,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      },
+      "control_plan_sha256": "f9ad3a4d6765914fe6c79ee1df813b9e9204650ce1ac870049f93c65f7f5ea08",
+      "word_estimates_sha256": "af00f9254b991d9278c93884cd1113f599e1295f547d3fb33b4f018edb5c12a1",
+      "source_derived_motif": {
+        "voiced_motif_points": 6,
+        "pitch_contour_used": true,
+        "hook_candidates": 4,
+        "hook_bounds": "Padded, unverified adjacent-word estimates"
+      },
+      "replay_512_113": "PASS"
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "style": "reggae",
+      "arms": {
+        "A": {
+          "raw": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-performance-20261020/ls-2277-149896-0026/E.reggae.wav",
+            "sha256": "4a43f6c9c68a22fd82b44df8743ca8591f05f52aa1717456ff2c2c908904b1a3",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.4007568359375,
+            "peak_dbfs": -7.942381218048309,
+            "rms_dbfs_left": -27.508826130619923,
+            "rms_dbfs_right": -28.18001563945097,
+            "dc_left": 5.805055300394694e-06,
+            "dc_right": 6.0651302337646485e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 2,
+            "last_nonzero_frame": 1401722,
+            "max_adjacent_sample_step": 0.089019775390625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "raw_loudness": {
+            "input_i": "-24.38",
+            "input_tp": "-7.94",
+            "input_lra": "6.00",
+            "input_thresh": "-34.89"
+          },
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-6.56",
+            "input_lra": "6.00",
+            "input_thresh": "-33.51"
+          }
+        },
+        "B": {
+          "raw": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2277-149896-0026/candidate.reggae.wav",
+            "sha256": "cee3afd63efd42b38bc804099ad1c950d77aa1129d71798df5adbc54e71921c2",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.356903076171875,
+            "peak_dbfs": -8.948994176290922,
+            "rms_dbfs_left": -30.466029431738015,
+            "rms_dbfs_right": -31.129761439618466,
+            "dc_left": 1.9248723983764647e-06,
+            "dc_right": 2.1135608355204262e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 1,
+            "last_nonzero_frame": 1355605,
+            "max_adjacent_sample_step": 0.079833984375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "raw_loudness": {
+            "input_i": "-25.75",
+            "input_tp": "-8.94",
+            "input_lra": "7.80",
+            "input_thresh": "-36.82"
+          },
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-6.19",
+            "input_lra": "7.80",
+            "input_thresh": "-34.09"
+          }
+        }
+      },
+      "target_lufs": -23.0,
+      "control_timing": {
+        "events": 216,
+        "maximum_frame_error": 0
+      },
+      "candidate_timing": {
+        "events": 166,
+        "maximum_frame_error": 0
+      },
+      "candidate_metrics": {
+        "tempo_milli_bpm": 80000,
+        "tracks": [
+          {
+            "instrument": "organ",
+            "notes": 28,
+            "velocity_values": [
+              38,
+              45,
+              50,
+              54,
+              63,
+              65,
+              67,
+              68,
+              69,
+              72,
+              73,
+              74,
+              75,
+              77,
+              78,
+              81,
+              83,
+              84,
+              85,
+              88
+            ],
+            "duration_values_ticks": [
+              51,
+              76,
+              178,
+              180,
+              382,
+              408,
+              434,
+              484,
+              490,
+              510,
+              612,
+              653,
+              816,
+              1224
+            ],
+            "sixteenth_grid_attacks": 11,
+            "notes_per_bar": {
+              "0": 4,
+              "3": 8,
+              "6": 8,
+              "8": 7,
+              "9": 1
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 8,
+            "velocity_values": [
+              61,
+              73,
+              77,
+              86,
+              89
+            ],
+            "duration_values_ticks": [
+              204,
+              357,
+              561
+            ],
+            "sixteenth_grid_attacks": 6,
+            "notes_per_bar": {
+              "0": 1,
+              "3": 2,
+              "5": 1,
+              "6": 1,
+              "7": 2,
+              "9": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 47,
+            "velocity_values": [
+              30,
+              31,
+              35,
+              39,
+              41,
+              43,
+              46,
+              59,
+              60,
+              64,
+              73,
+              76,
+              89,
+              90,
+              93,
+              94
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 21,
+            "notes_per_bar": {
+              "0": 2,
+              "1": 2,
+              "2": 2,
+              "3": 10,
+              "4": 4,
+              "5": 2,
+              "6": 10,
+              "7": 10,
+              "8": 4,
+              "9": 1
+            }
+          }
+        ],
+        "bass_attacks": 8,
+        "bass_exactly_on_kick": 6,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          1446,
+          0,
+          0,
+          0,
+          1446,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 3840,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 19200,
+            "clip_id": 1,
+            "gain_db": -7,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 236160,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 181440,
+            "end_frame": 210240,
+            "confidence": 0.9980165958404541
+          }
+        ],
+        "sections": [
+          {
+            "name": "teaser",
+            "start_bar": 0,
+            "bars": 1
+          },
+          {
+            "name": "source_call",
+            "start_bar": 1,
+            "bars": 2
+          },
+          {
+            "name": "statement",
+            "start_bar": 3,
+            "bars": 2
+          },
+          {
+            "name": "contrast",
+            "start_bar": 5,
+            "bars": 1
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 6,
+            "bars": 3
+          },
+          {
+            "name": "resolution",
+            "start_bar": 9,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      },
+      "control_plan_sha256": "cd1d2b615bbc2485547da20571dce66ebd1a14ff20e728af20a007683f919ba4",
+      "word_estimates_sha256": "ccce7b74617ed66688aeefe4365846b7c0194beaa14e8b7b0a9b651c4cbd2949",
+      "source_derived_motif": {
+        "voiced_motif_points": 5,
+        "pitch_contour_used": true,
+        "hook_candidates": 11,
+        "hook_bounds": "Padded, unverified adjacent-word estimates"
+      },
+      "replay_512_113": "PASS"
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "style": "experimental",
+      "arms": {
+        "B": {
+          "raw": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2035-147960-0013/candidate.experimental.wav",
+            "sha256": "6148fa9ffea05adedd1795b772407650a32f6cf3d0027a267129402961f1b151",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.356903076171875,
+            "peak_dbfs": -8.948994176290922,
+            "rms_dbfs_left": -28.39817309290389,
+            "rms_dbfs_right": -28.918705247646365,
+            "dc_left": 2.031612459157529e-05,
+            "dc_right": 1.9705985935414628e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 7,
+            "last_nonzero_frame": 1448676,
+            "max_adjacent_sample_step": 0.070953369140625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "raw_loudness": {
+            "input_i": "-26.87",
+            "input_tp": "-8.94",
+            "input_lra": "5.40",
+            "input_thresh": "-37.58"
+          },
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-5.07",
+            "input_lra": "5.40",
+            "input_thresh": "-33.71"
+          }
+        },
+        "A": {
+          "raw": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-performance-20261020/ls-2035-147960-0013/E.experimental.wav",
+            "sha256": "28a7c88fe1eabe6c4bb8974812fccf6a993c617499d320a5dce72d154610e391",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -27.07715048094222,
+            "rms_dbfs_right": -27.598768828114018,
+            "dc_left": 9.049425816657867e-06,
+            "dc_right": 9.767849716966138e-06,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 3,
+            "last_nonzero_frame": 1485200,
+            "max_adjacent_sample_step": 0.079620361328125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "raw_loudness": {
+            "input_i": "-25.70",
+            "input_tp": "-7.94",
+            "input_lra": "6.70",
+            "input_thresh": "-36.39"
+          },
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-5.24",
+            "input_lra": "6.70",
+            "input_thresh": "-33.70"
+          }
+        }
+      },
+      "target_lufs": -23.0,
+      "control_timing": {
+        "events": 328,
+        "maximum_frame_error": 0
+      },
+      "candidate_timing": {
+        "events": 432,
+        "maximum_frame_error": 0
+      },
+      "candidate_metrics": {
+        "tempo_milli_bpm": 124000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 33,
+            "velocity_values": [
+              38,
+              46,
+              48,
+              61,
+              70,
+              72,
+              73,
+              75,
+              76,
+              77,
+              78,
+              79,
+              80,
+              81,
+              82,
+              83,
+              84,
+              86
+            ],
+            "duration_values_ticks": [
+              94,
+              158,
+              220,
+              346,
+              410,
+              472,
+              605,
+              630,
+              756,
+              806,
+              1008,
+              1512
+            ],
+            "sixteenth_grid_attacks": 16,
+            "notes_per_bar": {
+              "0": 4,
+              "3": 8,
+              "5": 6,
+              "9": 8,
+              "11": 6,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 39,
+            "velocity_values": [
+              61,
+              63,
+              72,
+              73,
+              75,
+              77,
+              86,
+              87,
+              89,
+              91
+            ],
+            "duration_values_ticks": [
+              228,
+              399,
+              627
+            ],
+            "sixteenth_grid_attacks": 34,
+            "notes_per_bar": {
+              "0": 1,
+              "3": 4,
+              "4": 3,
+              "5": 4,
+              "6": 3,
+              "7": 2,
+              "8": 1,
+              "9": 4,
+              "10": 3,
+              "11": 4,
+              "12": 3,
+              "13": 4,
+              "14": 2,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 144,
+            "velocity_values": [
+              25,
+              30,
+              31,
+              33,
+              35,
+              37,
+              39,
+              41,
+              55,
+              59,
+              60,
+              62,
+              64,
+              73,
+              74,
+              88,
+              89,
+              90,
+              91,
+              92,
+              93,
+              94
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 113,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 2,
+              "2": 2,
+              "3": 13,
+              "4": 13,
+              "5": 13,
+              "6": 13,
+              "7": 7,
+              "8": 4,
+              "9": 13,
+              "10": 13,
+              "11": 13,
+              "12": 13,
+              "13": 13,
+              "14": 7,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "lead",
+            "notes": 0,
+            "velocity_values": [],
+            "duration_values_ticks": [],
+            "sixteenth_grid_attacks": 0,
+            "notes_per_bar": {}
+          }
+        ],
+        "bass_attacks": 39,
+        "bass_exactly_on_kick": 34,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          472,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          472,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          472,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          472,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          472,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 3840,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 30720,
+            "clip_id": 1,
+            "gain_db": -7,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          },
+          {
+            "start_tick": 42240,
+            "clip_id": 1,
+            "gain_db": -7,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 128400,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 59520,
+            "end_frame": 86400,
+            "confidence": 0.9689323902130127
+          }
+        ],
+        "sections": [
+          {
+            "name": "teaser",
+            "start_bar": 0,
+            "bars": 1
+          },
+          {
+            "name": "source_call",
+            "start_bar": 1,
+            "bars": 2
+          },
+          {
+            "name": "statement",
+            "start_bar": 3,
+            "bars": 5
+          },
+          {
+            "name": "contrast",
+            "start_bar": 8,
+            "bars": 1
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 9,
+            "bars": 6
+          },
+          {
+            "name": "resolution",
+            "start_bar": 15,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      },
+      "control_plan_sha256": "ea18106190e076192c3758cd4bfe848171d575bb05217f0169646bacd36ded62",
+      "word_estimates_sha256": "89f3306ab34827a6064e9b9a14a7187b63cc33c3fbce29344b1ba9ef9f74cdeb",
+      "source_derived_motif": {
+        "voiced_motif_points": 6,
+        "pitch_contour_used": true,
+        "hook_candidates": 3,
+        "hook_bounds": "Padded, unverified adjacent-word estimates"
+      },
+      "replay_512_113": "PASS"
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "style": "hiphop",
+      "arms": {
+        "A": {
+          "raw": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-performance-20261020/ls-2086-149220-0047/E.hiphop.wav",
+            "sha256": "a9e3b5e5219e3c5d28cb020bc1dc0b9eab514afbb663b427d070e8baa9078c34",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.400482177734375,
+            "peak_dbfs": -7.94833612262302,
+            "rms_dbfs_left": -28.199009048098297,
+            "rms_dbfs_right": -28.840697286220482,
+            "dc_left": 1.976412534713745e-05,
+            "dc_right": 1.9404113292694093e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 11,
+            "last_nonzero_frame": 1435774,
+            "max_adjacent_sample_step": 0.07379150390625,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "raw_loudness": {
+            "input_i": "-25.15",
+            "input_tp": "-7.95",
+            "input_lra": "9.50",
+            "input_thresh": "-36.73"
+          },
+          "matched_loudness": {
+            "input_i": "-23.01",
+            "input_tp": "-5.80",
+            "input_lra": "9.50",
+            "input_thresh": "-34.59"
+          }
+        },
+        "B": {
+          "raw": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2086-149220-0047/candidate.hiphop.wav",
+            "sha256": "44521c4f192959ef2cf6566aa2fd9d50f859ff46698e6d63cac571509c9f7481",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1536000,
+            "duration_seconds": 32.0,
+            "peak_linear": 0.356903076171875,
+            "peak_dbfs": -8.948994176290922,
+            "rms_dbfs_left": -29.347332825581613,
+            "rms_dbfs_right": -29.849929392004128,
+            "dc_left": 2.1044214566548665e-05,
+            "dc_right": 1.939286788304647e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 7,
+            "last_nonzero_frame": 1386716,
+            "max_adjacent_sample_step": 0.054168701171875,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "raw_loudness": {
+            "input_i": "-26.73",
+            "input_tp": "-8.95",
+            "input_lra": "6.00",
+            "input_thresh": "-37.90"
+          },
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-5.22",
+            "input_lra": "6.00",
+            "input_thresh": "-34.19"
+          }
+        }
+      },
+      "target_lufs": -23.0,
+      "control_timing": {
+        "events": 282,
+        "maximum_frame_error": 0
+      },
+      "candidate_timing": {
+        "events": 284,
+        "maximum_frame_error": 0
+      },
+      "candidate_metrics": {
+        "tempo_milli_bpm": 96000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 27,
+            "velocity_values": [
+              38,
+              50,
+              61,
+              71,
+              73,
+              75,
+              77,
+              79,
+              81,
+              83,
+              84,
+              85,
+              86
+            ],
+            "duration_values_ticks": [
+              97,
+              162,
+              227,
+              292,
+              356,
+              518,
+              600,
+              622,
+              648,
+              778,
+              829,
+              1037,
+              1555
+            ],
+            "sixteenth_grid_attacks": 10,
+            "notes_per_bar": {
+              "0": 4,
+              "3": 8,
+              "7": 8,
+              "9": 5,
+              "10": 1,
+              "11": 1
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 25,
+            "velocity_values": [
+              61,
+              63,
+              72,
+              73,
+              75,
+              77,
+              86,
+              87,
+              89,
+              91
+            ],
+            "duration_values_ticks": [
+              221,
+              240,
+              386,
+              607
+            ],
+            "sixteenth_grid_attacks": 22,
+            "notes_per_bar": {
+              "0": 1,
+              "3": 4,
+              "4": 3,
+              "5": 2,
+              "6": 1,
+              "7": 4,
+              "8": 3,
+              "9": 4,
+              "10": 2,
+              "11": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 90,
+            "velocity_values": [
+              23,
+              28,
+              30,
+              31,
+              33,
+              35,
+              39,
+              41,
+              51,
+              56,
+              59,
+              60,
+              62,
+              64,
+              73,
+              74,
+              78,
+              88,
+              89,
+              90,
+              91,
+              92,
+              93,
+              94
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 47,
+            "notes_per_bar": {
+              "0": 3,
+              "1": 2,
+              "2": 2,
+              "3": 13,
+              "4": 13,
+              "5": 7,
+              "6": 3,
+              "7": 13,
+              "8": 13,
+              "9": 13,
+              "10": 7,
+              "11": 1
+            }
+          }
+        ],
+        "bass_attacks": 25,
+        "bass_exactly_on_kick": 22,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          462,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          462,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          462,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 3840,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          },
+          {
+            "start_tick": 23040,
+            "clip_id": 1,
+            "gain_db": -7,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          },
+          {
+            "start_tick": 34560,
+            "clip_id": 1,
+            "gain_db": -7,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": false
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 188160,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 128640,
+            "end_frame": 167040,
+            "confidence": 0.9964985847473145
+          }
+        ],
+        "sections": [
+          {
+            "name": "teaser",
+            "start_bar": 0,
+            "bars": 1
+          },
+          {
+            "name": "source_call",
+            "start_bar": 1,
+            "bars": 2
+          },
+          {
+            "name": "statement",
+            "start_bar": 3,
+            "bars": 3
+          },
+          {
+            "name": "contrast",
+            "start_bar": 6,
+            "bars": 1
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 7,
+            "bars": 4
+          },
+          {
+            "name": "resolution",
+            "start_bar": 11,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      },
+      "control_plan_sha256": "824244c7cd8a5b28b0eb5bfdc6bf3656073bda8528949193ea7d4970561007bf",
+      "word_estimates_sha256": "6590d5478c17888f8ce2e3254bbd531266ad839c72211b0256c549d3a6511258",
+      "source_derived_motif": {
+        "voiced_motif_points": 4,
+        "pitch_contour_used": true,
+        "hook_candidates": 6,
+        "hook_bounds": "Padded, unverified adjacent-word estimates"
+      },
+      "replay_512_113": "PASS"
+    },
+    {
+      "id": "commons-laughter",
+      "style": "experimental",
+      "arms": {
+        "B": {
+          "raw": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/commons-laughter/candidate.experimental.wav",
+            "sha256": "4817d70299827fba30edd40db49fbdafb12d09322cb1cefc5ed58ab9e734df6e",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.356903076171875,
+            "peak_dbfs": -8.948994176290922,
+            "rms_dbfs_left": -28.586281418917906,
+            "rms_dbfs_right": -29.061043946184057,
+            "dc_left": 3.070903955044924e-05,
+            "dc_right": 2.9132645529591893e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 7,
+            "last_nonzero_frame": 1448677,
+            "max_adjacent_sample_step": 0.165618896484375,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "raw_loudness": {
+            "input_i": "-26.92",
+            "input_tp": "-8.95",
+            "input_lra": "5.00",
+            "input_thresh": "-37.72"
+          },
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-5.03",
+            "input_lra": "5.10",
+            "input_thresh": "-33.82"
+          }
+        },
+        "A": {
+          "raw": {
+            "file": "/Users/serhansari/Documents/projects/djayvo/renders/q0-performance-20261020/commons-laughter/E.experimental.wav",
+            "sha256": "0e2dd434bf4fa6a8004391008a67a00fe743b37d25d6e9c48254c36c0620da7e",
+            "format": "PCM16 stereo little-endian",
+            "sample_rate": 48000,
+            "frames": 1582452,
+            "duration_seconds": 32.96775,
+            "peak_linear": 0.40045166015625,
+            "peak_dbfs": -7.9489980307687444,
+            "rms_dbfs_left": -27.078444920308456,
+            "rms_dbfs_right": -27.602933320250628,
+            "dc_left": 1.5043356388880595e-05,
+            "dc_right": 1.573877329074397e-05,
+            "full_scale_samples": 0,
+            "first_nonzero_frame": 4,
+            "last_nonzero_frame": 1485200,
+            "max_adjacent_sample_step": 0.185821533203125,
+            "last_100ms_peak": 0.0,
+            "loudness_method": "unweighted RMS; not integrated LUFS"
+          },
+          "raw_loudness": {
+            "input_i": "-25.43",
+            "input_tp": "-7.95",
+            "input_lra": "3.80",
+            "input_thresh": "-36.31"
+          },
+          "matched_loudness": {
+            "input_i": "-23.01",
+            "input_tp": "-5.52",
+            "input_lra": "3.80",
+            "input_thresh": "-33.88"
+          }
+        }
+      },
+      "target_lufs": -23.0,
+      "control_timing": {
+        "events": 328,
+        "maximum_frame_error": 0
+      },
+      "candidate_timing": {
+        "events": 436,
+        "maximum_frame_error": 0
+      },
+      "candidate_metrics": {
+        "tempo_milli_bpm": 124000,
+        "tracks": [
+          {
+            "instrument": "piano",
+            "notes": 35,
+            "velocity_values": [
+              38,
+              46,
+              48,
+              57,
+              61,
+              67,
+              69,
+              73,
+              74,
+              75,
+              76,
+              79,
+              81,
+              83,
+              84,
+              85,
+              86
+            ],
+            "duration_values_ticks": [
+              158,
+              346,
+              410,
+              605,
+              630,
+              756,
+              806,
+              1512
+            ],
+            "sixteenth_grid_attacks": 13,
+            "notes_per_bar": {
+              "0": 4,
+              "3": 8,
+              "5": 6,
+              "9": 8,
+              "11": 8,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "bass",
+            "notes": 39,
+            "velocity_values": [
+              61,
+              63,
+              72,
+              73,
+              75,
+              77,
+              86,
+              87,
+              89,
+              91
+            ],
+            "duration_values_ticks": [
+              228,
+              399,
+              627
+            ],
+            "sixteenth_grid_attacks": 34,
+            "notes_per_bar": {
+              "0": 1,
+              "3": 4,
+              "4": 3,
+              "5": 4,
+              "6": 3,
+              "7": 2,
+              "8": 1,
+              "9": 4,
+              "10": 3,
+              "11": 4,
+              "12": 3,
+              "13": 4,
+              "14": 2,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "drums",
+            "notes": 144,
+            "velocity_values": [
+              25,
+              30,
+              31,
+              33,
+              35,
+              37,
+              39,
+              41,
+              55,
+              59,
+              60,
+              62,
+              64,
+              73,
+              74,
+              88,
+              89,
+              90,
+              91,
+              92,
+              93,
+              94
+            ],
+            "duration_values_ticks": [
+              120,
+              240
+            ],
+            "sixteenth_grid_attacks": 113,
+            "notes_per_bar": {
+              "0": 4,
+              "1": 2,
+              "2": 2,
+              "3": 13,
+              "4": 13,
+              "5": 13,
+              "6": 13,
+              "7": 7,
+              "8": 4,
+              "9": 13,
+              "10": 13,
+              "11": 13,
+              "12": 13,
+              "13": 13,
+              "14": 7,
+              "15": 1
+            }
+          },
+          {
+            "instrument": "lead",
+            "notes": 0,
+            "velocity_values": [],
+            "duration_values_ticks": [],
+            "sixteenth_grid_attacks": 0,
+            "notes_per_bar": {}
+          }
+        ],
+        "bass_attacks": 39,
+        "bass_exactly_on_kick": 34,
+        "nearest_kick_distances_ticks": [
+          0,
+          0,
+          0,
+          0,
+          472,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          472,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          472,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          472,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          472,
+          0,
+          0,
+          0
+        ],
+        "voice_events": [
+          {
+            "start_tick": 3840,
+            "clip_id": 0,
+            "gain_db": -4,
+            "rate": 1,
+            "reverse": false,
+            "pan": 0,
+            "clean": true
+          }
+        ],
+        "voice_clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 144000,
+            "confidence": 1
+          }
+        ],
+        "sections": [
+          {
+            "name": "teaser",
+            "start_bar": 0,
+            "bars": 1
+          },
+          {
+            "name": "source_call",
+            "start_bar": 1,
+            "bars": 2
+          },
+          {
+            "name": "statement",
+            "start_bar": 3,
+            "bars": 5
+          },
+          {
+            "name": "contrast",
+            "start_bar": 8,
+            "bars": 1
+          },
+          {
+            "name": "developed_return",
+            "start_bar": 9,
+            "bars": 6
+          },
+          {
+            "name": "resolution",
+            "start_bar": 15,
+            "bars": 1
+          }
+        ],
+        "interpretation": "Descriptors, not scores of musicality or proof that syncopation is wrong."
+      },
+      "control_plan_sha256": "1b103f862d47d583b86576693d5b6b02858ec6e3e1a14bd4adfa2c60835d922d",
+      "word_estimates_sha256": null,
+      "source_derived_motif": {
+        "voiced_motif_points": 2,
+        "pitch_contour_used": false,
+        "hook_candidates": 0,
+        "hook_bounds": "No word hook: use intact source only"
+      },
+      "replay_512_113": "PASS"
+    }
+  ],
+  "renderer_sha256": "751aa6e6c08bdd5f9c9478253055ff43735c6e8fce0f0ae5b30962a4451e98fc",
+  "control": "Frozen Q0 E; same instruments, renderer, tempo, duration and mix settings",
+  "production_changed": false,
+  "source_sha256": {
+    "q0_development.py": "bf6d62b7bd4fa020b7721e0744537c27aed264d01607342f605f15c454059a12",
+    "q0_authored_score.py": "204f144e2f598fc6f9f2b145799259665a0a24808782b3c70993b9aaa4063839",
+    "q0_performance.py": "47fcda92bbf20ce0e794b3e2e365514e4c5d60bf20f09a8fd514c484821faf79",
+    "q0_expression.py": "55a5cc6353c6265226ed8daca21dc12d83092a4684e38fdb1efd5a8d6d279c33"
+  }
+}

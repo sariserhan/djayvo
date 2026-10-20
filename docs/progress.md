@@ -1617,3 +1617,38 @@ independent panel and physical target checks. The actual musical success
 criterion remains unmet; implementation/report delivery does not close it.
 No new musical experiment, training, spending, publication or production
 promotion. [Consolidated final review](q0-completion-review.md#final-local-checkpoint--2026-10-20).
+
+## Q0 composition development after the full-packet rejection
+
+**FAIL:** The owner rejected 4207/4209, naming Candidate 1 as worst and saying
+the other instrument sounds were okay but creativity was poor across the music.
+Exact feedback is bound to the frozen packet; no numeric scores are inferred.
+
+The next intervention therefore keeps the instrument palette, native renderer,
+mix settings, tempo and duration fixed. `q0_development.py` uses the source's
+rhythm and uncertain relative pitch for a recurring motif, an intact clean
+call, padded adjacent-word hooks from existing offline estimates, related
+harmonic returns, rhythmic diminution, intentional rests and a cadence.
+Laughter uses the explicitly authored pitch fallback and no guessed word hook.
+No training, new inference or production code changes.
+
+**PASS:** Five corrected pairs and stems, five exact block-size replays,
+3,034 exact control/candidate event rows, 28 independently decoded masters/stems
+without clipping, limiting or nonfinite samples. Ten matched mixes measure
+−23.05 to −23.00 LUFS, maximum true peak −5.03 dBTP. Seventeen expanded tests
+pass. A first draft crowded out developed notes; the corrected version reserves
+hook/answer space and retains all six developed notes for every source.
+
+**PASS:** Actual new Node/WASM and Linux ARM64 execution produce five
+byte-identical WAVs relative to Mac, with 1,602 exact candidate event rows.
+Three Linux native test groups pass. The local container/VM were stopped again,
+without changing the active Docker context. Chromium/WebKit review controls
+pass. **PARTIAL:** Physical browser playback and overall Q0.
+**NOT RUN:** New listening preference, independent panel and physical
+Intel/iPhone/AudioWorklet execution. No professional quality claim or promotion.
+
+Preliminary CC0 drum/bass research was stopped before building/integrating it
+after the owner clarified that composition was the priority. Its downloaded
+source cache stays ignored; no new samples enter these renders.
+[New private comparison](http://127.0.0.1:4211/);
+[full report, evidence, source files and reproducible commands](q0-source-development.md).

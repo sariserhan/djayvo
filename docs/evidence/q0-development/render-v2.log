@@ -1,0 +1,31 @@
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/owner-speech/candidate.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/owner-speech/candidate.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/owner-speech/replay.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/owner-speech/replay.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2277-149896-0026/candidate.reggae.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2277-149896-0026/candidate.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2277-149896-0026/replay.reggae.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2277-149896-0026/replay.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2035-147960-0013/candidate.experimental.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2035-147960-0013/candidate.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2035-147960-0013/replay.experimental.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2035-147960-0013/replay.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2086-149220-0047/candidate.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2086-149220-0047/candidate.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2086-149220-0047/replay.hiphop.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/ls-2086-149220-0047/replay.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/commons-laughter/candidate.experimental.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/commons-laughter/candidate.complete.json
+Listening/recognizability: NOT RUN
+PASS: /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/commons-laughter/replay.experimental.wav
+PASS: complete export /Users/serhansari/Documents/projects/djayvo/renders/q0-development-v2-20261020/commons-laughter/replay.complete.json
+Listening/recognizability: NOT RUN
+PASS: five composition-only comparisons, stems, exact replays and matched listening WAVs; quality NOT RUN

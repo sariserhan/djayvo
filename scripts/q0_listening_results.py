@@ -91,7 +91,7 @@ def summarize(trial, responses):
         source, arms = row['id'], set(row['arms'])
         listeners = {r for r, s, _ in accepted if s == source}
         coverage[source] = {'reviewer_codes': len(listeners),
-            'complete_five_condition_codes': sum(all((r, source, a) in accepted for a in arms) for r in listeners)}
+            'complete_all_condition_codes': sum(all((r, source, a) in accepted for a in arms) for r in listeners)}
     for arm in sorted({a for _, a in codes.values()}-{'A'}):
         by_source = {}
         for (reviewer, source, candidate), scores in accepted.items():

@@ -2,6 +2,13 @@
 
 2026-10-20. **Implementation: PARTIAL. Current owner listening acceptance: FAIL.**
 
+**Latest musical intervention:** [Source-motif development](q0-source-development.md).
+The full 4207/4209 packet is now rejected for poor creativity; Candidate 1 was
+worst and the other instrument sounds were acceptable to the owner. Five new
+composition-only pairs preserve the instruments, renderer, tempo and mixing.
+3,034 control/candidate event rows, exact replays and five byte-identical
+Mac/Linux/WASM candidate WAVs pass. New listening acceptance remains NOT RUN.
+
 **Final local checkpoint:** [Consolidated review](q0-completion-review.md#final-local-checkpoint--2026-10-20).
 Seventeen tests and corrected listening forms pass; original native/WASM/Linux
 evidence is reverified. Corrected pages at 4209/4210 use unchanged audio.
