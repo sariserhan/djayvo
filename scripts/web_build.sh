@@ -20,7 +20,11 @@ if ! command -v cmake >/dev/null 2>&1; then
   PATH="$PWD/build-web-tools/cmake-env/bin:$PATH"; export PATH
 fi
 if [ ! -f "$EMSDK_PATH/emsdk_env.sh" ]; then
-  git clone --depth 1 --branch 6.0.1 https://github.com/emscripten-core/emsdk.git "$EMSDK_PATH"
+  # Vercel can restore nested dependency caches without the SDK sources.
+  mkdir -p "$EMSDK_PATH"
+  git -C "$EMSDK_PATH" init --quiet
+  git -C "$EMSDK_PATH" fetch --depth 1 https://github.com/emscripten-core/emsdk.git tag 6.0.1
+  git -C "$EMSDK_PATH" checkout --detach FETCH_HEAD
 fi
 if [ ! -f "$EMSDK_PATH/.emscripten" ]; then
   "$EMSDK_PATH/emsdk" install 6.0.1
