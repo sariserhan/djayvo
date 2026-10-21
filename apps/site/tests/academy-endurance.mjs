@@ -10,7 +10,7 @@ const audible=process.env.JAMLOOM_AUDIBLE_TEST==='1';
 const selected=process.env.JAMLOOM_BROWSER;assert.ok(!selected||['chromium','webkit'].includes(selected),'Unsupported JAMLOOM_BROWSER');
 const url=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(url.hostname,'127.0.0.1');
 const admin=createPool(url.toString()),name='jamloom_academy_endurance_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
-const mode=process.argv[2]??'all';assert.ok(['all','short','hour'].includes(mode));
+const mode=process.argv[2]??'all';assert.ok(['all','short','half','hour'].includes(mode));
 const port=process.env.JAMLOOM_ENDURANCE_PORT??(mode==='short'?'4226':'4225');
 const pool=createPool(url.toString()),folder=await mkdtemp(join(tmpdir(),'jamloom-academy-')),base='http://127.0.0.1:'+port;
 const evidence=new URL(audible?'../../../docs/evidence/academy-endurance/':'../../../docs/evidence/academy-endurance-silent/',import.meta.url),audio=new URL(audible?'../../../build-academy-endurance/':'../../../build-academy-endurance-silent/',import.meta.url);
@@ -67,7 +67,7 @@ try{
     const started=Date.now(),task=lesson.tasks.at(-1);let side=0,nextTransition=1;
     // Exercise every transition early enough to retain recovery and finalization time at the actual 60-minute cap.
     const interval=Math.floor((seconds-20)/(task.transitions+1));let nextLog=60;
-    while((Date.now()-started)/1000<seconds+(seconds===3600?305:65)){
+    while((Date.now()-started)/1000<seconds+305){
      const elapsed=(Date.now()-started)/1000;
      if(elapsed>=nextLog){await checkSilent();console.log(label,Math.round(elapsed)+'s',await page.locator('#set-record-status').innerText());nextLog+=60;}
      if(elapsed>=interval*nextTransition&&nextTransition<=task.transitions){
@@ -103,8 +103,9 @@ try{
    }catch(error){console.error(name,JSON.stringify(cases),error);await page.screenshot({path:new URL(name+'-'+mode+'-failure.png',evidence).pathname,fullPage:false}).catch(()=>{});throw error;}finally{await context.close();}
   }
   try{const lanes=await Promise.allSettled([
-   ...(mode!=='short'?[lane([['performance-set',3600]])]:[]),
-   ...(mode!=='hour'?[lane([['elementary-assessment',120],['intermediate-set',300],['advanced-set',300],['performance-set',1800]])]:[])
+   ...(['all','hour'].includes(mode)?[lane([['performance-set',3600]])]:[]),
+   ...(['all','short'].includes(mode)?[lane([['elementary-assessment',120],['intermediate-set',300],['advanced-set',300],['performance-set',1800]])]:[]),
+   ...(mode==='half'?[lane([['performance-set',1800]])]:[])
   ]);for(const result of lanes)if(result.status==='rejected')throw result.reason;
   }finally{await browser.close();}
  }

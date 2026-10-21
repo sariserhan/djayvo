@@ -1,37 +1,33 @@
 # Academy continuation — 2026-10-21
 
-Latest production `5374350` deployed READY; full hosted CI matrix PASS.
-Human checks explicitly deferred by owner.
-The owner added permanent Aurowall test/live keys as Vercel secrets; a hosted
-read-only audit confirms both account identities. Live tax address is missing
-and owner will complete it. Shared-account unrelated reversals are now safely
-ignored; 22 Academy/admin tests PASS. Catalog/endpoints are being prepared while
-sales remain closed. The superseded endurance run was stopped after its captured
-short-duration failure; completed evidence is retained and the corrected run continues.
-Separate test/live catalogs and webhook secrets are configured and both permanent
-endpoints enabled after deployed signature checks. Actual hosted test purchase and
-refund PASS in production; owner sandbox access revoked after refund and generation
-credits unchanged. Live tax settings are active and the course uses self-study
-training classification; active registrations reported zero, so merchant review
-and real payment acceptance remain separate gates. Delaying account-attempt creation reproduced an
-assessment timing conflict; sampling now starts after the request finishes, and
-both browsers pass the delayed-network regression with muted output.
-Notification retry scheduling is configured for the existing Pro project, every
-five minutes, using the existing leased endpoint and a new private CRON_SECRET.
-Deployed schedule and invocation checks PASS; authenticated calls return 200 with
-zero messages, unauthenticated calls return 401. The outbox was empty at setup.
+The verified owner preview is deployed at `5374350` behind coming-soon; full
+hosted CI passes. Owner access preserves prerequisites and creates no payment
+receipt. Chromium/WebKit access, account isolation, axe and delayed-network checks
+pass. Assessment sampling now begins after server attempt creation.
 
-Owner preview access is implemented with the existing verified active administrator
-check; prerequisites and financial receipts stay separate. 21 Academy/admin tests
-PASS; Chromium/WebKit owner/member/prerequisite and rendered accessibility checks
-PASS, with no purchase rows created. Deployment pending. Silent real-time endurance is running. Both browser preflights confirm the capture
-branch retains signal while final speaker samples are zero. Permanent billing
-configuration and the owner mini-set observation are pending. Earlier interrupted
-captures remain preserved; no current endurance PASS until final decoding.
-The current run exposed a short 298.28-second Chromium take after a five-minute
-wall-clock wait. Test stopping now follows measured frames. The production hour
-cap gets a bounded five-minute wall-clock grace period; a reproduced failing
-regression and 19 focused tests validate the fix. Real-duration rerun pending.
+Permanent Aurowall test/live keys, separate catalogs and enabled webhooks are
+configured. Actual hosted test purchase/refund passes with access withdrawn and
+no generation-credit change. A real live non-payment event reached production;
+no live charge was created. Live tax settings are active; zero active registrations
+were reported, leaving merchant obligations and real payment acceptance open.
+The existing notification retry endpoint runs every five minutes; authentication
+and scheduled invocation pass. The empty outbox does not prove mailbox delivery.
+
+Corrected silent endurance runs are in progress. Two/five-minute captures pass;
+WebKit's full thirty-minute assessment also passes. Final Chromium thirty-minute
+and both sixty-minute captures and decoding remain pending. Chromium's initial
+thirty-minute lane was superseded after clock lag exceeded the old harness
+timeout; the replacement uses five minutes of bounded grace and still requires
+the full measured duration. Both browser
+preflights prove captured signal and zero final speaker samples. The harness now
+waits for measured audio duration, and the recorder keeps its 3,600-frame-second
+cap and 96 MiB limit with a bounded five-minute wall-clock grace period. Nineteen
+focused tests pass. Superseded failures and interrupted recordings are retained.
+
+Human checks are explicitly deferred by the owner. The earlier first-lesson
+acceptance remains qualitative; mini-set, musical judgment, manual accessibility,
+physical output/cue and venue checks are not passed. Sales remain closed.
+[Current release evidence](academy-release-checks.md).
 
 # Academy remaining gates — 2026-10-21
 

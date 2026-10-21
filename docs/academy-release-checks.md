@@ -10,7 +10,7 @@ checks for now.”** That deferral does not manufacture course or hardware resul
 | Course implementation | PASS | 20 runnable lessons, six stages, prerequisites and recorded assessments. [Completion report](academy-completion.md). |
 | Owner preview | PASS | Verified active owner can access course lessons without a fabricated purchase; prerequisites remain enforced. Ordinary/unverified/suspended users denied. Chromium/WebKit UI, axe and delayed-network sync checks pass. [Evidence](evidence/academy-owner-preview/browser.json). |
 | First lesson acceptance | PASS, qualitative | Owner: “yes it is good enough for now.” Dia / MacBook Air / external speaker. No numeric scores, unaided timing or mini-set outcome supplied. |
-| Hosted CI | PASS | Full `5374350` website, Academy/admin, Linux/macOS sanitizer ON/OFF and PCM comparison matrix passes. [Receipt](evidence/academy-release/current-ci.json). [Current run](https://github.com/sariserhan/jamloom/actions/runs/39635511331). |
+| Hosted CI | PASS | Full `5374350` website, Academy/admin, Linux/macOS sanitizer ON/OFF and PCM comparison matrix passes. [Receipt](evidence/academy-release/current-ci.json). [Runtime run](https://github.com/sariserhan/jamloom/actions/runs/39635511331). The later operations/evidence commit `0cc730d` also passes the full matrix: [latest receipt](evidence/academy-release/latest-ci.json), [run](https://github.com/sariserhan/jamloom/actions/runs/39636464448). |
 | Production schema / recovery | PASS | Reviewed additive migrations 0006–0012 applied transactionally; all 12 hashes verified. Private pre-migration backup actually restored in disposable PostgreSQL 18. [Migration](evidence/academy-release/migrations.json), [schema](evidence/academy-release/schema-audit.json), [restore](evidence/academy-release/restore.json). No production rollback or role/ACL recovery claimed. |
 | Production deployment | PASS | `5374350`, `dpl_66PEqiWaMuJo4RGMkcfrv2kDozBM`, [Jamloom](https://www.jamloom.com). Coming-soon and private/no-store boundaries remain intact. [Receipt](evidence/academy-release/current-deployment.json), [build](evidence/academy-release/current-deploy.log). |
 | Silent recording endurance | PARTIAL, running | Corrected real-time two/five-minute checks pass; final thirty/sixty-minute runs are still running. Output-isolation preflight proves captured signal with zero final speaker samples. [Isolation](evidence/academy-endurance-silent/speaker-isolation.json). Physical output is NOT RUN. |
@@ -117,7 +117,7 @@ JAMLOOM_TEST_DATABASE_URL=postgresql://serhansari@127.0.0.1:5432/postgres npm --
 ```
 
 `JAMLOOM_BROWSER=chromium` or `webkit` selects one browser; `short` runs the
-2/5/5/30-minute lane and `hour` the automatic cap. `JAMLOOM_ENDURANCE_PORT` and
+2/5/5/30-minute lane, `half` reruns only thirty minutes, and `hour` the automatic cap. `JAMLOOM_ENDURANCE_PORT` and
 `JAMLOOM_SITE_TEST_ROOT` isolate concurrent builds. Raw captures remain ignored.
 Set `JAMLOOM_AUDIBLE_TEST=1` only for a separately arranged physical listening
 window. No such window is active now.
