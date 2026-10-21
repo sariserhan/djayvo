@@ -72,22 +72,14 @@ were reported, leaving merchant obligations and real payment acceptance open.
 The existing notification retry endpoint runs every five minutes; authentication
 and scheduled invocation pass. The empty outbox does not prove mailbox delivery.
 
-Corrected silent endurance runs are in progress. Two/five-minute captures pass;
-WebKit's full thirty-minute assessment also passes. Final Chromium thirty-minute
-and both sixty-minute captures and decoding remain pending. Chromium's initial
-thirty-minute lane was superseded after clock lag exceeded the old harness
-timeout; the replacement uses five minutes of bounded grace and still requires
-the full measured duration. The first WebKit hour reached 3,600 measured
-seconds but exposed a harness race during automatic finalization; both hour
-checks are running with that test fixed. No completed-hour claim. The Chromium
-thirty-minute replacement completed but reported two clock gaps (FAIL), despite
-clean decoded PCM. Its raw file and failed receipt are retained. After the hour
-runs finish, repeat that case alone; the default runner now serializes recordings
-to avoid artificial concurrent-browser load. The gap cause is not yet confirmed. Both browser
-preflights prove captured signal and zero final speaker samples. The harness now
-waits for measured audio duration, and the recorder keeps its 3,600-frame-second
-cap and 96 MiB limit with a bounded five-minute wall-clock grace period. Nineteen
-focused tests pass. Superseded failures and interrupted recordings are retained.
+Silent endurance: two/five-minute captures and WebKit's full thirty/sixty-minute
+recordings pass. WebKit automatically stopped at 3,600 measured seconds, with
+zero clock gaps and a saved assessment. Chromium's concurrent thirty-minute and
+hour captures report two and four clock gaps respectively (FAIL); all evidence
+is retained. An isolated Chromium thirty-minute diagnostic is now running.
+The default runner serializes recordings and correctly waits for automatic
+finalization. Gap cause is not confirmed. The recorder's 3,600-second frame cap,
+96 MiB limit and five-minute wall grace remain unchanged; speaker output is muted.
 
 Human checks are explicitly deferred by the owner. The earlier first-lesson
 acceptance remains qualitative; mini-set, musical judgment, manual accessibility,

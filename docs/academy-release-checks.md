@@ -13,7 +13,7 @@ checks for now.”** That deferral does not manufacture course or hardware resul
 | Hosted CI | PASS | Full `5374350` website, Academy/admin, Linux/macOS sanitizer ON/OFF and PCM comparison matrix passes. [Receipt](evidence/academy-release/current-ci.json). [Runtime run](https://github.com/sariserhan/jamloom/actions/runs/39635511331). The later operations/evidence commit `0cc730d` also passes the full matrix: [latest receipt](evidence/academy-release/latest-ci.json), [run](https://github.com/sariserhan/jamloom/actions/runs/39636464448). |
 | Production schema / recovery | PASS | Reviewed additive migrations 0006–0012 applied transactionally; all 12 hashes verified. Private pre-migration backup actually restored in disposable PostgreSQL 18. [Migration](evidence/academy-release/migrations.json), [schema](evidence/academy-release/schema-audit.json), [restore](evidence/academy-release/restore.json). No production rollback or role/ACL recovery claimed. |
 | Production deployment | PASS | `5374350`, `dpl_66PEqiWaMuJo4RGMkcfrv2kDozBM`, [Jamloom](https://www.jamloom.com). Coming-soon and private/no-store boundaries remain intact. [Receipt](evidence/academy-release/current-deployment.json), [build](evidence/academy-release/current-deploy.log). |
-| Silent recording endurance | PARTIAL, running | Corrected two/five-minute checks and WebKit thirty-minute recording pass. Chromium thirty-minute capture reports two clock gaps (FAIL); isolated repeat is pending after current hour runs. Output-isolation preflight proves captured signal with zero final speaker samples. [Isolation](evidence/academy-endurance-silent/speaker-isolation.json). Physical output is NOT RUN. |
+| Silent recording endurance | PARTIAL, running | Corrected two/five-minute checks and WebKit thirty-minute recording pass. WebKit hour also passes automatic cap and account save. Chromium thirty/hour captures report two/four clock gaps (FAIL); isolated Chromium diagnostic is running. Output-isolation preflight proves captured signal with zero final speaker samples. [Isolation](evidence/academy-endurance-silent/speaker-isolation.json). Physical output is NOT RUN. |
 | Actual Stripe test scenarios | PASS | Hosted Checkout, decline, purchase, refund before/after grant, repurchase, duplicate replay and won/lost disputes through the local HTTP app. [Provider receipts](evidence/academy-provider/provider.json). |
 | Permanent deployed test payments | PASS | Actual test purchase granted one sandbox receipt to the verified owner; the actual refund webhook withdrew access. No CLI forwarding and no generation-credit change. [Hosted receipt](evidence/academy-hosted-provider/provider.json). |
 | Permanent live provider configuration | PASS, no charge | Separate permanent key/catalog/secret and enabled endpoint; live tax settings active. A real Stripe live product-metadata event reached the deployed handler; no purchase rows changed. [Delivery](evidence/academy-release/live-webhook-delivery.json), [configuration](evidence/academy-release/permanent-billing-active.json). This is not a live payment test. |
@@ -52,8 +52,8 @@ The first silent WebKit hour reached 3,600 measured seconds, but the harness
 incorrectly required the Stop button to remain enabled during automatic
 finalization. It closed the page before downloading; this is not a completed-hour
 PASS. The harness now waits for the download after automatic stop and still
-requires the full receipt, zero gaps and saved assessment. Both hour checks are
-restarting on final static assets. The failed report and screenshot are preserved
+requires the full receipt, zero gaps and saved assessment. The corrected WebKit hour passes on final static assets; Chromium completes
+but reports four clock gaps. The failed report and screenshot are preserved
 under `evidence/academy-endurance-silent/superseded/automatic-cap-transition/`.
 
 The completed concurrent Chromium thirty-minute capture reports **two clock gaps**
@@ -61,8 +61,8 @@ and is **FAIL**, even though decoded PCM has no clipping or sustained silence.
 [Failed receipt and PCM measurements](evidence/academy-endurance-silent/failures/chromium-half-gaps/decoded.json)
 remain retained with the raw file. Browser start/stop interference or concurrent
 load is a hypothesis, not a confirmed cause. The default runner now serializes
-browsers and lanes to match one active recording; an isolated repeat follows the
-current hour runs. A later pass will not erase this failure.
+browsers and lanes to match one active recording; an isolated Chromium thirty-minute repeat is running. Test-only worklet messages
+record expected/actual frame numbers without changing the gap counter or audio. A later pass will not erase this failure.
 
 ## Permanent billing
 

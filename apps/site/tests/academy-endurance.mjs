@@ -40,9 +40,18 @@ try{
   async function lane(cases){
    const context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});
    if(!audible)await context.addInitScript(silenceSpeakers);
+   await context.addInitScript(()=>{
+    const Native=AudioWorkletNode;
+    globalThis.AudioWorkletNode=class extends Native{constructor(...args){super(...args);if(args[1]==='jamloom-set-meter')this.port.addEventListener('message',({data})=>{if(data.type==='clock-gap')console.info('ACADEMY_CLOCK_GAP '+JSON.stringify(data));});}};
+   });
    await context.addCookies(cookie.split('; ').map(v=>({name:v.slice(0,v.indexOf('=')),value:v.slice(v.indexOf('=')+1),url:base})));
    await context.route('**/*',r=>new URL(r.request().url()).origin===base||r.request().url().startsWith('blob:')?r.continue():r.abort());
    const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+   await context.route('**/set-meter-worklet.js',async route=>{
+    const response=await route.fetch(),source=await response.text(),needle='this.gaps++;';assert.ok(source.includes(needle));
+    await route.fulfill({response,body:source.replace(needle,"{this.gaps++;this.port.postMessage({type:'clock-gap',expected:this.next,actual:currentFrame,frames:this.frames,rate:sampleRate,gaps:this.gaps});}")});
+   });
+   page.on('console',message=>{if(message.text().startsWith('ACADEMY_CLOCK_GAP ')){const gap={browser:name,at:new Date().toISOString(),...JSON.parse(message.text().slice(18))};results.clock_gaps??=[];if(results.clock_gaps.length<64)results.clock_gaps.push(gap);console.log('CLOCK_GAP',JSON.stringify(gap));}});
    const slider=async(id,value)=>page.locator('#'+id).evaluate((el,v)=>{el.value=String(v);el.dispatchEvent(new Event('input',{bubbles:true}));},value);
    const checkSilent=async()=>{if(audible)return;const outputs=await page.evaluate(()=>globalThis.__jamloomSilentOutput());assert.ok(outputs.length>0);for(const output of outputs){assert.equal(output.gain,0);assert.equal(output.peak,0);}};
    const play=async id=>{if((await page.locator('#play-'+id).innerText()).startsWith('Play'))await page.locator('#play-'+id).click();};
