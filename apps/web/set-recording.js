@@ -33,7 +33,7 @@ export function attachSetRecording({graph,context,mixer,emit}){
    capture.onstop=async()=>{if(version!==token)return;try{
     let deadline;await Promise.race([measured,new Promise((_,reject)=>{deadline=setTimeout(()=>reject(Error('Audio measurement timed out.')),5000);})]).finally(()=>clearTimeout(deadline));
     if(version!==token)return;const blob=new Blob(chunks,{type});if(!blob.size||!summary?.frames)throw Error('No audio captured.');
-    const receipt={version:1,frames:summary.frames,rate:summary.rate,gaps:summary.gaps,seconds:summary.frames/summary.rate,bytes:blob.size,mime:type,sha256:await sha256(await blob.arrayBuffer())};
+    const receipt={version:1,frames:summary.frames,rate:summary.rate,gaps:summary.gaps,clockStalls:summary.clockStalls,seconds:summary.frames/summary.rate,bytes:blob.size,mime:type,sha256:await sha256(await blob.arrayBuffer())};
     if(version!==token)return;disconnect();recorder=null;chunks=[];url=URL.createObjectURL(blob);receiptURL=URL.createObjectURL(new Blob([JSON.stringify(receipt,null,2)],{type:'application/json'}));
     $('set-record-download').href=url;$('set-record-download').download='jamloom-practice-set.'+(type.includes('mp4')?'m4a':'webm');$('set-record-download').hidden=false;$('set-record-details').href=receiptURL;$('set-record-details').hidden=false;
     $('set-record-player').src=url;$('set-record-player').hidden=false;$('set-record-status').textContent=`${receipt.seconds.toFixed(1)} seconds saved in this tab. Download before leaving.${receipt.gaps?' Audio-clock discontinuity detected; this take cannot pass a set assessment.':''}`;emit({action:'recording.complete',receipt});controls();

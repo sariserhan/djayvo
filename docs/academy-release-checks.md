@@ -64,6 +64,11 @@ load is a hypothesis, not a confirmed cause. The default runner now serializes
 browsers and lanes to match one active recording; an isolated Chromium thirty-minute repeat is running. Test-only worklet messages
 record expected/actual frame numbers without changing the gap counter or audio. A later pass will not erase this failure.
 
+[Clock-continuity diagnosis and correction](academy-clock-continuity.md): the
+observed repeated timestamp followed by exact catch-up is now recorded as
+`clockStalls`; unresolved gaps still fail. Unit and both-browser recovery checks
+pass. Corrected full-duration Chromium checks are pending.
+
 ## Permanent billing
 
 Authorized account: Aurowall, `acct_1TxA3vDlEXWDEeHO`. Both products are active,

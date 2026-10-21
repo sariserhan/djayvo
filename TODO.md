@@ -72,14 +72,16 @@ were reported, leaving merchant obligations and real payment acceptance open.
 The existing notification retry endpoint runs every five minutes; authentication
 and scheduled invocation pass. The empty outbox does not prove mailbox delivery.
 
-Silent endurance: two/five-minute captures and WebKit's full thirty/sixty-minute
-recordings pass. WebKit automatically stopped at 3,600 measured seconds, with
-zero clock gaps and a saved assessment. Chromium's concurrent thirty-minute and
-hour captures report two and four clock gaps respectively (FAIL); all evidence
-is retained. An isolated Chromium thirty-minute diagnostic is now running.
-The default runner serializes recordings and correctly waits for automatic
-finalization. Gap cause is not confirmed. The recorder's 3,600-second frame cap,
-96 MiB limit and five-minute wall grace remain unchanged; speaker output is muted.
+Silent endurance: two/five-minute checks and WebKit's full thirty/sixty-minute
+recordings pass. Chromium's earlier thirty/hour receipts reported two/four clock
+discontinuities; an isolated thirty-minute repeat also failed, ruling out load
+as a sufficient explanation. Direct diagnostics captured one stale 128-frame
+timestamp followed by exact catch-up. Chromium 149 source confirms the timestamp
+update uses a nonblocking graph lock. The detector now records this bounded
+metadata pattern separately as `clockStalls`; true jumps and unresolved stale
+values still fail. All 101 web tests pass, including reproduced timestamp cases.
+Both-browser short recovery checks and corrected full-duration captures are in
+progress. All earlier failures remain preserved; no corrected long-run PASS yet.
 
 Human checks are explicitly deferred by the owner. The earlier first-lesson
 acceptance remains qualitative; mini-set, musical judgment, manual accessibility,

@@ -55,7 +55,7 @@ def measure(path):
     assert longest / 48000 < .2, path
     return dict(file=path.name, sha256=digest, seconds=seconds,
                 receipt_seconds=receipt['seconds'], peak_dbfs=float(20*np.log10(peak)),
-                longest_quiet_ms=longest/48, timestamp_gaps=0, technical='PASS',
+                longest_quiet_ms=longest/48, timestamp_gaps=0, clock_stalls=receipt.get('clockStalls', 0), technical='PASS',
                 human_listening='NOT RUN')
 
 

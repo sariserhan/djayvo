@@ -10,7 +10,7 @@ const audible=process.env.JAMLOOM_AUDIBLE_TEST==='1';
 const selected=process.env.JAMLOOM_BROWSER;assert.ok(!selected||['chromium','webkit'].includes(selected),'Unsupported JAMLOOM_BROWSER');
 const url=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(url.hostname,'127.0.0.1');
 const admin=createPool(url.toString()),name='jamloom_academy_endurance_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
-const mode=process.argv[2]??'all';assert.ok(['all','short','half','hour'].includes(mode));
+const mode=process.argv[2]??'all';assert.ok(['all','short','half','hour','recovery'].includes(mode));
 const port=process.env.JAMLOOM_ENDURANCE_PORT??(mode==='short'?'4226':'4225');
 const pool=createPool(url.toString()),folder=await mkdtemp(join(tmpdir(),'jamloom-academy-')),base='http://127.0.0.1:'+port;
 const evidence=new URL(audible?'../../../docs/evidence/academy-endurance/':'../../../docs/evidence/academy-endurance-silent/',import.meta.url),audio=new URL(audible?'../../../build-academy-endurance/':'../../../build-academy-endurance-silent/',import.meta.url);
@@ -40,18 +40,10 @@ try{
   async function lane(cases){
    const context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});
    if(!audible)await context.addInitScript(silenceSpeakers);
-   await context.addInitScript(()=>{
-    const Native=AudioWorkletNode;
-    globalThis.AudioWorkletNode=class extends Native{constructor(...args){super(...args);if(args[1]==='jamloom-set-meter')this.port.addEventListener('message',({data})=>{if(data.type==='clock-gap')console.info('ACADEMY_CLOCK_GAP '+JSON.stringify(data));});}};
-   });
    await context.addCookies(cookie.split('; ').map(v=>({name:v.slice(0,v.indexOf('=')),value:v.slice(v.indexOf('=')+1),url:base})));
    await context.route('**/*',r=>new URL(r.request().url()).origin===base||r.request().url().startsWith('blob:')?r.continue():r.abort());
    const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
-   await context.route('**/set-meter-worklet.js',async route=>{
-    const response=await route.fetch(),source=await response.text(),needle='this.gaps++;';assert.ok(source.includes(needle));
-    await route.fulfill({response,body:source.replace(needle,"{this.gaps++;this.port.postMessage({type:'clock-gap',expected:this.next,actual:currentFrame,frames:this.frames,rate:sampleRate,gaps:this.gaps});}")});
-   });
-   page.on('console',message=>{if(message.text().startsWith('ACADEMY_CLOCK_GAP ')){const gap={browser:name,at:new Date().toISOString(),...JSON.parse(message.text().slice(18))};results.clock_gaps??=[];if(results.clock_gaps.length<64)results.clock_gaps.push(gap);console.log('CLOCK_GAP',JSON.stringify(gap));}});
+   page.on('console',message=>{if(message.text()==='ACADEMY_METER_DIAGNOSTICS_ACTIVE')console.log(name,message.text());if(message.text().startsWith('ACADEMY_CLOCK_GAP ')){const gap={browser:name,at:new Date().toISOString(),...JSON.parse(message.text().slice(18))};results.clock_gaps??=[];if(results.clock_gaps.length<64)results.clock_gaps.push(gap);console.log('CLOCK_GAP',JSON.stringify(gap));}});
    const slider=async(id,value)=>page.locator('#'+id).evaluate((el,v)=>{el.value=String(v);el.dispatchEvent(new Event('input',{bubbles:true}));},value);
    const checkSilent=async()=>{if(audible)return;const outputs=await page.evaluate(()=>globalThis.__jamloomSilentOutput());assert.ok(outputs.length>0);for(const output of outputs){assert.equal(output.gain,0);assert.equal(output.peak,0);}};
    const play=async id=>{if((await page.locator('#play-'+id).innerText()).startsWith('Play'))await page.locator('#play-'+id).click();};
@@ -79,7 +71,8 @@ try{
     while((Date.now()-started)/1000<seconds+305){
      const elapsed=(Date.now()-started)/1000;
      if(elapsed>=nextLog){await checkSilent();console.log(label,Math.round(elapsed)+'s',await page.locator('#set-record-status').innerText());nextLog+=60;}
-     if(elapsed>=interval*nextTransition&&nextTransition<=task.transitions){
+     if(mode==='recovery'){await page.locator('#cue-b').click();await page.waitForTimeout(100);await play('b');row.restarts=(row.restarts??0)+1;}
+     if(mode!=='recovery'&&elapsed>=interval*nextTransition&&nextTransition<=task.transitions){
       for(let n=0;n<=20;n++){await slider('crossfade',side?1-n/20:n/20);await page.waitForTimeout(250);}
       side=1-side;nextTransition++;
      }
@@ -100,10 +93,11 @@ try{
     row.receipt=JSON.parse(await readFile(new URL(label+'.json',audio),'utf8'));row.wall_seconds=(Date.now()-started)/1000;
     await page.screenshot({path:new URL(label+'.png',evidence).pathname,fullPage:false});
     assert.ok(row.receipt.seconds>=Math.min(seconds,3600),label+' short capture');assert.equal(row.receipt.gaps,0,label+' clock discontinuity');
-    await page.locator('#academy-check').click();await page.locator('#academy-check').waitFor({state:'hidden'});
+    if(mode!=='recovery'){await page.locator('#academy-check').click();await page.locator('#academy-check').waitFor({state:'hidden'});
     row.feedback=await page.locator('#academy-feedback').innerText();
     assert.match(await page.locator('#academy-objective').innerText(),/Free Jam/,label+': '+row.feedback);
     await page.waitForFunction(()=>document.querySelector('#academy-save').textContent.includes('saved to your account'),{},{timeout:15000});
+    }else row.scope='Short cue/restart recording regression; not a full-duration assessment';
     row.payload_bytes=payloadBytes;row.status='PASS';row.completed_at=new Date().toISOString();
     await writeFile(new URL(label+'-trace.json',evidence),JSON.stringify(trace)+'\n');
     await writeFile(new URL('progress.json',evidence),JSON.stringify(results,null,2)+'\n');
@@ -117,6 +111,7 @@ try{
    if(['all','hour'].includes(mode))await lane([['performance-set',3600]]);
    if(['all','short'].includes(mode))await lane([['elementary-assessment',120],['intermediate-set',300],['advanced-set',300],['performance-set',1800]]);
    if(mode==='half')await lane([['performance-set',1800]]);
+   if(mode==='recovery')await lane([['performance-set',20]]);
   }finally{await browser.close();}
  }
  results.errors=[];
