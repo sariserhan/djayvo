@@ -22,6 +22,7 @@ Separate $79.99 one-time pass; generation credits and quality hold remain unchan
 | ACA-013 | Shared-frame transport, beat loops/jumps, long recording | Agent | Existing deck engine | NOT RUN | Required engineering before reliable advanced assessments |
 | ACA-014 | Remaining curriculum and beginner mini-set | Agent + learners | ACA-003/013 | NOT RUN | Do not present stage outlines as finished lessons |
 | ACA-015 | Hosted CI, payment sandbox, deployment and release | Agent + owner | Course / provider / human gates | NOT RUN | No deployment or spending; AI musical-quality FAIL and paid generation disabled |
+| ACA-016 | Hardware-style deck presentation with real controls | Agent + owner | Existing console | PARTIAL | [Presentation](docs/deck-presentation.md): browser/build checks pass; owner visual and physical touch review NOT RUN |
 
 Detailed gates, source map, audio and reproduction: [Academy implementation](docs/ACADEMY_IMPLEMENTATION.md).
 Owner feedback: initial preparation FAIL; revised preparation/start PASS; full lesson and enjoyment NOT RUN.

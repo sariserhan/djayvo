@@ -84,7 +84,11 @@ page.on('console', message => {
 });
 context.on('request', request => requests.push({ url: request.url(), method: request.method() }));
 const check = name => { checks.push({ name, status: 'PASS' }); console.log('PASS:', name); };
-const set = async (id, value) => { await page.locator(id).fill(String(value)); await page.locator(id).dispatchEvent('input'); };
+const set = async (id, value) => {
+  const control = page.locator(id), disclosure = control.locator('xpath=ancestor::details');
+  if (await disclosure.count() && !await disclosure.evaluate(e => e.open)) await disclosure.locator('summary').click();
+  await control.fill(String(value)); await control.dispatchEvent('input');
+};
 const peak = () => page.evaluate(() => {
   const data = new Float32Array(window.testMeter.fftSize); window.testMeter.getFloatTimeDomainData(data);
   return Math.max(...data.map(Math.abs));
@@ -113,6 +117,7 @@ const a = tone(220), b = tone(440);
 let signalEvidence, fxEvidence, deckFXEvidence;
 try {
   await page.goto(`${origin}/dj.html`);
+  for (const deck of ['a','b']) await page.locator(`.deck-${deck} .deck-fx-panel summary`).click();
   assert.match(await page.title(), /Jamloom — DJ workspace/);
   await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
   assert.equal(await page.locator('#file-a').isDisabled(), true);

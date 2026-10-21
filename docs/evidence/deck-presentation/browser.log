@@ -1,0 +1,48 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "gate": "PASS",
+    "viewports": [
+      1440,
+      1024,
+      820,
+      768,
+      560,
+      390,
+      320
+    ],
+    "realPlayback": true,
+    "platterFollowsPlayback": true,
+    "channelFaderSilencesAudio": true,
+    "eqAndEchoControls": true,
+    "keyboardJog": true,
+    "reducedMotion": true,
+    "axeViolations": 0,
+    "standaloneStudio": true,
+    "academyThreeChecks": true
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "gate": "PASS",
+    "viewports": [
+      1440,
+      1024,
+      820,
+      768,
+      560,
+      390,
+      320
+    ],
+    "realPlayback": true,
+    "platterFollowsPlayback": true,
+    "channelFaderSilencesAudio": true,
+    "eqAndEchoControls": true,
+    "keyboardJog": true,
+    "reducedMotion": true,
+    "axeViolations": 0,
+    "standaloneStudio": true,
+    "academyThreeChecks": true
+  }
+]

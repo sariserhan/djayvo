@@ -42,6 +42,7 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
   };
   try {
     await page.goto(`${(process.env.JAMLOOM_STUDIO_URL ?? process.env.DJAYVO_STUDIO_URL) || 'http://localhost:3000/studio'}/dj.html`);
+    for (const deck of ['a','b']) await page.locator(`.deck-${deck} .deck-fx-panel summary`).click();
     assert.equal(await page.title(), 'Jamloom — DJ workspace');
     await page.locator('#performance-title').waitFor();
     await page.locator('#music-rights').check();

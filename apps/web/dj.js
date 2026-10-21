@@ -24,6 +24,7 @@ function controls(deck) {
   $(`clear-${id}`).disabled = !deck.url && !deck.loading;
   $(`seek-${id}`).disabled = !ready || !!deck.loading;
   $(`level-${id}`).disabled = !rights.checked;
+  $(`jog-${id}`).closest('.deck').dataset.playing = String(held ? !!deck.sessionPlaying : !audio.paused);
   $(`state-${id}`).textContent = held ? (deck.sessionPlaying ? 'Prepared · playing' : 'Prepared session') : deck.loading ? 'Loading…' : deck.starting ? 'Starting…' : !deck.url ? 'Empty' : audio.ended ? 'Ended' : audio.paused ? 'Ready' : 'Playing';
   $(`seek-${id}`).max = String(deck.duration);
   $(`seek-${id}`).value = String(audio.currentTime || 0);

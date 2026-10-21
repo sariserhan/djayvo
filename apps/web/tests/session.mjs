@@ -119,6 +119,7 @@ try {
   });
   page.on('request', request => requests.push(request.url()));
   await page.goto(`${origin}/dj.html`);
+  for (const deck of ['a','b']) await page.locator(`.deck-${deck} .deck-fx-panel summary`).click();
   assert.match(await page.title(), /Jamloom/);
   await page.locator('#performance-title').waitFor();
   assert.equal(await page.locator('#prepare-a').isDisabled(), true);

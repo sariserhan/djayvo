@@ -4,6 +4,10 @@
 
 Implementation/evidence: `0162db9` (local commit; not pushed or deployed).
 
+Latest presentation update: [physical deck layout](deck-presentation.md), shared
+by Academy and the ordinary DJ workspace. Real controls retained; owner visual
+review and physical touch testing remain NOT RUN.
+
 **Overall PARTIAL; public release NOT RUN.** Fifth feature added while preserving
 the four existing features. Two runnable real-deck exercises (free first crossfade
 and gated gain staging), coaching, voluntary Free Jam, introductory challenge,

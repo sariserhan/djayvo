@@ -1752,3 +1752,18 @@ clipping or exact silence. Cause and physical reliability remain unproven.
 actual hosted Stripe transaction, hosted migration/deployment. No live charge or
 spending. AI quality **FAIL** and paid generation disabled remain unchanged.
 [Implementation, evidence and exact next steps](ACADEMY_IMPLEMENTATION.md).
+
+
+## Physical deck presentation — 2026-10-21
+
+**PASS:** Shared Academy/standalone console now groups real jog platters and
+transport/pads around the existing EQ/channel/crossfade mixer; live playback
+indicators, responsive faders, accessible keyboard operation and reduced motion.
+The coach no longer covers the equipment. Build, 78 web tests, audited bundle and
+Chromium/WebKit layout/audio interaction checks pass. **NOT RUN:** Owner visual
+acceptance, physical touch-device validation and deployment. Existing curriculum,
+recorder-clock and musical-quality gaps remain. [Evidence](deck-presentation.md).
+
+Full DJ regression also PASS in Chromium/WebKit, including synthetic MIDI,
+disconnected playback and hash-verified recorded PCM; physical controller and
+venue certification remain NOT RUN.
