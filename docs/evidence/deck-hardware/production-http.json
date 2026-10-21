@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "origin": "https://www.jamloom.com",
+  "revision": "c308eea8b6794c793e679c6a3c06eec461c7c61b",
+  "deployment": "dpl_2wrBTU3JiKwkFtki5HjeTmpEHaXY",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/account/sign-in",
+      "status": 200,
+      "cache": "private, no-cache, no-store, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/api/aurowall",
+      "status": 503,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/aurowall/000000000000000000000000",
+      "status": 503,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/academy/checkout",
+      "status": 307,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/academy/checkout",
+      "status": 503,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/payments/checkout",
+      "status": 503,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/studio/dj.css",
+      "status": 200,
+      "sourceIdentical": true,
+      "sha256": "d79be794b402b5f35295ce711b1e553575cddd60f59f7572a7d81d069c0d5551"
+    },
+    {
+      "path": "/studio/deck-controls.js",
+      "status": 200,
+      "sourceIdentical": true,
+      "sha256": "89abfceb1e318fbd316f7970703f389a95a173b2db7f3c3955516fbe5e26caa6"
+    }
+  ],
+  "ownerAuthenticatedPlayback": "NOT RUN: no owner browser session used"
+}

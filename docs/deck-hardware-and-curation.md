@@ -1,6 +1,6 @@
 # Hardware deck design and music curation
 
-2026-10-21. Local implementation and browser gates **PASS**; deployment **pending**.
+2026-10-21. Local implementation, browser gates, deployment and full hosted CI **PASS**.
 
 The owner's supplied controller screenshot and [Tribe XR](https://www.tribexr.com/)
 inform the physical materials, not a copied controller layout. Jamloom uses its
@@ -40,7 +40,8 @@ links and rights disclosures remain. No partner audio was copied into Git.
 | Homepage/studio/Academy interactions | PASS | Real play/pause/cue, jog keyboard and pointer drag, fader arrows, expanded/fullscreen enter/exit, Academy shared-clock playback and stop |
 | Layout/accessibility | PASS | Homepage 1440/390/320; studio 1440/820/390/320; axe, hover/focus, reduced motion, simulated touch at 390×844 |
 | Audible output/autoplay | PASS | All test output muted with `silent-audio.mjs` and Chromium mute flag; playback requires explicit action; no user Dia session or OS volume changed |
-| Production deployment and CI | NOT RUN | Pending release; existing coming-soon/sales/quality gates retained |
+| Production deployment | PASS | Runtime `c308eea`; [READY deployment](evidence/deck-hardware/deployment-inspect.log), [exact CSS/JS hashes and public HTTP gates](evidence/deck-hardware/production-http.json); existing coming-soon/sales/quality gates retained |
+| Full hosted CI | PASS | [Run 39676250203](https://github.com/sariserhan/jamloom/actions/runs/39676250203), final runtime `c308eea`: website, Academy, Linux/macOS normal and sanitizer builds, iPhone compilation and cross-platform comparison; [receipt](evidence/deck-hardware/ci.json) |
 | Physical device, manual accessibility and listening | NOT RUN | Human checks deferred; simulated touch is not physical hardware evidence |
 
 Browser checks use the local production build at `http://127.0.0.1:4233`, real
@@ -66,3 +67,9 @@ node --env-file=.env.local --import tsx tests/aurowall-browser.mjs
 
 Source changes are limited to existing deck components/styles, waveform colors,
 the shared Aurowall validator and its existing tests. No schema or billing changes.
+
+Implementation `47da857` and final spacing fix `c308eea` are deployed as
+`dpl_2wrBTU3JiKwkFtki5HjeTmpEHaXY`, aliased to `https://www.jamloom.com`.
+The final spacing fix passed a fresh production build, bundle audit and both
+complete muted browser suites. Site/web unit evidence covers unchanged logic
+from `47da857`. Follow-up release documentation does not change runtime code.

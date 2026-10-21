@@ -7,7 +7,7 @@
 | Original hardware-inspired homepage and full/Academy decks | PASS | Graphite chassis, machined platters, recessed displays; shared controls and responsive layouts preserved |
 | Hover/focus frame feedback, keyboard/touch and reduced motion | PASS | Chromium/WebKit real play, cue, jog, faders, fullscreen, simulated touch and reduced motion; all output muted |
 | Remove religious and unrelated Aurowall categories from Jamloom | PASS | 72 music tracks retained; 22 categories excluded, old direct URLs return 404; bucket untouched |
-| Browser verification and deployment | PARTIAL | Local production build, 35 site/102 web tests, responsive/axe PASS; deployment pending. [Report](docs/deck-hardware-and-curation.md) |
+| Browser verification and deployment | PASS | Local production build, 35 site/102 web tests, responsive/axe PASS; runtime `c308eea` deployed READY, hosted exact assets/gates and full CI `39676250203` PASS. [Report](docs/deck-hardware-and-curation.md) |
 
 ## Inline payments and Aurowall music — 2026-10-21
 
@@ -846,7 +846,7 @@ Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
 
-- [x] **2026-10-21 — Hardware deck design and music curation:** Original raised platters, graphite chassis, recessed displays and stable hover/focus outlines across homepage, studio and Academy. Read-only Aurowall catalogue reduced from 94 to 72 music tracks; excluded categories cannot stream by old IDs. Muted Chromium/WebKit transport, responsive/axe, simulated touch and reduced-motion checks PASS; build, typecheck, bundle audit, 35 site and 102 web tests PASS. Deployment pending; human checks deferred. [Report](docs/deck-hardware-and-curation.md).
+- [x] **2026-10-21 — Hardware deck design and music curation:** Original raised platters, graphite chassis, recessed displays and stable hover/focus outlines across homepage, studio and Academy. Read-only Aurowall catalogue reduced from 94 to 72 music tracks; excluded categories cannot stream by old IDs. Muted Chromium/WebKit transport, responsive/axe, simulated touch and reduced-motion checks PASS; build, typecheck, bundle audit, 35 site and 102 web tests PASS. Runtime `c308eea` deployed READY with exact hosted assets/gates and full CI `39676250203` PASS; human checks deferred. [Report](docs/deck-hardware-and-curation.md).
 
 - [x] **2026-10-21 — Inline payments and Aurowall music:** Implementation `5587563`, disclosure/runtime `a06151f` deployed READY with full CI PASS. Embedded Stripe purchase/decline/retry/refund/repurchase/disputes and permanent production webhook fixture PASS. Read-only 94-track Aurowall catalogue, explicit homepage playback, online DJ selection and linked partnership; real R2 Chromium/WebKit seeking/playback, responsive/axe and muted output PASS. TODO, progress, rights/privacy and owner configuration updated. Existing release holds remain; authenticated hosted music UI and human/live-charge acceptance are not claimed. [Report](docs/inline-payments-aurowall.md).
 
