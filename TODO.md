@@ -69,6 +69,13 @@ Chromium/WebKit rendered access, prerequisite, axe and account-isolation checks 
 Deployment pending. Permanent Stripe keys and the owner mini-set observation requested while independent
 work continues. No new audible playback or live charges.
 
+Owner preview deployed at `5f13bd3` (`dpl_Bm3bGaMcwS94WnLTcyUVHZgbBUT2`).
+Owner explicitly deferred human checks. Permanent keys added as Vercel secrets;
+hosted read-only audit authenticates both to Aurowall. Live tax settings lack a
+head-office address; owner will complete them. Shared-account refund handling now
+ignores unrelated non-Checkout charges; 22 Academy/admin tests PASS. Permanent
+catalog/webhook preparation is underway, with sales still closed.
+
 Silent endurance exposed a wall-clock/frame-clock mismatch: Chromium's manually
 stopped five-minute run contained only 298.28 seconds. The harness now waits for
 measured audio duration. A failing regression also proves the one-hour wall timer

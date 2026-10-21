@@ -50,6 +50,17 @@ test('isolated Postgres Academy receipts, progress, holds and tenant boundaries'
   await academyWebhook(sdk,pool,disputed,JSON.stringify(disputed),config);assert.equal((await pool.query('SELECT dispute_hold FROM academy_purchases WHERE receipt=$1',[current.id])).rows[0].dispute_hold,true);
   disputeStatus='won';await academyWebhook(sdk,pool,{...disputed,id:'evt_stale_dispute'},'stale',config);assert.equal((await pool.query('SELECT dispute_hold FROM academy_purchases WHERE receipt=$1',[current.id])).rows[0].dispute_hold,false);
  });
+ await t.test('shared-account reversals ignore unrelated direct charges and products, but reject ambiguous sessions',async()=>{
+  const before=(await pool.query('SELECT count(*)::int n FROM academy_purchase_holds')).rows[0].n;
+  for(const [index,data]of [[],[{metadata:{jamloom_product:'other'}}]].entries()){
+   const event={id:'evt_unrelated_'+index,livemode:false,type:'charge.refunded',data:{object:{payment_intent:'pi_other'}}} as Stripe.Event;
+   const other={checkout:{sessions:{list:async()=>({has_more:false,data})}}} as unknown as Stripe;
+   await academyWebhook(other,pool,event,JSON.stringify(event),config);assert.equal((await pool.query('SELECT count(*)::int n FROM academy_purchase_events WHERE event_id=$1',[event.id])).rows[0].n,1);
+  }
+  assert.equal((await pool.query('SELECT count(*)::int n FROM academy_purchase_holds')).rows[0].n,before);
+  const ambiguous={checkout:{sessions:{list:async()=>({has_more:true,data:[]})}}} as unknown as Stripe;
+  await assert.rejects(academyWebhook(ambiguous,pool,{id:'evt_ambiguous',livemode:false,type:'charge.refunded',data:{object:{payment_intent:'pi_other'}}} as Stripe.Event,'ambiguous',config),/Ambiguous/);
+ });
  await t.test('progress reevaluates signals and task order, isolates owners and survives a new store',async()=>{
   await assert.rejects(store.begin('bob','gain-staging'),/pass required/);await assert.rejects(store.begin('alice','gain-staging'),/prerequisite/);
   const id=await store.begin('alice','first-crossfade'),data=evidence(id);await pool.query("UPDATE academy_attempts SET started_at=now()-interval '1 minute' WHERE id=$1",[id]);

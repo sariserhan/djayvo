@@ -1,5 +1,13 @@
 # Academy continuation — 2026-10-21
 
+Owner preview `5f13bd3` deployed READY; human checks explicitly deferred by owner.
+The owner added permanent Aurowall test/live keys as Vercel secrets; a hosted
+read-only audit confirms both account identities. Live tax address is missing
+and owner will complete it. Shared-account unrelated reversals are now safely
+ignored; 22 Academy/admin tests PASS. Catalog/endpoints are being prepared while
+sales remain closed. The superseded endurance run was stopped after its captured
+short-duration failure; completed evidence is retained and the corrected run continues.
+
 Owner preview access is implemented with the existing verified active administrator
 check; prerequisites and financial receipts stay separate. 21 Academy/admin tests
 PASS; Chromium/WebKit owner/member/prerequisite and rendered accessibility checks

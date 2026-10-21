@@ -60,8 +60,8 @@ export async function academyWebhook(stripe:Stripe,pool:Pool,event:Stripe.Event,
   }else if(event.type==='charge.refunded'||event.type==='charge.dispute.created'||event.type==='charge.dispute.closed'){
    const intent=event.data.object.payment_intent;if(typeof intent!=='string')throw new Error('Missing payment intent');
    const sessions=await stripe.checkout.sessions.list({payment_intent:intent,limit:2});
-   if(sessions.has_more||sessions.data.length!==1)throw new Error('Ambiguous reversal');
-   if(sessions.data[0].metadata?.jamloom_product===academyProduct){
+   if(sessions.has_more||sessions.data.length>1)throw new Error('Ambiguous reversal');
+   if(sessions.data[0]?.metadata?.jamloom_product===academyProduct){
     if(event.type==='charge.refunded')await academyHold(pool,sessions.data[0].id,'refund',true,lock);
     else{await lock.query('SELECT pg_advisory_xact_lock(hashtextextended($1,0))',['academy:'+sessions.data[0].id]);const dispute=await stripe.disputes.retrieve(event.data.object.id);if(dispute.livemode!==!!config.live||dispute.payment_intent!==intent)throw new Error('Dispute mismatch');
      await academyHold(pool,sessions.data[0].id,'dispute',dispute.status!=='won',lock);}
