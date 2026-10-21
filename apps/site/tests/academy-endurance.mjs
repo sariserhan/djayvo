@@ -80,7 +80,8 @@ try{
      if(await page.locator('#set-record-download').isVisible())break;
      const measured=Number((await page.locator('#set-record-status').innerText()).match(/· (\d+) \//)?.[1]??0);
      if(seconds<3600&&measured>=seconds+2)break;
-     assert.ok(!(await page.locator('#set-record-stop').isDisabled()),label+': '+await page.locator('#set-record-status').innerText());
+     // The automatic cap disables Stop before encoding/hash completion exposes the download.
+     if(await page.locator('#set-record-stop').isDisabled()){assert.equal(seconds,3600,label+': '+await page.locator('#set-record-status').innerText());break;}
      await page.waitForTimeout(1000);
     }
     if(seconds===3600){await page.locator('#set-record-download').waitFor({state:'visible',timeout:10000});row.automatic_cap='PASS';}

@@ -77,7 +77,9 @@ WebKit's full thirty-minute assessment also passes. Final Chromium thirty-minute
 and both sixty-minute captures and decoding remain pending. Chromium's initial
 thirty-minute lane was superseded after clock lag exceeded the old harness
 timeout; the replacement uses five minutes of bounded grace and still requires
-the full measured duration. Both browser
+the full measured duration. The first WebKit hour reached 3,600 measured
+seconds but exposed a harness race during automatic finalization; both hour
+checks are restarting with that test fixed. No completed-hour claim. Both browser
 preflights prove captured signal and zero final speaker samples. The harness now
 waits for measured audio duration, and the recorder keeps its 3,600-frame-second
 cap and 96 MiB limit with a bounded five-minute wall-clock grace period. Nineteen

@@ -48,6 +48,14 @@ and interruption record remain under
 run was also superseded after exposing delayed-attempt sync; its WebKit lanes
 continue. No interrupted hour is counted as completed evidence.
 
+The first silent WebKit hour reached 3,600 measured seconds, but the harness
+incorrectly required the Stop button to remain enabled during automatic
+finalization. It closed the page before downloading; this is not a completed-hour
+PASS. The harness now waits for the download after automatic stop and still
+requires the full receipt, zero gaps and saved assessment. Both hour checks are
+restarting on final static assets. The failed report and screenshot are preserved
+under `evidence/academy-endurance-silent/superseded/automatic-cap-transition/`.
+
 ## Permanent billing
 
 Authorized account: Aurowall, `acct_1TxA3vDlEXWDEeHO`. Both products are active,

@@ -18,7 +18,9 @@ WebKit's full thirty-minute assessment also passes. Final Chromium thirty-minute
 and both sixty-minute captures and decoding remain pending. Chromium's initial
 thirty-minute lane was superseded after clock lag exceeded the old harness
 timeout; the replacement uses five minutes of bounded grace and still requires
-the full measured duration. Both browser
+the full measured duration. The first WebKit hour reached 3,600 measured
+seconds but exposed a harness race during automatic finalization; both hour
+checks are restarting with that test fixed. No completed-hour claim. Both browser
 preflights prove captured signal and zero final speaker samples. The harness now
 waits for measured audio duration, and the recorder keeps its 3,600-frame-second
 cap and 96 MiB limit with a bounded five-minute wall-clock grace period. Nineteen
@@ -29,7 +31,10 @@ acceptance remains qualitative; mini-set, musical judgment, manual accessibility
 physical output/cue and venue checks are not passed. Sales remain closed.
 [Current release evidence](academy-release-checks.md).
 
-# Academy remaining gates — 2026-10-21
+Earlier checkpoints below preserve their original results and dates; the current
+report supersedes their pending migration, deployment, CI and recruitment statuses.
+
+# Earlier Academy release checkpoint — 2026-10-21
 
 **PASS:** Full hosted CI at `19ae151`, production migrations 0006–0012 with all
 12 hashes verified, and production deployment `b4e03e5` behind coming-soon.
@@ -40,9 +45,6 @@ runs were interrupted to stop unwanted audible playback; actual Stripe test-mode
 annotations, sustained physical output, manual accessibility and commercial
 configuration remain open. Aurowall is authorized for test/live billing;
 sales remain closed. [Current report](academy-release-checks.md).
-
-Earlier checkpoints below preserve their original results and dates; the current
-report supersedes their pending migration, deployment, CI and recruitment statuses.
 
 # Academy completion in progress — 2026-10-21
 
