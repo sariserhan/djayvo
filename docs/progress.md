@@ -1844,3 +1844,17 @@ Existing DJ regression: **PASS**, 48 checks in each browser including offline
 instrument/mix capture. An initial WebKit start-state assertion failed during the
 parallel run, then passed on rerun without audio-engine/assertion changes; its
 cause remains unconfirmed and evidence is retained.
+
+
+## Next.js loading, recovery and caching — 2026-10-21
+
+**PASS:** Shared route/client-fetch skeletons; custom 404, recoverable server
+errors and standalone root-layout error page; Next retry actually re-fetches.
+Public content stays prerendered; private data stays dynamic; admin checks are
+memoized only per render. Launch-aware robots/sitemap preserve gated access.
+31 unit tests, production build/typecheck/bundle audit, Chromium/WebKit actual
+site and isolated fault-fixture checks, axe, responsive checks and real local
+owner/member cache-isolation/coming-soon regression pass.
+**NOT RUN:** Deployment/CDN, physical devices and manual screen readers.
+Existing audio-quality FAIL and paid-generation hold unchanged.
+[Report and evidence](nextjs-foundations.md).

@@ -298,3 +298,20 @@ page. Provider tracking delivery and public deployment were not verified here.
 Local product browser tests intentionally start their servers with the flag false;
 `npm run test:coming-soon-browser` tests the default-on behavior against a disposable
 loopback database. [Evidence](coming-soon.md).
+
+
+## Next.js recovery and search metadata
+
+Loading/404/error/global-error screens need no new credentials or migration.
+Deploy the matching commit to activate them. `/robots.txt` and `/sitemap.xml`
+follow the existing `JAMLOOM_COMING_SOON` setting at request time. Public product
+URLs are listed only when the setting is exactly `false`. Private account/API
+routes stay excluded. Keep the existing authenticated admin and no-store
+configuration; no cache purge or new cache service is required.
+
+After deployment, check the coming-soon page, verified admin bypass, robots and
+sitemap on www.jamloom.com. Test an unknown route from an admin preview (or after
+public launch); anonymous requests are intentionally redirected by the launch
+gate. Do not deliberately crash production to test error pages: use the isolated
+`npm run test:framework-browser` fixture described in
+[nextjs-foundations.md](nextjs-foundations.md). Hosted validation is NOT RUN.

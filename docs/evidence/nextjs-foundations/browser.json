@@ -1,0 +1,44 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "actualSite404AndHomeRecovery": "PASS",
+    "actualCommunityAndAcademyLoading": "PASS",
+    "actualSiteConsole": "PASS",
+    "robotsSitemapAndPrivateHeaders": "PASS",
+    "staticAndDynamicCacheBoundaries": "PASS",
+    "fixtureStreamingLoading": "PASS",
+    "fixture500": "PASS",
+    "fixtureClientAndServerRetry": "PASS",
+    "fixtureRootLayoutFailureAndRecovery": "PASS",
+    "axe": "PASS",
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "reducedMotion": "PASS",
+    "productionDeployment": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "actualSite404AndHomeRecovery": "PASS",
+    "actualCommunityAndAcademyLoading": "PASS",
+    "actualSiteConsole": "PASS",
+    "robotsSitemapAndPrivateHeaders": "PASS",
+    "staticAndDynamicCacheBoundaries": "PASS",
+    "fixtureStreamingLoading": "PASS",
+    "fixture500": "PASS",
+    "fixtureClientAndServerRetry": "PASS",
+    "fixtureRootLayoutFailureAndRecovery": "PASS",
+    "axe": "PASS",
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "reducedMotion": "PASS",
+    "productionDeployment": "NOT RUN"
+  }
+]

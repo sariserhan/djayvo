@@ -1,5 +1,17 @@
 # Jamloom development tracker
 
+## Next.js loading and recovery — 2026-10-21
+
+| ID | Task | Status | Evidence / remaining action |
+|---|---|---|---|
+| NEXT-001 | Route and client-data skeletons | PASS | Shared loading.tsx states; actual homepage/Academy delayed fetches; reduced motion |
+| NEXT-002 | Custom 404, server error and global-error recovery | PASS | Actual site 404s; copied-component production fault fixture and client/server/global retry |
+| NEXT-003 | Safe cache boundaries, robots and sitemap | PASS | Static/dynamic manifest, request-only admin memoization, owner/member isolation and launch-mode metadata |
+| NEXT-004 | Build and browser validation | PASS | 31 unit tests, build/typecheck/bundle audit, Chromium/WebKit, responsive/axe and launch regression |
+| NEXT-005 | Hosted deployment/CDN and physical accessibility | NOT RUN | No deployment; manual screen reader and physical device checks remain |
+
+[Implementation, commands and limits](docs/nextjs-foundations.md).
+
 ## Public coming soon — 2026-10-21
 
 | ID | Task | Status | Evidence / remaining action |
