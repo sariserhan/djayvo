@@ -1,0 +1,36 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "routes": 17,
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "SSR": "PASS",
+    "taste_storage": "PASS",
+    "audio_demo_decode": "PASS",
+    "synthetic_capture_PCM_filter_bypass_stop": "PASS",
+    "permission_simulation": "PASS",
+    "real_capture_permission": "NOT RUN",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "routes": 17,
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "SSR": "PASS",
+    "taste_storage": "PASS",
+    "audio_demo_decode": "PASS",
+    "synthetic_capture_PCM_filter_bypass_stop": "PASS",
+    "permission_simulation": "PASS",
+    "real_capture_permission": "NOT RUN",
+    "human_listening": "NOT RUN"
+  }
+]

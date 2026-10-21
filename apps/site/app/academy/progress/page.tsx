@@ -1,0 +1,1 @@
+import {AcademyProgress} from './progress';export default function Progress(){return <section className="product-document"><h1>Your Academy progress</h1><AcademyProgress/><a href="/academy/learn">Back to the learning dashboard →</a></section>;}

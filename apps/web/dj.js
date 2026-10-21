@@ -5,6 +5,7 @@ import { attachPerformance } from './performance-session.js';
 import { attachMixRecording } from './mix-recording.js';
 import { resumeAudio } from './audio.js';
 import { loadSessions, loadSession, verifySession } from './library.js';
+import { deckBridge } from './deck-bridge.js';
 
 const $ = id => document.getElementById(id);
 const rights = $('music-rights');
@@ -72,7 +73,7 @@ function pause(deck) {
 
 function unload(deck) {
   if (deck.id === 'a') session?.reset();
-  deck.file = null;
+  deck.file = null; deck.academyAsset = null;
   pause(deck); deck.loading?.abort(); deck.loading = null;
   deck.audio.removeAttribute('src'); deck.audio.load();
   if (deck.url) URL.revokeObjectURL(deck.url);
@@ -165,6 +166,7 @@ async function loadTrack(deck, getFile) {
     const previous = deck.url, url = URL.createObjectURL(file);
     audio.removeAttribute('src'); audio.load();
     deck.file = file; deck.url = url; deck.duration = duration; audio.src = url; mixRecording.sourcesChanged(); deck.resetTransport(); deckEffects(deck, true);
+    deck.academyAsset = null;
     if (previous) URL.revokeObjectURL(previous);
     $(`name-${id}`).textContent = file.name;
   } catch (error) {
@@ -238,9 +240,33 @@ window.addEventListener('pagehide', event => {
   decks.forEach(pause); clearDeckEchoes();
   if (!event.persisted) { decks.forEach(unload); context?.close().catch(() => {}); }
 });
+const academySamples = new Float32Array(2048);
+function academySnapshot() {
+  const measure=node=>{if(!node||context?.state!=='running')return {peak:0,rms:0};node.getFloatTimeDomainData(academySamples);
+    let peak=0,sum=0;for(const v of academySamples){peak=Math.max(peak,Math.abs(v));sum+=v*v;}return {peak,rms:Math.sqrt(sum/academySamples.length)};};
+  const output=measure(mixer?.meter),a=measure(mixer?.strips[0].scope),b=measure(mixer?.strips[1].scope);
+  return {t:context?.currentTime??0,a:decks[0].audio.paused?0:a.rms,b:decks[1].audio.paused?0:b.rms,
+    x:Number($('crossfade').value),master:Number($('master').value),...output,
+    rateA:decks[0].audio.playbackRate,rateB:decks[1].audio.playbackRate,levelA:Number($('level-a').value),levelB:Number($('level-b').value)};
+}
+const bridge=deckBridge(academySnapshot);
+for(const id of ['crossfade','master','level-a','level-b','rate-a','rate-b',...['a','b'].flatMap(d=>['tone','echo','delay',...['eq'].flatMap(p=>[`${p}-${d}-0`,`${p}-${d}-1`,`${p}-${d}-2`])].map(p=>p.startsWith('eq-')?p:`${p}-${d}`))])bridge.bind($(id),'oninput',id==='crossfade'?'crossfader.set':'parameter.set');
+for(const id of ['pause-all',...['a','b'].flatMap(d=>['play','cue','set-cue','loop','fx-reset','match','tap','rate-reset',...Array.from({length:4},(_,i)=>`hot-${d}-${i}`)].map(p=>p.startsWith('hot-')?p:`${p}-${d}`))])bridge.bind($(id),'onclick','deck.control');
+if((location.pathname.startsWith('/academy/')||location.pathname.startsWith('/academy-offline/'))||new URLSearchParams(location.search).has('academy'))import('./academy-coach.js').then(({attachAcademy})=>attachAcademy({bridge,
+  async load(tracks){if(!rights.checked)throw new Error('Confirm the music permission checkbox first.');
+   decks.forEach(pause);
+   for(let i=0;i<2;i++){const track=tracks[i],response=await fetch(track.url);if(!response.ok)throw new Error('Practice music unavailable. Reconnect to prepare it.');
+    const bytes=await response.arrayBuffer(),sha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
+    if(sha!==track.sha256)throw new Error('Practice track checksum mismatch.');
+    const file=new File([bytes],track.title+'.mp3',{type:'audio/mpeg'});
+    await loadTrack(decks[i],()=>file);if(decks[i].file!==file)throw new Error('Practice track could not load.');
+    decks[i].academyAsset=track.id;$(`bpm-${decks[i].id}`).value=track.bpm;
+   }
+  },assets:()=>decks.map(d=>d.academyAsset)})).catch(()=>{$('mixer-status').textContent='Academy could not load. Your local DJ controls remain available.';});
 // shortcut: manual A/B remain unsynchronized; unify transport before adding
 // live tempo changes or beat loops. Prepared A/C already share the audio clock.
 setInterval(() => {
+  bridge.sample();
   session.refresh();
   if (!mixer || context.state !== 'running') { $('output-meter').value = 0; $('peak').textContent = 'Silent'; return; }
   let peak = 0;

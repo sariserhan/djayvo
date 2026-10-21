@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: gradual eight-beat crossfade requires actual signal, timing, progression and learner provenance
+ok 1 - gradual eight-beat crossfade requires actual signal, timing, progression and learner provenance
+  ---
+  duration_ms: 1.549958
+  type: 'test'
+  ...
+# Subtest: checks lead to ungraded free play, never automatic next task; pauses discard stale attempts
+ok 2 - checks lead to ungraded free play, never automatic next task; pauses discard stale attempts
+  ---
+  duration_ms: 0.659458
+  type: 'test'
+  ...
+# Subtest: native decoder startup may settle, but a sustained audible interval is required
+ok 3 - native decoder startup may settle, but a sustained audible interval is required
+  ---
+  duration_ms: 0.129792
+  type: 'test'
+  ...
+# Subtest: coach commands run the same control handler with distinct provenance and bounds
+ok 4 - coach commands run the same control handler with distinct provenance and bounds
+  ---
+  duration_ms: 1.598583
+  type: 'test'
+  ...
+# Subtest: level check needs a sustained actual mixer value, not a brief slider event
+ok 5 - level check needs a sustained actual mixer value, not a brief slider event
+  ---
+  duration_ms: 0.216
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 39.374958

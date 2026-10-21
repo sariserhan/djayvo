@@ -1,0 +1,38 @@
+[
+  {
+    "browser": "chromium",
+    "file": "build-academy/chromium-first-crossfade.wav",
+    "sha256": "a4afd23f8e43aaac163c834ce30f1ee11096ec6ce7a87c4f5bc0f78bb979185f",
+    "frames": 197120,
+    "sample_rate": 48000,
+    "seconds": 4.1066666666666665,
+    "peak_dbfs": -11.856565268730378,
+    "integrated_lufs": -23.95,
+    "true_peak_dbtp": -11.86,
+    "clipped_samples": 0,
+    "longest_exact_silence_ms": 0.0,
+    "recording_timestamp_discontinuities": 1,
+    "automation_events": 400,
+    "audio_clock_gate": "PARTIAL",
+    "human_listening": "NOT RUN",
+    "interpretation": "Actual post-limiter music capture. A clock diagnostic alone does not prove missing PCM; zero clips does not prove no audible crackle."
+  },
+  {
+    "browser": "webkit",
+    "file": "build-academy/webkit-first-crossfade.wav",
+    "sha256": "8354b55f9cdaa4eb288447c9027f0822034533c85977cdfc10b7571800aa65a2",
+    "frames": 192896,
+    "sample_rate": 48000,
+    "seconds": 4.018666666666666,
+    "peak_dbfs": -12.101847553736807,
+    "integrated_lufs": -24.09,
+    "true_peak_dbtp": -12.1,
+    "clipped_samples": 0,
+    "longest_exact_silence_ms": 0.0,
+    "recording_timestamp_discontinuities": 1,
+    "automation_events": 400,
+    "audio_clock_gate": "PARTIAL",
+    "human_listening": "NOT RUN",
+    "interpretation": "Actual post-limiter music capture. A clock diagnostic alone does not prove missing PCM; zero clips does not prove no audible crackle."
+  }
+]

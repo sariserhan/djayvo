@@ -1,4 +1,5 @@
+import {academyLevels} from '../lib/academy-content';
 import type {MetadataRoute} from 'next';
 import {origin,features} from '../lib/product';
 import {information,guides} from '../lib/editorial';
-export default function sitemap():MetadataRoute.Sitemap{return ['/',...features.map(f=>'/'+f.slug),...Object.keys(information).map(p=>'/'+p),'/learn',...Object.keys(guides).map(p=>'/learn/'+p)].map(path=>({url:origin+path}));}
+export default function sitemap():MetadataRoute.Sitemap{return ['/',...features.map(f=>'/'+f.slug),...academyLevels.map(l=>'/academy/levels/'+l.slug),...Object.keys(information).map(p=>'/'+p),'/learn',...Object.keys(guides).map(p=>'/learn/'+p)].map(path=>({url:origin+path}));}

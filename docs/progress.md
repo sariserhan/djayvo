@@ -1730,3 +1730,25 @@ frozen. No new listening judgment, professional-quality claim or training.
 **PARTIAL:** Overall Q0. **FAIL:** Latest prior owner acceptance.
 **NOT RUN:** New musical acceptance and physical-device checks.
 [Report and reproducible correction](q0-motif-completion.md).
+
+
+## DJ Academy checkpoint — 2026-10-21
+
+**PARTIAL:** Added the fifth feature to the existing app: two actual-deck exercises,
+first-crossfade challenge, contextual coaching, voluntary Free Jam, versioned
+server-checked progress, offline introduction and separate $79.99 sandbox pass.
+The six-stage course outline is not a completed professional curriculum.
+
+**PASS:** Production build/TypeScript, 78 web tests, 75 site/database tests,
+15 baseline core tests; Chromium/WebKit actual audio/keyboard/identity/progress
+flows and existing product regression. Two CC0 practice tracks and real browser
+WAV captures have reproducible hashes and measurements. Owner initially could not
+find permission/preparation; after moving the actual checkbox next to loading,
+owner confirmed: “Yes, I can start the music now.” This verifies preparation only.
+
+**PARTIAL:** Both captured WAVs report one clock discontinuity, despite no measured
+clipping or exact silence. Cause and physical reliability remain unproven.
+**NOT RUN:** Full human fade, enjoyment, novice cohort, upper-level assessments,
+actual hosted Stripe transaction, hosted migration/deployment. No live charge or
+spending. AI quality **FAIL** and paid generation disabled remain unchanged.
+[Implementation, evidence and exact next steps](ACADEMY_IMPLEMENTATION.md).

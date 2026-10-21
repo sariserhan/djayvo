@@ -20,3 +20,9 @@ xcuserdata/
 *.xcuserstate
 apps/ios/Local.xcconfig
 .neon
+
+# Reproducible public Academy shell; authored tracks and license manifest stay tracked.
+apps/site/public/academy-offline/
+
+# Two final cleared Academy audio captures retained as regression evidence.
+!docs/evidence/academy/audio/*-first-crossfade.wav

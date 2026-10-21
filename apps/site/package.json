@@ -7,7 +7,7 @@
     "node": "22.x"
   },
   "scripts": {
-    "studio:prepare": "node scripts/prepare-studio.mjs",
+    "studio:prepare": "node scripts/prepare-studio.mjs && node --import tsx scripts/prepare-academy-offline.ts",
     "predev": "npm run studio:prepare",
     "dev": "next dev --hostname 127.0.0.1 --port 3000",
     "prebuild": "npm run studio:prepare",
@@ -32,6 +32,8 @@
     "test:product-a11y": "node tests/product-a11y.mjs",
     "test:product-http": "node --import tsx tests/product-http.mjs",
     "test:generation-render": "tsx tests/generation-render-smoke.ts",
+    "test:academy": "node --import tsx --test tests/academy.test.ts",
+    "test:academy-browser": "node --import tsx tests/academy-browser.mjs",
     "test:audio-variety": "node tests/audio-variety-audit.mjs"
   },
   "dependencies": {

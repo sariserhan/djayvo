@@ -1,0 +1,5 @@
+{
+  "method": "Instrumented worklet messages for first 2048 frames; diagnostic only, does not change release recorder",
+  "timeline": [],
+  "status": "NOT RUN: probe collected no timing messages; no causal conclusion"
+}

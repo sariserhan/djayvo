@@ -17,13 +17,13 @@ export async function POST(request:Request){
     const old=(await pool.query("SELECT digest FROM provider_webhook_events WHERE provider='stripe_test' AND event_id=$1",[event.id])).rows[0];
     if(old){if(old.digest!==hash)throw new Error('Webhook conflict');return Response.json({received:true});}
     if(event.type==='checkout.session.completed'||event.type==='checkout.session.async_payment_succeeded'){
-      if(event.data.object.payment_status==='paid')await fulfillCheckout(stripe,wallet,event.data.object.id);
+      if(event.data.object.payment_status==='paid'&&event.data.object.metadata?.jamloom_product!=='academy-complete')await fulfillCheckout(stripe,wallet,event.data.object.id);
     }else if(event.type==='charge.refunded'||event.type==='charge.dispute.created'){
       const object=event.data.object;const intent=object.payment_intent;
       if(typeof intent!=='string')throw new Error('Missing payment intent');
       const sessions=await stripe.checkout.sessions.list({payment_intent:intent,limit:1});
       if(!sessions.data.length)throw new Error('Unknown payment');
-      await wallet.freezePurchase('stripe_test',sessions.data[0].id);
+      if(sessions.data[0].metadata?.jamloom_product!=='academy-complete')await wallet.freezePurchase('stripe_test',sessions.data[0].id);
     }
     await pool.query("INSERT INTO provider_webhook_events(provider,event_id,digest) VALUES('stripe_test',$1,$2) ON CONFLICT DO NOTHING",[event.id,hash]);
     return Response.json({received:true});

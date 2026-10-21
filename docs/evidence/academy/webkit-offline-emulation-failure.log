@@ -1,0 +1,16 @@
+Testing chromium
+Testing webkit
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.reload: WebKit encountered an internal error
+Call log:
+[2m  - waiting for navigation until "load"[22m
+
+    at /Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-browser.mjs:89:135 {
+  log: [ '  - waiting for navigation until "load"' ],
+  name: 'Error'
+}
+
+Node.js v22.23.1

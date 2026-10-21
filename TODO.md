@@ -1,5 +1,33 @@
 # Jamloom development tracker
 
+## DJ Academy — 2026-10-21
+
+Owner addendum: [DJ Academy](apps/site/scripts/jamloom_dj_academy_addendum_v1.md).
+Separate $79.99 one-time pass; generation credits and quality hold remain unchanged.
+
+| ID | Task | Owner | Dependency | Status | Proof |
+|---|---|---|---|---|---|
+| ACA-001 | Preserve checkpoint and run existing baseline | Agent | efa13be / 35c0df0 | PASS | Baseline logs; master and prior evidence preserved |
+| ACA-002 | Actual deck command/audio telemetry bridge | Agent | Existing browser mixer | PASS | Original handlers, measured signals, real keyboard browser checks |
+| ACA-003 | Cleared practice music and measured fixtures | Agent + listeners | Redistribution rights / listening | PARTIAL | Two CC0 64-second tracks with hashes; enjoyment and phase/key annotations unverified |
+| ACA-004 | Verified first crossfade, coaching and unlimited Free Jam | Agent + novice testers | ACA-002/003 | PARTIAL | Automated fade and voluntary Continue pass; owner now starts music, full human fade NOT RUN |
+| ACA-005 | Versioned curriculum, rubrics and assessments | Agent | First lesson evidence | PARTIAL | Two runnable exercises, introductory challenge and six-stage map; upper-stage assessments unfinished |
+| ACA-006 | Owner-scoped progress, prerequisites, export/delete | Agent | Local database tests | PASS | Real local Better Auth/PG, order/replay/ownership/rate bounds and deletion checks |
+| ACA-007 | Separate Stripe pass, replay/refund/repurchase handling | Agent + owner | Sandbox product configuration | PARTIAL | Signed fixtures and local transactions pass; actual hosted sandbox NOT RUN; sales closed |
+| ACA-008 | Fifth feature, routes, dashboard and checkout | Agent | Existing site | PASS | Production build and Chromium/WebKit route checks; four prior features preserved |
+| ACA-009 | Audio/browser/accessibility/regression checks | Agent | Runnable lesson | PARTIAL | 78 web + 75 site/DB + 15 core tests, build and browser flows pass; recorder clock diagnostic remains |
+| ACA-010 | Five novices / three beginner mini-sets | Owner + genuine testers | Working course | NOT RUN | No recruited cohort; owner onboarding retest alone is not the study |
+| ACA-011 | Handbook, economics, migration and release checklist | Agent + owner | Evidence | PARTIAL | Handbook and reserve model delivered; real merchant economics / production migration / release NOT RUN |
+| ACA-012 | Diagnose recorder clock discontinuity and physical audio reliability | Agent + owner | Actual captures | PARTIAL | Both real browser WAVs have no clipping/silence but one clock discontinuity; cause unproven |
+| ACA-013 | Shared-frame transport, beat loops/jumps, long recording | Agent | Existing deck engine | NOT RUN | Required engineering before reliable advanced assessments |
+| ACA-014 | Remaining curriculum and beginner mini-set | Agent + learners | ACA-003/013 | NOT RUN | Do not present stage outlines as finished lessons |
+| ACA-015 | Hosted CI, payment sandbox, deployment and release | Agent + owner | Course / provider / human gates | NOT RUN | No deployment or spending; AI musical-quality FAIL and paid generation disabled |
+
+Detailed gates, source map, audio and reproduction: [Academy implementation](docs/ACADEMY_IMPLEMENTATION.md).
+Owner feedback: initial preparation FAIL; revised preparation/start PASS; full lesson and enjoyment NOT RUN.
+
+
+
 ## Full product implementation — 2026-10-20
 
 Authoritative scope: [full product specification](apps/site/jamloom_full_product_implementation_spec_v1.md).

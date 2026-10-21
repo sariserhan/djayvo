@@ -1,0 +1,2445 @@
+{
+  "schema_version": "2.0-mix-automation",
+  "scope": "scheduled_gain_eq_fx_controls",
+  "training_authorized": false,
+  "wav_sha256": "a4afd23f8e43aaac163c834ce30f1ee11096ec6ce7a87c4f5bc0f78bb979185f",
+  "sample_rate": 48000,
+  "observed_context_start_frame": 644608,
+  "snapshot_context_frame": 644864,
+  "initial_targets": {
+    "a": 0.6000000000000001,
+    "b": 0,
+    "c": 0.30000000000000004,
+    "rack": 0.48750000000000004,
+    "eq-a-0": 0,
+    "eq-a-1": 0,
+    "eq-a-2": 0,
+    "eq-b-0": 0,
+    "eq-b-1": 0,
+    "eq-b-2": 0
+  },
+  "initial_effects": {
+    "a": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    },
+    "b": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    },
+    "c": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    },
+    "rack": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    }
+  },
+  "events": [
+    {
+      "kind": "gain",
+      "context_frame": 645120,
+      "target": "a",
+      "value": 0.594
+    },
+    {
+      "kind": "gain",
+      "context_frame": 645120,
+      "target": "b",
+      "value": 0.006
+    },
+    {
+      "kind": "gain",
+      "context_frame": 645120,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 645120,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 647168,
+      "target": "a",
+      "value": 0.588
+    },
+    {
+      "kind": "gain",
+      "context_frame": 647168,
+      "target": "b",
+      "value": 0.012
+    },
+    {
+      "kind": "gain",
+      "context_frame": 647168,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 647168,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 648960,
+      "target": "a",
+      "value": 0.5820000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 648960,
+      "target": "b",
+      "value": 0.018
+    },
+    {
+      "kind": "gain",
+      "context_frame": 648960,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 648960,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 650496,
+      "target": "a",
+      "value": 0.576
+    },
+    {
+      "kind": "gain",
+      "context_frame": 650496,
+      "target": "b",
+      "value": 0.024
+    },
+    {
+      "kind": "gain",
+      "context_frame": 650496,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 650496,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 652544,
+      "target": "a",
+      "value": 0.57
+    },
+    {
+      "kind": "gain",
+      "context_frame": 652544,
+      "target": "b",
+      "value": 0.030000000000000006
+    },
+    {
+      "kind": "gain",
+      "context_frame": 652544,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 652544,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 654336,
+      "target": "a",
+      "value": 0.564
+    },
+    {
+      "kind": "gain",
+      "context_frame": 654336,
+      "target": "b",
+      "value": 0.036
+    },
+    {
+      "kind": "gain",
+      "context_frame": 654336,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 654336,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 656128,
+      "target": "a",
+      "value": 0.558
+    },
+    {
+      "kind": "gain",
+      "context_frame": 656128,
+      "target": "b",
+      "value": 0.04200000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 656128,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 656128,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 657920,
+      "target": "a",
+      "value": 0.552
+    },
+    {
+      "kind": "gain",
+      "context_frame": 657920,
+      "target": "b",
+      "value": 0.048
+    },
+    {
+      "kind": "gain",
+      "context_frame": 657920,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 657920,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 659712,
+      "target": "a",
+      "value": 0.546
+    },
+    {
+      "kind": "gain",
+      "context_frame": 659712,
+      "target": "b",
+      "value": 0.054000000000000006
+    },
+    {
+      "kind": "gain",
+      "context_frame": 659712,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 659712,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 661504,
+      "target": "a",
+      "value": 0.54
+    },
+    {
+      "kind": "gain",
+      "context_frame": 661504,
+      "target": "b",
+      "value": 0.06000000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 661504,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 661504,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 663296,
+      "target": "a",
+      "value": 0.534
+    },
+    {
+      "kind": "gain",
+      "context_frame": 663296,
+      "target": "b",
+      "value": 0.066
+    },
+    {
+      "kind": "gain",
+      "context_frame": 663296,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 663296,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 665344,
+      "target": "a",
+      "value": 0.528
+    },
+    {
+      "kind": "gain",
+      "context_frame": 665344,
+      "target": "b",
+      "value": 0.072
+    },
+    {
+      "kind": "gain",
+      "context_frame": 665344,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 665344,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 667136,
+      "target": "a",
+      "value": 0.522
+    },
+    {
+      "kind": "gain",
+      "context_frame": 667136,
+      "target": "b",
+      "value": 0.07800000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 667136,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 667136,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 668928,
+      "target": "a",
+      "value": 0.516
+    },
+    {
+      "kind": "gain",
+      "context_frame": 668928,
+      "target": "b",
+      "value": 0.08400000000000002
+    },
+    {
+      "kind": "gain",
+      "context_frame": 668928,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 668928,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 670720,
+      "target": "a",
+      "value": 0.51
+    },
+    {
+      "kind": "gain",
+      "context_frame": 670720,
+      "target": "b",
+      "value": 0.09
+    },
+    {
+      "kind": "gain",
+      "context_frame": 670720,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 670720,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 672512,
+      "target": "a",
+      "value": 0.504
+    },
+    {
+      "kind": "gain",
+      "context_frame": 672512,
+      "target": "b",
+      "value": 0.096
+    },
+    {
+      "kind": "gain",
+      "context_frame": 672512,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 672512,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 674304,
+      "target": "a",
+      "value": 0.498
+    },
+    {
+      "kind": "gain",
+      "context_frame": 674304,
+      "target": "b",
+      "value": 0.10200000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 674304,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 674304,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 676096,
+      "target": "a",
+      "value": 0.492
+    },
+    {
+      "kind": "gain",
+      "context_frame": 676096,
+      "target": "b",
+      "value": 0.10800000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 676096,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 676096,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 678144,
+      "target": "a",
+      "value": 0.48600000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 678144,
+      "target": "b",
+      "value": 0.11400000000000002
+    },
+    {
+      "kind": "gain",
+      "context_frame": 678144,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 678144,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 679936,
+      "target": "a",
+      "value": 0.4800000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 679936,
+      "target": "b",
+      "value": 0.12000000000000002
+    },
+    {
+      "kind": "gain",
+      "context_frame": 679936,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 679936,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 681728,
+      "target": "a",
+      "value": 0.47400000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 681728,
+      "target": "b",
+      "value": 0.126
+    },
+    {
+      "kind": "gain",
+      "context_frame": 681728,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 681728,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 683520,
+      "target": "a",
+      "value": 0.46799999999999997
+    },
+    {
+      "kind": "gain",
+      "context_frame": 683520,
+      "target": "b",
+      "value": 0.132
+    },
+    {
+      "kind": "gain",
+      "context_frame": 683520,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 683520,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 685312,
+      "target": "a",
+      "value": 0.462
+    },
+    {
+      "kind": "gain",
+      "context_frame": 685312,
+      "target": "b",
+      "value": 0.138
+    },
+    {
+      "kind": "gain",
+      "context_frame": 685312,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 685312,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 687104,
+      "target": "a",
+      "value": 0.45600000000000007
+    },
+    {
+      "kind": "gain",
+      "context_frame": 687104,
+      "target": "b",
+      "value": 0.144
+    },
+    {
+      "kind": "gain",
+      "context_frame": 687104,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 687104,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 688896,
+      "target": "a",
+      "value": 0.45
+    },
+    {
+      "kind": "gain",
+      "context_frame": 688896,
+      "target": "b",
+      "value": 0.15000000000000002
+    },
+    {
+      "kind": "gain",
+      "context_frame": 688896,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 688896,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 690688,
+      "target": "a",
+      "value": 0.44399999999999995
+    },
+    {
+      "kind": "gain",
+      "context_frame": 690688,
+      "target": "b",
+      "value": 0.15600000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 690688,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 690688,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 692480,
+      "target": "a",
+      "value": 0.438
+    },
+    {
+      "kind": "gain",
+      "context_frame": 692480,
+      "target": "b",
+      "value": 0.16200000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 692480,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 692480,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 694272,
+      "target": "a",
+      "value": 0.43200000000000005
+    },
+    {
+      "kind": "gain",
+      "context_frame": 694272,
+      "target": "b",
+      "value": 0.16800000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 694272,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 694272,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 696064,
+      "target": "a",
+      "value": 0.426
+    },
+    {
+      "kind": "gain",
+      "context_frame": 696064,
+      "target": "b",
+      "value": 0.174
+    },
+    {
+      "kind": "gain",
+      "context_frame": 696064,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 696064,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 697856,
+      "target": "a",
+      "value": 0.41999999999999993
+    },
+    {
+      "kind": "gain",
+      "context_frame": 697856,
+      "target": "b",
+      "value": 0.18
+    },
+    {
+      "kind": "gain",
+      "context_frame": 697856,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 697856,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 699648,
+      "target": "a",
+      "value": 0.414
+    },
+    {
+      "kind": "gain",
+      "context_frame": 699648,
+      "target": "b",
+      "value": 0.186
+    },
+    {
+      "kind": "gain",
+      "context_frame": 699648,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 699648,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 701440,
+      "target": "a",
+      "value": 0.40800000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 701440,
+      "target": "b",
+      "value": 0.192
+    },
+    {
+      "kind": "gain",
+      "context_frame": 701440,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 701440,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 703232,
+      "target": "a",
+      "value": 0.40199999999999997
+    },
+    {
+      "kind": "gain",
+      "context_frame": 703232,
+      "target": "b",
+      "value": 0.198
+    },
+    {
+      "kind": "gain",
+      "context_frame": 703232,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 703232,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 705024,
+      "target": "a",
+      "value": 0.39599999999999996
+    },
+    {
+      "kind": "gain",
+      "context_frame": 705024,
+      "target": "b",
+      "value": 0.20400000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 705024,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 705024,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 706816,
+      "target": "a",
+      "value": 0.39000000000000007
+    },
+    {
+      "kind": "gain",
+      "context_frame": 706816,
+      "target": "b",
+      "value": 0.20999999999999996
+    },
+    {
+      "kind": "gain",
+      "context_frame": 706816,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 706816,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 708608,
+      "target": "a",
+      "value": 0.384
+    },
+    {
+      "kind": "gain",
+      "context_frame": 708608,
+      "target": "b",
+      "value": 0.21600000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 708608,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 708608,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 710400,
+      "target": "a",
+      "value": 0.37800000000000006
+    },
+    {
+      "kind": "gain",
+      "context_frame": 710400,
+      "target": "b",
+      "value": 0.22199999999999998
+    },
+    {
+      "kind": "gain",
+      "context_frame": 710400,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 710400,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 712448,
+      "target": "a",
+      "value": 0.372
+    },
+    {
+      "kind": "gain",
+      "context_frame": 712448,
+      "target": "b",
+      "value": 0.22800000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 712448,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 712448,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 714240,
+      "target": "a",
+      "value": 0.36600000000000005
+    },
+    {
+      "kind": "gain",
+      "context_frame": 714240,
+      "target": "b",
+      "value": 0.23399999999999999
+    },
+    {
+      "kind": "gain",
+      "context_frame": 714240,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 714240,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 716032,
+      "target": "a",
+      "value": 0.36
+    },
+    {
+      "kind": "gain",
+      "context_frame": 716032,
+      "target": "b",
+      "value": 0.24000000000000005
+    },
+    {
+      "kind": "gain",
+      "context_frame": 716032,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 716032,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 717824,
+      "target": "a",
+      "value": 0.3540000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 717824,
+      "target": "b",
+      "value": 0.246
+    },
+    {
+      "kind": "gain",
+      "context_frame": 717824,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 717824,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 719616,
+      "target": "a",
+      "value": 0.3480000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 719616,
+      "target": "b",
+      "value": 0.252
+    },
+    {
+      "kind": "gain",
+      "context_frame": 719616,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 719616,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 721408,
+      "target": "a",
+      "value": 0.3420000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 721408,
+      "target": "b",
+      "value": 0.258
+    },
+    {
+      "kind": "gain",
+      "context_frame": 721408,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 721408,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 723200,
+      "target": "a",
+      "value": 0.3360000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 723200,
+      "target": "b",
+      "value": 0.264
+    },
+    {
+      "kind": "gain",
+      "context_frame": 723200,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 723200,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 724992,
+      "target": "a",
+      "value": 0.33000000000000007
+    },
+    {
+      "kind": "gain",
+      "context_frame": 724992,
+      "target": "b",
+      "value": 0.27
+    },
+    {
+      "kind": "gain",
+      "context_frame": 724992,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 724992,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 727040,
+      "target": "a",
+      "value": 0.32400000000000007
+    },
+    {
+      "kind": "gain",
+      "context_frame": 727040,
+      "target": "b",
+      "value": 0.276
+    },
+    {
+      "kind": "gain",
+      "context_frame": 727040,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 727040,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 728832,
+      "target": "a",
+      "value": 0.31800000000000006
+    },
+    {
+      "kind": "gain",
+      "context_frame": 728832,
+      "target": "b",
+      "value": 0.282
+    },
+    {
+      "kind": "gain",
+      "context_frame": 728832,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 728832,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 730624,
+      "target": "a",
+      "value": 0.31200000000000006
+    },
+    {
+      "kind": "gain",
+      "context_frame": 730624,
+      "target": "b",
+      "value": 0.288
+    },
+    {
+      "kind": "gain",
+      "context_frame": 730624,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 730624,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 732416,
+      "target": "a",
+      "value": 0.30600000000000005
+    },
+    {
+      "kind": "gain",
+      "context_frame": 732416,
+      "target": "b",
+      "value": 0.294
+    },
+    {
+      "kind": "gain",
+      "context_frame": 732416,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 732416,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 734208,
+      "target": "a",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 734208,
+      "target": "b",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 734208,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 734208,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 736000,
+      "target": "a",
+      "value": 0.294
+    },
+    {
+      "kind": "gain",
+      "context_frame": 736000,
+      "target": "b",
+      "value": 0.30600000000000005
+    },
+    {
+      "kind": "gain",
+      "context_frame": 736000,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 736000,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 737792,
+      "target": "a",
+      "value": 0.288
+    },
+    {
+      "kind": "gain",
+      "context_frame": 737792,
+      "target": "b",
+      "value": 0.31200000000000006
+    },
+    {
+      "kind": "gain",
+      "context_frame": 737792,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 737792,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 739584,
+      "target": "a",
+      "value": 0.282
+    },
+    {
+      "kind": "gain",
+      "context_frame": 739584,
+      "target": "b",
+      "value": 0.31800000000000006
+    },
+    {
+      "kind": "gain",
+      "context_frame": 739584,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 739584,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 741376,
+      "target": "a",
+      "value": 0.27599999999999997
+    },
+    {
+      "kind": "gain",
+      "context_frame": 741376,
+      "target": "b",
+      "value": 0.32400000000000007
+    },
+    {
+      "kind": "gain",
+      "context_frame": 741376,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 741376,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 743168,
+      "target": "a",
+      "value": 0.26999999999999996
+    },
+    {
+      "kind": "gain",
+      "context_frame": 743168,
+      "target": "b",
+      "value": 0.33000000000000007
+    },
+    {
+      "kind": "gain",
+      "context_frame": 743168,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 743168,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 744960,
+      "target": "a",
+      "value": 0.26399999999999996
+    },
+    {
+      "kind": "gain",
+      "context_frame": 744960,
+      "target": "b",
+      "value": 0.3360000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 744960,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 744960,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 746752,
+      "target": "a",
+      "value": 0.258
+    },
+    {
+      "kind": "gain",
+      "context_frame": 746752,
+      "target": "b",
+      "value": 0.342
+    },
+    {
+      "kind": "gain",
+      "context_frame": 746752,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 746752,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 748544,
+      "target": "a",
+      "value": 0.25200000000000006
+    },
+    {
+      "kind": "gain",
+      "context_frame": 748544,
+      "target": "b",
+      "value": 0.348
+    },
+    {
+      "kind": "gain",
+      "context_frame": 748544,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 748544,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 750336,
+      "target": "a",
+      "value": 0.246
+    },
+    {
+      "kind": "gain",
+      "context_frame": 750336,
+      "target": "b",
+      "value": 0.35400000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 750336,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 750336,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 752128,
+      "target": "a",
+      "value": 0.24000000000000005
+    },
+    {
+      "kind": "gain",
+      "context_frame": 752128,
+      "target": "b",
+      "value": 0.36
+    },
+    {
+      "kind": "gain",
+      "context_frame": 752128,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 752128,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 753920,
+      "target": "a",
+      "value": 0.23399999999999999
+    },
+    {
+      "kind": "gain",
+      "context_frame": 753920,
+      "target": "b",
+      "value": 0.36600000000000005
+    },
+    {
+      "kind": "gain",
+      "context_frame": 753920,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 753920,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 755712,
+      "target": "a",
+      "value": 0.22800000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 755712,
+      "target": "b",
+      "value": 0.372
+    },
+    {
+      "kind": "gain",
+      "context_frame": 755712,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 755712,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 757504,
+      "target": "a",
+      "value": 0.22199999999999998
+    },
+    {
+      "kind": "gain",
+      "context_frame": 757504,
+      "target": "b",
+      "value": 0.37800000000000006
+    },
+    {
+      "kind": "gain",
+      "context_frame": 757504,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 757504,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 759296,
+      "target": "a",
+      "value": 0.21600000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 759296,
+      "target": "b",
+      "value": 0.384
+    },
+    {
+      "kind": "gain",
+      "context_frame": 759296,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 759296,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 761088,
+      "target": "a",
+      "value": 0.20999999999999996
+    },
+    {
+      "kind": "gain",
+      "context_frame": 761088,
+      "target": "b",
+      "value": 0.39000000000000007
+    },
+    {
+      "kind": "gain",
+      "context_frame": 761088,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 761088,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 762880,
+      "target": "a",
+      "value": 0.20400000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 762880,
+      "target": "b",
+      "value": 0.396
+    },
+    {
+      "kind": "gain",
+      "context_frame": 762880,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 762880,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 764672,
+      "target": "a",
+      "value": 0.19799999999999998
+    },
+    {
+      "kind": "gain",
+      "context_frame": 764672,
+      "target": "b",
+      "value": 0.4020000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 764672,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 764672,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 766464,
+      "target": "a",
+      "value": 0.19199999999999998
+    },
+    {
+      "kind": "gain",
+      "context_frame": 766464,
+      "target": "b",
+      "value": 0.40800000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 766464,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 766464,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 768256,
+      "target": "a",
+      "value": 0.18600000000000005
+    },
+    {
+      "kind": "gain",
+      "context_frame": 768256,
+      "target": "b",
+      "value": 0.414
+    },
+    {
+      "kind": "gain",
+      "context_frame": 768256,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 768256,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 770048,
+      "target": "a",
+      "value": 0.18000000000000005
+    },
+    {
+      "kind": "gain",
+      "context_frame": 770048,
+      "target": "b",
+      "value": 0.41999999999999993
+    },
+    {
+      "kind": "gain",
+      "context_frame": 770048,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 770048,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 771840,
+      "target": "a",
+      "value": 0.17400000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 771840,
+      "target": "b",
+      "value": 0.426
+    },
+    {
+      "kind": "gain",
+      "context_frame": 771840,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 771840,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 773632,
+      "target": "a",
+      "value": 0.16800000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 773632,
+      "target": "b",
+      "value": 0.43200000000000005
+    },
+    {
+      "kind": "gain",
+      "context_frame": 773632,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 773632,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 775424,
+      "target": "a",
+      "value": 0.16200000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 775424,
+      "target": "b",
+      "value": 0.438
+    },
+    {
+      "kind": "gain",
+      "context_frame": 775424,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 775424,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 777472,
+      "target": "a",
+      "value": 0.15600000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 777472,
+      "target": "b",
+      "value": 0.44399999999999995
+    },
+    {
+      "kind": "gain",
+      "context_frame": 777472,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 777472,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 779264,
+      "target": "a",
+      "value": 0.15000000000000002
+    },
+    {
+      "kind": "gain",
+      "context_frame": 779264,
+      "target": "b",
+      "value": 0.45
+    },
+    {
+      "kind": "gain",
+      "context_frame": 779264,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 779264,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 781056,
+      "target": "a",
+      "value": 0.144
+    },
+    {
+      "kind": "gain",
+      "context_frame": 781056,
+      "target": "b",
+      "value": 0.45600000000000007
+    },
+    {
+      "kind": "gain",
+      "context_frame": 781056,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 781056,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 782848,
+      "target": "a",
+      "value": 0.13799999999999998
+    },
+    {
+      "kind": "gain",
+      "context_frame": 782848,
+      "target": "b",
+      "value": 0.462
+    },
+    {
+      "kind": "gain",
+      "context_frame": 782848,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 782848,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 784640,
+      "target": "a",
+      "value": 0.13199999999999998
+    },
+    {
+      "kind": "gain",
+      "context_frame": 784640,
+      "target": "b",
+      "value": 0.46799999999999997
+    },
+    {
+      "kind": "gain",
+      "context_frame": 784640,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 784640,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 786432,
+      "target": "a",
+      "value": 0.12599999999999997
+    },
+    {
+      "kind": "gain",
+      "context_frame": 786432,
+      "target": "b",
+      "value": 0.47400000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 786432,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 786432,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 788224,
+      "target": "a",
+      "value": 0.11999999999999998
+    },
+    {
+      "kind": "gain",
+      "context_frame": 788224,
+      "target": "b",
+      "value": 0.4800000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 788224,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 788224,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 790016,
+      "target": "a",
+      "value": 0.11399999999999998
+    },
+    {
+      "kind": "gain",
+      "context_frame": 790016,
+      "target": "b",
+      "value": 0.48600000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 790016,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 790016,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 791808,
+      "target": "a",
+      "value": 0.10800000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 791808,
+      "target": "b",
+      "value": 0.492
+    },
+    {
+      "kind": "gain",
+      "context_frame": 791808,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 791808,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 793600,
+      "target": "a",
+      "value": 0.10200000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 793600,
+      "target": "b",
+      "value": 0.498
+    },
+    {
+      "kind": "gain",
+      "context_frame": 793600,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 793600,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 795392,
+      "target": "a",
+      "value": 0.09600000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 795392,
+      "target": "b",
+      "value": 0.504
+    },
+    {
+      "kind": "gain",
+      "context_frame": 795392,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 795392,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 797440,
+      "target": "a",
+      "value": 0.09000000000000002
+    },
+    {
+      "kind": "gain",
+      "context_frame": 797440,
+      "target": "b",
+      "value": 0.51
+    },
+    {
+      "kind": "gain",
+      "context_frame": 797440,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 797440,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 799232,
+      "target": "a",
+      "value": 0.08400000000000002
+    },
+    {
+      "kind": "gain",
+      "context_frame": 799232,
+      "target": "b",
+      "value": 0.516
+    },
+    {
+      "kind": "gain",
+      "context_frame": 799232,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 799232,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 801024,
+      "target": "a",
+      "value": 0.07800000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 801024,
+      "target": "b",
+      "value": 0.522
+    },
+    {
+      "kind": "gain",
+      "context_frame": 801024,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 801024,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 802816,
+      "target": "a",
+      "value": 0.072
+    },
+    {
+      "kind": "gain",
+      "context_frame": 802816,
+      "target": "b",
+      "value": 0.528
+    },
+    {
+      "kind": "gain",
+      "context_frame": 802816,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 802816,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 804352,
+      "target": "a",
+      "value": 0.06599999999999999
+    },
+    {
+      "kind": "gain",
+      "context_frame": 804352,
+      "target": "b",
+      "value": 0.534
+    },
+    {
+      "kind": "gain",
+      "context_frame": 804352,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 804352,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 806144,
+      "target": "a",
+      "value": 0.05999999999999999
+    },
+    {
+      "kind": "gain",
+      "context_frame": 806144,
+      "target": "b",
+      "value": 0.54
+    },
+    {
+      "kind": "gain",
+      "context_frame": 806144,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 806144,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 807936,
+      "target": "a",
+      "value": 0.053999999999999986
+    },
+    {
+      "kind": "gain",
+      "context_frame": 807936,
+      "target": "b",
+      "value": 0.546
+    },
+    {
+      "kind": "gain",
+      "context_frame": 807936,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 807936,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 809728,
+      "target": "a",
+      "value": 0.04799999999999998
+    },
+    {
+      "kind": "gain",
+      "context_frame": 809728,
+      "target": "b",
+      "value": 0.552
+    },
+    {
+      "kind": "gain",
+      "context_frame": 809728,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 809728,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 811520,
+      "target": "a",
+      "value": 0.041999999999999975
+    },
+    {
+      "kind": "gain",
+      "context_frame": 811520,
+      "target": "b",
+      "value": 0.558
+    },
+    {
+      "kind": "gain",
+      "context_frame": 811520,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 811520,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 813312,
+      "target": "a",
+      "value": 0.03600000000000003
+    },
+    {
+      "kind": "gain",
+      "context_frame": 813312,
+      "target": "b",
+      "value": 0.564
+    },
+    {
+      "kind": "gain",
+      "context_frame": 813312,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 813312,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 815104,
+      "target": "a",
+      "value": 0.030000000000000027
+    },
+    {
+      "kind": "gain",
+      "context_frame": 815104,
+      "target": "b",
+      "value": 0.57
+    },
+    {
+      "kind": "gain",
+      "context_frame": 815104,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 815104,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 816896,
+      "target": "a",
+      "value": 0.02400000000000002
+    },
+    {
+      "kind": "gain",
+      "context_frame": 816896,
+      "target": "b",
+      "value": 0.576
+    },
+    {
+      "kind": "gain",
+      "context_frame": 816896,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 816896,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 818688,
+      "target": "a",
+      "value": 0.018000000000000016
+    },
+    {
+      "kind": "gain",
+      "context_frame": 818688,
+      "target": "b",
+      "value": 0.5820000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 818688,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 818688,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 820480,
+      "target": "a",
+      "value": 0.01200000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 820480,
+      "target": "b",
+      "value": 0.588
+    },
+    {
+      "kind": "gain",
+      "context_frame": 820480,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 820480,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 822272,
+      "target": "a",
+      "value": 0.006000000000000005
+    },
+    {
+      "kind": "gain",
+      "context_frame": 822272,
+      "target": "b",
+      "value": 0.594
+    },
+    {
+      "kind": "gain",
+      "context_frame": 822272,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 822272,
+      "target": "rack",
+      "value": 0.48750000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 824064,
+      "target": "a",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 824064,
+      "target": "b",
+      "value": 0.6000000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 824064,
+      "target": "c",
+      "value": 0.30000000000000004
+    },
+    {
+      "kind": "gain",
+      "context_frame": 824064,
+      "target": "rack",
+      "value": 0.48750000000000004
+    }
+  ]
+}

@@ -13,7 +13,7 @@ test('real Postgres ledger: conservation, concurrency, receipts, tenant isolatio
  await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
  const pool=createPool(url.toString()),wallet=new Wallet(pool);
  try{
-  assert.equal((await migrate(pool)).length,9);assert.deepEqual(await migrate(pool),[]);
+  assert.equal((await migrate(pool)).length,10);assert.deepEqual(await migrate(pool),[]);
   for(const id of ['alice','bob','carol'])await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[id,id+'@example.test']);
   await t.test('receipt replay grants exactly once and cannot move between accounts',async()=>{
    const p={provider:'stripe_test' as const,receipt:'cs_test_alice',credits:10,netMicros:4_000_000};

@@ -16,6 +16,9 @@ const config: NextConfig = {
       { source: '/studio/:path*', headers: [
         { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'" },
       ] },
+      ...['/academy/lessons/:path*','/academy/practice','/academy/challenges/:path*','/academy-offline/:path*'].map(source=>({source,headers:[
+        {key:'Content-Security-Policy',value:"default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"},
+      ]})),
     ];
   },
 };

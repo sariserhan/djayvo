@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-21",
+  "source": "Owner response in this conversation; not a recruited novice cohort",
+  "initial_result": "FAIL",
+  "responses": [
+    "I got stuck or the directions were unclear",
+    "Finding permission or preparing tracks",
+    "Yes, I can start the music now"
+  ],
+  "change": "Move the existing permission checkbox into the coach panel beside a disabled-until-confirmed track-load button, number onboarding steps and name the included tracks.",
+  "retest": "PASS: owner could find permission, load tracks and start Deck A",
+  "music_enjoyment": "NOT RUN",
+  "novice_count": 0,
+  "full_lesson_completion": "NOT RUN"
+}

@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "tracks": [
+    {
+      "id": "extended",
+      "title": "Extended",
+      "artist": "Tricks & Traps",
+      "url": "/academy-audio/extended.mp3",
+      "sha256": "0ca55afaff18a296a32126f449f91d1d5708398faa6a803ef0c505a46cf75284",
+      "bytes": 1537388,
+      "source_url": "https://opengameart.org/sites/default/files/5_extended.wav",
+      "source_sha256": "e71d83f5dba0187618354847fb86ae0f497d1016d1c7ac566a96b5325b75c5e1",
+      "source_page": "https://opengameart.org/content/free-rhythm-game-music-pack-2",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "modifications": "32\u201396 second excerpt, loudness normalization, 15 ms edge fades, stereo MP3",
+      "bpm": 120,
+      "tempo_basis": "Author metadata; absolute downbeat and key not independently verified",
+      "seconds": 64,
+      "measurements": {
+        "input_i": "-17.86",
+        "input_tp": "-6.71",
+        "input_lra": "3.00",
+        "input_thresh": "-27.90",
+        "output_i": "-17.49",
+        "output_tp": "-5.95",
+        "output_lra": "2.60",
+        "output_thresh": "-27.52",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.51"
+      },
+      "listening": "NOT RUN"
+    },
+    {
+      "id": "theories",
+      "title": "Theories of Everything",
+      "artist": "Tricks & Traps",
+      "url": "/academy-audio/theories.mp3",
+      "sha256": "7f54e84a9d303f42bc51ffca0b1811e47ab9294c6666af9ed5f64861abb28568",
+      "bytes": 1537388,
+      "source_url": "https://opengameart.org/sites/default/files/7_t.o.e.wav",
+      "source_sha256": "8c4033f4a17de2a19ccdd25e0c2bd95e885912592f2324c474c7384c83cb9b83",
+      "source_page": "https://opengameart.org/content/free-rhythm-game-music-pack-2",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "modifications": "32\u201396 second excerpt, loudness normalization, 15 ms edge fades, stereo MP3",
+      "bpm": 120,
+      "tempo_basis": "Author metadata; absolute downbeat and key not independently verified",
+      "seconds": 64,
+      "measurements": {
+        "input_i": "-18.30",
+        "input_tp": "-9.38",
+        "input_lra": "1.20",
+        "input_thresh": "-28.31",
+        "output_i": "-18.12",
+        "output_tp": "-9.10",
+        "output_lra": "1.20",
+        "output_thresh": "-28.13",
+        "normalization_type": "dynamic",
+        "target_offset": "0.12"
+      },
+      "listening": "NOT RUN"
+    }
+  ],
+  "rights": "Artist upload explicitly CC0, verified 2026-10-21. Course suitability listening and commercial legal review remain open."
+}

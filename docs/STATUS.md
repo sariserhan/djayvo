@@ -1,5 +1,29 @@
 # Jamloom implementation checkpoint
 
+## Latest: DJ Academy — 2026-10-21
+
+**Overall PARTIAL; public release NOT RUN.** Fifth feature added while preserving
+the four existing features. Two runnable real-deck exercises (free first crossfade
+and gated gain staging), coaching, voluntary Free Jam, introductory challenge,
+versioned progress, offline free lesson and separate $79.99 sandbox entitlement.
+Six curriculum stages are mapped; upper-stage assessments remain unfinished.
+
+**PASS:** Production build, TypeScript, 78 web tests, 75 site/database tests,
+15 baseline core tests and Chromium/WebKit Academy + existing product regressions.
+Owner confirmed revised permission/loading now lets them start the music.
+**PARTIAL:** Actual captured audio has no clipping or exact silence, but each
+browser reports one recorder clock discontinuity. Its cause remains unproven.
+**NOT RUN:** Human full fade/enjoyment, required novice cohort, actual Stripe
+hosted sandbox, physical venue/offline tests, hosted migration and deployment.
+Existing AI musical-quality **FAIL** remains; paid generation and Academy sales
+are closed. No new paid services, model training, or production writes.
+
+Preview: http://127.0.0.1:4224/academy/lessons/first-crossfade (local dedicated DB).
+[Full gates and next actions](ACADEMY_IMPLEMENTATION.md),
+[owner handbook](OWNER_HANDBOOK.md), [tracker](../TODO.md).
+
+## Previous full-product checkpoint
+
 2026-10-20/21, America/New_York. **Overall PARTIAL. Paid release FAIL / closed.**
 
 Active scope: the owner's full-product directive. Master and learning addendum

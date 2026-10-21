@@ -35,3 +35,34 @@ unchanged. Older pause statements are historical for local implementation.
   held until shutdown/cost reconciliation. Only trusted adapters may confirm stop.
 - Refund/dispute holds persist before grants and serialize with purchase receipt
   delivery. Full provider refunds/entitlement reversal remain an explicit blocker.
+
+## 2026-10-21 — DJ Academy integration
+
+- Fifth feature; preserve all four product routes and the separate paid-generation
+  quality hold. Master and learning specs unchanged.
+- Teach on the existing `apps/web/dj.html` deck handlers and mixer. A shared bridge
+  distinguishes user and coach-demo commands. Actual analyser/audio-clock samples
+  drive the rubric; no second toy mixer or click-only scoring.
+- Raw deck route handlers preserve existing audio state during coach steps and
+  avoid an iframe. Keep frame blocking; permit a same-origin base URL only for
+  Academy deck/offline routes. Account and private-storage policies stay intact.
+- Guest intro/local practice is free; verified account progress is separate from
+  local history. Shared rubric is re-evaluated on the server with ordered tasks,
+  asset/version hashes, expiration, owner scoping and replay conflicts. This does
+  not defeat a hostile client forging its own telemetry; no accredited certificate.
+- Artist-published CC0 music replaces no generative assets. No songs downloaded
+  from streaming APIs. Source hashes, modifications and licensing evidence ship.
+- Author metadata supplies 120 BPM, not verified downbeats/keys. Grade fade
+  duration/smoothness, not beat phase. Unsynchronized A/B playback, discontinuous
+  pitch/whole-file loops and 30-second capture block advanced set assessments.
+- A separately scoped, content-hashed free offline package reuses the existing
+  bounded service worker. It never caches paid lessons, auth or API responses.
+  Offline checks are local; account verification requires a fresh online attempt.
+- Academy receipts/access are separate from credit lots. Checkout is $79.99 USD
+  one-time before tax, test keys only. Event and receipt operations share one
+  database transaction/connection to avoid pool starvation under concurrent replay.
+  Refund/dispute holds precede grants; legitimate separate repurchase restores access.
+- Owner found preparation unclear. Move the existing permission control into the
+  coach's numbered onboarding; do not count this failed test as learning acceptance.
+- Full-course selling, human enjoyment/novice outcomes, venue reliability and live
+  payment activation remain open gates. No paid cloud inference is needed for lessons.
