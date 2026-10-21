@@ -309,7 +309,39 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
       context: confirmed() ? { tempo_milli_bpm: c.tempo, tonic_midi: c.tonic, mode: c.mode,
         beats_per_bar: 4, downbeat_seconds: Number($('session-downbeat').value), status: 'user_confirmed' } : null };
   }
-  return { reset, stop, refresh, phraseSource, mixSources: () => ({
+  async function recoverySnapshot(){
+    if(busy||starting)throw Error('Wait for phrase preparation before saving the set.');
+    if(!prepared&&!samples&&!savedPerformance)return null;
+    if(!permitted()&&(samples||savedPerformance))throw Error('Phrase permission is required to save this performance.');
+    const snapshotRevision=revision;
+    const phrase=phraseBlob?await phraseBlob.arrayBuffer():null;
+    const hash=phrase?Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',phrase)),n=>n.toString(16).padStart(2,'0')).join(''):null;
+    if(snapshotRevision!==revision)throw Error('Phrase changed during recovery save. Try again.');
+    return {revision:snapshotRevision,prepared:!!prepared,context:currentContext(),confirmed:confirmed(),downbeat:Number($('session-downbeat').value),phrase,phraseSha:hash,
+      performance:savedPerformance?{...savedPerformance,files:await Promise.all(savedPerformance.files.map(async f=>({name:f.name,sha256:f.sha256,bytes:await f.blob.arrayBuffer()})))}:null};
+  }
+  async function restoreRecovery(state){
+    if(!state)return;
+    if((state.phrase||state.performance)&&!permitted())throw Error('Confirm phrase permission before restoring voices.');
+    if(state.prepared){await $('prepare-a').onclick();if(!prepared)throw Error('Prepared A could not be restored.');}
+    const token=revision;
+    let restored;
+    if(state.performance){restored={...state.performance,files:state.performance.files.map(f=>({...f,blob:new Blob([f.bytes],{type:f.name.endsWith('.wav')?'audio/wav':'application/octet-stream'})}))};if(!await verifySession(restored))throw Error('Saved C failed its integrity check.');}
+    if(state.phrase){
+      const sha=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',state.phrase)),n=>n.toString(16).padStart(2,'0')).join('');
+      if(sha!==state.phraseSha)throw Error('Saved phrase failed its integrity check.');
+      await loadPhrase(new Blob([state.phrase],{type:'audio/wav'}));if(!samples)throw Error('Saved phrase could not be restored.');
+    }else if(revision!==token)throw Error('Performance restore interrupted.');
+    const restoreToken=revision;
+    let buffer;
+    if(restored){const bytes=await restored.files.find(f=>f.name.endsWith('.wav')).blob.arrayBuffer();buffer=await context().decodeAudioData(bytes);validatePreparedTrack(buffer);}
+    if(revision!==restoreToken||!rights.checked||((state.phrase||restored)&&!permitted()))throw Error('Performance restore interrupted.');
+    $('session-bpm').value=state.context.tempo/1000;$('session-key').value=state.context.tonic;$('session-mode').value=state.context.mode;$('session-downbeat').value=state.downbeat;
+    $('context-confirmed').checked=state.confirmed&&!!prepared;
+    if(restored){clearPerformance();savedPerformance=restored;performanceBuffer=buffer;generationContext=state.context;download=URL.createObjectURL(restored.files.find(f=>f.name.endsWith('.wav')).blob);$('performance-download').href=download;$('performance-download').download=`jamloom-session-${restored.seed}.wav`;$('performance-download').hidden=false;onSourcesChanged();}
+    say('Prepared session restored, stopped. Check the saved musical context before playback.');refresh();
+  }
+  return { reset, stop, refresh, phraseSource, recoverySnapshot, restoreRecovery, recoveryCurrent:state=>!state||state.revision===revision&&(!(state.phrase||state.performance)||permitted()), mixSources: () => ({
     c: savedPerformance?.files.find(file => file.name.endsWith('.wav'))?.blob, phrase: phraseBlob,
   }) };
 }

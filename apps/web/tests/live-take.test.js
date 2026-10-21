@@ -2,14 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import {StepSequence} from '../step-sequence.js';
 import { TakeBuffer, executeCommand, validCommand, validateTake, stereoWav, sha256, replayTake, TAKE_EVENTS } from '../live-take.js';
 const wasm = fs.readFileSync(new URL('../../../dist/web/engine/jamloom_live.wasm', import.meta.url));
 const module = await WebAssembly.compile(wasm);
 function harness() {
   let Processor;
   const messages = [];
-  vm.runInNewContext(fs.readFileSync(new URL('../instrument-worklet.js', import.meta.url), 'utf8').replace(/^import .*;\n/, ''), {
-    TakeBuffer, executeCommand, validCommand, WebAssembly, sampleRate: 48000,
+  vm.runInNewContext(fs.readFileSync(new URL('../instrument-worklet.js', import.meta.url), 'utf8').replace(/^import .*;\n/gm, ''), {
+    StepSequence, TakeBuffer, executeCommand, validCommand, WebAssembly, sampleRate: 48000,
     AudioWorkletProcessor: class { constructor() { this.port = { postMessage: (data, transfer = []) =>
       messages.push(structuredClone(data, { transfer })) }; } },
     registerProcessor: (_, cls) => { Processor = cls; },
@@ -82,4 +83,12 @@ test('recording is off by default and stale stop cannot export another take', ()
   const h = harness(); h.send(note); h.block(); assert.equal(h.processor.take, undefined);
   h.send({type:'take-start',token:1,mouth:0}); h.block(); h.send({type:'take-stop',token:2});
   assert.ok(h.processor.take); assert.equal(h.messages.at(-1).type,'take-started');
+});
+test('real instrument engine sequences notes, stops on panic, and keeps dry captures isolated',()=>{
+ const h=harness(),pattern={tempo:113,notes:[60,null,64,null,...Array(12).fill(null)]};
+ h.send({type:'sequence-start',pattern,patch:0,velocity:100});assert.equal(h.messages.at(-1).type,'sequence-started');
+ let peak=0;for(let i=0;i<100;i++){h.block();for(const value of h.output[0][0]){assert.ok(Number.isFinite(value));peak=Math.max(peak,Math.abs(value));}}assert.ok(peak>.001);
+ h.send({type:'panic'});assert.equal(h.processor.sequence,null);for(let i=0;i<400;i++)h.block();assert.ok(h.output[0][0].every(v=>Math.abs(v)<1e-5));
+ h.send({type:'sequence-start',pattern,patch:0,velocity:100});h.send({type:'take-start',token:1,mouth:0});assert.equal(h.processor.sequence,null);
+ h.send({type:'sequence-start',pattern,patch:0,velocity:100});assert.equal(h.processor.sequence,null);assert.match(h.messages.at(-1).message,/Finish the dry/);assert.ok(h.processor.take);
 });

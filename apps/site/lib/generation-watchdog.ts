@@ -36,7 +36,7 @@ export class GenerationWatchdog {
    if(!locked)return [{id:'',status:'watchdog_busy'}];
    const queue=new GenerationQueue(this.pool,'');
    if(apply)await queue.shutdownRequired();
-   const jobs=(await db.query(`SELECT r.*,j.reservation_id,j.lease_token,j.cancel_requested FROM generation_jobs j
+   const jobs=(await db.query(`SELECT r.*,j.reservation_id,j.lease_token,j.cancel_requested,j.budget FROM generation_jobs j
     LEFT JOIN generation_rentals r USING(reservation_id)
     WHERE (j.state='stopping' OR (j.state='running' AND (j.cancel_requested OR j.lease_until<=now() OR j.deadline<=now())))
     ORDER BY j.created_at LIMIT 100`)).rows;
@@ -65,6 +65,7 @@ export class GenerationWatchdog {
       }
      }
      if(job.final_cost_micros===null){results.push({id,status:'awaiting_cost_evidence'});continue;}
+     if(job.budget?.output){results.push({id,status:'awaiting_output_recovery'});continue;}
      await queue.stopped(id,job.lease_token,Number(job.final_cost_micros),job.cancel_requested?'cancelled':'failed');
      results.push({id,status:'settled'});
     }catch{

@@ -1,5 +1,6 @@
 import {integer} from './economics';
 import {readBody} from './audio-validation';
+import {createHash} from 'node:crypto';
 
 export type RentalInstance={id:number;label:string|null};
 export interface RentalProvider {
@@ -52,5 +53,37 @@ export class VastProvider implements RentalProvider {
  async destroy(instance:number){
   integer(instance,1);
   if((await this.api('v0/instances/'+instance,'DELETE')).success!==true)throw new Error('Vast destroy unconfirmed');
+ }
+ async charges(account:number,instance:number,label:string,from:number,to:number){
+  integer(account,1);integer(instance,1);integer(from,0);integer(to,from+1);
+  if(to-from>32*86400||!/^jamloom-job-[a-f0-9-]{36}$/.test(label))throw Error('Invalid billing window or label');
+  if((await this.api('v0/users/current')).id!==account)throw Error('Vast account mismatch');
+  const rows:Record<string,unknown>[]=[],seen=new Set<string>(),sources=new Set<string>();let token:string|null=null,total:number|undefined;
+  for(let page=0;page<40;page++){
+   const params=new URLSearchParams({limit:'25',format:'table',select_filters:JSON.stringify({day:{gte:from,lte:to},type:{in:['instance']}})});
+   if(token)params.set('after_token',token);
+   const result=await this.api('v0/charges?'+params);
+   if(result.success!==true||!Array.isArray(result.results)||result.results.length>25||result.count!==result.results.length||
+     !Number.isSafeInteger(result.total)||result.total<0||result.total>1000||!(result.next_token===null||typeof result.next_token==='string'&&result.next_token.length>0&&result.next_token.length<=4096))throw Error('Incomplete provider charges');
+   total??=result.total;if(total!==result.total)throw Error('Provider charges changed; retry');
+   for(const row of result.results){
+    if(!row||row.type!=='instance'||typeof row.source!=='string'||sources.has(row.source))throw Error('Invalid or repeated charge contract');
+    sources.add(row.source);
+    if(row.source===`instance-${instance}`){
+     if(row.metadata?.label!==label||!Number.isFinite(row.start)||!Number.isFinite(row.end)||row.start<from||row.end>to||row.end<row.start)throw Error('Provider billing identity/window mismatch');
+     rows.push(row);
+    }
+   }
+   token=result.next_token;
+   if(token===null){if(sources.size!==total||rows.length!==1)throw Error('Missing or incomplete instance charge evidence');break;}
+   if(seen.has(token)||page===39)throw Error('Provider charge pagination limit');seen.add(token);
+  }
+  const row=rows[0],amount=String(row.amount);
+  if(!/^\d{1,7}(\.\d{1,12})?$/.test(amount))throw Error('Unsupported provider charge amount');
+  const [whole,fraction='']=amount.split('.'),scale=10n**BigInt(fraction.length);
+  const micros=(BigInt(whole)*scale+BigInt(fraction||'0'))*1000000n;
+  const observedCostMicros=Number((micros+scale-1n)/scale);integer(observedCostMicros);
+  const evidence={account,instance,label,from,to,charge:row};
+  return {observedCostMicros,evidence,evidenceSha256:createHash('sha256').update(JSON.stringify(evidence)).digest('hex'),final:false as const};
  }
 }

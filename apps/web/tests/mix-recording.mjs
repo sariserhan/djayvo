@@ -17,7 +17,8 @@ const publicRoot = path.join(root, 'dist/web'), errors = [], external = [], chec
 let takingScreenshot = false;
 const server = createServer(async (req, res) => {
   const name = new URL(req.url, 'http://local').pathname.slice(1);
-  if(name==='api/site-status'){res.writeHead(200,{'Content-Type':'application/json'});res.end(JSON.stringify({banner:null}));return;}
+  if(name==='api/aurowall'){res.writeHead(200,{'Content-Type':'application/json'});res.end(JSON.stringify({tracks:[]}));return;}
+ if(name==='api/site-status'){res.writeHead(200,{'Content-Type':'application/json'});res.end(JSON.stringify({banner:null}));return;}
   if (req.method !== 'GET' || !/^[\w./-]+$/.test(name) || name.split('/').includes('..')) { res.writeHead(404); res.end(); return; }
   try {
     const bytes = await fs.readFile(path.join(publicRoot, name));
@@ -40,6 +41,7 @@ try {
   });
   const page = await context.newPage();
   page.on('pageerror', e => errors.push(e.message));
+  page.on('response',r=>{if(r.status()>=400)console.log('HTTP',r.status(),r.url());});
   page.on('console', m => {
     if (m.type() !== 'error') return;
     if (takingScreenshot && kind === 'webkit' && m.text().startsWith('Refused to apply a stylesheet')) warnings.push(m.text());
@@ -154,7 +156,7 @@ try {
   const automation=validateMixAutomation(JSON.parse(await fs.readFile(path.join(output,'controls.json'),'utf8')),receipt);
   for (const [target,value] of [['eq-a-0',-6],['c',.3*.75*.8],['rack',.5*.75]])
     assert.ok(automation.events.some(e=>e.target===target && e.value===value));
-  assert.equal(automation.schema_version,'2.0-mix-automation');
+  assert.equal(automation.schema_version,'3.0-mix-automation');
   for (const target of ['a','rack']) {
     assert.ok(automation.events.some(e=>e.kind==='tone_echo' && e.target===target && e.echo>0));
     assert.ok(automation.events.some(e=>e.kind==='clear_echo' && e.target===target));

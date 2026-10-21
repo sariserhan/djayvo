@@ -1,3 +1,4 @@
+import { createDeckEffects } from './deck-effects.js';
 export const MIX_GAIN_TARGETS = ['a', 'b', 'c', 'rack', 'eq-a-0', 'eq-a-1', 'eq-a-2', 'eq-b-0', 'eq-b-1', 'eq-b-2'];
 
 export function validMixerGain(target, value) {
@@ -118,8 +119,9 @@ export function createMixer(context) {
     high.type = 'highshelf'; high.frequency.value = 5000;
     const scope = context.createAnalyser(); scope.fftSize = 2048;
     const fx = createToneEcho(context, scope);
-    low.connect(mid); mid.connect(high); high.connect(fx.input); scope.connect(channel);
-    return { input: low, eq: [low, mid, high], scope, fx };
+    const advanced=createDeckEffects(context,fx.input);
+    low.connect(mid); mid.connect(high); high.connect(advanced.input); scope.connect(channel);
+    return { input: low, eq: [low, mid, high], scope, fx, advanced };
   });
   const performance = context.createGain(); performance.gain.value = 0; performance.connect(limiter);
   const performanceFX = createToneEcho(context, performance);
@@ -136,6 +138,7 @@ export function createMixer(context) {
   const effects = { a: strips[0].fx, b: strips[1].fx, c: performanceFX, rack: rackFX };
   const mixer = { channels, meter, stereoMeters, strips, rack, rackScope, rackFX, performance, performanceFX, gainParams, gainTargets, effects };
   for (const [target, fx] of Object.entries(effects)) { fx.target = target; fx.mixer = mixer; }
+  mixer.deckEffects=Object.fromEntries(strips.map((strip,i)=>{strip.advanced.target=i?'b':'a';strip.advanced.mixer=mixer;return [i?'b':'a',strip.advanced];}));
   return mixer;
 }
 

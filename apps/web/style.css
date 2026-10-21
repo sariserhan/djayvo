@@ -141,3 +141,5 @@ dialog p,dialog li { color:#c6ccc2; }
 #site-announcement{padding:1rem;background:#253c35;color:#f1fff7;white-space:pre-wrap;overflow-wrap:anywhere;border-bottom:1px solid #517766}
 
 .visibility-choice{border:1px solid var(--line);border-radius:8px;padding:16px;margin:16px 0;min-width:0}.visibility-choice label{display:flex;gap:10px;align-items:center;margin:12px 0}.visibility-choice input[type=radio]{width:18px;height:18px;flex-shrink:0;accent-color:var(--lime)}.visibility-choice p{font-size:12px;line-height:1.6}.visibility-choice legend{padding-inline:8px}
+
+.sequence-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin:12px 0}.sequence-steps label{min-width:0}.sequence-steps select{width:100%}

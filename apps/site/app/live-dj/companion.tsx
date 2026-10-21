@@ -31,7 +31,7 @@ export function Companion({onConnectionChange}:{onConnectionChange:(connected:bo
  async function connect(){
   if(!/^[a-f0-9]{64}$/.test(code))return;if(release.current)clearTimeout(release.current);const current=++generation.current;setPending(true);callback.current(true);token.current=code;
   try{const data=await command('/status');if(current!==generation.current)return;setStatus(data);setControls(data.controls);setConnected(true);setCode('');setMessage('Connected. Audio stays in Jamloom Live; this page controls its effects.');}
-  catch{if(current===generation.current)disconnect('Could not connect. Open Jamloom Live and pair again. Allow local-network access if your browser asks, or use the native controls.');}
+  catch{if(current===generation.current)disconnect('Could not connect. Open Jamloom Live and pair again. Allow local-network access if your browser asks. If it blocks loopback connections, use the native controls or another supported browser.');}
   finally{if(current===generation.current)setPending(false);}
  }
  async function update(next:Controls){

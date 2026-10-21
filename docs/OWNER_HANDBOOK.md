@@ -386,3 +386,43 @@ public launch); anonymous requests are intentionally redirected by the launch
 gate. Do not deliberately crash production to test error pages: use the isolated
 `npm run test:framework-browser` fixture described in
 [nextjs-foundations.md](nextjs-foundations.md). Hosted validation is NOT RUN.
+
+## DJ DSP, saved scenes and Music DNA follow-through
+
+For imported local tracks, pause the deck and choose **Enable beat controls**.
+This enables signed platter scratch and optional key lock for 2-second–5-minute
+tracks within 128 MB decoded. The deck effects panel adds reverb, phaser and
+flanger. Reset flushes their tails; pause-all leaves playback stopped. These local
+technical checks do not certify venue timing or musical quality.
+
+**Recover this set after a reload** now optionally retains the source phrase,
+prepared C and instrument settings as well as A/B, under the same 100 MB set cap.
+There are three independently saved scene slots. Confirm both music and phrase
+permissions before restoring voices. Restore is always paused; enable instruments
+again before playing keys/patterns. Delete recovery and each scene explicitly to
+remove saved source audio. Browser eviction can still remove local storage; keep
+separate downloads. Online-only partner music and unfinished recordings are excluded.
+
+The instrument rack includes a 16-step sequence of notes/rests at 40–240 BPM.
+It uses the selected sound and velocity, starts independently of deck sync, and
+stops on panic/focus loss. Edit then restart to apply changes. Record it through
+the studio mix recorder; dry instrument-take recording stops/disallows sequencing
+to preserve replayable take metadata.
+
+Headphone setup requires two distinct supported outputs. Allow each output where
+the browser provides a selector, configure while paused, play the quiet test, and
+confirm it is heard only in headphones. This confirmation is never persisted.
+Changing devices, losing permission or hiding the page mutes cue and requires
+reconfiguration. Physical output/calibration checks remain deferred.
+
+Music DNA can search the existing cleared catalogue and explain genre evidence
+from title/artist/edition metadata and weighted ratings. It does not infer unknown
+audio attributes. The optional preference-adaptation checkbox reapplies a preferred
+Jamloom variation's actual controls and direction locally. It trains no model and
+uploads no feedback. Delete saved profile clears this local feedback too.
+
+Trusted worker recovery and read-only provider charge collection are described in
+[non-ios-finish](non-ios-finish.md). They do not enable paid generation. Actual GPU,
+R2, final billing, listening and physical capture/routing checks remain open. A local
+secure-origin fixture verified Chromium with local-network permission; WebKit
+blocked loopback access and requires native companion controls or a supported browser.

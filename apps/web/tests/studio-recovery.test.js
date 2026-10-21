@@ -9,3 +9,11 @@ test('recovery accepts bounded paused-set state and rejects damaged or unsafe co
  }
  for(const change of [{version:2},{curve:'unknown'},{decks:[]},{values:{master:100}}])assert.throws(()=>validateRecovery({...fixture(),...change}));
 });
+test('full scenes validate rack register, effects and source/performance bounds',()=>{
+ const state={...fixture(),version:2,root:36,echoGrid:'manual'};
+ Object.assign(state.values,{'rack-level':.5,'rack-tone':100,'rack-echo':0,'rack-delay':300,patch:11,velocity:90,mouth:.7,'c-level':.5,'tone-c':100,'echo-c':0,'delay-c':300,...Object.fromEntries(['a','b'].flatMap(d=>['reverb','phaser','flanger'].map(f=>[`${f}-${d}`,.2])))});
+ state.performance={prepared:true,confirmed:true,context:{tempo:110000,tonic:60,mode:'minor'},downbeat:0,phrase:new ArrayBuffer(44),phraseSha:'b'.repeat(64),performance:null};
+ assert.equal(validateRecovery(state).root,36);
+ for(const root of [23,25,97,NaN])assert.throws(()=>validateRecovery({...state,root}));
+ for(const change of [{phrase:new ArrayBuffer(480045)},{phraseSha:'wrong'},{context:{tempo:110,tonic:60,mode:'minor'}},{performance:{files:[{bytes:new ArrayBuffer(1)}]}}])assert.throws(()=>validateRecovery({...state,performance:{...state.performance,...change}}));
+});

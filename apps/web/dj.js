@@ -12,6 +12,8 @@ import { attachSetRecording } from './set-recording.js';
 import { FrameDeck } from './frame-deck.js';
 import { deckBridge } from './deck-bridge.js';
 import { attachStudioRecovery } from './studio-recovery.js';
+import { attachCueRouting } from './cue-routing.js';
+import { DECK_EFFECTS, updateDeckEffects, clearDeckEffects } from './deck-effects.js';
 
 const $ = id => document.getElementById(id);
 attachStudioView($('dj'), $('studio-fullscreen'), $('studio-view-status'));
@@ -37,7 +39,7 @@ function controls(deck) {
   $(`state-${id}`).textContent = held ? (deck.sessionPlaying ? 'Prepared · playing' : 'Prepared session') : deck.loading ? 'Loading…' : deck.starting ? 'Starting…' : !deck.url ? 'Empty' : audio.ended ? 'Ended' : audio.paused ? 'Ready' : 'Playing';
   $(`seek-${id}`).max = String(deck.duration);
   $(`seek-${id}`).value = String(audio.currentTime || 0);
-  for (const name of ['tone', 'echo', 'delay', 'fx-reset']) $(`${name}-${id}`).disabled = !deck.url || !rights.checked || !!deck.loading;
+  for (const name of ['tone', 'echo', 'delay', 'fx-reset', ...DECK_EFFECTS]) $(`${name}-${id}`).disabled = !deck.url || !rights.checked || !!deck.loading;
   deck.transportControls?.(ready && !deck.loading && !deck.starting);
   $(`prepare-frames-${id}`).disabled=!ready||!audio.paused||!!deck.loading||deck.starting||!!audio.buffer;
   if (deck.prepared) for (let band = 0; band < 3; band++) $(`eq-${id}-${band}`).disabled = !rights.checked;
@@ -60,20 +62,25 @@ function levels() {
 
 function deckEffects(deck, reset = false) {
   const { id } = deck;
-  const fx = mixer?.strips[id === 'a' ? 0 : 1].fx;
+  const fx = mixer?.strips[id === 'a' ? 0 : 1].fx, advanced=mixer?.deckEffects[id];
   if (reset) {
     $(`tone-${id}`).value = '100'; $(`echo-${id}`).value = '0'; $(`delay-${id}`).value = '300';
     if (fx) clearEcho(context, fx);
+    for(const name of DECK_EFFECTS)$(`${name}-${id}`).value='0';
+    if(advanced)clearDeckEffects(context,advanced);
   }
   const tone = Number($(`tone-${id}`).value), echo = Number($(`echo-${id}`).value), milliseconds = Number($(`delay-${id}`).value);
   $(`tone-${id}-value`).textContent = tone === 100 ? 'Open' : `${Math.round(200 * 100 ** (tone / 100))} Hz`;
   $(`echo-${id}-value`).textContent = echo ? `${Math.round(echo * 100)}%` : 'Off';
   $(`delay-${id}-value`).textContent = `${milliseconds} ms`;
   if (fx) updateToneEcho(context, fx, tone, echo, milliseconds);
+  const values=Object.fromEntries(DECK_EFFECTS.map(name=>[name,Number($(`${name}-${id}`).value)]));
+  for(const name of DECK_EFFECTS)$(`${name}-${id}-value`).textContent=values[name]?`${Math.round(values[name]*100)}%`:'Off';
+  if(advanced)updateDeckEffects(context,advanced,values);
 }
 
 function clearDeckEchoes() {
-  if (mixer) mixer.strips.forEach(strip => clearEcho(context, strip.fx));
+  if (mixer) mixer.strips.forEach(strip => {clearEcho(context, strip.fx);clearDeckEffects(context,strip.advanced);});
 }
 
 function pause(deck) {
@@ -116,7 +123,7 @@ function audioGraph() {
   }
   context.onstatechange = () => {
     if (context.state !== 'running') {
-      keyboard.panic(); keyboard.interrupt(); mixRecording.interrupt(); setRecording.interrupt(); decks.forEach(pause); clearDeckEchoes();
+      cueRouting.interrupt(); keyboard.panic(); keyboard.interrupt(); mixRecording.interrupt(); setRecording.interrupt(); decks.forEach(pause); clearDeckEchoes();
       $('mixer-status').textContent = 'Audio was interrupted. Press Play when you are ready to resume.';
     }
   };
@@ -199,9 +206,11 @@ async function prepareFrames(deck) {
     const buffer=await context.decodeAudioData(await file.arrayBuffer());validatePreparedTrack(buffer);
     if(revision!==deck.revision||file!==deck.file||!rights.checked)return;
     const position=deck.audio.currentTime,speed=deck.audio.playbackRate;
-    deck.audio.useBuffer(buffer);deck.audio.currentTime=position;deck.audio.playbackRate=speed;
+    const node=await deck.audio.prepareDSP(buffer);
+    if(revision!==deck.revision||file!==deck.file||!rights.checked){node.port.postMessage({type:'dispose'});node.port.close();node.disconnect();return;}
+    deck.audio.useDSP(buffer,node);deck.audio.currentTime=position;deck.audio.playbackRate=speed;
     deck.audio.loop=deck.loop;deck.duration=buffer.duration;
-    $(`error-${deck.id}`).textContent='Beat controls ready. Enter the track BPM. Pitch now changes key; key lock is unavailable in this mode.';
+    $(`error-${deck.id}`).textContent='Beat controls and scratch ready. Enter the track BPM. Enable key lock to preserve pitch when changing tempo.';
   }catch(error){if(revision===deck.revision)$(`error-${deck.id}`).textContent=error.message;}
   finally{deck.preparing=false;controls(deck);}
 }
@@ -278,10 +287,11 @@ for (const deck of decks) {
       return new File([file.blob], `jamloom-${saved.seed}-${name}`, { type: 'audio/wav' });
     });
   };
-  for (const name of ['tone', 'echo', 'delay']) $(`${name}-${id}`).oninput = () => deckEffects(deck);
+  for (const name of ['tone', 'echo', 'delay', ...DECK_EFFECTS]) $(`${name}-${id}`).oninput = () => deckEffects(deck);
   $(`fx-reset-${id}`).onclick = () => deckEffects(deck, true);
   $(`play-${id}`).onclick = () => start(deck);
-  attachDeck(deck, decks.find(other => other !== deck), { pause, start, mixer: () => mixer, context: () => context });
+  attachDeck(deck, decks.find(other => other !== deck), { pause, start, mixer: () => mixer, context: () => context,
+    scratchStart:async()=>{await resumeAudio(context);if(rights.checked&&deck.audio.processor)deck.mediaGain.gain.setTargetAtTime(1,context.currentTime,.005);} });
   $(`clear-${id}`).onclick = () => unload(deck);
   $(`seek-${id}`).oninput = event => {
     if (deck.url && rights.checked) {
@@ -303,7 +313,8 @@ window.addEventListener('pagehide', event => {
   decks.forEach(pause); clearDeckEchoes();
   if (!event.persisted) { decks.forEach(unload); context?.close().catch(() => {}); }
 });
-attachStudioRecovery({decks,rights,loadTrack,prepareFrames,levels,deckEffects,controls});
+attachStudioRecovery({decks,rights,loadTrack,prepareFrames,levels,deckEffects,controls,session,keyboard});
+const cueRouting=attachCueRouting({graph:audioGraph,context:()=>context,mixer:()=>mixer,rights,paused:()=>decks.every(d=>d.audio.paused&&!d.sessionPlaying&&!d.starting)});
 const academySamples = new Float32Array(2048);
 function academySnapshot() {
   const measure=node=>{if(!node||context?.state!=='running')return {peak:0,rms:0};node.getFloatTimeDomainData(academySamples);
@@ -331,6 +342,7 @@ if((location.pathname.startsWith('/academy/')||location.pathname.startsWith('/ac
     await loadTrack(decks[i],()=>file);if(decks[i].file!==file)throw new Error('Practice track could not load.');
     const buffer=await context.decodeAudioData(bytes.slice(0));
     if(buffer.duration>180||buffer.numberOfChannels>2)throw new Error('Course audio exceeds the playback limit.');
+    if(!rights.checked||decks[i].file!==file)throw Error('Practice load interrupted.');
     decks[i].audio.useBuffer(buffer);controls(decks[i]);
     decks[i].academyAsset=track.id;$(`bpm-${decks[i].id}`).value=track.bpm;
    }

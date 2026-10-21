@@ -2,7 +2,7 @@
 
 ## Latest: remaining non-iOS implementation — 2026-10-21
 
-**Overall PARTIAL; musical-quality FAIL retained.** New local Music DNA compositions and A/B export, source-responsive groove experiment, exact signed credit quotes, recoverable native worker/private results, fee/refund accounting, imported beat controls/slip rolls/crossfader curves and opt-in paused A/B set recovery. Native/WASM identity and muted Chromium/WebKit new flows PASS. iOS is next; launch operations last. Human/physical/provider gates and conditional advanced DSP remain open. No push, deployment or paid execution. [Current implementation and exact boundaries](non-ios-completion.md).
+**Overall PARTIAL; musical-quality FAIL retained.** Follow-through implements scratch/key lock, reverb/phaser/flanger, guarded headphone cue, full A/B/C scenes, a sample-timed note sequencer, cleared-catalogue taste evidence and opt-in output preference adaptation, remote-store result recovery and read-only provider charge evidence. Real Chromium/WebKit composition and exact C recovery pass. Secure-origin native control passes in Chromium; WebKit blocks loopback and retains its fallback. Human, physical and provider/model gates remain; wider supplementary voice/duration contracts are not silently marked complete. iOS is next and launch operations last. No push, deployment or paid execution. [Implementation and exact boundaries](non-ios-finish.md).
 
 ## Previous: Live Source companion — 2026-10-21
 

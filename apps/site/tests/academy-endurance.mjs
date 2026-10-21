@@ -13,7 +13,8 @@ const admin=createPool(url.toString()),name='jamloom_academy_endurance_'+randomU
 const mode=process.argv[2]??'all';assert.ok(['all','short','half','hour','recovery'].includes(mode));
 const port=process.env.JAMLOOM_ENDURANCE_PORT??(mode==='short'?'4226':'4225');
 const pool=createPool(url.toString()),folder=await mkdtemp(join(tmpdir(),'jamloom-academy-')),base='http://127.0.0.1:'+port;
-const evidence=new URL(audible?'../../../docs/evidence/academy-endurance/':'../../../docs/evidence/academy-endurance-silent/',import.meta.url),audio=new URL(audible?'../../../build-academy-endurance/':'../../../build-academy-endurance-silent/',import.meta.url);
+const revision=process.env.JAMLOOM_ENDURANCE_REVISION??'';assert.ok(!revision||/^[a-z0-9-]+$/.test(revision));
+const evidence=new URL((audible?'../../../docs/evidence/academy-endurance/':'../../../docs/evidence/academy-endurance-silent/')+(revision?revision+'/':''),import.meta.url),audio=new URL((audible?'../../../build-academy-endurance/':'../../../build-academy-endurance-silent/')+(revision?revision+'/':''),import.meta.url);
 let server,logs='';const results={speaker_output:audible?'AUDIBLE':'Muted downstream of recording taps; no physical-output claim',database:'disposable loopback',human_learning:'NOT RUN',provider_transactions:'NOT RUN',browsers:[]};
 try{
  await migrate(pool);await mkdir(audio,{recursive:true});await mkdir(evidence,{recursive:true});

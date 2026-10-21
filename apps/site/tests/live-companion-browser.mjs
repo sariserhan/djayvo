@@ -4,25 +4,38 @@ import {spawn} from 'node:child_process';import {once} from 'node:events';
 import {mkdtemp,readFile,writeFile} from 'node:fs/promises';import {tmpdir} from 'node:os';import {join,resolve} from 'node:path';import {setTimeout as delay} from 'node:timers/promises';
 import {chromium,webkit} from 'playwright';import AxeBuilder from '@axe-core/playwright';import {silenceSpeakers} from './silent-audio.mjs';
 const base='http://127.0.0.1:4234',local='http://127.0.0.1:48191',folder=await mkdtemp(join(tmpdir(),'jamloom-live-qa-')),results=[];
+const pageOrigin=process.env.JAMLOOM_LIVE_ORIGIN??base;assert.ok([base,'https://www.jamloom.com'].includes(pageOrigin));
 const site=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port','4234'],{env:{...process.env,JAMLOOM_COMING_SOON:'false',DATABASE_URL:'',BETTER_AUTH_URL:base},stdio:['ignore','pipe','pipe']});let serverLog='';site.stdout.on('data',b=>serverLog+=b);site.stderr.on('data',b=>serverLog+=b);
 try{
  for(let i=0;i<100;i++){try{if((await fetch(base+'/live-dj')).ok)break;}catch{}await delay(100);if(i===99)throw Error('Site unavailable');}
  for(const [name,engine] of Object.entries({chromium,webkit})){
   const grant=join(folder,name+'-grant.json');let nativeLog='';
-  const native=spawn('swift',['test','--package-path',resolve('../desktop-companion'),'--filter','BrowserFixtureTests/testLocalControlFixture'],{env:{...process.env,JAMLOOM_LIVE_FIXTURE:grant},stdio:['ignore','pipe','pipe']});native.stdout.on('data',b=>nativeLog+=b);native.stderr.on('data',b=>nativeLog+=b);const nativeExit=once(native,'exit');let browser,page,failure;
+  const native=spawn('swift',['test','--package-path',resolve('../desktop-companion'),'--filter','BrowserFixtureTests/testLocalControlFixture'],{env:{...process.env,JAMLOOM_LIVE_FIXTURE:grant,JAMLOOM_LIVE_ORIGIN:pageOrigin},stdio:['ignore','pipe','pipe']});native.stdout.on('data',b=>nativeLog+=b);native.stderr.on('data',b=>nativeLog+=b);const nativeExit=once(native,'exit');let browser,page,failure;
   try{
    let token;for(let i=0;i<300;i++){try{token=JSON.parse(await readFile(grant,'utf8')).token;break;}catch{}if(native.exitCode!==null)throw Error(nativeLog);await delay(100);}assert.ok(token,'Native fixture ready');
    assert.equal((await fetch(local+'/status',{headers:{Origin:'https://evil.example',Authorization:'Bearer '+token}})).status,403);
-   assert.equal((await fetch(local+'/status',{headers:{Origin:base,Authorization:'Bearer bad'}})).status,401);
-   browser=await engine.launch(name==='chromium'?{args:['--mute-audio']}:{});const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});await context.addInitScript(silenceSpeakers);
-   await context.route('**/*',r=>[base,local].includes(new URL(r.request().url()).origin)?r.continue():r.abort());page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+   assert.equal((await fetch(local+'/status',{headers:{Origin:pageOrigin,Authorization:'Bearer bad'}})).status,401);
+   browser=await engine.launch(name==='chromium'?{args:['--mute-audio']}:{});const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});await context.addInitScript(silenceSpeakers);if(pageOrigin!==base&&name==='chromium')await context.grantPermissions(['local-network-access'],{origin:pageOrigin});
+   await context.route('**/*',async r=>{const url=new URL(r.request().url());if(url.protocol==='blob:')return r.continue();if(url.origin===local)return r.continue();if(url.origin!==pageOrigin)return r.abort();if(pageOrigin===base)return r.continue();const response=await context.request.fetch(base+url.pathname+url.search,{method:r.request().method(),data:r.request().postDataBuffer()??undefined});await r.fulfill({response});});page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')console.log(name,m.text());});
    await page.addInitScript(()=>{Object.defineProperty(navigator.mediaDevices,'getDisplayMedia',{value:async()=>{throw new DOMException('Permission denied','NotAllowedError');},configurable:true});});
-   await page.goto(base+'/live-dj');await page.getByLabel('Pairing code').fill(token);assert.equal(new URL(page.url()).hash,'');
+   await page.goto(pageOrigin+'/live-dj');await page.getByLabel('Pairing code').fill(token);assert.equal(new URL(page.url()).hash,'');
    const fallback=page.locator('section').filter({has:page.getByRole('heading',{name:'Browser Live Source',exact:true})});
    await fallback.getByLabel('I have permission').check();await fallback.getByRole('button',{name:'Select tab audio'}).click();await page.waitForFunction(()=>/Permission denied|supplied no audio/.test(document.querySelectorAll('[role=status]')[1].textContent));
-   await page.getByRole('button',{name:'Connect companion',exact:true}).click();await page.getByRole('button',{name:'Stop native capture / panic',exact:true}).waitFor();assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),true);
+   await page.getByRole('button',{name:'Connect companion',exact:true}).click();
+   if(pageOrigin!==base&&name==='webkit'){
+    await Promise.race([page.getByRole('button',{name:'Stop native capture / panic',exact:true}).waitFor(),page.getByText(/Could not connect/).waitFor()]);
+    if(await page.getByText(/Could not connect/).isVisible()){
+     assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),false);
+     const headers={Origin:pageOrigin,Authorization:'Bearer '+token};const telemetry=await(await fetch(local+'/status',{headers})).json();
+     assert.equal((await fetch(local+'/controls',{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify(telemetry.controls)})).status,200);
+     assert.equal((await fetch(local+'/stop',{method:'POST',headers})).status,200);
+     await page.screenshot({path:join(folder,name+'-secure-origin-unavailable.png'),fullPage:true});
+     results.push({browser:name,status:'PARTIAL',pageOrigin,secureOriginFixture:true,hostedDeployment:'NOT RUN',secureBrowserControls:'UNAVAILABLE: browser rejected loopback request',gracefulFallback:'PASS',nativeHTTP:'PASS via test harness',realSystemCapture:'NOT RUN'});continue;
+    }
+   }
+   await page.getByRole('button',{name:'Stop native capture / panic',exact:true}).waitFor();assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),true);
    await page.getByLabel('Low EQ (dB)').fill('-12');await page.getByLabel('One-beat roll',{exact:true}).check();await page.getByLabel('Follow a steady pulse with percussion',{exact:true}).check();await page.getByLabel('Bypass native effects',{exact:true}).check();await delay(200);
-   const status=await (await fetch(local+'/status',{headers:{Origin:base,Authorization:'Bearer '+token}})).json();assert.equal(status.controls.low,-12);assert.equal(status.controls.roll,true);assert.equal(status.controls.percussion,true);assert.equal(status.controls.bypass,true);
+   const status=await (await fetch(local+'/status',{headers:{Origin:pageOrigin,Authorization:'Bearer '+token}})).json();assert.equal(status.controls.low,-12);assert.equal(status.controls.roll,true);assert.equal(status.controls.percussion,true);assert.equal(status.controls.bypass,true);
    for(const width of [1440,390,320]){await page.setViewportSize({width,height:1000});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'overflow '+width);if(width!==390)await page.screenshot({path:join(folder,`${name}-${width}.png`),fullPage:true});}
    assert.deepEqual((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations.map(v=>v.id),[]);
    await page.getByRole('button',{name:'Stop native capture / panic',exact:true}).click();await page.waitForFunction(()=>document.body.textContent.includes('Capture stopped ·'));
@@ -30,8 +43,8 @@ try{
    await page.getByLabel('Pairing code').fill(token);await page.getByRole('button',{name:'Connect companion',exact:true}).click();await page.getByRole('button',{name:'Disconnect companion',exact:true}).waitFor();
    await context.route(local+'/**',r=>r.abort());await page.getByText(/Connection lost/).waitFor();assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),true);
    await page.getByLabel('Pairing code').fill('a'.repeat(64));await page.getByRole('button',{name:'Connect companion',exact:true}).click();await page.getByText(/Could not connect/).waitFor();assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),true);await delay(8500);assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),false);assert.deepEqual(errors,[]);await context.close();
-   results.push({browser:name,realNativeHTTP:true,syntheticTelemetry:true,realSystemCapture:'NOT RUN',pairingAndOrigin:'PASS',controlsAndPanic:'PASS',browserFallback:'PASS',lostConnectionHandoff:'PASS',invalidToken:'PASS',widths:[1440,390,320],axe:'PASS',noAudioOutput:'PASS'});
+   results.push({browser:name,status:'PASS',pageOrigin,secureOriginFixture:pageOrigin!==base,hostedDeployment:'NOT RUN',realNativeHTTP:true,syntheticTelemetry:true,realSystemCapture:'NOT RUN',pairingAndOrigin:'PASS',controlsAndPanic:'PASS',browserFallback:'PASS',lostConnectionHandoff:'PASS',invalidToken:'PASS',widths:[1440,390,320],axe:'PASS',noAudioOutput:'PASS'});
   }catch(error){failure=error;console.error(error);if(page){console.error(await page.locator('[role=status]').allTextContents());await page.screenshot({path:join(folder,name+'-failure.png'),fullPage:true});}throw error;}finally{await browser?.close();await writeFile(grant+'.done','done');const [code]=await nativeExit;await writeFile(join(folder,name+'-native.log'),nativeLog);if(!failure)assert.equal(code,0,nativeLog);}
  }
- await writeFile(join(folder,'results.json'),JSON.stringify({status:'PASS',results},null,2)+'\n');console.log(JSON.stringify({folder,results}));
+ await writeFile(join(folder,'results.json'),JSON.stringify({status:results.some(r=>r.status==='PARTIAL')?'PARTIAL':'PASS',results},null,2)+'\n');console.log(JSON.stringify({folder,results}));
 }finally{site.kill('SIGTERM');await once(site,'exit');await writeFile(join(folder,'server.log'),serverLog);console.log('Evidence:',folder);}

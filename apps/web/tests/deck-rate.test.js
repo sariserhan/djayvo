@@ -28,7 +28,7 @@ function setup() {
   };
   let starts = 0;
   const start = () => { starts++; deck.revision++; audio.paused = false; };
-  const sandbox = { document: { getElementById: node }, requestAnimationFrame() {} };
+  const sandbox = { window: {addEventListener() {}}, document: { getElementById: node }, requestAnimationFrame() {} };
   vm.runInNewContext(source.replace(/^import .*;\n/, '').replaceAll('export function ', 'function ') + '\nglobalThis.attach = attachDeck;', sandbox);
   sandbox.attach(deck, {}, { pause, start, mixer: () => null, context: () => null });
   return { deck, audio, pause, start, node, starts: () => starts,

@@ -1,5 +1,7 @@
 # Remaining non-iOS implementation — 2026-10-21
 
+Historical checkpoint. The [subsequent follow-through](non-ios-finish.md) supersedes its unfinished engineering list while preserving the evidence below.
+
 **Overall PARTIAL.** Owner order: finish the remaining product work, then iOS,
 then launch operations. This checkpoint implements local work and preserves the
 quality, hardware, paid-compute and publication gates. It changes no master

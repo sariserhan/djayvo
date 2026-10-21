@@ -1,0 +1,57 @@
+{
+  "folder": "/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-completion-luvOAz",
+  "results": [
+    {
+      "browser": "chromium",
+      "status": "PASS",
+      "duration": 30.363646,
+      "sha256": "1a81c89ab594818308bbc7215eebd01b668650bfbaccadff811b6a98616c6b9f",
+      "nativeWasmSha256": "a4b8e873677acf7ee380d599f486d3e42416f78ef648f640e493edde15e7d978",
+      "realWasmRender": true,
+      "mutedPlayback": true,
+      "export": true,
+      "cancellationPreservesPreview": true,
+      "variationComparison": true,
+      "preferences": true,
+      "importedBeatControls": true,
+      "rollSlipReturn": true,
+      "continuousPitch": true,
+      "crossfadeCurve": true,
+      "savedSetRecovery": true,
+      "axe": "PASS",
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "humanQuality": "NOT RUN",
+      "physicalRouting": "NOT RUN"
+    },
+    {
+      "browser": "webkit",
+      "status": "PASS",
+      "duration": 30.363645833333333,
+      "sha256": "63427ca11e0f643d372058b3479f06049653809d32f0d51a9fc54a37f8594e86",
+      "nativeWasmSha256": "a4b8e873677acf7ee380d599f486d3e42416f78ef648f640e493edde15e7d978",
+      "realWasmRender": true,
+      "mutedPlayback": true,
+      "export": true,
+      "cancellationPreservesPreview": true,
+      "variationComparison": true,
+      "preferences": true,
+      "importedBeatControls": true,
+      "rollSlipReturn": true,
+      "continuousPitch": true,
+      "crossfadeCurve": true,
+      "savedSetRecovery": true,
+      "axe": "PASS",
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "humanQuality": "NOT RUN",
+      "physicalRouting": "NOT RUN"
+    }
+  ]
+}

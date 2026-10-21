@@ -1,3 +1,4 @@
+import {validPattern} from './step-sequence.js';
 import { PATCHES, DRUMS, PERCUSSION, noteName, playable, createRack } from './instrument-rack.js';
 import { updateToneEcho, clearEcho } from './mixer.js';
 import { attachMidi } from './midi.js';
@@ -5,7 +6,7 @@ import { resumeAudio } from './audio.js';
 import { attachInstrumentTake } from './instrument-take.js';
 const $ = id => document.getElementById(id);
 export function attachKeyboard({ graph, context, mixer, levels, masterControls, getPhrase, onSourcesChanged = () => {}, onNote = () => {} }) {
-  let node, loading = false, nextId = 1, root = 60;
+  let node, loading = false, nextId = 1, root = 60,sequenceRequest=0;
   const held = new Map(), deferred = new Map(), pedals = new Set(), keys = new Map(), pads = new Map();
   const letters = 'awsedftgyhujk';
   const send = data => node?.port.postMessage(data);
@@ -29,7 +30,8 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
   }
   function resetMidi() { for (let channel = 0; channel < 16; channel++) stopGroup(`midi-${channel}`); }
   function panic() {
-    send({ type: 'panic' }); held.clear(); deferred.clear(); pedals.clear();
+    sequenceRequest++;
+    send({ type: 'panic' });$('sequence-stop').disabled=true;$('sequence-start').disabled=!node;$('sequence-status').textContent='Pattern stopped.'; held.clear(); deferred.clear(); pedals.clear();
     $('sustain').setAttribute('aria-pressed', 'false');
     for (const button of document.querySelectorAll('.piano-key,.drum-pad')) button.setAttribute('aria-pressed', 'false');
   }
@@ -37,7 +39,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
   async function press(token, button, pitch, patch, velocity = Number($('velocity').value), group = 'local') {
     if (!node || held.has(token) || !button || button.disabled) return;
     const note = { id: nextId++, button, group };
-    if (nextId > 0xffffffff) nextId = 1;
+    if (nextId >= 0xffffff00) nextId = 1;
     held.set(token, note); paint(button);
     try {
       if (context().state !== 'running') await resumeAudio(context());
@@ -74,7 +76,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
     bind(button, pitch, patch); pads.set(`${patch}-${pitch}`, button); $('drum-pads').append(button);
   }
   function availability() {
-    take.refresh();
+    take.refresh();$('sequence-start').disabled=!node;
     for (const id of ['patch', 'velocity', 'rack-level', 'sustain', 'panic', 'octave-down', 'octave-up', 'rack-tone', 'rack-echo', 'rack-delay', 'rack-fx-reset']) $(id).disabled = !node;
     for (const [pitch, button] of keys) button.disabled = !node || !playable(Number($('patch').value), pitch);
     for (const button of $('drum-pads').children) button.disabled = !node;
@@ -103,6 +105,8 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
       }, { once: true });
       node.port.onmessage = ({ data }) => {
         if (data.type === 'rejected') status('Voice limit reached. Release notes or use All notes off.');
+        if(data.type==='sequence-started'){$('sequence-start').disabled=true;$('sequence-stop').disabled=false;$('sequence-status').textContent='Pattern playing. Stops when the page loses focus.';}
+        if(data.type==='sequence-stopped'){$('sequence-start').disabled=!node;$('sequence-stop').disabled=true;$('sequence-status').textContent=data.message||'Pattern stopped.';}
         take.message(data);
       };
       onSourcesChanged(); levels(); availability(); octave(0); masterControls();
@@ -158,6 +162,19 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
     }
   } });
   $('midi-kit').onchange = () => stopGroup('midi-9');
+  for(let step=0;step<16;step++){
+    const label=document.createElement('label'),select=document.createElement('select');label.textContent=`Step ${step+1}`;select.id=`sequence-step-${step}`;select.add(new Option('Rest',''));
+    for(let pitch=21;pitch<=108;pitch++)select.add(new Option(noteName(pitch),pitch));label.append(select);$('sequence-steps').append(label);
+  }
+  const pattern=()=>({tempo:Number($('sequence-tempo').value),notes:Array.from({length:16},(_,i)=>$(`sequence-step-${i}`).value===''?null:Number($(`sequence-step-${i}`).value))});
+
+  $('sequence-start').onclick=async()=>{
+    const current=++sequenceRequest;if(!node)return;
+    try{const value=pattern();if(!validPattern(value))throw Error('Choose a tempo from 40–240 BPM.');await resumeAudio(context());if(current!==sequenceRequest||document.hidden)return;send({type:'sequence-start',pattern:value,patch:Number($('patch').value),velocity:Number($('velocity').value)});}
+    catch(error){$('sequence-status').textContent=error.message;}
+  };
+  $('sequence-stop').onclick=()=>{sequenceRequest++;panic();};
+  function restorePattern(value){if(!value)return;if(!validPattern(value))throw Error('Saved sequence is damaged.');$('sequence-tempo').value=value.tempo;value.notes.forEach((note,i)=>{$(`sequence-step-${i}`).value=note===null?'':note;});}
   $('panic').onclick = panic;
   $('octave-down').onclick = () => octave(-12); $('octave-up').onclick = () => octave(12);
   window.addEventListener('keydown', event => {
@@ -168,5 +185,5 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
   window.addEventListener('keyup', event => release(`key-${event.code}`));
   window.addEventListener('blur', panic); window.addEventListener('pagehide', panic);
   document.addEventListener('visibilitychange', () => { if (document.hidden) panic(); });
-  return { ready: () => !!node, sourceAsset: () => node ? { sha256: node.engineHash, bytes: node.engineBytes } : null, panic, interrupt: take.interrupt, sourceChanged: take.sourceChanged };
+  return { recoveryPattern:pattern,restorePattern,recoveryRoot:()=>root, restoreSettings:(savedRoot=60)=>{root=savedRoot;panic();effects();$('velocity').oninput();$('mouth').oninput();octave(0);}, ready: () => !!node, sourceAsset: () => node ? { sha256: node.engineHash, bytes: node.engineBytes } : null, panic, interrupt: take.interrupt, sourceChanged: take.sourceChanged };
 }

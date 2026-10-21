@@ -43,7 +43,10 @@
     "test:framework-browser": "node tests/framework-browser.mjs",
     "test:academy-provider": "node --import tsx tests/academy-provider.mjs",
     "generation:local": "tsx scripts/generation-local.ts",
-    "test:generation-local": "tsx --test tests/generation-local.test.ts"
+    "test:generation-local": "tsx --test tests/generation-local.test.ts",
+    "generation:output": "tsx scripts/generation-output.ts",
+    "generation:cost": "tsx scripts/generation-cost.ts",
+    "test:generation-output": "tsx --test tests/generation-output.test.ts"
   },
   "dependencies": {
     "@apple/app-store-server-library": "3.1.0",

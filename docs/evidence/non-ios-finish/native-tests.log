@@ -1,0 +1,232 @@
+Building for debugging...
+[Planning deferred tasks]
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/GeneratedModuleMaps/LiveAudio.modulemap' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/LiveAudio-t.build/LiveAudio.modulemap' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/LiveAudio-t.build/Objects-normal/arm64/LiveAudio.LinkFileList' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/LiveAudio-t.build/Objects-normal/arm64/LiveAudio.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/LiveAudio-t.build/Objects-normal/arm64/LiveAudio_dependency_info.dat' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/LiveAudio-t.build/Objects-normal/arm64/LiveAudio_lto.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/LiveAudio-t.build/Objects-normal/arm64/af3fcb34312c57c0f52879cdce924b91-common-args.resp' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/LiveAudio.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/DerivedSources/Entitlements.plist' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/JamloomLive.xcent' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/GeneratedModuleMaps/JamloomLive-Swift.h' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/JamloomLive.xcent.der' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/GeneratedModuleMaps/JamloomLive.modulemap' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/ControlServer.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/JamloomLive.modulemap' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/ControlServer.swiftconstvalues' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/ControlServer.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive Swift Compilation Finished' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/ControlServer.swiftconstvalues' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive Swift Compilation Requirements Finished' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive-OutputFileMap.json' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive--161BD302F011E496-testable Swift Compilation Finished' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive-dependency-scan.dia' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive--161BD302F011E496-testable Swift Compilation Requirements Finished' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive.LinkFileList' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/DerivedSources/Entitlements.plist' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive--161BD302F011E496-testable-OutputFileMap.json' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive.SwiftFileList' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive--161BD302F011E496-testable.LinkFileList' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/DerivedSources/test_entry_point.swift' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive.abi.json' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive--161BD302F011E496-testable.SwiftFileList' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/JamloomLiveTests.xctest.xcent' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive--161BD302F011E496-testable_const_extract_protocols.json' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/JamloomLiveTests.xctest.xcent.der' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive.swiftconstvalues' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive--161BD302F011E496-testable_dependency_info.dat' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/ControlTests.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive--161BD302F011E496-testable_lto.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive.swiftdoc' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/ControlTests.swiftconstvalues' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive.swiftmodule' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive-Swift.h' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests Swift Compilation Finished' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive.swiftsourceinfo' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive-dependency-scan.dia' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests Swift Compilation Requirements Finished' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive_const_extract_protocols.json' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive.abi.json' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests-OutputFileMap.json' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive_dependency_info.dat' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests-dependency-scan.dia' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive-p.build/Objects-normal/arm64/JamloomLive_lto.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive.swiftconstvalues' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests.LinkFileList' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLive' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive.swiftdoc' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests.SwiftFileList' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive.swiftmodule' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests.abi.json' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLive--161BD302F011E496-testable-t.build/Objects-normal/arm64/JamloomLive.swiftsourceinfo' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/ExecutableModules/JamloomLive--161BD302F011E496-testable.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLive.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLive.swiftmodule/arm64-apple-macos.abi.json' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLive.swiftmodule/arm64-apple-macos.swiftdoc' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLive.swiftmodule/arm64-apple-macos.swiftmodule' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests.swiftdoc' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests.swiftmodule' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests.swiftsourceinfo' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests_const_extract_protocols.json' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests_dependency_info.dat' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/JamloomLiveTests_lto.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/test_entry_point.o' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/Objects-normal/arm64/test_entry_point.swiftconstvalues' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Intermediates.noindex/JamloomLive.build/Debug/JamloomLiveTests-p.build/empty-JamloomLiveTests.plist' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLiveTests.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLiveTests.swiftmodule/arm64-apple-macos.abi.json' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLiveTests.swiftmodule/arm64-apple-macos.swiftdoc' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLiveTests.swiftmodule/arm64-apple-macos.swiftmodule' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLiveTests.xctest' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLiveTests.xctest/Contents' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLiveTests.xctest/Contents/Info.plist' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLiveTests.xctest/Contents/MacOS' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLiveTests.xctest/Contents/MacOS/JamloomLiveTests' is located outside of the allowed root paths.
+
+warning: Stale file '/Users/serhansari/Documents/projects/djayvo/apps/desktop-companion/.build/out/Products/Debug/JamloomLiveTests.xctest/_CodeSignature' is located outside of the allowed root paths.
+
+[38 / 68]
+[41 / 70] JamloomLive
+[52 / 148]
+[58 / 148]
+[65 / 148]
+[66 / 148]
+[73 / 148]
+[78 / 148]
+[84 / 148]
+[89 / 148]
+[90 / 148]
+[102 / 148]
+[105 / 148]
+[111 / 148]
+[112 / 148]
+[113 / 148]
+[114 / 148]
+[120 / 148] JamloomLive-product
+[129 / 148] JamloomLive
+[133 / 148] JamloomLive-product
+[138 / 149] JamloomLiveTests-product
+[142 / 157]
+[143 / 157]
+[151 / 157] JamloomLiveTests-product
+[152 / 157] JamloomLiveTests-product
+[153 / 157] JamloomLiveTests-product
+Build complete! (9.11 sec)
+Test Suite 'All tests' started at 2026-10-21 19:41:54.635.
+Test Suite 'JamloomLiveTests.xctest' started at 2026-10-21 19:41:54.636.
+Test Suite 'BrowserFixtureTests' started at 2026-10-21 19:41:54.636.
+Test Case '-[JamloomLiveTests.BrowserFixtureTests testLocalControlFixture]' started.
+/Users/serhansari/Documents/projects/jamloom/apps/desktop-companion/Tests/JamloomLiveTests/ControlTests.swift:54: -[JamloomLiveTests.BrowserFixtureTests testLocalControlFixture] : Test skipped - Explicit browser fixture only; never captures audio
+Test Case '-[JamloomLiveTests.BrowserFixtureTests testLocalControlFixture]' skipped (0.002 seconds).
+Test Case '-[JamloomLiveTests.BrowserFixtureTests testRealLoopbackServer]' started.
+Test Case '-[JamloomLiveTests.BrowserFixtureTests testRealLoopbackServer]' passed (0.012 seconds).
+Test Suite 'BrowserFixtureTests' passed at 2026-10-21 19:41:54.650.
+	 Executed 2 tests, with 1 test skipped and 0 failures (0 unexpected) in 0.013 (0.014) seconds
+Test Suite 'ControlTests' started at 2026-10-21 19:41:54.650.
+Test Case '-[JamloomLiveTests.ControlTests testCommandsAreBoundedAndCannotStartCapture]' started.
+Test Case '-[JamloomLiveTests.ControlTests testCommandsAreBoundedAndCannotStartCapture]' passed (0.000 seconds).
+Test Case '-[JamloomLiveTests.ControlTests testHTTPFramingAndRebinding]' started.
+Test Case '-[JamloomLiveTests.ControlTests testHTTPFramingAndRebinding]' passed (0.000 seconds).
+Test Case '-[JamloomLiveTests.ControlTests testNativeInvalidSourceNeverStartsCapture]' started.
+Test Case '-[JamloomLiveTests.ControlTests testNativeInvalidSourceNeverStartsCapture]' passed (0.058 seconds).
+Test Case '-[JamloomLiveTests.ControlTests testPairOriginExpiryRevocationAndHeartbeat]' started.
+Test Case '-[JamloomLiveTests.ControlTests testPairOriginExpiryRevocationAndHeartbeat]' passed (0.000 seconds).
+Test Suite 'ControlTests' passed at 2026-10-21 19:41:54.709.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.059 (0.059) seconds
+Test Suite 'JamloomLiveTests.xctest' passed at 2026-10-21 19:41:54.709.
+	 Executed 6 tests, with 1 test skipped and 0 failures (0 unexpected) in 0.072 (0.073) seconds
+Test Suite 'All tests' passed at 2026-10-21 19:41:54.709.
+	 Executed 6 tests, with 1 test skipped and 0 failures (0 unexpected) in 0.072 (0.074) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2084
+􀄵  Target Platform: arm64e-apple-macos14.0
+􁁛  Test run with 0 tests in 0 suites passed after 0.001 seconds.

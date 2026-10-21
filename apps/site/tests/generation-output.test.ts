@@ -1,0 +1,36 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';import {readFile,mkdtemp} from 'node:fs/promises';import {tmpdir} from 'node:os';import {join} from 'node:path';
+import {createPool} from '../lib/database';import {migrate} from '../lib/migrations';import {Wallet} from '../lib/wallet';import {GenerationQueue} from '../lib/generation-queue';import {GenerationOutput} from '../lib/generation-output';import {GenerationWatchdog} from '../lib/generation-watchdog';import {localAudioStore} from '../lib/audio-store';import {PrivateAudio} from '../lib/private-audio';
+test('cloud output receipt recovers remote-store failure without compute, preserves budget and prevents wrong-owner replay',async()=>{
+ const url=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(url.hostname,'127.0.0.1');
+ const admin=createPool(url.toString()),name='jamloom_cloud_output_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
+ const pool=createPool(url.toString()),folder=await mkdtemp(join(tmpdir(),'jamloom-output-')),disk=localAudioStore(folder);
+ let fail=false,cleanupKey='';const store={...disk,local:false,remove:async(key:string)=>{if(key===cleanupKey)throw Error('Cleanup unavailable');await disk.remove(key);},put:async(key:string,data:Buffer)=>{if(fail&&key.startsWith('masters/'))throw Error('Remote storage offline');await disk.put(key,data);}};
+ const service=new GenerationOutput(pool,store),queue=new GenerationQueue(pool,'s'.repeat(32)),wallet=new Wallet(pool);
+ const watchdog=new GenerationWatchdog(pool,{inventory:async()=>[],destroy:async()=>{throw Error('No provider operations allowed');}});
+ const spec={inputSha256:'a'.repeat(64),planSha256:'b'.repeat(64),maxRuntimeMs:120000,hourlyMicros:750000,fixedCostMicros:10000};
+ const wav=await readFile(new URL('../../../renders/full-product-baseline-20261020/ls-2277-149896-0026/A.reggae.wav',import.meta.url));
+ try{await migrate(pool);for(const owner of ['alice','bob'])await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[owner,owner+'@example.test']);
+ await wallet.grant('alice',{provider:'stripe_test',receipt:'output-fixture',credits:20,netMicros:8000000});
+ const id=await wallet.reserve('alice','cloud_output',100000,5000,spec),claim=(await queue.claim('cloud_fixture'))!;
+ await watchdog.prepare(id,claim.leaseToken,42);
+ await assert.rejects(service.stage(id,randomUUID(),wav,'Output','reggae'),/worker/);
+ await service.stage(id,claim.leaseToken,wav,'Output','reggae');await service.stage(id,claim.leaseToken,wav,'Output','reggae');
+ await assert.rejects(service.stage(id,claim.leaseToken,wav,'Changed title','reggae'),/conflict/);
+ await assert.rejects(service.complete(id),/termination/);
+ await pool.query('UPDATE generation_rentals SET instance_id=77,destroy_confirmed_at=now() WHERE reservation_id=$1',[id]);await watchdog.recordCost(id,10000,'c'.repeat(64));
+ fail=true;await assert.rejects(service.complete(id),/Remote storage offline/);assert.equal((await wallet.balance('alice')).reserved,1);
+ await pool.query("UPDATE generation_jobs SET state='stopping' WHERE reservation_id=$1",[id]);assert.equal((await watchdog.sweep(true))[0].status,'awaiting_output_recovery');
+ await pool.query("UPDATE track_assets SET expires_at=now()-interval '1 day' WHERE request_id=$1",[id]);
+ fail=false;cleanupKey='uploads/'+id+'.wav';await assert.rejects(new GenerationOutput(pool,store).complete(id),/Cleanup unavailable/);assert.equal((await wallet.balance('alice')).reserved,0);cleanupKey='';
+ const recovered=await new GenerationOutput(pool,store).complete(id);assert.equal(recovered.state,'completed');const outputId=(await pool.query('SELECT track_id FROM track_assets WHERE request_id=$1',[id])).rows[0].track_id;assert.ok(outputId);
+ const privateAudio=new PrivateAudio(pool,store);await assert.rejects(privateAudio.playback('bob',outputId),/not found/);
+ assert.deepEqual(await disk.get('masters/'+outputId+'.wav',wav.length),wav);
+ await service.complete(id);assert.deepEqual(await wallet.balance('alice'),{available:19,reserved:0});
+ await assert.rejects(disk.get('uploads/'+id+'.wav',wav.length),/ENOENT/);
+ const cancelled=await wallet.reserve('alice','cloud_output_cancel',100000,5000,spec),second=(await queue.claim('cloud_fixture'))!;await watchdog.prepare(cancelled,second.leaseToken,42);
+ await service.stage(cancelled,second.leaseToken,wav,'Cancelled','reggae');await queue.cancel('alice',cancelled);
+ await pool.query('UPDATE generation_rentals SET instance_id=78,destroy_confirmed_at=now() WHERE reservation_id=$1',[cancelled]);await watchdog.recordCost(cancelled,10000,'d'.repeat(64));
+ assert.equal((await service.complete(cancelled)).state,'cancelled');assert.equal((await wallet.balance('alice')).reserved,0);
+ }finally{await pool.end();await admin.query(`DROP DATABASE "${name}" WITH (FORCE)`);await admin.end();}
+});

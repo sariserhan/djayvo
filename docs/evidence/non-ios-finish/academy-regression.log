@@ -1,0 +1,7 @@
+
+> jamloom-site@0.1.0 test:academy-endurance
+> node --import tsx tests/academy-endurance.mjs recovery
+
+PASS chromium-performance-set-20 {"version":1,"frames":1069056,"rate":48000,"gaps":0,"clockStalls":1,"seconds":22.272,"bytes":358883,"mime":"audio/webm;codecs=opus","sha256":"753a33de5532fb6904f16bd46c38134ae756691439d70ddda096697bbfdc4ea2"}
+PASS webkit-performance-set-20 {"version":1,"frames":1071616,"rate":48000,"gaps":0,"clockStalls":0,"seconds":22.325333333333333,"bytes":440174,"mime":"audio/webm;codecs=opus","sha256":"7d3ce900b529b5cf5141d790d3729500d467c606792bb25c53e3420df256b772"}
+All real-time endurance runs PASS

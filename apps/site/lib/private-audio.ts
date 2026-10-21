@@ -29,7 +29,7 @@ export class PrivateAudio {
   private uploading(row:Asset) {
     if (row.state!=='uploading' || row.expires_at.getTime()<=Date.now()) throw new AudioError('Upload expired or no longer available. Choose the file again.',409);
   }
-  async reserve(owner:string,input:unknown) {
+  async reserve(owner:string,input:unknown,recoverGenerated=false) {
     const v=saveInput(input);
     return this.locked(owner,async db => {
       const existing=(await db.query<Asset & {title:string;strategy:string}>(`SELECT a.*,t.title,t.strategy FROM track_assets a JOIN tracks t ON t.id=a.track_id
@@ -53,6 +53,8 @@ export class PrivateAudio {
           [track.id,v.requestId,owner,v.sha256,v.bytes,v.publication?JSON.stringify(v.publication):null])).rows[0];
       }
       if (row.state==='ready') return {id:row.track_id,ready:true};
+      if(recoverGenerated&&existing&&row.state==='uploading'&&row.expires_at.getTime()<=Date.now())
+        row=(await db.query("UPDATE track_assets SET expires_at=now()+interval '15 minutes' WHERE track_id=$1 RETURNING *",[row.track_id])).rows[0];
       this.uploading(row);
       const seconds=Math.max(1,Math.floor((row.expires_at.getTime()-Date.now())/1000));
       return {id:row.track_id,ready:false,url:await this.store.uploadURL(key(row.track_id),row.bytes,seconds),bytes:row.bytes};
@@ -60,6 +62,10 @@ export class PrivateAudio {
   }
   async localUpload(owner:string,id:string,data:Buffer) {
     if (!this.store.local) throw new AudioError('Use the authorized direct upload.',404);
+    return this.generatedUpload(owner,id,data);
+  }
+  // Server-only workers use the same owner, state and checksum checks as direct uploads.
+  async generatedUpload(owner:string,id:string,data:Buffer) {
     await this.locked(owner,async db => {
       const row=await this.asset(db,owner,id); this.uploading(row);
       validateWav(data,row.bytes,row.sha256);

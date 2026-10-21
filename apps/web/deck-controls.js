@@ -35,7 +35,7 @@ export function tempoRate(own, other, otherRate) {
   if (rate < .84 || rate > 1.16) throw new Error('Tempo match exceeds the ±16% pitch range.');
   return rate;
 }
-export function attachDeck(deck, other, { pause, start, mixer, context }) {
+export function attachDeck(deck, other, { pause, start, mixer, context, scratchStart }) {
   const { id, audio } = deck, jog = $(`jog-${id}`);
   let cue = 0, hot = [null, null, null, null], taps = [], drag, pendingRate;
   const error = message => { $(`error-${id}`).textContent = message; };
@@ -91,8 +91,8 @@ export function attachDeck(deck, other, { pause, start, mixer, context }) {
     for (const prefix of ['rate', 'rate-reset', 'cue', 'set-cue', 'loop', 'bpm', 'tap', 'match', 'keylock']) $(`${prefix}-${id}`).disabled = !ready;
     for(const name of ['beat-loop','beat-roll','loop-exit','jump-back','jump-forward','align','loop-beats'])$(`${name}-${id}`).disabled=!ready||!audio.buffer;
     $(`beat-roll-${id}`).setAttribute('aria-pressed',String(!!audio.roll));
-    if(audio.buffer)$(`keylock-${id}`).checked=false;
-    $(`keylock-${id}`).disabled ||= !!audio.buffer || !('preservesPitch' in audio);
+    if(audio.buffer)$(`keylock-${id}`).checked=audio.preservesPitch;
+    $(`keylock-${id}`).disabled ||= !!audio.buffer && !audio.processor || !('preservesPitch' in audio);
     for (let i = 0; i < 3; i++) $(`eq-${id}-${i}`).disabled = !ready;
     for (let i = 0; i < 4; i++) $(`hot-${id}-${i}`).disabled = !ready;
     jog.setAttribute('aria-disabled', String(!ready));
@@ -138,23 +138,29 @@ export function attachDeck(deck, other, { pause, start, mixer, context }) {
     hotLabels();
   };
   const angle = event => { const r = jog.getBoundingClientRect(); return Math.atan2(event.clientY - r.top - r.height / 2, event.clientX - r.left - r.width / 2) * 180 / Math.PI; };
-  jog.onpointerdown = event => {
+  jog.onpointerdown = async event => {
     if (jog.getAttribute('aria-disabled') === 'true' || event.button !== 0 || drag) return;
-    const resume = !audio.paused; pause(deck);
-    drag = { pointer: event.pointerId, angle: angle(event), resume, revision: deck.revision };
+    const resume = !audio.paused;
+    if(!audio.processor)pause(deck);
+    const current=drag = { pointer: event.pointerId, angle: angle(event), time:event.timeStamp, resume, revision: deck.revision, scratch:!!audio.processor };
     jog.setPointerCapture(event.pointerId); event.preventDefault(); jog.focus();
+    if(current.scratch)try{await scratchStart();if(drag===current&&current.revision===deck.revision&&jog.getAttribute('aria-disabled')!=='true')audio.beginScratch();}catch(e){drag=null;error(e.message);}
   };
   jog.onpointermove = event => {
     if (!drag || drag.pointer !== event.pointerId || drag.revision !== deck.revision) return;
     const next = angle(event), delta = ((next - drag.angle + 540) % 360) - 180;
-    seek(audio.currentTime + delta / 200); drag.angle = next;
+    if(drag.scratch)audio.scratch(delta/200/Math.max(.008,(event.timeStamp-drag.time)/1000));
+    else seek(audio.currentTime + delta / 200);
+    drag.angle = next;drag.time=event.timeStamp;
   };
   jog.onpointerup = event => {
     if (!drag || drag.pointer !== event.pointerId) return;
     const previous = drag; drag = null;
-    if (previous.resume && previous.revision === deck.revision) start(deck);
+    if(previous.scratch)audio.endScratch(previous.revision===deck.revision);
+    else if (previous.resume && previous.revision === deck.revision) start(deck);
   };
-  jog.onpointercancel = jog.onlostpointercapture = () => { drag = null; };
+  jog.onpointercancel = jog.onlostpointercapture = () => {if(drag?.scratch)audio.endScratch(false);drag = null;};
+  window.addEventListener('blur',()=>{if(drag?.scratch)audio.endScratch(false);drag=null;});
   jog.onkeydown = event => {
     if (jog.getAttribute('aria-disabled') === 'true') return;
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') seek(audio.currentTime + (event.key === 'ArrowRight' ? 1 : -1) * (event.shiftKey ? 1 : .1));

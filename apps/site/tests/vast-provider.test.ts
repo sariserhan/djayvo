@@ -40,3 +40,17 @@ test('provider failures, body size and error text cannot leak secrets or prove d
  }
  await assert.rejects(new VastProvider('fixture').destroy(-3),/bounded/);
 });
+
+test('provider billing verifies identity and complete pagination, rounds costs up and never asserts finality',async()=>{
+ const label='jamloom-job-11111111-1111-1111-1111-111111111111';
+ const charge={start:100,end:200,type:'instance',source:'instance-77',amount:'0.0123451',metadata:{label},items:[{type:'gpu',amount:.01}]};
+ const response={success:true,count:1,total:1,next_token:null,results:[charge]};
+ const api=new VastProvider('fixture',async input=>{const url=new URL(String(input));if(url.pathname.endsWith('/users/current'))return Response.json({id:42});assert.equal(url.pathname,'/api/v0/charges');assert.deepEqual(JSON.parse(url.searchParams.get('select_filters')!),{day:{gte:0,lte:300},type:{in:['instance']}});return Response.json(response);});
+ const result=await api.charges(42,77,label,0,300);assert.equal(result.observedCostMicros,12346);assert.equal(result.final,false);assert.match(result.evidenceSha256,/^[a-f0-9]{64}$/);
+ for(const patch of [{amount:-1},{amount:'NaN'},{source:'instance-78'},{start:-1},{end:301},{metadata:{label:'other'}}]){
+  const invalid=new VastProvider('fixture',async input=>Response.json(String(input).endsWith('/users/current')?{id:42}:{...response,results:[{...charge,...patch}]}));await assert.rejects(invalid.charges(42,77,label,0,300));
+ }
+ for(const patch of [{total:2},{count:2},{next_token:'repeated'}]){
+  const invalid=new VastProvider('fixture',async input=>Response.json(String(input).endsWith('/users/current')?{id:42}:{...response,...patch}));await assert.rejects(invalid.charges(42,77,label,0,300));
+ }
+});

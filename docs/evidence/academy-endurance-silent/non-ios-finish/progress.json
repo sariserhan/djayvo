@@ -1,0 +1,58 @@
+{
+  "speaker_output": "Muted downstream of recording taps; no physical-output claim",
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 20,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T23:53:32.128Z",
+      "restarts": 19,
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 1066368,
+        "rate": 48000,
+        "gaps": 2,
+        "clockStalls": 0,
+        "seconds": 22.216,
+        "bytes": 357917,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "453da5a5b8114a4a83e33e040b71160189780074bd9b7f0da87f732a41a450c1"
+      },
+      "wall_seconds": 21.307
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "performance-set",
+      "requested_seconds": 20,
+      "status": "PASS",
+      "started_at": "2026-10-21T23:53:55.987Z",
+      "restarts": 19,
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 1065856,
+        "rate": 48000,
+        "gaps": 0,
+        "clockStalls": 0,
+        "seconds": 22.205333333333332,
+        "bytes": 437694,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "4ed2f1582a2ab8e43bdefa915b582c8b0aeb3fd0d1b11cabe3eff91c7887d562"
+      },
+      "wall_seconds": 21.291,
+      "scope": "Short cue/restart recording regression; not a full-duration assessment",
+      "payload_bytes": 0,
+      "completed_at": "2026-10-21T23:54:19.178Z"
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: chromium-performance-set-20 clock discontinuity\n\n2 !== 0\n\n    at lane (file:///Users/serhansari/Documents/projects/jamloom/apps/site/tests/academy-endurance.mjs:96:90)\n    at async run (file:///Users/serhansari/Documents/projects/jamloom/apps/site/tests/academy-endurance.mjs:115:25)\n    at async file:///Users/serhansari/Documents/projects/jamloom/apps/site/tests/academy-endurance.mjs:120:7"
+  ]
+}

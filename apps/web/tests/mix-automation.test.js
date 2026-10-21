@@ -146,3 +146,12 @@ test('trace validation rejects changed linkage, extra fields, unsafe times, reor
     { ...trace.events[0], context_frame: 50000 }, trace.events[0],
   ] }, h.receipt));
 });
+
+test('deck space and modulation snapshots and resets retain versioned validation',()=>{
+ const h=harness();h.mixer.deckEffects=Object.fromEntries(['a','b'].map(t=>[t,{targets:{reverb:0,phaser:0,flanger:0}}]));
+ const trace=new MixAutomation(h.mixer,h.context);h.mixer.deckEffects.a.targets.reverb=.5;
+ trace.append({kind:'deck_effects',target:'a',context_frame:48000,reverb:.3,phaser:.2,flanger:.1});trace.append({kind:'clear_deck_effects',target:'b',context_frame:48001});
+ const result=trace.finish(h.receipt);assert.equal(result.schema_version,'3.0-mix-automation');assert.equal(result.initial_deck_effects.a.reverb,0);
+ for(const value of [NaN,Infinity,-.01,.51]){const invalid=structuredClone(result);invalid.events[0].reverb=value;assert.throws(()=>validateMixAutomation(invalid,h.receipt));}
+ const invalid=structuredClone(result);invalid.events[0].target='rack';assert.throws(()=>validateMixAutomation(invalid,h.receipt));
+});

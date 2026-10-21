@@ -1,0 +1,680 @@
+{
+  "status": "PASS",
+  "browser": "chromium",
+  "version": "149.0.7827.55",
+  "url": "http://127.0.0.1:52577/dj.html",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "checks": [
+    "actual A/B/C/rack effect schedules and echo buffer resets captured in versioned WAV-linked trace",
+    "actual four-channel mixer tap matches destination PCM exactly, preserves stereo, includes limiter/FX/faders and mutes",
+    "source inventory hashes exact A/B files and loaded bank, retains mid-recording unload history without filenames or inferred rights",
+    "scheduled gain/EQ targets link to WAV clock and hash; master mute reaches zero PCM after smoothing",
+    "consented deck + live instruments produce playable hash-bound WAV; master mute captured; stop leaves deck playing",
+    "desktop/mobile controls render without horizontal overflow",
+    "delayed source hashing cannot restore revoked exports; read failure and real 10-second deadline preserve WAV and controls",
+    "music/voice/capture withdrawal and source replacement discard captures; delayed hashes cannot restore exports",
+    "focus loss, audio suspension and recorder failure discard unfinished capture; instruments keep sounding, retry/delete work",
+    "automation overflow discards only control trace, keeps WAV and reports the limit",
+    "partial AudioParam effect failure discards incomplete trace, keeps validated WAV, permits retry",
+    "real 30-second UI timer stops automatically within the audio buffer cap"
+  ],
+  "reference": {
+    "maximum": 0,
+    "rms": 0,
+    "frames": 35840,
+    "first": 256,
+    "timestampDiscontinuities": 0,
+    "peak": 0.9523188471794128,
+    "tail": 0,
+    "stereoDifference": 1.7332295179367065,
+    "capturedHash": "250ad432820c39b6791a1b872b0b94affb9c03063b3655017deebc5e9cd1bbf3",
+    "effectTrace": {
+      "schema_version": "3.0-mix-automation",
+      "scope": "scheduled_gain_eq_fx_controls",
+      "training_authorized": false,
+      "wav_sha256": "250ad432820c39b6791a1b872b0b94affb9c03063b3655017deebc5e9cd1bbf3",
+      "sample_rate": 48000,
+      "observed_context_start_frame": 256,
+      "snapshot_context_frame": 0,
+      "initial_targets": {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "rack": 0,
+        "eq-a-0": 0,
+        "eq-a-1": 0,
+        "eq-a-2": 0,
+        "eq-b-0": 0,
+        "eq-b-1": 0,
+        "eq-b-2": 0
+      },
+      "initial_effects": {
+        "a": {
+          "tone": 100,
+          "echo": 0,
+          "spacing_ms": 300
+        },
+        "b": {
+          "tone": 100,
+          "echo": 0,
+          "spacing_ms": 300
+        },
+        "c": {
+          "tone": 100,
+          "echo": 0,
+          "spacing_ms": 300
+        },
+        "rack": {
+          "tone": 100,
+          "echo": 0,
+          "spacing_ms": 300
+        }
+      },
+      "events": [
+        {
+          "kind": "tone_echo",
+          "target": "a",
+          "context_frame": 0,
+          "tone": 70,
+          "echo": 0.3,
+          "spacing_ms": 100,
+          "held_frequency_hz": 24000
+        },
+        {
+          "kind": "tone_echo",
+          "target": "b",
+          "context_frame": 0,
+          "tone": 80,
+          "echo": 0.3,
+          "spacing_ms": 100,
+          "held_frequency_hz": 24000
+        },
+        {
+          "kind": "tone_echo",
+          "target": "c",
+          "context_frame": 0,
+          "tone": 90,
+          "echo": 0.3,
+          "spacing_ms": 100,
+          "held_frequency_hz": 24000
+        },
+        {
+          "kind": "tone_echo",
+          "target": "rack",
+          "context_frame": 0,
+          "tone": 100,
+          "echo": 0.3,
+          "spacing_ms": 100,
+          "held_frequency_hz": 24000
+        },
+        {
+          "kind": "clear_echo",
+          "target": "a",
+          "context_frame": 36096,
+          "spacing_ms": 100
+        },
+        {
+          "kind": "clear_echo",
+          "target": "b",
+          "context_frame": 36096,
+          "spacing_ms": 100
+        },
+        {
+          "kind": "clear_echo",
+          "target": "c",
+          "context_frame": 36096,
+          "spacing_ms": 100
+        },
+        {
+          "kind": "clear_echo",
+          "target": "rack",
+          "context_frame": 36096,
+          "spacing_ms": 100
+        }
+      ],
+      "initial_deck_effects": {
+        "a": {
+          "reverb": 0,
+          "phaser": 0,
+          "flanger": 0
+        },
+        "b": {
+          "reverb": 0,
+          "phaser": 0,
+          "flanger": 0
+        }
+      }
+    },
+    "referenceHash": "250ad432820c39b6791a1b872b0b94affb9c03063b3655017deebc5e9cd1bbf3"
+  },
+  "receipt": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 35584,
+    "wav_sha256": "9617c2edefdc0d40ca574bd6e7fb507aa5f28fe9239d0a6d4c625bcc4e2b033d",
+    "observed_context_start_frame": 19712,
+    "timestamp_discontinuities": 2,
+    "limit_reached": false
+  },
+  "automation": {
+    "schema_version": "3.0-mix-automation",
+    "scope": "scheduled_gain_eq_fx_controls",
+    "training_authorized": false,
+    "wav_sha256": "9617c2edefdc0d40ca574bd6e7fb507aa5f28fe9239d0a6d4c625bcc4e2b033d",
+    "sample_rate": 48000,
+    "observed_context_start_frame": 19712,
+    "snapshot_context_frame": 19456,
+    "initial_targets": {
+      "a": 0.6000000000000001,
+      "b": 0,
+      "c": 0.30000000000000004,
+      "rack": 0.48750000000000004,
+      "eq-a-0": 0,
+      "eq-a-1": 0,
+      "eq-a-2": 0,
+      "eq-b-0": 0,
+      "eq-b-1": 0,
+      "eq-b-2": 0
+    },
+    "initial_effects": {
+      "a": {
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300
+      },
+      "b": {
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300
+      },
+      "c": {
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300
+      },
+      "rack": {
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300
+      }
+    },
+    "events": [
+      {
+        "kind": "gain",
+        "context_frame": 20736,
+        "target": "eq-b-0",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 20736,
+        "target": "eq-b-1",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 20736,
+        "target": "eq-b-2",
+        "value": 0
+      },
+      {
+        "kind": "clear_echo",
+        "target": "b",
+        "context_frame": 20736,
+        "spacing_ms": 300
+      },
+      {
+        "kind": "clear_deck_effects",
+        "target": "b",
+        "context_frame": 20736
+      },
+      {
+        "kind": "tone_echo",
+        "target": "b",
+        "context_frame": 20736,
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "deck_effects",
+        "target": "b",
+        "context_frame": 20736,
+        "reverb": 0,
+        "phaser": 0,
+        "flanger": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 22528,
+        "target": "eq-b-0",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 22528,
+        "target": "eq-b-1",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 22528,
+        "target": "eq-b-2",
+        "value": 0
+      },
+      {
+        "kind": "clear_echo",
+        "target": "b",
+        "context_frame": 22528,
+        "spacing_ms": 300
+      },
+      {
+        "kind": "clear_deck_effects",
+        "target": "b",
+        "context_frame": 22528
+      },
+      {
+        "kind": "tone_echo",
+        "target": "b",
+        "context_frame": 22528,
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "deck_effects",
+        "target": "b",
+        "context_frame": 22528,
+        "reverb": 0,
+        "phaser": 0,
+        "flanger": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35072,
+        "target": "eq-a-0",
+        "value": -6
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35072,
+        "target": "eq-a-0",
+        "value": -6
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35328,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35328,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35584,
+        "target": "a",
+        "value": 0.6000000000000001
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35584,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35584,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35584,
+        "target": "rack",
+        "value": 0.375
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35584,
+        "target": "a",
+        "value": 0.6000000000000001
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35584,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35584,
+        "target": "c",
+        "value": 0.18
+      },
+      {
+        "kind": "gain",
+        "context_frame": 35584,
+        "target": "rack",
+        "value": 0.375
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 35840,
+        "tone": 50,
+        "echo": 0,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "deck_effects",
+        "target": "a",
+        "context_frame": 35840,
+        "reverb": 0,
+        "phaser": 0,
+        "flanger": 0
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 35840,
+        "tone": 50,
+        "echo": 0,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "deck_effects",
+        "target": "a",
+        "context_frame": 35840,
+        "reverb": 0,
+        "phaser": 0,
+        "flanger": 0
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 35840,
+        "tone": 50,
+        "echo": 0.25,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "deck_effects",
+        "target": "a",
+        "context_frame": 35840,
+        "reverb": 0,
+        "phaser": 0,
+        "flanger": 0
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 35840,
+        "tone": 50,
+        "echo": 0.25,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "deck_effects",
+        "target": "a",
+        "context_frame": 35840,
+        "reverb": 0,
+        "phaser": 0,
+        "flanger": 0
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 35840,
+        "tone": 50,
+        "echo": 0.25,
+        "spacing_ms": 170,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "deck_effects",
+        "target": "a",
+        "context_frame": 35840,
+        "reverb": 0,
+        "phaser": 0,
+        "flanger": 0
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 36096,
+        "tone": 50,
+        "echo": 0.25,
+        "spacing_ms": 170,
+        "held_frequency_hz": 15456.32421875
+      },
+      {
+        "kind": "deck_effects",
+        "target": "a",
+        "context_frame": 36096,
+        "reverb": 0,
+        "phaser": 0,
+        "flanger": 0
+      },
+      {
+        "kind": "tone_echo",
+        "target": "rack",
+        "context_frame": 36096,
+        "tone": 100,
+        "echo": 0.3,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "tone_echo",
+        "target": "rack",
+        "context_frame": 36096,
+        "tone": 100,
+        "echo": 0.3,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "clear_echo",
+        "target": "a",
+        "context_frame": 37888,
+        "spacing_ms": 170
+      },
+      {
+        "kind": "clear_deck_effects",
+        "target": "a",
+        "context_frame": 37888
+      },
+      {
+        "kind": "tone_echo",
+        "target": "a",
+        "context_frame": 37888,
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300,
+        "held_frequency_hz": 2000
+      },
+      {
+        "kind": "deck_effects",
+        "target": "a",
+        "context_frame": 37888,
+        "reverb": 0,
+        "phaser": 0,
+        "flanger": 0
+      },
+      {
+        "kind": "clear_echo",
+        "target": "rack",
+        "context_frame": 39424,
+        "spacing_ms": 300
+      },
+      {
+        "kind": "tone_echo",
+        "target": "rack",
+        "context_frame": 39424,
+        "tone": 100,
+        "echo": 0,
+        "spacing_ms": 300,
+        "held_frequency_hz": 24000
+      },
+      {
+        "kind": "gain",
+        "context_frame": 39424,
+        "target": "a",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 39424,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 39424,
+        "target": "c",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 39424,
+        "target": "rack",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 39424,
+        "target": "a",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 39424,
+        "target": "b",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 39424,
+        "target": "c",
+        "value": 0
+      },
+      {
+        "kind": "gain",
+        "context_frame": 39424,
+        "target": "rack",
+        "value": 0
+      }
+    ],
+    "initial_deck_effects": {
+      "a": {
+        "reverb": 0,
+        "phaser": 0,
+        "flanger": 0
+      },
+      "b": {
+        "reverb": 0,
+        "phaser": 0,
+        "flanger": 0
+      }
+    }
+  },
+  "sources": {
+    "schema_version": "1.0-mix-sources",
+    "scope": "loaded_assets",
+    "permission": "user_attested_private_mix",
+    "rights_verified": false,
+    "training_authorized": false,
+    "wav_sha256": "9617c2edefdc0d40ca574bd6e7fb507aa5f28fe9239d0a6d4c625bcc4e2b033d",
+    "sample_rate": 48000,
+    "observed_context_start_frame": 19712,
+    "assets": [
+      {
+        "kind": "local_audio",
+        "bytes": 768044,
+        "sha256": "4b64b90bd0264717740940cdb62feca6d4653384537b9bc5980adba4c6c62a48"
+      },
+      {
+        "kind": "instrument_engine",
+        "bytes": 13801608,
+        "sha256": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8"
+      },
+      {
+        "kind": "local_audio",
+        "bytes": 192044,
+        "sha256": "e95051246bed9a63cbfcf737a64b664f60b35a3f347e743261d3e77cf4db6f20"
+      }
+    ],
+    "snapshots": [
+      {
+        "context_frame": 19456,
+        "a": 0,
+        "b": null,
+        "c": null,
+        "phrase": null,
+        "rack": 1
+      },
+      {
+        "context_frame": 20736,
+        "a": 0,
+        "b": 2,
+        "c": null,
+        "phrase": null,
+        "rack": 1
+      },
+      {
+        "context_frame": 22528,
+        "a": 0,
+        "b": null,
+        "c": null,
+        "phrase": null,
+        "rack": 1
+      }
+    ]
+  },
+  "muteFrame": 19712,
+  "automatic": {
+    "schema_version": "1.0-mix-recording",
+    "scope": "post_limiter_studio_mix",
+    "origin": "unreviewed_live_capture",
+    "training_authorized": false,
+    "permission": "user_attested_private_mix",
+    "sample_rate": 48000,
+    "frames": 1440000,
+    "wav_sha256": "17e181b8c513a37f62fadcaa1dd973b02769d1a2d0ed999a5317bdf34076b8b3",
+    "observed_context_start_frame": 703488,
+    "timestamp_discontinuities": 2,
+    "limit_reached": true
+  },
+  "peak": 0.169189453125,
+  "tail": 0,
+  "errors": [],
+  "external": [],
+  "warnings": [],
+  "physicalDevices": "NOT RUN",
+  "humanQuality": "NOT RUN",
+  "training": "NOT RUN",
+  "liveMixReplay": "NOT RUN: no complete automation/source trace"
+}

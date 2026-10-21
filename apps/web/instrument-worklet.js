@@ -1,3 +1,4 @@
+import {StepSequence} from './step-sequence.js';
 import { TakeBuffer, executeCommand, validCommand } from './live-take.js';
 class JamloomInstruments extends AudioWorkletProcessor {
   constructor(options) {
@@ -6,8 +7,17 @@ class JamloomInstruments extends AudioWorkletProcessor {
     this.engine._initialize();
     if (!this.engine.jamloom_live_init(sampleRate)) throw new Error('Unsupported instrument sample rate');
     this.samples = new Float32Array(this.engine.memory.buffer, this.engine.jamloom_live_buffer(), 4096);
+    this.renderSequence=count=>this.render(count);
+    this.emitSequence=command=>{if(command.type==='off'){this.engine.jamloom_live_off(command.id);return;}if(!this.engine.jamloom_live_note(command.id,command.patch,command.pitch,command.velocity)){this.sequence=null;this.engine.jamloom_live_panic();this.port.postMessage({type:'sequence-stopped',message:'Instrument voice limit reached.'});}};
     this.port.onmessage = ({ data }) => {
       if (!data || typeof data !== 'object') return;
+      if(data.type==='sequence-start'){
+        if(this.take){this.port.postMessage({type:'sequence-stopped',message:'Finish the dry instrument take before starting a sequence.'});return;}
+        this.sequence=null;this.engine.jamloom_live_panic();
+        try{this.sequence=new StepSequence(sampleRate,data.pattern,data.patch,data.velocity);this.port.postMessage({type:'sequence-started'});}
+        catch(error){this.port.postMessage({type:'sequence-stopped',message:error.message});}return;
+      }
+      if(data.type==='sequence-stop'||data.type==='panic'||data.type==='take-start'){this.sequence=null;this.engine.jamloom_live_panic();this.port.postMessage({type:'sequence-stopped'});if(data.type==='sequence-stop')return;}
       if (data.type === 'take-start' && Number.isSafeInteger(data.token) && data.token > 0 && !this.take) {
         try {
           this.take = new TakeBuffer(sampleRate, data.mouth); this.token = data.token;
@@ -32,13 +42,15 @@ class JamloomInstruments extends AudioWorkletProcessor {
     };
     this.port.postMessage({ type: 'ready' });
   }
+  render(frames){
+    if(!this.engine.jamloom_live_render(frames))return;
+    if(this.take)this.take.copy(this.samples,frames);
+    for(let c=0;c<this.output.length;c++)for(let i=0;i<frames;i++)this.output[c][this.offset+i]=this.samples[i*2+Math.min(c,1)];
+    this.offset+=frames;
+  }
   process(inputs, outputs) {
-    const output = outputs[0], frames = output[0]?.length ?? 0;
-    if (frames && frames <= 2048 && this.engine.jamloom_live_render(frames)) {
-      if (this.take) this.take.copy(this.samples, frames);
-      for (let channel = 0; channel < output.length; channel++)
-        for (let frame = 0; frame < frames; frame++) output[channel][frame] = this.samples[frame * 2 + Math.min(channel, 1)];
-    }
+    this.output=outputs[0];this.offset=0;const frames=this.output[0]?.length??0;
+    if(frames&&frames<=2048){if(this.sequence)this.sequence.run(frames,this.renderSequence,this.emitSequence);else this.render(frames);}
     return true;
   }
 }

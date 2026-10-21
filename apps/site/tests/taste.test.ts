@@ -13,3 +13,12 @@ test('local composer receives only explicit musical dimensions and bounded reque
  assert.throws(()=>tasteRender({...p,instruments:['voice']},42,30,0),/recording/);
  for(const args of [[-1,30,0],[1,181,0],[1,30,3],[NaN,30,0],[1,29,0]])assert.throws(()=>tasteRender(p,args[0],args[1],args[2]));
 });
+
+test('catalogue choices preserve licensed identities and expose weighted metadata evidence without inferred audio',async()=>{
+ const {tasteCatalogue,inferCatalogueTaste}=await import('../lib/taste-catalogue');
+ const id=tasteCatalogue[0].id,profile=validateTaste({...emptyTaste,catalogue:[{id,rating:'love',weight:4}]});
+ assert.equal(profile.catalogue?.[0].id,id);const result=inferCatalogueTaste(profile.catalogue!);assert.equal(result.genres[0].score,8);assert.equal(result.evidence[0].sha256,tasteCatalogue[0].sha256);assert.equal(result.confidence,'limited_metadata');assert.ok(result.unknown.includes('tempo'));
+ assert.equal(tasteBrief(profile).catalogue.evidence.length,1);assert.equal(tasteRender(profile,42,30,0).tempo,emptyTaste.tempo);
+ for(const choices of [[{id:'unknown',rating:'love',weight:1}],[{id,rating:'love',weight:0}],[{id,rating:'copy',weight:1}],[{id,rating:'like',weight:1},{id,rating:'love',weight:2}]])assert.throws(()=>validateTaste({...emptyTaste,catalogue:choices}));
+ assert.equal(inferCatalogueTaste([{id,rating:'avoid',weight:5}]).genres[0].score,-5);
+});

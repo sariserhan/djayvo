@@ -53,7 +53,7 @@ final class BrowserFixtureTests: XCTestCase {
     func testLocalControlFixture() throws {
         guard let path=ProcessInfo.processInfo.environment["JAMLOOM_LIVE_FIXTURE"] else { throw XCTSkip("Explicit browser fixture only; never captures audio") }
         let server=ControlServer();var controls=LiveControls(),active=true,updates=0
-        let token=try server.pair(origin:"http://127.0.0.1:4234")
+        let token=try server.pair(origin:ProcessInfo.processInfo.environment["JAMLOOM_LIVE_ORIGIN"] ?? "http://127.0.0.1:4234")
         server.status={ ["active":active,"message":"Synthetic control fixture; no captured audio.","source":"Consented test fixture","output":"Muted test output","peak":0.0,"bpm":120.0,"confidence":0.9,"controls":controls.dictionary] }
         server.apply={controls=$0;updates+=1};server.stop={active=false}
         try server.start()

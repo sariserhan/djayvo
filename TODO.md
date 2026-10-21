@@ -9,14 +9,18 @@ No new paid compute, live charges or publication is implied.
 | ID | Workstream | Status | Next evidence |
 |---|---|---|---|
 | FIN-001 | Source-responsive composition recovery | PARTIAL | Five isolated matched pairs, stems and exact replay PASS; human preference NOT RUN; earlier quality FAIL retained |
-| FIN-002 | Music DNA original audio | PARTIAL | Local shared-engine synthesis, 30–180 seconds, A/B variations, cancellation, exports and native/WASM identity PASS; licensed inference and musical acceptance remain |
-| FIN-003 | Quoted generation and worker completion | PARTIAL | Exact signed quote, local worker, private results, restart recovery, actual Stripe fee contract and refund-ledger tests PASS; provider invoices/execution NOT RUN |
-| FIN-004 | DJ/live control and transport completion | PARTIAL | Imported beat controls, slip rolls, bounded curves and opt-in paused A/B recovery PASS; advanced DSP/cue and broader scene recall remain gated |
-| FIN-005 | Native Live Source integration | PARTIAL | Hosted-origin pairing and permission/capture/routing evidence; physical checks remain deferred |
+| FIN-002 | Music DNA original audio | PARTIAL | Local shared-engine synthesis, 30–180 seconds, A/B variations, cancellation, exports and native/WASM identity PASS; cleared-catalogue identity/rating/inference and opt-in output preference adaptation PASS; musical acceptance remains |
+| FIN-003 | Quoted generation and worker completion | PARTIAL | Exact signed quote, local worker, private results, restart recovery, actual Stripe fee contract and refund-ledger tests PASS; remote-store output staging/recovery, cancellation, cleanup retry and charge-evidence collector PASS locally; actual provider bills/execution NOT RUN |
+| FIN-004 | DJ/live control and transport completion | PARTIAL | Imported beat controls, slip rolls, bounded curves and opt-in paused A/B recovery PASS; scratch/key-lock, advanced FX, full A/B/C scenes and a sample-timed note sequencer implemented; physical cue/deadlines remain unqualified |
+| FIN-005 | Native Live Source integration | PARTIAL | Secure-origin fixture: Chromium pairing PASS; WebKit blocks loopback and falls back. Actual hosted capture/routing remains deferred |
 | FIN-006 | Academy acceptance | PARTIAL | Automated batch complete; owner mini-set, manual accessibility and physical output remain deferred |
 | FIN-007 | iOS, then launch operations | NOT RUN | Explicitly deferred until preceding work is finished |
 
-[Implementation, reproducible evidence and remaining gates](docs/non-ios-completion.md).
+[Latest implementation, reproducible evidence and remaining gates](docs/non-ios-finish.md).
+Prior [completion checkpoint](docs/non-ios-completion.md) is preserved.
+
+- [x] **FIN-008 — PASS, local:** Sixteenth-note sequencer with validated notes, sample-clock scheduling, panic/blur stop and paused scene recall.
+- [ ] **FIN-009 — PARTIAL:** Supplementary wider voice/duration contracts and continual live-response qualification remain outside the bounded MVP; exact remaining work is in the current report.
 No push or deployment in this increment. Human checks remain deferred; the specification is not marked complete.
 
 ## Live Audio DJ — 2026-10-21

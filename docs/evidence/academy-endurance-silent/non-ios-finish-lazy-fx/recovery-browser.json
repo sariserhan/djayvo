@@ -1,0 +1,60 @@
+{
+  "speaker_output": "Muted downstream of recording taps; no physical-output claim",
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 20,
+      "status": "PASS",
+      "started_at": "2026-10-21T23:54:52.548Z",
+      "restarts": 19,
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 1069056,
+        "rate": 48000,
+        "gaps": 0,
+        "clockStalls": 1,
+        "seconds": 22.272,
+        "bytes": 358883,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "753a33de5532fb6904f16bd46c38134ae756691439d70ddda096697bbfdc4ea2"
+      },
+      "wall_seconds": 21.354,
+      "scope": "Short cue/restart recording regression; not a full-duration assessment",
+      "payload_bytes": 0,
+      "completed_at": "2026-10-21T23:55:15.710Z"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "performance-set",
+      "requested_seconds": 20,
+      "status": "PASS",
+      "started_at": "2026-10-21T23:55:16.300Z",
+      "restarts": 19,
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 1071616,
+        "rate": 48000,
+        "gaps": 0,
+        "clockStalls": 0,
+        "seconds": 22.325333333333333,
+        "bytes": 440174,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "7d3ce900b529b5cf5141d790d3729500d467c606792bb25c53e3420df256b772"
+      },
+      "wall_seconds": 21.413,
+      "scope": "Short cue/restart recording regression; not a full-duration assessment",
+      "payload_bytes": 0,
+      "completed_at": "2026-10-21T23:55:39.702Z"
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}
