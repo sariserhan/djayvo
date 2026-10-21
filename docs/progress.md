@@ -7,13 +7,18 @@ and owner will complete it. Shared-account unrelated reversals are now safely
 ignored; 22 Academy/admin tests PASS. Catalog/endpoints are being prepared while
 sales remain closed. The superseded endurance run was stopped after its captured
 short-duration failure; completed evidence is retained and the corrected run continues.
-Separate test/live catalogs and webhook secrets are configured; endpoint activation
-awaits the configured deployment. Delaying account-attempt creation reproduced an
+Separate test/live catalogs and webhook secrets are configured and both permanent
+endpoints enabled after deployed signature checks. Actual hosted test purchase and
+refund PASS in production; owner sandbox access revoked after refund and generation
+credits unchanged. Live tax settings are active and the course uses self-study
+training classification; active registrations reported zero, so merchant review
+and real payment acceptance remain separate gates. Delaying account-attempt creation reproduced an
 assessment timing conflict; sampling now starts after the request finishes, and
 both browsers pass the delayed-network regression with muted output.
 Notification retry scheduling is configured for the existing Pro project, every
 five minutes, using the existing leased endpoint and a new private CRON_SECRET.
-Deployment/invocation verification is pending; the outbox was empty at setup.
+Deployed schedule and invocation checks PASS; authenticated calls return 200 with
+zero messages, unauthenticated calls return 401. The outbox was empty at setup.
 
 Owner preview access is implemented with the existing verified active administrator
 check; prerequisites and financial receipts stay separate. 21 Academy/admin tests
@@ -24,7 +29,7 @@ configuration and the owner mini-set observation are pending. Earlier interrupte
 captures remain preserved; no current endurance PASS until final decoding.
 The current run exposed a short 298.28-second Chromium take after a five-minute
 wall-clock wait. Test stopping now follows measured frames. The production hour
-cap gets a bounded 60-second wall-clock grace period; a reproduced failing
+cap gets a bounded five-minute wall-clock grace period; a reproduced failing
 regression and 19 focused tests validate the fix. Real-duration rerun pending.
 
 # Academy remaining gates — 2026-10-21

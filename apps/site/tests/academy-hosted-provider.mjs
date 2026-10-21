@@ -32,7 +32,7 @@ try{
  const refunds=(await stripe.events.list({type:'charge.refunded',limit:100})).data.filter(e=>e.data.object.payment_intent===session.payment_intent);assert.equal(refunds.length,1);
  assert.equal((await pool.query('SELECT count(*)::int n FROM academy_purchase_events WHERE event_id=$1',[refunds[0].id])).rows[0].n,1);
  assert.equal((await pool.query('SELECT count(*)::int n FROM credit_lots')).rows[0].n,before);
- Object.assign(result,{status:'PASS',refund:refund.id,refund_event:refunds[0].id,refund_withdrawal:'PASS',invalid_signatures:'PASS in test and live modes',generation_credit_lot_delta:0,owner_test_entitlement_after:false,live_payment:'NOT RUN',human_learning:'DEFERRED by owner'});
+ Object.assign(result,{status:'PASS',refund:refund.id,refund_event:refunds[0].id,refund_withdrawal:'PASS',invalid_signatures:'PASS in test and live modes',generation_credit_lot_delta:0,owner_test_entitlement_after:false,live_payment:'NOT RUN',human_learning:'NOT RUN: deferred by owner'});
  console.log('Hosted test purchase and refund PASS');
 }catch(e){result.status='FAIL';result.error=e.message;throw e;}
 finally{

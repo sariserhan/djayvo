@@ -67,7 +67,7 @@ try{
     const started=Date.now(),task=lesson.tasks.at(-1);let side=0,nextTransition=1;
     // Exercise every transition early enough to retain recovery and finalization time at the actual 60-minute cap.
     const interval=Math.floor((seconds-20)/(task.transitions+1));let nextLog=60;
-    while((Date.now()-started)/1000<seconds+65){
+    while((Date.now()-started)/1000<seconds+(seconds===3600?305:65)){
      const elapsed=(Date.now()-started)/1000;
      if(elapsed>=nextLog){await checkSilent();console.log(label,Math.round(elapsed)+'s',await page.locator('#set-record-status').innerText());nextLog+=60;}
      if(elapsed>=interval*nextTransition&&nextTransition<=task.transitions){

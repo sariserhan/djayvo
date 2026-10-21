@@ -22,8 +22,8 @@ export function attachSetRecording({graph,context,mixer,emit}){
    sink=context().createGain();sink.gain.value=0;mixer().meter.connect(meter);meter.connect(sink);sink.connect(context().destination);
    meter.onprocessorerror=()=>clear('Audio measurement failed. Incomplete set discarded.');
    let finishMeter;const measured=new Promise(resolve=>finishMeter=resolve);
-   // Audio frames can lag wall time under load; allow a bounded grace period for the measured hour.
-   meter.port.onmessage=({data})=>{if(version!==token)return;if(data.type==='ready'){if(recorder?.state==='inactive'){recorder.start(1000);starting=false;clearTimeout(timer);timer=setTimeout(stop,(SET_SECONDS+60)*1000);controls();emit({action:'recording.start'});}}else if(data.type==='meter'){
+   // Audio frames can lag wall time under load; allow five minutes of bounded wall-clock grace for the measured hour.
+   meter.port.onmessage=({data})=>{if(version!==token)return;if(data.type==='ready'){if(recorder?.state==='inactive'){recorder.start(1000);starting=false;clearTimeout(timer);timer=setTimeout(stop,(SET_SECONDS+300)*1000);controls();emit({action:'recording.start'});}}else if(data.type==='meter'){
     emit({action:'recording.sample',...data});$('set-record-status').textContent=`Recording private set · ${Math.floor(data.frames/data.rate)} / ${SET_SECONDS} seconds`;
     if(data.frames/data.rate>=SET_SECONDS)stop();
    }else if(data.type==='stopped'){summary=data;finishMeter(data);}};

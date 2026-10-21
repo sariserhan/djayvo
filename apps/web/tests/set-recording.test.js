@@ -14,9 +14,9 @@ function fixture(){
  return {async start(){await node('set-record-start').onclick();meter.port.onmessage({data:{type:'ready'}});},advance(seconds){now+=seconds*1000;for(const [id,t]of timers)if(t.at<=now){timers.delete(id);t.fn();}},sample(seconds){meter.port.onmessage({data:{type:'meter',frames:seconds*48000,rate:48000}});},get state(){return recorder.state;},messages};
 }
 test('one-hour cap follows captured frames despite a short wall-clock delay',async()=>{
- const h=fixture();await h.start();h.advance(3602);h.sample(3594);assert.equal(h.state,'recording');
+ const h=fixture();await h.start();h.advance(3690);h.sample(3594);assert.equal(h.state,'recording');
  h.advance(6);h.sample(3600);assert.equal(h.state,'inactive');assert.equal(h.messages.at(-1).type,'stop');
 });
 test('wall-clock safety deadline still stops a stalled recorder',async()=>{
- const h=fixture();await h.start();h.advance(3660);assert.equal(h.state,'inactive');assert.equal(h.messages.at(-1).type,'stop');
+ const h=fixture();await h.start();h.advance(3900);assert.equal(h.state,'inactive');assert.equal(h.messages.at(-1).type,'stop');
 });

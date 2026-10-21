@@ -75,21 +75,25 @@ hosted read-only audit authenticates both to Aurowall. Live tax settings lack a
 head-office address; owner will complete them. Shared-account refund handling now
 ignores unrelated non-Checkout charges; 22 Academy/admin tests PASS. Permanent
 catalog/webhook preparation is underway, with sales still closed.
-Both catalogs and separate signing secrets are now configured; webhooks remain
-disabled until the configured deployment is verified. A delayed account request
+Both catalogs and separate signing secrets are configured; permanent webhooks
+are enabled after deployed signature checks. Actual hosted test purchase and
+refund PASS against production: one sandbox receipt, access withdrawn after refund,
+zero generation-credit change. Live tax address is now configured; course-specific
+self-study tax code set. Zero active tax registrations were reported; merchant
+obligations and real payment acceptance remain separate release gates. A delayed account request
 exposed premature assessment sampling; coaching now begins after attempt creation.
 The failing delayed-network reproduction now passes in Chromium/WebKit. Human
 checks remain explicitly deferred, not passed.
 The existing notification retry endpoint now has a five-minute Vercel cron
 configuration and a private generated secret. Existing Pro plan verified; no
-plan change. Production outbox has zero pending messages. Deployment/invocation
-verification pending; actual mailbox delivery is still NOT RUN.
+plan change. Production outbox has zero pending messages. Deployed schedule and authenticated/unauthorized invocation checks PASS; actual
+mailbox delivery is still NOT RUN (empty outbox).
 
 Silent endurance exposed a wall-clock/frame-clock mismatch: Chromium's manually
 stopped five-minute run contained only 298.28 seconds. The harness now waits for
 measured audio duration. A failing regression also proves the one-hour wall timer
 could stop a slightly delayed audio clock early; the frame cap is unchanged and
-the wall safety deadline now allows 60 seconds of grace. Nineteen focused tests
+the wall safety deadline now allows five minutes of grace. Nineteen focused tests
 PASS; full-duration rerun pending. Original capture and failure retained.
 
 ## Academy completion work — 2026-10-21
@@ -124,15 +128,15 @@ Separate $79.99 one-time pass; generation credits and quality hold remain unchan
 | ACA-004 | Verified first crossfade, coaching and unlimited Free Jam | Agent + novice testers | ACA-002/003 | PARTIAL | Automated fade and voluntary Continue pass; owner qualitatively accepts deployed lesson as good enough. Measured unaided completion not supplied |
 | ACA-005 | Versioned curriculum, rubrics and assessments | Agent | First lesson evidence | PARTIAL | 20 runnable lessons, six-stage prerequisite graph and end assessments implemented; browser checks PASS; human rubric calibration remains open (ACA-021/022) |
 | ACA-006 | Owner-scoped progress, prerequisites, export/delete | Agent | Local database tests | PASS | Real local Better Auth/PG, order/replay/ownership/rate bounds and deletion checks |
-| ACA-007 | Separate Stripe pass, replay/refund/repurchase handling | Agent + owner | Sandbox product configuration | PARTIAL | Actual hosted Stripe test Checkout and signed CLI-forwarded webhook purchase/decline/refund/repurchase/dispute checks PASS; durable deployed endpoint/live configuration NOT RUN; sales closed |
+| ACA-007 | Separate Stripe pass, replay/refund/repurchase handling | Agent + owner | Sandbox product configuration | PARTIAL | Actual Stripe test purchase/refund through permanent deployed webhooks PASS; separate live catalog, keys and signed endpoint configured. Other provider scenarios PASS locally; real charges NOT RUN, sales closed |
 | ACA-008 | Fifth feature, routes, dashboard and checkout | Agent | Existing site | PASS | Production build and Chromium/WebKit route checks; four prior features preserved |
 | ACA-009 | Audio/browser/accessibility/regression checks | Agent | Runnable lesson | PARTIAL | Current 96 web + 12 Academy/DB + 31 site checks pass; build and original recorder browser regressions pass. Broad/final course, responsive/axe and offline checks PASS; manual accessibility and physical reliability remain NOT RUN |
-| ACA-010 | Owner-only first lesson and mini-set acceptance (revised scope) | Owner | Working course | PARTIAL | Owner accepts deployed first lesson: “yes it is good enough for now”; Dia / MacBook Air / external speaker. Mini-set and measured observations NOT RUN. No independent novice or population claim. |
+| ACA-010 | Owner-only first lesson and mini-set acceptance (revised scope) | Owner | Working course | PARTIAL | Owner accepts deployed first lesson: “yes it is good enough for now”; Dia / MacBook Air / external speaker. Mini-set and measured observations NOT RUN, explicitly deferred by owner. No independent novice or population claim. |
 | ACA-011 | Handbook, economics, migration and release checklist | Agent + owner | Evidence | PARTIAL | Handbook and reserve model delivered; production migration/backup restore and owner-preview deployment PASS; actual merchant economics and commercial activation remain open |
 | ACA-012 | Diagnose recorder clock discontinuity and physical audio reliability | Agent + owner | Actual captures | PARTIAL | Initial startup timestamp discontinuity isolated and guarded by connected-block warmup; fresh Chromium short/long captures and both recorder regressions pass. Physical reliability remains NOT RUN |
 | ACA-013 | Shared-frame transport, beat loops/jumps, long recording | Agent | Existing deck engine | PARTIAL | ACA-019/020 local implementation and two-browser short/mini-set checks PASS; actual 5-minute checks PASS; 30/60-minute interrupted; physical endurance NOT RUN |
 | ACA-014 | Remaining curriculum and beginner mini-set | Agent + learners | ACA-003/013 | PARTIAL | All six stages implemented; actual Chromium two-minute recorded mini-set passes. Chromium/WebKit control checks and both actual mini-sets PASS; owner mini-set remains unmeasured; 30/60-minute runs interrupted |
-| ACA-015 | Hosted CI, payment sandbox, deployment and release | Agent + owner | Course / provider / human gates | PARTIAL | Full hosted CI, Neon migration/backup restore and production owner-preview deployment PASS. Actual Stripe test-mode Checkout/webhook/reversal checks PASS; permanent hosted/live billing configuration remains open. [Report](docs/academy-release-checks.md) |
+| ACA-015 | Hosted CI, payment sandbox, deployment and release | Agent + owner | Course / provider / human gates | PARTIAL | Full hosted CI, Neon migration/backup restore and production owner-preview deployment PASS. Actual deployed Stripe test purchase/refund and permanent test/live configuration PASS; real charges and commercial activation remain open. [Report](docs/academy-release-checks.md) |
 | ACA-016 | Hardware-style deck presentation with real controls | Agent + owner | Existing console | PARTIAL | [Presentation](docs/deck-presentation.md): browser/build checks pass; owner visual and physical touch review NOT RUN |
 | ACA-017 | Adaptive fullscreen studio and performance C layout | Agent + owner | Shared actual decks | PARTIAL | [Fullscreen report](docs/studio-fullscreen.md): native browser/layout/audio checks pass; physical monitor/device review NOT RUN |
 

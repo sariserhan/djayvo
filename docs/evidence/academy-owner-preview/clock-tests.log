@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: gradual eight-beat crossfade requires actual signal, timing, progression and learner provenance
+ok 1 - gradual eight-beat crossfade requires actual signal, timing, progression and learner provenance
+  ---
+  duration_ms: 5.170334
+  type: 'test'
+  ...
+# Subtest: checks lead to ungraded free play, never automatic next task; pauses discard stale attempts
+ok 2 - checks lead to ungraded free play, never automatic next task; pauses discard stale attempts
+  ---
+  duration_ms: 0.628542
+  type: 'test'
+  ...
+# Subtest: native decoder startup may settle, but a sustained audible interval is required
+ok 3 - native decoder startup may settle, but a sustained audible interval is required
+  ---
+  duration_ms: 0.397
+  type: 'test'
+  ...
+# Subtest: coach commands run the same control handler with distinct provenance and bounds
+ok 4 - coach commands run the same control handler with distinct provenance and bounds
+  ---
+  duration_ms: 3.446042
+  type: 'test'
+  ...
+# Subtest: level check needs a sustained actual mixer value, not a brief slider event
+ok 5 - level check needs a sustained actual mixer value, not a brief slider event
+  ---
+  duration_ms: 0.623959
+  type: 'test'
+  ...
+# Subtest: tempo holds and declared phase are measured for the entire interval; assisted manual checks fail
+ok 6 - tempo holds and declared phase are measured for the entire interval; assisted manual checks fail
+  ---
+  duration_ms: 1.41525
+  type: 'test'
+  ...
+# Subtest: loop and jump checks require observed transport changes, not button presses
+ok 7 - loop and jump checks require observed transport changes, not button presses
+  ---
+  duration_ms: 1.574208
+  type: 'test'
+  ...
+# Subtest: set assessment requires bounded recording, full duration, actual audio continuity and transitions
+ok 8 - set assessment requires bounded recording, full duration, actual audio continuity and transitions
+  ---
+  duration_ms: 1.701125
+  type: 'test'
+  ...
+# Subtest: knowledge questions are explicit decisions, never mislabeled audio competency
+ok 9 - knowledge questions are explicit decisions, never mislabeled audio competency
+  ---
+  duration_ms: 0.768375
+  type: 'test'
+  ...
+# Subtest: instrument-layer check requires the separate audible instrument signal with the outgoing deck
+ok 10 - instrument-layer check requires the separate audible instrument signal with the outgoing deck
+  ---
+  duration_ms: 1.226667
+  type: 'test'
+  ...
+# Subtest: long-set grading rejects abrupt endpoint jumps and sustained silence
+ok 11 - long-set grading rejects abrupt endpoint jumps and sustained silence
+  ---
+  duration_ms: 0.656666
+  type: 'test'
+  ...
+# Subtest: five-minute and performance rubrics accept full bounded traces, not shortened recordings
+ok 12 - five-minute and performance rubrics accept full bounded traces, not shortened recordings
+  ---
+  duration_ms: 16.817625
+  type: 'test'
+  ...
+# Subtest: fade grading starts when the fader moves, not while the learner is still starting the decks
+ok 13 - fade grading starts when the fader moves, not while the learner is still starting the decks
+  ---
+  duration_ms: 0.374167
+  type: 'test'
+  ...
+# Subtest: set recovery must happen inside the recording, in order, with A supplying the music
+ok 14 - set recovery must happen inside the recording, in order, with A supplying the music
+  ---
+  duration_ms: 0.805916
+  type: 'test'
+  ...
+# Subtest: failed tasks can pause into ungraded practice and resume with fresh evidence
+ok 15 - failed tasks can pause into ungraded practice and resume with fresh evidence
+  ---
+  duration_ms: 0.11625
+  type: 'test'
+  ...
+# Subtest: recorder acknowledges only settled connected blocks and detects later clock interruptions
+ok 16 - recorder acknowledges only settled connected blocks and detects later clock interruptions
+  ---
+  duration_ms: 41.324333
+  type: 'test'
+  ...
+# Subtest: signal meter includes quiet blocks and transient peaks rather than sparse analyser snapshots
+ok 17 - signal meter includes quiet blocks and transient peaks rather than sparse analyser snapshots
+  ---
+  duration_ms: 31.846125
+  type: 'test'
+  ...
+# Subtest: one-hour cap follows captured frames despite a short wall-clock delay
+ok 18 - one-hour cap follows captured frames despite a short wall-clock delay
+  ---
+  duration_ms: 3.173292
+  type: 'test'
+  ...
+# Subtest: wall-clock safety deadline still stops a stalled recorder
+ok 19 - wall-clock safety deadline still stops a stalled recorder
+  ---
+  duration_ms: 1.914834
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 173.3085
