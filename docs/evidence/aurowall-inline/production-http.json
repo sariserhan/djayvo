@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "deployment": "dpl_5kTu7oBYCVLYGWJDLLzhnEkg5kDR",
+  "revision": "a06151f056a0233571ca1d45a3b0711300d529e0",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/licenses",
+      "status": 200,
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/account/sign-in",
+      "status": 200,
+      "cache": "private, no-cache, no-store, max-age=0, must-revalidate"
+    },
+    {
+      "path": "/api/aurowall",
+      "status": 503,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/aurowall/000000000000000000000000",
+      "status": 503,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/academy/checkout",
+      "status": 307,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/academy/checkout",
+      "status": 503,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/payments/checkout",
+      "status": 503,
+      "cache": "private, no-store"
+    }
+  ],
+  "owner_authenticated_music": "NOT RUN on hosted site: no owner browser session used"
+}

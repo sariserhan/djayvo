@@ -34,8 +34,10 @@ Required environment names are documented in `apps/site/.env.production.example`
 | No autoplay, muted test output, unavailable-partner fallback | PASS | Both browsers; existing 10 CC0 tracks remain usable |
 | Responsive and automated accessibility | PASS | 1440/390/320 widths, axe; screenshots retained. Manual screen reader NOT RUN |
 | Actual embedded Stripe test transactions | PASS | `evidence/academy-inline-provider/provider.json`: decline/retry, purchase, close/reopen, refund, repurchase, delayed grant after refund, dispute won/lost, duplicate delivery, invalid signature and other-owner status isolation. Real Stripe CLI callbacks into local production build; no real funds |
-| Permanent production webhook with embedded fixture | NOT RUN for this revision | Earlier hosted purchase/refund evidence remains historical; adapted harness preserves its explicit authorization guard |
-| Deployment and public gate checks | NOT RUN for this revision | Release follow-up pending |
+| Permanent production webhook with embedded fixture | PASS | `evidence/academy-hosted-inline-provider/provider.json`: actual test purchase/refund, signed production delivery, access withdrawal and zero generation-credit delta. Isolated embedded provider fixture, not a fabricated owner browser session |
+| Deployment and public gate checks | PASS | Runtime `a06151f`, Vercel `dpl_5kTu7oBYCVLYGWJDLLzhnEkg5kDR` READY and aliased to www.jamloom.com; partnership/disclosures, closed APIs and private headers verified. Hosted public mobile/axe pass |
+| Hosted CI | PASS | [Run 39673854024](https://github.com/sariserhan/jamloom/actions/runs/39673854024), runtime `a06151f`: website, Academy/admin, Linux/macOS normal and sanitizer builds, cross-platform audio comparison. `evidence/aurowall-inline/ci.json` |
+| Authenticated hosted music UI | NOT RUN | Real R2 streaming/browser checks use the local production build; no owner session was available for a hosted playback check |
 | Human listening, every-track full listening, live money, native IAP | NOT RUN | Deferred/outside this web integration; sales remain closed |
 
 A first provider run passed purchase/refund but failed on Stripe's opt-in checkbox click interception. Its evidence remains under `evidence/academy-inline-provider/first-attempt/`; the unpaid second session was explicitly expired. The corrected keyboard-based interaction passes the complete five-purchase suite. All successful non-disputed test charges were refunded; the disputed cases were resolved won/refunded or lost. No generation credit lots changed.
@@ -55,3 +57,5 @@ node --env-file=.env.local --import tsx tests/academy-provider.mjs
 ```
 
 Database/provider scripts additionally require `JAMLOOM_TEST_DATABASE_URL`; the provider run requires the configured Academy test product/price IDs. Provider tests are explicit operations, not ordinary CI. Browser audio is isolated with `tests/silent-audio.mjs` and Chromium's mute flag. Tests do not modify the user's Dia session or system volume.
+
+The implementation is committed in `5587563`; `a06151f` adds factual privacy/license disclosures and is the deployed revision. Local payment/music browser evidence covers the same functional code. The production embedded-provider fixture ran against `5587563` during the disclosure-only deployment; webhook code is unchanged. Historical evidence folders are preserved. No production schema changes were needed.

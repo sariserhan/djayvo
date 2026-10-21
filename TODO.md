@@ -9,7 +9,7 @@ Owner requests payment entirely inside Jamloom and authorizes playing owned Auro
 | PAY-UI-001 | Embedded web checkout and inline verified confirmation | PASS | Actual Stripe test purchase/decline/refund/repurchase/disputes; no navigation, same-session reopen, signed owner-scoped receipt |
 | AURO-001 | Read-only Aurowall R2 music catalogue and playback | PASS | 94 tracks; real range/seek/playback in Chromium/WebKit, no bucket writes or exposed secrets |
 | AURO-002 | Homepage/player and DJ selection, partnership link | PASS | Responsive/axe, explicit Play, partner links including coming-soon; online rights separate from CC0; existing 20-minute DJ limit shown |
-| AURO-003 | Verification, deployment and documentation | PARTIAL | Local build and tests pass; hosted release follow-up pending. [Report](docs/inline-payments-aurowall.md) |
+| AURO-003 | Verification, deployment and documentation | PASS | `a06151f` deployed READY; full CI 39673854024, hosted public gates and permanent embedded test purchase/refund PASS. Human/live-charge checks deferred; signed-in hosted music not rerun. [Report](docs/inline-payments-aurowall.md) |
 
 ## Next.js loading and recovery — 2026-10-21
 
@@ -836,6 +836,8 @@ filename/seed, timestamp, observation, desired change and eventual evidence.
 Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
+
+- [x] **2026-10-21 — Inline payments and Aurowall music:** Implementation `5587563`, disclosure/runtime `a06151f` deployed READY with full CI PASS. Embedded Stripe purchase/decline/retry/refund/repurchase/disputes and permanent production webhook fixture PASS. Read-only 94-track Aurowall catalogue, explicit homepage playback, online DJ selection and linked partnership; real R2 Chromium/WebKit seeking/playback, responsive/axe and muted output PASS. TODO, progress, rights/privacy and owner configuration updated. Existing release holds remain; authenticated hosted music UI and human/live-charge acceptance are not claimed. [Report](docs/inline-payments-aurowall.md).
 
 - [x] **2026-10-21 — Academy automated release completion:** Runtime `c74ad49` deployed READY with full hosted CI PASS. All ten silent Chromium/WebKit 2/5/5/30/60-minute recording, download, assessment/account-save and decoded PCM/hash checks PASS. Fixed bounded stale worklet timestamps without changing audio; original failures retained. Permanent Aurowall test/live configuration, actual hosted test purchase/refund, non-payment live delivery, production schema/backup restore and scheduled retries verified. Human checks deferred; merchant/live-charge/mailbox acceptance and public sales remain open. [Release report](docs/academy-release-checks.md), [recording evidence](docs/evidence/academy-endurance-silent/browser.json).
 

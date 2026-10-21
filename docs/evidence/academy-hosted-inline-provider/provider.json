@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "live_charges": 0,
+  "account": "acct_1TxA3vDlEXWDEeHO",
+  "checkout_creation": "Authorized server operations command; no owner browser session fabricated",
+  "delivery": "Permanent Stripe webhook to production app/database; no CLI forwarding",
+  "session": "cs_test_a1TW8g2lpQG4UsFQVVkoLx4cA928tpAZGfRMiS2JwgAAIrJB1VpqeijJFJ",
+  "browser": "Isolated embedded Checkout fixture; production signed webhook verified separately",
+  "grant_event": "evt_1UT6UYDlEXWDEeHOSnQrgU9I",
+  "purchase": "PASS",
+  "refund": "re_3UT6UXDlEXWDEeHO1DtyTTCw",
+  "refund_event": "evt_3UT6UXDlEXWDEeHO1VkAC3kA",
+  "refund_withdrawal": "PASS",
+  "invalid_signatures": "PASS in test and live modes",
+  "generation_credit_lot_delta": 0,
+  "owner_test_entitlement_after": false,
+  "live_payment": "NOT RUN",
+  "human_learning": "NOT RUN: deferred by owner"
+}

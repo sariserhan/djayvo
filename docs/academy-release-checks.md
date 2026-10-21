@@ -1,3 +1,7 @@
+## Current web follow-up — 2026-10-21
+
+Runtime `a06151f` supersedes the deployment references in the earlier Academy checkpoint below. It adds inline web checkout and the owner-authorized Aurowall music partnership. Deployment, hosted public gates, actual embedded sandbox transactions and permanent webhook purchase/refund pass; human and sales holds remain. [Current implementation and evidence](inline-payments-aurowall.md).
+
 # Academy release checks — 2026-10-21
 
 Overall **PARTIAL**: Academy remains an owner preview behind coming-soon; sales

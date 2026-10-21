@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "revision": "a06151f056a0233571ca1d45a3b0711300d529e0",
+  "id": "dpl_5kTu7oBYCVLYGWJDLLzhnEkg5kDR",
+  "url": "https://jamloom-glzngoveb-ssari.vercel.app",
+  "inspectorUrl": "https://vercel.com/ssari/jamloom/5kTu7oBYCVLYGWJDLLzhnEkg5kDR",
+  "readyState": "READY",
+  "target": "production",
+  "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_5kTu7oBYCVLYGWJDLLzhnEkg5kDR",
+  "alias": "https://www.jamloom.com",
+  "public_coming_soon": true,
+  "sales_closed": true
+}

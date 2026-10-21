@@ -1,6 +1,6 @@
 # Inline payments and Aurowall music — 2026-10-21
 
-**PASS:** Inline Stripe test checkout and verified receipt, 94 owned Aurowall recordings with explicit playback, online DJ selection and linked partnership. Actual test decline/refund/repurchase/disputes and muted Chromium/WebKit R2 playback pass. **PARTIAL:** Hosted release follow-up pending. Sales/quality holds remain; no storage writes or real charges. [Report](inline-payments-aurowall.md), [tracker](../TODO.md).
+**PASS:** Inline Stripe test checkout and verified receipt, 94 owned Aurowall recordings with explicit playback, online DJ selection and linked partnership. Actual test decline/refund/repurchase/disputes and muted Chromium/WebKit R2 playback pass. **PASS:** Runtime `a06151f` deployed READY; hosted public gates and permanent webhook purchase/refund verified. Full CI run `39673854024` passes, including website/Academy, Linux/macOS sanitizer builds and cross-platform comparison. Signed-in hosted music UI was not rerun; actual R2 browser evidence uses the local production build. Sales/quality holds remain; no storage writes or real charges. [Report](inline-payments-aurowall.md), [tracker](../TODO.md).
 
 # Academy continuation — 2026-10-21
 
