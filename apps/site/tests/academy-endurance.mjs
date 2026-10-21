@@ -103,15 +103,17 @@ try{
    }assert.deepEqual(errors,[]);
    }catch(error){console.error(name,JSON.stringify(cases),error);await page.screenshot({path:new URL(name+'-'+mode+'-failure.png',evidence).pathname,fullPage:false}).catch(()=>{});throw error;}finally{await context.close();}
   }
-  try{const lanes=await Promise.allSettled([
-   ...(['all','hour'].includes(mode)?[lane([['performance-set',3600]])]:[]),
-   ...(['all','short'].includes(mode)?[lane([['elementary-assessment',120],['intermediate-set',300],['advanced-set',300],['performance-set',1800]])]:[]),
-   ...(mode==='half'?[lane([['performance-set',1800]])]:[])
-  ]);for(const result of lanes)if(result.status==='rejected')throw result.reason;
+  // Real-time audio runs one recording at a time; concurrent browsers add unrelated device/load interference.
+  try{
+   if(['all','hour'].includes(mode))await lane([['performance-set',3600]]);
+   if(['all','short'].includes(mode))await lane([['elementary-assessment',120],['intermediate-set',300],['advanced-set',300],['performance-set',1800]]);
+   if(mode==='half')await lane([['performance-set',1800]]);
   }finally{await browser.close();}
  }
- const runs=await Promise.allSettled(Object.entries({chromium,webkit}).filter(([name])=>!selected||name===selected).map(([name,engine])=>run(engine,name)));
- results.errors=runs.filter(r=>r.status==='rejected').map(r=>String(r.reason?.stack??r.reason));
+ results.errors=[];
+ for(const [name,engine] of Object.entries({chromium,webkit}).filter(([name])=>!selected||name===selected)){
+  try{await run(engine,name);}catch(error){results.errors.push(String(error?.stack??error));}
+ }
  results.status=results.errors.length?'FAIL':'PASS';
  await writeFile(new URL(mode+'-browser.json',evidence),JSON.stringify(results,null,2)+'\n');assert.deepEqual(results.errors,[]);console.log('All real-time endurance runs PASS');
 }finally{

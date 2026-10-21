@@ -20,7 +20,11 @@ thirty-minute lane was superseded after clock lag exceeded the old harness
 timeout; the replacement uses five minutes of bounded grace and still requires
 the full measured duration. The first WebKit hour reached 3,600 measured
 seconds but exposed a harness race during automatic finalization; both hour
-checks are restarting with that test fixed. No completed-hour claim. Both browser
+checks are running with that test fixed. No completed-hour claim. The Chromium
+thirty-minute replacement completed but reported two clock gaps (FAIL), despite
+clean decoded PCM. Its raw file and failed receipt are retained. After the hour
+runs finish, repeat that case alone; the default runner now serializes recordings
+to avoid artificial concurrent-browser load. The gap cause is not yet confirmed. Both browser
 preflights prove captured signal and zero final speaker samples. The harness now
 waits for measured audio duration, and the recorder keeps its 3,600-frame-second
 cap and 96 MiB limit with a bounded five-minute wall-clock grace period. Nineteen
