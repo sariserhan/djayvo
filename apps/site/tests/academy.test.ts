@@ -58,6 +58,8 @@ test('isolated Postgres Academy receipts, progress, holds and tenant boundaries'
    await academyWebhook(other,pool,event,JSON.stringify(event),config);assert.equal((await pool.query('SELECT count(*)::int n FROM academy_purchase_events WHERE event_id=$1',[event.id])).rows[0].n,1);
   }
   assert.equal((await pool.query('SELECT count(*)::int n FROM academy_purchase_holds')).rows[0].n,before);
+  const legacy={id:'evt_legacy_charge',livemode:false,type:'charge.refunded',data:{object:{payment_intent:null}}} as Stripe.Event;
+  await academyWebhook({} as Stripe,pool,legacy,JSON.stringify(legacy),config);assert.equal((await pool.query('SELECT count(*)::int n FROM academy_purchase_events WHERE event_id=$1',[legacy.id])).rows[0].n,1);
   const ambiguous={checkout:{sessions:{list:async()=>({has_more:true,data:[]})}}} as unknown as Stripe;
   await assert.rejects(academyWebhook(ambiguous,pool,{id:'evt_ambiguous',livemode:false,type:'charge.refunded',data:{object:{payment_intent:'pi_other'}}} as Stripe.Event,'ambiguous',config),/Ambiguous/);
  });

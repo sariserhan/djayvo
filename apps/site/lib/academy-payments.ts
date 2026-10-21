@@ -58,13 +58,16 @@ export async function academyWebhook(stripe:Stripe,pool:Pool,event:Stripe.Event,
   if(event.type==='checkout.session.completed'||event.type==='checkout.session.async_payment_succeeded'){
    if(event.data.object.metadata?.jamloom_product===academyProduct&&event.data.object.payment_status==='paid')await grantAcademy(stripe,pool,event.data.object.id,config,lock);
   }else if(event.type==='charge.refunded'||event.type==='charge.dispute.created'||event.type==='charge.dispute.closed'){
-   const intent=event.data.object.payment_intent;if(typeof intent!=='string')throw new Error('Missing payment intent');
+   const intent=event.data.object.payment_intent;
+   // Legacy direct charges have no PaymentIntent and cannot be Academy Checkout purchases.
+   if(intent!==null){if(typeof intent!=='string')throw new Error('Missing payment intent');
    const sessions=await stripe.checkout.sessions.list({payment_intent:intent,limit:2});
    if(sessions.has_more||sessions.data.length>1)throw new Error('Ambiguous reversal');
    if(sessions.data[0]?.metadata?.jamloom_product===academyProduct){
     if(event.type==='charge.refunded')await academyHold(pool,sessions.data[0].id,'refund',true,lock);
     else{await lock.query('SELECT pg_advisory_xact_lock(hashtextextended($1,0))',['academy:'+sessions.data[0].id]);const dispute=await stripe.disputes.retrieve(event.data.object.id);if(dispute.livemode!==!!config.live||dispute.payment_intent!==intent)throw new Error('Dispute mismatch');
      await academyHold(pool,sessions.data[0].id,'dispute',dispute.status!=='won',lock);}
+   }
    }
   }
   await lock.query('INSERT INTO academy_purchase_events(event_id,digest) VALUES($1,$2)',[event.id,digest]);await lock.query('COMMIT');
