@@ -1,3 +1,12 @@
+# Academy continuation — 2026-10-21
+
+Owner preview access is implemented with the existing verified active administrator
+check; prerequisites and financial receipts stay separate. 21 Academy/admin tests
+PASS; rendered and deployment checks pending. Silent real-time endurance is running. Both browser preflights confirm the capture
+branch retains signal while final speaker samples are zero. Permanent billing
+configuration and the owner mini-set observation are pending. Earlier interrupted
+captures remain preserved; no current endurance PASS until final decoding.
+
 # Academy remaining gates — 2026-10-21
 
 **PASS:** Full hosted CI at `19ae151`, production migrations 0006–0012 with all

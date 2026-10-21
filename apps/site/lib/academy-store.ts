@@ -1,5 +1,6 @@
 import type {Pool,PoolClient} from 'pg';import {createHash} from 'node:crypto';
 import {siteSettings} from './site-settings';
+import {adminAccount} from './admin-access';
 import {academyLesson,ACADEMY_VERSION} from './academy-content';
 import {evaluateTask,EVALUATOR_VERSION} from '../../web/academy-evaluator.js';
 export class AcademyStore {
@@ -14,7 +15,7 @@ export class AcademyStore {
   GROUP BY a.id ORDER BY a.started_at DESC LIMIT 100`,[owner])).rows;}
  async allowed(owner:string,id:string,db:Pool|PoolClient=this.pool){
   const lesson=academyLesson(id);if(!lesson)throw new Error('Unknown lesson');
-  if(!lesson.free&&!await this.access(owner,db))throw new Error('Academy pass required');
+  if(!lesson.free&&!await adminAccount(db,owner)&&!await this.access(owner,db))throw new Error('Academy pass required');
   for(const prerequisite of lesson.prerequisites)if(!(await db.query('SELECT 1 FROM academy_attempts WHERE owner_id=$1 AND lesson_id=$2 AND version=$3 AND completed_at IS NOT NULL LIMIT 1',[owner,prerequisite,ACADEMY_VERSION])).rowCount)throw new Error('Complete the prerequisite lesson first');
   return lesson;
  }

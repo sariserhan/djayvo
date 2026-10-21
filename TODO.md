@@ -57,6 +57,17 @@ Evidence: [implementation report](docs/admin-implementation.md), [owner setup](d
 | ADM-009 | Actual payment-provider and commercial release gates | NOT RUN | No live charges; Academy release held, existing musical-quality FAIL retained |
 
 
+## Academy continuation — 2026-10-21
+
+Owner: “continue with all the unfinished works.” Silent endurance runner added:
+Chromium/WebKit preflight proves nonzero captured audio and exactly zero speaker
+output. Actual real-time 2/5/30/60-minute checks now running with the final output
+muted; this is recording/engine evidence, not physical-speaker reliability.
+Owner preview access now reuses the verified active administrator check, preserves
+prerequisites and does not create payment receipts; 21 Academy/admin tests PASS,
+rendered/deployed check pending. Permanent Stripe keys and the owner mini-set observation requested while independent
+work continues. No new audible playback or live charges.
+
 ## Academy completion work — 2026-10-21
 
 Owner instruction: finish Academy and update this tracker at every increment.

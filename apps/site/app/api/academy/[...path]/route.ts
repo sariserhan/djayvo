@@ -1,6 +1,7 @@
 import {accountsConfigured,services} from '../../../../lib/services';
 import {academyLesson} from '../../../../lib/academy-content';import {academyTracks} from '../../../../lib/academy-assets';
-import {AcademyStore} from '../../../../lib/academy-store';import {readBody,AudioError} from '../../../../lib/audio-validation';
+import {AcademyStore} from '../../../../lib/academy-store';
+import {adminAccount} from '../../../../lib/admin-access';import {siteSettings} from '../../../../lib/site-settings';import {readBody,AudioError} from '../../../../lib/audio-validation';
 export const runtime='nodejs';
 const headers={'Cache-Control':'private, no-store'};
 async function handle(request:Request,{params}:{params:Promise<{path:string[]}>}){
@@ -14,7 +15,7 @@ async function handle(request:Request,{params}:{params:Promise<{path:string[]}>}
   const store=new AcademyStore(pool),owner=session.user.id;
   if(request.method==='GET'&&lesson){await store.allowed(owner,lesson.id);return Response.json({lesson,tracks:await academyTracks()},{headers});}
   if(path.length===1&&path[0]==='progress'){
-   if(request.method==='GET')return Response.json({access:await store.access(owner),attempts:await store.progress(owner)},{headers});
+   if(request.method==='GET'){const ownerPreview=await adminAccount(pool,owner),billingMode=(await siteSettings(pool)).billing_mode;return Response.json({access:ownerPreview||await store.access(owner,pool,billingMode==='live'),ownerPreview,billingMode,attempts:await store.progress(owner)},{headers});}
    if(request.method==='DELETE'){await store.removeProgress(owner);return Response.json({deleted:true},{headers});}
   }
   if(request.method==='POST'&&path.length===1){

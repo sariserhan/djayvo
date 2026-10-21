@@ -45,6 +45,23 @@ test('real Postgres administration, durable mail, credit exemption and billing i
   await pool.query('INSERT INTO "session"(id,token,"userId","expiresAt","updatedAt") VALUES(\'session1\',\'secret-fixture\',\'alice\',now()+interval \'1 day\',now())');await assert.rejects(store.user('alice','owner',true),/Administrator/);await assert.rejects(store.user('owner','owner',true),/cannot be suspended/);
   await store.user('owner','alice',true);assert.equal((await pool.query('SELECT count(*)::int n FROM "session" WHERE "userId"=\'alice\'')).rows[0].n,0);assert.equal((await pool.query('SELECT status FROM generation_reservations WHERE id=$1',[id])).rows[0].status,'cancelled');assert.deepEqual(await wallet.balance('alice'),{available:10,reserved:0});await assert.rejects(wallet.reserve('alice','suspended_request',1),/suspended/);await store.user('owner','alice',false);assert.equal((await pool.query('SELECT suspended FROM "user" WHERE id=\'alice\'')).rows[0].suspended,false);
  });
+ await t.test('owner course preview requires verified active identity and preserves prerequisites and receipts',async()=>{
+  const academy=new AcademyStore(pool);
+  assert.equal(await academy.access('owner'),false);
+  await assert.rejects(academy.begin('owner','gain-staging'),/prerequisite/);
+  await assert.rejects(academy.begin('alice','gain-staging'),/pass required/);
+  const id=await academy.begin('owner','first-crossfade');
+  // Access fixture only: this row is not evidence that a learner completed the lesson.
+  await pool.query('UPDATE academy_attempts SET completed_at=now() WHERE id=$1',[id]);
+  assert.ok(await academy.begin('owner','gain-staging'));
+  for(const column of ['"emailVerified"','suspended']){
+   const denied=column==='suspended';await pool.query(`UPDATE "user" SET ${column}=$1 WHERE id='owner'`,[denied]);
+   await assert.rejects(academy.begin('owner','gain-staging'),/pass required/);
+   await pool.query(`UPDATE "user" SET ${column}=$1 WHERE id='owner'`,[!denied]);
+  }
+  assert.equal((await pool.query("SELECT count(*)::int n FROM academy_purchases WHERE owner_id='owner'")).rows[0].n,0);
+  await academy.removeProgress('owner');assert.equal(await academy.access('owner'),false);
+ });
  await t.test('verified live and test receipts stay separate; wrong-mode signed events fail',async()=>{
   const testConfig={price:'price_test',product:'prod_test'},liveConfig={price:'price_live',product:'prod_live',live:true};let live=false;
   const price=()=>({id:live?'price_live':'price_test',active:true,livemode:live,currency:'usd',unit_amount:7999,type:'one_time',tax_behavior:'exclusive',product:{id:live?'prod_live':'prod_test',active:true,metadata:{jamloom_product:'academy-complete'}}});
