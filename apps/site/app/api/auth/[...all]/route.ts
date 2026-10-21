@@ -1,10 +1,12 @@
 import { services, accountsConfigured } from '../../../../lib/services';
+import {cachedSiteSettings} from '../../../../lib/site-settings';
 import { boundedAuthRequest } from '../../../../lib/bounded-request';
 
 export const runtime = 'nodejs';
 async function handle(request: Request) {
   if (!accountsConfigured()) return Response.json({ error: 'Accounts are temporarily unavailable.' }, { status: 503 });
   try {
+    if(new URL(request.url).pathname.endsWith('/sign-up/email')&&(await cachedSiteSettings(services().pool)).maintenance)return Response.json({error:'Signups are paused during maintenance.'},{status:503});
     const bounded = await boundedAuthRequest(request);
     if (!bounded) return Response.json({ error: 'Request too large.' }, { status: 413 });
     const response = await services().auth.handler(bounded);

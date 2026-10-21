@@ -137,3 +137,5 @@ dialog p,dialog li { color:#c6ccc2; }
   .step-label { letter-spacing:0; }
 }
 @media (prefers-reduced-motion:no-preference) { button,a,.style-choice { transition:background-color .15s,color .15s,border-color .15s; } }
+
+#site-announcement{padding:1rem;background:#253c35;color:#f1fff7;white-space:pre-wrap;overflow-wrap:anywhere;border-bottom:1px solid #517766}

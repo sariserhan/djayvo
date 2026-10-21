@@ -1,0 +1,12 @@
+{
+  "createdAt": "2026-10-21T05:51:15.232Z",
+  "origin": "https://www.jamloom.com",
+  "signupStatus": 200,
+  "emailVerification": "PASS",
+  "passwordSetup": "PASS — owner confirmed email arrival",
+  "adminDeployment": "NOT RUN",
+  "resetStatus": 200,
+  "databaseAccountExists": true,
+  "databaseEmailVerified": true,
+  "ownerReportedSetupEmails": "Both arrived; account verified"
+}

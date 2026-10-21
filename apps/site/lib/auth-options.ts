@@ -3,6 +3,8 @@ import { APIError } from 'better-auth/api';
 import type { Pool } from 'pg';
 import type { Config } from './config';
 import { sendEmail, type AccountEmail } from './email';
+import {enqueueEmail,deliverNotifications} from './notifications';
+import {OWNER_EMAIL} from './admin-access';
 
 export function authOptions(config: Config, database: Pool, background?: (task: Promise<unknown>) => void): BetterAuthOptions {
   const deliver = (message: AccountEmail) => {
@@ -36,12 +38,21 @@ export function authOptions(config: Config, database: Pool, background?: (task: 
         throw new APIError('BAD_REQUEST', { message: 'Invalid account details.' });
       }
       return { data: { ...user, name: user.name.trim() } };
+    }, after: async user => {
+      await enqueueEmail(database,'signup:'+user.id,{to:OWNER_EMAIL,subject:'New Jamloom signup',
+        text:`A new account was registered. Email verification is still required.\n\nName: ${user.name}\nEmail: ${user.email}\nAccount reference: ${user.id}`,
+        action:{label:'View users',url:config.baseURL+'/admin/users'}});
+      const task=deliverNotifications(database,config);if(background)background(task);else await task;
     } }, update: { before: async user => {
       if ((user.name !== undefined && (!user.name.trim() || user.name.length > 80)) || user.image) {
         throw new APIError('BAD_REQUEST', { message: 'Invalid account details.' });
       }
       return { data: user };
-    } } } },
+    } } }, session: {create:{before:async session=>{
+      const row=(await database.query('SELECT suspended FROM "user" WHERE id=$1',[session.userId])).rows[0];
+      if(!row||row.suspended)throw new APIError('FORBIDDEN',{message:'Account is unavailable. Contact support.'});
+      return {data:session};
+    }}} },
     rateLimit: {
       enabled: true, storage: 'database', window: 60, max: 60,
       customRules: {

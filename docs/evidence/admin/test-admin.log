@@ -1,0 +1,63 @@
+
+> jamloom-site@0.1.0 test:admin
+> node --import tsx --test tests/admin.test.ts
+
+TAP version 13
+# Subtest: admin boundaries reject unverified identities, invalid settings and mixed Stripe environments
+ok 1 - admin boundaries reject unverified identities, invalid settings and mixed Stripe environments
+  ---
+  duration_ms: 0.544959
+  type: 'test'
+  ...
+# Subtest: real Postgres administration, durable mail, credit exemption and billing isolation
+    # Subtest: settings require real owner, reject stale writes and absent live credentials, audit cannot be edited
+    ok 1 - settings require real owner, reject stale writes and absent live credentials, audit cannot be edited
+      ---
+      duration_ms: 3.674333
+      type: 'test'
+      ...
+    # Subtest: contact transaction persists notification, reply is private and stale replay cannot email twice
+    ok 2 - contact transaction persists notification, reply is private and stale replay cannot email twice
+      ---
+      duration_ms: 10.43
+      type: 'test'
+      ...
+    # Subtest: email failures remain durable, retry leases avoid concurrent sends, template escapes submitted content
+    ok 3 - email failures remain durable, retry leases avoid concurrent sends, template escapes submitted content
+      ---
+      duration_ms: 7.423208
+      type: 'test'
+      ...
+    # Subtest: only verified owner can reserve without credits; caps, actual costs, replays and frozen wallets remain enforced
+    ok 4 - only verified owner can reserve without credits; caps, actual costs, replays and frozen wallets remain enforced
+      ---
+      duration_ms: 12.402042
+      type: 'test'
+      ...
+    # Subtest: suspension removes sessions, cancels queued work with released credits, restore does not restore sessions
+    ok 5 - suspension removes sessions, cancels queued work with released credits, restore does not restore sessions
+      ---
+      duration_ms: 8.191667
+      type: 'test'
+      ...
+    # Subtest: verified live and test receipts stay separate; wrong-mode signed events fail
+    ok 6 - verified live and test receipts stay separate; wrong-mode signed events fail
+      ---
+      duration_ms: 4.19975
+      type: 'test'
+      ...
+    1..6
+ok 2 - real Postgres administration, durable mail, credit exemption and billing isolation
+  ---
+  duration_ms: 157.217417
+  type: 'test'
+  ...
+1..2
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 391.822791

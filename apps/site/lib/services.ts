@@ -26,7 +26,13 @@ function createServices() {
   const store=audioStore(config);
   const audio=store ? new PrivateAudio(pool,store) : null;
   const catalogue=audio && (config.local || (process.env.JAMLOOM_CATALOGUE_ENABLED ?? process.env.DJAYVO_CATALOGUE_ENABLED)==='true') ? new Catalogue(pool,audio) : null;
-  return { pool, auth, config, audio, catalogue };
+  // Recheck suspension for every protected application read, including sessions racing revocation.
+  const guardedAuth={...auth,api:{...auth.api,getSession:async (input:{headers:Headers})=>{
+    const session=await auth.api.getSession(input);
+    if(session&&(await pool.query('SELECT suspended FROM "user" WHERE id=$1',[session.user.id])).rows[0]?.suspended)return null;
+    return session;
+  }}};
+  return { pool, auth:guardedAuth, config, audio, catalogue };
 }
 const globalServices = globalThis as typeof globalThis & { jamloomServices?: ReturnType<typeof createServices> };
 export function services() {

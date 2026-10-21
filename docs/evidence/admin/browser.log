@@ -1,0 +1,60 @@
+
+> jamloom-site@0.1.0 test:admin-browser
+> node --import tsx tests/admin-browser.mjs
+
+Testing administration in chromium
+chromium contact and private inbox
+chromium replies and suspension
+chromium maintenance checks
+Testing administration in webkit
+webkit contact and private inbox
+webkit replies and suspension
+webkit maintenance checks
+{
+  "database": "disposable loopback",
+  "production_deployment": "NOT RUN",
+  "provider_email_delivery": "NOT RUN",
+  "live_charges": "NOT RUN",
+  "browsers": [
+    {
+      "name": "chromium",
+      "gate": "PASS",
+      "real_auth": "PASS",
+      "contact_and_support": "PASS",
+      "owner_inbox_reply": "PASS",
+      "signup_and_message_email_templates": "PASS",
+      "suspension": "PASS",
+      "maintenance_owner_recovery": "PASS",
+      "banner_escaping": "PASS",
+      "billing_mode_and_release_hold": "PASS",
+      "signed_webhook_environment": "PASS",
+      "responsive_widths": [
+        320,
+        390,
+        1440
+      ],
+      "axe_violations": 0
+    },
+    {
+      "name": "webkit",
+      "gate": "PASS",
+      "real_auth": "PASS",
+      "contact_and_support": "PASS",
+      "owner_inbox_reply": "PASS",
+      "signup_and_message_email_templates": "PASS",
+      "suspension": "PASS",
+      "maintenance_owner_recovery": "PASS",
+      "banner_escaping": "PASS",
+      "billing_mode_and_release_hold": "PASS",
+      "signed_webhook_environment": "PASS",
+      "responsive_widths": [
+        320,
+        390,
+        1440
+      ],
+      "axe_violations": 0
+    }
+  ],
+  "http_security": "PASS",
+  "notification_count": 6
+}

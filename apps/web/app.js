@@ -1,3 +1,4 @@
+import './site-announcement.js';
 import './offline.js';
 import './install.js';
 import { compositionKey } from './novelty.js';

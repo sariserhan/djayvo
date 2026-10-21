@@ -126,7 +126,7 @@ closed for its separate musical-quality FAIL. Never put secrets in chat or Git.
 | Approval / configuration | Exact place, value and reason | Variables / verification | Status |
 |---|---|---|---|
 | [ ] Create the **sandbox** catalog | [Stripe sandboxes](https://dashboard.stripe.com/sandboxes) → select sandbox → Product catalogue → Add product. Name **Jamloom DJ Academy Complete Pass**; metadata `jamloom_product=academy-complete`; active one-time **USD 79.99**, tax exclusive. No recurring interval, trial or discount. | `ACADEMY_STRIPE_PRODUCT_ID=prod_…`, `ACADEMY_STRIPE_PRICE_ID=price_…`, `STRIPE_SECRET_KEY=sk_test_…`. SDK rejects other amounts/currencies/products/live mode. `npm run test:academy` tests local fixtures; it does not contact Stripe. | NOT RUN: none of these keys/IDs was present in either inspected env file |
-| [ ] Configure a separate signed webhook | Stripe Workbench → Webhooks → add endpoint `https://<approved-preview-host>/api/academy/stripe`. Subscribe to `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `charge.refunded`, `charge.dispute.created`, `charge.dispute.closed`. Keep the existing `/api/payments/stripe` credit endpoint. | `ACADEMY_STRIPE_WEBHOOK_SECRET=whsec_…`. Test endpoint signing secret must match its sandbox. `ACADEMY_STRIPE_SANDBOX_ENABLED=true` only in a reviewed test environment. Do not set live credentials: current code and schema reject live charges. | PARTIAL: signed HTTP fixtures, concurrency/refund/repurchase logic; real deliveries NOT RUN |
+| [ ] Configure a separate signed webhook | Stripe Workbench → Webhooks → add endpoint `https://<approved-preview-host>/api/academy/stripe`. Subscribe to `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `charge.refunded`, `charge.dispute.created`, `charge.dispute.closed`. Keep the existing `/api/payments/stripe` credit endpoint. | `ACADEMY_STRIPE_WEBHOOK_SECRET=whsec_…`. Test endpoint signing secret must match its sandbox. `ACADEMY_STRIPE_SANDBOX_ENABLED=true` only in a reviewed test environment. Keep this test configuration separate from the live keys described in the Administration section below. Paid release remains blocked. | PARTIAL: signed HTTP fixtures, concurrency/refund/repurchase logic; real deliveries NOT RUN |
 | [ ] Perform genuine hosted sandbox purchases | Use [Stripe test cards](https://docs.stripe.com/testing), verified owner-controlled test accounts and the Academy checkout. Test successful and failed payment, duplicate notification, refund before/after grant, dispute loss/win, repurchase and returning as another account. Verify the success page only acknowledges the webhook-owned receipt. | Confirm one `academy_purchases` row per receipt, no generation `credit_lots` change, paid content blocked after reversal. Retain sanitized event/session IDs and actual provider outcomes. | NOT RUN; local SDK response fixtures are explicitly not transactions |
 | [ ] Approve taxes, countries, merchant identity and refund terms | Stripe Settings → Business/Tax; legal review of `/academy/checkout`, Terms and Privacy. Price excludes tax; collected tax is not revenue. A refund of any size currently suspends that receipt; decide final partial-refund policy before sales. | `lib/academy-economics.ts`: assumed 3.5% + $0.50 processing, 8% refund reserve, $10 hosting and $20 support reserve → $40.29 modeled contribution. Replace assumptions with actual merchant fees, taxes, support/hosting observations. No unlimited cloud coaching is included. | PARTIAL: positive model, realized lifetime economics NOT RUN |
 | [ ] Approve practice music and final course | Review `public/academy-audio/manifest.json` and `CREDITS.txt`: artist Tricks & Traps, Extended and Theories of Everything, [author CC0 publication](https://opengameart.org/content/free-rhythm-game-music-pack-2). 64-second normalized excerpts. Confirm intended redistribution and venue-use disclosures. | Source SHA-256 pinned; `python3 scripts/prepare_academy_audio.py` reproduces assets. Also review the ten full-length CC0 tracks in [the public practice library](practice-library-ten.md), with all six artists credited. Human enjoyment, exact downbeats, compatible keys and phrase alignment are not established by the meter checks. | PARTIAL: publisher license/provenance captured; owner/music review open |
@@ -141,3 +141,90 @@ The pass covers the included Academy course and practice studio; it does **not**
 include generation credits or unbounded AI requests. Production activation needs a
 reviewed implementation change, real provider verification and release approval;
 a sandbox flag alone cannot enable live billing.
+
+
+## Administration, messages and owner account — 2026-10-21
+
+Implementation: [admin report](admin-implementation.md). The owner login
+`serhan.sari@yahoo.com` was created through the existing public Better Auth API.
+The owner confirmed both setup emails arrived; a read-only database check confirmed
+`emailVerified=true`. No password was retained or printed. Owner authorization is
+server-side and requires that exact verified address; client role fields are ignored.
+
+### Activation order (not yet performed on production)
+
+1. Rehearse **0011_administration.sql** plus any unapplied earlier migrations on an
+   isolated Neon branch, with a restore point. Then approve/apply the reviewed
+   migrations through the existing explicit-target migration script. The new auth
+   hooks require the suspension column and notification table: **migrate before
+   deploying this code**. No hosted schema mutation was performed in this task.
+2. Approve deployment to the existing Vercel app. Keep Better Auth at
+   `https://www.jamloom.com`, existing Neon, R2 and Resend settings. No secrets were
+   added to Git. After deployment, sign in and open `/admin` (also linked in Account).
+3. Submit a real `/contact` and `/support` message, create a consenting test signup,
+   check the owner mailbox, then reply from `/admin/inbox`. Local tests prove the
+   workflow; new notification delivery through hosted Resend is **NOT RUN**.
+4. Configure a scheduler you already have to call `GET /api/notifications` with
+   `Authorization: Bearer <CRON_SECRET>`; use a random secret of at least 32 characters.
+   Each call leases/sends up to five queued messages, retries failures after five
+   minutes and stops automatic attempts after ten failures. Scheduling every five
+   minutes is a suggested operational cadence, **not an added paid service**. No
+   Vercel plan upgrade or cron schedule has been created. Without a scheduler,
+   new signup/contact/reply requests still trigger delivery, and the owner can
+   press **Retry pending email** in `/admin`. Check the pending/failure counts.
+   Email delivery remains at least once if the process dies after provider acceptance;
+   the existing Resend payload idempotency key reduces duplicate retries within the
+   provider's retention window. Owner email acceptance is not proof of inbox delivery.
+
+### What the controls do
+
+- **Site controls:** maintenance returns HTTP 503 + Retry-After for public pages
+  and normal APIs; verified owner, account recovery, contact/support and signed
+  payment webhook paths remain usable. Signups pause. Other warm servers can take
+  up to five seconds to observe a setting. Existing/offline DJ sessions are not
+  forcibly stopped or erased; maintenance is not a remote audio kill switch.
+- **Announcement:** escaped plain text, up to 500 characters, shown on the Next
+  site and raw DJ/voice studios. Empty removes it. Already-open pages refresh the
+  banner at most once a minute; offline sessions retain their prepared audio.
+- **Users:** search, verified/unverified status, suspend/restore. Suspension
+  revokes sessions, blocks login, cancels queued work and requests shutdown of
+  active jobs. Restore does not restore old sessions. Owner cannot suspend itself.
+  No user deletion, arbitrary credit minting or impersonation was added.
+- **Credit exemption:** verified owner reservations consume no credits, but actual
+  compute costs remain recorded; one active job, per-job/daily cost ceilings,
+  frozen-wallet safeguards, worker shutdown and product release gates remain.
+  This does not authorize cloud spending.
+- **Inbox:** contact/support forms persist messages and queue owner email in one
+  database transaction. Owner can reply with the shared branded template and
+  close/reopen tickets. Concurrent stale replies are rejected. Form senders are
+  not assumed to own their claimed email address. Direct email replies to
+  `support@jamloom.com` still arrive in that mailbox: **inbound email ingestion is
+  not configured**, so only website submissions and dashboard replies appear in
+  the database inbox. Do not promise an email-only reply was ingested.
+- **Billing:** selected mode, configuration readiness, last 50 Academy purchases
+  and generation reservations/costs. Refunds are issued in Stripe; verified
+  webhooks reconcile access. This dashboard does not fabricate refunds or charges.
+  Audit records are append-only. Contact rate-limit keys expire after a day; ticket
+  and audit retention/deletion policy needs owner/legal review before public scale.
+
+### Test/live billing configuration
+
+Test keeps `STRIPE_SECRET_KEY=sk_test_…`, `ACADEMY_STRIPE_PRICE_ID`,
+`ACADEMY_STRIPE_PRODUCT_ID`, `ACADEMY_STRIPE_WEBHOOK_SECRET` and the existing
+`ACADEMY_STRIPE_SANDBOX_ENABLED` switch. Live mode requires **all four separate**
+variables: `STRIPE_LIVE_SECRET_KEY=sk_live_…`, `ACADEMY_STRIPE_LIVE_PRICE_ID`,
+`ACADEMY_STRIPE_LIVE_PRODUCT_ID`, `ACADEMY_STRIPE_LIVE_WEBHOOK_SECRET`.
+These are server-only. Configure the live Academy endpoint as
+`https://www.jamloom.com/api/academy/stripe?mode=live`; the existing endpoint without
+that query remains test-only. Each endpoint verifies its own secret and event
+mode even if the selected checkout environment has subsequently changed, so
+in-flight refunds/receipts remain reconcilable. Keep the existing credit webhook.
+
+The live Academy price must be active, one-time, USD 79.99 before tax, exclusive tax,
+with an active product carrying `jamloom_product=academy-complete`. Mode switching
+checks that configuration is present; provider-side price checks happen before
+checkout. **Mode selection does not approve commercial release.** Academy sales
+remain held by `academySalesReleased=false`, and generation remains held by
+`paidGenerationReleased=false`. Actual Stripe sandbox/live transactions, fees,
+taxes and refund delivery still require provider testing and owner approval.
+Sandbox purchases never become live entitlements when the mode changes.

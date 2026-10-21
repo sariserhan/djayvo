@@ -1,9 +1,13 @@
 import type {Pool,PoolClient} from 'pg';import {createHash} from 'node:crypto';
+import {siteSettings} from './site-settings';
 import {academyLesson,ACADEMY_VERSION} from './academy-content';
 import {evaluateTask,EVALUATOR_VERSION} from '../../web/academy-evaluator.js';
 export class AcademyStore {
  constructor(private pool:Pool){}
- async access(owner:string,db:Pool|PoolClient=this.pool){return !!(await db.query('SELECT 1 FROM academy_purchases WHERE owner_id=$1 AND NOT refund_hold AND NOT dispute_hold LIMIT 1',[owner])).rowCount;}
+ async access(owner:string,db:Pool|PoolClient=this.pool,live?:boolean){
+  live??=(await siteSettings(db)).billing_mode==='live';
+  return !!(await db.query('SELECT 1 FROM academy_purchases WHERE owner_id=$1 AND sandbox=$2 AND NOT refund_hold AND NOT dispute_hold LIMIT 1',[owner,!live])).rowCount;
+ }
  async progress(owner:string){return (await this.pool.query(`SELECT a.id,a.lesson_id,a.version,a.started_at,a.completed_at,
   COALESCE(jsonb_agg(jsonb_build_object('taskId',r.task_id,'metrics',r.metrics)) FILTER(WHERE r.task_id IS NOT NULL),'[]') AS checks
   FROM academy_attempts a LEFT JOIN academy_task_results r ON r.attempt_id=a.id WHERE a.owner_id=$1

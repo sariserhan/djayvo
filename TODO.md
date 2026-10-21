@@ -1,5 +1,22 @@
 # Jamloom development tracker
 
+## Owner administration — 2026-10-21
+
+Evidence: [implementation report](docs/admin-implementation.md), [owner setup](docs/evidence/admin/owner-account.json).
+
+| ID | Task | Status | Evidence / remaining action |
+|---|---|---|---|
+| ADM-001 | Create owner account and require verified email | PASS | Public signup/reset accepted, owner confirmed email arrival; database confirms verified |
+| ADM-002 | Server-authorized dashboard and user suspension | PASS | Real Better Auth + DB + Chromium/WebKit; sessions revoked, self-lockout prevented |
+| ADM-003 | Credit exemption with compute cost controls | PASS | Verified owner only, no debit, caps/costs/shutdown holds retained |
+| ADM-004 | Maintenance and public announcements | PASS | HTTP recovery/gating, escaped site/raw-studio banner, audit and stale-save rejection |
+| ADM-005 | Contact/support inbox, branded replies and signup notifications | PASS | Actual local form/DB/outbox flow, retries/leases and mobile templates |
+| ADM-006 | Test/live billing mode, isolated entitlements | PASS | Separate keys and signed fixtures; selection cannot release paid products |
+| ADM-007 | Tests, build, responsive UI and accessibility | PASS | 83 site/DB + 80 web tests; production build, bundle audit, Chromium/WebKit and axe |
+| ADM-008 | Hosted migration, deployment, notification delivery and scheduler | NOT RUN | Apply reviewed 0011 before deployment; configure authenticated retry cadence and verify hosted mail |
+| ADM-009 | Actual payment-provider and commercial release gates | NOT RUN | No live charges; Academy release held, existing musical-quality FAIL retained |
+
+
 ## DJ Academy — 2026-10-21
 
 Owner addendum: [DJ Academy](apps/site/scripts/jamloom_dj_academy_addendum_v1.md).

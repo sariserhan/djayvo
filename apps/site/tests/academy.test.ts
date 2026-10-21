@@ -45,7 +45,7 @@ test('isolated Postgres Academy receipts, progress, holds and tenant boundaries'
  await t.test('webhook replay conflicts and stale dispute events use current provider status',async()=>{
   const evt={id:'evt_academy_test',livemode:false,type:'checkout.session.completed',data:{object:current}} as Stripe.Event;const raw=JSON.stringify(evt);
   await Promise.all(Array.from({length:5},()=>academyWebhook(sdk,pool,evt,raw,config)));await academyWebhook(sdk,pool,evt,raw,config);await assert.rejects(academyWebhook(sdk,pool,evt,raw+' ',config),/replay conflict/);
-  await assert.rejects(academyWebhook(sdk,pool,{...evt,livemode:true},raw,config),/Live/);
+  await assert.rejects(academyWebhook(sdk,pool,{...evt,livemode:true},raw,config),/environment mismatch/);
   const disputed={id:'evt_dispute',livemode:false,type:'charge.dispute.created',data:{object:{id:'dp_local',payment_intent:current.payment_intent}}} as Stripe.Event;
   await academyWebhook(sdk,pool,disputed,JSON.stringify(disputed),config);assert.equal((await pool.query('SELECT dispute_hold FROM academy_purchases WHERE receipt=$1',[current.id])).rows[0].dispute_hold,true);
   disputeStatus='won';await academyWebhook(sdk,pool,{...disputed,id:'evt_stale_dispute'},'stale',config);assert.equal((await pool.query('SELECT dispute_hold FROM academy_purchases WHERE receipt=$1',[current.id])).rows[0].dispute_hold,false);

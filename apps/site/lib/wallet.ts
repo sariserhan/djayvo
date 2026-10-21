@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import type { Pool, PoolClient } from 'pg';
 import { integer } from './economics';
+import {adminAccount} from './admin-access';
 import {validatePermit,type WorkerPermit} from './generation-budget';
 
 export type JobBudget=Pick<WorkerPermit,'inputSha256'|'planSha256'|'maxRuntimeMs'|'hourlyMicros'|'fixedCostMicros'>;
@@ -14,6 +15,7 @@ export class Wallet {
       if(receiptKey)await db.query('SELECT pg_advisory_xact_lock(hashtextextended($1,0))',[receiptKey]);
       await db.query('INSERT INTO credit_wallets(owner_id) VALUES($1) ON CONFLICT DO NOTHING',[owner]);
       const wallet=(await db.query('SELECT frozen FROM credit_wallets WHERE owner_id=$1 FOR UPDATE',[owner])).rows[0];
+      if(!allowFrozen&&(await db.query('SELECT suspended FROM "user" WHERE id=$1 FOR SHARE',[owner])).rows[0]?.suspended)throw new Error('Account suspended');
       if(wallet.frozen&&!allowFrozen)throw new Error('Wallet frozen for reconciliation');
       const result=await fn(db);await db.query('COMMIT');return result;
     }catch(e){await db.query('ROLLBACK');throw e;}finally{db.release();}
@@ -49,7 +51,8 @@ export class Wallet {
       if((await db.query("SELECT 1 FROM generation_reservations WHERE owner_id=$1 AND status IN ('reserved','running')",[owner])).rowCount)throw new Error('One active job per user');
       const daily=(await db.query("SELECT COALESCE(sum(COALESCE(actual_cost_micros,cost_cap_micros)),0) AS cost FROM generation_reservations WHERE owner_id=$1 AND created_at>now()-interval '24 hours'",[owner])).rows[0];
       if(Number(daily.cost)+cap>10_000_000)throw new Error('Daily cost ceiling');
-      const lots=(await db.query(`SELECT l.id,l.net_micros,l.credits,COALESCE(sum(e.available_delta),0)::int AS available
+      const exempt=await adminAccount(db,owner);
+      const lots=exempt?[]:(await db.query(`SELECT l.id,l.net_micros,l.credits,COALESCE(sum(e.available_delta),0)::int AS available
         FROM credit_lots l JOIN wallet_ledger_entries e ON e.lot_id=l.id WHERE l.owner_id=$1
         GROUP BY l.id ORDER BY l.created_at,l.id`,[owner])).rows;
       let remaining=BigInt(cap)*10000n;const allocations:{id:string;n:number;net:number}[]=[];
@@ -58,9 +61,10 @@ export class Wallet {
         const n=Math.min(lot.available,Number((remaining+budget-1n)/budget));
         if(n>0){allocations.push({id:lot.id,n,net});remaining-=BigInt(n)*budget;}if(remaining<=0n)break;
       }
-      if(remaining>0n)throw new Error('Insufficient credits for profitable quote');
-      const id=(await db.query(`INSERT INTO generation_reservations(owner_id,request_key,fingerprint,status,cost_cap_micros,margin_bps)
-        VALUES($1,$2,$3,'reserved',$4,$5) RETURNING id`,[owner,key,fingerprint,cap,marginBps])).rows[0].id;
+      if(!exempt&&remaining>0n)throw new Error('Insufficient credits for profitable quote');
+      const id=(await db.query(`INSERT INTO generation_reservations(owner_id,request_key,fingerprint,status,cost_cap_micros,margin_bps,credit_exempt)
+        VALUES($1,$2,$3,'reserved',$4,$5,$6) RETURNING id`,[owner,key,fingerprint,cap,marginBps,exempt])).rows[0].id;
+      if(exempt)await db.query("INSERT INTO admin_audit(actor_id,action,target,details) VALUES($1,'credits.exempt-reservation',$2,$3)",[owner,id,JSON.stringify({costCapMicros:cap})]);
       for(const a of allocations){
         await db.query('INSERT INTO credit_allocations VALUES($1,$2,$3,$4,$5)',[id,a.id,owner,a.n,a.net]);
         await db.query("INSERT INTO wallet_ledger_entries(owner_id,lot_id,reservation_id,kind,available_delta,reserved_delta) VALUES($1,$2,$3,'reserve',$4,$5)",[owner,a.id,id,-a.n,a.n]);
@@ -86,7 +90,7 @@ export class Wallet {
         if(capture){await db.query("INSERT INTO wallet_ledger_entries(owner_id,lot_id,reservation_id,kind,available_delta,reserved_delta) VALUES($1,$2,$3,'capture',0,$4)",[owner,a.lot_id,id,-capture]);remaining=remaining>BigInt(capture)*budget?remaining-BigInt(capture)*budget:0n;}
         if(release)await db.query("INSERT INTO wallet_ledger_entries(owner_id,lot_id,reservation_id,kind,available_delta,reserved_delta) VALUES($1,$2,$3,'release',$4,$5)",[owner,a.lot_id,id,release,-release]);
       }
-      if(remaining>0n)throw new Error('Settlement not funded');
+      if(!job.credit_exempt&&remaining>0n)throw new Error('Settlement not funded');
       await db.query('UPDATE generation_reservations SET status=$1,actual_cost_micros=$2 WHERE id=$3',[status,actual,id]);
     },true);
   }

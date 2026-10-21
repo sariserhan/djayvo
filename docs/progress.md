@@ -1,3 +1,16 @@
+# Owner administration — 2026-10-21
+
+**PASS:** Verified owner account created for serhan.sari@yahoo.com; owner confirmed
+setup email arrival and Neon readback confirms verification. Admin controls,
+suspension/session revocation, credit exemption with cost caps, maintenance/banner,
+private contact/support inbox and branded notification/reply outbox implemented.
+83 site/database tests and 80 web tests pass, as do build, typecheck, bundle audit,
+Chromium/WebKit and responsive/axe checks. Test/live mode selection preserves
+receipt isolation and release holds.
+**NOT RUN:** hosted migration 0011, admin deployment, new hosted notification
+workflow, scheduler and real payment-provider transactions. Q0 remains **FAIL**;
+paid generation remains disabled. [Report](admin-implementation.md).
+
 # Ten-track practice library — 2026-10-21
 
 **PASS:** Expanded the public selector from 3 to 10 distinct CC0 artist recordings

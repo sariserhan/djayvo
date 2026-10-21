@@ -1,3 +1,4 @@
+import './site-announcement.js';
 import { practiceFile } from './practice-library.js';
 import { attachStudioView } from './studio-view.js';
 import { createMixer, updateMixer, setMixerGain, validateTrack, trackDuration, updateToneEcho, clearEcho } from './mixer.js';

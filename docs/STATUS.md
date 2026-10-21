@@ -1,5 +1,16 @@
 # Jamloom implementation checkpoint
 
+## Latest: Owner administration — 2026-10-21
+
+[Implementation and gates](admin-implementation.md): local code/tests **PASS**;
+activation **PARTIAL** pending migration 0011 and deployment. Owner account is
+created and verified; dashboard is not yet public. Contact/support notifications
+and replies use the existing branded responsive template. Site controls include
+maintenance, banners, user suspension and separate test/live billing selection.
+Owner credit exemption retains cost ceilings. No live sales, deployment or cloud
+spending was performed; prior musical-quality **FAIL** is unchanged.
+
+
 ## Latest: DJ Academy — 2026-10-21
 
 Implementation/evidence: `0162db9` (local commit; not pushed or deployed).
