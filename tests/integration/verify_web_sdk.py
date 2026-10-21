@@ -23,7 +23,9 @@ with tempfile.TemporaryDirectory(prefix='jamloom-sdk-test-') as directory:
     temp = Path(directory)
     fixture = temp / 'sdk-source'
     fixture.mkdir()
-    (fixture / 'emsdk_env.sh').write_text('PATH="$EMSDK_PATH/bin:$PATH"; export PATH\n')
+    # dash cannot discover a sourced script's path; the real SDK requires its own cwd.
+    (fixture / 'emsdk.py').touch()
+    (fixture / 'emsdk_env.sh').write_text('[ -f ./emsdk.py ] || { echo WRONG_SDK_CWD >&2; return 1; }\nPATH="$EMSDK_PATH/bin:$PATH"; export PATH\n')
     executable(fixture / 'emsdk', '#!/bin/sh\ncd "$(dirname "$0")"\nprintf "%s\\n" "$*" >> calls\n[ "$1" != activate ] || touch .emscripten\n')
     executable(fixture / 'bin/emcc', '#!/bin/sh\necho "emcc 6.0.1 (fixture)"\n')
     executable(fixture / 'bin/emcmake', '#!/bin/sh\necho BOOTSTRAP_READY\nexit 42\n')

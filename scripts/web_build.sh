@@ -30,7 +30,11 @@ if [ ! -f "$EMSDK_PATH/.emscripten" ]; then
   "$EMSDK_PATH/emsdk" install 6.0.1
   "$EMSDK_PATH/emsdk" activate 6.0.1
 fi
-. "$EMSDK_PATH/emsdk_env.sh"
+# POSIX sh (dash on Ubuntu) cannot locate a sourced script; enter the SDK first.
+JAMLOOM_WEB_ROOT="$PWD"
+cd "$EMSDK_PATH"
+. ./emsdk_env.sh
+cd "$JAMLOOM_WEB_ROOT"
 emcc --version | head -n 1 | grep -F ' 6.0.1 ' >/dev/null || {
   echo 'Jamloom requires Emscripten 6.0.1; activate it in JAMLOOM_EMSDK.' >&2
   exit 1
