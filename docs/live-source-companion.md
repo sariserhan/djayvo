@@ -27,7 +27,9 @@ pushes; no direct deployment was run for this change.
   Roll uses 120 BPM while uncertain.
 - Website controls at `/live-dj`, paired with the app through loopback HTTP.
   Native and browser capture controls are mutually exclusive in this page.
-  The existing browser filter/echo/volume and explicit isolation fallback remain.
+  An acknowledged stop releases browser capture immediately; a lost connection holds
+  browser capture for eight seconds to cover the native watchdog and in-flight requests.
+  Failed reconnects preserve that hold. The existing browser effects remain.
 - Native output telemetry includes measured peak, processed frames, pulse
   confidence and maximum callback CPU time. These counters are not physical
   round-trip latency measurements.

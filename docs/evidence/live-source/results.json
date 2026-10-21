@@ -9,6 +9,7 @@
       "pairingAndOrigin": "PASS",
       "controlsAndPanic": "PASS",
       "browserFallback": "PASS",
+      "lostConnectionHandoff": "PASS",
       "invalidToken": "PASS",
       "widths": [
         1440,
@@ -26,6 +27,7 @@
       "pairingAndOrigin": "PASS",
       "controlsAndPanic": "PASS",
       "browserFallback": "PASS",
+      "lostConnectionHandoff": "PASS",
       "invalidToken": "PASS",
       "widths": [
         1440,

@@ -8,7 +8,7 @@ Owner authorized live-audio implementation. Deployment must happen through GitHu
 |---|---|---|
 | Native Mac selected-process capture, output routing and panic | PARTIAL | Implemented and packaged; Mac launch/loopback binding PASS. OS permission, actual capture, source restoration and physical routing NOT RUN |
 | Native EQ/filter/echo/roll, pulse confidence and optional percussion | PASS, technical | Portable fixed-buffer DSP, reused procedural voices; PCM and ASan/UBSan bounds/filter/bypass/pulse tests PASS. Listening and hardware deadlines NOT RUN |
-| Paired browser controls and existing tab fallback | PASS, local | Real native HTTP + synthetic status fixture in Chromium/WebKit; origin/token/expiry, controls/panic, responsive/axe PASS. HTTPS owner-site pairing NOT RUN |
+| Paired browser controls and existing tab fallback | PASS, local | Real native HTTP + synthetic status fixture in Chromium/WebKit; origin/token/expiry, controls/panic, lost-connection handoff, responsive/axe PASS. HTTPS owner-site pairing NOT RUN |
 | Build, browser/native validation, docs and GitHub CI | PARTIAL | Build/typecheck/35 site tests/bundle audit, 5 Swift tests and two browser suites PASS; GitHub CI pending. [Report](docs/live-source-companion.md) |
 
 

@@ -1,6 +1,6 @@
 # Live Audio DJ — 2026-10-21
 
-**PASS, local implementation:** Mac companion, private selected-process tap/stereo routing, fixed-buffer native effects, pulse confidence/percussion and authenticated website controls. Packaged launch, muted DSP/sanitizers, five Swift tests, actual native HTTP with synthetic telemetry in Chromium/WebKit, responsive/axe and existing browser fallback pass. **PARTIAL:** Actual OS capture/physical routing/latency/endurance, human listening and hosted HTTPS pairing are NOT RUN. GitHub CI pending; no direct deployment. [Report](live-source-companion.md).
+**PASS, local implementation:** Mac companion, private selected-process tap/stereo routing, fixed-buffer native effects, pulse confidence/percussion and authenticated website controls. Packaged launch, muted DSP/sanitizers, five Swift tests, actual native HTTP with synthetic telemetry in Chromium/WebKit, responsive/axe, lost-connection handoff and existing browser fallback pass. **PARTIAL:** Actual OS capture/physical routing/latency/endurance, human listening and hosted HTTPS pairing are NOT RUN. GitHub CI pending; no direct deployment. [Report](live-source-companion.md).
 
 # Hardware deck design and music curation — 2026-10-21
 
