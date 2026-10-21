@@ -1,0 +1,46 @@
+[
+  {
+    "mode": "test",
+    "action": "prepare",
+    "account": "acct_1TxA3vDlEXWDEeHO",
+    "charges_enabled": true,
+    "payouts_enabled": true,
+    "product": "prod_VTzQzUCZg1ycGm",
+    "price": "price_1UT1RrDlEXWDEeHO14x5otG7",
+    "product_tax_code": "txcd_20060058",
+    "endpoint": {
+      "id": "we_1UT2HDDlEXWDEeHOpSh8zNfJ",
+      "url": "https://www.jamloom.com/api/academy/stripe?mode=test",
+      "status": "disabled"
+    },
+    "tax": {
+      "status": "active",
+      "default_tax_code": null,
+      "address_country": "US"
+    },
+    "live_charges": 0
+  },
+  {
+    "mode": "live",
+    "action": "prepare",
+    "account": "acct_1TxA3vDlEXWDEeHO",
+    "charges_enabled": true,
+    "payouts_enabled": true,
+    "product": "prod_VU0Hye8ICGD4Y8",
+    "price": "price_1UT2HEDlEXWDEeHOvTlDIDVe",
+    "product_tax_code": null,
+    "endpoint": {
+      "id": "we_1UT2HEDlEXWDEeHOZdfVxJHC",
+      "url": "https://www.jamloom.com/api/academy/stripe?mode=live",
+      "status": "disabled"
+    },
+    "tax": {
+      "status": "pending",
+      "default_tax_code": null,
+      "missing_fields": [
+        "head_office"
+      ]
+    },
+    "live_charges": 0
+  }
+]

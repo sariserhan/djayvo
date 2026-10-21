@@ -7,10 +7,11 @@
       "status": "PASS",
       "owner_label": "PASS",
       "paid_lesson_access": "PASS",
+      "delayed_attempt_sync": "PASS",
       "prerequisite_fixture": "seeded access setup only",
       "axe_violations": 0,
       "console_errors": [],
-      "speaker_output": "muted; no playback started"
+      "speaker_output": "PASS: captured audio upstream, final gain and samples zero"
     },
     {
       "browser": "webkit",
@@ -18,10 +19,11 @@
       "status": "PASS",
       "owner_label": "PASS",
       "paid_lesson_access": "PASS",
+      "delayed_attempt_sync": "PASS",
       "prerequisite_fixture": "seeded access setup only",
       "axe_violations": 0,
       "console_errors": [],
-      "speaker_output": "muted; no playback started"
+      "speaker_output": "PASS: captured audio upstream, final gain and samples zero"
     }
   ],
   "owner_purchase_rows": 0,

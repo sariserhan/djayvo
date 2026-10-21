@@ -7,6 +7,7 @@ import {silenceSpeakers} from './silent-audio.mjs';
 import {academyLessons,ACADEMY_VERSION} from '../lib/academy-content.ts';
 import {createPool} from '../lib/database.ts';import {migrate} from '../lib/migrations.ts';
 const audible=process.env.JAMLOOM_AUDIBLE_TEST==='1';
+const selected=process.env.JAMLOOM_BROWSER;assert.ok(!selected||['chromium','webkit'].includes(selected),'Unsupported JAMLOOM_BROWSER');
 const url=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(url.hostname,'127.0.0.1');
 const admin=createPool(url.toString()),name='jamloom_academy_endurance_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
 const mode=process.argv[2]??'all';assert.ok(['all','short','hour'].includes(mode));
@@ -107,7 +108,7 @@ try{
   ]);for(const result of lanes)if(result.status==='rejected')throw result.reason;
   }finally{await browser.close();}
  }
- const runs=await Promise.allSettled([run(chromium,'chromium'),run(webkit,'webkit')]);
+ const runs=await Promise.allSettled(Object.entries({chromium,webkit}).filter(([name])=>!selected||name===selected).map(([name,engine])=>run(engine,name)));
  results.errors=runs.filter(r=>r.status==='rejected').map(r=>String(r.reason?.stack??r.reason));
  results.status=results.errors.length?'FAIL':'PASS';
  await writeFile(new URL(mode+'-browser.json',evidence),JSON.stringify(results,null,2)+'\n');assert.deepEqual(results.errors,[]);console.log('All real-time endurance runs PASS');

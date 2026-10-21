@@ -7,6 +7,10 @@ and owner will complete it. Shared-account unrelated reversals are now safely
 ignored; 22 Academy/admin tests PASS. Catalog/endpoints are being prepared while
 sales remain closed. The superseded endurance run was stopped after its captured
 short-duration failure; completed evidence is retained and the corrected run continues.
+Separate test/live catalogs and webhook secrets are configured; endpoint activation
+awaits the configured deployment. Delaying account-attempt creation reproduced an
+assessment timing conflict; sampling now starts after the request finishes, and
+both browsers pass the delayed-network regression with muted output.
 
 Owner preview access is implemented with the existing verified active administrator
 check; prerequisites and financial receipts stay separate. 21 Academy/admin tests

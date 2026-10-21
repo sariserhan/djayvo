@@ -75,6 +75,11 @@ hosted read-only audit authenticates both to Aurowall. Live tax settings lack a
 head-office address; owner will complete them. Shared-account refund handling now
 ignores unrelated non-Checkout charges; 22 Academy/admin tests PASS. Permanent
 catalog/webhook preparation is underway, with sales still closed.
+Both catalogs and separate signing secrets are now configured; webhooks remain
+disabled until the configured deployment is verified. A delayed account request
+exposed premature assessment sampling; coaching now begins after attempt creation.
+The failing delayed-network reproduction now passes in Chromium/WebKit. Human
+checks remain explicitly deferred, not passed.
 
 Silent endurance exposed a wall-clock/frame-clock mismatch: Chromium's manually
 stopped five-minute run contained only 298.28 seconds. The harness now waits for

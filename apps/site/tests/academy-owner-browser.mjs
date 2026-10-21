@@ -33,7 +33,13 @@ try{
    const a11y=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(a11y.violations.map(v=>v.id),[]);
    await page.screenshot({path:new URL(name+'-owner-preview.png',evidence).pathname});
    await page.getByRole('link',{name:'Leave room in the mix',exact:true}).click();await page.locator('#academy-objective').waitFor({state:'visible'});assert.ok(page.url().includes('/academy/lessons/gain-staging'));assert.deepEqual(errors,[]);
-   rows.push({browser:name,version:browser.version(),status:'PASS',owner_label:'PASS',paid_lesson_access:'PASS',prerequisite_fixture:'seeded access setup only',axe_violations:0,console_errors:errors,speaker_output:'muted; no playback started'});
+   // A delayed account attempt must not include audio samples collected before the server starts it.
+   await context.route('**/api/academy/attempt',async r=>{await delay(2500);await r.continue();});
+   await page.goto(base+'/academy/lessons/first-crossfade');await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
+   await page.locator('#play-a').click();await page.waitForTimeout(2500);await page.locator('#academy-check').click();
+   await page.waitForFunction(()=>document.querySelector('#academy-save').textContent.includes('saved to your account'),{},{timeout:5000});
+   for(const output of await page.evaluate(()=>globalThis.__jamloomSilentOutput())){assert.equal(output.gain,0);assert.equal(output.peak,0);}
+   rows.push({browser:name,version:browser.version(),status:'PASS',owner_label:'PASS',paid_lesson_access:'PASS',delayed_attempt_sync:'PASS',prerequisite_fixture:'seeded access setup only',axe_violations:0,console_errors:errors,speaker_output:'PASS: captured audio upstream, final gain and samples zero'});
   }finally{await browser.close();}
  }
  for(const [column,value]of [['"emailVerified"',false],['suspended',true]]){await pool.query(`UPDATE "user" SET ${column}=$1 WHERE id=$2`,[value,ownerId]);assert.equal((await api('/api/academy/progress',owner)).status,401);await pool.query(`UPDATE "user" SET ${column}=$1 WHERE id=$2`,[!value,ownerId]);}
