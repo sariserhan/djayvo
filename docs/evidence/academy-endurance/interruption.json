@@ -1,0 +1,9 @@
+{
+  "status": "PARTIAL",
+  "stopped_at": "2026-10-21T15:43:59.920424+00:00",
+  "reason": "Owner reported nonstop audible playback; agent stopped only its endurance browser processes immediately. No long-test pass claimed.",
+  "completed": "Real elementary two-minute, intermediate five-minute and advanced five-minute assessments pass in Chromium and WebKit; retained audio decoded separately.",
+  "unfinished": "30-minute and 60-minute recordings interrupted and not retained as completed captures.",
+  "raw_report": "browser.json preserves browser-closed failures caused by intentional stop; not evidence of a product crash.",
+  "future_run": "JAMLOOM_AUDIBLE_TEST=1 required; arrange a listening window before rerunning."
+}

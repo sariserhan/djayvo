@@ -1,0 +1,52 @@
+{
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "PASS: Stripe test mode; no funds moved",
+  "browser": "Chromium hosted Checkout; muted output",
+  "started_sessions": [
+    "cs_test_a1tUQTiFXRv6igQfHXv4OtRATFbH9CZfbMUajAQfESQRYapN3XkcFvgKAn",
+    "cs_test_a1bmNVOG679iFcUows8IjDWIlBr19gqhy9SABMS0PEl1gxjxxlTd73Ammf",
+    "cs_test_a1x56dgwbPnVzTOlFZlOIxPVIq7wxn3EBzn0HKJfj4FasczNNO32XpGQZO",
+    "cs_test_a1vM1WUepCxeA4tnYcqoDzCt3aK51eK0s0ND4GFuyYLiettli6FRPXTOR1",
+    "cs_test_a1sd0HV7UVUw9N2g0S3WgISDRJ4DoGGAZev7tzYpIU50qfVRRw09zJPFyP"
+  ],
+  "declined_payment": "PASS",
+  "refund_before_grant": {
+    "status": "PASS",
+    "session": "cs_test_a1x56dgwbPnVzTOlFZlOIxPVIq7wxn3EBzn0HKJfj4FasczNNO32XpGQZO",
+    "refund": "re_3UT1iYDlEXWDEeHO4gatHSzg",
+    "ordering": "genuine signed provider grant delayed by test proxy until refund processed"
+  },
+  "dispute_cases": [
+    {
+      "session": "cs_test_a1vM1WUepCxeA4tnYcqoDzCt3aK51eK0s0ND4GFuyYLiettli6FRPXTOR1",
+      "dispute": "du_1UT1iiDlEXWDEeHOGVH0V2RX",
+      "outcome": "won",
+      "status": "PASS"
+    },
+    {
+      "session": "cs_test_a1sd0HV7UVUw9N2g0S3WgISDRJ4DoGGAZev7tzYpIU50qfVRRw09zJPFyP",
+      "dispute": "du_1UT1j1DlEXWDEeHO0NDoN6eA",
+      "outcome": "lost",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "account": "acct_1TxA3vDlEXWDEeHO",
+  "sessions": [
+    "cs_test_a1tUQTiFXRv6igQfHXv4OtRATFbH9CZfbMUajAQfESQRYapN3XkcFvgKAn",
+    "cs_test_a1bmNVOG679iFcUows8IjDWIlBr19gqhy9SABMS0PEl1gxjxxlTd73Ammf"
+  ],
+  "refunds": [
+    "re_3UT1iCDlEXWDEeHO3eMaUE7Y",
+    "re_3UT1iPDlEXWDEeHO4cCNSfv8"
+  ],
+  "signed_provider_delivery": "PASS via Stripe CLI to actual HTTP handler",
+  "duplicate_real_event_replay": "PASS (captured payload signed again locally)",
+  "invalid_signature": "PASS",
+  "wrong_owner": "PASS",
+  "repurchase": "PASS",
+  "generation_credits": 0,
+  "live_payments": "NOT RUN",
+  "disputes": "PASS: actual Stripe test-mode win and loss, real signed deliveries"
+}

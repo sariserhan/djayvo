@@ -1,0 +1,68 @@
+[
+  {
+    "file": "chromium-advanced-set-300.audio",
+    "sha256": "500d6e92c56dd5697873a476c619e5b8c66208eeb83fa3a3258011e937a611dd",
+    "seconds": 304.32,
+    "receipt_seconds": 304.368,
+    "peak_dbfs": -10.080100195099803,
+    "longest_quiet_ms": 3.2291666666666665,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "file": "chromium-elementary-assessment-120.audio",
+    "sha256": "82687c6863e70bf4389d929fac9d5e6d4dcde42ae00ccda8705d340869d04a85",
+    "seconds": 124.44,
+    "receipt_seconds": 124.47733333333333,
+    "peak_dbfs": -10.752484827901895,
+    "longest_quiet_ms": 3.4166666666666665,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "file": "chromium-intermediate-set-300.audio",
+    "sha256": "8f49b3032e081682c488a6dc09a8435c17477df33d1068690ca5611a2beda2c5",
+    "seconds": 304.08,
+    "receipt_seconds": 304.136,
+    "peak_dbfs": -10.841902068510645,
+    "longest_quiet_ms": 3.3541666666666665,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "file": "webkit-advanced-set-300.audio",
+    "sha256": "b6de20d820658d425eb5250e58f160a5c6a24c91fab574d750ff3cfcbc2232c1",
+    "seconds": 304.87,
+    "receipt_seconds": 304.8693333333333,
+    "peak_dbfs": -9.778915141000546,
+    "longest_quiet_ms": 3.1666666666666665,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "file": "webkit-elementary-assessment-120.audio",
+    "sha256": "d41be7fa5b67cb6d8ae2e2aabe40adde34045939c0ecc1b987a4578278b6370f",
+    "seconds": 124.2225,
+    "receipt_seconds": 124.22133333333333,
+    "peak_dbfs": -9.778915141000546,
+    "longest_quiet_ms": 4.333333333333333,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "file": "webkit-intermediate-set-300.audio",
+    "sha256": "45233fa016fe25a839dd800da83a5d6eba71e45cd32298a99f37d9d075185858",
+    "seconds": 304.0775,
+    "receipt_seconds": 304.07466666666664,
+    "peak_dbfs": -9.62894195993188,
+    "longest_quiet_ms": 3.9791666666666665,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  }
+]

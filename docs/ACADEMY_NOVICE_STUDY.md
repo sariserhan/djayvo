@@ -1,6 +1,24 @@
 # DJ Academy novice study protocol
 
-Status: **NOT RUN**. No fabricated participants or certificates. Initial owner
+**2026-10-21 owner scope change:** “I cannot it is only me and we will test with me
+only.” The current acceptance session therefore uses the owner alone (n=1), not
+a recruited cohort. Record actual first-crossfade and beginner-mini-set outcomes,
+clarity/enjoyment and setup below. Do not claim general novice effectiveness,
+independent listening, five participants or three distinct mini-set learners.
+The historical cohort protocol below is retained as a future research option,
+not a blocker requiring recruitment under the owner's revised scope.
+
+Current owner session: **PARTIAL**. First-lesson qualitative acceptance: **PASS**.
+After being asked to try the deployed first-crossfade lesson, the owner replied
+“yes it is good enough for now.” Confirmed setup: **Dia browser, MacBook Air,
+external speaker** (installed Dia 1.53.0; default output observed as LG Ultra HD,
+DisplayPort, stereo 48 kHz). This is acceptance of the first lesson only.
+Time to first music, unaided completion, numeric clarity/enjoyment scores,
+crackle observations and the beginner mini-set were not supplied.
+Use the observation table below without identity or microphone capture.
+The owner may have prior product familiarity; do not label them a blinded novice.
+
+Historical cohort status: **NOT RUN**. No fabricated participants or certificates. Initial owner
 feedback is in `evidence/academy/owner-feedback.json` and is not a cohort result.
 
 Recruit at least five consenting people without DJ experience. Give only the

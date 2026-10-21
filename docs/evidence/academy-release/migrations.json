@@ -1,0 +1,15 @@
+{
+  "applied": [
+    "0006_credit_ledger.sql",
+    "0007_taste_profiles.sql",
+    "0008_generation_jobs.sql",
+    "0009_generation_rentals.sql",
+    "0010_academy.sql",
+    "0011_administration.sql",
+    "0012_creation_visibility.sql"
+  ],
+  "target": "ep-flat-hill-b4q0lix4.c-6.us-east-2.aws.neon.tech/neondb",
+  "backup_sha256": "19e6df3f78a5d6015f321576ce455d030eb113b2aba93258cf7fe76023219643",
+  "completed_at": "2026-10-21T15:27:27.658Z",
+  "sales_enabled": false
+}

@@ -1,0 +1,25 @@
+{
+  "note": "Independent repeat; these retained files replace the first exploratory elementary captures. Earlier run receipts remain in the log but their audio was overwritten by this duplicate test launch. Later long captures run only once.",
+  "receipts": {
+    "chromium": {
+      "version": 1,
+      "frames": 5974912,
+      "rate": 48000,
+      "gaps": 0,
+      "seconds": 124.47733333333333,
+      "bytes": 2005638,
+      "mime": "audio/webm;codecs=opus",
+      "sha256": "82687c6863e70bf4389d929fac9d5e6d4dcde42ae00ccda8705d340869d04a85"
+    },
+    "webkit": {
+      "version": 1,
+      "frames": 5962624,
+      "rate": 48000,
+      "gaps": 0,
+      "seconds": 124.22133333333333,
+      "bytes": 2440601,
+      "mime": "audio/webm;codecs=opus",
+      "sha256": "d41be7fa5b67cb6d8ae2e2aabe40adde34045939c0ecc1b987a4578278b6370f"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "scope": "Actual pre-migration production backup restored into disposable local PostgreSQL 18 over private Unix socket; no production rollback performed",
+  "backup_sha256": "19e6df3f78a5d6015f321576ce455d030eb113b2aba93258cf7fe76023219643",
+  "tables": [
+    "account",
+    "catalogue_reports",
+    "catalogue_reviews",
+    "catalogue_submissions",
+    "djayvo_migrations",
+    "playlist_items",
+    "playlists",
+    "rateLimit",
+    "session",
+    "track_assets",
+    "tracks",
+    "user",
+    "verification"
+  ],
+  "migrations_restored": 5,
+  "accounts_present": 1,
+  "restore_options": [
+    "--no-owner",
+    "--no-acl",
+    "--exit-on-error",
+    "--single-transaction"
+  ],
+  "owner_acl_restore": "NOT RUN: deliberately omitted in isolated restore"
+}

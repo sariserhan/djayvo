@@ -1,0 +1,45 @@
+{
+  "scope": "Only this run series: test-mode Academy catalog, created after 15:20 UTC, exact localhost:4227 success URL, open sessions only",
+  "sessions": [
+    {
+      "session": "cs_test_a1dPZ9taip6cpPhXcrR670egiieq4Zb4Vj66DgZRVGp7m2ENGG5yRfuCNZ",
+      "status": "expired",
+      "livemode": false
+    },
+    {
+      "session": "cs_test_a1QUBdWvpulSAE8vQos2rVh6XCQhpi9Jd5nMM52ezBEwiTCmmWngJyl3TJ",
+      "status": "expired",
+      "livemode": false
+    },
+    {
+      "session": "cs_test_a1b8CPlPy8QbMu6NCGnrVp1jselIwIU8DZ4wYg9KkifNhlp6m0QXcPJYuS",
+      "status": "expired",
+      "livemode": false
+    },
+    {
+      "session": "cs_test_a1ImifIlwh5xMkhn3Fmg1ijYugPOEExrJC69fKgVsOrZdQhkCWuhFbcSbI",
+      "status": "expired",
+      "livemode": false
+    },
+    {
+      "session": "cs_test_a1BYY9bhu8bEnYSYcu7kDF7E3HnD3NsidOdiaEwlD8gHuJmAXPAiIfuV9V",
+      "status": "expired",
+      "livemode": false
+    },
+    {
+      "session": "cs_test_a1ZLRnncHHOKBi7Yfg8LMJbJgAnKbECJmn584XeXSGeSKH2aw6C6NphMaX",
+      "status": "expired",
+      "livemode": false
+    },
+    {
+      "session": "cs_test_a1Y9xJNDFYt5CTjuXN1YkBricx3Tz7xVwL8oqm4CfDu8gQpGFYowZm5CbG",
+      "status": "expired",
+      "livemode": false
+    },
+    {
+      "session": "cs_test_a1HPetra0k3D0Gw7yGXn6RQ30x9fq5Ypd7ksQOzP7hI1qUnlcLCIQrWaGC",
+      "status": "expired",
+      "livemode": false
+    }
+  ]
+}

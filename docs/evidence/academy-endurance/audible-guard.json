@@ -1,0 +1,4 @@
+{
+  "status": "PASS",
+  "check": "Without JAMLOOM_AUDIBLE_TEST=1 the runner rejects before starting database/server/browser/audio"
+}

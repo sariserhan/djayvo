@@ -8,7 +8,7 @@
 | NEXT-002 | Custom 404, server error and global-error recovery | PASS | Actual site 404s; copied-component production fault fixture and client/server/global retry |
 | NEXT-003 | Safe cache boundaries, robots and sitemap | PASS | Static/dynamic manifest, request-only admin memoization, owner/member isolation and launch-mode metadata |
 | NEXT-004 | Build and browser validation | PASS | 31 unit tests, build/typecheck/bundle audit, Chromium/WebKit, responsive/axe and launch regression |
-| NEXT-005 | Hosted deployment/CDN and physical accessibility | NOT RUN | No deployment; manual screen reader and physical device checks remain |
+| NEXT-005 | Hosted deployment/CDN and physical accessibility | PARTIAL | Production deployment READY; manual screen reader and broad physical device checks remain. [Release checks](docs/academy-release-checks.md) |
 
 [Implementation, commands and limits](docs/nextjs-foundations.md).
 
@@ -20,7 +20,7 @@
 | LAUNCH-002 | Verified admin bypass, public routes/signup closed | PASS | Real Better Auth sessions; ordinary, unverified, suspended and forged-cookie users denied; admin deck playback works |
 | LAUNCH-003 | Cache isolation, recovery routes and launch rollback | PASS | Private/no-store admin responses; support/login allowed; regular homepage regression passes with flag false |
 | LAUNCH-004 | Build, checks and rendered UI | PASS | 30 unit tests, production build/typecheck/bundle audit; Chromium/WebKit, 1440/390/320 and axe |
-| LAUNCH-005 | Public deployment | NOT RUN | Commit must be deployed; no new migration, prior admin schema/configuration still required |
+| LAUNCH-005 | Public deployment | PASS | Production `b4e03e5` deployed; coming-soon remains enabled, owner preview accepted; all migrations verified. [Release checks](docs/academy-release-checks.md) |
 
 [Implementation and activation](docs/coming-soon.md).
 
@@ -36,7 +36,7 @@ Evidence: [implementation and boundaries](docs/visual-home-and-sharing.md).
 | HOME-003 | New public default / private option and direct local-mix saving | PASS | Separate sharing consent, verified IndexedDB handoff, actual WASM render and API save in both browsers; legacy saves remain private |
 | HOME-004 | Private creation premium of 25%, rounded up | PARTIAL | Real local ledger reservation/capture/release passes; live generation remains closed, local previews/save free |
 | HOME-005 | Tests, build, mobile layout and accessibility | PASS | 88 site/DB + 80 web tests; Chromium/WebKit at 1440/390/320; production build and bundle audit |
-| HOME-006 | Hosted migration/deployment and real community catalogue | NOT RUN | Apply pending 0011/0012, deploy matching code and review permissioned submissions; no real songs published by this work |
+| HOME-006 | Hosted migration/deployment and real community catalogue | PARTIAL | Migrations 0011/0012 and production deployment PASS; review permissioned community submissions remains open; no real songs published by this work |
 | HOME-007 | Paid generation musical quality | FAIL | Existing owner rejection unchanged; no release override |
 
 
@@ -53,7 +53,7 @@ Evidence: [implementation report](docs/admin-implementation.md), [owner setup](d
 | ADM-005 | Contact/support inbox, branded replies and signup notifications | PASS | Actual local form/DB/outbox flow, retries/leases and mobile templates |
 | ADM-006 | Test/live billing mode, isolated entitlements | PASS | Separate keys and signed fixtures; selection cannot release paid products |
 | ADM-007 | Tests, build, responsive UI and accessibility | PASS | 83 site/DB + 80 web tests; production build, bundle audit, Chromium/WebKit and axe |
-| ADM-008 | Hosted migration, deployment, notification delivery and scheduler | NOT RUN | Apply reviewed 0011 before deployment; configure authenticated retry cadence and verify hosted mail |
+| ADM-008 | Hosted migration, deployment, notification delivery and scheduler | PARTIAL | Reviewed 0011 applied and deployment PASS; authenticated retry cadence and hosted notification verification remain |
 | ADM-009 | Actual payment-provider and commercial release gates | NOT RUN | No live charges; Academy release held, existing musical-quality FAIL retained |
 
 
@@ -61,13 +61,20 @@ Evidence: [implementation report](docs/admin-implementation.md), [owner setup](d
 
 Owner instruction: finish Academy and update this tracker at every increment.
 
+Follow-up authorization: “do alll those” covers the remaining endurance, teaching,
+learner, hardware/accessibility, sandbox and release work. Real-time 2/5-minute Chromium/WebKit assessments passed against an isolated local database.
+30/60-minute runs were interrupted immediately after the owner reported nonstop
+speaker playback; they are not PASS. Owner revised testing to one owner session (no cohort claim), using Dia on a MacBook Air with an external speaker.
+Aurowall (`acct_1TxA3vDlEXWDEeHO`) is explicitly authorized for test and live billing; owner setup is Dia / MacBook Air / external speaker. Actual Stripe test purchase, decline, refund before/after grant, repurchase, replay and won/lost disputes PASS; CLI keys expire 2026-10-26. CI setup fixed in `b4e03e5`; first hosted rerun found Ubuntu dash SDK path failure; fixed and regression-tested in `19ae151`. Full hosted CI matrix PASS ([run](https://github.com/sariserhan/jamloom/actions/runs/39626212331)). Production migrations 0006–0012 applied transactionally after a private database backup; all 12 migration hashes verified; actual private backup restored successfully in disposable PostgreSQL 18. Production `b4e03e5` deployed READY (`dpl_7wx9w27aMg95SFCJMcSpjEnPbWSR`) behind coming-soon; owner first lesson accepted as “good enough for now.” Real two-minute and five-minute assessments PASS in both browsers; 30/60-minute runs interrupted to stop unwanted speaker playback. Sales remain closed while
+Academy-specific acceptance evidence is incomplete. [Current release report](docs/academy-release-checks.md).
+
 | ID | Increment | Status | Evidence / next check |
 |---|---|---|---|
 | ACA-019 | Shared-clock course transport, continuous pitch, beat loops/jumps | PASS | Four transport tests; 96 web tests; Chromium/WebKit course controls, account sync and offline playback. Native imports retain their decoder; course pitch changes key. [Report](docs/academy-completion.md) |
-| ACA-020 | Bounded 60-minute private set recording and continuity measurements | PARTIAL | Implemented 60-minute/96-MB private recorder. First real 126-second capture had zero clock gaps and correctly FAILED the silent v1 fixtures. Both real 126-second mini-sets pass with zero clock gaps, no clipping or sustained silence. Final delete/revoke/retry checks pass. Full 5/30/60-minute endurance NOT RUN. Existing 30-second WAV capture preserved. |
+| ACA-020 | Bounded 60-minute private set recording and continuity measurements | PARTIAL | Implemented 60-minute/96-MB private recorder. First real 126-second capture had zero clock gaps and correctly FAILED the silent v1 fixtures. Both real 126-second mini-sets pass with zero clock gaps, no clipping or sustained silence. Final delete/revoke/retry checks pass. Full 5-minute intermediate/advanced checks PASS in both browsers; 30/60-minute runs interrupted after owner reported audible playback. Existing 30-second WAV capture preserved. |
 | ACA-021 | All six curriculum stages, measurable assessments and beginner mini-set | PASS | Local implementation: 20 runnable lessons, complete prerequisite graph, 2/5/30-minute rubrics and explicit knowledge checks. 96 web + 12 Academy/DB tests and broad/focused browser runs PASS. Human outcomes and full-duration long assessments remain separate gates. [Report](docs/academy-completion.md) |
 | ACA-023 | Correct teaching-audio trim timestamps | PASS | Both historical 64-second excerpts contained 32 seconds of silence. Versioned v2 exports reset timestamps before fades; full-duration silence/peak checks pass. Original MP3s and v1 manifest retained. [Evidence](docs/evidence/academy-completion/audio.json) |
-| ACA-022 | End-to-end progression, accessibility, offline and regression evidence | PARTIAL | Broad and final Chromium/WebKit runs, PCM/privacy/lifecycle/offline, responsive/axe and actual mini-sets PASS. Full 5/30/60-minute endurance, manual accessibility, novices, providers and physical venue remain NOT RUN. [Evidence](docs/evidence/academy-completion/full-curriculum.json) |
+| ACA-022 | End-to-end progression, accessibility, offline and regression evidence | PARTIAL | Broad and final Chromium/WebKit runs, PCM/privacy/lifecycle/offline, responsive/axe and actual mini-sets PASS. Actual 2/5-minute endurance and Stripe provider checks PASS; 30/60-minute tests interrupted to stop unwanted audio. Owner first lesson accepted; owner mini-set, manual accessibility and physical venue remain open. [Evidence](docs/evidence/academy-completion/full-curriculum.json) |
 
 ## DJ Academy — 2026-10-21
 
@@ -79,25 +86,25 @@ Separate $79.99 one-time pass; generation credits and quality hold remain unchan
 | ACA-001 | Preserve checkpoint and run existing baseline | Agent | efa13be / 35c0df0 | PASS | Baseline logs; master and prior evidence preserved |
 | ACA-002 | Actual deck command/audio telemetry bridge | Agent | Existing browser mixer | PASS | Original handlers, measured signals, real keyboard browser checks |
 | ACA-003 | Cleared practice music and measured fixtures | Agent + listeners | Redistribution rights / listening | PARTIAL | Two CC0 64-second tracks with hashes; enjoyment and phase/key annotations unverified |
-| ACA-004 | Verified first crossfade, coaching and unlimited Free Jam | Agent + novice testers | ACA-002/003 | PARTIAL | Automated fade and voluntary Continue pass; owner now starts music, full human fade NOT RUN |
+| ACA-004 | Verified first crossfade, coaching and unlimited Free Jam | Agent + novice testers | ACA-002/003 | PARTIAL | Automated fade and voluntary Continue pass; owner qualitatively accepts deployed lesson as good enough. Measured unaided completion not supplied |
 | ACA-005 | Versioned curriculum, rubrics and assessments | Agent | First lesson evidence | PARTIAL | 20 runnable lessons, six-stage prerequisite graph and end assessments implemented; browser checks PASS; human rubric calibration remains open (ACA-021/022) |
 | ACA-006 | Owner-scoped progress, prerequisites, export/delete | Agent | Local database tests | PASS | Real local Better Auth/PG, order/replay/ownership/rate bounds and deletion checks |
-| ACA-007 | Separate Stripe pass, replay/refund/repurchase handling | Agent + owner | Sandbox product configuration | PARTIAL | Signed fixtures and local transactions pass; actual hosted sandbox NOT RUN; sales closed |
+| ACA-007 | Separate Stripe pass, replay/refund/repurchase handling | Agent + owner | Sandbox product configuration | PARTIAL | Actual hosted Stripe test Checkout and signed CLI-forwarded webhook purchase/decline/refund/repurchase/dispute checks PASS; durable deployed endpoint/live configuration NOT RUN; sales closed |
 | ACA-008 | Fifth feature, routes, dashboard and checkout | Agent | Existing site | PASS | Production build and Chromium/WebKit route checks; four prior features preserved |
 | ACA-009 | Audio/browser/accessibility/regression checks | Agent | Runnable lesson | PARTIAL | Current 96 web + 12 Academy/DB + 31 site checks pass; build and original recorder browser regressions pass. Broad/final course, responsive/axe and offline checks PASS; manual accessibility and physical reliability remain NOT RUN |
-| ACA-010 | Five novices / three beginner mini-sets | Owner + genuine testers | Working course | NOT RUN | No recruited cohort; owner onboarding retest alone is not the study |
-| ACA-011 | Handbook, economics, migration and release checklist | Agent + owner | Evidence | PARTIAL | Handbook and reserve model delivered; real merchant economics / production migration / release NOT RUN |
+| ACA-010 | Owner-only first lesson and mini-set acceptance (revised scope) | Owner | Working course | PARTIAL | Owner accepts deployed first lesson: “yes it is good enough for now”; Dia / MacBook Air / external speaker. Mini-set and measured observations NOT RUN. No independent novice or population claim. |
+| ACA-011 | Handbook, economics, migration and release checklist | Agent + owner | Evidence | PARTIAL | Handbook and reserve model delivered; production migration/backup restore and owner-preview deployment PASS; actual merchant economics and commercial activation remain open |
 | ACA-012 | Diagnose recorder clock discontinuity and physical audio reliability | Agent + owner | Actual captures | PARTIAL | Initial startup timestamp discontinuity isolated and guarded by connected-block warmup; fresh Chromium short/long captures and both recorder regressions pass. Physical reliability remains NOT RUN |
-| ACA-013 | Shared-frame transport, beat loops/jumps, long recording | Agent | Existing deck engine | PARTIAL | ACA-019/020 local implementation and two-browser short/mini-set checks PASS; full 5/30/60-minute and physical endurance NOT RUN |
-| ACA-014 | Remaining curriculum and beginner mini-set | Agent + learners | ACA-003/013 | PARTIAL | All six stages implemented; actual Chromium two-minute recorded mini-set passes. Chromium/WebKit control checks and both actual mini-sets PASS; learner study and full long-set endurance remain NOT RUN |
-| ACA-015 | Hosted CI, payment sandbox, deployment and release | Agent + owner | Course / provider / human gates | NOT RUN | No deployment or spending; AI musical-quality FAIL and paid generation disabled |
+| ACA-013 | Shared-frame transport, beat loops/jumps, long recording | Agent | Existing deck engine | PARTIAL | ACA-019/020 local implementation and two-browser short/mini-set checks PASS; actual 5-minute checks PASS; 30/60-minute interrupted; physical endurance NOT RUN |
+| ACA-014 | Remaining curriculum and beginner mini-set | Agent + learners | ACA-003/013 | PARTIAL | All six stages implemented; actual Chromium two-minute recorded mini-set passes. Chromium/WebKit control checks and both actual mini-sets PASS; owner mini-set remains unmeasured; 30/60-minute runs interrupted |
+| ACA-015 | Hosted CI, payment sandbox, deployment and release | Agent + owner | Course / provider / human gates | PARTIAL | Full hosted CI, Neon migration/backup restore and production owner-preview deployment PASS. Actual Stripe test-mode Checkout/webhook/reversal checks PASS; permanent hosted/live billing configuration remains open. [Report](docs/academy-release-checks.md) |
 | ACA-016 | Hardware-style deck presentation with real controls | Agent + owner | Existing console | PARTIAL | [Presentation](docs/deck-presentation.md): browser/build checks pass; owner visual and physical touch review NOT RUN |
 | ACA-017 | Adaptive fullscreen studio and performance C layout | Agent + owner | Shared actual decks | PARTIAL | [Fullscreen report](docs/studio-fullscreen.md): native browser/layout/audio checks pass; physical monitor/device review NOT RUN |
 
 | ACA-018 | Downloaded CC0 public practice library on actual decks | Agent + listeners | Explicit redistribution rights | PARTIAL | [Ten full-length tracks](docs/practice-library-ten.md), credits/hashes, 80 tests, browser/offline/fullscreen checks PASS; enjoyment and physical venue review NOT RUN |
 
 Detailed gates, source map, audio and reproduction: [Academy implementation](docs/ACADEMY_IMPLEMENTATION.md).
-Owner feedback: initial preparation FAIL; revised preparation/start PASS; full lesson and enjoyment NOT RUN.
+Owner feedback: initial preparation FAIL; revised preparation/start PASS; deployed first lesson qualitatively accepted 2026-10-21. Numeric scores, unaided completion and mini-set outcome not supplied.
 
 
 
@@ -313,7 +320,7 @@ the source of truth and is not modified by this tracker.
 | M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
 | W0 — browser Instant Remix | PARTIAL | Local WebAssembly app and Chromium/WebKit/Firefox technical flows pass; physical browser microphone and owner web listening remain open |
 | M4 — live improvisation | PARTIAL | Prepared A/C session and live instrument/MIDI input implemented locally; general live transport, physical timing and venue evidence remain |
-| M5 — production and monetization | PARTIAL | Local privacy controls, bundled rights notices and release preparation exist; beta, demand, public policy details and release approval remain |
+| M5 — production and monetization | PARTIAL | Privacy/rights controls, production owner-preview deployment, migration/restore, hosted CI and Academy Stripe test transactions pass; permanent live billing, human/device acceptance, beta/demand and public commercial release remain |
 
 `PASS` means the named deliverable has evidence. `PARTIAL` means some required
 work or evidence is missing. `FAIL` means a performed check did not meet its
@@ -780,6 +787,8 @@ filename/seed, timestamp, observation, desired change and eventual evidence.
 Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
+
+- [x] **2026-10-21 — Academy release checks:** Full hosted CI passes after `b4e03e5` / `19ae151`; reviewed production migrations and private backup restore pass; owner-preview deployment READY and first lesson accepted. Actual Aurowall Stripe test purchase/decline/refund/repurchase/dispute and signed callback checks pass. Both browsers pass two/five-minute assessments and decoded recording checks. 30/60-minute runs stopped after owner reported unwanted speaker playback; audible runner now requires an explicit opt-in. Public sales, full human/hardware evidence and permanent hosted billing remain open. [Report and receipts](docs/academy-release-checks.md).
 
 - [x] **2026-10-21 — Academy local course expansion:** 20 runnable lessons across six stages, shared-clock course transport, live instrument layering, bounded private set recording, explicit knowledge checks, prerequisite-complete badge and corrected v2 audio. 96 web + 12 Academy/DB + 31 site tests, build/typecheck/audit and broad/focused Chromium/WebKit evidence pass. Human learning, long endurance, providers and release remain open. [Implementation and exact limits](docs/academy-completion.md).
 

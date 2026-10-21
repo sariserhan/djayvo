@@ -1,0 +1,52 @@
+{
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "PASS: Stripe test mode; no funds moved",
+  "browsers": [],
+  "started_sessions": [
+    "cs_test_a1uWtvkCPCHxpN6NDAdPRhMm3GZXLmisKDbB23AopOUm5lrwsgSwCDsdul",
+    "cs_test_a1s2deLRuxhqciOZ48exSVyq2L9XaxnBFs3FskwBG6E9ESey8HCKe2vro6",
+    "cs_test_a1rnsCXy5xEmRc9l6IdTLa0uI1r6XpWeZUw44wjX3Uin3JWX4lcjzJQpd2",
+    "cs_test_a17FHCXajH5mur2kwE36h6eo0rthkk0Vw5jWUVRel5lsNxBFpZD08a2EVR",
+    "cs_test_a1ecRXaKfYdyqa7Irg9RhA5VFerWzBn4x2AocGBv9gXfTaz2sWfVt6h9h6"
+  ],
+  "declined_payment": "PASS",
+  "refund_before_grant": {
+    "status": "PASS",
+    "session": "cs_test_a1rnsCXy5xEmRc9l6IdTLa0uI1r6XpWeZUw44wjX3Uin3JWX4lcjzJQpd2",
+    "refund": "re_3UT1gmDlEXWDEeHO18DgdLik",
+    "ordering": "genuine signed provider grant delayed by test proxy until refund processed"
+  },
+  "dispute_cases": [
+    {
+      "session": "cs_test_a17FHCXajH5mur2kwE36h6eo0rthkk0Vw5jWUVRel5lsNxBFpZD08a2EVR",
+      "dispute": "du_1UT1gwDlEXWDEeHOilj9Yloc",
+      "outcome": "won",
+      "status": "PASS"
+    },
+    {
+      "session": "cs_test_a1ecRXaKfYdyqa7Irg9RhA5VFerWzBn4x2AocGBv9gXfTaz2sWfVt6h9h6",
+      "dispute": "du_1UT1hBDlEXWDEeHO9hTSFSvd",
+      "outcome": "lost",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "account": "acct_1TxA3vDlEXWDEeHO",
+  "sessions": [
+    "cs_test_a1uWtvkCPCHxpN6NDAdPRhMm3GZXLmisKDbB23AopOUm5lrwsgSwCDsdul",
+    "cs_test_a1s2deLRuxhqciOZ48exSVyq2L9XaxnBFs3FskwBG6E9ESey8HCKe2vro6"
+  ],
+  "refunds": [
+    "re_3UT1gQDlEXWDEeHO1eb0Bw9D",
+    "re_3UT1gdDlEXWDEeHO1tXTyOck"
+  ],
+  "signed_provider_delivery": "PASS via Stripe CLI to actual HTTP handler",
+  "duplicate_real_event_replay": "PASS (captured payload signed again locally)",
+  "invalid_signature": "PASS",
+  "wrong_owner": "PASS",
+  "repurchase": "PASS",
+  "generation_credits": 0,
+  "live_payments": "NOT RUN",
+  "disputes": "PASS: actual Stripe test-mode win and loss, real signed deliveries"
+}

@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-21",
+  "participant": "owner",
+  "scope": "Owner-only n=1 per explicit request; no cohort claim",
+  "requested_lesson": "https://www.jamloom.com/academy/lessons/first-crossfade",
+  "response": "yes it is good enough for now",
+  "qualitative_first_lesson_acceptance": "PASS",
+  "reported_setup": "Dia browser, MacBook Air, external speaker",
+  "installed_browser": "Dia 1.53.0",
+  "observed_default_output": {
+    "name": "LG Ultra HD",
+    "transport": "DisplayPort",
+    "channels": 2,
+    "sample_rate_hz": 48000
+  },
+  "time_to_first_music": "NOT SUPPLIED",
+  "unaided_completion": "NOT SUPPLIED",
+  "clarity_enjoyment_scores": "NOT SUPPLIED",
+  "beginner_mini_set": "NOT RUN",
+  "physical_endurance": "NOT RUN",
+  "audio_test_interruption": "Owner reported nonstop music from automation; test browsers stopped immediately, no restart."
+}

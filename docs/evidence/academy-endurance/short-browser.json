@@ -1,0 +1,72 @@
+{
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "elementary-assessment",
+      "requested_seconds": 120,
+      "status": "PASS",
+      "started_at": "2026-10-21T15:25:31.781Z",
+      "receipt": {
+        "version": 1,
+        "frames": 5974912,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 124.47733333333333,
+        "bytes": 2005638,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "82687c6863e70bf4389d929fac9d5e6d4dcde42ae00ccda8705d340869d04a85"
+      },
+      "wall_seconds": 123.572,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 48468,
+      "completed_at": "2026-10-21T15:27:48.119Z"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "elementary-assessment",
+      "requested_seconds": 120,
+      "status": "PASS",
+      "started_at": "2026-10-21T15:25:33.135Z",
+      "receipt": {
+        "version": 1,
+        "frames": 5962624,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 124.22133333333333,
+        "bytes": 2440601,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "d41be7fa5b67cb6d8ae2e2aabe40adde34045939c0ecc1b987a4578278b6370f"
+      },
+      "wall_seconds": 123.325,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 48354,
+      "completed_at": "2026-10-21T15:27:48.380Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "intermediate-set",
+      "requested_seconds": 300,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T15:27:48.158Z"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "intermediate-set",
+      "requested_seconds": 300,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T15:27:48.424Z"
+    }
+  ],
+  "errors": [
+    "page.waitForTimeout: Target page, context or browser has been closed\n    at lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:77:17)\n    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:97:19)\n    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:103:13",
+    "browserContext.close: Target page, context or browser has been closed\n    at async lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:95:202)\n    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:97:19)\n    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:103:13"
+  ],
+  "status": "FAIL"
+}

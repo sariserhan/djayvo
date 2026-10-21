@@ -1,0 +1,118 @@
+chromium-performance-set-3600 61s Recording private set · 61 / 3600 seconds
+webkit-performance-set-3600 61s Recording private set · 61 / 3600 seconds
+chromium-elementary-assessment-120 60s Recording private set · 61 / 3600 seconds
+webkit-elementary-assessment-120 60s Recording private set · 61 / 3600 seconds
+chromium-performance-set-3600 121s Recording private set · 121 / 3600 seconds
+webkit-performance-set-3600 121s Recording private set · 121 / 3600 seconds
+chromium-elementary-assessment-120 121s Recording private set · 121 / 3600 seconds
+webkit-elementary-assessment-120 121s Recording private set · 121 / 3600 seconds
+PASS chromium-elementary-assessment-120 {"version":1,"frames":5991936,"rate":48000,"gaps":0,"seconds":124.832,"bytes":2011451,"mime":"audio/webm;codecs=opus","sha256":"10f3dd7077dfd36d5e5f866b71a1656ddb15f1b575eae2fbc43906072a843b25"}
+PASS webkit-elementary-assessment-120 {"version":1,"frames":5995648,"rate":48000,"gaps":0,"seconds":124.90933333333334,"bytes":2451456,"mime":"audio/webm;codecs=opus","sha256":"19a7113721b7f04076363ec9da988b215f59c28eca1fb4ef92e1b3f60bfd44e1"}
+chromium-performance-set-3600 181s Recording private set · 181 / 3600 seconds
+webkit-performance-set-3600 181s Recording private set · 181 / 3600 seconds
+chromium-intermediate-set-300 61s Recording private set · 61 / 3600 seconds
+webkit-intermediate-set-300 61s Recording private set · 61 / 3600 seconds
+chromium-performance-set-3600 241s Recording private set · 241 / 3600 seconds
+webkit-performance-set-3600 241s Recording private set · 241 / 3600 seconds
+chromium-intermediate-set-300 120s Recording private set · 121 / 3600 seconds
+webkit-intermediate-set-300 120s Recording private set · 121 / 3600 seconds
+chromium-performance-set-3600 300s Recording private set · 301 / 3600 seconds
+webkit-performance-set-3600 300s Recording private set · 301 / 3600 seconds
+chromium-intermediate-set-300 180s Recording private set · 181 / 3600 seconds
+webkit-intermediate-set-300 180s Recording private set · 181 / 3600 seconds
+chromium-performance-set-3600 361s Recording private set · 361 / 3600 seconds
+webkit-performance-set-3600 361s Recording private set · 361 / 3600 seconds
+chromium-intermediate-set-300 241s Recording private set · 241 / 3600 seconds
+webkit-intermediate-set-300 241s Recording private set · 241 / 3600 seconds
+chromium-performance-set-3600 421s Recording private set · 421 / 3600 seconds
+webkit-performance-set-3600 421s Recording private set · 421 / 3600 seconds
+chromium-intermediate-set-300 300s Recording private set · 301 / 3600 seconds
+webkit-intermediate-set-300 300s Recording private set · 301 / 3600 seconds
+PASS chromium-intermediate-set-300 {"version":1,"frames":14598528,"rate":48000,"gaps":0,"seconds":304.136,"bytes":4900851,"mime":"audio/webm;codecs=opus","sha256":"8f49b3032e081682c488a6dc09a8435c17477df33d1068690ca5611a2beda2c5"}
+PASS webkit-intermediate-set-300 {"version":1,"frames":14595584,"rate":48000,"gaps":0,"seconds":304.07466666666664,"bytes":6026989,"mime":"audio/webm;codecs=opus","sha256":"45233fa016fe25a839dd800da83a5d6eba71e45cd32298a99f37d9d075185858"}
+chromium-performance-set-3600 481s Recording private set · 481 / 3600 seconds
+webkit-performance-set-3600 481s Recording private set · 481 / 3600 seconds
+chromium-advanced-set-300 61s Recording private set · 61 / 3600 seconds
+webkit-advanced-set-300 61s Recording private set · 61 / 3600 seconds
+chromium-performance-set-3600 540s Recording private set · 541 / 3600 seconds
+webkit-performance-set-3600 540s Recording private set · 541 / 3600 seconds
+chromium-advanced-set-300 121s Recording private set · 121 / 3600 seconds
+webkit-advanced-set-300 121s Recording private set · 121 / 3600 seconds
+chromium-performance-set-3600 600s Recording private set · 601 / 3600 seconds
+webkit-performance-set-3600 600s Recording private set · 601 / 3600 seconds
+chromium-advanced-set-300 181s Recording private set · 181 / 3600 seconds
+webkit-advanced-set-300 180s Recording private set · 181 / 3600 seconds
+chromium-performance-set-3600 661s Recording private set · 661 / 3600 seconds
+webkit-performance-set-3600 661s Recording private set · 661 / 3600 seconds
+chromium-advanced-set-300 241s Recording private set · 241 / 3600 seconds
+webkit-advanced-set-300 240s Recording private set · 241 / 3600 seconds
+chromium-performance-set-3600 721s Recording private set · 721 / 3600 seconds
+webkit-performance-set-3600 721s Recording private set · 721 / 3600 seconds
+chromium-advanced-set-300 300s Recording private set · 301 / 3600 seconds
+webkit-advanced-set-300 301s Recording private set · 301 / 3600 seconds
+PASS chromium-advanced-set-300 {"version":1,"frames":14609664,"rate":48000,"gaps":0,"seconds":304.368,"bytes":4904715,"mime":"audio/webm;codecs=opus","sha256":"500d6e92c56dd5697873a476c619e5b8c66208eeb83fa3a3258011e937a611dd"}
+PASS webkit-advanced-set-300 {"version":1,"frames":14633728,"rate":48000,"gaps":0,"seconds":304.8693333333333,"bytes":6045116,"mime":"audio/webm;codecs=opus","sha256":"b6de20d820658d425eb5250e58f160a5c6a24c91fab574d750ff3cfcbc2232c1"}
+chromium-performance-set-3600 780s Recording private set · 781 / 3600 seconds
+webkit-performance-set-3600 781s Recording private set · 780 / 3600 seconds
+chromium-performance-set-1800 60s Recording private set · 61 / 3600 seconds
+webkit-performance-set-1800 61s Recording private set · 60 / 3600 seconds
+chromium-performance-set-3600 841s Recording private set · 841 / 3600 seconds
+webkit-performance-set-3600 840s Recording private set · 839 / 3600 seconds
+chromium-performance-set-1800 121s Recording private set · 121 / 3600 seconds
+webkit-performance-set-1800 120s Recording private set · 119 / 3600 seconds
+chromium-performance-set-3600 901s Recording private set · 901 / 3600 seconds
+webkit-performance-set-3600 901s Recording private set · 899 / 3600 seconds
+chromium-performance-set-1800 180s Recording private set · 181 / 3600 seconds
+webkit-performance-set-1800 180s Recording private set · 178 / 3600 seconds
+chromium-performance-set-3600 961s Recording private set · 961 / 3600 seconds
+webkit-performance-set-3600 961s Recording private set · 959 / 3600 seconds
+chromium-performance-set-1800 241s Recording private set · 241 / 3600 seconds
+webkit-performance-set-1800 241s Recording private set · 239 / 3600 seconds
+chromium-performance-set-3600 1021s Recording private set · 1021 / 3600 seconds
+webkit-performance-set-3600 1020s Recording private set · 1018 / 3600 seconds
+chromium-performance-set-1800 300s Recording private set · 301 / 3600 seconds
+webkit-performance-set-1800 300s Recording private set · 298 / 3600 seconds
+chromium-performance-set-3600 1081s Recording private set · 1081 / 3600 seconds
+webkit-performance-set-3600 1081s Recording private set · 1079 / 3600 seconds
+chromium-performance-set-1800 361s Recording private set · 361 / 3600 seconds
+webkit-performance-set-1800 361s Recording private set · 359 / 3600 seconds
+chromium-performance-set-3600 1140s Recording private set · 1141 / 3600 seconds
+webkit-performance-set-3600 1140s Recording private set · 1138 / 3600 seconds
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   'browserContext.close: Target page, context or browser has been closed\n' +
++     '    at async lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:93:13)\n' +
++     '    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:95:19)\n' +
++     '    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:101:13',
++   'page.waitForTimeout: Target page, context or browser has been closed\n' +
++     '    at lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:75:17)\n' +
++     '    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:95:19)\n' +
++     '    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:101:13'
++ ]
+- []
+
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:104:95 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'browserContext.close: Target page, context or browser has been closed\n' +
+      '    at async lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:93:13)\n' +
+      '    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:95:19)\n' +
+      '    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:101:13',
+    'page.waitForTimeout: Target page, context or browser has been closed\n' +
+      '    at lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:75:17)\n' +
+      '    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:95:19)\n' +
+      '    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:101:13'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.3.0

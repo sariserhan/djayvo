@@ -1,0 +1,7 @@
+{
+  "target": "ep-flat-hill-b4q0lix4.c-6.us-east-2.aws.neon.tech/neondb",
+  "created_at": "2026-10-21T15:27:07.384Z",
+  "bytes": 29755,
+  "sha256": "19e6df3f78a5d6015f321576ce455d030eb113b2aba93258cf7fe76023219643",
+  "private_backup": "build-academy-release/before-academy-20261021.dump"
+}

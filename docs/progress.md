@@ -1,3 +1,18 @@
+# Academy remaining gates — 2026-10-21
+
+**PASS:** Full hosted CI at `19ae151`, production migrations 0006–0012 with all
+12 hashes verified, and production deployment `b4e03e5` behind coming-soon.
+Owner accepts the first lesson: “yes it is good enough for now,” using Dia on a
+MacBook Air with an external speaker. Owner-only testing replaces recruitment.
+**PARTIAL:** Actual 2/5-minute recordings pass in Chromium/WebKit; 30/60-minute
+runs were interrupted to stop unwanted audible playback; actual Stripe test-mode purchase/reversal/dispute checks PASS. Mini-set owner feedback, musical
+annotations, sustained physical output, manual accessibility and commercial
+configuration remain open. Aurowall is authorized for test/live billing;
+sales remain closed. [Current report](academy-release-checks.md).
+
+Earlier checkpoints below preserve their original results and dates; the current
+report supersedes their pending migration, deployment, CI and recruitment statuses.
+
 # Academy completion in progress — 2026-10-21
 
 **PASS:** Shared-clock course playback, first crossfade/account synchronization and offline playback in Chromium/WebKit; 96 web tests and 12 Academy/database tests. **PARTIAL:** 20 lessons across all six stages, end assessments and bounded long set recording implemented; broad and focused final Chromium/WebKit checks PASS; both corrected 126-second mini-sets PASS. Original recorder PCM/privacy/lifecycle regressions PASS in Chromium/WebKit. Recorder startup is explicitly warmed before acknowledging capture; Chromium short and 126-second captures have zero timestamp gaps. The long assessment correctly rejected 32-second silent tails in the old teaching excerpts. Corrected v2 exports reset trimmed timestamps before fades and pass full-duration silence/peak checks; originals and failing evidence are preserved. Full-duration 5/30/60-minute endurance, actual novices, physical audio/venue, payment providers and deployment remain **NOT RUN**. Track increments ACA-019–022 in [TODO](../TODO.md).

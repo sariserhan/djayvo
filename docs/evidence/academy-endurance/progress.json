@@ -1,0 +1,183 @@
+{
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "elementary-assessment",
+      "requested_seconds": 120,
+      "status": "PASS",
+      "started_at": "2026-10-21T15:23:51.636Z",
+      "receipt": {
+        "version": 1,
+        "frames": 5991936,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 124.832,
+        "bytes": 2011451,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "10f3dd7077dfd36d5e5f866b71a1656ddb15f1b575eae2fbc43906072a843b25"
+      },
+      "wall_seconds": 123.922,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 48494,
+      "completed_at": "2026-10-21T15:26:07.469Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 3600,
+      "status": "INTERRUPTED",
+      "started_at": "2026-10-21T15:23:51.636Z",
+      "recovery": "cue then restart while A audible"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "performance-set",
+      "requested_seconds": 3600,
+      "status": "INTERRUPTED",
+      "started_at": "2026-10-21T15:23:52.617Z",
+      "recovery": "cue then restart while A audible"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "elementary-assessment",
+      "requested_seconds": 120,
+      "status": "PASS",
+      "started_at": "2026-10-21T15:23:52.617Z",
+      "receipt": {
+        "version": 1,
+        "frames": 5995648,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 124.90933333333334,
+        "bytes": 2451456,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "19a7113721b7f04076363ec9da988b215f59c28eca1fb4ef92e1b3f60bfd44e1"
+      },
+      "wall_seconds": 124.044,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 48374,
+      "completed_at": "2026-10-21T15:26:08.475Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "intermediate-set",
+      "requested_seconds": 300,
+      "status": "PASS",
+      "started_at": "2026-10-21T15:26:07.506Z",
+      "receipt": {
+        "version": 1,
+        "frames": 14598528,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 304.136,
+        "bytes": 4900851,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "8f49b3032e081682c488a6dc09a8435c17477df33d1068690ca5611a2beda2c5"
+      },
+      "wall_seconds": 303.275,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 121816,
+      "completed_at": "2026-10-21T15:31:13.550Z"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "intermediate-set",
+      "requested_seconds": 300,
+      "status": "PASS",
+      "started_at": "2026-10-21T15:26:08.536Z",
+      "receipt": {
+        "version": 1,
+        "frames": 14595584,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 304.07466666666664,
+        "bytes": 6026989,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "45233fa016fe25a839dd800da83a5d6eba71e45cd32298a99f37d9d075185858"
+      },
+      "wall_seconds": 303.147,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 122565,
+      "completed_at": "2026-10-21T15:31:14.184Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "advanced-set",
+      "requested_seconds": 300,
+      "status": "PASS",
+      "started_at": "2026-10-21T15:31:13.591Z",
+      "recovery": "cue then restart while A audible",
+      "receipt": {
+        "version": 1,
+        "frames": 14609664,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 304.368,
+        "bytes": 4904715,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "500d6e92c56dd5697873a476c619e5b8c66208eeb83fa3a3258011e937a611dd"
+      },
+      "wall_seconds": 303.538,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 122923,
+      "completed_at": "2026-10-21T15:36:19.019Z"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "advanced-set",
+      "requested_seconds": 300,
+      "status": "PASS",
+      "started_at": "2026-10-21T15:31:14.235Z",
+      "recovery": "cue then restart while A audible",
+      "receipt": {
+        "version": 1,
+        "frames": 14633728,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 304.8693333333333,
+        "bytes": 6045116,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "b6de20d820658d425eb5250e58f160a5c6a24c91fab574d750ff3cfcbc2232c1"
+      },
+      "wall_seconds": 304.181,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 122765,
+      "completed_at": "2026-10-21T15:36:20.559Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 1800,
+      "status": "INTERRUPTED",
+      "started_at": "2026-10-21T15:36:19.063Z",
+      "recovery": "cue then restart while A audible"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "performance-set",
+      "requested_seconds": 1800,
+      "status": "INTERRUPTED",
+      "started_at": "2026-10-21T15:36:20.683Z",
+      "recovery": "cue then restart while A audible"
+    }
+  ],
+  "errors": [
+    "browserContext.close: Target page, context or browser has been closed\n    at async lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:93:13)\n    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:95:19)\n    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:101:13",
+    "page.waitForTimeout: Target page, context or browser has been closed\n    at lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:75:17)\n    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:95:19)\n    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:101:13"
+  ],
+  "status": "PARTIAL",
+  "interruption_record": "interruption.json"
+}

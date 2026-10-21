@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/tests/integration/verify_web_sdk.py", line 67, in <module>
+    run('fresh-and-warm')
+    ~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/serhansari/Documents/projects/djayvo/tests/integration/verify_web_sdk.py", line 58, in run
+    assert result.returncode == 42 and 'BOOTSTRAP_READY' in result.stdout, result.stderr
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: From /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-sdk-test-q30izdyg/sdk-source
+ * [new tag]         6.0.1      -> 6.0.1
+HEAD is now at 396e53c SDK fixture
+WRONG_SDK_CWD

@@ -3,9 +3,17 @@
 2026-10-21 · Apple M5 / macOS 26.7.1 · **Overall PARTIAL, not a full-course release.**
 The fifth feature is integrated into the existing repository. The original four
 products remain; **AI musical quality is still FAIL and paid generation remains
-disabled**. No cloud spending, live charges, hosted migration or deployment occurred.
+disabled**. No live charges occurred. Hosted migration and owner-preview deployment are now complete; see the latest release checks.
 
-## Latest local course expansion — 2026-10-21
+## Latest release checks — 2026-10-21
+
+[Current release evidence](academy-release-checks.md) supersedes the historical
+no-deployment/no-provider statements below. Production migrations and owner-preview
+deployment pass, full hosted CI passes, and the owner accepts the first lesson.
+Owner-only validation replaces recruitment. Sales remain closed while the remaining
+course, hardware and commercial evidence is incomplete.
+
+## Previous local course expansion — 2026-10-21
 
 [Completion increment](academy-completion.md) supersedes the two-lesson coverage
 and missing-transport backlog below. Curriculum 2026.10.2 has 20 runnable lessons,

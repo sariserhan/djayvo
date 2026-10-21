@@ -1,6 +1,14 @@
 # Jamloom implementation checkpoint
 
-## Latest: Academy completion work — 2026-10-21
+## Latest: Academy release checks — 2026-10-21
+
+**Overall PARTIAL.** Full hosted CI, production migration/deployment and the
+owner's qualitative first-lesson acceptance **PASS**. Long endurance was interrupted to stop audible playback;
+actual Stripe test-mode purchase/reversal/dispute verification PASS; full course/hardware and
+commercial gates remain open. Testing scope is owner-only per explicit request.
+[Current evidence and remaining gates](academy-release-checks.md).
+
+## Previous: Academy completion work — 2026-10-21
 
 [Course expansion](academy-completion.md): 20 runnable lessons across all six
 stages, shared-clock course playback, beat loops/jumps, live instrument layering,

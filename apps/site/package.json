@@ -34,12 +34,14 @@
     "test:generation-render": "tsx tests/generation-render-smoke.ts",
     "test:academy": "node --import tsx --test tests/academy.test.ts",
     "test:academy-browser": "node --import tsx tests/academy-browser.mjs",
+    "test:academy-endurance": "node --import tsx tests/academy-endurance.mjs",
     "test:audio-variety": "node tests/audio-variety-audit.mjs",
     "test:admin": "node --import tsx --test tests/admin.test.ts",
     "test:admin-browser": "node --import tsx tests/admin-browser.mjs",
     "test:landing-browser": "node --import tsx tests/landing-browser.mjs",
     "test:coming-soon-browser": "node --import tsx tests/coming-soon-browser.mjs",
-    "test:framework-browser": "node tests/framework-browser.mjs"
+    "test:framework-browser": "node tests/framework-browser.mjs",
+    "test:academy-provider": "node --import tsx tests/academy-provider.mjs"
   },
   "dependencies": {
     "@apple/app-store-server-library": "3.1.0",

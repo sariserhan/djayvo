@@ -1,0 +1,26 @@
+[
+  {
+    "id": "extended",
+    "source_sha256": "6d68a252436e16cf4b86d745e43f9564198d68ee6fe10f1a4368b235864a3c78",
+    "author_bpm": 120,
+    "candidate_beat_offset_seconds": 0.01200000000000001,
+    "method": "positive 35-200 Hz spectral change, 64 ms Hann window, 10 ms hop",
+    "review_file": "build-academy-review/extended-candidate-grid.wav",
+    "review_sha256": "19aa3e1d40acc6099877551498466d6cb5d9977dc1b435d6bb3837016a593457",
+    "independent_tempo": "NOT RUN",
+    "downbeat_phrase_and_key": "NOT RUN",
+    "owner_listening": "NOT RUN"
+  },
+  {
+    "id": "theories",
+    "source_sha256": "661938922885b5114d78cc5a6070010924f1ae832e6b6ad2a0ad6d28f9198203",
+    "author_bpm": 120,
+    "candidate_beat_offset_seconds": 0.0020000000000000018,
+    "method": "positive 35-200 Hz spectral change, 64 ms Hann window, 10 ms hop",
+    "review_file": "build-academy-review/theories-candidate-grid.wav",
+    "review_sha256": "43105498227fb629eb0c6ba8b0a82b20d8fd35c33ab2f019c759030a3f678ab2",
+    "independent_tempo": "NOT RUN",
+    "downbeat_phrase_and_key": "NOT RUN",
+    "owner_listening": "NOT RUN"
+  }
+]
