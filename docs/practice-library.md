@@ -1,5 +1,7 @@
 # Public practice music — 2026-10-21
 
+This is the initial three-track checkpoint. See the [ten-track expansion](practice-library-ten.md) for the current catalogue, storage bounds and evidence.
+
 Three full-length artist recordings are now available in the shared DJ workspace
 and Academy through **Try free practice music → Load practice into A/B → Play**.
 Confirm the existing music permission checkbox first. The public library uses the

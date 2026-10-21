@@ -10,7 +10,7 @@ review and physical touch testing remain NOT RUN.
 [Adaptive fullscreen](studio-fullscreen.md) now keeps the same audio controls and
 places existing C beside A/B on wide screens; native browser checks pass.
 
-[Public practice library](practice-library.md): three additional CC0 artist tracks
+[Public practice library](practice-library-ten.md): ten CC0 artist tracks
 now load into the actual decks, including prepared offline use. Browser checks
 pass; human enjoyment and venue review remain NOT RUN.
 

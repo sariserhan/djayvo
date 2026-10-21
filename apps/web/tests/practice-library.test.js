@@ -5,9 +5,11 @@ import {createHash} from 'node:crypto';
 import {practiceFile} from '../practice-library.js';
 const folder = new URL('../practice-audio/', import.meta.url);
 const {tracks} = JSON.parse(await readFile(new URL('manifest.json',folder)));
-test('practice catalogue contains three complete, pinned CC0 recordings', async () => {
-  assert.equal(tracks.length,3);
-  assert.equal(new Set(tracks.map(t=>t.id)).size,3);
+test('practice catalogue contains ten complete, pinned CC0 recordings', async () => {
+  assert.equal(tracks.length,10);
+  assert.equal(new Set(tracks.map(t=>t.id)).size,10);
+  assert.equal(new Set(tracks.map(t=>t.source_sha256)).size,10);
+  assert.ok(tracks.reduce((sum,t)=>sum+t.bytes,0)<32*1024*1024);
   for (const track of tracks) {
     const bytes=await readFile(new URL(track.url.slice('./practice-audio/'.length),folder));
     assert.equal(bytes.length,track.bytes);

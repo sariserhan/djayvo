@@ -216,8 +216,8 @@ fetch(new URL('./practice-audio/manifest.json', import.meta.url)).then(async res
   if (!response.ok) throw new Error('Practice list unavailable. Reconnect and reload this page.');
   const manifest = await response.json();
   practiceTracks.push(...manifest.tracks);
-  $('practice-track').replaceChildren(...practiceTracks.map(track => new Option(`${track.title} — ${track.artist}`, track.id)));
-  $('practice-status').textContent = 'Pause the destination deck before loading. Your current track stays until its replacement is ready.';
+  $('practice-track').replaceChildren(...practiceTracks.map(track => new Option(`${track.title} — ${track.artist} · ${track.genre}`, track.id)));
+  $('practice-status').textContent = `${practiceTracks.length} tracks ready. Pause the destination deck before loading. Your current track stays until its replacement is ready.`;
   practiceSelection();
 }).catch(error => { $('practice-track').replaceChildren(new Option('Practice music unavailable', '')); $('practice-status').textContent = error.message; });
 $('library-refresh').onclick = refreshLibrary;

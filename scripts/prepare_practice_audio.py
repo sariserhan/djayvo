@@ -13,6 +13,13 @@ SOURCES = [
      '6187f62385f94db5feda3360da6309d90664c5410dda1351f837f978df2c5861', 'wednesday-night-funk-fusion'),
     ('rhythm-garden', 'Rhythm Garden', 'congusbongus', 'Electronic / dance', 'rhythm_garden_0.ogg',
      'c4800b0c891ce0c4cf670bd821d3d237d294f32bf0546276e56cd4e82bcecfb3', 'rhythm-garden'),
+    ('party-sector', 'Party Sector', 'Joth', 'Dance', 'Party%20Sector.mp3', '77e1ad0bd0a7c5625a12eaa1c8099408ede6959b2ee2dbf5bace85d09a602ada', 'party-sector'),
+    ('black-diamond', 'Black Diamond', 'Joth', 'Drum and bass', 'Black%20Diamond.mp3', '9fd1c9a97740411e7dcaebdc9af17ab017cf070a82089a48503765a24b7bedf4', 'black-diamond'),
+    ('funky-hip-hop-lofi-jam', 'Funky Hip Hop Lofi Jam', 'omfgdude', 'Lo-fi hip-hop', 'CVP701Jam_0.ogg', '7c213d1c6fe01bc6b67d6c1124c6cd88afae7149ee8ec966c7f55f517eb22af9', 'funky-hip-hop-lofi-jam'),
+    ('atmosphere', 'Atmosphere', 'Sudocolon', 'Electronic', '473968_Three-Point-Shot_0.mp3', 'd544b971a06f51d21cd14ab8c933eb07aef5144f81f288d3c4c187d14d88cb1e', 'atmosphere'),
+    ('next-to-you', 'Next to You', 'Joth', 'Ambient', 'Next%20to%20You.mp3', '95d620e1ad7bd7c73366979e384f172be21ebc5fe68bdc1af3908faf8a7c7b44', 'next-to-you'),
+    ('midnight-cruiser', 'Midnight Cruiser', 'Zane Little Music', 'Jazz fusion', 'midnight_cruiser_0.mp3', 'be0285ba239d85c47c6a0de6466123e3fe8dbc4ad4d9419ccd224ab8ea2b54fc', 'midnight-cruiser'),
+    ('midnight-moon', 'Midnight Moon', 'iamoneabe', 'Cinematic ambient', 'midmoon_0.mp3', 'c85d74fa04783b290d949cbfcddf317fd1edc2a9c3c83c98a203b1e2e098b54d', 'midnight-moon'),
 ]
 
 
@@ -49,7 +56,7 @@ def main():
             verified='2026-10-21', modifications='Full-length; loudness normalized; stereo 48 kHz 160 kbps MP3',
             bpm=None, tempo_basis='Use Tap tempo; BPM, key and beat grid not independently verified',
             measurements=measured, human_listening='NOT RUN'))
-    assert sum(row['bytes'] for row in rows) < 10 * 1024 * 1024
+    assert sum(row['bytes'] for row in rows) < 32 * 1024 * 1024
     manifest = dict(version=1, tracks=rows, purpose='User playback and mixing practice; not a training dataset')
     (public / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     (public / 'CREDITS.txt').write_text('Jamloom practice library — artist uploads marked CC0, checked 2026-10-21.\n'

@@ -4,7 +4,7 @@ import {extname} from 'node:path';
 import {chromium,webkit} from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import {writeFile,readFile} from 'node:fs/promises';
-const base='http://127.0.0.1:4224',evidence=new URL('../../../docs/evidence/practice-library/',import.meta.url),results=[];
+const base='http://127.0.0.1:4224',evidence=new URL('../../../docs/evidence/practice-library-ten/',import.meta.url),results=[];
 const {tracks}=JSON.parse(await readFile(new URL('../../web/practice-audio/manifest.json',import.meta.url)));
 for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
  const browser=await engine.launch();
@@ -12,12 +12,12 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage(),errors=[];
   await context.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
   page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(base+'/studio/dj.html');await page.waitForFunction(()=>document.querySelector('#practice-track').options.length===3);
+  await page.goto(base+'/studio/dj.html');await page.waitForFunction(()=>document.querySelector('#practice-track').options.length===10);
   assert.ok(await page.locator('#practice-load-a').isDisabled());
   await page.locator('#music-rights').check();
   const played=[];
   for(const [index,track] of tracks.entries()){
-   const deck=index===1?'b':'a';
+   const deck=index%2===1?'b':'a';
    await page.locator('#practice-track').selectOption(track.id);await page.locator('#practice-load-'+deck).click();
    await page.waitForFunction(({deck,title})=>document.querySelector('#state-'+deck).textContent==='Ready'&&document.querySelector('#name-'+deck).textContent.startsWith(title),{deck,title:track.title});
    await page.locator('#crossfade').evaluate((e,v)=>{e.value=v;e.dispatchEvent(new Event('input'));},deck==='a'?'0':'1');
@@ -37,6 +37,8 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await page.route(target,async r=>{began();await hold;await r.abort().catch(()=>{});});
   await page.locator('#practice-load-a').click();await pending;await page.locator('#music-rights').uncheck();release();await page.unroute(target);
   assert.equal(await page.locator('#audio-a').getAttribute('src'),null);assert.ok(await page.locator('#practice-load-a').isDisabled());
+  await page.locator('#practice-track').selectOption('funky-hip-hop-lofi-jam');
+  assert.match(await page.locator('#practice-track option:checked').innerText(),/Lo-fi hip-hop/);
   const layouts=[];
   for(const width of [1920,390,320]){
    await page.setViewportSize({width,height:900});await page.locator('#practice-library').scrollIntoViewIfNeeded();
@@ -69,12 +71,17 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    cached=await offline.evaluate(async()=>{
     const keys=await caches.keys(),cache=await caches.open(keys.find(k=>k.startsWith('djayvo-studio:')));
     return (await cache.keys()).map(r=>r.url).filter(u=>u.endsWith('.mp3'));
-   });assert.equal(cached.length,3);
+   });assert.equal(cached.length,10);
    // Stop the server: WebKit offline emulation can reject even cached navigation.
    await new Promise(resolve=>server.close(resolve));
-   await offline.reload();await offline.waitForFunction(()=>document.querySelector('#practice-track').options.length===3);
-   await offline.locator('#music-rights').check();await offline.locator('#practice-load-a').click();await offline.waitForFunction(()=>document.querySelector('#state-a').textContent==='Ready');
-   await offline.locator('#play-a').click();await offline.waitForFunction(()=>document.querySelector('#output-meter').value>.001);
+   await offline.reload();await offline.waitForFunction(()=>document.querySelector('#practice-track').options.length===10);
+   await offline.locator('#music-rights').check();
+   for(const track of tracks){
+    await offline.locator('#practice-track').selectOption(track.id);await offline.locator('#practice-load-a').click();
+    await offline.waitForFunction(title=>document.querySelector('#state-a').textContent==='Ready'&&document.querySelector('#name-a').textContent.startsWith(title),track.title);
+    await offline.locator('#play-a').click();await offline.waitForFunction(()=>document.querySelector('#audio-a').currentTime>.4&&document.querySelector('#output-meter').value>.001);
+    await offline.locator('#play-a').click();
+   }
    await offlineContext.close();
   }finally{server.closeAllConnections();if(server.listening)await new Promise(resolve=>server.close(resolve));}
   assert.deepEqual(errors,[]);

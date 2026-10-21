@@ -1,0 +1,86 @@
+[
+  {
+    "id": "party-sector",
+    "title": "Party Sector",
+    "artist": "Joth",
+    "source_page": "https://opengameart.org/content/party-sector",
+    "source_page_sha256": "217fb1dc97d42c193b81a66f8648a2df48efc8bcbcd2cc95db74748c95cc9998",
+    "license": "CC0-1.0",
+    "verified": "2026-10-21",
+    "basis": "Artist publication license field links to CC0 1.0; no artist endorsement implied",
+    "source_url": "https://opengameart.org/sites/default/files/Party%20Sector.mp3",
+    "source_sha256": "77e1ad0bd0a7c5625a12eaa1c8099408ede6959b2ee2dbf5bace85d09a602ada"
+  },
+  {
+    "id": "black-diamond",
+    "title": "Black Diamond",
+    "artist": "Joth",
+    "source_page": "https://opengameart.org/content/black-diamond",
+    "source_page_sha256": "38d50c6b9b0f017a8bb8bed645fb4c636e986104de39614ce83e33ac11c1c8bf",
+    "license": "CC0-1.0",
+    "verified": "2026-10-21",
+    "basis": "Artist publication license field links to CC0 1.0; no artist endorsement implied",
+    "source_url": "https://opengameart.org/sites/default/files/Black%20Diamond.mp3",
+    "source_sha256": "9fd1c9a97740411e7dcaebdc9af17ab017cf070a82089a48503765a24b7bedf4"
+  },
+  {
+    "id": "funky-hip-hop-lofi-jam",
+    "title": "Funky Hip Hop Lofi Jam",
+    "artist": "omfgdude",
+    "source_page": "https://opengameart.org/content/funky-hip-hop-lofi-jam",
+    "source_page_sha256": "a92a300ccb41d8bd13a72bab7f86323b4efdc11caff4fcb0319434e78e5e21f1",
+    "license": "CC0-1.0",
+    "verified": "2026-10-21",
+    "basis": "Artist publication license field links to CC0 1.0; no artist endorsement implied",
+    "source_url": "https://opengameart.org/sites/default/files/CVP701Jam_0.ogg",
+    "source_sha256": "7c213d1c6fe01bc6b67d6c1124c6cd88afae7149ee8ec966c7f55f517eb22af9"
+  },
+  {
+    "id": "atmosphere",
+    "title": "Atmosphere",
+    "artist": "Sudocolon",
+    "source_page": "https://opengameart.org/content/atmosphere",
+    "source_page_sha256": "2b146d7755f9c0a10cd473b9d1209ccb24f7b1b83c79a96588084275f8ab3086",
+    "license": "CC0-1.0",
+    "verified": "2026-10-21",
+    "basis": "Artist publication license field links to CC0 1.0; no artist endorsement implied",
+    "source_url": "https://opengameart.org/sites/default/files/473968_Three-Point-Shot_0.mp3",
+    "source_sha256": "d544b971a06f51d21cd14ab8c933eb07aef5144f81f288d3c4c187d14d88cb1e"
+  },
+  {
+    "id": "next-to-you",
+    "title": "Next to You",
+    "artist": "Joth",
+    "source_page": "https://opengameart.org/content/next-to-you",
+    "source_page_sha256": "065562d5c085e78df7e3dc34705850f145403e16113dc7b5fb97b1145a888824",
+    "license": "CC0-1.0",
+    "verified": "2026-10-21",
+    "basis": "Artist publication license field links to CC0 1.0; no artist endorsement implied",
+    "source_url": "https://opengameart.org/sites/default/files/Next%20to%20You.mp3",
+    "source_sha256": "95d620e1ad7bd7c73366979e384f172be21ebc5fe68bdc1af3908faf8a7c7b44"
+  },
+  {
+    "id": "midnight-cruiser",
+    "title": "Midnight Cruiser",
+    "artist": "Zane Little Music",
+    "source_page": "https://opengameart.org/content/midnight-cruiser",
+    "source_page_sha256": "60986fcd611133f16a42643d81834b61882bf7db671376c1a4de658378500093",
+    "license": "CC0-1.0",
+    "verified": "2026-10-21",
+    "basis": "Artist publication license field links to CC0 1.0; no artist endorsement implied",
+    "source_url": "https://opengameart.org/sites/default/files/midnight_cruiser_0.mp3",
+    "source_sha256": "be0285ba239d85c47c6a0de6466123e3fe8dbc4ad4d9419ccd224ab8ea2b54fc"
+  },
+  {
+    "id": "midnight-moon",
+    "title": "Midnight Moon",
+    "artist": "iamoneabe",
+    "source_page": "https://opengameart.org/content/midnight-moon",
+    "source_page_sha256": "e59684f5ae8475d48274adb7ad5b0d54e7dfe04bee314b764011bb2724ef8834",
+    "license": "CC0-1.0",
+    "verified": "2026-10-21",
+    "basis": "Artist publication license field links to CC0 1.0; no artist endorsement implied",
+    "source_url": "https://opengameart.org/sites/default/files/midmoon_0.mp3",
+    "source_sha256": "c85d74fa04783b290d949cbfcddf317fd1edc2a9c3c83c98a203b1e2e098b54d"
+  }
+]

@@ -25,7 +25,7 @@ Separate $79.99 one-time pass; generation credits and quality hold remain unchan
 | ACA-016 | Hardware-style deck presentation with real controls | Agent + owner | Existing console | PARTIAL | [Presentation](docs/deck-presentation.md): browser/build checks pass; owner visual and physical touch review NOT RUN |
 | ACA-017 | Adaptive fullscreen studio and performance C layout | Agent + owner | Shared actual decks | PARTIAL | [Fullscreen report](docs/studio-fullscreen.md): native browser/layout/audio checks pass; physical monitor/device review NOT RUN |
 
-| ACA-018 | Downloaded CC0 public practice library on actual decks | Agent + listeners | Explicit redistribution rights | PARTIAL | [Three full-length tracks](docs/practice-library.md), credits/hashes, 80 tests, browser/offline/fullscreen checks PASS; enjoyment and physical venue review NOT RUN |
+| ACA-018 | Downloaded CC0 public practice library on actual decks | Agent + listeners | Explicit redistribution rights | PARTIAL | [Ten full-length tracks](docs/practice-library-ten.md), credits/hashes, 80 tests, browser/offline/fullscreen checks PASS; enjoyment and physical venue review NOT RUN |
 
 Detailed gates, source map, audio and reproduction: [Academy implementation](docs/ACADEMY_IMPLEMENTATION.md).
 Owner feedback: initial preparation FAIL; revised preparation/start PASS; full lesson and enjoyment NOT RUN.

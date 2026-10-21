@@ -1,0 +1,198 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "played": [
+      {
+        "id": "funked-up",
+        "deck": "a",
+        "duration": 66.272667,
+        "measuredPeak": 0.08924561738967896,
+        "gate": "PASS"
+      },
+      {
+        "id": "wednesday-night",
+        "deck": "b",
+        "duration": 176.64,
+        "measuredPeak": 0.08049559593200684,
+        "gate": "PASS"
+      },
+      {
+        "id": "rhythm-garden",
+        "deck": "a",
+        "duration": 207.158667,
+        "measuredPeak": 0.20689088106155396,
+        "gate": "PASS"
+      },
+      {
+        "id": "party-sector",
+        "deck": "b",
+        "duration": 96.05225,
+        "measuredPeak": 0.1569763422012329,
+        "gate": "PASS"
+      },
+      {
+        "id": "black-diamond",
+        "deck": "a",
+        "duration": 201.456979,
+        "measuredPeak": 0.18179261684417725,
+        "gate": "PASS"
+      },
+      {
+        "id": "funky-hip-hop-lofi-jam",
+        "deck": "b",
+        "duration": 189.328896,
+        "measuredPeak": 0.2505066394805908,
+        "gate": "PASS"
+      },
+      {
+        "id": "atmosphere",
+        "deck": "a",
+        "duration": 137.560813,
+        "measuredPeak": 0.08703267574310303,
+        "gate": "PASS"
+      },
+      {
+        "id": "next-to-you",
+        "deck": "b",
+        "duration": 83.539604,
+        "measuredPeak": 0.10074460506439209,
+        "gate": "PASS"
+      },
+      {
+        "id": "midnight-cruiser",
+        "deck": "a",
+        "duration": 144.408,
+        "measuredPeak": 0.20020753145217896,
+        "gate": "PASS"
+      },
+      {
+        "id": "midnight-moon",
+        "deck": "b",
+        "duration": 207.272667,
+        "measuredPeak": 0.19703978300094604,
+        "gate": "PASS"
+      }
+    ],
+    "consent": "PASS",
+    "replacementFailureKeepsTrack": "PASS",
+    "revocationDuringFetch": "PASS",
+    "layouts": [
+      {
+        "width": 1920,
+        "gate": "PASS"
+      },
+      {
+        "width": 390,
+        "gate": "PASS"
+      },
+      {
+        "width": 320,
+        "gate": "PASS"
+      }
+    ],
+    "axe": "PASS",
+    "lessonFixturesPreserved": "PASS",
+    "serverStoppedOfflineReloadAndPlayback": "PASS",
+    "cachedTracks": 10,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "played": [
+      {
+        "id": "funked-up",
+        "deck": "a",
+        "duration": 66.312,
+        "measuredPeak": 0.06304323673248291,
+        "gate": "PASS"
+      },
+      {
+        "id": "wednesday-night",
+        "deck": "b",
+        "duration": 176.664,
+        "measuredPeak": 0.08653563261032104,
+        "gate": "PASS"
+      },
+      {
+        "id": "rhythm-garden",
+        "deck": "a",
+        "duration": 207.192,
+        "measuredPeak": 0.18585205078125,
+        "gate": "PASS"
+      },
+      {
+        "id": "party-sector",
+        "deck": "b",
+        "duration": 96.096,
+        "measuredPeak": 0.1968749761581421,
+        "gate": "PASS"
+      },
+      {
+        "id": "black-diamond",
+        "deck": "a",
+        "duration": 201.504,
+        "measuredPeak": 0.18658447265625,
+        "gate": "PASS"
+      },
+      {
+        "id": "funky-hip-hop-lofi-jam",
+        "deck": "b",
+        "duration": 189.36,
+        "measuredPeak": 0.2871643304824829,
+        "gate": "PASS"
+      },
+      {
+        "id": "atmosphere",
+        "deck": "a",
+        "duration": 137.592,
+        "measuredPeak": 0.03334355354309082,
+        "gate": "PASS"
+      },
+      {
+        "id": "next-to-you",
+        "deck": "b",
+        "duration": 83.568,
+        "measuredPeak": 0.10032343864440918,
+        "gate": "PASS"
+      },
+      {
+        "id": "midnight-cruiser",
+        "deck": "a",
+        "duration": 144.432,
+        "measuredPeak": 0.1760925054550171,
+        "gate": "PASS"
+      },
+      {
+        "id": "midnight-moon",
+        "deck": "b",
+        "duration": 207.312,
+        "measuredPeak": 0.197021484375,
+        "gate": "PASS"
+      }
+    ],
+    "consent": "PASS",
+    "replacementFailureKeepsTrack": "PASS",
+    "revocationDuringFetch": "PASS",
+    "layouts": [
+      {
+        "width": 1920,
+        "gate": "PASS"
+      },
+      {
+        "width": 390,
+        "gate": "PASS"
+      },
+      {
+        "width": 320,
+        "gate": "PASS"
+      }
+    ],
+    "axe": "PASS",
+    "lessonFixturesPreserved": "PASS",
+    "serverStoppedOfflineReloadAndPlayback": "PASS",
+    "cachedTracks": 10,
+    "errors": []
+  }
+]

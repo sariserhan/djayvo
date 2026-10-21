@@ -1,7 +1,7 @@
 export function attachAcademyOffline(panel){
  const scope=new URL('/academy-offline/',location.origin).href,prefix=`jamloom-academy:${scope}:`;
  const box=document.createElement('div');box.className='academy-actions';
- box.innerHTML='<button type="button">Save free lesson offline</button><button type="button">Remove offline lesson</button><p role="status">Save while online, then reopen this page offline. Up to 40 MiB; browser cleanup may evict it. Account sync and paid chapters require a connection.</p>';
+ box.innerHTML='<button type="button">Save free lesson offline</button><button type="button">Remove offline lesson</button><p role="status">Save while online, then reopen this page offline. Up to 64 MiB; browser cleanup may evict it. Account sync and paid chapters require a connection.</p>';
  panel.append(box);const [save,remove]=box.querySelectorAll('button'),status=box.querySelector('p');
  if(!('serviceWorker'in navigator)||!('caches'in window)){save.disabled=remove.disabled=true;status.textContent='Offline storage is unavailable in this browser. The online lesson still works.';return;}
  save.onclick=async()=>{save.disabled=remove.disabled=true;status.textContent='Saving the free lesson, studio and licensed music…';

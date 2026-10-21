@@ -1,3 +1,14 @@
+# Ten-track practice library — 2026-10-21
+
+**PASS:** Expanded the public selector from 3 to 10 distinct CC0 artist recordings
+(25 minutes, 30.2 MB audio). Source licenses/hashes and all artist credits retained.
+Original three tracks and Academy fixtures are byte-identical. 80 unit tests,
+production build, Chromium/WebKit playback of all ten tracks online and after
+stopping the test server pass. Responsive and axe checks pass. Offline bounds
+now explicitly allow 64 MiB; studio is 58.6 MB and free Academy pack is 61.7 MB.
+**NOT RUN:** human enjoyment, physical venue and deployment; paid generation
+remains disabled. [Report](practice-library-ten.md).
+
 # Public practice library — 2026-10-21
 
 **PASS:** Three downloaded CC0 artist recordings wired into actual A/B decks,

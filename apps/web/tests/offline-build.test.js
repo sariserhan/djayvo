@@ -33,7 +33,7 @@ with tempfile.TemporaryDirectory() as folder:
     try:worker_source(root);raise AssertionError('oversized file accepted')
     except ValueError:pass
     (root/'app.js').write_text('public fixture')
-    for name in ['engine/jamloom_web.wasm','engine/jamloom_live.wasm','practice-audio/funked-up.mp3']:
+    for name in ['engine/jamloom_web.wasm','engine/jamloom_live.wasm','practice-audio/funked-up.mp3','practice-audio/party-sector.mp3','practice-audio/black-diamond.mp3']:
         (root/name).write_bytes(b'x'*(15*1024*1024))
     try:worker_source(root);raise AssertionError('total size budget exceeded')
     except ValueError:pass

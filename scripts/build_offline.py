@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PRACTICE_ASSETS = {'practice-audio/' + name for name in ('manifest.json', 'CREDITS.txt', 'funked-up.mp3', 'wednesday-night.mp3', 'rhythm-garden.mp3')}
+PRACTICE_ASSETS = {'practice-audio/' + name for name in ('manifest.json', 'CREDITS.txt', 'funked-up.mp3', 'wednesday-night.mp3', 'rhythm-garden.mp3', 'party-sector.mp3', 'black-diamond.mp3', 'funky-hip-hop-lofi-jam.mp3', 'atmosphere.mp3', 'next-to-you.mp3', 'midnight-cruiser.mp3', 'midnight-moon.mp3')}
 INSTALL_ASSETS = {'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-192.png', 'icon-512.png'}
 
 
@@ -25,8 +25,8 @@ def worker_source(bundle):
         if not 0 < len(data) <= 16 * 1024 * 1024:
             raise ValueError('Offline asset exceeds size limits')
         assets[name] = {'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)}
-    if sum(asset['bytes'] for asset in assets.values()) > 40 * 1024 * 1024:
-        raise ValueError('Offline bundle exceeds 40 MiB')
+    if sum(asset['bytes'] for asset in assets.values()) > 64 * 1024 * 1024:
+        raise ValueError('Offline bundle exceeds 64 MiB')
     template = (ROOT / 'scripts/service-worker.js').read_text()
     manifest = json.dumps(assets, sort_keys=True, separators=(',', ':'))
     version = hashlib.sha256((template + manifest).encode()).hexdigest()

@@ -1,0 +1,27 @@
+[
+  {
+    "path": "apps/web/practice-audio/funked-up.mp3",
+    "unchanged": "PASS",
+    "sha256": "306420edbf7493f1d660c219f42d1c6b24231b209f14745e91299ba5bf700086"
+  },
+  {
+    "path": "apps/web/practice-audio/wednesday-night.mp3",
+    "unchanged": "PASS",
+    "sha256": "e73f3d5fbebeb9d8d70a966a2c5595393e0b765eea6121069a979b4538bb7d21"
+  },
+  {
+    "path": "apps/web/practice-audio/rhythm-garden.mp3",
+    "unchanged": "PASS",
+    "sha256": "1ed6ce4e83e66d673be3f34657baa9572cbc184306726c0cedf693a900cc8400"
+  },
+  {
+    "path": "apps/site/public/academy-audio/extended.mp3",
+    "unchanged": "PASS",
+    "sha256": "0ca55afaff18a296a32126f449f91d1d5708398faa6a803ef0c505a46cf75284"
+  },
+  {
+    "path": "apps/site/public/academy-audio/theories.mp3",
+    "unchanged": "PASS",
+    "sha256": "7f54e84a9d303f42bc51ffca0b1811e47ab9294c6666af9ed5f64861abb28568"
+  }
+]
