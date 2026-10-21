@@ -27,6 +27,7 @@ export function MiniDeck({tracks}:{tracks:Track[]}) {
   if(graph.current)updateMixer(graph.current.context,graph.current.mixer,levels.current.cross,[1,1],levels.current.master);
  }
  async function play(i:number){
+  if(busy[i])return;
   const media=audio.current[i];if(!media)return;if(!media.paused){media.pause();return;}
   setError('');setBusy(v=>v.map((x,n)=>n===i?true:x));
   try{
@@ -40,7 +41,7 @@ export function MiniDeck({tracks}:{tracks:Track[]}) {
   <canvas ref={canvas} width={720} height={76} className="deck-scope" aria-label="Live mixed audio waveform" role="img"/>
   <div className="mini-decks">{tracks.map((track,i)=><div className={`mini-channel channel-${i}`} key={track.url}>
    <div className="deck-readout"><span>DECK {i?'B':'A'}</span><strong>{track.title}</strong><small>{track.artist}</small></div>
-   <div className="mini-platter" data-playing={playing[i]} aria-hidden="true"><div className="platter-label"><span>{i?'B':'A'}</span><i/></div></div>
+   <button type="button" className="mini-platter" data-playing={playing[i]} aria-pressed={playing[i]} aria-label={`${playing[i]?'Pause':'Play'} Deck ${i?'B':'A'} from platter`} disabled={busy[i]} onClick={()=>void play(i)}><span className="platter-label" aria-hidden="true"><span>{i?'B':'A'}</span><i/></span></button>
    <audio ref={element=>{audio.current[i]=element;}} src={track.url} preload="none" onPlay={()=>{document.querySelector<HTMLAudioElement>('.music-player audio')?.pause();setPlaying(v=>v.map((x,n)=>n===i?true:x));}} onPause={()=>setPlaying(v=>v.map((x,n)=>n===i?false:x))} onEnded={()=>setPlaying(v=>v.map((x,n)=>n===i?false:x))} onError={()=>setError('Practice audio could not load. Check your connection and try again.')}/>
    <div className="deck-buttons"><button type="button" aria-label={`Cue Deck ${i?'B':'A'}`} onClick={()=>{const a=audio.current[i];if(a){a.pause();a.currentTime=0;}}}>CUE</button><button type="button" className="deck-play" aria-pressed={playing[i]} aria-label={`${playing[i]?'Pause':'Play'} Deck ${i?'B':'A'}`} disabled={busy[i]} onClick={()=>void play(i)}>{busy[i]?'…':playing[i]?'Ⅱ':'▶'}</button></div>
   </div>)}</div>

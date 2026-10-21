@@ -3,6 +3,8 @@ import {aurowallObject,audioRange} from '../lib/aurowall';import {checkout} from
 test('partner catalogue accepts bounded music only, with opaque stable IDs',()=>{
  const a=aurowallObject({Key:'house/house.mp3',Size:1024,ETag:'abc'});assert.ok(a);assert.equal(a.title,'House');assert.match(a.url,/^\/api\/aurowall\/[a-f0-9]{24}$/);assert.equal(a.id,aurowallObject({Key:'house/house.mp3',Size:2048})?.id);
  for(const key of ['house/index.json','private/user/voice.mp3','../secret.mp3','house/../../voice.mp3','house/track.html','house/track.wav'])assert.equal(aurowallObject({Key:key,Size:1}),null);
+ for(const genre of ['quran','prayer','spiritual','chakra','meditation','healing','mindfulness','zen','breathing','white-noise','brown-noise','rain','forest','waves','underwater','thunder','fireplace','new-unreviewed'])assert.equal(aurowallObject({Key:genre+'/'+genre+'.mp3',Size:1024}),null,genre);
+ for(const genre of ['arabic','turkey','india','house','hip-hop','jazz','rainy-jazz'])assert.ok(aurowallObject({Key:genre+'/'+genre+'.mp3',Size:1024}),genre);
  for(const size of [0,-1,NaN,1.2,100*1024*1024+1])assert.equal(aurowallObject({Key:'house/house.mp3',Size:size}),null);
 });
 test('audio ranges support seeking and suffix reads, rejecting invalid and multiple ranges',()=>{

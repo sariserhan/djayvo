@@ -13,6 +13,12 @@ no objects or bucket policies are changed. Partner music is not CC0 and is not
 added to offline packs. Longer than 20-minute tracks play on the homepage, outside
 the existing DJ import limit.
 
+Jamloom now lists 72 music tracks from reviewed genre folders. Religious, wellness,
+nature and noise categories are excluded from listing and streaming; original R2
+objects are untouched. New genre folders require review in `lib/aurowall.ts` before
+listing. This is category-based curation, not a full listening audit.
+[Deck design, curation and validation](deck-hardware-and-curation.md).
+
 Academy Checkout stays inside Jamloom and confirms only signed-webhook access.
 Keep test/live publishable keys alongside their matching secret keys in Vercel.
 Existing sales holds remain; no new owner credential action is pending for this

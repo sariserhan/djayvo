@@ -3,9 +3,11 @@ import {createHash} from 'node:crypto';
 export type AurowallTrack={id:string;title:string;artist:string;genre:string;bytes:number;url:string};
 type StoredTrack=AurowallTrack&{key:string;etag?:string};
 const MAX_BYTES=100*1024*1024;
+// Reviewed music categories only; new folders need review before appearing on Jamloom.
+const musicGenres=new Set(`80s 90s academia acoustic africa afrobeats ambient arabic blues cafe cello chill china cinematic classical country disco dj downtempo edm electro-swing ethnic fantasy folk french funk good-vibes greek harp hip-hop house india indie indonesia italy japan jazz jazzy-lofi kpop latin lofi lounge love-piano love-songs metal morning-jazz night-jazz night-lofi oldies piano pop portuguese rain-piano rainy-jazz rainy-lofi rap reggae rnb rock romantic-guitar russian sad-lofi sad-piano slow-blues soft-soul soul synthwave techno trance tropical turkey vintage-jazz`.split(' '));
 export function aurowallObject(object:_Object):StoredTrack|null{
  const match=object.Key?.match(/^([a-z0-9-]+)\/([a-zA-Z0-9 _-]+)\.mp3$/);
- if(!match||!Number.isSafeInteger(object.Size)||object.Size!<=0||object.Size!>MAX_BYTES)return null;
+ if(!match||!musicGenres.has(match[1])||!Number.isSafeInteger(object.Size)||object.Size!<=0||object.Size!>MAX_BYTES)return null;
  const title=(s:string)=>s.replace(/[-_]/g,' ').replace(/\b[a-z]/g,c=>c.toUpperCase());
  const id=createHash('sha256').update(object.Key!).digest('hex').slice(0,24);
  return {id,title:title(match[2]),artist:'Aurowall',genre:title(match[1]),bytes:object.Size!,url:'/api/aurowall/'+id,key:object.Key!,etag:object.ETag};

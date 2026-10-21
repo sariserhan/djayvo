@@ -1,0 +1,205 @@
+
+> jamloom-site@0.1.0 prebuild
+> npm run studio:prepare
+
+
+> jamloom-site@0.1.0 studio:prepare
+> node scripts/prepare-studio.mjs && node --import tsx scripts/prepare-academy-offline.ts
+
+Setting up EMSDK environment (suppress these messages with EMSDK_QUIET=1)
+Adding directories to PATH:
+PATH += /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk
+PATH += /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten
+
+Setting environment variables:
+PATH = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk:/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten:/Users/serhansari/Documents/projects/djayvo/build-web-tools/python-env/bin:/Users/serhansari/Documents/projects/djayvo/build-web-tools/cmake-env/bin:/Users/serhansari/Documents/projects/djayvo/apps/site/node_modules/.bin:/Users/serhansari/Documents/projects/djayvo/apps/node_modules/.bin:/Users/serhansari/Documents/projects/djayvo/node_modules/.bin:/Users/serhansari/Documents/projects/node_modules/.bin:/Users/serhansari/Documents/node_modules/.bin:/Users/serhansari/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/serhansari/.nvm/versions/node/v22.23.1/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/opt/homebrew/opt/openjdk/bin:/Users/serhansari/.nvm/versions/node/v22.23.1/bin:/Users/serhansari/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/podman/bin:/Users/serhansari/.codex/tmp/arg0/codex-arg0F4BzRz:/Users/serhansari/mlx-env/bin:/Users/serhansari/.unity/bin:/Users/serhansari/.cargo/bin:/Applications/CODE/iTerm.app/Contents/Resources/utilities:/opt/homebrew/share/android-commandlinetools/platform-tools:/Users/serhansari/.vscode/extensions/openai.chatgpt-26.51007.21434-darwin-arm64/bin/macos-aarch64
+EMSDK = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk
+EMSDK_NODE = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/node/24.19.0_64bit/bin/node
+EMSDK_PYTHON = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/python/3.13.3_64bit/bin/python3
+SSL_CERT_FILE = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/python/3.13.3_64bit/lib/python3.13/site-packages/certifi/cacert.pem
+emcmake: cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE=/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_CROSSCOMPILING_EMULATOR=/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/node/24.19.0_64bit/bin/node in directory /Users/serhansari/Documents/projects/djayvo
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-web
+[ 88%] Built target jamloom_core
+[100%] Built target jamloom_web
+[ 88%] Built target jamloom_core
+[100%] Built target jamloom_live
+Built dist/web. Start with: python3 scripts/web_serve.py
+{
+  "gate": "PASS",
+  "file_count": 66,
+  "bytes": 58679932,
+  "private_audio_and_test_files_absent": "PASS",
+  "license_notices": "PASS",
+  "wasm_sha256": "1aac34227acb177b11c712a39aa8c1c23ec036b9e31e35c66d4c6f04bf068c57",
+  "wasm_bytes": 14153566,
+  "files": {
+    "academy-coach.js": "937cb7d5e790688ca4c49e7d9064ee4b8d607923245f8a36c3c7067f303b7833",
+    "academy-evaluator.js": "4beb0c95b1af27bb61eb264594612e53b30f73cdf746ea3a61aca62fcd81ca11",
+    "academy-manifest.js": "38e9e64430d594b0129fc12459452eaa48471e245e3d332bbc4a7b099d2ca67f",
+    "academy-offline.js": "1cabcf8a03c19eb69529cabc6dc01b19011531bb930469afacc5833caadd1b09",
+    "academy.css": "5a0ed0bbbac5dcc6e117cdeec5d01189b326369a911b3504ef04f36792860d1a",
+    "app.js": "9bf0a002584b8ec0949e0c11f1e6dec7fe3d0b6a980221521bb7530c3f04b155",
+    "audio.js": "5b7b18df7d733ea6b6184073e25325797135950735b81e4fae1cfee83c26968f",
+    "deck-bridge.js": "f98b310cf513628fcd1d54ee457ee380f72f3c492f71baede4abae94011b4251",
+    "deck-controls.js": "89abfceb1e318fbd316f7970703f389a95a173b2db7f3c3955516fbe5e26caa6",
+    "dj.css": "f5300dc9483c7fd115df9ed46d462c1132630ad8414f531150076e6399cb4f13",
+    "dj.html": "b05ea72a5a247a316ce68a42abbb7bda95ee707fe7a5b5642608bef57d04c783",
+    "dj.js": "696ad679c3d30ea0cebe37110c42fa9492f9acfecbdb9b20815822829ad7c1f8",
+    "engine-worker.js": "1fe55ee09f35f9e691b6214cc47d18a67f0a472e8b77c2bc76c73766963d6e45",
+    "engine/jamloom_live.wasm": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8",
+    "engine/jamloom_web.mjs": "1a8b8f7d24dfa125f8f3a537424c252bc8eb4a89a781376227f82ceef944bb01",
+    "engine/jamloom_web.wasm": "1aac34227acb177b11c712a39aa8c1c23ec036b9e31e35c66d4c6f04bf068c57",
+    "frame-deck.js": "d7ee1f05a10bb8042387165b9d714b216d3a5a610af6551e506a5dd84ba12e5e",
+    "icon-180.png": "669132c03c1b39d6fe12075796ae8d29211b99eee61ab4f295f8b99c1ac92f87",
+    "icon-192.png": "4dc9105a59d0382807605587d8cb9dbeb8c48328cd99831cbd0d9fb3d2d4beae",
+    "icon-512.png": "c9511bafcad57cdf30e30c3450e6b3d821b6be39b8c0d379d39761fc62fe23eb",
+    "icon.svg": "64ad0af183dcd26aaa2137756858ca66de352141e5bd5adab1960d770067e9a9",
+    "index.html": "9fa53d3679a717dbdc3c194bc4e67cbd73c3c5c2640853386517e3b17a36c0b9",
+    "install.js": "b86760e8426882e438a31be9ab56bb12d8eb28fe54207c9f6eeea16e2e9c69bc",
+    "instrument-rack.js": "cd4a53ebdd97fe55ccc64c06e3ec9ea9f2ed9f2a508a73903af06258a4926f47",
+    "instrument-take.js": "d87e1a57f05856af5fb6a1c89ea18a1697397390aabf8481d32d1051ee2e10fb",
+    "instrument-worklet.js": "726951382d68e7d7745b5eea21ba0a896ade00b74974fba49aa7fa45e99d4580",
+    "keyboard.js": "e3dd92be35e0949f48043fa7e582f4c7ab2e4e9fa635fc80bac37de4ace02d87",
+    "library.js": "eb82df24592e8987e91165d3ada9d8bc2b340b397dc529ce6ce9b1bfc73c1336",
+    "licenses/BLACK-AND-GREEN-GUITARS-CC0.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "licenses/EMSCRIPTEN-LICENSE.txt": "4e932924ae86904c2ec1e8916953fb516707871b74bf05733161b0ec4772db26",
+    "licenses/VCSL-LICENSE.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "licenses/VSCO-2-CE-LICENSE.txt": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673",
+    "live-take.js": "a791ec47b083bbb122792f88484086730eca26a1ef548128b2753f62be6069ad",
+    "manifest.webmanifest": "a0e66fe1fbcd3a2f1cfcf114f5cc48f1f27a71bf06b19b6cbaba0988a91cfb94",
+    "midi.js": "3d24e2d620e0f21cfc6fa9a23d6639cb447c81b67349c9e9d6eb33081bafd613",
+    "mix-automation.js": "d0792314dd83245acac7631f1e33aec571284e4859f6a417778fc4e3e075bce0",
+    "mix-recording-worklet.js": "109522c26b74fd34dc741c8925950588a470d992ee23a1d45b774217c790a036",
+    "mix-recording.js": "fca8c8c20b618ceafcfc7136ceba2fa0edf56d2b1b691e12b2d15297b9085511",
+    "mix-sources.js": "0feb7321f1b6bcce3488877b3aa9e431b1e779cf7629bb2c652d82039d9b0dec",
+    "mixer.js": "2f0527a70819c6ac98e600a7f3e0565ab61802fd0db06f44ab5dd3f1f6e2f517",
+    "novelty.js": "8aa6113f3249df76eb0cdad6149668426da577e60d19fecfa18a5f61fed00807",
+    "offline.js": "976803c76f730dcf6697204926a11b12b75c18419711c526e7fe186bd20426b7",
+    "performance-session.js": "e40f654517a876e8eea2ca07968cb293493b7d2f2e79bf673d809969cf3ad10e",
+    "phrase-pair.js": "911a5c6f17cbcec7cc038f6c1838946f090e697e1e14c7988c8ab6412b841658",
+    "practice-audio/CREDITS.txt": "08b5ab624b356d8cb09c320785d47d1904943d8acd2f563fa1b157c01346bf43",
+    "practice-audio/atmosphere.mp3": "c7ea5e6c6b2a8902797c1e2c52df96af7a396d8a798782a26c5d16b038b1cb4d",
+    "practice-audio/black-diamond.mp3": "53d1f393008ad8d25fa71d53dac003f3d4e8d87cdff59ef288969f6ea63b5697",
+    "practice-audio/funked-up.mp3": "306420edbf7493f1d660c219f42d1c6b24231b209f14745e91299ba5bf700086",
+    "practice-audio/funky-hip-hop-lofi-jam.mp3": "aac0f301ef3982270389d6cb2e55a23324e5e55beceeb68ac0826cb360ced2f5",
+    "practice-audio/manifest.json": "5d39d5435d1e6e0edbe9e1857407c54ca6b4e5d9e34488e49a3a899bbd29aa3c",
+    "practice-audio/midnight-cruiser.mp3": "c0ae886684ffec38efc75d97c2d60718ec9f3cc6a4257a4c845348ea6c872a7e",
+    "practice-audio/midnight-moon.mp3": "87d73adf16a0dcc659dec06b7f186fe533e44500f8a8cc603d6c4ea356ca3a3e",
+    "practice-audio/next-to-you.mp3": "3a886a7e9e599d5441b9478bcae00821daf5aabfc98f0f0fe1ef1978af0475c4",
+    "practice-audio/party-sector.mp3": "e77886794bc0c408332b1c6f75cb3d753b59260669eada04ee2983c82f471ff2",
+    "practice-audio/rhythm-garden.mp3": "1ed6ce4e83e66d673be3f34657baa9572cbc184306726c0cedf693a900cc8400",
+    "practice-audio/wednesday-night.mp3": "e73f3d5fbebeb9d8d70a966a2c5595393e0b765eea6121069a979b4538bb7d21",
+    "practice-library.js": "37c21b4df8bfd7606b5af78af7ee868cb46ad066af9e0b577b83915b50c9d8a9",
+    "service-worker.js": "b735f78f42b6af25e41c25d2759f518837e2a4ff8884304bfb09ece3acfd68bc",
+    "session-analysis-worker.js": "1c2c384be76284cbeb94048d98d9c231b2a3efc5957050c023975a1cef297f42",
+    "session-analysis.js": "1ee077d19a825ad5863072cd812ff3d16a0c797f307de2fe0cd9f4c05e8ba7b6",
+    "session-transport.js": "9075b7f4a9c3925f84d762b4bf42cccb2aa76bc7469d8ecc3b8317a027224f02",
+    "set-meter-worklet.js": "89c4f174107d2b32fc57878b0952bc90e319001c169c7346f45db5efc5ddc426",
+    "set-recording.js": "84797226f1b5c83b7061d8ff533b70d89a082cd3be0c7562f4bb7373d4806e45",
+    "site-announcement.js": "12abd33206f59cee6ef3073f35969cfc924d935713ec2276a899d06563e32691",
+    "studio-view.js": "9a2d71a474446a6ca6d0aba73c4541430034ab364a4cb2b653c17b2a1b716e7b",
+    "style.css": "de0b1e4983cc660a316210a461713a981ef812ddfdb019dafc12f9ff953ae8c6"
+  },
+  "public_release": "NOT RUN"
+}
+Prepared the audited browser studio and engine.
+Prepared free Academy offline pack: 71 public assets, 61782951 bytes. No account or paid content cached.
+
+> jamloom-site@0.1.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 10ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 707ms
+  Running TypeScript ...
+  Finished TypeScript in 1298ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/41) ...
+  Generating static pages using 9 workers (10/41) 
+  Generating static pages using 9 workers (20/41) 
+  Generating static pages using 9 workers (30/41) 
+✓ Generating static pages using 9 workers (41/41) in 279ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├   /[info]
+│ ├ ● /pricing
+│ ├ ● /examples
+│ ├ ● /help
+│ └ ● [+5 more paths]
+├ ○ /academy
+├ ƒ /academy/challenges/[challengeId]
+├ ƒ /academy/checkout
+├ ○ /academy/learn
+├ ƒ /academy/lessons/[lessonId]
+├   /academy/levels/[levelSlug]
+│ ├ ● /academy/levels/intro
+│ ├ ● /academy/levels/beginner
+│ ├ ● /academy/levels/elementary
+│ └ ● [+3 more paths]
+├ ƒ /academy/practice
+├ ○ /academy/progress
+├ ƒ /academy/success
+├ ƒ /account
+├ ƒ /account/[action]
+├ ƒ /account/credits
+├ ƒ /account/generations
+├ ƒ /account/purchases
+├ ƒ /admin
+├ ƒ /admin/billing
+├ ƒ /admin/inbox
+├ ƒ /admin/inbox/[id]
+├ ƒ /admin/users
+├ ƒ /api/academy/[...path]
+├ ƒ /api/academy/checkout
+├ ƒ /api/academy/stripe
+├ ƒ /api/admin/[...path]
+├ ƒ /api/aurowall
+├ ƒ /api/aurowall/[id]
+├ ƒ /api/auth/[...all]
+├ ƒ /api/catalogue/[[...path]]
+├ ƒ /api/contact
+├ ƒ /api/library
+├ ƒ /api/library/[id]/[action]
+├ ƒ /api/notifications
+├ ƒ /api/payments/apple
+├ ƒ /api/payments/checkout
+├ ƒ /api/payments/stripe
+├ ƒ /api/playlists/[[...path]]
+├ ƒ /api/site-status
+├ ƒ /api/taste
+├ ƒ /catalogue
+├ ƒ /catalogue/[id]
+├ ƒ /contact
+├ ○ /dj-studio
+├ ○ /improvise
+├ ○ /learn
+├   /learn/[slug]
+│ ├ ● /learn/voice-remix
+│ ├ ● /learn/laptop-dj
+│ └ ● /learn/live-source
+├ ƒ /library
+├ ○ /live-dj
+├ ○ /music-dna
+├ ○ /opengraph-image
+├ ƒ /playlists
+├ ƒ /playlists/[id]
+├ ƒ /review
+├ ƒ /robots.txt
+├ ƒ /sitemap.xml
+└ ƒ /support
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

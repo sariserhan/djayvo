@@ -1,5 +1,14 @@
 # Jamloom development tracker
 
+## Hardware deck design and music curation — 2026-10-21
+
+| Task | Status | Evidence / next action |
+|---|---|---|
+| Original hardware-inspired homepage and full/Academy decks | PASS | Graphite chassis, machined platters, recessed displays; shared controls and responsive layouts preserved |
+| Hover/focus frame feedback, keyboard/touch and reduced motion | PASS | Chromium/WebKit real play, cue, jog, faders, fullscreen, simulated touch and reduced motion; all output muted |
+| Remove religious and unrelated Aurowall categories from Jamloom | PASS | 72 music tracks retained; 22 categories excluded, old direct URLs return 404; bucket untouched |
+| Browser verification and deployment | PARTIAL | Local production build, 35 site/102 web tests, responsive/axe PASS; deployment pending. [Report](docs/deck-hardware-and-curation.md) |
+
 ## Inline payments and Aurowall music — 2026-10-21
 
 Owner requests payment entirely inside Jamloom and authorizes playing owned Aurowall R2 music with a partnership link. Preserve the existing sales/quality holds and private user recordings.
@@ -7,7 +16,7 @@ Owner requests payment entirely inside Jamloom and authorizes playing owned Auro
 | ID | Task | Status | Evidence / next action |
 |---|---|---|---|
 | PAY-UI-001 | Embedded web checkout and inline verified confirmation | PASS | Actual Stripe test purchase/decline/refund/repurchase/disputes; no navigation, same-session reopen, signed owner-scoped receipt |
-| AURO-001 | Read-only Aurowall R2 music catalogue and playback | PASS | 94 tracks; real range/seek/playback in Chromium/WebKit, no bucket writes or exposed secrets |
+| AURO-001 | Read-only Aurowall R2 music catalogue and playback | PASS | 72 curated tracks (original integration: 94); real range/seek/playback in Chromium/WebKit, no bucket writes or exposed secrets |
 | AURO-002 | Homepage/player and DJ selection, partnership link | PASS | Responsive/axe, explicit Play, partner links including coming-soon; online rights separate from CC0; existing 20-minute DJ limit shown |
 | AURO-003 | Verification, deployment and documentation | PASS | `a06151f` deployed READY; full CI 39673854024, hosted public gates and permanent embedded test purchase/refund PASS. Human/live-charge checks deferred; signed-in hosted music not rerun. [Report](docs/inline-payments-aurowall.md) |
 
@@ -836,6 +845,8 @@ filename/seed, timestamp, observation, desired change and eventual evidence.
 Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
+
+- [x] **2026-10-21 — Hardware deck design and music curation:** Original raised platters, graphite chassis, recessed displays and stable hover/focus outlines across homepage, studio and Academy. Read-only Aurowall catalogue reduced from 94 to 72 music tracks; excluded categories cannot stream by old IDs. Muted Chromium/WebKit transport, responsive/axe, simulated touch and reduced-motion checks PASS; build, typecheck, bundle audit, 35 site and 102 web tests PASS. Deployment pending; human checks deferred. [Report](docs/deck-hardware-and-curation.md).
 
 - [x] **2026-10-21 — Inline payments and Aurowall music:** Implementation `5587563`, disclosure/runtime `a06151f` deployed READY with full CI PASS. Embedded Stripe purchase/decline/retry/refund/repurchase/disputes and permanent production webhook fixture PASS. Read-only 94-track Aurowall catalogue, explicit homepage playback, online DJ selection and linked partnership; real R2 Chromium/WebKit seeking/playback, responsive/axe and muted output PASS. TODO, progress, rights/privacy and owner configuration updated. Existing release holds remain; authenticated hosted music UI and human/live-charge acceptance are not claimed. [Report](docs/inline-payments-aurowall.md).
 

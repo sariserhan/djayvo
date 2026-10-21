@@ -1,6 +1,10 @@
+# Hardware deck design and music curation — 2026-10-21
+
+**PASS:** Original hardware-inspired homepage/studio/Academy surfaces, stable hover/focus outlines and 72 curated Aurowall music tracks. Excluded 22 religious/wellness/nature/noise categories; old IDs return 404. Muted Chromium/WebKit playback, cue, jog, faders, fullscreen, responsive/axe, simulated touch and reduced motion pass; build/typecheck/bundle audit, 35 site and 102 web tests pass. **PARTIAL:** Deployment pending. Human checks deferred; bucket untouched and release gates retained. [Report](deck-hardware-and-curation.md), [TODO](../TODO.md).
+
 # Inline payments and Aurowall music — 2026-10-21
 
-**PASS:** Inline Stripe test checkout and verified receipt, 94 owned Aurowall recordings with explicit playback, online DJ selection and linked partnership. Actual test decline/refund/repurchase/disputes and muted Chromium/WebKit R2 playback pass. **PASS:** Runtime `a06151f` deployed READY; hosted public gates and permanent webhook purchase/refund verified. Full CI run `39673854024` passes, including website/Academy, Linux/macOS sanitizer builds and cross-platform comparison. Signed-in hosted music UI was not rerun; actual R2 browser evidence uses the local production build. Sales/quality holds remain; no storage writes or real charges. [Report](inline-payments-aurowall.md), [tracker](../TODO.md).
+**PASS:** Inline Stripe test checkout and verified receipt, 94 owned Aurowall recordings at initial integration (now 72 curated music tracks) with explicit playback, online DJ selection and linked partnership. Actual test decline/refund/repurchase/disputes and muted Chromium/WebKit R2 playback pass. **PASS:** Runtime `a06151f` deployed READY; hosted public gates and permanent webhook purchase/refund verified. Full CI run `39673854024` passes, including website/Academy, Linux/macOS sanitizer builds and cross-platform comparison. Signed-in hosted music UI was not rerun; actual R2 browser evidence uses the local production build. Sales/quality holds remain; no storage writes or real charges. [Report](inline-payments-aurowall.md), [tracker](../TODO.md).
 
 # Academy continuation — 2026-10-21
 

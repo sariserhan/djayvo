@@ -1,5 +1,8 @@
 # Inline payments and Aurowall music — 2026-10-21
 
+Current music selection is **72 tracks**, after the owner requested religious and unrelated audio be removed from Jamloom. The original 94-track integration evidence below remains historical. See [deck and curation update](deck-hardware-and-curation.md).
+
+
 The owner authorized inline payments, use of their Aurowall R2 songs, and linked partnership attribution. The existing public coming-soon, Academy sales and paid-generation holds remain in force. Human checks remain deferred.
 
 ## Payment behavior

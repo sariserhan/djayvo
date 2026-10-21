@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "browser": "chromium",
+      "tracks": 72,
+      "actualR2": true,
+      "streamAndSeek": "PASS",
+      "noAutoplay": "PASS",
+      "mutedOutput": "PASS",
+      "djLoadAndPlay": "PASS",
+      "partnerRightsLabel": "PASS",
+      "offlineFallback": "PASS",
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "axe": "PASS",
+      "console": "PASS",
+      "curationAndRemovedURLs": "PASS",
+      "platterKeyboardPlayAndCue": "PASS",
+      "jogFaderAndFullscreen": "PASS",
+      "hoverAndFocus": "PASS",
+      "reducedMotion": "PASS",
+      "academySharedDeck": "PASS",
+      "simulatedTouch": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "tracks": 72,
+      "actualR2": true,
+      "streamAndSeek": "PASS",
+      "noAutoplay": "PASS",
+      "mutedOutput": "PASS",
+      "djLoadAndPlay": "PASS",
+      "partnerRightsLabel": "PASS",
+      "offlineFallback": "PASS",
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "axe": "PASS",
+      "console": "PASS",
+      "curationAndRemovedURLs": "PASS",
+      "platterKeyboardPlayAndCue": "PASS",
+      "jogFaderAndFullscreen": "PASS",
+      "hoverAndFocus": "PASS",
+      "reducedMotion": "PASS",
+      "academySharedDeck": "PASS",
+      "simulatedTouch": "PASS"
+    }
+  ]
+}

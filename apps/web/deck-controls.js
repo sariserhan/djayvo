@@ -161,7 +161,7 @@ export function attachDeck(deck, other, { pause, start, mixer, context }) {
       samples.fill(0);
       if (context()?.state === 'running' && (!audio.paused || deck.sessionPlaying)) mixer()?.strips[id === 'a' ? 0 : 1].scope.getFloatTimeDomainData(samples);
       painter.clearRect(0, 0, scope.width, scope.height); painter.beginPath();
-      painter.strokeStyle = id === 'a' ? '#61d4e4' : '#f9a66c'; painter.lineWidth = 1.5;
+      painter.strokeStyle = id === 'a' ? '#c9fa78' : '#c6b1ff'; painter.lineWidth = 1.5;
       for (let i = 0; i < samples.length; i++) { const x = i * scope.width / samples.length, y = scope.height * (.5 - samples[i] * .45); i ? painter.lineTo(x, y) : painter.moveTo(x, y); }
       painter.stroke();
     }
