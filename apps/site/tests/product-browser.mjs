@@ -1,14 +1,16 @@
 import assert from 'node:assert/strict';
+import {silenceSpeakers} from './silent-audio.mjs';
 import {chromium,webkit} from 'playwright';
-import {writeFile} from 'node:fs/promises';
+import {mkdir,writeFile} from 'node:fs/promises';
 const base=process.env.JAMLOOM_TEST_URL??'http://127.0.0.1:4220';
 assert.equal(new URL(base).hostname,'127.0.0.1');
-const evidence=new URL('../../../docs/evidence/full-product/',import.meta.url),results=[];
+const evidence=new URL(process.env.JAMLOOM_EVIDENCE_DIR??'../../../docs/evidence/full-product/',import.meta.url),results=[];
+await mkdir(evidence,{recursive:true});
 const routes=['/','/improvise','/dj-studio','/live-dj','/music-dna','/pricing','/examples','/learn','/learn/voice-remix','/learn/laptop-dj','/learn/live-source','/help','/privacy','/terms','/licenses','/status','/download'];
 for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
- const browser=await engine.launch();
+ const browser=await engine.launch(name==='chromium'?{args:['--mute-audio']}:{});
  try{
-  const context=await browser.newContext();await context.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
+  const context=await browser.newContext();await context.addInitScript(silenceSpeakers);await context.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   for(const path of routes){
    console.log(name,path);
@@ -37,21 +39,22 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    osc.frequency.value=4000;gain.gain.value=.2;osc.connect(gain).connect(dest);osc.start();await context.resume();window.testCapture={context,stream:dest.stream};return dest.stream;
   }});});
   await page.goto(base+'/live-dj');await page.setViewportSize({width:1280,height:1000});
-  assert.ok(await page.getByRole('button',{name:'Select tab audio'}).isDisabled());
+  const live=page.locator('section').filter({has:page.getByRole('heading',{name:'Browser Live Source',exact:true})});
+  assert.ok(await live.getByRole('button',{name:'Select tab audio'}).isDisabled());
   await page.getByLabel('I have permission').check();await page.getByRole('button',{name:'Select tab audio'}).click();
-  await page.waitForFunction(()=>!document.querySelector('.product-controls button').textContent.includes('Waiting'));
+  await page.waitForFunction(()=>!document.querySelectorAll('.product-controls')[1].querySelector('button').textContent.includes('Waiting'));
   const captureTracks=await page.evaluate(()=>window.testCapture?.stream.getAudioTracks().length??0);
   if(captureTracks){
-  assert.match(await page.locator('output').innerText(),/silent/);
+  assert.match(await live.locator('output').innerText(),/silent/);
   await page.getByLabel('I have confirmed').check();await page.waitForFunction(()=>/−|\-/.test(document.querySelector('output').textContent));
-  const peak=()=>page.locator('output').innerText().then(t=>Number(t.match(/(-?[\d.]+) dBFS/)?.[1]??-100));
+  const peak=()=>live.locator('output').innerText().then(t=>Number(t.match(/(-?[\d.]+) dBFS/)?.[1]??-100));
   const loud=await peak();assert.ok(loud>-35&&loud<-10);
   await page.getByLabel('Low-pass tone').focus();await page.getByLabel('Low-pass tone').press('Home');await page.waitForTimeout(400);
   assert.ok(await peak()<loud-15);
   await page.getByLabel('Bypass effects').check();await page.waitForTimeout(400);assert.ok(Math.abs(await peak()-loud)<3);
   await page.getByRole('button',{name:'Stop capture / panic'}).click();assert.ok(await page.evaluate(()=>window.testCapture.stream.getTracks().every(t=>t.readyState==='ended')));
-  }else assert.match(await page.locator('[role=status]').innerText(),/supplied no audio/);
-  for(const mode of ['denied','silent']){await page.evaluate(m=>window.captureMode=m,mode);await page.getByRole('button',{name:'Select tab audio'}).click();await page.waitForFunction(()=>!document.querySelector('[role=status]').textContent.includes('Capture active'));assert.ok(await page.getByRole('button',{name:'Select tab audio'}).isEnabled());}
+  }else assert.match(await live.locator('[role=status]').innerText(),/supplied no audio/);
+  for(const mode of ['denied','silent']){await page.evaluate(m=>window.captureMode=m,mode);await page.getByRole('button',{name:'Select tab audio'}).click();await page.waitForFunction(()=>!document.querySelectorAll('[role=status]')[1].textContent.includes('Capture active'));assert.ok(await page.getByRole('button',{name:'Select tab audio'}).isEnabled());}
   await page.screenshot({path:new URL(name+'-live-source.png',evidence).pathname,fullPage:true});
   assert.deepEqual(errors,[]);
   assert.equal((await context.request.post(base+'/api/payments/checkout')).status(),503);

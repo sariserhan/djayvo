@@ -24,6 +24,33 @@ Keep test/live publishable keys alongside their matching secret keys in Vercel.
 Existing sales holds remain; no new owner credential action is pending for this
 integration. [Implementation, evidence and exact configuration names](inline-payments-aurowall.md).
 
+## Live Source Mac companion — 2026-10-21
+
+Build and open the local owner preview with `./script/build_and_run.sh` from the
+repository root. The app is also at `dist/Jamloom Live.app`; it starts stopped.
+Choose a permitted app currently playing audio and a stereo output, confirm
+source permission, then Start Live Source. macOS requests audio-capture permission
+on first use; manage it in System Settings → Privacy & Security → Screen & System
+Audio Recording. Do not select personal calls or protected content for tests.
+
+The native app handles EQ, filter, echo, roll and pulse-following percussion locally.
+Stop / Panic releases the selected app’s original route; it cannot pause that app.
+Device-format changes and sleep stop capture. Additional hardware input channels
+or unsupported stereo formats are rejected rather than capturing a microphone.
+For website control, choose **Copy pairing code and open website**, paste the code
+into `/live-dj`, and Connect. Allow local-network access if asked. Native controls
+remain available if a browser blocks loopback. Pairing is valid for 15 minutes;
+a connected page must keep polling or capture stops within five seconds. Re-pairing
+stops the previous paired capture. Codes stay out of URLs and are never server secrets.
+
+**Owner/device checks deferred:** verify real permission-denied/granted capture,
+no doubled playback, Stop/crash restoration, output unplug/rate change, physical
+latency and a 60-minute set. These are not established by the silent tests. The app
+is ad-hoc signed for local use; Developer ID signing/notarization and public download
+are not complete. No microphone sampling or continual AI phrase integration is added
+to the companion; the existing studio phrase recorder remains separate.
+[Evidence, compatibility and commands](live-source-companion.md).
+
 ## Read this first
 
 The four-product specification is at

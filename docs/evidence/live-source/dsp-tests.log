@@ -1,0 +1,1 @@
+PASS: bounds, stereo, EQ/filter bypass, roll/echo ceiling, nonfinite input, muted output, pulse/relock; 768000 frames in 22.5469 ms (offline CPU only)

@@ -13,7 +13,7 @@ export const guides={
  'Live Source asks the browser to share a chosen tab or screen source. Audio availability depends on the browser and selected surface. A screen selection without an audio track is rejected. Jamloom does not store, display or upload captured video frames.',
  'Processing a source does not provide control of its transport. Pause, seek and cue remain in the original application. Protected sources can be silent or unavailable; Jamloom does not attempt to bypass those protections.',
  'The browser may leave the original audio audible. Processed monitoring starts muted. Confirm the original path is not also reaching your speakers before enabling monitoring. Stop capture immediately if you hear doubled audio or feedback.',
- 'Technical access does not establish permission to remix, record, redistribute or perform music publicly. Choose sources you are entitled to use. The native system-capture companion and automatic output isolation remain unreleased.']},
+ 'Technical access does not establish permission to remix, record, redistribute or perform music publicly. Choose sources you are entitled to use. The Mac companion owner preview captures one selected process using a private Core Audio tap and suppresses its original output while the route is active. It excludes its own process and stops on output loss, sleep or a disconnected paired website. It supports stereo output at 32–96 kHz; additional input channels or unsupported layouts are rejected. Native EQ, filter, echo, roll and confidence-gated pulse percussion run locally; no PCM goes to the browser. The browser fallback retains its manual isolation check. Native physical listening and venue reliability are not certified.']},
 } as const;
 export const information={
  pricing:{title:'Pricing and generation credits',description:'Local DJ tools are free to try. Paid generation remains closed pending quality and financial validation.',paragraphs:[
@@ -52,7 +52,7 @@ export const information={
  status:{title:'Product availability',description:'What works today, what is experimental and what remains unreleased.',paragraphs:[
  'AI Improvisation: local recording/import, rendering and export exist. Musical acceptance remains failed; paid cloud improvisation is closed.',
  'DJ Studio: existing local decks, mixer, instruments and effects. Physical routing, genuine scratch behavior and full venue endurance are not certified.',
- 'Live Audio DJ: browser-source processing preview. Native companion and automatic output isolation are not released.',
+ 'Live Audio DJ: Mac native companion owner preview with paired website controls, plus browser-source processing fallback. Physical routing and venue acceptance remain open.',
  'My Music DNA: explicit local preferences, creative briefs and optional private web account saving where configured. Audio generation and iPhone account sync are not released.',
  'Payments: embedded Stripe test checkout and signed payment verification are implemented; live purchasing remains closed. This is a capability report, not a real-time provider uptime monitor.']},
  download:{title:'Jamloom on your devices',description:'Use Jamloom in a browser; native iPhone distribution is not yet public.',paragraphs:[

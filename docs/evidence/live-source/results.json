@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "browser": "chromium",
+      "realNativeHTTP": true,
+      "syntheticTelemetry": true,
+      "realSystemCapture": "NOT RUN",
+      "pairingAndOrigin": "PASS",
+      "controlsAndPanic": "PASS",
+      "browserFallback": "PASS",
+      "invalidToken": "PASS",
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "axe": "PASS",
+      "noAudioOutput": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "realNativeHTTP": true,
+      "syntheticTelemetry": true,
+      "realSystemCapture": "NOT RUN",
+      "pairingAndOrigin": "PASS",
+      "controlsAndPanic": "PASS",
+      "browserFallback": "PASS",
+      "invalidToken": "PASS",
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "axe": "PASS",
+      "noAudioOutput": "PASS"
+    }
+  ]
+}

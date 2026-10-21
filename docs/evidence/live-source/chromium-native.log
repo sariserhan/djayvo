@@ -1,0 +1,13 @@
+Building for debugging...
+Build complete! (0.19 sec)
+Test Suite 'Selected tests' started at 2026-10-21 17:31:28.532.
+Test Suite 'JamloomLiveTests.xctest' started at 2026-10-21 17:31:28.532.
+Test Suite 'BrowserFixtureTests' started at 2026-10-21 17:31:28.532.
+Test Case '-[JamloomLiveTests.BrowserFixtureTests testLocalControlFixture]' started.
+Test Case '-[JamloomLiveTests.BrowserFixtureTests testLocalControlFixture]' passed (2.131 seconds).
+Test Suite 'BrowserFixtureTests' passed at 2026-10-21 17:31:30.663.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.131 (2.131) seconds
+Test Suite 'JamloomLiveTests.xctest' passed at 2026-10-21 17:31:30.663.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.131 (2.131) seconds
+Test Suite 'Selected tests' passed at 2026-10-21 17:31:30.663.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.131 (2.132) seconds

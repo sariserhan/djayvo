@@ -1,5 +1,17 @@
 # Jamloom development tracker
 
+## Live Audio DJ — 2026-10-21
+
+Owner authorized live-audio implementation. Deployment must happen through GitHub pushes, never direct CLI deployment. Human checks remain deferred; automation must stay muted.
+
+| Task | Status | Evidence / next action |
+|---|---|---|
+| Native Mac selected-process capture, output routing and panic | PARTIAL | Implemented and packaged; Mac launch/loopback binding PASS. OS permission, actual capture, source restoration and physical routing NOT RUN |
+| Native EQ/filter/echo/roll, pulse confidence and optional percussion | PASS, technical | Portable fixed-buffer DSP, reused procedural voices; PCM and ASan/UBSan bounds/filter/bypass/pulse tests PASS. Listening and hardware deadlines NOT RUN |
+| Paired browser controls and existing tab fallback | PASS, local | Real native HTTP + synthetic status fixture in Chromium/WebKit; origin/token/expiry, controls/panic, responsive/axe PASS. HTTPS owner-site pairing NOT RUN |
+| Build, browser/native validation, docs and GitHub CI | PARTIAL | Build/typecheck/35 site tests/bundle audit, 5 Swift tests and two browser suites PASS; GitHub CI pending. [Report](docs/live-source-companion.md) |
+
+
 ## Hardware deck design and music curation — 2026-10-21
 
 | Task | Status | Evidence / next action |
@@ -188,7 +200,7 @@ Every row expands an epic into the next acceptance task; historical completed wo
 | Compute / watchdog / provider shutdown | Bound rental/account identity, complete inventory, stop/cost evidence, retry safety | Agent | PARTIAL | [Watchdog](docs/generation-watchdog.md); mocked failure/restart tests pass, provider execution and deployment NOT RUN | Watchdog follow-up |
 | DJ / desktop / controls | Actual audio controls; physical 60-minute set | Agent + owner | PARTIAL | Chromium/WebKit PCM/control/offline regression pass; physical endurance/cue routing open | Full-product checkpoint |
 | Live / browser / capture | Explicit capture, real local FX, panic and isolation | Agent + owner | PARTIAL | Chromium PCM filter/bypass/stop pass; WebKit no-track fallback passes; actual permissions/isolation NOT RUN | Full-product checkpoint |
-| Live / companion / macOS | Paired native loopback, output exclusion, measured transport | Agent + owner | NOT RUN | Not implemented; OS permission alone does not complete it | — |
+| Live / companion / macOS | Paired native loopback, output exclusion, measured transport | Agent + owner | PARTIAL | Native Core Audio tap/output/effects and authenticated web controls implemented; build/launch/PCM/HTTP/browser PASS. Actual capture, physical latency/restoration/endurance NOT RUN. [Report](docs/live-source-companion.md) | Live Source checkpoint |
 | Taste / web / explicit profile | Local/private account CRUD, transparent preferences, tenant/CAS safety | Agent | PASS | Three-user HTTP/auth tests, race/size/origin/deletion validation; no trained taste claim | Full-product checkpoint |
 | Taste / composition / generation | Original enjoyable audio from preferences and lawful data | Agent + listeners | NOT RUN | Planning briefs only; quality gate failed | — |
 | iOS / parity / two experiences | Local improvisation + taste, verified account/credit sync | Agent + owner | PARTIAL | 12 simulator tests pass; local taste added; account/payment/device parity open | Full-product checkpoint |
@@ -845,6 +857,8 @@ filename/seed, timestamp, observation, desired change and eventual evidence.
 Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
+
+- [x] **2026-10-21 — Live Source local implementation:** Mac companion selects one audio process and stereo output; private tap suppresses original output while read, with stop/error/sleep/paired-disconnect cleanup. Fixed-buffer native EQ/filter/echo/roll and confidence-gated percussion; authenticated loopback control with exact origins, 15-minute tokens and 5-second heartbeat timeout. Packaged app launch, portable DSP/sanitizers, Swift security tests, real HTTP/browser controls and muted browser fallback PASS. Native capture/hardware/listening, hosted HTTPS pairing and public signed distribution NOT RUN. GitHub-only delivery. [Report](docs/live-source-companion.md).
 
 - [x] **2026-10-21 — Hardware deck design and music curation:** Original raised platters, graphite chassis, recessed displays and stable hover/focus outlines across homepage, studio and Academy. Read-only Aurowall catalogue reduced from 94 to 72 music tracks; excluded categories cannot stream by old IDs. Muted Chromium/WebKit transport, responsive/axe, simulated touch and reduced-motion checks PASS; build, typecheck, bundle audit, 35 site and 102 web tests PASS. Runtime `c308eea` deployed READY with exact hosted assets/gates and full CI `39676250203` PASS; human checks deferred. [Report](docs/deck-hardware-and-curation.md).
 

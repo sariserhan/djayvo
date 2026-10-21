@@ -80,6 +80,9 @@ jobs:
           cmake --build build-ci --parallel 3
       - name: Test
         run: ctest --test-dir build-ci --output-on-failure
+      - name: Verify Mac Live Source companion without capturing audio
+        if: matrix.os == 'macos-15' && matrix.sanitizers == 'OFF'
+        run: swift test --package-path apps/desktop-companion
       - name: Compile iPhone release app
         if: matrix.os == 'macos-15' && matrix.sanitizers == 'OFF'
         run: |

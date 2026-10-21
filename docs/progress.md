@@ -1,3 +1,7 @@
+# Live Audio DJ — 2026-10-21
+
+**PASS, local implementation:** Mac companion, private selected-process tap/stereo routing, fixed-buffer native effects, pulse confidence/percussion and authenticated website controls. Packaged launch, muted DSP/sanitizers, five Swift tests, actual native HTTP with synthetic telemetry in Chromium/WebKit, responsive/axe and existing browser fallback pass. **PARTIAL:** Actual OS capture/physical routing/latency/endurance, human listening and hosted HTTPS pairing are NOT RUN. GitHub CI pending; no direct deployment. [Report](live-source-companion.md).
+
 # Hardware deck design and music curation — 2026-10-21
 
 **PASS:** Original hardware-inspired homepage/studio/Academy surfaces, stable hover/focus outlines and 72 curated Aurowall music tracks. Excluded 22 religious/wellness/nature/noise categories; old IDs return 404. Muted Chromium/WebKit playback, cue, jog, faders, fullscreen, responsive/axe, simulated touch and reduced motion pass; build/typecheck/bundle audit, 35 site and 102 web tests pass. **PASS:** Runtime `c308eea` deployed READY; exact hosted assets and public gates verified. Full CI `39676250203` passes, including website/Academy, Linux/macOS sanitizer builds and cross-platform comparison. Human checks deferred; bucket untouched and release gates retained. [Report](deck-hardware-and-curation.md), [TODO](../TODO.md).
