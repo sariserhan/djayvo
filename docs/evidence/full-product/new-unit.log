@@ -1,0 +1,12 @@
+✔ tax, Apple fee tier, fixed fees, refunds, FX and overhead reduce spendable proceeds (0.645ms)
+✔ Stripe signatures require exact body, timestamp and sandbox credentials (5.051625ms)
+✔ Checkout fulfillment rereads paid state, rejects unpaid, wrong totals and live payments (0.560625ms)
+✔ taste derives explicit dimensions, never audio attributes from titles (0.588542ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 309.093375

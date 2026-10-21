@@ -1,0 +1,322 @@
+{
+  "status": "PASS",
+  "quality": "NOT RUN",
+  "method": "Existing studio compositionKey, ignoring tempo, tonic transposition, opening, velocities and sample takes. Track comparison ignores velocities and key. Exact structure only; not perceptual similarity.",
+  "seed": 4123,
+  "records": [
+    {
+      "input": "owner-speech",
+      "style": "hiphop",
+      "plan_sha256": "933a30546db2d7370c9856731648be2b78b3ad3f0e0e8574ecaab74fb3ff926f",
+      "composition_key": "7bee26c9d18148564fed59f7c832c3ea5075015c463a21c5539a023a22f15a8a",
+      "tracks": [
+        {
+          "instrument": "piano",
+          "notes": 63,
+          "structure": "2b6ae17e0e33d237d15cee064e8cfef9292d0a9cb0a6015076fd1a242e08e9a5"
+        },
+        {
+          "instrument": "bass",
+          "notes": 22,
+          "structure": "799e86487044299bf3b105dbafb7666381cb28a9e9429ffee791fc6d99a13e0b"
+        },
+        {
+          "instrument": "drums",
+          "notes": 85,
+          "structure": "1d98608c7f74895e57dc7d6ca450e17ae0068f6f51e993ee8a9e1e132addeac9"
+        }
+      ]
+    },
+    {
+      "input": "ls-2277-149896-0026",
+      "style": "reggae",
+      "plan_sha256": "18e331458bf7c32eaee5ca9eac04199ccf29814a37e2eb5015f9567db3ff6e3a",
+      "composition_key": "6ba4337125e771daeff730ec775e2830bb10315691aef087abd5d0725f9336bd",
+      "tracks": [
+        {
+          "instrument": "organ",
+          "notes": 79,
+          "structure": "b72f0d70902820c9115b98e3577b4c6cce6520efa2dbcb391e29afec8eda28f2"
+        },
+        {
+          "instrument": "bass",
+          "notes": 16,
+          "structure": "bba4844a6e1ede46664ba541506452a352149bff2c1d35f21c0fdd4fd7edd1b5"
+        },
+        {
+          "instrument": "drums",
+          "notes": 57,
+          "structure": "7bb79cb818e8bc18cc1551ab9cf946afb308f8d26f8621caecf6df52bd9c31b8"
+        }
+      ]
+    },
+    {
+      "input": "ls-2035-147960-0013",
+      "style": "experimental",
+      "plan_sha256": "1aaf353c4772cbd3db89e191b19b98ebea6e92ae9e5069d636e62227ac72558f",
+      "composition_key": "c20ee881836144ac2f3738ed15478828b070b82001852dbea80812d43df5674d",
+      "tracks": [
+        {
+          "instrument": "piano",
+          "notes": 51,
+          "structure": "c05f7df47301d8e8e69246eecea099a150db171707803027411489c7b1b21213"
+        },
+        {
+          "instrument": "bass",
+          "notes": 23,
+          "structure": "3e36dc71ea7ddcac60222f5d75333df803b62069a261484c1d4758e5fdafe54a"
+        },
+        {
+          "instrument": "drums",
+          "notes": 95,
+          "structure": "0fb82c7a226b5ff451ce294e6424729318ba19d9c483d19283923023d85ae5e6"
+        },
+        {
+          "instrument": "lead",
+          "notes": 10,
+          "structure": "d0e59ae26757bce33056c0836cc04948152bf4bf2bc144c233d3dfa32c7f5b26"
+        }
+      ]
+    },
+    {
+      "input": "ls-2086-149220-0047",
+      "style": "hiphop",
+      "plan_sha256": "edc0861d3d5c0e7b58d65b0e1da53abbbaf6bf58cb9cce76c0c0ac417fe1bdb5",
+      "composition_key": "12c05d339ec7781b1019c965fe6522cabee42f247224f877f60c9f90522e8fa4",
+      "tracks": [
+        {
+          "instrument": "piano",
+          "notes": 63,
+          "structure": "4a331c81bf8a3895caaf556f700eef3896987f90ce2238d5c55142177f96c08d"
+        },
+        {
+          "instrument": "bass",
+          "notes": 22,
+          "structure": "799e86487044299bf3b105dbafb7666381cb28a9e9429ffee791fc6d99a13e0b"
+        },
+        {
+          "instrument": "drums",
+          "notes": 85,
+          "structure": "1d98608c7f74895e57dc7d6ca450e17ae0068f6f51e993ee8a9e1e132addeac9"
+        }
+      ]
+    },
+    {
+      "input": "commons-laughter",
+      "style": "experimental",
+      "plan_sha256": "c8aa2954e016a4d72dcf120d10ce93ede99af443bc964462ca936cde14714c2a",
+      "composition_key": "4a26305ea0bb16d9734014d6603cecf50ae4240a0e9816c7e8b8f443f10622e7",
+      "tracks": [
+        {
+          "instrument": "piano",
+          "notes": 51,
+          "structure": "c05f7df47301d8e8e69246eecea099a150db171707803027411489c7b1b21213"
+        },
+        {
+          "instrument": "bass",
+          "notes": 23,
+          "structure": "3e36dc71ea7ddcac60222f5d75333df803b62069a261484c1d4758e5fdafe54a"
+        },
+        {
+          "instrument": "drums",
+          "notes": 95,
+          "structure": "0fb82c7a226b5ff451ce294e6424729318ba19d9c483d19283923023d85ae5e6"
+        },
+        {
+          "instrument": "lead",
+          "notes": 10,
+          "structure": "e5ce9d023de2d67bbbda74cf5ece171a3643bf5e2948dc2cce9ef424e306884f"
+        }
+      ]
+    },
+    {
+      "input": "ls-7976-110124-0019",
+      "style": "hiphop",
+      "plan_sha256": "9995c23225b3fa48200047a43bebe8881ee7943a3dc5aac8e5bae51daffef81c",
+      "composition_key": "93562dbecc95cf3c8ce46ff399fd84a694f231c9ff96e569c5a737fae8e9cd95",
+      "tracks": [
+        {
+          "instrument": "piano",
+          "notes": 63,
+          "structure": "280fb534643edbbdaa4a299bbdd51c1e5d35c473ba316866ce148c8d5ff0c7c6"
+        },
+        {
+          "instrument": "bass",
+          "notes": 22,
+          "structure": "799e86487044299bf3b105dbafb7666381cb28a9e9429ffee791fc6d99a13e0b"
+        },
+        {
+          "instrument": "drums",
+          "notes": 85,
+          "structure": "1d98608c7f74895e57dc7d6ca450e17ae0068f6f51e993ee8a9e1e132addeac9"
+        }
+      ]
+    },
+    {
+      "input": "ls-1988-147956-0018",
+      "style": "reggae",
+      "plan_sha256": "938453eedb53725bd4fefedc2de21dcddbcf11fed16f6c653bdcb26ff2544c30",
+      "composition_key": "949d891888ea558d23f0aabebea49abf558881469bced0577ace106d2b5ab5ff",
+      "tracks": [
+        {
+          "instrument": "organ",
+          "notes": 79,
+          "structure": "26559db9d0cc97ae7fd536ce67b7883f4e87c71a74890cced756b86a3ce06840"
+        },
+        {
+          "instrument": "bass",
+          "notes": 16,
+          "structure": "bba4844a6e1ede46664ba541506452a352149bff2c1d35f21c0fdd4fd7edd1b5"
+        },
+        {
+          "instrument": "drums",
+          "notes": 57,
+          "structure": "7bb79cb818e8bc18cc1551ab9cf946afb308f8d26f8621caecf6df52bd9c31b8"
+        }
+      ]
+    },
+    {
+      "input": "ls-777-126732-0074",
+      "style": "experimental",
+      "plan_sha256": "bd1e05dbee92e24052ad0382638c0485f76f436e1a5442c7de63a6ebfbd653cf",
+      "composition_key": "da54dd44581548f91b6e44d57ca5eb9d93504246161f1b766e2447d0cf6e5892",
+      "tracks": [
+        {
+          "instrument": "piano",
+          "notes": 51,
+          "structure": "c05f7df47301d8e8e69246eecea099a150db171707803027411489c7b1b21213"
+        },
+        {
+          "instrument": "bass",
+          "notes": 23,
+          "structure": "3e36dc71ea7ddcac60222f5d75333df803b62069a261484c1d4758e5fdafe54a"
+        },
+        {
+          "instrument": "drums",
+          "notes": 95,
+          "structure": "0fb82c7a226b5ff451ce294e6424729318ba19d9c483d19283923023d85ae5e6"
+        },
+        {
+          "instrument": "lead",
+          "notes": 10,
+          "structure": "21c83bdbf59ff5d868b71ff6bf76e4a2c221d47f4247fdcbef3d5dc5fc0d4873"
+        }
+      ]
+    },
+    {
+      "input": "ls-84-121123-0012",
+      "style": "hiphop",
+      "plan_sha256": "517c8f929c748c8e463c8a82a7ae62717c840973becdc28496a6d8d8c0c3c6fa",
+      "composition_key": "38ef0303caf4b3d71f700b3ef27232700120108e05cba168f83826a0512b9963",
+      "tracks": [
+        {
+          "instrument": "piano",
+          "notes": 63,
+          "structure": "beda140fced98e97c63bd134c63b9f91f5ba006fbcb42d7bc43c59ece6a92955"
+        },
+        {
+          "instrument": "bass",
+          "notes": 22,
+          "structure": "799e86487044299bf3b105dbafb7666381cb28a9e9429ffee791fc6d99a13e0b"
+        },
+        {
+          "instrument": "drums",
+          "notes": 85,
+          "structure": "1d98608c7f74895e57dc7d6ca450e17ae0068f6f51e993ee8a9e1e132addeac9"
+        }
+      ]
+    },
+    {
+      "input": "commons-claps",
+      "style": "experimental",
+      "plan_sha256": "6c2c2cafe14cc99b207863deb3eec8685694610ff707004bd53b257fafbadbee",
+      "composition_key": "ac9087e627c98c8191359933ec38c2f6c2621269e7bc7dd691d21c7854f992b8",
+      "tracks": [
+        {
+          "instrument": "piano",
+          "notes": 51,
+          "structure": "c05f7df47301d8e8e69246eecea099a150db171707803027411489c7b1b21213"
+        },
+        {
+          "instrument": "bass",
+          "notes": 23,
+          "structure": "3e36dc71ea7ddcac60222f5d75333df803b62069a261484c1d4758e5fdafe54a"
+        },
+        {
+          "instrument": "drums",
+          "notes": 95,
+          "structure": "0fb82c7a226b5ff451ce294e6424729318ba19d9c483d19283923023d85ae5e6"
+        },
+        {
+          "instrument": "lead",
+          "notes": 10,
+          "structure": "42a53407788dd3f03ccc4240d4d15198dd7978e6176f602c318bcd83385ea733"
+        }
+      ]
+    }
+  ],
+  "repeated_compositions": [],
+  "repeated_tracks": [
+    {
+      "instrument": "piano",
+      "groups": [
+        [
+          "ls-2035-147960-0013",
+          "commons-laughter",
+          "ls-777-126732-0074",
+          "commons-claps"
+        ]
+      ]
+    },
+    {
+      "instrument": "bass",
+      "groups": [
+        [
+          "owner-speech",
+          "ls-2086-149220-0047",
+          "ls-7976-110124-0019",
+          "ls-84-121123-0012"
+        ],
+        [
+          "ls-2277-149896-0026",
+          "ls-1988-147956-0018"
+        ],
+        [
+          "ls-2035-147960-0013",
+          "commons-laughter",
+          "ls-777-126732-0074",
+          "commons-claps"
+        ]
+      ]
+    },
+    {
+      "instrument": "drums",
+      "groups": [
+        [
+          "owner-speech",
+          "ls-2086-149220-0047",
+          "ls-7976-110124-0019",
+          "ls-84-121123-0012"
+        ],
+        [
+          "ls-2277-149896-0026",
+          "ls-1988-147956-0018"
+        ],
+        [
+          "ls-2035-147960-0013",
+          "commons-laughter",
+          "ls-777-126732-0074",
+          "commons-claps"
+        ]
+      ]
+    },
+    {
+      "instrument": "organ",
+      "groups": []
+    },
+    {
+      "instrument": "lead",
+      "groups": []
+    }
+  ]
+}

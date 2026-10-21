@@ -1,0 +1,67 @@
+{
+  "records": 10,
+  "repeated_compositions": [],
+  "repeated_tracks": [
+    {
+      "instrument": "piano",
+      "groups": [
+        [
+          "ls-2035-147960-0013",
+          "commons-laughter",
+          "ls-777-126732-0074",
+          "commons-claps"
+        ]
+      ]
+    },
+    {
+      "instrument": "bass",
+      "groups": [
+        [
+          "owner-speech",
+          "ls-2086-149220-0047",
+          "ls-7976-110124-0019",
+          "ls-84-121123-0012"
+        ],
+        [
+          "ls-2277-149896-0026",
+          "ls-1988-147956-0018"
+        ],
+        [
+          "ls-2035-147960-0013",
+          "commons-laughter",
+          "ls-777-126732-0074",
+          "commons-claps"
+        ]
+      ]
+    },
+    {
+      "instrument": "drums",
+      "groups": [
+        [
+          "owner-speech",
+          "ls-2086-149220-0047",
+          "ls-7976-110124-0019",
+          "ls-84-121123-0012"
+        ],
+        [
+          "ls-2277-149896-0026",
+          "ls-1988-147956-0018"
+        ],
+        [
+          "ls-2035-147960-0013",
+          "commons-laughter",
+          "ls-777-126732-0074",
+          "commons-claps"
+        ]
+      ]
+    },
+    {
+      "instrument": "organ",
+      "groups": []
+    },
+    {
+      "instrument": "lead",
+      "groups": []
+    }
+  ]
+}

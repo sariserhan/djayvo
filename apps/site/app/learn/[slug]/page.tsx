@@ -1,0 +1,7 @@
+import {notFound} from 'next/navigation';
+import {guides} from '../../../lib/editorial';
+import {pageMetadata,origin} from '../../../lib/product';
+export const dynamicParams=false;
+export function generateStaticParams(){return Object.keys(guides).map(slug=>({slug}));}
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const g=guides[slug as keyof typeof guides];return g?pageMetadata(g.title,g.description,'/learn/'+slug):{};}
+export default async function Guide({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const g=guides[slug as keyof typeof guides];if(!g)notFound();const crumbs={'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Learn',item:origin+'/learn'},{'@type':'ListItem',position:2,name:g.title,item:origin+'/learn/'+slug}]};return <article className="product-document"><p><a href="/learn">Learn</a> / {g.title}</p><h1>{g.title}</h1>{g.paragraphs.map(p=><p key={p}>{p}</p>)}<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(crumbs).replaceAll('<','\\u003c')}}/></article>}

@@ -1,0 +1,4 @@
+import { ProductIntro } from '../product-intro';
+import { pageMetadata } from '../../lib/product';
+export const metadata=pageMetadata('AI voice remix','Turn a short permitted recording into three local musical arrangements. Preview and export without a cloud upload.','/improvise');
+export default function Improvise(){return <><ProductIntro slug="improvise"/><section className="product-panel"><h2>Try the local composer</h2><ol><li>Confirm recording permission and import or record a short sound.</li><li>Preview the source and choose a musical direction.</li><li>Generate, compare and export. Sign in only if you choose cloud saving.</li></ol><a className="primary" href="/studio/index.html">Start local remix</a><p>Free local processing. Current recording limits and supported WAV formats appear in the workspace. Microphone access needs HTTPS or localhost.</p><a href="/learn/voice-remix">Recording and remix guide →</a></section></>}

@@ -33,6 +33,9 @@
 		DBFBC4F31DF6F0CB295AF394 /* remix_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2E1E68C9ABC94A383A32FB1 /* remix_renderer.cpp */; };
 		E07ECC2B01E502BECE021568 /* RemixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99348EDE4409EE5634E7B04 /* RemixTests.swift */; };
 		E1B9CE16A93E8204B03E685C /* wav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A30A1429CEC231AA6781083 /* wav.cpp */; };
+		EE39F0EBB7A7417B7BC0ED04 /* CreditPurchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A88C99286E4985988944820 /* CreditPurchases.swift */; };
+		F47E4D2BF8819425A903E93D /* MusicDNA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308717A9D0484D1DACC5686E /* MusicDNA.swift */; };
+		1E65F737C92FCD05BA449BC6 /* TasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E331568D805ED53D875FE99 /* TasteTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,9 @@
 		EAD11EDE383D9F69354B4DFC /* JamloomTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = JamloomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF199AB88834F95E2DC8553 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F1142DEBF00EC2433096C20B /* FlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTests.swift; sourceTree = "<group>"; };
+		9A88C99286E4985988944820 /* CreditPurchases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditPurchases.swift; sourceTree = "<group>"; };
+		308717A9D0484D1DACC5686E /* MusicDNA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDNA.swift; sourceTree = "<group>"; };
+		9E331568D805ED53D875FE99 /* TasteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -153,6 +159,7 @@
 			children = (
 				7B86B7A410B352CFFBA71593 /* PerformanceTests.swift */,
 				B99348EDE4409EE5634E7B04 /* RemixTests.swift */,
+				9E331568D805ED53D875FE99 /* TasteTests.swift */,
 			);
 			path = JamloomTests;
 			sourceTree = "<group>";
@@ -169,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				5E5DBC20EF13E0E2185670A9 /* AppModel.swift */,
+				308717A9D0484D1DACC5686E /* MusicDNA.swift */,
+				9A88C99286E4985988944820 /* CreditPurchases.swift */,
 				16DE036004CF9193A26A4CCA /* Assets.xcassets */,
 				635A387E57830D10FA3BB239 /* AudioInput.swift */,
 				89A1F18C2603D36D6E465EE6 /* AudioSession.swift */,
@@ -343,6 +352,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				03B2344DA34FF82D27C157AC /* AppModel.swift in Sources */,
+				F47E4D2BF8819425A903E93D /* MusicDNA.swift in Sources */,
+				EE39F0EBB7A7417B7BC0ED04 /* CreditPurchases.swift in Sources */,
 				A00355DBE8268491F2599A61 /* AudioInput.swift in Sources */,
 				86BB6362E6EF20A9D40E332C /* AudioSession.swift in Sources */,
 				1C3AA586614E658CE50E9D99 /* JamloomApp.swift in Sources */,
@@ -369,6 +380,7 @@
 			files = (
 				0982F03A2E76C8736D529F05 /* PerformanceTests.swift in Sources */,
 				E07ECC2B01E502BECE021568 /* RemixTests.swift in Sources */,
+				1E65F737C92FCD05BA449BC6 /* TasteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

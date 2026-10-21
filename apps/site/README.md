@@ -1,5 +1,14 @@
 # Jamloom website and accounts
 
+**Current checkpoint:** four product routes, SSR marketing/guides, private Music
+DNA preferences, sandbox credit ledger and durable job controls are implemented.
+Purchasing remains closed. [Full report](../../docs/full-product-implementation.md)
+and [owner handbook](../../docs/OWNER_HANDBOOK.md) supersede historical provider
+status below. Existing hosted configuration is preserved; new financial/profile/job
+migrations passed disposable local tests and are applied to the isolated loopback
+preview database; production is unchanged.
+
+
 [Rename compatibility](../../docs/jamloom-rename.md): existing `DJAYVO_*`
 environment settings still work; new configuration should use `JAMLOOM_*`.
 Existing databases and storage paths do not need renaming.

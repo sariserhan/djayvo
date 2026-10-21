@@ -4,10 +4,16 @@ import AVFoundation
 
 @main
 struct JamloomApp: App {
-    var body: some Scene { WindowGroup { RemixView() } }
+    var body: some Scene { WindowGroup {
+        TabView {
+            RemixView().tabItem { Label("Improvise", systemImage: "waveform") }
+            MusicDNAView().tabItem { Label("Music DNA", systemImage: "music.note.list") }
+        }
+    } }
 }
 
 struct RemixView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @StateObject private var model = AppModel()
     @Environment(\.scenePhase) private var scenePhase
     @State private var importing = false
@@ -51,6 +57,7 @@ struct RemixView: View {
             .navigationTitle("Jamloom").navigationBarTitleDisplayMode(.inline)
             .tint(accent).preferredColorScheme(.dark)
             .task { await model.loadLibrary() }
+            .onDisappear { model.suspendAudio(cancelRender: true) }
             .onChange(of: scenePhase) { _, phase in
                 model.foreground = phase == .active
                 if phase == .background { model.suspendAudio(cancelRender: true) }
@@ -121,7 +128,7 @@ struct RemixView: View {
                     Button("Stop", action: model.stopRecording).buttonStyle(.bordered)
                 }
             } else {
-                HStack {
+                (dynamicTypeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12)) : AnyLayout(HStackLayout(spacing: 12))) {
                     Button { Task { await model.startRecording() } } label: { Label("Record", systemImage: "mic.fill") }
                         .buttonStyle(.borderedProminent).foregroundStyle(.black)
                     Button { importing = true } label: { Label("Import", systemImage: "square.and.arrow.down") }.buttonStyle(.bordered)

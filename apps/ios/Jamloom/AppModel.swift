@@ -31,17 +31,7 @@ final class AppModel: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAud
     override init() {
         super.init()
         do {
-            #if DEBUG
-            if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
-                var root = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("Jamloom-UI-Tests")
-                if let run = ProcessInfo.processInfo.environment["JAMLOOM_UI_TEST_LIBRARY"], let id = UUID(uuidString: run) {
-                    root.appendPathComponent(id.uuidString)
-                }
-                library = try RemixLibrary(root: root)
-            } else { library = try RemixLibrary() }
-            #else
-            library = try RemixLibrary()
-            #endif
+            library = try RemixLibrary.application()
         } catch { self.error = error.localizedDescription }
     }
     func loadLibrary() async {

@@ -1,0 +1,62 @@
+-- The C compiler identification is AppleClang 21.0.0.21000334
+-- The CXX compiler identification is AppleClang 21.0.0.21000334
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python3: /Users/serhansari/mlx-env/bin/python3.14 (found suitable version "3.14.6", minimum required is "3.9") found components: Interpreter
+-- Configuring done (0.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-product
+[ 10%] Building CXX object CMakeFiles/jamloom_core.dir/core/arrangement/demo.cpp.o
+[ 10%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/plan.cpp.o
+[ 10%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/analysis.cpp.o
+[ 13%] Building CXX object CMakeFiles/jamloom_core.dir/core/arrangement/remix.cpp.o
+[ 16%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/remix_plan.cpp.o
+[ 20%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/live.cpp.o
+[ 23%] Building CXX object CMakeFiles/jamloom_core.dir/core/instruments/voice.cpp.o
+In file included from /Users/serhansari/Documents/projects/djayvo/core/audio/live.cpp:3:
+/Users/serhansari/Documents/projects/djayvo/core/audio/../instruments/performance_voices.h:65:42: warning: declaration shadows a field of 'jamloom::MouthFilter' [-Wshadow]
+   65 |         double next(double input, double smoothing) noexcept {
+      |                                          ^
+/Users/serhansari/Documents/projects/djayvo/core/audio/../instruments/performance_voices.h:75:12: note: previous declaration is here
+   75 |     double smoothing = 0;
+      |            ^
+1 warning generated.
+[ 26%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/session.cpp.o
+[ 30%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/renderer.cpp.o
+[ 33%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/input.cpp.o
+[ 36%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/remix_renderer.cpp.o
+[ 40%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/remix_file.cpp.o
+[ 43%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/c_api.cpp.o
+[ 46%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/wav.cpp.o
+[ 50%] Linking CXX static library libjamloom_core.a
+[ 50%] Built target jamloom_core
+[ 60%] Building CXX object CMakeFiles/jamloom_live_tests.dir/core/tests/live_tests.cpp.o
+[ 60%] Building CXX object CMakeFiles/jamloom_remix.dir/tools/cli/remix_main.cpp.o
+[ 60%] Building CXX object CMakeFiles/jamloom_session_render.dir/core/tests/session_render.cpp.o
+[ 63%] Building CXX object CMakeFiles/jamloom_render.dir/tools/cli/main.cpp.o
+[ 66%] Linking CXX executable jamloom_live_tests
+[ 70%] Linking CXX executable jamloom_session_render
+[ 70%] Built target jamloom_live_tests
+[ 70%] Built target jamloom_session_render
+[ 73%] Building CXX object CMakeFiles/jamloom_tests.dir/core/tests/tests.cpp.o
+[ 76%] Linking CXX executable jamloom_render
+[ 80%] Building CXX object CMakeFiles/jamloom_remix_tests.dir/core/tests/remix_tests.cpp.o
+[ 83%] Building CXX object CMakeFiles/jamloom_remix.dir/tools/cli/plan_import.cpp.o
+[ 83%] Built target jamloom_render
+[ 86%] Building C object CMakeFiles/jamloom_c_smoke.dir/core/tests/c_api_smoke.c.o
+[ 90%] Linking CXX executable jamloom_c_smoke
+[ 90%] Built target jamloom_c_smoke
+[ 93%] Linking CXX executable jamloom_remix
+[ 93%] Built target jamloom_remix
+[ 96%] Linking CXX executable jamloom_tests
+[ 96%] Built target jamloom_tests
+[100%] Linking CXX executable jamloom_remix_tests
+[100%] Built target jamloom_remix_tests

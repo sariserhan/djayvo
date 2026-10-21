@@ -1,6 +1,32 @@
 # Jamloom: M0 continuation evidence
 
-Current owner direction — 2026-10-20: **Improvisation/Q0 paused.**
+Current full-product directive — 2026-10-20/21: **overall PARTIAL; paid release FAIL / closed.**
+[Implementation report](full-product-implementation.md), [STATUS](STATUS.md) and
+[owner handbook](OWNER_HANDBOOK.md) supersede earlier local-work pauses while
+preserving every failed musical gate. Added four product routes/SSR home,
+local live capture/FX, explicit Music DNA local and private account preferences,
+wallet/payment safety, durable signed jobs, account views, iOS taste and gated
+StoreKit client, metadata/guides and an expanded ten-input audio baseline.
+
+Actual validation: site/account/payment/queue 60 tests; C++ 15 tests; web baseline
+73 tests; 12 iOS simulator tests; Chromium/WebKit public routes and existing
+DJ audio regressions; 13 zero-violation axe scans. All those technical checks
+**PASS**. Real local job → C++ 32-second WAV → private disk/playback → ledger
+settlement **PASS**, zero external spend. Full `npm run build` **PASS**.
+Ten inputs produced 66 source/master/stem WAVs; no clipping. Structural audit
+finds bass/drum reuse across same-style inputs despite distinct whole-plan keys.
+That is not a quality success. Earlier Q0 owner rejection remains **FAIL**.
+
+Hosted provider purchases/generation, native companion, new physical-device
+and 60-minute venue checks **NOT RUN**. Native account sync, refund/proceeds
+reconciliation, real worker termination and taste-driven music remain unfinished
+implementation, not just missing keys. No deployment, production migration,
+new paid compute, training or private-media publication occurred. Historical
+Night Current feedback later was “okay it is not bad”; this does not validate an
+improviser or authorize a repeated song template.
+
+
+Historical owner direction — 2026-10-20: **Improvisation/Q0 was paused.**
 [Night Current](night-current.md) is a standalone 2:01, 140 BPM bass instrumental,
 arranged locally from existing original generated material with recorded CC0
 snare accents. WAV/MP3, mix buses, edit frames and provenance retained.

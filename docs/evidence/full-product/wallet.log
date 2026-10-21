@@ -1,0 +1,47 @@
+TAP version 13
+# Subtest: real Postgres ledger: conservation, concurrency, receipts, tenant isolation and costs
+    # Subtest: receipt replay grants exactly once and cannot move between accounts
+    ok 1 - receipt replay grants exactly once and cannot move between accounts
+      ---
+      duration_ms: 7.70325
+      type: 'test'
+      ...
+    # Subtest: parallel reservations enforce one active job and no overspend
+    ok 2 - parallel reservations enforce one active job and no overspend
+      ---
+      duration_ms: 8.307125
+      type: 'test'
+      ...
+    # Subtest: zero-cost cancellation returns original lots; changed quote rejected
+    ok 3 - zero-cost cancellation returns original lots; changed quote rejected
+      ---
+      duration_ms: 3.280542
+      type: 'test'
+      ...
+    # Subtest: Apple sandbox lots preserve their own economics, ledgers immutable, disputes freeze
+    ok 4 - Apple sandbox lots preserve their own economics, ledgers immutable, disputes freeze
+      ---
+      duration_ms: 5.471542
+      type: 'test'
+      ...
+    # Subtest: unfunded jobs and invalid cost caps rejected without mutation
+    ok 5 - unfunded jobs and invalid cost caps rejected without mutation
+      ---
+      duration_ms: 1.457917
+      type: 'test'
+      ...
+    1..5
+ok 1 - real Postgres ledger: conservation, concurrency, receipts, tenant isolation and costs
+  ---
+  duration_ms: 214.649125
+  type: 'test'
+  ...
+1..1
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 362.8865

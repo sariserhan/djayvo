@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "source_id": "ls-2277-149896-0026",
+  "source_license": {
+    "id": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "LibriSpeech (c) 2014 by Vassil Panayotov. LibriSpeech dev-clean, Vassil Panayotov, Guoguo Chen, Daniel Povey and Sanjeev Khudanpur; derived from LibriVox public-domain audiobooks. Source: https://www.openslr.org/12/ ; CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Utterance 2277-149896-0026. Modified: FLAC decoded to PCM16 WAV; evaluation remixes slice and mix this source. No endorsement implied."
+  },
+  "input_sha256": "8231f9ec1b79bef07f3f2bbd5548c7ab8fff79a1e0bb774eab08507104be2381",
+  "plan_sha256": "18e331458bf7c32eaee5ca9eac04199ccf29814a37e2eb5015f9567db3ff6e3a",
+  "renderer_sha256": "bd20df4c419cacc20603d48c7e96caa7db34f78385333bb77966bd3a03e22309",
+  "output": "renders/full-product-worker-XDahQd",
+  "output_sha256": "f9a44b9e27abcecd21d69bf6c17eee74b1fa881b667569891aecb61cc3fe1202",
+  "duration_ms": 32000,
+  "elapsed_ms": 1085.784334,
+  "modeled_cost_micros": 10227,
+  "actual_external_spend_usd": 0,
+  "captured_fixture_credits": 1,
+  "balance": {
+    "available": 9,
+    "reserved": 0
+  },
+  "checks": [
+    "hash-bound durable job",
+    "single local C++ process",
+    "complete export and WAV validation",
+    "byte-identical baseline replay",
+    "private store finalization and playback",
+    "other owner denied",
+    "idempotent financial settlement"
+  ],
+  "real_vast": "NOT RUN",
+  "real_r2": "NOT RUN",
+  "real_stripe": "NOT RUN",
+  "musical_improvement": "NOT RUN"
+}

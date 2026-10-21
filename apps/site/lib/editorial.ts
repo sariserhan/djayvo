@@ -1,0 +1,58 @@
+export const guides={
+ 'voice-remix':{title:'Turn speech into a musical idea',description:'Record a clear short phrase, preserve an intelligible hook and compare musical responses.',paragraphs:[
+ 'Start with a short sound you have permission to record. Use a quiet room and leave a little space before and after the phrase. Listen to the source before making music; distortion in a recording cannot be fixed by arranging notes around it.',
+ 'Open AI Improvisation, confirm consent, then use the local recorder or import a supported WAV. The workspace shows its current duration and format limits. Choose a direction and compare the generated versions. The original voice should remain recognizable where an intelligible hook is intended.',
+ 'Listen for an answer to the phrase, a clear groove and a purposeful ending. If the result sounds robotic, reject it. Different seeds do not guarantee different musical ideas, and the current local composer has not passed our musical-quality release gate.',
+ 'Export a WAV when you want to keep a result. Cloud saving requires a separate account action and permission for any recognizable speakers. Local recording is never automatic permission for training or public sharing.']},
+ 'laptop-dj':{title:'DJ from a laptop without a controller',description:'Prepare local files, set levels and mix with the Jamloom desktop studio.',paragraphs:[
+ 'Use personally owned or otherwise authorized audio files. Open the desktop studio and load tracks into Deck A and Deck B. Start at a low master level. Play one deck before bringing in the other with its channel fader and the crossfader.',
+ 'EQ changes the low, middle and high bands. Cue and hot cues set playback positions. Jogging changes position rather than simulating vinyl scratch physics. Read the workspace’s Session notes for its keyboard and MIDI mappings and current loop/sync capabilities.',
+ 'Watch the actual meters while adding instruments or EQ. More level is not better sound. Headphone prelisten depends on supported and verified output routing; do not assume a browser can create a professional multi-output sound card.',
+ 'For offline use, prepare assets and local files while connected and test playback after disconnecting. Browser storage can be evicted. Keep original files and do a full rehearsal; our current tests do not certify a 60-minute venue performance.']},
+ 'live-source':{title:'What live audio capture can and cannot do',description:'Understand capture consent, supported tab audio, output isolation and music rights.',paragraphs:[
+ 'Live Source asks the browser to share a chosen tab or screen source. Audio availability depends on the browser and selected surface. A screen selection without an audio track is rejected. Jamloom does not store, display or upload captured video frames.',
+ 'Processing a source does not provide control of its transport. Pause, seek and cue remain in the original application. Protected sources can be silent or unavailable; Jamloom does not attempt to bypass those protections.',
+ 'The browser may leave the original audio audible. Processed monitoring starts muted. Confirm the original path is not also reaching your speakers before enabling monitoring. Stop capture immediately if you hear doubled audio or feedback.',
+ 'Technical access does not establish permission to remix, record, redistribute or perform music publicly. Choose sources you are entitled to use. The native system-capture companion and automatic output isolation remain unreleased.']},
+} as const;
+export const information={
+ pricing:{title:'Pricing and generation credits',description:'Local DJ tools are free to try. Paid generation remains closed pending quality and financial validation.',paragraphs:[
+ 'Local mixing and the local remix preview do not use paid cloud generation. Cloud purchases are currently disabled. No payment is needed to try those local tools.',
+ 'Proposed US launch packs are Starter: $9.99 for 10 credits, Creator: $24.99 for 25, and Studio: $49.99 for 50, before applicable tax. These are proposals, not active offers. Credits would not expire.',
+ 'One credit is not a promise of one song. A future job will show an exact credit quote before you confirm. Duration, model, retries and a conservative cost ceiling determine the quote. Changes require a new quote and confirmation.',
+ 'The purchase and failure/refund policies must be finalized before sales open. Unused reservations return to their original credit lots. Provider fees, tax, storage, retries and support costs are included in internal financial validation. No unlimited paid generation is offered.']},
+ examples:{title:'Real audio examples',description:'Listen to an original local instrument study with clear provenance and limitations.',paragraphs:[
+ 'The playable study below is rendered by Jamloom’s portable audio engine using its licensed instrument bank. It contains no user recording or sampled artist performance. It demonstrates rendering and instrumentation, not accepted musical quality.',
+ 'The improvisation baseline has received negative owner feedback. A separate standalone song received “not bad,” which is a useful preference observation rather than an independent study. Those private recordings are not published here.',
+ 'Consented public before/after speech examples and an independent listening panel remain release prerequisites. We will not substitute invented ratings, testimonials or audio.']},
+ help:{title:'Help and support',description:'Get started, recover local audio and contact Jamloom support.',paragraphs:[
+ 'For remixing, start at AI Improvisation. For local track mixing, open DJ Studio on a desktop browser. Allow audio playback after clicking a control; browsers do not allow unattended playback.',
+ 'If recording fails, check microphone permissions and choose HTTPS or localhost. If a Live Source provides no audio, choose a supported tab with Share audio enabled. Stop capture before changing routing.',
+ 'Local libraries belong to this browser and origin. Signing into an account does not import them. Export files before clearing browser storage. Cloud library saving is a separate action.',
+ 'Contact support@jamloom.com for help, deletion requests or a problematic public track. Include a track or job ID when available. Do not email passwords, API keys or someone else’s private recording. Business and rights inquiries: contact@jamloom.com.']},
+ privacy:{title:'Privacy and recording',description:'Understand local processing, optional account storage and recording consent.',paragraphs:[
+ 'Local DJ files and recordings stay in your browser unless you explicitly save an eligible finished mix to your account. Taste notes stay local unless you choose Save preferences to account. Microphone and capture controls require permission and show active state. Stop capture to release the selected stream.',
+ 'Accounts use Better Auth and Neon. Optional finished audio storage uses private Cloudflare R2 objects. Account email uses Resend. A separate review workflow governs publication; private saving does not automatically publish a recording.',
+ 'VisitorPing is installed on website pages. This product update does not add raw audio or transcripts to analytics. Consent, retention, jurisdiction and provider disclosures still require owner/legal review before commercial launch.',
+ 'Delete local files using the studio’s library controls, and delete saved preferences on Music DNA. Remove account tracks in Cloud library. For account deletion, privacy requests or consent withdrawal, contact support@jamloom.com. Financial retention and future training opt-in policies must be finalized before paid release.']},
+ terms:{title:'Preview terms and responsible use',description:'Jamloom preview availability, source permissions and release limitations.',paragraphs:[
+ 'Jamloom is in development. Local creative tools are previews and are not certified for professional venue reliability. Keep copies of your own files and rehearse before relying on browser audio.',
+ 'Only record, import, transform, share or perform content you have the appropriate rights and speaker permissions to use. Being able to capture audio does not grant public-performance or redistribution rights. Do not circumvent DRM or impersonate a person without authorization.',
+ 'Paid generation and credit purchasing are not released. Proposed prices are not offers. Commercial terms, merchant identity, refund policy, tax treatment and applicable jurisdictions require owner and legal approval before sales.',
+ 'Report rights or privacy concerns to contact@jamloom.com or support@jamloom.com. These preview disclosures are not a completed legal review.']},
+ licenses:{title:'Audio and software licenses',description:'Provenance for Jamloom’s audio engine, instruments and demonstration assets.',paragraphs:[
+ 'The browser studio includes license notices for its bundled instrument bank and WebAssembly toolchain. Recorded instruments include cleared CC0 collections; each source is tracked in the repository’s asset manifests.',
+ 'The public instrument study uses the same engine and bank. It contains no identifiable person’s voice. Reference performances used for private analysis are not included in the public bundle.',
+ 'Model weight permissions, dataset consent, sample redistribution and commercial output rights are reviewed separately. Permission to listen to a recording does not imply permission to train on it.',
+ 'Contact contact@jamloom.com about attribution or rights issues. See the studio license notices linked below for the bundled assets; commercial launch still requires a complete inventory review.']},
+ status:{title:'Product availability',description:'What works today, what is experimental and what remains unreleased.',paragraphs:[
+ 'AI Improvisation: local recording/import, rendering and export exist. Musical acceptance remains failed; paid cloud improvisation is closed.',
+ 'DJ Studio: existing local decks, mixer, instruments and effects. Physical routing, genuine scratch behavior and full venue endurance are not certified.',
+ 'Live Audio DJ: browser-source processing preview. Native companion and automatic output isolation are not released.',
+ 'My Music DNA: explicit local preferences, creative briefs and optional private web account saving where configured. Audio generation and iPhone account sync are not released.',
+ 'Payments: local sandbox development only; no live purchasing. This is a capability report, not a real-time provider uptime monitor.']},
+ download:{title:'Jamloom on your devices',description:'Use Jamloom in a browser; native iPhone distribution is not yet public.',paragraphs:[
+ 'Open the web app to use the local remix preview. Use a desktop browser for the DJ studio. Offline preparation is available inside the existing studio.',
+ 'An iPhone prototype has local recording, rendering and playback. It has not been publicly released on the App Store. No download button is shown until a verified distribution is available.',
+ 'The native live-audio companion is not yet distributed. Do not install unofficial downloads claiming to be Jamloom.']},
+} as const;

@@ -1,0 +1,186 @@
+chromium /
+chromium /improvise
+chromium /dj-studio
+chromium /live-dj
+chromium /music-dna
+chromium /pricing
+chromium /examples
+chromium /learn
+chromium /learn/voice-remix
+chromium /learn/laptop-dj
+chromium /learn/live-source
+chromium /help
+chromium /privacy
+chromium /terms
+chromium /licenses
+chromium /status
+chromium /download
+webkit /
+webkit /improvise
+webkit /dj-studio
+webkit /live-dj
+webkit /music-dna
+webkit /pricing
+webkit /examples
+webkit /learn
+webkit /learn/voice-remix
+webkit /learn/laptop-dj
+webkit /learn/live-source
+webkit /help
+webkit /privacy
+webkit /terms
+webkit /licenses
+webkit /status
+webkit /download
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   '/127.0.0.1:4220/live-dj?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
++   '/127.0.0.1:4220/catalogue?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
++   '/127.0.0.1:4220/library?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
++   '/127.0.0.1:4220/playlists?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
++   '/127.0.0.1:4220/learn?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
++   '/127.0.0.1:4220/help?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
++   '/127.0.0.1:4220/privacy?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
++   '/127.0.0.1:4220/terms?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
++   '/127.0.0.1:4220/licenses?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
++   '/127.0.0.1:4220/status?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
++   '/127.0.0.1:4220/pricing?_rsc=MrogwFn1Jb5hzdJl due to access control checks.',
++   '/127.0.0.1:4220/account?_rsc=RYyUiIJa4XIfQbkI due to access control checks.',
++   '/127.0.0.1:4220/learn?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
++   '/127.0.0.1:4220/help?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
++   '/127.0.0.1:4220/privacy?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
++   '/127.0.0.1:4220/terms?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
++   '/127.0.0.1:4220/licenses?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
++   '/127.0.0.1:4220/status?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
++   '/127.0.0.1:4220/pricing?_rsc=5tZse_6LGQatyrx5 due to access control checks.',
++   '/127.0.0.1:4220/account?_rsc=6DOmiomqjJscDz3t due to access control checks.',
++   '/127.0.0.1:4220/live-dj?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
++   '/127.0.0.1:4220/catalogue?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
++   '/127.0.0.1:4220/library?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
++   '/127.0.0.1:4220/playlists?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
++   '/127.0.0.1:4220/learn?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
++   '/127.0.0.1:4220/help?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
++   '/127.0.0.1:4220/privacy?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
++   '/127.0.0.1:4220/terms?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
++   '/127.0.0.1:4220/licenses?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
++   '/127.0.0.1:4220/status?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
++   '/127.0.0.1:4220/pricing?_rsc=KgNJ2y_2GdNSFS6J due to access control checks.',
++   '/127.0.0.1:4220/live-dj?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
++   '/127.0.0.1:4220/catalogue?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
++   '/127.0.0.1:4220/library?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
++   '/127.0.0.1:4220/playlists?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
++   '/127.0.0.1:4220/learn?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
++   '/127.0.0.1:4220/help?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
++   '/127.0.0.1:4220/privacy?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
++   '/127.0.0.1:4220/terms?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
++   '/127.0.0.1:4220/licenses?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
++   '/127.0.0.1:4220/status?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
++   '/127.0.0.1:4220/pricing?_rsc=4-1IHjZYIQ2aEczD due to access control checks.',
++   '/127.0.0.1:4220/playlists?_rsc=RXdgshqnBKBILSDV due to access control checks.',
++   '/127.0.0.1:4220/learn?_rsc=RXdgshqnBKBILSDV due to access control checks.',
++   '/127.0.0.1:4220/help?_rsc=RXdgshqnBKBILSDV due to access control checks.',
++   '/127.0.0.1:4220/privacy?_rsc=RXdgshqnBKBILSDV due to access control checks.',
++   '/127.0.0.1:4220/terms?_rsc=RXdgshqnBKBILSDV due to access control checks.',
++   '/127.0.0.1:4220/licenses?_rsc=RXdgshqnBKBILSDV due to access control checks.',
++   '/127.0.0.1:4220/status?_rsc=RXdgshqnBKBILSDV due to access control checks.',
++   '/127.0.0.1:4220/improvise?_rsc=8rAumTa-yEUswTkT due to access control checks.',
++   '/127.0.0.1:4220/dj-studio?_rsc=aWPugKqCNJ9tPas0 due to access control checks.',
++   '/127.0.0.1:4220/music-dna?_rsc=jVfmBGpHbv1SiTOp due to access control checks.',
++   '/127.0.0.1:4220/pricing?_rsc=hY_kb0SpZULEAbLp due to access control checks.',
++   '/127.0.0.1:4220/licenses?_rsc=IY1dW0Tio2o4EZ1P due to access control checks.',
++   '/127.0.0.1:4220/status?_rsc=IY1dW0Tio2o4EZ1P due to access control checks.',
++   '/127.0.0.1:4220/live-dj?_rsc=1HPRfRKdxjVu4Ccm due to access control checks.',
++   '/127.0.0.1:4220/catalogue?_rsc=GZxeL4QurgrPeVnY due to access control checks.',
++   '/127.0.0.1:4220/library?_rsc=GZxeL4QurgrPeVnY due to access control checks.',
++   '/127.0.0.1:4220/playlists?_rsc=GZxeL4QurgrPeVnY due to access control checks.',
++   '/127.0.0.1:4220/licenses?_rsc=IY1dW0Tio2o4EZ1P due to access control checks.',
++   '/127.0.0.1:4220/status?_rsc=IY1dW0Tio2o4EZ1P due to access control checks.',
++   '/127.0.0.1:4220/live-dj?_rsc=1HPRfRKdxjVu4Ccm due to access control checks.',
++   '/127.0.0.1:4220/catalogue?_rsc=GZxeL4QurgrPeVnY due to access control checks.',
++   '/127.0.0.1:4220/library?_rsc=GZxeL4QurgrPeVnY due to access control checks.',
++   '/127.0.0.1:4220/playlists?_rsc=GZxeL4QurgrPeVnY due to access control checks.'
++ ]
+- []
+
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/product-browser.mjs:52:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    '/127.0.0.1:4220/live-dj?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
+    '/127.0.0.1:4220/catalogue?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
+    '/127.0.0.1:4220/library?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
+    '/127.0.0.1:4220/playlists?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
+    '/127.0.0.1:4220/learn?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
+    '/127.0.0.1:4220/help?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
+    '/127.0.0.1:4220/privacy?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
+    '/127.0.0.1:4220/terms?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
+    '/127.0.0.1:4220/licenses?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
+    '/127.0.0.1:4220/status?_rsc=bME4Q4px3YJ1rAzL due to access control checks.',
+    '/127.0.0.1:4220/pricing?_rsc=MrogwFn1Jb5hzdJl due to access control checks.',
+    '/127.0.0.1:4220/account?_rsc=RYyUiIJa4XIfQbkI due to access control checks.',
+    '/127.0.0.1:4220/learn?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
+    '/127.0.0.1:4220/help?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
+    '/127.0.0.1:4220/privacy?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
+    '/127.0.0.1:4220/terms?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
+    '/127.0.0.1:4220/licenses?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
+    '/127.0.0.1:4220/status?_rsc=Lrh-tyAWi_2kf_TJ due to access control checks.',
+    '/127.0.0.1:4220/pricing?_rsc=5tZse_6LGQatyrx5 due to access control checks.',
+    '/127.0.0.1:4220/account?_rsc=6DOmiomqjJscDz3t due to access control checks.',
+    '/127.0.0.1:4220/live-dj?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
+    '/127.0.0.1:4220/catalogue?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
+    '/127.0.0.1:4220/library?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
+    '/127.0.0.1:4220/playlists?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
+    '/127.0.0.1:4220/learn?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
+    '/127.0.0.1:4220/help?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
+    '/127.0.0.1:4220/privacy?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
+    '/127.0.0.1:4220/terms?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
+    '/127.0.0.1:4220/licenses?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
+    '/127.0.0.1:4220/status?_rsc=CV-sKXZaKE2C9VB_ due to access control checks.',
+    '/127.0.0.1:4220/pricing?_rsc=KgNJ2y_2GdNSFS6J due to access control checks.',
+    '/127.0.0.1:4220/live-dj?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
+    '/127.0.0.1:4220/catalogue?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
+    '/127.0.0.1:4220/library?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
+    '/127.0.0.1:4220/playlists?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
+    '/127.0.0.1:4220/learn?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
+    '/127.0.0.1:4220/help?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
+    '/127.0.0.1:4220/privacy?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
+    '/127.0.0.1:4220/terms?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
+    '/127.0.0.1:4220/licenses?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
+    '/127.0.0.1:4220/status?_rsc=pfWg1qw4uMxqj7N2 due to access control checks.',
+    '/127.0.0.1:4220/pricing?_rsc=4-1IHjZYIQ2aEczD due to access control checks.',
+    '/127.0.0.1:4220/playlists?_rsc=RXdgshqnBKBILSDV due to access control checks.',
+    '/127.0.0.1:4220/learn?_rsc=RXdgshqnBKBILSDV due to access control checks.',
+    '/127.0.0.1:4220/help?_rsc=RXdgshqnBKBILSDV due to access control checks.',
+    '/127.0.0.1:4220/privacy?_rsc=RXdgshqnBKBILSDV due to access control checks.',
+    '/127.0.0.1:4220/terms?_rsc=RXdgshqnBKBILSDV due to access control checks.',
+    '/127.0.0.1:4220/licenses?_rsc=RXdgshqnBKBILSDV due to access control checks.',
+    '/127.0.0.1:4220/status?_rsc=RXdgshqnBKBILSDV due to access control checks.',
+    '/127.0.0.1:4220/improvise?_rsc=8rAumTa-yEUswTkT due to access control checks.',
+    '/127.0.0.1:4220/dj-studio?_rsc=aWPugKqCNJ9tPas0 due to access control checks.',
+    '/127.0.0.1:4220/music-dna?_rsc=jVfmBGpHbv1SiTOp due to access control checks.',
+    '/127.0.0.1:4220/pricing?_rsc=hY_kb0SpZULEAbLp due to access control checks.',
+    '/127.0.0.1:4220/licenses?_rsc=IY1dW0Tio2o4EZ1P due to access control checks.',
+    '/127.0.0.1:4220/status?_rsc=IY1dW0Tio2o4EZ1P due to access control checks.',
+    '/127.0.0.1:4220/live-dj?_rsc=1HPRfRKdxjVu4Ccm due to access control checks.',
+    '/127.0.0.1:4220/catalogue?_rsc=GZxeL4QurgrPeVnY due to access control checks.',
+    '/127.0.0.1:4220/library?_rsc=GZxeL4QurgrPeVnY due to access control checks.',
+    '/127.0.0.1:4220/playlists?_rsc=GZxeL4QurgrPeVnY due to access control checks.',
+    '/127.0.0.1:4220/licenses?_rsc=IY1dW0Tio2o4EZ1P due to access control checks.',
+    '/127.0.0.1:4220/status?_rsc=IY1dW0Tio2o4EZ1P due to access control checks.',
+    '/127.0.0.1:4220/live-dj?_rsc=1HPRfRKdxjVu4Ccm due to access control checks.',
+    '/127.0.0.1:4220/catalogue?_rsc=GZxeL4QurgrPeVnY due to access control checks.',
+    '/127.0.0.1:4220/library?_rsc=GZxeL4QurgrPeVnY due to access control checks.',
+    '/127.0.0.1:4220/playlists?_rsc=GZxeL4QurgrPeVnY due to access control checks.'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

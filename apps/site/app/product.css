@@ -1,0 +1,22 @@
+/* Retain the studio palette; the route map is the marketing page's central motif. */
+.product-home,.product-intro,.product-document{max-width:1200px;margin-inline:auto}
+.product-hero{display:grid;grid-template-columns:1.3fr 1fr;gap:64px;align-items:center;padding:24px 0 72px}
+.product-hero h1{font-size:clamp(52px,7.2vw,100px);max-width:800px;letter-spacing:-.065em}
+.product-hero h1 em{font-style:normal;color:var(--lime)}
+.product-lead{font-size:clamp(18px,2vw,23px);max-width:640px;color:#c6cebf;line-height:1.65}
+.product-actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0}
+.signal-map{border:1px solid var(--line);border-radius:18px;padding:28px;background:linear-gradient(130deg,#253329,#151a16);box-shadow:20px 20px 0 #1b241a}
+.signal-map>a{display:grid;grid-template-columns:1fr auto;position:relative;gap:4px 20px;padding:25px 0;text-decoration:none;border-top:1px solid #475544}
+.signal-map>a:first-of-type{margin-top:18px}.signal-map span:not(.eyebrow){font-size:22px;font-weight:600}.signal-map small{grid-column:1;color:#c0cab9}.signal-map b{grid-column:2;grid-row:1/3;align-self:center;color:var(--lime);font-size:28px}
+.product-strip{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding:24px 0;border-block:1px solid var(--line);font-family:var(--utility);font-size:13px;color:#c6cebf}
+.feature-list article{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;padding:64px 0;border-bottom:1px solid var(--line);scroll-margin-top:30px}
+.feature-list h2{font-size:clamp(30px,4vw,48px)}.feature-list h3{margin-top:0;font-size:24px}.feature-list p{max-width:620px}.feature-list .text-button{color:var(--lime)}
+.product-panel{padding:clamp(24px,4vw,48px);margin-block:40px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.product-panel h2,.product-columns h2{font-size:30px;margin-bottom:18px}.product-panel p{max-width:760px}.product-panel audio{display:block;width:min(100%,620px);margin-block:24px}
+.product-columns{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding-block:24px 48px}.product-columns>div{min-width:0}.product-columns p{color:#c6cebf}
+.product-faq{max-width:850px;padding-top:24px}.product-faq h2{margin-bottom:18px}.product-faq details{border-bottom:1px solid var(--line);padding-block:10px}
+.product-intro{padding-bottom:32px}.product-intro h1{font-size:clamp(42px,6vw,76px)}.availability{border-left:3px solid var(--lime);padding-left:16px;max-width:760px;color:#c6cebf;margin-top:28px}
+.product-document{max-width:900px}.product-document h2{margin-top:36px;margin-bottom:16px}.product-document li{margin-block:10px}.product-document p{max-width:760px}.product-document table{width:100%;border-collapse:collapse}.product-document th,.product-document td{text-align:left;padding:14px 10px;border-bottom:1px solid var(--line)}
+.product-controls{display:grid;gap:20px;max-width:700px}.product-controls label{display:grid;gap:8px}.product-controls label:has(input[type=checkbox]){display:flex;align-items:flex-start;gap:12px}.product-controls input[type=checkbox]{width:22px;height:22px;flex-shrink:0}.product-controls input[type=range]{width:100%}.product-controls input:not([type=range]):not([type=checkbox]),.product-controls select,.product-controls textarea{background:#111612;color:inherit;border:1px solid #52604c;border-radius:7px;padding:12px;font-size:16px;width:100%;min-width:0}.product-controls textarea{min-height:90px}.product-controls button{min-height:44px}.product-controls output{font-family:var(--utility);font-size:13px;color:var(--lime)}.product-controls fieldset{border:1px solid var(--line);padding:20px;margin:0;min-width:0}.product-controls legend{padding:0 8px}
+@media(max-width:760px){.product-hero,.feature-list article,.product-columns{grid-template-columns:1fr;gap:28px}.product-hero{padding-top:0;padding-bottom:40px}.signal-map{box-shadow:8px 8px 0 #1b241a;padding:22px}.feature-list article{padding:40px 0}.product-strip{font-size:11px}.product-document table{font-size:13px}.product-document td,.product-document th{padding:12px 6px}}
+@media(prefers-reduced-motion:reduce){.product-home *{scroll-behavior:auto;animation:none;transition:none}}

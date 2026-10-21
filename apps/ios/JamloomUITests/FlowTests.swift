@@ -2,6 +2,36 @@ import XCTest
 
 final class FlowTests: XCTestCase {
     override func setUpWithError() throws { continueAfterFailure = false }
+    func testTasteTabPersistenceAndDeletion() {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing"]
+        app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
+        app.launch()
+        let tab = app.tabBars.buttons["Music DNA"]
+        XCTAssertTrue(tab.waitForExistence(timeout: 15)); tab.tap()
+        let references = app.textViews["Favourite tracks and artists"]
+        XCTAssertTrue(references.waitForExistence(timeout: 10))
+        references.tap(); references.typeText("An original tune")
+        app.swipeUp()
+        for _ in 0..<5 {
+            if app.buttons["Save preferences on this device"].isHittable { break }
+            app.swipeUp()
+        }
+        app.buttons["Save preferences on this device"].tap()
+        XCTAssertTrue(app.staticTexts["Saved locally. No audio generated or uploaded."].waitForExistence(timeout: 5))
+        app.terminate(); app.launch(); app.tabBars.buttons["Music DNA"].tap()
+        XCTAssertEqual(app.textViews["Favourite tracks and artists"].value as? String, "An original tune")
+        for _ in 0..<5 {
+            if app.buttons["Delete saved profile"].isHittable { break }
+            app.swipeUp()
+        }
+        app.buttons["Delete saved profile"].tap()
+        XCTAssertTrue(app.staticTexts["Profile deleted."].waitForExistence(timeout: 5))
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.name = "Music DNA local preferences"; screenshot.lifetime = .keepAlways; add(screenshot)
+        app.terminate(); app.launch(); app.tabBars.buttons["Music DNA"].tap()
+        XCTAssertEqual(app.textViews["Favourite tracks and artists"].value as? String, "")
+    }
     func testMicrophoneDenialKeepsImportAvailable() {
         let app = XCUIApplication()
         app.resetAuthorizationStatus(for: .microphone)
@@ -11,7 +41,7 @@ final class FlowTests: XCTestCase {
         app.launch()
         let consent = app.switches["consentToggle"]
         XCTAssertTrue(consent.waitForExistence(timeout: 15))
-        consent.switches.firstMatch.tap()
+        consent.tap()
         XCTAssertEqual(consent.value as? String, "1")
         app.buttons["Record"].tap()
         let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
@@ -47,7 +77,7 @@ final class FlowTests: XCTestCase {
         let consent = app.switches["consentToggle"]
         XCTAssertTrue(consent.waitForExistence(timeout: 15))
         XCTAssertFalse(app.buttons["Load test clip"].isEnabled)
-        consent.switches.firstMatch.tap()
+        consent.tap()
         XCTAssertEqual(consent.value as? String, "1")
         app.buttons["Load test clip"].tap()
         let make = app.buttons["makeMusic"]

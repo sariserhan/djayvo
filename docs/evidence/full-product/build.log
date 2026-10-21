@@ -1,0 +1,19 @@
+▲ Next.js 16.4.2 (Turbopack)
+- Environments: .env.local
+  Downloading swc package @next/swc-wasm-nodejs... to /Users/serhansari/Library/Caches/next-swc
+  next-swc build: wasm build @next/swc-wasm-nodejs
+⚠ Attempted to load /Users/serhansari/Documents/projects/djayvo/apps/site/node_modules/next/next-swc-fallback/@next/swc-darwin-arm64/next-swc.darwin-arm64.node, but it was not installed
+⚠ Attempted to load @next/swc-darwin-arm64, but it was not installed
+✓ Running next.config.ts took 913ms
+  Skipping creating a lockfile at /Users/serhansari/Documents/projects/djayvo/apps/site/.next/lock because we're using WASM bindings
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack is not supported on this platform (darwin/arm64) because native bindings are not available. Only WebAssembly (WASM) bindings were loaded, and Turbopack requires native bindings.
+
+To build on this platform, use Webpack instead:
+  next build --webpack
+
+For more information, see: https://nextjs.org/docs/app/api-reference/turbopack#supported-platforms
+    at ignore-listed frames

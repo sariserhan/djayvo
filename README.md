@@ -2,11 +2,15 @@
 
 Formerly Djayvo. [Rename scope and compatibility](docs/jamloom-rename.md).
 
-**Current authorization — 2026-10-18:** Continue remaining local specification
-work without per-step approval. The [prepared A + C session](docs/prepared-session.md)
-now joins the phrase improviser to the browser DJ console. The master is unchanged;
-formal listening, hardware/venue and release gates remain required. Phone and
-hosted infrastructure work remain paused; no new paid compute or deployment.
+**Current implementation — 2026-10-20:** The full-product directive authorizes
+continued local work on four experiences: `/improvise`, `/dj-studio`, `/live-dj`
+and `/music-dna`. The existing Next.js app is in `apps/site`; the shared C++/WASM
+studio remains in place. Overall **PARTIAL**; musical-quality release **FAIL**;
+paid checkout is closed. Read [STATUS](docs/STATUS.md), the
+[implementation report](docs/full-product-implementation.md), [TODO](TODO.md) and
+[owner handbook](docs/OWNER_HANDBOOK.md) for current code, test and release gates.
+No new spending or irreversible production actions are authorized. Earlier
+milestone/provider status notes below remain historical, not current acceptance.
 
 **Say anything. Make music.**
 

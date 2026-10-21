@@ -1,0 +1,40 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project apps/ios/Jamloom.xcodeproj -scheme Jamloom -destination "platform=iOS Simulator,id=97D4D9E6-9DFD-4798-8C77-A385DB05F900" -derivedDataPath build-product-ios "-only-testing:JamloomTests/TasteTests" CODE_SIGNING_ALLOWED=NO test-without-building
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+2026-10-20 23:21:44.654 xcodebuild[54294:7475097] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 23:22:25.445861-0400 Jamloom[55124:7478734] [API] cannot add handler to 0 from 0 - dropping
+2026-10-20 23:22:25.447463-0400 Jamloom[55124:7478734] [API] cannot add handler to 0 from 0 - dropping
+2026-10-20 23:22:25.457001-0400 Jamloom[55124:7480341] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-10-20 23:22:25.483523-0400 Jamloom[55124:7478734] [XPCErrors] non-launching port is incompatible with service identifier "com.apple.PointerUI.pointeruid.default-service"
+2026-10-20 23:22:25.503062-0400 Jamloom[55124:7478734] [API] cannot add handler to 0 from 0 - dropping
+2026-10-20 23:22:25.503149-0400 Jamloom[55124:7478734] [API] cannot add handler to 0 from 0 - dropping
+2026-10-20 23:22:25.666657-0400 Jamloom[55124:7480340] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+Test Suite 'Selected tests' started at 2026-10-20 23:22:26.115.
+Test Suite 'JamloomTests.xctest' started at 2026-10-20 23:22:26.118.
+Test Suite 'TasteTests' started at 2026-10-20 23:22:26.118.
+Test Case '-[JamloomTests.TasteTests testLocalRoundTripAndBounds]' started.
+Test Case '-[JamloomTests.TasteTests testLocalRoundTripAndBounds]' passed (0.007 seconds).
+Test Case '-[JamloomTests.TasteTests testPurchasesClosedBeforeQualityAndServerDelivery]' started.
+Test Case '-[JamloomTests.TasteTests testPurchasesClosedBeforeQualityAndServerDelivery]' passed (0.001 seconds).
+Test Suite 'TasteTests' passed at 2026-10-20 23:22:26.158.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.008 (0.040) seconds
+Test Suite 'JamloomTests.xctest' passed at 2026-10-20 23:22:26.158.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.008 (0.040) seconds
+Test Suite 'Selected tests' passed at 2026-10-20 23:22:26.158.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.008 (0.043) seconds
+2026-10-20 23:22:26.347 xcodebuild[54294:7475097] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 23:22:26.350 xcodebuild[54294:7475097] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 23:22:26.357 xcodebuild[54294:7475097] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-20 23:22:26.649 xcodebuild[54294:7475097] [MT] IDETestOperationsObserverDebug: 46.362 elapsed -- Testing started completed.
+2026-10-20 23:22:26.649 xcodebuild[54294:7475097] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-20 23:22:26.649 xcodebuild[54294:7475097] [MT] IDETestOperationsObserverDebug: 46.362 sec, +46.362 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/serhansari/Documents/projects/djayvo/build-product-ios/Logs/Test/Test-Jamloom-2026.10.20_23-21-40--0400.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

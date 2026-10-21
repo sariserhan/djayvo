@@ -1,0 +1,9 @@
+{
+  "title": "Original instrument study",
+  "scope": "Technical engine demonstration, not human-approved musical quality",
+  "source_sha256": "9368c2169f52ccc28819c3a22716b3986de4cb4c8df06224fca34a9a98f65b05",
+  "mp3_sha256": "f883f555beb73a8352e9e92aa110edadbfa92910d9e85c05b6a5a4fa3b0f6c7e",
+  "source": "Original Jamloom four-bar demo; licensed bundled instrument bank",
+  "rights": "No user speech or third-party performance recording",
+  "reproduce": "cmake --build build-product; ctest --test-dir build-product -R wav_integration; ffmpeg -i build-product/integration/m0a.wav -c:a libmp3lame -b:a 192k instrument-study.mp3"
+}

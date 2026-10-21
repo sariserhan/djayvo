@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/product_audio_baseline.py", line 24, in <module>
+    run(args.output.resolve(),args.renderer,cohort(),
+                                            ~~~~~~^^
+  File "/Users/serhansari/Documents/projects/djayvo/scripts/product_audio_baseline.py", line 14, in cohort
+    raise ValueError('Authorization or input checksum failed')
+ValueError: Authorization or input checksum failed

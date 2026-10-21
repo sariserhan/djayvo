@@ -1,0 +1,6 @@
+import {headers} from 'next/headers';import {redirect} from 'next/navigation';import {accountsConfigured,services} from '../../../lib/services';
+export const dynamic='force-dynamic';
+export default async function Purchases(){if(!accountsConfigured())redirect('/account/sign-in');const {auth,pool}=services();const session=await auth.api.getSession({headers:await headers()});if(!session?.user.emailVerified)redirect('/account/sign-in');
+ let rows:{id:string;provider:string;credits:number;created_at:Date}[]|null=null;try{rows=(await pool.query('SELECT id,provider,credits,created_at FROM credit_lots WHERE owner_id=$1 ORDER BY created_at DESC,id DESC LIMIT 50',[session.user.id])).rows;}catch{}
+ return <section className="product-document"><h1>Purchase history</h1><p>A checkout return page never grants credits. Only verified payment reconciliation updates the ledger.</p>{rows===null?<p>Purchase history is not configured yet.</p>:rows.length?<ul>{rows.map(r=><li key={r.id}>{r.credits} sandbox credits · {r.provider} · {new Date(r.created_at).toLocaleDateString('en-US',{timeZone:'UTC'})}</li>)}</ul>:<p>No purchases. Checkout is closed while quality and payment validation continue.</p>}<a href="/account/credits">Credit balance →</a></section>;
+}

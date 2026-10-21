@@ -1,13 +1,44 @@
 # Jamloom development tracker
 
-**Current focus — 2026-10-20:** Improvisation/Q0 paused at the owner's request.
+## Full product implementation — 2026-10-20
+
+Authoritative scope: [full product specification](apps/site/jamloom_full_product_implementation_spec_v1.md).
+Earlier pause/review statements below are historical. Owner now authorizes all feasible
+local product work; paid expenditure and irreversible production actions remain prohibited.
+Evidence and exact handoff: [STATUS](docs/STATUS.md), [owner handbook](docs/OWNER_HANDBOOK.md).
+Every row expands an epic into the next acceptance task; historical completed work remains below.
+
+| Epic / milestone / task | Acceptance criteria | Owner | Status | Evidence / dependency | Commit |
+|---|---|---|---|---|---|
+| Foundation / audit / baseline | Existing source preserved; reproducible current checks | Agent | PASS | Fresh C++ 15/15; original web 73/73; current site/DB 60/60; [report](docs/full-product-implementation.md) | Full-product checkpoint |
+| Product / routes / four experiences | SSR home and distinct routes, truthful controls and CTAs | Agent | PARTIAL | 17 routes × Chromium/WebKit × 3 widths pass; native capture/taste audio/full cloud flows unfinished | Full-product checkpoint |
+| Audio / baseline / ten inputs | Authorized sources, frozen plans/events, stems and master levels | Agent | PASS | [66 WAVs and measurements](docs/evidence/full-product/audio-baseline.json) | Full-product checkpoint |
+| Audio / quality / rescue | 20 utterances/10 listeners; ≥70% preference, ≥80% usable, ≥85% recognizable | Agent + listeners | FAIL | Q0 owner rejection remains; Night Current mildly accepted standalone, not formal proof | 3f1cb0c, b252c65 |
+| Audio / variety / composition | Source-dependent new ideas across seeds and sources, listening acceptance | Agent + listeners | PARTIAL | [Audit](docs/evidence/full-product/audio-variety.json) finds repeated bass/drum structures despite distinct overall hashes | Full-product checkpoint |
+| Commerce / accounting / wallet | Atomic lot reservations, replay/race protection, costs and refund safety | Agent | PARTIAL | Local conservation/receipt/refund-order/cancellation tests pass; actual proceeds and entitlement reversal unfinished | Full-product checkpoint |
+| Commerce / web / Stripe | Signed fulfillment and real sandbox purchase/refund reconciliation | Agent + owner | PARTIAL | SDK + HTTP signature/replay tests pass; live checkout closed; sandbox credentials missing | Full-product checkpoint |
+| Commerce / mobile / StoreKit | Verified consumables, durable server ack, account sync/notifications | Agent + owner | PARTIAL | Official Apple SDK verifier and gated native client compile; real transactions NOT RUN | Full-product checkpoint |
+| Compute / jobs / bounded worker | Durable lease, immutable job, cap, cancel, private outputs and settlement | Agent | PARTIAL | [Real local DSP/storage/ledger slice](docs/evidence/full-product/generation-render.json); Vast adapter/watchdog/invoice recovery unfinished | Full-product checkpoint |
+| DJ / desktop / controls | Actual audio controls; physical 60-minute set | Agent + owner | PARTIAL | Chromium/WebKit PCM/control/offline regression pass; physical endurance/cue routing open | Full-product checkpoint |
+| Live / browser / capture | Explicit capture, real local FX, panic and isolation | Agent + owner | PARTIAL | Chromium PCM filter/bypass/stop pass; WebKit no-track fallback passes; actual permissions/isolation NOT RUN | Full-product checkpoint |
+| Live / companion / macOS | Paired native loopback, output exclusion, measured transport | Agent + owner | NOT RUN | Not implemented; OS permission alone does not complete it | — |
+| Taste / web / explicit profile | Local/private account CRUD, transparent preferences, tenant/CAS safety | Agent | PASS | Three-user HTTP/auth tests, race/size/origin/deletion validation; no trained taste claim | Full-product checkpoint |
+| Taste / composition / generation | Original enjoyable audio from preferences and lawful data | Agent + listeners | NOT RUN | Planning briefs only; quality gate failed | — |
+| iOS / parity / two experiences | Local improvisation + taste, verified account/credit sync | Agent + owner | PARTIAL | 12 simulator tests pass; local taste added; account/payment/device parity open | Full-product checkpoint |
+| Release / discoverability / SEO | SSR/canonical/sitemap/OG, accessible routes, measured field performance | Agent + owner | PARTIAL | 13 axe scans pass; local lab only; public rich results, manual accessibility/CWV open | Full-product checkpoint |
+| Release / legal + ops / handbook | Exact owner actions, rollback and reproducible handoff | Agent + owner | PARTIAL | [Handbook](docs/OWNER_HANDBOOK.md) delivered; legal/provider decisions remain | Full-product checkpoint |
+| Release / acceptance / paid launch | Musical, financial, platform/security gates all pass | Owner | FAIL | Quality failed; sales closed; production publication NOT RUN | — |
+
+
+**Historical standalone-song checkpoint — 2026-10-20:** Improvisation/Q0 was paused at the owner's request.
 Standalone song [Night Current](docs/night-current.md) delivered locally: 2:01,
 140 BPM, WAV/MP3 and player at 4212. Render/export/browser checks **PASS**;
 human listening **NOT RUN**. No new training, spending or production integration.
 
 - [x] Arrange and export the standalone instrumental with provenance and credits.
 - [x] Verify audio files, Downloads copies and browser playback controls.
-- [ ] Listen to the new song and judge its musical quality.
+- [x] Owner replied “okay it is not bad”; one qualitative standalone-song observation, not Q0 acceptance.
+- [ ] Demonstrate broader creative variety and successful controlled listening; do not template every song on Night Current.
 
 **Q0 final review — 2026-10-20: musical recovery FAIL; requirement coverage PARTIAL.**
 The owner rejected both latest owner-speech compositions at 4211: “Both still

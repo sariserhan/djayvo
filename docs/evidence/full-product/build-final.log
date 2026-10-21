@@ -1,0 +1,64 @@
+▲ Next.js 16.4.2 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 59ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1077ms
+  Running TypeScript ...
+  Finished TypeScript in 2.4s ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/27) ...
+  Generating static pages using 9 workers (6/27) 
+  Generating static pages using 9 workers (13/27) 
+  Generating static pages using 9 workers (20/27) 
+✓ Generating static pages using 9 workers (27/27) in 250ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├   /[info]
+│ ├ ● /pricing
+│ ├ ● /examples
+│ ├ ● /help
+│ └ ● [+5 more paths]
+├ ƒ /account
+├ ƒ /account/[action]
+├ ƒ /account/credits
+├ ƒ /account/generations
+├ ƒ /account/purchases
+├ ƒ /api/auth/[...all]
+├ ƒ /api/catalogue/[[...path]]
+├ ƒ /api/library
+├ ƒ /api/library/[id]/[action]
+├ ƒ /api/payments/apple
+├ ƒ /api/payments/checkout
+├ ƒ /api/payments/stripe
+├ ƒ /api/playlists/[[...path]]
+├ ƒ /api/taste
+├ ƒ /catalogue
+├ ƒ /catalogue/[id]
+├ ○ /dj-studio
+├ ○ /improvise
+├ ○ /learn
+├   /learn/[slug]
+│ ├ ● /learn/voice-remix
+│ ├ ● /learn/laptop-dj
+│ └ ● /learn/live-source
+├ ƒ /library
+├ ○ /live-dj
+├ ○ /music-dna
+├ ○ /opengraph-image
+├ ƒ /playlists
+├ ƒ /playlists/[id]
+├ ƒ /review
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

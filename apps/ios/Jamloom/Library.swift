@@ -11,6 +11,18 @@ struct RemixSession: Codable, Identifiable, Sendable {
 
 struct RemixLibrary: Sendable {
     let root: URL
+    static func application() throws -> Self {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--ui-testing") {
+            var root = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("Jamloom-UI-Tests")
+            if let run = ProcessInfo.processInfo.environment["JAMLOOM_UI_TEST_LIBRARY"], let id = UUID(uuidString: run) {
+                root.appendPathComponent(id.uuidString)
+            }
+            return try Self(root: root)
+        }
+        #endif
+        return try Self()
+    }
     init(root: URL? = nil) throws {
         // Keep the on-device directory so existing recordings remain available.
         self.root = root ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("Djayvo", isDirectory: true)

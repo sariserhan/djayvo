@@ -100,8 +100,8 @@ def inputs():
         'scope': provenance['scope'], 'review_scope': 'owner_only'}, *selected]
 
 
-def run(output, renderer):
-    rows = inputs()
+def run(output, renderer, rows=None, selection=None):
+    rows = inputs() if rows is None else rows
     if output.exists():
         raise ValueError('Choose a new directory; never replace baseline plans or ratings')
     output.mkdir(parents=True)
@@ -109,9 +109,9 @@ def run(output, renderer):
     frozen = {'schema_version': '1.0-q0-audit', 'source_commit': subprocess.check_output(
         ['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
         'renderer_sha256': digest(renderer), 'inputs': rows,
-        'selection': 'Owner conversational speech, first three pinned licensed utterances, and pinned laughter; chosen before rendering.',
+        'selection': selection or 'Owner conversational speech, first three pinned licensed utterances, and pinned laughter; chosen before rendering.',
         'scope': 'Local owner audition only for the combined packet; no training, upload or redistribution.',
-        'training_authorized': False, 'styles': ['hiphop', 'reggae', 'experimental', 'hiphop', 'experimental'],
+        'training_authorized': False, 'styles': [['hiphop', 'reggae', 'experimental', 'hiphop', 'experimental'][i % 5] for i in range(len(rows))],
         'seed': 4123, 'planned_comparisons': ['A existing', 'B instruments only', 'C expression only',
             'D instruments plus expression', 'E composition plus D'],
         'quality_benchmarks_changed': False, 'human_quality': 'NOT RUN'}
@@ -149,7 +149,7 @@ def run(output, renderer):
         'Pause one player before starting another. Identify the component and timestamp of an unnatural sound.</p>'
         '<a href="ATTRIBUTION.txt">Source permissions and credits</a>'+''.join(sections)+'</html>')
     (output/'INCOMPLETE').unlink()
-    print('PASS: five frozen baselines and stems. Human diagnosis NOT RUN:', output)
+    print(f'PASS: {len(rows)} frozen baselines and stems. Human diagnosis NOT RUN:', output)
 
 
 if __name__ == '__main__':
