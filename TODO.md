@@ -1,5 +1,16 @@
 # Jamloom development tracker
 
+## Inline payments and Aurowall music — 2026-10-21
+
+Owner requests payment entirely inside Jamloom and authorizes playing owned Aurowall R2 music with a partnership link. Preserve the existing sales/quality holds and private user recordings.
+
+| ID | Task | Status | Evidence / next action |
+|---|---|---|---|
+| PAY-UI-001 | Embedded web checkout and inline verified confirmation | PASS | Actual Stripe test purchase/decline/refund/repurchase/disputes; no navigation, same-session reopen, signed owner-scoped receipt |
+| AURO-001 | Read-only Aurowall R2 music catalogue and playback | PASS | 94 tracks; real range/seek/playback in Chromium/WebKit, no bucket writes or exposed secrets |
+| AURO-002 | Homepage/player and DJ selection, partnership link | PASS | Responsive/axe, explicit Play, partner links including coming-soon; online rights separate from CC0; existing 20-minute DJ limit shown |
+| AURO-003 | Verification, deployment and documentation | PARTIAL | Local build and tests pass; hosted release follow-up pending. [Report](docs/inline-payments-aurowall.md) |
+
 ## Next.js loading and recovery — 2026-10-21
 
 | ID | Task | Status | Evidence / remaining action |

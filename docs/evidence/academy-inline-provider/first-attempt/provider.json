@@ -1,0 +1,13 @@
+{
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browser": "Chromium embedded Checkout on Jamloom; muted output",
+  "started_sessions": [
+    "cs_test_a1VsP76GDdOEJbNOwabFAozIJxzI0jbnDhnv1YLC0FhLhCwjDAK73SP5SG",
+    "cs_test_a12jzdyAf1mONAxngng34RbF5nDKSXhudO2pla1G12wTJIuC7jnTLDGFJm"
+  ],
+  "declined_payment": "PASS",
+  "status": "FAIL",
+  "error": "locator.uncheck: Clicking the checkbox did not change its state\nCall log:\n\u001b[2m  - waiting for locator('.inline-checkout iframe').contentFrame().locator('#enableStripePass')\u001b[22m\n\u001b[2m    - locator resolved to <input checked type=\"checkbox\" id=\"enableStripePass\" class=\"Checkbox-Input\" name=\"enableStripePass\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\u001b[2m    - <input dir=\"ltr\" id=\"email\" type=\"text\" name=\"email\" autocorrect=\"off\" inputmode=\"email\" spellcheck=\"false\" autocomplete=\"email\" aria-required=\"true\" aria-invalid=\"false\" autocapitalize=\"none\" data-1p-ignore=\"false\" data-lp-ignore=\"false\" class=\"CheckoutInput Input\" placeholder=\"email@example.com\" value=\"academy-provider@example.test\"/> from <div class=\"App-Global-Fields flex-container spacing-16 direction-column wrap-wrap\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\u001b[2m    - click action done\u001b[22m\n\u001b[2m    - waiting for scheduled navigations to finish\u001b[22m\n\u001b[2m    - navigations have finished\u001b[22m\n"
+}

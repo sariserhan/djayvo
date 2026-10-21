@@ -19,3 +19,13 @@ export async function practiceFile(track, signal) {
   if (hash !== track.sha256) throw new Error('Practice track checksum mismatch.');
   return file;
 }
+
+// Partner recordings are authorized for this catalogue, not relicensed as CC0 or cached offline.
+export async function partnerFile(track, signal) {
+  if(!/^\/api\/aurowall\/[a-f0-9]{24}$/.test(track.url)||!Number.isSafeInteger(track.bytes)||track.bytes<=0||track.bytes>100*1024*1024)throw Error('Invalid partner track.');
+  const response=await fetch(track.url,{signal});if(!response.ok||!response.body)throw Error('Aurowall music is unavailable. Reconnect and try again.');
+  const reader=response.body.getReader(),chunks=[];let size=0;
+  while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>track.bytes){await reader.cancel();throw Error('Partner track size changed. Reload the music list.');}chunks.push(value);}
+  if(size!==track.bytes)throw Error('Incomplete partner track. Try again.');
+  return new File(chunks,`${track.title} — Aurowall.mp3`,{type:'audio/mpeg'});
+}

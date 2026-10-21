@@ -4,7 +4,7 @@ import{chromium}from'playwright';import Stripe from'stripe';import{createPool}fr
 assert.equal(process.env.JAMLOOM_HOSTED_ACADEMY_TEST,'1','Explicit hosted test authorization required');assert.ok(process.env.STRIPE_SECRET_KEY?.startsWith('sk_test_'));
 assert.equal(new URL(process.env.DATABASE_URL).hostname,'ep-flat-hill-b4q0lix4-pooler.c-6.us-east-2.aws.neon.tech');
 const stripe=new Stripe(process.env.STRIPE_SECRET_KEY),pool=createPool(process.env.DATABASE_URL),store=new AcademyStore(pool),base='https://www.jamloom.com';
-const evidence=new URL('../../../docs/evidence/academy-hosted-provider/',import.meta.url);await mkdir(evidence,{recursive:true});
+const evidence=new URL('../../../docs/evidence/academy-hosted-inline-provider/',import.meta.url);await mkdir(evidence,{recursive:true});
 let browser,page,session,refunded=false;const result={status:'RUNNING',live_charges:0,account:'acct_1TxA3vDlEXWDEeHO',checkout_creation:'Authorized server operations command; no owner browser session fabricated',delivery:'Permanent Stripe webhook to production app/database; no CLI forwarding'};
 async function waitFor(check,label){for(let n=0;n<120;n++){if(await check())return;await delay(1000);}throw Error(label+' timed out');}
 try{
@@ -16,12 +16,16 @@ try{
  const config={product:process.env.ACADEMY_STRIPE_PRODUCT_ID,price:process.env.ACADEMY_STRIPE_PRICE_ID,live:false};
  session=await academyCheckout(stripe,pool,owner.id,'hosted_'+randomUUID(),base,config);assert.equal(session.livemode,false);result.session=session.id;
  browser=await chromium.launch({args:['--mute-audio']});page=await browser.newPage({viewport:{width:1280,height:1100}});page.setDefaultTimeout(20000);
- await page.goto(session.url);await page.locator('#email').fill('academy-hosted-owner@example.test');await page.getByText('Card',{exact:true}).click({force:true});
- await page.locator('#cardNumber').fill('4242424242424242');await page.locator('#cardExpiry').fill('12/34');await page.locator('#cardCvc').fill('123');await page.locator('#billingName').fill('Jamloom Hosted Test');await page.locator('#billingCountry').selectOption('US');
- const manual=page.getByRole('button',{name:'Enter address manually',exact:true});if(await manual.isVisible())await manual.click();
- await page.locator('#billingAddressLine1').fill('354 Oyster Point Blvd');await page.locator('#billingLocality').fill('South San Francisco');await page.locator('#billingPostalCode').fill('94080');await page.locator('#billingAdministrativeArea').selectOption('CA');
- if(await page.locator('#enableStripePass').isChecked())await page.locator('#enableStripePass').uncheck();await page.waitForTimeout(1500);await page.locator('button[type=submit]').click();
+ assert.ok(session.client_secret);assert.ok(process.env.STRIPE_PUBLISHABLE_KEY?.startsWith('pk_test_'));
+ const fixture='http://127.0.0.1:4229/embedded-provider-fixture';
+ await page.route(fixture,route=>route.fulfill({contentType:'text/html',body:`<!doctype html><html><title>Isolated embedded payment provider fixture</title><body><h1>Provider fixture, not the production UI</h1><div id=checkout></div><script src="https://js.stripe.com/endive/stripe.js"></script><script>Stripe(${JSON.stringify(process.env.STRIPE_PUBLISHABLE_KEY)}).createEmbeddedCheckoutPage({clientSecret:${JSON.stringify(session.client_secret)},onComplete(){document.body.dataset.complete='true'}}).then(checkout=>checkout.mount(document.querySelector('#checkout')))</script></body></html>`}));
+ await page.goto(fixture);const form=page.frameLocator('#checkout iframe');result.browser='Isolated embedded Checkout fixture; production signed webhook verified separately';await form.locator('#email').fill('academy-hosted-owner@example.test');await form.getByText('Card',{exact:true}).click({force:true});
+ await form.locator('#cardNumber').fill('4242424242424242');await form.locator('#cardExpiry').fill('12/34');await form.locator('#cardCvc').fill('123');await form.locator('#billingName').fill('Jamloom Hosted Test');await form.locator('#billingCountry').selectOption('US');
+ const manual=form.getByRole('button',{name:'Enter address manually',exact:true});if(await manual.isVisible())await manual.click();
+ await form.locator('#billingAddressLine1').fill('354 Oyster Point Blvd');await form.locator('#billingLocality').fill('South San Francisco');await form.locator('#billingPostalCode').fill('94080');await form.locator('#billingAdministrativeArea').selectOption('CA');
+ if(await form.locator('#enableStripePass').isChecked()){await form.locator('#enableStripePass').focus();await form.locator('#enableStripePass').press('Space');assert.equal(await form.locator('#enableStripePass').isChecked(),false);}await page.waitForTimeout(1500);await form.locator('button[type=submit]').click();
  await waitFor(async()=>{session=await stripe.checkout.sessions.retrieve(session.id);return session.payment_status==='paid';},'Stripe test payment');assert.equal(session.livemode,false);
+ await page.waitForFunction(()=>document.body.dataset.complete==='true');assert.equal(page.url(),fixture);
  await waitFor(()=>store.access(owner.id,pool,false),'Hosted grant');
  assert.equal((await pool.query('SELECT count(*)::int n FROM academy_purchases WHERE receipt=$1 AND sandbox=true AND refund_hold=false',[session.id])).rows[0].n,1);
  const grants=(await stripe.events.list({type:'checkout.session.completed',limit:100})).data.filter(e=>e.data.object.id===session.id);assert.equal(grants.length,1);

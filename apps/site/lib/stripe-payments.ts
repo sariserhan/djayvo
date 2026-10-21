@@ -24,6 +24,6 @@ export async function checkout(stripe:Stripe,owner:string,pack:keyof typeof CRED
   const p=CREDIT_PACKS[pack];
   return stripe.checkout.sessions.create({mode:'payment',client_reference_id:owner,metadata:{pack},
     line_items:[{price_data:{currency:'usd',unit_amount:p.cents,product_data:{name:`Jamloom ${p.credits} test credits`}},quantity:1}],
-    success_url:`${origin}/account/purchases?checkout=returned`,cancel_url:`${origin}/pricing`,
-    automatic_tax:{enabled:true}}, {idempotencyKey:`jamloom:${owner}:${key}`});
+    ui_mode:'embedded_page',redirect_on_completion:'never',
+    automatic_tax:{enabled:true}}, {idempotencyKey:`jamloom:inline:${owner}:${key}`});
 }

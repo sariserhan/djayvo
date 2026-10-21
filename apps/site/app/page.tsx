@@ -3,10 +3,12 @@ import {features,pageMetadata,origin} from '../lib/product';
 import practice from '../../web/practice-audio/manifest.json';
 import {MiniDeck} from './mini-deck';
 import {CommunityMusic} from './community';
+import {AurowallMusic} from './aurowall-music';
 export const metadata=pageMetadata('Turn a sound into music. Mix from your laptop.','Play the mini DJ decks, discover community remixes, and turn your own sounds into music with Jamloom.','/');
 const marks=['◒','◉','≋','⌁','▥'];
 export default function Home(){return <div className="product-home visual-home"><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({'@context':'https://schema.org','@type':'Organization',name:'Jamloom',url:origin,logo:origin+'/studio/icon.svg'})}}/>
  <section className="product-hero"><div><p className="eyebrow">Your sound. Your next obsession.</p><h1>Less scrolling.<br/>More <em>playing.</em></h1><p className="product-lead">Turn a voice into a remix. Put your hands on the decks. Find your next sound.</p><div className="product-actions"><Link prefetch={false} className="primary" href="/improvise">Make a Remix</Link><Link prefetch={false} className="secondary" href="/dj-studio">Open DJ Studio</Link></div><p className="muted hero-note">Free local tools. AI musical quality is still in development.</p></div><MiniDeck tracks={practice.tracks.slice(0,2).map(t=>({title:t.title,artist:t.artist,url:'/studio/'+t.url.slice(2),source_page:t.source_page}))}/></section>
+ <AurowallMusic/>
  <CommunityMusic/>
  <section aria-label="Five ways to make music" className="feature-list visual-features">{features.map((f,i)=><article id={f.slug} key={f.slug}><span className={`feature-mark mark-${i}`} aria-hidden="true">{marks[i]}</span><p className="eyebrow">{f.status}</p><h2>{f.title}</h2><p>{f.headline}</p><Link prefetch={false} className="text-button" href={'/'+f.slug}>{f.action} ↗</Link></article>)}</section>
  <section className="sharing-panel"><div><p className="eyebrow">For the crowd. Or just for you.</p><h2>You choose who listens.</h2></div><div><p><strong>Public by default for new saves.</strong> Give sharing permission, then approved music joins the homepage.</p><p><strong>Private when you want.</strong> Only you can access it. Private cloud generation will cost 25% more credits, rounded up.</p><small>Local previews and WAV downloads stay free. Paid generation is not open yet. Existing private recordings stay private.</small><Link prefetch={false} href="/pricing">How credits work ↗</Link></div></section>

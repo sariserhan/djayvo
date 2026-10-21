@@ -20,8 +20,8 @@ export async function academyCheckout(stripe:Stripe,pool:Pool,owner:string,key:s
  await verifiedAcademyPrice(stripe,config);
  return stripe.checkout.sessions.create({mode:'payment',client_reference_id:owner,metadata:{jamloom_product:academyProduct},
   line_items:[{price:config.price,quantity:1}],automatic_tax:{enabled:true},
-  success_url:origin+'/academy/success?session_id={CHECKOUT_SESSION_ID}',cancel_url:origin+'/academy/checkout'},
-  {idempotencyKey:'academy:'+owner+':'+key});
+  ui_mode:'embedded_page',redirect_on_completion:'never'},
+  {idempotencyKey:'academy:inline:'+owner+':'+key});
 }
 export async function grantAcademy(stripe:Stripe,pool:Pool,id:string,config:PaymentConfig=academyPaymentConfig(),transaction?:PoolClient){
  const s=await stripe.checkout.sessions.retrieve(id,{expand:['line_items']});const line=s.line_items?.data[0];

@@ -9,8 +9,8 @@ assert.ok(process.env.STRIPE_SECRET_KEY?.startsWith('sk_test_'),'Test key requir
 const url=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(url.hostname,'127.0.0.1');
 const admin=createPool(url.toString()),name='jamloom_academy_stripe_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
 const pool=createPool(url.toString()),folder=await mkdtemp(join(tmpdir(),'jamloom-academy-')),base='http://127.0.0.1:4227';
-const evidence=new URL('../../../docs/evidence/academy-provider/',import.meta.url);
-let server,listener,proxy,logs='',providerLogs='',deferGrants=false;const deliveries=[];const results={database:'disposable loopback',human_learning:'NOT RUN',provider_transactions:'NOT RUN',browser:'Chromium hosted Checkout; muted output'};
+const evidence=new URL('../../../docs/evidence/academy-inline-provider/',import.meta.url);
+let server,listener,proxy,logs='',providerLogs='',deferGrants=false;const deliveries=[];const results={database:'disposable loopback',human_learning:'NOT RUN',provider_transactions:'NOT RUN',browser:'Chromium embedded Checkout on Jamloom; muted output'};
 try{
  await migrate(pool);await mkdir(evidence,{recursive:true});
  const stripe=new Stripe(process.env.STRIPE_SECRET_KEY);assert.equal((await stripe.accounts.retrieve()).id,'acct_1TxA3vDlEXWDEeHO');
@@ -42,23 +42,28 @@ try{
   await context.addCookies(cookie.split('; ').map(v=>({name:v.slice(0,v.indexOf('=')),value:v.slice(v.indexOf('=')+1),url:base})));
   async function waitAccess(expected){for(let n=0;n<120;n++){const result=await(await api('/api/academy/progress',{cookie})).json();if(result.access===expected)return;await delay(500);}throw Error('Provider access did not reconcile to '+expected);}
   async function purchase(declineFirst=false,card='4242424242424242',verifyGrant=true){
-   const key=randomUUID(),request={method:'POST',cookie,body:{key}};
-   const checkout=await api('/api/academy/checkout',request);assert.equal(checkout.status,200);const {url:checkoutURL}=await checkout.json();
-   assert.equal((await(await api('/api/academy/checkout',request)).json()).url,checkoutURL,'Checkout idempotency');
-   const id=checkoutURL.match(/cs_test_[A-Za-z0-9]+/)[0];console.log('Hosted checkout',id);(results.started_sessions??=[]).push(id);
-   await page.goto(checkoutURL);await page.locator('#email').fill('academy-provider@example.test');
+   await page.goto(base+'/academy/checkout');
+   const response=page.waitForResponse(r=>r.url()===base+'/api/academy/checkout'&&r.request().method()==='POST');
+   await page.getByRole('button',{name:'Pay securely on Jamloom · test mode'}).click();
+   const created=await response;assert.equal(created.status(),200);const data=await created.json(),id=data.sessionId;
+   const request={method:'POST',cookie,body:created.request().postDataJSON()};
+   assert.equal((await(await api('/api/academy/checkout',request)).json()).clientSecret,data.clientSecret,'Checkout idempotency');
+   assert.equal(data.url,undefined);console.log('Embedded checkout',id);(results.started_sessions??=[]).push(id);
+   const form=page.frameLocator('.inline-checkout iframe');
+   if(declineFirst){await form.locator('#email').waitFor();await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Checkout mobile overflow');await page.screenshot({path:new URL('mobile.png',evidence).pathname});await page.getByRole('button',{name:'Close payment form',exact:true}).click();const reopened=page.waitForResponse(r=>r.url()===base+'/api/academy/checkout'&&r.request().method()==='POST');await page.getByRole('button',{name:'Pay securely on Jamloom · test mode'}).click();assert.equal((await(await reopened).json()).sessionId,id);await page.setViewportSize({width:1280,height:1100});results.close_and_reopen='PASS: same session';}
+   await form.locator('#email').fill('academy-provider@example.test');
    // Stripe's expanded accordion cover owns the click at the visible Card label.
-   await page.getByText('Card',{exact:true}).click({force:true});
-   await page.locator('#cardNumber').fill(declineFirst?'4000000000000002':card);
-   await page.locator('#cardExpiry').fill('12/34');await page.locator('#cardCvc').fill('123');await page.locator('#billingName').fill('Jamloom Sandbox Learner');
-   await page.locator('#billingCountry').selectOption('US');
-   const manual=page.getByRole('button',{name:'Enter address manually',exact:true});if(await manual.isVisible())await manual.click();
-   await page.locator('#billingAddressLine1').fill('354 Oyster Point Blvd');await page.locator('#billingLocality').fill('South San Francisco');
-   await page.locator('#billingPostalCode').fill('94080');await page.locator('#billingAdministrativeArea').selectOption('CA');
-   if(await page.locator('#enableStripePass').isChecked())await page.locator('#enableStripePass').uncheck();
-   await page.waitForTimeout(1500);await page.locator('button[type=submit]').click();
-   if(declineFirst){await page.getByText(/Your (?:credit )?card was declined/i).first().waitFor({timeout:60000});assert.equal((await pool.query('SELECT count(*)::int n FROM academy_purchases WHERE owner_id=$1',[owner])).rows[0].n,0);const declined=await stripe.checkout.sessions.retrieve(id,{expand:['payment_intent']});assert.equal(declined.payment_status,'unpaid');assert.equal(declined.payment_intent?.last_payment_error?.code,'card_declined');results.declined_payment='PASS';await page.screenshot({path:new URL('declined.png',evidence).pathname});await page.locator('#cardNumber').fill('4242424242424242');await page.locator('button[type=submit]').click();}
-   await page.waitForURL(base+'/academy/success?**',{timeout:90000});if(verifyGrant){await waitAccess(true);await page.reload();assert.match(await page.locator('h1').innerText(),/Academy access verified/);}
+   await form.getByText('Card',{exact:true}).click({force:true});
+   await form.locator('#cardNumber').fill(declineFirst?'4000000000000002':card);
+   await form.locator('#cardExpiry').fill('12/34');await form.locator('#cardCvc').fill('123');await form.locator('#billingName').fill('Jamloom Sandbox Learner');
+   await form.locator('#billingCountry').selectOption('US');
+   const manual=form.getByRole('button',{name:'Enter address manually',exact:true});if(await manual.isVisible())await manual.click();
+   await form.locator('#billingAddressLine1').fill('354 Oyster Point Blvd');await form.locator('#billingLocality').fill('South San Francisco');
+   await form.locator('#billingPostalCode').fill('94080');await form.locator('#billingAdministrativeArea').selectOption('CA');
+   if(await form.locator('#enableStripePass').isChecked()){await form.locator('#enableStripePass').focus();await form.locator('#enableStripePass').press('Space');assert.equal(await form.locator('#enableStripePass').isChecked(),false);}
+   await page.waitForTimeout(1500);await form.locator('button[type=submit]').click();
+   if(declineFirst){await form.getByText(/Your (?:credit )?card was declined/i).first().waitFor({timeout:60000});assert.equal((await pool.query('SELECT count(*)::int n FROM academy_purchases WHERE owner_id=$1',[owner])).rows[0].n,0);const declined=await stripe.checkout.sessions.retrieve(id,{expand:['payment_intent']});assert.equal(declined.payment_status,'unpaid');assert.equal(declined.payment_intent?.last_payment_error?.code,'card_declined');results.declined_payment='PASS';await page.screenshot({path:new URL('declined.png',evidence).pathname});await form.locator('#cardNumber').fill('4242424242424242');await form.locator('button[type=submit]').click();}
+   await page.locator('.checkout-confirmation').waitFor({timeout:90000});assert.equal(page.url(),base+'/academy/checkout');if(verifyGrant){await waitAccess(true);await page.getByRole('heading',{name:'Academy access verified'}).waitFor({timeout:30000});}
    const session=await stripe.checkout.sessions.retrieve(id);assert.equal(session.livemode,false);assert.equal(session.payment_status,'paid');
    await page.screenshot({path:new URL(verifyGrant?'verified.png':'pending.png',evidence).pathname});
    return session;
@@ -70,8 +75,10 @@ try{
   assert.equal((await replay()).status,200);assert.equal((await replay()).status,200);
   assert.equal((await fetch(base+'/api/academy/stripe',{method:'POST',headers:{'Content-Type':'application/json','stripe-signature':'invalid'},body:delivery.raw})).status,400);
   assert.equal((await pool.query('SELECT count(*)::int n FROM academy_purchases WHERE receipt=$1',[first.id])).rows[0].n,1);
-  const other=await account('other-provider@example.test');assert.equal((await(await api('/api/academy/progress',{cookie:other})).json()).access,false);
-  const refund=await stripe.refunds.create({payment_intent:first.payment_intent},{idempotencyKey:'academy-test-refund:'+first.id});assert.equal(refund.status,'succeeded');await waitAccess(false);console.log('PASS provider refund and access withdrawal',refund.id);
+  assert.equal((await api('/api/academy/checkout?session_id='+first.id)).status,401);
+  assert.equal((await(await api('/api/academy/checkout?session_id='+first.id,{cookie})).json()).status,'active');
+  const other=await account('other-provider@example.test');assert.equal((await(await api('/api/academy/checkout?session_id='+first.id,{cookie:other})).json()).status,'pending');assert.equal((await(await api('/api/academy/progress',{cookie:other})).json()).access,false);
+  const refund=await stripe.refunds.create({payment_intent:first.payment_intent},{idempotencyKey:'academy-test-refund:'+first.id});assert.equal(refund.status,'succeeded');await waitAccess(false);console.log('PASS provider refund and access withdrawal',refund.id);assert.equal((await(await api('/api/academy/checkout?session_id='+first.id,{cookie})).json()).status,'reversed');
   const second=await purchase();assert.equal((await pool.query('SELECT count(*)::int n FROM academy_purchases WHERE owner_id=$1',[owner])).rows[0].n,2);console.log('PASS provider repurchase',second.id);
   assert.equal((await pool.query('SELECT count(*)::int n FROM credit_lots')).rows[0].n,0);
   const cleanup=await stripe.refunds.create({payment_intent:second.payment_intent},{idempotencyKey:'academy-test-refund:'+second.id});assert.equal(cleanup.status,'succeeded');await waitAccess(false);

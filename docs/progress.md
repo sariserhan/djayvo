@@ -1,3 +1,7 @@
+# Inline payments and Aurowall music — 2026-10-21
+
+**PASS:** Inline Stripe test checkout and verified receipt, 94 owned Aurowall recordings with explicit playback, online DJ selection and linked partnership. Actual test decline/refund/repurchase/disputes and muted Chromium/WebKit R2 playback pass. **PARTIAL:** Hosted release follow-up pending. Sales/quality holds remain; no storage writes or real charges. [Report](inline-payments-aurowall.md), [tracker](../TODO.md).
+
 # Academy continuation — 2026-10-21
 
 The verified owner preview is deployed at `c74ad49` behind coming-soon; full

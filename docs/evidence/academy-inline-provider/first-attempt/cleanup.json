@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "expired_unpaid_session": "cs_test_a12jzdyAf1mONAxngng34RbF5nDKSXhudO2pla1G12wTJIuC7jnTLDGFJm",
+  "prior_purchase_refunded": true,
+  "reason": "Stripe opt-in checkbox pointer interception in harness; keyboard interaction fixes it"
+}

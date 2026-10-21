@@ -1,5 +1,5 @@
 import './site-announcement.js';
-import { practiceFile } from './practice-library.js';
+import { practiceFile, partnerFile } from './practice-library.js';
 import { attachStudioView } from './studio-view.js';
 import { createMixer, updateMixer, setMixerGain, validateTrack, trackDuration, updateToneEcho, clearEcho } from './mixer.js';
 import { attachDeck, playMedia } from './deck-controls.js';
@@ -211,26 +211,35 @@ function practiceSelection() {
   $('practice-credit').replaceChildren();
   if (track) {
     const source = document.createElement('a'); source.href = track.source_page; source.textContent = `${track.title} — ${track.artist}`;
-    $('practice-credit').append(source, ` · ${track.genre} · CC0 · ${time(track.seconds)}`);
+    $('practice-credit').append(source, ` · ${track.genre} · ${track.partner ? 'Aurowall partner music · online' : 'CC0 · '+time(track.seconds)}`);
   }
   decks.forEach(controls);
 }
 $('practice-track').onchange = practiceSelection;
+function addPracticeTracks(tracks,label) {
+  const selected=$('practice-track').value;practiceTracks.push(...tracks);
+  if(!selected&&!practiceTracks.slice(0,-tracks.length).length)$('practice-track').replaceChildren();
+  const group=document.createElement('optgroup');group.label=label;
+  group.append(...tracks.map(track=>new Option(`${track.title} — ${track.artist} · ${track.genre}`,track.id)));
+  $('practice-track').append(group);if(selected)$('practice-track').value=selected;practiceSelection();
+}
 fetch(new URL('./practice-audio/manifest.json', import.meta.url)).then(async response => {
   if (!response.ok) throw new Error('Practice list unavailable. Reconnect and reload this page.');
-  const manifest = await response.json();
-  practiceTracks.push(...manifest.tracks);
-  $('practice-track').replaceChildren(...practiceTracks.map(track => new Option(`${track.title} — ${track.artist} · ${track.genre}`, track.id)));
-  $('practice-status').textContent = `${practiceTracks.length} tracks ready. Pause the destination deck before loading. Your current track stays until its replacement is ready.`;
-  practiceSelection();
-}).catch(error => { $('practice-track').replaceChildren(new Option('Practice music unavailable', '')); $('practice-status').textContent = error.message; });
+  const manifest = await response.json();addPracticeTracks(manifest.tracks,'CC0 practice music');
+  $('practice-status').textContent = `${manifest.tracks.length} CC0 tracks ready. Pause the destination deck before loading. Your current track stays until its replacement is ready.`;
+}).catch(error => { $('practice-status').textContent = error.message; });
+fetch('/api/aurowall').then(async response=>{
+  if(!response.ok)throw Error();const {tracks}=await response.json();
+  if(tracks.length)addPracticeTracks(tracks.map(track=>({...track,partner:true,source_page:'https://aurowall.com'})),'Aurowall · online');
+  $('aurowall-status').textContent=tracks.length?`${tracks.length} Aurowall tracks available online.`:'No Aurowall tracks are available yet.';
+}).catch(()=>{$('aurowall-status').textContent='Aurowall music is unavailable offline or right now. Your CC0 and local tracks still work.';});
 $('library-refresh').onclick = refreshLibrary;
 $('saved-mix').onchange = () => decks.forEach(controls);
 for (const deck of decks) {
   const { id, audio } = deck;
   $(`practice-load-${id}`).onclick = () => {
     const track = practiceTracks.find(t => t.id === $('practice-track').value);
-    if (track) loadTrack(deck, signal => practiceFile(track, signal));
+    if (track) loadTrack(deck, signal => track.partner ? partnerFile(track, signal) : practiceFile(track, signal));
   };
   $(`file-${id}`).onchange = event => {
     const file = event.target.files[0]; event.target.value = '';

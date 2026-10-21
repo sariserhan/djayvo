@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "browser": "chromium",
+      "tracks": 94,
+      "actualR2": true,
+      "streamAndSeek": "PASS",
+      "noAutoplay": "PASS",
+      "mutedOutput": "PASS",
+      "djLoadAndPlay": "PASS",
+      "partnerRightsLabel": "PASS",
+      "offlineFallback": "PASS",
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "axe": "PASS",
+      "console": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "tracks": 94,
+      "actualR2": true,
+      "streamAndSeek": "PASS",
+      "noAutoplay": "PASS",
+      "mutedOutput": "PASS",
+      "djLoadAndPlay": "PASS",
+      "partnerRightsLabel": "PASS",
+      "offlineFallback": "PASS",
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "axe": "PASS",
+      "console": "PASS"
+    }
+  ]
+}

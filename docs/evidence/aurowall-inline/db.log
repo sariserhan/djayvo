@@ -1,0 +1,32 @@
+✔ Academy catalog rejects wrong price, recurring, live and foreign products (3.025458ms)
+▶ isolated Postgres Academy receipts, progress, holds and tenant boundaries
+  ✔ server catalog checkout is one-time, taxed, owner-bound and separate from credit packs (0.730833ms)
+  ✔ parallel receipt delivery grants once, denies owner transfer, never mints credits (6.952875ms)
+  ✔ refund before grant, duplicate refund, repurchase and independent dispute holds (4.944375ms)
+  ✔ authoritative unpaid/live/price evidence cannot grant (0.441875ms)
+  ✔ webhook replay conflicts and stale dispute events use current provider status (4.7655ms)
+  ✔ shared-account reversals ignore unrelated direct charges and products, but reject ambiguous sessions (2.228833ms)
+  ✔ progress reevaluates signals and task order, isolates owners and survives a new store (13.4805ms)
+  ✔ bounded history and daily sync quota survive deleting learning progress (17.138917ms)
+✔ isolated Postgres Academy receipts, progress, holds and tenant boundaries (308.582709ms)
+✔ published manifests are bounded, versioned and have unambiguous prerequisites (1.250083ms)
+✔ Academy modeled contribution is explicit, bounded and never finances AI inference (2.002292ms)
+✔ all six stages have runnable assessments and final completion traverses the entire curriculum (0.158583ms)
+✔ admin boundaries reject unverified identities, invalid settings and mixed Stripe environments (0.750791ms)
+▶ real Postgres administration, durable mail, credit exemption and billing isolation
+  ✔ settings require real owner, reject stale writes and absent live credentials, audit cannot be edited (6.438417ms)
+  ✔ contact transaction persists notification, reply is private and stale replay cannot email twice (10.903667ms)
+  ✔ email failures remain durable, retry leases avoid concurrent sends, template escapes submitted content (8.2855ms)
+  ✔ only verified owner can reserve without credits; caps, actual costs, replays and frozen wallets remain enforced (13.8565ms)
+  ✔ suspension removes sessions, cancels queued work with released credits, restore does not restore sessions (9.322542ms)
+  ✔ owner course preview requires verified active identity and preserves prerequisites and receipts (7.451458ms)
+  ✔ verified live and test receipts stay separate; wrong-mode signed events fail (13.437209ms)
+✔ real Postgres administration, durable mail, credit exemption and billing isolation (329.698ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 583.462416

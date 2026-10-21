@@ -5,6 +5,19 @@ Never paste credentials into chat. Store secrets in ignored local env files and
 the appropriate provider's scoped environment settings. Configure Preview and
 Production separately. No owner setup task below means the integration has passed.
 
+## Inline payments and Aurowall — 2026-10-21
+
+The owner authorized the Aurowall partnership and use of their owned recordings.
+The homepage player and online DJ selection now read the separate Aurowall bucket;
+no objects or bucket policies are changed. Partner music is not CC0 and is not
+added to offline packs. Longer than 20-minute tracks play on the homepage, outside
+the existing DJ import limit.
+
+Academy Checkout stays inside Jamloom and confirms only signed-webhook access.
+Keep test/live publishable keys alongside their matching secret keys in Vercel.
+Existing sales holds remain; no new owner credential action is pending for this
+integration. [Implementation, evidence and exact configuration names](inline-payments-aurowall.md).
+
 ## Read this first
 
 The four-product specification is at
