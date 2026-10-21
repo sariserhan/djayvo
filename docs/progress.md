@@ -7,6 +7,10 @@ PASS, with no purchase rows created. Deployment pending. Silent real-time endura
 branch retains signal while final speaker samples are zero. Permanent billing
 configuration and the owner mini-set observation are pending. Earlier interrupted
 captures remain preserved; no current endurance PASS until final decoding.
+The current run exposed a short 298.28-second Chromium take after a five-minute
+wall-clock wait. Test stopping now follows measured frames. The production hour
+cap gets a bounded 60-second wall-clock grace period; a reproduced failing
+regression and 19 focused tests validate the fix. Real-duration rerun pending.
 
 # Academy remaining gates — 2026-10-21
 

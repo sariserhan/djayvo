@@ -10,7 +10,7 @@ const audible=process.env.JAMLOOM_AUDIBLE_TEST==='1';
 const url=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(url.hostname,'127.0.0.1');
 const admin=createPool(url.toString()),name='jamloom_academy_endurance_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
 const mode=process.argv[2]??'all';assert.ok(['all','short','hour'].includes(mode));
-const port=mode==='short'?'4226':'4225';
+const port=process.env.JAMLOOM_ENDURANCE_PORT??(mode==='short'?'4226':'4225');
 const pool=createPool(url.toString()),folder=await mkdtemp(join(tmpdir(),'jamloom-academy-')),base='http://127.0.0.1:'+port;
 const evidence=new URL(audible?'../../../docs/evidence/academy-endurance/':'../../../docs/evidence/academy-endurance-silent/',import.meta.url),audio=new URL(audible?'../../../build-academy-endurance/':'../../../build-academy-endurance-silent/',import.meta.url);
 let server,logs='';const results={speaker_output:audible?'AUDIBLE':'Muted downstream of recording taps; no physical-output claim',database:'disposable loopback',human_learning:'NOT RUN',provider_transactions:'NOT RUN',browsers:[]};
@@ -18,7 +18,7 @@ try{
  await migrate(pool);await mkdir(audio,{recursive:true});await mkdir(evidence,{recursive:true});
  const env={...process.env,JAMLOOM_COMING_SOON:'false',DATABASE_URL:url.toString(),BETTER_AUTH_URL:base,BETTER_AUTH_SECRET:randomUUID()+randomUUID(),JAMLOOM_LOCAL_OUTBOX:join(folder,'mail'),STRIPE_SECRET_KEY:'sk_test_local_fixture',STRIPE_WEBHOOK_SECRET:'whsec_local_fixture',ACADEMY_STRIPE_WEBHOOK_SECRET:'whsec_academy_fixture',ACADEMY_STRIPE_PRICE_ID:'price_local_fixture',ACADEMY_STRIPE_PRODUCT_ID:'prod_local_fixture'};
  delete env.VERCEL;delete env.RESEND_API_KEY;delete env.ACADEMY_STRIPE_SANDBOX_ENABLED;
- server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port',port],{env,cwd:new URL('../',import.meta.url),stdio:['ignore','pipe','pipe']});server.stdout.on('data',s=>logs+=s);server.stderr.on('data',s=>logs+=s);
+ server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port',port],{env,cwd:process.env.JAMLOOM_SITE_TEST_ROOT??new URL('../',import.meta.url),stdio:['ignore','pipe','pipe']});server.stdout.on('data',s=>logs+=s);server.stderr.on('data',s=>logs+=s);
  for(let i=0;i<100;i++){try{if((await fetch(base+'/academy')).ok)break;}catch{}await delay(100);if(i===99)throw new Error('Server start timeout');}
  let address=1;
  async function api(path,{method='GET',body,cookie,origin=base,headers={}}={}){return fetch(base+path,{method,headers:{origin,'Content-Type':'application/json','x-real-ip':`192.0.2.${address++}`,...(cookie?{cookie}:{}),...headers},body:body===undefined?undefined:JSON.stringify(body),redirect:'manual'});}
@@ -66,7 +66,7 @@ try{
     const started=Date.now(),task=lesson.tasks.at(-1);let side=0,nextTransition=1;
     // Exercise every transition early enough to retain recovery and finalization time at the actual 60-minute cap.
     const interval=Math.floor((seconds-20)/(task.transitions+1));let nextLog=60;
-    while((Date.now()-started)/1000<seconds+(seconds===3600?5:3)){
+    while((Date.now()-started)/1000<seconds+65){
      const elapsed=(Date.now()-started)/1000;
      if(elapsed>=nextLog){await checkSilent();console.log(label,Math.round(elapsed)+'s',await page.locator('#set-record-status').innerText());nextLog+=60;}
      if(elapsed>=interval*nextTransition&&nextTransition<=task.transitions){
@@ -77,6 +77,8 @@ try{
       await page.locator('#cue-b').click();await page.waitForTimeout(1500);await play('b');row.recovery='cue then restart while A audible';
      }
      if(await page.locator('#set-record-download').isVisible())break;
+     const measured=Number((await page.locator('#set-record-status').innerText()).match(/· (\d+) \//)?.[1]??0);
+     if(seconds<3600&&measured>=seconds+2)break;
      assert.ok(!(await page.locator('#set-record-stop').isDisabled()),label+': '+await page.locator('#set-record-status').innerText());
      await page.waitForTimeout(1000);
     }

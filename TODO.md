@@ -69,6 +69,13 @@ Chromium/WebKit rendered access, prerequisite, axe and account-isolation checks 
 Deployment pending. Permanent Stripe keys and the owner mini-set observation requested while independent
 work continues. No new audible playback or live charges.
 
+Silent endurance exposed a wall-clock/frame-clock mismatch: Chromium's manually
+stopped five-minute run contained only 298.28 seconds. The harness now waits for
+measured audio duration. A failing regression also proves the one-hour wall timer
+could stop a slightly delayed audio clock early; the frame cap is unchanged and
+the wall safety deadline now allows 60 seconds of grace. Nineteen focused tests
+PASS; full-duration rerun pending. Original capture and failure retained.
+
 ## Academy completion work — 2026-10-21
 
 Owner instruction: finish Academy and update this tracker at every increment.
