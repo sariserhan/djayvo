@@ -32,6 +32,7 @@ export const information={
  'Local libraries belong to this browser and origin. Signing into an account does not import them. Export files before clearing browser storage. Cloud library saving is a separate action.',
  'Contact support@jamloom.com for help, deletion requests or a problematic public track. Include a track or job ID when available. Do not email passwords, API keys or someone else’s private recording. Business and rights inquiries: contact@jamloom.com.']},
  privacy:{title:'Privacy and recording',description:'Understand local processing, optional account storage and recording consent.',paragraphs:[
+ 'When checkout is enabled, Stripe collects payment details in its secure embedded form on Jamloom. Jamloom stores purchase references and access status, not card details. Aurowall music streams from a separate partner Cloudflare R2 bucket through Jamloom; it does not expose private user recordings.',
  'Contact and support forms store your name, reply email, subject and message in a private owner inbox. Signup and message notifications are emailed to the owner. Replies use our email provider; passwords and recordings are not included. Do not submit sensitive payment information. Contact support@jamloom.com for deletion requests. Admin security actions and financial records may need separate retention.',
  'Local DJ files and recordings stay in your browser unless you explicitly save an eligible finished mix to your account. Taste notes stay local unless you choose Save preferences to account. Microphone and capture controls require permission and show active state. Stop capture to release the selected stream.',
  'Accounts use Better Auth and Neon. Optional finished audio storage uses private Cloudflare R2 objects. Account email uses Resend. New online saves default to public, with explicit permission to share recognizable voices and a separate review before publication on the homepage and catalogue. Private saves are never listed. Existing private recordings stay private; withdrawal is free. This does not grant AI training or commercial reuse rights.',
@@ -43,6 +44,7 @@ export const information={
  'Paid generation and credit purchasing are not released. Proposed prices are not offers. Commercial terms, merchant identity, refund policy, tax treatment and applicable jurisdictions require owner and legal approval before sales.',
  'Report rights or privacy concerns to contact@jamloom.com or support@jamloom.com. These preview disclosures are not a completed legal review.']},
  licenses:{title:'Audio and software licenses',description:'Provenance for Jamloom’s audio engine, instruments and demonstration assets.',paragraphs:[
+ 'Aurowall partner recordings are supplied with owner authorization for playback on Jamloom. They are separate from the CC0 practice library, remain online only, and are not offered under a CC0 license. Listening here does not grant redistribution, public-performance or AI-training rights.',
  'The browser studio includes license notices for its bundled instrument bank and WebAssembly toolchain. Recorded instruments include cleared CC0 collections; each source is tracked in the repository’s asset manifests.',
  'The public instrument study uses the same engine and bank. It contains no identifiable person’s voice. Reference performances used for private analysis are not included in the public bundle.',
  'Model weight permissions, dataset consent, sample redistribution and commercial output rights are reviewed separately. Permission to listen to a recording does not imply permission to train on it.',
@@ -52,7 +54,7 @@ export const information={
  'DJ Studio: existing local decks, mixer, instruments and effects. Physical routing, genuine scratch behavior and full venue endurance are not certified.',
  'Live Audio DJ: browser-source processing preview. Native companion and automatic output isolation are not released.',
  'My Music DNA: explicit local preferences, creative briefs and optional private web account saving where configured. Audio generation and iPhone account sync are not released.',
- 'Payments: local sandbox development only; no live purchasing. This is a capability report, not a real-time provider uptime monitor.']},
+ 'Payments: embedded Stripe test checkout and signed payment verification are implemented; live purchasing remains closed. This is a capability report, not a real-time provider uptime monitor.']},
  download:{title:'Jamloom on your devices',description:'Use Jamloom in a browser; native iPhone distribution is not yet public.',paragraphs:[
  'Open the web app to use the local remix preview. Use a desktop browser for the DJ studio. Offline preparation is available inside the existing studio.',
  'An iPhone prototype has local recording, rendering and playback. It has not been publicly released on the App Store. No download button is shown until a verified distribution is available.',
