@@ -1,5 +1,10 @@
 # DJ Academy novice study protocol
 
+**Latest owner decision — 2026-10-21:** “Defer human checks for now.” Remaining
+mini-set, listening, accessibility and physical-output observations are **NOT RUN**
+and deferred. The earlier qualitative first-lesson acceptance remains valid; no
+new human outcome is inferred from automated endurance or payment checks.
+
 **2026-10-21 owner scope change:** “I cannot it is only me and we will test with me
 only.” The current acceptance session therefore uses the owner alone (n=1), not
 a recruited cohort. Record actual first-crossfade and beginner-mini-set outcomes,

@@ -11,6 +11,9 @@ Separate test/live catalogs and webhook secrets are configured; endpoint activat
 awaits the configured deployment. Delaying account-attempt creation reproduced an
 assessment timing conflict; sampling now starts after the request finishes, and
 both browsers pass the delayed-network regression with muted output.
+Notification retry scheduling is configured for the existing Pro project, every
+five minutes, using the existing leased endpoint and a new private CRON_SECRET.
+Deployment/invocation verification is pending; the outbox was empty at setup.
 
 Owner preview access is implemented with the existing verified active administrator
 check; prerequisites and financial receipts stay separate. 21 Academy/admin tests

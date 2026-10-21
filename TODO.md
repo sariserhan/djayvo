@@ -80,6 +80,10 @@ disabled until the configured deployment is verified. A delayed account request
 exposed premature assessment sampling; coaching now begins after attempt creation.
 The failing delayed-network reproduction now passes in Chromium/WebKit. Human
 checks remain explicitly deferred, not passed.
+The existing notification retry endpoint now has a five-minute Vercel cron
+configuration and a private generated secret. Existing Pro plan verified; no
+plan change. Production outbox has zero pending messages. Deployment/invocation
+verification pending; actual mailbox delivery is still NOT RUN.
 
 Silent endurance exposed a wall-clock/frame-clock mismatch: Chromium's manually
 stopped five-minute run contained only 298.28 seconds. The harness now waits for
