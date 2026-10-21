@@ -91,15 +91,17 @@ can connect to native loopback from a hosted page.
 | Actual native HTTP with browser UI | PASS | [Chromium/WebKit](evidence/live-source/results.json): synthetic source telemetry (not OS audio), real pairing/CORS/control/stop requests, rejected tokens/origins, 1440/390/320 layouts and axe. Browser output muted |
 | Existing browser-source regression | PASS / PARTIAL | [17 routes per browser](evidence/live-source/product-regression.json); Chromium actual generated PCM/filter/bypass/stop passes. WebKit headless destination produces no audio track; unavailable-source path passes, its PCM check is NOT RUN |
 | Site build/typecheck/35 tests/bundle audit | PASS | [Build](evidence/live-source/site-build.log), [TypeScript](evidence/live-source/typecheck.log), [tests](evidence/live-source/site-tests.log), [secret audit](evidence/live-source/bundle.log); existing WASM unchanged |
-| GitHub CI / deployment | NOT RUN | Pending push; no direct deployment |
+| GitHub CI / deployment | PASS | [Full CI 39680630588](evidence/live-source/github-ci.json), runtime `94e7084` [production READY](evidence/live-source/production.json), GitHub source `main`; www.jamloom.com resolves to that deployment. [Public gates](evidence/live-source/hosted-gates.json) preserved; no direct deployment |
 | Actual Core Audio capture and physical acceptance | NOT RUN | OS permission, selected-app PCM, no doubled playback, Stop/crash restoration, device changes, physical latency and 60-minute set require an arranged owner/device check |
 | Public native distribution | NOT RUN | Ad-hoc local signing only; Developer ID, notarization and public downloads remain open |
 
 The first WebKit browser fixture expected permission denial but received a valid
 no-audio fallback; it failed before controls were tested. The corrected assertion
 accepts those two distinct supported failure states. Earlier temp receipts remain
-preserved; current screenshots and receipts are from the passing rerun. No private
-audio, pairing grants or generated recordings are committed.
+preserved; current screenshots and receipts are from the passing rerun. The handoff test initially checked browser availability before the stop response
+arrived; it now waits for the acknowledged stop and separately verifies the lost-connection
+hold, including failed reconnects. No private audio, pairing grants or generated
+recordings are committed.
 
 ## Reproduce
 

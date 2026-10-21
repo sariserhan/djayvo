@@ -1,0 +1,13 @@
+{
+  "id": "dpl_EvyphGBmM3f3f1X39Ehb3wBZp3pv",
+  "url": "jamloom-4b4isigpg-ssari.vercel.app",
+  "readyState": "READY",
+  "target": "production",
+  "gitSource": {
+    "ref": "main",
+    "repoId": 1423909724,
+    "sha": "94e70843e14251c6a26ea75cd11ee15ca1251ef1",
+    "type": "github",
+    "prId": null
+  }
+}

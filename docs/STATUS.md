@@ -2,7 +2,7 @@
 
 ## Latest: Live Source companion — 2026-10-21
 
-**PARTIAL overall.** Native Mac capture/routing/effects and paired website controls are implemented. Build, local app launch, DSP/sanitizer checks, five Swift security/HTTP tests and Chromium/WebKit fixture controls PASS. Actual macOS system capture, source restoration, device latency/endurance, human listening and hosted HTTPS pairing remain NOT RUN. GitHub-only delivery; no direct deployment. [Current report](live-source-companion.md).
+**PARTIAL overall.** Native Mac capture/routing/effects and paired website controls are implemented. Build, local app launch, DSP/sanitizer checks, five Swift security/HTTP tests and Chromium/WebKit fixture controls PASS. Actual macOS system capture, source restoration, device latency/endurance, human listening and hosted HTTPS pairing remain NOT RUN. Full CI `39680630588` PASS; runtime `94e7084` deployed READY through GitHub main, public gates preserved; no direct deployment. [Current report](live-source-companion.md).
 
 ## Previous: Academy release checks — 2026-10-21
 

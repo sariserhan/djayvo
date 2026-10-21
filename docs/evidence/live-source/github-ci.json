@@ -1,0 +1,44 @@
+{
+  "conclusion": "success",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "name": "website",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "build (macos-15, ON)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "build (macos-15, OFF)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "academy",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "build (ubuntu-24.04, OFF)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "build (ubuntu-24.04, ON)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "compare",
+      "status": "completed"
+    }
+  ],
+  "status": "completed",
+  "run": 39680630588,
+  "url": "https://github.com/sariserhan/jamloom/actions/runs/39680630588",
+  "commit": "94e70843e14251c6a26ea75cd11ee15ca1251ef1"
+}

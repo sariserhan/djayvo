@@ -1,0 +1,18 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "url": "https://www.jamloom.com/",
+    "comingSoon": true
+  },
+  {
+    "path": "/live-dj",
+    "status": 200,
+    "url": "https://www.jamloom.com/",
+    "comingSoon": true
+  },
+  {
+    "path": "/api/library",
+    "status": 503
+  }
+]
