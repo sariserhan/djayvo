@@ -2,6 +2,8 @@
 
 ## Latest: DJ Academy — 2026-10-21
 
+Implementation/evidence: `0162db9` (local commit; not pushed or deployed).
+
 **Overall PARTIAL; public release NOT RUN.** Fifth feature added while preserving
 the four existing features. Two runnable real-deck exercises (free first crossfade
 and gated gain staging), coaching, voluntary Free Jam, introductory challenge,

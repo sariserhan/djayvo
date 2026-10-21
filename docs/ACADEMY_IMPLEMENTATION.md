@@ -195,5 +195,14 @@ references: [fulfillment](https://docs.stripe.com/checkout/fulfillment),
 6. Rehearse Neon migration, offline eviction/update recovery, full course and
    release monitoring; obtain explicit production approval before deployment or charges.
 
-Commit IDs are recorded in the final delivery/checkpoint entry. This report does
-not claim that the entire Academy specification or professional DJ course is complete.
+Implementation and retained evidence commit: **0162db9** (`feat(academy): add
+real-deck introduction, progress and sandbox pass`). A subsequent documentation
+checkpoint records this hash. No push or deployment was performed.
+
+Final source whitespace check passes when excluding the unchanged owner addendum
+and raw terminal logs. The unrestricted check reports existing Markdown hard-break
+spaces in that supplied addendum and raw build/typecheck output whitespace; those
+inputs are retained verbatim rather than rewriting the specification or test output.
+
+This report does not claim that the entire Academy specification or professional
+DJ course is complete.
