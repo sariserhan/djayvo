@@ -1,0 +1,8 @@
+{
+  "status": "NOT RUN",
+  "attempt": "Read-only live Stripe account retrieval",
+  "result": "HTTP 401 StripeAuthenticationError: local CLI live restricted key rejected",
+  "live_mutations": 0,
+  "live_charges": 0,
+  "next": "Owner to set permanent Aurowall test/live keys in Jamloom Vercel; no key value retained in evidence"
+}

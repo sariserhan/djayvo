@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/notifications",
+      "schedule": "*/5 * * * *",
+      "host": "jamloom-b3dljzt39-ssari.vercel.app"
+    }
+  ],
+  "undeployed": [],
+  "modified": [],
+  "enabled": true
+}

@@ -1,35 +1,72 @@
 [
   {
     "mode": "test",
-    "action": "audit",
     "account": "acct_1TxA3vDlEXWDEeHO",
     "charges_enabled": true,
     "payouts_enabled": true,
-    "product": "prod_VTzQzUCZg1ycGm",
-    "price": "price_1UT1RrDlEXWDEeHO14x5otG7",
-    "product_tax_code": "txcd_20060058",
-    "endpoint": null,
+    "products": [
+      {
+        "id": "prod_VTzQzUCZg1ycGm",
+        "active": true,
+        "name": "Jamloom DJ Academy Complete Pass",
+        "default_price": null,
+        "tax_code": "txcd_20060058"
+      }
+    ],
+    "endpoints": [
+      {
+        "id": "we_1UT2HDDlEXWDEeHOpSh8zNfJ",
+        "url": "https://www.jamloom.com/api/academy/stripe?mode=test",
+        "status": "disabled",
+        "events": [
+          "checkout.session.completed",
+          "checkout.session.async_payment_succeeded",
+          "charge.refunded",
+          "charge.dispute.created",
+          "charge.dispute.closed"
+        ]
+      }
+    ],
     "tax": {
       "status": "active",
       "default_tax_code": null,
       "address_country": "US"
-    },
-    "live_charges": 0
+    }
   },
   {
     "mode": "live",
-    "action": "audit",
     "account": "acct_1TxA3vDlEXWDEeHO",
     "charges_enabled": true,
     "payouts_enabled": true,
-    "endpoint": null,
+    "products": [
+      {
+        "id": "prod_VU0Hye8ICGD4Y8",
+        "active": true,
+        "name": "Jamloom DJ Academy Complete Pass",
+        "default_price": null,
+        "tax_code": null
+      }
+    ],
+    "endpoints": [
+      {
+        "id": "we_1UT2HEDlEXWDEeHOZdfVxJHC",
+        "url": "https://www.jamloom.com/api/academy/stripe?mode=live",
+        "status": "disabled",
+        "events": [
+          "checkout.session.completed",
+          "checkout.session.async_payment_succeeded",
+          "charge.refunded",
+          "charge.dispute.created",
+          "charge.dispute.closed"
+        ]
+      }
+    ],
     "tax": {
       "status": "pending",
       "default_tax_code": null,
       "missing_fields": [
         "head_office"
       ]
-    },
-    "live_charges": 0
+    }
   }
 ]

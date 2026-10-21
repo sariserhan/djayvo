@@ -20,7 +20,7 @@
 | LAUNCH-002 | Verified admin bypass, public routes/signup closed | PASS | Real Better Auth sessions; ordinary, unverified, suspended and forged-cookie users denied; admin deck playback works |
 | LAUNCH-003 | Cache isolation, recovery routes and launch rollback | PASS | Private/no-store admin responses; support/login allowed; regular homepage regression passes with flag false |
 | LAUNCH-004 | Build, checks and rendered UI | PASS | 30 unit tests, production build/typecheck/bundle audit; Chromium/WebKit, 1440/390/320 and axe |
-| LAUNCH-005 | Public deployment | PASS | Production `b4e03e5` deployed; coming-soon remains enabled, owner preview accepted; all migrations verified. [Release checks](docs/academy-release-checks.md) |
+| LAUNCH-005 | Public deployment | PASS | Production `5374350` deployed; coming-soon remains enabled, earlier first-lesson preview accepted; all migrations verified. [Release checks](docs/academy-release-checks.md) |
 
 [Implementation and activation](docs/coming-soon.md).
 
@@ -53,7 +53,7 @@ Evidence: [implementation report](docs/admin-implementation.md), [owner setup](d
 | ADM-005 | Contact/support inbox, branded replies and signup notifications | PASS | Actual local form/DB/outbox flow, retries/leases and mobile templates |
 | ADM-006 | Test/live billing mode, isolated entitlements | PASS | Separate keys and signed fixtures; selection cannot release paid products |
 | ADM-007 | Tests, build, responsive UI and accessibility | PASS | 83 site/DB + 80 web tests; production build, bundle audit, Chromium/WebKit and axe |
-| ADM-008 | Hosted migration, deployment, notification delivery and scheduler | PARTIAL | Reviewed 0011 applied and deployment PASS; authenticated retry cadence and hosted notification verification remain |
+| ADM-008 | Hosted migration, deployment, notification delivery and scheduler | PARTIAL | Reviewed 0011 applied, deployment and authenticated five-minute retry cadence PASS; actual new notification mailbox delivery NOT RUN |
 | ADM-009 | Actual payment-provider and commercial release gates | NOT RUN | No live charges; Academy release held, existing musical-quality FAIL retained |
 
 
@@ -69,7 +69,8 @@ Chromium/WebKit rendered access, prerequisite, axe and account-isolation checks 
 Deployment pending. Permanent Stripe keys and the owner mini-set observation requested while independent
 work continues. No new audible playback or live charges.
 
-Owner preview deployed at `5f13bd3` (`dpl_Bm3bGaMcwS94WnLTcyUVHZgbBUT2`).
+Latest production `5374350` READY (`dpl_66PEqiWaMuJo4RGMkcfrv2kDozBM`);
+full hosted CI matrix PASS. Earlier owner preview `5f13bd3` remains in history.
 Owner explicitly deferred human checks. Permanent keys added as Vercel secrets;
 hosted read-only audit authenticates both to Aurowall. Live tax settings lack a
 head-office address; owner will complete them. Shared-account refund handling now
@@ -124,7 +125,7 @@ Separate $79.99 one-time pass; generation credits and quality hold remain unchan
 |---|---|---|---|---|---|
 | ACA-001 | Preserve checkpoint and run existing baseline | Agent | efa13be / 35c0df0 | PASS | Baseline logs; master and prior evidence preserved |
 | ACA-002 | Actual deck command/audio telemetry bridge | Agent | Existing browser mixer | PASS | Original handlers, measured signals, real keyboard browser checks |
-| ACA-003 | Cleared practice music and measured fixtures | Agent + listeners | Redistribution rights / listening | PARTIAL | Two CC0 64-second tracks with hashes; enjoyment and phase/key annotations unverified |
+| ACA-003 | Cleared practice music and measured fixtures | Agent + listeners | Redistribution rights / listening | PARTIAL | Two CC0 64-second tracks with hashes; independent tempo candidates measured but ambiguous. Enjoyment/phrase/key review deferred |
 | ACA-004 | Verified first crossfade, coaching and unlimited Free Jam | Agent + novice testers | ACA-002/003 | PARTIAL | Automated fade and voluntary Continue pass; owner qualitatively accepts deployed lesson as good enough. Measured unaided completion not supplied |
 | ACA-005 | Versioned curriculum, rubrics and assessments | Agent | First lesson evidence | PARTIAL | 20 runnable lessons, six-stage prerequisite graph and end assessments implemented; browser checks PASS; human rubric calibration remains open (ACA-021/022) |
 | ACA-006 | Owner-scoped progress, prerequisites, export/delete | Agent | Local database tests | PASS | Real local Better Auth/PG, order/replay/ownership/rate bounds and deletion checks |

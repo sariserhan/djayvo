@@ -1,6 +1,7 @@
 # Academy continuation — 2026-10-21
 
-Owner preview `5f13bd3` deployed READY; human checks explicitly deferred by owner.
+Latest production `5374350` deployed READY; full hosted CI matrix PASS.
+Human checks explicitly deferred by owner.
 The owner added permanent Aurowall test/live keys as Vercel secrets; a hosted
 read-only audit confirms both account identities. Live tax address is missing
 and owner will complete it. Shared-account unrelated reversals are now safely

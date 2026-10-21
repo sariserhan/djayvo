@@ -1,138 +1,135 @@
 # Academy release checks — 2026-10-21
 
-Overall **PARTIAL**. The owner authorized the remaining Academy work, Aurowall
-for test and future live billing, and replaced recruited novice testing with
-owner-only acceptance. This report supersedes earlier “not deployed” statements;
-prior reports retain the evidence and limitations of their checkpoints.
+Overall **PARTIAL**: Academy remains an owner preview behind coming-soon; sales
+are closed. The owner authorized Aurowall for test/live billing, replaced the
+recruited cohort with owner-only testing, then explicitly said **“Defer human
+checks for now.”** That deferral does not manufacture course or hardware results.
 
 | Gate | Result | Evidence / limit |
 |---|---|---|
-| First lesson acceptance | PASS, qualitative | Owner: “yes it is good enough for now,” after the deployed lesson request. Dia / MacBook Air / external speaker. No completion timing, numeric scores or mini-set result supplied. |
-| Course implementation | PASS | 20 lessons, six stages; [completion report](academy-completion.md). |
-| Hosted CI | PASS | [Run 39626212331](https://github.com/sariserhan/jamloom/actions/runs/39626212331), commit `19ae151`: website, Academy, Linux/macOS ON/OFF and PCM comparison. [Receipt](evidence/academy-release/ci.json). |
-| Production schema | PASS | Private pre-migration dump; reviewed additive 0006–0012 applied transactionally to the authorized Neon production branch; all 12 migration hashes match. [Migration receipt](evidence/academy-release/migrations.json), [audit](evidence/academy-release/schema-audit.json). |
-| Backup restore | PASS | [Actual restore](evidence/academy-release/restore.json) into disposable private-socket PostgreSQL 18; accounts and five pre-migration schema receipts present. No production rollback, role/ACL restoration or point-in-time recovery claimed. |
-| Production deployment | PASS, owner preview | `b4e03e5`, deployment `dpl_7wx9w27aMg95SFCJMcSpjEnPbWSR`, [Jamloom](https://www.jamloom.com). Public coming-soon remains enabled. Owner confirmed first lesson acceptable. [Build log](evidence/academy-release/deploy.log). |
-| Browser endurance | PARTIAL | Actual 2- and 5-minute recordings/assessments pass in Chromium and WebKit. 30/60-minute runs interrupted immediately when owner reported nonstop speaker playback; no long-test pass. [Stop record](evidence/academy-endurance/interruption.json). |
-| Actual Stripe test mode | PASS | [Provider receipts](evidence/academy-provider/provider.json): hosted Checkout, signed real webhook delivery via CLI, decline/purchase, refund before/after grant, repurchase, won/lost disputes, replay and owner isolation. Local app/disposable DB; permanent deployed webhook not tested. No live charge. |
-| Human course/hardware/accessibility | PARTIAL | Owner first-lesson acceptance only; mini-set, music phrase/key judgment, sustained physical output, separate cue output, screen reader and venue remain unmeasured. No recruited-cohort claim. |
-| Commercial activation | NOT RUN | Sales remain closed. Durable live secrets/endpoint, actual merchant tax/terms/fees and full course acceptance remain open. |
+| Course implementation | PASS | 20 runnable lessons, six stages, prerequisites and recorded assessments. [Completion report](academy-completion.md). |
+| Owner preview | PASS | Verified active owner can access course lessons without a fabricated purchase; prerequisites remain enforced. Ordinary/unverified/suspended users denied. Chromium/WebKit UI, axe and delayed-network sync checks pass. [Evidence](evidence/academy-owner-preview/browser.json). |
+| First lesson acceptance | PASS, qualitative | Owner: “yes it is good enough for now.” Dia / MacBook Air / external speaker. No numeric scores, unaided timing or mini-set outcome supplied. |
+| Hosted CI | PASS | Full `5374350` website, Academy/admin, Linux/macOS sanitizer ON/OFF and PCM comparison matrix passes. [Receipt](evidence/academy-release/current-ci.json). [Current run](https://github.com/sariserhan/jamloom/actions/runs/39635511331). |
+| Production schema / recovery | PASS | Reviewed additive migrations 0006–0012 applied transactionally; all 12 hashes verified. Private pre-migration backup actually restored in disposable PostgreSQL 18. [Migration](evidence/academy-release/migrations.json), [schema](evidence/academy-release/schema-audit.json), [restore](evidence/academy-release/restore.json). No production rollback or role/ACL recovery claimed. |
+| Production deployment | PASS | `5374350`, `dpl_66PEqiWaMuJo4RGMkcfrv2kDozBM`, [Jamloom](https://www.jamloom.com). Coming-soon and private/no-store boundaries remain intact. [Receipt](evidence/academy-release/current-deployment.json), [build](evidence/academy-release/current-deploy.log). |
+| Silent recording endurance | PARTIAL, running | Corrected real-time two/five-minute checks pass; final thirty/sixty-minute runs are still running. Output-isolation preflight proves captured signal with zero final speaker samples. [Isolation](evidence/academy-endurance-silent/speaker-isolation.json). Physical output is NOT RUN. |
+| Actual Stripe test scenarios | PASS | Hosted Checkout, decline, purchase, refund before/after grant, repurchase, duplicate replay and won/lost disputes through the local HTTP app. [Provider receipts](evidence/academy-provider/provider.json). |
+| Permanent deployed test payments | PASS | Actual test purchase granted one sandbox receipt to the verified owner; the actual refund webhook withdrew access. No CLI forwarding and no generation-credit change. [Hosted receipt](evidence/academy-hosted-provider/provider.json). |
+| Permanent live provider configuration | PASS, no charge | Separate permanent key/catalog/secret and enabled endpoint; live tax settings active. A real Stripe live product-metadata event reached the deployed handler; no purchase rows changed. [Delivery](evidence/academy-release/live-webhook-delivery.json), [configuration](evidence/academy-release/permanent-billing-active.json). This is not a live payment test. |
+| Notification retries | PASS, mechanism | Existing Pro project, five-minute schedule, generated secret, unauthorized 401/authenticated 200, subsequent scheduled request observed. Empty outbox; no email sent. [Schedule](evidence/academy-release/notification-cron.json), [HTTP](evidence/academy-release/notification-cron-http.json), [observed invocation](evidence/academy-release/notification-cron-observed.json). Mailbox delivery is NOT RUN. |
+| Human course/music/hardware/accessibility | PARTIAL, deferred | First lesson accepted; mini-set, phrase/downbeat/key judgment, physical endurance, separate cue output, screen reader and venue checks are NOT RUN and deferred by owner. No cohort claim. |
+| Commercial activation | NOT RUN | Sales closed. Real-payment settlement/refund, merchant registration obligations, terms/refund policy, actual fees/economics and deferred course acceptance remain open. Paid generation retains its separate musical-quality FAIL. |
 
-## CI repair
+## Bugs exposed and fixed
 
-`b4e03e5` installs the web test dependencies and prepares the WASM engine before
-the Academy job. The first hosted rerun exposed Ubuntu POSIX-shell SDK sourcing:
-Emscripten's environment script locates itself from its current directory when
-sourced by dash. `19ae151` sources it from the SDK directory, then restores the
-project working directory. The shared bootstrap regression now requires that
-working directory and retains partial-cache/conflict preservation checks.
-The failing old behavior and passing repair were tested before the green run.
+- Owner preview originally passed the site gate but could not enter paid lessons.
+  It now reuses the verified active administrator check; financial entitlement
+  queries and receipts retain their strict purchased meaning.
+- Coaching collected samples before the account-attempt request completed. A
+  delayed request could cause a valid local check to fail server timing validation.
+  The test reproduced the failure; sampling now begins after attempt creation,
+  and Chromium/WebKit pass the delayed-request regression.
+- A five-minute wall wait produced a 298.28-second Chromium recording under load.
+  The harness now waits for measured audio duration. The recorder still stops at
+  3,600 measured seconds, with a bounded five-minute wall-clock grace period and
+  unchanged 96 MiB memory guard. Focused regression proves delayed clocks can reach
+  the audio cap and stalled recordings still hit the wall deadline.
+- The shared Aurowall account can have unrelated direct charges. Their refunds
+  have no Academy Checkout session, and legacy charges may have no PaymentIntent.
+  These are now ignored safely; ambiguous session matches still fail for retry.
 
-## Data and deployment
+Earlier audible long runs were stopped when the owner reported nonstop music.
+The first silent run exposed the short capture and was stopped after reproduction
+so it would not compete with the corrected runs. Its completed files, failure,
+and interruption record remain under
+`docs/evidence/academy-endurance-silent/superseded/` and
+`build-academy-endurance-silent/superseded/`. The intermediate worktree Chromium
+run was also superseded after exposing delayed-attempt sync; its WebKit lanes
+continue. No interrupted hour is counted as completed evidence.
 
-Production target is `ep-flat-hill-b4q0lix4.c-6.us-east-2.aws.neon.tech/neondb`,
-Neon project `misty-cherry-32516479`, branch `production`. Backup metadata is
-[retained without customer data](evidence/academy-release/backup.json). The dump
-is private, ignored, permission 0600 at
-`build-academy-release/before-academy-20261021.dump`; keep it for recovery.
-No existing accounts, recordings or financial rows were deleted.
+## Permanent billing
 
-Deployment used a separate clean worktree at `b4e03e5` so the running local
-endurance server retained its build. Vercel project is `ssari/jamloom`, root
-`apps/site`. Subsequent `19ae151` changes CI/bootstrap behavior, not runtime
-Academy behavior. Anonymous course access redirects to the coming-soon page;
-owner authentication remains required. This is not a public paid launch.
+Authorized account: Aurowall, `acct_1TxA3vDlEXWDEeHO`. Both products are active,
+one-time USD 79.99, tax exclusive, with `jamloom_product=academy-complete`.
 
-## Teaching audio and owner evidence
+| Mode | Product | Price | Endpoint |
+|---|---|---|---|
+| Test | `prod_VTzQzUCZg1ycGm` | `price_1UT1RrDlEXWDEeHO14x5otG7` | `we_1UT2HDDlEXWDEeHOpSh8zNfJ` |
+| Live | `prod_VU0Hye8ICGD4Y8` | `price_1UT2HEDlEXWDEeHOvTlDIDVe` | `we_1UT2HEDlEXWDEeHOZdfVxJHC` |
+
+Endpoints are `https://www.jamloom.com/api/academy/stripe?mode=test` and
+`?mode=live`, with different signing secrets. Both subscribe only to
+`checkout.session.completed`, `checkout.session.async_payment_succeeded`,
+`charge.refunded`, `charge.dispute.created`, and `charge.dispute.closed`.
+The temporary `product.updated` subscription used for the non-payment live
+probe was removed and the original filter verified.
+
+The owner supplied permanent keys as Vercel secrets. A hosted read-only audit
+verified both account identities before mutation. Catalog preparation briefly
+created then disabled endpoints until signing secrets were installed and the
+configured deployment passed signature checks. Newly created webhook secrets
+were returned in RSA-OAEP encrypted receipts; private key and decrypted values
+stay in ignored private files. Existing Stripe keys were never printed or
+exported from Vercel. The owner's local environment also contains valid permanent
+keys and was used for the subsequent explicit provider checks.
+
+Stripe live tax settings are active after the owner's update. The course uses
+`txcd_20060058` (self-study web-based training). The account reported **zero active
+tax registrations**; configuration is not a determination of merchant obligations.
+The synthetic US test address was not copied to live settings. Real fees,
+settlement, refund costs and lifetime support economics remain unmeasured.
+`academySalesReleased=false` and `paidGenerationReleased=false` remain unchanged.
+
+The deployed test created a sandbox financial receipt for the existing verified
+owner via the authorized server operations command. The purchase and refund were
+real Stripe test events delivered directly to the production handler. No owner
+browser login was fabricated, and no learning progress was written. The refunded
+sandbox receipt remains as audit history; strict purchased access is false again.
+
+## Teaching audio and recovery
 
 The artist labels both excerpts 120 BPM in the
-[CC0 source publication](https://opengameart.org/content/free-rhythm-game-music-pack-2).
-`scripts/review_academy_grid.py` computes candidate beat phase from positive
-35–200 Hz spectral changes and prepares metronome audition files under
-`build-academy-review/`. [Candidate receipts](evidence/academy-release/grid-candidates.json)
-bind source and audition hashes. This does not establish musical downbeats,
-phrase boundaries, keys or independent tempo validation. Production track
-annotations are unchanged. The script has a synthetic phase-offset self-check.
+[CC0 publication](https://opengameart.org/content/free-rhythm-game-music-pack-2).
+`scripts/review_academy_grid.py` now also searches onset periodicity without
+receiving that BPM label. Synthetic 100/120 BPM and silent-signal self-checks pass.
+The real excerpts have half/double-tempo ambiguities, so independent musical tempo,
+downbeats, phrases and keys are not confirmed. [Candidate measurements](evidence/academy-release/grid-candidates.json)
+are **PARTIAL**, not production annotation changes. Human review is deferred.
 
-The [owner protocol](ACADEMY_NOVICE_STUDY.md) records the revised n=1 scope and
-exact acceptance. Installed Dia is 1.53.0; the default output observed on this
-Mac is LG Ultra HD, DisplayPort, stereo 48 kHz. Device inventory alone does not
-prove playback quality. No microphone, face or owner recording was captured.
+Keep the private production backup at
+`build-academy-release/before-academy-20261021.dump` (0600); metadata is in
+[backup.json](evidence/academy-release/backup.json). Production target remains the
+authorized Neon `misty-cherry-32516479`, branch `production`. No user recordings
+or existing financial history were deleted.
 
-## Test-mode billing configuration
+## Reproduction and remaining work
 
-Exploratory UI harness checks encountered a different Stripe decline message
-(“credit card”) and submitted the next form before address/tax state settled.
-The runner now checks the provider's actual `card_declined` state and lets the
-address form settle before submission. The final complete run passes. Earlier
-repurchase timeout screenshot/text are named `exploratory-repurchase-*`; they are
-not the final outcome.
-
-
-Authorized account: Aurowall, `acct_1TxA3vDlEXWDEeHO`. Test product
-`prod_VTzQzUCZg1ycGm`, price `price_1UT1RrDlEXWDEeHO14x5otG7`: USD 79.99,
-one-time, tax exclusive. The product is marked `jamloom_product=academy-complete`.
-The test tax configuration uses a clearly synthetic US address and the test-only
-self-study training code `txcd_20060058`; neither is approved live merchant data.
-
-CLI credentials expire 2026-10-26 and are held only in an ignored 0600 environment
-file. They are unsuitable as durable production credentials. Do not paste secrets
-into chat, reports or Git. Test outcomes cannot establish real merchant fees,
-settlement, refund cost or lifetime support cost. The existing reserve model
-remains an assumption, and paid generation's musical-quality FAIL remains intact.
-
-## Reproduction
-
-Build the site before starting tests, and do not replace its `.next` output while
-endurance runs. Use Node 22 and the existing dependencies. Endurance seeds paid
-access/prerequisites only inside a disposable loopback database; those setup rows
-are not course-completion evidence. Actual assessment traces, recordings and
-saved results are measured through the real UI/server.
+Build before starting endurance; do not replace an active server's `.next` output.
+The runner defaults to silent downstream output isolation. Tests seed access and
+prerequisites only in a disposable loopback database; those rows are not learner
+outcomes. Actual recordings, assessments and account saves are exercised.
 
 ```sh
-JAMLOOM_AUDIBLE_TEST=1 JAMLOOM_TEST_DATABASE_URL=postgresql://serhansari@127.0.0.1:5432/postgres npm --prefix apps/site run test:academy-endurance
-.venv-analysis/bin/python scripts/measure_academy_endurance.py
+JAMLOOM_TEST_DATABASE_URL=postgresql://serhansari@127.0.0.1:5432/postgres npm --prefix apps/site run test:academy-endurance
+.venv-analysis/bin/python scripts/measure_academy_endurance.py --silent
 .venv-analysis/bin/python scripts/review_academy_grid.py
 ```
 
-Raw long recordings stay in ignored `build-academy-endurance/`; sanitized traces,
-screenshots and hashes are retained in `docs/evidence/academy-endurance/`.
-An exploratory short rerun overwrote the first two elementary recordings; the
-replacement repeat has its own valid capture/hash evidence in
-[elementary-repeat.json](evidence/academy-endurance/elementary-repeat.json).
-Original log receipts must not be represented as hashes of those replacement files.
+`JAMLOOM_BROWSER=chromium` or `webkit` selects one browser; `short` runs the
+2/5/5/30-minute lane and `hour` the automatic cap. `JAMLOOM_ENDURANCE_PORT` and
+`JAMLOOM_SITE_TEST_ROOT` isolate concurrent builds. Raw captures remain ignored.
+Set `JAMLOOM_AUDIBLE_TEST=1` only for a separately arranged physical listening
+window. No such window is active now.
 
-The provider runner uses documented [Stripe test cards](https://docs.stripe.com/testing)
-and [test dispute outcomes](https://docs.stripe.com/testing#disputes), including
-actual provider `card_declined` state and signed reversal deliveries. Refund-before-
-grant coverage deliberately delays the real signed grant at the local proxy;
-the refund is processed first, then the original signed grant is forwarded.
-Duplicate replays use the captured provider payload signed again locally. These
-are identified separately from original deliveries. Other-account access stays
-false; generation credit lots stay zero. No bank-network or live-payment outcome
-is implied. `first-complete-*` retains the preceding successful run; the final run
-also requires durable ingestion of each dispute-closed event before finishing.
+Provider scripts have explicit guards and mutate real provider **test** objects
+or a non-payment live catalog field. They must not run as ordinary CI tests.
+`academy-hosted-provider.mjs` requires `JAMLOOM_HOSTED_ACADEMY_TEST=1` plus the
+approved production database, test key and catalog. `academy-live-webhook.mjs`
+requires `JAMLOOM_LIVE_WEBHOOK_TEST=1` and the approved live account; it never
+creates a charge. Normal builds never invoke `prepare-academy-billing.mjs`.
 
-Run the provider check only with an authorized Aurowall test key, the pinned test
-catalog and an isolated loopback database. It creates actual **test-mode**
-Checkout/refund/dispute objects. Browser output is muted. For this session:
-
-```sh
-JAMLOOM_TEST_DATABASE_URL=postgresql://serhansari@127.0.0.1:5432/postgres node --env-file=build-academy-release/stripe-test.env --import ./apps/site/node_modules/tsx/dist/loader.mjs apps/site/tests/academy-provider.mjs
-```
-
-The endurance command above is intentionally audible and now requires
-`JAMLOOM_AUDIBLE_TEST=1`. Arrange a listening window before using it. The interrupted
-long runs provide no completed 30/60-minute capture; six completed two/five-minute
-captures decode with no clipping, nonfinite samples, clock gaps or quiet run over
-200 ms. [Final endurance summary](evidence/academy-endurance/summary.json).
-
-Remaining: owner mini-set/course acceptance; musical phrase/downbeat/key review;
-30/60-minute endurance in an arranged window; manual screen reader and physical
-output/cue/venue checks; permanent deployed test/live payment credentials and
-webhooks; actual merchant tax/refund/fee configuration and commercial activation.
-Recruitment is not required under the owner's revised scope. The first lesson is
-accepted; none of these distinct unmeasured outcomes is inferred from that answer.
-
-Retained text logs normalize trailing whitespace; raw copies remain private under
-`build-academy-release/raw-logs/`. No event payloads or audio receipts were rewritten.
+Remaining automated work: finish/decode the in-flight long recordings. Remaining deferred/owner work: course mini-set and music review,
+manual accessibility and physical output/cue/venue observations, merchant
+registration/terms/refund/fee review, real payment acceptance and explicit paid
+launch. Recruitment and more secret-key setup are not current blockers.

@@ -1,0 +1,15 @@
+// Verify live provider delivery with an owned catalog metadata event, never a charge.
+import assert from'node:assert/strict';import{randomUUID}from'node:crypto';import{writeFile}from'node:fs/promises';import{setTimeout as delay}from'node:timers/promises';import Stripe from'stripe';import{createPool}from'../lib/database.ts';
+assert.equal(process.env.JAMLOOM_LIVE_WEBHOOK_TEST,'1');assert.ok(process.env.STRIPE_LIVE_SECRET_KEY?.startsWith('sk_live_'));assert.equal(new URL(process.env.DATABASE_URL).hostname,'ep-flat-hill-b4q0lix4-pooler.c-6.us-east-2.aws.neon.tech');
+const stripe=new Stripe(process.env.STRIPE_LIVE_SECRET_KEY),pool=createPool(process.env.DATABASE_URL),probe=randomUUID(),started=Math.floor(Date.now()/1000);let endpoint,original;
+const result={status:'RUNNING',live_charges:0,scope:'Live product metadata event only; no financial entitlement evidence'};
+try{
+ assert.equal((await stripe.accounts.retrieve()).id,'acct_1TxA3vDlEXWDEeHO');const product=await stripe.products.retrieve(process.env.ACADEMY_STRIPE_LIVE_PRODUCT_ID);assert.equal(product.livemode,true);assert.equal(product.metadata.jamloom_product,'academy-complete');
+ const matches=(await stripe.webhookEndpoints.list({limit:100})).data.filter(e=>e.url==='https://www.jamloom.com/api/academy/stripe?mode=live');assert.equal(matches.length,1);endpoint=matches[0];assert.equal(endpoint.status,'enabled');original=endpoint.enabled_events;assert.ok(!original.includes('product.updated'));
+ const count=async()=>Number((await pool.query('SELECT count(*) n FROM academy_purchases')).rows[0].n),before=await count();
+ await stripe.webhookEndpoints.update(endpoint.id,{enabled_events:[...original,'product.updated']});await stripe.products.update(product.id,{metadata:{jamloom_webhook_verified:probe}});
+ let event;for(let n=0;n<120;n++){event=(await stripe.events.list({type:'product.updated',created:{gte:started-2},limit:100})).data.find(e=>e.data.object.id===product.id&&e.data.object.metadata.jamloom_webhook_verified===probe);if(event&&(await pool.query('SELECT 1 FROM academy_purchase_events WHERE event_id=$1',[event.id])).rowCount)break;await delay(1000);}
+ assert.ok(event);assert.equal(event.livemode,true);assert.equal((await pool.query('SELECT 1 FROM academy_purchase_events WHERE event_id=$1',[event.id])).rowCount,1);assert.equal(await count(),before);
+ Object.assign(result,{status:'PASS',event:event.id,endpoint:endpoint.id,product:product.id,provider_delivery:'Actual Stripe live signed delivery to production',purchase_row_delta:0});console.log('Live non-payment webhook delivery PASS');
+}catch(e){result.status='FAIL';result.error=e.message;throw e;}
+finally{try{if(endpoint&&original){const restored=await stripe.webhookEndpoints.update(endpoint.id,{enabled_events:original});assert.deepEqual([...restored.enabled_events].sort(),[...original].sort());result.original_event_filter_restored=true;}}finally{await pool.end();await writeFile(new URL('../../../docs/evidence/academy-release/live-webhook-delivery.json',import.meta.url),JSON.stringify(result,null,2)+'\n');}}

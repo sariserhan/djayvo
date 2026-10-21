@@ -130,12 +130,12 @@ closed for its separate musical-quality FAIL. Never put secrets in chat or Git.
 
 | Approval / configuration | Exact place, value and reason | Variables / verification | Status |
 |---|---|---|---|
-| [x] Create the **sandbox** catalog | [Stripe sandboxes](https://dashboard.stripe.com/sandboxes) → select sandbox → Product catalogue → Add product. Name **Jamloom DJ Academy Complete Pass**; metadata `jamloom_product=academy-complete`; active one-time **USD 79.99**, tax exclusive. No recurring interval, trial or discount. | `ACADEMY_STRIPE_PRODUCT_ID=prod_…`, `ACADEMY_STRIPE_PRICE_ID=price_…`, `STRIPE_SECRET_KEY=sk_test_…`. SDK rejects other amounts/currencies/products/live mode. `npm run test:academy` tests local fixtures; it does not contact Stripe. | PASS: Aurowall test product `prod_VTzQzUCZg1ycGm`, price `price_1UT1RrDlEXWDEeHO14x5otG7`. Test credentials private; CLI keys expire 2026-10-26, not permanent production credentials |
-| [ ] Configure a separate signed webhook | Stripe Workbench → Webhooks → add endpoint `https://<approved-preview-host>/api/academy/stripe`. Subscribe to `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `charge.refunded`, `charge.dispute.created`, `charge.dispute.closed`. Keep the existing `/api/payments/stripe` credit endpoint. | `ACADEMY_STRIPE_WEBHOOK_SECRET=whsec_…`. Test endpoint signing secret must match its sandbox. `ACADEMY_STRIPE_SANDBOX_ENABLED=true` only in a reviewed test environment. Keep this test configuration separate from the live keys described in the Administration section below. Paid release remains blocked. | PARTIAL: actual signed provider deliveries via Stripe CLI PASS; permanent hosted webhook remains unconfigured |
-| [x] Perform genuine hosted sandbox purchases | Use [Stripe test cards](https://docs.stripe.com/testing), verified owner-controlled test accounts and the Academy checkout. Test successful and failed payment, duplicate notification, refund before/after grant, dispute loss/win, repurchase and returning as another account. Verify the success page only acknowledges the webhook-owned receipt. | Confirm one `academy_purchases` row per receipt, no generation `credit_lots` change, paid content blocked after reversal. Retain sanitized event/session IDs and actual provider outcomes. | PASS: actual hosted Stripe test Checkout and real callbacks into local production server; decline, purchase, replay, refund before/after grant, repurchase, owner isolation and dispute win/loss. Durable deployed endpoint remains open |
-| [ ] Approve taxes, countries, merchant identity and refund terms | Stripe Settings → Business/Tax; legal review of `/academy/checkout`, Terms and Privacy. Price excludes tax; collected tax is not revenue. A refund of any size currently suspends that receipt; decide final partial-refund policy before sales. | `lib/academy-economics.ts`: assumed 3.5% + $0.50 processing, 8% refund reserve, $10 hosting and $20 support reserve → $40.29 modeled contribution. Replace assumptions with actual merchant fees, taxes, support/hosting observations. No unlimited cloud coaching is included. | PARTIAL: positive model, realized lifetime economics NOT RUN |
+| [x] Create the **sandbox** catalog | [Stripe sandboxes](https://dashboard.stripe.com/sandboxes) → select sandbox → Product catalogue → Add product. Name **Jamloom DJ Academy Complete Pass**; metadata `jamloom_product=academy-complete`; active one-time **USD 79.99**, tax exclusive. No recurring interval, trial or discount. | `ACADEMY_STRIPE_PRODUCT_ID=prod_…`, `ACADEMY_STRIPE_PRICE_ID=price_…`, `STRIPE_SECRET_KEY=sk_test_…`. SDK rejects other amounts/currencies/products/live mode. `npm run test:academy` tests local fixtures; it does not contact Stripe. | PASS: Aurowall test product `prod_VTzQzUCZg1ycGm`, price `price_1UT1RrDlEXWDEeHO14x5otG7`. Permanent owner-supplied test key configured in Vercel; old expiring CLI credentials are no longer the deployed dependency |
+| [x] Configure separate signed webhooks | Stripe Workbench → Webhooks → add endpoint `https://www.jamloom.com/api/academy/stripe?mode=test` and `?mode=live`. Subscribe to `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `charge.refunded`, `charge.dispute.created`, `charge.dispute.closed`. Keep the existing `/api/payments/stripe` credit endpoint. | `ACADEMY_STRIPE_WEBHOOK_SECRET=whsec_…`. Test endpoint signing secret must match its sandbox. `ACADEMY_STRIPE_SANDBOX_ENABLED=true` only in a reviewed test environment. Keep this test configuration separate from the live keys described in the Administration section below. Paid release remains blocked. | PASS: permanent test/live secrets and endpoints configured; actual deployed test purchase/refund and non-payment live provider delivery pass |
+| [x] Perform genuine hosted sandbox purchases | Use [Stripe test cards](https://docs.stripe.com/testing), verified owner-controlled test accounts and the Academy checkout. Test successful and failed payment, duplicate notification, refund before/after grant, dispute loss/win, repurchase and returning as another account. Verify the success page only acknowledges the webhook-owned receipt. | Confirm one `academy_purchases` row per receipt, no generation `credit_lots` change, paid content blocked after reversal. Retain sanitized event/session IDs and actual provider outcomes. | PASS: actual hosted Stripe test Checkout and real callbacks into local production server; decline, purchase, replay, refund before/after grant, repurchase, owner isolation and dispute win/loss. Permanent deployed test purchase/refund also PASS against the owner account; refunded sandbox receipt retained, no generation credit change |
+| [ ] Approve taxes, countries, merchant identity and refund terms | Stripe Settings → Business/Tax; legal review of `/academy/checkout`, Terms and Privacy. Price excludes tax; collected tax is not revenue. A refund of any size currently suspends that receipt; decide final partial-refund policy before sales. | `lib/academy-economics.ts`: assumed 3.5% + $0.50 processing, 8% refund reserve, $10 hosting and $20 support reserve → $40.29 modeled contribution. Replace assumptions with actual merchant fees, taxes, support/hosting observations. No unlimited cloud coaching is included. | PARTIAL: live tax settings active, course category configured, zero active registrations reported; obligations/terms/fees still require owner review, realized economics NOT RUN |
 | [ ] Approve practice music and final course | Review `public/academy-audio/manifest.json` and `CREDITS.txt`: artist Tricks & Traps, Extended and Theories of Everything, [author CC0 publication](https://opengameart.org/content/free-rhythm-game-music-pack-2). Corrected v2 64-second normalized excerpts; original v1 exports had 32-second silent tails and remain preserved as historical evidence. Confirm intended redistribution and venue-use disclosures. | Source SHA-256 pinned; `python3 scripts/prepare_academy_audio.py` reproduces assets. Also review the ten full-length CC0 tracks in [the public practice library](practice-library-ten.md), with all six artists credited. Human enjoyment, exact downbeats, compatible keys and phrase alignment are not established by the meter checks. | PARTIAL: publisher license/provenance captured; owner/music review open |
-| [ ] Owner-only course acceptance (revised scope) | Deployed `/academy/lessons/first-crossfade`; owner explicitly replaced cohort recruitment with testing alone, using Dia / MacBook Air / external speaker. | Record actual observations in `docs/ACADEMY_NOVICE_STUDY.md`. No general novice effectiveness claim. | PARTIAL: first lesson accepted as “good enough for now”; owner mini-set, timing and numeric scores not supplied |
+| [ ] Owner-only course acceptance (revised scope) | Deployed `/academy/lessons/first-crossfade`; owner explicitly replaced cohort recruitment with testing alone, using Dia / MacBook Air / external speaker. | Record actual observations in `docs/ACADEMY_NOVICE_STUDY.md`. No general novice effectiveness claim. | PARTIAL: first lesson accepted as “good enough for now”; owner mini-set, timing and numeric scores not supplied; further human checks explicitly deferred |
 | [ ] Approve curriculum/badges and design | Review `/academy/levels/*`, coach, keyboard flow, contrast and reduced motion. Curriculum 2026.10.2 has 20 runnable lessons across all six stages, with 2/5/30-minute recorded assessments. Software completion requires the full prerequisite chain; musical judgment and physical venue competence remain separate. See [completion implementation](academy-completion.md). No professional accreditation is claimed. Existing Jamloom logo/colors retained. | `npm run test:academy-browser`; actual screen-reader/physical-output checks still required. Do not enable Complete Pass sales for an incomplete course. | PARTIAL |
 | [ ] Approve privacy, retention, help and purchaser access | Use `support@jamloom.com` for replies; decide refund/help wording and applicable policies. Progress stores summaries, not raw audio: 20 recent attempts plus latest completed result per current lesson, and one daily anti-abuse counter. Local practice recordings only exist when the learner explicitly records/downloads. | `/academy/progress` export/delete; financial receipts remain for reconciliation. Confirm account-deletion retention policy with the existing financial ledger. No lesson analytics added. | PARTIAL: functionality local; legal/commercial approval open |
 | [x] Production migration and backup restore | Authorized Neon production branch: reviewed additive migrations 0006–0012 applied transactionally after private full backup. Never edit applied migrations. | All 12 hashes match. Actual backup restored into disposable private-socket PostgreSQL 18; owner/ACL restore and production rollback not exercised. | PASS: [migration and restore evidence](academy-release-checks.md) |
@@ -156,30 +156,27 @@ The owner confirmed both setup emails arrived; a read-only database check confir
 `emailVerified=true`. No password was retained or printed. Owner authorization is
 server-side and requires that exact verified address; client role fields are ignored.
 
-### Activation order (not yet performed on production)
+### Production activation and remaining checks
 
-1. Rehearse **0011_administration.sql** plus any unapplied earlier migrations on an
-   isolated Neon branch, with a restore point. Then approve/apply the reviewed
-   migrations through the existing explicit-target migration script. The new auth
-   hooks require the suspension column and notification table: **migrate before
-   deploying this code**. No hosted schema mutation was performed in this task.
-2. Approve deployment to the existing Vercel app. Keep Better Auth at
-   `https://www.jamloom.com`, existing Neon, R2 and Resend settings. No secrets were
-   added to Git. After deployment, sign in and open `/admin` (also linked in Account).
-3. Submit a real `/contact` and `/support` message, create a consenting test signup,
-   check the owner mailbox, then reply from `/admin/inbox`. Local tests prove the
-   workflow; new notification delivery through hosted Resend is **NOT RUN**.
-4. Configure a scheduler you already have to call `GET /api/notifications` with
-   `Authorization: Bearer <CRON_SECRET>`; use a random secret of at least 32 characters.
-   Each call leases/sends up to five queued messages, retries failures after five
-   minutes and stops automatic attempts after ten failures. Scheduling every five
-   minutes is a suggested operational cadence, **not an added paid service**. No
-   Vercel plan upgrade or cron schedule has been created. Without a scheduler,
-   new signup/contact/reply requests still trigger delivery, and the owner can
-   press **Retry pending email** in `/admin`. Check the pending/failure counts.
-   Email delivery remains at least once if the process dies after provider acceptance;
-   the existing Resend payload idempotency key reduces duplicate retries within the
-   provider's retention window. Owner email acceptance is not proof of inbox delivery.
+1. **PASS:** Additive migrations 0006–0012 applied on the authorized Neon production
+   branch after a private backup; all twelve hashes match and a disposable restore
+   passed. [Current evidence](academy-release-checks.md).
+2. **PASS:** Production deployment `5374350` is READY behind coming-soon. Sign in
+   as the verified owner to use `/admin` and the purchase-free course preview;
+   lesson prerequisites still apply. Public paid launch has not happened.
+3. **NOT RUN:** Hosted support/signup/reply mailbox observation. Local application
+   tests pass; earlier account setup emails arrived, which does not establish the
+   new notification flow. No new messages were sent in the scheduler check.
+4. **PASS:** `apps/site/vercel.json` schedules `/api/notifications` every five minutes
+   on the existing Pro project. Vercel supplies the generated private `CRON_SECRET`;
+   missing/wrong authentication returns 401 and an authorized empty-queue call
+   returns 200. A subsequent scheduled request was observed. Each call leases at
+   most five messages, retries failures after five minutes, and stops after ten
+   attempts. **Retry pending email** remains available in `/admin`.
+   Delivery remains at least once across a crash after provider acceptance; the
+   existing Resend idempotency key reduces duplicates within its retention window.
+   Provider acceptance is distinct from mailbox delivery. To stop scheduling,
+   disable this project's cron jobs or remove the cron entry and redeploy.
 
 ### What the controls do
 
@@ -230,8 +227,9 @@ with an active product carrying `jamloom_product=academy-complete`. Mode switchi
 checks that configuration is present; provider-side price checks happen before
 checkout. **Mode selection does not approve commercial release.** Academy sales
 remain held by `academySalesReleased=false`, and generation remains held by
-`paidGenerationReleased=false`. Actual Stripe sandbox/live transactions, fees,
-taxes and refund delivery still require provider testing and owner approval.
+`paidGenerationReleased=false`. Actual deployed Stripe test purchase/refund and a non-payment live webhook
+probe pass. Real payment settlement/refund, merchant obligations, fees and
+commercial activation still require their separate evidence and owner approval.
 Sandbox purchases never become live entitlements when the mode changes.
 
 

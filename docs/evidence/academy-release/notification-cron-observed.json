@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "scheduled_request": [
+    {
+      "id": "btznm-1792600250187-fa3f5c498491",
+      "timestamp": 1792600250187,
+      "deploymentId": "dpl_Fv8MCq9nXS7r6x6XcMasMSd8iCUQ",
+      "domain": "jamloom-b4uz7ntc4-ssari.vercel.app",
+      "requestMethod": "GET",
+      "requestPath": "/api/notifications",
+      "responseStatusCode": 200
+    }
+  ],
+  "manual_check": "Earlier manual probe used www.jamloom.com; subsequent request to the deployment hostname observed after scheduled boundary",
+  "mailbox_delivery": "NOT RUN; outbox empty"
+}

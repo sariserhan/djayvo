@@ -1,0 +1,33 @@
+Vercel CLI 59.1.4 (Node.js 22.23.1)
+Fetching deployment "www.jamloom.com" in ssari
+> Fetched deployment "jamloom-b3dljzt39-ssari.vercel.app" in ssari [449ms]
+
+  General
+
+    id		dpl_66PEqiWaMuJo4RGMkcfrv2kDozBM
+    name	jamloom
+    target	production
+    status	● Ready
+    url		https://jamloom-b3dljzt39-ssari.vercel.app
+    created	Wed Oct 21 2026 12:31:24 GMT-0400 (Eastern Daylight Time) [3m ago]
+
+
+  Aliases
+
+    ╶ https://www.jamloom.com
+    ╶ https://site-kappa-sable-52.vercel.app
+    ╶ https://jamloom.com
+    ╶ https://jamloom-ssari.vercel.app
+
+
+  Builds
+
+    ┌ .        [0ms]
+    ├── λ index (23.5MB) [iad1]
+    ├── λ _global-error (23.5MB) [iad1]
+    ├── λ _global-error.rsc (23.5MB) [iad1]
+    ├── λ _global-error.segments/__PAGE__.segment.rsc (23.5MB) [iad1]
+    ├── λ _global-error.segments/_full.segment.rsc (23.5MB) [iad1]
+    └── 223 output items hidden
+
+

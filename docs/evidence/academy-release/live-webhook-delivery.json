@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "live_charges": 0,
+  "scope": "Live product metadata event only; no financial entitlement evidence",
+  "event": "evt_1UT2RdDlEXWDEeHOj9pjeflZ",
+  "endpoint": "we_1UT2HEDlEXWDEeHOZdfVxJHC",
+  "product": "prod_VU0Hye8ICGD4Y8",
+  "provider_delivery": "Actual Stripe live signed delivery to production",
+  "purchase_row_delta": 0,
+  "original_event_filter_restored": true
+}

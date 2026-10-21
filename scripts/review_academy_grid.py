@@ -19,6 +19,29 @@ def grid_candidate(envelope, beat_seconds=.5):
     return float(offsets[int(np.argmax(scores))]), max(scores)
 
 
+def tempo_candidates(envelope):
+    centered = envelope - envelope.mean()
+    if float(np.dot(centered, centered)) < 1e-12:
+        return []
+    correlation = np.correlate(centered, centered, 'full')[len(centered)-1:]
+    correlation /= np.arange(len(centered), 0, -1)
+    correlation /= correlation[0]
+    peaks = [lag for lag in range(25, min(134, len(correlation)-1))
+             if correlation[lag] > .2 and correlation[lag] > correlation[lag-1]
+             and correlation[lag] > correlation[lag+1]]
+    return [dict(bpm=round(60/(lag*HOP/RATE), 3), correlation=float(correlation[lag]))
+            for lag in sorted(peaks, key=lambda lag: correlation[lag], reverse=True)[:6]]
+
+
+# Independent lag search must recover known pulse trains without receiving a BPM label.
+for interval, expected in [(50, 120), (60, 100)]:
+    reference = np.zeros(6000)
+    reference[13::interval] = 1
+    assert any(abs(row['bpm']-expected) < .001 and row['correlation'] > .99
+               for row in tempo_candidates(reference))
+assert tempo_candidates(np.zeros(6000)) == []
+
+
 pulses = np.zeros(1000)
 pulses[13::50] = 1
 assert abs(grid_candidate(pulses)[0] - .13) < .001
@@ -55,6 +78,6 @@ if __name__ == '__main__':
         rows.append(dict(id=track['id'],source_sha256=track['sha256'],author_bpm=120,
                          candidate_beat_offset_seconds=phase,method='positive 35-200 Hz spectral change, 64 ms Hann window, 10 ms hop',
                          review_file=str(output.relative_to(ROOT)),review_sha256=hashlib.sha256(output.read_bytes()).hexdigest(),
-                         independent_tempo='NOT RUN',downbeat_phrase_and_key='NOT RUN',owner_listening='NOT RUN'))
+                         independent_tempo=dict(status='PARTIAL',method='normalized onset autocorrelation; independent 45-240 BPM search; 10 ms lag resolution',candidates=tempo_candidates(onsets),limit='Periodicities include subdivisions and half/double tempo; this is not a confirmed musical beat annotation'),downbeat_phrase_and_key='NOT RUN',owner_listening='NOT RUN'))
     (ROOT/'docs/evidence/academy-release/grid-candidates.json').write_text(json.dumps(rows, indent=2)+'\n')
     print(json.dumps(rows, indent=2))

@@ -7,7 +7,25 @@
     "method": "positive 35-200 Hz spectral change, 64 ms Hann window, 10 ms hop",
     "review_file": "build-academy-review/extended-candidate-grid.wav",
     "review_sha256": "19aa3e1d40acc6099877551498466d6cb5d9977dc1b435d6bb3837016a593457",
-    "independent_tempo": "NOT RUN",
+    "independent_tempo": {
+      "status": "PARTIAL",
+      "method": "normalized onset autocorrelation; independent 45-240 BPM search; 10 ms lag resolution",
+      "candidates": [
+        {
+          "bpm": 60.0,
+          "correlation": 0.7076564464579087
+        },
+        {
+          "bpm": 96.774,
+          "correlation": 0.47290981962468026
+        },
+        {
+          "bpm": 157.895,
+          "correlation": 0.46616233864566053
+        }
+      ],
+      "limit": "Periodicities include subdivisions and half/double tempo; this is not a confirmed musical beat annotation"
+    },
     "downbeat_phrase_and_key": "NOT RUN",
     "owner_listening": "NOT RUN"
   },
@@ -19,7 +37,33 @@
     "method": "positive 35-200 Hz spectral change, 64 ms Hann window, 10 ms hop",
     "review_file": "build-academy-review/theories-candidate-grid.wav",
     "review_sha256": "43105498227fb629eb0c6ba8b0a82b20d8fd35c33ab2f019c759030a3f678ab2",
-    "independent_tempo": "NOT RUN",
+    "independent_tempo": {
+      "status": "PARTIAL",
+      "method": "normalized onset autocorrelation; independent 45-240 BPM search; 10 ms lag resolution",
+      "candidates": [
+        {
+          "bpm": 120.0,
+          "correlation": 0.88184910587704
+        },
+        {
+          "bpm": 60.0,
+          "correlation": 0.8525976955075383
+        },
+        {
+          "bpm": 80.0,
+          "correlation": 0.24791945320369368
+        },
+        {
+          "bpm": 48.0,
+          "correlation": 0.24584197031597646
+        },
+        {
+          "bpm": 240.0,
+          "correlation": 0.23984267994973604
+        }
+      ],
+      "limit": "Periodicities include subdivisions and half/double tempo; this is not a confirmed musical beat annotation"
+    },
     "downbeat_phrase_and_key": "NOT RUN",
     "owner_listening": "NOT RUN"
   }
