@@ -1,3 +1,17 @@
+# Visual homepage and creation visibility — 2026-10-21
+
+**PASS:** Working mini DJ decks, compact visual landing page and latest reviewed
+community feed. New saves default public with explicit sharing permission;
+private/legacy mixes stay out of public listings. Direct browser-mix saving,
+review/playback/withdrawal, exact 25% premium accounting, 88 site/DB + 80 web tests,
+build, typecheck, bundle audit and Chromium/WebKit audio/responsive/axe checks pass.
+Fixed production-bundle AudioError identity mismatch discovered in real route tests.
+**PARTIAL:** Private cloud-generation pricing is implemented in the ledger; paid
+creation remains closed and free local previews/saves incur no credits.
+**NOT RUN:** Hosted migrations 0011/0012, R2 regression, deployment and new human
+listening. Existing Q0 musical-quality **FAIL** is unchanged.
+[Report and reproducible evidence](visual-home-and-sharing.md).
+
 # Owner administration — 2026-10-21
 
 **PASS:** Verified owner account created for serhan.sari@yahoo.com; owner confirmed

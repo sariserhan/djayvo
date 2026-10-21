@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { netProceeds,quoteCost,COST_CATEGORIES,type Costs } from '../lib/economics';
+import { netProceeds,quoteCost,privacyCredits,COST_CATEGORIES,type Costs } from '../lib/economics';
 import { paidGenerationReleased } from '../lib/product';
 import { sandboxStripe,fulfillCheckout } from '../lib/stripe-payments';
 import Stripe from 'stripe';
@@ -35,4 +35,9 @@ test('Checkout fulfillment rereads paid state, rejects unpaid, wrong totals and 
   await assert.rejects(fulfillCheckout(bad as unknown as Stripe,wallet as never,'cs_test'));
  }
  assert.equal(granted,1);
+});
+
+test('private credits are 25 percent of the base rounded up, bounded and integer',()=>{
+ for(const [base,extra] of [[0,0],[1,1],[4,1],[5,2],[100000,25000]])assert.equal(privacyCredits(base),extra);
+ for(const n of [-1,1.1,NaN,Infinity,100001])assert.throws(()=>privacyCredits(n));
 });

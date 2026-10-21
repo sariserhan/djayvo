@@ -21,6 +21,7 @@ function update() {
   $('import').disabled = !idle || !$('consent').checked;
   $('generate').disabled = !idle || !samples || !$('consent').checked;
   $('styles').disabled = !idle;
+  $('visibility').disabled = !idle;
   $('trim-start').disabled = $('trim-end').disabled = $('clear-source').disabled = !idle;
   $('cancel').hidden = state !== 'generating';
   $('delete-all').disabled = !idle;
@@ -186,6 +187,7 @@ $('generate').onclick = async () => {
   clearError(); pauseAll(); state = 'generating'; update(); say('Loading the music engine…');
   const token = ++operation, began = performance.now();
   const style = document.querySelector('input[name=style]:checked').value;
+  const visibility = document.querySelector('input[name=visibility]:checked').value;
   const seed = crypto.getRandomValues(new Uint32Array(1))[0];
   let recent;
   try {
@@ -214,7 +216,7 @@ $('generate').onclick = async () => {
     if (data.type !== 'complete') return;
     // Completion is the cancellation boundary: commit the entire set atomically.
     state = 'saving'; update();
-    const session = { id: crypto.randomUUID(), created: Date.now(), style, seed: data.seed,
+    const session = { id: crypto.randomUUID(), created: Date.now(), style, visibility, seed: data.seed,
       seconds: (performance.now() - began) / 1000,
       files: data.files.map(file => ({ name: file.name, sha256: file.sha256,
         blob: new Blob([file.bytes], { type: file.name.endsWith('.wav') ? 'audio/wav' : 'application/octet-stream' }) })) };
@@ -257,7 +259,13 @@ function renderLibrary() {
       const audio = element('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = url; audio.setAttribute('aria-label', `Play ${names[style]} mix`);
       const download = element('a', 'Download WAV', 'download'); download.href = url; download.download = `jamloom-${style}-${session.seed}.wav`;
       download.setAttribute('aria-label', `Download ${names[style]} WAV`);
-      row.append(element('strong', names[style]), audio, download); section.append(row);
+      row.append(element('strong', names[style]), audio, download);
+      if (!session.unsaved && location.pathname.startsWith('/studio/')) {
+        const save = element('a', session.visibility === 'public' ? 'Save online · public' : 'Save online · private', 'download'); save.href = '/library';
+        save.onclick = event => { try { sessionStorage.setItem('jamloom-save-selection', JSON.stringify({ id: session.id, name: file.name })); } catch { event.preventDefault(); fail(new Error('Browser storage is unavailable. Download the WAV and save it from your cloud library.')); } };
+        row.append(save);
+      }
+      section.append(row);
     }
     $('library').append(section);
   }

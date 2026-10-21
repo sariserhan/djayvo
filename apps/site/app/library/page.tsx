@@ -16,8 +16,8 @@ export default async function Library({ searchParams }: { searchParams: Promise<
   const { tracks, nextCursor } = await listTracks(pool, session.user.id, cursor);
   const submissions=catalogue?await catalogue.submissions(session.user.id):[];
   return <section><h1>Your cloud library.</h1>
-    <p className="library-note">Saved mixes are private unless you separately submit them and a reviewer approves public listening. Your existing local mixes stay in this browser’s studio. {audio?.store.local ? 'This development site stores account audio on this Mac.' : !audio ? 'Account audio saving is not configured yet.' : ''}</p>
-    {audio && <SaveMix/>}
+    <p className="library-note">New saves default to public with explicit sharing permission and review. Choose private to keep a mix out of the catalogue and homepage. Existing private saves stay private. Your existing local mixes stay in this browser’s studio. {audio?.store.local ? 'This development site stores account audio on this Mac.' : !audio ? 'Account audio saving is not configured yet.' : ''}</p>
+    {audio && <SaveMix publicSharing={!!catalogue}/>}
     {tracks.length ? <ul className="library-list">{tracks.map(track => <li key={track.id}><strong>{track.title}</strong><p className="muted">{track.strategy} · {(track.duration_ms / 1000).toFixed(0)} seconds</p>{track.playable && audio && <><TrackControls id={track.id} title={track.title}/>{catalogue&&<SubmitTrack id={track.id}/>}</>}</li>)}</ul>
       : <div className="empty"><p>No cloud-saved tracks yet.</p><a href="/" className="primary">Make music</a></div>}
     {nextCursor && <a href={`/library?cursor=${encodeURIComponent(nextCursor)}`}>Older tracks</a>}

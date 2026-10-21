@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "baseline_commit": "6d12f08",
+  "site_and_database_tests": 88,
+  "web_unit_tests": 80,
+  "production_build": "PASS",
+  "typecheck": "PASS",
+  "public_bundle_audit": "PASS",
+  "browser_evidence_folder": "/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-landing-P3cGvm",
+  "synthetic_community_fixture_only": true,
+  "production_deployment": "NOT RUN",
+  "hosted_migration": "NOT RUN",
+  "real_R2_upload_this_change": "NOT RUN",
+  "paid_generation": "NOT RUN: existing release gate remains closed",
+  "existing_musical_quality": "FAIL: unchanged prior listening result",
+  "new_human_listening": "NOT RUN"
+}

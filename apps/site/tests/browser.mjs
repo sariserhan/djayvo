@@ -110,6 +110,7 @@ try {
   check('server-rendered library and API exclude another owner; spoofed owner/cursor rejected');
   if ((process.env.JAMLOOM_LOCAL_AUDIO_DIR ?? process.env.DJAYVO_LOCAL_AUDIO_DIR)) {
     assert.match(await page.title(),/Jamloom/);
+    await page.getByRole('radio',{name:'Private · only you'}).check();
     await page.getByLabel('Mix title',{exact:true}).fill('Private browser mix');
     await page.getByLabel('Musical direction',{exact:true}).selectOption('club');
     await page.getByLabel('Finished WAV',{exact:true}).setInputFiles(mixPath);

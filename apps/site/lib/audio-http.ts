@@ -7,7 +7,7 @@ import { audioResponse } from './audio-response';
 const headers={'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'};
 export async function audioRequest(request:Request, id?:string, action?:string) {
   try {
-    const {auth,audio,config}=services();
+    const {auth,audio,config,catalogue}=services();
     if (request.method!=='GET' && request.headers.get('origin')!==config.baseURL) throw new AudioError('Request origin not allowed.',403);
     const session=await auth.api.getSession({headers:request.headers});
     if (!session?.user.emailVerified) throw new AudioError('Sign in required.',401);
@@ -18,6 +18,7 @@ export async function audioRequest(request:Request, id?:string, action?:string) 
       if (!bounded) throw new AudioError('Save request is too large.',413);
       let value:unknown;
       try { value=await bounded.json(); } catch { throw new AudioError('Invalid save request.'); }
+      if(value && typeof value==='object' && 'visibility' in value && value.visibility==='public' && !catalogue) throw new AudioError('Public sharing is unavailable here. Choose private or try again later.',503);
       return Response.json(await audio.reserve(owner,value),{headers});
     }
     uuid(id);

@@ -28,7 +28,7 @@ test('isolated Postgres account lifecycle, schema safety and owner isolation', a
   const pool = createPool(config.databaseURL);
   try {
     await t.test('migrations apply once and match pinned Better Auth configuration', async () => {
-      assert.equal((await migrate(pool)).length, 11);
+      assert.equal((await migrate(pool)).length, 12);
       assert.deepEqual(await migrate(pool), []);
       const planned = await getMigrations(authOptions(config, pool));
       assert.deepEqual(planned.toBeCreated, []);

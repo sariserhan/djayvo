@@ -2,7 +2,24 @@ import { createHash } from 'node:crypto';
 
 export const MAX_AUDIO_BYTES = 7_680_044;
 export const STRATEGIES = ['hiphop','reggae','experimental','club','funk','call_response','hybrid'] as const;
+export const MOODS=['energetic','chill','playful','dark','uplifting'];
+export function publicationInput(value: unknown) {
+  const v=value as Record<string,unknown>;
+  if(!v || typeof v!=='object' || v.consent!==true || Object.keys(v).some(k=>!['artist','description','mood','consent'].includes(k))) throw new AudioError('Explicit public-listening permission is required.');
+  const fields:Record<string,string>={};
+  for(const [key,max] of [['artist',80],['description',500],['mood',20]] as const) {
+    const text=v[key];
+    if(typeof text!=='string'||!text.trim()||text.length>max||(key==='description'?/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]/:/[\x00-\x1f\x7f]/).test(text)) throw new AudioError('Invalid text.');
+    fields[key]=text.trim();
+  }
+  if(!MOODS.includes(fields.mood)) throw new AudioError('Invalid mood.');
+  return {artist:fields.artist,description:fields.description,mood:fields.mood,consent:true};
+}
+const audioErrorBrand=Symbol.for('jamloom.audio.error');
 export class AudioError extends Error {
+  readonly [audioErrorBrand]=true;
+  // Next route bundles can share services while loading distinct class constructors.
+  static [Symbol.hasInstance](value:unknown) { return value instanceof Error && audioErrorBrand in value && value[audioErrorBrand]===true; }
   constructor(message: string, public status = 400) { super(message); }
 }
 export function uuid(value: unknown): asserts value is string {
@@ -10,14 +27,18 @@ export function uuid(value: unknown): asserts value is string {
 }
 export function saveInput(value: unknown) {
   const v = value as Record<string, unknown>;
-  if (!v || typeof v !== 'object' || Object.keys(v).some(k => !['requestId','title','strategy','bytes','sha256','consent'].includes(k))) throw new AudioError('Invalid save request.');
+  if (!v || typeof v !== 'object' || Object.keys(v).some(k => !['requestId','title','strategy','bytes','sha256','consent','visibility','publication'].includes(k))) throw new AudioError('Invalid save request.');
+  if(v.visibility!==undefined && !['public','private'].includes(v.visibility as string)) throw new AudioError('Choose public or private.');
+  if(v.visibility!=='public' && v.publication!==undefined) throw new AudioError('Private saves cannot request publication.');
+  // Legacy clients never opted into public sharing.
+  const publication=v.visibility==='public'?publicationInput(v.publication):null;
   uuid(v.requestId);
   if (v.consent !== true) throw new AudioError('Permission to save this mix is required.');
   if (typeof v.title !== 'string' || !v.title.trim() || v.title.length > 120 || /[\x00-\x1f\x7f]/.test(v.title)) throw new AudioError('Use a title of 1–120 characters.');
   if (!STRATEGIES.includes(v.strategy as typeof STRATEGIES[number])) throw new AudioError('Unsupported musical direction.');
   if (!Number.isInteger(v.bytes) || (v.bytes as number) < 3_840_044 || (v.bytes as number) > MAX_AUDIO_BYTES || ((v.bytes as number)-44)%4) throw new AudioError('Choose a 20–40 second Jamloom WAV mix.');
   if (typeof v.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(v.sha256)) throw new AudioError('Invalid audio checksum.');
-  return { requestId: v.requestId, title: v.title.trim(), strategy: v.strategy as string, bytes: v.bytes as number, sha256: v.sha256 };
+  return { requestId: v.requestId, title: v.title.trim(), strategy: v.strategy as string, bytes: v.bytes as number, sha256: v.sha256, publication };
 }
 export function validateWav(data: Buffer, bytes: number, sha256: string) {
   if (data.length !== bytes || data.length > MAX_AUDIO_BYTES || data.length < 44 ||

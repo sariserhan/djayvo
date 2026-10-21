@@ -23,6 +23,25 @@ test('isolated catalogue: explicit publication, revision-bound review and privat
   try {
     await migrate(pool);
     for(const id of ['owner','listener','reviewer'])await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[id,id+'@example.com']);
+    await t.test('public save finalization queues once; private, pending, withdrawn and removed never appear in the homepage feed',async()=>{
+      await pool.query(`INSERT INTO "user"(id,name,email,"emailVerified") VALUES('newcreator','Creator','creator@example.test',true)`);
+      const v={...input(wav),visibility:'public',publication:submission}, saved=await audio.reserve('newcreator',v);
+      assert.equal((await catalogue.latest()).length,0);
+      await assert.rejects(audio.reserve('newcreator',{...v,visibility:'private',publication:undefined}),/changed/);
+      await assert.rejects(audio.reserve('newcreator',{...v,publication:{...submission,artist:'Changed'}}),/changed/);
+      assert.equal((await audio.reserve('newcreator',v)).id,saved.id);
+      await audio.localUpload('newcreator',saved.id,wav);await audio.finalize('newcreator',saved.id);
+      const revision=(await catalogue.queue())[0].revision;await audio.finalize('newcreator',saved.id);
+      assert.equal((await catalogue.queue())[0].revision,revision);assert.equal((await catalogue.latest()).length,0);
+      await catalogue.review('reviewer',saved.id,'approved','Synthetic workflow test; not listening evidence',revision);
+      assert.equal((await catalogue.latest())[0].id,saved.id);
+      const hidden=await audio.reserve('newcreator',{...input(wav),visibility:'private'});await audio.localUpload('newcreator',hidden.id,wav);await audio.finalize('newcreator',hidden.id);
+      assert.deepEqual((await catalogue.latest()).map(t=>t.id),[saved.id]);
+      await catalogue.withdraw('newcreator',saved.id);await audio.finalize('newcreator',saved.id);await audio.reserve('newcreator',v);
+      assert.equal((await catalogue.latest()).length,0);assert.equal((await catalogue.submissions('newcreator'))[0].state,'withdrawn');await assert.rejects(catalogue.playback(saved.id),/not found/);
+      await catalogue.submit('newcreator',saved.id,submission);await catalogue.review('reviewer',saved.id,'approved','Synthetic re-review',(await catalogue.queue())[0].revision);
+      await audio.remove('newcreator',saved.id);assert.equal((await catalogue.latest()).length,0);
+    });
     const {id}=await audio.reserve('owner',input(wav));await audio.localUpload('owner',id,wav);await audio.finalize('owner',id);
     await t.test('private and pending tracks never enter public metadata or audio',async()=>{
       assert.equal((await catalogue.list()).tracks.length,0);await assert.rejects(catalogue.playback(id),/not found/);
@@ -48,7 +67,7 @@ test('isolated catalogue: explicit publication, revision-bound review and privat
       assert.equal((await catalogue.list('%')).tracks.length,0);
       assert.equal((await catalogue.list("' OR true --")).tracks.length,0);
       await assert.rejects(catalogue.list('','invalid'));
-      assert.equal((await pool.query('SELECT count(*)::int n FROM catalogue_reviews')).rows[0].n,1);
+      assert.equal((await pool.query('SELECT count(*)::int n FROM catalogue_reviews WHERE track_id=$1',[id])).rows[0].n,1);
     });
     const playlist=await catalogue.createPlaylist('listener','My private collection');
     await t.test('playlists isolate owners, preserve ordering, deduplicate and cannot add private tracks',async()=>{
@@ -146,6 +165,8 @@ test('isolated catalogue: explicit publication, revision-bound review and privat
         await pool.query("INSERT INTO track_assets(track_id,request_id,owner_id,sha256,bytes,state) VALUES($1,gen_random_uuid(),'reviewer',$2,$3,'ready')",[track.id,input(wav).sha256,wav.length]);
         await pool.query("INSERT INTO catalogue_submissions(track_id,artist,description,mood,state) VALUES($1,'Test','Query-only fixture','chill','approved')",[track.id]);
       }
+      for(const [i,track] of tracks.entries()) await pool.query('UPDATE catalogue_submissions SET reviewed_at=to_timestamp($2) WHERE track_id=$1',[track.id,1700000000+i]);
+      assert.deepEqual((await catalogue.latest()).map(t=>t.id),tracks.slice(-8).reverse().map(t=>t.id));
       const seen=new Set<string>();let cursor='';
       do {const page=await catalogue.list('Pagination','club','chill',cursor);for(const track of page.tracks){assert.ok(!seen.has(track.id));seen.add(track.id);}cursor=page.next??'';}while(cursor);
       assert.equal(seen.size,101);

@@ -1,0 +1,637 @@
+test 
+> jamloom-site@0.1.0 test
+> tsx --test tests/config.test.ts tests/audio.test.ts tests/email.test.ts tests/economics.test.ts tests/taste.test.ts tests/apple-payments.test.ts tests/generation-budget.test.ts
+
+TAP version 13
+# Subtest: Apple consumables bind exact app/account/product/price/environment, reject revocation and offers
+ok 1 - Apple consumables bind exact app/account/product/price/environment, reject revocation and offers
+  ---
+  duration_ms: 0.646792
+  type: 'test'
+  ...
+# Subtest: Apple official verifier rejects forged unsigned transactions
+ok 2 - Apple official verifier rejects forged unsigned transactions
+  ---
+  duration_ms: 0.36125
+  type: 'test'
+  ...
+# Subtest: private save validates consent, bounded metadata and canonical metadata-free PCM
+ok 3 - private save validates consent, bounded metadata and canonical metadata-free PCM
+  ---
+  duration_ms: 123.974541
+  type: 'test'
+  ...
+# Subtest: storage is opt-in, local files cannot be hosted, R2 grants bind content length and type
+ok 4 - storage is opt-in, local files cannot be hosted, R2 grants bind content length and type
+  ---
+  duration_ms: 13.871292
+  type: 'test'
+  ...
+# Subtest: brand transition preserves legacy storage config without overriding explicit opt-outs
+ok 5 - brand transition preserves legacy storage config without overriding explicit opt-outs
+  ---
+  duration_ms: 0.136459
+  type: 'test'
+  ...
+# Subtest: new public saves require publication consent; legacy and private saves never queue sharing
+ok 6 - new public saves require publication consent; legacy and private saves never queue sharing
+  ---
+  duration_ms: 31.051917
+  type: 'test'
+  ...
+# Subtest: audio errors retain safe status across duplicated route modules
+ok 7 - audio errors retain safe status across duplicated route modules
+  ---
+  duration_ms: 1.365042
+  type: 'test'
+  ...
+# Subtest: production template binds auth and private R2 grants to Jamloom configuration
+ok 8 - production template binds auth and private R2 grants to Jamloom configuration
+  ---
+  duration_ms: 12.689458
+  type: 'test'
+  ...
+# Subtest: account configuration fails closed and forbids hosted development mail
+ok 9 - account configuration fails closed and forbids hosted development mail
+  ---
+  duration_ms: 0.205833
+  type: 'test'
+  ...
+# Subtest: Resend request routes replies to support and binds retry identity to the full payload
+ok 10 - Resend request routes replies to support and binds retry identity to the full payload
+  ---
+  duration_ms: 2.799
+  type: 'test'
+  ...
+# Subtest: reply-to accepts a single mailbox and rejects malformed or injected headers
+ok 11 - reply-to accepts a single mailbox and rejects malformed or injected headers
+  ---
+  duration_ms: 0.116834
+  type: 'test'
+  ...
+# Subtest: localhost can use Neon without enabling local database/storage shortcuts
+ok 12 - localhost can use Neon without enabling local database/storage shortcuts
+  ---
+  duration_ms: 0.08525
+  type: 'test'
+  ...
+# Subtest: email outbox cannot run in a hosted app even if a config is supplied directly
+ok 13 - email outbox cannot run in a hosted app even if a config is supplied directly
+  ---
+  duration_ms: 0.0635
+  type: 'test'
+  ...
+# Subtest: auth body limit measures real streamed bytes rather than trusting Content-Length
+ok 14 - auth body limit measures real streamed bytes rather than trusting Content-Length
+  ---
+  duration_ms: 1.540125
+  type: 'test'
+  ...
+# Subtest: Jamloom config accepts legacy deployment keys and gives explicit new values priority
+ok 15 - Jamloom config accepts legacy deployment keys and gives explicit new values priority
+  ---
+  duration_ms: 0.132375
+  type: 'test'
+  ...
+# Subtest: VisitorPing can connect without weakening script or framing protections
+ok 16 - VisitorPing can connect without weakening script or framing protections
+  ---
+  duration_ms: 1.04
+  type: 'test'
+  ...
+# Subtest: tax, Apple fee tier, fixed fees, refunds, FX and overhead reduce spendable proceeds
+ok 17 - tax, Apple fee tier, fixed fees, refunds, FX and overhead reduce spendable proceeds
+  ---
+  duration_ms: 0.558875
+  type: 'test'
+  ...
+# Subtest: Stripe signatures require exact body, timestamp and sandbox credentials
+ok 18 - Stripe signatures require exact body, timestamp and sandbox credentials
+  ---
+  duration_ms: 2.885625
+  type: 'test'
+  ...
+# Subtest: Checkout fulfillment rereads paid state, rejects unpaid, wrong totals and live payments
+ok 19 - Checkout fulfillment rereads paid state, rejects unpaid, wrong totals and live payments
+  ---
+  duration_ms: 0.275667
+  type: 'test'
+  ...
+# Subtest: private credits are 25 percent of the base rounded up, bounded and integer
+ok 20 - private credits are 25 percent of the base rounded up, bounded and integer
+  ---
+  duration_ms: 0.075291
+  type: 'test'
+  ...
+# Subtest: shared email layout escapes content and preserves a safe exact action URL
+ok 21 - shared email layout escapes content and preserves a safe exact action URL
+  ---
+  duration_ms: 0.527208
+  type: 'test'
+  ...
+# Subtest: both actual auth callbacks capture branded HTML and plain text in the private outbox
+ok 22 - both actual auth callbacks capture branded HTML and plain text in the private outbox
+  ---
+  duration_ms: 5.378917
+  type: 'test'
+  ...
+# Subtest: worker authorization binds hashes, deadlines, one attempt and conservative rental budget
+ok 23 - worker authorization binds hashes, deadlines, one attempt and conservative rental budget
+  ---
+  duration_ms: 1.965541
+  type: 'test'
+  ...
+# Subtest: real local subprocess is terminated on deadline, including an inference promise that ignores abort
+ok 24 - real local subprocess is terminated on deadline, including an inference promise that ignores abort
+  ---
+  duration_ms: 108.069167
+  type: 'test'
+  ...
+# Subtest: completion and failures both terminate allocation; termination failure is not hidden
+ok 25 - completion and failures both terminate allocation; termination failure is not hidden
+  ---
+  duration_ms: 1.435833
+  type: 'test'
+  ...
+# Subtest: taste derives explicit dimensions, never audio attributes from titles
+ok 26 - taste derives explicit dimensions, never audio attributes from titles
+  ---
+  duration_ms: 0.590291
+  type: 'test'
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 516.155166
+ 
+test:integration 
+> jamloom-site@0.1.0 test:integration
+> tsx --test tests/database.test.ts tests/private-audio.test.ts tests/catalogue.test.ts
+
+TAP version 13
+# Subtest: isolated catalogue: explicit publication, revision-bound review and private playlists
+    # Subtest: public save finalization queues once; private, pending, withdrawn and removed never appear in the homepage feed
+    ok 1 - public save finalization queues once; private, pending, withdrawn and removed never appear in the homepage feed
+      ---
+      duration_ms: 114.420792
+      type: 'test'
+      ...
+    # Subtest: private and pending tracks never enter public metadata or audio
+    ok 2 - private and pending tracks never enter public metadata or audio
+      ---
+      duration_ms: 2.913083
+      type: 'test'
+      ...
+    # Subtest: self review and stale revisions fail; explicit review exposes only public fields
+    ok 3 - self review and stale revisions fail; explicit review exposes only public fields
+      ---
+      duration_ms: 7.798334
+      type: 'test'
+      ...
+    # Subtest: playlists isolate owners, preserve ordering, deduplicate and cannot add private tracks
+    ok 4 - playlists isolate owners, preserve ordering, deduplicate and cannot add private tracks
+      ---
+      duration_ms: 5.251958
+      type: 'test'
+      ...
+    # Subtest: reports reopen moderation; rejection removes public audio and playlist playback without deleting the private master
+    ok 5 - reports reopen moderation; rejection removes public audio and playlist playback without deleting the private master
+      ---
+      duration_ms: 5.551292
+      type: 'test'
+      ...
+    # Subtest: a new report invalidates a loaded review so unseen concerns cannot be resolved
+    ok 6 - a new report invalidates a loaded review so unseen concerns cannot be resolved
+      ---
+      duration_ms: 7.364084
+      type: 'test'
+      ...
+    # Subtest: review resolves only the displayed ten reports and invalidates the old screen
+    ok 7 - review resolves only the displayed ten reports and invalidates the old screen
+      ---
+      duration_ms: 21.69975
+      type: 'test'
+      ...
+    # Subtest: reciprocal reports serialize without deadlocks and stay visible after concurrent review
+    ok 8 - reciprocal reports serialize without deadlocks and stay visible after concurrent review
+      ---
+      duration_ms: 50.278375
+      type: 'test'
+      ...
+    # Subtest: reported withdrawal leaves the actionable queue without erasing report history
+    ok 9 - reported withdrawal leaves the actionable queue without erasing report history
+      ---
+      duration_ms: 6.828875
+      type: 'test'
+      ...
+    # Subtest: withdrawal wins against concurrent approval and owner deletion prevents public access
+    ok 10 - withdrawal wins against concurrent approval and owner deletion prevents public access
+      ---
+      duration_ms: 30.135083
+      type: 'test'
+      ...
+    # Subtest: playlist count limits survive concurrent creates; deletion is scoped
+    ok 11 - playlist count limits survive concurrent creates; deletion is scoped
+      ---
+      duration_ms: 17.230417
+      type: 'test'
+      ...
+    # Subtest: catalogue cursor pages are disjoint and full-playlist retries stay idempotent
+    ok 12 - catalogue cursor pages are disjoint and full-playlist retries stay idempotent
+      ---
+      duration_ms: 286.8015
+      type: 'test'
+      ...
+    1..12
+ok 1 - isolated catalogue: explicit publication, revision-bound review and private playlists
+  ---
+  duration_ms: 892.195125
+  type: 'test'
+  ...
+# 2026-10-21T06:07:36.692Z WARN [Better Auth]: Field lastRequest in table rateLimit has a different type in the database. Expected number but got int8.
+# Subtest: isolated Postgres account lifecycle, schema safety and owner isolation
+    # Subtest: migrations apply once and match pinned Better Auth configuration
+    ok 1 - migrations apply once and match pinned Better Auth configuration
+      ---
+      duration_ms: 101.395375
+      type: 'test'
+      ...
+    # Subtest: failed migration rolls back and changed applied SQL is rejected
+    ok 2 - failed migration rolls back and changed applied SQL is rejected
+      ---
+      duration_ms: 22.962209
+      type: 'test'
+      ...
+    # Subtest: expired auth cleanup is bounded, retryable and preserves active records and accounts
+    ok 3 - expired auth cleanup is bounded, retryable and preserves active records and accounts
+      ---
+      duration_ms: 33.988292
+      type: 'test'
+      ...
+# 2026-10-21T06:07:37.045Z ERROR [Better Auth]: Invalid origin: https://other.example
+# 2026-10-21T06:07:37.048Z ERROR [Better Auth]: Invalid redirectURL: https://other.example/
+    # Subtest: unverified accounts cannot sign in; verification and origin checks work
+    ok 4 - unverified accounts cannot sign in; verification and origin checks work
+      ---
+      duration_ms: 298.458667
+      type: 'test'
+      ...
+# 2026-10-21T06:07:37.108Z WARN [Better Auth]: Rate limiting could not determine a client IP and is falling back to a single shared per-path bucket. Ensure your runtime forwards a trusted client IP header, then set `advanced.ipAddress.ipAddressHeaders` or `advanced.ipAddress.trustedProxies` so the address can be resolved.
+    # Subtest: session cookies are validated; library pages isolate owners including cursor ties
+    ok 5 - session cookies are validated; library pages isolate owners including cursor ties
+      ---
+      duration_ms: 16.252625
+      type: 'test'
+      ...
+# 2026-10-21T06:07:37.437Z WARN [Better Auth]: Invalid password
+    # Subtest: password reset revokes sessions; reset tokens cannot be replayed
+    ok 6 - password reset revokes sessions; reset tokens cannot be replayed
+      ---
+      duration_ms: 161.319625
+      type: 'test'
+      ...
+    # Subtest: sign-out and expiration revoke access; password hashes are not plaintext
+    ok 7 - sign-out and expiration revoke access; password hashes are not plaintext
+      ---
+      duration_ms: 92.225792
+      type: 'test'
+      ...
+# 2026-10-21T06:07:37.581Z WARN [Better Auth]: Reset Password: User not found
+# 2026-10-21T06:07:37.583Z WARN [Better Auth]: Reset Password: User not found
+# 2026-10-21T06:07:37.584Z WARN [Better Auth]: Reset Password: User not found
+# 2026-10-21T06:07:37.604Z WARN [Better Auth]: Reset Password: User not found
+# 2026-10-21T06:07:37.605Z WARN [Better Auth]: Reset Password: User not found
+# 2026-10-21T06:07:37.605Z WARN [Better Auth]: Reset Password: User not found
+    # Subtest: database-backed rate limits survive multiple auth instances
+    ok 8 - database-backed rate limits survive multiple auth instances
+      ---
+      duration_ms: 27.326959
+      type: 'test'
+      ...
+    1..8
+ok 2 - isolated Postgres account lifecycle, schema safety and owner isolation
+  ---
+  duration_ms: 1123.581291
+  type: 'test'
+  ...
+# Subtest: real isolated Postgres and disk: private audio lifecycle and recovery
+    # Subtest: explicit reservation, retry identity, owner binding and unavailable pending audio
+    ok 1 - explicit reservation, retry identity, owner binding and unavailable pending audio
+      ---
+      duration_ms: 11.452
+      type: 'test'
+      ...
+    # Subtest: finalization recovers from object write before SQL failure; retry and replay cannot change final bytes
+    ok 2 - finalization recovers from object write before SQL failure; retry and replay cannot change final bytes
+      ---
+      duration_ms: 72.931666
+      type: 'test'
+      ...
+    # Subtest: concurrent quota reservations cannot oversubscribe owner or global byte allowance
+    ok 3 - concurrent quota reservations cannot oversubscribe owner or global byte allowance
+      ---
+      duration_ms: 35.056459
+      type: 'test'
+      ...
+    # Subtest: delete hides immediately, waits out grants, retains retry records and releases quota only after cleanup
+    ok 4 - delete hides immediately, waits out grants, retains retry records and releases quota only after cleanup
+      ---
+      duration_ms: 7.421333
+      type: 'test'
+      ...
+    # Subtest: expiry prevents uploads, abandoned reservation cleanup and ready staging cleanup are bounded
+    ok 5 - expiry prevents uploads, abandoned reservation cleanup and ready staging cleanup are bounded
+      ---
+      duration_ms: 39.551958
+      type: 'test'
+      ...
+    # Subtest: daily attempt budgets include deleted reservations
+    ok 6 - daily attempt budgets include deleted reservations
+      ---
+      duration_ms: 7.020042
+      type: 'test'
+      ...
+    1..6
+ok 3 - real isolated Postgres and disk: private audio lifecycle and recovery
+  ---
+  duration_ms: 638.396333
+  type: 'test'
+  ...
+1..3
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1539.815708
+ 
+test:wallet 
+> jamloom-site@0.1.0 test:wallet
+> tsx --test tests/wallet.test.ts tests/generation-queue.test.ts tests/generation-watchdog.test.ts tests/vast-provider.test.ts
+
+TAP version 13
+# Subtest: durable local queue: one claim, lease loss, cancellation, crash recovery, funded immutable work
+ok 1 - durable local queue: one claim, lease loss, cancellation, crash recovery, funded immutable work
+  ---
+  duration_ms: 432.4945
+  type: 'test'
+  ...
+# Subtest: durable watchdog: lost create/delete responses, restart, cancellation, identity/cost holds and settlement recovery
+ok 2 - durable watchdog: lost create/delete responses, restart, cancellation, identity/cost holds and settlement recovery
+  ---
+  duration_ms: 467.170042
+  type: 'test'
+  ...
+# Subtest: Vast adapter verifies account, traverses complete inventory, limits returned fields and confirms delete response
+ok 3 - Vast adapter verifies account, traverses complete inventory, limits returned fields and confirms delete response
+  ---
+  duration_ms: 16.520834
+  type: 'test'
+  ...
+# Subtest: invalid, incomplete, changing or cyclic inventory is never interpreted as absence
+ok 4 - invalid, incomplete, changing or cyclic inventory is never interpreted as absence
+  ---
+  duration_ms: 2.394708
+  type: 'test'
+  ...
+# Subtest: provider failures, body size and error text cannot leak secrets or prove destruction
+ok 5 - provider failures, body size and error text cannot leak secrets or prove destruction
+  ---
+  duration_ms: 3.192167
+  type: 'test'
+  ...
+# Subtest: real Postgres ledger: conservation, concurrency, receipts, tenant isolation and costs
+    # Subtest: private premium is reserved atomically, rounded, captured only on success and bound to retries
+    ok 1 - private premium is reserved atomically, rounded, captured only on success and bound to retries
+      ---
+      duration_ms: 50.5465
+      type: 'test'
+      ...
+    # Subtest: receipt replay grants exactly once and cannot move between accounts
+    ok 2 - receipt replay grants exactly once and cannot move between accounts
+      ---
+      duration_ms: 20.028083
+      type: 'test'
+      ...
+    # Subtest: parallel reservations enforce one active job and no overspend
+    ok 3 - parallel reservations enforce one active job and no overspend
+      ---
+      duration_ms: 28.883208
+      type: 'test'
+      ...
+    # Subtest: zero-cost cancellation returns original lots; changed quote rejected
+    ok 4 - zero-cost cancellation returns original lots; changed quote rejected
+      ---
+      duration_ms: 7.673667
+      type: 'test'
+      ...
+    # Subtest: Apple sandbox lots preserve their own economics, ledgers immutable, disputes freeze
+    ok 5 - Apple sandbox lots preserve their own economics, ledgers immutable, disputes freeze
+      ---
+      duration_ms: 15.991041
+      type: 'test'
+      ...
+    # Subtest: unfunded jobs and invalid cost caps rejected without mutation
+    ok 6 - unfunded jobs and invalid cost caps rejected without mutation
+      ---
+      duration_ms: 4.323208
+      type: 'test'
+      ...
+    # Subtest: out-of-order refund and grant races cannot leave spendable disputed credits
+    ok 7 - out-of-order refund and grant races cannot leave spendable disputed credits
+      ---
+      duration_ms: 13.826875
+      type: 'test'
+      ...
+    # Subtest: taste profiles are owner-scoped with optimistic concurrency and deletion
+    ok 8 - taste profiles are owner-scoped with optimistic concurrency and deletion
+      ---
+      duration_ms: 18.611417
+      type: 'test'
+      ...
+    1..8
+ok 6 - real Postgres ledger: conservation, concurrency, receipts, tenant isolation and costs
+  ---
+  duration_ms: 462.408417
+  type: 'test'
+  ...
+1..6
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 627.152916
+ 
+test:admin 
+> jamloom-site@0.1.0 test:admin
+> node --import tsx --test tests/admin.test.ts
+
+TAP version 13
+# Subtest: admin boundaries reject unverified identities, invalid settings and mixed Stripe environments
+ok 1 - admin boundaries reject unverified identities, invalid settings and mixed Stripe environments
+  ---
+  duration_ms: 0.650542
+  type: 'test'
+  ...
+# Subtest: real Postgres administration, durable mail, credit exemption and billing isolation
+    # Subtest: settings require real owner, reject stale writes and absent live credentials, audit cannot be edited
+    ok 1 - settings require real owner, reject stale writes and absent live credentials, audit cannot be edited
+      ---
+      duration_ms: 7.129
+      type: 'test'
+      ...
+    # Subtest: contact transaction persists notification, reply is private and stale replay cannot email twice
+    ok 2 - contact transaction persists notification, reply is private and stale replay cannot email twice
+      ---
+      duration_ms: 19.219875
+      type: 'test'
+      ...
+    # Subtest: email failures remain durable, retry leases avoid concurrent sends, template escapes submitted content
+    ok 3 - email failures remain durable, retry leases avoid concurrent sends, template escapes submitted content
+      ---
+      duration_ms: 19.794125
+      type: 'test'
+      ...
+    # Subtest: only verified owner can reserve without credits; caps, actual costs, replays and frozen wallets remain enforced
+    ok 4 - only verified owner can reserve without credits; caps, actual costs, replays and frozen wallets remain enforced
+      ---
+      duration_ms: 15.5485
+      type: 'test'
+      ...
+    # Subtest: suspension removes sessions, cancels queued work with released credits, restore does not restore sessions
+    ok 5 - suspension removes sessions, cancels queued work with released credits, restore does not restore sessions
+      ---
+      duration_ms: 11.93525
+      type: 'test'
+      ...
+    # Subtest: verified live and test receipts stay separate; wrong-mode signed events fail
+    ok 6 - verified live and test receipts stay separate; wrong-mode signed events fail
+      ---
+      duration_ms: 8.133459
+      type: 'test'
+      ...
+    1..6
+ok 2 - real Postgres administration, durable mail, credit exemption and billing isolation
+  ---
+  duration_ms: 312.020458
+  type: 'test'
+  ...
+1..2
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 506.47675
+ 
+test:academy 
+> jamloom-site@0.1.0 test:academy
+> node --import tsx --test tests/academy.test.ts
+
+TAP version 13
+# Subtest: Academy catalog rejects wrong price, recurring, live and foreign products
+ok 1 - Academy catalog rejects wrong price, recurring, live and foreign products
+  ---
+  duration_ms: 4.465416
+  type: 'test'
+  ...
+# Subtest: isolated Postgres Academy receipts, progress, holds and tenant boundaries
+    # Subtest: server catalog checkout is one-time, taxed, owner-bound and separate from credit packs
+    ok 1 - server catalog checkout is one-time, taxed, owner-bound and separate from credit packs
+      ---
+      duration_ms: 0.711459
+      type: 'test'
+      ...
+    # Subtest: parallel receipt delivery grants once, denies owner transfer, never mints credits
+    ok 2 - parallel receipt delivery grants once, denies owner transfer, never mints credits
+      ---
+      duration_ms: 7.658375
+      type: 'test'
+      ...
+    # Subtest: refund before grant, duplicate refund, repurchase and independent dispute holds
+    ok 3 - refund before grant, duplicate refund, repurchase and independent dispute holds
+      ---
+      duration_ms: 6.2055
+      type: 'test'
+      ...
+    # Subtest: authoritative unpaid/live/price evidence cannot grant
+    ok 4 - authoritative unpaid/live/price evidence cannot grant
+      ---
+      duration_ms: 0.485709
+      type: 'test'
+      ...
+    # Subtest: webhook replay conflicts and stale dispute events use current provider status
+    ok 5 - webhook replay conflicts and stale dispute events use current provider status
+      ---
+      duration_ms: 5.216167
+      type: 'test'
+      ...
+    # Subtest: progress reevaluates signals and task order, isolates owners and survives a new store
+    ok 6 - progress reevaluates signals and task order, isolates owners and survives a new store
+      ---
+      duration_ms: 10.567375
+      type: 'test'
+      ...
+    # Subtest: bounded history and daily sync quota survive deleting learning progress
+    ok 7 - bounded history and daily sync quota survive deleting learning progress
+      ---
+      duration_ms: 16.719
+      type: 'test'
+      ...
+    1..7
+ok 2 - isolated Postgres Academy receipts, progress, holds and tenant boundaries
+  ---
+  duration_ms: 246.860375
+  type: 'test'
+  ...
+# Subtest: published manifests are bounded, versioned and have unambiguous prerequisites
+ok 3 - published manifests are bounded, versioned and have unambiguous prerequisites
+  ---
+  duration_ms: 0.7215
+  type: 'test'
+  ...
+# Subtest: Academy modeled contribution is explicit, bounded and never finances AI inference
+ok 4 - Academy modeled contribution is explicit, bounded and never finances AI inference
+  ---
+  duration_ms: 1.57
+  type: 'test'
+  ...
+1..4
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 487.932834
+ 
+typecheck 
+> jamloom-site@0.1.0 typecheck
+> tsc --noEmit
+
+ 
+audit:bundle 
+> jamloom-site@0.1.0 audit:bundle
+> node scripts/audit-bundle.mjs
+
+{
+  "status": "PASS",
+  "client_files_checked": 24,
+  "server_secrets_absent": "PASS",
+  "studio_assets_unchanged_except_account_link_and_offline_hashes": "PASS",
+  "wasm_sha256": "1aac34227acb177b11c712a39aa8c1c23ec036b9e31e35c66d4c6f04bf068c57"
+}
+ 

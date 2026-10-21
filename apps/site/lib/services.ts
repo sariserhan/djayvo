@@ -8,6 +8,7 @@ import { authOptions } from './auth-options';
 import { audioStore } from './audio-store';
 import { PrivateAudio } from './private-audio';
 import { Catalogue } from './catalogue';
+import {isAdmin} from './admin-access';
 
 function createServices() {
   const config = readConfig();
@@ -42,5 +43,5 @@ export function accountsConfigured() {
   try { readConfig(); return true; } catch { return false; }
 }
 export function isReviewer(user:{email:string;emailVerified:boolean}|undefined) {
-  return !!user?.emailVerified && ((process.env.JAMLOOM_REVIEWER_EMAILS ?? process.env.DJAYVO_REVIEWER_EMAILS)??'').split(',').map(s=>s.trim().toLowerCase()).filter(Boolean).includes(user.email.toLowerCase());
+  return isAdmin(user) || !!user?.emailVerified && ((process.env.JAMLOOM_REVIEWER_EMAILS ?? process.env.DJAYVO_REVIEWER_EMAILS)??'').split(',').map(s=>s.trim().toLowerCase()).filter(Boolean).includes(user.email.toLowerCase());
 }

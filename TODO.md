@@ -1,5 +1,20 @@
 # Jamloom development tracker
 
+## Visual homepage and sharing — 2026-10-21
+
+Evidence: [implementation and boundaries](docs/visual-home-and-sharing.md).
+
+| ID | Task | Status | Evidence / remaining action |
+|---|---|---|---|
+| HOME-001 | Visual homepage with working mini DJ decks | PASS | Existing mixer, real CC0 track playback/crossfade/cue/master/waveform; no autoplay |
+| HOME-002 | Automatically refreshed community music | PASS | Newest eight approved tracks, real player, truthful empty state, withdrawal refresh |
+| HOME-003 | New public default / private option and direct local-mix saving | PASS | Separate sharing consent, verified IndexedDB handoff, actual WASM render and API save in both browsers; legacy saves remain private |
+| HOME-004 | Private creation premium of 25%, rounded up | PARTIAL | Real local ledger reservation/capture/release passes; live generation remains closed, local previews/save free |
+| HOME-005 | Tests, build, mobile layout and accessibility | PASS | 88 site/DB + 80 web tests; Chromium/WebKit at 1440/390/320; production build and bundle audit |
+| HOME-006 | Hosted migration/deployment and real community catalogue | NOT RUN | Apply pending 0011/0012, deploy matching code and review permissioned submissions; no real songs published by this work |
+| HOME-007 | Paid generation musical quality | FAIL | Existing owner rejection unchanged; no release override |
+
+
 ## Owner administration — 2026-10-21
 
 Evidence: [implementation report](docs/admin-implementation.md), [owner setup](docs/evidence/admin/owner-account.json).

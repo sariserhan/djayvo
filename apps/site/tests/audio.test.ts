@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { audioStore, localAudioStore } from '../lib/audio-store';
 import { readConfig } from '../lib/config';
-import { saveInput, validateWav, readBody } from '../lib/audio-validation';
+import { AudioError, saveInput, validateWav, readBody } from '../lib/audio-validation';
 import { audioFixture, hash, input } from './audio-fixture';
 
 test('private save validates consent, bounded metadata and canonical metadata-free PCM',async()=>{
@@ -44,4 +44,20 @@ test('brand transition preserves legacy storage config without overriding explic
   assert.equal(audioStore(config, { DJAYVO_LOCAL_AUDIO_DIR:'/tmp/legacy-audio', JAMLOOM_LOCAL_AUDIO_DIR:'' }), null);
   assert.equal(audioStore(config, { DJAYVO_R2_ENABLED:'true', JAMLOOM_R2_ENABLED:'false' }), null);
   assert.throws(() => audioStore(config, { DJAYVO_R2_ENABLED:'true' }), /incomplete/);
+});
+
+test('new public saves require publication consent; legacy and private saves never queue sharing',()=>{
+ const v=input(audioFixture()),publication={artist:'Public name',description:'Original mix',mood:'chill',consent:true};
+ assert.equal(saveInput(v).publication,null);
+ assert.equal(saveInput({...v,visibility:'private'}).publication,null);
+ assert.deepEqual(saveInput({...v,visibility:'public',publication}).publication,publication);
+ for(const delta of [{visibility:'secret'},{visibility:'public'},{visibility:'private',publication},{visibility:'public',publication:{...publication,consent:false}},{visibility:'public',publication:{...publication,artist:'Bad\nname'}}])assert.throws(()=>saveInput({...v,...delta}));
+});
+
+test('audio errors retain safe status across duplicated route modules',async()=>{
+ const other=await import(new URL('../lib/audio-validation.ts?route-copy=1',import.meta.url).href);
+ const error=new other.AudioError('Track not found.',404);
+ assert.ok(error instanceof AudioError);assert.equal(error.status,404);
+ assert.ok(!(new Error('database unavailable') instanceof AudioError));
+ assert.ok(!({status:404,message:'forged', [Symbol.for('jamloom.audio.error')]:true} instanceof AudioError));
 });

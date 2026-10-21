@@ -13,6 +13,7 @@ export async function catalogueRequest(request:Request,path:string[]=[],playlist
     if(!playlists && request.method==='GET' && id!=='review') {
       if(!id) {
         const params=new URL(request.url).searchParams;
+        if(params.size===1 && params.get('sort')==='latest') return Response.json({tracks:await catalogue.latest()},{headers});
         if([...params.keys()].some(k=>!['q','strategy','mood','after'].includes(k)))throw new AudioError('Invalid filter.');
         return Response.json(await catalogue.list(params.get('q')??'',params.get('strategy')??'',params.get('mood')??'',params.get('after')??''),{headers});
       }

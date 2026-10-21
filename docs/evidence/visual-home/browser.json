@@ -1,0 +1,54 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "miniDeckAudioRms": 0.024642203532829067,
+    "crossfaderGains": [
+      0,
+      0.5600000023841858
+    ],
+    "masterMute": "PASS",
+    "cue": "PASS",
+    "navigationCleanup": "PASS",
+    "defaultPublic": "PASS",
+    "localWasmRenderAndDraftPrivate": "PASS",
+    "signInReturnsToPendingSave": "PASS",
+    "publicationConsent": "PASS",
+    "pendingAndPrivateExclusion": "PASS",
+    "reviewAndPlayback": "PASS",
+    "withdrawalRefresh": "PASS",
+    "accessibility": "PASS",
+    "listeningQuality": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "miniDeckAudioRms": 0.02569310089699367,
+    "crossfaderGains": [
+      0,
+      0.5600000023841858
+    ],
+    "masterMute": "PASS",
+    "cue": "PASS",
+    "navigationCleanup": "PASS",
+    "defaultPublic": "PASS",
+    "localWasmRenderAndDraftPrivate": "PASS",
+    "signInReturnsToPendingSave": "PASS",
+    "publicationConsent": "PASS",
+    "pendingAndPrivateExclusion": "PASS",
+    "reviewAndPlayback": "PASS",
+    "withdrawalRefresh": "PASS",
+    "accessibility": "PASS",
+    "listeningQuality": "NOT RUN"
+  }
+]

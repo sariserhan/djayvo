@@ -36,7 +36,8 @@
     "test:academy-browser": "node --import tsx tests/academy-browser.mjs",
     "test:audio-variety": "node tests/audio-variety-audit.mjs",
     "test:admin": "node --import tsx --test tests/admin.test.ts",
-    "test:admin-browser": "node --import tsx tests/admin-browser.mjs"
+    "test:admin-browser": "node --import tsx tests/admin-browser.mjs",
+    "test:landing-browser": "node --import tsx tests/landing-browser.mjs"
   },
   "dependencies": {
     "@apple/app-store-server-library": "3.1.0",

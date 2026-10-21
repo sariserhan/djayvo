@@ -20,3 +20,8 @@ export function quoteCost(costs:Costs,netPerCredit:number,marginBps=5000) {
   const credits=Number((BigInt(cap)*10000n+BigInt(netPerCredit)*(10000n-BigInt(marginBps))-1n)/(BigInt(netPerCredit)*(10000n-BigInt(marginBps))));
   return {credits:integer(credits,1,100000),costCapMicros:cap,marginBps};
 }
+
+export function privacyCredits(baseCredits:number) {
+  integer(baseCredits,0,100000);
+  return Math.ceil(baseCredits/4);
+}

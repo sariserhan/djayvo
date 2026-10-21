@@ -1,6 +1,7 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import {loadSession,verifySession} from '../../../web/library.js';
 
 const directions=['hiphop','reggae','experimental','club','funk','call_response','hybrid'];
 async function result(response:Response) {
@@ -8,29 +9,41 @@ async function result(response:Response) {
   if (!response.ok) throw Object.assign(new Error(value.error || 'Account saving failed. Your local mix is safe.'),{status:response.status});
   return value;
 }
-export function SaveMix() {
+export function SaveMix({publicSharing=true}:{publicSharing?:boolean}) {
   const router=useRouter(), form=useRef<HTMLFormElement>(null);
   const request=useRef({identity:'',id:crypto.randomUUID()});
   const [busy,setBusy]=useState(false), [message,setMessage]=useState(''), [error,setError]=useState('');
+  const [visibility,setVisibility]=useState('public'),[localFile,setLocalFile]=useState<File|null>(null);
+  useEffect(()=>{let active=true;void (async()=>{try{
+    const saved=sessionStorage.getItem('jamloom-save-selection');if(!saved)return;
+    const {id,name}=JSON.parse(saved);if(typeof id!=='string'||typeof name!=='string')throw new Error();
+    const session=await loadSession(id);if(!session||!await verifySession(session))throw new Error();
+    const file=session.files.find((f:{name:string})=>f.name===name&&f.name.endsWith('.wav'));if(!file)throw new Error();
+    if(!active)return;setLocalFile(new File([file.blob],file.name,{type:'audio/wav'}));setVisibility(session.visibility==='public'?'public':'private');
+    const title=form.current?.elements.namedItem('title') as HTMLInputElement;title.value=`My ${name.split('.')[0].replaceAll('_',' ')} mix`;
+    const strategy=form.current?.elements.namedItem('strategy') as HTMLSelectElement;strategy.value=name.split('.')[0];
+  }catch{if(active)setError('Could not load that browser mix. Download its WAV in the studio and choose the file here.');}})();return()=>{active=false;};},[]);
   return <form ref={form} className="account-form save-mix" onSubmit={async event => {
     event.preventDefault(); setBusy(true); setMessage('Checking your selected mix…'); setError('');
     try {
-      const values=new FormData(event.currentTarget), file=values.get('audio') as File;
+      const values=new FormData(event.currentTarget), file=localFile || values.get('audio') as File;
       if (!file || file.size<3840044 || file.size>7680044) throw new Error('Choose a 20–40 second stereo WAV downloaded from Jamloom.');
       const bytes=await file.arrayBuffer();
       const sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)), b=>b.toString(16).padStart(2,'0')).join('');
       const title=String(values.get('title')).trim(), strategy=String(values.get('strategy'));
-      const identity=JSON.stringify({sha256,title,strategy});
+      const publication=visibility==='public'?{artist:values.get('artist'),description:values.get('description'),mood:values.get('mood'),consent:values.get('publicationConsent')==='on'}:undefined;
+      const identity=JSON.stringify({sha256,title,strategy,visibility,publication});
       if (request.current.identity!==identity) request.current={identity,id:crypto.randomUUID()};
-      const intent=await result(await fetch('/api/library',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({requestId:request.current.id,title,strategy,sha256,bytes:file.size,consent:values.get('consent')==='on'})}));
+      const intent=await result(await fetch('/api/library',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({requestId:request.current.id,title,strategy,sha256,bytes:file.size,visibility,publication,consent:values.get('consent')==='on'})}));
       if (!intent.ready) {
-        setMessage('Uploading this mix privately…');
+        setMessage('Uploading your mix…');
         const upload=await fetch(intent.url,{method:'PUT',body:bytes,headers:{'Content-Type':'audio/wav'},credentials:new URL(intent.url,location.href).origin===location.origin?'same-origin':'omit'});
         if (!upload.ok) throw new Error('Upload did not finish. Your local file is safe; retry the save.');
         setMessage('Verifying the saved audio…');
         await result(await fetch(`/api/library/${intent.id}/finalize`,{method:'POST'}));
       }
-      setMessage('Saved privately to your account. Your local copy is unchanged.');
+      setMessage(visibility==='public'?'Saved and submitted for review. It will appear on the homepage after approval.':'Saved privately. It will not appear on public pages.');
+      sessionStorage.removeItem('jamloom-save-selection');setLocalFile(null);setVisibility('public');
       form.current?.reset(); request.current={identity:'',id:crypto.randomUUID()}; router.refresh();
     } catch(e) {
       if (e && typeof e==='object' && 'status' in e && e.status===409) request.current.identity='';
@@ -39,12 +52,25 @@ export function SaveMix() {
     finally { setBusy(false); }
   }}>
     <h2>Save a finished mix</h2>
-    <p>Download a mix from the studio, then choose that WAV here. Saving uploads this mix to your private account; it does not publish it.</p>
+    <p>Choose a finished mix and who can hear it. Public saves enter listening review; private saves are only accessible to you. Your local copy stays unchanged.</p>
     <label>Mix title<input name="title" required maxLength={120} disabled={busy}/></label>
     <label>Musical direction<select name="strategy" aria-label="Musical direction" disabled={busy}>{directions.map(s=><option key={s} value={s}>{s.replaceAll('_',' ')}</option>)}</select></label>
-    <label>Finished WAV<input name="audio" type="file" accept="audio/wav,.wav" required disabled={busy}/></label>
+    {localFile&&<p role="status">Selected from your browser studio: {localFile.name}</p>}
+    <label>{localFile?'Choose a different WAV':'Finished WAV'}<input name="audio" type="file" accept="audio/wav,.wav" required={!localFile} disabled={busy} onChange={()=>setLocalFile(null)}/></label>
+    <fieldset className="visibility-choice" disabled={busy}><legend>Who can listen?</legend>
+      <label><input type="radio" name="visibility" value="public" checked={visibility==='public'} onChange={()=>setVisibility('public')}/>Public · share after review</label>
+      <label><input type="radio" name="visibility" value="private" checked={visibility==='private'} onChange={()=>setVisibility('private')}/>Private · only you</label>
+      <p>Saving this local preview costs 0 credits. When paid cloud generation opens, private creations will cost 25% more credits, rounded up. Taking a public mix down is always free.</p>
+    </fieldset>
+    {visibility==='public'&&<fieldset disabled={busy}><legend>Public listing</legend>
+      {!publicSharing&&<p role="alert">Public sharing is unavailable here. Choose private or try again later.</p>}
+      <label>Public artist name<input name="artist" maxLength={80} required placeholder="Choose a name to show publicly"/></label>
+      <label>About your mix<textarea name="description" required maxLength={500}/></label>
+      <label>Mood<select name="mood">{['energetic','chill','playful','dark','uplifting'].map(m=><option key={m}>{m}</option>)}</select></label>
+      <label className="save-consent"><input name="publicationConsent" type="checkbox" required/>I have permission from everyone identifiable in this mix and all necessary rights to share it for public listening on Jamloom, including the homepage. This is not a license for training or commercial reuse.</label>
+    </fieldset>}
     <label className="save-consent"><input name="consent" type="checkbox" required disabled={busy}/>I have permission to store this mix online, including any recognizable voices.</label>
-    <button type="submit" className="primary" disabled={busy}>{busy?'Saving…':'Save privately'}</button>
+    <button type="submit" className="primary" disabled={busy||(visibility==='public'&&!publicSharing)}>{busy?'Saving…':visibility==='public'?'Save & submit for review':'Save privately'}</button>
     <p role="status" className="account-message">{message}</p><p role="alert" className="account-error">{error}</p>
   </form>;
 }

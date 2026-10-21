@@ -1,8 +1,8 @@
 import type { Pool, PoolClient } from 'pg';
-import { AudioError, STRATEGIES, uuid } from './audio-validation';
+import { AudioError, STRATEGIES, uuid, MOODS, publicationInput } from './audio-validation';
 import type { PrivateAudio } from './private-audio';
 
-export const MOODS=['energetic','chill','playful','dark','uplifting'];
+export { MOODS } from './audio-validation';
 function text(value:unknown,max:number,multiline=false) {
   if(typeof value!=='string' || !value.trim() || value.length>max || (multiline ? /[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]/ : /[\x00-\x1f\x7f]/).test(value)) throw new AudioError('Invalid text.');
   return value.trim();
@@ -24,6 +24,9 @@ export class Catalogue {
       AND ($4::uuid IS NULL OR t.id>$4::uuid) ORDER BY t.id LIMIT 25`,[strategy,mood,match,after||null])).rows;
     return {tracks:rows.slice(0,24),next:rows.length>24?rows[23].id:null};
   }
+  async latest() {
+    return (await this.pool.query<PublicTrack>(`SELECT ${publicFields} ${publicJoin} ORDER BY c.reviewed_at DESC,t.id DESC LIMIT 8`)).rows;
+  }
   async track(id:string, db:Pool|PoolClient=this.pool) {
     uuid(id);const row=(await db.query<PublicTrack>(`SELECT ${publicFields} ${publicJoin} AND t.id=$1`,[id])).rows[0];
     if(!row)throw new AudioError('Track not found.',404);return row;
@@ -40,9 +43,7 @@ export class Catalogue {
   }
   async submit(owner:string,id:string,value:Record<string,unknown>) {
     uuid(id);
-    if(value.consent!==true || Object.keys(value).some(k=>!['artist','description','mood','consent'].includes(k)))throw new AudioError('Explicit public-listening permission is required.');
-    const artist=text(value.artist,80),description=text(value.description,500,true),mood=text(value.mood,20);
-    if(!MOODS.includes(mood))throw new AudioError('Invalid mood.');
+    const {artist,description,mood}=publicationInput(value);
     await this.audio.locked(owner,async db=>{
       if(!(await db.query("SELECT t.id FROM tracks t JOIN track_assets a ON a.track_id=t.id WHERE t.id=$1 AND t.owner_id=$2 AND t.deleted_at IS NULL AND a.state='ready'",[id,owner])).rowCount)throw new AudioError('Track not found.',404);
       await db.query(`INSERT INTO catalogue_submissions(track_id,artist,description,mood) VALUES($1,$2,$3,$4)

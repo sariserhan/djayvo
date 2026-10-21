@@ -1,0 +1,60 @@
+// Real Next.js, PostgreSQL, audio graph and upload/review routes; no hosted writes.
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import {mkdtemp,rm,writeFile} from 'node:fs/promises';
+import {tmpdir} from 'node:os';import {join} from 'node:path';import {spawn} from 'node:child_process';import {once} from 'node:events';import {setTimeout as delay} from 'node:timers/promises';
+import {chromium,webkit} from 'playwright';import AxeBuilder from '@axe-core/playwright';
+import {createPool} from '../lib/database.ts';import {migrate} from '../lib/migrations.ts';import {OWNER_EMAIL} from '../lib/admin-access.ts';import {audioFixture,input} from './audio-fixture.ts';
+const url=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(url.hostname,'127.0.0.1');
+const admin=createPool(url.toString()),db='jamloom_landing_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${db}"`);url.pathname='/'+db;
+const pool=createPool(url.toString()),folder=await mkdtemp(join(tmpdir(),'jamloom-landing-')),base='http://127.0.0.1:4226';
+let server,logs='';const results=[];
+console.log('Evidence:',folder);
+try{
+ await migrate(pool);const env={...process.env,DATABASE_URL:url.toString(),BETTER_AUTH_URL:base,BETTER_AUTH_SECRET:randomUUID()+randomUUID(),JAMLOOM_LOCAL_OUTBOX:join(folder,'mail'),JAMLOOM_LOCAL_AUDIO_DIR:join(folder,'audio'),JAMLOOM_R2_ENABLED:'false'};delete env.VERCEL;delete env.RESEND_API_KEY;
+ server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port','4226'],{env,stdio:['ignore','pipe','pipe']});server.stdout.on('data',s=>logs+=s);server.stderr.on('data',s=>logs+=s);
+ for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break;}catch{}await delay(100);if(i===99)throw Error('Start timeout');}
+ let ip=10;async function api(path,body,cookie){return fetch(base+path,{method:body===undefined?'GET':'POST',headers:{origin:base,'Content-Type':'application/json','x-real-ip':`192.0.2.${ip++}`,...(cookie?{cookie}:{})},body:body===undefined?undefined:JSON.stringify(body)});}
+ async function account(email){const password='Landing-browser-password-891';const response=await api('/api/auth/sign-up/email',{name:'Synthetic browser tester',email,password});assert.equal(response.status,200);const user=(await response.json()).user;await pool.query('UPDATE "user" SET "emailVerified"=true WHERE id=$1',[user.id]);const login=await api('/api/auth/sign-in/email',{email,password});assert.equal(login.status,200);return login.headers.getSetCookie().map(v=>v.split(';')[0]).join('; ');}
+ const reviewer=await account(OWNER_EMAIL),creator=await account('creator@example.test'),wav=audioFixture();
+ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
+  console.log('Checking',name);const browser=await engine.launch();try{
+   const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});await context.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
+   await context.addInitScript(()=>{const Native=window.AudioContext;window.audioGraphs=[];window.AudioContext=class extends Native{constructor(...args){super(...args);this.probeGains=[];this.probeAnalysers=[];window.audioGraphs.push(this);}createGain(){const n=super.createGain();this.probeGains.push(n);return n;}createAnalyser(){const n=super.createAnalyser();this.probeAnalysers.push(n);return n;}};});
+   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+   await page.goto(base);await page.getByText('The first releases start with you.',{exact:true}).waitFor();assert.equal(await page.locator('h1').count(),1);assert.equal(new URL(await page.locator('link[rel=canonical]').getAttribute('href')).href,'https://www.jamloom.com/');assert.equal(await page.locator('.feature-list article').count(),5);assert.equal(await page.locator('.mini-deck audio').evaluateAll(as=>as.every(a=>a.paused)),true);
+   for(const width of [1440,390,320]){await page.setViewportSize({width,height:1000});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'home overflow '+width);await page.screenshot({path:join(folder,`${name}-home-${width}.png`),fullPage:true});}
+   const audit=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(audit.violations.map(v=>({id:v.id,targets:v.nodes.map(n=>n.target)})),[]);
+   await page.setViewportSize({width:1440,height:1000});await page.getByRole('button',{name:'Play Deck A',exact:true}).click();await page.waitForFunction(()=>document.querySelector('.mini-deck audio').currentTime>.2);
+   const rms=()=>page.evaluate(()=>{const a=window.audioGraphs[0].probeAnalysers[0],data=new Float32Array(a.fftSize);a.getFloatTimeDomainData(data);return Math.sqrt(data.reduce((s,v)=>s+v*v,0)/data.length);});
+   await page.waitForFunction(()=>{const a=window.audioGraphs[0].probeAnalysers[0],v=new Float32Array(a.fftSize);a.getFloatTimeDomainData(v);return v.some(n=>Math.abs(n)>.001);});const initialRms=await rms();assert.ok(initialRms>.0001);
+   await page.getByRole('button',{name:'Play Deck B',exact:true}).click();await page.getByLabel('Mini deck crossfader',{exact:true}).focus();await page.getByLabel('Mini deck crossfader',{exact:true}).press('End');await delay(250);
+   const gains=await page.evaluate(()=>window.audioGraphs[0].probeGains.slice(0,2).map(n=>n.gain.value));assert.ok(gains[0]<.001&&Math.abs(gains[1]-.56)<.001);
+   await page.getByLabel('Mini deck master volume',{exact:true}).focus();await page.getByLabel('Mini deck master volume',{exact:true}).press('Home');await delay(400);assert.ok(await rms()<.00001,'master must mute real mixed audio');
+   await page.getByRole('button',{name:'Cue Deck A',exact:true}).click();assert.deepEqual(await page.locator('.mini-deck audio').first().evaluate(a=>({paused:a.paused,time:a.currentTime})),{paused:true,time:0});
+   await page.getByRole('link',{name:'Make a Remix',exact:true}).click();await page.waitForURL(base+'/improvise');await page.waitForFunction(()=>window.audioGraphs.every(c=>c.state==='closed'));
+   // Actual generated output is selected in the shared IndexedDB library; no base64 in a URL or server upload before confirmation.
+   await context.addCookies(creator.split('; ').map(v=>({name:v.slice(0,v.indexOf('=')),value:v.slice(v.indexOf('=')+1),url:base})));
+   await page.goto(base+'/studio/index.html');assert.ok(await page.locator('input[name=visibility][value=public]').isChecked());await page.locator('input[name=visibility][value=private]').check();
+   await page.locator('#consent').check();await page.locator('#file').setInputFiles(new URL('../../../renders/fixtures/synthetic-speech.wav',import.meta.url).pathname);await page.waitForFunction(()=>!document.querySelector('#generate').disabled);await page.locator('input[name=style][value=funk]').check();await page.locator('#generate').click();await page.getByRole('link',{name:'Save online · private',exact:true}).waitFor({timeout:120000});
+   await page.reload();await context.clearCookies();await page.getByRole('link',{name:'Save online · private',exact:true}).click();await page.waitForURL(base+'/account/sign-in');await page.waitForLoadState('networkidle');await page.getByLabel('Email',{exact:true}).fill('creator@example.test');await page.getByLabel('Password',{exact:true}).fill('Landing-browser-password-891');await page.getByRole('button',{name:'Sign in',exact:true}).click();await page.waitForURL(base+'/library');await page.getByText('Selected from your browser studio: funk.wav',{exact:true}).waitFor();assert.ok(await page.getByRole('radio',{name:'Private · only you',exact:true}).isChecked());
+   await page.getByLabel('Mix title',{exact:true}).fill(name+' private fixture');await page.getByRole('checkbox',{name:/permission to store/}).check();await page.getByRole('button',{name:'Save privately',exact:true}).click();await page.getByRole('status').filter({hasText:'Saved privately.'}).waitFor();
+   const privateId=(await pool.query('SELECT id FROM tracks WHERE title=$1',[name+' private fixture'])).rows[0].id;assert.equal((await api('/api/catalogue/'+privateId+'/audio')).status,404);
+   await page.reload();assert.ok(await page.getByRole('radio',{name:'Public · share after review',exact:true}).isChecked());
+   await page.getByLabel('Mix title',{exact:true}).fill(name+' public fixture');await page.getByLabel('Finished WAV',{exact:true}).setInputFiles({name:'mix.wav',mimeType:'audio/wav',buffer:wav});await page.getByLabel('Public artist name',{exact:true}).fill('Synthetic tester');await page.getByLabel('About your mix',{exact:true}).fill('Workflow fixture, not a real community song or a quality evaluation.');await page.getByRole('checkbox',{name:/permission to store/}).check();
+   await page.getByRole('button',{name:'Save & submit for review',exact:true}).click();assert.equal((await pool.query('SELECT id FROM tracks WHERE title=$1',[name+' public fixture'])).rowCount,0,'sharing consent must be required');
+   await page.getByRole('checkbox',{name:/permission from everyone/}).check();await page.getByRole('button',{name:'Save & submit for review',exact:true}).click();await page.getByRole('status').filter({hasText:'Saved and submitted for review'}).waitFor();
+   const publicId=(await pool.query('SELECT id FROM tracks WHERE title=$1',[name+' public fixture'])).rows[0].id;
+   assert.equal((await api('/api/catalogue/'+publicId+'/audio')).status,404);assert.deepEqual((await (await api('/api/catalogue?sort=latest')).json()).tracks,[]);
+   const queue=await (await api('/api/catalogue/review',undefined,reviewer)).json();const row=queue.find(t=>t.id===publicId);assert.ok(row);
+   assert.equal((await api('/api/catalogue/'+publicId+'/review',{decision:'approved',confirmed:true,note:'Synthetic workflow fixture; not human listening or permission evidence.',revision:row.revision},reviewer)).status,200);
+   await page.goto(base);await page.getByRole('button',{name:'Play '+name+' public fixture',exact:true}).click();await page.waitForFunction(()=>document.querySelector('.music-player audio').currentTime>.1);assert.equal(await page.getByText(name+' private fixture',{exact:true}).count(),0);
+   await page.screenshot({path:join(folder,name+'-community-fixture.png'),fullPage:true});
+   // Hide/show refresh is a real client fetch, not a mocked feed.
+   assert.equal((await api('/api/catalogue/'+publicId+'/withdraw',{},creator)).status,200);await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));await page.getByText('The first releases start with you.',{exact:true}).waitFor();assert.equal((await api('/api/catalogue/'+publicId+'/audio')).status,404);
+   await page.goto(base+'/library');for(const width of [1440,390,320]){await page.setViewportSize({width,height:1000});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'library overflow '+width);}const formAudit=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(formAudit.violations.map(v=>({id:v.id,targets:v.nodes.map(n=>n.target)})),[]);
+   assert.deepEqual(errors,[]);results.push({browser:name,version:browser.version(),widths:[1440,390,320],miniDeckAudioRms:initialRms,crossfaderGains:gains,masterMute:'PASS',cue:'PASS',navigationCleanup:'PASS',defaultPublic:'PASS',localWasmRenderAndDraftPrivate:'PASS',signInReturnsToPendingSave:'PASS',publicationConsent:'PASS',pendingAndPrivateExclusion:'PASS',reviewAndPlayback:'PASS',withdrawalRefresh:'PASS',accessibility:'PASS',listeningQuality:'NOT RUN'});
+  }finally{await browser.close();}
+ }
+ await writeFile(join(folder,'results.json'),JSON.stringify(results,null,2)+'\n');console.log(JSON.stringify(results,null,2));
+}finally{if(server){server.kill('SIGTERM');await once(server,'exit');}await pool.end();await admin.query(`DROP DATABASE "${db}" WITH (FORCE)`);await admin.end();await rm(join(folder,'audio'),{recursive:true,force:true});await rm(join(folder,'mail'),{recursive:true,force:true});await writeFile(join(folder,'server.log'),logs);}

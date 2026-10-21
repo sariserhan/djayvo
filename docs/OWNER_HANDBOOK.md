@@ -228,3 +228,46 @@ remain held by `academySalesReleased=false`, and generation remains held by
 `paidGenerationReleased=false`. Actual Stripe sandbox/live transactions, fees,
 taxes and refund delivery still require provider testing and owner approval.
 Sandbox purchases never become live entitlements when the mode changes.
+
+
+## Homepage and public creations
+
+The current homepage has a working mini DJ deck and a feed of the latest eight
+reviewed public mixes. It refreshes every minute while visible and on tab return.
+Existing private recordings are unchanged. No sample practice track is presented
+as user-generated music, and an empty catalogue remains visibly empty.
+
+Before deploying this update:
+
+1. Review/apply pending migrations **0011 and 0012** to the intended Neon branch
+   using the existing `apps/site` migration command (`npm run db:migrate`) with
+   the correct server environment. Back up/review the target first. Neither
+   hosted migration was run for this change. Deploy the matching code afterward;
+   the new per-lot billing columns require the updated wallet writer.
+2. Keep R2 `jamloom-audio` private and preserve its existing scoped upload/CORS
+   configuration. Set `JAMLOOM_CATALOGUE_ENABLED=true` only when public-listening
+   moderation is ready. This switch already exists; no new secret is required.
+3. Sign in with the verified owner account and open **Admin → Review submitted
+   music**. Listen and check sharing permissions before approval. A different
+   configured reviewer must review your own submissions; self-approval is blocked.
+   Configure additional verified reviewers with `JAMLOOM_REVIEWER_EMAILS` as needed.
+4. On the deployed site, create a permitted mix, choose public, explicitly confirm
+   sharing, save and approve from a different reviewer account. Confirm homepage
+   playback. Repeat privately and verify it is absent; withdraw the public listing
+   and verify it disappears. Hosted end-to-end verification is **NOT RUN** here.
+
+The owner chose **25% extra credits for private cloud creation, rounded up**:
+4 base credits → 5 total; 5 → 7. The local ledger reserves this premium and
+captures it only on successful completion; zero-cost cancellation returns all
+reserved credits, and failure releases the premium. Existing base-cost policy and
+GPU caps remain. The verified owner stays credit-exempt but cost-controlled.
+The generation quote/confirmation route must use the selected visibility and
+show the total before paid generation is released. Its quality/release gate is
+still closed; no live charges are enabled by this update.
+
+Local previews, WAV downloads and saving these local mixes currently cost
+**0 credits**, visibly stated before saving. Withdrawal is always free, even for
+an originally public mix; downloaded copies cannot be recalled. Public listening
+permission is not AI-training or commercial-reuse permission. Homepage public
+saves require that separate permission and review rather than auto-publishing
+microphone inputs. [Evidence and limits](visual-home-and-sharing.md).
