@@ -1,0 +1,43 @@
+{
+  "speaker_output": "Muted downstream of recording taps; no physical-output claim",
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 1800,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T18:52:26.193Z",
+      "recovery": "cue then restart while A audible"
+    }
+  ],
+  "errors": [
+    "browserContext.close: Target page, context or browser has been closed\n    at async lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:105:202)\n    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:111:21)\n    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:116:7"
+  ],
+  "clock_gaps": [
+    {
+      "browser": "chromium",
+      "at": "2026-10-21T18:57:07.684Z",
+      "type": "clock-gap",
+      "expected": 13489152,
+      "actual": 13489024,
+      "frames": 13468800,
+      "rate": 48000,
+      "gaps": 1
+    },
+    {
+      "browser": "chromium",
+      "at": "2026-10-21T18:57:07.684Z",
+      "type": "clock-gap",
+      "expected": 13489152,
+      "actual": 13489280,
+      "frames": 13468928,
+      "rate": 48000,
+      "gaps": 2
+    }
+  ],
+  "status": "FAIL"
+}

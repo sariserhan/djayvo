@@ -1,7 +1,9 @@
 # Academy recording clock continuity — 2026-10-21
 
-**PARTIAL:** Corrected unit and both-browser recovery checks pass; corrected
-full-duration Chromium captures are pending. Physical listening remains deferred.
+**PASS, technical:** All 101 unit tests, both-browser short recovery and all ten
+full-duration cases pass. Corrected Chromium thirty-minute manual stop and hour
+automatic stop both download and save their assessments. All ten files decode
+cleanly. Physical listening remains NOT RUN and deferred.
 
 Earlier Chromium thirty-minute captures reported two timestamp discontinuities,
 including an isolated run; an hour capture reported four. WebKit completed thirty
@@ -40,3 +42,16 @@ The initial Playwright interception diagnostic did not observe the worklet
 messages. A temporary isolated public-asset copy provided the confirmed direct
 logging; its patch and exact frame observations are retained in
 `failures/chromium-resume-diagnostic/`. That logging is absent from product code.
+
+Corrected Chromium hour: automatic cap, download and account assessment save PASS,
+3,600.002667 measured seconds, zero gaps and zero clock stalls. Both hour files
+decode cleanly: no clipping, longest quiet interval below four milliseconds.
+[Hour browser result](evidence/academy-endurance-silent/hour-browser.json),
+[hour PCM measurements](evidence/academy-endurance-silent/hour-decoded.json).
+The short recovery regression, rather than this hour capture, exercises the
+three classified clock stalls.
+
+Corrected Chromium thirty-minute capture also passes: 1,802.184 measured seconds,
+zero gaps and clock stalls, manual finish/download/account save and decoded PCM.
+[Final ten-case summary](evidence/academy-endurance-silent/browser.json),
+[all PCM measurements](evidence/academy-endurance-silent/decoded-audio.json).

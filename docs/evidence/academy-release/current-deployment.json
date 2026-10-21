@@ -1,9 +1,9 @@
 {
   "status": "PASS",
-  "id": "dpl_66PEqiWaMuJo4RGMkcfrv2kDozBM",
+  "id": "dpl_EEBWXjdmwkPyF1xphx2fQ2sLDN7h",
   "state": "READY",
-  "url": "jamloom-b3dljzt39-ssari.vercel.app",
-  "commit": "537435037f64d5f01e35b5f4c73f5f3350a830d8",
+  "url": "jamloom-oyzyhtycc-ssari.vercel.app",
+  "commit": "c74ad49008fc33d80bb2503074f4a1a1005f9089",
   "checks": [
     {
       "path": "/",
@@ -28,9 +28,15 @@
       "status": 401,
       "location": null,
       "cache": "private, no-store"
+    },
+    {
+      "path": "/api/academy/checkout",
+      "status": 503,
+      "location": null,
+      "cache": "private, no-store"
     }
   ],
   "coming_soon": true,
   "live_sales": false,
-  "at": "2026-10-21T16:34:50.212Z"
+  "at": "2026-10-21T20:10:11.544Z"
 }

@@ -1,0 +1,6 @@
+{
+  "deployment": "dpl_EEBWXjdmwkPyF1xphx2fQ2sLDN7h",
+  "initial_error_scan": "PASS: vercel logs --level error --since 10m returned no rows; CLI exit 0",
+  "observation_time": "2026-10-21T20:11Z",
+  "limit": "Short post-deployment window only; longer monitoring and mailbox delivery unverified"
+}

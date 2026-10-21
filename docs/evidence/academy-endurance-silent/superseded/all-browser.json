@@ -1,0 +1,152 @@
+{
+  "speaker_output": "Muted downstream of recording taps; no physical-output claim",
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "performance-set",
+      "requested_seconds": 3600,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T16:07:23.291Z",
+      "recovery": "cue then restart while A audible"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "elementary-assessment",
+      "requested_seconds": 120,
+      "status": "PASS",
+      "started_at": "2026-10-21T16:07:23.292Z",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 5967744,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 124.328,
+        "bytes": 2444360,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "6129c42d9baec82c4875ccaf225a8e35268810183031bbd8347d0caf373e7fad"
+      },
+      "wall_seconds": 123.518,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 48431,
+      "completed_at": "2026-10-21T16:09:38.569Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "elementary-assessment",
+      "requested_seconds": 120,
+      "status": "PASS",
+      "started_at": "2026-10-21T16:07:23.608Z",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 5958272,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 124.13066666666667,
+        "bytes": 1999842,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "143d4500dfa454df91dddfa5b00eeffc000d85170c36d200017b804225d19963"
+      },
+      "wall_seconds": 123.524,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 48418,
+      "completed_at": "2026-10-21T16:09:38.582Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 3600,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T16:07:23.608Z",
+      "recovery": "cue then restart while A audible"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "intermediate-set",
+      "requested_seconds": 300,
+      "status": "PASS",
+      "started_at": "2026-10-21T16:09:38.608Z",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 14618368,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 304.5493333333333,
+        "bytes": 6041223,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "422bf8048f657df521561155932812849684a46d28a4fcb7e994debeaf0ee9eb"
+      },
+      "wall_seconds": 304.044,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 121827,
+      "completed_at": "2026-10-21T16:14:45.051Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "intermediate-set",
+      "requested_seconds": 300,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T16:09:38.620Z",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 14317440,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 298.28,
+        "bytes": 4807115,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "54b88d7ca9a2b0fd8e1970d1da3b4dd2f0ef8a494cd64121244b5319e2197231"
+      },
+      "wall_seconds": 303.436
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "advanced-set",
+      "requested_seconds": 300,
+      "status": "PASS",
+      "started_at": "2026-10-21T16:14:45.225Z",
+      "recovery": "cue then restart while A audible",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 14628992,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 304.77066666666667,
+        "bytes": 6047099,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "d3b58424d1d068b6decd5bcb60ab3c8efb7c5ce963d813d7bd6fc4e515bf7a97"
+      },
+      "wall_seconds": 304.619,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 121780,
+      "completed_at": "2026-10-21T16:19:53.088Z"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "performance-set",
+      "requested_seconds": 1800,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T16:19:53.312Z"
+    }
+  ],
+  "errors": [
+    "page.waitForTimeout: Target page, context or browser has been closed\n    at lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:81:17)\n    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:102:19)\n    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:108:13",
+    "page.waitForTimeout: Target page, context or browser has been closed\n    at lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:81:17)\n    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:102:19)\n    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:108:13"
+  ],
+  "status": "FAIL"
+}

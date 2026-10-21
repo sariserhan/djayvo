@@ -1,0 +1,8 @@
+{
+  "status": "PARTIAL",
+  "at": "2026-10-21T17:00:50.546790+00:00",
+  "completed": "Two/five/five-minute captures retained and decoded PASS",
+  "interrupted": "30-minute lane; 1314 recorded seconds at 1380 wall seconds exceeded old 65-second harness grace. No 30-minute PASS claimed.",
+  "replacement": "Same production build, final static assets, half mode, five-minute bounded harness grace, port 4226.",
+  "cleanup": "Only owned test Chromium PID 69514 stopped; runner closed its server and dropped its disposable database."
+}

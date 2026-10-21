@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-21T17:19:12.958172+00:00",
+  "webkit": "Reached 3600 measured seconds; harness asserted Stop must remain enabled during automatic finalization and closed context before download. No completed-hour claim.",
+  "chromium": "Unfinished hour on same brittle harness deliberately replaced; completed shorter results retained. Only owned test browser PID 73866 stopped; server/database cleaned by runner.",
+  "fix": "Allow disabled Stop during hour finalization, then require actual download, receipt >=3600, zero gaps and saved assessment. No runtime recorder change.",
+  "replacement": "Both hour tests on final static assets and corrected harness, port 4232, silent."
+}

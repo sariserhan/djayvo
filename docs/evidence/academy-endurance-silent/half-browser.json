@@ -1,0 +1,35 @@
+{
+  "speaker_output": "Muted downstream of recording taps; no physical-output claim",
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 1800,
+      "status": "PASS",
+      "started_at": "2026-10-21T20:08:10.445Z",
+      "recovery": "cue then restart while A audible",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 86504832,
+        "rate": 48000,
+        "gaps": 0,
+        "clockStalls": 0,
+        "seconds": 1802.184,
+        "bytes": 29044895,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "12e35e784754e9e609c45aa286d215220d47b0ed3310f1abcb2d6b97a7c81d54"
+      },
+      "wall_seconds": 1802.216,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 629269,
+      "completed_at": "2026-10-21T20:38:14.854Z"
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

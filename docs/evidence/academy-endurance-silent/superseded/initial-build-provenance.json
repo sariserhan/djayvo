@@ -1,0 +1,23 @@
+{
+  "observed_at": "2026-10-21T16:46:48.281438+00:00",
+  "server_build": "dbad4a6 owner-preview production Next build, reused without replacement during capture",
+  "chromium_hour": "Final 5374350 static recorder and delayed-attempt coaching; five-minute wall safety grace. Port 4230.",
+  "chromium_short": "Updated delayed-attempt coaching; recordings began with 8c38995 one-minute wall safety grace. Short takes use manual measured-frame stops, so the hour-only grace is not exercised. Port 4226.",
+  "webkit": "8c38995 static recorder with one-minute wall safety grace and earlier coaching. Successful normal measured-frame cap path is unchanged by final five-minute fallback; delayed-attempt coaching independently verified in both browsers. Port 4228.",
+  "static_file_sha256_at_observation": {
+    "chromium": {
+      "set-recording.js": "810ef7b571c43d8f71119d0428f2aa0407a2add1bb1b135e97fa950d62c593ab",
+      "set-meter-worklet.js": "e75a9790507026c1806250b1d1f603d1be9e473de5f347a68f09e88e6bdcf183",
+      "academy-coach.js": "937cb7d5e790688ca4c49e7d9064ee4b8d607923245f8a36c3c7067f303b7833",
+      "academy-evaluator.js": "4beb0c95b1af27bb61eb264594612e53b30f73cdf746ea3a61aca62fcd81ca11"
+    },
+    "webkit": {
+      "set-recording.js": "127f3db4c4843f1583ab2423e4af9eaceab191d21a72299a1bdd9373f3b01f54",
+      "set-meter-worklet.js": "e75a9790507026c1806250b1d1f603d1be9e473de5f347a68f09e88e6bdcf183",
+      "academy-coach.js": "ad6b3ab7c46f9122086220b68ff797d356dc170ba06f294768a5e653fa2fe7eb",
+      "academy-evaluator.js": "4beb0c95b1af27bb61eb264594612e53b30f73cdf746ea3a61aca62fcd81ca11"
+    }
+  },
+  "limits": "Local production-build recorder/assessment evidence, not an exact-deployment full-stack endurance test, physical listening, or learner evidence.",
+  "chromium_half": "Final 5374350 static assets and delayed-attempt coaching, rerun alone using 7519bef harness with five-minute bounded grace. Port 4226; began after the earlier short-lane browser and server exited."
+}

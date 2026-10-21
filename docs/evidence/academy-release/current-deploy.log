@@ -1,23 +1,23 @@
 Vercel CLI 59.1.4 (Node.js 22.23.1)
 Deploying jamloom
-Uploading [--------------------] (0.0B/271.1KB)
-Uploading [=====---------------] (68.5KB/271.1KB)
-Uploading [==========----------] (138.8KB/271.1KB)
-Uploading [===============-----] (210.0KB/271.1KB)
-Uploading [====================] (271.1KB/271.1KB)
-  Inspect         https://vercel.com/ssari/jamloom/66PEqiWaMuJo4RGMkcfrv2kDozBM
-  Production      https://jamloom-b3dljzt39-ssari.vercel.app
+Uploading [--------------------] (0.0B/2.3MB)
+Uploading [=====---------------] (594.2KB/2.3MB)
+Uploading [==========----------] (1.2MB/2.3MB)
+Uploading [===============-----] (1.7MB/2.3MB)
+Uploading [====================] (2.3MB/2.3MB)
+  Inspect         https://vercel.com/ssari/jamloom/EEBWXjdmwkPyF1xphx2fQ2sLDN7h
+  Production      https://jamloom-oyzyhtycc-ssari.vercel.app
 Building…
 Building…
 Running build in Washington, D.C., USA (East) – iad1
 Build machine configuration: 4 cores, 8 GB
 Retrieving list of deployment files...
-Downloading 3867 deployment files...
-Restored build cache from previous deployment (Fv8MCq9nXS7r6x6XcMasMSd8iCUQ)
+Downloading 3962 deployment files...
+Restored build cache from previous deployment (66PEqiWaMuJo4RGMkcfrv2kDozBM)
 Running "vercel build"
 Vercel CLI 64.7.0
 Installing dependencies...
-up to date in 606ms
+up to date in 749ms
 25 packages are looking for funding
 run `npm fund` for details
 Detected Next.js version: 16.4.2
@@ -29,7 +29,7 @@ Running "npm run build"
 Collecting cmake==3.31.6
 Downloading cmake-3.31.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.3 kB)
 Downloading cmake-3.31.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (27.8 MB)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 27.8/27.8 MB 289.7 MB/s eta 0:00:00
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 27.8/27.8 MB 324.9 MB/s eta 0:00:00
 Installing collected packages: cmake
 Successfully installed cmake-3.31.6
 From https://github.com/emscripten-core/emsdk
@@ -71,13 +71,13 @@ EMSDK = /vercel/path0/build-web-tools/emsdk
 EMSDK_NODE = /vercel/path0/build-web-tools/emsdk/node/22.16.0_64bit/bin/node
 shared:INFO: (Emscripten: Running sanity checks)
 emcmake: cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE=/vercel/path0/build-web-tools/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_CROSSCOMPILING_EMULATOR=/vercel/path0/build-web-tools/emsdk/node/22.16.0_64bit/bin/node in directory /vercel/path0
--- Configuring done (0.5s)
+-- Configuring done (0.6s)
 -- Generating done (0.0s)
 -- Build files have been written to: /vercel/path0/build-web
 [  5%] Building CXX object CMakeFiles/jamloom_core.dir/core/arrangement/demo.cpp.o
-[ 11%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/plan.cpp.o
-[ 17%] Building CXX object CMakeFiles/jamloom_core.dir/core/arrangement/remix.cpp.o
-[ 23%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/analysis.cpp.o
+[ 11%] Building CXX object CMakeFiles/jamloom_core.dir/core/arrangement/remix.cpp.o
+[ 17%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/analysis.cpp.o
+[ 23%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/plan.cpp.o
 /vercel/path0/core/arrangement/remix.cpp:80:45: warning: implicit conversion loses integer precision: 'std::uint64_t' (aka 'unsigned long long') to 'size_type' (aka 'unsigned long') [-Wshorten-64-to-32]
 80 |             const double signal=source.mono[i]-mean;
 |                                 ~~~~~~      ^
@@ -94,8 +94,8 @@ In file included from /vercel/path0/core/audio/live.cpp:3:
 1 warning generated.
 [ 47%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/session.cpp.o
 [ 52%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/renderer.cpp.o
-1 warning generated.
 [ 58%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/input.cpp.o
+1 warning generated.
 [ 64%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/remix_renderer.cpp.o
 [ 70%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/remix_file.cpp.o
 [ 76%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/c_api.cpp.o
@@ -113,7 +113,7 @@ Built dist/web. Start with: python3 scripts/web_serve.py
 {
 "gate": "PASS",
 "file_count": 66,
-"bytes": 58674825,
+"bytes": 58675405,
 "private_audio_and_test_files_absent": "PASS",
 "license_notices": "PASS",
 "wasm_sha256": "1aac34227acb177b11c712a39aa8c1c23ec036b9e31e35c66d4c6f04bf068c57",
@@ -176,12 +176,12 @@ Built dist/web. Start with: python3 scripts/web_serve.py
 "practice-audio/rhythm-garden.mp3": "1ed6ce4e83e66d673be3f34657baa9572cbc184306726c0cedf693a900cc8400",
 "practice-audio/wednesday-night.mp3": "e73f3d5fbebeb9d8d70a966a2c5595393e0b765eea6121069a979b4538bb7d21",
 "practice-library.js": "9e1cd0bb633c1ba01502591069f365e23eb84fc7306c3435e7add46b690e96bd",
-"service-worker.js": "cced772c8db7e4d94abf04d50e495e6cff79a9e2ab4fe5bb317ea21b75a52d0e",
+"service-worker.js": "be44b694f3ce69d59b9124ffd908c1964b59031d48c2f4b229a39d3e428ff84f",
 "session-analysis-worker.js": "1c2c384be76284cbeb94048d98d9c231b2a3efc5957050c023975a1cef297f42",
 "session-analysis.js": "1ee077d19a825ad5863072cd812ff3d16a0c797f307de2fe0cd9f4c05e8ba7b6",
 "session-transport.js": "9075b7f4a9c3925f84d762b4bf42cccb2aa76bc7469d8ecc3b8317a027224f02",
-"set-meter-worklet.js": "e75a9790507026c1806250b1d1f603d1be9e473de5f347a68f09e88e6bdcf183",
-"set-recording.js": "810ef7b571c43d8f71119d0428f2aa0407a2add1bb1b135e97fa950d62c593ab",
+"set-meter-worklet.js": "89c4f174107d2b32fc57878b0952bc90e319001c169c7346f45db5efc5ddc426",
+"set-recording.js": "84797226f1b5c83b7061d8ff533b70d89a082cd3be0c7562f4bb7373d4806e45",
 "site-announcement.js": "12abd33206f59cee6ef3073f35969cfc924d935713ec2276a899d06563e32691",
 "studio-view.js": "9a2d71a474446a6ca6d0aba73c4541430034ab364a4cb2b653c17b2a1b716e7b",
 "style.css": "de0b1e4983cc660a316210a461713a981ef812ddfdb019dafc12f9ff953ae8c6"
@@ -189,22 +189,22 @@ Built dist/web. Start with: python3 scripts/web_serve.py
 "public_release": "NOT RUN"
 }
 Prepared the audited browser studio and engine.
-Prepared free Academy offline pack: 71 public assets, 61777493 bytes. No account or paid content cached.
+Prepared free Academy offline pack: 71 public assets, 61778073 bytes. No account or paid content cached.
 > jamloom-site@0.1.0 build
 > next build
 ▲ Next.js 16.4.2 (Turbopack)
 Applying modifyConfig from Vercel
-✓ Running next.config.ts took 247ms
+✓ Running next.config.ts took 259ms
 Creating an optimized production build ...
-✓ Compiled successfully in 791ms
+✓ Compiled successfully in 761ms
 Running TypeScript ...
-Finished TypeScript in 4.1s ...
+Finished TypeScript in 4.4s ...
 Collecting page data using 3 workers ...
 Generating static pages using 3 workers (0/40) ...
 Generating static pages using 3 workers (10/40)
 Generating static pages using 3 workers (20/40)
 Generating static pages using 3 workers (30/40)
-✓ Generating static pages using 3 workers (40/40) in 644ms
+✓ Generating static pages using 3 workers (40/40) in 664ms
 Finalizing page optimization ...
 Running onBuildComplete from Vercel
 Route (app)
@@ -280,27 +280,27 @@ Route (app)
 ƒ  (Dynamic)  server-rendered on demand
 Build Completed in .vercel/build-output [1m]
 Deploying outputs...
-  Production      https://jamloom-b3dljzt39-ssari.vercel.app
+[2K[1A[2K[G  Production      https://jamloom-oyzyhtycc-ssari.vercel.app
 Completing…
 ▲ Aliased         https://www.jamloom.com
 {
   "status": "ok",
   "deployment": {
-    "id": "dpl_66PEqiWaMuJo4RGMkcfrv2kDozBM",
-    "url": "https://jamloom-b3dljzt39-ssari.vercel.app",
-    "inspectorUrl": "https://vercel.com/ssari/jamloom/66PEqiWaMuJo4RGMkcfrv2kDozBM",
+    "id": "dpl_EEBWXjdmwkPyF1xphx2fQ2sLDN7h",
+    "url": "https://jamloom-oyzyhtycc-ssari.vercel.app",
+    "inspectorUrl": "https://vercel.com/ssari/jamloom/EEBWXjdmwkPyF1xphx2fQ2sLDN7h",
     "readyState": "READY",
     "target": "production",
-    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_66PEqiWaMuJo4RGMkcfrv2kDozBM"
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_EEBWXjdmwkPyF1xphx2fQ2sLDN7h"
   },
-  "message": "Deployment jamloom-b3dljzt39-ssari.vercel.app ready.",
+  "message": "Deployment jamloom-oyzyhtycc-ssari.vercel.app ready.",
   "next": [
     {
-      "command": "vercel curl https://jamloom-b3dljzt39-ssari.vercel.app",
+      "command": "vercel curl https://jamloom-oyzyhtycc-ssari.vercel.app",
       "when": "Verify deployment, including when Deployment Protection is enabled"
     },
     {
-      "command": "vercel inspect jamloom-b3dljzt39-ssari.vercel.app --scope ssari --local-config apps/site/vercel.json",
+      "command": "vercel inspect jamloom-oyzyhtycc-ssari.vercel.app --scope ssari --local-config apps/site/vercel.json",
       "when": "Inspect deployment"
     },
     {

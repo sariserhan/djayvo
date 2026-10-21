@@ -1,0 +1,311 @@
+Vercel CLI 59.1.4 (Node.js 22.23.1)
+Deploying jamloom
+Uploading [--------------------] (0.0B/271.1KB)
+Uploading [=====---------------] (68.5KB/271.1KB)
+Uploading [==========----------] (138.8KB/271.1KB)
+Uploading [===============-----] (210.0KB/271.1KB)
+Uploading [====================] (271.1KB/271.1KB)
+  Inspect         https://vercel.com/ssari/jamloom/66PEqiWaMuJo4RGMkcfrv2kDozBM
+  Production      https://jamloom-b3dljzt39-ssari.vercel.app
+Building…
+Building…
+Running build in Washington, D.C., USA (East) – iad1
+Build machine configuration: 4 cores, 8 GB
+Retrieving list of deployment files...
+Downloading 3867 deployment files...
+Restored build cache from previous deployment (Fv8MCq9nXS7r6x6XcMasMSd8iCUQ)
+Running "vercel build"
+Vercel CLI 64.7.0
+Installing dependencies...
+up to date in 606ms
+25 packages are looking for funding
+run `npm fund` for details
+Detected Next.js version: 16.4.2
+Running "npm run build"
+> jamloom-site@0.1.0 prebuild
+> npm run studio:prepare
+> jamloom-site@0.1.0 studio:prepare
+> node scripts/prepare-studio.mjs && node --import tsx scripts/prepare-academy-offline.ts
+Collecting cmake==3.31.6
+Downloading cmake-3.31.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.3 kB)
+Downloading cmake-3.31.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (27.8 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 27.8/27.8 MB 289.7 MB/s eta 0:00:00
+Installing collected packages: cmake
+Successfully installed cmake-3.31.6
+From https://github.com/emscripten-core/emsdk
+* [new tag]         6.0.1      -> 6.0.1
+HEAD is now at 1518bec Release 6.0.1 (#1721)
+Resolving SDK version '6.0.1' to 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'
+Installing SDK 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'..
+Installing tool 'node-22.16.0-64bit'..
+Downloading: /vercel/path0/build-web-tools/emsdk/downloads/node-v22.16.0-linux-x64.tar.xz from https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/node-v22.16.0-linux-x64.tar.xz, 30425588 Bytes
+[----------------------------------------------------------------------------]
+Unpacking '/vercel/path0/build-web-tools/emsdk/downloads/node-v22.16.0-linux-x64.tar.xz' to '/vercel/path0/build-web-tools/emsdk/node/22.16.0_64bit'
+Done installing tool 'node-22.16.0-64bit'.
+Installing tool 'releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'..
+Downloading: /vercel/path0/build-web-tools/emsdk/downloads/4857659ec65fbcf1f3e43c88499925475957b238-wasm-binaries.tar.xz from https://storage.googleapis.com/webassembly/emscripten-releases-builds/linux/4857659ec65fbcf1f3e43c88499925475957b238/wasm-binaries.tar.xz, 274269128 Bytes
+[----------------------------------------------------------------------------]
+Unpacking '/vercel/path0/build-web-tools/emsdk/downloads/4857659ec65fbcf1f3e43c88499925475957b238-wasm-binaries.tar.xz' to '/vercel/path0/build-web-tools/emsdk/upstream'
+Done installing tool 'releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'.
+Done installing SDK 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'.
+Resolving SDK version '6.0.1' to 'sdk-releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit'
+Setting the following tools as active:
+node-22.16.0-64bit
+releases-4857659ec65fbcf1f3e43c88499925475957b238-64bit
+Next steps:
+- To conveniently access emsdk tools from the command line,
+consider adding the following directories to your PATH:
+/vercel/path0/build-web-tools/emsdk
+/vercel/path0/build-web-tools/emsdk/upstream/emscripten
+- This can be done for the current shell by running:
+source "/vercel/path0/build-web-tools/emsdk/emsdk_env.sh"
+- Configure emsdk in your shell startup scripts by running:
+echo 'source "/vercel/path0/build-web-tools/emsdk/emsdk_env.sh"' >> $HOME/.bash_profile
+Setting up EMSDK environment (suppress these messages with EMSDK_QUIET=1)
+Adding directories to PATH:
+PATH += /vercel/path0/build-web-tools/emsdk
+PATH += /vercel/path0/build-web-tools/emsdk/upstream/emscripten
+Setting environment variables:
+PATH = /vercel/path0/build-web-tools/emsdk:/vercel/path0/build-web-tools/emsdk/upstream/emscripten:/vercel/path0/build-web-tools/cmake-env/bin:/vercel/path0/build-web-tools/python-env/bin:/vercel/path0/apps/site/node_modules/.bin:/vercel/path0/apps/node_modules/.bin:/vercel/path0/node_modules/.bin:/vercel/node_modules/.bin:/node_modules/.bin:/node22/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/vlt/node_modules/.bin:/pnpm6/node_modules/.bin:/yarn1/node_modules/yarn/bin:/vercel/.config/yarn/global/node_modules/.bin:/ruby33/bin:/uv/python/bin:/rust/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bun1:/node22/bin
+EMSDK = /vercel/path0/build-web-tools/emsdk
+EMSDK_NODE = /vercel/path0/build-web-tools/emsdk/node/22.16.0_64bit/bin/node
+shared:INFO: (Emscripten: Running sanity checks)
+emcmake: cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE=/vercel/path0/build-web-tools/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_CROSSCOMPILING_EMULATOR=/vercel/path0/build-web-tools/emsdk/node/22.16.0_64bit/bin/node in directory /vercel/path0
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /vercel/path0/build-web
+[  5%] Building CXX object CMakeFiles/jamloom_core.dir/core/arrangement/demo.cpp.o
+[ 11%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/plan.cpp.o
+[ 17%] Building CXX object CMakeFiles/jamloom_core.dir/core/arrangement/remix.cpp.o
+[ 23%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/analysis.cpp.o
+/vercel/path0/core/arrangement/remix.cpp:80:45: warning: implicit conversion loses integer precision: 'std::uint64_t' (aka 'unsigned long long') to 'size_type' (aka 'unsigned long') [-Wshorten-64-to-32]
+80 |             const double signal=source.mono[i]-mean;
+|                                 ~~~~~~      ^
+[ 29%] Building CXX object CMakeFiles/jamloom_core.dir/core/composition/remix_plan.cpp.o
+[ 35%] Building CXX object CMakeFiles/jamloom_core.dir/core/instruments/voice.cpp.o
+[ 41%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/live.cpp.o
+In file included from /vercel/path0/core/audio/live.cpp:3:
+/vercel/path0/core/audio/../instruments/performance_voices.h:65:42: warning: declaration shadows a field of 'jamloom::MouthFilter' [-Wshadow]
+65 |         double next(double input, double smoothing) noexcept {
+|                                          ^
+/vercel/path0/core/audio/../instruments/performance_voices.h:75:12: note: previous declaration is here
+75 |     double smoothing = 0;
+|            ^
+1 warning generated.
+[ 47%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/session.cpp.o
+[ 52%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/renderer.cpp.o
+1 warning generated.
+[ 58%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/input.cpp.o
+[ 64%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/remix_renderer.cpp.o
+[ 70%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/remix_file.cpp.o
+[ 76%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/c_api.cpp.o
+[ 82%] Building CXX object CMakeFiles/jamloom_core.dir/core/audio/wav.cpp.o
+[ 88%] Linking CXX static library libjamloom_core.a
+[ 88%] Built target jamloom_core
+[ 94%] Building CXX object CMakeFiles/jamloom_web.dir/apps/web/bridge.cpp.o
+[100%] Linking CXX executable jamloom_web.mjs
+[100%] Built target jamloom_web
+[ 88%] Built target jamloom_core
+[ 94%] Building CXX object CMakeFiles/jamloom_live.dir/core/audio/live.cpp.o
+[100%] Linking CXX executable jamloom_live.wasm
+[100%] Built target jamloom_live
+Built dist/web. Start with: python3 scripts/web_serve.py
+{
+"gate": "PASS",
+"file_count": 66,
+"bytes": 58674825,
+"private_audio_and_test_files_absent": "PASS",
+"license_notices": "PASS",
+"wasm_sha256": "1aac34227acb177b11c712a39aa8c1c23ec036b9e31e35c66d4c6f04bf068c57",
+"wasm_bytes": 14153566,
+"files": {
+"academy-coach.js": "937cb7d5e790688ca4c49e7d9064ee4b8d607923245f8a36c3c7067f303b7833",
+"academy-evaluator.js": "4beb0c95b1af27bb61eb264594612e53b30f73cdf746ea3a61aca62fcd81ca11",
+"academy-manifest.js": "38e9e64430d594b0129fc12459452eaa48471e245e3d332bbc4a7b099d2ca67f",
+"academy-offline.js": "1cabcf8a03c19eb69529cabc6dc01b19011531bb930469afacc5833caadd1b09",
+"academy.css": "5a0ed0bbbac5dcc6e117cdeec5d01189b326369a911b3504ef04f36792860d1a",
+"app.js": "9bf0a002584b8ec0949e0c11f1e6dec7fe3d0b6a980221521bb7530c3f04b155",
+"audio.js": "5b7b18df7d733ea6b6184073e25325797135950735b81e4fae1cfee83c26968f",
+"deck-bridge.js": "f98b310cf513628fcd1d54ee457ee380f72f3c492f71baede4abae94011b4251",
+"deck-controls.js": "2c56b53200ba4c8fcef72131930a077796b73dda98f30ca22c9881dc50328e2b",
+"dj.css": "b4ecc40e76eab0ddecf950128449d47f35a55bd03e29c756f02eab5bc614cb60",
+"dj.html": "2dc73662545d9e7e0f00e5c7b328359ab10d1b7ef8d062f025becdb762a44ef6",
+"dj.js": "762627e55b185bbf9c9b0a981b26d3ae99f201fae27bb17b3273012d4a85693d",
+"engine-worker.js": "1fe55ee09f35f9e691b6214cc47d18a67f0a472e8b77c2bc76c73766963d6e45",
+"engine/jamloom_live.wasm": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8",
+"engine/jamloom_web.mjs": "1a8b8f7d24dfa125f8f3a537424c252bc8eb4a89a781376227f82ceef944bb01",
+"engine/jamloom_web.wasm": "1aac34227acb177b11c712a39aa8c1c23ec036b9e31e35c66d4c6f04bf068c57",
+"frame-deck.js": "d7ee1f05a10bb8042387165b9d714b216d3a5a610af6551e506a5dd84ba12e5e",
+"icon-180.png": "669132c03c1b39d6fe12075796ae8d29211b99eee61ab4f295f8b99c1ac92f87",
+"icon-192.png": "4dc9105a59d0382807605587d8cb9dbeb8c48328cd99831cbd0d9fb3d2d4beae",
+"icon-512.png": "c9511bafcad57cdf30e30c3450e6b3d821b6be39b8c0d379d39761fc62fe23eb",
+"icon.svg": "64ad0af183dcd26aaa2137756858ca66de352141e5bd5adab1960d770067e9a9",
+"index.html": "9fa53d3679a717dbdc3c194bc4e67cbd73c3c5c2640853386517e3b17a36c0b9",
+"install.js": "b86760e8426882e438a31be9ab56bb12d8eb28fe54207c9f6eeea16e2e9c69bc",
+"instrument-rack.js": "cd4a53ebdd97fe55ccc64c06e3ec9ea9f2ed9f2a508a73903af06258a4926f47",
+"instrument-take.js": "d87e1a57f05856af5fb6a1c89ea18a1697397390aabf8481d32d1051ee2e10fb",
+"instrument-worklet.js": "726951382d68e7d7745b5eea21ba0a896ade00b74974fba49aa7fa45e99d4580",
+"keyboard.js": "e3dd92be35e0949f48043fa7e582f4c7ab2e4e9fa635fc80bac37de4ace02d87",
+"library.js": "eb82df24592e8987e91165d3ada9d8bc2b340b397dc529ce6ce9b1bfc73c1336",
+"licenses/BLACK-AND-GREEN-GUITARS-CC0.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+"licenses/EMSCRIPTEN-LICENSE.txt": "4e932924ae86904c2ec1e8916953fb516707871b74bf05733161b0ec4772db26",
+"licenses/VCSL-LICENSE.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+"licenses/VSCO-2-CE-LICENSE.txt": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673",
+"live-take.js": "a791ec47b083bbb122792f88484086730eca26a1ef548128b2753f62be6069ad",
+"manifest.webmanifest": "a0e66fe1fbcd3a2f1cfcf114f5cc48f1f27a71bf06b19b6cbaba0988a91cfb94",
+"midi.js": "3d24e2d620e0f21cfc6fa9a23d6639cb447c81b67349c9e9d6eb33081bafd613",
+"mix-automation.js": "d0792314dd83245acac7631f1e33aec571284e4859f6a417778fc4e3e075bce0",
+"mix-recording-worklet.js": "109522c26b74fd34dc741c8925950588a470d992ee23a1d45b774217c790a036",
+"mix-recording.js": "fca8c8c20b618ceafcfc7136ceba2fa0edf56d2b1b691e12b2d15297b9085511",
+"mix-sources.js": "0feb7321f1b6bcce3488877b3aa9e431b1e779cf7629bb2c652d82039d9b0dec",
+"mixer.js": "2f0527a70819c6ac98e600a7f3e0565ab61802fd0db06f44ab5dd3f1f6e2f517",
+"novelty.js": "8aa6113f3249df76eb0cdad6149668426da577e60d19fecfa18a5f61fed00807",
+"offline.js": "976803c76f730dcf6697204926a11b12b75c18419711c526e7fe186bd20426b7",
+"performance-session.js": "e40f654517a876e8eea2ca07968cb293493b7d2f2e79bf673d809969cf3ad10e",
+"phrase-pair.js": "911a5c6f17cbcec7cc038f6c1838946f090e697e1e14c7988c8ab6412b841658",
+"practice-audio/CREDITS.txt": "08b5ab624b356d8cb09c320785d47d1904943d8acd2f563fa1b157c01346bf43",
+"practice-audio/atmosphere.mp3": "c7ea5e6c6b2a8902797c1e2c52df96af7a396d8a798782a26c5d16b038b1cb4d",
+"practice-audio/black-diamond.mp3": "53d1f393008ad8d25fa71d53dac003f3d4e8d87cdff59ef288969f6ea63b5697",
+"practice-audio/funked-up.mp3": "306420edbf7493f1d660c219f42d1c6b24231b209f14745e91299ba5bf700086",
+"practice-audio/funky-hip-hop-lofi-jam.mp3": "aac0f301ef3982270389d6cb2e55a23324e5e55beceeb68ac0826cb360ced2f5",
+"practice-audio/manifest.json": "5d39d5435d1e6e0edbe9e1857407c54ca6b4e5d9e34488e49a3a899bbd29aa3c",
+"practice-audio/midnight-cruiser.mp3": "c0ae886684ffec38efc75d97c2d60718ec9f3cc6a4257a4c845348ea6c872a7e",
+"practice-audio/midnight-moon.mp3": "87d73adf16a0dcc659dec06b7f186fe533e44500f8a8cc603d6c4ea356ca3a3e",
+"practice-audio/next-to-you.mp3": "3a886a7e9e599d5441b9478bcae00821daf5aabfc98f0f0fe1ef1978af0475c4",
+"practice-audio/party-sector.mp3": "e77886794bc0c408332b1c6f75cb3d753b59260669eada04ee2983c82f471ff2",
+"practice-audio/rhythm-garden.mp3": "1ed6ce4e83e66d673be3f34657baa9572cbc184306726c0cedf693a900cc8400",
+"practice-audio/wednesday-night.mp3": "e73f3d5fbebeb9d8d70a966a2c5595393e0b765eea6121069a979b4538bb7d21",
+"practice-library.js": "9e1cd0bb633c1ba01502591069f365e23eb84fc7306c3435e7add46b690e96bd",
+"service-worker.js": "cced772c8db7e4d94abf04d50e495e6cff79a9e2ab4fe5bb317ea21b75a52d0e",
+"session-analysis-worker.js": "1c2c384be76284cbeb94048d98d9c231b2a3efc5957050c023975a1cef297f42",
+"session-analysis.js": "1ee077d19a825ad5863072cd812ff3d16a0c797f307de2fe0cd9f4c05e8ba7b6",
+"session-transport.js": "9075b7f4a9c3925f84d762b4bf42cccb2aa76bc7469d8ecc3b8317a027224f02",
+"set-meter-worklet.js": "e75a9790507026c1806250b1d1f603d1be9e473de5f347a68f09e88e6bdcf183",
+"set-recording.js": "810ef7b571c43d8f71119d0428f2aa0407a2add1bb1b135e97fa950d62c593ab",
+"site-announcement.js": "12abd33206f59cee6ef3073f35969cfc924d935713ec2276a899d06563e32691",
+"studio-view.js": "9a2d71a474446a6ca6d0aba73c4541430034ab364a4cb2b653c17b2a1b716e7b",
+"style.css": "de0b1e4983cc660a316210a461713a981ef812ddfdb019dafc12f9ff953ae8c6"
+},
+"public_release": "NOT RUN"
+}
+Prepared the audited browser studio and engine.
+Prepared free Academy offline pack: 71 public assets, 61777493 bytes. No account or paid content cached.
+> jamloom-site@0.1.0 build
+> next build
+▲ Next.js 16.4.2 (Turbopack)
+Applying modifyConfig from Vercel
+✓ Running next.config.ts took 247ms
+Creating an optimized production build ...
+✓ Compiled successfully in 791ms
+Running TypeScript ...
+Finished TypeScript in 4.1s ...
+Collecting page data using 3 workers ...
+Generating static pages using 3 workers (0/40) ...
+Generating static pages using 3 workers (10/40)
+Generating static pages using 3 workers (20/40)
+Generating static pages using 3 workers (30/40)
+✓ Generating static pages using 3 workers (40/40) in 644ms
+Finalizing page optimization ...
+Running onBuildComplete from Vercel
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├   /[info]
+│ ├ ● /pricing
+│ ├ ● /examples
+│ ├ ● /help
+│ └ ● [+5 more paths]
+├ ○ /academy
+├ ƒ /academy/challenges/[challengeId]
+├ ƒ /academy/checkout
+├ ○ /academy/learn
+├ ƒ /academy/lessons/[lessonId]
+├   /academy/levels/[levelSlug]
+│ ├ ● /academy/levels/intro
+│ ├ ● /academy/levels/beginner
+│ ├ ● /academy/levels/elementary
+│ └ ● [+3 more paths]
+├ ƒ /academy/practice
+├ ○ /academy/progress
+├ ƒ /academy/success
+├ ƒ /account
+├ ƒ /account/[action]
+├ ƒ /account/credits
+├ ƒ /account/generations
+├ ƒ /account/purchases
+├ ƒ /admin
+├ ƒ /admin/billing
+├ ƒ /admin/inbox
+├ ƒ /admin/inbox/[id]
+├ ƒ /admin/users
+├ ƒ /api/academy/[...path]
+├ ƒ /api/academy/checkout
+├ ƒ /api/academy/stripe
+├ ƒ /api/admin/[...path]
+├ ƒ /api/auth/[...all]
+├ ƒ /api/catalogue/[[...path]]
+├ ƒ /api/contact
+├ ƒ /api/library
+├ ƒ /api/library/[id]/[action]
+├ ƒ /api/notifications
+├ ƒ /api/payments/apple
+├ ƒ /api/payments/checkout
+├ ƒ /api/payments/stripe
+├ ƒ /api/playlists/[[...path]]
+├ ƒ /api/site-status
+├ ƒ /api/taste
+├ ƒ /catalogue
+├ ƒ /catalogue/[id]
+├ ƒ /contact
+├ ○ /dj-studio
+├ ○ /improvise
+├ ○ /learn
+├   /learn/[slug]
+│ ├ ● /learn/voice-remix
+│ ├ ● /learn/laptop-dj
+│ └ ● /learn/live-source
+├ ƒ /library
+├ ○ /live-dj
+├ ○ /music-dna
+├ ○ /opengraph-image
+├ ƒ /playlists
+├ ƒ /playlists/[id]
+├ ƒ /review
+├ ƒ /robots.txt
+├ ƒ /sitemap.xml
+└ ƒ /support
+ƒ Proxy (Middleware)
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+Build Completed in .vercel/build-output [1m]
+Deploying outputs...
+  Production      https://jamloom-b3dljzt39-ssari.vercel.app
+Completing…
+▲ Aliased         https://www.jamloom.com
+{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_66PEqiWaMuJo4RGMkcfrv2kDozBM",
+    "url": "https://jamloom-b3dljzt39-ssari.vercel.app",
+    "inspectorUrl": "https://vercel.com/ssari/jamloom/66PEqiWaMuJo4RGMkcfrv2kDozBM",
+    "readyState": "READY",
+    "target": "production",
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_66PEqiWaMuJo4RGMkcfrv2kDozBM"
+  },
+  "message": "Deployment jamloom-b3dljzt39-ssari.vercel.app ready.",
+  "next": [
+    {
+      "command": "vercel curl https://jamloom-b3dljzt39-ssari.vercel.app",
+      "when": "Verify deployment, including when Deployment Protection is enabled"
+    },
+    {
+      "command": "vercel inspect jamloom-b3dljzt39-ssari.vercel.app --scope ssari --local-config apps/site/vercel.json",
+      "when": "Inspect deployment"
+    },
+    {
+      "command": "vercel deploy --prod --scope ssari --local-config apps/site/vercel.json",
+      "when": "Promote to production"
+    }
+  ]
+}

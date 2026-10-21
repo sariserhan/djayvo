@@ -1,0 +1,128 @@
+{
+  "speaker_output": "Muted downstream of recording taps; no physical-output claim",
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "elementary-assessment",
+      "requested_seconds": 120,
+      "status": "PASS",
+      "started_at": "2026-10-21T16:17:25.107Z",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 5884160,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 122.58666666666667,
+        "bytes": 2395836,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "76d9667d2929a502a335208a9dffa0d68fe1930ddb3cdd2311dd59de5376dcbb"
+      },
+      "wall_seconds": 121.847,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 47591,
+      "completed_at": "2026-10-21T16:19:51.686Z"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "performance-set",
+      "requested_seconds": 3600,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T16:17:25.118Z",
+      "recovery": "cue then restart while A audible"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 3600,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T16:17:26.266Z",
+      "recovery": "cue then restart while A audible"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "elementary-assessment",
+      "requested_seconds": 120,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T16:17:26.266Z"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "intermediate-set",
+      "requested_seconds": 300,
+      "status": "PASS",
+      "started_at": "2026-10-21T16:19:51.769Z",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 14533376,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 302.77866666666665,
+        "bytes": 6004526,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "af74c1654a88fecdc24e1ab44555cb7132bdcd5fc32347f234f617ee7fcbd2de"
+      },
+      "wall_seconds": 302.032,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 121633,
+      "completed_at": "2026-10-21T16:24:59.042Z"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "advanced-set",
+      "requested_seconds": 300,
+      "status": "PASS",
+      "started_at": "2026-10-21T16:24:59.089Z",
+      "recovery": "cue then restart while A audible",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 14515328,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 302.4026666666667,
+        "bytes": 5998579,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "e22e41b5397acc750955a241b1e7192d68ab1e78964142234210cbf3be9a31cc"
+      },
+      "wall_seconds": 302.357,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 122288,
+      "completed_at": "2026-10-21T16:30:04.700Z"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "performance-set",
+      "requested_seconds": 1800,
+      "status": "PASS",
+      "started_at": "2026-10-21T16:30:04.806Z",
+      "recovery": "cue then restart while A audible",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 86525312,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 1802.6106666666667,
+        "bytes": 36019483,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "a900e90b62b54fd072d51e81d11ca253d193599b75d9747f0c67da9bb7653796"
+      },
+      "wall_seconds": 1807.239,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 626595,
+      "completed_at": "2026-10-21T17:00:16.659Z"
+    }
+  ]
+}

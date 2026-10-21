@@ -1,0 +1,80 @@
+chromium-performance-set-1800 60s Recording private set · 61 / 3600 seconds
+chromium-performance-set-1800 121s Recording private set · 121 / 3600 seconds
+chromium-performance-set-1800 180s Recording private set · 181 / 3600 seconds
+chromium-performance-set-1800 241s Recording private set · 241 / 3600 seconds
+chromium-performance-set-1800 301s Recording private set · 301 / 3600 seconds
+chromium-performance-set-1800 360s Recording private set · 360 / 3600 seconds
+chromium-performance-set-1800 421s Recording private set · 421 / 3600 seconds
+chromium-performance-set-1800 481s Recording private set · 481 / 3600 seconds
+chromium-performance-set-1800 540s Recording private set · 540 / 3600 seconds
+chromium-performance-set-1800 601s Recording private set · 601 / 3600 seconds
+chromium-performance-set-1800 660s Recording private set · 660 / 3600 seconds
+chromium-performance-set-1800 721s Recording private set · 721 / 3600 seconds
+chromium-performance-set-1800 781s Recording private set · 781 / 3600 seconds
+chromium-performance-set-1800 841s Recording private set · 841 / 3600 seconds
+chromium-performance-set-1800 901s Recording private set · 901 / 3600 seconds
+chromium-performance-set-1800 960s Recording private set · 960 / 3600 seconds
+chromium-performance-set-1800 1021s Recording private set · 1021 / 3600 seconds
+chromium-performance-set-1800 1080s Recording private set · 1080 / 3600 seconds
+chromium-performance-set-1800 1141s Recording private set · 1140 / 3600 seconds
+chromium-performance-set-1800 1201s Recording private set · 1201 / 3600 seconds
+chromium-performance-set-1800 1260s Recording private set · 1260 / 3600 seconds
+chromium-performance-set-1800 1321s Recording private set · 1321 / 3600 seconds
+chromium-performance-set-1800 1380s Recording private set · 1380 / 3600 seconds
+chromium-performance-set-1800 1441s Recording private set · 1440 / 3600 seconds
+chromium-performance-set-1800 1503s Recording private set · 1503 / 3600 seconds
+chromium-performance-set-1800 1560s Recording private set · 1560 / 3600 seconds
+chromium-performance-set-1800 1621s Recording private set · 1621 / 3600 seconds
+chromium-performance-set-1800 1680s Recording private set · 1680 / 3600 seconds
+chromium-performance-set-1800 1741s Recording private set · 1740 / 3600 seconds
+chromium-performance-set-1800 1800s Recording private set · 1799 / 3600 seconds
+chromium [["performance-set",1800]] AssertionError [ERR_ASSERTION]: chromium-performance-set-1800 clock discontinuity
+
+2 !== 0
+
+    at lane (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:102:90)
+    at async run (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:119:21)
+    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:124:7 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 2,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   'AssertionError [ERR_ASSERTION]: chromium-performance-set-1800 clock discontinuity\n' +
++     '\n' +
++     '2 !== 0\n' +
++     '\n' +
++     '    at lane (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:102:90)\n' +
++     '    at async run (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:119:21)\n' +
++     '    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:124:7'
++ ]
+- []
+
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:127:101 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'AssertionError [ERR_ASSERTION]: chromium-performance-set-1800 clock discontinuity\n' +
+      '\n' +
+      '2 !== 0\n' +
+      '\n' +
+      '    at lane (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:102:90)\n' +
+      '    at async run (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:119:21)\n' +
+      '    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:124:7'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

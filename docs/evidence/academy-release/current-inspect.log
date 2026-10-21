@@ -1,15 +1,15 @@
 Vercel CLI 59.1.4 (Node.js 22.23.1)
 Fetching deployment "www.jamloom.com" in ssari
-> Fetched deployment "jamloom-b3dljzt39-ssari.vercel.app" in ssari [449ms]
+> Fetched deployment "jamloom-oyzyhtycc-ssari.vercel.app" in ssari [393ms]
 
   General
 
-    id		dpl_66PEqiWaMuJo4RGMkcfrv2kDozBM
+    id		dpl_EEBWXjdmwkPyF1xphx2fQ2sLDN7h
     name	jamloom
     target	production
     status	● Ready
-    url		https://jamloom-b3dljzt39-ssari.vercel.app
-    created	Wed Oct 21 2026 12:31:24 GMT-0400 (Eastern Daylight Time) [3m ago]
+    url		https://jamloom-oyzyhtycc-ssari.vercel.app
+    created	Wed Oct 21 2026 16:08:33 GMT-0400 (Eastern Daylight Time) [1m ago]
 
 
   Aliases

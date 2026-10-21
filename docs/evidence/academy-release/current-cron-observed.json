@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "scheduled_request": [
+    {
+      "id": "hwh9b-1792613450256-285ddee52eb2",
+      "timestamp": 1792613450256,
+      "deploymentId": "dpl_EEBWXjdmwkPyF1xphx2fQ2sLDN7h",
+      "domain": "jamloom-oyzyhtycc-ssari.vercel.app",
+      "requestMethod": "GET",
+      "requestPath": "/api/notifications",
+      "responseStatusCode": 200
+    }
+  ],
+  "observation": "Deployment-host GET after schedule boundary; only manual probe was unauthenticated custom-domain GET returning 401. No manual notification dispatch in this deployment check.",
+  "mailbox_delivery": "NOT RUN"
+}

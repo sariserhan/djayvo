@@ -1,0 +1,32 @@
+chromium-performance-set-1800 60s Recording private set · 61 / 3600 seconds
+chromium-performance-set-1800 121s Recording private set · 121 / 3600 seconds
+chromium-performance-set-1800 180s Recording private set · 181 / 3600 seconds
+chromium-performance-set-1800 241s Recording private set · 241 / 3600 seconds
+chromium-performance-set-1800 301s Recording private set · 301 / 3600 seconds
+chromium-performance-set-1800 360s Recording private set · 360 / 3600 seconds
+chromium-performance-set-1800 421s Recording private set · 421 / 3600 seconds
+chromium-performance-set-1800 480s Recording private set · 480 / 3600 seconds
+chromium-performance-set-1800 540s Recording private set · 540 / 3600 seconds
+chromium-performance-set-1800 601s Recording private set · 601 / 3600 seconds
+chromium-performance-set-1800 660s Recording private set · 660 / 3600 seconds
+chromium-performance-set-1800 721s Recording private set · 721 / 3600 seconds
+chromium-performance-set-1800 781s Recording private set · 781 / 3600 seconds
+chromium-performance-set-1800 840s Recording private set · 840 / 3600 seconds
+chromium-performance-set-1800 901s Recording private set · 901 / 3600 seconds
+chromium-performance-set-1800 960s Recording private set · 960 / 3600 seconds
+chromium-performance-set-1800 1020s Recording private set · 1020 / 3600 seconds
+chromium-performance-set-1800 1081s Recording private set · 1081 / 3600 seconds
+chromium-performance-set-1800 1140s Recording private set · 1140 / 3600 seconds
+chromium-performance-set-1800 1200s Recording private set · 1200 / 3600 seconds
+chromium-performance-set-1800 1261s Recording private set · 1261 / 3600 seconds
+chromium-performance-set-1800 1320s Recording private set · 1320 / 3600 seconds
+chromium-performance-set-1800 1381s Recording private set · 1381 / 3600 seconds
+chromium-performance-set-1800 1441s Recording private set · 1441 / 3600 seconds
+chromium-performance-set-1800 1503s Recording private set · 1502 / 3600 seconds
+chromium-performance-set-1800 1561s Recording private set · 1560 / 3600 seconds
+chromium-performance-set-1800 1621s Recording private set · 1621 / 3600 seconds
+chromium-performance-set-1800 1680s Recording private set · 1680 / 3600 seconds
+chromium-performance-set-1800 1741s Recording private set · 1740 / 3600 seconds
+chromium-performance-set-1800 1801s Recording private set · 1801 / 3600 seconds
+PASS chromium-performance-set-1800 {"version":1,"frames":86504832,"rate":48000,"gaps":0,"clockStalls":0,"seconds":1802.184,"bytes":29044895,"mime":"audio/webm;codecs=opus","sha256":"12e35e784754e9e609c45aa286d215220d47b0ed3310f1abcb2d6b97a7c81d54"}
+All real-time endurance runs PASS

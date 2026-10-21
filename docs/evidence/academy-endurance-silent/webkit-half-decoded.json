@@ -1,0 +1,11 @@
+{
+  "file": "webkit-performance-set-1800.audio",
+  "sha256": "a900e90b62b54fd072d51e81d11ca253d193599b75d9747f0c67da9bb7653796",
+  "seconds": 1802.6075,
+  "receipt_seconds": 1802.6106666666667,
+  "peak_dbfs": -9.615759936124597,
+  "longest_quiet_ms": 3.375,
+  "timestamp_gaps": 0,
+  "technical": "PASS",
+  "human_listening": "NOT RUN"
+}

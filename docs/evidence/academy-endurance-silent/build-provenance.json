@@ -1,0 +1,34 @@
+{
+  "server_build": "dbad4a6 production Next build reused without replacement during recording",
+  "next_build_id": "bbfx7HQT53fgErQ_-PGBJ",
+  "server_equivalence": "Academy store, curriculum, deck page and catch-all lesson/progress/attempt/result route are byte-identical from dbad4a6 to c74ad49; payment callbacks are outside these disposable-db tests.",
+  "cases": {
+    "chromium_2_5_5": "Delayed-attempt coaching, earlier one-minute hour safety grace; manual measured-duration stops. Completed receipts retained from interrupted short lane.",
+    "webkit_2_5_5_30": "8c38995 static assets and earlier coaching. Relevant normal frame-count path unchanged by later safety-grace correction.",
+    "webkit_60": "5374350 static assets; corrected automatic-finalization harness. PASS with zero timestamp discontinuities before the stale-metadata classification correction.",
+    "chromium_60_corrected": "c74ad49 static assets, no injected diagnostic code, selected browser only. PASS automatic cap/account save; gaps=0, clockStalls=0; decoded PCM PASS.",
+    "chromium_30_corrected": "c74ad49 static assets, selected browser only. PASS manual finish/download/account save; gaps=0, clockStalls=0; decoded PCM PASS."
+  },
+  "source_sha256": {
+    "8c38995": {
+      "set-recording.js": "127f3db4c4843f1583ab2423e4af9eaceab191d21a72299a1bdd9373f3b01f54",
+      "set-meter-worklet.js": "e75a9790507026c1806250b1d1f603d1be9e473de5f347a68f09e88e6bdcf183",
+      "academy-coach.js": "ad6b3ab7c46f9122086220b68ff797d356dc170ba06f294768a5e653fa2fe7eb",
+      "academy-evaluator.js": "4beb0c95b1af27bb61eb264594612e53b30f73cdf746ea3a61aca62fcd81ca11"
+    },
+    "5374350": {
+      "set-recording.js": "810ef7b571c43d8f71119d0428f2aa0407a2add1bb1b135e97fa950d62c593ab",
+      "set-meter-worklet.js": "e75a9790507026c1806250b1d1f603d1be9e473de5f347a68f09e88e6bdcf183",
+      "academy-coach.js": "937cb7d5e790688ca4c49e7d9064ee4b8d607923245f8a36c3c7067f303b7833",
+      "academy-evaluator.js": "4beb0c95b1af27bb61eb264594612e53b30f73cdf746ea3a61aca62fcd81ca11"
+    },
+    "c74ad49": {
+      "set-recording.js": "84797226f1b5c83b7061d8ff533b70d89a082cd3be0c7562f4bb7373d4806e45",
+      "set-meter-worklet.js": "89c4f174107d2b32fc57878b0952bc90e319001c169c7346f45db5efc5ddc426",
+      "academy-coach.js": "937cb7d5e790688ca4c49e7d9064ee4b8d607923245f8a36c3c7067f303b7833",
+      "academy-evaluator.js": "4beb0c95b1af27bb61eb264594612e53b30f73cdf746ea3a61aca62fcd81ca11"
+    }
+  },
+  "temporary_diagnostic": "Separate isolated public-asset copy added message logging only; its patch and failed results are retained. Product assets have no diagnostic console logging.",
+  "limits": "Local production-build recording/assessment evidence; not physical output, learner acceptance, or an exact deployed full-stack endurance test."
+}

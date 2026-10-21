@@ -1,0 +1,19 @@
+{
+  "status": "FAIL",
+  "reason": "Two reported audio-clock discontinuities; PCM measurements do not waive continuity gate",
+  "receipt": {
+    "version": 1,
+    "frames": 86543744,
+    "rate": 48000,
+    "gaps": 2,
+    "seconds": 1802.9946666666667,
+    "bytes": 29057828,
+    "mime": "audio/webm;codecs=opus",
+    "sha256": "d25b89bca8a3c4fa7887cb2616cbb03111f8d62a6efc78bb334e97b4b5722307"
+  },
+  "decoded_seconds": 1802.94,
+  "peak_dbfs": -10.494503352433643,
+  "longest_quiet_ms": 3.0,
+  "physical_listening": "NOT RUN",
+  "cause": "NOT CONFIRMED; browser churn/concurrent load is a hypothesis"
+}

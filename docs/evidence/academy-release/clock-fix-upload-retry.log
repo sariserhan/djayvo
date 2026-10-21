@@ -1,0 +1,18 @@
+Vercel CLI 59.1.4 (Node.js 22.23.1)
+Deploying jamloom
+Uploading [--------------------] (0.0B/9.8MB)
+Uploading [=====---------------] (2.5MB/9.8MB)
+Uploading [==========----------] (4.9MB/9.8MB)
+Uploading [===============-----] (7.4MB/9.8MB)
+{
+  "status": "error",
+  "reason": "deploy_failed",
+  "message": "fetch failed",
+  "next": [
+    {
+      "command": "vercel deploy --scope ssari --local-config apps/site/vercel.json",
+      "when": "retry deploy"
+    }
+  ]
+}
+Error: fetch failed

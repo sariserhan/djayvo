@@ -1,0 +1,7 @@
+{
+  "status": "PARTIAL",
+  "at": "2026-10-21T16:21:17.931947+00:00",
+  "reason": "Stopped the superseded run after the 298.28-second Chromium failure and regression reproduction, to remove concurrent browser load from the corrected rerun. Completed captures and original failure retained. In-flight hour and WebKit half-hour runs are not PASS.",
+  "replacement": "8c38995, isolated worktree, port 4228",
+  "speaker_output": "Muted; this was not an audible interruption"
+}

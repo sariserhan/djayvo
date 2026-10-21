@@ -1,0 +1,91 @@
+{
+  "speaker_output": "Muted downstream of recording taps; no physical-output claim",
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "elementary-assessment",
+      "requested_seconds": 120,
+      "status": "PASS",
+      "started_at": "2026-10-21T16:24:17.731Z",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 5878400,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 122.46666666666667,
+        "bytes": 1972777,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "060c771b7e28cb2728dc266d27607cd73c72cb2b127842b3812e687e897b7c24"
+      },
+      "wall_seconds": 122.917,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 47731,
+      "completed_at": "2026-10-21T16:26:32.329Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "intermediate-set",
+      "requested_seconds": 300,
+      "status": "PASS",
+      "started_at": "2026-10-21T16:26:32.370Z",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 14499712,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 302.07733333333334,
+        "bytes": 4868041,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "1e1a01b0a36b95fa6741d907795a7845c394eb359ffb1e9099317db40e797acd"
+      },
+      "wall_seconds": 306.957,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 121574,
+      "completed_at": "2026-10-21T16:31:41.905Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "advanced-set",
+      "requested_seconds": 300,
+      "status": "PASS",
+      "started_at": "2026-10-21T16:31:41.944Z",
+      "recovery": "cue then restart while A audible",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 14544512,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 303.0106666666667,
+        "bytes": 4883446,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "3c14a510c399f8a7f918075dc8527a7a918013883dec46ea844c362d4da008f4"
+      },
+      "wall_seconds": 302.239,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 121664,
+      "completed_at": "2026-10-21T16:36:46.582Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 1800,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T16:36:46.624Z",
+      "recovery": "cue then restart while A audible"
+    }
+  ],
+  "errors": [
+    "browserContext.close: Target page, context or browser has been closed\n    at async lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:103:202)\n    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:105:19)\n    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:111:13"
+  ],
+  "status": "FAIL"
+}

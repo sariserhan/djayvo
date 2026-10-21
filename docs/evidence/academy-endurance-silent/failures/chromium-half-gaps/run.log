@@ -1,0 +1,86 @@
+chromium-performance-set-1800 61s Recording private set · 57 / 3600 seconds
+chromium-performance-set-1800 121s Recording private set · 117 / 3600 seconds
+chromium-performance-set-1800 181s Recording private set · 175 / 3600 seconds
+chromium-performance-set-1800 241s Recording private set · 235 / 3600 seconds
+chromium-performance-set-1800 301s Recording private set · 294 / 3600 seconds
+chromium-performance-set-1800 361s Recording private set · 353 / 3600 seconds
+chromium-performance-set-1800 420s Recording private set · 412 / 3600 seconds
+chromium-performance-set-1800 480s Recording private set · 471 / 3600 seconds
+chromium-performance-set-1800 540s Recording private set · 531 / 3600 seconds
+chromium-performance-set-1800 601s Recording private set · 590 / 3600 seconds
+chromium-performance-set-1800 660s Recording private set · 648 / 3600 seconds
+chromium-performance-set-1800 721s Recording private set · 708 / 3600 seconds
+chromium-performance-set-1800 781s Recording private set · 767 / 3600 seconds
+chromium-performance-set-1800 840s Recording private set · 826 / 3600 seconds
+chromium-performance-set-1800 901s Recording private set · 885 / 3600 seconds
+chromium-performance-set-1800 960s Recording private set · 944 / 3600 seconds
+chromium-performance-set-1800 1020s Recording private set · 1001 / 3600 seconds
+chromium-performance-set-1800 1081s Recording private set · 1062 / 3600 seconds
+chromium-performance-set-1800 1140s Recording private set · 1120 / 3600 seconds
+chromium-performance-set-1800 1201s Recording private set · 1179 / 3600 seconds
+chromium-performance-set-1800 1261s Recording private set · 1239 / 3600 seconds
+chromium-performance-set-1800 1321s Recording private set · 1299 / 3600 seconds
+chromium-performance-set-1800 1381s Recording private set · 1358 / 3600 seconds
+chromium-performance-set-1800 1441s Recording private set · 1418 / 3600 seconds
+chromium-performance-set-1800 1503s Recording private set · 1479 / 3600 seconds
+chromium-performance-set-1800 1560s Recording private set · 1537 / 3600 seconds
+chromium-performance-set-1800 1620s Recording private set · 1596 / 3600 seconds
+chromium-performance-set-1800 1680s Recording private set · 1654 / 3600 seconds
+chromium-performance-set-1800 1740s Recording private set · 1713 / 3600 seconds
+chromium-performance-set-1800 1800s Recording private set · 1772 / 3600 seconds
+chromium [["performance-set",1800]] AssertionError [ERR_ASSERTION]: chromium-performance-set-1800 clock discontinuity
+
+2 !== 0
+
+    at lane (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:92:90)
+    at async Promise.allSettled (index 0)
+    at async run (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:105:19)
+    at async Promise.allSettled (index 0)
+    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:112:13 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 2,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   'AssertionError [ERR_ASSERTION]: chromium-performance-set-1800 clock discontinuity\n' +
++     '\n' +
++     '2 !== 0\n' +
++     '\n' +
++     '    at lane (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:92:90)\n' +
++     '    at async Promise.allSettled (index 0)\n' +
++     '    at async run (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:105:19)\n' +
++     '    at async Promise.allSettled (index 0)\n' +
++     '    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:112:13'
++ ]
+- []
+
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:115:101 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'AssertionError [ERR_ASSERTION]: chromium-performance-set-1800 clock discontinuity\n' +
+      '\n' +
+      '2 !== 0\n' +
+      '\n' +
+      '    at lane (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:92:90)\n' +
+      '    at async Promise.allSettled (index 0)\n' +
+      '    at async run (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:105:19)\n' +
+      '    at async Promise.allSettled (index 0)\n' +
+      '    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:112:13'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

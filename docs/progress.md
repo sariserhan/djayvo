@@ -1,6 +1,6 @@
 # Academy continuation — 2026-10-21
 
-The verified owner preview is deployed at `5374350` behind coming-soon; full
+The verified owner preview is deployed at `c74ad49` behind coming-soon; full
 hosted CI passes. Owner access preserves prerequisites and creates no payment
 receipt. Chromium/WebKit access, account isolation, axe and delayed-network checks
 pass. Assessment sampling now begins after server attempt creation.
@@ -13,16 +13,22 @@ were reported, leaving merchant obligations and real payment acceptance open.
 The existing notification retry endpoint runs every five minutes; authentication
 and scheduled invocation pass. The empty outbox does not prove mailbox delivery.
 
-Silent endurance: two/five-minute checks and WebKit's full thirty/sixty-minute
-recordings pass. Chromium's earlier thirty/hour receipts reported two/four clock
-discontinuities; an isolated thirty-minute repeat also failed, ruling out load
-as a sufficient explanation. Direct diagnostics captured one stale 128-frame
-timestamp followed by exact catch-up. Chromium 149 source confirms the timestamp
-update uses a nonblocking graph lock. The detector now records this bounded
-metadata pattern separately as `clockStalls`; true jumps and unresolved stale
-values still fail. All 101 web tests pass, including reproduced timestamp cases.
-Both-browser short recovery checks and corrected full-duration captures are in
-progress. All earlier failures remain preserved; no corrected long-run PASS yet.
+Silent recording endurance is now **PASS for all ten local browser cases**:
+Chromium and WebKit each completed 2-minute, two 5-minute, 30-minute and 60-minute
+recordings, downloads, assessments and account saves. Both hour recordings stop
+automatically. All ten hashes match their receipts; decoded durations agree within 0.5 seconds,
+with zero unresolved timestamp gaps, no clipping and no sustained silence. The
+longest quiet interval is under 4.57 ms. Full-duration final receipts report zero clock stalls;
+the short Chromium cue/restart regression separately exercises three classified
+stalls. All 101 web tests and full hosted CI pass at `c74ad49`.
+
+Earlier Chromium failures remain preserved. Direct diagnostics established a
+single stale worklet timestamp followed by exact catch-up; the corrected detector
+separates this bounded pattern from real or unresolved gaps, which still fail.
+No encoded audio is repaired. Provenance identifies each capture's server/static
+revision; these are local production-build checks, not physical listening or an
+exact deployed full-stack endurance test. The same runtime commit is deployed
+READY, with fresh coming-soon, closed-checkout and private/no-store HTTP checks.
 
 Human checks are explicitly deferred by the owner. The earlier first-lesson
 acceptance remains qualitative; mini-set, musical judgment, manual accessibility,

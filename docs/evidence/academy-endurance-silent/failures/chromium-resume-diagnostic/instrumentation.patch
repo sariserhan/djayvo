@@ -1,0 +1,22 @@
+--- original/set-meter-worklet.js
++++ diagnostic/set-meter-worklet.js
+@@ -4,7 +4,7 @@
+  process(inputs,outputs){if(this.done)return false;const input=inputs[0],left=input[0],right=input[1]??left,n=outputs[0][0].length;
+   // A newly connected node may render once before it has an input; start at the first connected block.
+   if(!this.armed){if(!left)return true;this.warmCount=currentFrame===this.warmNext?this.warmCount+1:0;this.warmNext=currentFrame+n;if(this.warmCount<2)return true;this.armed=true;this.port.postMessage({type:'ready'});}
+-  if(this.next>=0&&currentFrame!==this.next)this.gaps++;this.next=currentFrame+n;
++  if(this.next>=0&&currentFrame!==this.next){this.gaps++;this.port.postMessage({type:'clock-gap',expected:this.next,actual:currentFrame,frames:this.frames,rate:sampleRate,gaps:this.gaps});}this.next=currentFrame+n;
+   for(let i=0;i<n;i++){const l=left?.[i]??0,r=right?.[i]??0;this.peak=Math.max(this.peak,Math.abs(l),Math.abs(r));this.sum+=l*l+r*r;}
+   this.frames+=n;this.count+=n;if(this.count>=sampleRate)this.flush();return true;
+  }
+--- original/set-recording.js
++++ diagnostic/set-recording.js
+@@ -23,7 +23,7 @@
+    meter.onprocessorerror=()=>clear('Audio measurement failed. Incomplete set discarded.');
+    let finishMeter;const measured=new Promise(resolve=>finishMeter=resolve);
+    // Audio frames can lag wall time under load; allow five minutes of bounded wall-clock grace for the measured hour.
+-   meter.port.onmessage=({data})=>{if(version!==token)return;if(data.type==='ready'){if(recorder?.state==='inactive'){recorder.start(1000);starting=false;clearTimeout(timer);timer=setTimeout(stop,(SET_SECONDS+300)*1000);controls();emit({action:'recording.start'});}}else if(data.type==='meter'){
++   meter.port.onmessage=({data})=>{if(data.type==='ready')console.info('ACADEMY_METER_DIAGNOSTICS_ACTIVE');if(data.type==='clock-gap')console.info('ACADEMY_CLOCK_GAP '+JSON.stringify(data));if(version!==token)return;if(data.type==='ready'){if(recorder?.state==='inactive'){recorder.start(1000);starting=false;clearTimeout(timer);timer=setTimeout(stop,(SET_SECONDS+300)*1000);controls();emit({action:'recording.start'});}}else if(data.type==='meter'){
+     emit({action:'recording.sample',...data});$('set-record-status').textContent=`Recording private set · ${Math.floor(data.frames/data.rate)} / ${SET_SECONDS} seconds`;
+     if(data.frames/data.rate>=SET_SECONDS)stop();
+    }else if(data.type==='stopped'){summary=data;finishMeter(data);}};

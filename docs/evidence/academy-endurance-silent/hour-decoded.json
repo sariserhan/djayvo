@@ -1,0 +1,26 @@
+[
+  {
+    "file": "chromium-performance-set-3600.audio",
+    "sha256": "f184c29bd89207c96035c37a846b6cb959b7d02d4409dc0f638516aab85a67d4",
+    "seconds": 3599.94,
+    "receipt_seconds": 3600.0026666666668,
+    "peak_dbfs": -10.01338524645847,
+    "longest_quiet_ms": 1.3541666666666667,
+    "timestamp_gaps": 0,
+    "clock_stalls": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "file": "webkit-performance-set-3600.audio",
+    "sha256": "ae57de720a4394b5980f49497db355f743bbdc387da2921483577e1375cf9724",
+    "seconds": 3600.0025,
+    "receipt_seconds": 3600.0053333333335,
+    "peak_dbfs": -9.898682569624343,
+    "longest_quiet_ms": 3.4375,
+    "timestamp_gaps": 0,
+    "clock_stalls": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  }
+]

@@ -20,7 +20,7 @@
 | LAUNCH-002 | Verified admin bypass, public routes/signup closed | PASS | Real Better Auth sessions; ordinary, unverified, suspended and forged-cookie users denied; admin deck playback works |
 | LAUNCH-003 | Cache isolation, recovery routes and launch rollback | PASS | Private/no-store admin responses; support/login allowed; regular homepage regression passes with flag false |
 | LAUNCH-004 | Build, checks and rendered UI | PASS | 30 unit tests, production build/typecheck/bundle audit; Chromium/WebKit, 1440/390/320 and axe |
-| LAUNCH-005 | Public deployment | PASS | Production `5374350` deployed; coming-soon remains enabled, earlier first-lesson preview accepted; all migrations verified. [Release checks](docs/academy-release-checks.md) |
+| LAUNCH-005 | Public deployment | PASS | Production `c74ad49` deployed; coming-soon remains enabled, earlier first-lesson preview accepted; all migrations verified. [Release checks](docs/academy-release-checks.md) |
 
 [Implementation and activation](docs/coming-soon.md).
 
@@ -59,7 +59,7 @@ Evidence: [implementation report](docs/admin-implementation.md), [owner setup](d
 
 ## Academy continuation — 2026-10-21
 
-The verified owner preview is deployed at `5374350` behind coming-soon; full
+The verified owner preview is deployed at `c74ad49` behind coming-soon; full
 hosted CI passes. Owner access preserves prerequisites and creates no payment
 receipt. Chromium/WebKit access, account isolation, axe and delayed-network checks
 pass. Assessment sampling now begins after server attempt creation.
@@ -72,16 +72,22 @@ were reported, leaving merchant obligations and real payment acceptance open.
 The existing notification retry endpoint runs every five minutes; authentication
 and scheduled invocation pass. The empty outbox does not prove mailbox delivery.
 
-Silent endurance: two/five-minute checks and WebKit's full thirty/sixty-minute
-recordings pass. Chromium's earlier thirty/hour receipts reported two/four clock
-discontinuities; an isolated thirty-minute repeat also failed, ruling out load
-as a sufficient explanation. Direct diagnostics captured one stale 128-frame
-timestamp followed by exact catch-up. Chromium 149 source confirms the timestamp
-update uses a nonblocking graph lock. The detector now records this bounded
-metadata pattern separately as `clockStalls`; true jumps and unresolved stale
-values still fail. All 101 web tests pass, including reproduced timestamp cases.
-Both-browser short recovery checks and corrected full-duration captures are in
-progress. All earlier failures remain preserved; no corrected long-run PASS yet.
+Silent recording endurance is now **PASS for all ten local browser cases**:
+Chromium and WebKit each completed 2-minute, two 5-minute, 30-minute and 60-minute
+recordings, downloads, assessments and account saves. Both hour recordings stop
+automatically. All ten hashes match their receipts; decoded durations agree within 0.5 seconds,
+with zero unresolved timestamp gaps, no clipping and no sustained silence. The
+longest quiet interval is under 4.57 ms. Full-duration final receipts report zero clock stalls;
+the short Chromium cue/restart regression separately exercises three classified
+stalls. All 101 web tests and full hosted CI pass at `c74ad49`.
+
+Earlier Chromium failures remain preserved. Direct diagnostics established a
+single stale worklet timestamp followed by exact catch-up; the corrected detector
+separates this bounded pattern from real or unresolved gaps, which still fail.
+No encoded audio is repaired. Provenance identifies each capture's server/static
+revision; these are local production-build checks, not physical listening or an
+exact deployed full-stack endurance test. The same runtime commit is deployed
+READY, with fresh coming-soon, closed-checkout and private/no-store HTTP checks.
 
 Human checks are explicitly deferred by the owner. The earlier first-lesson
 acceptance remains qualitative; mini-set, musical judgment, manual accessibility,
@@ -94,7 +100,7 @@ Owner instruction: finish Academy and update this tracker at every increment.
 
 Owner authorized the remaining Academy implementation, automated release work,
 and Aurowall test/live configuration. The original audible 30/60-minute runs were
-stopped after the owner reported nonstop music. Current reruns are silent. Owner
+stopped after the owner reported nonstop music. Completed reruns were silent. Owner
 replaced the recruited cohort with one-owner testing, then deferred human checks.
 Production migrations, backup restore, hosted CI, deployment and permanent
 provider checks now pass; commercial activation remains closed. Earlier release
@@ -103,10 +109,10 @@ receipts remain preserved in [the current report](docs/academy-release-checks.md
 | ID | Increment | Status | Evidence / next check |
 |---|---|---|---|
 | ACA-019 | Shared-clock course transport, continuous pitch, beat loops/jumps | PASS | Four transport tests; 96 web tests; Chromium/WebKit course controls, account sync and offline playback. Native imports retain their decoder; course pitch changes key. [Report](docs/academy-completion.md) |
-| ACA-020 | Bounded 60-minute private set recording and continuity measurements | PARTIAL | Implemented 60-minute/96-MB private recorder. First real 126-second capture had zero clock gaps and correctly FAILED the silent v1 fixtures. Both real 126-second mini-sets pass with zero clock gaps, no clipping or sustained silence. Final delete/revoke/retry checks pass. Full 5-minute intermediate/advanced checks PASS in both browsers; Original audible 30/60-minute runs interrupted; corrected silent reruns and decoding in progress. Existing 30-second WAV capture preserved. |
+| ACA-020 | Bounded 60-minute private set recording and continuity measurements | PASS, technical | Both browsers completed 2/5/5/30/60-minute captures, download/account save, automatic hour cap and PCM/hash checks. All ten final receipts have zero gaps and clock stalls; short recovery regression exercises three classified stalls. 60-minute/96-MiB guards, delete/revoke/retry and original 30-second WAV recording preserved. Physical output NOT RUN. [Results](docs/evidence/academy-endurance-silent/browser.json), [PCM](docs/evidence/academy-endurance-silent/decoded-audio.json) |
 | ACA-021 | All six curriculum stages, measurable assessments and beginner mini-set | PASS | Local implementation: 20 runnable lessons, complete prerequisite graph, 2/5/30-minute rubrics and explicit knowledge checks. 96 web + 12 Academy/DB tests and broad/focused browser runs PASS. Human outcomes and full-duration long assessments remain separate gates. [Report](docs/academy-completion.md) |
 | ACA-023 | Correct teaching-audio trim timestamps | PASS | Both historical 64-second excerpts contained 32 seconds of silence. Versioned v2 exports reset timestamps before fades; full-duration silence/peak checks pass. Original MP3s and v1 manifest retained. [Evidence](docs/evidence/academy-completion/audio.json) |
-| ACA-022 | End-to-end progression, accessibility, offline and regression evidence | PARTIAL | Broad and final Chromium/WebKit runs, PCM/privacy/lifecycle/offline, responsive/axe and actual mini-sets PASS. Actual 2/5-minute endurance and Stripe provider checks PASS; Original audible 30/60-minute tests interrupted; silent reruns in progress. Owner first lesson accepted; owner mini-set, manual accessibility and physical venue remain open. [Evidence](docs/evidence/academy-completion/full-curriculum.json) |
+| ACA-022 | End-to-end progression, accessibility, offline and regression evidence | PARTIAL | Broad/final Chromium/WebKit, PCM/privacy/lifecycle/offline, responsive/axe, all ten 2/5/5/30/60-minute recording cases and actual Stripe provider checks PASS. First lesson accepted. Owner mini-set, manual accessibility and physical venue checks remain deferred. [Release evidence](docs/academy-release-checks.md) |
 
 ## DJ Academy — 2026-10-21
 
@@ -123,12 +129,12 @@ Separate $79.99 one-time pass; generation credits and quality hold remain unchan
 | ACA-006 | Owner-scoped progress, prerequisites, export/delete | Agent | Local database tests | PASS | Real local Better Auth/PG, order/replay/ownership/rate bounds and deletion checks |
 | ACA-007 | Separate Stripe pass, replay/refund/repurchase handling | Agent + owner | Sandbox product configuration | PARTIAL | Actual Stripe test purchase/refund through permanent deployed webhooks PASS; separate live catalog, keys and signed endpoint configured. Other provider scenarios PASS locally; real charges NOT RUN, sales closed |
 | ACA-008 | Fifth feature, routes, dashboard and checkout | Agent | Existing site | PASS | Production build and Chromium/WebKit route checks; four prior features preserved |
-| ACA-009 | Audio/browser/accessibility/regression checks | Agent | Runnable lesson | PARTIAL | Current 96 web + 12 Academy/DB + 31 site checks pass; build and original recorder browser regressions pass. Broad/final course, responsive/axe and offline checks PASS; manual accessibility and physical reliability remain NOT RUN |
+| ACA-009 | Audio/browser/accessibility/regression checks | Agent | Runnable lesson | PARTIAL | Current 101 web tests and hosted Academy/admin/site checks pass; build and original recorder browser regressions pass. Broad/final course, responsive/axe and offline checks PASS; manual accessibility and physical reliability remain NOT RUN |
 | ACA-010 | Owner-only first lesson and mini-set acceptance (revised scope) | Owner | Working course | PARTIAL | Owner accepts deployed first lesson: “yes it is good enough for now”; Dia / MacBook Air / external speaker. Mini-set and measured observations NOT RUN, explicitly deferred by owner. No independent novice or population claim. |
 | ACA-011 | Handbook, economics, migration and release checklist | Agent + owner | Evidence | PARTIAL | Handbook and reserve model delivered; production migration/backup restore and owner-preview deployment PASS; actual merchant economics and commercial activation remain open |
-| ACA-012 | Diagnose recorder clock discontinuity and physical audio reliability | Agent + owner | Actual captures | PARTIAL | Initial startup timestamp discontinuity isolated and guarded by connected-block warmup; fresh Chromium short/long captures and both recorder regressions pass. Physical reliability remains NOT RUN |
-| ACA-013 | Shared-frame transport, beat loops/jumps, long recording | Agent | Existing deck engine | PARTIAL | ACA-019/020 local implementation and two-browser short/mini-set checks PASS; actual 5-minute checks PASS; silent 30/60-minute reruns in progress; physical endurance NOT RUN |
-| ACA-014 | Remaining curriculum and beginner mini-set | Agent + learners | ACA-003/013 | PARTIAL | All six stages implemented; actual Chromium two-minute recorded mini-set passes. Chromium/WebKit control checks and both actual mini-sets PASS; owner mini-set deferred; silent 30/60-minute reruns in progress |
+| ACA-012 | Diagnose recorder clock discontinuity and physical audio reliability | Agent + owner | Actual captures | PARTIAL | Connected-block startup and bounded stale-timestamp recovery covered by unit/browser tests; all ten final duration cases and decoded PCM PASS. Earlier failures preserved. Physical reliability NOT RUN. [Diagnosis](docs/academy-clock-continuity.md) |
+| ACA-013 | Shared-frame transport, beat loops/jumps, long recording | Agent | Existing deck engine | PARTIAL | ACA-019/020 implementation, controls and both-browser 2/5/5/30/60-minute recording/PCM/account-save checks PASS; physical endurance NOT RUN |
+| ACA-014 | Remaining curriculum and beginner mini-set | Agent + learners | ACA-003/013 | PARTIAL | All six stages implemented; both-browser mini-sets and full-duration recording assessments PASS. Owner mini-set explicitly deferred; no human learning claim |
 | ACA-015 | Hosted CI, payment sandbox, deployment and release | Agent + owner | Course / provider / human gates | PARTIAL | Full hosted CI, Neon migration/backup restore and production owner-preview deployment PASS. Actual deployed Stripe test purchase/refund and permanent test/live configuration PASS; real charges and commercial activation remain open. [Report](docs/academy-release-checks.md) |
 | ACA-016 | Hardware-style deck presentation with real controls | Agent + owner | Existing console | PARTIAL | [Presentation](docs/deck-presentation.md): browser/build checks pass; owner visual and physical touch review NOT RUN |
 | ACA-017 | Adaptive fullscreen studio and performance C layout | Agent + owner | Shared actual decks | PARTIAL | [Fullscreen report](docs/studio-fullscreen.md): native browser/layout/audio checks pass; physical monitor/device review NOT RUN |
@@ -323,7 +329,7 @@ the source of truth and is not modified by this tracker.
 
 ## Deployment reliability
 
-- [ ] **DEP01 — PARTIAL:** Repair partial Emscripten directories restored by Vercel build cache. Failure reproduced; fresh/partial/warm bootstrap and preservation checks, full local build and bundle audit PASS. Cached production deployment and live page/engine checks PASS. GitHub push remains pending; remote main still lacks the fix. Fix `66031e3`; [evidence](docs/deploy-cache.md).
+- [ ] **DEP01 — PARTIAL:** Repair partial Emscripten directories restored by Vercel build cache. Failure reproduced; fresh/partial/warm bootstrap and preservation checks, full local build and bundle audit PASS. Cached production deployment and live page/engine checks PASS. Release branch is pushed and hosted CI passes; remote main awaits draft PR #1. Fix `66031e3`; [evidence](docs/deploy-cache.md).
 
 ## Public interface
 
@@ -819,6 +825,8 @@ filename/seed, timestamp, observation, desired change and eventual evidence.
 Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
+
+- [x] **2026-10-21 — Academy automated release completion:** Runtime `c74ad49` deployed READY with full hosted CI PASS. All ten silent Chromium/WebKit 2/5/5/30/60-minute recording, download, assessment/account-save and decoded PCM/hash checks PASS. Fixed bounded stale worklet timestamps without changing audio; original failures retained. Permanent Aurowall test/live configuration, actual hosted test purchase/refund, non-payment live delivery, production schema/backup restore and scheduled retries verified. Human checks deferred; merchant/live-charge/mailbox acceptance and public sales remain open. [Release report](docs/academy-release-checks.md), [recording evidence](docs/evidence/academy-endurance-silent/browser.json).
 
 - [x] **2026-10-21 — Academy release checks:** Full hosted CI passes after `b4e03e5` / `19ae151`; reviewed production migrations and private backup restore pass; owner-preview deployment READY and first lesson accepted. Actual Aurowall Stripe test purchase/decline/refund/repurchase/dispute and signed callback checks pass. Both browsers pass two/five-minute assessments and decoded recording checks. 30/60-minute runs stopped after owner reported unwanted speaker playback; audible runner now requires an explicit opt-in. Public sales, full human/hardware evidence and permanent hosted billing remain open. [Report and receipts](docs/academy-release-checks.md).
 

@@ -1,0 +1,6 @@
+{
+  "status": "PARTIAL",
+  "at": "2026-10-21T16:30:33.279695+00:00",
+  "reason": "The Chromium short lane reproduced the delayed-attempt sync bug. Its hour lane is superseded by the final five-minute wall-grace build; observed clock lag was 17 seconds after 660 wall seconds. No completed-hour claim. WebKit lanes continue unchanged.",
+  "new_run": "root workspace, port 4230, Chromium hour only, silent"
+}

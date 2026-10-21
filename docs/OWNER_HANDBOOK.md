@@ -121,7 +121,11 @@ review; do not force settlement to zero or erase the financial record.
 Current evidence: [release checks](academy-release-checks.md). Owner explicitly
 approved Aurowall (`acct_1TxA3vDlEXWDEeHO`) for test and future live payments.
 Production migrations/deployment and full hosted CI now pass. Recruitment was
-replaced by owner-only testing: first lesson accepted, mini-set unmeasured.
+replaced by owner-only testing: first lesson accepted, mini-set unmeasured. Human
+checks are deferred at the owner's request. All ten silent Chromium/WebKit
+2/5/5/30/60-minute recording cases pass with decoded PCM, downloads and account
+saves; both hour caps stop automatically. This establishes technical recording
+behavior, not physical output or human learning. [Evidence](academy-release-checks.md).
 
 Academy is the fifth product, independently gated from generation. The approved
 list price is **$79.99 USD once, before applicable tax**. No Academy lesson calls
@@ -161,7 +165,7 @@ server-side and requires that exact verified address; client role fields are ign
 1. **PASS:** Additive migrations 0006–0012 applied on the authorized Neon production
    branch after a private backup; all twelve hashes match and a disposable restore
    passed. [Current evidence](academy-release-checks.md).
-2. **PASS:** Production deployment `5374350` is READY behind coming-soon. Sign in
+2. **PASS:** Production deployment `c74ad49` is READY behind coming-soon. Sign in
    as the verified owner to use `/admin` and the purchase-free course preview;
    lesson prerequisites still apply. Public paid launch has not happened.
 3. **NOT RUN:** Hosted support/signup/reply mailbox observation. Local application
@@ -240,13 +244,11 @@ reviewed public mixes. It refreshes every minute while visible and on tab return
 Existing private recordings are unchanged. No sample practice track is presented
 as user-generated music, and an empty catalogue remains visibly empty.
 
-Before deploying this update:
+Current deployment and remaining community checks:
 
-1. Review/apply pending migrations **0011 and 0012** to the intended Neon branch
-   using the existing `apps/site` migration command (`npm run db:migrate`) with
-   the correct server environment. Back up/review the target first. Neither
-   hosted migration was run for this change. Deploy the matching code afterward;
-   the new per-lot billing columns require the updated wallet writer.
+1. **PASS:** Migrations **0011 and 0012** are applied on the authorized production
+   branch, their hashes verified, and matching code deployed. The private backup
+   restore passed. See [current release evidence](academy-release-checks.md).
 2. Keep R2 `jamloom-audio` private and preserve its existing scoped upload/CORS
    configuration. Set `JAMLOOM_CATALOGUE_ENABLED=true` only when public-listening
    moderation is ready. This switch already exists; no new secret is required.

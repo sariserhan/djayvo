@@ -1,0 +1,59 @@
+{
+  "speaker_output": "Muted downstream of recording taps; no physical-output claim",
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "lesson": "performance-set",
+      "requested_seconds": 3600,
+      "status": "PASS",
+      "started_at": "2026-10-21T17:19:18.994Z",
+      "recovery": "cue then restart while A audible",
+      "automatic_cap": "PASS",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 172800256,
+        "rate": 48000,
+        "gaps": 0,
+        "seconds": 3600.0053333333335,
+        "bytes": 71967024,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "ae57de720a4394b5980f49497db355f743bbdc387da2921483577e1375cf9724"
+      },
+      "wall_seconds": 3601.051,
+      "feedback": "Recorded set checks passed. Replay and critique the mix; software checks do not establish professional readiness. Keep playing for as long as you like. Continue only when you are ready.",
+      "payload_bytes": 1206772,
+      "completed_at": "2026-10-21T18:19:26.924Z"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 3600,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T17:19:19.612Z",
+      "recovery": "cue then restart while A audible",
+      "automatic_cap": "PASS",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 172800128,
+        "rate": 48000,
+        "gaps": 4,
+        "seconds": 3600.0026666666668,
+        "bytes": 58019379,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "012df33ff06ada05d81cee58092ad73ca94f6e19d31ecff1e87d1996c54a292e"
+      },
+      "wall_seconds": 3621.184
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: chromium-performance-set-3600 clock discontinuity\n\n4 !== 0\n\n    at lane (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:93:90)\n    at async Promise.allSettled (index 0)\n    at async run (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:106:19)\n    at async Promise.allSettled (index 0)\n    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:113:13"
+  ],
+  "status": "FAIL"
+}

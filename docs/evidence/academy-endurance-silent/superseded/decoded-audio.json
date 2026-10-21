@@ -1,0 +1,24 @@
+[
+  {
+    "file": "chromium-elementary-assessment-120.audio",
+    "sha256": "143d4500dfa454df91dddfa5b00eeffc000d85170c36d200017b804225d19963",
+    "seconds": 124.08,
+    "receipt_seconds": 124.13066666666667,
+    "peak_dbfs": -10.565884357116147,
+    "longest_quiet_ms": 3.2708333333333335,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "file": "webkit-elementary-assessment-120.audio",
+    "sha256": "6129c42d9baec82c4875ccaf225a8e35268810183031bbd8347d0caf373e7fad",
+    "seconds": 124.33,
+    "receipt_seconds": 124.328,
+    "peak_dbfs": -9.90062299181361,
+    "longest_quiet_ms": 4.083333333333333,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  }
+]

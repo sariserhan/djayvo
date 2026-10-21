@@ -1,0 +1,30 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "type": "stopped",
+    "frames": 73984,
+    "rate": 48000,
+    "gaps": 0,
+    "outputs": [
+      {
+        "gain": 0,
+        "peak": 0
+      }
+    ]
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "type": "stopped",
+    "frames": 73984,
+    "rate": 48000,
+    "gaps": 0,
+    "outputs": [
+      {
+        "gain": 0,
+        "peak": 0
+      }
+    ]
+  }
+]

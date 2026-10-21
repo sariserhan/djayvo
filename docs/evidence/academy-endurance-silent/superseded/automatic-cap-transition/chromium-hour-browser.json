@@ -1,0 +1,21 @@
+{
+  "speaker_output": "Muted downstream of recording taps; no physical-output claim",
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 3600,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T16:30:36.825Z",
+      "recovery": "cue then restart while A audible"
+    }
+  ],
+  "errors": [
+    "browserContext.close: Protocol error (Target.disposeBrowserContext): Failed to find context with id 5033716407B51D7EC579E3C06B0AE472\n    at async lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:103:202)\n    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:105:19)\n    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:111:13"
+  ],
+  "status": "FAIL"
+}

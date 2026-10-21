@@ -1,0 +1,122 @@
+[
+  {
+    "file": "chromium-advanced-set-300.audio",
+    "sha256": "3c14a510c399f8a7f918075dc8527a7a918013883dec46ea844c362d4da008f4",
+    "seconds": 303.0,
+    "receipt_seconds": 303.0106666666667,
+    "peak_dbfs": -10.586958028140103,
+    "longest_quiet_ms": 1.8125,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN",
+    "clock_stalls": 0
+  },
+  {
+    "file": "chromium-elementary-assessment-120.audio",
+    "sha256": "060c771b7e28cb2728dc266d27607cd73c72cb2b127842b3812e687e897b7c24",
+    "seconds": 122.4,
+    "receipt_seconds": 122.46666666666667,
+    "peak_dbfs": -11.088782116648881,
+    "longest_quiet_ms": 4.5625,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN",
+    "clock_stalls": 0
+  },
+  {
+    "file": "chromium-intermediate-set-300.audio",
+    "sha256": "1e1a01b0a36b95fa6741d907795a7845c394eb359ffb1e9099317db40e797acd",
+    "seconds": 302.04,
+    "receipt_seconds": 302.07733333333334,
+    "peak_dbfs": -10.77687899472772,
+    "longest_quiet_ms": 2.9583333333333335,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN",
+    "clock_stalls": 0
+  },
+  {
+    "file": "chromium-performance-set-1800.audio",
+    "sha256": "12e35e784754e9e609c45aa286d215220d47b0ed3310f1abcb2d6b97a7c81d54",
+    "seconds": 1802.16,
+    "receipt_seconds": 1802.184,
+    "peak_dbfs": -10.01338524645847,
+    "longest_quiet_ms": 1.3541666666666667,
+    "timestamp_gaps": 0,
+    "clock_stalls": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "file": "chromium-performance-set-3600.audio",
+    "sha256": "f184c29bd89207c96035c37a846b6cb959b7d02d4409dc0f638516aab85a67d4",
+    "seconds": 3599.94,
+    "receipt_seconds": 3600.0026666666668,
+    "peak_dbfs": -10.01338524645847,
+    "longest_quiet_ms": 1.3541666666666667,
+    "timestamp_gaps": 0,
+    "clock_stalls": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "file": "webkit-advanced-set-300.audio",
+    "sha256": "e22e41b5397acc750955a241b1e7192d68ab1e78964142234210cbf3be9a31cc",
+    "seconds": 302.4025,
+    "receipt_seconds": 302.4026666666667,
+    "peak_dbfs": -9.898682569624343,
+    "longest_quiet_ms": 4.270833333333333,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN",
+    "clock_stalls": 0
+  },
+  {
+    "file": "webkit-elementary-assessment-120.audio",
+    "sha256": "76d9667d2929a502a335208a9dffa0d68fe1930ddb3cdd2311dd59de5376dcbb",
+    "seconds": 122.5825,
+    "receipt_seconds": 122.58666666666667,
+    "peak_dbfs": -9.708489456426882,
+    "longest_quiet_ms": 3.3958333333333335,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN",
+    "clock_stalls": 0
+  },
+  {
+    "file": "webkit-intermediate-set-300.audio",
+    "sha256": "af74c1654a88fecdc24e1ab44555cb7132bdcd5fc32347f234f617ee7fcbd2de",
+    "seconds": 302.78,
+    "receipt_seconds": 302.77866666666665,
+    "peak_dbfs": -9.307590388387162,
+    "longest_quiet_ms": 3.5625,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN",
+    "clock_stalls": 0
+  },
+  {
+    "file": "webkit-performance-set-1800.audio",
+    "sha256": "a900e90b62b54fd072d51e81d11ca253d193599b75d9747f0c67da9bb7653796",
+    "seconds": 1802.6075,
+    "receipt_seconds": 1802.6106666666667,
+    "peak_dbfs": -9.615759936124597,
+    "longest_quiet_ms": 3.375,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN",
+    "clock_stalls": 0
+  },
+  {
+    "file": "webkit-performance-set-3600.audio",
+    "sha256": "ae57de720a4394b5980f49497db355f743bbdc387da2921483577e1375cf9724",
+    "seconds": 3600.0025,
+    "receipt_seconds": 3600.0053333333335,
+    "peak_dbfs": -9.898682569624343,
+    "longest_quiet_ms": 3.4375,
+    "timestamp_gaps": 0,
+    "clock_stalls": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  }
+]

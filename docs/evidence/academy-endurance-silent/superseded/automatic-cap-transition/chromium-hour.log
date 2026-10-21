@@ -1,0 +1,84 @@
+chromium-performance-set-3600 61s Recording private set · 61 / 3600 seconds
+chromium-performance-set-3600 120s Recording private set · 121 / 3600 seconds
+chromium-performance-set-3600 181s Recording private set · 181 / 3600 seconds
+chromium-performance-set-3600 240s Recording private set · 240 / 3600 seconds
+chromium-performance-set-3600 301s Recording private set · 301 / 3600 seconds
+chromium-performance-set-3600 360s Recording private set · 360 / 3600 seconds
+chromium-performance-set-3600 421s Recording private set · 421 / 3600 seconds
+chromium-performance-set-3600 481s Recording private set · 481 / 3600 seconds
+chromium-performance-set-3600 540s Recording private set · 540 / 3600 seconds
+chromium-performance-set-3600 601s Recording private set · 600 / 3600 seconds
+chromium-performance-set-3600 660s Recording private set · 659 / 3600 seconds
+chromium-performance-set-3600 721s Recording private set · 719 / 3600 seconds
+chromium-performance-set-3600 780s Recording private set · 778 / 3600 seconds
+chromium-performance-set-3600 841s Recording private set · 839 / 3600 seconds
+chromium-performance-set-3600 900s Recording private set · 898 / 3600 seconds
+chromium-performance-set-3600 961s Recording private set · 958 / 3600 seconds
+chromium-performance-set-3600 1021s Recording private set · 1011 / 3600 seconds
+chromium-performance-set-3600 1080s Recording private set · 1064 / 3600 seconds
+chromium-performance-set-3600 1141s Recording private set · 1121 / 3600 seconds
+chromium-performance-set-3600 1201s Recording private set · 1177 / 3600 seconds
+chromium-performance-set-3600 1260s Recording private set · 1234 / 3600 seconds
+chromium-performance-set-3600 1321s Recording private set · 1291 / 3600 seconds
+chromium-performance-set-3600 1383s Recording private set · 1349 / 3600 seconds
+chromium-performance-set-3600 1441s Recording private set · 1401 / 3600 seconds
+chromium-performance-set-3600 1501s Recording private set · 1456 / 3600 seconds
+chromium-performance-set-3600 1560s Recording private set · 1510 / 3600 seconds
+chromium-performance-set-3600 1621s Recording private set · 1565 / 3600 seconds
+chromium-performance-set-3600 1680s Recording private set · 1620 / 3600 seconds
+chromium-performance-set-3600 1741s Recording private set · 1678 / 3600 seconds
+chromium-performance-set-3600 1800s Recording private set · 1732 / 3600 seconds
+chromium-performance-set-3600 1860s Recording private set · 1790 / 3600 seconds
+chromium-performance-set-3600 1920s Recording private set · 1846 / 3600 seconds
+chromium-performance-set-3600 1981s Recording private set · 1905 / 3600 seconds
+chromium-performance-set-3600 2041s Recording private set · 1965 / 3600 seconds
+chromium-performance-set-3600 2101s Recording private set · 2025 / 3600 seconds
+chromium-performance-set-3600 2161s Recording private set · 2084 / 3600 seconds
+chromium-performance-set-3600 2220s Recording private set · 2142 / 3600 seconds
+chromium-performance-set-3600 2280s Recording private set · 2201 / 3600 seconds
+chromium-performance-set-3600 2341s Recording private set · 2261 / 3600 seconds
+chromium-performance-set-3600 2400s Recording private set · 2319 / 3600 seconds
+chromium-performance-set-3600 2461s Recording private set · 2379 / 3600 seconds
+chromium-performance-set-3600 2520s Recording private set · 2438 / 3600 seconds
+chromium-performance-set-3600 2581s Recording private set · 2497 / 3600 seconds
+chromium-performance-set-3600 2641s Recording private set · 2556 / 3600 seconds
+chromium-performance-set-3600 2701s Recording private set · 2615 / 3600 seconds
+chromium-performance-set-3600 2760s Recording private set · 2673 / 3600 seconds
+chromium-performance-set-3600 2820s Recording private set · 2732 / 3600 seconds
+chromium-performance-set-3600 2880s Recording private set · 2791 / 3600 seconds
+chromium [["performance-set",3600]] page.waitForTimeout: Target page, context or browser has been closed
+    at lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:84:17)
+    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:105:19)
+    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:111:13 {
+  log: []
+}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   'browserContext.close: Protocol error (Target.disposeBrowserContext): Failed to find context with id 5033716407B51D7EC579E3C06B0AE472\n' +
++     '    at async lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:103:202)\n' +
++     '    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:105:19)\n' +
++     '    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:111:13'
++ ]
+- []
+
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:114:101 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'browserContext.close: Protocol error (Target.disposeBrowserContext): Failed to find context with id 5033716407B51D7EC579E3C06B0AE472\n' +
+      '    at async lane (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:103:202)\n' +
+      '    at async run (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:105:19)\n' +
+      '    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:111:13'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

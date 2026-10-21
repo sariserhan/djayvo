@@ -1,0 +1,35 @@
+[
+  {
+    "file": "webkit-advanced-set-300.audio",
+    "sha256": "e22e41b5397acc750955a241b1e7192d68ab1e78964142234210cbf3be9a31cc",
+    "seconds": 302.4025,
+    "receipt_seconds": 302.4026666666667,
+    "peak_dbfs": -9.898682569624343,
+    "longest_quiet_ms": 4.270833333333333,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "file": "webkit-elementary-assessment-120.audio",
+    "sha256": "76d9667d2929a502a335208a9dffa0d68fe1930ddb3cdd2311dd59de5376dcbb",
+    "seconds": 122.5825,
+    "receipt_seconds": 122.58666666666667,
+    "peak_dbfs": -9.708489456426882,
+    "longest_quiet_ms": 3.3958333333333335,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "file": "webkit-intermediate-set-300.audio",
+    "sha256": "af74c1654a88fecdc24e1ab44555cb7132bdcd5fc32347f234f617ee7fcbd2de",
+    "seconds": 302.78,
+    "receipt_seconds": 302.77866666666665,
+    "peak_dbfs": -9.307590388387162,
+    "longest_quiet_ms": 3.5625,
+    "timestamp_gaps": 0,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  }
+]

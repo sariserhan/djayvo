@@ -1,0 +1,33 @@
+{
+  "speaker_output": "Muted downstream of recording taps; no physical-output claim",
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "lesson": "performance-set",
+      "requested_seconds": 1800,
+      "status": "RUNNING",
+      "started_at": "2026-10-21T17:00:57.833Z",
+      "recovery": "cue then restart while A audible",
+      "speaker_output": "PASS: final output gain and samples remain zero",
+      "receipt": {
+        "version": 1,
+        "frames": 86543744,
+        "rate": 48000,
+        "gaps": 2,
+        "seconds": 1802.9946666666667,
+        "bytes": 29057828,
+        "mime": "audio/webm;codecs=opus",
+        "sha256": "d25b89bca8a3c4fa7887cb2616cbb03111f8d62a6efc78bb334e97b4b5722307"
+      },
+      "wall_seconds": 1831.217
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: chromium-performance-set-1800 clock discontinuity\n\n2 !== 0\n\n    at lane (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:92:90)\n    at async Promise.allSettled (index 0)\n    at async run (file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:105:19)\n    at async Promise.allSettled (index 0)\n    at async file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-endurance.mjs:112:13"
+  ],
+  "status": "FAIL"
+}

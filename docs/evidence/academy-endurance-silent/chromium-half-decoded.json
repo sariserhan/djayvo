@@ -1,0 +1,12 @@
+{
+  "file": "chromium-performance-set-1800.audio",
+  "sha256": "12e35e784754e9e609c45aa286d215220d47b0ed3310f1abcb2d6b97a7c81d54",
+  "seconds": 1802.16,
+  "receipt_seconds": 1802.184,
+  "peak_dbfs": -10.01338524645847,
+  "longest_quiet_ms": 1.3541666666666667,
+  "timestamp_gaps": 0,
+  "clock_stalls": 0,
+  "technical": "PASS",
+  "human_listening": "NOT RUN"
+}
