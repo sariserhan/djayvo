@@ -34,7 +34,7 @@ jobs:
           npm run audit:bundle
   academy:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     services:
       postgres:
         image: postgres:16
@@ -57,6 +57,8 @@ jobs:
         working-directory: apps/site
         run: |
           npm ci
+          npm --prefix ../web ci
+          npm run studio:prepare
           node --test ../web/tests/*.test.js
           npm run test:academy
   build:
