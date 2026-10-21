@@ -61,6 +61,7 @@ jobs:
           npm run studio:prepare
           node --test ../web/tests/*.test.js
           npm run test:academy
+          npm run test:admin
   build:
     strategy:
       fail-fast: false

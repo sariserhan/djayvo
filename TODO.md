@@ -64,8 +64,9 @@ Chromium/WebKit preflight proves nonzero captured audio and exactly zero speaker
 output. Actual real-time 2/5/30/60-minute checks now running with the final output
 muted; this is recording/engine evidence, not physical-speaker reliability.
 Owner preview access now reuses the verified active administrator check, preserves
-prerequisites and does not create payment receipts; 21 Academy/admin tests PASS,
-rendered/deployed check pending. Permanent Stripe keys and the owner mini-set observation requested while independent
+prerequisites and does not create payment receipts; 21 Academy/admin tests and
+Chromium/WebKit rendered access, prerequisite, axe and account-isolation checks PASS.
+Deployment pending. Permanent Stripe keys and the owner mini-set observation requested while independent
 work continues. No new audible playback or live charges.
 
 ## Academy completion work — 2026-10-21

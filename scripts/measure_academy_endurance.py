@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import sys
 
 import numpy as np
 
@@ -59,11 +60,12 @@ def measure(path):
 
 
 if __name__ == '__main__':
-    paths = sorted((ROOT/'build-academy-endurance').glob('*.audio'))
+    suffix = '-silent' if '--silent' in sys.argv[1:] else ''
+    paths = sorted((ROOT/('build-academy-endurance'+suffix)).glob('*.audio'))
     assert paths, 'No completed captures found'
     rows = []
     for path in paths:
         rows.append(measure(path))
         print(json.dumps(rows[-1]), flush=True)
-    report = ROOT/'docs/evidence/academy-endurance/decoded-audio.json'
+    report = ROOT/('docs/evidence/academy-endurance'+suffix)/'decoded-audio.json'
     report.write_text(json.dumps(rows, indent=2)+'\n')

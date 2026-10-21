@@ -1,0 +1,28 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "recordingPeak": 0.9999999403953552,
+    "outputs": [
+      {
+        "gain": 0,
+        "peak": 0
+      }
+    ],
+    "rate": 48000
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "recordingPeak": 0.9999999403953552,
+    "outputs": [
+      {
+        "gain": 0,
+        "peak": 0
+      }
+    ],
+    "rate": 48000
+  }
+]

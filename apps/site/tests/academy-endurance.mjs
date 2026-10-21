@@ -3,16 +3,17 @@ import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';
 import {mkdtemp,readdir,readFile,rm,writeFile,mkdir} from 'node:fs/promises';import {tmpdir} from 'node:os';import {join} from 'node:path';
 import {spawn} from 'node:child_process';import {once} from 'node:events';import {setTimeout as delay} from 'node:timers/promises';
 import {chromium,webkit} from 'playwright';
+import {silenceSpeakers} from './silent-audio.mjs';
 import {academyLessons,ACADEMY_VERSION} from '../lib/academy-content.ts';
 import {createPool} from '../lib/database.ts';import {migrate} from '../lib/migrations.ts';
-assert.equal(process.env.JAMLOOM_AUDIBLE_TEST,'1','This endurance test plays through the current audio output for up to an hour. Set JAMLOOM_AUDIBLE_TEST=1 only for an arranged listening window.');
+const audible=process.env.JAMLOOM_AUDIBLE_TEST==='1';
 const url=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(url.hostname,'127.0.0.1');
 const admin=createPool(url.toString()),name='jamloom_academy_endurance_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
 const mode=process.argv[2]??'all';assert.ok(['all','short','hour'].includes(mode));
 const port=mode==='short'?'4226':'4225';
 const pool=createPool(url.toString()),folder=await mkdtemp(join(tmpdir(),'jamloom-academy-')),base='http://127.0.0.1:'+port;
-const evidence=new URL('../../../docs/evidence/academy-endurance/',import.meta.url),audio=new URL('../../../build-academy-endurance/',import.meta.url);
-let server,logs='';const results={database:'disposable loopback',human_learning:'NOT RUN',provider_transactions:'NOT RUN',browsers:[]};
+const evidence=new URL(audible?'../../../docs/evidence/academy-endurance/':'../../../docs/evidence/academy-endurance-silent/',import.meta.url),audio=new URL(audible?'../../../build-academy-endurance/':'../../../build-academy-endurance-silent/',import.meta.url);
+let server,logs='';const results={speaker_output:audible?'AUDIBLE':'Muted downstream of recording taps; no physical-output claim',database:'disposable loopback',human_learning:'NOT RUN',provider_transactions:'NOT RUN',browsers:[]};
 try{
  await migrate(pool);await mkdir(audio,{recursive:true});await mkdir(evidence,{recursive:true});
  const env={...process.env,JAMLOOM_COMING_SOON:'false',DATABASE_URL:url.toString(),BETTER_AUTH_URL:base,BETTER_AUTH_SECRET:randomUUID()+randomUUID(),JAMLOOM_LOCAL_OUTBOX:join(folder,'mail'),STRIPE_SECRET_KEY:'sk_test_local_fixture',STRIPE_WEBHOOK_SECRET:'whsec_local_fixture',ACADEMY_STRIPE_WEBHOOK_SECRET:'whsec_academy_fixture',ACADEMY_STRIPE_PRICE_ID:'price_local_fixture',ACADEMY_STRIPE_PRODUCT_ID:'prod_local_fixture'};
@@ -34,13 +35,15 @@ try{
  // Isolate access setup from the actual recorded assessments; seeded rows are not learner evidence.
  for(const lesson of academyLessons)await pool.query('INSERT INTO academy_attempts(owner_id,lesson_id,version,completed_at) VALUES($1,$2,$3,now())',[learner,lesson.id,ACADEMY_VERSION]);
  async function run(engine,name){
-  const browser=await engine.launch();
+  const browser=await engine.launch(!audible&&name==='chromium'?{args:['--mute-audio']}:{});
   async function lane(cases){
    const context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});
+   if(!audible)await context.addInitScript(silenceSpeakers);
    await context.addCookies(cookie.split('; ').map(v=>({name:v.slice(0,v.indexOf('=')),value:v.slice(v.indexOf('=')+1),url:base})));
    await context.route('**/*',r=>new URL(r.request().url()).origin===base||r.request().url().startsWith('blob:')?r.continue():r.abort());
    const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
    const slider=async(id,value)=>page.locator('#'+id).evaluate((el,v)=>{el.value=String(v);el.dispatchEvent(new Event('input',{bubbles:true}));},value);
+   const checkSilent=async()=>{if(audible)return;const outputs=await page.evaluate(()=>globalThis.__jamloomSilentOutput());assert.ok(outputs.length>0);for(const output of outputs){assert.equal(output.gain,0);assert.equal(output.peak,0);}};
    const play=async id=>{if((await page.locator('#play-'+id).innerText()).startsWith('Play'))await page.locator('#play-'+id).click();};
    try{for(const [lessonId,seconds] of cases){
     const label=name+'-'+lessonId+'-'+seconds,trace=[];let payloadBytes=0;
@@ -49,7 +52,7 @@ try{
     const row={browser:name,version:browser.version(),lesson:lessonId,requested_seconds:seconds,status:'RUNNING',started_at:new Date().toISOString()};results.browsers.push(row);
     await page.goto(base+'/academy/challenges/'+lessonId);await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible',timeout:20000});
     assert.match(await page.locator('#academy-save').innerText(),/Signed in/);
-    await slider('crossfade',0);await play('a');await play('b');
+    await slider('crossfade',0);await play('a');await play('b');await checkSilent();
     await page.locator('#loop-a').click();await page.locator('#loop-b').click();
     const lesson=academyLessons.find(l=>l.id===lessonId);
     if(lesson.tasks[0].kind==='tempo'){
@@ -65,7 +68,7 @@ try{
     const interval=Math.floor((seconds-20)/(task.transitions+1));let nextLog=60;
     while((Date.now()-started)/1000<seconds+(seconds===3600?5:3)){
      const elapsed=(Date.now()-started)/1000;
-     if(elapsed>=nextLog){console.log(label,Math.round(elapsed)+'s',await page.locator('#set-record-status').innerText());nextLog+=60;}
+     if(elapsed>=nextLog){await checkSilent();console.log(label,Math.round(elapsed)+'s',await page.locator('#set-record-status').innerText());nextLog+=60;}
      if(elapsed>=interval*nextTransition&&nextTransition<=task.transitions){
       for(let n=0;n<=20;n++){await slider('crossfade',side?1-n/20:n/20);await page.waitForTimeout(250);}
       side=1-side;nextTransition++;
@@ -80,6 +83,7 @@ try{
     if(seconds===3600){await page.locator('#set-record-download').waitFor({state:'visible',timeout:10000});row.automatic_cap='PASS';}
     else{await page.locator('#set-record-stop').click();await page.locator('#set-record-download').waitFor({state:'visible',timeout:20000});}
     for(const [id,suffix] of [['set-record-download','.audio'],['set-record-details','.json']]){const pending=page.waitForEvent('download');await page.locator('#'+id).click();await(await pending).saveAs(new URL(label+suffix,audio).pathname);}
+    await checkSilent();row.speaker_output=audible?'AUDIBLE':'PASS: final output gain and samples remain zero';
     row.receipt=JSON.parse(await readFile(new URL(label+'.json',audio),'utf8'));row.wall_seconds=(Date.now()-started)/1000;
     await page.screenshot({path:new URL(label+'.png',evidence).pathname,fullPage:false});
     assert.ok(row.receipt.seconds>=Math.min(seconds,3600),label+' short capture');assert.equal(row.receipt.gaps,0,label+' clock discontinuity');

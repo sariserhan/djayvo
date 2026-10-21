@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "status": "PASS",
+      "owner_label": "PASS",
+      "paid_lesson_access": "PASS",
+      "prerequisite_fixture": "seeded access setup only",
+      "axe_violations": 0,
+      "console_errors": [],
+      "speaker_output": "muted; no playback started"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "status": "PASS",
+      "owner_label": "PASS",
+      "paid_lesson_access": "PASS",
+      "prerequisite_fixture": "seeded access setup only",
+      "axe_violations": 0,
+      "console_errors": [],
+      "speaker_output": "muted; no playback started"
+    }
+  ],
+  "owner_purchase_rows": 0,
+  "guest_and_member_denial": "PASS",
+  "unverified_and_suspended": "PASS",
+  "prerequisites": "PASS",
+  "live_billing": "NOT RUN"
+}
