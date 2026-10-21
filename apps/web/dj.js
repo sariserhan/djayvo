@@ -1,7 +1,7 @@
 import './site-announcement.js';
 import { practiceFile, partnerFile } from './practice-library.js';
 import { attachStudioView } from './studio-view.js';
-import { createMixer, updateMixer, setMixerGain, validateTrack, trackDuration, updateToneEcho, clearEcho } from './mixer.js';
+import { createMixer, updateMixer, setMixerGain, validateTrack, trackDuration, validatePreparedTrack, updateToneEcho, clearEcho } from './mixer.js';
 import { attachDeck, playMedia } from './deck-controls.js';
 import { attachKeyboard } from './keyboard.js';
 import { attachPerformance } from './performance-session.js';
@@ -11,6 +11,7 @@ import { loadSessions, loadSession, verifySession } from './library.js';
 import { attachSetRecording } from './set-recording.js';
 import { FrameDeck } from './frame-deck.js';
 import { deckBridge } from './deck-bridge.js';
+import { attachStudioRecovery } from './studio-recovery.js';
 
 const $ = id => document.getElementById(id);
 attachStudioView($('dj'), $('studio-fullscreen'), $('studio-view-status'));
@@ -38,6 +39,7 @@ function controls(deck) {
   $(`seek-${id}`).value = String(audio.currentTime || 0);
   for (const name of ['tone', 'echo', 'delay', 'fx-reset']) $(`${name}-${id}`).disabled = !deck.url || !rights.checked || !!deck.loading;
   deck.transportControls?.(ready && !deck.loading && !deck.starting);
+  $(`prepare-frames-${id}`).disabled=!ready||!audio.paused||!!deck.loading||deck.starting||!!audio.buffer;
   if (deck.prepared) for (let band = 0; band < 3; band++) $(`eq-${id}-${band}`).disabled = !rights.checked;
   $(`time-${id}`).textContent = `${time(deck.prepared ? deck.sessionTime || 0 : audio.currentTime || 0)} / ${time(deck.duration)}`;
 }
@@ -50,7 +52,7 @@ function levels() {
   decks.forEach((deck, i) => { $(`level-value-${deck.id}`).textContent = `${Math.round(values[i] * 100)}%`; });
   $('rack-value').textContent = `${Math.round(Number($('rack-level').value) * 100)}%`;
   if (mixer) {
-    updateMixer(context, mixer, blend, values, master);
+    updateMixer(context, mixer, blend, values, master, $('crossfade-curve').value);
     setMixerGain(context, mixer, 'c', Number($('c-level').value) * master * .8);
     setMixerGain(context, mixer, 'rack', Number($('rack-level').value) * master);
   }
@@ -122,7 +124,7 @@ function audioGraph() {
 }
 
 function masterControls() {
-  for (const id of ['crossfade', 'pause-all']) $(id).disabled = !rights.checked;
+  for (const id of ['crossfade', 'crossfade-curve', 'pause-all']) $(id).disabled = !rights.checked;
   $('master').disabled = !rights.checked && !keyboard.ready();
 }
 const keyboard = attachKeyboard({ graph: audioGraph, context: () => context, mixer: () => mixer, levels, masterControls, getPhrase: () => session?.phraseSource(), onSourcesChanged: () => mixRecording.sourcesChanged(),onNote:()=>bridge.publish({action:'instrument.note',control:'keyboard',source:'user',t:context.currentTime,value:null}) });
@@ -186,6 +188,24 @@ async function loadTrack(deck, getFile) {
   }
 }
 
+async function prepareFrames(deck) {
+  if(!rights.checked||!deck.file||!deck.audio.paused||deck.loading||deck.prepared||deck.preparing||deck.audio.buffer)return;
+  const revision=++deck.revision,file=deck.file;
+  deck.preparing=true;controls(deck);
+  try{
+    audioGraph();
+    if(deck.duration<2||deck.duration>300||deck.duration*context.sampleRate*8>128*1024*1024)
+      throw Error('Beat controls need a track of 2 seconds–5 minutes within 128 MB decoded. Native playback is still available.');
+    const buffer=await context.decodeAudioData(await file.arrayBuffer());validatePreparedTrack(buffer);
+    if(revision!==deck.revision||file!==deck.file||!rights.checked)return;
+    const position=deck.audio.currentTime,speed=deck.audio.playbackRate;
+    deck.audio.useBuffer(buffer);deck.audio.currentTime=position;deck.audio.playbackRate=speed;
+    deck.audio.loop=deck.loop;deck.duration=buffer.duration;
+    $(`error-${deck.id}`).textContent='Beat controls ready. Enter the track BPM. Pitch now changes key; key lock is unavailable in this mode.';
+  }catch(error){if(revision===deck.revision)$(`error-${deck.id}`).textContent=error.message;}
+  finally{deck.preparing=false;controls(deck);}
+}
+
 async function refreshLibrary() {
   $('library-refresh').disabled = true;
   $('saved-mix').replaceChildren(new Option('Choose a saved mix', ''));
@@ -237,6 +257,7 @@ $('library-refresh').onclick = refreshLibrary;
 $('saved-mix').onchange = () => decks.forEach(controls);
 for (const deck of decks) {
   const { id, audio } = deck;
+  $(`prepare-frames-${id}`).onclick=()=>prepareFrames(deck);
   $(`practice-load-${id}`).onclick = () => {
     const track = practiceTracks.find(t => t.id === $('practice-track').value);
     if (track) loadTrack(deck, signal => track.partner ? partnerFile(track, signal) : practiceFile(track, signal));
@@ -276,11 +297,13 @@ for (const deck of decks) {
 }
 session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onPhraseChanged: () => { keyboard.sourceChanged(); mixRecording.sourceChanged(); }, onSourcesChanged: () => mixRecording.sourcesChanged(), onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
 $('crossfade').oninput = $('master').oninput = levels;
+$('crossfade-curve').onchange = levels;
 $('pause-all').onclick = () => { decks.forEach(pause); clearDeckEchoes(); $('mixer-status').textContent = 'All decks paused.'; };
 window.addEventListener('pagehide', event => {
   decks.forEach(pause); clearDeckEchoes();
   if (!event.persisted) { decks.forEach(unload); context?.close().catch(() => {}); }
 });
+attachStudioRecovery({decks,rights,loadTrack,prepareFrames,levels,deckEffects,controls});
 const academySamples = new Float32Array(2048);
 function academySnapshot() {
   const measure=node=>{if(!node||context?.state!=='running')return {peak:0,rms:0};node.getFloatTimeDomainData(academySamples);
@@ -297,7 +320,7 @@ const bridge=deckBridge(academySnapshot);
 const setRecording=attachSetRecording({graph:audioGraph,context:()=>context,mixer:()=>mixer,emit:event=>bridge.publish({...event,...(event.action==='recording.sample'?{sample:{...academySnapshot(),peak:event.peak,rms:event.rms}}:{})})});
 for(const id of ['set-record-start','set-record-stop'])bridge.bind($(id),'onclick','recording.control');
 for(const id of ['crossfade','master','level-a','level-b','rate-a','rate-b','seek-a','seek-b','rack-level',...['a','b'].flatMap(d=>['tone','echo','delay',...['eq'].flatMap(p=>[`${p}-${d}-0`,`${p}-${d}-1`,`${p}-${d}-2`])].map(p=>p.startsWith('eq-')?p:`${p}-${d}`))])bridge.bind($(id),'oninput',id==='crossfade'?'crossfader.set':'parameter.set');
-for(const id of ['pause-all',...['a','b'].flatMap(d=>['play','cue','set-cue','loop','fx-reset','match','tap','rate-reset','beat-loop','loop-exit','jump-back','jump-forward','align',...Array.from({length:4},(_,i)=>`hot-${d}-${i}`)].map(p=>p.startsWith('hot-')?p:`${p}-${d}`))])bridge.bind($(id),'onclick','deck.control');
+for(const id of ['pause-all',...['a','b'].flatMap(d=>['play','cue','set-cue','loop','fx-reset','match','tap','rate-reset','prepare-frames','beat-loop','beat-roll','loop-exit','jump-back','jump-forward','align',...Array.from({length:4},(_,i)=>`hot-${d}-${i}`)].map(p=>p.startsWith('hot-')?p:`${p}-${d}`))])bridge.bind($(id),'onclick','deck.control');
 if((location.pathname.startsWith('/academy/')||location.pathname.startsWith('/academy-offline/'))||new URLSearchParams(location.search).has('academy'))import('./academy-coach.js').then(({attachAcademy})=>attachAcademy({bridge,
   async load(tracks){if(!rights.checked)throw new Error('Confirm the music permission checkbox first.');
    decks.forEach(pause);

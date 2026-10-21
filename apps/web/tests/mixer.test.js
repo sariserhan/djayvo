@@ -40,6 +40,15 @@ test('track limits reject empty, oversized and nonaudio files before decoding', 
     { size: 12, type: 'text/html', name: 'page.html' } ]) assert.throws(() => validateTrack(file));
 });
 
+test('crossfader curves remain bounded for coherent tracks, with exact silence at the ends',()=>{
+ for(const curve of ['linear','smooth','cut']){
+  assert.deepEqual(mixGains(0,[1,1],1,curve),[.8,0]);assert.deepEqual(mixGains(1,[1,1],1,curve),[0,.8]);
+  for(let i=0;i<=100;i++){const gains=mixGains(i/100,[1,1],1,curve);assert.ok(gains.every(v=>v>=0&&v<=.8));assert.ok(gains[0]+gains[1]<=.80000001);}
+ }
+ assert.ok(mixGains(.25,[1,1],1,'smooth')[1]<mixGains(.25,[1,1],1)[1]);
+ assert.equal(mixGains(.4,[1,1],1,'cut')[1],0);assert.throws(()=>mixGains(.5,[1,1],1,'unknown'));
+});
+
 test('effect boundaries reject nonfinite and out-of-range controls before touching audio', () => {
   for (const values of [[NaN, 0, 300], [-1, 0, 300], [101, 0, 300], [100, Infinity, 300], [100, -.01, 300], [100, .51, 300], [100, 0, NaN], [100, 0, 99], [100, 0, 801]])
     assert.throws(() => updateToneEcho(null, null, ...values), /outside their allowed range/);

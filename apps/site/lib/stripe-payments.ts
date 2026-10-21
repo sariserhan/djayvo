@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import { CREDIT_PACKS } from './economics';
+import { CREDIT_PACKS, integer } from './economics';
 import { Wallet } from './wallet';
 
 export function sandboxStripe(env:Record<string,string|undefined>=process.env){
@@ -15,8 +15,22 @@ export async function fulfillCheckout(stripe:Stripe,wallet:Wallet,id:string){
      session.currency!=='usd'||session.amount_subtotal!==pack.cents||session.total_details?.amount_discount!==0||
      session.line_items?.data.length!==1||session.line_items.data[0].quantity!==1||
      session.line_items.data[0].amount_subtotal!==pack.cents)throw new Error('Unsupported or unpaid purchase');
-  // Sandbox conservative allowance only. Production needs actual fee/tax reconciliation.
-  const netMicros=Math.floor(pack.cents*10000*.4);
+  if(typeof session.payment_intent!=='string')throw new Error('Missing payment intent');
+  const intent=await stripe.paymentIntents.retrieve(session.payment_intent,{expand:['latest_charge.balance_transaction']});
+  const charge=intent.latest_charge;
+  if(intent.livemode||intent.status!=='succeeded'||!charge||typeof charge==='string'||charge.livemode||
+    !charge.paid||!charge.captured||charge.refunded||charge.amount_refunded!==0||charge.disputed||
+    charge.currency!=='usd'||charge.amount!==session.amount_total||charge.payment_intent!==intent.id)
+    throw new Error('Payment charge is not eligible');
+  const balance=charge.balance_transaction,tax=session.total_details?.amount_tax;
+  if(!balance||typeof balance==='string'||balance.currency!=='usd'||balance.source!==charge.id||
+    balance.amount!==charge.amount||balance.net!==balance.amount-balance.fee||balance.exchange_rate!==null)
+    throw new Error('Payment fee evidence pending or unsupported');
+  integer(balance.amount,1);integer(balance.fee);integer(tax!,0,balance.amount);
+  // Sandbox support/refund reserves remain provisional; never substitute guessed processor fees.
+  const reserve=Math.ceil(pack.cents*.2);
+  const netMicros=(balance.net-tax!-reserve)*10000;
+  integer(netMicros,pack.credits);
   return wallet.grant(owner,{provider:'stripe_test',receipt:session.id,credits:pack.credits,netMicros});
 }
 export async function checkout(stripe:Stripe,owner:string,pack:keyof typeof CREDIT_PACKS,key:string,origin:string){

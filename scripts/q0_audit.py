@@ -82,7 +82,12 @@ def inputs():
     ids = ['ls-2277-149896-0026', 'ls-2035-147960-0013', 'ls-2086-149220-0047', 'commons-laughter']
     selected = []
     for identifier in ids:
-        row = next(r for r in ledger['clips'] if r['id'] == identifier)
+        row = dict(next(r for r in ledger['clips'] if r['id'] == identifier))
+        # The immutable ledger predates the repository rename; still verify exact PCM identity.
+        legacy = ROOT.parent/'djayvo'
+        path = Path(row['path'])
+        if not path.exists() and path.is_relative_to(legacy):
+            row['path'] = str(ROOT/path.relative_to(legacy))
         if (row['consent']['local_processing'] is not True or
                 row['license']['id'] not in ('CC-BY-4.0', 'CC0-1.0') or
                 digest(row['path']) != row['sha256']):

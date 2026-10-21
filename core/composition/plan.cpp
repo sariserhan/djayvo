@@ -83,6 +83,8 @@ std::uint64_t tick_to_frame(Tick tick, const PerformancePlan& p) {
 }
 
 void validate(const PerformancePlan& p) {
+    if (p.strategy!="m0a_four_bar" && p.strategy!="taste_composition")
+        throw std::invalid_argument("Unsupported instrumental strategy");
     tick_to_frame(0, p.sample_rate, p.tempo_milli_bpm);
     const Tick bar = ticks_per_bar(p);
     if (p.bars < 1 || p.bars > 256 || p.tail_ms < 500 || p.tail_ms > 10000 ||
@@ -154,7 +156,7 @@ void write_score(const PerformancePlan& p, const std::string& path) {
         << ",\n  \"tempo_milli_bpm\": " << p.tempo_milli_bpm
         << ",\n  \"time_signature\": [" << p.numerator << ", " << p.denominator
         << "],\n  \"target_bars\": " << p.bars
-        << ",\n  \"strategy\": \"m0a_four_bar\",\n  \"tail_ms\": " << p.tail_ms
+        << ",\n  \"strategy\": \"" << p.strategy << "\",\n  \"tail_ms\": " << p.tail_ms
         << ",\n  \"mix\": {\"master_target_peak_dbfs\": " << p.ceiling_dbfs;
     if (p.kick_duck_db!=0) out<<", \"kick_duck_db\": "<<p.kick_duck_db;
     out << "},\n  \"sections\": [";

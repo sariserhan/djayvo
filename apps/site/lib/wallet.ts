@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import type { Pool, PoolClient } from 'pg';
-import { integer, privacyCredits } from './economics';
+import { integer, privacyCredits, allocateCredits } from './economics';
 import {adminAccount} from './admin-access';
 import {validatePermit,type WorkerPermit} from './generation-budget';
 
@@ -40,13 +40,27 @@ export class Wallet {
       await db.query("INSERT INTO wallet_ledger_entries(owner_id,lot_id,kind,available_delta,reserved_delta) VALUES($1,$2,'grant',$3,0)",[owner,id,p.credits]);return id as string;
     },false,`${p.provider}:${p.receipt}`);
   }
-  async reserve(owner:string,key:string,cap:number,marginBps=5000,job?:JobBudget,visibility?:'public'|'private'){
+  async quote(owner:string,cap:number,marginBps=5000,visibility:'public'|'private'='public'){
+    integer(cap,1,5_000_000);integer(marginBps,3000,9000);
+    if(!['public','private'].includes(visibility))throw new Error('Invalid visibility');
+    return this.atomic(owner,async db=>{
+      const exempt=await adminAccount(db,owner);
+      const lots=exempt?[]:(await db.query(`SELECT l.id,l.net_micros,l.credits,COALESCE(sum(e.available_delta),0)::int AS available
+        FROM credit_lots l JOIN wallet_ledger_entries e ON e.lot_id=l.id WHERE l.owner_id=$1
+        GROUP BY l.id ORDER BY l.created_at,l.id`,[owner])).rows;
+      const allocations=exempt?[]:allocateCredits(lots,cap,marginBps,visibility==='private');
+      return {credits:allocations.reduce((sum,a)=>sum+a.n,0),privacyCredits:allocations.reduce((sum,a)=>sum+a.privacy,0),
+        costCapMicros:cap,marginBps,visibility,creditExempt:exempt};
+    });
+  }
+  async reserve(owner:string,key:string,cap:number,marginBps=5000,job?:JobBudget,visibility?:'public'|'private',expectedCredits?:number){
     if(visibility!==undefined && !['public','private'].includes(visibility))throw new Error('Invalid visibility');
+    if(expectedCredits!==undefined)integer(expectedCredits,0,100000);
     const privacyBps=visibility==='private'?2500:0;
     integer(cap,1,5_000_000);integer(marginBps,3000,9000);
     if(!/^[a-zA-Z0-9_-]{8,100}$/.test(key))throw new Error('Invalid request key');
     if(job)validatePermit({...job,version:1,reservationId:'00000000-0000-0000-0000-000000000000',expiresAt:Date.now()+60000,costCapMicros:cap,attempt:1},Date.now());
-    const fingerprint=createHash('sha256').update(JSON.stringify({cap,marginBps,job,...(visibility?{visibility}: {})})).digest('hex');
+    const fingerprint=createHash('sha256').update(JSON.stringify({cap,marginBps,job,...(visibility?{visibility}: {}),...(expectedCredits!==undefined?{expectedCredits}:{})})).digest('hex');
     return this.atomic(owner,async db=>{
       const prior=(await db.query('SELECT * FROM generation_reservations WHERE owner_id=$1 AND request_key=$2',[owner,key])).rows[0];
       if(prior){if(prior.fingerprint!==fingerprint)throw new Error('Changed quote');return prior.id as string;}
@@ -57,22 +71,9 @@ export class Wallet {
       const lots=exempt?[]:(await db.query(`SELECT l.id,l.net_micros,l.credits,COALESCE(sum(e.available_delta),0)::int AS available
         FROM credit_lots l JOIN wallet_ledger_entries e ON e.lot_id=l.id WHERE l.owner_id=$1
         GROUP BY l.id ORDER BY l.created_at,l.id`,[owner])).rows;
-      let remaining=BigInt(cap)*10000n;const allocations:{id:string;n:number;net:number;privacy:number}[]=[];
-      for(const lot of lots){
-        const net=Math.floor(Number(lot.net_micros)/lot.credits),budget=BigInt(net)*BigInt(10000-marginBps);
-        const n=Math.min(lot.available,Number((remaining+budget-1n)/budget));
-        if(n>0){allocations.push({id:lot.id,n,net,privacy:0});remaining-=BigInt(n)*budget;}if(remaining<=0n)break;
-      }
-      if(!exempt&&remaining>0n)throw new Error('Insufficient credits for profitable quote');
-      let extra=privacyBps?privacyCredits(allocations.reduce((sum,a)=>sum+a.n,0)):0;
-      for(const lot of lots){
-        if(!extra)break;
-        let a=allocations.find(a=>a.id===lot.id);
-        const n=Math.min(extra,Math.max(0,lot.available-(a?.n??0)));if(!n)continue;
-        if(!a){a={id:lot.id,n:0,net:Math.floor(Number(lot.net_micros)/lot.credits),privacy:0};allocations.push(a);}
-        a.n+=n;a.privacy+=n;extra-=n;
-      }
-      if(extra)throw new Error('Insufficient credits for private creation');
+      const allocations=exempt?[]:allocateCredits(lots,cap,marginBps,!!privacyBps);
+      const credits=allocations.reduce((sum,a)=>sum+a.n,0);
+      if(expectedCredits!==undefined && credits!==expectedCredits)throw new Error('Quote changed; request a new quote');
       const id=(await db.query(`INSERT INTO generation_reservations(owner_id,request_key,fingerprint,status,cost_cap_micros,margin_bps,credit_exempt,visibility,privacy_surcharge_bps)
         VALUES($1,$2,$3,'reserved',$4,$5,$6,$7,$8) RETURNING id`,[owner,key,fingerprint,cap,marginBps,exempt,visibility??'public',privacyBps])).rows[0].id;
       if(exempt)await db.query("INSERT INTO admin_audit(actor_id,action,target,details) VALUES($1,'credits.exempt-reservation',$2,$3)",[owner,id,JSON.stringify({costCapMicros:cap})]);
@@ -107,6 +108,8 @@ export class Wallet {
         const capture=base+premium,release=a.credits-capture;
         if(capture)await db.query("INSERT INTO wallet_ledger_entries(owner_id,lot_id,reservation_id,kind,available_delta,reserved_delta) VALUES($1,$2,$3,'capture',0,$4)",[owner,a.lot_id,id,-capture]);
         if(release)await db.query("INSERT INTO wallet_ledger_entries(owner_id,lot_id,reservation_id,kind,available_delta,reserved_delta) VALUES($1,$2,$3,'release',$4,$5)",[owner,a.lot_id,id,release,-release]);
+        if(release&&(await db.query('SELECT 1 FROM credit_lots l JOIN purchase_holds h ON h.provider=l.provider AND h.receipt=l.receipt WHERE l.id=$1',[a.lot_id])).rowCount)
+          await db.query("INSERT INTO wallet_ledger_entries(owner_id,lot_id,kind,available_delta,reserved_delta) VALUES($1,$2,'refund',$3,0)",[owner,a.lot_id,-release]);
       }
       if(extra)throw new Error('Privacy premium not funded');
       if(!job.credit_exempt&&remaining>0n)throw new Error('Settlement not funded');
@@ -119,6 +122,9 @@ export class Wallet {
     try{await db.query('BEGIN');await db.query('SELECT pg_advisory_xact_lock(hashtextextended($1,0))',[`${provider}:${receipt}`]);
       await db.query('INSERT INTO purchase_holds(provider,receipt) VALUES($1,$2) ON CONFLICT DO NOTHING',[provider,receipt]);
       await db.query('UPDATE credit_wallets SET frozen=true WHERE owner_id IN (SELECT owner_id FROM credit_lots WHERE provider=$1 AND receipt=$2)',[provider,receipt]);
+      const lots=(await db.query(`SELECT l.id,l.owner_id,COALESCE(sum(e.available_delta),0)::int AS available
+        FROM credit_lots l JOIN wallet_ledger_entries e ON e.lot_id=l.id WHERE l.provider=$1 AND l.receipt=$2 GROUP BY l.id`,[provider,receipt])).rows;
+      for(const lot of lots)if(lot.available>0)await db.query("INSERT INTO wallet_ledger_entries(owner_id,lot_id,kind,available_delta,reserved_delta) VALUES($1,$2,'refund',$3,0)",[lot.owner_id,lot.id,-lot.available]);
       await db.query("UPDATE generation_jobs SET cancel_requested=true,state='stopping' WHERE owner_id IN (SELECT owner_id FROM credit_lots WHERE provider=$1 AND receipt=$2) AND state IN ('running','stopping')",[provider,receipt]);
       await db.query('COMMIT');
     }catch(e){await db.query('ROLLBACK');throw e;}finally{db.release();}

@@ -16,7 +16,7 @@ from q0_measure_comparisons import timing
 from verify_export import verify_export
 
 
-def run(output):
+def run(output, source_groove=False):
     prior=ROOT/'renders/q0-performance-20261020'
     summarize(prior,[])
     frozen=json.loads((prior/'report.json').read_text())
@@ -47,8 +47,16 @@ def run(output):
         if words and (words['model_manifest_sha256']!=digest(ROOT/'assets/manifests/word-timing-tiny.json') or
                       words.get('consent_confirmed') is not True):
             raise ValueError('Unverified word-analysis provenance')
-        candidate,trace=develop(original,source,words)
+        candidate,trace=develop(original,source,words,source_groove=source_groove)
         folder=output/ident;folder.mkdir()
+        if source_groove:
+            control,_=develop(original,source,words)
+            write(folder/'control.plan.json',control)
+            subprocess.run([str(renderer),'--input',str(source),'--consent','--plan',str(folder/'control.plan.json'),
+                '--style',style,'--seed',str(control['seed']),'--stems','--output',str(folder/'control')],check=True,timeout=120)
+            verify_export(folder/'control',(style,))
+            base=folder/f'control.{style}'
+            original=control
         write(folder/'candidate.plan.json',candidate);write(folder/'development.json',trace)
         command=[str(renderer),'--input',str(source),'--consent','--plan',str(folder/'candidate.plan.json'),
                  '--style',style,'--seed',str(candidate['seed'])]
@@ -94,9 +102,10 @@ def run(output):
             'source_derived_motif':trace['source_analysis'],'replay_512_113':'PASS'}
     start='Five conditions: existing rendering, instrument decay, expression, their combination, and composition plus both. Same source and tempo throughout; the composition condition changes notes and vocal arrangement. '
     if document.count(start)!=1:raise ValueError('Unexpected frozen experiment description')
-    document=document.replace(start,'Two compositions: the previous full Q0 candidate and a new source-motif development. '
+    document=document.replace(start,('Two compositions: source-motif development with fixed accompaniment and source-responsive bass/drums. '
+        if source_groove else 'Two compositions: the previous full Q0 candidate and a new source-motif development. ')+
         'Same instruments, renderer, mix settings, tempo and duration. Notes, form and vocal placement differ. ')
-    document=document.replace('Q0 controlled listening diagnostic','Q0 source-motif development')
+    document=document.replace('Q0 controlled listening diagnostic','Q0 source-responsive groove' if source_groove else 'Q0 source-motif development')
     (listener/'index.html').write_text(document)
     shutil.copyfile(ROOT/'scripts/q0-review.js',listener/'review.js')
     for name in ('review.css','ATTRIBUTION.txt'):shutil.copyfile(prior/'listener'/name,listener/name)
@@ -104,9 +113,9 @@ def run(output):
     identity=hashlib.sha256(json.dumps(audio,sort_keys=True).encode()).hexdigest()
     write(listener/'packet.json',{'packet_id':identity,'audio_sha256':audio})
     write(output/'organizer-key.json',keys)
-    write(output/'report.json',{'version':'1.0-q0-development','technical':'PASS','human_quality':'NOT RUN',
+    write(output/'report.json',{'version':'1.0-q0-source-groove' if source_groove else '1.0-q0-development','technical':'PASS','human_quality':'NOT RUN',
         'packet_id':identity,'records':list(rows.values()),'renderer_sha256':digest(renderer),
-        'control':'Frozen Q0 E; same instruments, renderer, tempo, duration and mix settings',
+        'control':('Source-motif development' if source_groove else 'Frozen Q0 E')+'; same instruments, renderer, tempo, duration and mix settings',
         'production_changed':False,'source_sha256':{name:digest(ROOT/'scripts'/name) for name in
             ('q0_development.py','q0_authored_score.py','q0_performance.py','q0_expression.py')}})
     (output/'INCOMPLETE').unlink()
@@ -117,4 +126,6 @@ def run(output):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,required=True)
-    run(parser.parse_args().output.resolve())
+    parser.add_argument('--source-groove',action='store_true')
+    args=parser.parse_args()
+    run(args.output.resolve(),args.source_groove)

@@ -13,9 +13,12 @@ export function setMixerGain(context, mixer, target, value) {
   mixer.automationTrace?.record(target, value, Math.round(time * context.sampleRate));
 }
 
-export function mixGains(crossfade, levels, master) {
+export function mixGains(crossfade, levels, master, curve='linear') {
   if (levels.length !== 2 || ![crossfade, ...levels, master].every(n => Number.isFinite(n) && n >= 0 && n <= 1))
     throw new Error('Mixer controls must be between zero and one.');
+  if(!['linear','smooth','cut'].includes(curve))throw new Error('Unknown crossfader curve.');
+  if(curve==='smooth')crossfade=crossfade*crossfade*(3-2*crossfade);
+  if(curve==='cut')crossfade=Math.max(0,Math.min(1,(crossfade-.45)*10));
   // Linear crossfade keeps the summed gain bounded even for identical tracks.
   return [(1 - crossfade) * levels[0] * master * .8, crossfade * levels[1] * master * .8];
 }
@@ -136,8 +139,8 @@ export function createMixer(context) {
   return mixer;
 }
 
-export function updateMixer(context, mixer, crossfade, levels, master) {
-  mixGains(crossfade, levels, master).forEach((gain, index) => {
+export function updateMixer(context, mixer, crossfade, levels, master, curve='linear') {
+  mixGains(crossfade, levels, master,curve).forEach((gain, index) => {
     setMixerGain(context, mixer, index ? 'b' : 'a', gain);
   });
 }

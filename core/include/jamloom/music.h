@@ -48,6 +48,7 @@ struct PerformancePlan {
     std::vector<Track> tracks;
     double kick_duck_db = 0;
     std::vector<TempoChange> tempo_changes{}; // strictly ordered changes after tick 0
+    std::string strategy = "m0a_four_bar";
 };
 
 // Round absolute rational tick positions to nearest frame (ties upward).

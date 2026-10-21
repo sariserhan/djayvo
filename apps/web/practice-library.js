@@ -27,5 +27,6 @@ export async function partnerFile(track, signal) {
   const reader=response.body.getReader(),chunks=[];let size=0;
   while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>track.bytes){await reader.cancel();throw Error('Partner track size changed. Reload the music list.');}chunks.push(value);}
   if(size!==track.bytes)throw Error('Incomplete partner track. Try again.');
-  return new File(chunks,`${track.title} — Aurowall.mp3`,{type:'audio/mpeg'});
+  const file=new File(chunks,`${track.title} — Aurowall.mp3`,{type:'audio/mpeg'});
+  Object.defineProperty(file,'jamloomOnlineOnly',{value:true});return file;
 }

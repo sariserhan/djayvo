@@ -11,6 +11,7 @@ include(CTest)
 add_library(jamloom_core STATIC
   core/composition/plan.cpp
   core/arrangement/demo.cpp
+  core/arrangement/taste.cpp
   core/arrangement/remix.cpp
   core/composition/analysis.cpp
   core/composition/remix_plan.cpp
@@ -53,7 +54,7 @@ if(EMSCRIPTEN)
   target_compile_options(jamloom_web PRIVATE -fexceptions)
   target_link_options(jamloom_web PRIVATE
     -fexceptions --no-entry
-    "-sEXPORTED_FUNCTIONS=['_jamloom_web_render','_jamloom_web_session','_jamloom_web_session_mode']"
+    "-sEXPORTED_FUNCTIONS=['_jamloom_web_render','_jamloom_web_session','_jamloom_web_session_mode','_jamloom_web_taste']"
     "-sEXPORTED_RUNTIME_METHODS=['ccall','FS']"
     -sMODULARIZE=1 -sEXPORT_ES6=1 -sENVIRONMENT=web,worker,node
     -sALLOW_MEMORY_GROWTH=1 -sMAXIMUM_MEMORY=536870912 -sSTACK_SIZE=2097152)
@@ -68,6 +69,9 @@ if(EMSCRIPTEN)
 endif()
 
 if(BUILD_TESTING)
+  add_executable(jamloom_taste_tests core/tests/taste_tests.cpp)
+  target_link_libraries(jamloom_taste_tests PRIVATE jamloom_core)
+  add_test(NAME taste_composition COMMAND jamloom_taste_tests)
   add_executable(jamloom_live_source_tests core/tests/live_source_tests.cpp)
   target_link_libraries(jamloom_live_source_tests PRIVATE jamloom_core)
   add_test(NAME live_source COMMAND jamloom_live_source_tests)

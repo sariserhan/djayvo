@@ -18,3 +18,11 @@ export function tasteBrief(profile:Taste){const p=validateTaste(profile);return 
  {form:['pickup','melodic answer','development','quiet ending'],focus:'melodic development'},
  {form:['bass idea','space','layered response','breakdown','final variation'],focus:'bass and silence'}],
  audio_generated:false,training_opt_in:false};}
+
+export function tasteRender(profile:Taste,seed:number,seconds:number,direction:number){
+ const p=validateTaste(profile);
+ if(!Number.isInteger(seed)||seed<0||seed>0xffffffff||!Number.isInteger(seconds)||seconds<30||seconds>180||!Number.isInteger(direction)||direction<0||direction>2)throw new Error('Invalid composition request');
+ const mask=['piano','guitar','bass','drums','synth'].reduce((n,name,i)=>n|(p.instruments.includes(name)?1<<i:0),0);
+ if(!mask)throw new Error('Choose at least one instrument. Voice requires a consented recording in AI Improvisation.');
+ return {seed,tempo:p.tempo,energy:energies.indexOf(p.energy),instruments:mask,novelty:p.novelty,seconds,direction};
+}

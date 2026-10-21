@@ -26,14 +26,19 @@ test('Stripe signatures require exact body, timestamp and sandbox credentials',(
  assert.throws(()=>sandboxStripe({STRIPE_SECRET_KEY:'sk_live_never',STRIPE_WEBHOOK_SECRET:secret}));
 });
 test('Checkout fulfillment rereads paid state, rejects unpaid, wrong totals and live payments',async()=>{
- const session={id:'cs_test',metadata:{pack:'starter'},client_reference_id:'owner',livemode:false,mode:'payment',payment_status:'paid',currency:'usd',amount_subtotal:999,total_details:{amount_discount:0},line_items:{data:[{quantity:1,amount_subtotal:999}]}};
- let granted=0;const wallet={grant:async()=>{granted++;}};
- const stripe={checkout:{sessions:{retrieve:async()=>session}}};
+ const session={id:'cs_test',metadata:{pack:'starter'},client_reference_id:'owner',livemode:false,mode:'payment',payment_status:'paid',payment_intent:'pi_test',currency:'usd',amount_subtotal:999,amount_total:1099,total_details:{amount_discount:0,amount_tax:100},line_items:{data:[{quantity:1,amount_subtotal:999}]}};
+ const charge={id:'ch_test',livemode:false,paid:true,captured:true,refunded:false,amount_refunded:0,disputed:false,currency:'usd',amount:1099,payment_intent:'pi_test',balance_transaction:{currency:'usd',source:'ch_test',amount:1099,net:1037,fee:62,exchange_rate:null}};
+ const intent={id:'pi_test',livemode:false,status:'succeeded',latest_charge:charge};
+ let granted=0;const wallet={grant:async(_owner:string,p:{netMicros:number})=>{assert.equal(p.netMicros,7370000);granted++;}};
+ const stripe={checkout:{sessions:{retrieve:async()=>session}},paymentIntents:{retrieve:async()=>intent}};
  await fulfillCheckout(stripe as unknown as Stripe,wallet as never,'cs_test');assert.equal(granted,1);
  for(const patch of [{payment_status:'unpaid'},{livemode:true},{amount_subtotal:1},{currency:'eur'},{client_reference_id:null}]){
   const bad={checkout:{sessions:{retrieve:async()=>({...session,...patch})}}};
   await assert.rejects(fulfillCheckout(bad as unknown as Stripe,wallet as never,'cs_test'));
  }
+ assert.equal(granted,1);
+ for(const changed of [{balance_transaction:null},{amount_refunded:1},{disputed:true},{balance_transaction:{...charge.balance_transaction,fee:NaN}},{balance_transaction:{...charge.balance_transaction,currency:'eur'}},{balance_transaction:{...charge.balance_transaction,source:'ch_other'}}])
+  await assert.rejects(fulfillCheckout({...stripe,paymentIntents:{retrieve:async()=>({...intent,latest_charge:{...charge,...changed}})}} as unknown as Stripe,wallet as never,'cs_test'));
  assert.equal(granted,1);
 });
 

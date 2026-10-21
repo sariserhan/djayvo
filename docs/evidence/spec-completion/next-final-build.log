@@ -1,0 +1,93 @@
+▲ Next.js 16.4.2 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 57ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1065ms
+  Running TypeScript ...
+  Finished TypeScript in 2.2s ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/42) ...
+  Generating static pages using 9 workers (10/42)
+  Generating static pages using 9 workers (20/42)
+  Generating static pages using 9 workers (31/42)
+✓ Generating static pages using 9 workers (42/42) in 546ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├   /[info]
+│ ├ ● /pricing
+│ ├ ● /examples
+│ ├ ● /help
+│ └ ● [+5 more paths]
+├ ○ /academy
+├ ƒ /academy/challenges/[challengeId]
+├ ƒ /academy/checkout
+├ ○ /academy/learn
+├ ƒ /academy/lessons/[lessonId]
+├   /academy/levels/[levelSlug]
+│ ├ ● /academy/levels/intro
+│ ├ ● /academy/levels/beginner
+│ ├ ● /academy/levels/elementary
+│ └ ● [+3 more paths]
+├ ƒ /academy/practice
+├ ○ /academy/progress
+├ ƒ /academy/success
+├ ƒ /account
+├ ƒ /account/[action]
+├ ƒ /account/credits
+├ ƒ /account/generations
+├ ƒ /account/purchases
+├ ƒ /admin
+├ ƒ /admin/billing
+├ ƒ /admin/inbox
+├ ƒ /admin/inbox/[id]
+├ ƒ /admin/users
+├ ƒ /api/academy/[...path]
+├ ƒ /api/academy/checkout
+├ ƒ /api/academy/stripe
+├ ƒ /api/admin/[...path]
+├ ƒ /api/aurowall
+├ ƒ /api/aurowall/[id]
+├ ƒ /api/auth/[...all]
+├ ƒ /api/catalogue/[[...path]]
+├ ƒ /api/contact
+├ ƒ /api/generations
+├ ƒ /api/library
+├ ƒ /api/library/[id]/[action]
+├ ƒ /api/notifications
+├ ƒ /api/payments/apple
+├ ƒ /api/payments/checkout
+├ ƒ /api/payments/stripe
+├ ƒ /api/playlists/[[...path]]
+├ ƒ /api/site-status
+├ ƒ /api/taste
+├ ƒ /catalogue
+├ ƒ /catalogue/[id]
+├ ƒ /contact
+├ ○ /dj-studio
+├ ○ /improvise
+├ ○ /learn
+├   /learn/[slug]
+│ ├ ● /learn/voice-remix
+│ ├ ● /learn/laptop-dj
+│ └ ● /learn/live-source
+├ ƒ /library
+├ ○ /live-dj
+├ ○ /music-dna
+├ ○ /opengraph-image
+├ ƒ /playlists
+├ ƒ /playlists/[id]
+├ ƒ /review
+├ ƒ /robots.txt
+├ ƒ /sitemap.xml
+└ ƒ /support
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

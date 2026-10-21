@@ -193,6 +193,29 @@ class Q0(unittest.TestCase):
             next(v for v in plan['voice_events'] if v['clean'])[field] = value
             with self.assertRaises(ValueError): compose(plan)
 
+    def test_source_groove_changes_accompaniment_with_rhythm_and_keeps_calls(self):
+        plan=copy.deepcopy(self.plan)
+        plan.update(target_bars=10,strategy='reggae')
+        plan['source']['processed_frames']=96000
+        rhythms=([0,480,600,1920,3000,3600],[0,720,1440,2160,2880,3600])
+        results=[]
+        for rhythm in rhythms:
+            phrase=[{'tick':tick,'degree':[3,0,0,3,0,0][i],'velocity':80,'analysis_frame_48khz':i*1000}
+                    for i,tick in enumerate(rhythm)]
+            with patch('q0_development.prosody',return_value=(phrase,None,{})):
+                result,trace=develop(plan,Path('unused'),source_groove=True)
+                self.assertEqual((result,trace),develop(plan,Path('unused'),source_groove=True))
+                control,_=develop(plan,Path('unused'))
+            self.assertEqual(result['voice_events'],control['voice_events'])
+            for track in result['tracks']:
+                for n in track['events']:
+                    self.assertTrue(0<=n['start_tick']<n['start_tick']+n['duration_ticks']<=result['target_bars']*3840)
+            results.append(result)
+        for instrument in ('bass','drums'):
+            parts=[next(t['events'] for t in p['tracks'] if t['instrument']==instrument) for p in results]
+            self.assertNotEqual(parts[0],parts[1],instrument)
+        self.assertEqual(plan['tracks'],self.plan['tracks'])
+
     def test_development_survives_final_rests_and_expression(self):
         phrase = [{'tick':tick,'degree':degree,'velocity':80,'analysis_frame_48khz':i*1000}
                   for i,(tick,degree) in enumerate(zip([0,480,600,1920,3000,3600],[3,0,0,3,0,0]))]

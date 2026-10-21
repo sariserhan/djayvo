@@ -1,0 +1,163 @@
+{
+  "version": "1.0-q0-source-groove",
+  "technical": "PASS",
+  "human_quality": "NOT RUN",
+  "packet_id": "ebb546ad107dfb35aa7199a079cf6c0e1e4f1170153314ad32daacfdf728986b",
+  "renderer_sha256": "751aa6e6c08bdd5f9c9478253055ff43735c6e8fce0f0ae5b30962a4451e98fc",
+  "control": "Source-motif development; same instruments, renderer, tempo, duration and mix settings",
+  "production_changed": false,
+  "source_sha256": {
+    "q0_development.py": "0b242e318e01e93f1972e18e938c9382ffe2be559c19fce7c348b0c0bb578e69",
+    "q0_authored_score.py": "204f144e2f598fc6f9f2b145799259665a0a24808782b3c70993b9aaa4063839",
+    "q0_performance.py": "47fcda92bbf20ce0e794b3e2e365514e4c5d60bf20f09a8fd514c484821faf79",
+    "q0_expression.py": "55a5cc6353c6265226ed8daca21dc12d83092a4684e38fdb1efd5a8d6d279c33"
+  },
+  "artifact_directory": "renders/q0-source-groove-20261021",
+  "records": [
+    {
+      "id": "owner-speech",
+      "style": "hiphop",
+      "replay_512_113": "PASS",
+      "arms": {
+        "A": {
+          "sha256": "c316dfe6bbd418e09fc910cd745a2f3be5ec27fed93f1dadb45e8f3cbe2e4ec1",
+          "duration_seconds": 32.0,
+          "full_scale_samples": 0,
+          "matched_loudness": {
+            "input_i": "-23.01",
+            "input_tp": "-6.21",
+            "input_lra": "7.00",
+            "input_thresh": "-34.25"
+          }
+        },
+        "B": {
+          "sha256": "ee3416112338c1cb4128fc7880fa2d307c2c24bcfdc1d02676c8f9372c463691",
+          "duration_seconds": 32.0,
+          "full_scale_samples": 0,
+          "matched_loudness": {
+            "input_i": "-23.03",
+            "input_tp": "-7.12",
+            "input_lra": "6.80",
+            "input_thresh": "-34.88"
+          }
+        }
+      }
+    },
+    {
+      "id": "ls-2277-149896-0026",
+      "style": "reggae",
+      "replay_512_113": "PASS",
+      "arms": {
+        "A": {
+          "sha256": "c6630892a2f64e0a48268e0da345492ca29cc65284c1fab8fe62748046124272",
+          "duration_seconds": 32.0,
+          "full_scale_samples": 0,
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-6.25",
+            "input_lra": "7.50",
+            "input_thresh": "-34.10"
+          }
+        },
+        "B": {
+          "sha256": "de8bb81a68240122d120558bc85eb46509728d2429099063006ff3c9d0f9a08d",
+          "duration_seconds": 32.0,
+          "full_scale_samples": 0,
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-6.83",
+            "input_lra": "7.60",
+            "input_thresh": "-33.85"
+          }
+        }
+      }
+    },
+    {
+      "id": "ls-2035-147960-0013",
+      "style": "experimental",
+      "replay_512_113": "PASS",
+      "arms": {
+        "B": {
+          "sha256": "f23b6118b7383df8df4e259ebb006181a483621a287ca1d31038f6f3fb379b6c",
+          "duration_seconds": 32.96775,
+          "full_scale_samples": 0,
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-5.89",
+            "input_lra": "6.50",
+            "input_thresh": "-34.19"
+          }
+        },
+        "A": {
+          "sha256": "6148fa9ffea05adedd1795b772407650a32f6cf3d0027a267129402961f1b151",
+          "duration_seconds": 32.96775,
+          "full_scale_samples": 0,
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-5.07",
+            "input_lra": "5.40",
+            "input_thresh": "-33.71"
+          }
+        }
+      }
+    },
+    {
+      "id": "ls-2086-149220-0047",
+      "style": "hiphop",
+      "replay_512_113": "PASS",
+      "arms": {
+        "A": {
+          "sha256": "44521c4f192959ef2cf6566aa2fd9d50f859ff46698e6d63cac571509c9f7481",
+          "duration_seconds": 32.0,
+          "full_scale_samples": 0,
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-5.22",
+            "input_lra": "6.00",
+            "input_thresh": "-34.19"
+          }
+        },
+        "B": {
+          "sha256": "5a33947dd49b03d1b267dbbe5f3bb44e464d638a7866a578c8f6c0734085b6ad",
+          "duration_seconds": 32.0,
+          "full_scale_samples": 0,
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-5.98",
+            "input_lra": "6.80",
+            "input_thresh": "-34.52"
+          }
+        }
+      }
+    },
+    {
+      "id": "commons-laughter",
+      "style": "experimental",
+      "replay_512_113": "PASS",
+      "arms": {
+        "B": {
+          "sha256": "d1eacf105256df6e6c43d909c06f40c752b560e1e055fbaaaec2735b5a5a094e",
+          "duration_seconds": 32.96775,
+          "full_scale_samples": 0,
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-5.85",
+            "input_lra": "6.10",
+            "input_thresh": "-34.29"
+          }
+        },
+        "A": {
+          "sha256": "4817d70299827fba30edd40db49fbdafb12d09322cb1cefc5ed58ab9e734df6e",
+          "duration_seconds": 32.96775,
+          "full_scale_samples": 0,
+          "matched_loudness": {
+            "input_i": "-23.00",
+            "input_tp": "-5.03",
+            "input_lra": "5.10",
+            "input_thresh": "-33.82"
+          }
+        }
+      }
+    }
+  ]
+}

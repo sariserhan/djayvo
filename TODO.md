@@ -1,5 +1,24 @@
 # Jamloom development tracker
 
+## Remaining specification work — 2026-10-21
+
+Owner requests all remaining non-iOS product work, with iOS next and launch
+operations last. Preserve the deferred human checks and muted automation.
+No new paid compute, live charges or publication is implied.
+
+| ID | Workstream | Status | Next evidence |
+|---|---|---|---|
+| FIN-001 | Source-responsive composition recovery | PARTIAL | Five isolated matched pairs, stems and exact replay PASS; human preference NOT RUN; earlier quality FAIL retained |
+| FIN-002 | Music DNA original audio | PARTIAL | Local shared-engine synthesis, 30–180 seconds, A/B variations, cancellation, exports and native/WASM identity PASS; licensed inference and musical acceptance remain |
+| FIN-003 | Quoted generation and worker completion | PARTIAL | Exact signed quote, local worker, private results, restart recovery, actual Stripe fee contract and refund-ledger tests PASS; provider invoices/execution NOT RUN |
+| FIN-004 | DJ/live control and transport completion | PARTIAL | Imported beat controls, slip rolls, bounded curves and opt-in paused A/B recovery PASS; advanced DSP/cue and broader scene recall remain gated |
+| FIN-005 | Native Live Source integration | PARTIAL | Hosted-origin pairing and permission/capture/routing evidence; physical checks remain deferred |
+| FIN-006 | Academy acceptance | PARTIAL | Automated batch complete; owner mini-set, manual accessibility and physical output remain deferred |
+| FIN-007 | iOS, then launch operations | NOT RUN | Explicitly deferred until preceding work is finished |
+
+[Implementation, reproducible evidence and remaining gates](docs/non-ios-completion.md).
+No push or deployment in this increment. Human checks remain deferred; the specification is not marked complete.
+
 ## Live Audio DJ — 2026-10-21
 
 Owner authorized live-audio implementation. Deployment must happen through GitHub pushes, never direct CLI deployment. Human checks remain deferred; automation must stay muted.

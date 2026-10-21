@@ -7,7 +7,7 @@ import {signPermit,type WorkerPermit} from './generation-budget';
 // Expired work is never re-queued: a second worker could double rental costs.
 export class GenerationQueue {
  constructor(private pool:Pool,private secret:string){}
- async claim(worker:string){
+ async claim(worker:string,localRender=false){
   if(!/^[a-zA-Z0-9_-]{1,80}$/.test(worker))throw new Error('Invalid worker');
   const db=await this.pool.connect();
   try{await db.query('BEGIN');await db.query("SELECT pg_advisory_xact_lock(hashtextextended('jamloom-generation-capacity',0))");
@@ -16,9 +16,12 @@ export class GenerationQueue {
    const job=(await db.query(`SELECT j.*,r.cost_cap_micros FROM generation_jobs j
     JOIN generation_reservations r ON r.id=j.reservation_id JOIN credit_wallets w ON w.owner_id=j.owner_id
     WHERE j.state='queued' AND NOT j.cancel_requested AND NOT w.frozen AND r.status='reserved'
-    ORDER BY j.created_at FOR UPDATE OF j SKIP LOCKED LIMIT 1`)).rows[0];
+    AND (j.budget->'render' IS NULL OR j.budget->'render'->>'ready'='true')
+    AND (NOT $1::boolean OR j.budget->'render' IS NOT NULL)
+    ORDER BY j.created_at FOR UPDATE OF j SKIP LOCKED LIMIT 1`,[localRender])).rows[0];
    if(!job){await db.query('COMMIT');return null;}
-   const token=randomUUID(),now=Date.now(),permit:WorkerPermit={...job.budget,version:1,reservationId:job.reservation_id,
+   const token=randomUUID(),now=Date.now(),permit:WorkerPermit={inputSha256:job.input_sha256,planSha256:job.plan_sha256,
+    hourlyMicros:job.budget.hourlyMicros,fixedCostMicros:job.budget.fixedCostMicros,version:1,reservationId:job.reservation_id,
     expiresAt:now+job.budget.maxRuntimeMs,maxRuntimeMs:job.budget.maxRuntimeMs,costCapMicros:Number(job.cost_cap_micros),attempt:1};
    const signed=signPermit(permit,this.secret,now);
    await db.query(`UPDATE generation_jobs SET state='running',worker_id=$1,lease_token=$2,started_at=now(),

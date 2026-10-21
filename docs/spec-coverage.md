@@ -1,5 +1,9 @@
 # Specification coverage
 
+Current non-iOS continuation: [2026-10-21 implementation and remaining gates](non-ios-completion.md).
+Overall remains **PARTIAL**. The entries below preserve earlier checkpoints and are
+superseded where the current report records newer implementation or evidence.
+
 **Overall PARTIAL.** The master is immutable. The owner's 2026-10-18 continuation
 expands local implementation scope; it does not turn absent measurements into
 passed gates. This map prevents a working app from being mistaken for completion

@@ -25,3 +25,27 @@ export function privacyCredits(baseCredits:number) {
   integer(baseCredits,0,100000);
   return Math.ceil(baseCredits/4);
 }
+
+export type CreditLot={id:string;net_micros:number|string;credits:number;available:number};
+export function allocateCredits(lots:CreditLot[],cap:number,marginBps:number,privateCreation=false){
+ integer(cap,1,5_000_000);integer(marginBps,3000,9000);
+ let remaining=BigInt(cap)*10000n;
+ const allocations:{id:string;n:number;net:number;privacy:number}[]=[];
+ for(const lot of lots){
+  integer(lot.credits,1,100000);integer(lot.available,0,lot.credits);integer(Number(lot.net_micros),lot.credits);
+  const net=Math.floor(Number(lot.net_micros)/lot.credits),budget=BigInt(net)*BigInt(10000-marginBps);
+  const n=Math.min(lot.available,Number((remaining+budget-1n)/budget));
+  if(n>0){allocations.push({id:lot.id,n,net,privacy:0});remaining-=BigInt(n)*budget;}if(remaining<=0n)break;
+ }
+ if(remaining>0n)throw new Error('Insufficient credits for profitable quote');
+ let extra=privateCreation?privacyCredits(allocations.reduce((sum,a)=>sum+a.n,0)):0;
+ for(const lot of lots){
+  if(!extra)break;
+  let a=allocations.find(a=>a.id===lot.id);
+  const n=Math.min(extra,Math.max(0,lot.available-(a?.n??0)));if(!n)continue;
+  if(!a){a={id:lot.id,n:0,net:Math.floor(Number(lot.net_micros)/lot.credits),privacy:0};allocations.push(a);}
+  a.n+=n;a.privacy+=n;extra-=n;
+ }
+ if(extra)throw new Error('Insufficient credits for private creation');
+ return allocations;
+}

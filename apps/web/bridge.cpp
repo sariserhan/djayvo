@@ -1,5 +1,17 @@
 #include "jamloom/remix.h"
+#include "jamloom/taste.h"
 #include <string>
+
+extern "C" const char* jamloom_web_taste(unsigned seed, unsigned tempo, unsigned energy,
+                                        unsigned instruments, unsigned novelty, unsigned seconds, unsigned direction) {
+    static std::string error;
+    error.clear();
+    try {
+        jamloom::render_taste(jamloom::make_taste(seed,tempo,energy,instruments,novelty,seconds,direction),"/taste");
+    } catch (const std::exception& e) { error=e.what(); }
+      catch (...) { error="Unable to render this composition."; }
+    return error.c_str();
+}
 
 // A fresh worker owns its entire in-memory filesystem. Nothing is published to
 // the UI until every style succeeds; terminating that worker cancels the set.

@@ -1,5 +1,9 @@
 # Specification completion ledger
 
+Current non-iOS continuation: [2026-10-21 implementation and remaining gates](non-ios-completion.md).
+Overall remains **PARTIAL**. The entries below preserve earlier checkpoints and are
+superseded where the current report records newer implementation or evidence.
+
 Latest manual deck start repair — 2026-10-19:
 [Metadata readiness](media-readiness.md) **PASS (bounded start ordering)**:
 Play waits for the actual deck metadata before asking the native decoder to play;

@@ -35,6 +35,9 @@ await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const origin = `http://127.0.0.1:${server.address().port}`;
 const browser = await { chromium, webkit }[kind].launch();
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+// This static/offline DSP harness has no account API; full-site tests cover these integrations.
+await context.route('**/api/aurowall',route=>route.fulfill({json:{tracks:[]}}));
+await context.route('**/api/site-status',route=>route.fulfill({json:{maintenance:false,announcement:null}}));
 context.setDefaultTimeout(10000);
 const errors = [], requests = [], checks = [], warnings = [];
 let screenshot = false;

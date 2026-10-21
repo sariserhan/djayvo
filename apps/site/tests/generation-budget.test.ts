@@ -1,7 +1,16 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {spawn} from 'node:child_process';import {once} from 'node:events';
 import {signPermit,verifyPermit,runBudgeted,type WorkerPermit} from '../lib/generation-budget';
+import {signQuote,verifyQuote} from '../lib/generation-quote';
 const permit=():WorkerPermit=>({version:1,reservationId:'11111111-1111-4111-8111-111111111111',inputSha256:'a'.repeat(64),planSha256:'b'.repeat(64),expiresAt:Date.now()+60000,maxRuntimeMs:100,hourlyMicros:750000,fixedCostMicros:100000,costCapMicros:200000,attempt:1});
+test('quotes bind accepted charge, account, source, plan, privacy and expiry',()=>{
+ const now=Date.now(),secret='s'.repeat(32),q={version:1 as const,owner:'alice',expiresAt:now+300000,credits:2,costCapMicros:200000,marginBps:5000,visibility:'private' as const,job:permit()};
+ const token=signQuote(q,secret,now);assert.deepEqual(verifyQuote(token,'alice',secret,now),q);
+ assert.throws(()=>verifyQuote(token,'bob',secret,now),/identity/);
+ assert.throws(()=>verifyQuote(token,'alice',secret,now+300000),/bounded/);
+ assert.throws(()=>verifyQuote(token+'0','alice',secret,now),/quote/);
+ assert.throws(()=>verifyQuote(token,'alice','wrong'.repeat(10),now),/quote/);
+});
 test('worker authorization binds hashes, deadlines, one attempt and conservative rental budget',()=>{
  const p=permit(),secret='x'.repeat(32),signed=signPermit(p,secret);assert.deepEqual(verifyPermit(signed,secret),p);
  assert.throws(()=>verifyPermit(signed,'y'.repeat(32)),/signature/);

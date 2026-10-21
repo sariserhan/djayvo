@@ -77,11 +77,20 @@ export function attachDeck(deck, other, { pause, start, mixer, context }) {
     for (let i = 0; i < 3; i++) { $(`eq-${id}-${i}`).value = 0; eq(i); }
   };
   deck.applyEQ = () => { for (let i = 0; i < 3; i++) eq(i); };
+  deck.transportState=()=>({cue,hot:[...hot]});
+  deck.restoreTransport=state=>{
+    cue=state.cue;hot=[...state.hot];hotLabels();
+    $(`bpm-${id}`).value=state.bpm;$(`keylock-${id}`).checked=state.keylock;audio.preservesPitch=state.keylock;
+    $(`rate-${id}`).value=String(state.rate);deck.loop=state.loop;
+    if(audio.buffer)audio.region=state.region;
+    audio.loop=state.loop||!!state.region;$(`loop-${id}`).setAttribute('aria-pressed',String(state.loop));
+  };
   deck.transportControls = ready => {
     const bpm=Number($(`bpm-${id}`).value),speed=audio.playbackRate;
     $(`rate-value-${id}`).textContent=`${speed>=1?'+':''}${((speed-1)*100).toFixed(1)}%${bpm>=40&&bpm<=240?' · '+(bpm*speed).toFixed(1)+' BPM':''}`;
     for (const prefix of ['rate', 'rate-reset', 'cue', 'set-cue', 'loop', 'bpm', 'tap', 'match', 'keylock']) $(`${prefix}-${id}`).disabled = !ready;
-    for(const name of ['beat-loop','loop-exit','jump-back','jump-forward','align','loop-beats'])$(`${name}-${id}`).disabled=!ready||!audio.buffer;
+    for(const name of ['beat-loop','beat-roll','loop-exit','jump-back','jump-forward','align','loop-beats'])$(`${name}-${id}`).disabled=!ready||!audio.buffer;
+    $(`beat-roll-${id}`).setAttribute('aria-pressed',String(!!audio.roll));
     if(audio.buffer)$(`keylock-${id}`).checked=false;
     $(`keylock-${id}`).disabled ||= !!audio.buffer || !('preservesPitch' in audio);
     for (let i = 0; i < 3; i++) $(`eq-${id}-${i}`).disabled = !ready;
@@ -104,9 +113,10 @@ export function attachDeck(deck, other, { pause, start, mixer, context }) {
   });
   const bpm=()=>{const value=Number($(`bpm-${id}`).value);if(value<40||value>240)throw Error('Enter the track BPM first.');return value;};
   $(`beat-loop-${id}`).onclick=()=>{try{audio.beatLoop(Number($(`loop-beats-${id}`).value),bpm());error('');}catch(e){error(e.message);}};
+  $(`beat-roll-${id}`).onclick=()=>{try{if(audio.roll)audio.exitLoop();else audio.startRoll(Number($(`loop-beats-${id}`).value),bpm());error('');}catch(e){error(e.message);}};
   $(`loop-exit-${id}`).onclick=()=>audio.exitLoop();
   for(const [name,beats] of [['jump-back',-4],['jump-forward',4]])$(`${name}-${id}`).onclick=()=>{try{seek(audio.currentTime+beats*60/bpm());}catch(e){error(e.message);}};
-  $(`align-${id}`).onclick=()=>{try{const beat=60/bpm(),otherBeat=60/Number($(`bpm-${other.id}`).value);if(!other.audio.buffer||!Number.isFinite(otherBeat))throw Error('Load both course tracks first.');seek(Math.floor(audio.currentTime/beat)*beat+(other.audio.currentTime/otherBeat%1)*beat);}catch(e){error(e.message);}};
+  $(`align-${id}`).onclick=()=>{try{const beat=60/bpm(),otherBpm=Number($(`bpm-${other.id}`).value),otherBeat=60/otherBpm;if(!other.audio.buffer||otherBpm<40||otherBpm>240||!Number.isFinite(otherBeat))throw Error('Enable beat controls and enter the BPM on both decks first.');seek(Math.floor(audio.currentTime/beat)*beat+(other.audio.currentTime/otherBeat%1)*beat);}catch(e){error(e.message);}};
   $(`tap-${id}`).onclick = () => {
     const now = performance.now();
     if (taps.length && now - taps.at(-1) > 1500) taps = [];

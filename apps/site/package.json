@@ -41,7 +41,9 @@
     "test:landing-browser": "node --import tsx tests/landing-browser.mjs",
     "test:coming-soon-browser": "node --import tsx tests/coming-soon-browser.mjs",
     "test:framework-browser": "node tests/framework-browser.mjs",
-    "test:academy-provider": "node --import tsx tests/academy-provider.mjs"
+    "test:academy-provider": "node --import tsx tests/academy-provider.mjs",
+    "generation:local": "tsx scripts/generation-local.ts",
+    "test:generation-local": "tsx --test tests/generation-local.test.ts"
   },
   "dependencies": {
     "@apple/app-store-server-library": "3.1.0",

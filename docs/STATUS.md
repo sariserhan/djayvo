@@ -1,6 +1,10 @@
 # Jamloom implementation checkpoint
 
-## Latest: Live Source companion — 2026-10-21
+## Latest: remaining non-iOS implementation — 2026-10-21
+
+**Overall PARTIAL; musical-quality FAIL retained.** New local Music DNA compositions and A/B export, source-responsive groove experiment, exact signed credit quotes, recoverable native worker/private results, fee/refund accounting, imported beat controls/slip rolls/crossfader curves and opt-in paused A/B set recovery. Native/WASM identity and muted Chromium/WebKit new flows PASS. iOS is next; launch operations last. Human/physical/provider gates and conditional advanced DSP remain open. No push, deployment or paid execution. [Current implementation and exact boundaries](non-ios-completion.md).
+
+## Previous: Live Source companion — 2026-10-21
 
 **PARTIAL overall.** Native Mac capture/routing/effects and paired website controls are implemented. Build, local app launch, DSP/sanitizer checks, five Swift security/HTTP tests and Chromium/WebKit fixture controls PASS. Actual macOS system capture, source restoration, device latency/endurance, human listening and hosted HTTPS pairing remain NOT RUN. Full CI `39680630588` PASS; runtime `94e7084` deployed READY through GitHub main, public gates preserved; no direct deployment. [Current report](live-source-companion.md).
 

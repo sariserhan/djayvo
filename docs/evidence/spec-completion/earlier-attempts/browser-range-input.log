@@ -1,0 +1,24 @@
+Evidence: /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-completion-QwmbJN
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.fill: Error: Malformed value
+Call log:
+[2m  - waiting for locator('#master')[22m
+[2m    - locator resolved to <input min="0" max="1" id="master" step="0.01" type="range" value="0.75"/>[22m
+[2m    - fill(".42")[22m
+[2m  - attempting fill action[22m
+[2m    - waiting for element to be visible, enabled and editable[22m
+
+    at /Users/serhansari/Documents/projects/jamloom/apps/site/tests/spec-completion-browser.mjs:47:96 {
+  log: [
+    "  - waiting for locator('#master')",
+    '    - locator resolved to <input min="0" max="1" id="master" step="0.01" type="range" value="0.75"/>',
+    '    - fill(".42")',
+    '  - attempting fill action',
+    '    - waiting for element to be visible, enabled and editable'
+  ]
+}
+
+Node.js v22.23.1

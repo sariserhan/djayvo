@@ -74,7 +74,7 @@ def prosody(plan, source, words=None):
         'hook_candidates':len(choices),'hook_bounds':'Padded, unverified adjacent-word estimates' if hook else 'No word hook: use intact source only'}
 
 
-def develop(original, source, words=None):
+def develop(original, source, words=None, *, source_groove=False):
     if (original.get('time_signature') != [4,4] or original.get('ticks_per_quarter') != 960 or
             original.get('tempo_changes') or not 10<=original.get('target_bars',0)<=16):
         raise ValueError('Expected a supported fixed-tempo Q0 form')
@@ -124,6 +124,10 @@ def develop(original, source, words=None):
     style=p['strategy']
     kick = {'hiphop':[0,1680,2400],'reggae':[1920],'experimental':[0,1440,2640]}[style]
     snare = [1920] if style=='reggae' else [960,2880]
+    # Keep the frozen experiment unchanged; audition this hypothesis separately.
+    pulses = sorted({min(2*BAR-480, max(0, round(point['tick']/240)*240)) for point in phrase})
+    if source_groove and len(pulses)<2:
+        raise ValueError('Source rhythm needs at least two distinct attacks')
     # Related chords reframe the recurring motif without changing key.
     for bar in range(p['target_bars']):
         base=bar*BAR
@@ -134,14 +138,24 @@ def develop(original, source, words=None):
             for offset in (0,1920):
                 note('drums',base+offset,120,42,36)
             continue
-        for offset in ([0] if sparse else kick):
+        phase = (bar-answer)%2
+        source_kicks = [t-phase*BAR for t in pulses if phase*BAR<=t<(phase+1)*BAR]
+        if bar>=returning and phase==1:
+            source_kicks = sorted({max(0,t-240) for t in source_kicks})
+        kicks = ([0] if sparse else sorted({0,*source_kicks}) if source_groove else kick)
+        for offset in kicks:
             note('drums',base+offset,240,36,91 if not sparse else 76)
-            note('bass',base+offset,420 if offset else 660,root-24,84 if offset==0 else 70)
+            following = next((t for t in kicks if t>offset),BAR)
+            duration = min(900,following-offset-60) if source_groove else (420 if offset else 660)
+            note('bass',base+offset,duration,root-24+(7 if source_groove and offset>=2880 else 0),84 if offset==0 else 70)
         if not sparse:
             for offset in snare: note('drums',base+offset,240,38,92)
-            for i in range(8): note('drums',base+i*480,120,42,59 if i%2==0 else 40)
+            for i in range(8):
+                if source_groove and i%2 and not any(abs(i*480-t)<=240 for t in source_kicks):continue
+                note('drums',base+i*480,120,42,59 if i%2==0 else 40)
             # Pickup answers the last strong syllabic attack; it anticipates the next tonic.
-            if bar%2 and bar+1<final: note('bass',base+3360,240,root-17,66)
+            if bar%2 and bar+1<final and (not source_groove or all(abs(3360-t)>480 for t in kicks)):
+                note('bass',base+3360,240,root-17,66)
         if bar in (0,answer,returning,returning+2):
             third = 4 if root==tonic-4 else 3
             for pitch in (root-12,root-12+third):
@@ -213,7 +227,8 @@ def develop(original, source, words=None):
             if len(matches)!=1:
                 raise ValueError('Motif event was lost during final expression/rest processing')
             statement['performed_events'].append(copy.deepcopy(matches[0]))
-    return expressed, {'version':'1.1-q0-source-development','source_motif':phrase,
+    return expressed, {'version':'1.2-q0-source-groove' if source_groove else '1.1-q0-source-development','source_motif':phrase,
+        **({'source_groove_ticks':pulses} if source_groove else {}),
         'source_analysis':analysis,'hook':hook,'statements':statements,'voice_windows':windows,
         'first_answer_bar':answer,'expression':expression,
         'intentional_rest_windows':rests,'suppressed_pickups':removed,

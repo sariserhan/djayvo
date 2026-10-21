@@ -49,6 +49,13 @@ test('real Postgres ledger: conservation, concurrency, receipts, tenant isolatio
    assert.deepEqual(await wallet.balance('alice'),{available:8,reserved:0});
   });
   await t.test('zero-cost cancellation returns original lots; changed quote rejected',async()=>{
+   const quote=await wallet.quote('alice',400_000,5000,'private');
+   const before=await wallet.balance('alice');
+   await assert.rejects(wallet.reserve('alice','wrong_accepted_quote',400_000,5000,undefined,'private',quote.credits+1),/Quote changed/);
+   assert.deepEqual(await wallet.balance('alice'),before);
+   const accepted=await wallet.reserve('alice','accepted_quote',400_000,5000,undefined,'private',quote.credits);
+   assert.equal((await wallet.balance('alice')).reserved,quote.credits);
+   await wallet.settle('alice',accepted,0,'cancelled');
    const id=await wallet.reserve('alice','cancel_key',400_000);
    assert.equal(await wallet.reserve('alice','cancel_key',400_000),id);
    await assert.rejects(wallet.reserve('alice','cancel_key',400_001),/Changed quote/);
@@ -63,6 +70,7 @@ test('real Postgres ledger: conservation, concurrency, receipts, tenant isolatio
    assert.ok(Number(income.income)>=3_200_000);
    await assert.rejects(pool.query("UPDATE wallet_ledger_entries SET available_delta=100 WHERE owner_id='alice'"),/append-only/);
    await wallet.freezePurchase('stripe_test','cs_test_alice');await assert.rejects(wallet.reserve('alice','frozen_key',1),/frozen/);
+   assert.deepEqual(await wallet.balance('alice'),{available:0,reserved:0});await wallet.freezePurchase('stripe_test','cs_test_alice');assert.equal((await wallet.balance('alice')).available,0);
   });
   await t.test('unfunded jobs and invalid cost caps rejected without mutation',async()=>{
    await assert.rejects(wallet.reserve('bob','empty_key',1),/Insufficient/);

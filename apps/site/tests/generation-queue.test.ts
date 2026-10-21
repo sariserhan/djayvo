@@ -37,5 +37,6 @@ test('durable local queue: one claim, lease loss, cancellation, crash recovery, 
   assert.equal(fourth?.id,e);await wallet.freezePurchase('stripe_test','fixture_carol');
   assert.equal(await queue.heartbeat(e,fourth!.leaseToken),false);assert.equal((await queue.shutdownRequired()).length,1);
   await queue.stopped(e,fourth!.leaseToken,100,'cancelled');
+  assert.deepEqual(await wallet.balance('carol'),{available:0,reserved:0},'A disputed lot cannot regain spendable credits during shutdown');
  }finally{await pool.end();await admin.query(`DROP DATABASE "${name}" WITH (FORCE)`);await admin.end();}
 });

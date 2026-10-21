@@ -5,6 +5,26 @@ Never paste credentials into chat. Store secrets in ignored local env files and
 the appropriate provider's scoped environment settings. Configure Preview and
 Production separately. No owner setup task below means the integration has passed.
 
+## Current order and local completion work — 2026-10-21
+
+Finish non-iOS product work first, iOS second, launch operations last. This
+increment has no deployment or paid-service step. [Current report](non-ios-completion.md)
+lists what works and what still requires evidence; it does not close the spec.
+
+Music DNA now creates free local instrumental previews with two-variation
+comparison and downloads. Song notes are not analyzed as audio. The source-groove
+listening packet is retained privately in `renders/q0-source-groove-20261021/listener/`.
+Listen only when you resume the deferred human checks; there is no automatic playback.
+
+Deck A/B recovery is optional, device-only and paused on restore. It excludes
+online-only partner tracks, live instruments, C and unfinished recordings. Download
+recordings separately. Delete the saved set through the recovery panel.
+
+For developer rehearsal, use a loopback database, local private audio directory,
+`JAMLOOM_GENERATION_SANDBOX=true` and the one-shot `generation:local` command.
+Retain its working directory while a job is recovering. Quotes are modeled test
+credits, not proof of real GPU economics. Hosted generation and sales remain held.
+
 ## Inline payments and Aurowall — 2026-10-21
 
 The owner authorized the Aurowall partnership and use of their owned recordings.
