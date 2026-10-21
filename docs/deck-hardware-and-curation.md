@@ -12,6 +12,8 @@ Homepage platters now use the same play/pause handler as their transport buttons
 Studio and Academy retain jog seeking, cue, EQ, pitch, crossfade and fullscreen.
 Hover highlights the control frame without moving its hit area; visible keyboard
 focus, reduced motion, 44px transport/pitch targets and responsive layouts remain.
+A final fullscreen review found the lower rim overlapping the seek hint; 12px
+clearance fixes it, with both browser suites and screenshots refreshed.
 This is visual depth, not simulated scratching or additional decorative controls.
 
 ## Aurowall selection

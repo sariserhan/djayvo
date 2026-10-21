@@ -26,7 +26,7 @@ input::file-selector-button { background:#25313b; border:1px solid #50616e; colo
 .position-readout { display:flex; justify-content:space-between; align-items:center; padding-top:8px; font:17px ui-monospace,Menlo,monospace; }
 .position-readout span { font-size:9px; letter-spacing:1px; color:var(--muted); }
 .deck-display > input[type=range] { min-height:24px; }
-.platter-row { display:flex; align-items:center; justify-content:center; gap:30px; padding-top:20px; }
+.platter-row { display:flex; align-items:center; justify-content:center; gap:30px; padding-top:20px; padding-bottom:12px; }
 /* Machined rim stays stationary; the existing transport rotates only the inner disc. */
 .jog { position:relative; flex-shrink:0; width:clamp(160px,22vw,320px); aspect-ratio:1; border-radius:50%; touch-action:none; cursor:grab; padding:18px; border:2px solid #92999f; background:repeating-conic-gradient(from 1deg,#747c82 0deg 1deg,#32373c 1deg 3deg,#171b20 3deg 6deg); box-shadow:inset 0 2px 3px #ffffff60,inset 0 -5px 6px #000b,0 0 0 5px #080a0d,0 0 0 6px #5a6269,0 12px 0 2px #080a0d,0 17px 22px #000b; outline:2px solid transparent; outline-offset:6px; transition:outline-color .14s ease; }
 .jog::after { content:''; pointer-events:none; position:absolute; inset:13px; border-radius:50%; border:1px solid #bbc3c955; box-shadow:inset 0 2px 3px #000b; }

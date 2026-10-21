@@ -18,7 +18,7 @@ EMSDK_NODE = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/n
 EMSDK_PYTHON = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/python/3.13.3_64bit/bin/python3
 SSL_CERT_FILE = /Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/python/3.13.3_64bit/lib/python3.13/site-packages/certifi/cacert.pem
 emcmake: cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_TOOLCHAIN_FILE=/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_CROSSCOMPILING_EMULATOR=/Users/serhansari/Documents/projects/djayvo/build-web-tools/emsdk/node/24.19.0_64bit/bin/node in directory /Users/serhansari/Documents/projects/djayvo
--- Configuring done (0.2s)
+-- Configuring done (0.3s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/serhansari/Documents/projects/djayvo/build-web
 [ 88%] Built target jamloom_core
@@ -29,7 +29,7 @@ Built dist/web. Start with: python3 scripts/web_serve.py
 {
   "gate": "PASS",
   "file_count": 66,
-  "bytes": 58679932,
+  "bytes": 58679953,
   "private_audio_and_test_files_absent": "PASS",
   "license_notices": "PASS",
   "wasm_sha256": "1aac34227acb177b11c712a39aa8c1c23ec036b9e31e35c66d4c6f04bf068c57",
@@ -44,7 +44,7 @@ Built dist/web. Start with: python3 scripts/web_serve.py
     "audio.js": "5b7b18df7d733ea6b6184073e25325797135950735b81e4fae1cfee83c26968f",
     "deck-bridge.js": "f98b310cf513628fcd1d54ee457ee380f72f3c492f71baede4abae94011b4251",
     "deck-controls.js": "89abfceb1e318fbd316f7970703f389a95a173b2db7f3c3955516fbe5e26caa6",
-    "dj.css": "f5300dc9483c7fd115df9ed46d462c1132630ad8414f531150076e6399cb4f13",
+    "dj.css": "d79be794b402b5f35295ce711b1e553575cddd60f59f7572a7d81d069c0d5551",
     "dj.html": "b05ea72a5a247a316ce68a42abbb7bda95ee707fe7a5b5642608bef57d04c783",
     "dj.js": "696ad679c3d30ea0cebe37110c42fa9492f9acfecbdb9b20815822829ad7c1f8",
     "engine-worker.js": "1fe55ee09f35f9e691b6214cc47d18a67f0a472e8b77c2bc76c73766963d6e45",
@@ -92,7 +92,7 @@ Built dist/web. Start with: python3 scripts/web_serve.py
     "practice-audio/rhythm-garden.mp3": "1ed6ce4e83e66d673be3f34657baa9572cbc184306726c0cedf693a900cc8400",
     "practice-audio/wednesday-night.mp3": "e73f3d5fbebeb9d8d70a966a2c5595393e0b765eea6121069a979b4538bb7d21",
     "practice-library.js": "37c21b4df8bfd7606b5af78af7ee868cb46ad066af9e0b577b83915b50c9d8a9",
-    "service-worker.js": "b735f78f42b6af25e41c25d2759f518837e2a4ff8884304bfb09ece3acfd68bc",
+    "service-worker.js": "46c7e20843cd0ac20b9d0e214032d94805e838f51f3a0c935ba6473bda299cbc",
     "session-analysis-worker.js": "1c2c384be76284cbeb94048d98d9c231b2a3efc5957050c023975a1cef297f42",
     "session-analysis.js": "1ee077d19a825ad5863072cd812ff3d16a0c797f307de2fe0cd9f4c05e8ba7b6",
     "session-transport.js": "9075b7f4a9c3925f84d762b4bf42cccb2aa76bc7469d8ecc3b8317a027224f02",
@@ -105,25 +105,25 @@ Built dist/web. Start with: python3 scripts/web_serve.py
   "public_release": "NOT RUN"
 }
 Prepared the audited browser studio and engine.
-Prepared free Academy offline pack: 71 public assets, 61782951 bytes. No account or paid content cached.
+Prepared free Academy offline pack: 71 public assets, 61782972 bytes. No account or paid content cached.
 
 > jamloom-site@0.1.0 build
 > next build
 
 ▲ Next.js 16.4.2 (Turbopack)
 - Environments: .env.local
-✓ Running next.config.ts took 10ms
+✓ Running next.config.ts took 65ms
 
   Creating an optimized production build ...
-✓ Compiled successfully in 707ms
+✓ Compiled successfully in 752ms
   Running TypeScript ...
-  Finished TypeScript in 1298ms ...
+  Finished TypeScript in 1386ms ...
   Collecting page data using 9 workers ...
   Generating static pages using 9 workers (0/41) ...
   Generating static pages using 9 workers (10/41) 
   Generating static pages using 9 workers (20/41) 
   Generating static pages using 9 workers (30/41) 
-✓ Generating static pages using 9 workers (41/41) in 279ms
+✓ Generating static pages using 9 workers (41/41) in 315ms
   Finalizing page optimization ...
 
 Route (app)
