@@ -124,7 +124,7 @@ test('Jamloom config accepts legacy deployment keys and gives explicit new value
 });
 
 test('VisitorPing can connect without weakening script or framing protections', async () => {
-  const response = await proxy(new NextRequest('https://www.jamloom.com/account'));
+  const response = await proxy(new NextRequest('https://www.jamloom.com/account/sign-in'));
   const policy = response.headers.get('Content-Security-Policy')!;
   assert.ok(policy.includes("connect-src 'self' https://ingest.visitorping.com wss://realtime.visitorping.com"));
   assert.ok(policy.includes("'strict-dynamic'"));

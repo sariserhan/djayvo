@@ -2,11 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import {readConfig} from './lib/config';
 import {cachedSiteSettings} from './lib/site-settings';
 import {isAdmin} from './lib/admin-access';
+import {comingSoonEnabled,comingSoonRecovery,comingSoonResponse} from './lib/coming-soon';
 
 export async function proxy(request: NextRequest) {
   const path=request.nextUrl.pathname;
   const recovery=/^\/(admin|account|contact|support)(\/|$)/.test(path)||['/maintenance','/api/site-status','/api/contact','/api/notifications','/api/payments/stripe','/api/academy/stripe'].includes(path)||path.startsWith('/api/admin/')||path.startsWith('/api/auth/');
   let configured=false;try{readConfig();configured=true;}catch{}
+  let launchBypass=false;
+  if(comingSoonEnabled()&&!comingSoonRecovery(path)){
+    try{if(configured&&request.headers.has('cookie')){const {services}=await import('./lib/services');const session=await services().auth.api.getSession({headers:request.headers});launchBypass=isAdmin(session?.user);}}catch{/* Unavailable authentication never opens the preview. */}
+    if(!launchBypass)return comingSoonResponse(request);
+  }
   if(!recovery&&configured){
     try{const {services}=await import('./lib/services');const {pool,auth}=services(),settings=await cachedSiteSettings(pool);
       if(settings.maintenance){const session=request.headers.has('cookie')?await auth.api.getSession({headers:request.headers}):null;
@@ -21,7 +27,7 @@ export async function proxy(request: NextRequest) {
       if((error as {code?:string}).code!=='42P01')return new NextResponse('Jamloom is temporarily unavailable.',{status:503,headers:{'Cache-Control':'no-store','Retry-After':'60'}});
     }
   }
-  if(!/^\/(account|library|catalogue|playlists|review|admin|contact|support)(\/|$)/.test(path))return NextResponse.next();
+  if(!/^\/(account|library|catalogue|playlists|review|admin|contact|support)(\/|$)/.test(path)){const response=NextResponse.next();if(launchBypass)response.headers.set('Cache-Control','private, no-store');return response;}
   const nonce = btoa(crypto.randomUUID());
   const development = process.env.NODE_ENV === 'development';
   const account=process.env.R2_ACCOUNT_ID ?? '', bucket=process.env.R2_BUCKET ?? '';

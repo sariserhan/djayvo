@@ -11,7 +11,7 @@ const evidence=new URL('../../../docs/evidence/academy/',import.meta.url),audio=
 let server,logs='';const assessmentTrace=[];const results={database:'disposable loopback',human_learning:'NOT RUN',provider_transactions:'NOT RUN',browsers:[]};
 try{
  await migrate(pool);await mkdir(audio,{recursive:true});
- const env={...process.env,DATABASE_URL:url.toString(),BETTER_AUTH_URL:base,BETTER_AUTH_SECRET:randomUUID()+randomUUID(),JAMLOOM_LOCAL_OUTBOX:join(folder,'mail'),STRIPE_SECRET_KEY:'sk_test_local_fixture',STRIPE_WEBHOOK_SECRET:'whsec_local_fixture',ACADEMY_STRIPE_WEBHOOK_SECRET:'whsec_academy_fixture',ACADEMY_STRIPE_PRICE_ID:'price_local_fixture',ACADEMY_STRIPE_PRODUCT_ID:'prod_local_fixture'};
+ const env={...process.env,JAMLOOM_COMING_SOON:'false',DATABASE_URL:url.toString(),BETTER_AUTH_URL:base,BETTER_AUTH_SECRET:randomUUID()+randomUUID(),JAMLOOM_LOCAL_OUTBOX:join(folder,'mail'),STRIPE_SECRET_KEY:'sk_test_local_fixture',STRIPE_WEBHOOK_SECRET:'whsec_local_fixture',ACADEMY_STRIPE_WEBHOOK_SECRET:'whsec_academy_fixture',ACADEMY_STRIPE_PRICE_ID:'price_local_fixture',ACADEMY_STRIPE_PRODUCT_ID:'prod_local_fixture'};
  delete env.VERCEL;delete env.RESEND_API_KEY;delete env.ACADEMY_STRIPE_SANDBOX_ENABLED;
  server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port','4223'],{env,stdio:['ignore','pipe','pipe']});server.stdout.on('data',s=>logs+=s);server.stderr.on('data',s=>logs+=s);
  for(let i=0;i<100;i++){try{if((await fetch(base+'/academy')).ok)break;}catch{}await delay(100);if(i===99)throw new Error('Server start timeout');}

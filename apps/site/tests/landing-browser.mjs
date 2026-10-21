@@ -11,7 +11,7 @@ const pool=createPool(url.toString()),folder=await mkdtemp(join(tmpdir(),'jamloo
 let server,logs='';const results=[];
 console.log('Evidence:',folder);
 try{
- await migrate(pool);const env={...process.env,DATABASE_URL:url.toString(),BETTER_AUTH_URL:base,BETTER_AUTH_SECRET:randomUUID()+randomUUID(),JAMLOOM_LOCAL_OUTBOX:join(folder,'mail'),JAMLOOM_LOCAL_AUDIO_DIR:join(folder,'audio'),JAMLOOM_R2_ENABLED:'false'};delete env.VERCEL;delete env.RESEND_API_KEY;
+ await migrate(pool);const env={...process.env,JAMLOOM_COMING_SOON:'false',DATABASE_URL:url.toString(),BETTER_AUTH_URL:base,BETTER_AUTH_SECRET:randomUUID()+randomUUID(),JAMLOOM_LOCAL_OUTBOX:join(folder,'mail'),JAMLOOM_LOCAL_AUDIO_DIR:join(folder,'audio'),JAMLOOM_R2_ENABLED:'false'};delete env.VERCEL;delete env.RESEND_API_KEY;
  server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port','4226'],{env,stdio:['ignore','pipe','pipe']});server.stdout.on('data',s=>logs+=s);server.stderr.on('data',s=>logs+=s);
  for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break;}catch{}await delay(100);if(i===99)throw Error('Start timeout');}
  let ip=10;async function api(path,body,cookie){return fetch(base+path,{method:body===undefined?'GET':'POST',headers:{origin:base,'Content-Type':'application/json','x-real-ip':`192.0.2.${ip++}`,...(cookie?{cookie}:{})},body:body===undefined?undefined:JSON.stringify(body)});}

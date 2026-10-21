@@ -1,0 +1,76 @@
+
+> jamloom-site@0.1.0 test:landing-browser
+> node --import tsx tests/landing-browser.mjs
+
+Evidence: /var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-landing-elBsoK
+Checking chromium
+Checking webkit
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "miniDeckAudioRms": 0.026053726927895836,
+    "crossfaderGains": [
+      0,
+      0.5600000023841858
+    ],
+    "masterMute": "PASS",
+    "cue": "PASS",
+    "navigationCleanup": "PASS",
+    "defaultPublic": "PASS",
+    "localWasmRenderAndDraftPrivate": "PASS",
+    "signInReturnsToPendingSave": "PASS",
+    "publicationConsent": "PASS",
+    "pendingAndPrivateExclusion": "PASS",
+    "reviewAndPlayback": "PASS",
+    "withdrawalRefresh": "PASS",
+    "accessibility": "PASS",
+    "listeningQuality": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "miniDeckAudioRms": 0.009472220286775046,
+    "crossfaderGains": [
+      0,
+      0.5600000023841858
+    ],
+    "masterMute": "PASS",
+    "cue": "PASS",
+    "navigationCleanup": "PASS",
+    "defaultPublic": "PASS",
+    "localWasmRenderAndDraftPrivate": "PASS",
+    "signInReturnsToPendingSave": "PASS",
+    "publicationConsent": "PASS",
+    "pendingAndPrivateExclusion": "PASS",
+    "reviewAndPlayback": "PASS",
+    "withdrawalRefresh": "PASS",
+    "accessibility": "PASS",
+    "listeningQuality": "NOT RUN"
+  }
+]
+
+> jamloom-site@0.1.0 typecheck
+> tsc --noEmit
+
+
+> jamloom-site@0.1.0 audit:bundle
+> node scripts/audit-bundle.mjs
+
+{
+  "status": "PASS",
+  "client_files_checked": 24,
+  "server_secrets_absent": "PASS",
+  "studio_assets_unchanged_except_account_link_and_offline_hashes": "PASS",
+  "wasm_sha256": "1aac34227acb177b11c712a39aa8c1c23ec036b9e31e35c66d4c6f04bf068c57"
+}

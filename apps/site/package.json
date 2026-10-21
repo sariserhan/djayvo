@@ -15,7 +15,7 @@
     "start": "next start --hostname 127.0.0.1 --port 3000",
     "typecheck": "tsc --noEmit",
     "audit:bundle": "node scripts/audit-bundle.mjs",
-    "test": "tsx --test tests/config.test.ts tests/audio.test.ts tests/email.test.ts tests/economics.test.ts tests/taste.test.ts tests/apple-payments.test.ts tests/generation-budget.test.ts",
+    "test": "tsx --test tests/config.test.ts tests/audio.test.ts tests/email.test.ts tests/economics.test.ts tests/taste.test.ts tests/apple-payments.test.ts tests/generation-budget.test.ts tests/coming-soon.test.ts",
     "test:integration": "tsx --test tests/database.test.ts tests/private-audio.test.ts tests/catalogue.test.ts",
     "test:browser": "node tests/browser.mjs",
     "test:neon": "node --import tsx tests/neon.mjs",
@@ -37,7 +37,8 @@
     "test:audio-variety": "node tests/audio-variety-audit.mjs",
     "test:admin": "node --import tsx --test tests/admin.test.ts",
     "test:admin-browser": "node --import tsx tests/admin-browser.mjs",
-    "test:landing-browser": "node --import tsx tests/landing-browser.mjs"
+    "test:landing-browser": "node --import tsx tests/landing-browser.mjs",
+    "test:coming-soon-browser": "node --import tsx tests/coming-soon-browser.mjs"
   },
   "dependencies": {
     "@apple/app-store-server-library": "3.1.0",

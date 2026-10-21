@@ -1,0 +1,44 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "publicComingSoon": "PASS",
+    "regularUserDenied": "PASS",
+    "verifiedOwnerBypass": "PASS",
+    "unverifiedOrSuspendedOwnerDenied": "PASS",
+    "spoofedCookieDenied": "PASS",
+    "signInAndRealDeckPlayback": "PASS",
+    "sessionRemovalClosesPreview": "PASS",
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "axe": "PASS",
+    "privateCacheHeaders": "PASS",
+    "signupClosed": "PASS",
+    "sitemapHomeOnly": "PASS",
+    "productionDeployment": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "publicComingSoon": "PASS",
+    "regularUserDenied": "PASS",
+    "verifiedOwnerBypass": "PASS",
+    "unverifiedOrSuspendedOwnerDenied": "PASS",
+    "spoofedCookieDenied": "PASS",
+    "signInAndRealDeckPlayback": "PASS",
+    "sessionRemovalClosesPreview": "PASS",
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "axe": "PASS",
+    "privateCacheHeaders": "PASS",
+    "signupClosed": "PASS",
+    "sitemapHomeOnly": "PASS",
+    "productionDeployment": "NOT RUN"
+  }
+]

@@ -271,3 +271,30 @@ an originally public mix; downloaded copies cannot be recalled. Public listening
 permission is not AI-training or commercial-reuse permission. Homepage public
 saves require that separate permission and review rather than auto-publishing
 microphone inputs. [Evidence and limits](visual-home-and-sharing.md).
+
+
+## Public coming-soon mode
+
+Coming-soon mode is **on by default** with this code. Keep
+`JAMLOOM_COMING_SOON=true` (or leave it unset) in Vercel. After deploying the
+matching code, visitors and ordinary signed-in accounts see the branded launch
+page; product routes redirect there and product APIs/signup are closed.
+Contact, support, legal pages, sign-in/reset/verification, admin routes and
+existing signed payment/notification callbacks remain reachable under their
+normal authorization checks.
+
+Use **Admin sign in** with verified `serhan.sari@yahoo.com`, then open the Jamloom
+home link or `/admin`. The bypass uses the real server session and suspension
+check. It does not accept a query flag, client-side role or ordinary login.
+Signing out closes the preview again. Admin preview responses are private/no-store.
+No new migration is needed for this gate, but existing auth/admin setup and its
+previously documented migration 0011 must be present for admin sign-in/bypass.
+
+When ready to open the product, set `JAMLOOM_COMING_SOON=false` and redeploy.
+This is separate from the dashboard maintenance toggle; the dashboard shows the
+current launch state. Turning it off does not release paid generation or Academy
+sales. Existing stored/cached offline assets are not remotely erased by a launch
+page. Provider tracking delivery and public deployment were not verified here.
+Local product browser tests intentionally start their servers with the flag false;
+`npm run test:coming-soon-browser` tests the default-on behavior against a disposable
+loopback database. [Evidence](coming-soon.md).

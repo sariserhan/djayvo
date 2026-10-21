@@ -1,3 +1,14 @@
+# Public coming soon — 2026-10-21
+
+**PASS:** Coming-soon mode defaults on. Only the verified, non-suspended owner
+can preview product routes; other users see the launch page. Login/recovery,
+support/contact and existing signed callbacks remain available. Public signup and
+product APIs are closed, sitemap is homepage-only, and admin responses are
+private/no-store. Thirty unit tests, build, typecheck, public bundle audit,
+Chromium/WebKit login/deck/logout, responsive/axe checks and flag-off homepage
+regression pass. **NOT RUN:** Deployment and live verification. No new schema or
+paid-release changes. [Report](coming-soon.md).
+
 # Visual homepage and creation visibility — 2026-10-21
 
 **PASS:** Working mini DJ decks, compact visual landing page and latest reviewed

@@ -1,5 +1,18 @@
 # Jamloom development tracker
 
+## Public coming soon — 2026-10-21
+
+| ID | Task | Status | Evidence / remaining action |
+|---|---|---|---|
+| LAUNCH-001 | Coming-soon page enabled by default | PASS | Responsive branded page, real contact/support links, one existing VisitorPing script |
+| LAUNCH-002 | Verified admin bypass, public routes/signup closed | PASS | Real Better Auth sessions; ordinary, unverified, suspended and forged-cookie users denied; admin deck playback works |
+| LAUNCH-003 | Cache isolation, recovery routes and launch rollback | PASS | Private/no-store admin responses; support/login allowed; regular homepage regression passes with flag false |
+| LAUNCH-004 | Build, checks and rendered UI | PASS | 30 unit tests, production build/typecheck/bundle audit; Chromium/WebKit, 1440/390/320 and axe |
+| LAUNCH-005 | Public deployment | NOT RUN | Commit must be deployed; no new migration, prior admin schema/configuration still required |
+
+[Implementation and activation](docs/coming-soon.md).
+
+
 ## Visual homepage and sharing — 2026-10-21
 
 Evidence: [implementation and boundaries](docs/visual-home-and-sharing.md).
