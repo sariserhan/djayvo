@@ -4,7 +4,7 @@ import {academyPaymentConfig,verifiedAcademyPrice,academyCheckout,grantAcademy,a
 const config={price:'price_academy',product:'prod_academy'};
 const price={id:config.price,active:true,livemode:false,currency:'usd',unit_amount:7999,type:'one_time',tax_behavior:'exclusive',product:{id:config.product,active:true,metadata:{jamloom_product:'academy-complete'}}};
 function receipt(id='cs_test_first',owner='alice'){return {id,livemode:false,mode:'payment',payment_status:'paid',client_reference_id:owner,payment_intent:'pi_'+id,currency:'usd',amount_subtotal:7999,total_details:{amount_discount:0},metadata:{jamloom_product:'academy-complete'},line_items:{data:[{quantity:1,amount_subtotal:7999,price}]}};}
-function evidence(attemptId:string){return {attemptId,taskId:'play-a',evaluator:'academy-1',assets:['a','b'],samples:Array.from({length:24},(_,i)=>({t:1+i*.1,a:.1,b:0,x:0,master:.5,peak:.2,rms:.1,rateA:1,rateB:1,levelA:.8,levelB:.8})),actions:[{t:1,source:'user',control:'play-a',value:null}]};}
+function evidence(attemptId:string){return {attemptId,taskId:'play-a',evaluator:'academy-2',assets:['a','b'],samples:Array.from({length:24},(_,i)=>({t:1+i*.1,a:.1,b:0,x:0,master:.5,peak:.2,rms:.1,rateA:1,rateB:1,levelA:.8,levelB:.8})),actions:[{t:1,source:'user',control:'play-a',value:null}]};}
 test('Academy catalog rejects wrong price, recurring, live and foreign products',async()=>{
  assert.deepEqual(academyPaymentConfig({ACADEMY_STRIPE_PRICE_ID:config.price,ACADEMY_STRIPE_PRODUCT_ID:config.product}),config);
  assert.throws(()=>academyPaymentConfig({}),/not configured/);
@@ -81,4 +81,14 @@ test('published manifests are bounded, versioned and have unambiguous prerequisi
 test('Academy modeled contribution is explicit, bounded and never finances AI inference',async()=>{
  const {academyContribution}=await import('../lib/academy-economics');const model=academyContribution();assert.ok(model.contribution>0);assert.equal(model.cloudInferenceRequests,0);
  assert.equal(academyContribution({supportReserveCents:8000}).positive,false);assert.throws(()=>academyContribution({processorBps:NaN}));
+});
+
+test('all six stages have runnable assessments and final completion traverses the entire curriculum',async()=>{
+ const {academyLessons,academyLevels}=await import('../lib/academy-content');
+ for(const level of academyLevels)assert.ok(academyLessons.some(l=>l.level===level.slug&&(l.assessment||l.free)),level.slug);
+ const visited=new Set<string>(),active=new Set<string>();
+ function walk(id:string){assert.ok(!active.has(id),'prerequisite cycle');if(visited.has(id))return;active.add(id);const lesson=academyLessons.find(l=>l.id===id);assert.ok(lesson);for(const p of lesson.prerequisites)walk(p);active.delete(id);visited.add(id);}
+ walk('performance-set');assert.equal(visited.size,academyLessons.length);
+ assert.equal(academyLessons.find(l=>l.id==='performance-set')!.tasks[0].seconds,1800);
+ assert.equal(academyLessons.find(l=>l.id==='intermediate-set')!.tasks[0].seconds,300);
 });

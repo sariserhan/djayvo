@@ -57,6 +57,18 @@ Evidence: [implementation report](docs/admin-implementation.md), [owner setup](d
 | ADM-009 | Actual payment-provider and commercial release gates | NOT RUN | No live charges; Academy release held, existing musical-quality FAIL retained |
 
 
+## Academy completion work — 2026-10-21
+
+Owner instruction: finish Academy and update this tracker at every increment.
+
+| ID | Increment | Status | Evidence / next check |
+|---|---|---|---|
+| ACA-019 | Shared-clock course transport, continuous pitch, beat loops/jumps | PASS | Four transport tests; 96 web tests; Chromium/WebKit course controls, account sync and offline playback. Native imports retain their decoder; course pitch changes key. [Report](docs/academy-completion.md) |
+| ACA-020 | Bounded 60-minute private set recording and continuity measurements | PARTIAL | Implemented 60-minute/96-MB private recorder. First real 126-second capture had zero clock gaps and correctly FAILED the silent v1 fixtures. Both real 126-second mini-sets pass with zero clock gaps, no clipping or sustained silence. Final delete/revoke/retry checks pass. Full 5/30/60-minute endurance NOT RUN. Existing 30-second WAV capture preserved. |
+| ACA-021 | All six curriculum stages, measurable assessments and beginner mini-set | PASS | Local implementation: 20 runnable lessons, complete prerequisite graph, 2/5/30-minute rubrics and explicit knowledge checks. 96 web + 12 Academy/DB tests and broad/focused browser runs PASS. Human outcomes and full-duration long assessments remain separate gates. [Report](docs/academy-completion.md) |
+| ACA-023 | Correct teaching-audio trim timestamps | PASS | Both historical 64-second excerpts contained 32 seconds of silence. Versioned v2 exports reset timestamps before fades; full-duration silence/peak checks pass. Original MP3s and v1 manifest retained. [Evidence](docs/evidence/academy-completion/audio.json) |
+| ACA-022 | End-to-end progression, accessibility, offline and regression evidence | PARTIAL | Broad and final Chromium/WebKit runs, PCM/privacy/lifecycle/offline, responsive/axe and actual mini-sets PASS. Full 5/30/60-minute endurance, manual accessibility, novices, providers and physical venue remain NOT RUN. [Evidence](docs/evidence/academy-completion/full-curriculum.json) |
+
 ## DJ Academy — 2026-10-21
 
 Owner addendum: [DJ Academy](apps/site/scripts/jamloom_dj_academy_addendum_v1.md).
@@ -68,16 +80,16 @@ Separate $79.99 one-time pass; generation credits and quality hold remain unchan
 | ACA-002 | Actual deck command/audio telemetry bridge | Agent | Existing browser mixer | PASS | Original handlers, measured signals, real keyboard browser checks |
 | ACA-003 | Cleared practice music and measured fixtures | Agent + listeners | Redistribution rights / listening | PARTIAL | Two CC0 64-second tracks with hashes; enjoyment and phase/key annotations unverified |
 | ACA-004 | Verified first crossfade, coaching and unlimited Free Jam | Agent + novice testers | ACA-002/003 | PARTIAL | Automated fade and voluntary Continue pass; owner now starts music, full human fade NOT RUN |
-| ACA-005 | Versioned curriculum, rubrics and assessments | Agent | First lesson evidence | PARTIAL | Two runnable exercises, introductory challenge and six-stage map; upper-stage assessments unfinished |
+| ACA-005 | Versioned curriculum, rubrics and assessments | Agent | First lesson evidence | PARTIAL | 20 runnable lessons, six-stage prerequisite graph and end assessments implemented; browser checks PASS; human rubric calibration remains open (ACA-021/022) |
 | ACA-006 | Owner-scoped progress, prerequisites, export/delete | Agent | Local database tests | PASS | Real local Better Auth/PG, order/replay/ownership/rate bounds and deletion checks |
 | ACA-007 | Separate Stripe pass, replay/refund/repurchase handling | Agent + owner | Sandbox product configuration | PARTIAL | Signed fixtures and local transactions pass; actual hosted sandbox NOT RUN; sales closed |
 | ACA-008 | Fifth feature, routes, dashboard and checkout | Agent | Existing site | PASS | Production build and Chromium/WebKit route checks; four prior features preserved |
-| ACA-009 | Audio/browser/accessibility/regression checks | Agent | Runnable lesson | PARTIAL | 78 web + 75 site/DB + 15 core tests, build and browser flows pass; recorder clock diagnostic remains |
+| ACA-009 | Audio/browser/accessibility/regression checks | Agent | Runnable lesson | PARTIAL | Current 96 web + 12 Academy/DB + 31 site checks pass; build and original recorder browser regressions pass. Broad/final course, responsive/axe and offline checks PASS; manual accessibility and physical reliability remain NOT RUN |
 | ACA-010 | Five novices / three beginner mini-sets | Owner + genuine testers | Working course | NOT RUN | No recruited cohort; owner onboarding retest alone is not the study |
 | ACA-011 | Handbook, economics, migration and release checklist | Agent + owner | Evidence | PARTIAL | Handbook and reserve model delivered; real merchant economics / production migration / release NOT RUN |
-| ACA-012 | Diagnose recorder clock discontinuity and physical audio reliability | Agent + owner | Actual captures | PARTIAL | Both real browser WAVs have no clipping/silence but one clock discontinuity; cause unproven |
-| ACA-013 | Shared-frame transport, beat loops/jumps, long recording | Agent | Existing deck engine | NOT RUN | Required engineering before reliable advanced assessments |
-| ACA-014 | Remaining curriculum and beginner mini-set | Agent + learners | ACA-003/013 | NOT RUN | Do not present stage outlines as finished lessons |
+| ACA-012 | Diagnose recorder clock discontinuity and physical audio reliability | Agent + owner | Actual captures | PARTIAL | Initial startup timestamp discontinuity isolated and guarded by connected-block warmup; fresh Chromium short/long captures and both recorder regressions pass. Physical reliability remains NOT RUN |
+| ACA-013 | Shared-frame transport, beat loops/jumps, long recording | Agent | Existing deck engine | PARTIAL | ACA-019/020 local implementation and two-browser short/mini-set checks PASS; full 5/30/60-minute and physical endurance NOT RUN |
+| ACA-014 | Remaining curriculum and beginner mini-set | Agent + learners | ACA-003/013 | PARTIAL | All six stages implemented; actual Chromium two-minute recorded mini-set passes. Chromium/WebKit control checks and both actual mini-sets PASS; learner study and full long-set endurance remain NOT RUN |
 | ACA-015 | Hosted CI, payment sandbox, deployment and release | Agent + owner | Course / provider / human gates | NOT RUN | No deployment or spending; AI musical-quality FAIL and paid generation disabled |
 | ACA-016 | Hardware-style deck presentation with real controls | Agent + owner | Existing console | PARTIAL | [Presentation](docs/deck-presentation.md): browser/build checks pass; owner visual and physical touch review NOT RUN |
 | ACA-017 | Adaptive fullscreen studio and performance C layout | Agent + owner | Shared actual decks | PARTIAL | [Fullscreen report](docs/studio-fullscreen.md): native browser/layout/audio checks pass; physical monitor/device review NOT RUN |
@@ -768,6 +780,9 @@ filename/seed, timestamp, observation, desired change and eventual evidence.
 Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
+
+- [x] **2026-10-21 — Academy local course expansion:** 20 runnable lessons across six stages, shared-clock course transport, live instrument layering, bounded private set recording, explicit knowledge checks, prerequisite-complete badge and corrected v2 audio. 96 web + 12 Academy/DB + 31 site tests, build/typecheck/audit and broad/focused Chromium/WebKit evidence pass. Human learning, long endurance, providers and release remain open. [Implementation and exact limits](docs/academy-completion.md).
+
 
 Entries follow implementation order. Historical results apply to their revision;
 current platform results are in [the refinement report](docs/evidence/club-refinement/report.json).

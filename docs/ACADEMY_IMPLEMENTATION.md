@@ -5,6 +5,23 @@ The fifth feature is integrated into the existing repository. The original four
 products remain; **AI musical quality is still FAIL and paid generation remains
 disabled**. No cloud spending, live charges, hosted migration or deployment occurred.
 
+## Latest local course expansion — 2026-10-21
+
+[Completion increment](academy-completion.md) supersedes the two-lesson coverage
+and missing-transport backlog below. Curriculum 2026.10.2 has 20 runnable lessons,
+all six stages, real shared-clock course transport, beat loops/jumps, instrument
+layering and bounded 2/5/30-minute set assessments. Earlier account history and
+original source/audio evidence remain preserved. Corrected v2 teaching exports
+remove the 32-second silent tails found in the first longer recording test.
+
+**PASS so far:** 96 web tests, 12 Academy/database tests, 31 site tests, build and
+TypeScript; Chromium full lesson-control run and mini-set; Chromium/WebKit original
+recorder PCM/privacy/lifecycle regression. **PASS:** final two-browser control, offline and lifecycle checks; broad course run and both real two-minute mini-sets. Longer full-duration assessments remain NOT RUN. **NOT RUN:** independent novices,
+physical audio/venue, full-duration 5/30/60-minute browser endurance, actual Stripe
+transactions and deployment. No commercial or generative-quality gate changed.
+
+The remainder is the preserved original checkpoint and its original evidence.
+
 ## Initial audit and preservation
 
 Started on `main` after `35c0df0` (and prior `efa13be`), with only the owner's

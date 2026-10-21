@@ -43,7 +43,8 @@ export class AcademyStore {
    if(existing){if(existing.digest!==digest)throw new Error('Assessment replay conflict');await db.query('COMMIT');return {saved:true,completed:!!attempt.completed_at};}
    const task=lesson.tasks[prior.length];if(!task||task.id!==data.taskId)throw new Error('Complete tasks in order');
    const result=evaluateTask(task,data);if(!result.pass||!('metrics' in result))throw new Error(result.feedback);
-   const first=data.samples[0].t,last=data.samples.at(-1).t;
+   const first=data.samples[0]?.t??data.actions[0]?.t,last=data.samples.at(-1)?.t??data.actions.at(-1)?.t;
+   if(!Number.isFinite(first)||!Number.isFinite(last)||first<0||last<first)throw new Error('Invalid assessment timing');
    if(last-first>(Date.now()-new Date(attempt.started_at).getTime())/1000+1||prior.some(r=>r.last_audio_time>=first))throw new Error('Assessment timing conflict');
    await db.query('INSERT INTO academy_task_results(attempt_id,task_id,digest,metrics,last_audio_time) VALUES($1,$2,$3,$4,$5)',[attempt.id,task.id,digest,JSON.stringify(result.metrics),last]);
    const completed=prior.length+1===lesson.tasks.length;

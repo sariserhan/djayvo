@@ -29,7 +29,10 @@ five successes do not establish professional competence or general population
 outcomes. The owner initially failed preparation, so repeat that test after the
 onboarding fix before expanding course claims.
 
-The additional three-person beginner mini-set study is **NOT RUN** and currently
-blocked by the missing multi-transition mini-set assessment and a larger,
-phase/phrase-annotated licensed teaching pack. Do not substitute the 4-second
-crossfade or a gain-staging exercise for that requirement.
+The additional three-person beginner mini-set study is **NOT RUN**. Its actual
+two-minute assessment is now runnable at `/academy/challenges/beginner-mini-set`
+using the corrected v2 course tracks. Use authorized preview access; do not enable
+sales to recruit testers. Record whether participants can maintain music, make
+three gradual transitions, finish/download/replay their recording and understand
+the feedback. Musical phrase/key annotations and listener suitability remain
+open. Do not substitute a four-second fade or automated browser run for this study.

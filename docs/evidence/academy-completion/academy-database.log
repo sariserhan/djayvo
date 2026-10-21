@@ -1,0 +1,87 @@
+
+> jamloom-site@0.1.0 test:academy
+> node --import tsx --test tests/academy.test.ts
+
+TAP version 13
+# Subtest: Academy catalog rejects wrong price, recurring, live and foreign products
+ok 1 - Academy catalog rejects wrong price, recurring, live and foreign products
+  ---
+  duration_ms: 2.668791
+  type: 'test'
+  ...
+# Subtest: isolated Postgres Academy receipts, progress, holds and tenant boundaries
+    # Subtest: server catalog checkout is one-time, taxed, owner-bound and separate from credit packs
+    ok 1 - server catalog checkout is one-time, taxed, owner-bound and separate from credit packs
+      ---
+      duration_ms: 0.622958
+      type: 'test'
+      ...
+    # Subtest: parallel receipt delivery grants once, denies owner transfer, never mints credits
+    ok 2 - parallel receipt delivery grants once, denies owner transfer, never mints credits
+      ---
+      duration_ms: 5.041958
+      type: 'test'
+      ...
+    # Subtest: refund before grant, duplicate refund, repurchase and independent dispute holds
+    ok 3 - refund before grant, duplicate refund, repurchase and independent dispute holds
+      ---
+      duration_ms: 4.728542
+      type: 'test'
+      ...
+    # Subtest: authoritative unpaid/live/price evidence cannot grant
+    ok 4 - authoritative unpaid/live/price evidence cannot grant
+      ---
+      duration_ms: 0.442208
+      type: 'test'
+      ...
+    # Subtest: webhook replay conflicts and stale dispute events use current provider status
+    ok 5 - webhook replay conflicts and stale dispute events use current provider status
+      ---
+      duration_ms: 4.608208
+      type: 'test'
+      ...
+    # Subtest: progress reevaluates signals and task order, isolates owners and survives a new store
+    ok 6 - progress reevaluates signals and task order, isolates owners and survives a new store
+      ---
+      duration_ms: 11.148125
+      type: 'test'
+      ...
+    # Subtest: bounded history and daily sync quota survive deleting learning progress
+    ok 7 - bounded history and daily sync quota survive deleting learning progress
+      ---
+      duration_ms: 15.7305
+      type: 'test'
+      ...
+    1..7
+ok 2 - isolated Postgres Academy receipts, progress, holds and tenant boundaries
+  ---
+  duration_ms: 187.50925
+  type: 'test'
+  ...
+# Subtest: published manifests are bounded, versioned and have unambiguous prerequisites
+ok 3 - published manifests are bounded, versioned and have unambiguous prerequisites
+  ---
+  duration_ms: 0.891083
+  type: 'test'
+  ...
+# Subtest: Academy modeled contribution is explicit, bounded and never finances AI inference
+ok 4 - Academy modeled contribution is explicit, bounded and never finances AI inference
+  ---
+  duration_ms: 0.937542
+  type: 'test'
+  ...
+# Subtest: all six stages have runnable assessments and final completion traverses the entire curriculum
+ok 5 - all six stages have runnable assessments and final completion traverses the entire curriculum
+  ---
+  duration_ms: 0.178375
+  type: 'test'
+  ...
+1..5
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 368.725333

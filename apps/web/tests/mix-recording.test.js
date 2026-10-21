@@ -13,6 +13,9 @@ function harness(rate = 48000) {
     registerProcessor: (_, cls) => { Processor = cls; } };
   vm.runInNewContext(fs.readFileSync(new URL('../mix-recording-worklet.js', import.meta.url), 'utf8').replace(/^import .*;\n/, ''), scope);
   const processor = new Processor(), output = [[new Float32Array(128), new Float32Array(128)]];
+  // Warm up two connected blocks before the acknowledged recording starts.
+  processor.process([[new Float32Array(128)]],output);scope.currentFrame+=128;
+  processor.process([[new Float32Array(128)]],output);scope.currentFrame+=128;
   return { scope, processor, messages, output, send: type => processor.port.onmessage({ data: { type } }),
     block: input => { const result = processor.process([input], output); scope.currentFrame += 128; return result; } };
 }
@@ -21,14 +24,14 @@ test('mix capture preserves independent stereo channels, records frame count and
   const h = harness(), left = new Float32Array(128).fill(.25), right = new Float32Array(128).fill(-.125);
   h.block([left, right]); h.block([left, right]); h.send('stop');
   const done = h.messages.at(-1);
-  assert.equal(done.frames, 256); assert.equal(done.first, 4096); assert.equal(done.discontinuities, 0);
+  assert.equal(done.frames, 256); assert.equal(done.first, 4352); assert.equal(done.discontinuities, 0);
   for (let i = 0; i < 512; i++) assert.equal(done.samples[i], i % 2 ? -.125 : .25);
   assert.ok(h.output[0].every(channel => channel.every(x => x === 0)));
   assert.equal(h.block([left, right]), false);
   h.send('stop'); assert.equal(h.messages.length, 2);
 });
 test('empty/mono inputs preserve clock and stale timestamps remain diagnostics, not fabricated loss', () => {
-  const h = harness(); h.block([]); h.scope.currentFrame = 1;
+  const h = harness(); h.block([new Float32Array(128)]); h.scope.currentFrame = 1;
   h.block([new Float32Array(128).fill(.125)]); h.send('stop');
   const done = h.messages.at(-1); assert.equal(done.frames, 256); assert.equal(done.discontinuities, 1);
   assert.ok(done.samples.slice(0, 256).every(x => x === 0));
@@ -44,7 +47,7 @@ test('30-second cap is enforced on the audio thread even without a main-thread s
   }
 });
 test('cancel releases the buffer and produces no recording; unsupported rates fail before allocation', () => {
-  const h = harness(); h.block([]); h.send('cancel'); h.send('stop');
+  const h = harness(); h.block([new Float32Array(128)]); h.send('cancel'); h.send('stop');
   assert.equal(h.processor.pcm, null); assert.equal(h.messages.length, 2);
   assert.equal(h.messages.at(-1).type, 'cancelled'); assert.equal(h.block([]), false);
   for (const rate of [NaN, 8000, 192001]) assert.throws(() => harness(rate), /rate/);

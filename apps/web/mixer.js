@@ -120,7 +120,7 @@ export function createMixer(context) {
   });
   const performance = context.createGain(); performance.gain.value = 0; performance.connect(limiter);
   const performanceFX = createToneEcho(context, performance);
-  const rack = context.createGain(); rack.gain.value = 0; rack.connect(limiter);
+  const rack = context.createGain(); rack.gain.value = 0; const rackScope=context.createAnalyser();rackScope.fftSize=2048;rack.connect(rackScope);rackScope.connect(limiter);
   const rackFX = createToneEcho(context, rack);
   meter.connect(context.destination);
   const split = context.createChannelSplitter(2);
@@ -131,7 +131,7 @@ export function createMixer(context) {
   strips.forEach((strip, index) => strip.eq.forEach((filter, band) => { gainParams[`eq-${index ? 'b' : 'a'}-${band}`] = filter.gain; }));
   const gainTargets = Object.fromEntries(MIX_GAIN_TARGETS.map(target => [target, 0]));
   const effects = { a: strips[0].fx, b: strips[1].fx, c: performanceFX, rack: rackFX };
-  const mixer = { channels, meter, stereoMeters, strips, rack, rackFX, performance, performanceFX, gainParams, gainTargets, effects };
+  const mixer = { channels, meter, stereoMeters, strips, rack, rackScope, rackFX, performance, performanceFX, gainParams, gainTargets, effects };
   for (const [target, fx] of Object.entries(effects)) { fx.target = target; fx.mixer = mixer; }
   return mixer;
 }

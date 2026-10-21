@@ -12,14 +12,16 @@ export function deckBridge(snapshot) {
      element.value=String(value);
     }else throw new Error('Unsupported control value');
    }
+   const before=snapshot();
    await original(event??{target:element,currentTarget:element,shiftKey:false});
    const s=snapshot();publish({schemaVersion:1,sessionId,sequence:++sequence,action,control:element.id,
-    t:s.t,source,value:element.type==='range'?Number(element.value):null});
+    t:s.t,source,value:['range','number'].includes(element.type)?Number(element.value):null,
+    beforeA:before.positionA??0,beforeB:before.positionB??0,afterA:s.positionA??0,afterB:s.positionB??0});
   };
   commands.set(element.id,execute);
   element[property]=event=>execute(undefined,'user',event).catch(()=>{});
  }
- return {bind,subscribe(fn){subscribers.add(fn);return()=>subscribers.delete(fn);},
+ return {bind,publish,snapshot,subscribe(fn){subscribers.add(fn);return()=>subscribers.delete(fn);},
   command(control,value){const fn=commands.get(control);if(!fn)throw new Error('Unknown deck control');return fn(value,'coach_demo');},
   sample(){if(!subscribers.size)return null;const value=snapshot();publish({action:'audio.sample',...value});return value;},
   controls:()=>[...commands.keys()]};

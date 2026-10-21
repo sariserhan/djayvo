@@ -1,0 +1,24 @@
+[
+  {
+    "browser": "chromium",
+    "sha256": "582237ce0e20deaa7b15589304faf09605d45f36d75c4f4bae6e97d83bd213d5",
+    "seconds": 126.42,
+    "peak_dbfs": -10.01338524645847,
+    "longest_quiet_ms": 1.3541666666666667,
+    "timestamp_gaps": 0,
+    "bytes": 2037550,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "sha256": "21f10df01f87f6a0685a2b0ca63fd48d991ab14413f62f03141c4626e9da6167",
+    "seconds": 126.3025,
+    "peak_dbfs": -9.169736548518433,
+    "longest_quiet_ms": 4.104166666666667,
+    "timestamp_gaps": 0,
+    "bytes": 2547146,
+    "technical": "PASS",
+    "human_listening": "NOT RUN"
+  }
+]

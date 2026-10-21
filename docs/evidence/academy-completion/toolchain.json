@@ -1,0 +1,6 @@
+{
+  "node": "v22.23.1",
+  "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "python": "Python 3.15.0",
+  "baseline_commit": "c6a22bf66725614d393d309d649a05c8ce7b7371"
+}

@@ -18,7 +18,7 @@ async function handle(request:Request,{params}:{params:Promise<{path:string[]}>}
    if(request.method==='DELETE'){await store.removeProgress(owner);return Response.json({deleted:true},{headers});}
   }
   if(request.method==='POST'&&path.length===1){
-   const data=JSON.parse((await readBody(request.body,65536)).toString());
+   const data=JSON.parse((await readBody(request.body,1800000)).toString());
    if(path[0]==='attempt'&&typeof data.lessonId==='string')return Response.json({id:await store.begin(owner,data.lessonId)},{headers});
    if(path[0]==='result')return Response.json(await store.submit(owner,data,(await academyTracks()).map(t=>t.sha256)),{headers});
   }

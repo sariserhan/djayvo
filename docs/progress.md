@@ -1,3 +1,7 @@
+# Academy completion in progress — 2026-10-21
+
+**PASS:** Shared-clock course playback, first crossfade/account synchronization and offline playback in Chromium/WebKit; 96 web tests and 12 Academy/database tests. **PARTIAL:** 20 lessons across all six stages, end assessments and bounded long set recording implemented; broad and focused final Chromium/WebKit checks PASS; both corrected 126-second mini-sets PASS. Original recorder PCM/privacy/lifecycle regressions PASS in Chromium/WebKit. Recorder startup is explicitly warmed before acknowledging capture; Chromium short and 126-second captures have zero timestamp gaps. The long assessment correctly rejected 32-second silent tails in the old teaching excerpts. Corrected v2 exports reset trimmed timestamps before fades and pass full-duration silence/peak checks; originals and failing evidence are preserved. Full-duration 5/30/60-minute endurance, actual novices, physical audio/venue, payment providers and deployment remain **NOT RUN**. Track increments ACA-019–022 in [TODO](../TODO.md).
+
 # Public coming soon — 2026-10-21
 
 **PASS:** Coming-soon mode defaults on. Only the verified, non-suspended owner

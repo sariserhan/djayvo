@@ -1,0 +1,291 @@
+{
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "NOT RUN",
+  "browsers": [
+    {
+      "browser": "chromium",
+      "curriculum": [
+        {
+          "lesson": "count-the-beat",
+          "checks": 2,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "cue-and-return",
+          "checks": 4,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "beginner-transition",
+          "checks": 3,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "beginner-mini-set",
+          "checks": 1,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "tempo-and-phase",
+          "checks": 4,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "bass-swap",
+          "checks": 5,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "elementary-assessment",
+          "route": "PASS",
+          "assessment": "rubric unit-tested; full duration browser execution NOT RUN"
+        },
+        {
+          "lesson": "loops-and-jumps",
+          "checks": 4,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "tone-and-echo",
+          "checks": 4,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "intermediate-set",
+          "route": "PASS",
+          "assessment": "rubric unit-tested; full duration browser execution NOT RUN"
+        },
+        {
+          "lesson": "recover-a-cue",
+          "checks": 5,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "advanced-set",
+          "route": "PASS",
+          "assessment": "rubric unit-tested; full duration browser execution NOT RUN"
+        },
+        {
+          "lesson": "performance-set",
+          "route": "PASS",
+          "assessment": "rubric unit-tested; full duration browser execution NOT RUN"
+        },
+        {
+          "lesson": "phrase-lengths",
+          "checks": 3,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "hot-cues",
+          "checks": 2,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "keys-and-energy",
+          "checks": 2,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "layering-and-consent",
+          "checks": 6,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "set-planning",
+          "checks": 3,
+          "actual_control_and_audio_checks": "PASS"
+        }
+      ],
+      "prerequisites": "seeded local access fixtures; action checks executed on actual decks"
+    },
+    {
+      "browser": "chromium",
+      "version": "149.0.7827.55",
+      "keyboard_crossfade": "PASS",
+      "wrong_action_feedback": "Start with the crossfader at A and finish at B.",
+      "valid_feedback": "Checked from your deck actions and audio measurements. Keep playing for as long as you like. Continue only when you are ready.",
+      "free_jam": "PASS",
+      "offline_reload_and_audio": "PASS: browser offline mode",
+      "paid_access": "PASS (seeded local receipt)",
+      "coach_does_not_grade": "PASS",
+      "assessment_metrics": [
+        {
+          "taskId": "play-a",
+          "metrics": {
+            "peak": 0.2751,
+            "seconds": 2.2027
+          }
+        },
+        {
+          "taskId": "play-b",
+          "metrics": {
+            "peak": 0.2527,
+            "seconds": 2.1973
+          }
+        },
+        {
+          "taskId": "fade",
+          "metrics": {
+            "peak": 0.2096,
+            "beats": 7.018799999999999,
+            "seconds": 3.5093999999999994
+          }
+        }
+      ],
+      "wav": "chromium-first-crossfade.wav",
+      "recording": {
+        "schema_version": "1.0-mix-recording",
+        "scope": "post_limiter_studio_mix",
+        "origin": "unreviewed_live_capture",
+        "training_authorized": false,
+        "permission": "user_attested_private_mix",
+        "sample_rate": 48000,
+        "frames": 197248,
+        "wav_sha256": "bc40090ee41c223d93e683c3d8b7fdbc16b1989718ea9bd2af29f5a88bf70eda",
+        "observed_context_start_frame": 650368,
+        "timestamp_discontinuities": 0,
+        "limit_reached": false
+      },
+      "audio_clock": "PASS",
+      "accessibility": "PASS",
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "account_sync": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "curriculum": [
+        {
+          "lesson": "count-the-beat",
+          "checks": 2,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "cue-and-return",
+          "checks": 4,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "beginner-transition",
+          "checks": 3,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "beginner-mini-set",
+          "checks": 1,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "tempo-and-phase",
+          "checks": 4,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "bass-swap",
+          "checks": 5,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "elementary-assessment",
+          "route": "PASS",
+          "assessment": "rubric unit-tested; full duration browser execution NOT RUN"
+        },
+        {
+          "lesson": "loops-and-jumps",
+          "checks": 4,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "tone-and-echo",
+          "checks": 4,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "intermediate-set",
+          "route": "PASS",
+          "assessment": "rubric unit-tested; full duration browser execution NOT RUN"
+        },
+        {
+          "lesson": "recover-a-cue",
+          "checks": 5,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "advanced-set",
+          "route": "PASS",
+          "assessment": "rubric unit-tested; full duration browser execution NOT RUN"
+        },
+        {
+          "lesson": "performance-set",
+          "route": "PASS",
+          "assessment": "rubric unit-tested; full duration browser execution NOT RUN"
+        },
+        {
+          "lesson": "phrase-lengths",
+          "checks": 3,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "hot-cues",
+          "checks": 2,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "keys-and-energy",
+          "checks": 2,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "layering-and-consent",
+          "checks": 6,
+          "actual_control_and_audio_checks": "PASS"
+        },
+        {
+          "lesson": "set-planning",
+          "checks": 3,
+          "actual_control_and_audio_checks": "PASS"
+        }
+      ],
+      "prerequisites": "seeded local access fixtures; action checks executed on actual decks"
+    },
+    {
+      "browser": "webkit",
+      "version": "26.5",
+      "keyboard_crossfade": "PASS",
+      "wrong_action_feedback": "Start with the crossfader at A and finish at B.",
+      "valid_feedback": "Checked from your deck actions and audio measurements. Keep playing for as long as you like. Continue only when you are ready.",
+      "free_jam": "PASS",
+      "offline_reload_and_audio": "PASS: origin server stopped; offline-emulator reload separately failed (#42775)",
+      "paid_access": "guest only",
+      "coach_does_not_grade": "PASS",
+      "assessment_metrics": [],
+      "wav": "webkit-first-crossfade.wav",
+      "recording": {
+        "schema_version": "1.0-mix-recording",
+        "scope": "post_limiter_studio_mix",
+        "origin": "unreviewed_live_capture",
+        "training_authorized": false,
+        "permission": "user_attested_private_mix",
+        "sample_rate": 48000,
+        "frames": 199936,
+        "wav_sha256": "09b62bd120f2d49811ea4082fd6e72aae494e6ea20ff4a11be1efaccaf93e52e",
+        "observed_context_start_frame": 652288,
+        "timestamp_discontinuities": 0,
+        "limit_reached": false
+      },
+      "audio_clock": "PASS",
+      "accessibility": "PASS",
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "account_sync": "guest checked"
+    }
+  ],
+  "status": "PASS"
+}

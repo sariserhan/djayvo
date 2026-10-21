@@ -17,6 +17,7 @@ const publicRoot = path.join(root, 'dist/web'), errors = [], external = [], chec
 let takingScreenshot = false;
 const server = createServer(async (req, res) => {
   const name = new URL(req.url, 'http://local').pathname.slice(1);
+  if(name==='api/site-status'){res.writeHead(200,{'Content-Type':'application/json'});res.end(JSON.stringify({banner:null}));return;}
   if (req.method !== 'GET' || !/^[\w./-]+$/.test(name) || name.split('/').includes('..')) { res.writeHead(404); res.end(); return; }
   try {
     const bytes = await fs.readFile(path.join(publicRoot, name));
@@ -92,7 +93,7 @@ try {
       timestampDiscontinuities:data.discontinuities,peak,tail,stereoDifference,
       capturedHash,effectTrace,referenceHash:await sha256(reference),wav:btoa(binary)};
   });
-  assert.equal(reference.maximum,0); assert.equal(reference.rms,0); assert.equal(reference.first,0);
+  assert.equal(reference.maximum,0); assert.equal(reference.rms,0); assert.equal(reference.first,256);
   assert.equal(reference.capturedHash,reference.referenceHash);
   validateMixAutomation(reference.effectTrace,{wav_sha256:reference.capturedHash,sample_rate:48000,observed_context_start_frame:reference.first});
   for(const target of ['a','b','c','rack']) {
@@ -100,7 +101,7 @@ try {
     assert.ok(reference.effectTrace.events.some(e=>e.kind==='clear_echo' && e.target===target && e.spacing_ms===100));
   }
   checks.push('actual A/B/C/rack effect schedules and echo buffer resets captured in versioned WAV-linked trace');
-  assert.ok(reference.frames>=36000 && reference.frames<=48000);
+  assert.ok(reference.frames+reference.first>=36000 && reference.frames+reference.first<=48000);
   assert.ok(reference.peak>.8 && reference.peak<1 && reference.tail===0 && reference.stereoDifference>.01);
   await fs.writeFile(path.join(output,'post-limiter-reference.wav'),Buffer.from(reference.wav,'base64')); delete reference.wav;
   checks.push('actual four-channel mixer tap matches destination PCM exactly, preserves stereo, includes limiter/FX/faders and mutes');

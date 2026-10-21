@@ -41,6 +41,7 @@ export function attachDeck(deck, other, { pause, start, mixer, context }) {
   const error = message => { $(`error-${id}`).textContent = message; };
   const seek = position => { if (deck.url && Number.isFinite(position)) audio.currentTime = Math.max(0, Math.min(deck.duration, position)); };
   const rate = value => {
+    if(audio.buffer){audio.playbackRate=value;$(`rate-${id}`).value=value;$(`rate-value-${id}`).textContent=`${((value-1)*100).toFixed(1)}%`;return;}
     // shortcut: pitch changes briefly pause audio; use shared-frame transport for continuous pitch.
     $(`rate-${id}`).value = value;
     $(`rate-value-${id}`).textContent = `${value >= 1 ? '+' : ''}${((value - 1) * 100).toFixed(1)}%`;
@@ -77,8 +78,12 @@ export function attachDeck(deck, other, { pause, start, mixer, context }) {
   };
   deck.applyEQ = () => { for (let i = 0; i < 3; i++) eq(i); };
   deck.transportControls = ready => {
+    const bpm=Number($(`bpm-${id}`).value),speed=audio.playbackRate;
+    $(`rate-value-${id}`).textContent=`${speed>=1?'+':''}${((speed-1)*100).toFixed(1)}%${bpm>=40&&bpm<=240?' · '+(bpm*speed).toFixed(1)+' BPM':''}`;
     for (const prefix of ['rate', 'rate-reset', 'cue', 'set-cue', 'loop', 'bpm', 'tap', 'match', 'keylock']) $(`${prefix}-${id}`).disabled = !ready;
-    $(`keylock-${id}`).disabled ||= !('preservesPitch' in audio);
+    for(const name of ['beat-loop','loop-exit','jump-back','jump-forward','align','loop-beats'])$(`${name}-${id}`).disabled=!ready||!audio.buffer;
+    if(audio.buffer)$(`keylock-${id}`).checked=false;
+    $(`keylock-${id}`).disabled ||= !!audio.buffer || !('preservesPitch' in audio);
     for (let i = 0; i < 3; i++) $(`eq-${id}-${i}`).disabled = !ready;
     for (let i = 0; i < 4; i++) $(`hot-${id}-${i}`).disabled = !ready;
     jog.setAttribute('aria-disabled', String(!ready));
@@ -91,12 +96,17 @@ export function attachDeck(deck, other, { pause, start, mixer, context }) {
   $(`keylock-${id}`).onchange = event => { audio.preservesPitch = event.target.checked; };
   $(`set-cue-${id}`).onclick = () => { cue = audio.currentTime; $(`cue-${id}`).title = `Return to ${cue.toFixed(1)} seconds`; };
   $(`cue-${id}`).onclick = () => { pause(deck); seek(cue); };
-  $(`loop-${id}`).onclick = event => { deck.loop = !deck.loop; event.currentTarget.setAttribute('aria-pressed', String(deck.loop)); };
+  $(`loop-${id}`).onclick = event => { deck.loop = !deck.loop; event.currentTarget.setAttribute('aria-pressed', String(deck.loop));if(audio.buffer){audio.exitLoop();audio.loop=deck.loop;} };
   // shortcut: ended-event repeat can gap; use shared-frame transport for beat loops.
   // Native WebKit loop playback stalled after rapid rate/loop changes in testing.
   audio.addEventListener('ended', () => {
     if (deck.loop && deck.playRequested && deck.url && !deck.loading) { pause(deck); start(deck); }
   });
+  const bpm=()=>{const value=Number($(`bpm-${id}`).value);if(value<40||value>240)throw Error('Enter the track BPM first.');return value;};
+  $(`beat-loop-${id}`).onclick=()=>{try{audio.beatLoop(Number($(`loop-beats-${id}`).value),bpm());error('');}catch(e){error(e.message);}};
+  $(`loop-exit-${id}`).onclick=()=>audio.exitLoop();
+  for(const [name,beats] of [['jump-back',-4],['jump-forward',4]])$(`${name}-${id}`).onclick=()=>{try{seek(audio.currentTime+beats*60/bpm());}catch(e){error(e.message);}};
+  $(`align-${id}`).onclick=()=>{try{const beat=60/bpm(),otherBeat=60/Number($(`bpm-${other.id}`).value);if(!other.audio.buffer||!Number.isFinite(otherBeat))throw Error('Load both course tracks first.');seek(Math.floor(audio.currentTime/beat)*beat+(other.audio.currentTime/otherBeat%1)*beat);}catch(e){error(e.message);}};
   $(`tap-${id}`).onclick = () => {
     const now = performance.now();
     if (taps.length && now - taps.at(-1) > 1500) taps = [];

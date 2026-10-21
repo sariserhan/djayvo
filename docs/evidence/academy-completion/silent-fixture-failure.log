@@ -1,0 +1,20 @@
+
+> jamloom-site@0.1.0 test:academy-browser
+> node --import tsx tests/academy-browser.mjs
+
+Testing chromium
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: beginner-mini-set/record-set: The output is silent. Check Play, channel levels and Master.
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-browser.mjs:127:13 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'Record 2 minutes with at least 3 A/B transitions. Finish the set, then check.',
+  expected: /Free Jam/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

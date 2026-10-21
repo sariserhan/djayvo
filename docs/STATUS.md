@@ -1,6 +1,16 @@
 # Jamloom implementation checkpoint
 
-## Latest: Owner administration — 2026-10-21
+## Latest: Academy completion work — 2026-10-21
+
+[Course expansion](academy-completion.md): 20 runnable lessons across all six
+stages, shared-clock course playback, beat loops/jumps, live instrument layering,
+long private recordings and server-evaluated assessments are implemented. The
+longer test exposed and now fixes silent tails in the teaching exports; originals
+are retained. **PASS:** local browser/control/offline checks, 96 web + 12 Academy/database + 31 site tests, build/typecheck and two real mini-set recordings. Overall release remains **PARTIAL**. Independent
+novices, physical/extended endurance, provider sandbox and release remain open.
+Sales stay closed; generative musical-quality FAIL is unchanged.
+
+## Previous: Owner administration — 2026-10-21
 
 [Implementation and gates](admin-implementation.md): local code/tests **PASS**;
 activation **PARTIAL** pending migration 0011 and deployment. Owner account is
@@ -11,7 +21,7 @@ Owner credit exemption retains cost ceilings. No live sales, deployment or cloud
 spending was performed; prior musical-quality **FAIL** is unchanged.
 
 
-## Latest: DJ Academy — 2026-10-21
+## Previous: DJ Academy — 2026-10-21
 
 Implementation/evidence: `0162db9` (local commit; not pushed or deployed).
 

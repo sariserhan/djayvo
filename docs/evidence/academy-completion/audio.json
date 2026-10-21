@@ -1,0 +1,66 @@
+{
+  "version": 2,
+  "tracks": [
+    {
+      "id": "extended",
+      "title": "Extended",
+      "artist": "Tricks & Traps",
+      "url": "/academy-audio/extended-v2.mp3",
+      "sha256": "6d68a252436e16cf4b86d745e43f9564198d68ee6fe10f1a4368b235864a3c78",
+      "bytes": 1537388,
+      "source_url": "https://opengameart.org/sites/default/files/5_extended.wav",
+      "source_sha256": "e71d83f5dba0187618354847fb86ae0f497d1016d1c7ac566a96b5325b75c5e1",
+      "source_page": "https://opengameart.org/content/free-rhythm-game-music-pack-2",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "modifications": "32\u201396 second excerpt, timestamps reset before loudness normalization, 15 ms edge fades, stereo MP3",
+      "bpm": 120,
+      "tempo_basis": "Author metadata; absolute downbeat and key not independently verified",
+      "seconds": 64,
+      "measurements": {
+        "input_i": "-17.81",
+        "input_tp": "-6.30",
+        "input_lra": "2.60",
+        "input_thresh": "-27.83",
+        "output_i": "-17.93",
+        "output_tp": "-5.79",
+        "output_lra": "2.10",
+        "output_thresh": "-27.95",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.07"
+      },
+      "listening": "NOT RUN"
+    },
+    {
+      "id": "theories",
+      "title": "Theories of Everything",
+      "artist": "Tricks & Traps",
+      "url": "/academy-audio/theories-v2.mp3",
+      "sha256": "661938922885b5114d78cc5a6070010924f1ae832e6b6ad2a0ad6d28f9198203",
+      "bytes": 1537388,
+      "source_url": "https://opengameart.org/sites/default/files/7_t.o.e.wav",
+      "source_sha256": "8c4033f4a17de2a19ccdd25e0c2bd95e885912592f2324c474c7384c83cb9b83",
+      "source_page": "https://opengameart.org/content/free-rhythm-game-music-pack-2",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "modifications": "32\u201396 second excerpt, timestamps reset before loudness normalization, 15 ms edge fades, stereo MP3",
+      "bpm": 120,
+      "tempo_basis": "Author metadata; absolute downbeat and key not independently verified",
+      "seconds": 64,
+      "measurements": {
+        "input_i": "-18.34",
+        "input_tp": "-9.23",
+        "input_lra": "1.30",
+        "input_thresh": "-28.34",
+        "output_i": "-17.96",
+        "output_tp": "-8.94",
+        "output_lra": "1.20",
+        "output_thresh": "-27.96",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.04"
+      },
+      "listening": "NOT RUN"
+    }
+  ],
+  "rights": "Artist upload explicitly CC0, verified 2026-10-21. Course suitability listening and commercial legal review remain open."
+}

@@ -4,7 +4,7 @@ import { attachMidi } from './midi.js';
 import { resumeAudio } from './audio.js';
 import { attachInstrumentTake } from './instrument-take.js';
 const $ = id => document.getElementById(id);
-export function attachKeyboard({ graph, context, mixer, levels, masterControls, getPhrase, onSourcesChanged = () => {} }) {
+export function attachKeyboard({ graph, context, mixer, levels, masterControls, getPhrase, onSourcesChanged = () => {}, onNote = () => {} }) {
   let node, loading = false, nextId = 1, root = 60;
   const held = new Map(), deferred = new Map(), pedals = new Set(), keys = new Map(), pads = new Map();
   const letters = 'awsedftgyhujk';
@@ -43,7 +43,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
       if (context().state !== 'running') await resumeAudio(context());
       if (held.get(token) !== note) return;
       if (context().state !== 'running') throw new Error('Audio is suspended. Tap a key to retry.');
-      send({ type: 'note', id: note.id, patch, pitch, velocity });
+      send({ type: 'note', id: note.id, patch, pitch, velocity });onNote();
     } catch (error) { if (held.get(token) === note) { release(token); status(error.message); } }
   }
   function bind(button, pitch, patch) {

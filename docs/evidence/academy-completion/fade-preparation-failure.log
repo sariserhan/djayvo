@@ -1,0 +1,34 @@
+
+> jamloom-site@0.1.0 test:academy-browser
+> node --import tsx tests/academy-browser.mjs
+
+Testing chromium
+chromium count-the-beat
+chromium cue-and-return
+chromium beginner-transition
+chromium beginner-mini-set
+chromium tempo-and-phase
+chromium bass-swap
+chromium elementary-assessment
+chromium loops-and-jumps
+chromium tone-and-echo
+chromium intermediate-set
+chromium recover-a-cue
+chromium advanced-set
+chromium performance-set
+chromium phrase-lengths
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: phrase-lengths/sixteen: Keep both decks playing throughout the fade.
+    at file:///Users/serhansari/Documents/projects/djayvo/apps/site/tests/academy-browser.mjs:129:13 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'With both tracks at 120 BPM, fade A → B over 16 beats (eight seconds).',
+  expected: /Free Jam/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

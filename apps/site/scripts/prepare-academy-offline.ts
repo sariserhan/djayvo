@@ -9,7 +9,8 @@ await writeFile(join(target,'index.html'),html);
 const assets:Record<string,{bytes:number;sha256:string}>={};
 async function add(file:string,key:string){const bytes=await readFile(file);if(bytes.length>16*1024*1024)throw Error('Offline asset too large');assets[key]={bytes:bytes.length,sha256:hash(bytes)};}
 async function tree(folder:string,prefix:string){for(const name of await readdir(folder)){const file=join(folder,name);if((await stat(file)).isDirectory())await tree(file,prefix+name+'/');else if(name!=='service-worker.js')await add(file,prefix+name);}}
-await tree('public/studio','../studio/');await tree('public/academy-audio','../academy-audio/');
+await tree('public/studio','../studio/');
+for(const name of ['manifest.json','CREDITS.txt',...tracks.map((track:{url:string})=>{if(!/^\/academy-audio\/[a-z0-9-]+\.mp3$/.test(track.url))throw Error('Invalid course asset path');return track.url.split('/').at(-1)!;})])await add('public/academy-audio/'+name,'../academy-audio/'+name);
 for(const name of ['index.html','lesson.json'])await add(join(target,name),name);
 const total=Object.values(assets).reduce((n,a)=>n+a.bytes,0);if(total>64*1024*1024)throw Error('Academy offline package exceeds 64 MiB');
 const template=(await readFile('../../scripts/service-worker.js','utf8')).replaceAll('djayvo-studio:','jamloom-academy:');

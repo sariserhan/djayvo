@@ -6,6 +6,7 @@ class JamloomMixRecording extends AudioWorkletProcessor {
     if (!Number.isInteger(sampleRate) || sampleRate < 32000 || sampleRate > 192000) throw new Error('Unsupported recording rate');
     // Allocate once at explicit capture creation, never inside process().
     this.pcm = new Float32Array(sampleRate * TAKE_SECONDS * 2);
+    this.armed=false;this.warmNext=-1;this.warmCount=0;
     this.frames = 0; this.first = -1; this.next = -1; this.discontinuities = 0; this.done = false;
     this.port.onmessage = ({ data }) => {
       if (this.done || !['stop', 'cancel'].includes(data?.type)) return;
@@ -16,12 +17,17 @@ class JamloomMixRecording extends AudioWorkletProcessor {
       this.pcm = null;
       if (data.type === 'cancel') this.port.postMessage({ type: 'cancelled' });
     };
-    this.port.postMessage({ type: 'started' });
   }
   process(inputs, outputs) {
     if (this.done) return false;
     const frames = outputs[0][0].length, count = Math.min(frames, this.pcm.length / 2 - this.frames);
     if (!count) return true;
+    if(!this.armed){
+      if(!inputs[0][0])return true;
+      this.warmCount=currentFrame===this.warmNext?this.warmCount+1:0;this.warmNext=currentFrame+frames;
+      if(this.warmCount<2)return true;
+      this.armed=true;this.port.postMessage({type:'started'});
+    }
     if (this.first < 0) this.first = currentFrame;
     if (this.next >= 0 && currentFrame !== this.next) this.discontinuities++;
     this.next = currentFrame + frames;
