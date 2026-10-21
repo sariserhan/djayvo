@@ -9,7 +9,7 @@ export async function attachAcademy({bridge,load,assets}){
  const data=await response.json();if(!response.ok)throw new Error(data.error);
  const {tracks}=data,lesson=validateLesson(data.lesson),run=new LessonRun(lesson),storage='jamloom-academy-v1';
  let failures=0,attempt=null,sync=false,demo=false,ready=false,feedback='',narration=false,disposed=false;
- const panel=document.createElement('section');panel.className='academy-coach';panel.setAttribute('aria-label','DJ Academy coach');
+ const panel=document.createElement('section');panel.className='academy-coach';panel.id='academy-coach';panel.setAttribute('aria-label','DJ Academy coach');
  panel.innerHTML='<nav><a href="/academy/learn">← Academy</a><span id="academy-stage"></span><a href="/academy/practice">Practice studio</a><a href="/academy-offline/index.html">Prepare free lesson offline</a></nav><h2 id="academy-objective"></h2><p id="academy-feedback" class="academy-feedback" role="status" aria-live="polite"></p><div class="academy-actions"><button id="academy-load">Load the two practice tracks</button><button id="academy-check" hidden>Check my task</button><button id="academy-next" hidden>Continue when ready</button><button id="academy-retry" hidden>Try again</button><button id="academy-show" hidden>Show me an eight-beat fade</button><button id="academy-pause" hidden>Pause coaching</button><button id="academy-focus" hidden>Find the control</button><button id="academy-sound" aria-pressed="false">Spoken hints: off</button></div><details><summary>Why this works / controls</summary><p id="academy-why"></p><p>Tab to a control. Arrow keys adjust sliders; Shift is not needed. The highlighted control uses the same mixer as ordinary DJ practice. Start with a low speaker volume. No headphones or controller required.</p></details><details><summary>Completion checklist</summary><ol id="academy-checklist"></ol></details><p id="academy-save" class="muted"></p><p class="muted">Practice music: Tricks &amp; Traps · CC0 · <a href="/academy-audio/CREDITS.txt">Credits and edits</a>. No Jamloom AI generations. Musical suitability and novice learning are still under review.</p>';
  document.querySelector('main').prepend(panel);const $=id=>panel.querySelector('#academy-'+id);
  const rights=document.getElementById('music-rights'),consent=rights.closest('label');
@@ -56,5 +56,5 @@ export async function attachAcademy({bridge,load,assets}){
   }catch{feedback='Demonstration interrupted. You can still use the decks.';}finally{demo=false;run.state='available';run.begin();feedback='Your turn. Both decks can keep playing; fade from A to B over eight beats.';if(!disposed)paint();}};
  window.addEventListener('pagehide',()=>{disposed=true;unsubscribe();window.speechSynthesis?.cancel();document.title=originalTitle;},{once:true});
  feedback='Two included tracks are ready for you. Start with your speakers at a comfortable volume.';
- paint();
+ paint();document.getElementById('dj').dispatchEvent(new Event('studio:coaching-ready'));
 }

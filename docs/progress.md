@@ -1767,3 +1767,21 @@ recorder-clock and musical-quality gaps remain. [Evidence](deck-presentation.md)
 Full DJ regression also PASS in Chromium/WebKit, including synthetic MIDI,
 disconnected playback and hash-verified recorded PCM; physical controller and
 venue certification remain NOT RUN.
+
+
+## Adaptive fullscreen studio — 2026-10-21
+
+**PASS:** Native fullscreen entry/exit in Chromium and WebKit; actual media
+continues playing. Wide screens place existing C beside A/B, compact laptop
+controls fit the tested 1366×768 viewport, and phones retain scrollable controls.
+Coaching can fold after preparation and returns on exit. Denied/missing fullscreen
+uses an explicit expanded-page fallback; Escape/focus and lesson state checks pass.
+Build, 78 unit tests and the public/offline bundle audit pass.
+**NOT RUN:** Physical monitor changes, touch-device/native OS Escape validation,
+manual screen readers and deployment. No new audio deck or paid service.
+[Reproducible evidence and layout limits](studio-fullscreen.md).
+
+Existing DJ regression: **PASS**, 48 checks in each browser including offline
+instrument/mix capture. An initial WebKit start-state assertion failed during the
+parallel run, then passed on rerun without audio-engine/assertion changes; its
+cause remains unconfirmed and evidence is retained.

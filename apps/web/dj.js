@@ -1,3 +1,4 @@
+import { attachStudioView } from './studio-view.js';
 import { createMixer, updateMixer, setMixerGain, validateTrack, trackDuration, updateToneEcho, clearEcho } from './mixer.js';
 import { attachDeck, playMedia } from './deck-controls.js';
 import { attachKeyboard } from './keyboard.js';
@@ -8,6 +9,7 @@ import { loadSessions, loadSession, verifySession } from './library.js';
 import { deckBridge } from './deck-bridge.js';
 
 const $ = id => document.getElementById(id);
+attachStudioView($('dj'), $('studio-fullscreen'), $('studio-view-status'));
 const rights = $('music-rights');
 const decks = ['a', 'b'].map(id => ({ id, audio: $(`audio-${id}`), url: null, duration: 0, loading: null, revision: 0, starting: false }));
 let context, mixer, meterData, audioFailure, session;

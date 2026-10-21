@@ -7,6 +7,8 @@ Implementation/evidence: `0162db9` (local commit; not pushed or deployed).
 Latest presentation update: [physical deck layout](deck-presentation.md), shared
 by Academy and the ordinary DJ workspace. Real controls retained; owner visual
 review and physical touch testing remain NOT RUN.
+[Adaptive fullscreen](studio-fullscreen.md) now keeps the same audio controls and
+places existing C beside A/B on wide screens; native browser checks pass.
 
 **Overall PARTIAL; public release NOT RUN.** Fifth feature added while preserving
 the four existing features. Two runnable real-deck exercises (free first crossfade
