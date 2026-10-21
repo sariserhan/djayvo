@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "routes": [
+    {
+      "route": "/",
+      "http": 200,
+      "brand_present": true
+    },
+    {
+      "route": "/improvise",
+      "http": 200,
+      "brand_present": true
+    },
+    {
+      "route": "/dj-studio",
+      "http": 200,
+      "brand_present": true
+    },
+    {
+      "route": "/live-dj",
+      "http": 200,
+      "brand_present": true
+    },
+    {
+      "route": "/music-dna",
+      "http": 200,
+      "brand_present": true
+    },
+    {
+      "route": "/account/credits",
+      "http": 200,
+      "brand_present": true
+    }
+  ],
+  "boundary": "Local production build HTTP smoke after server restart; browser interaction tests are recorded separately."
+}

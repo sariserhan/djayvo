@@ -1,0 +1,63 @@
+TAP version 13
+# Subtest: durable local queue: one claim, lease loss, cancellation, crash recovery, funded immutable work
+ok 1 - durable local queue: one claim, lease loss, cancellation, crash recovery, funded immutable work
+  ---
+  duration_ms: 2384.790375
+  type: 'test'
+  ...
+# Subtest: durable watchdog: lost create/delete responses, restart, cancellation, identity/cost holds and settlement recovery
+ok 2 - durable watchdog: lost create/delete responses, restart, cancellation, identity/cost holds and settlement recovery
+  ---
+  duration_ms: 2175.412917
+  type: 'test'
+  ...
+# Subtest: Vast adapter verifies account, traverses complete inventory, limits returned fields and confirms delete response
+ok 3 - Vast adapter verifies account, traverses complete inventory, limits returned fields and confirms delete response
+  ---
+  duration_ms: 320.487167
+  type: 'test'
+  ...
+# Subtest: invalid, incomplete, changing or cyclic inventory is never interpreted as absence
+ok 4 - invalid, incomplete, changing or cyclic inventory is never interpreted as absence
+  ---
+  duration_ms: 104.450125
+  type: 'test'
+  ...
+# Subtest: provider failures, body size and error text cannot leak secrets or prove destruction
+ok 5 - provider failures, body size and error text cannot leak secrets or prove destruction
+  ---
+  duration_ms: 8.433833
+  type: 'test'
+  ...
+# Subtest: real Postgres ledger: conservation, concurrency, receipts, tenant isolation and costs
+not ok 6 - real Postgres ledger: conservation, concurrency, receipts, tenant isolation and costs
+  ---
+  duration_ms: 2472.452458
+  type: 'test'
+  location: '/Users/serhansari/Documents/projects/djayvo/apps/site/tests/wallet.test.ts:1:297'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+
+    9 !== 8
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 8
+  actual: 9
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/serhansari/Documents/projects/djayvo/apps/site/tests/wallet.test.ts:16:10)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 5
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2975.371042

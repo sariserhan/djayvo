@@ -13,7 +13,7 @@ test('real Postgres ledger: conservation, concurrency, receipts, tenant isolatio
  await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
  const pool=createPool(url.toString()),wallet=new Wallet(pool);
  try{
-  assert.equal((await migrate(pool)).length,8);assert.deepEqual(await migrate(pool),[]);
+  assert.equal((await migrate(pool)).length,9);assert.deepEqual(await migrate(pool),[]);
   for(const id of ['alice','bob','carol'])await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[id,id+'@example.test']);
   await t.test('receipt replay grants exactly once and cannot move between accounts',async()=>{
    const p={provider:'stripe_test' as const,receipt:'cs_test_alice',credits:10,netMicros:4_000_000};
@@ -63,12 +63,15 @@ test('real Postgres ledger: conservation, concurrency, receipts, tenant isolatio
   });
   await t.test('taste profiles are owner-scoped with optimistic concurrency and deletion',async()=>{
    const tastes=new TasteStore(pool);assert.equal(await tastes.load('alice'),null);
-   assert.equal(await tastes.save('alice',emptyTaste,0),1);assert.equal(await tastes.load('bob'),null);
-   const edits=await Promise.allSettled([tastes.save('alice',{...emptyTaste,tempo:120},1),tastes.save('alice',{...emptyTaste,tempo:90},1)]);
-   assert.equal(edits.filter(r=>r.status==='fulfilled').length,1);assert.equal((await tastes.load('alice')).revision,2);
-   await assert.rejects(tastes.remove('bob',2),/changed/);await assert.rejects(tastes.remove('alice',1),/changed/);
-   await tastes.remove('alice',2);assert.equal(await tastes.load('alice'),null);
-   assert.equal(await tastes.save('alice',emptyTaste,0),3);await assert.rejects(tastes.save('alice',emptyTaste,1),/changed/);
+   const first=await tastes.save('alice',emptyTaste,0);assert.equal(await tastes.load('bob'),null);
+   const edits=await Promise.allSettled([tastes.save('alice',{...emptyTaste,tempo:120},first),tastes.save('alice',{...emptyTaste,tempo:90},first)]);
+   const winners=edits.filter(r=>r.status==='fulfilled');assert.equal(winners.length,1);
+   const revision=(await tastes.load('alice')).revision;assert.equal(revision,winners[0].value);assert.ok(revision>first);
+   await assert.rejects(tastes.remove('bob',revision),/changed/);await assert.rejects(tastes.remove('alice',first),/changed/);
+   await tastes.remove('alice',revision);assert.equal(await tastes.load('alice'),null);
+   // A concurrent rejected update may consume a sequence value; only monotonicity is promised.
+   assert.ok(await tastes.save('alice',emptyTaste,0)>revision);
+   await assert.rejects(tastes.save('alice',emptyTaste,revision),/changed/);
    assert.equal(await wallet.accountToken('carol'),await wallet.accountToken('carol'));
   });
  }finally{await pool.end();await admin.query(`DROP DATABASE "${name}" WITH (FORCE)`);await admin.end();}

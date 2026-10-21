@@ -15,7 +15,7 @@ owner-supplied specification remains at
 | Live Source | `app/live-dj/`, `lib/live-source.ts` | Permissioned browser capture, measured peak, real tone/echo/level/bypass, mute-first monitoring, panic/track cleanup. No recording/upload, native loopback or external app transport control. |
 | Music DNA | `app/music-dna/`, `lib/taste*.ts`, `app/api/taste/`, migration 0007 | Validated explicit preferences, three planning directions, local save/delete and optional private account copy. Monotonic revisions prevent stale-tab overwrite, including delete/recreate. No invented audio analysis from titles; no taste-to-song engine claimed. |
 | Web finances | `lib/economics.ts`, `lib/wallet.ts`, migration 0006, `lib/stripe-payments.ts`, `app/api/payments/` | Nonexpiring purchase lots, append-only integer ledger, receipt identity, conservative reservations/settlement, duplicate/race guards, dispute freezes including refund-before-grant, official Stripe signatures. Public Checkout stays closed. |
-| Job control | `lib/generation-budget.ts`, `lib/generation-queue.ts`, migration 0008 | Atomic reservation + source/plan binding, signed permits, one active job per user/one global allocation, leases, cancellation, lost-lease shutdown state, no automatic re-rental, recoverable settlement. Real local-process time cap tested. Vast termination adapter remains unfinished. |
+| Job control | `lib/generation-budget.ts`, `lib/generation-queue.ts`, migrations 0008–0009, `lib/generation-watchdog.ts`, `lib/vast-provider.ts` | Atomic reservation + source/plan binding, signed permits, one active job per user/one global allocation, leases, cancellation, lost-lease shutdown state, no automatic re-rental, recoverable settlement. Real local-process time cap tested. Vast shutdown adapter and durable watchdog now tested with mocked provider responses; no real provider execution. |
 | Private account | `app/account/{credits,purchases,generations}/` | Verified-owner wallet/purchase/reservation views and safe unconfigured states. |
 | iOS | `MusicDNA.swift`, `CreditPurchases.swift`, `JamloomApp.swift`, `TasteTests.swift` | Two-experience tab shell, local preference storage/validation, StoreKit consumable verification and backend-ack-before-finish boundary. Purchases disabled; account bridge/notifications unfinished. Leaving remix tab suspends audio/cancels rendering. |
 | Discovery | `robots.ts`, `sitemap.ts`, `opengraph-image.tsx`, `learn/` | www canonicals, public-only sitemap, metadata/OG, truthful organization/local web-app schema, guide breadcrumbs, crawlable JS-disabled marketing pages. Private routes remain noindex. |
@@ -34,9 +34,9 @@ Evidence folder: [`evidence/full-product/`](evidence/full-product/).
 |---|---|---|
 | Existing web unit baseline | PASS | `web-baseline.log`: 73/73. |
 | Fresh C++ build/tests | PASS | `core-build.log`, `core-baseline.log`: 15/15, 30.33 seconds. Shared DSP unchanged. |
-| Account/audio/payment/economics/queue tests | PASS | `all-tests.log`: 60 tests, 0 failures, 0 skipped. Real disposable local Postgres; SDK verification fixtures are not provider purchases. |
-| Full npm production build | PASS | `npm-build.log`: `npm run build`, studio preparation + Next build, exit 0. |
-| TypeScript | PASS | `typecheck.log`: `tsc --noEmit`, exit 0 after fixing the new smoke test's process types. |
+| Account/audio/payment/economics/queue tests | PASS | `all-tests-watchdog.log`: 64 tests, 0 failures, 0 skipped. Real disposable local Postgres; SDK verification fixtures are not provider purchases. |
+| Full npm production build | PASS | `npm-build-watchdog.log`: `npm run build`, studio preparation + Next build, exit 0. |
+| TypeScript | PASS | `typecheck-watchdog.log`: `tsc --noEmit`, exit 0 after fixing the new smoke test's process types. |
 | Browser route/interaction | PASS | `browser.json`: Chromium 149.0.7827.55 and WebKit 26.5; 17 public routes, widths 1440/390/320, canonical/indexability, SSR, local preferences, audio decoding, no uncaught page errors. |
 | Live Source signal | PARTIAL | Chromium synthetic permission chooser supplies actual oscillator PCM: mute, low-pass attenuation, bypass and track stop pass. Headless WebKit supplies zero audio tracks and is correctly rejected. Physical selection/output isolation NOT RUN. |
 | DJ control regression | PASS | `dj-chromium.log`, `dj-webkit-rerun.log`: real deck/instrument PCM, effects, automation, recorder, cached offline behavior and cleanup. Browser automation is not venue certification. |
@@ -44,7 +44,7 @@ Evidence folder: [`evidence/full-product/`](evidence/full-product/).
 | Performance/SEO release | PARTIAL | Local unthrottled mobile lab recorded max LCP 68 ms and CLS 0. These are not internet/mobile field CWV or INP. Public crawler/Rich Results/Search Console NOT RUN. |
 | HTTP account/payment boundaries | PASS | `product-http.json`: three real local signup/verification/login flows; private taste CRUD/races, origin/auth/size checks, account views, signed webhook replay/conflict/live rejection, closed checkout. Local mail captured only. |
 | Local worker vertical slice | PASS | `generation-render.json`: signed durable job → real C++ render → validated private disk store → owner playback → ledger settlement. 32-second WAV rendered in 1.086 s; exact frozen-baseline SHA replay. Other owner denied. |
-| Expanded audio baseline | PASS | `audio-baseline.json`: ten inputs; 10 source WAVs + 56 rendered masters/stems = 66 WAVs. Zero full-scale decoded samples. Master LUFS −25.40 to −22.84, highest measured true peak −5.48 dBTP. |
+| Expanded audio baseline | PASS | `audio-baseline.json`: ten inputs; 10 source WAVs + 56 rendered masters/stems = 66 WAVs. Zero full-scale decoded samples in the 56 rendered outputs; original claps source has 87 (see `source-clipping.json`). Master LUFS −25.40 to −22.84, highest measured true peak −5.48 dBTP. |
 | Structural variety | PARTIAL | `audio-variety.json`: no whole-composition hash duplicates, but bass and drum structures repeat across every input sharing a style at the fixed seed; experimental piano repeats across four sources. Exact-structure comparison is not perceptual originality. |
 | iOS local integration | PASS | `ios-final-summary.json`, `ios-final-tests.log`: 12 simulator tests (8 engine/profile + 4 UI), including consent/render/playback/save/relaunch, denial, large text and taste persistence/deletion; 0 failures. Xcode 27.1, iPhone 18 Pro/iOS 27.0 simulator. |
 | Stripe/Apple actual sandbox transactions | NOT RUN | Credentials/products and full mobile account bridge missing. Signed local fixtures do not establish payment collection, refunds, tax, app-store delivery or real proceeds. |
@@ -83,6 +83,18 @@ Do not promote another rule edit until actual listeners prefer it. An authorized
 musician-authored control/decision trace is still missing; the agent has not
 claimed to hear reference MP3s merely by inspecting their waveforms.
 
+## Worker safety follow-up
+
+[Durable rental watchdog](generation-watchdog.md) adds migration 0009, ownership-bound
+creation intent, complete paginated Vast inventory/account verification, separate
+delete request/absence confirmation, and final cost-evidence checks. Lost creation
+responses never trigger another rental; unknown state holds credits. Over-cap
+settlement remains blocked. The default CLI is preview-only and contacted no provider.
+64 site/DB tests and the full root build pass. Initial failures were a stale expected
+migration count and a taste-profile test incorrectly assuming gapless sequence
+values; fixed assertions preserve the one-writer/monotonic/stale-write requirements.
+Failed logs are retained. No live Vast operation or watchdog deployment occurred.
+
 ## Economics and limitations
 
 Amounts are integer USD microdollars. Lot valuation is actual per-purchase data
@@ -99,8 +111,8 @@ cost or evidence that proposed retail packs are profitable.
 
 Remaining financial implementation: actual fee/tax/FX/proceeds ingestion,
 refund/chargeback entitlement reversal and policy, signed Apple notifications,
-mobile account binding, provider termination confirmation, stale-job watchdog
-service and complete R2 output/retry reconciliation. Frozen disputed balances
+mobile account binding, real provider termination/invoice verification, deployment
+of the locally tested watchdog and complete R2 output/retry reconciliation. Frozen disputed balances
 require operator reconciliation. No public API currently starts a paid job.
 
 ## Reproduction and failures found
@@ -157,8 +169,8 @@ were preserved; only three source-file references were added to the project.
 ## Resume order
 
 1. Resolve the musical-composition experiment above; retain negative judgments.
-2. Finish a production-shaped worker adapter/watchdog with mocked provider
-   shutdown/invoice responses first, then approved real Vast/R2 verification.
+2. Integrate approved rental creation and authoritative cost ingestion with the
+   tested shutdown watchdog, then approved real Vast/R2 verification.
 3. Finish native account/session sync and signed purchase-notification/refund
    reconciliation; run real Stripe/Apple sandbox flows when configured.
 4. Implement the macOS capture companion with output exclusion/pairing, then

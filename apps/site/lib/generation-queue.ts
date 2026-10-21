@@ -53,6 +53,9 @@ export class GenerationQueue {
    const job=(await db.query(`SELECT j.*,r.cost_cap_micros FROM generation_jobs j JOIN generation_reservations r ON r.id=j.reservation_id
     WHERE j.reservation_id=$1 AND j.lease_token=$2 FOR UPDATE OF j`,[id,token])).rows[0];
    if(!job)throw new Error('Invalid worker lease');
+   const rental=(await db.query('SELECT * FROM generation_rentals WHERE reservation_id=$1',[id])).rows[0];
+   if(rental&&(!rental.destroy_confirmed_at||rental.final_cost_micros===null||Number(rental.final_cost_micros)!==actual))
+    throw new Error('Provider shutdown and cost evidence required');
    if(job.stop_confirmed_at){
     if(job.state!==status||Number(job.actual_cost_micros)!==actual||job.output_sha256!==(outputSha??null))throw new Error('Result conflict');
    }else{

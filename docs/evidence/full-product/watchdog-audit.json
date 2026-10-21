@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "staged_files": 25,
+  "configured_secret_matches": 0,
+  "master_and_learning_addendum_unchanged": true,
+  "private_recordings_staged": false,
+  "previous_checkpoint": "efa13be3c4b1ba73a86bbd116353088ad4246c54"
+}

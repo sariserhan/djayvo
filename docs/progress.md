@@ -1,3 +1,15 @@
+# Full-product watchdog follow-up — 2026-10-21
+
+**PARTIAL:** Durable rental/account identity and guarded Vast shutdown watchdog are
+implemented. **PASS:** 64/64 site/local-DB tests, TypeScript and root production build.
+**NOT RUN:** real provider calls/deployment/invoice ingestion. No money spent.
+Bound rentals require provider absence and cost evidence before credit settlement;
+unknown creation, conflicts, provider outages and over-cap costs remain held.
+The ten-source audit preserves 87 full-scale samples in the original claps input;
+zero full-scale samples applies to rendered outputs, not all originals.
+[Details](generation-watchdog.md), [implementation report](full-product-implementation.md).
+Earlier checkpoint: `efa13be3c4b1ba73a86bbd116353088ad4246c54`.
+
 # Jamloom: M0 continuation evidence
 
 Current full-product directive — 2026-10-20/21: **overall PARTIAL; paid release FAIL / closed.**

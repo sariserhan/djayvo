@@ -1,0 +1,57 @@
+{
+  "audit": "PASS",
+  "source_quality": "PARTIAL",
+  "method": "Count original PCM16 values exactly -32768 or 32767; sources preserved unchanged. Rendered-output measurements are separate.",
+  "sources": [
+    {
+      "input": "commons-claps",
+      "sha256": "f2f17c1ee7d272806548f4d4d0b53524312cc9fd97a4bf2273e66d640b30caf1",
+      "full_scale_samples": 87
+    },
+    {
+      "input": "commons-laughter",
+      "sha256": "23fef28e98c10cd2c6704b53de1b35a3087622d7007a74db2685e90c1a8b793c",
+      "full_scale_samples": 0
+    },
+    {
+      "input": "ls-1988-147956-0018",
+      "sha256": "ebb2e7c8202c076a4fe971eb479060c10279c2284eab4454b5548cf2b54a48b6",
+      "full_scale_samples": 0
+    },
+    {
+      "input": "ls-2035-147960-0013",
+      "sha256": "34f8bd54fce8acc9047e742f4246451e23ccfad02057042b6ebf78033d09052a",
+      "full_scale_samples": 0
+    },
+    {
+      "input": "ls-2086-149220-0047",
+      "sha256": "3f0f6fc7e6b89bbef1a49a3296dc652f3a21c9a99112409a883c69a3549040e6",
+      "full_scale_samples": 0
+    },
+    {
+      "input": "ls-2277-149896-0026",
+      "sha256": "8231f9ec1b79bef07f3f2bbd5548c7ab8fff79a1e0bb774eab08507104be2381",
+      "full_scale_samples": 0
+    },
+    {
+      "input": "ls-777-126732-0074",
+      "sha256": "cda3670191027b8924af322ecb0c4641b4bc12161ba85a8f503c9d9357afd2e7",
+      "full_scale_samples": 0
+    },
+    {
+      "input": "ls-7976-110124-0019",
+      "sha256": "2ed043dcd5bd38725e8953450536ab574ac905f2561759735c671c9ec5d810e9",
+      "full_scale_samples": 0
+    },
+    {
+      "input": "ls-84-121123-0012",
+      "sha256": "196ce28738282c266cfc2b878a73fd2962d9f040c7a51bca71d3e321765417b4",
+      "full_scale_samples": 0
+    },
+    {
+      "input": "owner-speech",
+      "sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "full_scale_samples": 0
+    }
+  ]
+}
