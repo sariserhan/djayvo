@@ -39,7 +39,8 @@ emcmake cmake -S . -B build-web -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
 cmake --build build-web --target jamloom_web jamloom_live -j 4
 # Remove only obsolete generated engines when upgrading an existing checkout.
 rm -f dist/web/engine/djayvo_web.mjs dist/web/engine/djayvo_web.wasm dist/web/engine/djayvo_live.wasm
-mkdir -p dist/web/engine dist/web/licenses
+mkdir -p dist/web/engine dist/web/licenses dist/web/practice-audio
+cp apps/web/practice-audio/* dist/web/practice-audio/
 cp apps/web/*.html apps/web/*.css apps/web/*.js apps/web/manifest.webmanifest apps/web/icon.svg apps/web/icon-180.png apps/web/icon-192.png apps/web/icon-512.png dist/web/
 cp build-web/jamloom_web.mjs build-web/jamloom_web.wasm build-web/jamloom_live.wasm dist/web/engine/
 cp assets/licenses/*.txt dist/web/licenses/

@@ -10,6 +10,10 @@ review and physical touch testing remain NOT RUN.
 [Adaptive fullscreen](studio-fullscreen.md) now keeps the same audio controls and
 places existing C beside A/B on wide screens; native browser checks pass.
 
+[Public practice library](practice-library.md): three additional CC0 artist tracks
+now load into the actual decks, including prepared offline use. Browser checks
+pass; human enjoyment and venue review remain NOT RUN.
+
 **Overall PARTIAL; public release NOT RUN.** Fifth feature added while preserving
 the four existing features. Two runnable real-deck exercises (free first crossfade
 and gated gain staging), coaching, voluntary Free Jam, introductory challenge,

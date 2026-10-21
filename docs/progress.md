@@ -1,3 +1,13 @@
+# Public practice library — 2026-10-21
+
+**PASS:** Three downloaded CC0 artist recordings wired into actual A/B decks,
+with source/license credits, checksum validation and consent-safe replacement.
+80 unit tests, production build, Chromium/WebKit playback/accessibility and
+stopped-server offline playback pass. Fullscreen regression passes at nine sizes.
+**NOT RUN:** listener suitability, physical venue and deployment. Original lesson
+tracks, master and AI musical-quality FAIL remain unchanged.
+[Report and reproduction](practice-library.md).
+
 # Full-product watchdog follow-up — 2026-10-21
 
 **PARTIAL:** Durable rental/account identity and guarded Vast shutdown watchdog are

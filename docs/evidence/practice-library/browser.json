@@ -1,0 +1,100 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "played": [
+      {
+        "id": "funked-up",
+        "deck": "a",
+        "duration": 66.272667,
+        "measuredPeak": 0.06302487850189209,
+        "gate": "PASS"
+      },
+      {
+        "id": "wednesday-night",
+        "deck": "b",
+        "duration": 176.64,
+        "measuredPeak": 0.08653563261032104,
+        "gate": "PASS"
+      },
+      {
+        "id": "rhythm-garden",
+        "deck": "a",
+        "duration": 207.158667,
+        "measuredPeak": 0.2723045349121094,
+        "gate": "PASS"
+      }
+    ],
+    "consent": "PASS",
+    "replacementFailureKeepsTrack": "PASS",
+    "revocationDuringFetch": "PASS",
+    "layouts": [
+      {
+        "width": 1920,
+        "gate": "PASS"
+      },
+      {
+        "width": 390,
+        "gate": "PASS"
+      },
+      {
+        "width": 320,
+        "gate": "PASS"
+      }
+    ],
+    "axe": "PASS",
+    "lessonFixturesPreserved": "PASS",
+    "serverStoppedOfflineReloadAndPlayback": "PASS",
+    "cachedTracks": 3,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "played": [
+      {
+        "id": "funked-up",
+        "deck": "a",
+        "duration": 66.312,
+        "measuredPeak": 0.08924561738967896,
+        "gate": "PASS"
+      },
+      {
+        "id": "wednesday-night",
+        "deck": "b",
+        "duration": 176.664,
+        "measuredPeak": 0.07523798942565918,
+        "gate": "PASS"
+      },
+      {
+        "id": "rhythm-garden",
+        "deck": "a",
+        "duration": 207.192,
+        "measuredPeak": 0.20689088106155396,
+        "gate": "PASS"
+      }
+    ],
+    "consent": "PASS",
+    "replacementFailureKeepsTrack": "PASS",
+    "revocationDuringFetch": "PASS",
+    "layouts": [
+      {
+        "width": 1920,
+        "gate": "PASS"
+      },
+      {
+        "width": 390,
+        "gate": "PASS"
+      },
+      {
+        "width": 320,
+        "gate": "PASS"
+      }
+    ],
+    "axe": "PASS",
+    "lessonFixturesPreserved": "PASS",
+    "serverStoppedOfflineReloadAndPlayback": "PASS",
+    "cachedTracks": 3,
+    "errors": []
+  }
+]

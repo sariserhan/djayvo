@@ -6,12 +6,13 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+PRACTICE_ASSETS = {'practice-audio/' + name for name in ('manifest.json', 'CREDITS.txt', 'funked-up.mp3', 'wednesday-night.mp3', 'rhythm-garden.mp3')}
 INSTALL_ASSETS = {'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-192.png', 'icon-512.png'}
 
 
 def worker_source(bundle):
     names = {p.name for pattern in ('*.html', '*.css', '*.js') for p in (ROOT / 'apps/web').glob(pattern)}
-    names |= INSTALL_ASSETS
+    names |= INSTALL_ASSETS | PRACTICE_ASSETS
     names |= {'engine/jamloom_web.mjs', 'engine/jamloom_web.wasm', 'engine/jamloom_live.wasm',
               'licenses/VSCO-2-CE-LICENSE.txt', 'licenses/VCSL-LICENSE.txt',
               'licenses/BLACK-AND-GREEN-GUITARS-CC0.txt', 'licenses/EMSCRIPTEN-LICENSE.txt'}
@@ -24,8 +25,8 @@ def worker_source(bundle):
         if not 0 < len(data) <= 16 * 1024 * 1024:
             raise ValueError('Offline asset exceeds size limits')
         assets[name] = {'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)}
-    if sum(asset['bytes'] for asset in assets.values()) > 32 * 1024 * 1024:
-        raise ValueError('Offline bundle exceeds 32 MiB')
+    if sum(asset['bytes'] for asset in assets.values()) > 40 * 1024 * 1024:
+        raise ValueError('Offline bundle exceeds 40 MiB')
     template = (ROOT / 'scripts/service-worker.js').read_text()
     manifest = json.dumps(assets, sort_keys=True, separators=(',', ':'))
     version = hashlib.sha256((template + manifest).encode()).hexdigest()

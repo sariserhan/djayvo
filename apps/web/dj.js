@@ -1,3 +1,4 @@
+import { practiceFile } from './practice-library.js';
 import { attachStudioView } from './studio-view.js';
 import { createMixer, updateMixer, setMixerGain, validateTrack, trackDuration, updateToneEcho, clearEcho } from './mixer.js';
 import { attachDeck, playMedia } from './deck-controls.js';
@@ -22,6 +23,7 @@ function controls(deck) {
   $(`play-${id}`).disabled = !ready || !!deck.loading || deck.starting;
   $(`play-${id}`).textContent = `${audio.paused ? 'Play' : 'Pause'} ${id.toUpperCase()}`;
   $(`file-${id}`).disabled = held || !rights.checked || !audio.paused || deck.starting || !!deck.loading;
+  $(`practice-load-${id}`).disabled = $(`file-${id}`).disabled || !$('practice-track').value;
   $(`library-load-${id}`).disabled = $(`file-${id}`).disabled || !$('saved-mix').value;
   $(`clear-${id}`).disabled = !deck.url && !deck.loading;
   $(`seek-${id}`).disabled = !ready || !!deck.loading;
@@ -159,7 +161,7 @@ async function loadTrack(deck, getFile) {
   const revision = ++deck.revision, controller = new AbortController();
   deck.playRequested = false; deck.loading = controller; controls(deck);
   try {
-    const file = await getFile();
+    const file = await getFile(controller.signal);
     if (!file || revision !== deck.revision || !rights.checked) return;
     validateTrack(file);
     const duration = await trackDuration(file, controller.signal);
@@ -199,10 +201,33 @@ async function refreshLibrary() {
   } catch (error) { $('library-status').textContent = error.message; }
   finally { $('library-refresh').disabled = false; decks.forEach(controls); }
 }
+const practiceTracks = [];
+function practiceSelection() {
+  const track = practiceTracks.find(t => t.id === $('practice-track').value);
+  $('practice-credit').replaceChildren();
+  if (track) {
+    const source = document.createElement('a'); source.href = track.source_page; source.textContent = `${track.title} — ${track.artist}`;
+    $('practice-credit').append(source, ` · ${track.genre} · CC0 · ${time(track.seconds)}`);
+  }
+  decks.forEach(controls);
+}
+$('practice-track').onchange = practiceSelection;
+fetch(new URL('./practice-audio/manifest.json', import.meta.url)).then(async response => {
+  if (!response.ok) throw new Error('Practice list unavailable. Reconnect and reload this page.');
+  const manifest = await response.json();
+  practiceTracks.push(...manifest.tracks);
+  $('practice-track').replaceChildren(...practiceTracks.map(track => new Option(`${track.title} — ${track.artist}`, track.id)));
+  $('practice-status').textContent = 'Pause the destination deck before loading. Your current track stays until its replacement is ready.';
+  practiceSelection();
+}).catch(error => { $('practice-track').replaceChildren(new Option('Practice music unavailable', '')); $('practice-status').textContent = error.message; });
 $('library-refresh').onclick = refreshLibrary;
 $('saved-mix').onchange = () => decks.forEach(controls);
 for (const deck of decks) {
   const { id, audio } = deck;
+  $(`practice-load-${id}`).onclick = () => {
+    const track = practiceTracks.find(t => t.id === $('practice-track').value);
+    if (track) loadTrack(deck, signal => practiceFile(track, signal));
+  };
   $(`file-${id}`).onchange = event => {
     const file = event.target.files[0]; event.target.value = '';
     if (file) loadTrack(deck, () => file);

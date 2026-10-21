@@ -5,7 +5,7 @@
 <div class="console"><section class="deck deck-a" aria-labelledby="deck-a-title">
  <div class="deck-heading"><h2 id="deck-a-title">DECK A</h2><span class="deck-state" id="state-a">Empty</span><button id="clear-a" class="small-button" disabled>Unload A</button></div>
  <div class="deck-display"><p class="track-name" id="name-a">Load a track to begin</p>
- <label class="file-label"><span>Load track A</span><input type="file" id="file-a" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
+ <label class="file-label"><span>Load track A · <a href="#practice-library">Try free practice music</a></span><input type="file" id="file-a" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
  <!-- Metadata preload avoids the eager-buffering failure reproduced in Linux WebKit. -->
  <audio id="audio-a" preload="metadata" hidden></audio>
  <canvas class="deck-scope" id="scope-a" width="650" height="65" aria-label="Deck A live audio scope"></canvas>
@@ -27,7 +27,7 @@
  <p class="deck-error" id="error-a" role="alert"></p></section><section class="mix-bus" aria-labelledby="blend-title"><div class="bus-heading"><span class="eyebrow">JAMLOOM</span><h2 id="blend-title">MIXER</h2></div><div class="master"><label for="master">Master level <output id="master-value">75%</output></label><input id="master" type="range" min="0" max="1" step="0.01" value="0.75" disabled><label for="output-meter">Stereo sample peak</label><meter id="output-meter" min="0" max="1" value="0">0</meter><output id="peak">Silent</output></div><div class="mixer-channels"><section class="channel-strip channel-a" aria-labelledby="channel-a-title"><h3 id="channel-a-title">CHANNEL A</h3><div class="eq"><label>Low<output id="eq-a-0-value">0 dB</output><input aria-label="Deck A Low" id="eq-a-0" type="range" min="-12" max="12" step="1" value="0" disabled></label><label>Mid<output id="eq-a-1-value">0 dB</output><input aria-label="Deck A Mid" id="eq-a-1" type="range" min="-12" max="12" step="1" value="0" disabled></label><label>High<output id="eq-a-2-value">0 dB</output><input aria-label="Deck A High" id="eq-a-2" type="range" min="-12" max="12" step="1" value="0" disabled></label></div><div class="channel-fader"><label class="level-label" for="level-a">Channel A <output id="level-value-a">100%</output></label><input id="level-a" type="range" min="0" max="1" step="0.01" value="1" disabled></div></section><section class="channel-strip channel-b" aria-labelledby="channel-b-title"><h3 id="channel-b-title">CHANNEL B</h3><div class="eq"><label>Low<output id="eq-b-0-value">0 dB</output><input aria-label="Deck B Low" id="eq-b-0" type="range" min="-12" max="12" step="1" value="0" disabled></label><label>Mid<output id="eq-b-1-value">0 dB</output><input aria-label="Deck B Mid" id="eq-b-1" type="range" min="-12" max="12" step="1" value="0" disabled></label><label>High<output id="eq-b-2-value">0 dB</output><input aria-label="Deck B High" id="eq-b-2" type="range" min="-12" max="12" step="1" value="0" disabled></label></div><div class="channel-fader"><label class="level-label" for="level-b">Channel B <output id="level-value-b">100%</output></label><input id="level-b" type="range" min="0" max="1" step="0.01" value="1" disabled></div></section></div><div class="blend"><label for="crossfade">Crossfader</label><output id="blend-value">A 100% · B 0%</output><input id="crossfade" type="range" min="0" max="1" step="0.01" value="0" disabled><div class="ends" aria-hidden="true"><span>A</span><span>B</span></div></div><button id="pause-all" class="secondary" disabled>Pause all decks</button><p id="mixer-status" role="status">Confirm permission to load music.</p></section><section class="deck deck-b" aria-labelledby="deck-b-title">
  <div class="deck-heading"><h2 id="deck-b-title">DECK B</h2><span class="deck-state" id="state-b">Empty</span><button id="clear-b" class="small-button" disabled>Unload B</button></div>
  <div class="deck-display"><p class="track-name" id="name-b">Load a track to begin</p>
- <label class="file-label"><span>Load track B</span><input type="file" id="file-b" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
+ <label class="file-label"><span>Load track B · <a href="#practice-library">Try free practice music</a></span><input type="file" id="file-b" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac,.webm" disabled></label>
  <audio id="audio-b" preload="metadata" hidden></audio>
  <canvas class="deck-scope" id="scope-b" width="650" height="65" aria-label="Deck B live audio scope"></canvas>
  <div class="position-readout"><output id="time-b">0:00 / 0:00</output><span>ELAPSED / TOTAL</span></div>
@@ -56,7 +56,16 @@
 <p class="hint">Control details include scheduled fader gains, EQ, tone and echo changes, plus echo resets. They do not replay the full performance or authorize training. Source details contain local fingerprints of loaded assets, without filenames or audio. They do not verify ownership or licensing.</p>
 <p class="hint">Recordings stay in this tab until downloaded. Changing or deleting the source phrase, or removing recording/music/voice permission, discards the recording here. Leaving this tab during capture discards the unfinished recording. Downloaded copies must be deleted separately.</p>
 </fieldset>
-<section id="saved-mixes" aria-labelledby="saved-mixes-title">
+<section id="saved-mixes" aria-labelledby="practice-title">
+<div id="practice-library">
+<p class="eyebrow">FREE TO PLAY &amp; MIX</p><h2 id="practice-title">Practice music</h2>
+<p>Artist-made tracks released under CC0. Confirm the music permission checkbox, choose a track, then load a paused deck and press Play.</p>
+<div class="session-context"><label>Practice track<select id="practice-track"><option value="">Loading track list…</option></select></label></div>
+<p id="practice-credit"></p>
+<div class="session-actions"><button id="practice-load-a" class="small-button" disabled>Load practice into A</button><button id="practice-load-b" class="small-button" disabled>Load practice into B</button><a href="./practice-audio/CREDITS.txt">Music credits</a></div>
+<p id="practice-status" role="status">Loading the practice catalogue…</p>
+<p class="hint">Use Tap tempo to find the beat; grids and keys are not pre-verified. Included when you prepare the studio or free Academy for offline use.</p>
+</div>
 <h2 id="saved-mixes-title">Your saved mixes</h2>
 <p>Reuse a performance from this browser. Pause a deck before loading; release prepared A first.</p>
 <div class="session-context"><label>Saved mix<select id="saved-mix"><option value="">Choose a saved mix</option></select></label></div>
