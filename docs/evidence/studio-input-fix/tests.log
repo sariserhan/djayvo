@@ -1,0 +1,14 @@
+test_invalid_duration_and_silence_have_specific_errors (test_singer_studio.StudioFlow.test_invalid_duration_and_silence_have_specific_errors) ... ok
+test_model_failure_does_not_blame_recording_duration (test_singer_studio.StudioFlow.test_model_failure_does_not_blame_recording_duration) ... ok
+test_permission_and_selection_checked_before_creating_job (test_singer_studio.StudioFlow.test_permission_and_selection_checked_before_creating_job) ... ok
+test_pipeline_keeps_source_and_singer_distinct (test_singer_studio.StudioFlow.test_pipeline_keeps_source_and_singer_distinct) ... ok
+test_quiet_overrun_is_trimmed_without_changing_original (test_singer_studio.StudioFlow.test_quiet_overrun_is_trimmed_without_changing_original) ... ok
+test_invalid_or_unbounded_plan_rejected (test_singing_response.SingingPlans.test_invalid_or_unbounded_plan_rejected) ... ok
+test_rap_delivery_differs_from_sung_hiphop (test_singing_response.SingingPlans.test_rap_delivery_differs_from_sung_hiphop) ... ok
+test_revision_and_size_checks (test_singing_response.SingingPlans.test_revision_and_size_checks) ... ok
+test_voices_and_styles_are_independent_and_repeatable (test_singing_response.SingingPlans.test_voices_and_styles_are_independent_and_repeatable) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.660s
+
+OK

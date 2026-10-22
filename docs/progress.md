@@ -1,5 +1,7 @@
 # Local AI singer implementation — 2026-10-22
 
+**Studio input repair — 2026-10-22:** The two reported recording failures were caused by the 5.001-second decoder cap being rejected by a strict five-second validator. Both actual captures now prepare successfully after edge-quiet trimming, with originals retained and specific failure messages. [Fix and regression evidence](studio-input-fix.md).
+
 **Sample quality update — 2026-10-22:** Owner likes the generated songs but reports that adding the source makes them worse. The replacement preserves the song and tries one whole phrase or pause-bounded excerpt in a vocal gap; if it cannot fit, the original song is returned with explicit status. All 23 styles remain. Six same-song comparisons and scoped technical/browser evidence are in the [replacement report](gentle-singer.md). New-arrangement listening remains open.
 
 **AI singer implementation — 2026-10-22:** Four actual 30-second male/female reggae/hip-hop previews and separate user-phrase → singer assemblies are ready locally. The new local studio drafts contextual lyrics and generates singing; no spoken TTS or user-voice cloning. Technical render and review-player checks PASS; naturalness, voice accuracy, lyric fidelity and meaningful diversity still require listening. No new paid compute or production promotion. [Listen, run the studio and inspect evidence](singing-response.md).

@@ -1,0 +1,19 @@
+{
+  "technical": "PASS",
+  "job": "renders/singer-studio/ec77ab1b54c3415fb391c4290fef7f1c",
+  "input": {
+    "original_sha256": "4795f9c4caa54f73beaf14ec1e166683988ef07585e8e14a45d2cf74912e17b1",
+    "original_seconds": 5.219979166666667,
+    "source_sha256": "9203ab3846d85eb421a2019f2b65bcf83568210155148674eab70c3dfc639602",
+    "source_seconds": 4.11,
+    "kept_frames": [
+      36000,
+      233280
+    ],
+    "edge_quiet_removed": true
+  },
+  "render_sha256": "790206ba7a5f3e39d420e3da26def98c76616dcde1d5e573013df3d44def9dcf",
+  "frames": 1440000,
+  "sample_used": false,
+  "originals_preserved": true
+}

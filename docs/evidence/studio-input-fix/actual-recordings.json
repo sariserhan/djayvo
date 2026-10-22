@@ -1,0 +1,28 @@
+{
+  "technical": "PASS",
+  "recordings": [
+    {
+      "original_sha256": "4795f9c4caa54f73beaf14ec1e166683988ef07585e8e14a45d2cf74912e17b1",
+      "original_seconds": 5.219979166666667,
+      "source_sha256": "9203ab3846d85eb421a2019f2b65bcf83568210155148674eab70c3dfc639602",
+      "source_seconds": 4.11,
+      "kept_frames": [
+        36000,
+        233280
+      ],
+      "edge_quiet_removed": true
+    },
+    {
+      "original_sha256": "76f445acffa111a8b53d3d420a667bc1e2bab419c09e757644ea0db6d251bcb0",
+      "original_seconds": 6.0,
+      "source_sha256": "89b3bd60ef7f6fc16f916fb5e7ec8e65d73de402b5ae50ee9fdeed151652cda4",
+      "source_seconds": 5.0,
+      "kept_frames": [
+        9840,
+        249840
+      ],
+      "edge_quiet_removed": true
+    }
+  ],
+  "originals_preserved": true
+}

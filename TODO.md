@@ -2,6 +2,8 @@
 
 ## Musician training request — 2026-10-21
 
+- [x] **STUDIO-INPUT-001 — PASS, local input repair:** Fixed the 5.001-second decode versus 5.000-second validation mismatch. Both retained failed recordings now pass after trimming edge quiet; originals preserved. Precise input errors and stage-specific generation failures replace the misleading catch-all. [Report and evidence](docs/studio-input-fix.md).
+
 - [ ] **TRAIN-007 — PARTIAL:** Owner likes the generated singers but reports the repeated sample arrangement makes the music worse (**FAIL**, owner listening). Replaced it with one whole phrase or pause-bounded excerpt in a detected vocal gap, preserving the original song; explicit unchanged fallback if nothing fits. Nine tests, six actual comparisons and browser checks are recorded in the [replacement report](docs/gentle-singer.md). New-arrangement acceptance, formal quality, generalization and production promotion remain open.
 
 - [x] **SAMPLE-001 — PASS, local implementation:** Conservative sample placement, byte-exact music preservation and truthful no-placement status. Same-song comparison: three whole phrases, one shorter excerpt and two unchanged fallbacks. [Report and evidence](docs/gentle-singer.md); musical acceptance NOT RUN.
