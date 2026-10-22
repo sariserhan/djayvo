@@ -1,3 +1,7 @@
+# Live DJ deck and control repair — 2026-10-22
+
+**PASS, local implementation; owner acceptance PARTIAL.** The owner reports only native volume working on both native/web surfaces. Both now have deck layouts; native controls apply directly through the model, effect edits leave bypass, and older web status responses cannot reset new edits. Eight Swift tests plus separate browser fixtures, individual-effect PCM/sanitizers, Chromium/WebKit controls/axe/responsive checks, build/typecheck/audit and packaged launch pass. [Report and evidence](live-deck.md). The exact physical symptom is not conclusively diagnosed: owner retest NOT RUN. App reopened stopped; local paired preview ready. No deployment, notarization or public release.
+
 # Visual hero — 2026-10-22
 
 **PASS, local.** A short “Find your sound” headline, one sentence and a large deck preview replace the text-heavy hero. Compact links still expose all five products. The preview links to the working deck below; coming-soon uses the same visual with its access gate preserved. Typecheck, five metadata/launch tests, Chromium/WebKit at 1440/820/390/320 px, keyboard navigation, muted deck play/pause/cue and accessibility pass. [Report and screenshots](hero-simplicity.md). Deployment NOT RUN.

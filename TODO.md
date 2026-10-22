@@ -1,5 +1,10 @@
 # Jamloom development tracker
 
+## Live DJ deck and control repair — 2026-10-22
+
+- [x] **LIVE-DECK-001 — PASS, local:** Native and paired-web deck layouts; direct native control application, visible bypass with effect-edit recovery, stale website status protection. Swift, per-effect generated PCM plus sanitizers, real native HTTP/Chromium/WebKit, responsive/axe, site build/typecheck/audit and packaged launch pass. [Report](docs/live-deck.md).
+- [ ] **LIVE-DECK-002 — PARTIAL:** Owner reports only volume works in both previous surfaces. Exact source/output cause not established; rebuilt app and local website ready for owner listening/routing retest. No claim that automated checks resolve hardware acceptance. Public distribution/deployment NOT RUN.
+
 ## Visual hero — 2026-10-22
 
 - [x] **MKT-HERO-001 — PASS, local:** Shorten the homepage and coming-soon hero, lead with the real deck preview, and keep five-product discovery compact. Preserve the playable deck in its product section. Typecheck, five metadata/launch tests, Chromium/WebKit at four widths, keyboard navigation, muted playback and accessibility pass. [Report](docs/hero-simplicity.md). Deployment NOT RUN.

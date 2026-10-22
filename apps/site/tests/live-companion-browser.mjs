@@ -23,7 +23,7 @@ try{
    await fallback.getByLabel('I have permission').check();await fallback.getByRole('button',{name:'Select tab audio'}).click();await page.waitForFunction(()=>/Permission denied|supplied no audio/.test(document.querySelectorAll('[role=status]')[1].textContent));
    await page.getByRole('button',{name:'Connect companion',exact:true}).click();
    if(pageOrigin!==base&&name==='webkit'){
-    await Promise.race([page.getByRole('button',{name:'Stop native capture / panic',exact:true}).waitFor(),page.getByText(/Could not connect/).waitFor()]);
+    await Promise.race([page.waitForFunction(()=>!document.querySelector('.live-mixer').disabled),page.getByText(/Could not connect/).waitFor()]);
     if(await page.getByText(/Could not connect/).isVisible()){
      assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),false);
      const headers={Origin:pageOrigin,Authorization:'Bearer '+token};const telemetry=await(await fetch(local+'/status',{headers})).json();
@@ -33,9 +33,29 @@ try{
      results.push({browser:name,status:'PARTIAL',pageOrigin,secureOriginFixture:true,hostedDeployment:'NOT RUN',secureBrowserControls:'UNAVAILABLE: browser rejected loopback request',gracefulFallback:'PASS',nativeHTTP:'PASS via test harness',realSystemCapture:'NOT RUN'});continue;
     }
    }
-   await page.getByRole('button',{name:'Stop native capture / panic',exact:true}).waitFor();assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),true);
+   await page.waitForFunction(()=>!document.querySelector('.live-mixer').disabled);assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),true);
    await page.getByLabel('Low EQ (dB)').fill('-12');await page.getByLabel('One-beat roll',{exact:true}).check();await page.getByLabel('Follow a steady pulse with percussion',{exact:true}).check();await page.getByLabel('Bypass native effects',{exact:true}).check();await delay(200);
    const status=await (await fetch(local+'/status',{headers:{Origin:pageOrigin,Authorization:'Bearer '+token}})).json();assert.equal(status.controls.low,-12);assert.equal(status.controls.roll,true);assert.equal(status.controls.percussion,true);assert.equal(status.controls.bypass,true);
+   assert.equal(await page.locator('.live-fx-status strong').innerText(),'FX BYPASSED');
+   await page.getByLabel('Native output level').fill('0.25');await delay(150);
+   assert.equal(await page.getByLabel('Bypass native effects',{exact:true}).isChecked(),true,'master must preserve bypass');
+   for(const [label,value,key] of [['Low EQ (dB)','-18','low'],['Mid EQ (dB)','-15','mid'],['High EQ (dB)','-9','high'],['Native low-pass (Hz)','700','tone'],['Native echo','0.35','echo']]){
+    await page.getByLabel('Bypass native effects',{exact:true}).check();
+    await page.getByLabel(label).fill(value);await delay(120);
+    const applied=await(await fetch(local+'/status',{headers:{Origin:pageOrigin,Authorization:'Bearer '+token}})).json();
+    assert.equal(applied.controls[key],Number(value));assert.equal(applied.controls.bypass,false,label+' re-enables FX');
+   }
+   // A status response captured before an edit must not roll the control back.
+   let captured=false,ready,finished;
+   const statusReady=new Promise(resolve=>ready=resolve),statusFinished=new Promise(resolve=>finished=resolve);
+   const staleStatus=async route=>{if(captured)return route.continue();captured=true;const response=await route.fetch();const snapshot=await response.json();ready();await delay(900);await route.fulfill({json:snapshot});finished();};
+   await page.route(local+'/status',staleStatus);await statusReady;
+   await page.getByLabel('Low EQ (dB)').fill('-21');await page.getByLabel('Native echo').fill('0.3');
+   await statusFinished;await delay(100);
+   assert.equal(await page.getByLabel('Low EQ (dB)').inputValue(),'-21');assert.equal(await page.getByLabel('Native echo').inputValue(),'0.3');
+   await page.unroute(local+'/status',staleStatus);
+   assert.equal(await page.locator('.live-fx-status strong').innerText(),'FX ON');
+
    for(const width of [1440,390,320]){await page.setViewportSize({width,height:1000});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'overflow '+width);if(width!==390)await page.screenshot({path:join(folder,`${name}-${width}.png`),fullPage:true});}
    assert.deepEqual((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations.map(v=>v.id),[]);
    await page.getByRole('button',{name:'Stop native capture / panic',exact:true}).click();await page.waitForFunction(()=>document.body.textContent.includes('Capture stopped ·'));
@@ -43,7 +63,7 @@ try{
    await page.getByLabel('Pairing code').fill(token);await page.getByRole('button',{name:'Connect companion',exact:true}).click();await page.getByRole('button',{name:'Disconnect companion',exact:true}).waitFor();
    await context.route(local+'/**',r=>r.abort());await page.getByText(/Connection lost/).waitFor();assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),true);
    await page.getByLabel('Pairing code').fill('a'.repeat(64));await page.getByRole('button',{name:'Connect companion',exact:true}).click();await page.getByText(/Could not connect/).waitFor();assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),true);await delay(8500);assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),false);assert.deepEqual(errors,[]);await context.close();
-   results.push({browser:name,status:'PASS',pageOrigin,secureOriginFixture:pageOrigin!==base,hostedDeployment:'NOT RUN',realNativeHTTP:true,syntheticTelemetry:true,realSystemCapture:'NOT RUN',pairingAndOrigin:'PASS',controlsAndPanic:'PASS',browserFallback:'PASS',lostConnectionHandoff:'PASS',invalidToken:'PASS',widths:[1440,390,320],axe:'PASS',noAudioOutput:'PASS'});
+   results.push({browser:name,status:'PASS',pageOrigin,secureOriginFixture:pageOrigin!==base,hostedDeployment:'NOT RUN',realNativeHTTP:true,syntheticTelemetry:true,realSystemCapture:'NOT RUN',pairingAndOrigin:'PASS',controlsAndPanic:'PASS',allEffectControls:'PASS',bypassRecovery:'PASS',staleStatusDuringEdit:'PASS',browserFallback:'PASS',lostConnectionHandoff:'PASS',invalidToken:'PASS',widths:[1440,390,320],axe:'PASS',noAudioOutput:'PASS'});
   }catch(error){failure=error;console.error(error);if(page){console.error(await page.locator('[role=status]').allTextContents());await page.screenshot({path:join(folder,name+'-failure.png'),fullPage:true});}throw error;}finally{await browser?.close();await writeFile(grant+'.done','done');const [code]=await nativeExit;await writeFile(join(folder,name+'-native.log'),nativeLog);if(!failure)assert.equal(code,0,nativeLog);}
  }
  await writeFile(join(folder,'results.json'),JSON.stringify({status:results.some(r=>r.status==='PARTIAL')?'PARTIAL':'PASS',results},null,2)+'\n');console.log(JSON.stringify({folder,results}));

@@ -1,5 +1,7 @@
 # Live Source Mac companion
 
+**2026-10-22 owner feedback:** Only volume worked on both native and website controls. The [deck/control update](live-deck.md) is ready locally with passing technical checks; exact live-source cause and owner retest remain open. Earlier implementation evidence below is not a claim that this complaint is resolved.
+
 2026-10-21. **PARTIAL overall:** native implementation, local UI, DSP and control
 transport are tested; actual system capture and physical routing are not yet verified.
 Human checks remain deferred. The owner requires all deployments through GitHub
