@@ -1,5 +1,11 @@
 # Voice-led owner audition
 
+**Superseded interpretation:** The owner clarified that this was not the requested
+feature. They want a separate musician singing new, contextual responses, with
+the user's voice used only as appropriate source material. See the
+[corrected requirement](musician-vocal-response.md). This packet is preserved;
+its technical checks do not demonstrate that feature.
+
 **Technical PASS; listening NOT RUN.** The owner requested a voice-led comparison
 after rejecting every Group 1 version and hearing no clear adapter difference
 in the remaining groups. Three new 30-second mixes use the existing consented
