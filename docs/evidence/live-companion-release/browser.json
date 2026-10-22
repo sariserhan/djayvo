@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "browser": "chromium",
+      "status": "PASS",
+      "pageOrigin": "http://127.0.0.1:4234",
+      "secureOriginFixture": false,
+      "hostedDeployment": "NOT RUN",
+      "realNativeHTTP": true,
+      "syntheticTelemetry": true,
+      "realSystemCapture": "NOT RUN",
+      "pairingAndOrigin": "PASS",
+      "controlsAndPanic": "PASS",
+      "samplerPlaybackAndClear": "PASS",
+      "remoteRecordingRejected": "PASS",
+      "dualDeckIsolation": "PASS",
+      "crossfaderAndMaster": "PASS",
+      "platterGestureAndRelease": "PASS",
+      "rotationAndReducedMotion": "PASS",
+      "allEffectControls": "PASS",
+      "bypassRecovery": "PASS",
+      "staleStatusDuringEdit": "PASS",
+      "browserFallback": "PASS",
+      "lostConnectionHandoff": "PASS",
+      "invalidToken": "PASS",
+      "widths": [
+        1440,
+        820,
+        390,
+        320
+      ],
+      "axe": "PASS",
+      "noAudioOutput": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "status": "PASS",
+      "pageOrigin": "http://127.0.0.1:4234",
+      "secureOriginFixture": false,
+      "hostedDeployment": "NOT RUN",
+      "realNativeHTTP": true,
+      "syntheticTelemetry": true,
+      "realSystemCapture": "NOT RUN",
+      "pairingAndOrigin": "PASS",
+      "controlsAndPanic": "PASS",
+      "samplerPlaybackAndClear": "PASS",
+      "remoteRecordingRejected": "PASS",
+      "dualDeckIsolation": "PASS",
+      "crossfaderAndMaster": "PASS",
+      "platterGestureAndRelease": "PASS",
+      "rotationAndReducedMotion": "PASS",
+      "allEffectControls": "PASS",
+      "bypassRecovery": "PASS",
+      "staleStatusDuringEdit": "PASS",
+      "browserFallback": "PASS",
+      "lostConnectionHandoff": "PASS",
+      "invalidToken": "PASS",
+      "widths": [
+        1440,
+        820,
+        390,
+        320
+      ],
+      "axe": "PASS",
+      "noAudioOutput": "PASS"
+    }
+  ]
+}

@@ -16,11 +16,11 @@ const local = {
   BETTER_AUTH_URL: 'http://localhost:3000', BETTER_AUTH_SECRET: 'a'.repeat(48),
   JAMLOOM_LOCAL_OUTBOX: '/tmp/jamloom-test-outbox',
 };
-test('companion download stays unavailable until a valid HTTPS release URL is configured', () => {
+test('companion download uses the signed release and rejects unsafe overrides', () => {
   for (const value of ['', 'javascript:alert(1)', 'http://example.com/app.zip', 'https://user:secret@example.com/app.zip', 'https://example.com/app.zip#token']) {
     assert.equal(companionDownload({ JAMLOOM_COMPANION_DOWNLOAD_URL: value }), null);
   }
-  assert.equal(companionDownload({}), null);
+  assert.equal(companionDownload({}), 'https://github.com/sariserhan/jamloom/releases/download/live-v0.4.0/Jamloom-Live-0.4.0-macOS.zip');
   assert.equal(companionDownload({ JAMLOOM_COMPANION_DOWNLOAD_URL: 'https://www.jamloom.com/releases/live.zip' }), 'https://www.jamloom.com/releases/live.zip');
 });
 test('production template binds auth and private R2 grants to Jamloom configuration', async () => {

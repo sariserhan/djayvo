@@ -11,6 +11,8 @@ struct LiveDeck {
     var started = Date.distantPast, lastScratch = Date.distantPast
 }
 final class LiveModel: ObservableObject {
+    @Published var updateInProgress=false
+    var performanceBusy:Bool { active || micRecording || micWaiting }
     @Published var sources: [[String: Any]] = []
     @Published var outputs: [[String: Any]] = []
     @Published var decks = [LiveDeck(),LiveDeck()]
@@ -54,7 +56,7 @@ final class LiveModel: ObservableObject {
     }
     func refresh() { sources=JLLiveAudio.sources();outputs=JLLiveAudio.outputs() }
     func start(_ index:Int) {
-        guard (0..<2).contains(index),consent,!decks[index].active,decks[index].process != 0,output != 0 else { return }
+        guard !updateInProgress,(0..<2).contains(index),consent,!decks[index].active,decks[index].process != 0,output != 0 else { return }
         guard decks[index].process != decks[1-index].process else { decks[index].message="Choose a different audio process for each deck.";return }
         controls.decks[index].returnLive();apply()
         if let error=audio[index].startProcess(decks[index].process,output:output) { decks[index].message=error;return }
@@ -116,7 +118,7 @@ final class LiveModel: ObservableObject {
         updatePerformanceActivity();installSample()
     }
     func recordSample() {
-        guard micConsent,!micWaiting,!micRecording else { return }
+        guard !updateInProgress,micConsent,!micWaiting,!micRecording else { return }
         clearSample();micWaiting=true;sampleMessage="Allow microphone access to record.";let generation=micGeneration
         requestMicPermission { [weak self] allowed in
             DispatchQueue.main.async {

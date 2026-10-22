@@ -1,3 +1,12 @@
+## Companion download and updates — 2026-10-22
+
+The owner authorized the public companion download, icon, Settings and updates.
+Apple issuer information was supplied; working credentials are saved in the local
+`jamloom-live-notary` Keychain profile. No more credential action is needed.
+Follow [release maintenance](live-companion-release.md) for subsequent versions.
+The private Sparkle update-signing key is in Keychain; preserve it securely.
+The older launch-last note below is superseded for this companion delivery only.
+
 # Jamloom owner handbook
 
 **Meaning-first singer — 2026-10-22:** The owner makes audio reuse optional. The studio accepts short/long recordings, reads speech locally or uses a supplied idea, and may deliver the song without replaying the recording. Acoustic audition now omits the sample. [Current behavior, limits and evidence](meaning-singer.md).

@@ -20,6 +20,22 @@ private final class ControlProbe: JLLiveAudio {
     }
 }
 final class ControlModelTests: XCTestCase {
+    func testUpdateSessionCannotStartCaptureOrRequestMicrophone() {
+        let a=ControlProbe(),b=ControlProbe(),model=LiveModel(audio:[a,b])
+        defer { model.shutdown() }
+        model.output=3;model.decks[0].process=1;model.consent=true;model.micConsent=true
+        var requested=false
+        model.requestMicPermission={ _ in requested=true }
+        model.updateInProgress=true
+        model.start(0);model.recordSample()
+        XCTAssertEqual(a.started,0);XCTAssertFalse(model.active);XCTAssertFalse(requested)
+        XCTAssertFalse(model.performanceBusy)
+        model.updateInProgress=false;model.start(0)
+        XCTAssertTrue(model.active);XCTAssertTrue(model.performanceBusy)
+        model.stop();model.recordSample()
+        XCTAssertTrue(requested);XCTAssertTrue(model.performanceBusy)
+        model.clearSample();XCTAssertFalse(model.performanceBusy)
+    }
     func testIndependentDecksAndRemoteMixerReachEngines() throws {
         let a=ControlProbe(),b=ControlProbe(),model=LiveModel(audio:[a,b])
         defer { model.shutdown() }

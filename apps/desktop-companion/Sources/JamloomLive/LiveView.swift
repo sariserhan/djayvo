@@ -19,7 +19,7 @@ struct LiveView: View {
         VStack(spacing:0) {
             ScrollView {
                 VStack(alignment:.leading,spacing:18) {
-                    HStack { Text("jamloom").font(.largeTitle.bold());Text(model.micRecording ? "● MIC RECORDING":"LIVE / TWO DECKS").font(.caption.monospaced()).foregroundStyle(liveColors[0]);Spacer();Button("Stop all / Panic",role:.destructive,action:model.stop).keyboardShortcut(.escape,modifiers:[]).disabled(!model.active && !model.micRecording && !model.micWaiting) }
+                    HStack { Text("jamloom").font(.largeTitle.bold());Text(model.micRecording ? "● MIC RECORDING":"LIVE / TWO DECKS").font(.caption.monospaced()).foregroundStyle(liveColors[0]);Spacer();SettingsLink { Label("Settings",systemImage:"gearshape") };Button("Stop all / Panic",role:.destructive,action:model.stop).keyboardShortcut(.escape,modifiers:[]).disabled(!model.active && !model.micRecording && !model.micWaiting) }
                     HStack {
                         Picker("Stereo output",selection:$model.output) {
                             Text("Choose an output").tag(UInt32(0))
@@ -33,7 +33,7 @@ struct LiveView: View {
                         HStack { Text("MIC SAMPLE").font(.headline.monospaced());Spacer();Text(model.micRecording ? "● RECORDING":String(format:"%.1f s",model.sampleSeconds)).foregroundStyle(model.micRecording ? .red:.secondary) }
                         Toggle("I have permission to record this system microphone sample.",isOn:$model.micConsent)
                         HStack {
-                            Button(model.micRecording ? "Finish recording":"Record up to 4 seconds") { if model.micRecording { model.finishSample() } else { model.recordSample() } }.disabled(!model.micConsent || model.micWaiting)
+                            Button(model.micRecording ? "Finish recording":"Record up to 4 seconds") { if model.micRecording { model.finishSample() } else { model.recordSample() } }.disabled(model.updateInProgress || !model.micConsent || model.micWaiting)
                             ForEach(0..<2,id:\.self) { i in Button("Play on "+(i==0 ? "A":"B")) { _=model.sampleAction(SampleAction(action:"play",deck:i)) }.disabled(!model.sampleReady || !model.decks[i].active) }
                             Button("Stop sample") { _=model.sampleAction(SampleAction(action:"stop")) }.disabled(!model.sampleReady)
                             Button("Clear sample",action:model.clearSample).disabled(!model.sampleReady && !model.micRecording && !model.micWaiting)
@@ -41,6 +41,7 @@ struct LiveView: View {
                         Text(model.sampleMessage).font(.caption)
                         Text("Use headphones for a clean recording. Microphone audio is never monitored live, saved to disk or uploaded. Start a deck to play through its mixer.").font(.caption).foregroundStyle(.secondary)
                     }.padding(16).background(.black.opacity(0.25),in:RoundedRectangle(cornerRadius:10))
+                    if model.updateInProgress { Text("Finish or cancel the update before starting a deck or recording.").font(.callout).foregroundStyle(.yellow) }
                     Text(model.message).font(.caption).foregroundStyle(.secondary)
                     DisclosureGroup("Website pairing") {
                         VStack(alignment:.leading,spacing:10) {
@@ -98,7 +99,7 @@ struct NativeLiveDeck:View {
                     }.disabled(!deck.active || confidence<=0.65)
                     Text(String(format:"Buffer %.1f s",deck.telemetry["bufferedSeconds"] as? Double ?? 0)).font(.caption.monospaced())
                     ProgressView(value:min(1,max(0,deck.telemetry["peak"] as? Double ?? 0))).accessibilityLabel("Deck \(name) output peak")
-                    Button("Start deck "+name) { model.start(index) }.disabled(!model.consent || deck.active || deck.process==0 || model.output==0)
+                    Button("Start deck "+name) { model.start(index) }.disabled(model.updateInProgress || !model.consent || deck.active || deck.process==0 || model.output==0)
                     Button("Stop deck "+name) { model.stopDeck(index) }.disabled(!deck.active)
                 }.frame(maxWidth:.infinity,alignment:.leading)
             }

@@ -1,3 +1,8 @@
+## Companion distribution — 2026-10-22
+
+- [x] **LIVE-RELEASE-001 — PASS:** App icon, native Settings, signed Sparkle updates with audio-session protection; native/browser/site checks. [Report](docs/live-companion-release.md).
+- [ ] **LIVE-RELEASE-002 — PARTIAL:** Final notarization, published GitHub installer/feed, matching live website, downloaded app and real update verification in progress. Owner authorized this scoped delivery; physical unplug remains deferred.
+
 # Jamloom development tracker
 
 ## Live DJ completion work — 2026-10-22
