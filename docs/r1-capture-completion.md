@@ -1,5 +1,7 @@
 # Demonstration capture and split checks — 2026-10-21
 
+**Implementation commit: `8f3027f` (local only).**
+
 **Local capture tooling PASS; full specification PARTIAL.** The owner asked to
 finish the remaining technical work and explicitly kept listening deferred.
 This closes four concrete gaps found after `86728f8`: deck transport history,
@@ -79,7 +81,8 @@ failed first stem-download test is retained: it attempted `fetch(blob:)` under
 an intentionally restrictive CSP. The test now downloads through the real link;
 application policy was not relaxed. The first accessibility harness used an implicit
 Playwright context, which Axe rejects; the corrected harness creates an explicit
-context. Both failed logs are retained. All browser playback was muted downstream.
+context. Both failed logs are retained. Build/typecheck logs have terminal
+carriage returns and trailing whitespace normalized; their substantive output is unchanged. All browser playback was muted downstream.
 No microphone or system-audio permission was obtained by these tests.
 
 | Gate | Status | Evidence |
