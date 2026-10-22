@@ -21,7 +21,8 @@ export function inferCatalogueTaste(value:ReferenceChoice[]){
   explanation:'Genre scores use the catalogue labels and your ratings, not analysis of a recording. Your tempo, energy and instrument controls remain authoritative.'};
 }
 
-export type TasteSuggestion={reference:string;kind:'Track'|'Artist'|'Saved favorite';detail:string};
+export type ReferenceMetadata={reference:string;genre:string;source:'itunes'|'practice';id?:number};
+export type TasteSuggestion={reference:string;kind:'Track'|'Artist'|'Saved favorite';detail:string;metadata?:ReferenceMetadata};
 const normalize=(value:string)=>value.normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim();
 function distance(a:string,b:string){
  let row=Array.from({length:b.length+1},(_,i)=>i);
@@ -34,7 +35,7 @@ export function searchTasteReferences(query:string,saved:string[]=[]):TasteSugge
  // Local matches remain available when online catalogue search is unavailable.
  const q=normalize(query.slice(0,160));
  const candidates:TasteSuggestion[]=[
-  ...tasteCatalogue.map(t=>({reference:`${t.title} — ${t.artist}`,kind:'Track' as const,detail:t.edition})),
+  ...tasteCatalogue.map(t=>({reference:`${t.title} — ${t.artist}`,kind:'Track' as const,detail:t.edition,metadata:{reference:`${t.title} — ${t.artist}`,genre:t.genre,source:'practice' as const}})),
   ...[...new Set(tasteCatalogue.map(t=>t.artist))].map(artist=>({reference:artist,kind:'Artist' as const,detail:'In the practice catalogue'})),
   ...saved.slice(0,20).map(reference=>({reference,kind:'Saved favorite' as const,detail:'From your saved choices'}))
  ];

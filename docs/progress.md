@@ -1,3 +1,7 @@
+## Music DNA automatic composition — 2026-10-22
+
+**PASS, local technical workflow:** Favorite list -> automatic genre-based taste direction -> playable local composition. Removed manual musical questions; added selected metadata persistence, exact legacy-name resolution, equal favorite influence and automatic device saving. 27 unit checks, build, Chromium/WebKit, four real WAVs, local account/Unicode persistence and cancellation recovery pass. [Scope, evidence and limits](music-dna-favorites.md#automatic-favorites-only-composition--2026-10-22). Acoustic understanding, human quality, iOS and publication remain unverified.
+
 ## Music DNA online catalogue search — 2026-10-22
 
 **PASS, local:** Live iTunes artist/song names, debounce, bounded caching, stale-response protection and unavailable/busy fallback. Verified Beyoncé/Halo lookup and save/reload in Chromium/WebKit at desktop/mobile sizes; 11 focused tests, typecheck/build and scoped accessibility checks pass. Names only; existing favorite storage/composition unchanged. [Report and provider limits](music-dna-favorites.md#live-artist-and-song-search--2026-10-22). Local only; publication and multiple-instance capacity are not verified.

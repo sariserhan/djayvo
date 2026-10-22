@@ -1,8 +1,8 @@
 'use client';
 import {useEffect,useId,useRef,useState} from 'react';
-import {searchTasteReferences,type TasteSuggestion} from '../../lib/taste-catalogue';
+import {searchTasteReferences,type TasteSuggestion,type ReferenceMetadata} from '../../lib/taste-catalogue';
 
-export function FavoriteSearch({saved,disabled,onSelect}:{saved:string[];disabled:boolean;onSelect:(reference:string)=>void}){
+export function FavoriteSearch({saved,disabled,onSelect}:{saved:string[];disabled:boolean;onSelect:(reference:string,metadata?:ReferenceMetadata)=>void}){
  const id=useId(),input=useRef<HTMLInputElement>(null);
  const [query,setQuery]=useState(''),[open,setOpen]=useState(false),[active,setActive]=useState<string|null>(null);
  const [remote,setRemote]=useState<{query:string;suggestions:TasteSuggestion[];error:string}>({query:'',suggestions:[],error:''});
@@ -32,7 +32,7 @@ export function FavoriteSearch({saved,disabled,onSelect}:{saved:string[];disable
   return ()=>{clearTimeout(timer);controller.abort();};
  },[typed,online]);
  useEffect(()=>{if(expanded&&selected>=0)document.getElementById(`${id}-option-${selected}`)?.scrollIntoView({block:'nearest'});},[expanded,selected,id,query,options.length]);
- function choose(reference:string){input.current?.focus();onSelect(reference);setQuery('');setOpen(false);setActive(null);}
+ function choose(reference:string){input.current?.focus();onSelect(reference,matches.find(m=>m.reference===reference)?.metadata);setQuery('');setOpen(false);setActive(null);}
  return <div className="dna-search" onBlur={event=>{if(!event.currentTarget.contains(event.relatedTarget))setOpen(false);}}>
   <label htmlFor={id}>Search artists or tracks</label>
   <input id={id} ref={input} role="combobox" aria-autocomplete="list" aria-expanded={expanded} aria-controls={expanded?`${id}-results`:undefined}
@@ -53,7 +53,7 @@ export function FavoriteSearch({saved,disabled,onSelect}:{saved:string[];disable
     <span className="dna-result-kind">{option.kind}</span><strong>{option.reference}</strong><span>{option.detail}{saved.includes(option.reference)?' · Already added':''}</span>
    </button>)}
   </div>}
-  <p id={`${id}-help`}>Find artists and songs with iTunes. After two characters, your search is sent to Apple through Jamloom. Names only; no songs are downloaded.</p>
+  <p id={`${id}-help`}>Find artists and songs with iTunes. Search text goes to Apple through Jamloom; genre labels help shape your music. No songs are downloaded.</p>
   {online&&<p role="status">{loading?'Searching iTunes…':remote.error||(remote.suggestions.length?'Results from iTunes and your local favorites.':'No online matches. Try another spelling or choose “Add by name”.')}</p>}
   <span className="dna-search-status" aria-live="polite">{expanded?`${matches.length} matching suggestions${typed&&options.length>matches.length?'; or add your own name':''}.`:''}</span>
  </div>;

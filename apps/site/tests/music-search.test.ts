@@ -9,6 +9,8 @@ test('music search exposes bounded artist/song names, not audio or artwork',()=>
  assert.deepEqual(parsed,[{reference:'Beyoncé',kind:'Artist',detail:'iTunes catalogue'},{reference:'Halo — Beyoncé',kind:'Track',detail:'I AM…SASHA FIERCE · iTunes'}]);
  assert.throws(()=>musicSearchResults({error:'bad'}));assert.deepEqual(musicSearchResults({results:[]}),[]);
  assert.ok(musicSearchResults({results:Array.from({length:100},(_,i)=>({...results[i%2],artistName:String(i)}))}).length<=12);
+ const enriched=musicSearchResults({results:[{...results[0],artistId:12,primaryGenreName:'R&B/Soul'}]});
+ assert.deepEqual(enriched[0].metadata,{reference:'Beyoncé',genre:'R&B/Soul',source:'itunes',id:12});
 });
 
 test('requests use the fixed music endpoint, coalesce and cache, and expire',async()=>{

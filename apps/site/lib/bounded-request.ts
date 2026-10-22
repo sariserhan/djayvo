@@ -1,4 +1,4 @@
-export async function boundedAuthRequest(request: Request) {
+export async function boundedAuthRequest(request: Request, maximumBytes = 16_384) {
   if (!request.body) return request;
   const reader = request.body.getReader();
   const chunks: Uint8Array[] = [];
@@ -8,7 +8,7 @@ export async function boundedAuthRequest(request: Request) {
       const { done, value } = await reader.read();
       if (done) break;
       size += value.byteLength;
-      if (size > 16_384) { await reader.cancel(); return null; }
+      if (size > maximumBytes) { await reader.cancel(); return null; }
       chunks.push(value);
     }
   } finally { reader.releaseLock(); }

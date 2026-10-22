@@ -11,7 +11,9 @@ export function musicSearchResults(value:unknown):TasteSuggestion[]{
   const reference=kind==='Artist'?artist:`${row.trackName.trim()} — ${artist}`,key=reference.normalize('NFKC').toLowerCase();
   if(reference.length>160||/[\u0000-\u001f\u007f]/.test(reference)||seen.has(key))continue;
   seen.add(key);
-  (kind==='Artist'?artists:tracks).push({reference,kind,detail:typeof row.collectionName==='string'?`${row.collectionName.slice(0,100)} · iTunes`:'iTunes catalogue'});
+  const id=kind==='Artist'?row.artistId:row.trackId,genre=typeof row.primaryGenreName==='string'?row.primaryGenreName.trim():'';
+  const metadata=genre&&genre.length<=80&&!/[\u0000-\u001f\u007f]/.test(genre)&&Number.isSafeInteger(id)&&id>0?{reference,genre,source:'itunes' as const,id}:undefined;
+  (kind==='Artist'?artists:tracks).push({reference,kind,detail:typeof row.collectionName==='string'?`${row.collectionName.slice(0,100)} · iTunes`:'iTunes catalogue',...(metadata?{metadata}:{})});
  }
  return [...artists.slice(0,4),...tracks.slice(0,8)];
 }

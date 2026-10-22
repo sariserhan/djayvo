@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "corrupt_saved_data_preserved_until_new_list": true,
+  "cancel_during_metadata_lookup": true,
+  "late_response_cannot_start_render": true,
+  "favorites_preserved": true
+}

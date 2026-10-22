@@ -1,5 +1,7 @@
 ## Music DNA favorite-song workflow — 2026-10-22
 
+- [x] **DNA-005 — PASS, local technical workflow:** Favorites-only input with automatic metadata-based composition settings; no manual musical questionnaire. Local/account metadata persistence, exact-name resolution, graceful unknowns and real WAV verification. [Evidence](docs/music-dna-favorites.md#automatic-favorites-only-composition--2026-10-22). Genre inference is not acoustic analysis or listening acceptance.
+
 - [x] **DNA-004 — PASS, local live-provider and browser verification:** Live iTunes artist/song suggestions beyond the practice catalogue; debounced lookups, cached results, input/output validation, timeout/rate limits, accessible loading/error fallback and privacy disclosure. [Evidence](docs/music-dna-favorites.md#live-artist-and-song-search--2026-10-22). Deployment and scaled provider capacity are separate.
 
 - [x] **DNA-003 — PASS, local:** Search-as-you-type dropdown replaces the blank text area, with ranked artist/track suggestions, typo/accent handling, keyboard selection, custom names and removal. Existing catalogue/saved favorites only; no global streaming search. [Evidence](docs/music-dna-favorites.md#searchable-favorite-picker--2026-10-22).

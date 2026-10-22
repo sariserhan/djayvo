@@ -29,7 +29,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await search.fill('be');await search.fill('bey');
   const artist=page.getByRole('option',{name:/Artist.*Beyoncé.*iTunes/s});await artist.waitFor({timeout:15000});
   assert.deepEqual(requests,['bey']);
-  const liveNames=await page.getByRole('option').allTextContents();assert.ok(liveNames.some(text=>text.includes('Halo')));
+  const liveNames=await page.getByRole('listbox').getByRole('option').allTextContents();assert.ok(liveNames.some(text=>text.includes('Halo')));
   assert.ok(liveNames.some(text=>text.includes('Track')));
   for(const width of [1280,390,320]){
    await page.setViewportSize({width,height:900});await search.evaluate(element=>element.scrollIntoView({block:'center'}));
@@ -42,7 +42,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await saved.click();assert.equal(await page.getByRole('group',{name:'Beyoncé',exact:true}).count(),1);
   await search.fill('halo beyonce');const track=page.getByRole('option',{name:/Track.*Halo — Beyoncé/s}).first();await track.waitFor({timeout:15000});await track.click();
   assert.equal(await page.getByRole('group',{name:'Halo — Beyoncé',exact:true}).count(),1);
-  await page.getByRole('button',{name:'Save preferences and prepare directions',exact:true}).click();await page.reload();
+  await page.waitForFunction(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')??'{}').referenceMetadata?.some(m=>m.reference==='Halo — Beyoncé'&&m.genre));await page.reload();
   await page.getByRole('group',{name:'Halo — Beyoncé',exact:true}).waitFor();await page.getByRole('group',{name:'Beyoncé',exact:true}).waitFor();
   let releaseOld;const old=new Promise(resolve=>{releaseOld=resolve;});
   await context.route('**/api/music-search',async route=>{

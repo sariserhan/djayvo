@@ -1,0 +1,11 @@
+{
+  "database": "disposable loopback",
+  "real_provider_transactions": "NOT RUN",
+  "checks": [
+    "three signups, captured verification emails, real Better Auth sessions",
+    "native account balance endpoint authenticates, isolates users and never enables purchases",
+    "taste auth, origin, owner isolation, concurrent revision, bounds, private deletion",
+    "private account views, purchases blocked, HTTP signature/body/replay/live-mode rejection; no credits minted"
+  ],
+  "status": "PASS"
+}

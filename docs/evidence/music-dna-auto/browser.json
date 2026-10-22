@@ -1,0 +1,126 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "search_typing_typo_keyboard_pointer_duplicates": "PASS",
+    "muted_catalogue_playback": "PASS",
+    "exclusive_audio": "PASS",
+    "automatic_favorites_only_composition": "PASS",
+    "plans": [
+      {
+        "tempo": 84000,
+        "instruments": [
+          "piano"
+        ]
+      },
+      {
+        "tempo": 128000,
+        "instruments": [
+          "bass",
+          "drums",
+          "lead"
+        ]
+      }
+    ],
+    "same_seed_audio_different": true,
+    "audio": [
+      {
+        "seconds": 30.5714375,
+        "peak": 0.059326171875,
+        "rms": 0.0075591768532362325
+      },
+      {
+        "seconds": 30.125,
+        "peak": 0.191473126411438,
+        "rms": 0.023629422285572906
+      }
+    ],
+    "autosave_metadata_removal": "PASS",
+    "axe_violations": 0,
+    "console_errors": [],
+    "expected_console": [
+      {
+        "url": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      },
+      {
+        "url": "http://127.0.0.1:4247/music-dna",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+      },
+      {
+        "url": "http://127.0.0.1:4247/music-dna",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+      },
+      {
+        "url": "http://127.0.0.1:4247/music-dna",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+      },
+      {
+        "url": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      },
+      {
+        "url": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      }
+    ],
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "search_typing_typo_keyboard_pointer_duplicates": "PASS",
+    "muted_catalogue_playback": "PASS",
+    "exclusive_audio": "PASS",
+    "automatic_favorites_only_composition": "PASS",
+    "plans": [
+      {
+        "tempo": 84000,
+        "instruments": [
+          "piano"
+        ]
+      },
+      {
+        "tempo": 128000,
+        "instruments": [
+          "bass",
+          "drums",
+          "lead"
+        ]
+      }
+    ],
+    "same_seed_audio_different": true,
+    "audio": [
+      {
+        "seconds": 30.5714375,
+        "peak": 0.059326171875,
+        "rms": 0.007559064534865615
+      },
+      {
+        "seconds": 30.125,
+        "peak": 0.19146728515625,
+        "rms": 0.02362905629215075
+      }
+    ],
+    "autosave_metadata_removal": "PASS",
+    "axe_violations": 0,
+    "console_errors": [],
+    "expected_console": [
+      {
+        "url": "",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+      }
+    ],
+    "human_listening": "NOT RUN"
+  }
+]

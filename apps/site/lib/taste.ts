@@ -1,10 +1,10 @@
-import {validateChoices,inferCatalogueTaste,type ReferenceChoice} from './taste-catalogue';
+import {validateChoices,inferCatalogueTaste,type ReferenceChoice,type ReferenceMetadata} from './taste-catalogue';
 export const energies=['gentle','balanced','intense'] as const;
 export const instruments=['piano','guitar','bass','drums','synth','voice'] as const;
 export const tasteAspects={gentle:'Gentle mood',intense:'High energy',slow:'Relaxed pace (80 BPM)',fast:'Fast pace (140 BPM)',piano:'Piano',guitar:'Guitar',bass:'Bass',drums:'Drums',synth:'Synth',groove:'Rhythmic groove',melody:'Melodic phrases',space:'Bass and space'} as const;
 export type TasteAspect=keyof typeof tasteAspects;
 export type SongPreference={reference:string;aspects:TasteAspect[];weight:number};
-export type Taste={version:1;references:string[];energy:typeof energies[number];tempo:number;instruments:string[];novelty:number;catalogue?:ReferenceChoice[];songPreferences?:SongPreference[];direction?:number};
+export type Taste={version:1;references:string[];energy:typeof energies[number];tempo:number;instruments:string[];novelty:number;catalogue?:ReferenceChoice[];songPreferences?:SongPreference[];direction?:number;referenceMetadata?:ReferenceMetadata[]};
 export const emptyTaste:Taste={version:1,references:[],energy:'balanced',tempo:110,instruments:['piano','bass','drums'],novelty:50};
 export function validateTaste(value:unknown):Taste{
  if(!value||typeof value!=='object')throw new Error('Invalid preference profile');
@@ -21,7 +21,14 @@ export function validateTaste(value:unknown):Taste{
     choice.aspects.some(a=>typeof a!=='string'||!Object.hasOwn(tasteAspects,a))||!Number.isInteger(choice.weight)||choice.weight<1||choice.weight>5)throw Error('Invalid preference profile');
   seen.add(choice.reference);return {reference:choice.reference,aspects:[...choice.aspects],weight:choice.weight};
  });
- return {version:1,references,energy:p.energy,tempo:p.tempo,instruments:[...p.instruments],novelty:p.novelty,...(p.catalogue?{catalogue:validateChoices(p.catalogue)}:{}),...(songPreferences?{songPreferences}:{}),...(p.direction!==undefined?{direction:p.direction}:{})};
+ if(p.referenceMetadata!==undefined&&(!Array.isArray(p.referenceMetadata)||p.referenceMetadata.length>20))throw Error('Invalid preference profile');
+ const metadataSeen=new Set<string>();
+ const referenceMetadata=p.referenceMetadata?.map(m=>{
+  if(!m||!references.includes(m.reference)||metadataSeen.has(m.reference)||typeof m.genre!=='string'||!m.genre.trim()||m.genre.length>80||/[\u0000-\u001f\u007f]/.test(m.genre)||!['itunes','practice'].includes(m.source)||
+   (m.id!==undefined&&(!Number.isSafeInteger(m.id)||m.id<=0)))throw Error('Invalid preference profile');
+  metadataSeen.add(m.reference);return {reference:m.reference,genre:m.genre.trim(),source:m.source,...(m.id!==undefined?{id:m.id}:{})};
+ });
+ return {version:1,references,energy:p.energy,tempo:p.tempo,instruments:[...p.instruments],novelty:p.novelty,...(p.catalogue?{catalogue:validateChoices(p.catalogue)}:{}),...(songPreferences?{songPreferences}:{}),...(p.direction!==undefined?{direction:p.direction}:{}),...(referenceMetadata?{referenceMetadata}:{})};
 }
 export function tasteBrief(profile:Taste){const p=validateTaste(profile);return {
  schema_version:'1.0-taste-brief',origin:'explicit_user_preferences',tempo_bpm:p.tempo,energy:p.energy,instruments:p.instruments,

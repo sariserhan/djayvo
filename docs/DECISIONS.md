@@ -75,3 +75,8 @@ Use confirmed user choices with the existing numeric composer interface. Keep pr
 ## 2026-10-22 — Music DNA live name lookup
 
 Use the public iTunes Search API for artist/song metadata, through a bounded same-origin endpoint. The owner explicitly requested API lookup beyond the local practice catalogue. One combined artist/song request needs no user account or new credentials; only names/album labels are retained, not promotional audio/artwork. Search text is disclosed and forwarded without account/profile/recording data. Spotify/YouTube account imports and MusicBrainz service integration are not part of this change. US-storefront coverage and Apple's roughly 20 calls/minute limit are explicit; the per-process cache/budget requires a shared replacement before multi-instance/high-traffic launch. [Implementation and current evidence](music-dna-favorites.md#live-artist-and-song-search--2026-10-22).
+
+
+## 2026-10-22 — Favorites alone guide Music DNA
+
+Owner explicitly replaced manual musical annotation with favorites-only input. Keep provider genre labels and identities with selected references; resolve legacy/custom names only on an exact catalogue match. Combine distinct favorites equally into conservative, bounded composition choices for the existing renderer. Keep evidence/unknowns separate from creative defaults; never report inferred tempo/instruments as measured source-song attributes. Preserve legacy profile data and account compatibility while removing the questionnaire from the web flow. No model training, paid provider or recording acquisition. [Current scope and verification](music-dna-favorites.md#automatic-favorites-only-composition--2026-10-22).

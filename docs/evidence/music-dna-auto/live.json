@@ -1,0 +1,94 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "live_query": "bey",
+    "live_names": [
+      "ArtistBeyoncéiTunes catalogue",
+      "Track1+1 — Beyoncé4 (Expanded Edition) · iTunes",
+      "TrackDance For You — Beyoncé4 (Expanded Edition) · iTunes",
+      "TrackBest Thing I Never Had — Beyoncé4 (Expanded Edition) · iTunes",
+      "TrackHalo — BeyoncéI AM...SASHA FIERCE · iTunes",
+      "TrackSweet Dreams — BeyoncéI AM...SASHA FIERCE · iTunes",
+      "TrackIrreplaceable — BeyoncéB'Day Deluxe Edition · iTunes",
+      "TrackLove In This Club, Pt. II (feat. Beyoncé & Lil Wayne) — USHERHere I Stand · iTunes",
+      "TrackLove On Top — Beyoncé4 (Expanded Edition) · iTunes",
+      "Add by namebeyNot a catalogue match"
+    ],
+    "live_artist_track_selection_persistence": "PASS",
+    "debounce_cache_duplicates": "PASS",
+    "stale_response_offline_busy_empty_fallback": "PASS",
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "console_errors": [],
+    "expected_console": [
+      {
+        "url": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      },
+      {
+        "url": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      },
+      {
+        "url": "http://127.0.0.1:4247/api/music-search",
+        "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+      },
+      {
+        "url": "http://127.0.0.1:4247/api/music-search",
+        "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      }
+    ],
+    "audio_played": false
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "live_query": "bey",
+    "live_names": [
+      "ArtistBeyoncéiTunes catalogue",
+      "Track1+1 — Beyoncé4 (Expanded Edition) · iTunes",
+      "TrackDance For You — Beyoncé4 (Expanded Edition) · iTunes",
+      "TrackBest Thing I Never Had — Beyoncé4 (Expanded Edition) · iTunes",
+      "TrackHalo — BeyoncéI AM...SASHA FIERCE · iTunes",
+      "TrackSweet Dreams — BeyoncéI AM...SASHA FIERCE · iTunes",
+      "TrackIrreplaceable — BeyoncéB'Day Deluxe Edition · iTunes",
+      "TrackLove In This Club, Pt. II (feat. Beyoncé & Lil Wayne) — USHERHere I Stand · iTunes",
+      "TrackLove On Top — Beyoncé4 (Expanded Edition) · iTunes",
+      "Add by namebeyNot a catalogue match"
+    ],
+    "live_artist_track_selection_persistence": "PASS",
+    "debounce_cache_duplicates": "PASS",
+    "stale_response_offline_busy_empty_fallback": "PASS",
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "console_errors": [],
+    "expected_console": [
+      {
+        "url": "",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+      },
+      {
+        "url": "http://127.0.0.1:4247/api/music-search",
+        "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+      },
+      {
+        "url": "http://127.0.0.1:4247/api/music-search",
+        "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+      },
+      {
+        "url": "",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+      }
+    ],
+    "audio_played": false
+  }
+]
