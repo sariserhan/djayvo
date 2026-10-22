@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0-mix-sources",
+  "scope": "loaded_assets",
+  "permission": "user_attested_private_mix",
+  "rights_verified": false,
+  "training_authorized": false,
+  "wav_sha256": "9a70a8059e502b9ee2083b8e4d121fce97c00becf371c63aaf49380f2e5e7440",
+  "sample_rate": 48000,
+  "observed_context_start_frame": 19968,
+  "assets": [
+    {
+      "kind": "local_audio",
+      "bytes": 768044,
+      "sha256": "4b64b90bd0264717740940cdb62feca6d4653384537b9bc5980adba4c6c62a48"
+    },
+    {
+      "kind": "instrument_engine",
+      "bytes": 13801608,
+      "sha256": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8"
+    },
+    {
+      "kind": "local_audio",
+      "bytes": 192044,
+      "sha256": "e95051246bed9a63cbfcf737a64b664f60b35a3f347e743261d3e77cf4db6f20"
+    }
+  ],
+  "snapshots": [
+    {
+      "context_frame": 19712,
+      "a": 0,
+      "b": null,
+      "c": null,
+      "phrase": null,
+      "rack": 1
+    },
+    {
+      "context_frame": 21376,
+      "a": 0,
+      "b": 2,
+      "c": null,
+      "phrase": null,
+      "rack": 1
+    },
+    {
+      "context_frame": 23808,
+      "a": 0,
+      "b": null,
+      "c": null,
+      "phrase": null,
+      "rack": 1
+    }
+  ]
+}

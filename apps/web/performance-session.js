@@ -7,7 +7,7 @@ import { saveSession, verifySession } from './library.js';
 
 const $ = id => document.getElementById(id);
 const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
-export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights, onSaved, onPhraseChanged = () => {}, onSourcesChanged = () => {} }) {
+export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights, onSaved, onPhraseChanged = () => {}, onSourcesChanged = () => {}, onTransportChanged = () => {} }) {
   let live;
   let prepared, transport, samples, performanceBuffer, download, busy = '', starting = '', revision = 0, startVersion = 0;
   let savedPerformance, saving = false, saved = false;
@@ -137,7 +137,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
       });
       if (token !== revision || !rights.checked || deck.file !== file) return;
       prepared = buffer; deck.prepared = true;
-      transport = new SessionTransport(context(), engine.jamloom_next_bar, refresh);
+      transport = new SessionTransport(context(), engine.jamloom_next_bar, () => { refresh(); onTransportChanged(); });
       const key = analysis.keys[0];
       $('context-analysis').textContent = `First 30 s estimate: ${analysis.tempo.bpm} BPM (pulse correlation ${analysis.tempo.confidence.toFixed(2)}); strongest triad ${notes[key.tonic]} ${key.mode}. Tempo may be half/double; triads do not establish a key. Confirm the tonic, major/minor mode and downbeat yourself. A will play at original speed.`;
       if (analysis.tempo.confidence > .3) $('session-bpm').value = analysis.tempo.bpm;
@@ -385,7 +385,8 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     if(restored){clearPerformance();savedPerformance=restored;performanceBuffer=buffer;generationContext=state.context;download=URL.createObjectURL(restored.files.find(f=>f.name.endsWith('.wav')).blob);$('performance-download').href=download;$('performance-download').download=`jamloom-session-${restored.seed}.wav`;$('performance-download').hidden=false;onSourcesChanged();}
     say('Prepared session restored, stopped. Check the saved musical context before playback.');refresh();
   }
-  return { reset, stop, refresh, phraseSource, recoverySnapshot, restoreRecovery, recoveryCurrent:state=>!state||state.revision===revision&&(!(state.phrase||state.performance)||permitted()), mixSources: () => ({
+  return { transportState: () => transport?.snapshot() ?? null, reset, stop, refresh, phraseSource, recoverySnapshot, restoreRecovery, recoveryCurrent:state=>!state||state.revision===revision&&(!(state.phrase||state.performance)||permitted()), mixSources: () => ({
     c: savedPerformance?.files.find(file => file.name.endsWith('.wav'))?.blob, phrase: phraseBlob,
+    plan: savedPerformance?.files.find(file => file.name.endsWith('.score.json'))?.blob,
   }) };
 }

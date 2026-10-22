@@ -86,3 +86,17 @@ test('strict source schema rejects forged rights, filenames, wrong linkage, inva
     const invalid = new MixSources(); invalid.record(sources, clock(1)); assert.equal(invalid.failed, true);
   }
 });
+
+test('additive plan identity binds a saved C to the exact normalized phrase and retains legacy inventories', async () => {
+  const phrase=new Blob(['normalized phrase']),sourceHash=await sha256(await phrase.arrayBuffer());
+  const plan=new Blob([JSON.stringify({source:{sha256:sourceHash}})]),c=new Blob(['rendered C']);
+  const capture=new MixSources();capture.record({},clock(0));capture.record({phrase,plan,c},clock(1));
+  const value=await capture.finish(receipt);assert.equal(value.schema_version,'2.0-mix-sources');
+  assert.equal(value.snapshots[0].plan,null);
+  assert.equal(value.assets[value.snapshots[1].plan].source_sha256,sourceHash);
+  const forged=structuredClone(value);forged.assets[value.snapshots[1].plan].source_sha256='f'.repeat(64);
+  assert.throws(()=>validateMixSources(forged,receipt),/match/);
+  for(const sources of [{phrase,plan:new Blob(['broken']),c},{phrase,plan,c:null},{phrase:new Blob(['other']),plan,c}]){
+    const invalid=new MixSources();invalid.record(sources,clock(1));await assert.rejects(invalid.finish(receipt));
+  }
+});

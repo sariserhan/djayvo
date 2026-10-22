@@ -4,6 +4,7 @@ import {readFile,mkdtemp,writeFile} from 'node:fs/promises';
 import {join,resolve} from 'node:path';
 import {tmpdir} from 'node:os';
 import {chromium,webkit} from 'playwright';
+import {validateMixTransport} from '../mix-transport.js';
 import {silenceSpeakers} from '../../site/tests/silent-audio.mjs';
 const root=resolve('dist/web'),out=await mkdtemp(join(tmpdir(),'jamloom-deck-dsp-'));
 const probe=`import {DeckDSP} from './deck-dsp.js';
@@ -35,7 +36,11 @@ try{for(const [name,engine] of Object.entries({chromium,webkit})){const browser=
  await page.goto(base+'/dj.html');await page.locator('#music-rights').check();
  const wav=Buffer.alloc(44+48000*4*2);wav.write('RIFF');wav.writeUInt32LE(wav.length-8,4);wav.write('WAVEfmt ',8);wav.writeUInt32LE(16,16);wav.writeUInt16LE(1,20);wav.writeUInt16LE(1,22);wav.writeUInt32LE(48000,24);wav.writeUInt32LE(96000,28);wav.writeUInt16LE(2,32);wav.writeUInt16LE(16,34);wav.write('data',36);wav.writeUInt32LE(wav.length-44,40);for(let i=0;i<48000*4;i++)wav.writeInt16LE(Math.round(10000*Math.sin(2*Math.PI*440*i/48000)),44+i*2);
  await page.locator('#file-a').setInputFiles({name:'tone.wav',mimeType:'audio/wav',buffer:wav});await page.waitForFunction(()=>!document.querySelector('#prepare-frames-a').disabled);await page.locator('#prepare-frames-a').click();await page.waitForFunction(()=>!document.querySelector('#keylock-a').disabled&&document.querySelector('#error-a').textContent.includes('scratch ready'));
+ await page.locator('#mix-record-consent').check();await page.locator('#mix-record-start').click();await page.waitForFunction(()=>!document.querySelector('#mix-record-stop').disabled);
  await page.locator('#keylock-a').check();await page.locator('#rate-a').fill('1.1');await page.locator('#play-a').click();await page.waitForFunction(()=>document.querySelector('#output-meter').value>0);await page.locator('#play-a').click();await page.locator('#seek-a').fill('2');
  const box=await page.locator('#jog-a').boundingBox();await page.mouse.move(box.x+box.width*.8,box.y+box.height*.5);await page.mouse.down();await page.waitForTimeout(60);await page.mouse.move(box.x+box.width*.5,box.y+box.height*.2,{steps:8});await page.waitForTimeout(40);await page.mouse.up();await page.waitForTimeout(80);assert.ok(Number(await page.locator('#seek-a').inputValue())<2);assert.match(await page.locator('#play-a').innerText(),/Play/);
+ await page.locator('#mix-record-stop').click();await page.locator('#mix-record-transport').waitFor({state:'visible'});
+ const capture=await page.evaluate(async()=>({receipt:await(await fetch(document.querySelector('#mix-record-json').href)).json(),trace:await(await fetch(document.querySelector('#mix-record-transport').href)).json()}));
+ validateMixTransport(capture.trace,capture.receipt);assert.ok(capture.trace.events.some(e=>e.action==='keylock'&&e.state.a.key_lock));assert.ok(capture.trace.events.some(e=>e.action==='scratch'&&e.state.a.scratch_speed<0));assert.ok(capture.trace.events.some(e=>e.action==='scratch-end'&&!e.state.a.playing));await writeFile(join(out,name+'-transport.json'),JSON.stringify(capture,null,2));
  await page.screenshot({path:join(out,name+'-deck.png'),fullPage:true});assert.deepEqual(errors,[]);results.push({browser:name,metrics,effectMetrics,renderedKeylock:true,scratchBackwards:true,releasedPaused:true});
  }finally{await browser.close();}}await writeFile(join(out,'report.json'),JSON.stringify(results,null,2));console.log(JSON.stringify({out,results},null,2));}finally{server.close();}

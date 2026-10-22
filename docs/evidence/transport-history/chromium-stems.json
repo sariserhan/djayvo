@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0-mix-stems",
+  "scope": "aligned_post_fader_pre_limiter",
+  "training_authorized": false,
+  "wav_sha256": "9a70a8059e502b9ee2083b8e4d121fce97c00becf371c63aaf49380f2e5e7440",
+  "sample_rate": 48000,
+  "frames": 37376,
+  "observed_context_start_frame": 19968,
+  "stems": {
+    "a": "a552aab022cb221e06de6b4abc2720bfbc6c83c0d3767cbe9466e6028732970c",
+    "b": "dfbe30c27b36c718b41945597441b9d37342d35a9b24cf00a31dcb86475622c0",
+    "c": "dfbe30c27b36c718b41945597441b9d37342d35a9b24cf00a31dcb86475622c0",
+    "instruments": "aef03a2123f91fb89f2f6a1d7c74c3239ece30f361acd9ece84c76c4f1e7c928"
+  }
+}

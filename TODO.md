@@ -16,12 +16,14 @@ No new paid compute, live charges or publication is implied.
 | FIN-006 | Academy acceptance | PARTIAL | Automated batch complete; owner mini-set, manual accessibility and physical output remain deferred |
 | FIN-007 | iOS, then launch operations | NOT RUN | Explicitly deferred until preceding work is finished |
 
-[Latest implementation, reproducible evidence and remaining gates](docs/duration-and-live-phrases.md).
+[Latest capture/data follow-through and remaining gates](docs/r1-capture-completion.md).
+[Duration and continual-phrase implementation](docs/duration-and-live-phrases.md).
 Previous DJ/recovery checkpoint: `6faebff`, [report](docs/non-ios-finish.md).
 Prior [completion checkpoint](docs/non-ios-completion.md) is preserved.
 
 - [x] **FIN-008 — PASS, local:** Sixteenth-note sequencer with validated notes, sample-clock scheduling, panic/blur stop and paused scene recall.
 - [x] **FIN-009 — PASS, local implementation:** Opt-in 1–15 second source / 15–60 second output contract, versioned score replay, private-storage migration and continual phrase capture with bar-aligned responses. Physical/quality qualification remains under L01/L03 and M1; see the current report.
+- [x] **FIN-010 — PASS, local:** WAV-linked deck history, optional aligned float stems, saved-plan/source identity and bounded cross-split near-duplicate rejection. Existing source inventories remain readable. [Capture report](docs/r1-capture-completion.md).
 No push or deployment in this increment. Human checks remain deferred; the specification is not marked complete.
 
 ## Live Audio DJ — 2026-10-21
@@ -1215,8 +1217,8 @@ it does not waive the remaining quality, rights or training gates.
 - [x] **IR10 — PASS:** Rights declarations/evidence hashes, speaker opt-in boundaries, withdrawal/expiry and cross-ledger source/session/speaker/performer/phrase/arrangement split guards.
 - [x] **IR11 — PASS:** Six evaluation-only state/action/next-state examples, current-consent revalidation, one playable WAV, exact 512/113-block replay and 304 independently checked instrument events.
 - [x] **IR12 — PASS:** 14 new capture tests and 11 unchanged R0 tests on M5. [Report/logs](docs/r1-demonstrations.md).
-- [ ] **IR13 — PARTIAL:** Browser instrument actions/dry PCM, source-phrase pairs and post-limiter full-mix WAV capture now implemented. Gain/EQ/effect/reset schedules and loaded-source fingerprints link to the WAV; transport traces, complete derivation/verified rights, aligned stems and source/response alignment remain. [Evidence](docs/r1-source-inventory.md).
-- [ ] **IR14 — NOT RUN:** Permissioned expert demonstrations, verified human review, diverse stratified corpus and near-duplicate detection.
+- [ ] **IR13 — PARTIAL:** Browser instrument actions/dry PCM, source-phrase pairs and post-limiter full-mix WAV capture now implemented. Gain/EQ/effect/reset schedules, observed deck history, source/plan fingerprints and aligned post-fader stems link to the WAV. Plan source hashes are checked; native/dry replay and captured-stem reconstruction pass. Full action-only browser re-rendering, verified rights and human supervision alignment remain. [Current evidence](docs/r1-capture-completion.md).
+- [ ] **IR14 — PARTIAL:** Bounded near-duplicate waveform detection now rejects suspected cross-split reuse at ledger ingestion and export, with calibrated synthetic controls. Permissioned expert demonstrations, verified human review and a diverse stratified corpus remain NOT RUN. [Evidence](docs/r1-capture-completion.md).
 - [ ] **IR15 — NOT RUN:** R2 human comparison / R3 training. No training-authorized examples exported, no new model or paid compute; require their gates and authorization.
 - [x] **IR16 — PASS:** Opt-in local instrument take, playback/WAV/action download/delete, bounded capture, cancellation on lost focus/audio/engine failure, exact shared-engine replay.
 - [x] **IR17 — PASS:** 50 web unit tests; Chromium/WebKit capture flows at desktop/mobile sizes; 47 Chromium DJ regressions; audited offline bundle. Physical MIDI/latency and human quality NOT RUN.

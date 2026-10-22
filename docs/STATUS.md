@@ -1,5 +1,9 @@
 # Jamloom implementation checkpoint
 
+## Latest: capture/data technical follow-through — 2026-10-21
+
+**Local capture tooling PASS; specification PARTIAL.** Deck transport history, optional aligned A/B/C/instrument stems, exact saved-plan/source linkage and near-duplicate split guards are implemented. Existing native/dry replay is preserved; observed controls are not full action-only browser replay. Listening remains explicitly deferred; physical setup and provider/model gates remain open. iOS and launch retain their order. [Current report and evidence](r1-capture-completion.md).
+
 ## Latest: duration and continual phrases — 2026-10-21
 
 **Local implementation complete; overall PARTIAL.** Opt-in wider voice/output bounds, versioned exact score replay, existing-library migration and a bounded continual phrase cycle follow local commit `6faebff`. The current report records exact test results and distinguishes synthetic input from real microphones. Musical-quality FAIL remains; human, physical and provider/model gates remain open. iOS and launch operations are deferred in that order. No hosted migration or deployment. [Current report](duration-and-live-phrases.md).
@@ -121,7 +125,10 @@ and retained final cost evidence are now required for bound-rental settlement.
 The one-shot CLI defaults to a database-only preview; no real provider calls or
 external scheduling occurred. [Watchdog details](generation-watchdog.md).
 
-## Open implementation and next safe actions
+## Open implementation at the full-product checkpoint (historical)
+
+The latest reports above supersede completed items in this historical list.
+See [current remaining acceptance work](r1-capture-completion.md#remaining-acceptance-work-in-order).
 
 1. Composition-quality recovery: run one source-dependent musical-development
    hypothesis against frozen baselines, then the required independent study.

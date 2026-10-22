@@ -1,0 +1,62 @@
+[
+  {
+    "path": "renders/mix-recording-chromium-o3zhhT/mix.wav",
+    "bytes": 149548,
+    "sha256": "9a70a8059e502b9ee2083b8e4d121fce97c00becf371c63aaf49380f2e5e7440"
+  },
+  {
+    "path": "renders/mix-recording-chromium-o3zhhT/post-limiter-reference.wav",
+    "bytes": 143404,
+    "sha256": "5d37ce17166a37faccbf0e1ad2f5599fa3db7af8d2007c4bbda0ea820f48a94f"
+  },
+  {
+    "path": "renders/mix-recording-chromium-o3zhhT/stem-a.wav",
+    "bytes": 299066,
+    "sha256": "a552aab022cb221e06de6b4abc2720bfbc6c83c0d3767cbe9466e6028732970c"
+  },
+  {
+    "path": "renders/mix-recording-chromium-o3zhhT/stem-b.wav",
+    "bytes": 299066,
+    "sha256": "dfbe30c27b36c718b41945597441b9d37342d35a9b24cf00a31dcb86475622c0"
+  },
+  {
+    "path": "renders/mix-recording-chromium-o3zhhT/stem-c.wav",
+    "bytes": 299066,
+    "sha256": "dfbe30c27b36c718b41945597441b9d37342d35a9b24cf00a31dcb86475622c0"
+  },
+  {
+    "path": "renders/mix-recording-chromium-o3zhhT/stem-instruments.wav",
+    "bytes": 299066,
+    "sha256": "aef03a2123f91fb89f2f6a1d7c74c3239ece30f361acd9ece84c76c4f1e7c928"
+  },
+  {
+    "path": "renders/mix-recording-webkit-SdfRgx/mix.wav",
+    "bytes": 145964,
+    "sha256": "55819f1d1618fdff47b7cff9c46d49fc7c1fe38169ee3805660bad5f5f957c17"
+  },
+  {
+    "path": "renders/mix-recording-webkit-SdfRgx/post-limiter-reference.wav",
+    "bytes": 191020,
+    "sha256": "18121be9ee3177e99e4503e43e74d31aaf24934e83e696c43485fb645149a59d"
+  },
+  {
+    "path": "renders/mix-recording-webkit-SdfRgx/stem-a.wav",
+    "bytes": 291898,
+    "sha256": "8c0341dfbf4490dee1e6874b675c5eee81bbcde81fcf1a3dc4792326484cba0a"
+  },
+  {
+    "path": "renders/mix-recording-webkit-SdfRgx/stem-b.wav",
+    "bytes": 291898,
+    "sha256": "4589ed4b1cfdc59728682db153b4002c4cec9b2151f6d61cac4898845d58a200"
+  },
+  {
+    "path": "renders/mix-recording-webkit-SdfRgx/stem-c.wav",
+    "bytes": 291898,
+    "sha256": "4589ed4b1cfdc59728682db153b4002c4cec9b2151f6d61cac4898845d58a200"
+  },
+  {
+    "path": "renders/mix-recording-webkit-SdfRgx/stem-instruments.wav",
+    "bytes": 291898,
+    "sha256": "3ba6f16cbcbdfe007eeed50c80b1a5bd13747bba7e4c7fa9d2b388dbe9c7f9f9"
+  }
+]

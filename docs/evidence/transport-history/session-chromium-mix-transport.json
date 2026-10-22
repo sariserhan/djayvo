@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0-mix-transport",
+  "scope": "observed_transport_states",
+  "training_authorized": false,
+  "wav_sha256": "7fdce13440fe3be54b64c2d63c786ac28eab9d0cd30bd3159a22dff4df024cd0",
+  "sample_rate": 48000,
+  "observed_context_start_frame": 622848,
+  "events": [
+    {
+      "context_frame": 622592,
+      "target": "all",
+      "action": "snapshot",
+      "state": {
+        "a": {
+          "mode": "media",
+          "duration_seconds": 90,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": {
+          "a": {
+            "start_frame": 560320,
+            "end_frame": 4880320
+          },
+          "c": null,
+          "tempo_milli_bpm": 120000,
+          "origin_frame": 560320
+        }
+      }
+    },
+    {
+      "context_frame": 624896,
+      "target": "prepared",
+      "action": "prepared",
+      "state": {
+        "a": {
+          "mode": "media",
+          "duration_seconds": 90,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": {
+          "a": {
+            "start_frame": 560320,
+            "end_frame": 4880320
+          },
+          "c": {
+            "start_frame": 656320,
+            "end_frame": 2096320
+          },
+          "tempo_milli_bpm": 120000,
+          "origin_frame": 560320
+        }
+      }
+    },
+    {
+      "context_frame": 626432,
+      "target": "prepared",
+      "action": "prepared",
+      "state": {
+        "a": {
+          "mode": "media",
+          "duration_seconds": 90,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": {
+          "a": {
+            "start_frame": 560320,
+            "end_frame": 4880320
+          },
+          "c": null,
+          "tempo_milli_bpm": 120000,
+          "origin_frame": 560320
+        }
+      }
+    }
+  ]
+}

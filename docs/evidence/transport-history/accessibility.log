@@ -1,0 +1,16 @@
+/Users/serhansari/Documents/projects/jamloom/apps/site/node_modules/@axe-core/playwright/dist/index.js:254
+      throw new Error(
+            ^
+
+Error: Please use browser.newContext()
+ Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md
+    at AxeBuilder.analyze (/Users/serhansari/Documents/projects/jamloom/apps/site/node_modules/@axe-core/playwright/dist/index.js:254:13)
+    at async file:///private/tmp/jamloom-a11y-source.mjs:12:849 {
+  [cause]: Error: Please use browser.newContext()
+      at _BrowserContext.newPage (/Users/serhansari/Documents/projects/jamloom/apps/site/node_modules/playwright-core/lib/coreBundle.js:60775:17)
+      at AxeBuilder.finishRun (/Users/serhansari/Documents/projects/jamloom/apps/site/node_modules/@axe-core/playwright/dist/index.js:350:37)
+      at AxeBuilder.analyze (/Users/serhansari/Documents/projects/jamloom/apps/site/node_modules/@axe-core/playwright/dist/index.js:252:25)
+      at async file:///private/tmp/jamloom-a11y-source.mjs:12:849
+}
+
+Node.js v22.23.1

@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0-mix-recording",
+  "scope": "post_limiter_studio_mix",
+  "origin": "unreviewed_live_capture",
+  "training_authorized": false,
+  "permission": "user_attested_private_mix",
+  "sample_rate": 48000,
+  "frames": 17408,
+  "wav_sha256": "7fdce13440fe3be54b64c2d63c786ac28eab9d0cd30bd3159a22dff4df024cd0",
+  "observed_context_start_frame": 622848,
+  "timestamp_discontinuities": 0,
+  "limit_reached": false
+}

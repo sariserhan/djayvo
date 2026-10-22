@@ -1,0 +1,384 @@
+{
+  "schema_version": "1.0-mix-transport",
+  "scope": "observed_transport_states",
+  "training_authorized": false,
+  "wav_sha256": "55819f1d1618fdff47b7cff9c46d49fc7c1fe38169ee3805660bad5f5f957c17",
+  "sample_rate": 48000,
+  "observed_context_start_frame": 20736,
+  "events": [
+    {
+      "context_frame": 20480,
+      "target": "all",
+      "action": "snapshot",
+      "state": {
+        "a": {
+          "mode": "worklet",
+          "duration_seconds": 4,
+          "position_seconds": 0.28,
+          "playing": true,
+          "rate": 1,
+          "loop": true,
+          "region_seconds": null,
+          "key_lock": false,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": null
+      }
+    },
+    {
+      "context_frame": 22016,
+      "target": "b",
+      "action": "source",
+      "state": {
+        "a": {
+          "mode": "worklet",
+          "duration_seconds": 4,
+          "position_seconds": 0.312,
+          "playing": true,
+          "rate": 1,
+          "loop": true,
+          "region_seconds": null,
+          "key_lock": false,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": null
+      }
+    },
+    {
+      "context_frame": 22016,
+      "target": "b",
+      "action": "source",
+      "state": {
+        "a": {
+          "mode": "worklet",
+          "duration_seconds": 4,
+          "position_seconds": 0.312,
+          "playing": true,
+          "rate": 1,
+          "loop": true,
+          "region_seconds": null,
+          "key_lock": false,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": null
+      }
+    },
+    {
+      "context_frame": 22016,
+      "target": "b",
+      "action": "rate",
+      "state": {
+        "a": {
+          "mode": "worklet",
+          "duration_seconds": 4,
+          "position_seconds": 0.312,
+          "playing": true,
+          "rate": 1,
+          "loop": true,
+          "region_seconds": null,
+          "key_lock": false,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": null
+      }
+    },
+    {
+      "context_frame": 22016,
+      "target": "b",
+      "action": "loop",
+      "state": {
+        "a": {
+          "mode": "worklet",
+          "duration_seconds": 4,
+          "position_seconds": 0.312,
+          "playing": true,
+          "rate": 1,
+          "loop": true,
+          "region_seconds": null,
+          "key_lock": false,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": null
+      }
+    },
+    {
+      "context_frame": 22016,
+      "target": "b",
+      "action": "keylock",
+      "state": {
+        "a": {
+          "mode": "worklet",
+          "duration_seconds": 4,
+          "position_seconds": 0.312,
+          "playing": true,
+          "rate": 1,
+          "loop": true,
+          "region_seconds": null,
+          "key_lock": false,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": null
+      }
+    },
+    {
+      "context_frame": 22528,
+      "target": "b",
+      "action": "loadedmetadata",
+      "state": {
+        "a": {
+          "mode": "worklet",
+          "duration_seconds": 4,
+          "position_seconds": 0.32266666666666666,
+          "playing": true,
+          "rate": 1,
+          "loop": true,
+          "region_seconds": null,
+          "key_lock": false,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "media",
+          "duration_seconds": 1,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": null
+      }
+    },
+    {
+      "context_frame": 24448,
+      "target": "b",
+      "action": "source",
+      "state": {
+        "a": {
+          "mode": "worklet",
+          "duration_seconds": 4,
+          "position_seconds": 0.36266666666666664,
+          "playing": true,
+          "rate": 1,
+          "loop": true,
+          "region_seconds": null,
+          "key_lock": false,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "media",
+          "duration_seconds": 1,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": null
+      }
+    },
+    {
+      "context_frame": 24448,
+      "target": "b",
+      "action": "rate",
+      "state": {
+        "a": {
+          "mode": "worklet",
+          "duration_seconds": 4,
+          "position_seconds": 0.36266666666666664,
+          "playing": true,
+          "rate": 1,
+          "loop": true,
+          "region_seconds": null,
+          "key_lock": false,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": null
+      }
+    },
+    {
+      "context_frame": 24448,
+      "target": "b",
+      "action": "loop",
+      "state": {
+        "a": {
+          "mode": "worklet",
+          "duration_seconds": 4,
+          "position_seconds": 0.36266666666666664,
+          "playing": true,
+          "rate": 1,
+          "loop": true,
+          "region_seconds": null,
+          "key_lock": false,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": null
+      }
+    },
+    {
+      "context_frame": 24448,
+      "target": "b",
+      "action": "keylock",
+      "state": {
+        "a": {
+          "mode": "worklet",
+          "duration_seconds": 4,
+          "position_seconds": 0.36266666666666664,
+          "playing": true,
+          "rate": 1,
+          "loop": true,
+          "region_seconds": null,
+          "key_lock": false,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "b": {
+          "mode": "empty",
+          "duration_seconds": 0,
+          "position_seconds": 0,
+          "playing": false,
+          "rate": 1,
+          "loop": false,
+          "region_seconds": null,
+          "key_lock": true,
+          "scratching": false,
+          "scratch_speed": 0,
+          "roll": null
+        },
+        "prepared": null
+      }
+    }
+  ]
+}

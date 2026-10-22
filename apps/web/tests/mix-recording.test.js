@@ -5,14 +5,14 @@ import vm from 'node:vm';
 import { TAKE_SECONDS, stereoWav, sha256 } from '../live-take.js';
 import { validateMixRecording } from '../mix-recording.js';
 
-function harness(rate = 48000) {
+function harness(rate = 48000, stems = false) {
   let Processor; const messages = [];
   const scope = { TAKE_SECONDS, sampleRate: rate, currentFrame: 4096,
     AudioWorkletProcessor: class { constructor() { this.port = { postMessage: (data, transfer = []) =>
       messages.push(structuredClone(data, { transfer })) }; } },
     registerProcessor: (_, cls) => { Processor = cls; } };
   vm.runInNewContext(fs.readFileSync(new URL('../mix-recording-worklet.js', import.meta.url), 'utf8').replace(/^import .*;\n/, ''), scope);
-  const processor = new Processor(), output = [[new Float32Array(128), new Float32Array(128)]];
+  const processor = new Processor({processorOptions:{stems}}), output = [[new Float32Array(128), new Float32Array(128)]];
   // Warm up two connected blocks before the acknowledged recording starts.
   processor.process([[new Float32Array(128)]],output);scope.currentFrame+=128;
   processor.process([[new Float32Array(128)]],output);scope.currentFrame+=128;
@@ -64,4 +64,16 @@ test('receipt stays private, bounded and explicitly distinct from a replayable m
     { limit_reached: true }, { sample_rate: 22050 }, { wav_sha256: 'not a hash' }, { scope: 'dry_instruments' }])
     assert.throws(() => validateMixRecording({ ...receipt, ...change }));
   assert.throws(() => stereoWav(new Float32Array([NaN, 0]), 1, 48000));
+});
+
+test('optional stem channels share the exact master clock, retain headroom and release all buffers', () => {
+  const h=harness(48000,true),inputs=[.25,1.25,-.5,.75,-2].map(value=>[new Float32Array(128).fill(value)]);
+  h.processor.process(inputs,h.output);h.scope.currentFrame+=128;
+  h.processor.process(inputs,h.output);h.send('stop');
+  const data=h.messages.at(-1);assert.equal(data.first,4352);assert.equal(data.frames,256);
+  assert.equal(data.stems.length,4);assert.equal(h.processor.stems,null);
+  for(let i=0;i<4;i++)assert.ok(data.stems[i].subarray(0,512).every(value=>value===[1.25,-.5,.75,-2][i]));
+  const cancel=harness(48000,true);cancel.send('cancel');assert.equal(cancel.processor.stems,null);
+  assert.throws(()=>harness(192000,true),/96 kHz/);
+  assert.equal(harness(192000).processor.stems,null);
 });

@@ -1,6 +1,6 @@
 # Specification completion ledger
 
-Current non-iOS continuation: [2026-10-21 duration and continual-phrase follow-through](duration-and-live-phrases.md).
+Current non-iOS continuation: [2026-10-21 capture/data follow-through](r1-capture-completion.md).
 Overall remains **PARTIAL**. The entries below preserve earlier checkpoints and are
 superseded where the current report records newer implementation or evidence.
 

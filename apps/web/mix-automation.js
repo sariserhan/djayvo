@@ -77,7 +77,7 @@ export class MixAutomation {
   }
   finish(receipt) {
     if (this.overflow || this.invalid) return null;
-    // shortcut: transport, source assets and prior DSP history are absent; supply them before full mix replay.
+    // shortcut: prior DSP history and exact decoder timing are absent; companion source/transport exports do not enable full mix replay.
     return validateMixAutomation({
       schema_version: this.deckEffects?'3.0-mix-automation':'2.0-mix-automation', scope: 'scheduled_gain_eq_fx_controls', training_authorized: false,
       wav_sha256: receipt.wav_sha256, sample_rate: receipt.sample_rate,

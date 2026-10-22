@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { validateMixTransport } from '../mix-transport.js';
 import { validateMixSources } from '../mix-sources.js';
 import { validateMixRecording } from '../mix-recording.js';
 import { createHash } from 'node:crypto';
@@ -206,15 +207,21 @@ try {
   await (await downloaded).saveAs(path.join(output, 'consented-performance.wav'));
   await page.locator('#mix-record-consent').check(); await page.locator('#mix-record-start').click();
   await page.waitForFunction(()=>!document.getElementById('mix-record-stop').disabled);
+  await page.locator('#c-arm').click(); await page.locator('#c-stop').click();
   await page.waitForTimeout(250); await page.locator('#mix-record-stop').click();
   await page.locator('#mix-record-sources').waitFor({state:'visible'});
-  for(const [id,name] of [['mix-record-json','mix-receipt.json'],['mix-record-sources','mix-sources.json']]) {
+  for(const [id,name] of [['mix-record-json','mix-receipt.json'],['mix-record-sources','mix-sources.json'],['mix-record-transport','mix-transport.json']]) {
     const download=page.waitForEvent('download'); await page.locator(`#${id}`).click(); await(await download).saveAs(path.join(output,name));
   }
   const sourceReceipt=validateMixRecording(JSON.parse(await fs.readFile(path.join(output,'mix-receipt.json'),'utf8')));
+  const transportTrace=validateMixTransport(JSON.parse(await fs.readFile(path.join(output,'mix-transport.json'),'utf8')),sourceReceipt);
+  assert.ok(transportTrace.events.some(e=>e.state.prepared?.a&&e.state.prepared?.c));
+  assert.equal(transportTrace.events.at(-1).state.prepared.c,null);
   const sourceInventory=validateMixSources(JSON.parse(await fs.readFile(path.join(output,'mix-sources.json'),'utf8')),sourceReceipt);
   const cHash=createHash('sha256').update(await fs.readFile(path.join(output,'consented-performance.wav'))).digest('hex');
   const phraseHash=await page.evaluate(()=>sourceWavHash);
+  assert.equal(sourceInventory.schema_version,'2.0-mix-sources');
+  assert.ok(sourceInventory.assets.some(a=>a.kind==='performance_plan'&&a.source_sha256===phraseHash));
   assert.ok(sourceInventory.assets.some(a=>a.kind==='generated_wav' && a.sha256===cHash));
   assert.ok(sourceInventory.assets.some(a=>a.kind==='normalized_phrase_wav' && a.sha256===phraseHash));
   assert.ok(sourceInventory.assets.some(a=>a.kind==='local_audio' && a.sha256===createHash('sha256').update(wav).digest('hex')));

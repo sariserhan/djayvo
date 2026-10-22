@@ -1,0 +1,14 @@
+Artifacts: /Users/serhansari/Documents/projects/jamloom/renders/mix-recording-chromium-OjkZPZ
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:303:30), <anonymous>:1:17)
+    at UtilityScript.evaluate (<anonymous>:305:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at /Users/serhansari/Documents/projects/jamloom/apps/web/tests/mix-recording.mjs:152:66 {
+  log: []
+}
+
+Node.js v22.23.1

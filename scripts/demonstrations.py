@@ -30,7 +30,8 @@ def policy_digest():
     paths = ('scripts/demonstrations.py', 'scripts/r0.py', 'scripts/verify_export.py',
              'scripts/inspect_wav.py', 'schemas/remix-plan.schema.json',
              'schemas/demonstration-action.schema.json', 'schemas/demonstration-trace.schema.json',
-             'datasets/demonstration-ledger.schema.json')
+             'datasets/demonstration-ledger.schema.json', 'scripts/check_style_overlap.py',
+             'datasets/requirements-r1.txt')
     return fingerprint({p: digest(ROOT/p) for p in paths})
 
 
@@ -111,7 +112,47 @@ def ledger(path):
                 raise ValueError('source/session/phrase/speaker/performer split leakage')
             groups[key] = record['split']
         records[record['id']] = record
+    check_audio_splits(list(records.values()))
     return records
+
+
+def check_audio_splits(records):
+    """Reject suspected waveform reuse across splits; never infer rights or originality."""
+    if len({record["split"] for record in records}) < 2:
+        return
+    unique = {}
+    for record in records:
+        key = record["asset"]["sha256"]
+        if key in unique and unique[key]["split"] != record["split"]:
+            raise ValueError("exact source split leakage")
+        unique[key] = record
+    if len(unique) > 128:
+        raise ValueError("cross-split audio review is limited to 128 unique sources per batch")
+    try:
+        from check_style_overlap import np, RATE, scan
+    except ImportError as error:
+        raise ValueError("cross-split audio review requires datasets/requirements-r1.txt") from error
+    signals = []
+    for record in unique.values():
+        source = checked(record["asset"])
+        if source.stat().st_size > 32 * 1024 * 1024:
+            raise ValueError("source exceeds 32 MiB")
+        with wave.open(str(source), "rb") as wav:
+            if wav.getsampwidth() != 2 or wav.getnchannels() not in (1, 2) or not 2 <= wav.getnframes()/wav.getframerate() <= 5:
+                raise ValueError("source must be 2..5 seconds mono/stereo PCM16")
+        raw = subprocess.check_output(["ffmpeg", "-v", "error", "-nostdin", "-i", str(source),
+            "-ac", "1", "-ar", str(RATE), "-t", "5", "-f", "f32le", "-"], timeout=30, stderr=subprocess.PIPE)
+        samples = np.frombuffer(raw, dtype="<f4").astype(np.float64)
+        if not 2 * RATE <= len(samples) <= 5 * RATE or not np.isfinite(samples).all():
+            raise ValueError("invalid decoded comparison audio")
+        signals.append((record, samples))
+    for index, (record, samples) in enumerate(signals):
+        for other, target in signals[:index]:
+            if record["split"] == other["split"]:
+                continue
+            # shortcut: two-second mono waveform windows miss pitch/time edits and shorter copies; retain human corpus review.
+            if scan(samples, target)["flagged_windows"] or scan(target, samples)["flagged_windows"]:
+                raise ValueError("suspected near-duplicate audio across splits; review source groups before export")
 
 
 def apply_action(plan, action):
@@ -258,6 +299,7 @@ def audited(path, output=None, block=512):
 
 def examples(paths):
     rows, groups, seen, size = [], {}, set(), 0
+    source_records = []
     if not 1 <= len(paths) <= 128:
         raise ValueError('batch must contain 1..128 traces')
     for path in paths:
@@ -265,6 +307,7 @@ def examples(paths):
         if trace['session_id'] in seen:
             raise ValueError('duplicate session/revision in dataset')
         seen.add(trace['session_id'])
+        source_records.append(record)
         keys = [('asset', record['asset']['sha256'])]
         keys += [(k, record[k]) for k in ('source_group', 'session_group', 'phrase_group', 'performer_group')]
         keys += [('speaker', s['id']) for s in record['speakers']]
@@ -290,6 +333,7 @@ def examples(paths):
             rows.append(row)
     if not rows:
         raise ValueError('no accepted actions to export')
+    check_audio_splits(source_records)
     return rows, {'status': 'PASS', 'examples': len(rows), 'sessions': len(seen),
             'human_expert_examples': 0, 'training_authorized': False,
             'splits': sorted({r['split'] for r in rows})}
@@ -354,7 +398,7 @@ def main():
         print(json.dumps(result, indent=2))
     except ValidationError:
         parser.exit(1, 'FAIL: schema validation rejected the document\n')
-    except (ValueError, KeyError, TypeError, OSError, subprocess.TimeoutExpired) as error:
+    except (ValueError, KeyError, TypeError, OSError, subprocess.TimeoutExpired, subprocess.CalledProcessError) as error:
         parser.exit(1, f'FAIL: {error}\n')
 
 

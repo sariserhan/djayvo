@@ -33,3 +33,10 @@ only that nonperson, evaluation-only test. R0's ingestion policy is unchanged.
 See the [R1 guide](../docs/r1-demonstrations.md) for edit capture, current-consent
 revalidation, state/action/next-state JSONL, split guards and remaining human
 review requirements. All current exports deny training authorization.
+
+
+Current R1 mixed-split ingestion/export also checks suspected near-duplicate
+waveforms using the existing local comparator; see [scope and limits](../docs/r1-capture-completion.md).
+Use the isolated `datasets/requirements-r1.txt` environment and FFmpeg. There is
+no training admission path. New policy hashes intentionally invalidate old traces
+for current-policy export; preserve historical artifacts and capture fresh traces.

@@ -1,0 +1,432 @@
+{
+  "schema_version": "3.0-mix-automation",
+  "scope": "scheduled_gain_eq_fx_controls",
+  "training_authorized": false,
+  "wav_sha256": "55819f1d1618fdff47b7cff9c46d49fc7c1fe38169ee3805660bad5f5f957c17",
+  "sample_rate": 48000,
+  "observed_context_start_frame": 20736,
+  "snapshot_context_frame": 20480,
+  "initial_targets": {
+    "a": 0.6000000000000001,
+    "b": 0,
+    "c": 0.30000000000000004,
+    "rack": 0.48750000000000004,
+    "eq-a-0": 0,
+    "eq-a-1": 0,
+    "eq-a-2": 0,
+    "eq-b-0": 0,
+    "eq-b-1": 0,
+    "eq-b-2": 0
+  },
+  "initial_effects": {
+    "a": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    },
+    "b": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    },
+    "c": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    },
+    "rack": {
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300
+    }
+  },
+  "events": [
+    {
+      "kind": "gain",
+      "context_frame": 22016,
+      "target": "eq-b-0",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 22016,
+      "target": "eq-b-1",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 22016,
+      "target": "eq-b-2",
+      "value": 0
+    },
+    {
+      "kind": "clear_echo",
+      "target": "b",
+      "context_frame": 22016,
+      "spacing_ms": 300
+    },
+    {
+      "kind": "clear_deck_effects",
+      "target": "b",
+      "context_frame": 22016
+    },
+    {
+      "kind": "tone_echo",
+      "target": "b",
+      "context_frame": 22016,
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300,
+      "held_frequency_hz": 24000
+    },
+    {
+      "kind": "deck_effects",
+      "target": "b",
+      "context_frame": 22016,
+      "reverb": 0,
+      "phaser": 0,
+      "flanger": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 24448,
+      "target": "eq-b-0",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 24448,
+      "target": "eq-b-1",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 24448,
+      "target": "eq-b-2",
+      "value": 0
+    },
+    {
+      "kind": "clear_echo",
+      "target": "b",
+      "context_frame": 24448,
+      "spacing_ms": 300
+    },
+    {
+      "kind": "clear_deck_effects",
+      "target": "b",
+      "context_frame": 24448
+    },
+    {
+      "kind": "tone_echo",
+      "target": "b",
+      "context_frame": 24448,
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300,
+      "held_frequency_hz": 24000
+    },
+    {
+      "kind": "deck_effects",
+      "target": "b",
+      "context_frame": 24448,
+      "reverb": 0,
+      "phaser": 0,
+      "flanger": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 36992,
+      "target": "eq-a-0",
+      "value": -6
+    },
+    {
+      "kind": "gain",
+      "context_frame": 36992,
+      "target": "eq-a-0",
+      "value": -6
+    },
+    {
+      "kind": "gain",
+      "context_frame": 37248,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "kind": "gain",
+      "context_frame": 37376,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "kind": "gain",
+      "context_frame": 37376,
+      "target": "a",
+      "value": 0.6000000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 37376,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 37376,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "kind": "gain",
+      "context_frame": 37376,
+      "target": "rack",
+      "value": 0.375
+    },
+    {
+      "kind": "gain",
+      "context_frame": 37504,
+      "target": "a",
+      "value": 0.6000000000000001
+    },
+    {
+      "kind": "gain",
+      "context_frame": 37504,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 37504,
+      "target": "c",
+      "value": 0.18
+    },
+    {
+      "kind": "gain",
+      "context_frame": 37504,
+      "target": "rack",
+      "value": 0.375
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 37504,
+      "tone": 50,
+      "echo": 0,
+      "spacing_ms": 300,
+      "held_frequency_hz": 24000
+    },
+    {
+      "kind": "deck_effects",
+      "target": "a",
+      "context_frame": 37504,
+      "reverb": 0,
+      "phaser": 0,
+      "flanger": 0
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 37632,
+      "tone": 50,
+      "echo": 0,
+      "spacing_ms": 300,
+      "held_frequency_hz": 19276.771484375
+    },
+    {
+      "kind": "deck_effects",
+      "target": "a",
+      "context_frame": 37632,
+      "reverb": 0,
+      "phaser": 0,
+      "flanger": 0
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 37632,
+      "tone": 50,
+      "echo": 0.25,
+      "spacing_ms": 300,
+      "held_frequency_hz": 19276.771484375
+    },
+    {
+      "kind": "deck_effects",
+      "target": "a",
+      "context_frame": 37632,
+      "reverb": 0,
+      "phaser": 0,
+      "flanger": 0
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 37760,
+      "tone": 50,
+      "echo": 0.25,
+      "spacing_ms": 300,
+      "held_frequency_hz": 15785.2265625
+    },
+    {
+      "kind": "deck_effects",
+      "target": "a",
+      "context_frame": 37760,
+      "reverb": 0,
+      "phaser": 0,
+      "flanger": 0
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 37760,
+      "tone": 50,
+      "echo": 0.25,
+      "spacing_ms": 170,
+      "held_frequency_hz": 15785.2265625
+    },
+    {
+      "kind": "deck_effects",
+      "target": "a",
+      "context_frame": 37760,
+      "reverb": 0,
+      "phaser": 0,
+      "flanger": 0
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 37888,
+      "tone": 50,
+      "echo": 0.25,
+      "spacing_ms": 170,
+      "held_frequency_hz": 13155.865234375
+    },
+    {
+      "kind": "deck_effects",
+      "target": "a",
+      "context_frame": 37888,
+      "reverb": 0,
+      "phaser": 0,
+      "flanger": 0
+    },
+    {
+      "kind": "tone_echo",
+      "target": "rack",
+      "context_frame": 37888,
+      "tone": 100,
+      "echo": 0.3,
+      "spacing_ms": 300,
+      "held_frequency_hz": 24000
+    },
+    {
+      "kind": "tone_echo",
+      "target": "rack",
+      "context_frame": 37888,
+      "tone": 100,
+      "echo": 0.3,
+      "spacing_ms": 300,
+      "held_frequency_hz": 24000
+    },
+    {
+      "kind": "clear_echo",
+      "target": "a",
+      "context_frame": 39552,
+      "spacing_ms": 170
+    },
+    {
+      "kind": "clear_deck_effects",
+      "target": "a",
+      "context_frame": 39552
+    },
+    {
+      "kind": "tone_echo",
+      "target": "a",
+      "context_frame": 39552,
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300,
+      "held_frequency_hz": 2000
+    },
+    {
+      "kind": "deck_effects",
+      "target": "a",
+      "context_frame": 39552,
+      "reverb": 0,
+      "phaser": 0,
+      "flanger": 0
+    },
+    {
+      "kind": "clear_echo",
+      "target": "rack",
+      "context_frame": 41472,
+      "spacing_ms": 300
+    },
+    {
+      "kind": "tone_echo",
+      "target": "rack",
+      "context_frame": 41472,
+      "tone": 100,
+      "echo": 0,
+      "spacing_ms": 300,
+      "held_frequency_hz": 24000
+    },
+    {
+      "kind": "gain",
+      "context_frame": 41600,
+      "target": "a",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 41600,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 41600,
+      "target": "c",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 41600,
+      "target": "rack",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 41600,
+      "target": "a",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 41600,
+      "target": "b",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 41600,
+      "target": "c",
+      "value": 0
+    },
+    {
+      "kind": "gain",
+      "context_frame": 41600,
+      "target": "rack",
+      "value": 0
+    }
+  ],
+  "initial_deck_effects": {
+    "a": {
+      "reverb": 0,
+      "phaser": 0,
+      "flanger": 0
+    },
+    "b": {
+      "reverb": 0,
+      "phaser": 0,
+      "flanger": 0
+    }
+  }
+}

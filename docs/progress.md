@@ -1,3 +1,7 @@
+# Capture/data technical follow-through — 2026-10-21
+
+**Local capture tooling PASS; specification PARTIAL.** Added bounded deck history, optional aligned float stems, saved-plan/phrase identity checks and calibrated cross-split near-duplicate rejection. Human listening stays deferred; earlier quality FAIL remains. Physical/provider/model evidence, iOS and launch remain open in the requested order. [Current report](r1-capture-completion.md).
+
 # Duration and continual-phrase follow-through — 2026-10-21
 
 **Local implementation complete; overall PARTIAL.** After `6faebff`, Voice studio now supports opt-in 1–15 second inputs and bounded 15–60 second arrangements, strict 1.8 score replay and wider private storage. Prepared A can repeat an explicitly enabled capture/render/bar-aligned-C cycle, with capture paused during C and cancellation closing inputs. Existing default contracts remain available. The original quality rejection is retained; human, hardware, provider/model, iOS and launch gates remain. [Current report and receipts](duration-and-live-phrases.md).

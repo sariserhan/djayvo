@@ -5,6 +5,9 @@ import { createServer } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { chromium, webkit } from 'playwright';
 import { stereoWav, sha256 } from '../live-take.js';
+import { silenceSpeakers } from '../../site/tests/silent-audio.mjs';
+import { validateMixStems, MIX_STEMS } from '../mix-stems.js';
+import { validateMixTransport } from '../mix-transport.js';
 import { validateMixSources } from '../mix-sources.js';
 import { validateMixAutomation } from '../mix-automation.js';
 import { validateMixRecording } from '../mix-recording.js';
@@ -33,6 +36,7 @@ let browser;
 try {
   browser = await {chromium,webkit}[kind].launch();
   const context = await browser.newContext({viewport:{width:1440,height:1000}});
+  await context.addInitScript(silenceSpeakers);
   await context.addInitScript(() => {
     const Native = window.AudioWorkletNode;
     window.AudioWorkletNode = class extends Native { constructor(c, name, options) {
@@ -112,11 +116,13 @@ try {
   await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles({name:'original-test-tone.wav',mimeType:'audio/wav',buffer:Buffer.from(stereoWav(pcm,48000*4,48000))});
   await page.waitForFunction(()=>!document.getElementById('play-a').disabled);
+  await page.locator('#prepare-frames-a').click();
+  await page.waitForFunction(()=>document.getElementById('error-a').textContent.includes('scratch ready'));
   await page.locator('#loop-a').click(); await page.locator('#play-a').click();
   await page.waitForFunction(()=>document.getElementById('state-a').textContent==='Playing');
   await page.locator('#load-instruments').click();
   await page.waitForFunction(()=>document.getElementById('load-instruments').textContent==='Instruments ready');
-  await page.locator('#mix-record-consent').check(); await page.locator('#mix-record-start').click();
+  await page.locator('#mix-record-consent').check(); await page.locator('#mix-record-stems').check(); await page.locator('#mix-record-start').click();
   const recording=()=>page.waitForFunction(()=>!document.getElementById('mix-record-stop').disabled);
   await recording();
   const bWav=Buffer.from(stereoWav(pcm.slice(0,48000*2),48000,48000));
@@ -135,13 +141,39 @@ try {
   await page.waitForTimeout(300); await page.locator('#mix-record-stop').click();
   await page.locator('#mix-record-wav').waitFor({state:'visible'});
   assert.equal(await page.locator('#state-a').textContent(),'Playing');
-  for(const [id,name] of [['mix-record-wav','mix.wav'],['mix-record-json','mix.json'],['mix-record-automation','controls.json'],['mix-record-sources','sources.json']]) {
+  for(const [id,name] of [['mix-record-wav','mix.wav'],['mix-record-json','mix.json'],['mix-record-automation','controls.json'],['mix-record-sources','sources.json'],['mix-record-transport','transport.json']]) {
     const promise=page.waitForEvent('download'); await page.locator(`#${id}`).click();
     await(await promise).saveAs(path.join(output,name));
   }
   const receipt=validateMixRecording(JSON.parse(await fs.readFile(path.join(output,'mix.json'),'utf8')));
   const wav=await fs.readFile(path.join(output,'mix.wav')); assert.equal(await sha256(wav),receipt.wav_sha256);
   assert.equal(wav.length,44+receipt.frames*4); assert.equal(receipt.training_authorized,false);
+  await page.locator('#mix-record-stems-json').waitFor({state:'visible'});
+  const stemsDownload=page.waitForEvent('download');await page.locator('#mix-record-stems-json').click();await(await stemsDownload).saveAs(path.join(output,'stems.json'));
+  const stemDetails=validateMixStems(JSON.parse(await fs.readFile(path.join(output,'stems.json'),'utf8')),receipt);
+  const stemBuffers=[];
+  for(const name of MIX_STEMS){
+    const promise=page.waitForEvent('download');await page.locator('#mix-stem-'+name).click();await(await promise).saveAs(path.join(output,'stem-'+name+'.wav'));
+    const bytes=await fs.readFile(path.join(output,'stem-'+name+'.wav'));assert.equal(await sha256(bytes),stemDetails.stems[name]);
+    stemBuffers.push(bytes);assert.equal(bytes.readUInt16LE(20),3);assert.equal(bytes.readUInt32LE(46),receipt.frames);assert.equal(bytes.length,58+receipt.frames*8);
+    let energy=0;for(let i=58;i<bytes.length;i+=4){const value=bytes.readFloatLE(i);assert.ok(Number.isFinite(value));energy+=value*value;}
+    if(['a','instruments'].includes(name))assert.ok(energy>0);else assert.equal(energy,0);
+  }
+  const curve=Float32Array.from({length:8193},(_,i)=>{const x=i*2/8192-1;return Math.abs(x)<=.8?x:Math.sign(x)*(.8+.2*Math.tanh((Math.abs(x)-.8)/.2));});
+  let stemReplayError=0;
+  for(let i=0;i<receipt.frames*2;i++){
+    const sum=stemBuffers.reduce((value,bytes)=>value+bytes.readFloatLE(58+i*4),0),position=(Math.max(-1,Math.min(1,sum))+1)*4096,lo=Math.floor(position),hi=Math.min(8192,lo+1);
+    const sample=curve[lo]+(curve[hi]-curve[lo])*(position-lo);
+    stemReplayError=Math.max(stemReplayError,Math.abs(Math.round(sample*32767)-wav.readInt16LE(44+i*2)));
+  }
+  assert.ok(stemReplayError<=2,`Aligned stems/master differ by ${stemReplayError} PCM16 units`);
+  await fs.writeFile(path.join(output,'stem-replay.json'),JSON.stringify({maximumPcm16Error:stemReplayError,frames:receipt.frames,method:'Sum float stems and interpolate existing 8193-point limiter; tolerance 2 PCM16 units'},null,2));
+  checks.push('opt-in aligned float WAV stems preserve frame counts, independent active/silent channels and exact export hashes');
+  const transport=validateMixTransport(JSON.parse(await fs.readFile(path.join(output,'transport.json'),'utf8')),receipt);
+  assert.equal(transport.events[0].state.a.playing,true);
+  assert.ok(transport.events.some(e=>e.target==='b'&&e.action==='source'));
+  assert.ok(!JSON.stringify(transport).includes('temporary-source.wav'));
+  checks.push('WAV-linked transport history retains decoder/source transitions without filenames');
   const sources=validateMixSources(JSON.parse(await fs.readFile(path.join(output,'sources.json'),'utf8')),receipt);
   const aHash=await sha256(stereoWav(pcm,48000*4,48000)), bHash=await sha256(bWav);
   assert.ok(sources.assets.some(a=>a.kind==='local_audio' && a.sha256===aHash));
@@ -183,6 +215,17 @@ try {
   }
   checks.push('desktop/mobile controls render without horizontal overflow');
   await page.locator('#mix-record-delete').click();
+  assert.equal(await page.locator('#mix-record-transport').getAttribute('href'),null);
+  for(const name of MIX_STEMS)assert.equal(await page.locator('#mix-stem-'+name).getAttribute('href'),null);
+  await page.locator('#mix-record-stems').uncheck();
+  await page.locator('#mix-record-start').click(); await recording();
+  await page.evaluate(()=>{const seek=document.getElementById('seek-a');for(let i=0;i<4100;i++){seek.value=String(i%2);seek.dispatchEvent(new Event('input'));}});
+  await page.waitForTimeout(150);await page.locator('#mix-record-stop').click();
+  await page.locator('#mix-record-wav').waitFor({state:'visible'});
+  assert.equal(await page.locator('#mix-record-transport').isVisible(),false);
+  assert.match(await page.locator('#mix-record-status').textContent(),/Transport history unavailable/);
+  checks.push('transport overflow discards only history, preserves playable WAV, and deletion revokes its URL');
+  await page.locator('#mix-record-delete').click();
   await page.locator('#mix-record-start').click(); await recording();
   await page.evaluate(()=>{
     const original=File.prototype.arrayBuffer;
@@ -194,6 +237,7 @@ try {
   await page.locator('#mix-record-consent').uncheck(); await page.evaluate(()=>releaseSourceRead());
   await page.waitForTimeout(150);
   assert.equal(await page.locator('#mix-record-sources').getAttribute('href'),null);
+  if(!await page.locator('#mix-record-consent').isChecked())assert.equal(await page.locator('#mix-record-transport').getAttribute('href'),null);
   assert.equal(await page.locator('#mix-record-wav').getAttribute('href'),null);
   await page.locator('#mix-record-consent').check();
   await page.locator('#mix-record-start').click(); await recording();
@@ -217,11 +261,13 @@ try {
   assert.equal(await page.locator('#mix-record-wav').isVisible(),true);
   await page.evaluate(()=>releaseTimedSource()); await page.waitForTimeout(150);
   assert.equal(await page.locator('#mix-record-sources').getAttribute('href'),null);
+  if(!await page.locator('#mix-record-consent').isChecked())assert.equal(await page.locator('#mix-record-transport').getAttribute('href'),null);
   checks.push('delayed source hashing cannot restore revoked exports; read failure and real 10-second deadline preserve WAV and controls');
   await page.locator('#music-rights').uncheck();
   assert.equal(await page.locator('#mix-record-wav').isVisible(),false);
   assert.equal(await page.locator('#mix-record-player').getAttribute('src'),null);
   assert.equal(await page.locator('#mix-record-sources').getAttribute('href'),null);
+  if(!await page.locator('#mix-record-consent').isChecked())assert.equal(await page.locator('#mix-record-transport').getAttribute('href'),null);
   assert.equal(await page.locator('#mix-record-automation').getAttribute('href'),null);
   await page.locator('#mix-record-start').click(); await recording();
   await page.evaluate(()=>{

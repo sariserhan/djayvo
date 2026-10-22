@@ -136,7 +136,9 @@ function masterControls() {
 }
 const keyboard = attachKeyboard({ graph: audioGraph, context: () => context, mixer: () => mixer, levels, masterControls, getPhrase: () => session?.phraseSource(), onSourcesChanged: () => mixRecording.sourcesChanged(),onNote:()=>bridge.publish({action:'instrument.note',control:'keyboard',source:'user',t:context.currentTime,value:null}) });
 const mixRecording = attachMixRecording({ graph: audioGraph, context: () => context, mixer: () => mixer,
+  getTransport: () => ({ a: decks[0].audio.transportState(), b: decks[1].audio.transportState(), prepared: session?.transportState() ?? null }),
   getSources: () => ({ a: decks[0].file, b: decks[1].file, ...session?.mixSources(), rack: keyboard.sourceAsset() }) });
+for (const deck of decks) deck.audio.addEventListener('transportchange', event => mixRecording.transportChanged(deck.id, event.action));
 async function start(deck) {
     const { id, audio } = deck;
     if (!rights.checked || !deck.url || deck.loading || deck.starting || deck.prepared || deck.preparing) return;
@@ -305,7 +307,7 @@ for (const deck of decks) {
     if (deck.url) { pause(deck); $(`error-${id}`).textContent = 'Track playback failed. Unload it and try another file.'; }
   });
 }
-session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onPhraseChanged: () => { keyboard.sourceChanged(); mixRecording.sourceChanged(); }, onSourcesChanged: () => mixRecording.sourcesChanged(), onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
+session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onPhraseChanged: () => { keyboard.sourceChanged(); mixRecording.sourceChanged(); }, onSourcesChanged: () => mixRecording.sourcesChanged(), onTransportChanged: () => mixRecording.transportChanged('prepared', 'prepared'), onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
 $('crossfade').oninput = $('master').oninput = levels;
 $('crossfade-curve').onchange = levels;
 $('pause-all').onclick = () => { decks.forEach(pause); clearDeckEchoes(); $('mixer-status').textContent = 'All decks paused.'; };

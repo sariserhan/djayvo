@@ -1,6 +1,8 @@
 import { TAKE_SECONDS, stereoWav, sha256 } from './live-take.js';
 import { MixAutomation } from './mix-automation.js';
 import { MixSources } from './mix-sources.js';
+import { MixTransport } from './mix-transport.js';
+import { MIX_STEMS, stemWav, validateMixStems } from './mix-stems.js';
 import { resumeAudio } from './audio.js';
 
 export function validateMixRecording(recording) {
@@ -21,18 +23,19 @@ export function validateMixRecording(recording) {
   return recording;
 }
 
-export function attachMixRecording({ graph, context, mixer, getSources }) {
+export function attachMixRecording({ graph, context, mixer, getSources, getTransport }) {
   const $ = id => document.getElementById(id);
   let state = 'idle', version = 0, node, sink, nodeError, timer, started, loaded = false, urls = [];
-  let sourceCapture, sourceJob;
+  let sourceCapture, sourceJob, transportCapture;
   function refresh() {
     $('mix-record-start').disabled = state !== 'idle' || !$('mix-record-consent').checked;
+    $('mix-record-stems').disabled = state !== 'idle';
     $('mix-record-stop').disabled = state !== 'recording';
     $('mix-record-delete').disabled = state === 'idle';
   }
   function disconnect(completed = false) {
     clearInterval(timer);
-    sourceCapture = undefined;
+    sourceCapture = transportCapture = undefined;
     if (!completed) { sourceJob?.cancel(); sourceJob = undefined; }
     if (mixer()) mixer().automationTrace = undefined;
     if (node) {
@@ -44,15 +47,18 @@ export function attachMixRecording({ graph, context, mixer, getSources }) {
       };
       if (completed) port.close(); else port.postMessage({ type: 'cancel' });
       try { mixer()?.meter.disconnect(node); } catch { /* A failed start may not have connected the branch. */ }
+      for (const source of [...(mixer()?.channels ?? []), mixer()?.performance, mixer()?.rack]) {
+        try { source?.disconnect(node); } catch { /* Stems are optional. */ }
+      }
       node.disconnect(); sink?.disconnect(); node = sink = undefined;
     }
   }
   function clear(text = 'Mix recording deleted from this tab. Downloaded copies remain on your device.') {
     version++; disconnect(); state = 'idle';
     const player = $('mix-record-player'); player.pause(); player.removeAttribute('src'); player.load(); player.hidden = true;
-    for (const id of ['mix-record-wav', 'mix-record-json', 'mix-record-automation', 'mix-record-sources']) { $(id).hidden = true; $(id).removeAttribute('href'); }
+    for (const id of ['mix-record-wav', 'mix-record-json', 'mix-record-automation', 'mix-record-sources', 'mix-record-transport', 'mix-record-stems-json', ...MIX_STEMS.map(name=>'mix-stem-'+name)]) { $(id).hidden = true; $(id).removeAttribute('href'); }
     urls.forEach(url => URL.revokeObjectURL(url)); urls = [];
-    $('mix-record-status').textContent = text; refresh();
+    $('mix-record-status').textContent = text; $('mix-stems-status').textContent = ''; refresh();
   }
   function stop() {
     if (state !== 'recording') return;
@@ -77,6 +83,32 @@ export function attachMixRecording({ graph, context, mixer, getSources }) {
       if (token === version) $('mix-record-status').textContent = status + ' Source details unavailable; WAV retained.';
     } finally { clearTimeout(deadline); if (sourceJob === inventory) sourceJob = undefined; }
   }
+  async function publishStems(stems, receipt, token) {
+    const pending=[];
+    try {
+      if (!Array.isArray(stems) || stems.length !== 4) throw Error('Missing stems');
+      const hashes={};
+      for (const [index,name] of MIX_STEMS.entries()) {
+        if (token !== version || !$('mix-record-consent').checked) return;
+        const wav=stemWav(stems[index],receipt.frames,receipt.sample_rate);
+        hashes[name]=await sha256(wav);
+        if (token !== version || !$('mix-record-consent').checked) return;
+        pending.push(URL.createObjectURL(new Blob([wav],{type:'audio/wav'})));
+        stems[index]=null;
+      }
+      const details=validateMixStems({schema_version:'1.0-mix-stems',scope:'aligned_post_fader_pre_limiter',training_authorized:false,
+        wav_sha256:receipt.wav_sha256,sample_rate:receipt.sample_rate,frames:receipt.frames,
+        observed_context_start_frame:receipt.observed_context_start_frame,stems:hashes},receipt);
+      pending.push(URL.createObjectURL(new Blob([JSON.stringify(details,null,2)],{type:'application/json'})));
+      for (const [index,id] of [...MIX_STEMS.map(name=>'mix-stem-'+name),'mix-record-stems-json'].entries()) {
+        $(id).href=pending[index]; $(id).hidden=false;
+      }
+      urls.push(...pending); pending.length=0;
+      $('mix-stems-status').textContent='Aligned stems ready. Each contains its channel effects and fader moves, before the master limiter.';
+    } catch {
+      if (token === version) $('mix-stems-status').textContent='Stems unavailable; the mix WAV is retained.';
+    } finally { pending.forEach(url=>URL.revokeObjectURL(url)); }
+  }
   $('mix-record-start').onclick = async () => {
     if (state !== 'idle' || !$('mix-record-consent').checked) return;
     const token = ++version; state = 'starting'; refresh();
@@ -87,15 +119,21 @@ export function attachMixRecording({ graph, context, mixer, getSources }) {
       if (token !== version) return;
       if (!loaded) { await context().audioWorklet.addModule('./mix-recording-worklet.js'); loaded = true; }
       if (token !== version || !$('mix-record-consent').checked) return;
+      const includeStems = $('mix-record-stems').checked;
+      if (includeStems && context().sampleRate > 96000) throw Error('Stems support up to 96 kHz. Turn off stems to record at this rate.');
       const automation = new MixAutomation(mixer(), context());
+      const transport = transportCapture = new MixTransport(getTransport, context());
       mixer().automationTrace = automation;
       const inventory = new MixSources();
       sourceCapture = sourceJob = inventory; inventory.record(getSources(), context());
       node = new AudioWorkletNode(context(), 'jamloom-mix-recording', {
-        numberOfInputs: 1, numberOfOutputs: 1, outputChannelCount: [2], channelCount: 2, channelCountMode: 'explicit',
+        numberOfInputs: includeStems ? 5 : 1, numberOfOutputs: 1, outputChannelCount: [2], channelCount: 2, channelCountMode: 'explicit',
+        processorOptions: { stems: includeStems },
       });
       sink = context().createGain(); sink.gain.value = 0;
-      mixer().meter.connect(node); node.connect(sink); sink.connect(context().destination);
+      mixer().meter.connect(node);
+      if (includeStems) [...mixer().channels,mixer().performance,mixer().rack].forEach((source,index)=>source.connect(node,0,index+1));
+      node.connect(sink); sink.connect(context().destination);
       nodeError = () => { if (token === version) clear('Recorder failed. Recording discarded; playback is unaffected.'); };
       node.addEventListener('processorerror', nodeError);
       node.port.onmessage = async ({ data }) => {
@@ -119,14 +157,21 @@ export function attachMixRecording({ graph, context, mixer, getSources }) {
               observed_context_start_frame: data.first, timestamp_discontinuities: data.discontinuities, limit_reached: data.capped });
             if (token !== version || !$('mix-record-consent').checked) return;
             const trace = automation.finish(receipt);
+            const movements = transport.finish(receipt);
             urls = [URL.createObjectURL(new Blob([wav], { type: 'audio/wav' })),
               URL.createObjectURL(new Blob([JSON.stringify(receipt, null, 2)], { type: 'application/json' }))];
             if (trace) urls.push(URL.createObjectURL(new Blob([JSON.stringify(trace, null, 2)], { type: 'application/json' })));
             for (const [i, id] of ['mix-record-wav', 'mix-record-json', 'mix-record-automation'].entries()) { if (urls[i]) { $(id).href = urls[i]; $(id).hidden = false; } }
+            if (movements) {
+              const url = URL.createObjectURL(new Blob([JSON.stringify(movements, null, 2)], { type: 'application/json' }));
+              urls.push(url); $('mix-record-transport').href = url; $('mix-record-transport').hidden = false;
+            }
             $('mix-record-player').src = urls[0]; $('mix-record-player').hidden = false;
             state = 'ready'; refresh();
             $('mix-record-status').textContent = `${(data.frames / data.rate).toFixed(1)} seconds · Private studio mix ready.${data.capped ? ' Recording reached its 30-second limit.' : ''}${trace ? '' : automation.overflow ? ' Control trace exceeded its limit and was discarded; WAV retained.' : ' Control trace was incomplete and discarded; WAV retained.'}`;
+            if (!movements) $('mix-record-status').textContent += ' Transport history unavailable; WAV retained.';
             void publishSources(inventory, receipt, token);
+            if (includeStems) { $('mix-stems-status').textContent='Preparing aligned stems…'; void publishStems(data.stems,receipt,token); }
           } catch { if (token === version) clear('Could not validate the recording. It was discarded.'); }
         }
       };
@@ -146,6 +191,6 @@ export function attachMixRecording({ graph, context, mixer, getSources }) {
   document.addEventListener('visibilitychange', () => { if (document.hidden) interrupt(); });
   window.addEventListener('pagehide', () => clear());
   refresh();
-  return { interrupt, sourcesChanged: () => sourceCapture?.record(getSources(), context()),
+  return { interrupt, transportChanged: (target, action) => transportCapture?.record(target, action, getTransport, context()), sourcesChanged: () => sourceCapture?.record(getSources(), context()),
     sourceChanged: () => { if (state !== 'idle') clear('Source phrase changed or deleted. Mix recording discarded.'); } };
 }

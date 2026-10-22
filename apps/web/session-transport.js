@@ -4,6 +4,10 @@ export class SessionTransport {
     this.context = context; this.nextBar = nextBar; this.changed = changed;
     this.a = null; this.c = null; this.origin = 0; this.end = 0;
   }
+  snapshot() {
+    const voice = v => v ? {start_frame:v.frame,end_frame:v.frame+Math.round(v.source.buffer.duration*this.context.sampleRate)} : null;
+    return {a:voice(this.a),c:voice(this.c),tempo_milli_bpm:this.tempo??0,origin_frame:this.origin};
+  }
   play(buffer, destination, frame, ended) {
     if (!Number.isInteger(frame) || frame < Math.ceil(this.context.currentTime * this.context.sampleRate))
       throw new Error('The entry time has passed. Arm again.');

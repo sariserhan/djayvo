@@ -1,5 +1,7 @@
 # R1 — private mix source inventory
 
+Latest follow-through: [transport history, aligned stems and source-plan linkage](r1-capture-completion.md). The checkpoint below is retained as history.
+
 2026-10-20. Follow-up to [effect/reset capture](r1-effect-capture.md).
 Overall R1 remains **PARTIAL**. This increment supplies source fingerprints for
 future reviewed demonstrations; it does not train a model or improve musical

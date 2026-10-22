@@ -1,0 +1,5 @@
+{
+  "maximumPcm16Error": 1,
+  "frames": 36480,
+  "method": "Sum float stems and interpolate existing 8193-point limiter; tolerance 2 PCM16 units"
+}

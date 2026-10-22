@@ -8,7 +8,7 @@ Production separately. No owner setup task below means the integration has passe
 ## Current order and local completion work — 2026-10-21
 
 Finish non-iOS product work first, iOS second, launch operations last. This
-increment has no deployment or paid-service step. [Current report](non-ios-completion.md)
+increment has no deployment or paid-service step. [Current report](r1-capture-completion.md)
 lists what works and what still requires evidence; it does not close the spec.
 
 Music DNA now creates free local instrumental previews with two-variation
@@ -16,9 +16,13 @@ comparison and downloads. Song notes are not analyzed as audio. The source-groov
 listening packet is retained privately in `renders/q0-source-groove-20261021/listener/`.
 Listen only when you resume the deferred human checks; there is no automatic playback.
 
-Deck A/B recovery is optional, device-only and paused on restore. It excludes
-online-only partner tracks, live instruments, C and unfinished recordings. Download
-recordings separately. Delete the saved set through the recovery panel.
+Full A/B/C scenes and periodic recovery are optional, device-only and paused on
+restore. Download unfinished recordings separately; delete saved sets through
+the recovery panel. In **Record the studio mix**, optionally enable aligned stems
+before recording. Download the master, stems, source details, mixer controls and
+deck history for private review; removing permission deletes the tab copies.
+Stems use extra memory and support up to 96 kHz. These exports do not authorize
+training or replace reviewed expert demonstrations. Listening remains deferred.
 
 For developer rehearsal, use a loopback database, local private audio directory,
 `JAMLOOM_GENERATION_SANDBOX=true` and the one-shot `generation:local` command.
@@ -70,6 +74,13 @@ is ad-hoc signed for local use; Developer ID signing/notarization and public dow
 are not complete. No microphone sampling or continual AI phrase integration is added
 to the companion; the existing studio phrase recorder remains separate.
 [Evidence, compatibility and commands](live-source-companion.md).
+
+## Historical provider checklist
+
+The dated setup table below preserves earlier owner tasks. Current capture work
+and remaining gates are in the [latest report](r1-capture-completion.md). Later
+Academy/Stripe/Neon/R2/companion reports supersede older missing-setup statements;
+no new live provider status is inferred from this local increment.
 
 ## Read this first
 

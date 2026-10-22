@@ -1,0 +1,128 @@
+[
+  {
+    "browser": "chromium",
+    "metrics": [
+      {
+        "keylock": false,
+        "pitch": 510.2715877437326,
+        "peak": 0.4000000059604645,
+        "maxJump": 0.026715518906712532,
+        "position": 111360.00000023283,
+        "maxBlockMs": 1,
+        "overDeadline": 0
+      },
+      {
+        "keylock": true,
+        "pitch": 440.28551532033424,
+        "peak": 0.4000000059604645,
+        "maxJump": 0.023046678863465786,
+        "position": 111360.00000023283,
+        "maxBlockMs": 2,
+        "overDeadline": 0
+      }
+    ],
+    "effectMetrics": [
+      {
+        "name": "dry",
+        "difference": 0,
+        "tail": 0,
+        "peak": 0.30000001192092896,
+        "renderMs": 5.800000011920929
+      },
+      {
+        "name": "reverb",
+        "difference": 283.8351197691883,
+        "tail": 1.373078347718147,
+        "peak": 0.2840816378593445,
+        "renderMs": 8.800000011920929
+      },
+      {
+        "name": "phaser",
+        "difference": 390.1078539793069,
+        "tail": 5.567552218944006e-47,
+        "peak": 0.30067768692970276,
+        "renderMs": 5.900000035762787
+      },
+      {
+        "name": "flanger",
+        "difference": 518.0585440872085,
+        "tail": 0,
+        "peak": 0.299984872341156,
+        "renderMs": 2
+      },
+      {
+        "name": "reset",
+        "difference": 0,
+        "tail": 0,
+        "peak": 0.30000001192092896,
+        "renderMs": 1.2999999523162842
+      }
+    ],
+    "renderedKeylock": true,
+    "scratchBackwards": true,
+    "releasedPaused": true
+  },
+  {
+    "browser": "webkit",
+    "metrics": [
+      {
+        "keylock": false,
+        "pitch": 510.2715877437326,
+        "peak": 0.4000000059604645,
+        "maxJump": 0.026715518906712532,
+        "position": 111360.00000023283,
+        "maxBlockMs": 0,
+        "overDeadline": 0
+      },
+      {
+        "keylock": true,
+        "pitch": 440.28551532033424,
+        "peak": 0.4000000059604645,
+        "maxJump": 0.023046678863465786,
+        "position": 111360.00000023283,
+        "maxBlockMs": 1,
+        "overDeadline": 0
+      }
+    ],
+    "effectMetrics": [
+      {
+        "name": "dry",
+        "difference": 0,
+        "tail": 0,
+        "peak": 0.30000001192092896,
+        "renderMs": 2
+      },
+      {
+        "name": "reverb",
+        "difference": 283.8351597407175,
+        "tail": 1.373078347718147,
+        "peak": 0.28408166766166687,
+        "renderMs": 6
+      },
+      {
+        "name": "phaser",
+        "difference": 390.10792830106124,
+        "tail": 5.567552218944006e-47,
+        "peak": 0.3006778955459595,
+        "renderMs": 4
+      },
+      {
+        "name": "flanger",
+        "difference": 518.0586520018733,
+        "tail": 0,
+        "peak": 0.29998499155044556,
+        "renderMs": 2
+      },
+      {
+        "name": "reset",
+        "difference": 0,
+        "tail": 0,
+        "peak": 0.30000001192092896,
+        "renderMs": 1
+      }
+    ],
+    "renderedKeylock": true,
+    "scratchBackwards": true,
+    "releasedPaused": true
+  }
+]
