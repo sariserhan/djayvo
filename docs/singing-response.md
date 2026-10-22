@@ -1,5 +1,7 @@
 # Local AI musician voice — 2026-10-22
 
+**Current sample arrangement:** The owner reports that the repeated/chopped sample makes the music worse. The [replacement approach and same-song comparisons](gentle-singer.md) preserve the original singer/band and use one phrase only where it fits. The evidence below records the previous implementation.
+
 **Update:** The owner liked these singers. The introductory source playback and two-style limit are superseded by the [integrated sample arrangement and 23-style studio](integrated-singer.md). This report preserves the original audition evidence.
 
 The owner clarified that the requested musician is a natural-sounding **AI

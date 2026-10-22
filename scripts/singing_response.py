@@ -77,7 +77,7 @@ def caption(case):
             f'{delivery}'
             'Playful affectionate delivery, a developing hook, instrumental answers and an intentional ending. '
             'Acoustic vocal production, no vocoder, no robotic effects, no hard autotune, no speech narration. '
-            'Leave short instrumental pockets between vocal phrases for sampled call and response. '
+            'Leave a four-second instrumental call-and-response pocket before a sung answer, with the groove continuing and no vocal ad-libs in that pocket. '
             'Perform the supplied reply lyrics as the musician responding to someone else.')
 
 

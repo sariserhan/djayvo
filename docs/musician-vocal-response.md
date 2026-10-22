@@ -1,5 +1,7 @@
 # Musician voice and contextual sung responses
 
+**Current sample arrangement:** The owner reports that the repeated/chopped sample makes the music worse. The [replacement approach and same-song comparisons](gentle-singer.md) preserve the original singer/band and use one phrase only where it fits. The evidence below records the previous implementation.
+
 **Latest owner feedback:** The original singer previews were loved; user input must become part of the song, with creative cropping and rhythmic transformation. Twenty-three styles and integrated sample arrangements are now implemented locally; [current report](integrated-singer.md). New-arrangement acceptance remains open.
 
 **Owner clarification: required behavior; local implementation PARTIAL.** The owner

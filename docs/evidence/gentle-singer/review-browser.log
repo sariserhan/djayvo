@@ -1,0 +1,82 @@
+Checking chromium
+Checking webkit
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/jamloom/renders/gentle-singer-review-20261022/review/index.html",
+    "players": 12,
+    "durations_seconds": [
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30
+    ],
+    "play_seek_pause_exclusivity": "PASS",
+    "audio_download_links": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "docs/evidence/gentle-singer/chromium-desktop.png",
+      "docs/evidence/gentle-singer/chromium-mobile.png"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/jamloom/renders/gentle-singer-review-20261022/review/index.html",
+    "players": 12,
+    "durations_seconds": [
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30
+    ],
+    "play_seek_pause_exclusivity": "PASS",
+    "audio_download_links": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "docs/evidence/gentle-singer/webkit-desktop.png",
+      "docs/evidence/gentle-singer/webkit-mobile.png"
+    ]
+  }
+]

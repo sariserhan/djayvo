@@ -56,9 +56,11 @@ def make_reply(audio, phrase, voice, genre, consent):
                         '--output', str(singer/'stems')], stdout=log, stderr=subprocess.STDOUT, env=env, timeout=600, check=True)
     report = assemble(source, score, singer, work / 'exchange', True)
     (work / '.partial').unlink()
+    placement = ('Used one intact phrase in a vocal gap. The singer and band stay unchanged.'
+                 if report['sample_used'] else
+                 'No safe space for the recording: kept the original song. The lyrics still respond to your words; no sample was inserted.')
     return (str(singer/'singer.wav'), str(work/'exchange/performance.wav'), case['lyrics'],
-            f"{chosen_voice.title()} · {STYLE_LABELS[chosen_genre]}. Your sound becomes a hook and {len(report['events'])-1} rhythmic fragments inside the song. "
-            'Listen to the full song first; try again for a new interpretation.')
+            f"{chosen_voice.title()} · {STYLE_LABELS[chosen_genre]}. {placement} Listen and compare with the original song.")
 
 
 def serve():
@@ -72,7 +74,7 @@ def serve():
             raise gr.Error('Could not make this reply. Use a clear 2–5 second clip, confirm its words and permission, and try again. No completed output was replaced.') from None
 
     with gr.Blocks(title='Jamloom · musician voice', analytics_enabled=False) as app:
-        gr.Markdown('# Turn your sound into a song\nYour phrase becomes a musical hook: sliced, rhythmically reshaped and woven around an AI singer. '
+        gr.Markdown('# Turn your sound into a song\nAn AI singer answers your words. All or part of your recording joins where it fits, while the music keeps flowing. '
                     'Everything stays on this Mac. New singing is experimental; listen before keeping it.')
         consent = gr.Checkbox(label='I have permission to use this recording.', value=False)
         audio = gr.Audio(sources=['microphone', 'upload'], type='filepath', format='wav', buttons=['download'], label='Your phrase · 2–5 seconds', elem_id='user-phrase')
@@ -82,9 +84,9 @@ def serve():
             genre = gr.Dropdown(choices=[('Surprise me', 'surprise'), *[(label,key) for key,label in STYLE_LABELS.items()]], value='surprise', label='Style')
         button = gr.Button('Make a song', variant='primary')
         status = gr.Markdown('Generation can take a few minutes. Nothing plays automatically. Local recordings and results remain in this preview until deleted.')
-        exchange = gr.Audio(label='Your sound inside the song', interactive=False, autoplay=False, buttons=['download'], elem_id='exchange-preview')
-        with gr.Accordion('Singer before your sample is woven in', open=False):
-            singer = gr.Audio(label='Singer and band', interactive=False, autoplay=False, buttons=['download'], elem_id='singer-preview')
+        exchange = gr.Audio(label='Your song', interactive=False, autoplay=False, buttons=['download'], elem_id='exchange-preview')
+        with gr.Accordion('Compare with the original song', open=False):
+            singer = gr.Audio(label='Original song · no sample', interactive=False, autoplay=False, buttons=['download'], elem_id='singer-preview')
         lyrics = gr.Textbox(label='Intended lyrics', interactive=False, lines=6)
         button.click(generate, [audio, phrase, voice, genre, consent], [singer, exchange, lyrics, status],
                      concurrency_limit=1, api_name=False)

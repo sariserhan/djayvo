@@ -1,6 +1,6 @@
 # Local AI singer implementation — 2026-10-22
 
-**Integrated singer update — 2026-10-22:** The owner loved the previous singer previews, but requested the input become part of the song and many more styles. The local studio now offers 23 styles, a recognizable in-song hook, beat-fit fragments, recurring answers, and space in the singer/band arrangement. Previous takes remain intact. New-arrangement listening and production promotion remain open. [Implementation, new listening set and evidence](integrated-singer.md).
+**Sample quality update — 2026-10-22:** Owner likes the generated songs but reports that adding the source makes them worse. The replacement preserves the song and tries one whole phrase or pause-bounded excerpt in a vocal gap; if it cannot fit, the original song is returned with explicit status. All 23 styles remain. Six same-song comparisons and scoped technical/browser evidence are in the [replacement report](gentle-singer.md). New-arrangement listening remains open.
 
 **AI singer implementation — 2026-10-22:** Four actual 30-second male/female reggae/hip-hop previews and separate user-phrase → singer assemblies are ready locally. The new local studio drafts contextual lyrics and generates singing; no spoken TTS or user-voice cloning. Technical render and review-player checks PASS; naturalness, voice accuracy, lyric fidelity and meaningful diversity still require listening. No new paid compute or production promotion. [Listen, run the studio and inspect evidence](singing-response.md).
 

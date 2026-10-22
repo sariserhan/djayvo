@@ -2,7 +2,9 @@
 
 ## Musician training request — 2026-10-21
 
-- [ ] **TRAIN-007 — PARTIAL:** Owner loved the first AI singer previews; rejected source-only intros and requested more styles. Implemented a 23-style local studio, integrated clean hook and beat-fit fragments, recurring answers, rhythmic delay, estimated singer muting and drum-led breaks. Technical verification and actual new renders are recorded in the [integrated singer report](docs/integrated-singer.md). Prior takes preserved. New arrangement/style listening, formal quality, generalization and production promotion remain open.
+- [ ] **TRAIN-007 — PARTIAL:** Owner likes the generated singers but reports the repeated sample arrangement makes the music worse (**FAIL**, owner listening). Replaced it with one whole phrase or pause-bounded excerpt in a detected vocal gap, preserving the original song; explicit unchanged fallback if nothing fits. Nine tests, six actual comparisons and browser checks are recorded in the [replacement report](docs/gentle-singer.md). New-arrangement acceptance, formal quality, generalization and production promotion remain open.
+
+- [x] **SAMPLE-001 — PASS, local implementation:** Conservative sample placement, byte-exact music preservation and truthful no-placement status. Same-song comparison: three whole phrases, one shorter excerpt and two unchanged fallbacks. [Report and evidence](docs/gentle-singer.md); musical acceptance NOT RUN.
 
 - [x] **STYLE-001 — PASS, local catalogue (2026-10-22):** Added EDM, DJ, Lo-fi, Jazz, Blues, Rap, Chill, Indie, Techno, Synthwave and Country: 23 styles and 46 voice/style combinations. Genre prompts and sample rhythms are wired through the existing studio; rap requests rhythmic verses and a sung hook. [Report and checks](docs/singer-styles.md). New-style audio/listening NOT RUN.
 

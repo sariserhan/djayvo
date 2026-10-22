@@ -1,0 +1,226 @@
+{
+  "technical": "PASS",
+  "cases": [
+    {
+      "case": "reggae-male",
+      "status": "PASS",
+      "sample_used": true,
+      "events": [
+        {
+          "clip_id": 0,
+          "start_frame": 366720,
+          "end_frame": 539040,
+          "rate": 1.0,
+          "clean": true,
+          "gain": 1.0,
+          "echo": false,
+          "section": "call",
+          "selection": "whole-phrase",
+          "gap_frames": [
+            349920,
+            554400
+          ],
+          "band_rms": 0.106091914213955,
+          "vocal_threshold_rms": 0.006,
+          "estimated_vocal_max_window_rms": 0.0010574113111943007
+        }
+      ],
+      "original_music_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "music_preserved_byte_exact": true,
+      "outside_sample_pcm_identical": true,
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "source_identity_max_pcm_error": 1.5256428136843636e-05,
+      "peak": 0.891265869140625,
+      "loudness_matched": {
+        "exchange": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -5.8,
+          "sha256": "ed4356656034f140c7a3a323be61bcb0a0c2b60be120c637a336fd7ed77d8239"
+        },
+        "singer": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -5.7,
+          "sha256": "4be57b239db3e33e6d8f28410d8ac6fc7c31275ba161ea7ab29fdcb273cf8ead"
+        }
+      }
+    },
+    {
+      "case": "hiphop-female",
+      "status": "PASS",
+      "sample_used": false,
+      "events": [],
+      "original_music_sha256": "686b696363f79ef80715bac88c285c0abc3b6fc17f254ee9a311a663690fa433",
+      "music_preserved_byte_exact": true,
+      "outside_sample_pcm_identical": true,
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "source_identity_max_pcm_error": null,
+      "peak": 0.8912353515625,
+      "loudness_matched": {
+        "exchange": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -6.7,
+          "sha256": "874d3de06eefb05f014f2b183d180206a08558c9f2c584cef6cb652d3669728b"
+        },
+        "singer": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -6.7,
+          "sha256": "874d3de06eefb05f014f2b183d180206a08558c9f2c584cef6cb652d3669728b"
+        }
+      }
+    },
+    {
+      "case": "funk-male",
+      "status": "PASS",
+      "sample_used": true,
+      "events": [
+        {
+          "clip_id": 0,
+          "start_frame": 556102,
+          "end_frame": 728422,
+          "rate": 1.0,
+          "clean": true,
+          "gain": 1.0,
+          "echo": false,
+          "section": "call",
+          "selection": "whole-phrase",
+          "gap_frames": [
+            0,
+            771360
+          ],
+          "band_rms": 0.14124402388884497,
+          "vocal_threshold_rms": 0.004271873831748963,
+          "estimated_vocal_max_window_rms": 0.0012835158267989755
+        }
+      ],
+      "original_music_sha256": "c3746e5717dcd9977688edef383f3929b42e4fc06318c21b1ee968caac700da2",
+      "music_preserved_byte_exact": true,
+      "outside_sample_pcm_identical": true,
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "source_identity_max_pcm_error": 1.5256318003545322e-05,
+      "peak": 0.891265869140625,
+      "loudness_matched": {
+        "exchange": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -5.2,
+          "sha256": "a766bc326b7085f736ca7217d30711e15886423e6a4afdc5c420928f85e5903d"
+        },
+        "singer": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -5.1,
+          "sha256": "c2a438c9c16ef23118a80bbcb110e059de575a7ff18586b934a163f13af1dace"
+        }
+      }
+    },
+    {
+      "case": "house-female",
+      "status": "PASS",
+      "sample_used": false,
+      "events": [],
+      "original_music_sha256": "a33376e8d7af74182e9897c259e5599b70eede492a59bf118737576dbfed3961",
+      "music_preserved_byte_exact": true,
+      "outside_sample_pcm_identical": true,
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "source_identity_max_pcm_error": null,
+      "peak": 0.8912353515625,
+      "loudness_matched": {
+        "exchange": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -5.1,
+          "sha256": "90fd62be62b3714c47e3515d08c8c7b817972cfd4e37f303cfea28ea1c1cac74"
+        },
+        "singer": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -5.1,
+          "sha256": "90fd62be62b3714c47e3515d08c8c7b817972cfd4e37f303cfea28ea1c1cac74"
+        }
+      }
+    },
+    {
+      "case": "drumandbass-male",
+      "status": "PASS",
+      "sample_used": true,
+      "events": [
+        {
+          "clip_id": 1,
+          "start_frame": 186240,
+          "end_frame": 316320,
+          "rate": 1.0,
+          "clean": true,
+          "gain": 1.0,
+          "echo": false,
+          "section": "call",
+          "selection": "pause-bounded-excerpt",
+          "gap_frames": [
+            170400,
+            324960
+          ],
+          "band_rms": 0.15961080735415567,
+          "vocal_threshold_rms": 0.006,
+          "estimated_vocal_max_window_rms": 0.002980281598865986
+        }
+      ],
+      "original_music_sha256": "96c2bcb0e557e09ca7bdfdcd04c6745f193a8f831ed933aab453933654ac2f29",
+      "music_preserved_byte_exact": true,
+      "outside_sample_pcm_identical": true,
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "source_identity_max_pcm_error": 1.5256318003545322e-05,
+      "peak": 0.8912353515625,
+      "loudness_matched": {
+        "exchange": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -7.6,
+          "sha256": "7275c33acfa8e04fdf3d25673a5d1aabfa94e1db89481723595c70fb264d3f2c"
+        },
+        "singer": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -7.6,
+          "sha256": "acb5a678aa27c9604997e7ee2eda0a0854f73f1f92ea484c39e1b4420fef4161"
+        }
+      }
+    },
+    {
+      "case": "acousticpop-female",
+      "status": "PASS",
+      "sample_used": true,
+      "events": [
+        {
+          "clip_id": 0,
+          "start_frame": 276000,
+          "end_frame": 448320,
+          "rate": 1.0,
+          "clean": true,
+          "gain": 1.0,
+          "echo": false,
+          "section": "call",
+          "selection": "whole-phrase",
+          "gap_frames": [
+            0,
+            477600
+          ],
+          "band_rms": 0.08504808804790451,
+          "vocal_threshold_rms": 0.006,
+          "estimated_vocal_max_window_rms": 0.0003682387468870729
+        }
+      ],
+      "original_music_sha256": "8824a8b696144cb304c98e7ae28a720dba5a77ee885a8017ae89113e4ceba8ad",
+      "music_preserved_byte_exact": true,
+      "outside_sample_pcm_identical": true,
+      "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+      "source_identity_max_pcm_error": 1.5257391766942963e-05,
+      "peak": 0.891265869140625,
+      "loudness_matched": {
+        "exchange": {
+          "lufs": -19.9,
+          "true_peak_dbfs": -5.4,
+          "sha256": "4327db4a9fc8d673afb0ccc86137dc9b86f66a7d75871b1b2f3ec5d14514ea25"
+        },
+        "singer": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -5.4,
+          "sha256": "8276058d39b354529348086bc96266e9cb74eac1b7a4569e598657ce7bef1a2f"
+        }
+      }
+    }
+  ],
+  "listening": "NOT RUN"
+}

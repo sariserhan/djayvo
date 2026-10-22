@@ -58,6 +58,8 @@ class StudioFlow(unittest.TestCase):
             self.assertNotEqual(singer, exchange)
             self.assertTrue(Path(singer).is_file() and Path(exchange).is_file())
             self.assertIn('Female · Reggae', status)
+            self.assertIn('no sample was inserted', status)
+            self.assertEqual(digest(Path(singer)),digest(Path(exchange)))
             self.assertIn('question', lyrics)
             self.assertEqual(digest(source), original_hash)
             self.assertEqual(len(calls), 3)

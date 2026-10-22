@@ -1,0 +1,61 @@
+{
+  "technical": "PASS",
+  "job": "renders/singer-studio/759656aca29342e6b42aef442db9751f",
+  "assembly": {
+    "schema": "jamloom-integrated-source-2",
+    "technical": "PASS",
+    "source_sha256": "c2bb1bf57952c4ea6688551fc1aa8e47c39d8a01a2e08d854d21f0c7de8691da",
+    "singer_sha256": "8ec1ad12ec7141a60f39f5326ea5ee987acd6af781fc311c2cb9fb7973d4a669",
+    "sample_rate": 48000,
+    "frames": 1440000,
+    "grid": {
+      "bpm": 82.95,
+      "offset_frames": 23520,
+      "confidence": 0.9376997149640308,
+      "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+    },
+    "clips": [
+      {
+        "id": 0,
+        "start_frame": 1920,
+        "end_frame": 174240,
+        "selection": "whole-phrase"
+      },
+      {
+        "id": 1,
+        "start_frame": 44160,
+        "end_frame": 174240,
+        "selection": "pause-bounded-excerpt"
+      }
+    ],
+    "events": [],
+    "source_starts_frames": [],
+    "singer_start_frame": 0,
+    "source_identity_max_pcm_error": null,
+    "source_gain": 0.0,
+    "master_gain": 1.0,
+    "music_unchanged": true,
+    "sample_used": false,
+    "arrangement_status": "NO_SAFE_PLACEMENT",
+    "overlap_note": "Estimated low-vocal-energy gap, not a guarantee of absent vocals; no stems are subtracted.",
+    "artifacts": {
+      "performance.wav": "8ec1ad12ec7141a60f39f5326ea5ee987acd6af781fc311c2cb9fb7973d4a669",
+      "music.wav": "8ec1ad12ec7141a60f39f5326ea5ee987acd6af781fc311c2cb9fb7973d4a669",
+      "user.wav": "17e181b8c513a37f62fadcaa1dd973b02769d1a2d0ed999a5317bdf34076b8b3"
+    },
+    "sha256": "8ec1ad12ec7141a60f39f5326ea5ee987acd6af781fc311c2cb9fb7973d4a669",
+    "listening": "NOT RUN",
+    "note": "No natural vocal gap fits an intact phrase; original song retained."
+  },
+  "singing": {
+    "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+    "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+    "audio_sha256": "8ec1ad12ec7141a60f39f5326ea5ee987acd6af781fc311c2cb9fb7973d4a669",
+    "caption": "laid-back reggae, offbeat muted guitar, warm rounded electric bass, live one-drop drums, organ replies. Lead vocal by an expressive adult male soul singer, warm natural baritone, intimate clear diction. Human-like sung melody with breath, connected legato phrases, subtle vibrato, relaxed rhythmic phrasing and expressive dynamics. Playful affectionate delivery, a developing hook, instrumental answers and an intentional ending. Acoustic vocal production, no vocoder, no robotic effects, no hard autotune, no speech narration. Leave a four-second instrumental call-and-response pocket before a sung answer, with the groove continuing and no vocal ad-libs in that pocket. Perform the supplied reply lyrics as the musician responding to someone else.",
+    "seconds": 34.88220229197759,
+    "device": "mps",
+    "dtype": "torch.bfloat16"
+  },
+  "naturalness": "NOT RUN",
+  "prompted_gap": "NOT RELIABLY FOLLOWED: no suitable gap found; original returned"
+}

@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-"""Make the source a recurring musical hook, with space in the singer and band."""
+"""Place one intact source phrase in a vocal gap without altering the song."""
 import argparse
 import json
 import math
 from pathlib import Path
-import subprocess
+import shutil
 
 import numpy as np
 from scipy.ndimage import gaussian_filter1d
-from scipy.signal import find_peaks
 from arrange_voice_research import RATE, digest, read_crops, read_pcm, write_pcm
 
 PATTERNS = {
@@ -46,43 +45,73 @@ def beat_grid(drums, requested):
             'method':'drum-stem onset grid; tempo searched within 10 percent; bar phase unverified'}
 
 
-def source_crops(source, supplied):
-    active = np.flatnonzero(np.max(np.abs(source),axis=1) > np.max(np.abs(source))*.03)
-    begin,end = max(0,int(active[0])-RATE//25),min(len(source),int(active[-1])+RATE//20+1)
-    clean = {'id':0,'start_frame':begin,'end_frame':end}
-    cuts = [(c['start_frame'],c['end_frame']) for c in supplied
-            if .18*RATE <= c['end_frame']-c['start_frame'] <= 1.2*RATE]
-    if not cuts:
-        hop=RATE//100
-        energy=np.sqrt(np.mean(source[:len(source)//hop*hop].reshape(-1,hop,2)**2,axis=(1,2)))
-        energy=gaussian_filter1d(energy,1)
-        valleys,_=find_peaks(-energy,distance=18,prominence=max(energy)*.06)
-        bounds=[begin,*[int(i*hop) for i in valleys if begin+RATE*.15<i*hop<end-RATE*.15],end]
-        for a,b in zip(bounds,bounds[1:]):
-            if b-a>1.2*RATE:
-                count=math.ceil((b-a)/(RATE*.65));points=np.linspace(a,b,count+1).astype(int)
-                cuts.extend(zip(points,points[1:]))
-            else: cuts.append((a,b))
-    # shortcut: envelope valleys are sound boundaries, not guaranteed words; retain the clean hook.
-    cuts=[(int(a),int(b)) for a,b in cuts if .15*RATE<=b-a<=1.2*RATE and np.sqrt(np.mean(source[a:b]**2))>.005]
-    return [clean,*[{'id':i+1,'start_frame':a,'end_frame':b} for i,(a,b) in enumerate(cuts[:16])]]
+def intervals(mask):
+    edges = np.diff(np.r_[False, mask, False].astype(int))
+    return list(zip(np.flatnonzero(edges == 1), np.flatnonzero(edges == -1)))
 
 
-def stretch(part, rate):
-    if abs(rate-1)<.001: return part.copy()
-    raw=subprocess.run(['ffmpeg','-v','error','-nostdin','-protocol_whitelist','pipe','-f','f32le','-ar',str(RATE),
-        '-ac','2','-i','pipe:0','-af',f'atempo={rate:.8f}','-f','f32le','pipe:1'],
-        input=part.astype('<f4').tobytes(),capture_output=True,timeout=20,check=True).stdout
-    pcm=np.frombuffer(raw,dtype='<f4').reshape(-1,2).astype(float)
-    if not len(pcm) or not np.isfinite(pcm).all(): raise ValueError('Invalid source time stretch')
-    return pcm
+def envelope(pcm):
+    hop = RATE//100
+    padded = np.pad(pcm, ((0, (-len(pcm)) % hop), (0, 0)))
+    return np.sqrt(np.mean(padded.reshape(-1, hop, 2)**2, axis=(1, 2)))
 
 
-def dip(envelope,start,stop,depth,attack=.035,release=.12):
-    before=max(0,start-round(attack*RATE));after=min(len(envelope),stop+round(release*RATE))
-    envelope[before:start]=np.minimum(envelope[before:start],np.linspace(1,depth,start-before))
-    envelope[start:stop]=np.minimum(envelope[start:stop],depth)
-    envelope[stop:after]=np.minimum(envelope[stop:after],np.linspace(depth,1,after-stop))
+def source_crops(source):
+    levels = envelope(source); hop = RATE//100
+    threshold = max(.0003, float(np.max(levels))*.015)
+    active = np.flatnonzero(levels > threshold)
+    if not len(active): raise ValueError('No usable source phrase')
+    begin = max(0, (int(active[0])-4)*hop)
+    end = min(len(source), (int(active[-1])+5)*hop)
+    spans = [(begin, end)]
+    # shortcut: sustained quiet marks phrase candidates, not verified words; never chop inside continuous speech.
+    pauses = [(int(a)*hop, int(b)*hop) for a,b in intervals(levels <= threshold)
+              if b-a >= 18 and begin < a*hop < b*hop < end]
+    starts = [begin, *[max(begin, b-4*hop) for a,b in pauses]]
+    ends = [*[min(end, a+4*hop) for a,b in pauses], end]
+    for a,b in zip(starts, ends):
+        if .55*RATE <= b-a < end-begin: spans.append((a,b))
+    spans[1:] = sorted(set(spans[1:]), key=lambda span: span[1]-span[0], reverse=True)
+    return [{'id': i, 'start_frame': a, 'end_frame': b,
+             'selection': 'whole-phrase' if i == 0 else 'pause-bounded-excerpt'}
+            for i,(a,b) in enumerate(spans)]
+
+
+def choose_placement(song, vocals, clips, grid, genre):
+    levels = envelope(vocals); hop = RATE//100
+    threshold = min(.006, max(.0003, float(np.quantile(levels, .9))*.05))
+    gaps = intervals(levels <= threshold)
+    beat = RATE*60/grid['bpm']; offset = grid['offset_frames']
+    # Style accents select an entrance, never a mandatory repetition pattern.
+    accents = sorted({0., *[p % 4 for p in PATTERNS[genre]]})
+    pulses = sorted({round(offset+(bar*4+p)*beat) for bar in range(30) for p in accents})
+    margin = round(.18*RATE)
+    for clip in clips:
+        duration = clip['end_frame']-clip['start_frame']; options = []
+        for a,b in gaps:
+            # A singer must return after the sample; do not fill the final outro.
+            if b == len(levels) and np.any(levels > threshold): continue
+            lo = max(RATE, int(a)*hop+margin)
+            hi = min(len(song)-4*RATE-duration, int(b)*hop-margin-duration)
+            if hi < lo: continue
+            starts = [t for t in pulses if lo <= t <= hi] if grid['confidence'] >= .15 else []
+            if not starts: starts = [hi]
+            for start in starts:
+                stop = start+duration
+                band_rms = float(np.sqrt(np.mean(song[start:stop]**2)))
+                if band_rms < .015: continue
+                reply_delay = (int(b)*hop-stop)/RATE
+                # Prefer a prompt answer over placing speech in a long empty introduction.
+                options.append(((reply_delay, start), start, band_rms, int(a)*hop, int(b)*hop))
+        if options:
+            _,start,band_rms,a,b = min(options)
+            return {'clip_id': clip['id'], 'start_frame': start, 'end_frame': start+duration,
+                    'rate': 1., 'clean': True, 'gain': 1., 'echo': False,
+                    'section': 'call', 'selection': clip['selection'],
+                    'gap_frames': [a,b], 'band_rms': band_rms,
+                    'vocal_threshold_rms': threshold,
+                    'estimated_vocal_max_window_rms': float(np.max(levels[start//hop:math.ceil((start+duration)/hop)]))}
+    return None
 
 
 def assemble(source, score, singer_dir, output, consent=False):
@@ -97,7 +126,7 @@ def assemble(source, score, singer_dir, output, consent=False):
         raise ValueError('Invalid musical context')
     if type(c.get('source_repetitions')) is not int or c['source_repetitions'] not in (1,2):
         raise ValueError('Invalid source timing budget')
-    original=read_pcm(source,(2,5));supplied=read_crops(score,source,len(original))
+    original=read_pcm(source,(2,5));read_crops(score,source,len(original))
     song=read_pcm(singer_dir/'singer.wav',(30,30));stems=singer_dir/'stems'
     separated=json.loads((stems/'complete.json').read_text())
     if separated.get('technical')!='PASS' or separated.get('source_sha256')!=receipt['audio_sha256']:
@@ -110,71 +139,49 @@ def assemble(source, score, singer_dir, output, consent=False):
         if pcm.shape!=song.shape or not np.isfinite(pcm).all() or np.max(np.abs(pcm))>=4: raise ValueError('Invalid stem audio')
         loaded[name]=pcm
     protected={str(p):digest(p) for p in (source,score,singer_dir/'singer.wav',singer_dir/'complete.json',stems/'complete.json')}
-    grid=beat_grid(loaded['drums'],bpm);beat=RATE*60/grid['bpm'];offset=grid['offset_frames']
-    clips=source_crops(original,supplied);clean=clips[0];length=clean['end_frame']-clean['start_frame']
-    energy=np.r_[0.,np.cumsum(np.mean(loaded['vocals']**2,axis=1))]
-    rng=np.random.default_rng(seed)
-    def quiet_start(low,high,duration):
-        choices=[round(offset+i*beat) for i in range(100) if low<=offset+i*beat<=high and offset+i*beat+duration<len(song)-RATE*.5]
-        if not choices: raise ValueError('No space for source phrase')
-        rng.shuffle(choices)
-        return min(choices,key=lambda s:(energy[s+duration]-energy[s])/duration)
-    first=quiet_start(0,4*beat,length)
-    events=[{'clip_id':0,'start_frame':first,'rate':1.,'clean':True,'gain':1.,'echo':False,'section':'hook'}]
-    fragments=clips[1:]
-    if not fragments: fragments=[dict(clean,id=0)]
-    rng.shuffle(fragments)
-    for section,(low,high) in zip(('break','answer'),((.34,.48),(.65,.77))):
-        start=quiet_start(int(len(song)*low),int(len(song)*high),round(6*beat))
-        for i,position in enumerate(PATTERNS[genre]):
-            clip=fragments[(i+(1 if section=='answer' else 0))%min(3,len(fragments))]
-            duration=clip['end_frame']-clip['start_frame']
-            target=min((.5,1,1.5,2),key=lambda b:abs(duration-b*beat))*beat
-            rate=float(np.clip(duration/target,.8,1.25))
-            at=round(start+position*beat)
-            end=at+round(duration/rate)+int(.15*RATE)
-            if end>=len(song)-RATE:continue
-            if any(at<e['start_frame']+math.ceil((clips[e['clip_id']]['end_frame']-clips[e['clip_id']]['start_frame'])/e['rate'])+.12*RATE and end>e['start_frame'] for e in events):continue
-            events.append({'clip_id':clip['id'],'start_frame':at,'rate':rate,'clean':False,
-                'gain':.85 if i%2 else .7,'echo':i==len(PATTERNS[genre])-1,'section':section})
-    events.sort(key=lambda e:e['start_frame'])
-    voice=np.zeros_like(song);vocal_gain=np.ones(len(song));band_gain=np.ones(len(song))
-    active=original[np.max(np.abs(original),axis=1)>np.max(np.abs(original))*.08]
-    source_gain=min(.14/np.sqrt(np.mean(active**2)),.65/np.max(np.abs(original)))
-    for event in events:
-        clip=clips[event['clip_id']];part=stretch(original[clip['start_frame']:clip['end_frame']],event['rate'])
+    grid=beat_grid(loaded['drums'],bpm)
+    clips=source_crops(original)
+    event=choose_placement(song,loaded['vocals'],clips,grid,genre)
+    voice=np.zeros_like(song);source_gain=0.;events=[];error=None
+    reason='No natural vocal gap fits an intact phrase; original song retained.'
+    if event:
+        clip=clips[event['clip_id']]
+        part=original[clip['start_frame']:clip['end_frame']].copy()
         edge=min(RATE//100,len(part)//2);fade=np.sin(np.linspace(0,np.pi/2,edge))**2
         part[:edge]*=fade[:,None];part[-edge:]*=fade[::-1,None]
-        part*=source_gain*event['gain'];start=event['start_frame'];stop=start+len(part)
-        if stop>len(song)-RATE//2:raise ValueError('Source event outside song')
-        voice[start:stop]+=part;event['end_frame']=stop
-        dip(vocal_gain,start,stop,0.,attack=.06,release=.16)
-        dip(band_gain,start,stop,.30 if event['section']=='break' else .82)
-        if event['echo']:
-            delay=round(beat*.75)
-            for repeat in (1,2):
-                a=start+delay*repeat;b=min(len(song)-RATE//2,a+len(part))
-                if b>a:voice[a:b]+=part[:b-a]*(.18**repeat)
-    music=(song-loaded['vocals'])*band_gain[:,None]+loaded['drums']*(1-band_gain[:,None])*.65+loaded['vocals']*vocal_gain[:,None]
-    ending=np.cos(np.linspace(0,np.pi/2,RATE//4))**2;ending[-1]=0
-    music[-len(ending):]*=ending[:,None];voice[-len(ending):]*=ending[:,None]
-    master=min(1.,10**(-2/20)/max(np.max(np.abs(music+voice)),np.max(np.abs(music)),np.max(np.abs(voice))))
+        active=part[np.max(np.abs(part),axis=1)>np.max(np.abs(part))*.08]
+        target=min(.09,event['band_rms']*.7)
+        desired=min(target/np.sqrt(np.mean(active**2)),.35/np.max(np.abs(part)))
+        start,stop=event['start_frame'],event['end_frame']
+        bed=song[start:stop];ceiling=max(.89,float(np.max(np.abs(song))))
+        mask=np.abs(part)>1e-8
+        allowance=(ceiling-np.sign(part[mask])*bed[mask])/np.abs(part[mask])
+        source_gain=float(min(desired,np.min(allowance)*.98))
+        if source_gain >= desired*.5:
+            voice[start:stop]=part*source_gain;events=[event]
+            reason='One intact phrase in an estimated vocal gap; original singer and band unchanged.'
+        else:
+            source_gain=0.;reason='Insufficient mix headroom; original song retained.'
     output.mkdir(parents=True);(output/'.partial').touch()
-    for name,pcm in [('performance',music+voice),('music',music),('user',voice)]:write_pcm(output/f'{name}.wav',pcm*master)
-    actual=read_pcm(output/'user.wav',(30,30));edge=RATE//100
-    error=float(np.max(np.abs(actual[first+edge:first+length-edge]-original[clean['start_frame']+edge:clean['end_frame']-edge]*source_gain*master)))
-    assert error<=.5/32768+1e-12
+    shutil.copyfile(singer_dir/'singer.wav',output/'music.wav')
+    if events: write_pcm(output/'performance.wav',song+voice)
+    else: shutil.copyfile(singer_dir/'singer.wav',output/'performance.wav')
+    write_pcm(output/'user.wav',voice)
+    if events:
+        actual=read_pcm(output/'user.wav',(30,30));edge=RATE//100
+        error=float(np.max(np.abs(actual[start+edge:stop-edge]-original[clip['start_frame']+edge:clip['end_frame']-edge]*source_gain)))
+        assert error<=.5/32768+1e-12
     assert all(digest(Path(p))==h for p,h in protected.items())
-    report={'schema':'jamloom-integrated-source-1','technical':'PASS','source_sha256':digest(source),
+    assert digest(output/'music.wav')==receipt['audio_sha256']
+    report={'schema':'jamloom-integrated-source-2','technical':'PASS','source_sha256':digest(source),
         'singer_sha256':receipt['audio_sha256'],'sample_rate':RATE,'frames':len(song),'grid':grid,
-        'source_crop_frames':[clean['start_frame'],clean['end_frame']],'clips':clips,'events':events,
-        'source_starts_frames':[e['start_frame'] for e in events],'singer_start_frame':0,
-        'source_identity_max_pcm_error':error,'source_gain':float(source_gain),'master_gain':float(master),
-        'music_present_during_clean_hook_rms':float(np.sqrt(np.mean(music[first:first+length]**2))),
-        'source_singer_overlap_frames':0,'overlap_note':'Estimated singer stem muted during dry user events; separator bleed/echo can remain.',
+        'clips':clips,'events':events,'source_starts_frames':[e['start_frame'] for e in events],
+        'singer_start_frame':0,'source_identity_max_pcm_error':error,'source_gain':source_gain,
+        'master_gain':1.,'music_unchanged':True,'sample_used':bool(events),
+        'arrangement_status':'CANDIDATE' if events else 'NO_SAFE_PLACEMENT',
+        'overlap_note':'Estimated low-vocal-energy gap, not a guarantee of absent vocals; no stems are subtracted.',
         'artifacts':{n:digest(output/n) for n in ('performance.wav','music.wav','user.wav')},
-        'sha256':digest(output/'performance.wav'),'listening':'NOT RUN',
-        'note':'Music from the start; clean hook, beat-fit fragments, recurring answers, rhythmic echo and a drum-led break.'}
+        'sha256':digest(output/'performance.wav'),'listening':'NOT RUN','note':reason}
     (output/'complete.json').write_text(json.dumps(report,indent=2)+'\n');(output/'.partial').unlink()
     return report
 

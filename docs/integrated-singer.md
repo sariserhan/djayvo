@@ -1,5 +1,7 @@
 # User sound inside the song — 2026-10-22
 
+**Current sample arrangement:** The owner reports that the repeated/chopped sample makes the music worse. The [replacement approach and same-song comparisons](gentle-singer.md) preserve the original singer/band and use one phrase only where it fits. The evidence below records the previous implementation.
+
 **Catalogue expansion:** The studio now has [23 styles](singer-styles.md), including the eleven additional styles requested by the owner. The twelve-style render and listening evidence below describes the preceding increment.
 
 The owner listened to the previous singer previews and said: “they are great I

@@ -43,12 +43,13 @@ def prepare(plan_path, results, source, score, output, consent):
                             f"volume={target-levels[kind]['lufs']}dB", '-c:a', 'pcm_s16le', str(dest)], check=True, timeout=30)
             m = loudness(dest)
             assert abs(m['lufs']-target) <= .2 and m['true_peak_dbfs'] <= -1.8
-            label = 'Singer before sample arrangement' if kind == 'singer' else 'Your sound inside the song'
+            label = 'Original song · no sample' if kind == 'singer' else ('One phrase in the song' if joined['sample_used'] else 'Song kept intact · no safe sample placement')
             players.append(f'<p>{label}</p><audio controls preload="metadata" aria-label="{c["id"]}: {label}" src="{dest.name}"></audio>'
                            f'<a href="{dest.name}" download>Download</a>')
             measured[kind] = {**m, 'sha256': digest(dest)}
-        cards.append(f'<section><h2>{c["voice"].title()} · {STYLE_LABELS[c["genre"]]}</h2>' + ''.join(players)
-                     + f'<p>Music from the start. A recognizable hook and {len(joined["events"])-1} rhythmic fragments, with room in the singer and band.</p>'
+        detail = (f'{"The whole phrase" if joined["events"][0]["clip_id"] == 0 else "A shorter phrase"} at {joined["events"][0]["start_frame"]/48000:.1f} seconds. '
+                  'No vocal removal, backing changes, repeats or time stretching.' if joined['sample_used'] else joined['note'])
+        cards.append(f'<section><h2>{c["voice"].title()} · {STYLE_LABELS[c["genre"]]}</h2><p>{detail}</p>' + ''.join(players)
                      + f'<details><summary>Intended lyrics</summary><pre>{html.escape(c["lyrics"])}</pre></details></section>')
         rows.append({'case': c['id'], 'render_plan_sha256':json.loads((root/'complete.json').read_text())['plan_sha256'], 'assembly': joined, 'matched': measured})
     page = '''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -57,10 +58,10 @@ body{font:18px/1.6 system-ui;background:#111b20;color:#e9f0eb;max-width:1100px;m
 h1{line-height:1.15}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
 section{padding:22px;background:#213039;border-radius:12px}audio{width:100%}a{color:#b5efac}pre{white-space:pre-wrap;font:inherit}
 :focus-visible{outline:3px solid #d7ff80;outline-offset:4px}</style>
-<h1>Your sound becomes the hook.</h1><p>Play “Your sound inside the song” first. The original phrase becomes part of the rhythm,
-returns in shorter pieces and trades places with the singer. Nothing plays automatically.</p>
-<p>Listen for a recognizable source, a coherent groove and a natural exchange. Then compare with the singer before sample arrangement.
-These new arrangements still need your listening judgment.</p><main>''' + ''.join(cards) + '''</main>
+<h1>Keep the song. Find room for your phrase.</h1><p>The same songs, with one restrained source phrase only where a vocal gap fits.
+Each card shows when to listen. Nothing plays automatically.</p>
+<p>Compare with the original song at matched loudness. Does the phrase add something without interrupting the music?
+If no safe space was found, both versions are the original song. These candidates still need your listening judgment.</p><main>''' + ''.join(cards) + '''</main>
 <script>document.addEventListener('play',e=>{if(e.target.tagName==='AUDIO')document.querySelectorAll('audio').forEach(a=>{if(a!==e.target)a.pause()})},true)</script></html>'''
     assert page.count('<audio ') == 2*len(rows) and 'autoplay' not in page
     (review / 'index.html').write_text(page)
