@@ -3,7 +3,8 @@
 ## Remaining specification work — 2026-10-21
 
 Owner requests all remaining non-iOS product work, with iOS next and launch
-operations last. Preserve the deferred human checks and muted automation.
+operations last. Listening and physical checks are explicitly deferred by the
+owner; keep automation muted.
 No new paid compute, live charges or publication is implied.
 
 | ID | Workstream | Status | Next evidence |

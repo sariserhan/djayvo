@@ -3,7 +3,8 @@
 **Implementation commit: `8f3027f` (local only).**
 
 **Local capture tooling PASS; full specification PARTIAL.** The owner asked to
-finish the remaining technical work and explicitly kept listening deferred.
+finish the remaining technical work and explicitly kept listening and physical
+checks deferred.
 This closes four concrete gaps found after `86728f8`: deck transport history,
 aligned mixer stems, saved-plan/source linkage, and near-duplicate split checks.
 Earlier quality rejection remains **FAIL**. No expert judgments, rights approvals,
@@ -97,7 +98,7 @@ No microphone or system-audio permission was obtained by these tests.
 | Near-duplicate guard | PASS | Five new integration tests, existing matcher calibration, gain/polarity/DC/offset/noise/stereo, unrelated/silent controls, modified bytes, bounds, ingestion and cross-ledger rejection |
 | Production build / typecheck / bundle | PASS | Production build, TypeScript, 78-file offline audit, updated site preparation and client-secret audit |
 | Human listening / expert corpus | FAIL / NOT RUN | Earlier rejection retained; listening explicitly deferred; no new reviewed expert examples |
-| Physical audio / providers / models | NOT RUN | No arranged source/output test, paid run, final provider bill or approved model benchmark |
+| Physical audio / providers / models | NOT RUN | Physical checks explicitly deferred by the owner; no paid run, final provider bill or approved model benchmark |
 | iOS / launch | NOT RUN | Still deferred, in that order; no push, hosted migration, deployment, publication or charge |
 
 Prepared-session receipts retain their original timing diagnostics; these are not
@@ -111,8 +112,8 @@ are unchanged. New sanitizer/physical/iPhone execution is not claimed.
    collect the required independent judgments and fix evidenced defects. The M1
    gate still prevents learned production AI/personalization promotion. Do not
    label catalogue inference or saved preferences as trained personalization.
-2. **Physical qualification:** arrange a permitted source app and named output;
-   verify capture permission, source suppression/restoration, no feedback/doubled
+2. **Physical qualification, currently deferred:** when the owner resumes these
+   checks, arrange a permitted source app and named output; verify capture permission, source suppression/restoration, no feedback/doubled
    playback, headphone isolation, actual MIDI, route/interruption behavior,
    latency/endurance and Academy/manual accessibility. Browser fixtures do not
    substitute for these. WebKit native-loopback control retains its documented

@@ -10,6 +10,7 @@ Production separately. No owner setup task below means the integration has passe
 Finish non-iOS product work first, iOS second, launch operations last. This
 increment has no deployment or paid-service step. [Current report](r1-capture-completion.md)
 lists what works and what still requires evidence; it does not close the spec.
+Listening and physical checks are explicitly deferred until the owner resumes them.
 
 Music DNA now creates free local instrumental previews with two-variation
 comparison and downloads. Song notes are not analyzed as audio. The source-groove

@@ -1,6 +1,6 @@
 # Capture/data technical follow-through — 2026-10-21
 
-**Local capture tooling PASS; specification PARTIAL.** Added bounded deck history, optional aligned float stems, saved-plan/phrase identity checks and calibrated cross-split near-duplicate rejection. Human listening stays deferred; earlier quality FAIL remains. Physical/provider/model evidence, iOS and launch remain open in the requested order. [Current report](r1-capture-completion.md).
+**Local capture tooling PASS; specification PARTIAL.** Added bounded deck history, optional aligned float stems, saved-plan/phrase identity checks and calibrated cross-split near-duplicate rejection. Listening and physical checks stay explicitly deferred by the owner; earlier quality FAIL remains. Provider/model evidence, iOS and launch remain open in the requested order. [Current report](r1-capture-completion.md).
 
 # Duration and continual-phrase follow-through — 2026-10-21
 

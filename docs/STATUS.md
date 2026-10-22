@@ -2,7 +2,7 @@
 
 ## Latest: capture/data technical follow-through — 2026-10-21
 
-**Local capture tooling PASS; specification PARTIAL.** Deck transport history, optional aligned A/B/C/instrument stems, exact saved-plan/source linkage and near-duplicate split guards are implemented. Existing native/dry replay is preserved; observed controls are not full action-only browser replay. Listening remains explicitly deferred; physical setup and provider/model gates remain open. iOS and launch retain their order. [Current report and evidence](r1-capture-completion.md).
+**Local capture tooling PASS; specification PARTIAL.** Deck transport history, optional aligned A/B/C/instrument stems, exact saved-plan/source linkage and near-duplicate split guards are implemented. Existing native/dry replay is preserved; observed controls are not full action-only browser replay. Listening and physical checks remain explicitly deferred by the owner; provider/model gates remain open. iOS and launch retain their order. [Current report and evidence](r1-capture-completion.md).
 
 ## Latest: duration and continual phrases — 2026-10-21
 
