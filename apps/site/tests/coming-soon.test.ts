@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {NextRequest} from 'next/server';
 import {comingSoonEnabled,comingSoonRecovery,comingSoonResponse} from '../lib/coming-soon';
 import {proxy} from '../proxy';
+import {homeProducts} from '../lib/home-products';
 
 test('launch gate defaults on and only explicit false disables it',()=>{
  for(const value of [undefined,'','true','FALSE','0'])assert.equal(comingSoonEnabled({JAMLOOM_COMING_SOON:value}),true);
@@ -16,6 +17,8 @@ test('launch responses contain real navigation, one tracker and private caching;
  const home=comingSoonResponse(new Request('https://www.jamloom.com/?admin=true'));
  assert.equal(home.status,200);assert.equal(home.headers.get('cache-control'),'private, no-store');assert.equal(home.headers.get('vary'),'Cookie');
  const html=await home.text();assert.match(html,/Jamloom is coming soon/);assert.equal((html.match(/vp_QBDH92AC.js/g)||[]).length,1);assert.match(html,/href="\/account\/sign-in"/);assert.ok(!html.includes('mini-deck'));
+ for(const product of homeProducts){assert.ok(html.includes(`id="${product.slug}"`));assert.ok(html.includes(product.headline));assert.ok(html.includes(`href="#${product.slug}"`));}
+ assert.match(html,/Public access is not open yet/);
  assert.equal(comingSoonResponse(new Request('https://www.jamloom.com/studio/dj.html')).headers.get('location'),'https://www.jamloom.com/');
  assert.equal(comingSoonResponse(new Request('https://www.jamloom.com/api/catalogue')).status,503);
  assert.equal(comingSoonResponse(new Request('https://www.jamloom.com/',{method:'POST'})).status,503);

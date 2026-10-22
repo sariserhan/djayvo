@@ -1,5 +1,9 @@
 # Jamloom development tracker
 
+## Full product landing page — 2026-10-22
+
+- [x] **MKT-PRODUCTS-001 — PASS, local:** Give DJ Academy, controller-free DJ Studio, AI Improvisation, Music DNA and Live DJ their own sections on the main and coming-soon pages. Add actual product screenshots to every section and keep the main-page DJ deck playable. Align navigation, metadata/social image, availability and Live DJ capture limits. Typecheck, five launch/metadata tests, Chromium/WebKit at 1440/820/390/320 px, section navigation, linked routes, image decoding, muted deck playback and accessibility pass. Coming-soon browser rendering uses the actual response HTML; gate behavior is covered by unit checks. Deployment NOT RUN. [Homepage](apps/site/app/page.tsx), [shared descriptions](apps/site/lib/home-products.ts).
+
 ## Headphones panel layout — 2026-10-22
 
 - [x] **STUDIO-CSS-001 — PASS, local:** Group output selectors, test actions, routing confirmation, deck previews and level controls using existing studio styles. Fix long device-name overflow in WebKit. Chromium/WebKit checks pass at 1440/820/390/320 px, plus fullscreen, keyboard disclosure, refresh/test/disconnect feedback and zero scoped accessibility violations. Existing control IDs preserved; audited studio/offline bundle rebuilt. Physical routing and deployment NOT RUN. Sources: [markup](apps/web/dj.html), [styles](apps/web/dj.css).
