@@ -1,3 +1,7 @@
+# Site favicon — 2026-10-21
+
+**PASS, local.** Added SVG and 16/32/48-pixel ICO favicons using the existing Jamloom waveform mark; normal pages and coming-soon share them. Typecheck, five existing metadata/launch tests and [local HTTP/format checks](evidence/favicon/local-http.json) pass. No deployment. Metadata wiring follows [Next.js icons documentation](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#icons); Context7 was unavailable.
+
 # iOS product parity — 2026-10-21
 
 **PASS, local implementation and checks; specification PARTIAL.** Native Music DNA uses the shared composer for private A/B audio, with exact simulator/WASM output parity, catalogue preferences and explicit profile synchronization. Optional native account access displays the server ledger; purchase recovery and signed sandbox refunds preserve acknowledgment and account boundaries. Wider improvisation and maximum-duration checks pass. Listening, physical checks and real Apple/provider/model acceptance remain open; launch is last. [Current implementation and validation](ios-product-parity.md).

@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   title: { default: 'Jamloom', template: '%s · Jamloom' },
   description: 'Turn a few seconds of your sound into music.',
   metadataBase: new URL('https://www.jamloom.com'),
+  icons: { icon: [
+    { url: '/favicon.ico', sizes: '16x16 32x32 48x48', type: 'image/x-icon' },
+    { url: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' },
+  ] },
   robots: { index: false, follow: false },
 };
 export default function Layout({ children }: { children: React.ReactNode }) {

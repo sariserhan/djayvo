@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "path": "/favicon.svg",
+      "status": 200,
+      "type": "image/svg+xml",
+      "bytes": 267
+    },
+    {
+      "path": "/favicon.ico",
+      "status": 200,
+      "type": "image/x-icon",
+      "bytes": 945
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "icons": "SVG and ICO linked"
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "icons": "SVG and ICO linked"
+    }
+  ],
+  "icoSizes": [
+    16,
+    32,
+    48
+  ]
+}

@@ -1,5 +1,7 @@
 # Jamloom development tracker
 
+- [x] **FAV-001 — PASS, local (2026-10-21):** Existing lime waveform mark exported as SVG and 16/32/48-pixel ICO, linked from the site layout and coming-soon page. Typecheck, five existing metadata/launch tests and [HTTP/format checks](docs/evidence/favicon/local-http.json) PASS. No deployment.
+
 ## Remaining specification work — 2026-10-21
 
 Owner requests all available specification work. Local iOS implementation and checks now follow
