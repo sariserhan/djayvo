@@ -1,0 +1,18 @@
+test_account_key_list_response (test_vast_trial.PriceBounds.test_account_key_list_response) ... ok
+test_blood_profile_has_isolated_state_and_two_hour_limit (test_vast_trial.PriceBounds.test_blood_profile_has_isolated_state_and_two_hour_limit) ... ok
+test_cleanup_refuses_other_label (test_vast_trial.PriceBounds.test_cleanup_refuses_other_label) ... ok
+test_includes_storage_and_both_transfer_directions (test_vast_trial.PriceBounds.test_includes_storage_and_both_transfer_directions) ... ok
+test_inherited_key_is_not_attached_twice (test_vast_trial.PriceBounds.test_inherited_key_is_not_attached_twice) ... ok
+test_lost_create_response_reconciles_only_trial_label (test_vast_trial.PriceBounds.test_lost_create_response_reconciles_only_trial_label) ... ok
+test_missing_key_is_attached_and_invalid_response_rejected (test_vast_trial.PriceBounds.test_missing_key_is_attached_and_invalid_response_rejected) ... ok
+test_musician_profile_isolated_and_bounded (test_vast_trial.PriceBounds.test_musician_profile_isolated_and_bounded) ... ok
+test_rejects_expensive_transfer_or_compute_and_multiple_gpus (test_vast_trial.PriceBounds.test_rejects_expensive_transfer_or_compute_and_multiple_gpus) ... ok
+test_rejects_missing_nonfinite_and_negative_costs (test_vast_trial.PriceBounds.test_rejects_missing_nonfinite_and_negative_costs) ... ok
+test_retry_keeps_original_budget_anchor_and_requires_cleanup (test_vast_trial.PriceBounds.test_retry_keeps_original_budget_anchor_and_requires_cleanup) ... ok
+test_training_lease_and_stricter_hourly_ceiling (test_vast_trial.PriceBounds.test_training_lease_and_stricter_hourly_ceiling) ... ok
+test_unknown_instance_response_fails_closed (test_vast_trial.PriceBounds.test_unknown_instance_response_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.002s
+
+OK

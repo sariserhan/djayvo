@@ -1,0 +1,1169 @@
+{
+  "diagnostic_execution": "PASS",
+  "threshold": 0.8,
+  "sample_rate": 4000,
+  "window_samples": 8000,
+  "calibration": {
+    "status": "PASS",
+    "gain_inverted_dc_shifted_copy": {
+      "correlation": 0.9999999999999835,
+      "target_seconds": 3.03075
+    },
+    "noisy_copy": {
+      "correlation": 0.9869169150237775,
+      "target_seconds": 3.03075
+    },
+    "unrelated_noise": {
+      "correlation": 0.04527552911168208,
+      "target_seconds": 2.08725
+    },
+    "brute_force_agreement_silence_nonfinite_nonoverlap": "PASS"
+  },
+  "training_pairs": 72,
+  "training_flagged_pairs": 0,
+  "maximum_training_correlation": 0.33941686296539986,
+  "training": [
+    {
+      "output": "base-bass-a.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.23415342960444163,
+        "target_seconds": 10.354
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.2279062550053508,
+        "target_seconds": 9.4525
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 21.0,
+        "correlation": 0.16046786513531636,
+        "target_seconds": 8.018
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.2419243735444712,
+        "target_seconds": 18.523
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 14.0,
+        "correlation": 0.21086456829480593,
+        "target_seconds": 19.435
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-bass-a.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 5.0,
+        "correlation": 0.32201254130795753,
+        "target_seconds": 1.831
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.20148354375085298,
+        "target_seconds": 8.9965
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 16.0,
+        "correlation": 0.16730864129343218,
+        "target_seconds": 23.31325
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.21467662028219325,
+        "target_seconds": 1.762
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.19223684934843357,
+        "target_seconds": 21.5395
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.1750594524162049,
+        "target_seconds": 20.34325
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.2181256376586796,
+        "target_seconds": 6.08025
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 16.0,
+        "correlation": 0.2531809707817817,
+        "target_seconds": 14.45875
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.2067001253055461,
+        "target_seconds": 2.5475
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 24.0,
+        "correlation": 0.25262301720366104,
+        "target_seconds": 1.47575
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 20.0,
+        "correlation": 0.2574226772972192,
+        "target_seconds": 17.4165
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.24361039127531814,
+        "target_seconds": 21.30725
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-funk.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.1980256389752642,
+        "target_seconds": 15.31875
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 20.0,
+        "correlation": 0.23900405470184524,
+        "target_seconds": 20.71175
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.2036177532066707,
+        "target_seconds": 2.81975
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.25275103057669435,
+        "target_seconds": 1.83875
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.21164813321936451,
+        "target_seconds": 14.36025
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.21367865351899443,
+        "target_seconds": 13.976
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 12.0,
+        "correlation": 0.3331014514667337,
+        "target_seconds": 2.08775
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-a.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.24702772859157196,
+        "target_seconds": 20.859
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-a.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.22823376977649967,
+        "target_seconds": 9.4525
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-a.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 21.0,
+        "correlation": 0.16191471134242738,
+        "target_seconds": 8.018
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-a.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.2524576506304529,
+        "target_seconds": 18.523
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-a.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 14.0,
+        "correlation": 0.19037992898589248,
+        "target_seconds": 19.43525
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-a.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 5.0,
+        "correlation": 0.33941686296539986,
+        "target_seconds": 1.831
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-b.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.20581358607288117,
+        "target_seconds": 8.9965
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-b.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 16.0,
+        "correlation": 0.16142273083303652,
+        "target_seconds": 23.31325
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-b.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.21903156998886117,
+        "target_seconds": 1.762
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-b.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.1986232538252614,
+        "target_seconds": 21.5395
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-b.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.1747271332839967,
+        "target_seconds": 15.341
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-bass-b.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.22402459537390895,
+        "target_seconds": 6.08025
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-funk.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 16.0,
+        "correlation": 0.2543636142330635,
+        "target_seconds": 14.45875
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-funk.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.19941153358374925,
+        "target_seconds": 2.5475
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-funk.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 24.0,
+        "correlation": 0.2518147305432269,
+        "target_seconds": 1.48225
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-funk.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 20.0,
+        "correlation": 0.2619537651298656,
+        "target_seconds": 17.4165
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-funk.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.24570977811454783,
+        "target_seconds": 21.30725
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-funk.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.19428596727609804,
+        "target_seconds": 24.627
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-hiphop.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 20.0,
+        "correlation": 0.2637999179314082,
+        "target_seconds": 20.73525
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-hiphop.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.22371687844749036,
+        "target_seconds": 10.1325
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-hiphop.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.23394965029975334,
+        "target_seconds": 0.49725
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-hiphop.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 16.0,
+        "correlation": 0.2246856224833889,
+        "target_seconds": 21.811
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-hiphop.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.22988179602643685,
+        "target_seconds": 17.37925
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch5-hiphop.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 12.0,
+        "correlation": 0.33895600560433026,
+        "target_seconds": 0.31925
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-a.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.23510568589906683,
+        "target_seconds": 20.85925
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-a.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.22746192127738304,
+        "target_seconds": 9.44625
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-a.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 14.0,
+        "correlation": 0.1796176962119815,
+        "target_seconds": 7.19075
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-a.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.23326952444899918,
+        "target_seconds": 18.523
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-a.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 14.0,
+        "correlation": 0.21099542086222836,
+        "target_seconds": 19.435
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-a.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 5.0,
+        "correlation": 0.33331170825844947,
+        "target_seconds": 1.831
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-b.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.194480385119829,
+        "target_seconds": 14.51525
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-b.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 16.0,
+        "correlation": 0.16629651247186633,
+        "target_seconds": 23.31325
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-b.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.20297157406827424,
+        "target_seconds": 1.75475
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-b.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.19510779694178482,
+        "target_seconds": 20.71325
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-b.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 27.0,
+        "correlation": 0.17982351541981945,
+        "target_seconds": 20.34325
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-bass-b.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 19.0,
+        "correlation": 0.2152121547110354,
+        "target_seconds": 6.08025
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-funk.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 16.0,
+        "correlation": 0.25873314532929903,
+        "target_seconds": 14.4585
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-funk.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.20120414201320339,
+        "target_seconds": 2.5475
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-funk.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 24.0,
+        "correlation": 0.25011260893711046,
+        "target_seconds": 1.482
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-funk.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 20.0,
+        "correlation": 0.25714027724569666,
+        "target_seconds": 17.41625
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-funk.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 13.0,
+        "correlation": 0.24473268106518445,
+        "target_seconds": 21.30725
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-funk.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 11.0,
+        "correlation": 0.19542737095432572,
+        "target_seconds": 24.627
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-hiphop.wav",
+      "source": "f-02.wav",
+      "strongest": {
+        "query_seconds": 20.0,
+        "correlation": 0.23515596606392164,
+        "target_seconds": 20.712
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-hiphop.wav",
+      "source": "down-04.wav",
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.19919307076627799,
+        "target_seconds": 2.82
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-hiphop.wav",
+      "source": "question-02.wav",
+      "strongest": {
+        "query_seconds": 26.0,
+        "correlation": 0.25927635043886904,
+        "target_seconds": 1.839
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-hiphop.wav",
+      "source": "question-03.wav",
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.24458184894558435,
+        "target_seconds": 21.6345
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-hiphop.wav",
+      "source": "question-04.wav",
+      "strongest": {
+        "query_seconds": 10.0,
+        "correlation": 0.22045663600374693,
+        "target_seconds": 13.261
+      },
+      "flagged_windows": 0
+    },
+    {
+      "output": "epoch10-hiphop.wav",
+      "source": "pipe-01.wav",
+      "strongest": {
+        "query_seconds": 12.0,
+        "correlation": 0.3316498309903315,
+        "target_seconds": 2.1105
+      },
+      "flagged_windows": 0
+    }
+  ],
+  "repetition": [
+    {
+      "output": "base-bass-a.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.7711893522489394,
+        "target_seconds": 10.89175
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-bass-b.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.9331244532026153,
+        "target_seconds": 23.5715
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9092977524247329,
+          "target_seconds": 20.5715
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.8503287966660771,
+          "target_seconds": 22.5715
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9331244532026153,
+          "target_seconds": 23.5715
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.8703609424957194,
+          "target_seconds": 19.71425
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.8383903031353289,
+          "target_seconds": 20.7145
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.8616700642969535,
+          "target_seconds": 21.71425
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9223431699231749,
+          "target_seconds": 15.85725
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.9005293701474866,
+          "target_seconds": 16.85725
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.881112488772369,
+          "target_seconds": 17.8575
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.812122318994073,
+          "target_seconds": 18.85725
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.8031073964579242,
+          "target_seconds": 19.85725
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.8346461512819878,
+          "target_seconds": 20.85725
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.8353649616985667,
+          "target_seconds": 22.857
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          5.0
+        ],
+        [
+          6.0,
+          18.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 17.0
+    },
+    {
+      "output": "base-funk.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.7843545728263505,
+        "target_seconds": 15.5715
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "base-hiphop.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 0.0,
+        "correlation": 0.5389801148259382,
+        "target_seconds": 7.4975
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "epoch5-bass-a.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.796773084663954,
+        "target_seconds": 10.85275
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "epoch5-bass-b.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.9302431092219052,
+        "target_seconds": 23.5715
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.9131709716657946,
+          "target_seconds": 20.5715
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.8387203142711676,
+          "target_seconds": 22.5715
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9302431092219052,
+          "target_seconds": 23.5715
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.8672281827697929,
+          "target_seconds": 19.71425
+        },
+        {
+          "query_seconds": 7.0,
+          "correlation": 0.8401741229217601,
+          "target_seconds": 20.7145
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.8697298663294775,
+          "target_seconds": 21.71425
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9196349172455185,
+          "target_seconds": 15.85725
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.8976989674803597,
+          "target_seconds": 16.85725
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.882284913645716,
+          "target_seconds": 17.8575
+        },
+        {
+          "query_seconds": 12.0,
+          "correlation": 0.8216149298590325,
+          "target_seconds": 18.85725
+        },
+        {
+          "query_seconds": 13.0,
+          "correlation": 0.8132694357039992,
+          "target_seconds": 19.85725
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.8347489448806864,
+          "target_seconds": 20.85725
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.8362974350580693,
+          "target_seconds": 22.857
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          5.0
+        ],
+        [
+          6.0,
+          18.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 17.0
+    },
+    {
+      "output": "epoch5-funk.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.7679711792691698,
+        "target_seconds": 15.5715
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "epoch5-hiphop.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 8.0,
+        "correlation": 0.6435343417849961,
+        "target_seconds": 18.4835
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "epoch10-bass-a.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 4.0,
+        "correlation": 0.7639450810985642,
+        "target_seconds": 10.89175
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "epoch10-bass-b.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 3.0,
+        "correlation": 0.9274718835720664,
+        "target_seconds": 23.5715
+      },
+      "flagged_windows": [
+        {
+          "query_seconds": 0.0,
+          "correlation": 0.8703559106441835,
+          "target_seconds": 20.5715
+        },
+        {
+          "query_seconds": 2.0,
+          "correlation": 0.8319928356750639,
+          "target_seconds": 22.5715
+        },
+        {
+          "query_seconds": 3.0,
+          "correlation": 0.9274718835720664,
+          "target_seconds": 23.5715
+        },
+        {
+          "query_seconds": 6.0,
+          "correlation": 0.8464482731932038,
+          "target_seconds": 19.71425
+        },
+        {
+          "query_seconds": 8.0,
+          "correlation": 0.8328158062497434,
+          "target_seconds": 21.71425
+        },
+        {
+          "query_seconds": 9.0,
+          "correlation": 0.9146768282102795,
+          "target_seconds": 15.85725
+        },
+        {
+          "query_seconds": 10.0,
+          "correlation": 0.8957438491376554,
+          "target_seconds": 16.85725
+        },
+        {
+          "query_seconds": 11.0,
+          "correlation": 0.8738698313217867,
+          "target_seconds": 17.8575
+        },
+        {
+          "query_seconds": 14.0,
+          "correlation": 0.8217741168051204,
+          "target_seconds": 20.85725
+        },
+        {
+          "query_seconds": 16.0,
+          "correlation": 0.8215006388094491,
+          "target_seconds": 22.857
+        }
+      ],
+      "flagged_query_intervals_seconds": [
+        [
+          0.0,
+          5.0
+        ],
+        [
+          6.0,
+          13.0
+        ],
+        [
+          14.0,
+          18.0
+        ]
+      ],
+      "flagged_query_coverage_seconds": 16.0
+    },
+    {
+      "output": "epoch10-funk.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 7.0,
+        "correlation": 0.7559904383448293,
+        "target_seconds": 15.5715
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "output": "epoch10-hiphop.wav",
+      "eligible_windows": 27,
+      "strongest": {
+        "query_seconds": 6.0,
+        "correlation": 0.49924909284546565,
+        "target_seconds": 16.4875
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    }
+  ],
+  "different_seed_pairs": [
+    {
+      "mode": "base",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.7428721050273035,
+        "target_seconds": 28.0
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "mode": "epoch5",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.7521546210365604,
+        "target_seconds": 28.0
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    },
+    {
+      "mode": "epoch10",
+      "eligible_windows": 29,
+      "strongest": {
+        "query_seconds": 28.0,
+        "correlation": 0.747855840542153,
+        "target_seconds": 28.0
+      },
+      "flagged_windows": [],
+      "flagged_query_intervals_seconds": [],
+      "flagged_query_coverage_seconds": 0
+    }
+  ],
+  "previous_trial_base_pcm_comparison": {
+    "bass-a": {
+      "maximum_pcm_difference": 0.0,
+      "rms_pcm_difference": 0.0,
+      "equal_sample_fraction": 1.0
+    },
+    "bass-b": {
+      "maximum_pcm_difference": 0.0,
+      "rms_pcm_difference": 0.0,
+      "equal_sample_fraction": 1.0
+    },
+    "funk": {
+      "maximum_pcm_difference": 0.0,
+      "rms_pcm_difference": 0.0,
+      "equal_sample_fraction": 1.0
+    },
+    "hiphop": {
+      "maximum_pcm_difference": 0.0,
+      "rms_pcm_difference": 0.0,
+      "equal_sample_fraction": 1.0
+    }
+  },
+  "perceptual_quality": "NOT RUN",
+  "limitations": "Fixed-rate two-second mono waveform matching misses transformed, short and melodic reuse; repetition can be musically intentional. No perceptual novelty, ownership, quality or generalization inference."
+}

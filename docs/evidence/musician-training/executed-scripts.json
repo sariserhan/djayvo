@@ -1,0 +1,8 @@
+{
+  "scripts/vast_trial.py": "e80ab21acdba886c769cac763e59935ec19b50ec6ff9a8844c996e172beaecf8",
+  "scripts/cloud_music_setup.sh": "019cbe98064c191113620cb687d684b6c50acb55c602e0bbc44ad85d40bb42d4",
+  "scripts/cloud_style_trial.py": "013d1c5bc7b9734714abe27e2cd25073dcb5dec9c83352c7f95a3c3f9437034e",
+  "scripts/cloud_musician_trial.py": "e5a46cc23c00c4a49a62e483192dadbf321a01cfc0d783862762dc6aa92685a8",
+  "docs/evidence/musician-training/remote-prepare.sh": "caa207851b2bc99b60ca33abdfb81b4d8017ad3f2b7c30190b003fa368e8fccb",
+  "docs/evidence/musician-training/remote-train.sh": "40aa207f0edaf4392c5e6a580852114b7680bce1981ab2a8a419d80a46f18808"
+}

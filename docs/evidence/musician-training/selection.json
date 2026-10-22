@@ -1,0 +1,36 @@
+{
+  "status": "PARTIAL: provisional machine screening only",
+  "selected": [
+    "f-02.wav",
+    "down-04.wav",
+    "question-02.wav",
+    "question-03.wav",
+    "question-04.wav",
+    "pipe-01.wav"
+  ],
+  "selected_seconds": 180,
+  "source_files": 4,
+  "rule": "Broad bass/drum musical descriptions with no vocal-led or spoken narrative reported; all detailed genre/instrument/language predictions discarded",
+  "exclusions": {
+    "f-01.wav": "Vocal-led rap and scratched voice descriptions; no verified lyrics",
+    "f-03.wav": "Spoken narrative, vocals and spoken outro described",
+    "down-01.wav": "Spoken intro and dialogue skit described",
+    "down-02.wav": "Lead vocal and lyrical themes described without verification",
+    "down-03.wav": "Lead rap and sung-rap descriptions; lyrics/language unverified",
+    "question-01.wav": "Spoken introduction and rap descriptions; lyrics/language unverified",
+    "pipe-02.wav": "Description does not substantiate the same bass/drum conditioning; uncertain timbre/structure excluded"
+  },
+  "caption": "Music with rhythmic bass and drum patterns.",
+  "lyrics": "not used",
+  "bpm_key_genre_language": "not used",
+  "human_listening": "NOT RUN",
+  "independent_session_split": "NOT RUN",
+  "training_targets": "Audio only; no expert action-policy supervision",
+  "expected_optimizer_steps": 60,
+  "checkpoint_steps": [
+    30,
+    60
+  ],
+  "labels_private_sha256": "f30ae036bcdead371744ecc717a39daf26a2bc5df8bba46b9a35b1a5b67a7106",
+  "accepted_dataset_sha256": "b2eb286dfb884152331fcb028f60a3424125c4e309699096fe0d43a1f527609a"
+}

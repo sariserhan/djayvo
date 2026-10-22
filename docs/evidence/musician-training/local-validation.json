@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "executed_scripts_hashes": "PASS",
+  "syntax": "PASS",
+  "report_links": "PASS",
+  "retrieved_artifacts_rehashed": 48,
+  "controller_tests": 13,
+  "input_tests": 3,
+  "review_tests": 3,
+  "audio_playback": "NOT RUN",
+  "full_native_site_build": "NOT RUN: research-only change"
+}

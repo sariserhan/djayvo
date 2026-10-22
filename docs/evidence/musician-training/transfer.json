@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "archive_sha256": "6803d0fffd35dde21147814635a888d08501ff2a32ef03cf2c66b79a2e64a5b5",
+  "verified_artifacts": 48,
+  "total_members": 56,
+  "received_audio_files": 13,
+  "checkpoints": [
+    {
+      "epoch": 5,
+      "step": 30,
+      "path": "/workspace/ace-step/musician-results/adapter/checkpoints/epoch_5_loss_1.9056",
+      "sha256": "525ed092c5bb2b95a80d0425e370827cbf05e240f15d88550583327bb09418a5",
+      "tensors": 384,
+      "parameters": 11010048,
+      "nonzero_lora_b_tensors": 192
+    },
+    {
+      "epoch": 10,
+      "step": 60,
+      "path": "/workspace/ace-step/musician-results/adapter/checkpoints/epoch_10_loss_1.4963",
+      "sha256": "00ea4afe4857dfb8737e0dc4ea70e16a51e68f3004f09ce7fab87fa0dede90a8",
+      "tensors": 384,
+      "parameters": 11010048,
+      "nonzero_lora_b_tensors": 192
+    }
+  ],
+  "human_listening": "NOT RUN",
+  "original_source_mp3s_not_uploaded": true
+}

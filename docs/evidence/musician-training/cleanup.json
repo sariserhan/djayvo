@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "instance_id": 57149907,
+  "instance_absent": true,
+  "account_active_instances": 0,
+  "temporary_key_id": 1639896,
+  "temporary_account_key_absent": true,
+  "prior_key_ids_preserved": [],
+  "local_temporary_keys_removed": true,
+  "public_key_file_sha256": "8729cabf8e56f0307fb315bcf3df95c10230ebe27562a9817d88bbb869f1ff86",
+  "elapsed_to_deletion_seconds": 1085.6294620037079,
+  "starting_credit": 9.5901424625,
+  "observed_credit_after": 9.4991656201,
+  "observed_debit_usd": 0.09097684239999992,
+  "final_billing": "PARTIAL: provider accounting can settle later"
+}

@@ -13,6 +13,21 @@ spec.loader.exec_module(trial)
 
 
 class PriceBounds(unittest.TestCase):
+    def test_musician_profile_isolated_and_bounded(self):
+        names = ('ROOT', 'WORK', 'STATE', 'LABEL', 'LEASE_SECONDS', 'HOURLY_CEILING')
+        previous = {name: getattr(trial, name) for name in names}
+        try:
+            with tempfile.TemporaryDirectory() as directory, patch.object(trial, 'ROOT', Path(directory)), patch.object(
+                    trial.sys, 'argv', ['vast_trial.py', 'status', '--musician-training']), patch.object(
+                    trial, 'api', return_value={'credit': 10}), patch.object(trial, 'instances', return_value=[]), contextlib.redirect_stdout(io.StringIO()):
+                trial.main()
+                self.assertEqual(trial.STATE, Path(directory) / 'build-musician-training-20261021/trial-state.json')
+                self.assertEqual(trial.LABEL, 'jamloom-musician-training-20261021')
+                self.assertEqual((trial.LEASE_SECONDS, trial.HOURLY_CEILING), (7200, .5))
+        finally:
+            for name, value in previous.items():
+                setattr(trial, name, value)
+
     def test_blood_profile_has_isolated_state_and_two_hour_limit(self):
         names = ('ROOT', 'WORK', 'STATE', 'LABEL', 'LEASE_SECONDS', 'HOURLY_CEILING')
         previous = {name: getattr(trial, name) for name in names}

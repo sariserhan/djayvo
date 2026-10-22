@@ -1,10 +1,14 @@
 # Jamloom implementation checkpoint
 
-## Latest: authorized musician references — 2026-10-21
+## Latest: completed musician-reference training — 2026-10-21
+
+**Research execution PASS; musical acceptance PARTIAL.** Approved one-instance trial screened thirteen excerpts and trained on six provisional clips across all four authorized recordings: 60 optimizer steps, two verified ACE-Step LoRA checkpoints and thirteen comparison WAVs. All 48 artifact hashes matched; 19 regression tests and local waveform/loudness checks pass. Rental/temporary keys deleted; zero active instances and $0.0945214 observed debit, subject to billing settlement. Listening, independent generalization and production promotion NOT RUN. Product rule-based composer unchanged. [Run report](musician-training-run.md).
+
+## Earlier: authorized musician references — 2026-10-21
 
 **Preparation PASS; overall PARTIAL.** Training permission confirmed for four named Downloads files; 13 candidates/390 seconds, hash-bound archive, review sheet and preserved originals. Fourteen tests plus real clip/archive checks and 62 waveform comparisons pass. New GPU execution/upload awaits approval for the concrete $10/two-hour proposal. New model training, content acceptance, general musician improvement and production promotion NOT RUN. [Report](musician-training-preparation.md).
 
-## Latest: musician training preparation — 2026-10-21
+## Earlier: musician training preparation — 2026-10-21
 
 **PARTIAL.** Curriculum/inventory PASS: 48 contextual exercises, existing clip and adapter hashes verified. New training NOT RUN: known R1 demonstrations are six automated evaluation-only rows, and existing audio clips lack reviewed decision labels and independent session coverage. Owner located additional references in Downloads; four previously analysis-only files inventoried, training permission pending. Product composer remains rule-based; ACE-Step adapters remain research candidates. No paid compute, deployment or listening performed. [Report](musician-training-curriculum.md).
 

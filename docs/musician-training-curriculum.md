@@ -1,9 +1,10 @@
 # Musician training curriculum — 2026-10-21
 
-**Update:** The owner authorized all four additional references for training.
-[Preparation and proposed run](musician-training-preparation.md) now provide
-13 validated candidate clips; new paid compute/upload approval remains pending.
-The initial inventory and permission-pending findings below are historical.
+**Update:** The owner authorized all four additional references and the bounded
+GPU trial. [Preparation](musician-training-preparation.md) yielded thirteen clips;
+[completed execution](musician-training-run.md) trained two experimental audio
+adapters on six provisional clips. Listening and general musician acceptance
+remain deferred. The initial inventory and pending findings below are historical.
 
 **Preparation PASS; training NOT RUN; overall PARTIAL.** The owner requested
 training for DJ performance, music creation, improvisation and music theory.

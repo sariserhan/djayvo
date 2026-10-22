@@ -1,0 +1,12 @@
+{
+  "ai_improvisational_musician_master_spec_v1.md": "389964c26456e8622e3525a7798fcfb81d7e55928fe5cba716bab23396143ff2",
+  "jamloom_improvisation_learning_addendum_v1.md": "5bfe33e037f4d0aff6910ba3dbc55ce090e96b0ee772fdc834d94a12aa29941d",
+  "renders/fixtures/synthetic-speech.wav": "c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e",
+  "renders/r1-final-demonstration/examples.jsonl": "45cc945cc1799f2f84571042fa692a023159b763dc45b805591089bd1f68de72",
+  "/Users/serhansari/Downloads/f.mp3": "dcc26654d96138cd7aafecfc1298ea159884cdcd54a221422e35c77ace7a45f6",
+  "/Users/serhansari/Downloads/down.mp3": "f10a3fa3cf773a85b04458747d7a46de7d7f621bf7ab732785ad3038212a2d12",
+  "/Users/serhansari/Downloads/question.mp3": "e830e315e59e111ef09f6436483f094c9b2e6ed8c86273ebc13021fdea98b9e8",
+  "/Users/serhansari/Downloads/pipe.mp3": "e57756d665c676e876bc7b25abf6d97bd88d137c889eebd633ade0d353919bc8",
+  "renders/blood-training-20261019/results/adapter/checkpoints/epoch_10_loss_1.0058/adapter_model.safetensors": "51c6ccde5205751fdcb63051468601ad8e496379ef54ec64ed56bf3b5d94c5ea",
+  "renders/blood-training-20261019/results/adapter/checkpoints/epoch_5_loss_1.2063/adapter_model.safetensors": "4aa53903d275bfbdbf3217d2afc14d612fe2eb8ee943491d26df73e9fe667de4"
+}

@@ -2,19 +2,18 @@
 
 ## Musician training data — 2026-10-21
 
-**Training permission received:** `f.mp3`, `down.mp3`, `question.mp3` and `pipe.mp3`.
-**[OWNER ACTION REQUIRED] Bounded GPU trial, high priority for execution:**
-Approve or decline the [concrete proposal](musician-training-preparation.md):
-one temporary GPU, maximum $10/two hours, upload only thirteen prepared excerpts,
-content screening before fitting, no replacement rental, verified retrieval and
-cleanup. No credentials are needed in chat; the existing provider setup is reused.
-The recordings do not supply a reviewed general-musician action corpus.
-The [48-exercise curriculum](musician-training-curriculum.md) describes what to
-capture using the existing private studio recordings, stems and action traces.
-The agent will inspect provenance, supported actions, hashes and session splits
-before admitting examples. Listening stays deferred; no request to resume it is
-implied. The proposed run includes provisional content screening and stops before
-fitting if too few candidates qualify. No new configuration variable is needed.
+**Bounded GPU trial completed:** You approved the $10/two-hour trial for the
+thirteen excerpts from `f.mp3`, `down.mp3`, `question.mp3` and `pipe.mp3`.
+Six provisionally screened clips trained two experimental ACE-Step adapters
+(60 optimizer steps). Results are local, and the rental and temporary keys are
+deleted. Observed charge: $0.0945214, subject to provider billing settlement.
+[Run report and private review location](musician-training-run.md).
+
+No further approval or setup is needed to complete this trial. Listening and
+physical checks remain deferred; production promotion has not occurred. The
+recordings do not supply a reviewed general-musician action corpus. The
+[48-exercise curriculum](musician-training-curriculum.md) describes the remaining
+expert demonstrations and independent-session evaluation needed for that goal.
 
 2026-10-20 · Local implementation checkpoint. **Paid release is closed.**
 Never paste credentials into chat. Store secrets in ignored local env files and

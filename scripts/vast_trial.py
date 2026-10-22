@@ -189,6 +189,7 @@ def main():
     profile.add_argument("--training", action="store_true", help="Approved separate two-hour style-adapter trial")
     profile.add_argument("--training-retry", action="store_true", help="Approved single replacement, sharing the original budget")
     profile.add_argument("--blood-training", action="store_true", help="Approved one-instance Blood Club trial")
+    profile.add_argument("--musician-training", action="store_true", help="Approved one-instance musician reference trial")
     args = parser.parse_args()
     if args.training or args.training_retry:
         WORK = ROOT / ("build-style-training-retry" if args.training_retry else "build-style-training")
@@ -196,10 +197,10 @@ def main():
         LABEL = "djayvo-style-training-20261018" + ("-retry" if args.training_retry else "")
         LEASE_SECONDS = 7200
         HOURLY_CEILING = 0.50
-    if args.blood_training:
-        WORK = ROOT / "build-blood-training-20261019"
+    if args.blood_training or args.musician_training:
+        WORK = ROOT / ("build-musician-training-20261021" if args.musician_training else "build-blood-training-20261019")
         STATE = WORK / "trial-state.json"
-        LABEL = "djayvo-blood-training-20261019"
+        LABEL = "jamloom-musician-training-20261021" if args.musician_training else "djayvo-blood-training-20261019"
         LEASE_SECONDS = 7200
         HOURLY_CEILING = 0.50
     WORK.mkdir(exist_ok=True)
@@ -232,7 +233,7 @@ def main():
             # Excluding the entire previous location also excludes its physical host.
             available = [o for o in available if o["geolocation"] != previous["offer"]["geolocation"]]
         offer = next((o for o in available if o["id"] == args.offer), None)
-        if (args.training or args.training_retry or args.blood_training) and args.offer is None:
+        if (args.training or args.training_retry or args.blood_training or args.musician_training) and args.offer is None:
             offer = next((o for o in available if o["gpu_name"] == "RTX 3090" and
                           o["geolocation"].endswith(", US")), None)
         if offer is None:
@@ -244,12 +245,12 @@ def main():
         write_state(state)  # Prevent duplicate rental if the create response is lost.
         with (WORK / "watchdog.log").open("a") as log:
             subprocess.Popen(["caffeinate", "-i", sys.executable, str(Path(__file__).resolve()), "watch"] +
-                             (["--blood-training"] if args.blood_training else ["--training-retry"] if args.training_retry else ["--training"] if args.training else []),
+                             (["--musician-training"] if args.musician_training else ["--blood-training"] if args.blood_training else ["--training-retry"] if args.training_retry else ["--training"] if args.training else []),
                              stdout=log, stderr=log, stdin=subprocess.DEVNULL, start_new_session=True)
         # The watchdog also reconciles by unique label if this response is lost.
         result = api("v0/asks/" + str(offer["id"]), "PUT", {
             "image": "pytorch/pytorch@sha256:b85566342b86d13a67712e9315d40cdc2dad7f8d86df1aff3831f80835edbcca", "disk": DISK_GB,
-            "label": LABEL, "runtype": "ssh_direct" if args.training_retry or args.blood_training else "ssh", "target_state": "running", "cancel_unavail": True,
+            "label": LABEL, "runtype": "ssh_direct" if args.training_retry or args.blood_training or args.musician_training else "ssh", "target_state": "running", "cancel_unavail": True,
         })
         state["id"] = result["new_contract"]
         write_state(state)

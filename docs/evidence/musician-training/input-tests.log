@@ -1,0 +1,8 @@
+test_foreign_inputs_rejected (test_cloud_musician_trial.InputTests.test_foreign_inputs_rejected) ... ok
+test_manifest_and_audio_tampering_rejected (test_cloud_musician_trial.InputTests.test_manifest_and_audio_tampering_rejected) ... ok
+test_selection_requires_distinct_supported_sources_and_no_guessed_labels (test_cloud_musician_trial.InputTests.test_selection_requires_distinct_supported_sources_and_no_guessed_labels) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.012s
+
+OK

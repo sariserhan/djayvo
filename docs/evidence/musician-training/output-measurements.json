@@ -1,0 +1,197 @@
+{
+  "technical": "PASS",
+  "base_repeat": {
+    "maximum_pcm_difference": 0.0,
+    "rms_pcm_difference": 0.0,
+    "equal_sample_fraction": 1.0
+  },
+  "target_lufs": -22.1,
+  "original": {
+    "base-bass-a.wav": {
+      "lufs": -20.6,
+      "true_peak_dbfs": -0.5
+    },
+    "base-bass-b.wav": {
+      "lufs": -17.2,
+      "true_peak_dbfs": -1.0
+    },
+    "base-funk.wav": {
+      "lufs": -14.7,
+      "true_peak_dbfs": -1.0
+    },
+    "base-hiphop.wav": {
+      "lufs": -17.0,
+      "true_peak_dbfs": -0.9
+    },
+    "epoch5-bass-a.wav": {
+      "lufs": -20.4,
+      "true_peak_dbfs": -1.0
+    },
+    "epoch5-bass-b.wav": {
+      "lufs": -17.1,
+      "true_peak_dbfs": -1.0
+    },
+    "epoch5-funk.wav": {
+      "lufs": -14.4,
+      "true_peak_dbfs": -0.9
+    },
+    "epoch5-hiphop.wav": {
+      "lufs": -17.1,
+      "true_peak_dbfs": -1.0
+    },
+    "epoch10-bass-a.wav": {
+      "lufs": -20.8,
+      "true_peak_dbfs": -0.7
+    },
+    "epoch10-bass-b.wav": {
+      "lufs": -16.5,
+      "true_peak_dbfs": -1.0
+    },
+    "epoch10-funk.wav": {
+      "lufs": -14.6,
+      "true_peak_dbfs": -0.9
+    },
+    "epoch10-hiphop.wav": {
+      "lufs": -14.9,
+      "true_peak_dbfs": -0.8
+    }
+  },
+  "review": [
+    {
+      "file": "pair-1-A.wav",
+      "gain_db": -1.7000000000000028,
+      "lufs": -22.1,
+      "true_peak_dbfs": -2.7
+    },
+    {
+      "file": "pair-1-B.wav",
+      "gain_db": -1.5,
+      "lufs": -22.1,
+      "true_peak_dbfs": -2.0
+    },
+    {
+      "file": "pair-1-C.wav",
+      "gain_db": -1.3000000000000007,
+      "lufs": -22.1,
+      "true_peak_dbfs": -2.0
+    },
+    {
+      "file": "pair-2-A.wav",
+      "gain_db": -5.600000000000001,
+      "lufs": -22.1,
+      "true_peak_dbfs": -6.6
+    },
+    {
+      "file": "pair-2-B.wav",
+      "gain_db": -4.900000000000002,
+      "lufs": -22.1,
+      "true_peak_dbfs": -5.9
+    },
+    {
+      "file": "pair-2-C.wav",
+      "gain_db": -5.0,
+      "lufs": -22.1,
+      "true_peak_dbfs": -6.0
+    },
+    {
+      "file": "pair-3-A.wav",
+      "gain_db": -7.700000000000001,
+      "lufs": -22.1,
+      "true_peak_dbfs": -8.6
+    },
+    {
+      "file": "pair-3-B.wav",
+      "gain_db": -7.500000000000002,
+      "lufs": -22.1,
+      "true_peak_dbfs": -8.4
+    },
+    {
+      "file": "pair-3-C.wav",
+      "gain_db": -7.400000000000002,
+      "lufs": -22.1,
+      "true_peak_dbfs": -8.4
+    },
+    {
+      "file": "pair-4-A.wav",
+      "gain_db": -5.100000000000001,
+      "lufs": -22.1,
+      "true_peak_dbfs": -6.0
+    },
+    {
+      "file": "pair-4-B.wav",
+      "gain_db": -5.0,
+      "lufs": -22.1,
+      "true_peak_dbfs": -6.0
+    },
+    {
+      "file": "pair-4-C.wav",
+      "gain_db": -7.200000000000001,
+      "lufs": -22.1,
+      "true_peak_dbfs": -8.0
+    }
+  ],
+  "differences": {
+    "bass-a-epoch5": {
+      "maximum_pcm_difference": 0.705047607421875,
+      "rms_pcm_difference": 0.011102038766926855,
+      "equal_sample_fraction": 0.02239340277777778
+    },
+    "bass-a-epoch10": {
+      "maximum_pcm_difference": 0.6605224609375,
+      "rms_pcm_difference": 0.009152191336162671,
+      "equal_sample_fraction": 0.023905555555555555
+    },
+    "bass-a-epoch5-vs-epoch10": {
+      "maximum_pcm_difference": 0.564056396484375,
+      "rms_pcm_difference": 0.014135728507009232,
+      "equal_sample_fraction": 0.020028472222222222
+    },
+    "bass-b-epoch5": {
+      "maximum_pcm_difference": 0.619354248046875,
+      "rms_pcm_difference": 0.008037290747767137,
+      "equal_sample_fraction": 0.018475
+    },
+    "bass-b-epoch10": {
+      "maximum_pcm_difference": 0.69024658203125,
+      "rms_pcm_difference": 0.01955209472413382,
+      "equal_sample_fraction": 0.009693055555555555
+    },
+    "bass-b-epoch5-vs-epoch10": {
+      "maximum_pcm_difference": 0.673797607421875,
+      "rms_pcm_difference": 0.017366601734094936,
+      "equal_sample_fraction": 0.00979375
+    },
+    "funk-epoch5": {
+      "maximum_pcm_difference": 0.859161376953125,
+      "rms_pcm_difference": 0.020468915790616465,
+      "equal_sample_fraction": 0.010359027777777778
+    },
+    "funk-epoch10": {
+      "maximum_pcm_difference": 0.795806884765625,
+      "rms_pcm_difference": 0.024715446835400785,
+      "equal_sample_fraction": 0.010188194444444444
+    },
+    "funk-epoch5-vs-epoch10": {
+      "maximum_pcm_difference": 0.9053955078125,
+      "rms_pcm_difference": 0.016541205085673513,
+      "equal_sample_fraction": 0.010474305555555556
+    },
+    "hiphop-epoch5": {
+      "maximum_pcm_difference": 0.945831298828125,
+      "rms_pcm_difference": 0.07353467524079264,
+      "equal_sample_fraction": 0.018888541666666668
+    },
+    "hiphop-epoch10": {
+      "maximum_pcm_difference": 0.97967529296875,
+      "rms_pcm_difference": 0.05832248120769387,
+      "equal_sample_fraction": 0.006451736111111111
+    },
+    "hiphop-epoch5-vs-epoch10": {
+      "maximum_pcm_difference": 0.958587646484375,
+      "rms_pcm_difference": 0.07900827300855699,
+      "equal_sample_fraction": 0.005636458333333334
+    }
+  },
+  "human_listening": "NOT RUN",
+  "event_frame_agreement": "NOT RUN: audio model emits no engine event trace"
+}

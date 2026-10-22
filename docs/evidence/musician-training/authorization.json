@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-21",
+  "owner_statement_verbatim": "Approve the $10 GPU trial and temporary upload",
+  "question_verbatim": "The 13-clip package and run proposal are ready. May I rent one GPU for a research trial capped at $10 and two hours, upload only those excerpts temporarily, screen them, train if enough qualify, retrieve results and delete the rental? Listening and production promotion remain deferred. AGENTS.md requires separate approval for new paid compute.",
+  "run_plan_sha256": "ae32c94353e1b63e4ab4c9602b1a5fcd98430edc91355d4f60c88eca2a911a51",
+  "archive_sha256": "5e8f48a2491bc489e29a04ba881ac6ff9dc0e2db24d8798aa2c2a59c8801865c",
+  "instances_max": 1,
+  "replacements": 0,
+  "budget_usd": 10,
+  "max_elapsed_seconds": 7200,
+  "listening": "deferred",
+  "production_promotion": "not authorized"
+}

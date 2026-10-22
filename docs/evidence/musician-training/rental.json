@@ -1,0 +1,28 @@
+{
+  "label": "jamloom-musician-training-20261021",
+  "offer": {
+    "id": 56607987,
+    "machine_id": 52126,
+    "host_id": 24953,
+    "gpu_name": "RTX 3090",
+    "gpu_ram": 24576,
+    "num_gpus": 1,
+    "cpu_ram": 32195,
+    "geolocation": "Oregon, US",
+    "reliability": 0.9980308,
+    "dph_total": 0.28222222222222226,
+    "storage_cost": 0.19999999999999998,
+    "inet_down_cost": 0.0013020833333333333,
+    "inet_up_cost": 0.0013020833333333333,
+    "hourly_with_60gb_disk": 0.2988888888888889,
+    "reserved_lease_plus_transfer": 0.7540277777777779
+  },
+  "starting_credit": 9.5901424625,
+  "credit_before_this_attempt": 9.5901424625,
+  "started_at": 1792638454.552769,
+  "deadline": 1792645654.5527701,
+  "budget_usd": 10,
+  "disk_gb": 60,
+  "unavailable_ask": 52272587,
+  "id": 57149907
+}

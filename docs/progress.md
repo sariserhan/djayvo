@@ -1,4 +1,8 @@
-# Authorized reference preparation — 2026-10-21
+# Completed musician-reference training — 2026-10-21
+
+**Research execution PASS; musical acceptance PARTIAL.** Approved one-instance trial screened thirteen excerpts and trained on six provisional clips across all four authorized recordings: 60 optimizer steps, two verified ACE-Step LoRA checkpoints and thirteen comparison WAVs. All 48 artifact hashes matched; 19 regression tests and local waveform/loudness checks pass. Rental/temporary keys deleted; zero active instances and $0.0945214 observed debit, subject to billing settlement. Listening, independent generalization and production promotion NOT RUN. Product rule-based composer unchanged. [Run report](musician-training-run.md).
+
+# Earlier authorized reference preparation — 2026-10-21
 
 **Preparation PASS; new training NOT RUN.** Owner confirmed training permission for f/down/question/pipe. Prepared 13 candidates (390 seconds), pending review sheet and exact archive; four original hashes preserved. Fourteen tests, actual format/signal/archive checks and 62 cross-file waveform comparisons pass. Concrete one-instance/$10/two-hour screening/training proposal prepared; new spending/upload approval pending. No optimizer steps, uploads, paid compute, listening or production promotion. [Report](musician-training-preparation.md).
 

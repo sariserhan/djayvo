@@ -1,5 +1,9 @@
 # Authorized musician references — 2026-10-21
 
+**Subsequent execution:** The owner approved the bounded trial. Training, retrieval
+and rental/key cleanup are complete; see the [run report](musician-training-run.md).
+The preparation-time approval and execution statuses below are historical.
+
 **Local preparation PASS; content readiness PARTIAL; new training NOT RUN.**
 The owner confirmed: **“Yes, all four are authorized for training”**, answering
 the explicit question naming `f.mp3`, `down.mp3`, `question.mp3` and `pipe.mp3`.

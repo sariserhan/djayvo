@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "Authorized excerpts and research scripts only",
+  "sha256": {
+    "/workspace/musician-review-candidates.tar.gz": "5e8f48a2491bc489e29a04ba881ac6ff9dc0e2db24d8798aa2c2a59c8801865c",
+    "/workspace/cloud_musician_trial.py": "e5a46cc23c00c4a49a62e483192dadbf321a01cfc0d783862762dc6aa92685a8",
+    "/workspace/cloud_style_trial.py": "013d1c5bc7b9734714abe27e2cd25073dcb5dec9c83352c7f95a3c3f9437034e"
+  }
+}
