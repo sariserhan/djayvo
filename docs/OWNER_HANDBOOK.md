@@ -98,6 +98,16 @@ Keep test/live publishable keys alongside their matching secret keys in Vercel.
 Existing sales holds remain; no new owner credential action is pending for this
 integration. [Implementation, evidence and exact configuration names](inline-payments-aurowall.md).
 
+## Live DJ two-deck acceptance — 2026-10-22
+
+Current local build is 0.2.0 (2), protocol 2. The matching website is the local preview, not the older public deployment. In the companion use **Website pairing → Copy code and open local preview**; paste into `http://127.0.0.1:4234/live-dj`. [Completion audit and implementation gaps](live-dj-completion.md).
+
+**Physical checks remain deferred, not newly authorized by this checklist.** When resumed, select two permitted source apps and one stereo output, then verify each deck separately before combining them. Confirm A/B isolation, no doubled original sound, crossfader/channel/mute, reverse/loop/scratch/Return to live and accompaniment fit. Confirm Stop restores source audio, while Mute keeps the captured source silent. Capture neither personal calls nor unrelated microphone audio.
+
+Then measure loopback round-trip latency, run a full 60-minute two-source session, and test output unplug/rate changes, source exit, sleep/wake, website disconnect and denied/no-audio cases. Record setup, app versions, output device, sample rate, observations and failures; no audio upload is needed. The agent can collect technical counters and investigate failures when a setup is authorized. Passing unit tests or replaying an hour of PCM offline does not close physical session acceptance.
+
+**Launch remains last:** prepare and authorize the matching GitHub website delivery and Developer ID signed/notarized download; verify clean install, capture permissions and actual hosted pairing. No new credentials or paid services are required to review the local code. Never paste signing/private keys into chat.
+
 ## Live Source Mac companion — 2026-10-21
 
 Build and open the local owner preview with `./script/build_and_run.sh` from the

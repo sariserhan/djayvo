@@ -4,6 +4,10 @@
 
 - [x] **LIVE-DUAL-001 — PASS, local:** Two independent native sources and paired web decks, rotating/draggable platters, bounded reverse/scratch/loops, expanded FX, channel mute, master/crossfader and Return to live. C++/sanitizers, native model/protocol/HTTP, Chromium/WebKit gesture/control/responsive/axe, build/typecheck/audit and local app launch pass. [Report](docs/live-dual-decks.md).
 - [ ] **LIVE-DUAL-002 — PARTIAL:** Simultaneous real source capture, physical output, listening and long-session acceptance NOT RUN. App 0.2.0/protocol 2 requires the matching website; local preview ready, public update/distribution NOT RUN.
+- [ ] **LIVE-DUAL-003 — NOT RUN, implementation:** Add the Feature C microphone sampler inside Live DJ. The separate Voice studio recorder does not close this requirement. Acceptance: explicit mic consent, bounded local sample, preview/trigger/clear through the selected native output, no feedback monitoring or upload, and stop/revoke cleanup with tests.
+- [ ] **LIVE-DUAL-004 — PARTIAL, qualification:** Verify live groove/accompaniment (currently confidence-gated percussion), source/output synchronization, measured latency, 60-minute two-source run, denial/no-audio paths, source restoration, hot-plug and sleep/resume. Existing owner acceptance covers the previous controls only; physical checks remain deferred.
+- [ ] **LIVE-DUAL-005 — NOT RUN, release:** Update companion and website together, verify actual HTTPS pairing/browser compatibility, Developer ID signing/notarization, public download/install/update and GitHub-delivered publication. Launch remains last. [Completion audit](docs/live-dj-completion.md).
+
 
 ## Live DJ deck and control repair — 2026-10-22
 
