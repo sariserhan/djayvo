@@ -175,13 +175,20 @@ def source_conditioning(path):
     if Path(path).stat().st_size > 8192:
         raise ValueError('Conditioning exceeds size budget')
     c = json.loads(Path(path).read_text())
-    if not isinstance(c, dict) or set(c) != {'audio', 'sha256', 'bpm', 'strength', 'instrumental', 'direction'}:
+    fields = {'audio', 'sha256', 'bpm', 'strength', 'instrumental', 'direction'}
+    if not isinstance(c, dict) or set(c) not in (fields, fields | {'repaint'}):
         raise ValueError('Invalid source conditioning')
     if (type(c['bpm']) not in (int, float) or not 72 <= c['bpm'] <= 96
             or type(c['strength']) not in (int, float) or not .125 <= c['strength'] <= .8
             or type(c['instrumental']) is not bool):
         raise ValueError('Invalid source timing or strength')
     text_field(c['direction'], 2000, 'arrangement direction')
+    if 'repaint' in c:
+        region = c['repaint']
+        if (not c['instrumental'] or not isinstance(region, list) or len(region) != 2
+                or any(type(v) not in (int, float) for v in region)
+                or not 0 <= region[0] < region[1] <= 30 or not 3 <= region[1]-region[0] <= 6):
+            raise ValueError('Repaint requires a bounded 3–6 second instrumental passage')
     # At eight inference steps, less than 1/8 would use zero source-conditioned steps.
     if not isinstance(c['audio'], str):
         raise ValueError('Invalid source guide path')
@@ -230,6 +237,12 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
     instrumental = bool(conditioning and conditioning['instrumental'])
     source_params = ({'task_type': 'cover', 'src_audio': conditioning['audio'],
                       'audio_cover_strength': conditioning['strength']} if conditioning else {})
+    if conditioning and 'repaint' in conditioning:
+        source_params = {'task_type': 'repaint', 'src_audio': conditioning['audio'],
+                         'repainting_start': conditioning['repaint'][0],
+                         'repainting_end': conditioning['repaint'][1], 'chunk_mask_mode': 'explicit',
+                         'repaint_mode': 'balanced', 'repaint_strength': conditioning['strength'],
+                         'repaint_wav_crossfade_sec': .04}
     params = GenerationParams(caption=description, bpm=c['bpm'], duration=c['duration'], seed=c['seed'],
                               instrumental=instrumental, lyrics='[Instrumental]' if instrumental else c['lyrics'],
                               vocal_language='en', inference_steps=8, **source_params,
@@ -251,7 +264,7 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
               'device': str(dit.device), 'dtype': str(dit.dtype), 'torch': torch.__version__, 'mlx_vae': dit.use_mlx_vae,
               'voice_and_lyric_fidelity': 'NOT RUN: requires listening', 'naturalness': 'NOT RUN',
               'trained_adapter': False, 'source_audio_uploaded': False,
-              'source_conditioning': conditioning, 'task_type': 'cover' if conditioning else 'text2music'}
+              'source_conditioning': conditioning, 'task_type': source_params.get('task_type', 'text2music')}
     (output / 'complete.json').write_text(json.dumps(report, indent=2) + '\n')
     (output / '.partial').unlink()
     print('PASS: actual local singing-model output; naturalness and voice identity await listening', flush=True)

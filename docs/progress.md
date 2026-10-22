@@ -1,6 +1,8 @@
 # Local AI singer implementation — 2026-10-22
 
-**Owner listening — FAIL:** “this new way musical is bad.” The new source-led reggae experiment is rejected as a musical improvement. The earlier comparison page is restored at <http://127.0.0.1:4197/>. Trial audio and technical evidence are preserved; no studio-default promotion. The goal of incorporating the user recording remains open. [Exact feedback](evidence/source-led-response/owner-listening.json).
+**Same-song call edits — 2026-10-22:** Owner authorized a better approach after rejecting regenerated music. Two bounded edits of the earlier reggae song are ready: an intact short call in a gap, or replacement of only the opening sung question. Original singing stays in place; 28.04 / 27.6 seconds remain exact. Two local repaint trials failed the overlap gate and are excluded. New candidate musical acceptance NOT RUN; earlier rejection remains FAIL. [Listen and inspect evidence](local-call-edit.md).
+
+**Owner listening — FAIL:** “this new way musical is bad.” The new source-led reggae experiment is rejected as a musical improvement. Earlier comparisons were restored; they now remain linked from the new same-song comparison page. Trial audio and technical evidence are preserved; no studio-default promotion. The goal of incorporating the user recording remains open. [Exact feedback](evidence/source-led-response/owner-listening.json).
 
 **Source-led conversation study — 2026-10-22:** Owner reconsidered meaning-only songs and authorized one source-led test. Actual phrase audio conditions a new reggae backing and singer before assembly, with separate voice turns. The first singer pass was rejected for missing answers; the second produced a 30-second candidate. Original calls retain their source PCM and pitch, but the owner subsequently rejected its musical quality; full lyric delivery remains unverified. The ordinary studio is unchanged. [Study and listening page](source-led-response.md).
 

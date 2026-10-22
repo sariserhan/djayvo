@@ -1,5 +1,10 @@
 # Jamloom development tracker
 
+## Same-song call edits — 2026-10-22
+
+- [x] **CALL-001 — PASS, local implementation/evidence:** Two original-song candidates, intact short source crop, fixed singer timing, exact PCM outside 1.96 / 2.4-second changes, common-gain comparisons and passage-jump players. Nineteen scoped tests and Chromium/WebKit checks pass. Two regenerated repair trials failed the overlap check and are excluded. [Report](docs/local-call-edit.md).
+- [ ] **CALL-002 — PARTIAL:** New musical acceptance, local vocal-subtraction artifacts, intelligibility and broad automatic arrangement remain unverified. The rejected source-led approach remains FAIL; these edits are not promoted to the ordinary studio.
+
 ## Source-led conversation study — 2026-10-22
 
 - [x] **SOURCE-001 — PASS, local prototype:** One new reggae performance starts from an actual user-audio guide, generates backing and singer locally, and schedules separate original-voice calls and estimated complete singer replies. Source PCM and zero scheduled overlap checks pass. First missing-answer pass is retained as FAIL; the second candidate was subsequently rejected by the owner for poor musical quality. Earlier comparisons are restored on the private listening page. [Report and evidence](docs/source-led-response.md).

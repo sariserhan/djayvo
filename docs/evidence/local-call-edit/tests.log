@@ -1,0 +1,11 @@
+test_call_rejects_singing_and_bounds (test_local_call_edit.LocalCallEdit.test_call_rejects_singing_and_bounds) ... ok
+test_gap_edit_preserves_pcm_original_and_consent (test_local_call_edit.LocalCallEdit.test_gap_edit_preserves_pcm_original_and_consent) ... ok
+test_repaint_configuration_is_bounded_and_instrumental (test_local_call_edit.LocalCallEdit.test_repaint_configuration_is_bounded_and_instrumental) ... ok
+test_repair_cannot_touch_outside_the_window_or_create_edge_steps (test_local_call_edit.LocalCallEdit.test_repair_cannot_touch_outside_the_window_or_create_edge_steps) ... ok
+test_repaired_edit_binds_to_original_and_keeps_the_singer_in_place (test_local_call_edit.LocalCallEdit.test_repaired_edit_binds_to_original_and_keeps_the_singer_in_place) ... ok
+test_vocal_replacement_is_local_and_preserves_the_real_call (test_local_call_edit.LocalCallEdit.test_vocal_replacement_is_local_and_preserves_the_real_call) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.885s
+
+OK

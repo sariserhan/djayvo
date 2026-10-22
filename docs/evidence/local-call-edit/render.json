@@ -1,0 +1,130 @@
+{
+  "technical": "PASS",
+  "musical_acceptance": "NOT RUN",
+  "candidates": {
+    "gap": {
+      "technical": "PASS",
+      "mode": "existing-gap",
+      "song_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "source_sha256": "67255acd184e4c6c9b915f7bd21e4025cd5739c490397763b7b27f7bfdfb0b63",
+      "repair_sha256": null,
+      "region_frames": [
+        452434,
+        546514
+      ],
+      "unchanged_seconds": 28.04,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5235769414589928e-05,
+      "repair_gain": 1.0,
+      "event": {
+        "start_frame": 452434,
+        "end_frame": 546514,
+        "gain": 1.7897309886608412,
+        "estimated_vocal_max_rms": 0.0004511924344114959,
+        "vocal_threshold_rms": 0.006,
+        "band_rms": 0.10923294977168835,
+        "target_lead_rms": 0.1245151698589325,
+        "rate": 1.0,
+        "transpose_semitones": 0
+      },
+      "peak": 0.891265869140625,
+      "singer_moved": false,
+      "master_gain": 1.0,
+      "listening": "NOT RUN",
+      "vocal_subtraction": false,
+      "note": "Manually selected phrase and passage; estimated quiet or subtraction does not prove musical fit or absence of bleed.",
+      "artifacts": {
+        "performance": "0e93cdf097337b469600480805b6e84853aeb195e39f1b0afcf18c47437f2d55",
+        "original": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "music": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "user": "10077c41490705886de3e85cb7f616a24a861e8a374f071c0ad039cd0da27cef"
+      }
+    },
+    "replacement": {
+      "technical": "PASS",
+      "mode": "vocal-replacement",
+      "song_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "source_sha256": "67255acd184e4c6c9b915f7bd21e4025cd5739c490397763b7b27f7bfdfb0b63",
+      "repair_sha256": null,
+      "region_frames": [
+        52800,
+        168000
+      ],
+      "unchanged_seconds": 27.6,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5256984818388247e-05,
+      "repair_gain": 1.0,
+      "event": {
+        "start_frame": 62400,
+        "end_frame": 156480,
+        "gain": 1.6355313520933006,
+        "estimated_vocal_max_rms": 0.0,
+        "vocal_threshold_rms": 0.006,
+        "band_rms": 0.11328904806859602,
+        "target_lead_rms": 0.11378719226842353,
+        "rate": 1.0,
+        "transpose_semitones": 0
+      },
+      "peak": 0.891265869140625,
+      "singer_moved": false,
+      "master_gain": 1.0,
+      "listening": "NOT RUN",
+      "vocal_subtraction": true,
+      "note": "Manually selected phrase and passage; estimated quiet or subtraction does not prove musical fit or absence of bleed.",
+      "artifacts": {
+        "performance": "4f66e9c5e6826c4f507039524354f3f55b41f4c77a1ab351f55c0146e9092cc5",
+        "original": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "music": "8078a28ef844b775585206e8948a576a61a75f73be23b16c56f9af22b2dc1e08",
+        "user": "bde7b8e8d0b5a918e40f186fbddac1cafadf69b3190edd0a9c869ccfa25e88e9"
+      }
+    }
+  },
+  "review": {
+    "technical": "PASS",
+    "players": 3,
+    "common_gain_db": -4.800000000000001,
+    "tracks": {
+      "original": {
+        "lufs": -20.0,
+        "true_peak_dbfs": -5.7,
+        "sha256": "4be57b239db3e33e6d8f28410d8ac6fc7c31275ba161ea7ab29fdcb273cf8ead"
+      },
+      "gap": {
+        "lufs": -19.8,
+        "true_peak_dbfs": -5.7,
+        "sha256": "62c5336c815fdd8f7b32ad4964ede67e3217c24e5927707b284d45ef6175815c",
+        "unchanged_pcm_outside_edit": true
+      },
+      "replacement": {
+        "lufs": -20.1,
+        "true_peak_dbfs": -5.7,
+        "sha256": "6ad2670233c68c78c0a744bfcaa9703f86f58321f9f1eeedfc1154ad29b7f5cb",
+        "unchanged_pcm_outside_edit": true
+      }
+    },
+    "outside_edit_audition_pcm_identical": true,
+    "listening": "NOT RUN"
+  },
+  "repaint_trials": {
+    "repaint": {
+      "audio_sha256": "569ce72e548cc027a3902f1d1c2c0827e3e5287cb959caea39190043b8f065c2",
+      "seconds": 77.2877099160105,
+      "peak": 0.8912353515625,
+      "task_type": "repaint",
+      "source_audio_uploaded": false,
+      "status": "FAIL",
+      "reason": "Estimated vocal overlap at the call; no candidate published",
+      "strength": 0.5
+    },
+    "repaint-stronger": {
+      "audio_sha256": "d3748ff485e45e8723afc09be1ab8b4d39663354d3ffa5d43631b77555b0cea5",
+      "seconds": 78.6415723329992,
+      "peak": 0.8912353515625,
+      "task_type": "repaint",
+      "source_audio_uploaded": false,
+      "status": "FAIL",
+      "reason": "Estimated vocal overlap at the call; no candidate published",
+      "strength": 0.8
+    }
+  }
+}

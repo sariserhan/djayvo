@@ -1,5 +1,7 @@
 # Source-led musical conversation study — 2026-10-22
 
+**Follow-up:** The current listening page now serves [small edits of the earlier song](local-call-edit.md), with the older comparisons linked. The rejected source-led renders below remain preserved.
+
 **Owner listening — FAIL:** “this new way musical is bad.” The new source-led reggae experiment is rejected as a musical improvement. The earlier comparison page is restored at <http://127.0.0.1:4197/>. Trial audio and technical evidence are preserved; no studio-default promotion. The goal of incorporating the user recording remains open. [Exact feedback](evidence/source-led-response/owner-listening.json).
 
 The owner reconsidered meaning-only songs and authorized one short performance
