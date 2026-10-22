@@ -1,0 +1,13 @@
+test_consent_and_crop_provenance_fail_closed (test_voice_research.VoiceResearch.test_consent_and_crop_provenance_fail_closed) ... ok
+test_constant_offsets_rejected_per_channel_before_export (test_voice_research.VoiceResearch.test_constant_offsets_rejected_per_channel_before_export) ... ok
+test_content_changes_hook_placement_and_scenes_leave_space (test_voice_research.VoiceResearch.test_content_changes_hook_placement_and_scenes_leave_space) ... ok
+test_crop_overrun_and_missing_complete_hook_rejected (test_voice_research.VoiceResearch.test_crop_overrun_and_missing_complete_hook_rejected) ... ok
+test_failed_write_cannot_publish_a_complete_render (test_voice_research.VoiceResearch.test_failed_write_cannot_publish_a_complete_render) ... ok
+test_offset_signal_is_preserved_and_one_active_channel_is_enough (test_voice_research.VoiceResearch.test_offset_signal_is_preserved_and_one_active_channel_is_enough) ... ok
+test_preserves_hook_stems_timing_and_determinism (test_voice_research.VoiceResearch.test_preserves_hook_stems_timing_and_determinism) ... ok
+test_rejects_invalid_tempo_silence_and_quantization_wrap (test_voice_research.VoiceResearch.test_rejects_invalid_tempo_silence_and_quantization_wrap) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.727s
+
+OK

@@ -1,0 +1,54 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/jamloom/renders/voice-led-20261021/review/index.html",
+    "players": 6,
+    "durations_seconds": 30,
+    "play_seek_pause_exclusivity": "PASS",
+    "audio_download_links": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "docs/evidence/voice-led/chromium-desktop.png",
+      "docs/evidence/voice-led/chromium-mobile.png"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/jamloom/renders/voice-led-20261021/review/index.html",
+    "players": 6,
+    "durations_seconds": 30,
+    "play_seek_pause_exclusivity": "PASS",
+    "audio_download_links": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "docs/evidence/voice-led/webkit-desktop.png",
+      "docs/evidence/voice-led/webkit-mobile.png"
+    ]
+  }
+]

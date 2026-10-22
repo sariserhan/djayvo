@@ -1,0 +1,587 @@
+{
+  "technical": "PASS",
+  "processing": "local",
+  "backing": "epoch10, latest checkpoint; not a quality winner",
+  "protected_sha256": {
+    "renders/voice-20261017-221411/source-pcm.wav": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+    "renders/voice-club-v8/final/remix.club.score.json": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4",
+    "renders/musician-training-20261021/results/comparison.json": "1d67cadbcf95f30a1dcc80e92b0cf1213a937049e2fedb8d752c33b131e59601",
+    "renders/musician-training-20261021/results/epoch10-hiphop.wav": "a8be2ee14cbd5500b6bad925e1a212b6627e396fd63e2fc59c2818ede577c2ec",
+    "renders/musician-training-20261021/results/epoch10-funk.wav": "4c7e599cb78233c3578f2734e1ffdeb11a767e583e7719d107e1ce31965cab72",
+    "renders/musician-training-20261021/results/epoch10-bass-b.wav": "73fd2d66657a1884b7141975cfe371ed562eb2a4e972d3948fe4c93f5a5308f6"
+  },
+  "cases": [
+    {
+      "case": "hiphop",
+      "plan": {
+        "schema_version": 1,
+        "research_only": true,
+        "processing": "local",
+        "consent_confirmed": true,
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "bed_sha256": "a8be2ee14cbd5500b6bad925e1a212b6627e396fd63e2fc59c2818ede577c2ec",
+        "crop_metadata_sha256": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "bpm_requested": 92,
+        "beat_alignment_gate": "NOT RUN",
+        "seed": 9123,
+        "arrangement": "instrumental-first",
+        "source_gain": 1.8649787268312183,
+        "bed_gain": 0.5623596411580473,
+        "shared_master_gain": 1.0,
+        "voice_edge_fade_frames": 480,
+        "clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 46965,
+            "end_frame": 76594,
+            "confidence": 0.65
+          },
+          {
+            "id": 2,
+            "start_frame": 82077,
+            "end_frame": 113031,
+            "confidence": 0.65
+          },
+          {
+            "id": 3,
+            "start_frame": 118947,
+            "end_frame": 143717,
+            "confidence": 0.65
+          },
+          {
+            "id": 4,
+            "start_frame": 136767,
+            "end_frame": 163929,
+            "confidence": 0.65
+          }
+        ],
+        "events": [
+          {
+            "start_frame": 187826,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 483811,
+            "clip_id": 3,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 577724,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.8
+          },
+          {
+            "start_frame": 702941,
+            "clip_id": 3,
+            "clean": false,
+            "gain": 0.65
+          }
+        ],
+        "control_events": [
+          {
+            "start_frame": 0,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 500870,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 1001740,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          }
+        ],
+        "listening_gate": "NOT RUN",
+        "artifacts": {
+          "mix.wav": "45f34620c88dc45d1faa6c119dd632a86f9e984fc989ba5a82aacb4bcb70e1e1",
+          "backing.wav": "889b0293b65b7d2024cd10906b300f0da5d0811f21167141ff3ab4b98f935e8b",
+          "voice.wav": "a7b15447bfe035df1690bf8fd946a54eb91a5554cbe820b7e7cdf6bbee02b6b7",
+          "control.wav": "33e8ecc8fd34dfa67313fae35af9acf00d2ac6c14e0510d8f808fce097184f58"
+        }
+      },
+      "measurements": {
+        "mix": {
+          "file": "renders/voice-led-20261021/hiphop/mix.wav",
+          "sha256": "45f34620c88dc45d1faa6c119dd632a86f9e984fc989ba5a82aacb4bcb70e1e1",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.509063720703125,
+          "peak_dbfs": -5.8645570519801,
+          "rms_dbfs_left": -22.120173513587012,
+          "rms_dbfs_right": -22.23916907092571,
+          "dc_left": 0.0005271309110853407,
+          "dc_right": 0.0006937381744384765,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438705,
+          "max_adjacent_sample_step": 0.376129150390625,
+          "last_100ms_peak": 0.000152587890625,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "backing": {
+          "file": "renders/voice-led-20261021/hiphop/backing.wav",
+          "sha256": "889b0293b65b7d2024cd10906b300f0da5d0811f21167141ff3ab4b98f935e8b",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.485198974609375,
+          "peak_dbfs": -6.281602512331914,
+          "rms_dbfs_left": -22.85545688061216,
+          "rms_dbfs_right": -23.001303212501227,
+          "dc_left": 0.0005313275867038303,
+          "dc_right": 0.0006979386859469944,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438705,
+          "max_adjacent_sample_step": 0.353912353515625,
+          "last_100ms_peak": 0.000152587890625,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "voice": {
+          "file": "renders/voice-led-20261021/hiphop/voice.wav",
+          "sha256": "a7b15447bfe035df1690bf8fd946a54eb91a5554cbe820b7e7cdf6bbee02b6b7",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.492034912109375,
+          "peak_dbfs": -6.160081619509327,
+          "rms_dbfs_left": -30.1697278425466,
+          "rms_dbfs_right": -30.1697278425466,
+          "dc_left": -4.156578911675347e-06,
+          "dc_right": -4.156578911675347e-06,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 187851,
+          "last_nonzero_frame": 727699,
+          "max_adjacent_sample_step": 0.37518310546875,
+          "last_100ms_peak": 0.0,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        }
+      },
+      "matched": {
+        "voice": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -8.1,
+          "sha256": "283a1bd1a3d2f140c8ec8f3aea2af7f2955bcb00d015423578c5bfd9ef8c616a"
+        },
+        "music": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -7.9,
+          "sha256": "95a12619a067b397d8b3d1d96cc4bbe58eea8ed718b2ca954ad201f84e2d1dc4"
+        }
+      },
+      "clean_hook_maximum_pcm_error": 1.5224440525873906e-05,
+      "stem_reconstruction_maximum_pcm_error": 3.0517578125e-05
+    },
+    {
+      "case": "funk",
+      "plan": {
+        "schema_version": 1,
+        "research_only": true,
+        "processing": "local",
+        "consent_confirmed": true,
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "bed_sha256": "4c7e599cb78233c3578f2734e1ffdeb11a767e583e7719d107e1ce31965cab72",
+        "crop_metadata_sha256": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "bpm_requested": 112,
+        "beat_alignment_gate": "NOT RUN",
+        "seed": 8123,
+        "arrangement": "fragment-pickup",
+        "source_gain": 1.8649787268312183,
+        "bed_gain": 0.5224499972281234,
+        "shared_master_gain": 1.0,
+        "voice_edge_fade_frames": 480,
+        "clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 46965,
+            "end_frame": 76594,
+            "confidence": 0.65
+          },
+          {
+            "id": 2,
+            "start_frame": 82077,
+            "end_frame": 113031,
+            "confidence": 0.65
+          },
+          {
+            "id": 3,
+            "start_frame": 118947,
+            "end_frame": 143717,
+            "confidence": 0.65
+          },
+          {
+            "id": 4,
+            "start_frame": 136767,
+            "end_frame": 163929,
+            "confidence": 0.65
+          }
+        ],
+        "events": [
+          {
+            "start_frame": 12857,
+            "clip_id": 2,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 205714,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 490519,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.8
+          },
+          {
+            "start_frame": 567661,
+            "clip_id": 2,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 670519,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.8
+          }
+        ],
+        "control_events": [
+          {
+            "start_frame": 0,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 411429,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 822858,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          }
+        ],
+        "listening_gate": "NOT RUN",
+        "artifacts": {
+          "mix.wav": "8072d0a2b8d257211dc806180e8275e4f2765ff3e1cebedd27ecd13d74d8aaaa",
+          "backing.wav": "7a88fac2d7c4c94b9cfa2c4933e5c24d986fd019012a0bb34b6e3721b972cd33",
+          "voice.wav": "fdd63f1e3d80cf300305baeba9de33be4227296ee7f4668cb50d526b45c41218",
+          "control.wav": "fd627092d9258131996fe0f952d38e7726be6c57d070bf1fd9e114a0c6fe45b5"
+        }
+      },
+      "measurements": {
+        "mix": {
+          "file": "renders/voice-led-20261021/funk/mix.wav",
+          "sha256": "8072d0a2b8d257211dc806180e8275e4f2765ff3e1cebedd27ecd13d74d8aaaa",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.50689697265625,
+          "peak_dbfs": -5.901606050166469,
+          "rms_dbfs_left": -22.224945585545836,
+          "rms_dbfs_right": -22.323711762908832,
+          "dc_left": 0.00038374678293863934,
+          "dc_right": 0.0006159483379787869,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438763,
+          "max_adjacent_sample_step": 0.37567138671875,
+          "last_100ms_peak": 0.00018310546875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "backing": {
+          "file": "renders/voice-led-20261021/funk/backing.wav",
+          "sha256": "7a88fac2d7c4c94b9cfa2c4933e5c24d986fd019012a0bb34b6e3721b972cd33",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.44158935546875,
+          "peak_dbfs": -7.099628076813609,
+          "rms_dbfs_left": -23.02859536906725,
+          "rms_dbfs_right": -23.147083434600077,
+          "dc_left": 0.0003883565902709961,
+          "dc_right": 0.0006205530590481229,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438763,
+          "max_adjacent_sample_step": 0.313201904296875,
+          "last_100ms_peak": 0.00018310546875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "voice": {
+          "file": "renders/voice-led-20261021/funk/voice.wav",
+          "sha256": "fdd63f1e3d80cf300305baeba9de33be4227296ee7f4668cb50d526b45c41218",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.492034912109375,
+          "peak_dbfs": -6.160081619509327,
+          "rms_dbfs_left": -29.905885315215563,
+          "rms_dbfs_right": -29.905885315215563,
+          "dc_left": -4.565175374348959e-06,
+          "dc_right": -4.565175374348959e-06,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 12872,
+          "last_nonzero_frame": 700130,
+          "max_adjacent_sample_step": 0.37518310546875,
+          "last_100ms_peak": 0.0,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        }
+      },
+      "matched": {
+        "voice": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -7.8,
+          "sha256": "45f390eba85a85cf5b16bd6fea1d1f7cc901ce0bcdac707e25c9be5b52aebb3f"
+        },
+        "music": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -8.3,
+          "sha256": "41627fdeb2c83087d926b61bd0536a2ed0ee79094cbc1e67eb5af8f9d6188c88"
+        }
+      },
+      "clean_hook_maximum_pcm_error": 1.5224440525873906e-05,
+      "stem_reconstruction_maximum_pcm_error": 3.0517578125e-05
+    },
+    {
+      "case": "bass-b",
+      "plan": {
+        "schema_version": 1,
+        "research_only": true,
+        "processing": "local",
+        "consent_confirmed": true,
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "bed_sha256": "73fd2d66657a1884b7141975cfe371ed562eb2a4e972d3948fe4c93f5a5308f6",
+        "crop_metadata_sha256": "42df1116a8a34dc723a24438d8536bc129938d50e0f9563e3f89d2496d955ea4",
+        "sample_rate": 48000,
+        "frames": 1440000,
+        "bpm_requested": 140,
+        "beat_alignment_gate": "NOT RUN",
+        "seed": 7442,
+        "arrangement": "late-hook",
+        "source_gain": 1.8649787268312183,
+        "bed_gain": 0.6309284796266599,
+        "shared_master_gain": 1.0,
+        "voice_edge_fade_frames": 480,
+        "clips": [
+          {
+            "id": 0,
+            "start_frame": 0,
+            "end_frame": 233376,
+            "confidence": 1
+          },
+          {
+            "id": 1,
+            "start_frame": 46965,
+            "end_frame": 76594,
+            "confidence": 0.65
+          },
+          {
+            "id": 2,
+            "start_frame": 82077,
+            "end_frame": 113031,
+            "confidence": 0.65
+          },
+          {
+            "id": 3,
+            "start_frame": 118947,
+            "end_frame": 143717,
+            "confidence": 0.65
+          },
+          {
+            "id": 4,
+            "start_frame": 136767,
+            "end_frame": 163929,
+            "confidence": 0.65
+          }
+        ],
+        "events": [
+          {
+            "start_frame": 246857,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 521376,
+            "clip_id": 3,
+            "clean": false,
+            "gain": 0.65
+          },
+          {
+            "start_frame": 583090,
+            "clip_id": 1,
+            "clean": false,
+            "gain": 0.8
+          },
+          {
+            "start_frame": 665376,
+            "clip_id": 3,
+            "clean": false,
+            "gain": 0.65
+          }
+        ],
+        "control_events": [
+          {
+            "start_frame": 0,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 329143,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 658286,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          },
+          {
+            "start_frame": 987429,
+            "clip_id": 0,
+            "clean": true,
+            "gain": 1.0
+          }
+        ],
+        "listening_gate": "NOT RUN",
+        "artifacts": {
+          "mix.wav": "eea4c2a538dc7a761991d007a75545abe434b8b8c876e3e6c9fa999f399afc84",
+          "backing.wav": "555e3bb8d6f893fa5874535c18a257446de08325d0a6c388b9979f60d6f171fc",
+          "voice.wav": "44d2f69908d860a62b9e11d714e8eaf68b39ad0520f55b0a09d0b8a278f53bec",
+          "control.wav": "016ca3d35e3a675ab4d50f8ab68f1829581eccebd17c131baa941ccac1036c0f"
+        }
+      },
+      "measurements": {
+        "mix": {
+          "file": "renders/voice-led-20261021/bass-b/mix.wav",
+          "sha256": "eea4c2a538dc7a761991d007a75545abe434b8b8c876e3e6c9fa999f399afc84",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.547332763671875,
+          "peak_dbfs": -5.234971078954651,
+          "rms_dbfs_left": -21.972884913479565,
+          "rms_dbfs_right": -22.311540362983543,
+          "dc_left": 0.0007849998897976345,
+          "dc_right": 0.001046503660413954,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438878,
+          "max_adjacent_sample_step": 0.4151611328125,
+          "last_100ms_peak": 0.000213623046875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "backing": {
+          "file": "renders/voice-led-20261021/bass-b/backing.wav",
+          "sha256": "555e3bb8d6f893fa5874535c18a257446de08325d0a6c388b9979f60d6f171fc",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.547332763671875,
+          "peak_dbfs": -5.234971078954651,
+          "rms_dbfs_left": -22.6972650627256,
+          "rms_dbfs_right": -23.102210567063977,
+          "dc_left": 0.0007891991297403971,
+          "dc_right": 0.0010506925794813368,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 0,
+          "last_nonzero_frame": 1438878,
+          "max_adjacent_sample_step": 0.4151611328125,
+          "last_100ms_peak": 0.000213623046875,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        },
+        "voice": {
+          "file": "renders/voice-led-20261021/bass-b/voice.wav",
+          "sha256": "44d2f69908d860a62b9e11d714e8eaf68b39ad0520f55b0a09d0b8a278f53bec",
+          "format": "PCM16 stereo little-endian",
+          "sample_rate": 48000,
+          "frames": 1440000,
+          "duration_seconds": 30.0,
+          "peak_linear": 0.492034912109375,
+          "peak_dbfs": -6.160081619509327,
+          "rms_dbfs_left": -30.1697278425466,
+          "rms_dbfs_right": -30.1697278425466,
+          "dc_left": -4.156578911675347e-06,
+          "dc_right": -4.156578911675347e-06,
+          "full_scale_samples": 0,
+          "first_nonzero_frame": 246882,
+          "last_nonzero_frame": 690134,
+          "max_adjacent_sample_step": 0.37518310546875,
+          "last_100ms_peak": 0.0,
+          "loudness_method": "unweighted RMS; not integrated LUFS"
+        }
+      },
+      "matched": {
+        "voice": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -7.0,
+          "sha256": "bf09ce27ed2cbe291cc556cd8ad3695b7d8c68a1740a8f13e201a91d68da6dac"
+        },
+        "music": {
+          "lufs": -22.0,
+          "true_peak_dbfs": -6.5,
+          "sha256": "e1c660a1c97b428b66cae945ba213f6848df81f236e74263088fa1273ee0eda3"
+        }
+      },
+      "clean_hook_maximum_pcm_error": 1.5224440525873906e-05,
+      "stem_reconstruction_maximum_pcm_error": 3.0517578125e-05
+    }
+  ],
+  "deterministic_rerender": "PASS",
+  "human_listening": "NOT RUN",
+  "beat_and_word_alignment": "NOT RUN",
+  "limitations": "Existing heuristic source crops and requested tempo; no verified words, beats, new singing or learned call-and-response.",
+  "wrapper_failure_checks": {
+    "missing_consent": "PASS",
+    "corrupt_backing": "PASS",
+    "overwrite_refusal": "PASS"
+  },
+  "immutable_specs_fixture_recordings_earlier_adapters": "PASS",
+  "script_sha256": "8c018d3e13b665d1615d079198e9cb47777aaa866187ca52567c10fa9ee5cde4"
+}

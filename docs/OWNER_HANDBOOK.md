@@ -1,5 +1,7 @@
 # Jamloom owner handbook
 
+**Voice-led audition ready:** Three private 30-second mixes now combine the authorized owner recording with the latest hip-hop, funk and Group 2 bass backings. Full phrases, spaced chops and ducking reuse the local arranger; six clearly labeled voice/music comparisons are matched to −22 LUFS. Actual render checks, eight regression tests and Chromium/WebKit playback/seek checks PASS. New-mix listening NOT RUN; no training, rental, upload or product promotion. [Player location and evidence](voice-led-review.md).
+
 **Owner listening update:** Group 1: all versions sound weird. Groups 2–4: fine, but the owner hears no clear difference between versions. Informal listening is now PARTIAL; audible adapter improvement is NOT DEMONSTRATED and no checkpoint is selected. Human voice is requested; this comparison explicitly used instrumental mode and “No vocals” prompts. [Exact feedback](evidence/musician-training/owner-listening.json). Formal quality, physical checks and production promotion remain open.
 
 ## Musician training data — 2026-10-21

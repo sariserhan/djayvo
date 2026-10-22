@@ -2,6 +2,8 @@
 
 ## Musician training request — 2026-10-21
 
+- [x] **TRAIN-006 — PASS, local voice audition:** Three new mixes using the authorized owner voice and existing epoch-10 hip-hop/funk/bass-b audio; Group 1 excluded. Six voice/music comparisons at −22 LUFS, clean-source/stem checks, deterministic rerender, eight regression tests and both-browser playback/seek PASS. Musical acceptance remains open. [Report](docs/voice-led-review.md).
+
 - [ ] **TRAIN-005 — PARTIAL, owner listening:** Group 1 rejected as weird; groups 2–4 fine, but no clear difference between versions. Audible training benefit NOT DEMONSTRATED; no winner selected. Owner requests human voice in musical performances; current benchmark forced instrumentals. [Feedback](docs/evidence/musician-training/owner-listening.json). Formal quality and production promotion remain open.
 
 - [x] **TRAIN-001 — PASS, preparation:** Audit actual model/data paths; prepare 48 contextual exercises for rhythm, harmony, composition, improvisation, DJ transitions, deck performance, expression and evaluation. Rehash the 16 retained Blood Club clips and both adapters. [Curriculum and evidence](docs/musician-training-curriculum.md).
