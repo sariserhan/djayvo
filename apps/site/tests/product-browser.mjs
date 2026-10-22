@@ -11,6 +11,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
  const browser=await engine.launch(name==='chromium'?{args:['--mute-audio']}:{});
  try{
   const context=await browser.newContext();await context.addInitScript(silenceSpeakers);await context.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
+  await context.route('**/api/music-search',route=>route.fulfill({json:{suggestions:[]}}));
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   for(const path of routes){
    console.log(name,path);

@@ -48,3 +48,29 @@ Replaced the multiline textarea with an accessible autocomplete dropdown. Matche
 Coverage is explicitly the existing ten-track practice catalogue plus saved favorites. This is not a global Spotify/YouTube catalogue search. No query leaves the device, no provider API is added, and no new payment/configuration is needed. MusicBrainz was considered but not integrated: its [official API FAQ](https://musicbrainz.org/doc/MusicBrainz_API/FAQ) directs commercial users to a commercial plan/contact. That service is not assumed authorized for this product.
 
 Six focused tests, typecheck and production build pass. Chromium and WebKit pass at 1280, 390 and 320 pixels, with zero accessibility violations and no unexpected console errors. An initial Remove button label mismatch was corrected before the passing rerun. [Browser evidence](evidence/music-dna-search/browser.json) covers autocomplete, duplicate prevention, custom-name fallback, storage and unchanged composition flow; [artifact hashes](evidence/music-dna-search/artifacts.json) identify the raw screenshots/audio and logs under `renders/music-dna-search-20261022/`. The picker uses the [WAI-ARIA combobox interaction pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/). No deployment or new musical listening acceptance.
+
+
+## Live artist and song search — 2026-10-22
+
+**PASS — local implementation, live-provider and browser verification.** Supersedes the local-only search limitation above. The owner requested live name lookup after `bey` could not find Beyoncé. The dropdown now queries Apple's public iTunes catalogue through `POST /api/music-search` after two characters and a 400 ms typing pause. Artist and song rows include provider/album labels; selections use the existing favorite storage and annotations. Local suggestions and Add by name remain available. Search does not connect Spotify/YouTube accounts, import playlists, download music/artwork, or send reference audio to an AI model. No song's audio attributes are inferred from its name.
+
+The endpoint uses one combined artist/song request, validates query and response fields, limits result/name lengths, rejects cross-site browser requests, times out after five seconds and does not retry automatically. It forwards only the search term and fixed catalogue parameters, not cookies, account identifiers or recordings. POST keeps search terms out of our request URLs; responses are private/no-store. Names are cached without user identity for one hour, bounded to 200 entries; simultaneous identical lookups share a request. Each browser caches up to 100 result sets for five minutes, cancels superseded requests and discards stale responses. Privacy/help copy discloses this new data flow.
+
+Apple documents approximately 20 requests per minute and recommends caching. The server enforces 20 uncached requests per rolling minute **per process**, with a friendly busy fallback. This is a local/small-deployment implementation; before multiple-instance or high-traffic launch, use a shared provider budget/cache or obtain higher-capacity catalogue access. The US storefront is used; this is a broad catalogue, not a promise of every song worldwide. No key, new dependency, paid service or deployment was added.
+
+Sources checked: [Apple iTunes Search API](https://performance-partners.apple.com/search-api), [Next.js route handlers](https://nextjs.org/docs/app/getting-started/route-handlers), [React effect cleanup](https://react.dev/reference/react/useEffect). Context7 was unavailable; official documentation was used. Apple's promotional audio/artwork is not included. MusicBrainz remains unused.
+
+Validation commands (Node 22, from `apps/site`):
+
+```sh
+node --import tsx --test tests/taste.test.ts tests/music-search.test.ts
+node node_modules/typescript/bin/tsc --noEmit
+node node_modules/next/dist/bin/next build
+node tests/music-search-browser.mjs
+```
+
+Browser flow: Music DNA -> type `bey` -> live Beyoncé and track results -> select artist and Halo -> save/reload; then offline, rate-limit, empty-result, stale-response and local fallback checks. Browser plugin runtime could not be discovered; the existing project Playwright workflow is used for Chromium/WebKit. No audio is played, no simulator is opened, and no production data is changed. The existing composition, product and spec browser tests stub this new endpoint so their local checks cannot consume provider quota.
+
+**PASS:** Eleven focused unit/contract tests, TypeScript, production build; Chromium and WebKit at 1280/390/320 px with live `bey` artist/track results and `halo beyonce` selection, keyboard/pointer selection, duplicate prevention, save/reload, single-character suppression, debounce/cache reuse, stale-response rejection, mocked 503/429 and empty results, local/custom fallback. Zero scoped axe violations and unexpected console errors. Initial same-origin rejection caused by Next's internal hostname was fixed with browser-facing Host validation and a regression test; the first follow-up browser test needed to recognize the intentionally deduplicated saved-favorite row. Final rerun passes. [Browser receipt](evidence/music-dna-online/browser.json), [artifact hashes](evidence/music-dna-online/artifacts.json); raw six screenshots and logs: `renders/music-dna-online-20261022/`.
+
+**NOT RUN:** Public deployment, multiple-instance/high-volume capacity, iOS, new listening evaluation. No audio engine changes. The original broader product/spec/composition browser suites were not rerun; their new endpoint stubs were syntax-checked. Local preview: <http://127.0.0.1:4247/music-dna>.

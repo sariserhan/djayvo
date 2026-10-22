@@ -1,3 +1,7 @@
+## Music DNA online catalogue search — 2026-10-22
+
+**PASS, local:** Live iTunes artist/song names, debounce, bounded caching, stale-response protection and unavailable/busy fallback. Verified Beyoncé/Halo lookup and save/reload in Chromium/WebKit at desktop/mobile sizes; 11 focused tests, typecheck/build and scoped accessibility checks pass. Names only; existing favorite storage/composition unchanged. [Report and provider limits](music-dna-favorites.md#live-artist-and-song-search--2026-10-22). Local only; publication and multiple-instance capacity are not verified.
+
 ## Music DNA search dropdown — 2026-10-22
 
 **PASS, local:** Favorite entry now uses immediate ranked track/artist suggestions, with keyboard/pointer selection, typo/accent matching, custom-name fallback and removal. Searches the existing practice catalogue and saved favorites entirely on-device. Existing preferences and composer remain intact. [Report](music-dna-favorites.md#searchable-favorite-picker--2026-10-22). Global streaming-catalogue search and deployment are not included.

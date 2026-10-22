@@ -1,0 +1,69 @@
+{
+  "artifacts": [
+    {
+      "path": "renders/music-dna-online-20261022/browser/chromium-bey-1280.png",
+      "bytes": 81761,
+      "sha256": "de50713cbb1676257c77800ffb19fc954e4180866c71a284fb95184efbca7292"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/browser/chromium-bey-320.png",
+      "bytes": 55635,
+      "sha256": "adc7df8140b50c49381be88470b3736417960bcb5cd063d0189c7e3538e4976d"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/browser/chromium-bey-390.png",
+      "bytes": 62497,
+      "sha256": "0777d908aae12d306db39619db2e26ef217848e98a21df4d4687126257534969"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/browser/report.json",
+      "bytes": 5483,
+      "sha256": "50d09dffa0f166694d8a0f4bb591d1faf9a0df3d38d413aa6f86debfa9c0742e"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/browser/webkit-bey-1280.png",
+      "bytes": 104816,
+      "sha256": "8a8cf4b9a56a1e0f7e34a3e6bbac535981350d8a79ae8851571deae5c19b6935"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/browser/webkit-bey-320.png",
+      "bytes": 66105,
+      "sha256": "a8d1d76096c59060e9cf86876b2e873b5b5fe5b040bccd681ec80c63c42bc9e7"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/browser/webkit-bey-390.png",
+      "bytes": 79683,
+      "sha256": "87cac9278657f6ecd421b09641a0d2828d2a3b60564b56a1776cd4cd1b1ad47e"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/browser-initial.log",
+      "bytes": 477,
+      "sha256": "0c6301e7196c7eaf3b9bba297ca2e0284a96391ea83f6279b34bfdc241288b41"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/browser-selector.log",
+      "bytes": 477,
+      "sha256": "8ea12dd32269676bdec7637530f551abe3f7f42929000d10b455d84a55c20b5e"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/browser.log",
+      "bytes": 4142,
+      "sha256": "f40431ca03d28ad30724848b496f433531f238c191e8be3a1bf9f2092fd89f6f"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/build.log",
+      "bytes": 2693,
+      "sha256": "3c0a805671ba21c6da4c520d1ef04aa63f1dca1422cd0a39263750cbcc20b202"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/types.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "renders/music-dna-online-20261022/unit.log",
+      "bytes": 2737,
+      "sha256": "39d879e0c9bf09b24914f5313024e6b202c89b72bd84d6e037b7e5b2a7b9daa1"
+    }
+  ]
+}

@@ -16,6 +16,8 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   // The same seed isolates preference changes in the two UI-generated WAVs.
   await context.addInitScript(()=>Object.defineProperty(crypto,'getRandomValues',{value:a=>{a.fill(4123);return a;}}));
   await context.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort());
+  // Catalogue-network behavior has its own live and failure-state browser test.
+  await context.route('**/api/music-search',route=>route.fulfill({json:{suggestions:[]}}));
   const page=await context.newPage(),errors=[],expectedConsole=[];page.on('pageerror',e=>errors.push(e.message));
   page.on('console',m=>{
    if(!['warning','error'].includes(m.type()))return;

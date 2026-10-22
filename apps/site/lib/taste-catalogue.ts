@@ -31,7 +31,7 @@ function distance(a:string,b:string){
  }return row[b.length];
 }
 export function searchTasteReferences(query:string,saved:string[]=[]):TasteSuggestion[]{
- // shortcut: local catalogue and saved names only; expand when a global catalogue provider is configured.
+ // Local matches remain available when online catalogue search is unavailable.
  const q=normalize(query.slice(0,160));
  const candidates:TasteSuggestion[]=[
   ...tasteCatalogue.map(t=>({reference:`${t.title} — ${t.artist}`,kind:'Track' as const,detail:t.edition})),

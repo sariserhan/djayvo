@@ -13,6 +13,7 @@ try{
   try{
    const context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});await context.addInitScript(silenceSpeakers);
    await context.route('**/*',route=>(new URL(route.request().url()).origin===base||route.request().url().startsWith('blob:'))?route.continue():route.abort());
+   await context.route('**/api/music-search',route=>route.fulfill({json:{suggestions:[]}}));
    const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
    await page.goto(base+'/music-dna');await revealStudioTools(page);assert.match(await page.title(),/Music DNA/);
    await page.getByRole('combobox',{name:'Search artists or tracks'}).fill('Private reference — never uploaded');await page.getByRole('option',{name:/Add by name/}).click();
