@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-22T21:13:31.975Z",
+  "checks": [
+    {
+      "browser": "chromium",
+      "width": 1440,
+      "flow": "Production home → Pro → sign in",
+      "axe": 0
+    },
+    {
+      "browser": "chromium",
+      "width": 390,
+      "flow": "Production home → Pro → sign in",
+      "axe": 0
+    },
+    {
+      "browser": "webkit",
+      "width": 1440,
+      "flow": "Production home → Pro → sign in",
+      "axe": 0
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "flow": "Production home → Pro → sign in",
+      "axe": 0
+    }
+  ],
+  "scope": "Anonymous production purchase discovery only; no live payment"
+}

@@ -26,8 +26,8 @@
 | One-hour Pro runtime | FAIL, initial run stopped after 1842 seconds of passing samples. Cause unknown; diagnostic rerun in progress, no endurance pass claimed |
 | Public candidate installer/feed | PASS, published candidate, fresh public download, matching SHA-256, signature, staple and Gatekeeper |
 | Actual upgrade | PASS, 0.1.0 downloads the public signed 1.0.0 installer, installs and automatically relaunches; reopening the isolated profile retains activation, settings and a stopped sampler bank |
-| Hosted CI | PARTIAL: first run found missing test-output directory on clean Mac and a stale offline-cache fixture. Both fixed; current Mac/Academy pass. Latest website audit found its asset allowlist needed the intentional Pro offline link transformation; audit fixed and passes locally, rerun pending |
-| Production deployment/catalogue | NOT RUN |
+| Hosted CI | PASS, all eight jobs in run 39854460446, including Mac/Ubuntu sanitizer builds, desktop, Academy, website and comparison |
+| Production deployment/catalogue | PASS, GitHub main 6ac7ca0; public pages, unpaid denial, signed renewal, 72 authorized tracks and ranged audio; Chromium/WebKit desktop/mobile discovery with zero scoped axe violations. Sales remain disabled pending endurance |
 | Pro owner speaker listening | PASS, new signed-app two-track/crossfade check on LG Ultra HD; owner reports “Audible and clean” |
 | Actual MIDI / separate headphone output | NOT RUN; owner has neither device |
 | Physical cable unplug | NOT RUN, explicitly deferred |
@@ -52,3 +52,5 @@ The public candidate is at https://github.com/sariserhan/jamloom/releases/tag/pr
 Added the missing Pro account control for preparing/removing the web offline copy, reusing the bounded existing service worker. Actual sandbox provider/browser test repeats PASS through that visible control. The updater relaunch drops test-only CLI arguments; after observing the new process, the harness stops that process and explicitly reopens the same isolated profile for persistence assertions. It does not claim test-profile CLI arguments survive Squirrel relaunch.
 
 Native CoreMIDI virtual-source verification passes through the signed packaged app: real macOS MIDI input enumeration/permission, instrument PCM, CC learn/pickup/master changes and note-off. This is software-to-software native routing, not physical controller qualification.
+
+Signed Pro 1.0.0 is installed in `/Applications/Jamloom Pro.app`. The prior 0.1.0 app and owner profile were preserved in ignored `renders/pro-owner-install-backup-20261022`; activation is private. No owner recording or bank was removed. Production read-only verification is reproducible with `apps/site/tests/pro-hosted.mjs` and `JAMLOOM_PRO_LICENSE_FILE`; it makes no charge.
