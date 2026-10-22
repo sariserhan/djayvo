@@ -1,0 +1,125 @@
+{
+  "technical": "PASS",
+  "schema": "jamloom-source-led-study-1",
+  "source_sha256": "4302f16007c5905e3d6a6627bcbd776bf12fb230b610d4022c90233afe652d4f",
+  "hook_sha256": "67255acd184e4c6c9b915f7bd21e4025cd5739c490397763b7b27f7bfdfb0b63",
+  "requested_bpm": 91.83673469387756,
+  "grid": {
+    "bpm": 92.06632653061226,
+    "offset_frames": 9120,
+    "confidence": 0.92746448533546,
+    "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+  },
+  "calls_seconds": [
+    2.7968125,
+    13.224083333333333
+  ],
+  "answer_events": [
+    {
+      "source_frames": [
+        141120,
+        217440
+      ],
+      "start_frame": 259374,
+      "end_frame": 335694
+    },
+    {
+      "source_frames": [
+        647040,
+        724320
+      ],
+      "start_frame": 759883,
+      "end_frame": 837163
+    }
+  ],
+  "source_identity_max_pcm_error": 1.5256382945971758e-05,
+  "source_rate": 1.0,
+  "singer_gain": 1.0,
+  "master_gain": 1.0,
+  "peak": 0.7617351141936444,
+  "source_singer_scheduled_overlap_frames": 0,
+  "listening": "NOT RUN",
+  "limitations": "Estimated stem bleed and phrase boundaries; source conditioning does not prove musical responsiveness.",
+  "artifacts": {
+    "performance": "c2a49eddee3e2eeed5da6d12a24d6cba6d4424071e4151070817b3aafbc2f505",
+    "music": "26b779978e1ff6e0b60c955838ea4fe17af3a37983b3361ad439cf128a32c405",
+    "user": "dc7e678c3f21cca31d6e3827a360b759aa52e02e42897833704e9d25a5527aa7",
+    "reply": "33cbc08667d331cf04b996eaa88b8dd8e9141699fa857a059e0f9b924d8353cc",
+    "backing": "9d2622c8c6a5633903e137121f398f882f0f44255f03a5b0f2c9bc7fbae6e0ed"
+  },
+  "review": {
+    "technical": "PASS",
+    "matched_lufs": -20.0,
+    "tracks": {
+      "performance": {
+        "lufs": -20.0,
+        "true_peak_dbfs": -4.1
+      },
+      "music": {
+        "lufs": -20.0,
+        "true_peak_dbfs": -4.5
+      },
+      "hook": {
+        "lufs": -20.0,
+        "true_peak_dbfs": -7.5
+      }
+    },
+    "human_listening": "NOT RUN"
+  },
+  "renders": {
+    "band": {
+      "audio_sha256": "ce430034fd4d94969c90548caf0625615410645200af22b9200560f068f98fe0",
+      "seconds": 88.20357266697101,
+      "peak": 0.891265869140625,
+      "rms": 0.1150302141904831,
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "mlx_vae": true,
+      "task_type": "cover",
+      "source_audio_uploaded": false,
+      "guide_sha256": "e90bbdf2d610ce65a1785060f805b100d0a03b3805fc5922e47c6685e8c826b7",
+      "guide_strength": 0.35
+    },
+    "singer-no-reply": {
+      "audio_sha256": "0847f45efc9e90e0897f646edda97851113565c10670ddb980475e1b475a5981",
+      "seconds": 73.31146283302223,
+      "peak": 0.891265869140625,
+      "rms": 0.12631188333034515,
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "mlx_vae": true,
+      "task_type": "cover",
+      "source_audio_uploaded": false,
+      "guide_sha256": "4efa6bf7e4ce3d157999fc39c2ff66de959c612c6fc091ce2f92513392a8944c",
+      "guide_strength": 0.45
+    },
+    "singer": {
+      "audio_sha256": "acfec4dcef688b9478a2344adecac212f1219dfb0cb8f858ac7cb87e8fef91aa",
+      "seconds": 95.3524795419653,
+      "peak": 0.891265869140625,
+      "rms": 0.09790593385696411,
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "mlx_vae": true,
+      "task_type": "cover",
+      "source_audio_uploaded": false,
+      "guide_sha256": "4efa6bf7e4ce3d157999fc39c2ff66de959c612c6fc091ce2f92513392a8944c",
+      "guide_strength": 0.2
+    }
+  },
+  "rejected_first_singer": {
+    "status": "FAIL",
+    "reason": "Only one 1.61-second vocal-energy segment; no two complete replies fit. Tiny ASR found no words. No mix or audition was published.",
+    "singer_folder": "singer-no-reply",
+    "source_strength": 0.45
+  },
+  "hook_recognition": {
+    "status": "PASS, diagnostic execution only",
+    "recognized_phrase_matches_supplied_example": true
+  },
+  "singer_recognition": {
+    "status": "PARTIAL, diagnostic only",
+    "recognized_segments": 2,
+    "full_lyric_fidelity": "NOT DEMONSTRATED; sparse detected singing, not all four intended lines were recognized"
+  }
+}

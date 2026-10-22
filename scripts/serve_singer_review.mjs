@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 const require=createRequire(new URL('../apps/site/package.json',import.meta.url));
 const send=require('next/dist/compiled/send');
 const renders=await realpath(fileURLToPath(new URL('../renders/',import.meta.url)));
-const root=await realpath(process.argv[2]??`${renders}/meaning-singer-review-20261022/review`);
+const root=await realpath(process.argv[2]??`${renders}/source-led-response-20261022/review`);
 if(!root.startsWith(renders+'/'))throw new Error('Choose a private review directory inside renders');
 createServer((req,res)=>{
  let path;

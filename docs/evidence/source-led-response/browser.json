@@ -1,0 +1,40 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "durations_seconds": [
+      30,
+      30,
+      1.96
+    ],
+    "muted_play_seek_exclusivity": "PASS",
+    "downloads_range_206": "PASS",
+    "previous_players": 12,
+    "no_autoplay": "PASS",
+    "mobile_widths": [
+      375,
+      320
+    ],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "durations_seconds": [
+      30,
+      30,
+      1.96
+    ],
+    "muted_play_seek_exclusivity": "PASS",
+    "downloads_range_206": "PASS",
+    "previous_players": 12,
+    "no_autoplay": "PASS",
+    "mobile_widths": [
+      375,
+      320
+    ],
+    "errors": []
+  }
+]

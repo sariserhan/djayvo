@@ -1,5 +1,7 @@
 # Jamloom implementation checkpoint
 
+**Source-led conversation study — 2026-10-22:** Owner reconsidered meaning-only songs and authorized one source-led test. Actual phrase audio conditions a new reggae backing and singer before assembly, with separate voice turns. The first singer pass was rejected for missing answers; the second produced a 30-second candidate. Original calls retain their source PCM and pitch, but listening quality and full lyric delivery are not established. The ordinary studio is unchanged. [Study and listening page](source-led-response.md).
+
 **Meaning-first singer — 2026-10-22:** The owner makes audio reuse optional. The studio accepts short/long recordings, reads speech locally or uses a supplied idea, and may deliver the song without replaying the recording. Acoustic audition now omits the sample. [Current behavior, limits and evidence](meaning-singer.md).
 
 **Sample quality update — 2026-10-22:** Owner likes the generated songs but reports that adding the source makes them worse. The replacement preserves the song and tries one whole phrase or pause-bounded excerpt in a vocal gap; if it cannot fit, the original song is returned with explicit status. All 23 styles remain. Six same-song comparisons and scoped technical/browser evidence are in the [replacement report](gentle-singer.md). New-arrangement listening remains open.

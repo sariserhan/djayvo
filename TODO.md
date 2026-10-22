@@ -1,5 +1,10 @@
 # Jamloom development tracker
 
+## Source-led conversation study — 2026-10-22
+
+- [x] **SOURCE-001 — PASS, local prototype:** One new reggae performance starts from an actual user-audio guide, generates backing and singer locally, and schedules separate original-voice calls and estimated complete singer replies. Source PCM and zero scheduled overlap checks pass. First missing-answer pass is retained as FAIL; the second candidate is ready on the private listening page. [Report and evidence](docs/source-led-response.md).
+- [ ] **SOURCE-002 — PARTIAL:** Human acceptance, complete lyric fidelity, reliable automatic phrase choice and broader styles remain unproven. This study does not change the 23-style studio default or close TRAIN-007.
+
 ## Musician training request — 2026-10-21
 
 - [x] **MEANING-001 — PASS, local implementation:** Owner makes the original audio optional; meaning may inspire a song with no sample. Accept short/long/quiet recordings within explicit local resource limits, understand speech locally when no idea is supplied, preserve originals and completed songs, and omit audio creatively. Acoustic listening example is now sample-free. [Report and evidence](docs/meaning-singer.md). Musical acceptance and transcription accuracy remain open.

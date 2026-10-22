@@ -1,5 +1,7 @@
 # Local AI singer implementation — 2026-10-22
 
+**Source-led conversation study — 2026-10-22:** Owner reconsidered meaning-only songs and authorized one source-led test. Actual phrase audio conditions a new reggae backing and singer before assembly, with separate voice turns. The first singer pass was rejected for missing answers; the second produced a 30-second candidate. Original calls retain their source PCM and pitch, but listening quality and full lyric delivery are not established. The ordinary studio is unchanged. [Study and listening page](source-led-response.md).
+
 **Meaning-first singer — 2026-10-22:** The owner makes audio reuse optional. The studio accepts short/long recordings, reads speech locally or uses a supplied idea, and may deliver the song without replaying the recording. Acoustic audition now omits the sample. [Current behavior, limits and evidence](meaning-singer.md).
 
 **Studio input repair — 2026-10-22:** The two reported recording failures were caused by the 5.001-second decoder cap being rejected by a strict five-second validator. Both actual captures now prepare successfully after edge-quiet trimming, with originals retained and specific failure messages. [Fix and regression evidence](studio-input-fix.md).

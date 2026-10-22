@@ -169,12 +169,42 @@ def draft(root, phrase, seed, output, voice=None, genre=None):
         f.write(json.dumps(plan, indent=2) + '\n')
 
 
-def sing(root, plan_path, output, case_id):
+def source_conditioning(path):
+    """Explicit private research input; ordinary studio generation stays text-only."""
+    from arrange_voice_research import read_pcm
+    if Path(path).stat().st_size > 8192:
+        raise ValueError('Conditioning exceeds size budget')
+    c = json.loads(Path(path).read_text())
+    if not isinstance(c, dict) or set(c) != {'audio', 'sha256', 'bpm', 'strength', 'instrumental', 'direction'}:
+        raise ValueError('Invalid source conditioning')
+    if (type(c['bpm']) not in (int, float) or not 72 <= c['bpm'] <= 96
+            or type(c['strength']) not in (int, float) or not .125 <= c['strength'] <= .8
+            or type(c['instrumental']) is not bool):
+        raise ValueError('Invalid source timing or strength')
+    text_field(c['direction'], 2000, 'arrangement direction')
+    # At eight inference steps, less than 1/8 would use zero source-conditioned steps.
+    if not isinstance(c['audio'], str):
+        raise ValueError('Invalid source guide path')
+    read_pcm(c['audio'], (30, 30))
+    if digest(c['audio']) != c['sha256']:
+        raise ValueError('Source guide checksum mismatch')
+    return c
+
+
+def sing(root, plan_path, output, case_id, conditioning_path=None):
     plan = load_plan(plan_path)
     cases = [c for c in plan['cases'] if c['id'] == case_id]
     if len(cases) != 1:
         raise ValueError('Select a case present in the plan')
-    c = cases[0]
+    c = cases[0].copy()
+    conditioning = source_conditioning(conditioning_path) if conditioning_path else None
+    if conditioning:
+        c['bpm'] = conditioning['bpm']
+    description = caption(c)
+    if conditioning:
+        if conditioning['instrumental']:
+            description = STYLES[c['genre']][1] + '. Instrumental band only, no singing, speech or vocal sounds. '
+        description += ' ' + conditioning['direction']
     output.mkdir(parents=True, exist_ok=False)
     (output / '.partial').write_text('Incomplete singing render.\n')
     import numpy as np
@@ -197,8 +227,12 @@ def sing(root, plan_path, output, case_id):
                                        compile_model=False, use_mlx_dit=False, offload_to_cpu=True, offload_dit_to_cpu=False)
     if not ok:
         raise RuntimeError(status)
-    params = GenerationParams(caption=caption(c), bpm=c['bpm'], duration=c['duration'], seed=c['seed'],
-                              instrumental=False, lyrics=c['lyrics'], vocal_language='en', inference_steps=8,
+    instrumental = bool(conditioning and conditioning['instrumental'])
+    source_params = ({'task_type': 'cover', 'src_audio': conditioning['audio'],
+                      'audio_cover_strength': conditioning['strength']} if conditioning else {})
+    params = GenerationParams(caption=description, bpm=c['bpm'], duration=c['duration'], seed=c['seed'],
+                              instrumental=instrumental, lyrics='[Instrumental]' if instrumental else c['lyrics'],
+                              vocal_language='en', inference_steps=8, **source_params,
                               thinking=False, use_cot_metas=False, use_cot_caption=False, use_cot_language=False, use_cot_lyrics=False)
     result = generate_music(dit, lm, params, GenerationConfig(batch_size=1, audio_format='wav', use_random_seed=False, seeds=[c['seed']]), save_dir=str(output / 'raw'))
     if not result.success or len(result.audios) != 1:
@@ -209,12 +243,15 @@ def sing(root, plan_path, output, case_id):
         raise ValueError('Invalid singer audio; refusing completed output')
     dest = output / 'singer.wav'
     sf.write(dest, pcm, rate, subtype='PCM_16')
-    report = {'technical': 'PASS', 'case': c, 'caption': caption(c), 'model_code': CODE_REVISION, 'weights': WEIGHT_REVISION,
+    if conditioning and digest(conditioning['audio']) != conditioning['sha256']:
+        raise ValueError('Source guide changed during generation')
+    report = {'technical': 'PASS', 'case': c, 'caption': description, 'model_code': CODE_REVISION, 'weights': WEIGHT_REVISION,
               'plan_sha256': digest(plan_path), 'audio_sha256': digest(dest), 'seconds': time.monotonic()-started,
               'peak': peak, 'rms': float(np.sqrt(np.mean(pcm**2))), 'peak_process_rss_bytes': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
               'device': str(dit.device), 'dtype': str(dit.dtype), 'torch': torch.__version__, 'mlx_vae': dit.use_mlx_vae,
               'voice_and_lyric_fidelity': 'NOT RUN: requires listening', 'naturalness': 'NOT RUN',
-              'trained_adapter': False, 'source_audio_uploaded': False}
+              'trained_adapter': False, 'source_audio_uploaded': False,
+              'source_conditioning': conditioning, 'task_type': 'cover' if conditioning else 'text2music'}
     (output / 'complete.json').write_text(json.dumps(report, indent=2) + '\n')
     (output / '.partial').unlink()
     print('PASS: actual local singing-model output; naturalness and voice identity await listening', flush=True)
@@ -231,10 +268,11 @@ if __name__ == '__main__':
     p.add_argument('--case')
     p.add_argument('--voice', choices=tuple(VOICES))
     p.add_argument('--genre', choices=tuple(STYLES))
+    p.add_argument('--conditioning', type=Path, help='Private source-led research guide; optional')
     a = p.parse_args()
     if a.phase == 'draft':
         draft(runtime(a.runtime), a.phrase, a.seed, a.output, a.voice, a.genre)
     else:
         if a.plan is None or a.case is None:
             p.error('sing requires --plan and --case')
-        sing(runtime(a.runtime), a.plan, a.output, a.case)
+        sing(runtime(a.runtime), a.plan, a.output, a.case, a.conditioning)

@@ -1,0 +1,9 @@
+test_actual_pcm_assembly_source_and_singer_do_not_overlap (test_source_led_response.SourceLedStudy.test_actual_pcm_assembly_source_and_singer_do_not_overlap) ... ok
+test_complete_phrases_are_not_cut_to_fit (test_source_led_response.SourceLedStudy.test_complete_phrases_are_not_cut_to_fit) ... ok
+test_consent_bounds_and_tampering_fail_closed (test_source_led_response.SourceLedStudy.test_consent_bounds_and_tampering_fail_closed) ... ok
+test_source_guide_precedes_music_and_preserves_crop (test_source_led_response.SourceLedStudy.test_source_guide_precedes_music_and_preserves_crop) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.657s
+
+OK

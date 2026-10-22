@@ -1,5 +1,7 @@
 # Let the idea become the song — 2026-10-22
 
+**Later direction:** The owner reconsidered omission and authorized a [source-led conversation study](source-led-response.md). This report preserves the earlier decision and studio behavior; it is no longer the proposed product direction.
+
 The owner explicitly changes the product requirement: the input may inspire the
 song without appearing as audio. All, part, repetitions or none are creative
 possibilities; making good music takes priority over including the recording.
