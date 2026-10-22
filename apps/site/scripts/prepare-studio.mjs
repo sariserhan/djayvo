@@ -16,5 +16,7 @@ const html = await readFile(index, 'utf8');
 const original = '<a href="#mixes">Your mixes</a>';
 if (!html.includes(original)) throw new Error('Studio navigation changed; review the integration.');
 await writeFile(index, html.replace(original, '<a href="/account">Account</a>'));
+const deck = new URL('dj.html', target);
+await writeFile(deck, (await readFile(deck, 'utf8')).replace('Save the app in Voice studio → Privacy &amp; credits for offline preparation', 'Open <a href="/pro">your Pro account</a> → Use the web studio offline to prepare offline access'));
 execFileSync('python3', ['scripts/build_offline.py', fileURLToPath(target)], { cwd: root, stdio: 'pipe' });
 console.log('Prepared the audited browser studio and engine.');

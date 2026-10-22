@@ -25,10 +25,10 @@
 | Apple release candidate | PASS, Pro 1.0.0, Developer ID, notarization c78dfcd1-84a0-457c-8261-8f60542557e9, staple and Gatekeeper |
 | One-hour Pro runtime | RUNNING; retain NOT RUN until a completed report exists |
 | Public candidate installer/feed | PASS, published candidate, fresh public download, matching SHA-256, signature, staple and Gatekeeper |
-| Actual upgrade | NOT RUN, running against the public feed |
-| Hosted CI | PARTIAL: first run found missing test-output directory on clean Mac and a stale offline-cache fixture. Both fixed; rerun pending |
+| Actual upgrade | PASS, 0.1.0 downloads the public signed 1.0.0 installer, installs and automatically relaunches; reopening the isolated profile retains activation, settings and a stopped sampler bank |
+| Hosted CI | PARTIAL: first run found missing test-output directory on clean Mac and a stale offline-cache fixture. Both fixed; Mac, Academy and website jobs now pass; core/sanitizer jobs pending |
 | Production deployment/catalogue | NOT RUN |
-| Pro owner speaker listening | NOT RUN; earlier Basic listening does not qualify Pro |
+| Pro owner speaker listening | PASS, new signed-app two-track/crossfade check on LG Ultra HD; owner reports “Audible and clean” |
 | Actual MIDI / separate headphone output | NOT RUN; owner has neither device |
 | Physical cable unplug | NOT RUN, explicitly deferred |
 | Real live payment charge | NOT RUN; sandbox coverage does not assert live settlement |
@@ -48,3 +48,5 @@ Run the existing site/web tests plus `tests/pro.test.ts` with an isolated loopba
 Sign with the existing Developer ID, run `script/prepare_pro_release.sh` against the directory containing the app, retain the notarization/hash reports, then publish the versioned ZIP and `pro-updates/releases.json` only after checks. Preserve `com.jamloom.pro` and its local profile through updates. Basic's public 0.4.0 installer and Sparkle feed remain separate.
 
 The public candidate is at https://github.com/sariserhan/jamloom/releases/tag/pro-v1.0.0; sales remain disabled. Browser purchase-page QA passes Chromium/WebKit at 1440/390 px with zero scoped axe violations (homepage → Pro → sign-in). The Browser runtime tool was unavailable, so the existing Playwright workflow was used; screenshots/report are in `/tmp/jamloom-pro-page-qa`. Updated web unit suite: 143 PASS.
+
+Added the missing Pro account control for preparing/removing the web offline copy, reusing the bounded existing service worker. Actual sandbox provider/browser test repeats PASS through that visible control. The updater relaunch drops test-only CLI arguments; after observing the new process, the harness stops that process and explicitly reopens the same isolated profile for persistence assertions. It does not claim test-profile CLI arguments survive Squirrel relaunch.
