@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-22T22:03:54.842Z",
+  "version": "1.0.0",
+  "track": "36e04b297242ab866a171f28",
+  "sample": {
+    "time": 5.013333,
+    "peak": 0.1640259027481079,
+    "catalogue": "72 Aurowall tracks available online."
+  },
+  "errors": [],
+  "scope": "Signed installed Mac app; actual production license renewal, Aurowall catalogue, full track download and measured PCM",
+  "physicalOutput": "muted"
+}

@@ -1,0 +1,416 @@
+{
+  "status": "PASS",
+  "diagnostics": {
+    "at": 1792706592002,
+    "status": "Manual mixing active. Keep this page open and your device awake.",
+    "visibility": "visible",
+    "contexts": [
+      {
+        "state": "running",
+        "time": 3603.8186666666666,
+        "sink": ""
+      }
+    ],
+    "media": [
+      {
+        "id": "audio-a",
+        "paused": false,
+        "ended": false,
+        "loop": false,
+        "ready": 4,
+        "network": 1
+      },
+      {
+        "id": "audio-b",
+        "paused": false,
+        "ended": false,
+        "loop": false,
+        "ready": 4,
+        "network": 1
+      }
+    ],
+    "events": [
+      {
+        "at": 1792706534982,
+        "id": "audio-b",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706534982,
+        "id": "audio-b",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706534982,
+        "id": "audio-b",
+        "kind": "play"
+      },
+      {
+        "at": 1792706534982,
+        "id": "audio-b",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706542719,
+        "id": "audio-a",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706542720,
+        "id": "audio-a",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706542720,
+        "id": "audio-a",
+        "kind": "play"
+      },
+      {
+        "at": 1792706542720,
+        "id": "audio-a",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706542986,
+        "id": "audio-b",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706542986,
+        "id": "audio-b",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706542986,
+        "id": "audio-b",
+        "kind": "play"
+      },
+      {
+        "at": 1792706542986,
+        "id": "audio-b",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706550725,
+        "id": "audio-a",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706550725,
+        "id": "audio-a",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706550725,
+        "id": "audio-a",
+        "kind": "play"
+      },
+      {
+        "at": 1792706550725,
+        "id": "audio-a",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706550991,
+        "id": "audio-b",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706550991,
+        "id": "audio-b",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706550991,
+        "id": "audio-b",
+        "kind": "play"
+      },
+      {
+        "at": 1792706550991,
+        "id": "audio-b",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706558731,
+        "id": "audio-a",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706558731,
+        "id": "audio-a",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706558735,
+        "id": "audio-a",
+        "kind": "play"
+      },
+      {
+        "at": 1792706558735,
+        "id": "audio-a",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706558997,
+        "id": "audio-b",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706558997,
+        "id": "audio-b",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706559000,
+        "id": "audio-b",
+        "kind": "play"
+      },
+      {
+        "at": 1792706559000,
+        "id": "audio-b",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706566735,
+        "id": "audio-a",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706566736,
+        "id": "audio-a",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706566736,
+        "id": "audio-a",
+        "kind": "play"
+      },
+      {
+        "at": 1792706566736,
+        "id": "audio-a",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706567002,
+        "id": "audio-b",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706567002,
+        "id": "audio-b",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706567002,
+        "id": "audio-b",
+        "kind": "play"
+      },
+      {
+        "at": 1792706567002,
+        "id": "audio-b",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706574741,
+        "id": "audio-a",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706574741,
+        "id": "audio-a",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706574742,
+        "id": "audio-a",
+        "kind": "play"
+      },
+      {
+        "at": 1792706574742,
+        "id": "audio-a",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706575008,
+        "id": "audio-b",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706575008,
+        "id": "audio-b",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706575008,
+        "id": "audio-b",
+        "kind": "play"
+      },
+      {
+        "at": 1792706575008,
+        "id": "audio-b",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706582746,
+        "id": "audio-a",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706582747,
+        "id": "audio-a",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706582747,
+        "id": "audio-a",
+        "kind": "play"
+      },
+      {
+        "at": 1792706582747,
+        "id": "audio-a",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706583013,
+        "id": "audio-b",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706583013,
+        "id": "audio-b",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706583014,
+        "id": "audio-b",
+        "kind": "play"
+      },
+      {
+        "at": 1792706583014,
+        "id": "audio-b",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706590751,
+        "id": "audio-a",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706590752,
+        "id": "audio-a",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706590752,
+        "id": "audio-a",
+        "kind": "play"
+      },
+      {
+        "at": 1792706590752,
+        "id": "audio-a",
+        "kind": "waiting"
+      },
+      {
+        "at": 1792706591020,
+        "id": "audio-b",
+        "kind": "pause"
+      },
+      {
+        "at": 1792706591020,
+        "id": "audio-b",
+        "kind": "ended"
+      },
+      {
+        "at": 1792706591020,
+        "id": "audio-b",
+        "kind": "play"
+      },
+      {
+        "at": 1792706591020,
+        "id": "audio-b",
+        "kind": "waiting"
+      }
+    ]
+  },
+  "seconds": 3603.3977860829996,
+  "errors": [],
+  "maxRSSMiB": 614.71875,
+  "physicalOutput": "muted",
+  "physicalRouting": "NOT RUN",
+  "scope": "Two real-time local decks, loops, crossfader, signal and memory over one hour",
+  "sampleCount": 360,
+  "firstSample": {
+    "seconds": 10.016964333,
+    "a": 2.261333,
+    "b": 2,
+    "playing": [
+      "true",
+      "true"
+    ],
+    "peak": 0.10986661911010742,
+    "memory": [
+      {
+        "type": "Browser",
+        "rssKB": 173136
+      },
+      {
+        "type": "GPU",
+        "rssKB": 106560
+      },
+      {
+        "type": "Utility",
+        "rssKB": 43248
+      },
+      {
+        "type": "Tab",
+        "rssKB": 216688
+      },
+      {
+        "type": "Utility",
+        "rssKB": 35952
+      },
+      {
+        "type": "Utility",
+        "rssKB": 53888
+      }
+    ]
+  },
+  "lastSample": {
+    "seconds": 3603.3977860829996,
+    "a": 1.246588,
+    "b": 0.979949,
+    "playing": [
+      "true",
+      "true"
+    ],
+    "peak": 0.10986661911010742,
+    "memory": [
+      {
+        "type": "Browser",
+        "rssKB": 99984
+      },
+      {
+        "type": "GPU",
+        "rssKB": 90336
+      },
+      {
+        "type": "Utility",
+        "rssKB": 29984
+      },
+      {
+        "type": "Tab",
+        "rssKB": 199040
+      },
+      {
+        "type": "Utility",
+        "rssKB": 27984
+      },
+      {
+        "type": "Utility",
+        "rssKB": 37808
+      }
+    ]
+  },
+  "rawReport": "renders/pro-endurance-TuurPn/report.json",
+  "priorAttempt": "Initial concurrent-check run stopped after about 31 minutes; cause unknown. The isolated diagnostic rerun passes; no root-cause fix or zero-interruption guarantee is claimed."
+}

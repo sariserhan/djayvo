@@ -1,13 +1,14 @@
 ## Pro v1 completion — 2026-10-22
 
 - [x] **PRO-004 — PASS:** Approved $49 one-time Pro v1; verified checkout/refunds, signed Mac activation, web offline entitlement, sampler control replay and notarized 1.0.0 candidate. [Report](docs/pro-v1-release.md).
-- [ ] **PRO-005 — PARTIAL:** Public candidate installer/feed, actual upgrade and LG owner listening PASS. Initial endurance FAIL after about 31 minutes; diagnostic rerun remains open. Hosted CI/deployment, production access/catalogue and browser discovery PASS; purchases stay disabled pending endurance. Native virtual MIDI PASS; physical MIDI/headphones unavailable, cable unplug deferred.
+- [x] **PRO-005 — PASS, technical release checks:** Public signed 1.0.0 installer/feed, actual 0.1.0 upgrade, hosted CI/deployment, production access/catalogue, installed-app Aurowall PCM, owner LG listening and a 3603-second isolated endurance rerun. Approved $49 one-time production sales configured; final deployment confirmation follows in the [release report](docs/pro-v1-release.md).
+- [ ] **PRO-006 — PARTIAL, physical qualification:** No physical MIDI controller or separate headphone output available; cable-unplug recovery remains deferred. Native virtual MIDI passes. No real-money payment was made. Initial interrupted endurance attempt retained, cause unknown.
 
 ## Basic and Pro editions — 2026-10-22
 
 - [x] **PRO-001 — PASS, local:** Existing companion stays Basic/free; shared web/Mac professional console, physical-style jogs/rotary controls/faders, eight sample pads/four banks, full existing Performance Studio, native Settings and isolated update integration. [Report](docs/jamloom-pro.md).
 - [x] **PRO-002 — PASS, local validation:** 142 unit checks, full Chromium/WebKit DJ regressions, five-width/accessibility checks, real desktop playback/recording/relaunch, site build/download boundaries and Basic Swift checks. Real Aurowall catalogue/storage playback passes through the local backend with muted output. [Evidence](docs/evidence/jamloom-pro/).
-- [ ] **PRO-003 — PARTIAL, release:** Signed, notarized, stapled, Gatekeeper-accepted Pro 0.1.0 installed and packaged-app checks PASS; Pro public installer/feed, actual update upgrade, hosted CI, catalogue launch access, pricing/paid activation and new physical/human qualification remain open. No Pro publication or charges. [Boundaries](docs/jamloom-pro.md).
+- [x] **PRO-003 — PASS, superseded preview release:** The initial 0.1.0 packaging milestone is completed by Pro v1 above. Physical limits remain in PRO-006; [preview evidence](docs/jamloom-pro.md) is historical.
 
 ## Companion distribution — 2026-10-22
 

@@ -1,6 +1,8 @@
 ## Pro v1 completion — 2026-10-22
 
-**PASS: $49 one-time licensing, sandbox checkout/refunds, sampler replay and signed 1.0.0 candidate. PARTIAL: release and qualification.** Basic stays free. Mac activation and web offline access are bounded to 30 days and preserve local music. Public candidate download, actual update and owner LG speaker listening pass. Initial endurance stopped after about 31 minutes; cause unknown and diagnostic rerun in progress. Hosted CI, production access/catalogue and browser discovery now pass. Purchases remain disabled pending endurance. Native virtual MIDI passes; physical MIDI/headphones are unavailable and unplug remains deferred. [Current report](pro-v1-release.md). Earlier preview notes below are historical.
+**PASS: Pro v1 implementation and technical release checks. PARTIAL: physical qualification.** Basic stays free; Pro v1 is $49 once plus tax, with Mac and web access. Signed 1.0.0 download, real upgrade, production catalogue/activation, installed-app playback, owner LG listening and a continuous 3603-second diagnostic rerun pass. The first endurance attempt stopped after about 31 minutes; its cause remains unknown and evidence is retained. Physical MIDI/headphones are unavailable, unplug is deferred, and no live charge was made. Production sales are configured for the final GitHub deployment. [Current report](pro-v1-release.md). Earlier preview notes below are historical.
+
+Open `/Applications/Jamloom Pro.app`; the signed 1.0.0 owner app is activated and starts silent. Customers use [the Pro page](https://www.jamloom.com/pro) to buy, download the Mac activation file or open the web studio. Settings has activation, renewal and signed updates. Keep the activation file private. Web offline preparation is under “Use the web studio offline” on the same Pro page. Both offline leases renew online and last 30 days.
 
 ## Basic and Pro preview — 2026-10-22
 

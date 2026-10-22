@@ -1,6 +1,6 @@
 # Pro v1 completion — 2026-10-22
 
-**PASS: implementation, sandbox commerce, signed Mac candidate. PARTIAL: public release and qualification.** The owner approved **$49 USD once for Pro v1** and confirmed LG speakers only, without a MIDI controller or separate headphones. Basic remains free. Paid generation, Academy sales, iOS distribution and unrelated launch gates remain closed.
+**PASS: implementation, sandbox commerce and technical release checks. PARTIAL: physical qualification.** The owner approved **$49 USD once for Pro v1** and confirmed LG speakers only, without a MIDI controller or separate headphones. Basic remains free. Paid generation, Academy sales, iOS distribution and unrelated launch gates remain closed.
 
 ## Implemented
 
@@ -23,11 +23,11 @@
 | Packaged audio / persistence | PASS, dual decks, PCM signal, rotating platter, knobs, AudioWorklet, sampler banks, WAV/control replay and stopped relaunch, muted output |
 | Cross-browser sampler replay | PASS, Chromium/WebKit, identical repeat PCM |
 | Apple release candidate | PASS, Pro 1.0.0, Developer ID, notarization c78dfcd1-84a0-457c-8261-8f60542557e9, staple and Gatekeeper |
-| One-hour Pro runtime | FAIL, initial run stopped after 1842 seconds of passing samples. Cause unknown; diagnostic rerun in progress, no endurance pass claimed |
+| One-hour Pro runtime | PASS, diagnostic rerun: 3603 seconds, 360 samples, no JavaScript errors, 615 MiB maximum RSS. Initial concurrent-check run stopped after 1842 seconds of passing samples; cause remains unknown and failed evidence is retained |
 | Public candidate installer/feed | PASS, published candidate, fresh public download, matching SHA-256, signature, staple and Gatekeeper |
 | Actual upgrade | PASS, 0.1.0 downloads the public signed 1.0.0 installer, installs and automatically relaunches; reopening the isolated profile retains activation, settings and a stopped sampler bank |
 | Hosted CI | PASS, all eight jobs in run 39854460446, including Mac/Ubuntu sanitizer builds, desktop, Academy, website and comparison |
-| Production deployment/catalogue | PASS, GitHub main 6ac7ca0; public pages, unpaid denial, signed renewal, 72 authorized tracks and ranged audio; Chromium/WebKit desktop/mobile discovery with zero scoped axe violations. Sales remain disabled pending endurance |
+| Production deployment/catalogue | PASS, GitHub main 6ac7ca0; public pages, unpaid denial, signed renewal, 72 authorized tracks and ranged audio; Chromium/WebKit desktop/mobile discovery with zero scoped axe violations. Sales configured at the approved $49 one-time price; final GitHub deployment pending confirmation |
 | Pro owner speaker listening | PASS, new signed-app two-track/crossfade check on LG Ultra HD; owner reports “Audible and clean” |
 | Actual MIDI / separate headphone output | NOT RUN; owner has neither device |
 | Physical cable unplug | NOT RUN, explicitly deferred |
@@ -37,7 +37,7 @@ Two earlier desktop replay attempts observed two recorder clock discontinuities 
 
 ## Production preparation
 
-Read-only Neon audit verified all 12 existing migration hashes. Only additive `0014_pro_licenses.sql` was applied transactionally under the existing database authorization; unrelated pending `0013_audio_duration.sql` was left untouched. Test/live Stripe products, prices and mode-specific webhooks were created for Pro; both account configurations report payments/payouts enabled and tax settings active. The pinned signing key matches the server key. Vercel production configuration is installed with **PRO_SALES_ENABLED=false** pending release verification. No direct CLI deployment is used.
+Read-only Neon audit verified all 12 existing migration hashes. Only additive `0014_pro_licenses.sql` was applied transactionally under the existing database authorization; unrelated pending `0013_audio_duration.sql` was left untouched. Test/live Stripe products, prices and mode-specific webhooks were created for Pro; both account configurations report payments/payouts enabled and tax settings active. The pinned signing key matches the server key. After the full-hour rerun and installed-app production music check passed, Vercel production configuration was changed to **PRO_SALES_ENABLED=true** for the final GitHub deployment. No direct CLI deployment is used.
 
 Ignored credentials: `apps/site/.env.pro-billing`, `.env.pro-license`; private signing material never belongs in Git. The activation file is a bearer credential; keep it private. Revocation of a disconnected previously issued license can take up to 30 days. These checks are access controls, not an unbreakable DRM claim.
 
@@ -47,10 +47,12 @@ Run the existing site/web tests plus `tests/pro.test.ts` with an isolated loopba
 
 Sign with the existing Developer ID, run `script/prepare_pro_release.sh` against the directory containing the app, retain the notarization/hash reports, then publish the versioned ZIP and `pro-updates/releases.json` only after checks. Preserve `com.jamloom.pro` and its local profile through updates. Basic's public 0.4.0 installer and Sparkle feed remain separate.
 
-The public candidate is at https://github.com/sariserhan/jamloom/releases/tag/pro-v1.0.0; sales remain disabled. Browser purchase-page QA passes Chromium/WebKit at 1440/390 px with zero scoped axe violations (homepage → Pro → sign-in). The Browser runtime tool was unavailable, so the existing Playwright workflow was used; screenshots/report are in `/tmp/jamloom-pro-page-qa`. Updated web unit suite: 143 PASS.
+The signed installer is at https://github.com/sariserhan/jamloom/releases/tag/pro-v1.0.0. Browser purchase-page QA passes Chromium/WebKit at 1440/390 px with zero scoped axe violations (homepage → Pro → sign-in). The Browser runtime tool was unavailable, so the existing Playwright workflow was used; screenshots/report are in `/tmp/jamloom-pro-page-qa`. Updated web unit suite: 143 PASS.
 
 Added the missing Pro account control for preparing/removing the web offline copy, reusing the bounded existing service worker. Actual sandbox provider/browser test repeats PASS through that visible control. The updater relaunch drops test-only CLI arguments; after observing the new process, the harness stops that process and explicitly reopens the same isolated profile for persistence assertions. It does not claim test-profile CLI arguments survive Squirrel relaunch.
 
 Native CoreMIDI virtual-source verification passes through the signed packaged app: real macOS MIDI input enumeration/permission, instrument PCM, CC learn/pickup/master changes and note-off. This is software-to-software native routing, not physical controller qualification.
 
 Signed Pro 1.0.0 is installed in `/Applications/Jamloom Pro.app`. The prior 0.1.0 app and owner profile were preserved in ignored `renders/pro-owner-install-backup-20261022`; activation is private. No owner recording or bank was removed. Production read-only verification is reproducible with `apps/site/tests/pro-hosted.mjs` and `JAMLOOM_PRO_LICENSE_FILE`; it makes no charge.
+
+Installed signed app → actual production Aurowall verification PASS: license renewal, 72-track listing, full partner-track download and measured PCM, physical output muted. This closes the earlier local-backend-only catalogue limit. Initial endurance interruption was not reproduced in the isolated 3603-second diagnostic rerun; no root-cause fix or zero-interruption guarantee is claimed.
