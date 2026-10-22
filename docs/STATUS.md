@@ -1,5 +1,9 @@
 # Jamloom implementation checkpoint
 
+## Latest: musician training preparation — 2026-10-21
+
+**PARTIAL.** Curriculum/inventory PASS: 48 contextual exercises, existing clip and adapter hashes verified. New training NOT RUN: known R1 demonstrations are six automated evaluation-only rows, and existing audio clips lack reviewed decision labels and independent session coverage. Owner located additional references in Downloads; four previously analysis-only files inventoried, training permission pending. Product composer remains rule-based; ACE-Step adapters remain research candidates. No paid compute, deployment or listening performed. [Report](musician-training-curriculum.md).
+
 ## Latest: iOS product parity — 2026-10-21
 
 **PASS, local implementation and checks; specification PARTIAL.** Native Music DNA now renders and saves two shared-engine variations, with catalogue preferences, explicit account/profile/balance sync and guarded purchase recovery. Improvisation supports the wider source/output contract. Native/WASM WAV identity and maximum-duration checks PASS. Signed sandbox refund reconciliation reuses the existing wallet. Listening and physical checks stay deferred, earlier musical FAIL remains, real Apple/provider qualification remains open, and launch stays last. Native account integration, local StoreKit recovery, iPhone/iPad scoped UI, core/sanitizer and unsigned Release audit PASS. No push, deployment or paid execution. [Report and validation](ios-product-parity.md).

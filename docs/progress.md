@@ -1,3 +1,7 @@
+# Musician training preparation — 2026-10-21
+
+**Preparation PASS; training NOT RUN; overall PARTIAL.** Added 48 contextual assignments using existing taxonomy/capture/replay workflows. Read-only inventory verifies sixteen retained training clips and two ACE-Step adapter hashes; the known six-row R1 export is automated and evaluation-only. Owner located references in Downloads; four additional analysis-only files inventoried, explicit training-rights answer pending. No new model weights, downloads, paid compute or audio playback. Listening remains deferred and production gates remain open. [Curriculum, data requirements and evidence](musician-training-curriculum.md).
+
 # DJ learning marketing and SEO — 2026-10-21
 
 **PASS, local.** The marketing site now leads with becoming a DJ and learning to mix. Homepage actions, Academy/studio copy, beginner guides, search metadata, social previews and coming-soon messaging are aligned. Existing launch gates and course availability remain unchanged. Chromium/WebKit, typecheck and five metadata/launch tests pass. [Report and screenshots](dj-learning-marketing.md). Deployment and search ranking validation NOT RUN.

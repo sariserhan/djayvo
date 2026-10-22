@@ -1,5 +1,10 @@
 # Jamloom development tracker
 
+## Musician training request — 2026-10-21
+
+- [x] **TRAIN-001 — PASS, preparation:** Audit actual model/data paths; prepare 48 contextual exercises for rhythm, harmony, composition, improvisation, DJ transitions, deck performance, expression and evaluation. Rehash the 16 retained Blood Club clips and both adapters. [Curriculum and evidence](docs/musician-training-curriculum.md).
+- [ ] **TRAIN-002 — NOT RUN:** Admit reviewed, training-authorized expert state/action/audio demonstrations and train/evaluate a candidate on independent sessions. Known R1 export has six automated evaluation-only rows; no eligible expert corpus identified. Owner located references in Downloads; four additional analysis-only files inventoried, explicit training-rights answer pending. No new optimizer steps, paid compute or model promotion. Listening remains deferred; curriculum completion is not model training.
+
 - [x] **MKT-DJ-001 — PASS, local (2026-10-21):** “Become a DJ” / “Learn to DJ” positioning across the homepage, Academy, studio, guides, coming-soon copy and SEO/social metadata. Added a beginner DJ guide and lesson/practice links. Chromium/WebKit responsive, accessibility, metadata and navigation checks, typecheck and five launch/metadata tests PASS. [Report](docs/dj-learning-marketing.md). Not deployed; rankings NOT RUN.
 
 - [x] **UI-001 — PASS, local (2026-10-21):** Simpler Performance studio with task navigation, three-step voice response, keys/pads first, grouped advanced tools and realistic vinyl platters shared with the homepage. All 178 controls retained; Chromium/WebKit usability, playback, Academy, fullscreen and accessibility checks PASS. 137 unit tests, typecheck and audited offline preparation PASS. [Report and screenshots](docs/studio-simplicity.md). Human usability/listening/physical acceptance NOT RUN; no deployment.

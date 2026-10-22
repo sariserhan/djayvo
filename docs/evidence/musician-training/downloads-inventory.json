@@ -1,0 +1,77 @@
+{
+  "source_location_reply": "they are in the Downloads folder",
+  "scope": "Four previously analysis-only references; owner voice, generated Night Current, existing x/y/z/Blood Club excluded",
+  "files": [
+    {
+      "filename": "f.mp3",
+      "sha256": "dcc26654d96138cd7aafecfc1298ea159884cdcd54a221422e35c77ace7a45f6",
+      "bytes": 1887596,
+      "duration_seconds": 114.410667,
+      "audio_streams": [
+        {
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        }
+      ],
+      "existing_scope": "local_analysis_only",
+      "new_training_permission": "pending_owner_reply",
+      "human_annotation": "NOT RUN",
+      "training_eligible": false
+    },
+    {
+      "filename": "down.mp3",
+      "sha256": "f10a3fa3cf773a85b04458747d7a46de7d7f621bf7ab732785ad3038212a2d12",
+      "bytes": 2551916,
+      "duration_seconds": 143.798875,
+      "audio_streams": [
+        {
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        }
+      ],
+      "existing_scope": "local_analysis_only",
+      "new_training_permission": "pending_owner_reply",
+      "human_annotation": "NOT RUN",
+      "training_eligible": false
+    },
+    {
+      "filename": "question.mp3",
+      "sha256": "e830e315e59e111ef09f6436483f094c9b2e6ed8c86273ebc13021fdea98b9e8",
+      "bytes": 3085124,
+      "duration_seconds": 155.316479,
+      "audio_streams": [
+        {
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        }
+      ],
+      "existing_scope": "local_analysis_only",
+      "new_training_permission": "pending_owner_reply",
+      "human_annotation": "NOT RUN",
+      "training_eligible": false
+    },
+    {
+      "filename": "pipe.mp3",
+      "sha256": "e57756d665c676e876bc7b25abf6d97bd88d137c889eebd633ade0d353919bc8",
+      "bytes": 1440908,
+      "duration_seconds": 79.656979,
+      "audio_streams": [
+        {
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2
+        }
+      ],
+      "existing_scope": "local_analysis_only",
+      "new_training_permission": "pending_owner_reply",
+      "human_annotation": "NOT RUN",
+      "training_eligible": false
+    }
+  ],
+  "extraction": "NOT RUN",
+  "upload": "NOT RUN",
+  "training": "NOT RUN"
+}

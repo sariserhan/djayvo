@@ -1,0 +1,35 @@
+{
+  "scope": "Known retained artifacts only; no discovery of private user libraries",
+  "artifact_integrity": "PASS",
+  "curriculum_assignments": 48,
+  "curriculum_sha256": "7f828f30684b7e65e8e57ca0692d03968e37232bbef9fba2a684ee96bc888b06",
+  "verified_audio_clips": 16,
+  "audio_session_groups": 1,
+  "audio_human_review": [
+    "NOT RUN"
+  ],
+  "verified_existing_adapters": [
+    {
+      "step": 80,
+      "sha256": "4aa53903d275bfbdbf3217d2afc14d612fe2eb8ee943491d26df73e9fe667de4"
+    },
+    {
+      "step": 160,
+      "sha256": "51c6ccde5205751fdcb63051468601ad8e496379ef54ec64ed56bf3b5d94c5ea"
+    }
+  ],
+  "demonstration_rows": 6,
+  "demonstration_sha256": "45cc945cc1799f2f84571042fa692a023159b763dc45b805591089bd1f68de72",
+  "demonstration_supervision": [
+    "automated_test"
+  ],
+  "demonstration_review": [
+    "NOT RUN"
+  ],
+  "demonstration_declared_training_rows": 0,
+  "training_admission": "NOT RUN",
+  "new_optimizer_steps": 0,
+  "new_model_training": "NOT RUN",
+  "human_quality": "NOT RUN",
+  "checker_self_test": "PASS: matching hash accepted, modified bytes rejected"
+}

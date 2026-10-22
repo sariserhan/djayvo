@@ -1,5 +1,18 @@
 # Jamloom owner handbook
 
+## Musician training data — 2026-10-21
+
+**[OWNER ACTION REQUIRED] Training scope, high priority for model training:**
+Downloads is confirmed. Clarify training permission for `f.mp3`, `down.mp3`,
+`question.mp3` and `pipe.mp3`, previously analysis-only. Existing x/y/z and Blood Club references
+do not supply a reviewed general-musician action corpus. No secrets are needed.
+The [48-exercise curriculum](musician-training-curriculum.md) describes what to
+capture using the existing private studio recordings, stems and action traces.
+The agent will inspect provenance, supported actions, hashes and session splits
+before admitting examples. Listening stays deferred; no request to resume it is
+implied. New paid compute will require a separate concrete bounded proposal only
+after suitable data is available. No new configuration variable is needed.
+
 2026-10-20 · Local implementation checkpoint. **Paid release is closed.**
 Never paste credentials into chat. Store secrets in ignored local env files and
 the appropriate provider's scoped environment settings. Configure Preview and
