@@ -24,8 +24,10 @@
 | Cross-browser sampler replay | PASS, Chromium/WebKit, identical repeat PCM |
 | Apple release candidate | PASS, Pro 1.0.0, Developer ID, notarization c78dfcd1-84a0-457c-8261-8f60542557e9, staple and Gatekeeper |
 | One-hour Pro runtime | RUNNING; retain NOT RUN until a completed report exists |
-| Public installer/feed and actual upgrade | NOT RUN |
-| Hosted CI/deployment/catalogue | NOT RUN |
+| Public candidate installer/feed | PASS, published candidate, fresh public download, matching SHA-256, signature, staple and Gatekeeper |
+| Actual upgrade | NOT RUN, running against the public feed |
+| Hosted CI | PARTIAL: first run found missing test-output directory on clean Mac and a stale offline-cache fixture. Both fixed; rerun pending |
+| Production deployment/catalogue | NOT RUN |
 | Pro owner speaker listening | NOT RUN; earlier Basic listening does not qualify Pro |
 | Actual MIDI / separate headphone output | NOT RUN; owner has neither device |
 | Physical cable unplug | NOT RUN, explicitly deferred |
@@ -44,3 +46,5 @@ Ignored credentials: `apps/site/.env.pro-billing`, `.env.pro-license`; private s
 Run the existing site/web tests plus `tests/pro.test.ts` with an isolated loopback `JAMLOOM_TEST_DATABASE_URL`. `apps/site/tests/pro-provider.mjs` requires test Stripe credentials and uses disposable local Postgres; it performs only sandbox purchases/refunds. Build the site before this test. `apps/desktop-pro/tests/activation.mjs` requires a signed packaged executable and an owner activation token in its environment. Never log the token. The actual packaged suite is `tests/app.mjs`; `tests/endurance.mjs` runs for a real hour with physical output muted.
 
 Sign with the existing Developer ID, run `script/prepare_pro_release.sh` against the directory containing the app, retain the notarization/hash reports, then publish the versioned ZIP and `pro-updates/releases.json` only after checks. Preserve `com.jamloom.pro` and its local profile through updates. Basic's public 0.4.0 installer and Sparkle feed remain separate.
+
+The public candidate is at https://github.com/sariserhan/jamloom/releases/tag/pro-v1.0.0; sales remain disabled. Browser purchase-page QA passes Chromium/WebKit at 1440/390 px with zero scoped axe violations (homepage → Pro → sign-in). The Browser runtime tool was unavailable, so the existing Playwright workflow was used; screenshots/report are in `/tmp/jamloom-pro-page-qa`. Updated web unit suite: 143 PASS.

@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
 import {_electron} from '../../web/node_modules/playwright/index.mjs';
 const require=createRequire(import.meta.url),here=fileURLToPath(new URL('../',import.meta.url));
+await fs.mkdir(path.resolve(here,'../../renders'),{recursive:true});
 const output=await fs.mkdtemp(path.resolve(here,'../../renders/pro-desktop-'));
 const profile=await fs.mkdtemp(path.join(os.tmpdir(),'jamloom-pro-test-'));
 const env={...process.env};delete env.ELECTRON_RUN_AS_NODE;

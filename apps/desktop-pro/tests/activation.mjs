@@ -5,6 +5,7 @@ import {_electron} from '../../web/node_modules/playwright/index.mjs';
 import {verifyLicense,LEASE_SECONDS} from '../license.mjs';
 assert.ok(process.env.JAMLOOM_PRO_EXECUTABLE,'Use a packaged app');
 const token=process.env.JAMLOOM_PRO_TEST_LICENSE;assert.ok(verifyLicense(token)&&!verifyLicense(token).sandbox,'Verified owner activation required');
+await fs.mkdir(path.resolve('renders'),{recursive:true});
 const profile=await fs.mkdtemp(path.join(os.tmpdir(),'jamloom-pro-license-')),output=await fs.mkdtemp(path.resolve('renders/pro-activation-'));
 const env={...process.env};delete env.ELECTRON_RUN_AS_NODE;delete env.JAMLOOM_PRO_TEST_LICENSE;delete env.PRO_LICENSE_PRIVATE_KEY;
 const checks=[];let app,page;
