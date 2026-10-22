@@ -2,7 +2,7 @@
 
 The owner authorized the public companion download, icon, Settings and updates.
 Apple issuer information was supplied; working credentials are saved in the local
-`jamloom-live-notary` Keychain profile. No more credential action is needed.
+`jamloom-live-notary` Keychain profile. No more credential action is needed. Download at [Live DJ](https://www.jamloom.com/live-dj); the verified app is installed in Applications with capture stopped. Settings is available with ⌘,. Version 0.4.0 can install signed updates; older versions need one manual download.
 Follow [release maintenance](live-companion-release.md) for subsequent versions.
 The private Sparkle update-signing key is in Keychain; preserve it securely.
 The older launch-last note below is superseded for this companion delivery only.
@@ -109,7 +109,7 @@ integration. [Implementation, evidence and exact configuration names](inline-pay
 
 ## Live DJ two-deck acceptance — 2026-10-22
 
-Current local build is 0.3.0 (3), protocol 2. The matching website is the local preview, not the older public deployment. In the companion use **Website pairing → Copy code and open local preview**; paste into `http://127.0.0.1:4234/live-dj`. [Current sampler, qualification and release evidence](live-dj-finish.md).
+Current public build is 0.4.0 (4), protocol 2. Use **Website pairing → Copy pairing code and open website**, then connect at `https://www.jamloom.com/live-dj`. The previous 0.3.0 local-only workflow is superseded. [Current sampler, qualification and release evidence](live-dj-finish.md).
 
 **Physical checks resumed on 2026-10-22.** The owner specified LG Ultra HD speakers without headphones, permitted the MacBook Air microphone and authorized the agent to choose sources. Two owned generated sources (`afplay` and Chromium) passed a one-minute routing/control/sampler check; a louder CC0 music/recovery test also passed and the owner accepted normal playback as “Audible and clean.” Remote Panic/restart, independent deck stop/restart, source exit, silent-source rejection and heartbeat loss pass. Actual idle sleep stopped both routes during the first endurance attempt; the fresh 3,600.01-second run passed with no reported timing faults and bounded memory. The companion now keeps the Mac awake only while a deck captures; Stop releases this activity and manual sleep still stops capture. For broader musical acceptance, verify each deck separately before combining them. Confirm A/B isolation, no doubled original sound, crossfader/channel/mute, reverse/loop/scratch/Return to live and accompaniment fit. Confirm Stop restores source audio, while Mute keeps the captured source silent. Capture neither personal calls nor unrelated microphone audio.
 

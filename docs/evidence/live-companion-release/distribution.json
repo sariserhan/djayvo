@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "publicDownload": "https://github.com/sariserhan/jamloom/releases/download/live-v0.4.0/Jamloom-Live-0.4.0-macOS.zip",
+  "sha256": "198d96dc809efc7caeb272b976e036f4e2da79204390d3a73d267ceae07d356f",
+  "freshExtractSignatureAndGatekeeper": "PASS",
+  "stapledTicket": "PASS",
+  "hostedSignedFeed": "PASS",
+  "tamperedFeedRejected": true,
+  "updateTest": "Synthetic older version 0.3.9 (3), same signed application, separate owned copy; Install Update downloaded installed and relaunched real public 0.4.0 (4).",
+  "actualUpgrade": "PASS",
+  "pidBefore": 46167,
+  "pidAfter": 46961,
+  "installedBuild": "4",
+  "physicalCapture": "NOT RUN in this packaging check",
+  "installedApp": "/Applications/Jamloom Live.app",
+  "automaticCheckPreference": "Observed persistent enabled preference across quit/relaunch; restored to off"
+}

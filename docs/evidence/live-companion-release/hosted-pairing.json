@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "url": "https://www.jamloom.com/live-dj",
+  "native": "/Applications/Jamloom Live.app",
+  "browser": "Chromium",
+  "realHostedPage": true,
+  "realInstalledCompanion": true,
+  "pairing": "PASS",
+  "nativeStoppedStatus": "PASS",
+  "controlsDisabledUntilCapture": "PASS",
+  "disconnect": "PASS",
+  "captureStarted": false,
+  "microphoneStarted": false
+}
