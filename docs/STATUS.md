@@ -1,8 +1,14 @@
+## Owner acceptance — 2026-10-22
+
+**PASS, product acceptance:** The owner considers Basic / Live DJ and Pro v1 finished and directs work to the remaining Jamloom products. The tested setup and published release are accepted. Deferred MIDI, headphone and unplug checks are post-release qualification, not completion blockers; their evidence remains NOT RUN. The earlier interrupted endurance attempt remains an unresolved reliability observation alongside the passing rerun.
+
+Next work is AI improvisation quality and integration, Music DNA musical acceptance, and remaining Academy acceptance; iOS follows those products and general launch operations stay last. Existing human-review deferrals remain in effect. See the [current roadmap](../TODO.md). This decision does not promote a research model or open other product sales.
+
 ## Pro v1 completion — 2026-10-22
 
 **PASS: Pro v1 implementation and technical release checks. PARTIAL: physical qualification.** Basic stays free; Pro v1 is $49 once plus tax, with Mac and web access. Signed 1.0.0 download, real upgrade, production catalogue/activation, installed-app playback, owner LG listening and a continuous 3603-second diagnostic rerun pass. The first endurance attempt stopped after about 31 minutes; its cause remains unknown and evidence is retained. Physical MIDI/headphones are unavailable, unplug is deferred, and no live charge was made. Production sales are enabled and the GitHub deployment is verified. Pro 1.0.0 is a stable public release. [Current report](pro-v1-release.md). Earlier preview notes below are historical.
 
-# Current: Basic and Pro editions — 2026-10-22
+# Historical preview: Basic and Pro editions — 2026-10-22
 
 **PASS, local implementation; PARTIAL, release.** Existing companion designated Basic/free; Pro shares the complete web Performance Studio with physical-style decks and saved sample banks. Technical/browser/native/package checks and real local-backend Aurowall playback pass. Public Pro delivery/catalogue access, pricing/paid activation, actual Pro update and new hardware/listening evidence remain open. Basic public 0.4.0 delivery is unchanged. [Current report](jamloom-pro.md).
 

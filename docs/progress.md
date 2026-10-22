@@ -1,3 +1,9 @@
+## Owner acceptance — 2026-10-22
+
+**PASS, product acceptance:** The owner considers Basic / Live DJ and Pro v1 finished and directs work to the remaining Jamloom products. The tested setup and published release are accepted. Deferred MIDI, headphone and unplug checks are post-release qualification, not completion blockers; their evidence remains NOT RUN. The earlier interrupted endurance attempt remains an unresolved reliability observation alongside the passing rerun.
+
+Next work is AI improvisation quality and integration, Music DNA musical acceptance, and remaining Academy acceptance; iOS follows those products and general launch operations stay last. Existing human-review deferrals remain in effect. See the [current roadmap](../TODO.md). This decision does not promote a research model or open other product sales.
+
 ## Pro v1 completion — 2026-10-22
 
 **Stripe test recheck — PASS:** Rebuilt current sources and repeated actual Stripe TEST hosted Checkout against disposable local Postgres. The $49 payment and full $49 refund succeeded; decline, signed/duplicate webhooks, owner isolation, sandbox license boundaries and offline refund revocation pass. Production configuration was unchanged. [Evidence](evidence/pro-v1/stripe-retest-20261022.json).

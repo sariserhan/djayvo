@@ -2,6 +2,10 @@
 
 **PASS: implementation, sandbox commerce and technical release checks. PARTIAL: physical qualification.** The owner approved **$49 USD once for Pro v1** and confirmed LG speakers only, without a MIDI controller or separate headphones. Basic remains free. Paid generation, Academy sales, iOS distribution and unrelated launch gates remain closed.
 
+## Owner product acceptance
+
+**PASS — 2026-10-22:** Owner: “okay lets consider this product finished and move on with the new products or whats left in the spec”. Basic / Live DJ and Pro v1 are accepted complete for the tested setup. The physical qualification rows below remain accurate, deferred post-release work; they do not block moving to the remaining products. The interrupted endurance attempt remains recorded with unknown cause. No new test, live charge or deployment was performed for this acceptance decision.
+
 ## Implemented
 
 - Hosted Stripe Checkout uses the existing verified account, a server-verified one-time $49 price, automatic tax and idempotency. Paid access requires authoritative paid/captured payment state; signed callbacks, duplicate events, refunds, disputes and account suspension reconcile in Postgres. Pro never grants generation credits or Academy access.
