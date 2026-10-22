@@ -34,6 +34,9 @@ for (const [name, channels, duration] of [['long','mono','301'],['multichannel',
  execFileSync('ffmpeg',['-hide_banner','-loglevel','error','-nostdin','-f','lavfi','-i','anullsrc=r=32000:cl='+channels,'-t',duration,'-c:a','flac',file]);
  await assert.rejects(replayAudio(await fs.readFile(file),48000),/bounds/);
 }
+const sample=await add('sampler_audio',tone(550),'sample.wav');
+p.sources.schema_version='3.0-mix-sources';Object.assign(p.sources.snapshots[0],Object.fromEntries(Array.from({length:8},(_,i)=>['sample'+i,i===0?sample:null])));
+p.automation.schema_version='4.0-mix-automation';p.automation.initial_sampler=[{pad:0,started_context_frame:0,duration:1,settings:{start:.1,end:.3,pitch:-5,level:.8,loop:true}}];
 const c=await add('generated_wav',tone(440),'c.wav');
 const wasm=await fs.readFile(path.join(root,'dist/web/engine/jamloom_live.wasm'));
 const rack=await add('instrument_engine',wasm,'bank.wasm');
@@ -60,6 +63,8 @@ p.automation.events=[{kind:'tone_echo',context_frame:4096,target:'a',tone:60,ech
  {kind:'deck_effects',context_frame:12288,target:'b',reverb:.2,phaser:.2,flanger:.2},
  {kind:'clear_echo',context_frame:16384,target:'a',spacing_ms:100},
  {kind:'clear_deck_effects',context_frame:20480,target:'b'},
+ {kind:'sample_stop',context_frame:24576,pad:0},
+ {kind:'sample_start',context_frame:28672,pad:0,duration:1,settings:{start:.2,end:.7,pitch:7,level:.4,loop:false}},
  ...['a','b','c','rack'].map(target=>({kind:'gain',context_frame:40001,target,value:0}))];
 await fs.writeFile(path.join(output,'replay.json'),JSON.stringify(p));await fs.writeFile(path.join(output,'assets.json'),JSON.stringify(files));
 function run(args,kind='chromium') {return new Promise((resolve,reject)=>{const child=spawn(process.execPath,['scripts/replay_mix.mjs',...args],{cwd:root,env:{...process.env,JAMLOOM_BROWSER:kind},stdio:['ignore','pipe','pipe']});let text='';child.stdout.on('data',b=>text+=b);child.stderr.on('data',b=>text+=b);child.on('error',reject);child.on('exit',code=>resolve({code,text}));});}
@@ -87,7 +92,7 @@ const mismatch=await run([...args,path.join(output,'tampered')]);assert.notEqual
 const missing=structuredClone(p);missing.instrument=null;await fs.writeFile(path.join(output,'missing.json'),JSON.stringify(missing));
 const incomplete=await run([path.join(output,'missing.json'),args[1],path.join(output,'incomplete')]);assert.notEqual(incomplete.code,0);assert.match(incomplete.text,/Instrument action/);
 const receipt={status:'PASS',checks:['four-channel action reconstruction with shared instrument WASM and prepared C cancellation',
- 'deck rate, keylock, seek, loops, scratch and stop','gain/EQ, echo, reverb, phaser, flanger and resets',
+ 'sampler initial voices, trim, looping, pitch, stop/retrigger through shared rack FX','deck rate, keylock, seek, loops, scratch and stop','gain/EQ, echo, reverb, phaser, flanger and resets',
  'same-browser repeated PCM within existing 2-unit tolerance; hashes retained','finite stereo non-silence and scheduled end mute','MP3/FLAC bounded decoding; playlist and malformed input refused','source tamper refusal','missing instrument refusal','exclusive output directory'],
  results,artifacts:output,physical:'NOT RUN',listening:'NOT RUN'};
 await fs.writeFile(path.join(output,'evidence.json'),JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt,null,2));

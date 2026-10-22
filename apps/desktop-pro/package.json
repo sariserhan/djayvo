@@ -1,7 +1,7 @@
 {
   "name": "jamloom-pro",
   "productName": "Jamloom Pro",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Jamloom Performance Studio for Mac",
   "author": "Jamloom",
@@ -15,5 +15,8 @@
     "test:app": "node tests/app.mjs",
     "package": "npm run prepare:studio && node package.mjs"
   },
-  "devDependencies": { "electron": "45.0.0", "@electron/packager": "20.3.0" }
+  "devDependencies": {
+    "electron": "45.0.0",
+    "@electron/packager": "20.3.0"
+  }
 }

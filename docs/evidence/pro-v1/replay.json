@@ -1,0 +1,218 @@
+{
+  "status": "PASS",
+  "checks": [
+    "four-channel action reconstruction with shared instrument WASM and prepared C cancellation",
+    "sampler initial voices, trim, looping, pitch, stop/retrigger through shared rack FX",
+    "deck rate, keylock, seek, loops, scratch and stop",
+    "gain/EQ, echo, reverb, phaser, flanger and resets",
+    "same-browser repeated PCM within existing 2-unit tolerance; hashes retained",
+    "finite stereo non-silence and scheduled end mute",
+    "MP3/FLAC bounded decoding; playlist and malformed input refused",
+    "source tamper refusal",
+    "missing instrument refusal",
+    "exclusive output directory"
+  ],
+  "results": [
+    {
+      "kind": "chromium",
+      "repeat": 0,
+      "schema_version": "1.0-mix-replay-result",
+      "status": "PASS",
+      "scope": "observed_action_reconstruction",
+      "training_authorized": false,
+      "source_recording_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "replay_wav_sha256": "879c31c45fae2357bc1ffa076af82d028f5aef8569f680147759a98717b9fd89",
+      "input_sha256": "4602105574fb5dd713fbe7b3cf3959d8bd8213c00a94c560fab3549306eb5c1a",
+      "frames": 48000,
+      "sample_rate": 48000,
+      "exact_recording_match": false,
+      "automation_quantum_frames": 128,
+      "prior_dsp_history": "reset",
+      "decoded_sources": [
+        {
+          "source_sha256": "fbebe18263dba3207d1371242a69dd84fa36b6a42d377f793fe41ea10dc584bc",
+          "decoded_wav_sha256": "fbebe18263dba3207d1371242a69dd84fa36b6a42d377f793fe41ea10dc584bc",
+          "frames": 48000,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "7cacd794c2ec320c7fcbdf896b9517a8972aa31676b191ba57cbcad2210e8bd9",
+          "decoded_wav_sha256": "1d76c2b221ebc1fc648b51d46ec37c6c4a0907461f1e75703680c013bc65db4f",
+          "frames": 48431,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "85a86c443939a63441f28bf2baac0d0684261f1050c1ad97654b6c331f3f6a3f",
+          "decoded_wav_sha256": "85a86c443939a63441f28bf2baac0d0684261f1050c1ad97654b6c331f3f6a3f",
+          "frames": 48000,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "360d5c4991517c4416727009aa4dac57ce0af2f98c170e21fe08c413eab5df57",
+          "decoded_wav_sha256": "360d5c4991517c4416727009aa4dac57ce0af2f98c170e21fe08c413eab5df57",
+          "frames": 48000,
+          "sample_rate": 48000
+        }
+      ],
+      "transport": "Observed frames interpreted by the shared DeckDSP; historical decoder and worklet acceptance timing is not recoverable.",
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "network": "intercepted locally; no external requests",
+      "playback": "offline render only",
+      "input_file_sha256": "4602105574fb5dd713fbe7b3cf3959d8bd8213c00a94c560fab3549306eb5c1a"
+    },
+    {
+      "kind": "chromium",
+      "repeat": 1,
+      "schema_version": "1.0-mix-replay-result",
+      "status": "PASS",
+      "scope": "observed_action_reconstruction",
+      "training_authorized": false,
+      "source_recording_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "replay_wav_sha256": "6dae277802d87fd7c4add10236b394401c718b2a1adf826fe76cfacd380b8570",
+      "input_sha256": "4602105574fb5dd713fbe7b3cf3959d8bd8213c00a94c560fab3549306eb5c1a",
+      "frames": 48000,
+      "sample_rate": 48000,
+      "exact_recording_match": false,
+      "automation_quantum_frames": 128,
+      "prior_dsp_history": "reset",
+      "decoded_sources": [
+        {
+          "source_sha256": "fbebe18263dba3207d1371242a69dd84fa36b6a42d377f793fe41ea10dc584bc",
+          "decoded_wav_sha256": "fbebe18263dba3207d1371242a69dd84fa36b6a42d377f793fe41ea10dc584bc",
+          "frames": 48000,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "7cacd794c2ec320c7fcbdf896b9517a8972aa31676b191ba57cbcad2210e8bd9",
+          "decoded_wav_sha256": "1d76c2b221ebc1fc648b51d46ec37c6c4a0907461f1e75703680c013bc65db4f",
+          "frames": 48431,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "85a86c443939a63441f28bf2baac0d0684261f1050c1ad97654b6c331f3f6a3f",
+          "decoded_wav_sha256": "85a86c443939a63441f28bf2baac0d0684261f1050c1ad97654b6c331f3f6a3f",
+          "frames": 48000,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "360d5c4991517c4416727009aa4dac57ce0af2f98c170e21fe08c413eab5df57",
+          "decoded_wav_sha256": "360d5c4991517c4416727009aa4dac57ce0af2f98c170e21fe08c413eab5df57",
+          "frames": 48000,
+          "sample_rate": 48000
+        }
+      ],
+      "transport": "Observed frames interpreted by the shared DeckDSP; historical decoder and worklet acceptance timing is not recoverable.",
+      "browser": "chromium",
+      "browser_version": "149.0.7827.55",
+      "network": "intercepted locally; no external requests",
+      "playback": "offline render only",
+      "input_file_sha256": "4602105574fb5dd713fbe7b3cf3959d8bd8213c00a94c560fab3549306eb5c1a",
+      "repeat_max_pcm16": 1,
+      "repeat_different_samples": 6,
+      "repeat_exact": false
+    },
+    {
+      "kind": "webkit",
+      "repeat": 0,
+      "schema_version": "1.0-mix-replay-result",
+      "status": "PASS",
+      "scope": "observed_action_reconstruction",
+      "training_authorized": false,
+      "source_recording_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "replay_wav_sha256": "439247b7b0314f57867d92aff43e237cd25a88dc99a6a5b3f023b73ceecf8993",
+      "input_sha256": "4602105574fb5dd713fbe7b3cf3959d8bd8213c00a94c560fab3549306eb5c1a",
+      "frames": 48000,
+      "sample_rate": 48000,
+      "exact_recording_match": false,
+      "automation_quantum_frames": 128,
+      "prior_dsp_history": "reset",
+      "decoded_sources": [
+        {
+          "source_sha256": "fbebe18263dba3207d1371242a69dd84fa36b6a42d377f793fe41ea10dc584bc",
+          "decoded_wav_sha256": "fbebe18263dba3207d1371242a69dd84fa36b6a42d377f793fe41ea10dc584bc",
+          "frames": 48000,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "7cacd794c2ec320c7fcbdf896b9517a8972aa31676b191ba57cbcad2210e8bd9",
+          "decoded_wav_sha256": "1d76c2b221ebc1fc648b51d46ec37c6c4a0907461f1e75703680c013bc65db4f",
+          "frames": 48431,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "85a86c443939a63441f28bf2baac0d0684261f1050c1ad97654b6c331f3f6a3f",
+          "decoded_wav_sha256": "85a86c443939a63441f28bf2baac0d0684261f1050c1ad97654b6c331f3f6a3f",
+          "frames": 48000,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "360d5c4991517c4416727009aa4dac57ce0af2f98c170e21fe08c413eab5df57",
+          "decoded_wav_sha256": "360d5c4991517c4416727009aa4dac57ce0af2f98c170e21fe08c413eab5df57",
+          "frames": 48000,
+          "sample_rate": 48000
+        }
+      ],
+      "transport": "Observed frames interpreted by the shared DeckDSP; historical decoder and worklet acceptance timing is not recoverable.",
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "network": "intercepted locally; no external requests",
+      "playback": "offline render only",
+      "input_file_sha256": "4602105574fb5dd713fbe7b3cf3959d8bd8213c00a94c560fab3549306eb5c1a"
+    },
+    {
+      "kind": "webkit",
+      "repeat": 1,
+      "schema_version": "1.0-mix-replay-result",
+      "status": "PASS",
+      "scope": "observed_action_reconstruction",
+      "training_authorized": false,
+      "source_recording_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "replay_wav_sha256": "439247b7b0314f57867d92aff43e237cd25a88dc99a6a5b3f023b73ceecf8993",
+      "input_sha256": "4602105574fb5dd713fbe7b3cf3959d8bd8213c00a94c560fab3549306eb5c1a",
+      "frames": 48000,
+      "sample_rate": 48000,
+      "exact_recording_match": false,
+      "automation_quantum_frames": 128,
+      "prior_dsp_history": "reset",
+      "decoded_sources": [
+        {
+          "source_sha256": "fbebe18263dba3207d1371242a69dd84fa36b6a42d377f793fe41ea10dc584bc",
+          "decoded_wav_sha256": "fbebe18263dba3207d1371242a69dd84fa36b6a42d377f793fe41ea10dc584bc",
+          "frames": 48000,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "7cacd794c2ec320c7fcbdf896b9517a8972aa31676b191ba57cbcad2210e8bd9",
+          "decoded_wav_sha256": "1d76c2b221ebc1fc648b51d46ec37c6c4a0907461f1e75703680c013bc65db4f",
+          "frames": 48431,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "85a86c443939a63441f28bf2baac0d0684261f1050c1ad97654b6c331f3f6a3f",
+          "decoded_wav_sha256": "85a86c443939a63441f28bf2baac0d0684261f1050c1ad97654b6c331f3f6a3f",
+          "frames": 48000,
+          "sample_rate": 48000
+        },
+        {
+          "source_sha256": "360d5c4991517c4416727009aa4dac57ce0af2f98c170e21fe08c413eab5df57",
+          "decoded_wav_sha256": "360d5c4991517c4416727009aa4dac57ce0af2f98c170e21fe08c413eab5df57",
+          "frames": 48000,
+          "sample_rate": 48000
+        }
+      ],
+      "transport": "Observed frames interpreted by the shared DeckDSP; historical decoder and worklet acceptance timing is not recoverable.",
+      "browser": "webkit",
+      "browser_version": "26.5",
+      "network": "intercepted locally; no external requests",
+      "playback": "offline render only",
+      "input_file_sha256": "4602105574fb5dd713fbe7b3cf3959d8bd8213c00a94c560fab3549306eb5c1a",
+      "repeat_max_pcm16": 0,
+      "repeat_different_samples": 0,
+      "repeat_exact": true
+    }
+  ],
+  "artifacts": "/Users/serhansari/Documents/projects/jamloom/renders/mix-action-replay-qjiXId",
+  "physical": "NOT RUN",
+  "listening": "NOT RUN"
+}

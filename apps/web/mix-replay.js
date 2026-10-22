@@ -1,3 +1,4 @@
+import { trimSample } from './sampler.js';
 import { validateMixRecording } from './mix-recording.js';
 import { validateMixAutomation } from './mix-automation.js';
 import { validateMixSources } from './mix-sources.js';
@@ -17,7 +18,7 @@ export function validateMixReplay(input) {
       input.schema_version !== '1.0-mix-replay') throw Error('Invalid mix replay package');
   const r = validateMixRecording(input.recording);
   validateMixAutomation(input.automation, r); validateMixSources(input.sources, r); validateMixTransport(input.transport, r);
-  if(input.sources.assets.some(asset=>asset.kind==='sampler_audio'))throw Error('Sampler performances are preserved in the recorded WAV and instruments stem. Control replay does not include sampler triggers.');
+  if(input.sources.assets.some(asset=>asset.kind==='sampler_audio')&&input.automation.schema_version!=='4.0-mix-automation')throw Error('This older recording has no sampler control trace. Use its recorded WAV.');
   if (r.timestamp_discontinuities) throw Error('Discontinuous recording cannot be aligned for replay');
   const start = Math.min(input.automation.snapshot_context_frame, input.sources.snapshots[0].context_frame,
     input.transport.events[0].context_frame);
@@ -147,6 +148,24 @@ function preparedClips(input, decoded, timing, context, mixer) {
   }
 }
 
+export function replaySamples(input,decoded,timing,context,destination){
+  const voices=new Map(),trace=input.automation;
+  const stop=(pad,frame)=>{const voice=voices.get(pad);if(!voice)return;const at=Math.max(0,(frame-timing.start)/timing.rate);voice.gain.gain.setTargetAtTime(0,at,.003);voice.source.stop(at+.02);voices.delete(pad);};
+  const start=(event,frame,started=frame)=>{
+    if(frame>=timing.end)return;
+    const id=sourceAt(input,frame)['sample'+event.pad],buffer=decoded.get(id),s=event.settings;
+    if(!buffer||input.sources.assets[id]?.kind!=='sampler_audio'||Math.abs(buffer.duration-event.duration)>(buffer.replayDurationTolerance??2/timing.rate))throw Error('Sampler source missing or duration mismatch');
+    stop(event.pad,frame);
+    const source=context.createBufferSource(),gain=context.createGain(),at=Math.max(0,(frame-timing.start)/timing.rate),elapsed=(frame-started)/timing.rate,speed=2**(s.pitch/12);
+    source.buffer=trimSample(context,buffer,s.start,Math.min(s.end,buffer.duration));source.loop=s.loop;source.playbackRate.value=speed;
+    const position=elapsed*speed;if(!s.loop&&position>=source.buffer.duration)return;
+    gain.gain.setValueAtTime(s.level*.35*(1-Math.exp(-elapsed/.003)),at);gain.gain.setTargetAtTime(s.level*.35,at,.003);
+    source.connect(gain);gain.connect(destination);source.start(at,position%source.buffer.duration);voices.set(event.pad,{source,gain});
+  };
+  for(const voice of trace.initial_sampler??[])start(voice,trace.snapshot_context_frame,voice.started_context_frame);
+  for(const event of trace.events){if(event.kind==='sample_start')start(event,event.context_frame);else if(event.kind==='sample_stop')stop(event.pad,event.context_frame);}
+}
+
 export async function replayMix(input, readAsset, decodeSource = async bytes => bytes) {
   const timing = validateMixReplay(input), decoded = new Map(), bytes = new Map();
   const context = new OfflineAudioContext(2, timing.frames, timing.rate);
@@ -154,7 +173,7 @@ export async function replayMix(input, readAsset, decodeSource = async bytes => 
   for (const [index, asset] of input.sources.assets.entries()) {
     const data = await readAsset(asset.sha256);
     if (!(data instanceof ArrayBuffer) || data.byteLength !== asset.bytes || await sha256(data) !== asset.sha256) throw Error('Replay source hash or size mismatch');
-    if (['local_audio', 'generated_wav', 'normalized_phrase_wav'].includes(asset.kind)) {
+    if (['local_audio', 'generated_wav', 'normalized_phrase_wav', 'sampler_audio'].includes(asset.kind)) {
       const canonical = await decodeSource(data, asset);
       const info = inspectReplayWav(canonical);
       const canonicalHash = await sha256(canonical);
@@ -194,6 +213,7 @@ export async function replayMix(input, readAsset, decodeSource = async bytes => 
   };
   for (const [index, slot] of ['a', 'b'].entries()) play(renderDeckActions(input, slot, decoded, timing), mixer.strips[index].input);
   preparedClips(input, decoded, timing, context, mixer);
+  replaySamples(input,decoded,timing,context,mixer.rackFX.input);
   if (input.instrument) {
     const { take, start_context_frame: origin } = input.instrument;
     const wav = await replayTake(take, bytes.get(take.engine_sha256));

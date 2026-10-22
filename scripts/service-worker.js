@@ -3,11 +3,12 @@
 const ASSETS = __JAMLOOM_ASSETS__;
 const PREFIX = `djayvo-studio:${self.registration.scope}:`;
 const CACHE = PREFIX + '__JAMLOOM_VERSION__';
-const assets = new Map(Object.entries(ASSETS).map(([name, details]) => [new URL(name, self.registration.scope).href, details]));
+const hostedPro = new URL(self.registration.scope).pathname === '/studio/';
+const assets = new Map(Object.entries(ASSETS).filter(([name]) => !hostedPro || !name.endsWith('.html') || name === 'dj.html').map(([name, details]) => [new URL(name, self.registration.scope).href, details]));
 
 async function verifiedResponse(url, signal) {
   const expected = assets.get(url);
-  const response = await fetch(url, { cache: 'no-store', credentials: 'omit', redirect: 'error', signal });
+  const response = await fetch(url, { cache: 'no-store', credentials: 'same-origin', redirect: 'error', signal });
   if (!response.ok) throw new Error('Offline download failed');
   const reader = response.body.getReader(), chunks = [];
   let length = 0;
@@ -64,6 +65,22 @@ self.addEventListener('fetch', event => {
   if (!assets.has(key)) return;
   event.respondWith((async () => {
     const cached = await (await caches.open(CACHE)).match(key);
+    if (hostedPro && url.pathname === '/studio/dj.html') {
+      try {
+        const access = await fetch('/api/pro/access', {cache:'no-store', credentials:'same-origin', signal:AbortSignal.timeout(10000)});
+        if (access.status === 401 || access.status === 403 || (access.ok && !(await access.json()).active)) { await (await caches.open(CACHE)).delete(key); return Response.redirect(new URL('/pro', url).href); }
+        if (!access.ok) throw Error('Access check unavailable');
+        if (cached) {
+          const headers = new Headers(cached.headers);
+          headers.set('X-Jamloom-Pro-Expires', String(Date.now() + 30 * 86400000));
+          const renewed = new Response(await cached.arrayBuffer(), {headers});
+          await (await caches.open(CACHE)).put(key, renewed.clone());
+          return renewed;
+        }
+      } catch {
+        if (!cached || Number(cached.headers.get('X-Jamloom-Pro-Expires')) <= Date.now()) return new Response('Reconnect to renew Pro access. Your saved music is unchanged.', {status:503, headers:{'Content-Type':'text/plain'}});
+      }
+    }
     if (cached) return cached;
     // Eviction/removal cannot mix a newer engine with an older open page.
     try { return await verifiedResponse(key, AbortSignal.timeout(15000)); }

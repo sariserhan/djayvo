@@ -6,7 +6,7 @@ import {comingSoonEnabled,comingSoonRecovery,comingSoonResponse} from './lib/com
 
 export async function proxy(request: NextRequest) {
   const path=request.nextUrl.pathname;
-  const recovery=/^\/(admin|account|contact|support)(\/|$)/.test(path)||['/maintenance','/api/site-status','/api/contact','/api/notifications','/api/payments/stripe','/api/academy/stripe'].includes(path)||path.startsWith('/api/admin/')||path.startsWith('/api/auth/');
+  const recovery=/^\/(admin|account|contact|support)(\/|$)/.test(path)||['/maintenance','/api/site-status','/api/contact','/api/notifications','/api/payments/stripe','/api/academy/stripe','/api/pro/stripe','/api/pro/refresh'].includes(path)||path.startsWith('/api/admin/')||path.startsWith('/api/auth/');
   let configured=false;try{readConfig();configured=true;}catch{}
   let launchBypass=false;
   if(comingSoonEnabled()&&!comingSoonRecovery(path)){
@@ -26,6 +26,12 @@ export async function proxy(request: NextRequest) {
       // Existing installations can migrate before enabling controls; other DB failures fail closed.
       if((error as {code?:string}).code!=='42P01')return new NextResponse('Jamloom is temporarily unavailable.',{status:503,headers:{'Cache-Control':'no-store','Retry-After':'60'}});
     }
+  }
+  if(path==='/studio/dj.html'){
+    try{const {services}=await import('./lib/services');const {proAccess}=await import('./lib/pro-access');const {auth,pool}=services();const session=await auth.api.getSession({headers:request.headers});
+      if(!session?.user.emailVerified||!await proAccess(pool,session.user.id,process.env.PRO_BILLING_MODE==='live'))return NextResponse.redirect(new URL('/pro',request.url));
+    }catch{return new NextResponse('Pro access could not be verified. Your local files are unchanged.',{status:503,headers:{'Cache-Control':'private, no-store'}});}
+    const response=NextResponse.next();response.headers.set('Cache-Control','private, no-store');response.headers.set('X-Jamloom-Pro-Expires',String(Date.now()+30*86400000));return response;
   }
   if(!/^\/(account|library|catalogue|playlists|review|admin|contact|support)(\/|$)/.test(path)){const response=NextResponse.next();if(launchBypass)response.headers.set('Cache-Control','private, no-store');return response;}
   const nonce = btoa(crypto.randomUUID());

@@ -20,7 +20,7 @@ test('metadata follows runtime launch mode and never advertises private routes',
     assert.ok(Array.isArray(rules.disallow));
     for(const path of ['/account','/admin','/api/','/academy/checkout','/academy/progress'])assert.ok(rules.disallow.includes(path));
    }else{
-    assert.deepEqual(map,[{url:origin+'/'}]);
+    assert.deepEqual(map,['/','/pro','/live-dj','/dj-studio','/pricing','/download'].map(p=>({url:origin+p})));assert.ok(rules.allow?.includes('/pro$'));
     assert.equal(rules.disallow,'/');assert.ok(rules.allow?.includes('/$'));
    }
   }

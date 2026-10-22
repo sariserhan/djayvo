@@ -1,3 +1,8 @@
+## Pro v1 completion — 2026-10-22
+
+- [x] **PRO-004 — PASS:** Approved $49 one-time Pro v1; verified checkout/refunds, signed Mac activation, web offline entitlement, sampler control replay and notarized 1.0.0 candidate. [Report](docs/pro-v1-release.md).
+- [ ] **PRO-005 — PARTIAL:** Public installer/feed, actual upgrade, hosted CI/deployment, one-hour runtime and owner speaker listening in progress. No MIDI/headphones available; cable unplug deferred.
+
 ## Basic and Pro editions — 2026-10-22
 
 - [x] **PRO-001 — PASS, local:** Existing companion stays Basic/free; shared web/Mac professional console, physical-style jogs/rotary controls/faders, eight sample pads/four banks, full existing Performance Studio, native Settings and isolated update integration. [Report](docs/jamloom-pro.md).

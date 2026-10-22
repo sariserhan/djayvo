@@ -28,7 +28,7 @@ export function AccountForm({ mode, token }: { mode: Mode; token?: string }) {
           : mode === 'reset-password' ? 'This reset link may have expired. Request a new link.'
           : 'Unable to complete this request. Please try again.');
       } else if (mode === 'sign-in') {
-        let destination='/account';
+        let destination=new URLSearchParams(window.location.search).get('returnTo')==='/pro'?'/pro':'/account';
         try { if(sessionStorage.getItem('jamloom-save-selection'))destination='/library'; } catch {}
         window.location.assign(destination);
       } else {

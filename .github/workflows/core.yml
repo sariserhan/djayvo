@@ -80,6 +80,7 @@ jobs:
           node --test ../web/tests/*.test.js
           npm run test:academy
           npm run test:admin
+          node --import tsx --test tests/pro.test.ts
   build:
     strategy:
       fail-fast: false

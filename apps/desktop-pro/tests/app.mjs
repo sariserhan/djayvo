@@ -9,6 +9,7 @@ const require=createRequire(import.meta.url),here=fileURLToPath(new URL('../',im
 const output=await fs.mkdtemp(path.resolve(here,'../../renders/pro-desktop-'));
 const profile=await fs.mkdtemp(path.join(os.tmpdir(),'jamloom-pro-test-'));
 const env={...process.env};delete env.ELECTRON_RUN_AS_NODE;
+if(process.env.JAMLOOM_PRO_TEST_LICENSE)await fs.writeFile(path.join(profile,'pro.license'),process.env.JAMLOOM_PRO_TEST_LICENSE,{mode:0o600});
 const checks=[],errors=[];let app,page;
 const check=name=>{checks.push(name);console.log('PASS',name);};
 function tone(seconds=8){const rate=48000,n=rate*seconds,b=Buffer.alloc(44+n*2);b.write('RIFF');b.writeUInt32LE(b.length-8,4);b.write('WAVEfmt ',8);b.writeUInt32LE(16,16);b.writeUInt16LE(1,20);b.writeUInt16LE(1,22);b.writeUInt32LE(rate,24);b.writeUInt32LE(rate*2,28);b.writeUInt16LE(2,32);b.writeUInt16LE(16,34);b.write('data',36);b.writeUInt32LE(n*2,40);for(let i=0;i<n;i++)b.writeInt16LE(Math.sin(i*2*Math.PI*220/rate)*8000,44+i*2);return {name:'cleared-test-tone.wav',mimeType:'audio/wav',buffer:b};}
@@ -59,14 +60,24 @@ try{
  await page.locator('#sample-clear').click();await page.locator('#sample-restore').click();await page.waitForFunction(()=>document.querySelector('#sampler-status').textContent.includes('restored'));
  assert.equal(await page.locator('#sample-end').inputValue(),'1');assert.ok(await page.locator('#sample-loop').isChecked());
  check('sampler trim, looping, measured PCM, clear, atomic bank save and stopped restore');
+ await page.locator('#sample-pad-0').click();await page.waitForTimeout(300);
  await page.locator('#mix-record-consent').check();await page.locator('#mix-record-start').click();await page.waitForFunction(()=>!document.querySelector('#mix-record-stop').disabled);
- await page.locator('#sample-pad-0').click();await page.waitForTimeout(350);await page.locator('#sample-stop').click();await page.locator('#mix-record-stop').click();await page.waitForFunction(()=>!document.querySelector('#mix-record-wav').hidden);
+ await page.locator('#sample-pad-0').click();await page.waitForTimeout(50);await page.locator('#sample-pad-0').click();await page.waitForTimeout(350);await page.locator('#sample-stop').click();await page.locator('#mix-record-stop').click();await page.waitForFunction(()=>!document.querySelector('#mix-record-wav').hidden);
  await app.evaluate(({session},dir)=>{session.defaultSession.on('will-download',(_event,item)=>item.setSavePath(dir+'/'+item.getFilename()));},output);
  await page.locator('#mix-record-wav').click();await page.waitForTimeout(500);
  const files=await fs.readdir(output),wav=files.find(name=>name.endsWith('.wav'));assert.ok(wav);const bytes=await fs.readFile(path.join(output,wav));assert.equal(bytes.toString('ascii',0,4),'RIFF');assert.ok(bytes.length>1000);
  await page.waitForFunction(()=>!document.querySelector('#mix-record-sources').hidden);
  const inventory=await page.locator('#mix-record-sources').evaluate(async node=>(await fetch(node.href)).json());assert.ok(inventory.assets.some(asset=>asset.kind==='sampler_audio'));
- check('native download exports actual recorded WAV with sampler source fingerprints');
+ const captureDetails=await page.locator('#mix-record-json').evaluate(async node=>(await fetch(node.href)).json());await fs.writeFile(path.join(output,'recording.json'),JSON.stringify(captureDetails,null,2));
+ const replay=await page.evaluate(async original=>{
+ const read=async id=>(await fetch(document.getElementById(id).href)).json();
+ const [{replayMix},{sha256}]=await Promise.all([import('./mix-replay.js'),import('./live-take.js')]);
+ const assets=new Map();for(const value of original){const bytes=new Uint8Array(value).buffer;assets.set(await sha256(bytes),bytes);}
+ const automation=await read('mix-record-automation');if(!automation.events.some(e=>e.kind==='sample_start')||!automation.events.some(e=>e.kind==='sample_stop'))throw Error('Missing sampler controls');
+ const result=await replayMix({schema_version:'1.0-mix-replay',recording:await read('mix-record-json'),automation,sources:await read('mix-record-sources'),transport:await read('mix-record-transport'),instrument:null},hash=>assets.get(hash));
+ const samples=new Int16Array(result.wav,44);return {frames:result.report.frames,peak:Math.max(...samples.map(Math.abs))};
+ },[[...tone().buffer],[...tone(2).buffer]]);assert.ok(replay.peak>0&&replay.frames>1000);
+ check('native WAV and sampler source fingerprints reconstruct audible sampler controls offline');
  await page.locator('#sample-loop').uncheck();await page.locator('#sample-save').click();await page.waitForFunction(()=>document.querySelector('#sampler-status').textContent.includes('saved on this device'));
  await page.evaluate(()=>window.jamloomDesktop.saveSettings({catalogue:false,automaticUpdates:false}));
  const prefsPromise=app.waitForEvent('window');await page.evaluate(()=>window.jamloomDesktop.openSettings());const prefs=await prefsPromise;await prefs.waitForSelector('#catalogue');assert.equal(await prefs.locator('#catalogue').isChecked(),false);await prefs.screenshot({path:path.join(output,'settings.png')});

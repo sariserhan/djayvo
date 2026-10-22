@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Unlicensed packaged app stays in activation settings",
+    "Invalid, tampered, expired and sandbox activation files rejected",
+    "Valid signed owner license opens the full studio and is stored privately",
+    "Provider outage preserves valid offline access",
+    "Packaged relaunch retains activation and opens stopped",
+    "Confirmed revoked access removes renewal file and returns to activation on reopen"
+  ],
+  "hardware": "NOT RUN"
+}

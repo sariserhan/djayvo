@@ -23,7 +23,7 @@ export function validateMixRecording(recording) {
   return recording;
 }
 
-export function attachMixRecording({ graph, context, mixer, getSources, getTransport }) {
+export function attachMixRecording({ graph, context, mixer, getSources, getTransport, getSampler }) {
   const $ = id => document.getElementById(id);
   let state = 'idle', version = 0, node, sink, nodeError, timer, started, loaded = false, urls = [];
   let sourceCapture, sourceJob, transportCapture;
@@ -121,7 +121,7 @@ export function attachMixRecording({ graph, context, mixer, getSources, getTrans
       if (token !== version || !$('mix-record-consent').checked) return;
       const includeStems = $('mix-record-stems').checked;
       if (includeStems && context().sampleRate > 96000) throw Error('Stems support up to 96 kHz. Turn off stems to record at this rate.');
-      const automation = new MixAutomation(mixer(), context());
+      const automation = new MixAutomation(mixer(), context(), getSampler?.());
       const transport = transportCapture = new MixTransport(getTransport, context());
       mixer().automationTrace = automation;
       const inventory = new MixSources();

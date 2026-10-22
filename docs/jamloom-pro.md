@@ -1,3 +1,7 @@
+## Pro v1 completion — 2026-10-22
+
+**PASS: $49 one-time licensing, sandbox checkout/refunds, sampler replay and signed 1.0.0 candidate. PARTIAL: release and qualification.** Basic stays free. Mac activation and web offline access are bounded to 30 days and preserve local music. Public distribution/update, hosted validation, hour-long completion and Pro speaker listening are still being checked; MIDI/headphones are unavailable and unplug remains deferred. [Current report](pro-v1-release.md). Earlier preview notes below are historical.
+
 # Jamloom Basic and Pro — 2026-10-22
 
 **PASS, local implementation. PARTIAL, release readiness.** The owner designated the existing Live DJ companion Basic and free, and requested a professional deck shared between the website and desktop. No price, checkout, entitlement enforcement or public Pro release is activated.

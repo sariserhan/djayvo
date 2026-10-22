@@ -56,3 +56,16 @@ test('extensible PCM validates its subformat and channel mapping before decoding
   assert.equal(inspectReplayWav(bytes).frames, 128);
   v.setUint8(59, 0); assert.throws(() => inspectReplayWav(bytes), /extensible/);
 });
+
+test('sampler replay validates bounded controls and refuses older missing traces',()=>{
+ const p=replayFixture();p.sources.schema_version='3.0-mix-sources';
+ Object.assign(p.sources.snapshots[0],Object.fromEntries(Array.from({length:8},(_,i)=>['sample'+i,i===0?0:null])));
+ p.sources.assets.push({kind:'sampler_audio',sha256:'b'.repeat(64),bytes:100});
+ assert.throws(()=>validateMixReplay(p),/no sampler control trace/);
+ p.automation.schema_version='4.0-mix-automation';p.automation.initial_sampler=[];
+ const start={kind:'sample_start',pad:0,context_frame:128,duration:1,settings:{start:.1,end:.8,pitch:4,level:.7,loop:true}};
+ p.automation.events=[start,{kind:'sample_stop',pad:0,context_frame:24000}];assert.equal(validateMixReplay(p).frames,48000);
+ for(const change of [s=>s.pad=8,s=>s.duration=Infinity,s=>s.settings.end=2,s=>s.settings.pitch=13,s=>s.settings.extra=1,s=>s.context_frame=-1]){const bad=structuredClone(p);change(bad.automation.events[0]);assert.throws(()=>validateMixReplay(bad));}
+ p.automation.initial_sampler=[{pad:0,started_context_frame:0,duration:1,settings:start.settings}];assert.equal(validateMixReplay(p).frames,48000);
+ p.automation.initial_sampler.push(p.automation.initial_sampler[0]);assert.throws(()=>validateMixReplay(p),/initial sampler/);
+});

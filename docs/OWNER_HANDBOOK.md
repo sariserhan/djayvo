@@ -1,3 +1,7 @@
+## Pro v1 completion — 2026-10-22
+
+**PASS: $49 one-time licensing, sandbox checkout/refunds, sampler replay and signed 1.0.0 candidate. PARTIAL: release and qualification.** Basic stays free. Mac activation and web offline access are bounded to 30 days and preserve local music. Public distribution/update, hosted validation, hour-long completion and Pro speaker listening are still being checked; MIDI/headphones are unavailable and unplug remains deferred. [Current report](pro-v1-release.md). Earlier preview notes below are historical.
+
 ## Basic and Pro preview — 2026-10-22
 
 Basic is the existing free Live DJ companion. Pro is the shared Performance Studio for web and Mac, with realistic deck controls, instruments, recording and saved sample banks. [Preview instructions and evidence](jamloom-pro.md). Load your music into Deck A/B, confirm permission and press Play; startup is silent. Save sample banks separately from set scenes. Open `/Applications/Jamloom Pro.app`; the signed/notarized owner preview is installed. Settings is ⌘,.

@@ -1,3 +1,4 @@
+import { validSampleSettings } from './sampler.js';
 import { MIX_GAIN_TARGETS, validMixerGain, validToneEcho } from './mixer.js';
 import { validDeckEffects } from './deck-effects.js';
 
@@ -6,16 +7,18 @@ const effectTargets = ['a', 'b', 'c', 'rack'];
 const exact = (value, keys) => value && typeof value === 'object' && !Array.isArray(value) &&
   Object.keys(value).sort().join(',') === [...keys].sort().join(',');
 const frame = n => Number.isSafeInteger(n) && n >= 0;
+const sample=v=>Number.isInteger(v.pad)&&v.pad>=0&&v.pad<8&&exact(v.settings,['start','end','level','pitch','loop'])&&validSampleSettings(v.settings,v.duration);
 const effectState = value => exact(value, ['tone', 'echo', 'spacing_ms']) &&
   validToneEcho(value.tone, value.echo, value.spacing_ms);
 
 export function validateMixAutomation(trace, receipt) {
   const legacy = trace?.schema_version === '1.0-mix-gain-automation';
-  const advanced=trace?.schema_version==='3.0-mix-automation';
+  const sampled=trace?.schema_version==='4.0-mix-automation';
+  const advanced=sampled||trace?.schema_version==='3.0-mix-automation';
   if (!exact(trace, ['schema_version', 'scope', 'training_authorized', 'wav_sha256', 'sample_rate',
-    'observed_context_start_frame', 'snapshot_context_frame', 'initial_targets', 'events', ...(legacy ? [] : ['initial_effects']),...(advanced?['initial_deck_effects']:[])]) ||
+    'observed_context_start_frame', 'snapshot_context_frame', 'initial_targets', 'events', ...(legacy ? [] : ['initial_effects']),...(advanced?['initial_deck_effects']:[]),...(sampled?['initial_sampler']:[])]) ||
     (legacy ? trace.scope !== 'scheduled_gain_eq_targets' :
-      !['2.0-mix-automation','3.0-mix-automation'].includes(trace.schema_version) || trace.scope !== 'scheduled_gain_eq_fx_controls') ||
+      !['2.0-mix-automation','3.0-mix-automation','4.0-mix-automation'].includes(trace.schema_version) || trace.scope !== 'scheduled_gain_eq_fx_controls') ||
     trace.training_authorized !== false || typeof trace.wav_sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(trace.wav_sha256) ||
     !Number.isInteger(trace.sample_rate) || trace.sample_rate < 32000 || trace.sample_rate > 192000 ||
     !frame(trace.observed_context_start_frame) ||
@@ -29,6 +32,7 @@ export function validateMixAutomation(trace, receipt) {
     !effectTargets.every(target => effectState(trace.initial_effects[target]))))
     throw new Error('Invalid initial mixer effects');
   if(advanced&&(!exact(trace.initial_deck_effects,['a','b'])||!['a','b'].every(t=>validDeckEffects(trace.initial_deck_effects[t]))))throw Error('Invalid initial deck effects');
+  if(sampled&&(!Array.isArray(trace.initial_sampler)||trace.initial_sampler.length>8||new Set(trace.initial_sampler.map(v=>v.pad)).size!==trace.initial_sampler.length||trace.initial_sampler.some(v=>!exact(v,['pad','started_context_frame','settings','duration'])||!sample(v)||!frame(v.started_context_frame)||v.started_context_frame>trace.snapshot_context_frame)))throw Error('Invalid initial sampler');
   const spacing = legacy ? {} : Object.fromEntries(effectTargets.map(target => [target, trace.initial_effects[target].spacing_ms]));
   let previous = trace.snapshot_context_frame;
   for (const event of trace.events) {
@@ -44,6 +48,10 @@ export function validateMixAutomation(trace, receipt) {
     } else if (event?.kind === 'clear_echo') {
       valid = exact(event, ['context_frame', 'kind', 'target', 'spacing_ms']) &&
         effectTargets.includes(event.target) && event.spacing_ms === spacing[event.target];
+    } else if(sampled&&event?.kind==='sample_start'){
+      valid=exact(event,['kind','pad','context_frame','settings','duration'])&&sample(event);
+    } else if(sampled&&event?.kind==='sample_stop'){
+      valid=exact(event,['kind','pad','context_frame'])&&Number.isInteger(event.pad)&&event.pad>=0&&event.pad<8;
     } else if(advanced&&event?.kind==='deck_effects'){
       valid=exact(event,['context_frame','kind','target','reverb','phaser','flanger'])&&['a','b'].includes(event.target)&&validDeckEffects({reverb:event.reverb,phaser:event.phaser,flanger:event.flanger});
     } else if(advanced&&event?.kind==='clear_deck_effects'){
@@ -57,7 +65,8 @@ export function validateMixAutomation(trace, receipt) {
 }
 
 export class MixAutomation {
-  constructor(mixer, context) {
+  constructor(mixer, context, sampler) {
+    this.sampler=sampler===undefined?undefined:structuredClone(sampler);
     this.initial = { ...mixer.gainTargets };
     this.effects = Object.fromEntries(effectTargets.map(target => [target, { ...mixer.effects[target].targets }]));
     this.deckEffects=mixer.deckEffects?Object.fromEntries(['a','b'].map(target=>[target,{...mixer.deckEffects[target].targets}])):null;
@@ -79,11 +88,11 @@ export class MixAutomation {
     if (this.overflow || this.invalid) return null;
     // shortcut: prior DSP history is absent; capture it before promising exact historical master replay.
     return validateMixAutomation({
-      schema_version: this.deckEffects?'3.0-mix-automation':'2.0-mix-automation', scope: 'scheduled_gain_eq_fx_controls', training_authorized: false,
+      schema_version: this.sampler!==undefined?'4.0-mix-automation':this.deckEffects?'3.0-mix-automation':'2.0-mix-automation', scope: 'scheduled_gain_eq_fx_controls', training_authorized: false,
       wav_sha256: receipt.wav_sha256, sample_rate: receipt.sample_rate,
       observed_context_start_frame: receipt.observed_context_start_frame,
       snapshot_context_frame: this.frame, initial_targets: this.initial, initial_effects: this.effects, events: this.events,
-      ...(this.deckEffects?{initial_deck_effects:this.deckEffects}:{}),
+      ...(this.deckEffects?{initial_deck_effects:this.deckEffects}:{}),...(this.sampler!==undefined?{initial_sampler:this.sampler}:{}),
     }, receipt);
   }
 }

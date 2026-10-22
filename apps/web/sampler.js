@@ -26,7 +26,7 @@ export function attachSampler({graph,context,mixer,rights,onSourcesChanged}){
   for(const id of ['sample-save','sample-restore'])$(id).disabled=busy||!permitted();
   $('sample-delete-bank').disabled=busy;
  }
- function stop(i){const voice=voices.get(i);if(!voice)return;voices.delete(i);const now=context().currentTime;voice.gain.gain.cancelScheduledValues(now);voice.gain.gain.setTargetAtTime(0,now,.003);voice.source.stop(now+.02);refresh();}
+ function stop(i){const voice=voices.get(i);if(!voice)return;voices.delete(i);const now=context().currentTime;mixer().automationTrace?.append({kind:'sample_stop',pad:i,context_frame:Math.round(now*context().sampleRate)});voice.gain.gain.cancelScheduledValues(now);voice.gain.gain.setTargetAtTime(0,now,.003);voice.source.stop(now+.02);refresh();}
  function stopAll(){revision++;for(const i of [...voices.keys()])stop(i);}
  async function play(i){
   if(!permitted()||busy||!slots[i])return;
@@ -38,8 +38,8 @@ export function attachSampler({graph,context,mixer,rights,onSourcesChanged}){
    if(slot.rendered?.start!==s.start||slot.rendered?.end!==s.end)slot.rendered={start:s.start,end:s.end,buffer:trimSample(ctx,slot.buffer,s.start,s.end)};
    source.buffer=slot.rendered.buffer;source.playbackRate.value=2**(s.pitch/12);source.loop=s.loop;
    gain.gain.value=0;gain.gain.setTargetAtTime(s.level*.35,ctx.currentTime,.003);source.connect(gain);gain.connect(mixer().rackFX.input);
-   const voice={source,gain};voices.set(i,voice);source.onended=()=>{source.disconnect();gain.disconnect();if(voices.get(i)===voice)voices.delete(i);refresh();};
-   source.start();refresh();status(`Playing pad ${i+1}${s.loop?' · tap again to stop':''}. Sample volume also follows the instruments level and master.`);
+   const started=ctx.currentTime;const voice={source,gain,started_context_frame:Math.round(started*ctx.sampleRate),settings:{...s},duration:slot.buffer.duration};voices.set(i,voice);source.onended=()=>{source.disconnect();gain.disconnect();if(voices.get(i)===voice)voices.delete(i);refresh();};
+   source.start(started);mixer().automationTrace?.append({kind:'sample_start',pad:i,context_frame:voice.started_context_frame,settings:{...s},duration:slot.buffer.duration});refresh();status(`Playing pad ${i+1}${s.loop?' · tap again to stop':''}. Sample volume also follows the instruments level and master.`);
   }catch(error){status(error.message);}
  }
  async function decode(file){
@@ -78,5 +78,5 @@ export function attachSampler({graph,context,mixer,rights,onSourcesChanged}){
  $('sample-delete-bank').onclick=async()=>{if(busy)return;busy=true;refresh();try{await bankStore('readwrite',store=>store.delete($('sample-bank').value));status('Saved bank deleted. Loaded pads are unchanged.');}catch(error){status(error.message);}finally{busy=false;refresh();}};
  for(const consent of [rights,$('sample-consent')])consent.addEventListener('change',()=>{if(!permitted()){stopAll();slots.fill(null);onSourcesChanged();status('Samples cleared from this session. Delete saved banks separately.');}refresh();});
  window.addEventListener('pagehide',stopAll);window.addEventListener('blur',stopAll);
- refresh();return {stop:stopAll,sources:()=>Object.fromEntries(slots.map((slot,i)=>['sample'+i,slot?.file??null]))};
+ refresh();return {stop:stopAll,snapshot:()=>[...voices].map(([pad,v])=>({pad,started_context_frame:v.started_context_frame,settings:{...v.settings},duration:v.duration})),sources:()=>Object.fromEntries(slots.map((slot,i)=>['sample'+i,slot?.file??null]))};
 }

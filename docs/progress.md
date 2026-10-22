@@ -1,3 +1,7 @@
+## Pro v1 completion — 2026-10-22
+
+**PASS: $49 one-time licensing, sandbox checkout/refunds, sampler replay and signed 1.0.0 candidate. PARTIAL: release and qualification.** Basic stays free. Mac activation and web offline access are bounded to 30 days and preserve local music. Public distribution/update, hosted validation, hour-long completion and Pro speaker listening are still being checked; MIDI/headphones are unavailable and unplug remains deferred. [Current report](pro-v1-release.md). Earlier preview notes below are historical.
+
 # Basic and Pro editions — 2026-10-22
 
 **PASS, local implementation; PARTIAL, release.** Basic remains free. The shared web/Mac Performance Studio now has physical-style decks, accessible rotary controls and custom sampler banks. Pro bundles the existing studio with sandboxed local assets, native permissions/settings, local persistence and guarded updates. Unit, Chromium/WebKit, real desktop, site and Basic tests pass; the real Aurowall catalogue plays through the existing local backend with muted output. Public Pro release, paid activation, actual upgrade and new physical/listening gates remain open. [Implementation and evidence](jamloom-pro.md).

@@ -18,7 +18,7 @@ async function refresh() {
   enable.disabled = available;
   remove.hidden = !registration && !stored;
   status.textContent = available
-    ? 'Studio saved for offline use. Reopen this page to use the saved copy. Updates apply after all studio tabs close.'
+    ? 'Studio saved for offline use. Reopen this page to use the saved copy. Updates apply after all studio tabs close.' + (location.pathname === '/studio/dj.html' ? ' Pro access renews online and lasts up to 30 days offline.' : '')
     : 'Save the studio once while online, then reopen it without a connection. Browser cleanup may remove the saved copy.';
 }
 

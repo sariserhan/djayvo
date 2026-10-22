@@ -1,0 +1,102 @@
+TAP version 13
+# Subtest: admin boundaries reject unverified identities, invalid settings and mixed Stripe environments
+ok 1 - admin boundaries reject unverified identities, invalid settings and mixed Stripe environments
+  ---
+  duration_ms: 1.604958
+  type: 'test'
+  ...
+# Subtest: real Postgres administration, durable mail, credit exemption and billing isolation
+    # Subtest: settings require real owner, reject stale writes and absent live credentials, audit cannot be edited
+    ok 1 - settings require real owner, reject stale writes and absent live credentials, audit cannot be edited
+      ---
+      duration_ms: 13.732958
+      type: 'test'
+      ...
+    # Subtest: contact transaction persists notification, reply is private and stale replay cannot email twice
+    ok 2 - contact transaction persists notification, reply is private and stale replay cannot email twice
+      ---
+      duration_ms: 28.891709
+      type: 'test'
+      ...
+    # Subtest: email failures remain durable, retry leases avoid concurrent sends, template escapes submitted content
+    ok 3 - email failures remain durable, retry leases avoid concurrent sends, template escapes submitted content
+      ---
+      duration_ms: 26.70725
+      type: 'test'
+      ...
+    # Subtest: only verified owner can reserve without credits; caps, actual costs, replays and frozen wallets remain enforced
+    ok 4 - only verified owner can reserve without credits; caps, actual costs, replays and frozen wallets remain enforced
+      ---
+      duration_ms: 30.341625
+      type: 'test'
+      ...
+    # Subtest: suspension removes sessions, cancels queued work with released credits, restore does not restore sessions
+    ok 5 - suspension removes sessions, cancels queued work with released credits, restore does not restore sessions
+      ---
+      duration_ms: 23.183875
+      type: 'test'
+      ...
+    # Subtest: owner course preview requires verified active identity and preserves prerequisites and receipts
+    ok 6 - owner course preview requires verified active identity and preserves prerequisites and receipts
+      ---
+      duration_ms: 13.957459
+      type: 'test'
+      ...
+    # Subtest: verified live and test receipts stay separate; wrong-mode signed events fail
+    ok 7 - verified live and test receipts stay separate; wrong-mode signed events fail
+      ---
+      duration_ms: 10.701083
+      type: 'test'
+      ...
+    1..7
+ok 2 - real Postgres administration, durable mail, credit exemption and billing isolation
+  ---
+  duration_ms: 536.475958
+  type: 'test'
+  ...
+# Subtest: Pro licenses are signed, bounded, expired, tamper-evident and distinct from sandbox
+ok 3 - Pro licenses are signed, bounded, expired, tamper-evident and distinct from sandbox
+  ---
+  duration_ms: 10.188541
+  type: 'test'
+  ...
+# Subtest: Pro purchases, reversals and licensing isolate accounts and environments in real Postgres
+    # Subtest: one-time $49 server price, tax and owner binding
+    ok 1 - one-time $49 server price, tax and owner binding
+      ---
+      duration_ms: 5.151125
+      type: 'test'
+      ...
+    # Subtest: verified receipt grants once across concurrent deliveries, no credits
+    ok 2 - verified receipt grants once across concurrent deliveries, no credits
+      ---
+      duration_ms: 27.959334
+      type: 'test'
+      ...
+    # Subtest: invalid and refunded authoritative payments never grant
+    ok 3 - invalid and refunded authoritative payments never grant
+      ---
+      duration_ms: 8.772833
+      type: 'test'
+      ...
+    # Subtest: signed event duplicates are idempotent; refunds, disputes and suspension revoke access
+    ok 4 - signed event duplicates are idempotent; refunds, disputes and suspension revoke access
+      ---
+      duration_ms: 58.399916
+      type: 'test'
+      ...
+    1..4
+ok 4 - Pro purchases, reversals and licensing isolate accounts and environments in real Postgres
+  ---
+  duration_ms: 670.304458
+  type: 'test'
+  ...
+1..4
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1604.906375

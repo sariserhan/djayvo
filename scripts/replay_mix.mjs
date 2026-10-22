@@ -35,7 +35,7 @@ for (const hash of hashes) {
   const bytes = await read(path.resolve(path.dirname(assetsPath), bindings[hash]), 100 * 1024 * 1024);
   if (await sha256(bytes) !== hash || input.sources.assets.some(a => a.sha256 === hash && a.bytes !== bytes.length)) throw Error('Source hash or size mismatch');
   assets.set(hash, bytes);
-  if (input.sources.assets.some(a => a.sha256 === hash && ['local_audio','generated_wav','normalized_phrase_wav'].includes(a.kind))) {
+  if (input.sources.assets.some(a => a.sha256 === hash && ['local_audio','generated_wav','normalized_phrase_wav','sampler_audio'].includes(a.kind))) {
     const canonical = await replayAudio(bytes, input.recording.sample_rate); decodedBytes += canonical.length;
     if (decodedBytes > 256 * 1024 * 1024) throw Error('Decoded audio exceeds 256 MiB');
     audio.set(hash, canonical);

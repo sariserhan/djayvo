@@ -139,6 +139,7 @@ function masterControls() {
 }
 const keyboard = attachKeyboard({ graph: audioGraph, context: () => context, mixer: () => mixer, levels, masterControls, getPhrase: () => session?.phraseSource(), onSourcesChanged: () => mixRecording.sourcesChanged(),onNote:()=>bridge.publish({action:'instrument.note',control:'keyboard',source:'user',t:context.currentTime,value:null}) });
 const mixRecording = attachMixRecording({ graph: audioGraph, context: () => context, mixer: () => mixer,
+  getSampler:()=>sampler.snapshot(),
   getTransport: () => ({ a: decks[0].audio.transportState(), b: decks[1].audio.transportState(), prepared: session?.transportState() ?? null }),
   getSources: () => ({ a: decks[0].file, b: decks[1].file, ...session?.mixSources(), rack: keyboard.sourceAsset(), ...sampler.sources() }) });
 const sampler=attachSampler({graph:audioGraph,context:()=>context,mixer:()=>mixer,rights,onSourcesChanged:()=>mixRecording.sourcesChanged()});
