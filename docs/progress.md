@@ -1,3 +1,7 @@
+# Headphones panel layout — 2026-10-22
+
+**PASS, local.** Output selectors align and stack responsively; test/confirmation controls, deck previews and headphone level have clear spacing. Long device names stay inside their controls in WebKit. Chromium and WebKit pass four widths (1440/820/390/320), fullscreen, keyboard disclosure, refresh/test/disconnect feedback and scoped accessibility checks. All existing studio control IDs remain; the audited studio/offline bundle is rebuilt. No audio-routing logic changed. Physical routing and deployment NOT RUN. [Markup](../apps/web/dj.html), [styles](../apps/web/dj.css).
+
 # Local AI singer implementation — 2026-10-22
 
 **Variable call arrangements — 2026-10-22:** Owner accepts both same-song A/B examples and requests unpredictable use of both. The local singer studio now varies the source excerpt, gap versus short vocal replacement, and entrance timing; recent arrangement history discourages repetition without forcing A–B alternation. Unchanged music is preserved, with explicit fallback when the source cannot fit. [Implementation and evidence](arrangement-variety.md). Broad automatic-selection musical acceptance remains PARTIAL; the earlier regenerated source-led candidate remains FAIL.

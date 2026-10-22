@@ -357,7 +357,7 @@ input::file-selector-button { background:#25313b; border:1px solid #50616e; colo
 .studio-panel[open] > summary { padding-bottom:18px; margin-bottom:18px; border-bottom:1px solid var(--edge); }
 .studio-options { border-top:1px solid var(--edge); margin-top:16px; }
 .studio-options > summary,.deck-tools > summary { cursor:pointer; min-height:44px; padding:12px 0; font-size:13px; }
-.studio-options small,#headphones summary small { display:block; color:var(--muted); font-size:12px; margin-left:18px; }
+.studio-options small { display:block; color:var(--muted); font-size:12px; margin-left:18px; }
 .studio-options > fieldset { margin-top:4px; }
 .deck-tools { border-block:1px solid #434b54; margin-top:16px; }
 .deck-tools > summary { font:12px/20px var(--utility); }
@@ -366,7 +366,15 @@ input::file-selector-button { background:#25313b; border:1px solid #50616e; colo
 #practice-library { padding-bottom:8px; margin-bottom:8px; border-bottom:0; }
 #saved-mixes h2 { font-size:18px; }
 #saved-mixes p,#recordings p { font-size:13px; color:var(--muted); }
-#performance,#instruments,#recordings { margin:20px 0; padding:22px; border:1px solid var(--edge); border-radius:8px; background:#171e25; }
+#performance,#instruments,#recordings,#headphones { margin:20px 0; padding:22px; border:1px solid var(--edge); border-radius:8px; background:#171e25; }
+#headphones p { color:var(--muted); font-size:13px; }
+#headphones .session-context label { min-width:0; flex-basis:240px; font-size:13px; }
+#headphones select { min-width:0; text-overflow:ellipsis; contain:paint; }
+#headphones .consent { align-items:flex-start; min-height:44px; margin:0; padding:10px 0; }
+#headphones input[type=checkbox] { flex:0 0 18px; width:18px; height:18px; margin:2px 0 0; }
+.headphone-preview { display:flex; flex-wrap:wrap; gap:0 24px; margin-top:12px; border-top:1px solid var(--edge); padding-top:12px; }
+.headphone-level { display:block; max-width:520px; margin-top:12px; font-size:13px; }
+#cue-status { margin-bottom:0; overflow-wrap:anywhere; }
 #recordings h2 { font-size:20px; margin:0; }
 #recordings .mix-recording { border:0; padding:0; background:none; }
 #performance p { font-size:13px; color:var(--muted); }
@@ -397,7 +405,7 @@ input::file-selector-button { background:#25313b; border:1px solid #50616e; colo
  .studio-start { font-size:13px; }
  .studio-nav { gap:6px; }
  .studio-nav a { flex:1 1 30%; justify-content:center; padding-inline:8px; font-size:12px; }
- #saved-mixes,#performance,#instruments,#recordings { padding:14px; }
+ #saved-mixes,#performance,#instruments,#recordings,#headphones { padding:14px; }
  .studio-panel > summary { font-size:18px; }
 }
 

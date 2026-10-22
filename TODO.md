@@ -1,5 +1,9 @@
 # Jamloom development tracker
 
+## Headphones panel layout — 2026-10-22
+
+- [x] **STUDIO-CSS-001 — PASS, local:** Group output selectors, test actions, routing confirmation, deck previews and level controls using existing studio styles. Fix long device-name overflow in WebKit. Chromium/WebKit checks pass at 1440/820/390/320 px, plus fullscreen, keyboard disclosure, refresh/test/disconnect feedback and zero scoped accessibility violations. Existing control IDs preserved; audited studio/offline bundle rebuilt. Physical routing and deployment NOT RUN. Sources: [markup](apps/web/dj.html), [styles](apps/web/dj.css).
+
 ## Same-song call edits — 2026-10-22
 
 - [x] **CALL-001 — PASS, local implementation/evidence:** Two original-song candidates, intact short source crop, fixed singer timing, exact PCM outside 1.96 / 2.4-second changes, common-gain comparisons and passage-jump players. Nineteen scoped tests and Chromium/WebKit checks pass. Two regenerated repair trials failed the overlap check and are excluded. [Report](docs/local-call-edit.md).

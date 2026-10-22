@@ -76,7 +76,31 @@
  <div class="hotcues"><button id="hot-b-0" class="hotcue" disabled aria-label="Deck B hot cue 1, empty">1<small>EMPTY</small></button><button id="hot-b-1" class="hotcue" disabled aria-label="Deck B hot cue 2, empty">2<small>EMPTY</small></button><button id="hot-b-2" class="hotcue" disabled aria-label="Deck B hot cue 3, empty">3<small>EMPTY</small></button><button id="hot-b-3" class="hotcue" disabled aria-label="Deck B hot cue 4, empty">4<small>EMPTY</small></button></div><p class="pad-help">Hot cues: click empty to set · shift-click to clear</p>
 
  <p class="deck-error" id="error-b" role="alert"></p></section></div>
-<details class="mix-recording" id="headphones"><summary>Headphones <small>Preview a deck before the audience hears it</small></summary><p>Requires a browser with output selection and two distinct stereo devices. Output access is optional. Cue stays muted until you test and confirm your physical routing; setup is never restored automatically.</p><button id="cue-refresh" class="small-button">Refresh output devices</button><button id="cue-choose-master" class="small-button" hidden>Allow speaker output</button><button id="cue-choose-headphone" class="small-button" hidden>Allow headphone output</button><label>Main speakers<select id="cue-master-device"><option value="">Choose output</option></select></label><label>Headphones<select id="cue-headphone-device"><option value="">Choose output</option></select></label><button id="cue-connect" class="small-button" disabled>Configure outputs</button><button id="cue-test" class="small-button">Play quiet headphone test</button><label><input id="cue-verified" type="checkbox">I heard the test only in the selected headphones, not the main speakers</label><label><input id="cue-listen-a" type="checkbox" disabled>Preview A before its fader</label><label><input id="cue-listen-b" type="checkbox" disabled>Preview B before its fader</label><label>Headphone level<input id="cue-level" type="range" min="0" max="1" step="0.01" value="0.5"></label><button id="cue-disconnect" class="small-button">Disconnect headphone cue</button><p id="cue-status" role="status">Separate cue has not been configured or verified on this device.</p></details>
+<details class="mix-recording studio-panel" id="headphones">
+<summary>Headphones <small>Preview a deck before the audience hears it</small></summary>
+<p>Requires a browser with output selection and two distinct stereo devices. Output access is optional. Cue stays muted until you test and confirm your physical routing; setup is never restored automatically.</p>
+<div class="session-actions">
+<button id="cue-refresh" class="small-button">Refresh output devices</button>
+<button id="cue-choose-master" class="small-button" hidden>Allow speaker output</button>
+<button id="cue-choose-headphone" class="small-button" hidden>Allow headphone output</button>
+</div>
+<div class="session-context">
+<label>Main speakers<select id="cue-master-device"><option value="">Choose output</option></select></label>
+<label>Headphones<select id="cue-headphone-device"><option value="">Choose output</option></select></label>
+</div>
+<div class="session-actions">
+<button id="cue-connect" class="small-button" disabled>Configure outputs</button>
+<button id="cue-test" class="small-button">Play quiet headphone test</button>
+</div>
+<label class="consent"><input id="cue-verified" type="checkbox"><span>I heard the test only in the selected headphones, not the main speakers</span></label>
+<div class="headphone-preview">
+<label class="consent"><input id="cue-listen-a" type="checkbox" disabled><span>Preview A before its fader</span></label>
+<label class="consent"><input id="cue-listen-b" type="checkbox" disabled><span>Preview B before its fader</span></label>
+</div>
+<label class="headphone-level">Headphone level<input id="cue-level" type="range" min="0" max="1" step="0.01" value="0.5"></label>
+<div class="session-actions"><button id="cue-disconnect" class="small-button">Disconnect headphone cue</button></div>
+<p id="cue-status" role="status">Separate cue has not been configured or verified on this device.</p>
+</details>
 <section id="performance" tabindex="-1" aria-labelledby="performance-title"><details class="studio-panel"><summary><h2 id="performance-title">Make a voice response</h2><small>Record a short phrase. Turn it into music over Deck A.</small></summary>
 <p class="hint">Deck C is the new music made from your phrase. It plays alongside A and B.</p><h3 class="step-title"><span>1</span> Set up your backing track</h3>
 <p>Prepare A before your set, confirm its grid, then record a phrase while it plays. Your new performance enters on a bar. Use headphones while recording.</p>
