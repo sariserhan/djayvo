@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-21",
+  "commands": [
+    {
+      "command": ".venv-analysis/bin/python -m unittest discover -s tests -p test_musician_candidates.py -v",
+      "tests": 6,
+      "status": "PASS"
+    },
+    {
+      "command": ".venv-analysis/bin/python -m unittest discover -s tests -p test_style_candidates.py -v",
+      "tests": 8,
+      "status": "PASS"
+    }
+  ],
+  "actual_candidate_checks": "candidate-checks.json",
+  "paid_compute": "NOT RUN",
+  "new_training": "NOT RUN"
+}

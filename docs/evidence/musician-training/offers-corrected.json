@@ -1,0 +1,41 @@
+{
+  "operation": "read-only offer search; no rental",
+  "correction": "Use provider country suffix US; previous United States text filter matched nothing and was not an availability finding",
+  "eligible_count": 2,
+  "offers": [
+    {
+      "id": 52272580,
+      "machine_id": 4749,
+      "host_id": 24953,
+      "gpu_name": "RTX 3090",
+      "gpu_ram": 24576,
+      "num_gpus": 1,
+      "cpu_ram": 32215,
+      "geolocation": "Oregon, US",
+      "reliability": 0.9982453,
+      "dph_total": 0.2688888888888889,
+      "storage_cost": 0.19999999999999998,
+      "inet_down_cost": 0.0013333333333333333,
+      "inet_up_cost": 0.0013333333333333333,
+      "hourly_with_60gb_disk": 0.28555555555555556,
+      "reserved_lease_plus_transfer": 0.7311111111111112
+    },
+    {
+      "id": 53433771,
+      "machine_id": 68322,
+      "host_id": 455531,
+      "gpu_name": "RTX 3090",
+      "gpu_ram": 24576,
+      "num_gpus": 1,
+      "cpu_ram": 32157,
+      "geolocation": "Nevada, US",
+      "reliability": 0.9935012,
+      "dph_total": 0.24222222222222223,
+      "storage_cost": 0.19999999999999998,
+      "inet_down_cost": 0.005208333333333333,
+      "inet_up_cost": 0.005208333333333333,
+      "hourly_with_60gb_disk": 0.2588888888888889,
+      "reserved_lease_plus_transfer": 1.142777777777778
+    }
+  ]
+}

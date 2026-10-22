@@ -14,6 +14,7 @@ planner; R1 adds offline demonstration capture for future supervised decisions.
 - [R1 private loaded-source fingerprints](../docs/r1-source-inventory.md)
 - [Musical architecture](../docs/improvisation_architecture.md)
 - [Musician training curriculum and current data gaps](../docs/musician-training-curriculum.md)
+- [Authorized additional references and bounded training proposal](../docs/musician-training-preparation.md)
 
 Offline R1 dataset exports remain evaluation-only. Browser recordings are private,
 unreviewed and not automatically admitted to that dataset. No reviewed expert corpus, trained planner or

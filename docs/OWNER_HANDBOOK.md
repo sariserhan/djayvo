@@ -2,16 +2,19 @@
 
 ## Musician training data — 2026-10-21
 
-**[OWNER ACTION REQUIRED] Training scope, high priority for model training:**
-Downloads is confirmed. Clarify training permission for `f.mp3`, `down.mp3`,
-`question.mp3` and `pipe.mp3`, previously analysis-only. Existing x/y/z and Blood Club references
-do not supply a reviewed general-musician action corpus. No secrets are needed.
+**Training permission received:** `f.mp3`, `down.mp3`, `question.mp3` and `pipe.mp3`.
+**[OWNER ACTION REQUIRED] Bounded GPU trial, high priority for execution:**
+Approve or decline the [concrete proposal](musician-training-preparation.md):
+one temporary GPU, maximum $10/two hours, upload only thirteen prepared excerpts,
+content screening before fitting, no replacement rental, verified retrieval and
+cleanup. No credentials are needed in chat; the existing provider setup is reused.
+The recordings do not supply a reviewed general-musician action corpus.
 The [48-exercise curriculum](musician-training-curriculum.md) describes what to
 capture using the existing private studio recordings, stems and action traces.
 The agent will inspect provenance, supported actions, hashes and session splits
 before admitting examples. Listening stays deferred; no request to resume it is
-implied. New paid compute will require a separate concrete bounded proposal only
-after suitable data is available. No new configuration variable is needed.
+implied. The proposed run includes provisional content screening and stops before
+fitting if too few candidates qualify. No new configuration variable is needed.
 
 2026-10-20 · Local implementation checkpoint. **Paid release is closed.**
 Never paste credentials into chat. Store secrets in ignored local env files and

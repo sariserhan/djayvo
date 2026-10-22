@@ -1,0 +1,114 @@
+{
+  "status": "AWAITING_SPENDING_AND_TEMPORARY_UPLOAD_AUTHORIZATION",
+  "purpose": "Research-only ACE-Step audio adapter on four newly authorized references; not general DJ action-policy training or production promotion",
+  "input_archive": "renders/musician-training-20261021/musician-review-candidates.tar.gz",
+  "input_archive_sha256": "5e8f48a2491bc489e29a04ba881ac6ff9dc0e2db24d8798aa2c2a59c8801865c",
+  "upload_scope": [
+    "down-01.wav",
+    "down-02.wav",
+    "down-03.wav",
+    "down-04.wav",
+    "f-01.wav",
+    "f-02.wav",
+    "f-03.wav",
+    "manifest.json",
+    "pipe-01.wav",
+    "pipe-02.wav",
+    "question-01.wav",
+    "question-02.wav",
+    "question-03.wav",
+    "question-04.wav"
+  ],
+  "source_scope": [
+    "f.mp3",
+    "down.mp3",
+    "question.mp3",
+    "pipe.mp3"
+  ],
+  "candidate_count": 13,
+  "candidate_seconds": 390,
+  "local_only": [
+    "original MP3s",
+    "owner microphone recording",
+    "x/y/z/Blood Club recordings and prior checkpoints",
+    "Night Current exports",
+    "credentials"
+  ],
+  "screening": {
+    "method": "Pinned ACE-Step audio understanding plus signal checks; all machine descriptions remain provisional",
+    "exclusions": "Silence, predominantly spoken commentary, conflicting or unsupported descriptions; do not invent lyrics, BPM, key, phrase or deck-action labels",
+    "minimum_selected_clips": 4,
+    "minimum_source_files": 2,
+    "on_insufficient_material": "Stop without fitting; retrieve report and clean up rental",
+    "human_content_review": "NOT RUN; deferred"
+  },
+  "training": {
+    "code_revision": "ca1e85fe9430179831e6bc6be790c332190a3866",
+    "weight_revision": "19671f406d603126926c1b7e2adc169acbcade22",
+    "variant": "acestep-v15-turbo",
+    "initialization": "unchanged base; preserve all previous adapters",
+    "trainer": "pinned fixed V2",
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.1,
+    "learning_rate": 5e-05,
+    "warmup_steps": 10,
+    "scheduler": "constant_with_warmup",
+    "batch_size": 1,
+    "gradient_accumulation": 1,
+    "precision": "bf16",
+    "gradient_checkpointing": true,
+    "seed": 51021,
+    "epochs_max": 10,
+    "optimizer_steps_max": 130,
+    "checkpoint_epochs": [
+      5,
+      10
+    ],
+    "actual_steps": "selected clip count times completed epochs; independently verify saved state",
+    "conditioning": "Broad musical caption justified by provisional screening only; no unverified lyric/tempo/key/artist labels"
+  },
+  "comparison": {
+    "reuse": "scripts/cloud_style_trial.py four fixed prompt/seed cases",
+    "conditions": [
+      "unchanged base",
+      "epoch 5 adapter",
+      "epoch 10 adapter"
+    ],
+    "base_repeat_control": true,
+    "audio_files": 13,
+    "seconds_each": 30,
+    "adapter_scale": 0.7,
+    "measurements": [
+      "finite/nonzero weights",
+      "checkpoint reload",
+      "resource use",
+      "exact base repeat",
+      "matched output differences",
+      "waveform reuse/repetition"
+    ],
+    "listening": "NOT RUN; retrieve private matched files, no autoplay or quality-winner selection"
+  },
+  "rental": {
+    "provider": "Vast.ai",
+    "gpu": "one verified US RTX 3090, 24 GiB",
+    "instances_max": 1,
+    "replacements": 0,
+    "max_elapsed_seconds": 7200,
+    "budget_ceiling_usd": 10,
+    "hourly_with_disk_ceiling_usd": 0.5,
+    "quote_transfer_reservation_ceiling_usd": 6,
+    "observed_debit_stop_usd": 7,
+    "watchdog": "Existing independent local controller, new isolated state; application controls are not a provider-enforced cap",
+    "cleanup": "Retrieve/hash artifacts, delete instance and temporary keys, verify absence, report billing separately",
+    "live_quote_evidence": "offers-corrected.json",
+    "recheck_quote_before_rent": true
+  },
+  "local_feasibility": {
+    "status": "NOT RUN",
+    "observations": "No torch in checked project analysis/q0/speech environments; no base checkpoints in pinned local training checkout. Pinned trainer lists MPS, so local execution is not declared impossible. No download/install or MPS benchmark run.",
+    "reason_for_gpu_proposal": "Reuses previously measured 24GB CUDA workflow; local preprocessing/labeling memory and training compatibility unmeasured"
+  },
+  "independent_generalization": "NOT RUN; session identities and action labels missing",
+  "spend_so_far_usd": 0
+}

@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-21",
+  "training_permission": "owner_confirmed",
+  "question_verbatim": "Downloads also contains f.mp3, down.mp3, question.mp3 and pipe.mp3. Earlier project records permit analysis only for these four. Do you have permission to use them for model training, and want all four included?",
+  "owner_statement_verbatim": "Yes, all four are authorized for training",
+  "basis": "Owner training-rights attestation, not independent license verification",
+  "scope": "Local training preparation and research training on exactly these four files; no implication of permission for other Downloads files",
+  "cloud_upload": "not authorized by this answer",
+  "new_paid_compute": "not authorized by this answer",
+  "distribution": "not established",
+  "commercial_release": "not established",
+  "retention": "Private local research copies until withdrawal; preserve originals",
+  "withdrawal": "Exclude source hashes and derived examples; invalidate and rebuild affected datasets or adapters before further use",
+  "sources": [
+    {
+      "filename": "f.mp3",
+      "sha256": "dcc26654d96138cd7aafecfc1298ea159884cdcd54a221422e35c77ace7a45f6",
+      "session_id": null,
+      "independent_session_verified": false
+    },
+    {
+      "filename": "down.mp3",
+      "sha256": "f10a3fa3cf773a85b04458747d7a46de7d7f621bf7ab732785ad3038212a2d12",
+      "session_id": null,
+      "independent_session_verified": false
+    },
+    {
+      "filename": "question.mp3",
+      "sha256": "e830e315e59e111ef09f6436483f094c9b2e6ed8c86273ebc13021fdea98b9e8",
+      "session_id": null,
+      "independent_session_verified": false
+    },
+    {
+      "filename": "pipe.mp3",
+      "sha256": "e57756d665c676e876bc7b25abf6d97bd88d137c889eebd633ade0d353919bc8",
+      "session_id": null,
+      "independent_session_verified": false
+    }
+  ]
+}

@@ -1,4 +1,8 @@
-# Musician training preparation — 2026-10-21
+# Authorized reference preparation — 2026-10-21
+
+**Preparation PASS; new training NOT RUN.** Owner confirmed training permission for f/down/question/pipe. Prepared 13 candidates (390 seconds), pending review sheet and exact archive; four original hashes preserved. Fourteen tests, actual format/signal/archive checks and 62 cross-file waveform comparisons pass. Concrete one-instance/$10/two-hour screening/training proposal prepared; new spending/upload approval pending. No optimizer steps, uploads, paid compute, listening or production promotion. [Report](musician-training-preparation.md).
+
+# Earlier musician training preparation — 2026-10-21
 
 **Preparation PASS; training NOT RUN; overall PARTIAL.** Added 48 contextual assignments using existing taxonomy/capture/replay workflows. Read-only inventory verifies sixteen retained training clips and two ACE-Step adapter hashes; the known six-row R1 export is automated and evaluation-only. Owner located references in Downloads; four additional analysis-only files inventoried, explicit training-rights answer pending. No new model weights, downloads, paid compute or audio playback. Listening remains deferred and production gates remain open. [Curriculum, data requirements and evidence](musician-training-curriculum.md).
 
