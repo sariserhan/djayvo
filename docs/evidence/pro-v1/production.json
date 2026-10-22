@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "checkedAt": "2026-10-22T21:12:41.282Z",
+  "checkedAt": "2026-10-22T22:07:02.225Z",
   "origin": "https://www.jamloom.com",
   "checks": [
     {
@@ -39,5 +39,18 @@
     }
   ],
   "livePayment": "NOT RUN; no charge made",
-  "physicalAudio": "NOT RUN; HTTP checks only"
+  "physicalAudio": "NOT RUN; HTTP checks only",
+  "deployment": {
+    "id": "dpl_G5HpnATSqLELbZBSmaHnT5Y5CKMS",
+    "sha": "6364091930dd79aba2fec37933ae8f5cb99b644e",
+    "status": "READY",
+    "method": "GitHub main push"
+  },
+  "purchaseConfiguration": {
+    "mode": "live",
+    "priceUSD": 49,
+    "billing": "one-time",
+    "salesEnabled": true,
+    "confirmation": "Vercel production configuration updated before this deployment; no live charge made"
+  }
 }

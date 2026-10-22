@@ -412,5 +412,6 @@
     ]
   },
   "rawReport": "renders/pro-endurance-TuurPn/report.json",
-  "priorAttempt": "Initial concurrent-check run stopped after about 31 minutes; cause unknown. The isolated diagnostic rerun passes; no root-cause fix or zero-interruption guarantee is claimed."
+  "priorAttempt": "Initial concurrent-check run stopped after about 31 minutes; cause unknown. The isolated diagnostic rerun passes; no root-cause fix or zero-interruption guarantee is claimed.",
+  "appMode": "Development Electron shell with the shared Pro studio sources. Signed release activation, upgrade, speaker playback and production catalogue were checked separately."
 }
