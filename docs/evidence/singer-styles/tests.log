@@ -1,0 +1,18 @@
+test_permission_and_selection_checked_before_creating_job (test_singer_studio.StudioFlow.test_permission_and_selection_checked_before_creating_job) ... ok
+test_pipeline_keeps_source_and_singer_distinct (test_singer_studio.StudioFlow.test_pipeline_keeps_source_and_singer_distinct) ... ok
+test_invalid_or_unbounded_plan_rejected (test_singing_response.SingingPlans.test_invalid_or_unbounded_plan_rejected) ... ok
+test_rap_delivery_differs_from_sung_hiphop (test_singing_response.SingingPlans.test_rap_delivery_differs_from_sung_hiphop) ... ok
+test_revision_and_size_checks (test_singing_response.SingingPlans.test_revision_and_size_checks) ... ok
+test_voices_and_styles_are_independent_and_repeatable (test_singing_response.SingingPlans.test_voices_and_styles_are_independent_and_repeatable) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.346s
+
+OK
+test_estimated_grid_follows_actual_pulses_and_crops_stay_bounded (test_sung_assembly.SungAssembly.test_estimated_grid_follows_actual_pulses_and_crops_stay_bounded) ... ok
+test_real_source_is_separate_and_preserved (test_sung_assembly.SungAssembly.test_real_source_is_separate_and_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.602s
+
+OK

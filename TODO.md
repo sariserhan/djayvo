@@ -2,7 +2,9 @@
 
 ## Musician training request — 2026-10-21
 
-- [ ] **TRAIN-007 — PARTIAL:** Owner loved the first AI singer previews; rejected source-only intros and requested more styles. Implemented a 12-style local studio, integrated clean hook and beat-fit fragments, recurring answers, rhythmic delay, estimated singer muting and drum-led breaks. Technical verification and actual new renders are recorded in the [integrated singer report](docs/integrated-singer.md). Prior takes preserved. New arrangement/style listening, formal quality, generalization and production promotion remain open.
+- [ ] **TRAIN-007 — PARTIAL:** Owner loved the first AI singer previews; rejected source-only intros and requested more styles. Implemented a 23-style local studio, integrated clean hook and beat-fit fragments, recurring answers, rhythmic delay, estimated singer muting and drum-led breaks. Technical verification and actual new renders are recorded in the [integrated singer report](docs/integrated-singer.md). Prior takes preserved. New arrangement/style listening, formal quality, generalization and production promotion remain open.
+
+- [x] **STYLE-001 — PASS, local catalogue (2026-10-22):** Added EDM, DJ, Lo-fi, Jazz, Blues, Rap, Chill, Indie, Techno, Synthwave and Country: 23 styles and 46 voice/style combinations. Genre prompts and sample rhythms are wired through the existing studio; rap requests rhythmic verses and a sung hook. [Report and checks](docs/singer-styles.md). New-style audio/listening NOT RUN.
 
 - [x] **TRAIN-006 — PASS, local voice audition:** Three new mixes using the authorized owner voice and existing epoch-10 hip-hop/funk/bass-b audio; Group 1 excluded. Six voice/music comparisons at −22 LUFS, clean-source/stem checks, deterministic rerender, eight regression tests and both-browser playback/seek PASS. Musical acceptance remains open. [Report](docs/voice-led-review.md).
 

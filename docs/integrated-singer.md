@@ -1,5 +1,7 @@
 # User sound inside the song — 2026-10-22
 
+**Catalogue expansion:** The studio now has [23 styles](singer-styles.md), including the eleven additional styles requested by the owner. The twelve-style render and listening evidence below describes the preceding increment.
+
 The owner listened to the previous singer previews and said: “they are great I
 loved them.” That is positive informal listening evidence for those takes. The
 owner rejected the disconnected source-only introduction and requested creative
@@ -40,7 +42,7 @@ there is no silent fallback to the rejected source-only introduction.
   funk, house, drum and bass, and acoustic pop are new renders. The review uses
   assistant-authored responses to the owner's question example.
 - Interactive studio: <http://127.0.0.1:4198/>. Start it with
-  `.venv-singer/bin/python scripts/singer_studio.py`. Choose any of the 12 styles,
+  `.venv-singer/bin/python scripts/singer_studio.py`. Choose any of the 23 styles,
   record/upload a permitted 2–5 second sound, confirm its words and make a song.
   This path generates new lyrics with the existing local planner.
 - Existing singer renders now need a matching `stems/` analysis before assembly:

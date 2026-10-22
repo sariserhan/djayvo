@@ -7,6 +7,7 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, caption, load_plan, validate_plan, variants
+from assemble_sung_response import PATTERNS
 
 
 class SingingPlans(unittest.TestCase):
@@ -22,14 +23,27 @@ class SingingPlans(unittest.TestCase):
         self.assertEqual(cases, variants(42))
         self.assertEqual({(c['genre'], c['voice']) for c in cases},
                          {(genre,voice) for genre in STYLES for voice in ('male','female')})
-        self.assertEqual(len(STYLES),12)
+        self.assertEqual(len(STYLES),23)
         self.assertEqual(set(STYLE_LABELS),set(STYLES))
-        self.assertEqual(len({c['seed'] for c in cases}), 24)
+        self.assertEqual(set(PATTERNS),set(STYLES))
+        self.assertTrue({'EDM','DJ','Lo-fi','Jazz','Blues','Rap','Chill','Indie','Techno','Synthwave','Country'} <= set(STYLE_LABELS.values()))
+        self.assertTrue(all(60 <= bpm <= 180 for bpm,_ in STYLES.values()))
+        self.assertTrue(all(tuple(sorted(p)) == p and 0 <= min(p) < max(p) <= 5.5 for p in PATTERNS.values()))
+        self.assertEqual(len({c['seed'] for c in cases}), 46)
         self.assertEqual({c['source_repetitions'] for c in cases}, {1, 2})
         self.assertTrue(all('singer' in caption(c) and 'no speech narration' in caption(c) for c in cases))
         for c in cases:
             c['lyrics']=self.plan()['cases'][0]['lyrics']
             p=self.plan();p['cases']=[c];validate_plan(p)
+
+    def test_rap_delivery_differs_from_sung_hiphop(self):
+        rap = caption({'genre':'rap','voice':'female'})
+        hiphop = caption({'genre':'hiphop','voice':'female'})
+        self.assertIn('rhythmic rap verses',rap)
+        self.assertIn('short sung hook',rap)
+        self.assertNotIn('connected legato phrases',rap)
+        self.assertIn('connected legato phrases',hiphop)
+        self.assertIn('no robotic effects',rap)
 
     def test_invalid_or_unbounded_plan_rejected(self):
         validate_plan(self.plan())
