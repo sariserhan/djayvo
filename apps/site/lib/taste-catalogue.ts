@@ -1,5 +1,5 @@
 import manifest from '../../web/practice-audio/manifest.json';
-export const tasteCatalogue=manifest.tracks.map(track=>({id:track.id,title:track.title,artist:track.artist,edition:'Jamloom practice master',genre:track.genre,seconds:track.seconds,license:track.license,source:track.source_page,sha256:track.sha256}));
+export const tasteCatalogue=manifest.tracks.map(track=>({id:track.id,title:track.title,artist:track.artist,edition:'Jamloom practice master',genre:track.genre,audio:'/studio/'+track.url.replace(/^\.\//,''),seconds:track.seconds,license:track.license,source:track.source_page,sha256:track.sha256}));
 export type ReferenceChoice={id:string;rating:'love'|'like'|'avoid';weight:number};
 export function validateChoices(value:unknown):ReferenceChoice[]{
  if(!Array.isArray(value)||value.length>20)throw Error('Invalid catalogue choices');

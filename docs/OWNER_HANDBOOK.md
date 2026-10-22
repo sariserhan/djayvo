@@ -1,3 +1,7 @@
+## Music DNA favorites — 2026-10-22
+
+Local review: <http://127.0.0.1:4247/music-dna>. Add song/artist names or use **Add to favorites** in the cleared catalogue. Choose the musical parts you enjoy, then **Apply song preferences**. Review or override the controls, generate a preview and save preferences locally or to your account. Playback starts only when you press Play. YouTube/Spotify links open searches on those services; there is no account connection or playlist import. [Current evidence and limits](music-dna-favorites.md). This update is local, not deployed.
+
 ## Owner acceptance — 2026-10-22
 
 **PASS, product acceptance:** The owner considers Basic / Live DJ and Pro v1 finished and directs work to the remaining Jamloom products. The tested setup and published release are accepted. Deferred MIDI, headphone and unplug checks are post-release qualification, not completion blockers; their evidence remains NOT RUN. The earlier interrupted endurance attempt remains an unresolved reliability observation alongside the passing rerun.

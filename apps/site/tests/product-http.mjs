@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';
 import {mkdtemp,readdir,readFile,rm,writeFile} from 'node:fs/promises';import {tmpdir} from 'node:os';import {join} from 'node:path';
 import {spawn} from 'node:child_process';import {once} from 'node:events';import {setTimeout as delay} from 'node:timers/promises';
-import {createPool} from '../lib/database.ts';import {migrate} from '../lib/migrations.ts';import {emptyTaste} from '../lib/taste.ts';
+import {createPool} from '../lib/database.ts';import {migrate} from '../lib/migrations.ts';import {emptyTaste,applySongPreferences} from '../lib/taste.ts';
 import Stripe from 'stripe';
 const url=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(url.hostname,'127.0.0.1');
 const admin=createPool(url.toString()),name='jamloom_http_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
@@ -34,12 +34,16 @@ try{
  result.checks.push('native account balance endpoint authenticates, isolates users and never enables purchases');
  assert.equal((await api('/api/taste')).status,401);
  assert.equal((await api('/api/taste',{method:'POST',body:{profile:emptyTaste,revision:0},cookie:alice,origin:'https://foreign.example'})).status,403);
- const saved=await api('/api/taste',{method:'POST',body:{profile:emptyTaste,revision:0},cookie:alice});assert.equal(saved.status,200);const revision=(await saved.json()).revision;
+ const dnaProfile=applySongPreferences({...emptyTaste,references:['My favorite song'],songPreferences:[{reference:'My favorite song',aspects:['gentle','slow','piano','melody'],weight:5}]});
+ const saved=await api('/api/taste',{method:'POST',body:{profile:dnaProfile,revision:0},cookie:alice});assert.equal(saved.status,200);const revision=(await saved.json()).revision;
  assert.deepEqual(await (await api('/api/taste',{cookie:bob})).json(),{saved:null});
- const attempts=await Promise.all([110,130].map(tempo=>api('/api/taste',{method:'POST',body:{profile:{...emptyTaste,tempo},revision},cookie:alice})));assert.deepEqual(attempts.map(r=>r.status).sort(),[200,409]);
+ assert.deepEqual((await (await api('/api/taste',{cookie:alice})).json()).saved.profile,dnaProfile);
+ assert.equal((await api('/api/taste',{method:'POST',body:{profile:{...dnaProfile,songPreferences:[{reference:'Unknown',aspects:['piano'],weight:5}]},revision:0},cookie:bob})).status,400);
+ const attempts=await Promise.all([110,130].map(tempo=>api('/api/taste',{method:'POST',body:{profile:{...dnaProfile,tempo},revision},cookie:alice})));assert.deepEqual(attempts.map(r=>r.status).sort(),[200,409]);
  assert.equal((await api('/api/taste',{method:'POST',body:{profile:{...emptyTaste,tempo:999},revision:0},cookie:bob})).status,400);
  assert.equal((await api('/api/taste',{method:'POST',body:{profile:'x'.repeat(17000),revision:0},cookie:carol})).status,413);
  const current=(await (await api('/api/taste',{cookie:alice})).json()).saved;
+ assert.deepEqual(current.profile.songPreferences,dnaProfile.songPreferences);assert.equal(current.profile.direction,1);
  assert.equal((await api('/api/taste',{method:'DELETE',body:{revision:current.revision},cookie:bob})).status,409);
  assert.equal((await api('/api/taste',{method:'DELETE',body:{revision:current.revision},cookie:alice})).status,200);
  assert.deepEqual(await (await api('/api/taste',{cookie:alice})).json(),{saved:null});

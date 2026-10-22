@@ -1,3 +1,7 @@
+## Music DNA favorites — 2026-10-22
+
+**PASS, scoped technical implementation; PARTIAL, musical acceptance.** Current focus is Music DNA. Favorite-song choices now apply user-confirmed mood, pace, instruments and arrangement preferences to real compositions. Ten cleared catalogue previews, external search links, account/local persistence and native profile compatibility are implemented. [Evidence and remaining limits](music-dna-favorites.md). No provider import, new training, paid execution or deployment; Basic/Pro remains accepted complete.
+
 ## Owner acceptance — 2026-10-22
 
 **PASS, product acceptance:** The owner considers Basic / Live DJ and Pro v1 finished and directs work to the remaining Jamloom products. The tested setup and published release are accepted. Deferred MIDI, headphone and unplug checks are post-release qualification, not completion blockers; their evidence remains NOT RUN. The earlier interrupted endurance attempt remains an unresolved reliability observation alongside the passing rerun.

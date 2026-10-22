@@ -27,6 +27,17 @@ final class TasteTests: XCTestCase {
         profile.catalogue!.append(profile.catalogue![0]); XCTAssertThrowsError(try profile.validate())
         profile.catalogue = [TasteChoice(id: "unknown", rating: "love", weight: 1)]; XCTAssertThrowsError(try profile.validate())
     }
+    func testWebSongPreferencesSurviveNativeRoundTrip() throws {
+        let json = #"{"version":1,"references":["Favorite song"],"energy":"gentle","tempo":80,"instruments":["piano"],"novelty":50,"direction":1,"songPreferences":[{"reference":"Favorite song","aspects":["gentle","slow","piano","melody"],"weight":5}]}"#
+        var profile = try JSONDecoder().decode(TasteProfile.self, from: Data(json.utf8))
+        try profile.validate()
+        XCTAssertEqual(try JSONDecoder().decode(TasteProfile.self, from: JSONEncoder().encode(profile)), profile)
+        XCTAssertEqual(profile.direction, 1)
+        profile.songPreferences![0].aspects = ["voice"]; XCTAssertThrowsError(try profile.validate())
+        profile.setReferences("Another song"); XCTAssertEqual(profile.songPreferences, [])
+        XCTAssertNoThrow(try profile.validate())
+        profile.direction = 3; XCTAssertThrowsError(try profile.validate())
+    }
     func testCompositionRecoveryDeterminismCancellationAndTamper() throws {
         let store = try RemixLibrary(root: FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString))
         defer { try? FileManager.default.removeItem(at: store.root) }

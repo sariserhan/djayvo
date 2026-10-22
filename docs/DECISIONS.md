@@ -66,3 +66,7 @@ unchanged. Older pause statements are historical for local implementation.
   coach's numbered onboarding; do not count this failed test as learning acceptance.
 - Full-course selling, human enjoyment/novice outcomes, venue reliability and live
   payment activation remain open gates. No paid cloud inference is needed for lessons.
+
+## Music DNA favorite-song mapping — 2026-10-22
+
+Use confirmed user choices with the existing numeric composer interface. Keep provider content out of the renderer; play only the existing cleared catalogue locally and link to external services for other listening. Extend the existing JSON profile with optional annotations/direction and preserve those fields in native sync. Do not add an OAuth integration, metadata inference service, or audio scraper to satisfy manual preference entry. [Implementation and evidence](music-dna-favorites.md).

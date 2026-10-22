@@ -1,5 +1,12 @@
 import SwiftUI
 
+struct SongPreference: Codable, Equatable, Sendable {
+    var reference: String
+    var aspects: [String]
+    var weight: Int
+    static let allowed = ["gentle", "intense", "slow", "fast", "piano", "guitar", "bass", "drums", "synth", "groove", "melody", "space"]
+}
+
 struct TasteProfile: Codable, Equatable, Sendable {
     var version = 1
     var references: [String] = []
@@ -8,10 +15,17 @@ struct TasteProfile: Codable, Equatable, Sendable {
     var instruments = ["piano", "bass", "drums"]
     var novelty = 50
     var catalogue: [TasteChoice]? = nil
+    var songPreferences: [SongPreference]? = nil
+    var direction: Int? = nil
     static let availableInstruments = ["piano", "guitar", "bass", "drums", "synth", "voice"]
     func validate() throws {
         try TasteCatalogue.validate(catalogue ?? [])
-        guard version == 1, references.count <= 20,
+        let songs = songPreferences ?? []
+        guard songs.count <= 20, Set(songs.map(\.reference)).count == songs.count,
+              songs.allSatisfy({ references.contains($0.reference) && (1...5).contains($0.weight) &&
+                  $0.aspects.count <= 12 && Set($0.aspects).count == $0.aspects.count &&
+                  $0.aspects.allSatisfy({ SongPreference.allowed.contains($0) }) }),
+              (0...2).contains(direction ?? 0), version == 1, references.count <= 20,
               references.allSatisfy({ !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && $0.utf16.count <= 160 }),
               ["gentle", "balanced", "intense"].contains(energy), (60...180).contains(tempo),
               (0...100).contains(novelty), !instruments.isEmpty,
@@ -19,6 +33,10 @@ struct TasteProfile: Codable, Equatable, Sendable {
               instruments.allSatisfy({ Self.availableInstruments.contains($0) }) else {
             throw CocoaError(.validationMissingMandatoryProperty)
         }
+    }
+    mutating func setReferences(_ text: String) {
+        references = text.split(separator: "\n").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
+        songPreferences = songPreferences?.filter { references.contains($0.reference) }
     }
     static func location() throws -> URL { try RemixLibrary.application().root.appendingPathComponent("taste-profile.json") }
     func save(to url: URL) throws {
@@ -45,7 +63,7 @@ struct MusicDNAView: View {
     @FocusState private var activeInput: InputField?
     @State private var catalogueSearch = ""
     @State private var seconds = 60
-    @State private var direction = 0
+    private var direction: Int { profile.direction ?? 0 }
     @State private var profile = TasteProfile()
     @State private var references = ""
     @State private var message = ""
@@ -94,12 +112,12 @@ struct MusicDNAView: View {
                 Section {
                     Button("Save preferences on this device") {
                         do {
-                            profile.references = references.split(separator: "\n").map { String($0).trimmingCharacters(in: .whitespaces) }
+                            profile.setReferences(references)
                             try profile.save(to: TasteProfile.location()); message = "Saved locally. No audio generated or uploaded."
                         } catch { message = "Choose at least one instrument and at most 20 references, up to 160 characters each. Saving must be available on this device." }
                     }
                     Button("Delete saved profile", role: .destructive) {
-                        do { let url = try TasteProfile.location(); if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }; profile = TasteProfile(); references = ""; direction = 0; let feedback = try RemixLibrary.application().root.appendingPathComponent("taste-preference.json"); if FileManager.default.fileExists(atPath: feedback.path) { try FileManager.default.removeItem(at: feedback) }; message = "Profile deleted." }
+                        do { let url = try TasteProfile.location(); if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }; profile = TasteProfile(); references = ""; let feedback = try RemixLibrary.application().root.appendingPathComponent("taste-preference.json"); if FileManager.default.fileExists(atPath: feedback.path) { try FileManager.default.removeItem(at: feedback) }; message = "Profile deleted." }
                         catch { message = "Could not delete the saved profile. Try again." }
                     }
                     Text(message).accessibilityIdentifier("tasteStatus")
@@ -112,7 +130,7 @@ struct MusicDNAView: View {
                             message = "Account preferences loaded. Save locally to keep them on this device."
                         } } }
                         Button("Save profile to account") { Task { await account.perform {
-                            profile.references = references.split(separator: "\n").map(String.init)
+                            profile.setReferences(references)
                             try await account.saveTaste(profile); message = "Preferences saved to your account."
                         } } }
                         Button("Delete account profile", role: .destructive) { Task { await account.perform {
@@ -127,7 +145,7 @@ struct MusicDNAView: View {
                     }
                     Text("Two original instrumental variations from your controls. Song titles are notes, not audio inputs. Exact length follows musical boundaries.").font(.caption)
                     Button("Compose two variations") {
-                        profile.references = references.split(separator: "\n").map(String.init)
+                        profile.setReferences(references)
                         Task { await model.generateTaste(profile: profile, seconds: seconds, direction: direction) }
                     }.disabled(!model.editable).accessibilityIdentifier("composeTaste")
                     if model.busy {
@@ -140,9 +158,10 @@ struct MusicDNAView: View {
                         do {
                             guard let recipe = session.taste else { return }
                             let next = ((recipe.direction ?? 0) + (style == "taste_b" ? 1 : 0)) % 3
-                            try recipe.profile.save(to: TasteProfile.location())
+                            var preferred = recipe.profile; preferred.direction = next
+                            try preferred.save(to: TasteProfile.location())
                             try JSONEncoder().encode(next).write(to: RemixLibrary.application().root.appendingPathComponent("taste-preference.json"), options: [.atomic, .completeFileProtection])
-                            profile = recipe.profile; references = profile.references.joined(separator: "\n"); direction = next
+                            profile = preferred; references = profile.references.joined(separator: "\n")
                             message = "Variation settings saved for your next composition. No training or upload."
                         } catch { message = "Could not save preference feedback. Try again." }
                     }) }
@@ -161,7 +180,7 @@ struct MusicDNAView: View {
                     let feedback = try RemixLibrary.application().root.appendingPathComponent("taste-preference.json")
                     if FileManager.default.fileExists(atPath: feedback.path) {
                         guard (try feedback.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 100) < 16 else { throw CocoaError(.fileReadTooLarge) }
-                        let value = try JSONDecoder().decode(Int.self, from: Data(contentsOf: feedback)); guard (0...2).contains(value) else { throw CocoaError(.fileReadCorruptFile) }; direction = value
+                        let value = try JSONDecoder().decode(Int.self, from: Data(contentsOf: feedback)); guard (0...2).contains(value) else { throw CocoaError(.fileReadCorruptFile) }; if profile.direction == nil { profile.direction = value }
                     }
                 } catch { message = "Saved profile could not be read. Delete it to start again." } }
         }

@@ -1,0 +1,52 @@
+[
+  {
+    "file": "renders/music-dna-favorites-20261022/browser/chromium-1280.png",
+    "bytes": 79216,
+    "sha256": "ab2ece5a1dbeb2847459e825117ee3f5bc31482803900f45148326e1fbbeab8f"
+  },
+  {
+    "file": "renders/music-dna-favorites-20261022/browser/chromium-320.png",
+    "bytes": 34295,
+    "sha256": "bc4913b45ad5d320f0bcb5ddb9022130121fae2f948520cfd33a273f1ec811a3"
+  },
+  {
+    "file": "renders/music-dna-favorites-20261022/browser/chromium-390.png",
+    "bytes": 35800,
+    "sha256": "a44d5c9cc8f6da730b1e00108874652fea9f01bd12c23a75369806a0edf0ea77"
+  },
+  {
+    "file": "renders/music-dna-favorites-20261022/browser/chromium-fast-drums.wav",
+    "bytes": 5979472,
+    "sha256": "d038b0f5b37608eedef799d2137b8f7f5f64b75081c044b631fbe424b213c8ce"
+  },
+  {
+    "file": "renders/music-dna-favorites-20261022/browser/chromium-gentle-piano.wav",
+    "bytes": 6144044,
+    "sha256": "6b269c24dc874dac0fbd5abcaa0125612409373ca2b15ab0231a65249c93842a"
+  },
+  {
+    "file": "renders/music-dna-favorites-20261022/browser/webkit-1280.png",
+    "bytes": 107027,
+    "sha256": "cdc65237c16780b99a87e92805c4ff35fbd2224a6d5a3b64b7911f950bff7336"
+  },
+  {
+    "file": "renders/music-dna-favorites-20261022/browser/webkit-320.png",
+    "bytes": 46183,
+    "sha256": "92756d90a458e9a8d7c40c403033e2555e9370e32c55c02cd8e8a580b6d4ef7d"
+  },
+  {
+    "file": "renders/music-dna-favorites-20261022/browser/webkit-390.png",
+    "bytes": 49690,
+    "sha256": "81a12728a07f15d8d9f5766eb02718e048ffbac8b0710edd6ad58c0cadd31405"
+  },
+  {
+    "file": "renders/music-dna-favorites-20261022/browser/webkit-fast-drums.wav",
+    "bytes": 5979472,
+    "sha256": "d038b0f5b37608eedef799d2137b8f7f5f64b75081c044b631fbe424b213c8ce"
+  },
+  {
+    "file": "renders/music-dna-favorites-20261022/browser/webkit-gentle-piano.wav",
+    "bytes": 6144044,
+    "sha256": "6b269c24dc874dac0fbd5abcaa0125612409373ca2b15ab0231a65249c93842a"
+  }
+]

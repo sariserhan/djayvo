@@ -1,3 +1,8 @@
+## Music DNA favorite-song workflow — 2026-10-22
+
+- [x] **DNA-001 — PASS, implementation and scoped technical checks:** User-confirmed favorite-song aspects and importance now apply to real composer controls; cleared catalogue previews, add-to-favorites and external listening-search links; local/account persistence and native profile compatibility. [Implementation, tests and limits](docs/music-dna-favorites.md).
+- [ ] **DNA-002 — PARTIAL:** Musical acceptance and production generation remain open. Automatic external playlist imports/audio analysis are not implemented; provider and rights approval depend on the specific source and use. Current focus is Music DNA; Basic/Pro acceptance remains closed.
+
 ## Current product decision and remaining scope — 2026-10-22
 
 - [x] **PRO-008 — PASS, owner product acceptance:** Owner says “okay lets consider this product finished and move on”. Basic / Live DJ and Pro v1 are complete for the accepted scope and tested setup. Existing release and Stripe test evidence stands; no new hardware result is inferred. PRO-006 and LIVE-DUAL-004 are deferred post-release qualification, not blockers to moving on. [Release and acceptance](docs/pro-v1-release.md).
@@ -6,8 +11,8 @@ This is the current roadmap; older dated checkpoints below retain historical res
 
 | Order | Product / workstream | Current state and remaining work |
 |---|---|---|
-| 1 | AI Improvisation / musician | **PARTIAL.** Natural singers, 23 styles and variable same-song source edits exist locally; two A/B examples are accepted. Next: evaluate automatic phrase placement, meaningful sung responses and variety across recordings/styles, then fix observed failures. Broad quality, independent evaluation and production integration remain open. Research adapters have not demonstrated an audible benefit; expert action-training data remains missing. [Current arrangement evidence](docs/arrangement-variety.md) |
-| 2 | Music DNA | **PARTIAL.** Profiles, cleared-track ratings, preference adaptation, original 30–180-second compositions, A/B choices and export are implemented. Musical acceptance and the production generation path remain open. [Implementation](docs/non-ios-finish.md) |
+| 1 | Music DNA | **PARTIAL.** Profiles, cleared-track ratings, preference adaptation, original 30–180-second compositions, A/B choices and export are implemented. Musical acceptance and the production generation path remain open. [Implementation](docs/non-ios-finish.md) |
+| 2 | AI Improvisation / musician | **PARTIAL.** Natural singers, 23 styles and variable same-song source edits exist locally; two A/B examples are accepted. Next: evaluate automatic phrase placement, meaningful sung responses and variety across recordings/styles, then fix observed failures. Broad quality, independent evaluation and production integration remain open. Research adapters have not demonstrated an audible benefit; expert action-training data remains missing. [Current arrangement evidence](docs/arrangement-variety.md) |
 | 3 | DJ Academy | **PARTIAL, acceptance.** All 20 lessons / six stages, progression, recording and sandbox billing are implemented and technically checked. Owner mini-set, teaching/music judgment and manual accessibility remain deferred; commercial activation belongs to launch operations. [Release evidence](docs/academy-release-checks.md) |
 | 4 | iOS | **PARTIAL, deferred until other product work.** Local parity exists; finish actual-device and Apple purchase/distribution qualification. [Parity report](docs/ios-product-parity.md) |
 | 5 | Remaining launch operations | **NOT RUN / PARTIAL, last.** Production AI/model and provider delivery, finalized costs and recovery, remaining storage/lifecycle operations, community publication/moderation, other product sales and release acceptance. Basic/Pro release is already complete. [Full product scope](apps/site/jamloom_full_product_implementation_spec_v1.md), [worker evidence](docs/non-ios-finish.md) |
