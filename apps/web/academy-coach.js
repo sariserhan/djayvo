@@ -1,6 +1,7 @@
 import {validateLesson} from './academy-manifest.js';
 import {attachAcademyOffline} from './academy-offline.js';
 import {LessonRun,EVALUATOR_VERSION} from './academy-evaluator.js';
+import {revealStudioControl} from './studio-view.js';
 export async function attachAcademy({bridge,load,assets}){
  const practice=location.pathname.endsWith('/practice'),challenge=location.pathname.includes('/challenges/');
  const offline=location.pathname.startsWith('/academy-offline/');
@@ -35,7 +36,7 @@ export async function attachAcademy({bridge,load,assets}){
   if(task.kind==='knowledge'){$('question').textContent=task.objective;$('answer').replaceChildren(new Option('Choose an answer',''),...task.choices.map((label,i)=>new Option(label,String(i))));}
   $('checklist').replaceChildren(...lesson.tasks.map((t,i)=>{const li=document.createElement('li');li.textContent=`${run.results[i]?'✓ Checked:':'○ To do:'} ${t.objective}`;return li;}));
   document.querySelectorAll('.academy-target').forEach(el=>el.classList.remove('academy-target'));
-  if(run.state==='guided_attempt')document.getElementById(task.control)?.classList.add('academy-target');
+  if(run.state==='guided_attempt'){const control=document.getElementById(task.control);revealStudioControl(control);control?.classList.add('academy-target');}
   if(narration&&'speechSynthesis'in window){speechSynthesis.cancel();speechSynthesis.speak(new SpeechSynthesisUtterance($('objective').textContent));}
  }
  async function api(path,body){const r=await fetch('/api/academy/'+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const value=await r.json();if(!r.ok)throw new Error(value.error||'Account sync unavailable');return value;}
@@ -50,7 +51,7 @@ export async function attachAcademy({bridge,load,assets}){
   }else if(event.control)run.action({t:event.t,source:event.source,control:event.control,value:event.value,beforeA:event.beforeA,beforeB:event.beforeB,afterA:event.afterA,afterB:event.afterB});
  });
  $('load').onclick=async()=>{panel.setAttribute('aria-busy','true');$('load').disabled=true;try{run.state='preparing';feedback='Loading Extended into A and Theories of Everything into B…';paint();await load(tracks);ready=true;run.state='available';if(practice){run.begin();run.pause();feedback='Unrestricted practice. Resume coaching only when you want a task.';}else{await startAttempt();run.begin();feedback=lesson.tasks[0].kind==='knowledge'?'Choose your answer below. The decks remain available for practice.':lesson.tasks[0].kind==='recording'?'Start both tracks as needed, enable Track loop, then record your set.':'Tracks ready. Press the actual Play A button below.';}}catch(e){run.state='available';feedback=e.message;}finally{panel.removeAttribute('aria-busy');$('load').disabled=false;paint();}};
- $('focus').onclick=()=>{const el=document.getElementById(lesson.tasks[run.index].control);el?.scrollIntoView({block:'center',behavior:'instant'});el?.focus();};
+ $('focus').onclick=()=>{const el=document.getElementById(lesson.tasks[run.index].control);revealStudioControl(el);el?.scrollIntoView({block:'center',behavior:'instant'});el?.focus();};
  $('plan-download').onclick=()=>{const url=URL.createObjectURL(new Blob([$('plan').value],{type:'text/plain'})),a=document.createElement('a');a.href=url;a.download='jamloom-set-plan.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
  $('answer').onchange=()=>{if($('answer').value!=='')run.action({t:bridge.snapshot().t,control:'academy-answer',source:'user',value:Number($('answer').value)});};
  $('check').onclick=async()=>{if(demo)return;if(assets().some((v,i)=>v!==tracks[i].id)){feedback='Reload the supplied practice tracks before an assessment.';paint();return;}

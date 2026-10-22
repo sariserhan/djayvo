@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-21",
+  "unit_tests": {
+    "command": "node --test apps/web/tests/*.test.js",
+    "status": "PASS",
+    "passed": 137,
+    "failed": 0
+  },
+  "site_typecheck": {
+    "command": "npm --prefix apps/site run typecheck",
+    "status": "PASS"
+  },
+  "bundle_preparation": {
+    "command": "npm --prefix apps/site run studio:prepare",
+    "status": "PASS"
+  },
+  "production_build": "NOT RUN",
+  "deployment": "NOT RUN",
+  "human_usability": "NOT RUN",
+  "human_listening": "NOT RUN",
+  "physical_checks": "NOT RUN"
+}

@@ -1,3 +1,4 @@
+import {revealStudioTools} from './studio-tools.mjs';
 import { chromium, webkit } from 'playwright';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -24,7 +25,7 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     };
   });
   try {
-    await page.goto('http://localhost:3000/studio/dj.html');
+    await page.goto('http://localhost:3000/studio/dj.html');await revealStudioTools(page);
     assert.equal(await page.title(), 'Jamloom — DJ workspace');
     await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
     await page.locator('#load-instruments').click();

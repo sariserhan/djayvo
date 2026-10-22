@@ -1,5 +1,7 @@
 # Jamloom development tracker
 
+- [x] **UI-001 — PASS, local (2026-10-21):** Simpler Performance studio with task navigation, three-step voice response, keys/pads first, grouped advanced tools and realistic vinyl platters shared with the homepage. All 178 controls retained; Chromium/WebKit usability, playback, Academy, fullscreen and accessibility checks PASS. 137 unit tests, typecheck and audited offline preparation PASS. [Report and screenshots](docs/studio-simplicity.md). Human usability/listening/physical acceptance NOT RUN; no deployment.
+
 - [x] **FAV-001 — PASS, local (2026-10-21):** Existing lime waveform mark exported as SVG and 16/32/48-pixel ICO, linked from the site layout and coming-soon page. Typecheck, five existing metadata/launch tests and [HTTP/format checks](docs/evidence/favicon/local-http.json) PASS. No deployment.
 
 ## Remaining specification work — 2026-10-21

@@ -1,5 +1,27 @@
+// Reveal controls without replacing their DOM or disturbing active playback.
+export function revealStudioControl(element) {
+  if (!element) return;
+  for (let parent = element; parent; parent = parent.parentElement) {
+    if (parent.tagName === 'DETAILS') parent.open = true;
+  }
+  const panel = element.querySelector(':scope > details.studio-panel');
+  if (panel) panel.open = true;
+}
+
 // Expand the existing workspace without rebuilding media elements or the audio graph.
 export function attachStudioView(root, button, status) {
+  function revealHash(hash) {
+    const target = document.getElementById(hash.slice(1));
+    if (!target || !root.contains(target)) return;
+    revealStudioControl(target);
+    return target;
+  }
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (link) revealHash(link.getAttribute('href'))?.focus({preventScroll:true});
+  });
+  window.addEventListener('hashchange', () => revealHash(location.hash)?.scrollIntoView({block:'start'}));
+  revealHash(location.hash);
   let mode = '', previousScroll = 0;
   const outside = new Map();
   const coachButton = document.getElementById('studio-coaching');
@@ -25,7 +47,7 @@ export function attachStudioView(root, button, status) {
     const panel = root.querySelector('.academy-coach');
     if (panel) {
       if (!mode) panel.hidden = false;
-      else if (entering) panel.hidden = !!(panel.querySelector('#academy-load')?.hidden && document.getElementById('audio-a').getAttribute('src'));
+      else if (entering) panel.hidden = !!(panel.querySelector('#academy-load')?.hidden);
     }
     coaching();
     root.classList.toggle('studio-expanded', !!mode);

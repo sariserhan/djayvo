@@ -1,3 +1,4 @@
+import {revealStudioTools} from './studio-tools.mjs';
 import assert from 'node:assert/strict';
 
 // Synthetic ports exercise browser/audio integration without claiming physical MIDI evidence.
@@ -119,7 +120,7 @@ export async function verifyMidi(page, check, peak) {
   assert.equal(await page.locator('#audio-a').evaluate(a => a.paused), false);
   const unsupported = await page.context().newPage();
   try {
-    await unsupported.goto(new URL('dj.html?midi=unsupported', page.url()).href);
+    await unsupported.goto(new URL('dj.html?midi=unsupported', page.url()).href);await revealStudioTools(unsupported);
     assert.equal(await unsupported.locator('#midi-enable').isDisabled(), true);
     assert.match(await unsupported.locator('#midi-status').textContent(), /unavailable/);
     assert.equal(await unsupported.locator('#load-instruments').isDisabled(), false);

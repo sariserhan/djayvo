@@ -1,3 +1,4 @@
+import {revealStudioTools} from './studio-tools.mjs';
 import { chromium, webkit } from 'playwright';
 import { createHash } from 'node:crypto';
 import { verifyPerformanceSave, verifySavedDecks } from './saved-mixes.mjs';
@@ -41,7 +42,7 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     await page.setViewportSize({ width: 1440, height: 1000 });
   };
   try {
-    await page.goto(`${(process.env.JAMLOOM_STUDIO_URL ?? process.env.DJAYVO_STUDIO_URL) || 'http://localhost:3000/studio'}/dj.html`);
+    await page.goto(`${(process.env.JAMLOOM_STUDIO_URL ?? process.env.DJAYVO_STUDIO_URL) || 'http://localhost:3000/studio'}/dj.html`);await revealStudioTools(page);
     for (const deck of ['a','b']) await page.locator(`.deck-${deck} .deck-fx-panel summary`).click();
     assert.equal(await page.title(), 'Jamloom — DJ workspace');
     await page.locator('#performance-title').waitFor();

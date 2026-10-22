@@ -1,3 +1,4 @@
+import {revealStudioTools} from '../../web/tests/studio-tools.mjs';
 import assert from 'node:assert/strict';import {spawn} from 'node:child_process';import {mkdtemp,writeFile,mkdir} from 'node:fs/promises';import {fileURLToPath} from 'node:url';import {join} from 'node:path';import {setTimeout as delay} from 'node:timers/promises';import {chromium,webkit} from 'playwright';import AxeBuilder from '@axe-core/playwright';import {silenceSpeakers} from './silent-audio.mjs';
 const root=fileURLToPath(new URL('../../../',import.meta.url)),folder=await mkdtemp(join(root,'renders/live-phrases-')),base='http://127.0.0.1:4238',results=[];
 const site=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port','4238'],{env:{...process.env,JAMLOOM_COMING_SOON:'false',DATABASE_URL:'',BETTER_AUTH_URL:base},stdio:'ignore'});
@@ -19,7 +20,7 @@ try{
      const source=ctx.createBufferSource();source.buffer=buffer;source.loop=true;source.connect(dest);source.start();await ctx.resume();window.mics.push({ctx,stream:dest.stream});return dest.stream;
     };
    });
-   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/studio/dj.html');
+   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/studio/dj.html');await revealStudioTools(page);
    const rate=8000,frames=rate*120,wav=Buffer.alloc(44+frames*2);wav.write('RIFF');wav.writeUInt32LE(wav.length-8,4);wav.write('WAVEfmt ',8);wav.writeUInt32LE(16,16);wav.writeUInt16LE(1,20);wav.writeUInt16LE(1,22);wav.writeUInt32LE(rate,24);wav.writeUInt32LE(rate*2,28);wav.writeUInt16LE(2,32);wav.writeUInt16LE(16,34);wav.write('data',36);wav.writeUInt32LE(frames*2,40);for(let i=0;i<frames;i++)wav.writeInt16LE(Math.round(1000*Math.sin(i*2*Math.PI*110/rate)),44+i*2);
    await page.locator('#music-rights').check();await page.locator('#file-a').setInputFiles({name:'synthetic-bed.wav',mimeType:'audio/wav',buffer:wav});await page.waitForFunction(()=>!document.querySelector('#prepare-a').disabled);await page.locator('#prepare-a').click();await page.waitForFunction(()=>!document.querySelector('#context-confirmed').disabled);
    await page.locator('#session-bpm').fill('120');await page.locator('#session-bpm').dispatchEvent('change');await page.locator('#session-downbeat').fill('0');await page.locator('#context-confirmed').check();await page.locator('#phrase-consent').check();await page.locator('#session-play').click();await page.waitForFunction(()=>!document.querySelector('#session-stop').disabled);

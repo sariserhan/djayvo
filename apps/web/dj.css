@@ -28,16 +28,17 @@ input::file-selector-button { background:#25313b; border:1px solid #50616e; colo
 .deck-display > input[type=range] { min-height:24px; }
 .platter-row { display:flex; align-items:center; justify-content:center; gap:30px; padding-top:20px; padding-bottom:12px; }
 /* Machined rim stays stationary; the existing transport rotates only the inner disc. */
-.jog { position:relative; flex-shrink:0; width:clamp(160px,22vw,320px); aspect-ratio:1; border-radius:50%; touch-action:none; cursor:grab; padding:18px; border:2px solid #92999f; background:repeating-conic-gradient(from 1deg,#747c82 0deg 1deg,#32373c 1deg 3deg,#171b20 3deg 6deg); box-shadow:inset 0 2px 3px #ffffff60,inset 0 -5px 6px #000b,0 0 0 5px #080a0d,0 0 0 6px #5a6269,0 12px 0 2px #080a0d,0 17px 22px #000b; outline:2px solid transparent; outline-offset:6px; transition:outline-color .14s ease; }
-.jog::after { content:''; pointer-events:none; position:absolute; inset:13px; border-radius:50%; border:1px solid #bbc3c955; box-shadow:inset 0 2px 3px #000b; }
+.jog { position:relative; isolation:isolate; flex-shrink:0; width:clamp(160px,22vw,320px); aspect-ratio:1; border-radius:50%; touch-action:none; cursor:grab; padding:17px; border:2px solid #b3b8bb; background:radial-gradient(ellipse at 50% 0%,#f5f5f0,#81878b 35%,#292d31 70%,#adb1b4); box-shadow:inset 0 1px 2px #fff9,inset 0 -4px 4px #000b,0 0 0 4px #08090b,0 0 0 5px #65696d,0 9px 0 2px #090a0b,0 16px 18px #000b; outline:2px solid transparent; outline-offset:6px; transition:outline-color .14s ease; }
+.jog::before { content:''; position:absolute; inset:0; border-radius:50%; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23d9dddf' stroke-linecap='round'%3E%3Ccircle cx='50' cy='50' r='48' stroke-width='1.2' stroke-dasharray='.1 3'/%3E%3Ccircle cx='50' cy='50' r='45.5' stroke-width='1' stroke-dasharray='.1 2.9'/%3E%3C/g%3E%3C/svg%3E") center/100% 100%,#202326; pointer-events:none; z-index:-1; }
+.jog::after { content:''; pointer-events:none; position:absolute; inset:17px; z-index:2; border-radius:50%; background:conic-gradient(from 15deg,transparent 0deg,#ffffff05 35deg,#ffffff24 52deg,#ffffff04 67deg,transparent 95deg,transparent 175deg,#ffffff04 205deg,#ffffff1a 230deg,#ffffff03 250deg,transparent 280deg); box-shadow:inset 0 0 0 1px #ffffff14; }
 .jog:active { cursor:grabbing; }
 .jog[aria-disabled=true] { cursor:default; filter:saturate(.3); }
-.vinyl { width:100%; height:100%; border-radius:50%; position:relative; background:radial-gradient(ellipse at 30% 15%,#ffffff16,transparent 45%),repeating-radial-gradient(circle,#292e34 0 2px,#252a30 3px 4px); border:3px solid #11151a; box-shadow:inset 0 2px 5px #ffffff1c,inset 0 -7px 12px #000b; }
-.disc-mark { position:absolute; top:9%; left:49%; width:3px; height:11%; background:var(--deck); border-radius:2px; box-shadow:0 0 6px color-mix(in srgb,var(--deck) 40%,transparent); }
-.disc-label { position:absolute; inset:28%; display:flex; flex-direction:column; justify-content:center; align-items:center; border-radius:50%; background:radial-gradient(circle at 35% 20%,#333a42,#10151b 75%); color:var(--deck); border:1px solid #757c82; box-shadow:0 0 0 5px #101318,0 0 0 6px var(--deck),0 0 0 11px #1b2026,0 2px 10px 11px #0005,inset 0 2px 5px #ffffff14; }
-.disc-label b { font:800 clamp(24px,3vw,42px) var(--utility); }
-.disc-label span { font:8px/1.4 var(--utility); text-align:center; letter-spacing:1px; }
-.spindle { position:absolute; left:49%; top:49%; width:2%; height:2%; border-radius:50%; background:#111; }
+.vinyl { width:100%; height:100%; border-radius:50%; position:relative; background:repeating-radial-gradient(circle at center,#111214 0px,#111214 .6px,#292b2d .9px,#101113 1.4px,#101113 2px); border:3px solid #090a0b; box-shadow:0 0 0 1px #000,0 2px 4px #000c,inset 0 0 0 5px #141517; }
+.disc-mark { position:absolute; top:5%; left:49.5%; width:2px; height:7%; background:#e5e2d9; border-radius:1px; }
+.disc-label { position:absolute; inset:33%; display:flex; flex-direction:column; justify-content:space-between; align-items:center; padding:5% 0 4%; border-radius:50%; background:var(--deck); color:#1b2525; border:1px solid #0005; box-shadow:0 0 0 4px #08090a,0 0 0 5px #3335; }
+.disc-label b { font:800 clamp(14px,1.8vw,25px)/1 var(--utility); }
+.disc-label span { font:6px/1.3 var(--utility); text-align:center; letter-spacing:.3px; }
+.spindle { position:absolute; z-index:3; left:calc(50% - 4px); top:calc(50% - 4px); width:8px; height:8px; border-radius:50%; background:radial-gradient(circle at 35% 25%,#fff,#b2b8bb 35%,#33383a 65%); border:1px solid #08090a; box-shadow:1px 2px 2px #0009; }
 .pitch-strip { display:flex; flex-direction:column; align-items:center; gap:8px; font:10px ui-monospace,Menlo,monospace; color:var(--muted); }
 .pitch-strip input { writing-mode:vertical-lr; direction:rtl; width:26px; height:160px; min-height:0; }
 .pitch-strip output { color:var(--deck); font-size:13px; font-variant-numeric:tabular-nums; }
@@ -343,3 +344,74 @@ input::file-selector-button { background:#25313b; border:1px solid #50616e; colo
 .console .pitch-strip input { width:44px; }
 @media(prefers-reduced-motion:reduce) { #dj :is(button,select,input,summary,.jog) { transition:none; } }
 @media(forced-colors:active) { .jog,.vinyl,.disc-label { border:2px solid ButtonText; }.jog:focus-visible { outline-color:Highlight; } }
+
+/* One working surface; opening a tool never remounts audio or changes playback. */
+.studio-start { color:var(--muted); margin:0 0 16px; font-size:15px; }
+.studio-nav { display:flex; justify-content:flex-start; flex-wrap:wrap; gap:4px 8px; padding-bottom:16px; }
+.studio-nav a { display:inline-flex; align-items:center; min-height:44px; padding:8px 14px; border:1px solid var(--edge); border-radius:6px; font-size:13px; text-decoration:none; background:#1c232a; }
+#decks,#performance,#instruments,#recordings,#headphones { scroll-margin-top:90px; }
+#saved-mixes { margin:0 0 18px; padding:16px 20px; border-radius:8px; background:#161d23; border-color:var(--edge); }
+.studio-panel > summary { cursor:pointer; font-size:20px; font-weight:650; min-height:44px; }
+.studio-panel > summary h2 { display:inline; font:inherit; margin:0; }
+.studio-panel > summary small { display:block; margin:4px 0 0 20px; color:var(--muted); font-size:13px; font-weight:400; }
+.studio-panel[open] > summary { padding-bottom:18px; margin-bottom:18px; border-bottom:1px solid var(--edge); }
+.studio-options { border-top:1px solid var(--edge); margin-top:16px; }
+.studio-options > summary,.deck-tools > summary { cursor:pointer; min-height:44px; padding:12px 0; font-size:13px; }
+.studio-options small,#headphones summary small { display:block; color:var(--muted); font-size:12px; margin-left:18px; }
+.studio-options > fieldset { margin-top:4px; }
+.deck-tools { border-block:1px solid #434b54; margin-top:16px; }
+.deck-tools > summary { font:12px/20px var(--utility); }
+.deck-fx-panel { border-top:0; margin:0; }
+.deck-fx-panel summary { font:12px/20px var(--utility); text-transform:none; letter-spacing:0; }
+#practice-library { padding-bottom:8px; margin-bottom:8px; border-bottom:0; }
+#saved-mixes h2 { font-size:18px; }
+#saved-mixes p,#recordings p { font-size:13px; color:var(--muted); }
+#performance,#instruments,#recordings { margin:20px 0; padding:22px; border:1px solid var(--edge); border-radius:8px; background:#171e25; }
+#recordings h2 { font-size:20px; margin:0; }
+#recordings .mix-recording { border:0; padding:0; background:none; }
+#performance p { font-size:13px; color:var(--muted); }
+#performance .step-title { display:flex; align-items:center; gap:12px; margin:24px 0 14px; font-size:17px; }
+.step-title > span { display:grid; place-items:center; width:28px; height:28px; flex-shrink:0; border:1px solid #718078; border-radius:50%; color:var(--a); font:13px var(--utility); }
+#instruments .instrument-heading h2 { font-size:18px; }
+#instruments .instrument-controls { margin-bottom:12px; }
+#instruments .instrument-effects { margin-top:0; }
+#dj.studio-expanded > .studio-start { display:none; }
+.studio-expanded > .studio-nav { padding:6px 0; gap:4px; }
+.studio-expanded > .studio-nav a { padding:4px 10px; font-size:12px; }
+.studio-expanded > #saved-mixes { margin-bottom:12px; padding:6px 12px; }
+.studio-expanded #saved-mixes > details:not([open]) > summary { font-size:14px; min-height:32px; }
+.studio-expanded #saved-mixes > details:not([open]) > summary small { display:inline; margin-left:12px; font-size:11px; }
+@media(min-width:1900px) {
+ .studio-expanded > .studio-nav { grid-column:1/-1; grid-row:3; }
+ .studio-expanded > .consent { grid-row:4; }
+ .studio-expanded > #saved-mixes { grid-column:1/-1; grid-row:5; }
+ .studio-expanded > .console { grid-row:6; }
+ .studio-expanded > #performance { grid-row:6/8; }
+ .studio-expanded > #headphones { grid-column:1; grid-row:7; }
+ .studio-expanded > #instruments { grid-row:8; }
+ .studio-expanded > #recordings { grid-column:1/-1; grid-row:9; }
+ .studio-expanded > #session-notes { grid-row:10; }
+ .studio-expanded > footer { grid-row:11; }
+}
+@media(max-width:560px) {
+ .studio-start { font-size:13px; }
+ .studio-nav { gap:6px; }
+ .studio-nav a { flex:1 1 30%; justify-content:center; padding-inline:8px; font-size:12px; }
+ #saved-mixes,#performance,#instruments,#recordings { padding:14px; }
+ .studio-panel > summary { font-size:18px; }
+}
+
+/* Keep recording activity visible even when its controls are folded away. */
+details:has(#set-record-stop:not(:disabled),#mix-record-stop:not(:disabled),#take-stop:not(:disabled)) > summary::after { content:" · Recording"; color:#ffb6a6; font-size:12px; }
+@media(min-width:1100px) {
+ .studio-expanded > #saved-mixes:has(> details:not([open])) { display:none; }
+ .studio-expanded .deck-display .file-label input { flex:1 1 140px; width:140px; }
+ .studio-expanded .deck-display .track-name { margin-bottom:4px; }
+ .studio-expanded .deck-display .deck-scope { height:24px; margin-top:4px; }
+ .studio-expanded .deck-tools { margin-top:6px; }
+ .studio-expanded .jog { width:clamp(140px,19vh,280px); height:clamp(140px,19vh,280px); }
+ .studio-expanded .disc-label b { font-size:14px; }
+}
+@media(min-width:1100px) and (max-height:900px) {
+ .studio-expanded .platter-row { padding-top:10px; padding-bottom:4px; }
+}

@@ -1,3 +1,4 @@
+import {revealStudioTools} from './studio-tools.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -27,7 +28,7 @@ const server = createServer(async (request, response) => {
   try {
     const bytes = await fs.readFile(path.join(publicRoot, name));
     response.writeHead(200, { 'Content-Type': ({ '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.wasm': 'application/wasm', '.svg': 'image/svg+xml' })[path.extname(name)] || 'application/octet-stream',
-      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; object-src 'none'" });
+      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; object-src 'none'" });
     response.end(bytes);
   } catch { response.writeHead(404); response.end(); }
 });
@@ -89,7 +90,7 @@ context.on('request', request => requests.push({ url: request.url(), method: req
 const check = name => { checks.push({ name, status: 'PASS' }); console.log('PASS:', name); };
 const set = async (id, value) => {
   const control = page.locator(id), disclosure = control.locator('xpath=ancestor::details');
-  if (await disclosure.count() && !await disclosure.evaluate(e => e.open)) await disclosure.locator('summary').click();
+  for (const panel of await disclosure.all()) if (!await panel.evaluate(e => e.open)) await panel.locator(':scope > summary').click();
   await control.fill(String(value)); await control.dispatchEvent('input');
 };
 const peak = () => page.evaluate(() => {
@@ -119,7 +120,7 @@ function tone(frequency, stereo = false) {
 const a = tone(220), b = tone(440);
 let signalEvidence, fxEvidence, deckFXEvidence;
 try {
-  await page.goto(`${origin}/dj.html`);
+  await page.goto(`${origin}/dj.html`);await revealStudioTools(page);
   for (const deck of ['a','b']) await page.locator(`.deck-${deck} .deck-fx-panel summary`).click();
   assert.match(await page.title(), /Jamloom — DJ workspace/);
   await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
@@ -548,14 +549,14 @@ try {
     await navigator.serviceWorker.register('./service-worker.js');
     await navigator.serviceWorker.ready;
   });
-  await page.reload();
+  await page.reload();await revealStudioTools(page);
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
   // Match the existing offline runner: stop the real server. WebKit offline
   // emulation rejects some service-worker navigations before consulting cache.
   server.closeAllConnections();
   await new Promise(resolve => server.close(resolve));
   const requestsBeforeDisconnect = serverRequests.length;
-  await page.reload();
+  await page.reload();await revealStudioTools(page);
   await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
   await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles(a);
@@ -636,7 +637,7 @@ try {
   assert.equal(await page.locator('#audio-a').getAttribute('src'), null);
   check('unload releases the deck source');
   const audioContextEvidence = await page.evaluate(() => ({ sampleRate: testAudioContext.sampleRate, baseLatency: testAudioContext.baseLatency ?? null, outputLatency: testAudioContext.outputLatency ?? null, note: 'Browser-reported values, not hardware latency measurements' }));
-  await page.reload();
+  await page.reload();await revealStudioTools(page);
   await page.locator('#music-rights').check();
   await page.evaluate(() => { window.AudioContext.prototype.createGain = () => { throw new Error('Injected graph failure'); }; });
   for (let attempt = 0; attempt < 2; attempt++) {

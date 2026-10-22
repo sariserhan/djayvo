@@ -1,27 +1,30 @@
 import assert from 'node:assert/strict';
 import {chromium,webkit} from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
-import {writeFile} from 'node:fs/promises';
+import {writeFile,mkdir} from 'node:fs/promises';
+import {silenceSpeakers} from './silent-audio.mjs';
 const base=process.env.JAMLOOM_TEST_URL??'http://127.0.0.1:4224';
 assert.equal(new URL(base).hostname,'127.0.0.1');
-const evidence=new URL('../../../docs/evidence/studio-fullscreen/',import.meta.url),results=[];
+const evidence=new URL(process.env.JAMLOOM_TEST_EVIDENCE??'../../../docs/evidence/studio-fullscreen/',import.meta.url),results=[];
+await mkdir(evidence,{recursive:true});
 for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
  const browser=await engine.launch();
  try{
   const context=await browser.newContext({viewport:{width:1920,height:1080}});
+  await context.addInitScript(silenceSpeakers);
   await context.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+'/academy/lessons/first-crossfade');await page.locator('#academy-load').waitFor();
   const button=page.locator('#studio-fullscreen');await button.click();await page.waitForFunction(()=>document.querySelector('.studio-expanded'));assert.ok(await page.locator('.academy-coach').isVisible(),'preparation remains available before loading');
   await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
   await button.click();await page.waitForFunction(()=>!document.querySelector('.studio-expanded'));
-  await page.locator('#play-a').click();await page.waitForFunction(()=>document.querySelector('#audio-a').currentTime>.3);
-  const source=await page.locator('#audio-a').getAttribute('src'),time=await page.locator('#audio-a').evaluate(a=>a.currentTime);
+  await page.locator('#play-a').click();await page.waitForFunction(()=>Number(document.querySelector('#seek-a').value)>.3);
+  const source=await page.locator('#name-a').innerText(),time=await page.locator('#seek-a').evaluate(a=>Number(a.value));
   await button.click();await page.waitForFunction(()=>document.querySelector('#dj').classList.contains('studio-expanded'));
   const native=await page.evaluate(()=>document.fullscreenElement?.id==='dj');
   assert.ok(await page.locator('.academy-coach').isHidden());await page.locator('#studio-coaching').click();assert.ok(await page.locator('.academy-coach').isVisible());await page.locator('#studio-coaching').click();assert.ok(await page.locator('.academy-coach').isHidden());
   assert.equal(await button.getAttribute('aria-pressed'),'true');assert.ok(await page.locator('body > header').evaluate(e=>e.inert));
-  await page.waitForTimeout(300);assert.ok(await page.locator('#audio-a').evaluate(a=>a.currentTime)>time);assert.equal(await page.locator('#audio-a').getAttribute('src'),source);
+  await page.waitForTimeout(300);assert.ok(await page.locator('#seek-a').evaluate(a=>Number(a.value))>time);assert.equal(await page.locator('#name-a').innerText(),source);
   await page.waitForFunction(()=>document.querySelector('#output-meter').value>.001);
   await button.click();await page.waitForFunction(()=>!document.querySelector('#dj').classList.contains('studio-expanded'));
   const layouts=[];
@@ -35,7 +38,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    assert.ok(layout.console.height>500,'console must retain its full height');
    assert.ok(layout.instruments.y>=layout.console.bottom,'instruments cannot overlap decks');
    assert.ok(layout.notes.y>=layout.console.bottom,'notes must follow the decks');
-   if(width>=1100&&height>=768)assert.ok(layout.pad.bottom<=height,name+' all transport and pads fit '+width+'x'+height);
+   if(width>=1100&&height>=768)assert.ok(layout.pad.bottom<=height,name+' all transport and pads fit '+width+'x'+height+' '+JSON.stringify(layout.pad));
    assert.ok(layout.expanded);assert.ok(!layout.overflow,`${name} ${width} overflow`);
    assert.ok(layout.button.y>=0&&layout.button.bottom<=height,`${name} ${width} exit visible`);
    if(width>=1900){assert.ok(layout.c.x>=layout.console.right);assert.ok(Math.abs(layout.c.y-layout.console.y)<2);}
@@ -48,7 +51,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await page.locator('#dj').evaluate(e=>e.scrollTop=1500);const toolbar=await button.boundingBox();assert.ok(toolbar.y>=0&&toolbar.y+toolbar.height<1080,'exit stays visible while scrolling');
   await button.click();await page.waitForFunction(()=>!document.querySelector('#dj').classList.contains('studio-expanded'));
   assert.ok(await page.locator('.academy-coach').isVisible());assert.ok(!await page.locator('body > header').evaluate(e=>e.inert));
-  assert.equal(await button.getAttribute('aria-pressed'),'false');assert.equal(await page.locator('#audio-a').getAttribute('src'),source);assert.ok(!await page.locator('#audio-a').evaluate(a=>a.paused));
+  assert.equal(await button.getAttribute('aria-pressed'),'false');assert.equal(await page.locator('#name-a').innerText(),source);assert.ok(await page.locator('.deck-a').evaluate(a=>a.dataset.playing==='true'));
   if(native){
    await button.click();await page.waitForFunction(()=>document.fullscreenElement?.id==='dj');
    await page.evaluate(()=>document.exitFullscreen());await page.waitForFunction(()=>!document.querySelector('#dj').classList.contains('studio-expanded'));

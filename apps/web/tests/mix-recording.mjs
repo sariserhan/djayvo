@@ -1,3 +1,4 @@
+import {revealStudioTools} from './studio-tools.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -26,7 +27,7 @@ const server = createServer(async (req, res) => {
   try {
     const bytes = await fs.readFile(path.join(publicRoot, name));
     res.writeHead(200, { 'Content-Type': ({'.html':'text/html','.js':'text/javascript','.css':'text/css','.wasm':'application/wasm','.svg':'image/svg+xml'})[path.extname(name)] || 'application/octet-stream',
-      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; object-src 'none'" });
+      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; object-src 'none'" });
     res.end(bytes);
   } catch { res.writeHead(404); res.end(); }
 });
@@ -52,7 +53,7 @@ try {
     else errors.push(m.text());
   });
   page.on('request', r => { if (!r.url().startsWith(url.replace('/dj.html','/')) && !r.url().startsWith('blob:')) external.push(r.url()); });
-  await page.goto(url);
+  await page.goto(url);await revealStudioTools(page);
   for (const deck of ['a','b']) await page.locator(`.deck-${deck} .deck-fx-panel summary`).click();
   assert.equal(await page.title(), 'Jamloom — DJ workspace');
   assert.equal(await page.locator('#mix-record-start').isDisabled(), true);

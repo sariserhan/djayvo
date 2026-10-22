@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {revealStudioTools} from './studio-tools.mjs';
 
 export async function verifyPerformanceSave(page, check, downloadHash) {
   assert.equal(await page.evaluate(async () => (await (await import('./library.js')).loadSessions()).length), 0);
@@ -37,11 +38,12 @@ export async function verifyPerformanceSave(page, check, downloadHash) {
 }
 
 export async function verifySavedDecks(page, check, capture) {
-  await page.reload();
+  await page.reload(); await revealStudioTools(page);
   await page.getByRole('link', { name: 'Manage in Voice studio', exact: true }).click();
   await page.waitForFunction(() => document.querySelectorAll('#library audio').length === 1);
   assert.match(await page.locator('#library-count').textContent(), /1 \/ 10 sessions/);
   await page.getByRole('link', { name: 'DJ workspace', exact: true }).click();
+  await page.locator('#saved-mixes').waitFor({state:'attached'}); await revealStudioTools(page);
   check('Voice studio and DJ workspace share the saved performance after reload');
   await page.locator('#library-refresh').click();
   await page.waitForFunction(() => document.getElementById('saved-mix').options.length === 2);
@@ -128,6 +130,7 @@ export async function verifySavedDecks(page, check, capture) {
   await page.locator('#delete-confirm').click();
   await page.waitForFunction(() => !document.getElementById('delete-dialog').open);
   await page.getByRole('link', { name: 'DJ workspace', exact: true }).click();
+  await page.locator('#saved-mixes').waitFor({state:'attached'}); await revealStudioTools(page);
   await page.locator('#library-refresh').click();
   await page.waitForFunction(() => document.getElementById('library-status').textContent.startsWith('0 saved'));
   check('deleting saved mixes empties the shared library');

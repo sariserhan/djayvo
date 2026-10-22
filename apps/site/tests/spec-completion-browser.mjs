@@ -1,3 +1,4 @@
+import {revealStudioTools} from '../../web/tests/studio-tools.mjs';
 import assert from 'node:assert/strict';
 import {spawn} from 'node:child_process';import {once} from 'node:events';
 import {mkdtemp,writeFile,readFile,mkdir} from 'node:fs/promises';import {tmpdir} from 'node:os';import {join} from 'node:path';
@@ -13,7 +14,7 @@ try{
    const context=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true});await context.addInitScript(silenceSpeakers);
    await context.route('**/*',route=>(new URL(route.request().url()).origin===base||route.request().url().startsWith('blob:'))?route.continue():route.abort());
    const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
-   await page.goto(base+'/music-dna');assert.match(await page.title(),/Music DNA/);
+   await page.goto(base+'/music-dna');await revealStudioTools(page);assert.match(await page.title(),/Music DNA/);
    await page.getByLabel('Favourite tracks and artists').fill('Private reference — never uploaded');
    await page.getByLabel('Search cleared tracks').fill('Funked');await page.getByLabel('Rating for Funked Up').selectOption('love');
    assert.match(await page.getByRole('heading',{name:'What your selections tell us'}).locator('..').innerText(),/preferred/);
@@ -44,7 +45,7 @@ try{
    }));assert.equal(wasmHash,nativeHash,'Native and browser composition bytes must match');
    for(const width of [1440,390,320]){await page.setViewportSize({width,height:1000});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'DNA overflow '+width);if(width!==390)await page.screenshot({path:join(folder,`${name}-dna-${width}.png`),fullPage:true});}
    assert.deepEqual((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations.map(v=>v.id),[]);
-   await page.goto(base+'/studio/dj.html');await page.setViewportSize({width:1440,height:1000});await page.locator('#music-rights').check();
+   await page.goto(base+'/studio/dj.html');await revealStudioTools(page);await page.setViewportSize({width:1440,height:1000});await page.locator('#music-rights').check();
    await page.locator('#file-a').setInputFiles(wavPath);await page.locator('#prepare-frames-a').waitFor();await page.waitForFunction(()=>!document.querySelector('#prepare-frames-a').disabled);
    await page.locator('#prepare-frames-a').click();await page.waitForFunction(()=>!document.querySelector('#beat-loop-a').disabled);
    assert.equal(await page.locator('#keylock-a').isDisabled(),false);await page.locator('#bpm-a').fill('110');await page.locator('#loop-beats-a').selectOption('1');
@@ -56,9 +57,9 @@ try{
    await page.locator('#seek-a').fill('0');await page.locator('#beat-loop-a').click();await page.waitForFunction(()=>document.querySelector('#output-meter').value>0);
    await page.locator('#pause-all').click();assert.match(await page.locator('#play-a').innerText(),/Play/);
    await page.locator('#loop-exit-a').click();await page.locator('#seek-a').fill('7');await page.locator('#set-cue-a').click();await page.locator('#hot-a-0').click();
-   await page.locator('.deck-a details').evaluate(el=>el.open=true);await page.locator('#reverb-a').fill('0.3');await page.locator('#phaser-a').fill('0.2');await page.locator('#flanger-a').fill('0.1');await page.locator('#keylock-a').check();await page.locator('#crossfade-curve').selectOption('smooth');await page.locator('#master').fill('0.42');await page.locator('#remember-set').check();
+   await page.locator('.deck-a .deck-fx-panel').evaluate(el=>el.open=true);await page.locator('#reverb-a').fill('0.3');await page.locator('#phaser-a').fill('0.2');await page.locator('#flanger-a').fill('0.1');await page.locator('#keylock-a').check();await page.locator('#crossfade-curve').selectOption('smooth');await page.locator('#master').fill('0.42');await page.locator('#remember-set').check();
    await page.waitForFunction(()=>document.querySelector('#recovery-status').textContent.includes('saved on this device'));
-   await page.reload();await page.locator('#music-rights').check();await page.locator('#recovery-restore').click();await page.waitForFunction(()=>document.querySelector('#recovery-status').textContent.includes('Set restored'));
+   await page.reload();await revealStudioTools(page);await page.locator('#music-rights').check();await page.locator('#recovery-restore').click();await page.waitForFunction(()=>document.querySelector('#recovery-status').textContent.includes('Set restored'));
    assert.match(await page.locator('#play-a').innerText(),/Play/);assert.equal(Number(await page.locator('#seek-a').inputValue()),7);assert.equal(await page.locator('#crossfade-curve').inputValue(),'smooth');assert.equal(await page.locator('#master').inputValue(),'0.42');assert.equal(await page.locator('#reverb-a').inputValue(),'0.3');assert.equal(await page.locator('#phaser-a').inputValue(),'0.2');assert.equal(await page.locator('#flanger-a').inputValue(),'0.1');assert.equal(await page.locator('#keylock-a').isChecked(),true);
    assert.equal(await page.locator('#keylock-a').isDisabled(),false);await page.locator('#seek-a').fill('2');await page.locator('#cue-a').click();await page.waitForFunction(()=>Number(document.querySelector('#seek-a').value)===7);
    await page.locator('#play-a').click();await page.waitForFunction(()=>document.querySelector('#output-meter').value>0);await page.locator('#pause-all').click();
@@ -71,7 +72,7 @@ try{
    await page.locator('#load-instruments').click();await page.waitForFunction(()=>!document.querySelector('#patch').disabled);await page.locator('#patch').selectOption('11');await page.locator('#mouth').fill('0.7');
    await page.locator('#sequence-step-0').selectOption('36');await page.locator('#sequence-step-4').selectOption('40');await page.locator('#sequence-start').click();await page.waitForFunction(()=>document.querySelector('#sequence-status').textContent.includes('playing'));await page.waitForFunction(()=>document.querySelector('#output-meter').value>0);await page.locator('#sequence-stop').click();await page.waitForFunction(()=>document.querySelector('#sequence-stop').disabled);
    await page.locator('#remember-set').check();await page.waitForFunction(()=>document.querySelector('#recovery-status').textContent.includes('saved on this device'));await page.locator('#scene-slot').selectOption('2');await page.locator('#scene-save').click();await page.waitForFunction(()=>document.querySelector('#recovery-status').textContent.includes('Scene saved'));
-   await page.reload();await page.locator('#music-rights').check();await page.locator('#scene-slot').selectOption('2');await page.locator('#scene-restore').click();await page.waitForFunction(()=>document.querySelector('#recovery-status').textContent.includes('Confirm phrase permission'));
+   await page.reload();await revealStudioTools(page);await page.locator('#music-rights').check();await page.locator('#scene-slot').selectOption('2');await page.locator('#scene-restore').click();await page.waitForFunction(()=>document.querySelector('#recovery-status').textContent.includes('Confirm phrase permission'));
    await page.locator('#phrase-consent').check();await page.locator('#scene-restore').click();await page.waitForFunction(()=>document.querySelector('#recovery-status').textContent.includes('Set restored'),null,{timeout:30000});
    assert.equal(await page.locator('#mouth').inputValue(),'0.7');assert.equal(await page.locator('#patch').inputValue(),'11');assert.equal(await page.locator('#c-stop').isDisabled(),true);
    const recoveredC=await downloadC('recovered-c');assert.equal(recoveredC,originalC);assert.match(await page.locator('#octave-name').innerText(),/C2/);assert.equal(await page.locator('#sequence-step-0').inputValue(),'36');assert.equal(await page.locator('#sequence-step-4').inputValue(),'40');assert.equal(await page.locator('#sequence-stop').isDisabled(),true);

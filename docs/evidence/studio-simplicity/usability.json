@@ -1,0 +1,44 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "musicLoad": true,
+    "keyboardNavigation": true,
+    "foldingPreservesPlayback": true,
+    "recordingIndicatorAndWav": true,
+    "instrumentPlayback": true,
+    "allToolsReachable": true,
+    "deepLinks": true,
+    "nestedAcademyTarget": true,
+    "homepagePlayback": true,
+    "expandedToolsWidths": [
+      1440,
+      820,
+      390,
+      320
+    ],
+    "axeViolations": 0,
+    "outputsMuted": true
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "musicLoad": true,
+    "keyboardNavigation": true,
+    "foldingPreservesPlayback": true,
+    "recordingIndicatorAndWav": true,
+    "instrumentPlayback": true,
+    "allToolsReachable": true,
+    "deepLinks": true,
+    "nestedAcademyTarget": true,
+    "homepagePlayback": true,
+    "expandedToolsWidths": [
+      1440,
+      820,
+      390,
+      320
+    ],
+    "axeViolations": 0,
+    "outputsMuted": true
+  }
+]

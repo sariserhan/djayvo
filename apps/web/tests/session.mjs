@@ -1,3 +1,4 @@
+import {revealStudioTools} from './studio-tools.mjs';
 import assert from 'node:assert/strict';
 import { validateMixTransport } from '../mix-transport.js';
 import { validateMixSources } from '../mix-sources.js';
@@ -31,7 +32,7 @@ const server = createServer(async (request, response) => {
     if(['api/aurowall','api/site-status'].includes(name)){response.setHeader('Content-Type','application/json');response.end(JSON.stringify(name==='api/aurowall'?{tracks:[]}:{maintenance:false,announcement:null}));return;}
     const bytes = await fs.readFile(name === 'session-probe.js' ? path.join(root, 'apps/web/tests/session-probe.js') : path.join(publicRoot, name));
     response.writeHead(200, { 'Content-Type': ({ '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.wasm': 'application/wasm', '.svg': 'image/svg+xml' })[path.extname(name)] || 'application/octet-stream',
-      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; object-src 'none'" });
+      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; object-src 'none'" });
     response.end(bytes);
   } catch { response.writeHead(404); response.end(); }
 });
@@ -102,7 +103,7 @@ try {
     ['index.html', '#consent', '#record', '#import'],
     ['dj.html', '#phrase-consent', '#phrase-record', '#phrase-file'],
   ]) {
-    await unsupported.goto(`${origin}/${file}`);
+    await unsupported.goto(`${origin}/${file}`);await revealStudioTools(unsupported);
     await unsupported.locator(consent).check();
     await unsupported.waitForFunction(selector => document.querySelector(selector).textContent === 'Recording unavailable', record);
     assert.equal(await unsupported.locator(record).isDisabled(), true);
@@ -122,7 +123,7 @@ try {
     else errors.push({message:message.text(),url});
   });
   page.on('request', request => requests.push(request.url()));
-  await page.goto(`${origin}/dj.html`);
+  await page.goto(`${origin}/dj.html`);await revealStudioTools(page);
   for (const deck of ['a','b']) await page.locator(`.deck-${deck} .deck-fx-panel summary`).click();
   assert.match(await page.title(), /Jamloom/);
   await page.locator('#performance-title').waitFor();
@@ -415,10 +416,10 @@ try {
   assert.equal(await page.locator('#session-play').isDisabled(), true);
   check('separate phrase and music consent withdrawal clears owned audio and scheduled entry');
   await page.evaluate(async () => { await navigator.serviceWorker.register('./service-worker.js'); await navigator.serviceWorker.ready; });
-  await page.reload(); await page.waitForFunction(() => !!navigator.serviceWorker.controller);
+  await page.reload();await revealStudioTools(page); await page.waitForFunction(() => !!navigator.serviceWorker.controller);
   server.closeAllConnections(); await new Promise(resolve => server.close(resolve));
   const requestsBeforeDisconnect = serverRequests.length;
-  await page.reload();
+  await page.reload();await revealStudioTools(page);
   await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles({ name: 'prepared-offline.wav', mimeType: 'audio/wav', buffer: wav });
   await page.locator('#prepare-a').click();

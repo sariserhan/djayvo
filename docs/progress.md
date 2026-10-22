@@ -1,3 +1,7 @@
+# Performance studio simplicity — 2026-10-21
+
+**PASS, local; specification PARTIAL.** Track loading comes first, voice response follows three steps, and specialist controls open only when needed. All 178 original controls remain. Vinyl grooves, paper labels, metal spindles and strobe rims replace the old platters in the studio and homepage. Both browsers pass real interactions, Academy, fullscreen and accessibility checks; 137 unit tests, typecheck and offline bundle preparation pass. Human usability, listening and physical checks remain unclaimed. [Report, screenshots and receipts](studio-simplicity.md). No deployment.
+
 # Site favicon — 2026-10-21
 
 **PASS, local.** Added SVG and 16/32/48-pixel ICO favicons using the existing Jamloom waveform mark; normal pages and coming-soon share them. Typecheck, five existing metadata/launch tests and [local HTTP/format checks](evidence/favicon/local-http.json) pass. No deployment. Metadata wiring follows [Next.js icons documentation](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#icons); Context7 was unavailable.

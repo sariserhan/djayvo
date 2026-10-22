@@ -1,3 +1,4 @@
+import {revealStudioTools} from '../../web/tests/studio-tools.mjs';
 import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
 import {extname} from 'node:path';
@@ -12,7 +13,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage(),errors=[];
   await context.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
   page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(base+'/studio/dj.html');await page.waitForFunction(()=>document.querySelector('#practice-track').options.length===10);
+  await page.goto(base+'/studio/dj.html');await revealStudioTools(page);await page.waitForFunction(()=>document.querySelector('#practice-track').options.length===10);
   assert.ok(await page.locator('#practice-load-a').isDisabled());
   await page.locator('#music-rights').check();
   const played=[];
@@ -46,7 +47,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    await page.screenshot({path:new URL(name+'-'+width+'.png',evidence).pathname});layouts.push({width,gate:'PASS'});
   }
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(axe.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})),[]);
-  await page.goto(base+'/academy/lessons/first-crossfade');await page.locator('#academy-load').waitFor();
+  await page.goto(base+'/academy/lessons/first-crossfade');await revealStudioTools(page);await page.locator('#academy-load').waitFor();
   await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
   assert.match(await page.locator('#name-a').innerText(),/Extended/);assert.match(await page.locator('#name-b').innerText(),/Theories/);
   // Existing lesson fixtures remain separate; the same library is available for free practice.
@@ -65,16 +66,16 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    const offlineContext=await browser.newContext(),offline=await offlineContext.newPage();
    const origin=`http://127.0.0.1:${server.address().port}`;
    offline.on('pageerror',e=>errors.push(e.message));
-   await offline.goto(origin+'/index.html');await offline.locator('#privacy-open').click();await offline.locator('#offline-enable').click();
+   await offline.goto(origin+'/index.html');await revealStudioTools(offline);await offline.locator('#privacy-open').click();await offline.locator('#offline-enable').click();
    await offline.waitForFunction(()=>document.querySelector('#offline-status').textContent.startsWith('Studio saved'),null,{timeout:90000});
-   await offline.goto(origin+'/dj.html');await offline.waitForFunction(()=>!!navigator.serviceWorker.controller);
+   await offline.goto(origin+'/dj.html');await revealStudioTools(offline);await offline.waitForFunction(()=>!!navigator.serviceWorker.controller);
    cached=await offline.evaluate(async()=>{
     const keys=await caches.keys(),cache=await caches.open(keys.find(k=>k.startsWith('djayvo-studio:')));
     return (await cache.keys()).map(r=>r.url).filter(u=>u.endsWith('.mp3'));
    });assert.equal(cached.length,10);
    // Stop the server: WebKit offline emulation can reject even cached navigation.
    await new Promise(resolve=>server.close(resolve));
-   await offline.reload();await offline.waitForFunction(()=>document.querySelector('#practice-track').options.length===10);
+   await offline.reload();await revealStudioTools(offline);await offline.waitForFunction(()=>document.querySelector('#practice-track').options.length===10);
    await offline.locator('#music-rights').check();
    for(const track of tracks){
     await offline.locator('#practice-track').selectOption(track.id);await offline.locator('#practice-load-a').click();
