@@ -68,10 +68,11 @@ final class ControlTests: XCTestCase {
 final class BrowserFixtureTests: XCTestCase {
     func testLocalControlFixture() throws {
         guard let path=ProcessInfo.processInfo.environment["JAMLOOM_LIVE_FIXTURE"] else { throw XCTSkip("Explicit browser fixture only; never captures audio") }
-        let server=ControlServer();var controls=MixControls(),active=true,updates=0
+        let server=ControlServer();var controls=MixControls(),active=true,updates=0,sampleReady=true,playing:[Int]=[]
         let token=try server.pair(origin:ProcessInfo.processInfo.environment["JAMLOOM_LIVE_ORIGIN"] ?? "http://127.0.0.1:4234")
-        server.status={ ["active":active,"message":"Synthetic control fixture; no captured audio.","output":"Muted test output","decks":["A","B"].map { ["active":active,"source":"Synthetic source "+$0,"message":"Synthetic controls only","peak":0.2,"bpm":120.0,"confidence":0.9,"bufferedSeconds":4.0] },"controls":controls.dictionary] }
-        server.apply={controls=$0;updates+=1};server.stop={active=false}
+        server.status={ ["active":active,"message":"Synthetic control fixture; no captured audio.","output":"Muted test output","sampler":["ready":sampleReady,"recording":false,"waiting":false,"seconds":sampleReady ? 1.0:0.0,"playing":playing,"message":"Synthetic sample fixture; no microphone capture."],"decks":["A","B"].map { ["active":active,"source":"Synthetic source "+$0,"message":"Synthetic controls only","peak":0.2,"bpm":120.0,"confidence":0.9,"bufferedSeconds":4.0] },"controls":controls.dictionary] }
+        server.apply={controls=$0;updates+=1};server.stop={active=false;playing=[]}
+        server.sample={ action in if action.action=="clear" { sampleReady=false;playing=[] } else if action.action=="stop" { playing=[] } else if sampleReady && active,let deck=action.deck { playing=[deck] } else { return false };updates+=1;return true }
         try server.start()
         let grant=try JSONSerialization.data(withJSONObject:["token":token])
         FileManager.default.createFile(atPath:path,contents:grant,attributes:[.posixPermissions:0o600])

@@ -4,7 +4,9 @@ const endpoint='http://127.0.0.1:48191';
 type DeckControls={level:number;low:number;mid:number;high:number;tone:number;echo:number;bypass:boolean;roll:boolean;percussion:boolean;highpass:number;echoSeconds:number;loopBeats:number;tempo:number;scratchRate:number;reverse:boolean;scratch:boolean;mute:boolean};
 type Controls={decks:DeckControls[];crossfader:number;master:number};
 type DeckStatus={active:boolean;source:string;message:string;peak:number;bpm:number;confidence:number;bufferedSeconds:number};
-type Status={protocolVersion:number;active:boolean;message:string;output:string;decks:DeckStatus[];controls:Controls};
+type SampleAction={action:"play"|"stop"|"clear";deck?:number};
+type SamplerStatus={recording:boolean;waiting:boolean;ready:boolean;seconds:number;message:string;playing:number[]};
+type Status={sampler?:SamplerStatus;protocolVersion:number;active:boolean;message:string;output:string;decks:DeckStatus[];controls:Controls};
 const deckDefaults:DeckControls={level:.7,low:0,mid:0,high:0,tone:18000,echo:0,bypass:false,roll:false,percussion:false,highpass:20,echoSeconds:.3,loopBeats:1,tempo:120,scratchRate:0,reverse:false,scratch:false,mute:false};
 const initial:Controls={decks:[{...deckDefaults},{...deckDefaults}],crossfader:.5,master:.9};
 function Platter({name,active,controls,onScratch}:{name:string;active:boolean;controls:DeckControls;onScratch:(held:boolean,rate:number)=>void}){
@@ -23,9 +25,10 @@ function Platter({name,active,controls,onScratch}:{name:string;active:boolean;co
 }
 export function Companion({onConnectionChange}:{onConnectionChange:(connected:boolean)=>void}){
  const [code,setCode]=useState(''),[connected,setConnected]=useState(false),[pending,setPending]=useState(false),[message,setMessage]=useState('Open Jamloom Live on this Mac, select a source and output, then copy its pairing code and paste it here.'),[status,setStatus]=useState<Status|null>(null),[controls,setControls]=useState(initial);
+ const [sampleBusy,setSampleBusy]=useState(false);
  const latestControls=useRef(initial),revision=useRef(0);
  const token=useRef(''),generation=useRef(0),queued=useRef<Controls|null>(null),sending=useRef(false),release=useRef<ReturnType<typeof setTimeout>|null>(null),holdUntil=useRef(0),callback=useRef(onConnectionChange);callback.current=onConnectionChange;
- async function command(path:string,method='GET',value?:Controls){
+ async function command(path:string,method='GET',value?:Controls|SampleAction){
   const response=await fetch(endpoint+path,{method,headers:{Authorization:'Bearer '+token.current,...(value?{'Content-Type':'application/json'}:{})},body:value?JSON.stringify(value):undefined,cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(2500)});
   if(!response.ok)throw Error(response.status===401?'Pairing expired. Pair again in Jamloom Live.':'The companion rejected this command. Reconnect from Jamloom Live.');
   const data=await response.json();if(data.protocolVersion!==2||typeof data.active!=='boolean'||!Array.isArray(data.controls?.decks)||data.controls.decks.length!==2||!Array.isArray(data.decks)||data.decks.length!==2)throw Error('Update Jamloom Live to use the two-deck controls.');return data as Status;
@@ -62,10 +65,16 @@ export function Companion({onConnectionChange}:{onConnectionChange:(connected:bo
   catch{if(current===generation.current)disconnect('Controls could not reach the companion. Native capture stops within five seconds.');}
   finally{sending.current=false;}
  }
+ async function sample(action:SampleAction){
+  if(sampleBusy||!connected)return;const current=generation.current,sentRevision=++revision.current;setSampleBusy(true);
+  try{const data=await command('/sampler','POST',action);if(current===generation.current&&sentRevision===revision.current)setStatus(data);}
+  catch{if(current===generation.current)setMessage('Sample command could not complete. Check that the companion has a recording and the selected deck is running.');}
+  finally{setSampleBusy(false);}
+ }
  async function stop(){revision.current++;queued.current=null;try{const data=await command('/stop','POST');setStatus(data);latestControls.current=data.controls;setControls(data.controls);return true;}catch{disconnect();return false;}}
  async function detach(){if(await stop())disconnect('Disconnected. Native capture is stopped.',true);}
  return <section className="product-panel native-deck-panel" aria-labelledby="native-live-title">
- <div className="live-deck-heading"><div><p className="eyebrow">JAMLOOM / LIVE TWO DECKS</p><h2 id="native-live-title">Mix two sources. Make it yours.</h2></div><span className="live-deck-state">{status?.active?'● LIVE':connected?'CONNECTED':'NOT CONNECTED'}</span></div>
+ <div className="live-deck-heading"><div><p className="eyebrow">JAMLOOM / LIVE TWO DECKS</p><h2 id="native-live-title">Mix two sources. Make it yours.</h2></div><span className="live-deck-state">{status?.sampler?.recording?'● MIC RECORDING':status?.active?'● LIVE':connected?'CONNECTED':'NOT CONNECTED'}</span></div>
  {!connected&&<div className="live-pairing"><p>Open Jamloom Live on this Mac. Choose a different playing app for each deck and your output, then copy its pairing code.</p><div className="product-controls"><label>Pairing code<input type="password" autoComplete="off" spellCheck={false} value={code} onChange={e=>setCode(e.target.value)} maxLength={64}/></label><button className="primary" disabled={pending||!/^[a-f0-9]{64}$/.test(code)} onClick={()=>void connect()}>{pending?'Connecting…':'Connect companion'}</button></div></div>}
  <p role="status" aria-live="polite">{message}</p>
  <fieldset className="live-master-mixer" disabled={!connected||!status?.active}><legend>Master mixer</legend><label className="live-control"><span>A ← Crossfader → B<span className="live-value">{Math.round(controls.crossfader*100)}%</span></span><input aria-label="Crossfader" type="range" min="0" max="1" step=".01" value={controls.crossfader} onChange={e=>mix({crossfader:Number(e.target.value)})}/></label><button className="secondary" onClick={()=>mix({crossfader:.5})}>Center</button><label className="live-control"><span>Master level<span className="live-value">{Math.round(controls.master*100)}%</span></span><input aria-label="Master level" type="range" min="0" max="1" step=".01" value={controls.master} onChange={e=>mix({master:Number(e.target.value)})}/></label></fieldset>
@@ -91,8 +100,12 @@ export function Companion({onConnectionChange}:{onConnectionChange:(connected:bo
  </fieldset><p className="live-deck-hint">{source?.message||'Capture starts only in the companion.'}</p></section>;})}
  </div>
 
+ <section className="live-sampler" aria-labelledby="live-sampler-title"><div className="live-deck-heading"><h3 id="live-sampler-title">Mic sample</h3><span className="live-deck-state">{status?.sampler?.recording?'● RECORDING':`${(status?.sampler?.seconds??0).toFixed(1)} s`}</span></div>
+ <p role="status">{status?.sampler?.message||'Record up to four seconds in Jamloom Live on your Mac, then play it here.'}</p>
+ <div className="live-sample-actions">{[0,1].map(deck=><button className="secondary" key={deck} disabled={!connected||sampleBusy||!status?.sampler?.ready||!status?.decks[deck].active} onClick={()=>void sample({action:'play',deck})}>Play sample on {deck===0?'A':'B'}</button>)}<button className="secondary" disabled={!connected||sampleBusy||!status?.sampler?.ready} onClick={()=>void sample({action:'stop'})}>Stop sample</button><button className="secondary" disabled={!connected||sampleBusy||!(status?.sampler?.ready||status?.sampler?.recording||status?.sampler?.waiting)} onClick={()=>void sample({action:'clear'})}>Clear sample</button></div>
+ <p className="live-deck-hint">{connected&&!status?.sampler?'Update Jamloom Live to version 0.3.0 or later to record samples.':'Record only in the companion with microphone permission. Playback uses the selected deck’s effects, level and mute. Your sample stays on this Mac.'}</p></section>
  <p className="live-deck-hint">{status?.output||'One shared output'} · Mute silences a deck while capture stays on. Stopping capture restores the app’s original audio.</p>
- <button className="secondary live-panic" onClick={()=>void stop()} disabled={!status?.active}>Stop native capture / panic</button>
+ <button className="secondary live-panic" onClick={()=>void stop()} disabled={!status?.active&&!status?.sampler?.recording&&!status?.sampler?.waiting}>Stop native capture / panic</button>
  {connected&&<div className="live-connection"><p>{status?.active?'● Capture active':'Capture stopped'} · {status?.message}</p><button className="secondary" onClick={()=>void detach()}>Disconnect companion</button></div>}
  <details className="live-details"><summary>How live decks work</summary><p>Select two different audio processes in the companion. Two tabs in the same browser may share a process; use different apps for independent sources. Both decks play through your chosen output.</p><p>Scratch, reverse and loops use up to four seconds of recent audio. Your source apps keep playing. Return to live rejoins their current audio. FX tempo controls loop length; it does not change the source’s tempo or provide beatmatching. Play, pause and seek in the source app.</p><p>Requires macOS 14.2 or later. Capture starts in the companion after source selection and permission. Pairing expires after 15 minutes; losing this page’s connection stops capture within five seconds. No source audio is sent to the website. Protected or unsupported sources may be unavailable.</p><p>The companion is an owner preview. <a href="/learn/live-source">Routing and compatibility</a></p></details>
  </section>;

@@ -1,0 +1,29 @@
+{
+  "during": {
+    "elapsedSeconds": 14.001690030097961,
+    "active": true,
+    "assertions": [
+      "pid 33379(JamloomLive): [0x000676290001a4af] 00:00:14 PreventUserIdleSystemSleep named: \"Jamloom Live audio capture\"",
+      "pid 33379(JamloomLive): [0x000676290005a4b0] 00:00:14 PreventUserIdleDisplaySleep named: \"Jamloom Live audio capture\""
+    ]
+  },
+  "panic": {
+    "elapsedSeconds": 56.00196897983551,
+    "active": false,
+    "assertions": []
+  },
+  "oneDeckStillActive": {
+    "elapsedSeconds": 61.00199997425079,
+    "active": true,
+    "assertions": [
+      "pid 33379(JamloomLive): [0x000676630001a4be] 00:00:03 PreventUserIdleSystemSleep named: \"Jamloom Live audio capture\"",
+      "pid 33379(JamloomLive): [0x000676630005a4bf] 00:00:03 PreventUserIdleDisplaySleep named: \"Jamloom Live audio capture\""
+    ]
+  },
+  "noAudioStop": {
+    "elapsedSeconds": 96.00130701065063,
+    "active": false,
+    "assertions": []
+  },
+  "status": "PASS"
+}

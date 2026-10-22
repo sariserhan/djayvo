@@ -48,10 +48,12 @@ struct State {
     AudioDeviceIOProcID io=nullptr;
     pid_t pid=0; double rate=0, expectedTime=0; bool haveTime=false;
     std::unique_ptr<jamloom::LiveSourceDSP> dsp;
+    jamloom::LiveSamplePad* sample=nullptr;
     std::atomic<double> level{.4}, low{0}, mid{0}, high{0}, tone{18000}, echo{0}, peak{0}, inputPeak{0}, bpm{0}, confidence{0}, maxCallbackMs{0}, highpass{20}, echoSeconds{.3}, loopBeats{1}, tempo{120}, scratchRate{0}, mix{0}, bufferedSeconds{0};
     std::atomic<unsigned> flags{0}, fault{0};
     std::atomic<std::uint64_t> frames{0}, lastCallback{0};
     double ticksToMs=0;
+    std::atomic<double> discontinuityFrames{0};
     bool started=false;
     jamloom::LiveSourceControls controls() const {
         const auto f=flags.load();
@@ -89,12 +91,12 @@ OSStatus render(AudioObjectID,const AudioTimeStamp*,const AudioBufferList* input
     float *l=nullptr,*r=nullptr,*ol=nullptr,*orr=nullptr;unsigned stride=0,outStride=0,frames=0,outFrames=0;
     if(!buffers(input,l,r,stride,frames)||!buffers(output,ol,orr,outStride,outFrames)||frames!=outFrames||frames>4096||!frames){s.fault.store(1);return noErr;}
     if(time && (time->mFlags&kAudioTimeStampSampleTimeValid)){
-        if(s.haveTime && std::abs(time->mSampleTime-s.expectedTime)>.5)s.fault.store(2);
+        if(s.haveTime && std::abs(time->mSampleTime-s.expectedTime)>.5){s.discontinuityFrames.store(time->mSampleTime-s.expectedTime);s.fault.store(2);}
         s.expectedTime=time->mSampleTime+frames;s.haveTime=true;
     }
     if(s.fault.load())return noErr;
     const auto c=s.controls();
-    if(!s.dsp->process(l,r,stride,ol,orr,outStride,frames,c)){s.fault.store(3);return noErr;}
+    if(!s.dsp->process(l,r,stride,ol,orr,outStride,frames,c,false,s.sample)){s.fault.store(3);return noErr;}
     double peak=0,inPeak=0;for(unsigned i=0;i<frames;++i){peak=std::max({peak,std::abs(double(ol[i*outStride])),std::abs(double(orr[i*outStride]))});inPeak=std::max({inPeak,std::abs(double(l[i*stride])),std::abs(double(r[i*stride]))});}
     s.peak.store(peak);s.inputPeak.store(inPeak);s.bufferedSeconds.store(s.dsp->bufferedSeconds());s.bpm.store(s.dsp->bpm());s.confidence.store(s.dsp->confidence());s.frames.fetch_add(frames);s.lastCallback.store(began);
     const double ms=(mach_absolute_time()-began)*s.ticksToMs;s.maxCallbackMs.store(std::max(ms,s.maxCallbackMs.load()));
@@ -102,8 +104,8 @@ OSStatus render(AudioObjectID,const AudioTimeStamp*,const AudioBufferList* input
 }
 }
 
-@implementation JLLiveAudio { State* _state; }
-- (instancetype)init { if((self=[super init]))_state=new State;return self; }
+@implementation JLLiveAudio { State* _state; std::unique_ptr<jamloom::LiveSamplePad> _sample; BOOL _erasing; }
+- (instancetype)init { if((self=[super init])){_state=new State;_sample=std::make_unique<jamloom::LiveSamplePad>();_state->sample=_sample.get();}return self; }
 - (void)dealloc { delete _state; }
 + (NSArray*)sources {
     NSMutableArray* result=[NSMutableArray array];
@@ -124,7 +126,7 @@ OSStatus render(AudioObjectID,const AudioTimeStamp*,const AudioBufferList* input
 }
 - (NSString*)startProcess:(uint32_t)process output:(uint32_t)output {
     const auto previous=_state->controls();
-    [self stop]; delete _state;_state=new State;auto& s=*_state;s.setControls(previous);
+    [self stop]; delete _state;_state=new State;auto& s=*_state;s.sample=_sample.get();s.setControls(previous);
     auto fail=[&](NSString* message){s.stop();return message;};
     if(@available(macOS 14.2,*)){}else return @"Live Source requires macOS 14.2 or later.";
     if(!read(process,kAudioProcessPropertyPID,s.pid)||s.pid<=0||s.pid==getpid())return fail(@"Select another application's audio process.");
@@ -151,7 +153,15 @@ OSStatus render(AudioObjectID,const AudioTimeStamp*,const AudioBufferList* input
     if(error)return fail([NSString stringWithFormat:@"Audio routing did not start (%d). The source has been released.",(int)error]);
     s.started=true;s.lastCallback.store(mach_absolute_time());return nil;
 }
-- (void)stop { _state->stop(); }
+- (void)stop { _state->stop();_sample->quiescent(); }
+- (BOOL)loadSample:(NSData*)pcm sampleRate:(double)rate {
+    if(pcm.length>192000*4*sizeof(float) || pcm.length%sizeof(float))return NO;
+    return _sample->load(static_cast<const float*>(pcm.bytes),unsigned(pcm.length/sizeof(float)),rate);
+}
+- (BOOL)playSample { if(!_state->started || !_sample->ready())return NO;_sample->play();return YES; }
+- (void)stopSample { _sample->stop();if(!_state->started)_sample->quiescent(); }
+- (void)clearSample { _sample->clear();_erasing=YES;if(!_state->started){_sample->quiescent(true);_erasing=NO;} }
+
 - (BOOL)setControls:(NSDictionary<NSString*,id>*)values mixGain:(double)mixGain {
     // Every field is validated before publishing to the render thread.
     if(values.count!=17 || !std::isfinite(mixGain) || mixGain<0 || mixGain>.5)return NO;
@@ -168,15 +178,16 @@ OSStatus render(AudioObjectID,const AudioTimeStamp*,const AudioBufferList* input
 }
 - (NSDictionary*)status {
     auto& s=*_state;NSString* error=@"";
+    if(_erasing && _sample->erase())_erasing=NO;
     if(s.started){
         UInt32 alive=0;double rate=0;pid_t pid=0;
         if(!read(s.output,kAudioDevicePropertyDeviceIsAlive,alive)||!alive||!read(s.output,kAudioDevicePropertyNominalSampleRate,rate)||rate!=s.rate)error=@"Output disconnected or changed format. Select the output again.";
         else if(!read(s.process,kAudioProcessPropertyPID,pid)||pid!=s.pid)error=@"The selected audio process ended. Select it again.";
         else if(s.fault.load())error=@"The audio stream changed or missed frames. Capture stopped; the source was released.";
         else if((mach_absolute_time()-s.lastCallback.load())*s.ticksToMs>2000)error=@"Audio callbacks stopped. Capture stopped; the source was released.";
-        if(error.length)s.stop();
+        if(error.length){s.stop();_sample->quiescent();}
     }
-    return @{@"active":@(s.started),@"error":error,@"peak":@(s.started?s.peak.load():0),@"inputPeak":@(s.started?s.inputPeak.load():0),
+    return @{@"active":@(s.started),@"sampleReady":@(_sample->ready()),@"samplePlaying":@(_sample->playing()),@"faultCode":@(s.fault.load()),@"discontinuityFrames":@(s.discontinuityFrames.load()),@"error":error,@"peak":@(s.started?s.peak.load():0),@"inputPeak":@(s.started?s.inputPeak.load():0),
         @"bpm":@(s.bpm.load()),@"confidence":@(s.confidence.load()),@"frames":@(s.frames.load()),@"sampleRate":@(s.rate),@"bufferedSeconds":@(s.started?s.bufferedSeconds.load():0),@"maxCallbackMs":@(s.maxCallbackMs.load())};
 }
 @end

@@ -62,15 +62,18 @@ final class ControlModelTests: XCTestCase {
         let a=ControlProbe(),b=ControlProbe(),model=LiveModel(audio:[a,b])
         defer { model.shutdown() }
         model.output=3;model.decks[0].process=1;model.decks[1].process=2
-        model.start(0);XCTAssertFalse(model.active,"Consent required")
+        model.start(0);XCTAssertFalse(model.active,"Consent required");XCTAssertNil(model.performanceActivity)
         model.consent=true;model.start(0);XCTAssertTrue(model.decks[0].active)
+        XCTAssertNotNil(model.performanceActivity,"Live capture prevents idle display/system sleep")
         b.startError="Unsupported source";model.start(1)
         XCTAssertTrue(model.decks[0].active);XCTAssertFalse(model.decks[1].active)
         b.startError=nil;model.decks[1].process=1;model.start(1)
         XCTAssertTrue(model.decks[1].message.contains("different"));XCTAssertEqual(b.started,0)
         model.decks[1].process=2;model.start(1);XCTAssertTrue(model.decks[1].active)
-        model.stopDeck(0);XCTAssertTrue(model.decks[1].active)
-        model.stop();XCTAssertFalse(model.active)
+        model.stopDeck(0);XCTAssertTrue(model.decks[1].active);XCTAssertNotNil(model.performanceActivity)
+        model.stop();XCTAssertFalse(model.active);XCTAssertNil(model.performanceActivity)
+        model.start(0);a.snapshot["active"]=false;model.poll()
+        XCTAssertNil(model.performanceActivity,"A failed last route releases the wake assertion")
     }
     @MainActor func testDeckLayoutSnapshot() throws {
         guard let path = ProcessInfo.processInfo.environment["JAMLOOM_DECK_SNAPSHOT"] else { throw XCTSkip("Optional rendered layout evidence") }
@@ -84,12 +87,14 @@ final class ControlModelTests: XCTestCase {
         model.output=2;model.consent=true
         for i in 0..<2 { model.decks[i].process=UInt32(i+1);model.decks[i].active=true;model.decks[i].heardAudio=true;model.decks[i].source=i==0 ? "Practice source A":"Practice source B";model.decks[i].telemetry=["peak":0.3,"bpm":120.0,"confidence":0.9,"bufferedSeconds":4.0] }
         model.message = "Layout fixture only. No captured or audible audio."
+        model.micConsent=true;model.sampleReady=true;model.sampleSeconds=2.5
         _ = NSApplication.shared
         let host = NSHostingView(rootView:LiveView(model:model).preferredColorScheme(.dark))
         let width=Double(ProcessInfo.processInfo.environment["JAMLOOM_DECK_WIDTH"] ?? "1280") ?? 1280
-        let window = NSWindow(contentRect:NSRect(x:0,y:0,width:width,height:1000),styleMask:[.borderless],backing:.buffered,defer:false)
+        let height=Double(ProcessInfo.processInfo.environment["JAMLOOM_DECK_HEIGHT"] ?? "1000") ?? 1000
+        let window = NSWindow(contentRect:NSRect(x:0,y:0,width:width,height:height),styleMask:[.borderless],backing:.buffered,defer:false)
         window.contentView = host
-        host.frame = NSRect(x:0,y:0,width:width,height:1000)
+        host.frame = NSRect(x:0,y:0,width:width,height:height)
         window.display();host.layoutSubtreeIfNeeded()
         RunLoop.main.run(until:Date().addingTimeInterval(0.2))
         let bitmap = try XCTUnwrap(host.bitmapImageRepForCachingDisplay(in:host.bounds))

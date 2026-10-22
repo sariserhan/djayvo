@@ -100,15 +100,21 @@ integration. [Implementation, evidence and exact configuration names](inline-pay
 
 ## Live DJ two-deck acceptance — 2026-10-22
 
-Current local build is 0.2.0 (2), protocol 2. The matching website is the local preview, not the older public deployment. In the companion use **Website pairing → Copy code and open local preview**; paste into `http://127.0.0.1:4234/live-dj`. [Completion audit and implementation gaps](live-dj-completion.md).
+Current local build is 0.3.0 (3), protocol 2. The matching website is the local preview, not the older public deployment. In the companion use **Website pairing → Copy code and open local preview**; paste into `http://127.0.0.1:4234/live-dj`. [Current sampler, qualification and release evidence](live-dj-finish.md).
 
-**Physical checks remain deferred, not newly authorized by this checklist.** When resumed, select two permitted source apps and one stereo output, then verify each deck separately before combining them. Confirm A/B isolation, no doubled original sound, crossfader/channel/mute, reverse/loop/scratch/Return to live and accompaniment fit. Confirm Stop restores source audio, while Mute keeps the captured source silent. Capture neither personal calls nor unrelated microphone audio.
+**Physical checks resumed on 2026-10-22.** The owner specified LG Ultra HD speakers without headphones, permitted the MacBook Air microphone and authorized the agent to choose sources. Two owned generated sources (`afplay` and Chromium) passed a one-minute routing/control/sampler check; a louder CC0 music/recovery test also passed and the owner accepted normal playback as “Audible and clean.” Remote Panic/restart, independent deck stop/restart, source exit, silent-source rejection and heartbeat loss pass. Actual idle sleep stopped both routes during the first endurance attempt; the fresh 3,600.01-second run passed with no reported timing faults and bounded memory. The companion now keeps the Mac awake only while a deck captures; Stop releases this activity and manual sleep still stops capture. For broader musical acceptance, verify each deck separately before combining them. Confirm A/B isolation, no doubled original sound, crossfader/channel/mute, reverse/loop/scratch/Return to live and accompaniment fit. Confirm Stop restores source audio, while Mute keeps the captured source silent. Capture neither personal calls nor unrelated microphone audio.
 
-Then measure loopback round-trip latency, run a full 60-minute two-source session, and test output unplug/rate changes, source exit, sleep/wake, website disconnect and denied/no-audio cases. Record setup, app versions, output device, sample rate, observations and failures; no audio upload is needed. The agent can collect technical counters and investigate failures when a setup is authorized. Passing unit tests or replaying an hour of PCM offline does not close physical session acceptance.
+Remaining qualification includes calibrated loopback round-trip latency, physical cable unplug/rate changes and actual OS-permission denial. Sleep/output-loss stop, source exit and website-heartbeat loss now have scoped physical evidence. Record setup, app versions, output device, sample rate, observations and failures; no audio upload is needed. The agent can collect technical counters and investigate failures when a setup is authorized. Passing unit tests or replaying an hour of PCM offline does not close physical session acceptance.
 
-**Launch remains last:** prepare and authorize the matching GitHub website delivery and Developer ID signed/notarized download; verify clean install, capture permissions and actual hosted pairing. No new credentials or paid services are required to review the local code. Never paste signing/private keys into chat.
+**Owner hardware boundary:** After the louder listening acceptance, the owner explicitly kept the physical LG unplug/reconnect check deferred. Do not perform or mark that check passed.
 
-## Live Source Mac companion — 2026-10-21
+**Mic sampler:** In the companion, scroll below the decks, confirm microphone permission and press **Record up to 4 seconds**. Use **Finish recording** to stop early. Start a deck and press **Play on A/B**; the website can also trigger/stop/clear the prepared sample. It stays in memory, uses that deck’s effects/mute/level, and is never monitored live or uploaded. With speakers, room playback can enter the recording; headphones are optional for operation but improve recording isolation. Clear or quit to discard it.
+
+**Launch remains last:** the signed Apple silicon ZIP and download/setup section are prepared. Authorize notarization and matching GitHub website/public binary delivery only after the remaining gates; set `JAMLOOM_COMPANION_DOWNLOAD_URL` at build time to the verified HTTPS artifact. Then verify clean install, capture permissions and actual hosted pairing. No new credentials or paid services are required to review the local code. Never paste signing/private keys into chat.
+
+## Previous Live Source Mac companion — 2026-10-21
+
+The following checkpoint is historical; the 0.3.0 section above supersedes its sampler, physical-deferral and signing statements.
 
 Build and open the local owner preview with `./script/build_and_run.sh` from the
 repository root. The app is also at `dist/Jamloom Live.app`; it starts stopped.

@@ -1,0 +1,10 @@
+{
+  "endurance": "FAIL",
+  "durationSeconds": 1091.0166,
+  "observed": "Both routes stopped when LG output became unavailable across actual idle sleep/wake. No automatic capture restart.",
+  "sleepLocal": "2026-10-22 13:55:10 -0400",
+  "wakeLocal": "2026-10-22 13:55:27 -0400",
+  "latency": "NOT RUN",
+  "listening": "Too quiet to judge",
+  "next": "Repeat sustained run with test-scoped display/system sleep prevention."
+}

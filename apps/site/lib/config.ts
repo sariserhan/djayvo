@@ -26,3 +26,10 @@ export function readConfig(env: Record<string, string | undefined> = process.env
 }
 
 export type Config = ReturnType<typeof readConfig>;
+
+export function companionDownload(env: Record<string, string | undefined> = process.env) {
+  try {
+    const url = new URL(env.JAMLOOM_COMPANION_DOWNLOAD_URL ?? '');
+    return url.protocol === 'https:' && !url.username && !url.password && !url.hash ? url.href : null;
+  } catch { return null; }
+}

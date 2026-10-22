@@ -20,7 +20,7 @@ try{
    await page.addInitScript(()=>{Object.defineProperty(navigator.mediaDevices,'getDisplayMedia',{value:async()=>{throw new DOMException('Permission denied','NotAllowedError');},configurable:true});});
    await page.goto(pageOrigin+'/live-dj');await page.getByLabel('Pairing code').fill(token);assert.equal(new URL(page.url()).hash,'');
    const fallback=page.locator('section').filter({has:page.getByRole('heading',{name:'Browser Live Source',exact:true})});
-   await fallback.getByLabel('I have permission').check();await fallback.getByRole('button',{name:'Select tab audio'}).click();await page.waitForFunction(()=>/Permission denied|supplied no audio/.test(document.querySelectorAll('[role=status]')[1].textContent));
+   await fallback.getByLabel('I have permission').check();await fallback.getByRole('button',{name:'Select tab audio'}).click();await page.waitForFunction(()=>/Permission denied|supplied no audio/.test(Array.from(document.querySelectorAll('[role=status]')).map(e=>e.textContent).join(' ')));
    await page.getByRole('button',{name:'Connect companion',exact:true}).click();
    if(pageOrigin!==base&&name==='webkit'){
     await Promise.race([page.waitForFunction(()=>!document.querySelector('.live-mixer').disabled),page.getByText(/Could not connect/).waitFor()]);
@@ -61,6 +61,11 @@ try{
    await page.mouse.down();await platter.dispatchEvent('pointercancel');await page.mouse.up();await delay(100);assert.equal((await telemetry()).controls.decks[0].scratch,false,'cancel releases platter');
    await page.emulateMedia({reducedMotion:'no-preference'});const angleBefore=await platter.locator('.platter-label').evaluate(e=>getComputedStyle(e).transform);await delay(200);assert.notEqual(await platter.locator('.platter-label').evaluate(e=>getComputedStyle(e).transform),angleBefore,'live record rotates');await page.emulateMedia({reducedMotion:'reduce'});
    assert.equal(await platter.locator('.platter-label').evaluate(e=>getComputedStyle(e).animationName),'none','reduced motion respected');
+   assert.equal((await fetch(local+'/sampler',{method:'POST',headers:{Origin:pageOrigin,Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({action:'record'})})).status,400,'website cannot start a microphone');
+   await page.getByRole('button',{name:'Play sample on B',exact:true}).click();await delay(150);assert.deepEqual((await telemetry()).sampler.playing,[1]);
+   await page.getByRole('button',{name:'Stop sample',exact:true}).click();await delay(150);assert.deepEqual((await telemetry()).sampler.playing,[]);
+   await page.getByRole('button',{name:'Play sample on A',exact:true}).click();await delay(150);assert.deepEqual((await telemetry()).sampler.playing,[0]);
+   await page.getByRole('button',{name:'Clear sample',exact:true}).click();await delay(150);assert.equal((await telemetry()).sampler.ready,false);assert.equal(await page.getByRole('button',{name:'Play sample on A',exact:true}).isDisabled(),true);
    // A status response captured before an edit must not roll the control back.
    let captured=false,ready,finished;
    const statusReady=new Promise(resolve=>ready=resolve),statusFinished=new Promise(resolve=>finished=resolve);
@@ -79,8 +84,8 @@ try{
    await page.getByLabel('Pairing code').fill(token);await page.getByRole('button',{name:'Connect companion',exact:true}).click();await page.getByRole('button',{name:'Disconnect companion',exact:true}).waitFor();
    await context.route(local+'/**',r=>r.abort());await page.getByText(/Connection lost/).waitFor();assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),true);
    await page.getByLabel('Pairing code').fill('a'.repeat(64));await page.getByRole('button',{name:'Connect companion',exact:true}).click();await page.getByText(/Could not connect/).waitFor();assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),true);await delay(8500);assert.equal(await fallback.getByRole('button',{name:'Select tab audio'}).isDisabled(),false);assert.deepEqual(errors,[]);await context.close();
-   results.push({browser:name,status:'PASS',pageOrigin,secureOriginFixture:pageOrigin!==base,hostedDeployment:'NOT RUN',realNativeHTTP:true,syntheticTelemetry:true,realSystemCapture:'NOT RUN',pairingAndOrigin:'PASS',controlsAndPanic:'PASS',dualDeckIsolation:'PASS',crossfaderAndMaster:'PASS',platterGestureAndRelease:'PASS',rotationAndReducedMotion:'PASS',allEffectControls:'PASS',bypassRecovery:'PASS',staleStatusDuringEdit:'PASS',browserFallback:'PASS',lostConnectionHandoff:'PASS',invalidToken:'PASS',widths:[1440,820,390,320],axe:'PASS',noAudioOutput:'PASS'});
+   results.push({browser:name,status:'PASS',pageOrigin,secureOriginFixture:pageOrigin!==base,hostedDeployment:'NOT RUN',realNativeHTTP:true,syntheticTelemetry:true,realSystemCapture:'NOT RUN',pairingAndOrigin:'PASS',controlsAndPanic:'PASS',samplerPlaybackAndClear:'PASS',remoteRecordingRejected:'PASS',dualDeckIsolation:'PASS',crossfaderAndMaster:'PASS',platterGestureAndRelease:'PASS',rotationAndReducedMotion:'PASS',allEffectControls:'PASS',bypassRecovery:'PASS',staleStatusDuringEdit:'PASS',browserFallback:'PASS',lostConnectionHandoff:'PASS',invalidToken:'PASS',widths:[1440,820,390,320],axe:'PASS',noAudioOutput:'PASS'});
   }catch(error){failure=error;console.error(error);if(page){console.error(await page.locator('[role=status]').allTextContents());await page.screenshot({path:join(folder,name+'-failure.png'),fullPage:true});}throw error;}finally{await browser?.close();await writeFile(grant+'.done','done');const [code]=await nativeExit;await writeFile(join(folder,name+'-native.log'),nativeLog);if(!failure)assert.equal(code,0,nativeLog);}
  }
  await writeFile(join(folder,'results.json'),JSON.stringify({status:results.some(r=>r.status==='PARTIAL')?'PARTIAL':'PASS',results},null,2)+'\n');console.log(JSON.stringify({folder,results}));
-}finally{site.kill('SIGTERM');await once(site,'exit');await writeFile(join(folder,'server.log'),serverLog);console.log('Evidence:',folder);}
+}finally{if(site.exitCode===null&&site.signalCode===null){const exited=once(site,'exit');site.kill('SIGTERM');await exited;}await writeFile(join(folder,'server.log'),serverLog);console.log('Evidence:',folder);}

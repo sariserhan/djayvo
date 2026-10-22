@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-22",
+  "status": "PASS, scoped",
+  "setup": "LG Ultra HD speakers; controlled native two-source music test",
+  "media": [
+    "Party Sector - CC0",
+    "Atmosphere - CC0"
+  ],
+  "question": "Are the normal playback sections audible and clean? Looping, reverse and a brief sample replay are deliberate parts of this test.",
+  "answer": "Audible and clean",
+  "earlierLowLevelToneTrial": "Too quiet to judge; not accepted as listening evidence",
+  "limits": [
+    "Does not measure round-trip latency",
+    "Does not accept all material or accompaniment creativity",
+    "Does not certify all output devices or public installation"
+  ],
+  "physicalUnplug": "Deferred by owner after listening acceptance"
+}

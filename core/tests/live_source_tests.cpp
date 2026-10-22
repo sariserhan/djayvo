@@ -112,7 +112,28 @@ void deckTransport() {
         auto bad=c;bad.*field=std::numeric_limits<double>::quiet_NaN();check(!bad.valid(),"new controls reject nonfinite input");
     }
 }
-int main(){
+void offlineSoak(){
+    auto a=std::make_unique<jamloom::LiveSourceDSP>(),b=std::make_unique<jamloom::LiveSourceDSP>();
+    auto pad=std::make_unique<jamloom::LiveSamplePad>();a->initialize(48000);b->initialize(48000);
+    std::array<float,256> input{},left{},right{};std::array<float,4800> sample{};sample.fill(.2f);
+    jamloom::LiveSourceControls ca,cb;double peak=0;
+    const auto start=std::chrono::steady_clock::now();
+    for(unsigned second=0;second<3600;++second){
+        ca.mix=.5*(second%11)/10;cb.mix=.5-ca.mix;ca.echo=.3;cb.highpass=100+second%500;
+        ca.roll=second%7==0;cb.reverse=second%11==0;cb.percussion=true;
+        ca.scratch=second%13==0;ca.scratchRate=second%2 ? -1:1;
+        if(second%5==0){pad->clear();pad->next(48000);check(pad->erase(),"soak erase");check(pad->load(sample.data(),unsigned(sample.size()),48000),"soak load");pad->play();}
+        for(unsigned frame=0;frame<48000;frame+=128){
+            for(unsigned i=0;i<128;++i){float x=float(.3*std::sin(6.283185307179586*220*(frame+i)/48000));input[i*2]=x;input[i*2+1]=-x;}
+            check(a->process(input.data(),input.data()+1,2,left.data(),left.data()+1,2,128,ca,false,pad.get()),"soak A");
+            check(b->process(input.data(),input.data()+1,2,right.data(),right.data()+1,2,128,cb),"soak B");
+            for(unsigned i=0;i<256;++i){double x=left[i]+right[i];check(std::isfinite(x)&&std::abs(x)<=.890001,"soak summed headroom");peak=std::max(peak,std::abs(x));}
+        }
+    }
+    std::cout<<"PASS: 3600 simulated seconds, two 48 kHz stereo decks, FX/transport changes, sampler reload/trigger, finite summed output; peak="<<peak<<", offline seconds="<<std::chrono::duration<double>(std::chrono::steady_clock::now()-start).count()<<". NOT a physical 60-minute session.\n";
+}
+int main(int argc,char** argv){
+    if(argc==2 && std::string(argv[1])=="--soak"){offlineSoak();return 0;}
     individualEffects();deckTransport();
     auto dsp=std::make_unique<jamloom::LiveSourceDSP>();
     check(!dsp->initialize(8000),"unsupported rate");check(dsp->initialize(48000),"rate");

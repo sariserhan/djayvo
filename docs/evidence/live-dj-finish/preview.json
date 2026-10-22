@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "url": "http://127.0.0.1:4234/live-dj",
+  "http": 200,
+  "downloadSetupAndSamplerPresent": true,
+  "nativeLaunch": "PASS",
+  "captureWakeAssertionAfterFreshLaunch": false,
+  "captureAutoStarted": false,
+  "note": "Fresh local app launch; no sources selected or started. Public deployment unchanged."
+}

@@ -1,12 +1,12 @@
 # Jamloom development tracker
 
-## Two live decks — 2026-10-22
+## Live DJ completion work — 2026-10-22
 
 - [x] **LIVE-DUAL-001 — PASS, local:** Two independent native sources and paired web decks, rotating/draggable platters, bounded reverse/scratch/loops, expanded FX, channel mute, master/crossfader and Return to live. C++/sanitizers, native model/protocol/HTTP, Chromium/WebKit gesture/control/responsive/axe, build/typecheck/audit and local app launch pass. [Report](docs/live-dual-decks.md).
-- [ ] **LIVE-DUAL-002 — PARTIAL:** Simultaneous real source capture, physical output, listening and long-session acceptance NOT RUN. App 0.2.0/protocol 2 requires the matching website; local preview ready, public update/distribution NOT RUN.
-- [ ] **LIVE-DUAL-003 — NOT RUN, implementation:** Add the Feature C microphone sampler inside Live DJ. The separate Voice studio recorder does not close this requirement. Acceptance: explicit mic consent, bounded local sample, preview/trigger/clear through the selected native output, no feedback monitoring or upload, and stop/revoke cleanup with tests.
-- [ ] **LIVE-DUAL-004 — PARTIAL, qualification:** Verify live groove/accompaniment (currently confidence-gated percussion), source/output synchronization, measured latency, 60-minute two-source run, denial/no-audio paths, source restoration, hot-plug and sleep/resume. Existing owner acceptance covers the previous controls only; physical checks remain deferred.
-- [ ] **LIVE-DUAL-005 — NOT RUN, release:** Update companion and website together, verify actual HTTPS pairing/browser compatibility, Developer ID signing/notarization, public download/install/update and GitHub-delivered publication. Launch remains last. [Completion audit](docs/live-dj-completion.md).
+- [ ] **LIVE-DUAL-002 — PARTIAL:** Real two-source routing to LG Ultra HD and four-second MacBook Air microphone sampling PASS in a 60-second controlled test. Version 0.3.0/protocol 2 and matching local website are ready. Owner accepted the louder CC0 music check as audible and clean; recovery checks pass. The real 60-minute two-source run also passes; external release acceptance remains open. [Current report](docs/live-dj-finish.md).
+- [x] **LIVE-DUAL-003 — PASS, implementation and scoped hardware:** Integrated consented four-second microphone sampler; explicit A/B trigger, stop/retrigger/clear through native FX/mute/limiter/output, no live monitoring, disk recording or upload; revoked/late permission and concurrent clear/reload tests pass. Actual MacBook Air microphone capture and Deck B playback/clear pass. [Evidence](docs/live-dj-finish.md).
+- [ ] **LIVE-DUAL-004 — PARTIAL, qualification:** Physical checks resumed with owner-authorized LG speakers, MacBook Air microphone and agent-selected generated sources. One-minute controls/sampling and 100-second CC0 music/recovery PASS; owner reports normal playback audible and clean. Independent restart, Panic, source exit, silent-source rejection and heartbeat-loss stop pass; actual capture-only wake assertions release on stop. Actual idle sleep stopped both routes without resuming capture; interrupted endurance is retained and the fresh 3,600.01-second run passed with zero reported timing faults and bounded memory. Physical cable unplug is explicitly deferred by the owner. Calibrated round-trip latency, rate-change qualification and broad accompaniment fit remain open. [Evidence](docs/live-dj-finish.md).
+- [ ] **LIVE-DUAL-005 — PARTIAL, release:** Version 0.3.0 Apple silicon candidate is Developer ID signed with hardened runtime, microphone entitlement and timestamp; ZIP extraction/signature/hash PASS. Website download/setup UI prepared with validated release URL configuration. Notarization, clean install/update, public binary/website delivery and actual hosted pairing remain NOT RUN. Launch remains last. [Candidate and remaining gates](docs/live-dj-finish.md).
 
 
 ## Live DJ deck and control repair — 2026-10-22
@@ -957,6 +957,8 @@ filename/seed, timestamp, observation, desired change and eventual evidence.
 Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
+
+- [x] **2026-10-22 — Live DJ sampler and release preparation:** Native consented four-second microphone capture, selected-deck playback/stop/clear and paired-web sampler controls; fixed-memory audio publication and cancellation; 0.3.0 Developer ID release candidate and truthful website download/setup section. Portable/native/browser/site checks, actual two-source routing and scoped owner listening/recovery pass. The real 60-minute run and capture-only wake lifecycle also pass; external release and deferred hardware gates remain tracked above. [Report and evidence](docs/live-dj-finish.md).
 
 - [x] **2026-10-21 — Private action replay:** Clocked, backwards-compatible instrument traces; captured sequencer commands without per-note callback allocation; bounded local source decoding and A/B/C/instrument reconstruction. Browser capture/CLI replay and regression evidence: [report](docs/mix-action-replay.md).
 

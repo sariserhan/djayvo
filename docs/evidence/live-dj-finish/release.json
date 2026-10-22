@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "version": "0.3.0 (3)",
+  "architecture": "arm64",
+  "minimumMacOS": "14.2",
+  "artifact": "dist/releases/live-0.3.0-3.jZO6QT/Jamloom-Live-0.3.0-macOS.zip",
+  "sha256": "747d108c10d2e3dcb7e69d372f65fd7596f6b367d306e9c7c18c18bba4b403cf",
+  "signature": "Developer ID Application, hardened runtime, secure timestamp",
+  "entitlements": [
+    "com.apple.security.device.audio-input"
+  ],
+  "archiveExtractionAndSignature": "PASS",
+  "notarization": "NOT RUN",
+  "cleanInstall": "NOT RUN",
+  "publication": "NOT RUN"
+}

@@ -1,6 +1,7 @@
 #pragma once
 #include "../../instruments/performance_voices.h"
 #include <limits>
+#include "live_sample.h"
 
 namespace jamloom {
 struct LiveSourceControls {
@@ -87,7 +88,7 @@ public:
     std::uint64_t frames() const noexcept { return frame_; }
     bool process(const float* left, const float* right, unsigned inputStride,
                  float* outLeft, float* outRight, unsigned outputStride,
-                 unsigned frames, const LiveSourceControls& c, bool silent = false) noexcept {
+                 unsigned frames, const LiveSourceControls& c, bool silent = false, LiveSamplePad* sample = nullptr) noexcept {
         if (!left || !right || !outLeft || !outRight || !frames || frames > 4096 ||
             inputStride < 1 || inputStride > 2 || outputStride < 1 || outputStride > 2 || !c.valid()) return false;
         constexpr double tau = 6.283185307179586;
@@ -100,7 +101,9 @@ public:
         for (unsigned f=0;f<frames;++f,++frame_) {
             const std::array<double,2> input{{std::isfinite(left[f*inputStride])?std::clamp(double(left[f*inputStride]),-4.,4.):0,
                 std::isfinite(right[f*inputStride])?std::clamp(double(right[f*inputStride]),-4.,4.):0}};
-            const auto transported=buffer_.sample(input,rate_,c);
+            auto transported=buffer_.sample(input,rate_,c);
+            const double pad=sample ? sample->next(rate_)*.5 : 0;
+            for(auto& channel:transported)channel+=pad;
             const double magnitude = std::max(std::abs(input[0]), std::abs(input[1]));
             envelope_ += fast*(magnitude-envelope_);
             floor_ += slow*(magnitude-floor_);

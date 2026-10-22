@@ -19,16 +19,28 @@ struct LiveView: View {
         VStack(spacing:0) {
             ScrollView {
                 VStack(alignment:.leading,spacing:18) {
-                    HStack { Text("jamloom").font(.largeTitle.bold());Text("LIVE / TWO DECKS").font(.caption.monospaced()).foregroundStyle(liveColors[0]);Spacer();Button("Stop all / Panic",role:.destructive,action:model.stop).keyboardShortcut(.escape,modifiers:[]).disabled(!model.active) }
+                    HStack { Text("jamloom").font(.largeTitle.bold());Text(model.micRecording ? "● MIC RECORDING":"LIVE / TWO DECKS").font(.caption.monospaced()).foregroundStyle(liveColors[0]);Spacer();Button("Stop all / Panic",role:.destructive,action:model.stop).keyboardShortcut(.escape,modifiers:[]).disabled(!model.active && !model.micRecording && !model.micWaiting) }
                     HStack {
                         Picker("Stereo output",selection:$model.output) {
                             Text("Choose an output").tag(UInt32(0))
                             ForEach(model.outputs.indices,id:\.self) { i in Text(model.outputs[i]["name"] as? String ?? "Output").tag((model.outputs[i]["id"] as? NSNumber)?.uint32Value ?? 0) }
                         }.disabled(model.active)
                         Button("Refresh sources",action:model.refresh)
-                        Toggle("I have permission to process these sources.",isOn:$model.consent).onChange(of:model.consent) { _,value in if !value { model.stop() } }
+                        Toggle("I have permission to process these sources.",isOn:$model.consent)
                     }
                     HStack(alignment:.top,spacing:20) { ForEach(0..<2,id:\.self) { index in NativeLiveDeck(model:model,index:index) } }
+                    VStack(alignment:.leading,spacing:12) {
+                        HStack { Text("MIC SAMPLE").font(.headline.monospaced());Spacer();Text(model.micRecording ? "● RECORDING":String(format:"%.1f s",model.sampleSeconds)).foregroundStyle(model.micRecording ? .red:.secondary) }
+                        Toggle("I have permission to record this system microphone sample.",isOn:$model.micConsent)
+                        HStack {
+                            Button(model.micRecording ? "Finish recording":"Record up to 4 seconds") { if model.micRecording { model.finishSample() } else { model.recordSample() } }.disabled(!model.micConsent || model.micWaiting)
+                            ForEach(0..<2,id:\.self) { i in Button("Play on "+(i==0 ? "A":"B")) { _=model.sampleAction(SampleAction(action:"play",deck:i)) }.disabled(!model.sampleReady || !model.decks[i].active) }
+                            Button("Stop sample") { _=model.sampleAction(SampleAction(action:"stop")) }.disabled(!model.sampleReady)
+                            Button("Clear sample",action:model.clearSample).disabled(!model.sampleReady && !model.micRecording && !model.micWaiting)
+                        }
+                        Text(model.sampleMessage).font(.caption)
+                        Text("Use headphones for a clean recording. Microphone audio is never monitored live, saved to disk or uploaded. Start a deck to play through its mixer.").font(.caption).foregroundStyle(.secondary)
+                    }.padding(16).background(.black.opacity(0.25),in:RoundedRectangle(cornerRadius:10))
                     Text(model.message).font(.caption).foregroundStyle(.secondary)
                     DisclosureGroup("Website pairing") {
                         VStack(alignment:.leading,spacing:10) {

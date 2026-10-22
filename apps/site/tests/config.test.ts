@@ -5,7 +5,7 @@ import test from 'node:test';
 import { readFileSync } from 'node:fs';
 import { parseEnv } from 'node:util';
 import { Pool } from 'pg';
-import { readConfig } from '../lib/config';
+import { readConfig, companionDownload } from '../lib/config';
 import { authOptions } from '../lib/auth-options';
 import { audioStore } from '../lib/audio-store';
 import { sendEmail } from '../lib/email';
@@ -16,6 +16,13 @@ const local = {
   BETTER_AUTH_URL: 'http://localhost:3000', BETTER_AUTH_SECRET: 'a'.repeat(48),
   JAMLOOM_LOCAL_OUTBOX: '/tmp/jamloom-test-outbox',
 };
+test('companion download stays unavailable until a valid HTTPS release URL is configured', () => {
+  for (const value of ['', 'javascript:alert(1)', 'http://example.com/app.zip', 'https://user:secret@example.com/app.zip', 'https://example.com/app.zip#token']) {
+    assert.equal(companionDownload({ JAMLOOM_COMPANION_DOWNLOAD_URL: value }), null);
+  }
+  assert.equal(companionDownload({}), null);
+  assert.equal(companionDownload({ JAMLOOM_COMPANION_DOWNLOAD_URL: 'https://www.jamloom.com/releases/live.zip' }), 'https://www.jamloom.com/releases/live.zip');
+});
 test('production template binds auth and private R2 grants to Jamloom configuration', async () => {
   const template = parseEnv(readFileSync(new URL('../.env.production.example', import.meta.url), 'utf8'));
   assert.equal(template.JAMLOOM_R2_ENABLED, 'false');

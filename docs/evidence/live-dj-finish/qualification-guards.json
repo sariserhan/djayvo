@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "authorized": false,
+      "exit": 2,
+      "message": "Set JAMLOOM_PHYSICAL_AUTHORIZED=yes only for an owner-authorized audible hardware session."
+    },
+    {
+      "authorized": true,
+      "exit": 2,
+      "message": "A physical qualification is already running."
+    }
+  ]
+}

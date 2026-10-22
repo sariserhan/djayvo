@@ -1,5 +1,7 @@
 # Live DJ completion audit — 2026-10-22
 
+**Historical audit.** The sampler and signed candidate are now implemented; physical tests have resumed. See [the current completion report](live-dj-finish.md) for superseding evidence and remaining gates.
+
 **Overall: PARTIAL. The requested two-deck increment is implemented; the complete Live Audio DJ feature is not done.**
 
 Audited repository HEAD `f9c6818`, the immutable master, full-product specification §7/§12/§13/§14, current Swift/Objective-C++ companion, portable DSP, website controls, retained test reports and the tracker. No new listening, hardware, runtime or hosted tests were run for this audit.

@@ -31,6 +31,17 @@ struct MixControls: Codable, Equatable {
     }
 }
 
+struct SampleAction:Codable {
+    let action:String
+    var deck:Int?=nil
+    static func decode(_ data:Data)->SampleAction? {
+        guard let object=try? JSONSerialization.jsonObject(with:data) as? [String:Any],let value=try? JSONDecoder().decode(Self.self,from:data) else { return nil }
+        if value.action=="play" { guard Set(object.keys)==Set(["action","deck"]),let deck=value.deck,(0..<2).contains(deck) else { return nil } }
+        else { guard ["stop","clear"].contains(value.action),Set(object.keys)==Set(["action"]) else { return nil } }
+        return value
+    }
+}
+
 struct LocalRequest {
     let method: String, path: String, headers: [String: String], body: Data
     static func parse(_ data: Data) throws -> LocalRequest? {
@@ -59,6 +70,7 @@ final class ControlServer {
     static let port: UInt16 = 48191
     static let origins: Set<String> = ["https://www.jamloom.com", "https://jamloom.com", "http://127.0.0.1:3000", "http://127.0.0.1:4234"]
     var status: () -> [String: Any] = { [:] }, apply: (MixControls) -> Void = { _ in }, stop: () -> Void = {}
+    var sample:(SampleAction)->Bool = { _ in false }
     var connectionChanged: (String) -> Void = { _ in }
     private var listener: NWListener?
     private var connections: [UUID: NWConnection] = [:]
@@ -96,7 +108,7 @@ final class ControlServer {
     func shutdown() { revoke(); listener?.cancel(); for c in connections.values { c.cancel() }; connections.removeAll() }
     func handle(_ request: LocalRequest, now: Date = Date()) -> (Int, [String: Any], String?) {
         guard request.headers["host"] == "127.0.0.1:\(Self.port)", let incoming = request.headers["origin"], incoming == origin, Self.origins.contains(incoming) else { return (403,["error":"Origin rejected"],nil) }
-        guard ["/status", "/controls", "/stop"].contains(request.path) else { return (404,["error":"Unknown command"],incoming) }
+        guard ["/status", "/controls", "/stop", "/sampler"].contains(request.path) else { return (404,["error":"Unknown command"],incoming) }
         if request.method == "OPTIONS" {
             guard ["GET","POST"].contains(request.headers["access-control-request-method"] ?? ""), !token.isEmpty, now < expires else { return (403,["error":"Pair in the companion first"],incoming) }
             return (204,[:],incoming)
@@ -108,6 +120,9 @@ final class ControlServer {
         case ("POST","/controls"):
             guard request.headers["content-type"] == "application/json", let controls = MixControls.decode(request.body) else { return (400,["error":"Invalid controls"],incoming) }
             apply(controls)
+        case ("POST","/sampler"):
+            guard request.headers["content-type"]=="application/json",let action=SampleAction.decode(request.body) else { return (400,["error":"Invalid sample command"],incoming) }
+            guard sample(action) else { return (409,["error":"Record a sample and start the selected deck in Jamloom Live."],incoming) }
         case ("POST","/stop"):
             guard request.body.isEmpty else { return (400,["error":"Unexpected body"],incoming) }
             stop()
