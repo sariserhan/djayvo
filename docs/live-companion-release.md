@@ -18,7 +18,7 @@ an installer from interrupting a set that started after a deferred update.
 Automatic checks are opt-in; automatic downloading/installation is disabled.
 The private update key stays in Keychain under account `com.jamloom.live`.
 
-`/live-dj` links the versioned public GitHub ZIP and release notes by default.
+`/live-dj` is publicly accessible and linked from the coming-soon landing page. It links the versioned public GitHub ZIP and release notes by default.
 The existing HTTPS environment override still supports a deliberate rollout override.
 No audio, recordings, training material or credentials are part of the release.
 
@@ -31,8 +31,22 @@ No audio, recordings, training material or credentials are part of the release.
   signed-feed configuration error before distribution.
 - PASS: site build/typecheck and ten configuration tests; Chromium/WebKit native
   HTTP controls, privacy, recovery, four widths and accessibility.
-- PARTIAL: final notarization, public download, hosted page and actual upgrade
-  verification are in progress; see evidence directory for final results.
+- PASS: Apple notarization Accepted, stapled ticket, nested signatures and Gatekeeper
+  verified after public download; SHA256 matches the published checksum.
+- PASS: real signed in-app download/install/relaunch from a synthetic older test
+  version (0.3.9 build 3) to the public 0.4.0 build 4 in a separate owned copy.
+  Signed hosted feed accepted; tampered feed rejected. Update-check preference
+  persists across quit/relaunch and was restored to off.
+- PASS: all seven GitHub jobs on release source `406189d`, including Academy,
+  macOS/Linux sanitizers, Swift tests and cross-platform comparison.
+- PASS: actual anonymous production landing → Live DJ → download link, 1440/390/320
+  widths and axe. Found and fixed the global coming-soon redirect; only `/live-dj`
+  is exempted. Improvisation and paid-generation routes remain gated.
+- PASS: actual production Chromium page paired with the installed notarized app,
+  read its stopped state, kept mixer controls disabled without capture, and
+  disconnected. No microphone or system capture was started for this check.
+- Installed the downloaded verified app at `/Applications/Jamloom Live.app`.
+  Capture and microphone remain stopped. No paywall or new pricing was enabled.
 
 Evidence: [release checks](evidence/live-companion-release/).
 Prior real-audio evidence remains in [Live DJ finish](live-dj-finish.md).
@@ -57,3 +71,12 @@ Physical unplug remains explicitly deferred. No new audio-quality claim is made.
 
 Preserve the update key securely for future releases; never rotate/delete it casually.
 Existing 0.3.0 and older builds need one manual download because they predate Sparkle.
+
+## Published artifacts
+
+- [Download page](https://www.jamloom.com/live-dj)
+- [Versioned release and checksum](https://github.com/sariserhan/jamloom/releases/tag/live-v0.4.0)
+- [Signed feed](https://github.com/sariserhan/jamloom/releases/download/live-updates/appcast.xml)
+- SHA256: `198d96dc809efc7caeb272b976e036f4e2da79204390d3a73d267ceae07d356f`.
+- Website source: `9092dbf` (public preview gate); app source: `406189d`.
+- No unrelated pending landing redesign or headphones CSS was deployed.

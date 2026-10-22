@@ -1,6 +1,6 @@
 # Downloadable companion, settings and signed updates — 2026-10-22
 
-**PASS, local implementation; distribution verification in progress.** Jamloom Live 0.4.0 adds the brand icon, native Settings, opt-in signed Sparkle updates and guards against updating during live audio. Website has a versioned Mac download and release notes. Native, browser and site checks pass. The owner authorized this scoped public companion delivery and supplied the issuer identifier; notarization credentials now work through local Keychain. [Release report](live-companion-release.md). Existing deferred physical and product-quality gates remain open.
+**PASS, companion distribution.** Jamloom Live 0.4.0 adds the brand icon, native Settings, opt-in signed Sparkle updates and guards against updating during live audio. Website now exposes the Live DJ preview and versioned download publicly while retaining other launch gates. Apple notarization, fresh-download signature/Gatekeeper, signed in-app upgrade/relaunch, native/browser/site checks and seven GitHub jobs pass. Installed the verified app in Applications; capture remains stopped. The owner authorized this scoped public companion delivery and supplied the issuer identifier; notarization credentials now work through local Keychain. [Release report](live-companion-release.md). Existing deferred physical and product-quality gates remain open.
 
 # Live DJ sampler and physical qualification — 2026-10-22
 

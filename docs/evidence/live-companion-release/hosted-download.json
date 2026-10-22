@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "base": "https://www.jamloom.com",
+  "anonymousDownload": "PASS",
+  "otherProductGates": "PASS",
+  "widths": [
+    1440,
+    390,
+    320
+  ],
+  "axe": "PASS",
+  "noAudioStarted": true
+}
