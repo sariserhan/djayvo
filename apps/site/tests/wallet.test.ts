@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
+import {readdir} from 'node:fs/promises';
 import {createPool} from '../lib/database';
 import {migrate} from '../lib/migrations';
 import {Wallet} from '../lib/wallet';
@@ -13,7 +14,7 @@ test('real Postgres ledger: conservation, concurrency, receipts, tenant isolatio
  await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
  const pool=createPool(url.toString()),wallet=new Wallet(pool);
  try{
-  assert.equal((await migrate(pool)).length,12);assert.deepEqual(await migrate(pool),[]);
+  assert.deepEqual(await migrate(pool), (await readdir(new URL('../migrations/', import.meta.url))).filter(name => name.endsWith('.sql')).sort());assert.deepEqual(await migrate(pool),[]);
   for(const id of ['alice','bob','carol','privacy','poor'])await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[id,id+'@example.test']);
   await t.test('private premium is reserved atomically, rounded, captured only on success and bound to retries',async()=>{
    await wallet.grant('privacy',{provider:'stripe_test',receipt:'privacy_lot',credits:25,netMicros:10_000_000});

@@ -1,0 +1,20 @@
+{
+  "outputs" : [
+    {
+      "id" : 101,
+      "name" : "LG Ultra HD"
+    }
+  ],
+  "sources" : [
+    {
+      "id" : 162,
+      "name" : "Audio process · 8655",
+      "pid" : 8655
+    },
+    {
+      "id" : 163,
+      "name" : "Google Chrome for Testing Helper · 8673",
+      "pid" : 8673
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "macOS": "26.7.1",
+  "macOSBuild": "25G241",
+  "architecture": "arm64",
+  "playwright": "1.61.1",
+  "app": "Jamloom Live 0.3.0 (3), protocol 2",
+  "host": "Visible debug qualification app using production model/view/native bridge",
+  "output": "LG Ultra HD, stereo 48000 Hz",
+  "microphone": "MacBook Air microphone, default input, 48000 Hz",
+  "sources": [
+    "owned /usr/bin/afplay",
+    "owned Chromium from installed Playwright"
+  ],
+  "audioRetention": "No microphone PCM saved or uploaded; generated source WAV removed after each run",
+  "chromium": "Google Chrome for Testing 149.0.7827.55"
+}

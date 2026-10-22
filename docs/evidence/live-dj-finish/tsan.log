@@ -1,0 +1,1 @@
+PASS: bounded mic PCM, resampling/output-clock duration, explicit one-shot trigger, stop/retrigger smoothing, clear acknowledgement, concurrent publication, mixer/limiter/mute

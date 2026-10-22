@@ -1,0 +1,29 @@
+Building for production...
+[2 / 5]
+[4 / 6] JamloomLive-product
+[6 / 8] LiveAudio
+[7 / 9] LiveAudio
+[9 / 10] JamloomLive-product
+[11 / 13] JamloomLive-product
+[12 / 13] JamloomLive-product
+Build complete! (4.38 sec)
+/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc: replacing existing signature
+/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc: replacing existing signature
+/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app: replacing existing signature
+/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate: replacing existing signature
+/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework: replacing existing signature
+/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app: replacing existing signature
+--prepared:/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/Current/.
+--prepared:/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/Current/Autoupdate
+--validated:/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/Current/Autoupdate
+--prepared:/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/Current/Updater.app
+--validated:/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/Current/Updater.app
+--prepared:/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/Current/XPCServices/Installer.xpc
+--prepared:/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/Current/XPCServices/Downloader.xpc
+--validated:/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/Current/XPCServices/Installer.xpc
+--validated:/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/Current/XPCServices/Downloader.xpc
+--validated:/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Frameworks/Sparkle.framework/Versions/Current/.
+/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app: valid on disk
+/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app: satisfies its Designated Requirement
+/Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ/Jamloom Live.app/Contents/Info.plist: OK
+Signed release candidate: /Users/serhansari/Documents/projects/jamloom/dist/releases/live-0.4.0-4.BrnNeQ (not notarized or published)

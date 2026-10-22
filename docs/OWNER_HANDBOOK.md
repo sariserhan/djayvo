@@ -1,3 +1,12 @@
+## Companion download and updates — 2026-10-22
+
+The owner authorized the public companion download, icon, Settings and updates.
+Apple issuer information was supplied; working credentials are saved in the local
+`jamloom-live-notary` Keychain profile. No more credential action is needed.
+Follow [release maintenance](live-companion-release.md) for subsequent versions.
+The private Sparkle update-signing key is in Keychain; preserve it securely.
+The older launch-last note below is superseded for this companion delivery only.
+
 # Jamloom owner handbook
 
 **Meaning-first singer — 2026-10-22:** The owner makes audio reuse optional. The studio accepts short/long recordings, reads speech locally or uses a supplied idea, and may deliver the song without replaying the recording. Acoustic audition now omits the sample. [Current behavior, limits and evidence](meaning-singer.md).
@@ -98,7 +107,23 @@ Keep test/live publishable keys alongside their matching secret keys in Vercel.
 Existing sales holds remain; no new owner credential action is pending for this
 integration. [Implementation, evidence and exact configuration names](inline-payments-aurowall.md).
 
-## Live Source Mac companion — 2026-10-21
+## Live DJ two-deck acceptance — 2026-10-22
+
+Current local build is 0.3.0 (3), protocol 2. The matching website is the local preview, not the older public deployment. In the companion use **Website pairing → Copy code and open local preview**; paste into `http://127.0.0.1:4234/live-dj`. [Current sampler, qualification and release evidence](live-dj-finish.md).
+
+**Physical checks resumed on 2026-10-22.** The owner specified LG Ultra HD speakers without headphones, permitted the MacBook Air microphone and authorized the agent to choose sources. Two owned generated sources (`afplay` and Chromium) passed a one-minute routing/control/sampler check; a louder CC0 music/recovery test also passed and the owner accepted normal playback as “Audible and clean.” Remote Panic/restart, independent deck stop/restart, source exit, silent-source rejection and heartbeat loss pass. Actual idle sleep stopped both routes during the first endurance attempt; the fresh 3,600.01-second run passed with no reported timing faults and bounded memory. The companion now keeps the Mac awake only while a deck captures; Stop releases this activity and manual sleep still stops capture. For broader musical acceptance, verify each deck separately before combining them. Confirm A/B isolation, no doubled original sound, crossfader/channel/mute, reverse/loop/scratch/Return to live and accompaniment fit. Confirm Stop restores source audio, while Mute keeps the captured source silent. Capture neither personal calls nor unrelated microphone audio.
+
+Remaining qualification includes calibrated loopback round-trip latency, physical cable unplug/rate changes and actual OS-permission denial. Sleep/output-loss stop, source exit and website-heartbeat loss now have scoped physical evidence. Record setup, app versions, output device, sample rate, observations and failures; no audio upload is needed. The agent can collect technical counters and investigate failures when a setup is authorized. Passing unit tests or replaying an hour of PCM offline does not close physical session acceptance.
+
+**Owner hardware boundary:** After the louder listening acceptance, the owner explicitly kept the physical LG unplug/reconnect check deferred. Do not perform or mark that check passed.
+
+**Mic sampler:** In the companion, scroll below the decks, confirm microphone permission and press **Record up to 4 seconds**. Use **Finish recording** to stop early. Start a deck and press **Play on A/B**; the website can also trigger/stop/clear the prepared sample. It stays in memory, uses that deck’s effects/mute/level, and is never monitored live or uploaded. With speakers, room playback can enter the recording; headphones are optional for operation but improve recording isolation. Clear or quit to discard it.
+
+**Launch remains last:** the signed Apple silicon ZIP and download/setup section are prepared. Authorize notarization and matching GitHub website/public binary delivery only after the remaining gates; set `JAMLOOM_COMPANION_DOWNLOAD_URL` at build time to the verified HTTPS artifact. Then verify clean install, capture permissions and actual hosted pairing. No new credentials or paid services are required to review the local code. Never paste signing/private keys into chat.
+
+## Previous Live Source Mac companion — 2026-10-21
+
+The following checkpoint is historical; the 0.3.0 section above supersedes its sampler, physical-deferral and signing statements.
 
 Build and open the local owner preview with `./script/build_and_run.sh` from the
 repository root. The app is also at `dist/Jamloom Live.app`; it starts stopped.

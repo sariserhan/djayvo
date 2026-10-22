@@ -191,3 +191,12 @@ public-domain recording from Wikimedia Commons. Notices accompany each local
 listener packet. License permission is not represented as individual study
 consent. These inputs, derived audio and model weights are not app assets, not
 committed and not published; public sharing and training remain unauthorized.
+
+## Mac companion updates — Sparkle 2.10.0
+
+Pinned Swift Package revision `eef1a539a373c1f1a320624b1130fc5de7b2e100`.
+Sparkle uses the MIT license; its included BSD-style third-party notices are
+retained in full in `apps/desktop-companion/Resources/Sparkle-LICENSE.txt` and
+every app bundle. It is linked only by the native macOS UI, never the shared
+C++ core. Ed25519 signatures protect the archive and feed; Developer ID,
+hardened runtime and Apple notarization protect distributed app code.

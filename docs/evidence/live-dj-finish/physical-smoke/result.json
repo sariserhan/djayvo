@@ -1,0 +1,6033 @@
+{
+  "checks" : {
+    "crossfadeA" : true,
+    "crossfadeB" : true,
+    "muteA" : true,
+    "muteB" : true,
+    "sampleB" : true,
+    "sampleClear" : true
+  },
+  "elapsedSeconds" : 60.01291298866272,
+  "final" : {
+    "active" : false,
+    "controls" : {
+      "crossfader" : 0.5,
+      "decks" : [
+        {
+          "bypass" : false,
+          "echo" : 0,
+          "echoSeconds" : 0.29999999999999999,
+          "high" : 0,
+          "highpass" : 20,
+          "level" : 0.69999999999999996,
+          "loopBeats" : 1,
+          "low" : 0,
+          "mid" : 0,
+          "mute" : false,
+          "percussion" : false,
+          "reverse" : false,
+          "roll" : false,
+          "scratch" : false,
+          "scratchRate" : 0,
+          "tempo" : 120,
+          "tone" : 18000
+        },
+        {
+          "bypass" : false,
+          "echo" : 0,
+          "echoSeconds" : 0.29999999999999999,
+          "high" : 0,
+          "highpass" : 20,
+          "level" : 0.69999999999999996,
+          "loopBeats" : 1,
+          "low" : 0,
+          "mid" : 0,
+          "mute" : false,
+          "percussion" : false,
+          "reverse" : false,
+          "roll" : false,
+          "scratch" : false,
+          "scratchRate" : 0,
+          "tempo" : 120,
+          "tone" : 18000
+        }
+      ],
+      "master" : 0.14999999999999999
+    },
+    "decks" : [
+      {
+        "active" : false,
+        "bpm" : 120,
+        "bufferedSeconds" : 4,
+        "confidence" : 1,
+        "error" : "",
+        "frames" : 2880000,
+        "id" : "A",
+        "inputPeak" : 0.0060150185599923134,
+        "maxCallbackMs" : 0.81020833333333331,
+        "message" : "Stopped. Original app audio is restored. Use Mute to silence a captured deck.",
+        "peak" : 0.00022318233095575124,
+        "samplePlaying" : false,
+        "sampleRate" : 48000,
+        "sampleReady" : false,
+        "source" : "Audio process · 8655"
+      },
+      {
+        "active" : false,
+        "bpm" : 0,
+        "bufferedSeconds" : 4,
+        "confidence" : 0,
+        "error" : "",
+        "frames" : 2878976,
+        "id" : "B",
+        "inputPeak" : 0.01156220119446516,
+        "maxCallbackMs" : 0.69650000000000001,
+        "message" : "Stopped. Original app audio is restored. Use Mute to silence a captured deck.",
+        "peak" : 0.00042916761594824493,
+        "samplePlaying" : false,
+        "sampleRate" : 48000,
+        "sampleReady" : false,
+        "source" : "Google Chrome for Testing Helper · 8673"
+      }
+    ],
+    "message" : "Both sources released. Playback remains in the source apps.",
+    "output" : "LG Ultra HD",
+    "sampler" : {
+      "message" : "Sample cleared from memory.",
+      "playing" : [
+
+      ],
+      "ready" : false,
+      "recording" : false,
+      "seconds" : 0,
+      "waiting" : false
+    }
+  },
+  "heardBothSources" : [
+    true,
+    true
+  ],
+  "humanListening" : "NOT RUN",
+  "last" : {
+    "active" : true,
+    "controls" : {
+      "crossfader" : 0.5,
+      "decks" : [
+        {
+          "bypass" : false,
+          "echo" : 0,
+          "echoSeconds" : 0.29999999999999999,
+          "high" : 0,
+          "highpass" : 20,
+          "level" : 0.69999999999999996,
+          "loopBeats" : 1,
+          "low" : 0,
+          "mid" : 0,
+          "mute" : false,
+          "percussion" : false,
+          "reverse" : false,
+          "roll" : false,
+          "scratch" : false,
+          "scratchRate" : 0,
+          "tempo" : 120,
+          "tone" : 18000
+        },
+        {
+          "bypass" : false,
+          "echo" : 0,
+          "echoSeconds" : 0.29999999999999999,
+          "high" : 0,
+          "highpass" : 20,
+          "level" : 0.69999999999999996,
+          "loopBeats" : 1,
+          "low" : 0,
+          "mid" : 0,
+          "mute" : false,
+          "percussion" : false,
+          "reverse" : false,
+          "roll" : false,
+          "scratch" : false,
+          "scratchRate" : 0,
+          "tempo" : 120,
+          "tone" : 18000
+        }
+      ],
+      "master" : 0.14999999999999999
+    },
+    "decks" : [
+      {
+        "active" : true,
+        "bpm" : 120,
+        "bufferedSeconds" : 4,
+        "confidence" : 1,
+        "error" : "",
+        "frames" : 2880000,
+        "id" : "A",
+        "inputPeak" : 0.0060150185599923134,
+        "maxCallbackMs" : 0.81020833333333331,
+        "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+        "peak" : 0.00022318233095575124,
+        "samplePlaying" : false,
+        "sampleRate" : 48000,
+        "sampleReady" : false,
+        "source" : "Audio process · 8655"
+      },
+      {
+        "active" : true,
+        "bpm" : 0,
+        "bufferedSeconds" : 4,
+        "confidence" : 0,
+        "error" : "",
+        "frames" : 2878976,
+        "id" : "B",
+        "inputPeak" : 0.01156220119446516,
+        "maxCallbackMs" : 0.69650000000000001,
+        "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+        "peak" : 0.00042916761594824493,
+        "samplePlaying" : false,
+        "sampleRate" : 48000,
+        "sampleReady" : false,
+        "source" : "Google Chrome for Testing Helper · 8673"
+      }
+    ],
+    "elapsedSeconds" : 60.000959038734436,
+    "event" : "",
+    "message" : "Select two different playing apps, or start with one deck.",
+    "output" : "LG Ultra HD",
+    "sampler" : {
+      "message" : "Sample cleared from memory.",
+      "playing" : [
+
+      ],
+      "ready" : false,
+      "recording" : false,
+      "seconds" : 0,
+      "waiting" : false
+    }
+  },
+  "roundTripLatency" : "NOT RUN",
+  "samplerPlayAccepted" : true,
+  "stages" : [
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 1.0026666666666666,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 48128,
+          "id" : "A",
+          "inputPeak" : 0.0060180360451340675,
+          "maxCallbackMs" : 0.583125,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022336065012495965,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 0.98133333333333328,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 47104,
+          "id" : "B",
+          "inputPeak" : 0.014999984763562679,
+          "maxCallbackMs" : 0.57966666666666666,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055675895418971777,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 1.0007600784301758,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Record a short sound, then play it through either deck.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 1.9946666666666666,
+          "confidence" : 0.35999999999999999,
+          "error" : "",
+          "frames" : 95744,
+          "id" : "A",
+          "inputPeak" : 0.0060168663039803505,
+          "maxCallbackMs" : 0.58954166666666663,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022323957819025964,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 1.984,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 95232,
+          "id" : "B",
+          "inputPeak" : 0.014999995008111,
+          "maxCallbackMs" : 0.58287500000000003,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055676058400422335,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 2.0007510185241699,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Record a short sound, then play it through either deck.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 2.9973333333333332,
+          "confidence" : 0.71999999999999997,
+          "error" : "",
+          "frames" : 143872,
+          "id" : "A",
+          "inputPeak" : 0.0060150530189275742,
+          "maxCallbackMs" : 0.58954166666666663,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022318396077025682,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 2.9866666666666668,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 143360,
+          "id" : "B",
+          "inputPeak" : 0.014999913983047009,
+          "maxCallbackMs" : 0.58287500000000003,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055676058400422335,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 3.0008260011672974,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Record a short sound, then play it through either deck.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 192000,
+          "id" : "A",
+          "inputPeak" : 0.0060150111094117165,
+          "maxCallbackMs" : 0.58954166666666663,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.0002231820544693619,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 3.9786666666666668,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 190976,
+          "id" : "B",
+          "inputPeak" : 0.014999988488852978,
+          "maxCallbackMs" : 0.58608333333333329,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055675633484497666,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 4.0008870363235474,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Record a short sound, then play it through either deck.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 240128,
+          "id" : "A",
+          "inputPeak" : 0.0060179545544087887,
+          "maxCallbackMs" : 0.58954166666666663,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022336062102112919,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 239104,
+          "id" : "B",
+          "inputPeak" : 0.014999985694885254,
+          "maxCallbackMs" : 0.58612500000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055675621842965484,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 5.0011190176010132,
+      "event" : "microphone record",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Allow microphone access to record.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : true
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 287744,
+          "id" : "A",
+          "inputPeak" : 0.0060172174125909805,
+          "maxCallbackMs" : 0.58954166666666663,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022325268946588039,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 287232,
+          "id" : "B",
+          "inputPeak" : 0.014999991282820702,
+          "maxCallbackMs" : 0.58612500000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055676052579656243,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 6.0009180307388306,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Recording microphone · stops at four seconds. No live monitoring.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : true,
+        "seconds" : 0.69999999999999996,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 335872,
+          "id" : "A",
+          "inputPeak" : 0.0060151130892336369,
+          "maxCallbackMs" : 0.58954166666666663,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022318623086903244,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 335360,
+          "id" : "B",
+          "inputPeak" : 0.014999917708337307,
+          "maxCallbackMs" : 0.58612500000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055676052579656243,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 7.0010080337524414,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Recording microphone · stops at four seconds. No live monitoring.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : true,
+        "seconds" : 1.7,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 384000,
+          "id" : "A",
+          "inputPeak" : 0.0060150204226374626,
+          "maxCallbackMs" : 0.58954166666666663,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022318238916341215,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 382976,
+          "id" : "B",
+          "inputPeak" : 0.014999991282820702,
+          "maxCallbackMs" : 0.58612500000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055675633484497666,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 8.00102698802948,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Recording microphone · stops at four seconds. No live monitoring.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : true,
+        "seconds" : 2.7000000000000002,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 432128,
+          "id" : "A",
+          "inputPeak" : 0.0060179540887475014,
+          "maxCallbackMs" : 0.58954166666666663,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022336062102112919,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 431104,
+          "id" : "B",
+          "inputPeak" : 0.014999987557530403,
+          "maxCallbackMs" : 0.58612500000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055675621842965484,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 9.0011050701141357,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Recording microphone · stops at four seconds. No live monitoring.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : true,
+        "seconds" : 3.7000000000000002,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 479744,
+          "id" : "A",
+          "inputPeak" : 0.0060172230005264282,
+          "maxCallbackMs" : 0.59524999999999995,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022325290774460882,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 479232,
+          "id" : "B",
+          "inputPeak" : 0.014999989420175552,
+          "maxCallbackMs" : 0.59083333333333332,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055676058400422335,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 10.001110076904297,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 527872,
+          "id" : "A",
+          "inputPeak" : 0.006015116348862648,
+          "maxCallbackMs" : 0.60033333333333327,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022318634728435427,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 527360,
+          "id" : "B",
+          "inputPeak" : 0.014999914914369583,
+          "maxCallbackMs" : 0.59887499999999994,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055676052579656243,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 11.001195073127747,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : true,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 576000,
+          "id" : "A",
+          "inputPeak" : 0.0060150204226374626,
+          "maxCallbackMs" : 0.60033333333333327,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022318240371532738,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 574976,
+          "id" : "B",
+          "inputPeak" : 0.014999989420175552,
+          "maxCallbackMs" : 0.59887499999999994,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055675616022199392,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 12.001265048980713,
+      "event" : "mute A",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : true,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 624128,
+          "id" : "A",
+          "inputPeak" : 0.0060179540887475014,
+          "maxCallbackMs" : 0.60258333333333336,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 4.0607973974774099e-33,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 623104,
+          "id" : "B",
+          "inputPeak" : 0.014999991282820702,
+          "maxCallbackMs" : 0.59887499999999994,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00055675621842965484,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 13.001248002052307,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : true,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 671744,
+          "id" : "A",
+          "inputPeak" : 0.0060172216035425663,
+          "maxCallbackMs" : 0.60258333333333336,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 671232,
+          "id" : "B",
+          "inputPeak" : 0.026290394365787506,
+          "maxCallbackMs" : 0.60112500000000002,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00097574159735813737,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 14.001324057579041,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : true,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 719872,
+          "id" : "A",
+          "inputPeak" : 0.0060151144862174988,
+          "maxCallbackMs" : 0.60258333333333336,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 719360,
+          "id" : "B",
+          "inputPeak" : 0.01156222727149725,
+          "maxCallbackMs" : 0.60112500000000002,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916732490994036,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 15.000970005989075,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : true,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 768000,
+          "id" : "A",
+          "inputPeak" : 0.0060150222852826118,
+          "maxCallbackMs" : 0.60258333333333336,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 766976,
+          "id" : "B",
+          "inputPeak" : 0.01156219094991684,
+          "maxCallbackMs" : 0.60112500000000002,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916744132526219,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 16.001399993896484,
+      "event" : "mute B",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : true,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 816128,
+          "id" : "A",
+          "inputPeak" : 0.0060179531574249268,
+          "maxCallbackMs" : 0.60258333333333336,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022336060646921396,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 815104,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.60112500000000002,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 7.9027258283553718e-33,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 17.001384973526001,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : true,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 863744,
+          "id" : "A",
+          "inputPeak" : 0.0060172230005264282,
+          "maxCallbackMs" : 0.60449999999999993,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022325292229652405,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 863232,
+          "id" : "B",
+          "inputPeak" : 0.011562224477529526,
+          "maxCallbackMs" : 0.60112500000000002,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 18.001368999481201,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : true,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 911872,
+          "id" : "A",
+          "inputPeak" : 0.0060151182115077972,
+          "maxCallbackMs" : 0.60449999999999993,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022318642004393041,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 911360,
+          "id" : "B",
+          "inputPeak" : 0.011562228202819824,
+          "maxCallbackMs" : 0.60249999999999992,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 19.001332998275757,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 960000,
+          "id" : "A",
+          "inputPeak" : 0.0060150236822664738,
+          "maxCallbackMs" : 0.60929166666666668,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022318252013064921,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 958976,
+          "id" : "B",
+          "inputPeak" : 0.011562191881239414,
+          "maxCallbackMs" : 0.60249999999999992,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 20.00144100189209,
+      "event" : "independent FX",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1008128,
+          "id" : "A",
+          "inputPeak" : 0.0060179526917636395,
+          "maxCallbackMs" : 0.69950000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015338402590714395,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1007104,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.60562499999999997,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916703387163579,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 21.001353025436401,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1055744,
+          "id" : "A",
+          "inputPeak" : 0.0060172239318490028,
+          "maxCallbackMs" : 0.70441666666666669,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015340904064942151,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1055232,
+          "id" : "B",
+          "inputPeak" : 0.011562229134142399,
+          "maxCallbackMs" : 0.60562499999999997,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916700476780534,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 22.001299023628235,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1103872,
+          "id" : "A",
+          "inputPeak" : 0.0060151168145239353,
+          "maxCallbackMs" : 0.70441666666666669,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015297418576665223,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1103360,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.60562499999999997,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916729580610991,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 23.001396059989929,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : true,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : true,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1152000,
+          "id" : "A",
+          "inputPeak" : 0.0060150250792503357,
+          "maxCallbackMs" : 0.70441666666666669,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015289423754438758,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1150976,
+          "id" : "B",
+          "inputPeak" : 0.011562192812561989,
+          "maxCallbackMs" : 0.60562499999999997,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916744132526219,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 24.00090503692627,
+      "event" : "loop A \/ reverse B",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : true,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : true,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1200128,
+          "id" : "A",
+          "inputPeak" : 0.0060179540887475014,
+          "maxCallbackMs" : 0.78483333333333327,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.0001528904540464282,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1199104,
+          "id" : "B",
+          "inputPeak" : 0.011562228202819824,
+          "maxCallbackMs" : 0.67466666666666664,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916537495329976,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 25.001339077949524,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : true,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : true,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1247744,
+          "id" : "A",
+          "inputPeak" : 0.0060172216035425663,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015376954979728907,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1247232,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.68491666666666662,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916781967505813,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 26.001236081123352,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : true,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : true,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1295872,
+          "id" : "A",
+          "inputPeak" : 0.0060151154175400734,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015387743769679219,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1295360,
+          "id" : "B",
+          "inputPeak" : 0.011562224477529526,
+          "maxCallbackMs" : 0.68491666666666662,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916784877888858,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 27.001339077949524,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : true,
+            "scratch" : true,
+            "scratchRate" : -1,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : true,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1344000,
+          "id" : "A",
+          "inputPeak" : 0.0060150208882987499,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015334341151174158,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1342976,
+          "id" : "B",
+          "inputPeak" : 0.011562194675207138,
+          "maxCallbackMs" : 0.68491666666666662,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916543316096067,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 28.001020073890686,
+      "event" : "scratch A",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : true,
+            "scratch" : true,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : true,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1392128,
+          "id" : "A",
+          "inputPeak" : 0.0060179540887475014,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 2.4858557026163908e-06,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1391104,
+          "id" : "B",
+          "inputPeak" : 0.011562223546206951,
+          "maxCallbackMs" : 0.68491666666666662,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916537495329976,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 29.00140106678009,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : true,
+            "scratch" : true,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : true,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1439744,
+          "id" : "A",
+          "inputPeak" : 0.006017221137881279,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 3.2213761187449563e-06,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1439232,
+          "id" : "B",
+          "inputPeak" : 0.01156222727149725,
+          "maxCallbackMs" : 0.68491666666666662,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916781967505813,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 30.001368045806885,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : true,
+            "scratch" : true,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : true,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1487872,
+          "id" : "A",
+          "inputPeak" : 0.0060151130892336369,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 2.903152790167951e-06,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1487360,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.68491666666666662,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916784877888858,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 31.001366019248962,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1536000,
+          "id" : "A",
+          "inputPeak" : 0.0060150176286697388,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 2.7149546895088861e-06,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1534976,
+          "id" : "B",
+          "inputPeak" : 0.01156219094991684,
+          "maxCallbackMs" : 0.68491666666666662,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916543316096067,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 32.001389026641846,
+      "event" : "return live",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 0.92900000000000005,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1584128,
+          "id" : "A",
+          "inputPeak" : 0.0060179540887475014,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015337421791628003,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 0.92900000000000005,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1583104,
+          "id" : "B",
+          "inputPeak" : 0.011562229134142399,
+          "maxCallbackMs" : 0.68491666666666662,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916715028695762,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 33.001396059989929,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 1.921,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1631744,
+          "id" : "A",
+          "inputPeak" : 0.0060172174125909805,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015424081357195973,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 1.9316666666666666,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1631232,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.68491666666666662,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916715028695762,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 34.001389980316162,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 2.9236666666666666,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1679872,
+          "id" : "A",
+          "inputPeak" : 0.0060151121579110622,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.0001532259484520182,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 2.9343333333333335,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1679360,
+          "id" : "B",
+          "inputPeak" : 0.01156222727149725,
+          "maxCallbackMs" : 0.68491666666666662,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916709207929671,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 35.001392006874084,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Ready. Play through an active deck’s effects, level and mute.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 3.9263333333333335,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1728000,
+          "id" : "A",
+          "inputPeak" : 0.0060150157660245895,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015373667702078819,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 3.9263333333333335,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1726976,
+          "id" : "B",
+          "inputPeak" : 0.01156219094991684,
+          "maxCallbackMs" : 0.68491666666666662,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916717939078808,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 36.001075983047485,
+      "event" : "sample B",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Playing sample through Deck B.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1776128,
+          "id" : "A",
+          "inputPeak" : 0.006017955020070076,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015339635137934238,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1775104,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.69337499999999996,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00068887037923559546,
+          "samplePlaying" : true,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 37.001396059989929,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Playing sample through Deck B.",
+        "playing" : [
+          1
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1823744,
+          "id" : "A",
+          "inputPeak" : 0.0060172183439135551,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015351602633018047,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1823232,
+          "id" : "B",
+          "inputPeak" : 0.011562228202819824,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00065959256608039141,
+          "samplePlaying" : true,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 38.001375079154968,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Playing sample through Deck B.",
+        "playing" : [
+          1
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1871872,
+          "id" : "A",
+          "inputPeak" : 0.0060151107609272003,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015350806643255055,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1871360,
+          "id" : "B",
+          "inputPeak" : 0.011562224477529526,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00061312131583690643,
+          "samplePlaying" : true,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 39.001371026039124,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Playing sample through Deck B.",
+        "playing" : [
+          1
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1920000,
+          "id" : "A",
+          "inputPeak" : 0.0060150162316858768,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015405664453282952,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1918976,
+          "id" : "B",
+          "inputPeak" : 0.011562195606529713,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00064558646408841014,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 40.000457048416138,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Playing sample through Deck B.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 1968128,
+          "id" : "A",
+          "inputPeak" : 0.0060179540887475014,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015294988406822085,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 1967104,
+          "id" : "B",
+          "inputPeak" : 0.011562228202819824,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916720849461854,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 41.001345038414001,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Playing sample through Deck B.",
+        "playing" : [
+
+        ],
+        "ready" : true,
+        "recording" : false,
+        "seconds" : 4,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2015744,
+          "id" : "A",
+          "inputPeak" : 0.0060172230005264282,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015333264309447259,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2015232,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916726670227945,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : true,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 42.000903964042664,
+      "event" : "clear sample",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2063872,
+          "id" : "A",
+          "inputPeak" : 0.0060151144862174988,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015363933925982565,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2063360,
+          "id" : "B",
+          "inputPeak" : 0.011562228202819824,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916694656014442,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 43.001397967338562,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2112000,
+          "id" : "A",
+          "inputPeak" : 0.0060150222852826118,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015305694250855595,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2110976,
+          "id" : "B",
+          "inputPeak" : 0.011562193743884563,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916726670227945,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 44.001387000083923,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2160128,
+          "id" : "A",
+          "inputPeak" : 0.006017955020070076,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015268087736330926,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2159104,
+          "id" : "B",
+          "inputPeak" : 0.011562228202819824,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916729580610991,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 45.001191020011902,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2207744,
+          "id" : "A",
+          "inputPeak" : 0.0060172230005264282,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00015383100253529847,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2207232,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916732490994036,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 46.001510977745056,
+      "event" : "crossfade A",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2255872,
+          "id" : "A",
+          "inputPeak" : 0.0060151154175400734,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00021773859043605626,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2255360,
+          "id" : "B",
+          "inputPeak" : 0.011562230065464973,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 7.5286100575267936e-33,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 47.001376986503601,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2304000,
+          "id" : "A",
+          "inputPeak" : 0.0060150218196213245,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00021677570475731045,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2302976,
+          "id" : "B",
+          "inputPeak" : 0.011562198400497437,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 48.001402020454407,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2352128,
+          "id" : "A",
+          "inputPeak" : 0.006017955020070076,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00021715855109505355,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2351104,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 49.001263022422791,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 1,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2399744,
+          "id" : "A",
+          "inputPeak" : 0.0060172216035425663,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00021698650380130857,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2399232,
+          "id" : "B",
+          "inputPeak" : 0.011562229134142399,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 50.00090503692627,
+      "event" : "crossfade B",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 1,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2447872,
+          "id" : "A",
+          "inputPeak" : 0.0060151149518787861,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 1.3278257006283523e-20,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2447360,
+          "id" : "B",
+          "inputPeak" : 0.011562228202819824,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00060693355044350028,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 51.00048303604126,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 1,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2496000,
+          "id" : "A",
+          "inputPeak" : 0.0060150208882987499,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 1.3305684021262051e-20,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2494976,
+          "id" : "B",
+          "inputPeak" : 0.011562198400497437,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00060693442355841398,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 52.000521063804626,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 1,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : -12,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : true,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0.29999999999999999,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2544128,
+          "id" : "A",
+          "inputPeak" : 0.0060179536230862141,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 1.3302424574219423e-20,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2543104,
+          "id" : "B",
+          "inputPeak" : 0.011562228202819824,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00060693424893543124,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 53.000548005104065,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2591744,
+          "id" : "A",
+          "inputPeak" : 0.0060172220692038536,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 1.325761384168021e-20,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2591232,
+          "id" : "B",
+          "inputPeak" : 0.011562228202819824,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00060693436535075307,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 54.000823974609375,
+      "event" : "center \/ steady run",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2639872,
+          "id" : "A",
+          "inputPeak" : 0.0060151126235723495,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022318621631711721,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2639360,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916671372950077,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 55.000688076019287,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2688000,
+          "id" : "A",
+          "inputPeak" : 0.0060150185599923134,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022318233095575124,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2686976,
+          "id" : "B",
+          "inputPeak" : 0.011562200263142586,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916752863675356,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 56.000948071479797,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2736128,
+          "id" : "A",
+          "inputPeak" : 0.006017955020070076,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022336065012495965,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2735104,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916741222143173,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 57.00081205368042,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2783744,
+          "id" : "A",
+          "inputPeak" : 0.0060172202065587044,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022325280588120222,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2783232,
+          "id" : "B",
+          "inputPeak" : 0.011562228202819824,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916747042909265,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 58.000867009162903,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2831872,
+          "id" : "A",
+          "inputPeak" : 0.0060151126235723495,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022318621631711721,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2831360,
+          "id" : "B",
+          "inputPeak" : 0.011562226340174675,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.0004291666264180094,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 59.000884056091309,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    },
+    {
+      "active" : true,
+      "controls" : {
+        "crossfader" : 0.5,
+        "decks" : [
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          },
+          {
+            "bypass" : false,
+            "echo" : 0,
+            "echoSeconds" : 0.29999999999999999,
+            "high" : 0,
+            "highpass" : 20,
+            "level" : 0.69999999999999996,
+            "loopBeats" : 1,
+            "low" : 0,
+            "mid" : 0,
+            "mute" : false,
+            "percussion" : false,
+            "reverse" : false,
+            "roll" : false,
+            "scratch" : false,
+            "scratchRate" : 0,
+            "tempo" : 120,
+            "tone" : 18000
+          }
+        ],
+        "master" : 0.14999999999999999
+      },
+      "decks" : [
+        {
+          "active" : true,
+          "bpm" : 120,
+          "bufferedSeconds" : 4,
+          "confidence" : 1,
+          "error" : "",
+          "frames" : 2880000,
+          "id" : "A",
+          "inputPeak" : 0.0060150185599923134,
+          "maxCallbackMs" : 0.81020833333333331,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00022318233095575124,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Audio process · 8655"
+        },
+        {
+          "active" : true,
+          "bpm" : 0,
+          "bufferedSeconds" : 4,
+          "confidence" : 0,
+          "error" : "",
+          "frames" : 2878976,
+          "id" : "B",
+          "inputPeak" : 0.01156220119446516,
+          "maxCallbackMs" : 0.69650000000000001,
+          "message" : "Live. Drag the platter or use a loop to replay recent audio.",
+          "peak" : 0.00042916761594824493,
+          "samplePlaying" : false,
+          "sampleRate" : 48000,
+          "sampleReady" : false,
+          "source" : "Google Chrome for Testing Helper · 8673"
+        }
+      ],
+      "elapsedSeconds" : 60.000959038734436,
+      "event" : "",
+      "message" : "Select two different playing apps, or start with one deck.",
+      "output" : "LG Ultra HD",
+      "sampler" : {
+        "message" : "Sample cleared from memory.",
+        "playing" : [
+
+        ],
+        "ready" : false,
+        "recording" : false,
+        "seconds" : 0,
+        "waiting" : false
+      }
+    }
+  ],
+  "status" : "PASS"
+}

@@ -1,0 +1,1 @@
+PASS: dual-deck isolation, reverse/scratch/loop/return-live at 32/48/96 kHz, mix headroom, highpass, bounds, stereo, EQ/filter bypass, roll/echo ceiling, nonfinite input, mute, pulse/relock; 768000 frames in 18.3457 ms (offline CPU only)

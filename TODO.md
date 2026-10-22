@@ -1,4 +1,39 @@
+## Companion distribution — 2026-10-22
+
+- [x] **LIVE-RELEASE-001 — PASS:** App icon, native Settings, signed Sparkle updates with audio-session protection; native/browser/site checks. [Report](docs/live-companion-release.md).
+- [ ] **LIVE-RELEASE-002 — PARTIAL:** Final notarization, published GitHub installer/feed, matching live website, downloaded app and real update verification in progress. Owner authorized this scoped delivery; physical unplug remains deferred.
+
 # Jamloom development tracker
+
+## Live DJ completion work — 2026-10-22
+
+- [x] **LIVE-DUAL-001 — PASS, local:** Two independent native sources and paired web decks, rotating/draggable platters, bounded reverse/scratch/loops, expanded FX, channel mute, master/crossfader and Return to live. C++/sanitizers, native model/protocol/HTTP, Chromium/WebKit gesture/control/responsive/axe, build/typecheck/audit and local app launch pass. [Report](docs/live-dual-decks.md).
+- [ ] **LIVE-DUAL-002 — PARTIAL:** Real two-source routing to LG Ultra HD and four-second MacBook Air microphone sampling PASS in a 60-second controlled test. Version 0.3.0/protocol 2 and matching local website are ready. Owner accepted the louder CC0 music check as audible and clean; recovery checks pass. The real 60-minute two-source run also passes; external release acceptance remains open. [Current report](docs/live-dj-finish.md).
+- [x] **LIVE-DUAL-003 — PASS, implementation and scoped hardware:** Integrated consented four-second microphone sampler; explicit A/B trigger, stop/retrigger/clear through native FX/mute/limiter/output, no live monitoring, disk recording or upload; revoked/late permission and concurrent clear/reload tests pass. Actual MacBook Air microphone capture and Deck B playback/clear pass. [Evidence](docs/live-dj-finish.md).
+- [ ] **LIVE-DUAL-004 — PARTIAL, qualification:** Physical checks resumed with owner-authorized LG speakers, MacBook Air microphone and agent-selected generated sources. One-minute controls/sampling and 100-second CC0 music/recovery PASS; owner reports normal playback audible and clean. Independent restart, Panic, source exit, silent-source rejection and heartbeat-loss stop pass; actual capture-only wake assertions release on stop. Actual idle sleep stopped both routes without resuming capture; interrupted endurance is retained and the fresh 3,600.01-second run passed with zero reported timing faults and bounded memory. Physical cable unplug is explicitly deferred by the owner. Calibrated round-trip latency, rate-change qualification and broad accompaniment fit remain open. [Evidence](docs/live-dj-finish.md).
+- [ ] **LIVE-DUAL-005 — PARTIAL, release:** Version 0.3.0 Apple silicon candidate is Developer ID signed with hardened runtime, microphone entitlement and timestamp; ZIP extraction/signature/hash PASS. Website download/setup UI prepared with validated release URL configuration. Notarization, clean install/update, public binary/website delivery and actual hosted pairing remain NOT RUN. Launch remains last. [Candidate and remaining gates](docs/live-dj-finish.md).
+
+
+## Live DJ deck and control repair — 2026-10-22
+
+- [x] **LIVE-DECK-001 — PASS, local:** Native and paired-web deck layouts; direct native control application, visible bypass with effect-edit recovery, stale website status protection. Swift, per-effect generated PCM plus sanitizers, real native HTTP/Chromium/WebKit, responsive/axe, site build/typecheck/audit and packaged launch pass. [Report](docs/live-deck.md).
+- [x] **LIVE-DECK-002 — PASS, scoped owner feedback:** “now they are working” accepts the previous native/web control repair in the owner’s setup. This does not certify other routes or the new dual-deck implementation. Public distribution/deployment NOT RUN for these updates.
+
+## Visual hero — 2026-10-22
+
+- [x] **MKT-HERO-001 — PASS, local:** Shorten the homepage and coming-soon hero, lead with the real deck preview, and keep five-product discovery compact. Preserve the playable deck in its product section. Typecheck, five metadata/launch tests, Chromium/WebKit at four widths, keyboard navigation, muted playback and accessibility pass. [Report](docs/hero-simplicity.md). Deployment NOT RUN.
+
+## Academy CI migration expectations — 2026-10-22
+
+- [x] **CI-MIGRATIONS-001 — PASS, local:** Reproduce `13 !== 12` and replace stale migration counts in admin, wallet and account tests with exact sorted SQL filenames. All 184 relevant tests, studio preparation and typecheck pass on Node 22/PostgreSQL 16. Migration idempotence, rollback/checksum protection and the duration upgrade regression remain covered. [Commands and results](docs/progress.md#academy-ci-migration-expectations--2026-10-22). GitHub Actions rerun NOT RUN; no push or deployment.
+
+## Full product landing page — 2026-10-22
+
+- [x] **MKT-PRODUCTS-001 — PASS, local:** Give DJ Academy, controller-free DJ Studio, AI Improvisation, Music DNA and Live DJ their own sections on the main and coming-soon pages. Add actual product screenshots to every section and keep the main-page DJ deck playable. Align navigation, metadata/social image, availability and Live DJ capture limits. Typecheck, five launch/metadata tests, Chromium/WebKit at 1440/820/390/320 px, section navigation, linked routes, image decoding, muted deck playback and accessibility pass. Coming-soon browser rendering uses the actual response HTML; gate behavior is covered by unit checks. Deployment NOT RUN. [Homepage](apps/site/app/page.tsx), [shared descriptions](apps/site/lib/home-products.ts).
+
+## Headphones panel layout — 2026-10-22
+
+- [x] **STUDIO-CSS-001 — PASS, local:** Group output selectors, test actions, routing confirmation, deck previews and level controls using existing studio styles. Fix long device-name overflow in WebKit. Chromium/WebKit checks pass at 1440/820/390/320 px, plus fullscreen, keyboard disclosure, refresh/test/disconnect feedback and zero scoped accessibility violations. Existing control IDs preserved; audited studio/offline bundle rebuilt. Physical routing and deployment NOT RUN. Sources: [markup](apps/web/dj.html), [styles](apps/web/dj.css).
 
 ## Same-song call edits — 2026-10-22
 
@@ -927,6 +962,8 @@ filename/seed, timestamp, observation, desired change and eventual evidence.
 Do not close N02–N05 merely because another implementation is committed.
 
 ## Completed development
+
+- [x] **2026-10-22 — Live DJ sampler and release preparation:** Native consented four-second microphone capture, selected-deck playback/stop/clear and paired-web sampler controls; fixed-memory audio publication and cancellation; 0.3.0 Developer ID release candidate and truthful website download/setup section. Portable/native/browser/site checks, actual two-source routing and scoped owner listening/recovery pass. The real 60-minute run and capture-only wake lifecycle also pass; external release and deferred hardware gates remain tracked above. [Report and evidence](docs/live-dj-finish.md).
 
 - [x] **2026-10-21 — Private action replay:** Clocked, backwards-compatible instrument traces; captured sequencer commands without per-note callback allocation; bounded local source decoding and A/B/C/instrument reconstruction. Browser capture/CLI replay and regression evidence: [report](docs/mix-action-replay.md).
 

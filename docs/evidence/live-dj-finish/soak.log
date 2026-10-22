@@ -1,0 +1,19 @@
+PASS: 3600 simulated seconds, two 48 kHz stereo decks, FX/transport changes, sampler reload/trigger, finite summed output; peak=0.0746616, offline seconds=7.67197. NOT a physical 60-minute session.
+        7.81 real         7.31 user         0.04 sys
+             9912320  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                 800  page reclaims
+                   1  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+               13561  involuntary context switches
+        200410362869  instructions retired
+         29864617279  cycles elapsed
+             9503056  peak memory footprint

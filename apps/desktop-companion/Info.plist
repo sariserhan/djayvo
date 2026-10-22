@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleExecutable</key>
+	<string>JamloomLive</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.jamloom.live</string>
+	<key>CFBundleName</key>
+	<string>Jamloom Live</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.4.0</string>
+	<key>CFBundleVersion</key>
+	<string>4</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>14.2</string>
+	<key>NSAudioCaptureUsageDescription</key>
+	<string>Jamloom captures only the audio processes you select for its two decks, to mix and apply local effects. It does not record or upload that audio.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record a short microphone sample only when you press Record. It stays in memory until you clear it or quit.</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>SUAllowsAutomaticUpdates</key>
+	<false/>
+	<key>SUAutomaticallyUpdate</key>
+	<false/>
+	<key>SUEnableAutomaticChecks</key>
+	<false/>
+	<key>SUEnableSystemProfiling</key>
+	<false/>
+	<key>SUFeedURL</key>
+	<string>https://github.com/sariserhan/jamloom/releases/download/live-updates/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>e4CMaVdtItiT8w1UAXEzpkJOBfM8JyuhvLY/gZlpHxI=</string>
+	<key>SURequireSignedFeed</key>
+	<true/>
+	<key>SUVerifyUpdateBeforeExtraction</key>
+	<true/>
+</dict>
+</plist>

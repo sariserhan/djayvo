@@ -24,15 +24,31 @@ final class ControlTests: XCTestCase {
     func testCommandsAreBoundedAndCannotStartCapture() throws {
         let server=ControlServer();let token=try server.pair(origin:"https://www.jamloom.com");var count=0;server.apply={_ in count+=1}
         XCTAssertEqual(server.handle(request("POST","/start",token:token)).0,404)
-        let valid=try JSONEncoder().encode(LiveControls())
+        let valid=try JSONEncoder().encode(MixControls())
         XCTAssertEqual(server.handle(request("POST","/controls",token:token,body:valid)).0,200);XCTAssertEqual(count,1)
-        for body in ["{}","[]","{\"level\":4}",String(data:valid,encoding:.utf8)!.replacingOccurrences(of:"0.4",with:"40.0")]{
+        for body in ["{}","[]","{\"level\":4}",String(data:valid,encoding:.utf8)!.replacingOccurrences(of:"0.7",with:"40.0")]{
             XCTAssertEqual(server.handle(request("POST","/controls",token:token,body:Data(body.utf8))).0,400)
         }
         XCTAssertEqual(count,1)
         var controls=LiveControls();controls.low = .nan;XCTAssertFalse(controls.valid)
         controls=LiveControls();controls.tone=19000;XCTAssertFalse(controls.valid)
         XCTAssertEqual(server.handle(request("DELETE","/status",token:token)).0,405)
+    }
+    func testStrictTwoDeckProtocol() throws {
+        let valid=MixControls().dictionary
+        XCTAssertNotNil(MixControls.decode(try JSONSerialization.data(withJSONObject:valid)))
+        var bad=valid;bad["decks"]=[LiveControls().dictionary]
+        XCTAssertNil(MixControls.decode(try JSONSerialization.data(withJSONObject:bad)))
+        var deck=LiveControls().dictionary;deck["extra"]=1;bad=valid;bad["decks"]=[deck,LiveControls().dictionary]
+        XCTAssertNil(MixControls.decode(try JSONSerialization.data(withJSONObject:bad)))
+        deck=LiveControls().dictionary;deck.removeValue(forKey:"scratch");bad["decks"]=[deck,LiveControls().dictionary]
+        XCTAssertNil(MixControls.decode(try JSONSerialization.data(withJSONObject:bad)))
+        for key in ["crossfader","master"] { bad=valid;bad[key]=2;XCTAssertNil(MixControls.decode(try JSONSerialization.data(withJSONObject:bad))) }
+        for (key,value) in [("tempo",0.0),("highpass",5000.0),("scratchRate",3.0),("echoSeconds",2.0),("loopBeats",3.0)] {
+            deck=LiveControls().dictionary;deck[key]=value;bad=valid;bad["decks"]=[deck,LiveControls().dictionary]
+            XCTAssertNil(MixControls.decode(try JSONSerialization.data(withJSONObject:bad)))
+        }
+        XCTAssertNil(MixControls.decode(try JSONEncoder().encode(LiveControls())),"Old client cannot partially control two decks")
     }
     func testHTTPFramingAndRebinding() throws {
         XCTAssertNil(try LocalRequest.parse(Data("GET /status HTTP/1.1\r\n".utf8)))
@@ -45,17 +61,18 @@ final class ControlTests: XCTestCase {
     }
     func testNativeInvalidSourceNeverStartsCapture() {
         let audio=JLLiveAudio();XCTAssertNotNil(audio.startProcess(0,output:0));XCTAssertEqual(audio.status()["active"] as? Bool,false)
-        XCTAssertFalse(audio.setLevel(.infinity,low:0,mid:0,high:0,tone:1000,echo:0,bypass:false,roll:false,percussion:false));audio.stop();audio.stop()
+        XCTAssertFalse(audio.setControls(LiveControls().dictionary,mixGain:.infinity));XCTAssertFalse(audio.setControls(LiveControls().dictionary,mixGain:0.51));XCTAssertTrue(audio.setControls(LiveControls().dictionary,mixGain:0.5));var invalid=LiveControls().dictionary;invalid["mute"]=1;XCTAssertFalse(audio.setControls(invalid,mixGain:0.3));audio.stop();audio.stop()
     }
 }
 
 final class BrowserFixtureTests: XCTestCase {
     func testLocalControlFixture() throws {
         guard let path=ProcessInfo.processInfo.environment["JAMLOOM_LIVE_FIXTURE"] else { throw XCTSkip("Explicit browser fixture only; never captures audio") }
-        let server=ControlServer();var controls=LiveControls(),active=true,updates=0
+        let server=ControlServer();var controls=MixControls(),active=true,updates=0,sampleReady=true,playing:[Int]=[]
         let token=try server.pair(origin:ProcessInfo.processInfo.environment["JAMLOOM_LIVE_ORIGIN"] ?? "http://127.0.0.1:4234")
-        server.status={ ["active":active,"message":"Synthetic control fixture; no captured audio.","source":"Consented test fixture","output":"Muted test output","peak":0.0,"bpm":120.0,"confidence":0.9,"controls":controls.dictionary] }
-        server.apply={controls=$0;updates+=1};server.stop={active=false}
+        server.status={ ["active":active,"message":"Synthetic control fixture; no captured audio.","output":"Muted test output","sampler":["ready":sampleReady,"recording":false,"waiting":false,"seconds":sampleReady ? 1.0:0.0,"playing":playing,"message":"Synthetic sample fixture; no microphone capture."],"decks":["A","B"].map { ["active":active,"source":"Synthetic source "+$0,"message":"Synthetic controls only","peak":0.2,"bpm":120.0,"confidence":0.9,"bufferedSeconds":4.0] },"controls":controls.dictionary] }
+        server.apply={controls=$0;updates+=1};server.stop={active=false;playing=[]}
+        server.sample={ action in if action.action=="clear" { sampleReady=false;playing=[] } else if action.action=="stop" { playing=[] } else if sampleReady && active,let deck=action.deck { playing=[deck] } else { return false };updates+=1;return true }
         try server.start()
         let grant=try JSONSerialization.data(withJSONObject:["token":token])
         FileManager.default.createFile(atPath:path,contents:grant,attributes:[.posixPermissions:0o600])

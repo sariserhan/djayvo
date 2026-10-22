@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "elapsedSeconds": 3600.0097160339355,
+  "sampleRate": 48000,
+  "output": "LG Ultra HD",
+  "sources": "owned afplay and Chromium generated sources",
+  "sampledTelemetryCount": 66,
+  "zeroReportedTimingFaults": true,
+  "frames": [
+    172800512,
+    172799488
+  ],
+  "maxCallbackMs": [
+    0.9417916666666666,
+    0.8355833333333333
+  ],
+  "rssMiB": {
+    "first": 155.65625,
+    "last": 99.859375,
+    "min": 99.640625,
+    "max": 155.65625
+  },
+  "cpuPercentOneCore": {
+    "median": 55.5,
+    "max": 67.5
+  },
+  "limits": [
+    "Debug QA host with production DSP/native routing at 48 kHz; no microphone PCM retained",
+    "Test-scoped sleep prevention; new production wake-activity lifecycle is verified separately",
+    "Callback time is not calibrated end-to-end latency",
+    "Does not certify all source apps, output devices or musical material"
+  ]
+}

@@ -1,3 +1,49 @@
+# Downloadable companion, settings and signed updates — 2026-10-22
+
+**PASS, local implementation; distribution verification in progress.** Jamloom Live 0.4.0 adds the brand icon, native Settings, opt-in signed Sparkle updates and guards against updating during live audio. Website has a versioned Mac download and release notes. Native, browser and site checks pass. The owner authorized this scoped public companion delivery and supplied the issuer identifier; notarization credentials now work through local Keychain. [Release report](live-companion-release.md). Existing deferred physical and product-quality gates remain open.
+
+# Live DJ sampler and physical qualification — 2026-10-22
+
+**PASS, local implementation; PARTIAL overall.** Added the integrated four-second microphone sampler with native consent/recording, A/B playback through existing effects/output, paired website play/stop/clear, cancellation and memory erasure. C++/sanitizer/concurrency/offline-hour checks, 14 native tests, local Chromium/WebKit controls/axe, build/typecheck/bundle and 15 focused site tests pass. Actual LG Ultra HD routing with two owned generated sources, independent mutes/crossfade, MacBook Air microphone capture and sample playback/clear passed a one-minute run; the louder CC0 music/recovery run (final 100-second check) also passed, and the owner accepted normal playback as “Audible and clean.” Remote Panic, independent stop/restart, source exit, silent-source rejection and heartbeat-loss stop pass. Actual idle sleep interrupted the first endurance attempt at 1,091 seconds and safely stopped both routes; the fresh real-hour run passed (3,600.01 seconds, zero reported timing faults, bounded RSS, max callbacks 0.942/0.836 ms). Added capture-only idle display/system sleep protection with native lifecycle tests and actual OS assertion start/stop evidence. Prepared a verified Developer ID signed 0.3.0 Apple silicon ZIP and website download/setup UI. Physical cable unplug remains explicitly deferred by the owner. Calibrated latency, rate-change qualification, broad accompaniment fit, notarization, clean install and matching public delivery remain open. [Report and evidence](live-dj-finish.md).
+
+# Live DJ completion audit — 2026-10-22
+
+**PARTIAL, not feature-complete.** Reviewed full-product Feature C (§7), reliability (§12), live acceptance (§13) and the current native/web code against `f9c6818`. Local dual-deck implementation/technical checks PASS. Found an explicit remaining code requirement: microphone sampling inside Live DJ; separate studio recording does not satisfy it. Current accompaniment is pulse-following percussion, with musical fit and synchronization qualification still open. Two-source physical listening, latency, 60-minute endurance/recovery and actual hosted pairing remain unverified; public distribution is unfinished. Added LIVE-DUAL-003/004/005, current STATUS and practical owner checks. [Audit](live-dj-completion.md). This audit runs no new audio/device tests and changes no feature code; no new evidence gate is marked passed.
+
+# Two live decks — 2026-10-22
+
+**PASS, local technical work; PARTIAL overall.** Added two independent source decks in native and paired-web controls, rotating/draggable vinyl, four-second replay, reverse/beat loops, high-pass and echo timing, mute, FX reset, equal-power crossfader and shared master with bounded summed output. Crossfader/master stay available while scrolling. Strict protocol 2 rejects old clients; source consent/start remain native. C++ generated PCM and sanitizers, 10 native tests plus two browser fixtures, Chromium/WebKit gesture/control/axe checks at four widths, rendered native layouts, site build/typecheck/audit, five metadata/launch tests and stopped packaged launch pass. [Report and evidence](live-dual-decks.md). Owner confirms the earlier controls work; **new simultaneous real capture, physical listening and long-session gates NOT RUN**. Local app/website updated; no push, deployment or public release.
+
+# Live DJ deck and control repair — 2026-10-22
+
+**PASS, local implementation and scoped owner acceptance.** The owner reports only native volume working on both native/web surfaces. Both now have deck layouts; native controls apply directly through the model, effect edits leave bypass, and older web status responses cannot reset new edits. Eight Swift tests plus separate browser fixtures, individual-effect PCM/sanitizers, Chromium/WebKit controls/axe/responsive checks, build/typecheck/audit and packaged launch pass. [Report and evidence](live-deck.md). The owner subsequently confirms “now they are working”; root cause across other devices remains unproven. App reopened stopped; local paired preview ready. No deployment, notarization or public release.
+
+# Visual hero — 2026-10-22
+
+**PASS, local.** A short “Find your sound” headline, one sentence and a large deck preview replace the text-heavy hero. Compact links still expose all five products. The preview links to the working deck below; coming-soon uses the same visual with its access gate preserved. Typecheck, five metadata/launch tests, Chromium/WebKit at 1440/820/390/320 px, keyboard navigation, muted deck play/pause/cue and accessibility pass. [Report and screenshots](hero-simplicity.md). Deployment NOT RUN.
+
+# Academy CI migration expectations — 2026-10-22
+
+**PASS, local; GitHub Actions rerun NOT RUN.** The reported admin failure reproduces: migration `0013_audio_duration.sql` correctly applies, but admin, wallet and account tests still expect twelve migrations. Those three assertions now compare the applied names with the sorted checked-in SQL filenames. Production code and migration SQL are unchanged; repeat-run, rollback, changed-SQL rejection and legacy duration upgrade checks remain intact.
+
+Validation on Node 22.23.1 and PostgreSQL 16.14 used UUID-named disposable databases on loopback, removed by the suites. From `apps/site`, set `JAMLOOM_TEST_DATABASE_URL=postgresql://serhansari@127.0.0.1:5432/postgres` (substitute your local database role):
+
+- `npm run test:admin`: 9 PASS (previously reproduced `13 !== 12`).
+- `npm run test:academy`: 13 PASS.
+- `npm run test:wallet`: 15 PASS, including queue/watchdog/provider tests.
+- `DATABASE_URL="$JAMLOOM_TEST_DATABASE_URL" BETTER_AUTH_URL=http://127.0.0.1:4225 BETTER_AUTH_SECRET=local-only-test-secret-at-least-thirty-two-characters JAMLOOM_LOCAL_OUTBOX=/tmp/jamloom-ci-test-mail node --import tsx --test tests/database.test.ts tests/duration.test.ts`: 10 PASS; mail stays local.
+- `npm run studio:prepare && node --test ../web/tests/*.test.js && npm run typecheck`: preparation/audit PASS, 137 tests PASS, typecheck PASS.
+
+Total: 184 tests PASS. Existing installed dependencies were used; clean CI installation and the hosted Ubuntu workflow were not rerun. No hosted database access, push or deployment.
+
+# Full product landing page — 2026-10-22
+
+**PASS, local.** Main and coming-soon landing pages now present five dedicated sections: DJ Academy, DJ Studio without a controller, AI Improvisation, Music DNA and Live DJ for supported computer audio. Each has a real product preview; the main page retains a working deck. Shared descriptions, product navigation, SEO and the 1200×630 social image cover the full offering. Preview screenshots show actual local UI; the recording waveform is the retained synthetic fixture, with no user recording or live capture. Typecheck, five launch/metadata tests and Chromium/WebKit checks at four widths pass, including image loads, product/section links, muted deck playback and zero accessibility violations. The public coming-soon HTML was rendered as a browser fixture; access/caching rules pass unit checks and remain unchanged. No deployment or new paid services. [Homepage](../apps/site/app/page.tsx), [shared content](../apps/site/lib/home-products.ts).
+
+# Headphones panel layout — 2026-10-22
+
+**PASS, local.** Output selectors align and stack responsively; test/confirmation controls, deck previews and headphone level have clear spacing. Long device names stay inside their controls in WebKit. Chromium and WebKit pass four widths (1440/820/390/320), fullscreen, keyboard disclosure, refresh/test/disconnect feedback and scoped accessibility checks. All existing studio control IDs remain; the audited studio/offline bundle is rebuilt. No audio-routing logic changed. Physical routing and deployment NOT RUN. [Markup](../apps/web/dj.html), [styles](../apps/web/dj.css).
+
 # Local AI singer implementation — 2026-10-22
 
 **Variable call arrangements — 2026-10-22:** Owner accepts both same-song A/B examples and requests unpredictable use of both. The local singer studio now varies the source excerpt, gap versus short vocal replacement, and entrance timing; recent arrangement history discourages repetition without forcing A–B alternation. Unchanged music is preserved, with explicit fallback when the source cannot fit. [Implementation and evidence](arrangement-variety.md). Broad automatic-selection musical acceptance remains PARTIAL; the earlier regenerated source-led candidate remains FAIL.

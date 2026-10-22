@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-22",
+  "feedback": "this has problems, only native output level works and it should be on a dj deck",
+  "affected_surfaces": "Both: Mac companion window and Live DJ website",
+  "previous_owner_check": "FAIL",
+  "new_build_owner_retest": "NOT RUN",
+  "exact_source_and_output": "not supplied"
+}

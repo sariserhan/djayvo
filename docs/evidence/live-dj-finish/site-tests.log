@@ -1,0 +1,23 @@
+✔ launch gate defaults on and only explicit false disables it (0.5945ms)
+✔ coming-soon recovery allows login, support and signed callbacks, not signup or product APIs (0.1265ms)
+✔ launch responses contain real navigation, one tracker and private caching; product APIs stay closed (2.487084ms)
+✔ anonymous requests cannot bypass the default gate with request headers or query flags (0.920792ms)
+✔ companion download stays unavailable until a valid HTTPS release URL is configured (0.52ms)
+✔ production template binds auth and private R2 grants to Jamloom configuration (13.740875ms)
+✔ account configuration fails closed and forbids hosted development mail (0.204417ms)
+✔ Resend request routes replies to support and binds retry identity to the full payload (2.579208ms)
+✔ reply-to accepts a single mailbox and rejects malformed or injected headers (0.094917ms)
+✔ localhost can use Neon without enabling local database/storage shortcuts (0.064875ms)
+✔ email outbox cannot run in a hosted app even if a config is supplied directly (0.054334ms)
+✔ auth body limit measures real streamed bytes rather than trusting Content-Length (1.772833ms)
+✔ Jamloom config accepts legacy deployment keys and gives explicit new values priority (0.093083ms)
+✔ VisitorPing can connect without weakening script or framing protections (0.937792ms)
+✔ metadata follows runtime launch mode and never advertises private routes (1.538833ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 425.57975
