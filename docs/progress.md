@@ -1,6 +1,6 @@
 # Local AI singer implementation — 2026-10-22
 
-**Same-song call edits — 2026-10-22:** Owner authorized a better approach after rejecting regenerated music. Two bounded edits of the earlier reggae song are ready: an intact short call in a gap, or replacement of only the opening sung question. Original singing stays in place; 28.04 / 27.6 seconds remain exact. Two local repaint trials failed the overlap gate and are excluded. New candidate musical acceptance NOT RUN; earlier rejection remains FAIL. [Listen and inspect evidence](local-call-edit.md).
+**Variable call arrangements — 2026-10-22:** Owner accepts both same-song A/B examples and requests unpredictable use of both. The local singer studio now varies the source excerpt, gap versus short vocal replacement, and entrance timing; recent arrangement history discourages repetition without forcing A–B alternation. Unchanged music is preserved, with explicit fallback when the source cannot fit. [Implementation and evidence](arrangement-variety.md). Broad automatic-selection musical acceptance remains PARTIAL; the earlier regenerated source-led candidate remains FAIL.
 
 **Owner listening — FAIL:** “this new way musical is bad.” The new source-led reggae experiment is rejected as a musical improvement. Earlier comparisons were restored; they now remain linked from the new same-song comparison page. Trial audio and technical evidence are preserved; no studio-default promotion. The goal of incorporating the user recording remains open. [Exact feedback](evidence/source-led-response/owner-listening.json).
 

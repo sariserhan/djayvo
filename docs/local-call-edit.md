@@ -1,10 +1,9 @@
 # Keep the song; edit one call — 2026-10-22
 
 The owner rejected the source-led regenerated performance and authorized finding
-a better approach that preserves the earlier songs. Two **listening candidates**
+a better approach that preserves the earlier songs. Two **owner-accepted examples**
 now use the same original male reggae song. Neither candidate contains newly
-generated music or moves the original singer. Musical improvement remains
-**NOT RUN**, pending the owner's judgment.
+generated music or moves the original singer. The owner subsequently said **“both are acceptable”** and requested varied use of both approaches. [Hash-bound feedback](evidence/local-call-edit/owner-listening.json). Broader quality remains **PARTIAL**; the [local studio now chooses arrangements automatically](arrangement-variety.md).
 
 Listen at <http://127.0.0.1:4197/>. The page has the original, A and B, buttons that
 jump to each changed passage, downloads, and the earlier style comparisons.
@@ -71,11 +70,11 @@ parameter dataclass. We used the executed handler behavior, not that comment.
 - **PASS — Chromium and WebKit:** playback, passage-jump buttons, seeking,
   exclusive playback, downloads, no autoplay, 320/375 px layouts, and all twelve
   earlier comparison players. [Browser evidence](evidence/local-call-edit/browser.json).
-- **NOT RUN — musical acceptance, naturalness of the local vocal subtraction,
-  speech intelligibility in the mix and broad input/style generalization.**
+- **PASS — informal acceptance of these A/B examples**, subsequently provided by the owner.
+  **NOT RUN — formal intelligibility/artifact scoring and broad input/style generalization.**
   Diagnostic tiny-ASR did not reliably transcribe the initial lower-level mixed
   excerpt. It cannot determine musical quality; its private failures are retained.
-- No training, model promotion, production/default-studio rollout, upload,
+- At this study checkpoint: no training, model promotion, production/default-studio rollout, upload,
   publication, phone change or new paid execution. The earlier rejected source-led
   experiment remains **FAIL — owner listening**.
 

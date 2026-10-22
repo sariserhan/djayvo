@@ -2,12 +2,13 @@
 """Private same-song study: one intact call, optional bounded instrumental repair."""
 import argparse
 import json
+import random
 from pathlib import Path
 import shutil
 
 import numpy as np
 from arrange_voice_research import RATE, digest, read_pcm, write_pcm
-from assemble_sung_response import envelope
+from assemble_sung_response import envelope, intervals, beat_grid, keep_song
 from source_led_response import faded, rendered, stem
 
 
@@ -124,6 +125,106 @@ def edit(song_dir, source, output, call_at, consent=False, repaint_dir=None, rep
         'note':'Manually selected phrase and passage; estimated quiet or subtraction does not prove musical fit or absence of bleed.',
         'artifacts':{name:digest(output/f'{name}.wav') for name in ('performance','original','music','user')}}
     (output/'complete.json').write_text(json.dumps(report,indent=2)+'\n');(output/'.partial').unlink()
+    return report
+
+
+def arrangement_options(song, vocals, hook, grid):
+    """Bounded calls in gaps or in place of isolated estimated vocal phrases."""
+    hop=RATE//100; levels=envelope(vocals)
+    threshold=min(.006,max(.0003,float(np.quantile(levels,.9))*.05))
+    active=levels>threshold
+    # shortcut: quiet boundaries estimate phrases, not words; broaden only with listening evidence.
+    joined=active.copy()
+    for a,b in intervals(~active):
+        if a>0 and b<len(active) and b-a<30: joined[a:b]=True
+    phrases=intervals(joined); options=[]; duration=len(hook)
+    beat=RATE*60/grid['bpm']; offset=grid['offset_frames']
+    pulses=[round(offset+i*beat/2) for i in range(int(len(song)/beat*2)+1)]
+    for mode,spans in [('existing-gap',intervals(~active)),('vocal-replacement',phrases)]:
+        for a,b in spans:
+            a,b=int(a),int(b)
+            # Keep an answering singer and the ending; do not turn the call into an intro pasted before music.
+            if b>=len(levels) or b*hop>len(song)-4*RATE or not np.any(active[b:]):continue
+            region=None
+            if mode=='vocal-replacement':
+                lo=max(0,(a-12)*hop);hi=min(len(song),(b+12)*hop)
+                if not .5*RATE<=hi-lo<=4*RATE:continue
+                if np.any(active[max(0,a-30):a]) or np.any(active[b:min(len(active),b+30)]):continue
+                region=[lo/RATE,hi/RATE]
+                lo+=round(.12*RATE);hi-=round(.12*RATE)+duration
+            else:
+                lo=max(RATE,a*hop+round(.18*RATE));hi=b*hop-round(.18*RATE)-duration
+                lo=max(lo,b*hop-duration-2*RATE)
+            if hi<lo:continue
+            starts=[t for t in pulses if lo<=t<=hi] if grid['confidence']>=.15 else []
+            if not starts:starts=[(lo+hi)//2]
+            for start in starts:
+                options.append({'mode':mode,'call_at':start/RATE,'replace_region':region,
+                    'fingerprint':f'{mode}:{int(start/(4*RATE))}'})
+    return options
+
+
+def read_history(path):
+    try:
+        if path.stat().st_size>16384:return []
+        items=json.loads(path.read_text())
+        if not isinstance(items,list):return []
+        return [s for s in items[-12:] if isinstance(s,str) and len(s)<80]
+    except (OSError,ValueError):return []
+
+
+def rank_options(options, history, seed):
+    rng=random.Random(seed); remaining=list(options); ranked=[]
+    while remaining:
+        # Penalize recent shapes, not A or B outright: A-A and B-B can still occur at different entrances.
+        weights=[1/(sum(other['mode']==c['mode'] for other in remaining)*
+                    (1+3*history.count(c['fingerprint'])+
+                     sum(h.split(':')[0]==c['mode'] for h in history[-4:]))) for c in remaining]
+        if history and any(c['fingerprint']!=history[-1] for c in remaining):
+            weights=[0 if c['fingerprint']==history[-1] else w for c,w in zip(remaining,weights)]
+        i=rng.choices(range(len(remaining)),weights=weights,k=1)[0]
+        ranked.append(remaining.pop(i))
+    return ranked
+
+
+def arrange(source, song_dir, output, history_path, seed, consent=False):
+    if not consent:raise ValueError('Local source consent required')
+    if output.exists():raise FileExistsError('Preserving existing arrangement')
+    song,receipt=rendered(song_dir);hook=read_pcm(source,(.35,5))
+    vocals=stem(song_dir,'vocals',receipt,song.shape)
+    drums=stem(song_dir,'drums',receipt,song.shape)
+    bpm=receipt['case']['bpm']
+    if type(bpm) not in (int,float) or not np.isfinite(bpm) or not 60<=bpm<=180:
+        raise ValueError('Invalid musical tempo')
+    grid=beat_grid(drums,bpm);history=read_history(history_path)
+    options=rank_options(arrangement_options(song,vocals,hook,grid),history,seed)
+    rejected=0
+    for candidate in options:
+        try:
+            bed,estimate=song,vocals
+            if candidate['replace_region']:
+                bed,estimate=replace_vocal(song,vocals,*[round(t*RATE) for t in candidate['replace_region']])
+            mix,_,_=add_call(bed,hook,round(candidate['call_at']*RATE),estimate)
+            if np.max(np.abs(mix))>=.98:raise ValueError('Unsafe mix peak')
+        except ValueError:
+            rejected+=1;continue
+        report=edit(song_dir,source,output,candidate['call_at'],True,replace_region=candidate['replace_region'])
+        report.update(sample_used=True,selection_seed=seed,grid=grid,options_considered=len(options),
+            rejected_candidates=rejected,arrangement_fingerprint=candidate['fingerprint'],
+            note='Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.')
+        # The studio serializes jobs. Save only completed arrangements, without speech or paths.
+        try:
+            history_path.parent.mkdir(parents=True,exist_ok=True)
+            temporary=history_path.with_suffix('.tmp')
+            temporary.write_text(json.dumps([*history,candidate['fingerprint']][-12:])+'\n')
+            temporary.replace(history_path)
+            report['history_saved']=True
+        except OSError:report['history_saved']=False
+        (output/'complete.json').write_text(json.dumps(report,indent=2)+'\n')
+        return report
+    report=keep_song(song_dir,output,'Could not fit the recording safely; the completed song is preserved for comparison.')
+    report.update(arrangement_status='NO_SAFE_PLACEMENT',selection_seed=seed,options_considered=len(options),rejected_candidates=rejected)
+    (output/'complete.json').write_text(json.dumps(report,indent=2)+'\n')
     return report
 
 

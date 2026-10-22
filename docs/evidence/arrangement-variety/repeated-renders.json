@@ -1,0 +1,443 @@
+{
+  "technical": "PASS",
+  "listening": "NOT RUN",
+  "model_generation": "NOT RUN - existing original song reused",
+  "source_preserved": true,
+  "both_modes": true,
+  "not_fixed_alternation": true,
+  "no_consecutive_shape_repeat": true,
+  "runs": [
+    {
+      "technical": "PASS",
+      "mode": "vocal-replacement",
+      "song_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "source_sha256": "1517ce18d8052a142edd0a7b128f7a15ea523b213c4463773cc6795941fae7b1",
+      "repair_sha256": null,
+      "region_frames": [
+        548640,
+        713760
+      ],
+      "unchanged_seconds": 26.56,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5256316881706589e-05,
+      "repair_gain": 1.0,
+      "event": {
+        "start_frame": 623863,
+        "end_frame": 678583,
+        "gain": 2.7788852396222863,
+        "estimated_vocal_max_rms": 0.0,
+        "vocal_threshold_rms": 0.006,
+        "band_rms": 0.1529339109926262,
+        "target_lead_rms": 0.11238814326756458,
+        "rate": 1.0,
+        "transpose_semitones": 0
+      },
+      "peak": 0.891265869140625,
+      "singer_moved": false,
+      "master_gain": 1.0,
+      "listening": "NOT RUN",
+      "vocal_subtraction": true,
+      "note": "Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.",
+      "artifacts": {
+        "performance": "6021793c0a5d7b977f784e5e9987ff651c328c10ea7d2fe0a588ae73d3c8393c",
+        "original": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "music": "b5448abf78d2dd12246ce6651709a8b73421116ef0421ae0f43f729a1e05ebc1",
+        "user": "77930ec4fe71e5af033d7125188fcbc0920e4d148ddfca58455609300319985d"
+      },
+      "sample_used": true,
+      "selection_seed": 0,
+      "grid": {
+        "bpm": 84.0,
+        "offset_frames": 6720,
+        "confidence": 0.9389129325596612,
+        "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+      },
+      "options_considered": 25,
+      "rejected_candidates": 0,
+      "arrangement_fingerprint": "vocal-replacement:3",
+      "history_saved": true,
+      "crop_seconds": [
+        4.22,
+        5.36
+      ]
+    },
+    {
+      "technical": "PASS",
+      "mode": "existing-gap",
+      "song_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "source_sha256": "1f4ed5e327ebe5ddf9818b4a891f89b1f10dad4ae9454cc4b5748f1cbaee04ad",
+      "repair_sha256": null,
+      "region_frames": [
+        383863,
+        476983
+      ],
+      "unchanged_seconds": 28.06,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5242469865339725e-05,
+      "repair_gain": 1.0,
+      "event": {
+        "start_frame": 383863,
+        "end_frame": 476983,
+        "gain": 1.7806447633812588,
+        "estimated_vocal_max_rms": 0.0006949608214199543,
+        "vocal_threshold_rms": 0.006,
+        "band_rms": 0.10406613462458335,
+        "target_lead_rms": 0.1245151698589325,
+        "rate": 1.0,
+        "transpose_semitones": 0
+      },
+      "peak": 0.891265869140625,
+      "singer_moved": false,
+      "master_gain": 1.0,
+      "listening": "NOT RUN",
+      "vocal_subtraction": false,
+      "note": "Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.",
+      "artifacts": {
+        "performance": "1dad98f223a36ceee46812ae2aee19e8b8c426444e9e33beb24196fa22c41d71",
+        "original": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "music": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "user": "8043bc32a41120562c789cbd7ce1698a04ce6fa74f38bc0e18a383210506f094"
+      },
+      "sample_used": true,
+      "selection_seed": 1,
+      "grid": {
+        "bpm": 84.0,
+        "offset_frames": 6720,
+        "confidence": 0.9389129325596612,
+        "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+      },
+      "options_considered": 13,
+      "rejected_candidates": 0,
+      "arrangement_fingerprint": "existing-gap:1",
+      "history_saved": true,
+      "crop_seconds": [
+        1.94,
+        3.88
+      ]
+    },
+    {
+      "technical": "PASS",
+      "mode": "vocal-replacement",
+      "song_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "source_sha256": "1f4ed5e327ebe5ddf9818b4a891f89b1f10dad4ae9454cc4b5748f1cbaee04ad",
+      "repair_sha256": null,
+      "region_frames": [
+        822720,
+        936960
+      ],
+      "unchanged_seconds": 27.62,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5255632735404479e-05,
+      "repair_gain": 1.0,
+      "event": {
+        "start_frame": 829577,
+        "end_frame": 922697,
+        "gain": 1.6326950799268485,
+        "estimated_vocal_max_rms": 6.96449469911513e-05,
+        "vocal_threshold_rms": 0.006,
+        "band_rms": 0.12762925657560548,
+        "target_lead_rms": 0.1141694903922882,
+        "rate": 1.0,
+        "transpose_semitones": 0
+      },
+      "peak": 0.891265869140625,
+      "singer_moved": false,
+      "master_gain": 1.0,
+      "listening": "NOT RUN",
+      "vocal_subtraction": true,
+      "note": "Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.",
+      "artifacts": {
+        "performance": "53f6c7758004e52b9ec67a3324bed4dbae9b07ec8c62ee4a117105781536daa7",
+        "original": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "music": "62b19f6b1070bbf30872bfdc4c14f6686e4e87df17e3b64639fba4c3bca30333",
+        "user": "f56e6234acdc449be8cbb33fa6fa32397bee3d941b103f563030b857c498140f"
+      },
+      "sample_used": true,
+      "selection_seed": 2,
+      "grid": {
+        "bpm": 84.0,
+        "offset_frames": 6720,
+        "confidence": 0.9389129325596612,
+        "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+      },
+      "options_considered": 13,
+      "rejected_candidates": 0,
+      "arrangement_fingerprint": "vocal-replacement:4",
+      "history_saved": true,
+      "crop_seconds": [
+        1.94,
+        3.88
+      ]
+    },
+    {
+      "technical": "PASS",
+      "mode": "existing-gap",
+      "song_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "source_sha256": "1f4ed5e327ebe5ddf9818b4a891f89b1f10dad4ae9454cc4b5748f1cbaee04ad",
+      "repair_sha256": null,
+      "region_frames": [
+        418149,
+        511269
+      ],
+      "unchanged_seconds": 28.06,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5242469865339725e-05,
+      "repair_gain": 1.0,
+      "event": {
+        "start_frame": 418149,
+        "end_frame": 511269,
+        "gain": 1.7806447633812588,
+        "estimated_vocal_max_rms": 0.0006852804217487574,
+        "vocal_threshold_rms": 0.006,
+        "band_rms": 0.08345823885436005,
+        "target_lead_rms": 0.1245151698589325,
+        "rate": 1.0,
+        "transpose_semitones": 0
+      },
+      "peak": 0.891265869140625,
+      "singer_moved": false,
+      "master_gain": 1.0,
+      "listening": "NOT RUN",
+      "vocal_subtraction": false,
+      "note": "Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.",
+      "artifacts": {
+        "performance": "2cea4699ef2629cae70467d56e06752df35fff4ac1a15b9c13e874c9efe8ffb1",
+        "original": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "music": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "user": "7086e94f0d81067b0446b7e663d7c2282e8a5066c663f06a1468dff99a457cb5"
+      },
+      "sample_used": true,
+      "selection_seed": 3,
+      "grid": {
+        "bpm": 84.0,
+        "offset_frames": 6720,
+        "confidence": 0.9389129325596612,
+        "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+      },
+      "options_considered": 13,
+      "rejected_candidates": 0,
+      "arrangement_fingerprint": "existing-gap:2",
+      "history_saved": true,
+      "crop_seconds": [
+        1.94,
+        3.88
+      ]
+    },
+    {
+      "technical": "PASS",
+      "mode": "existing-gap",
+      "song_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "source_sha256": "1f4ed5e327ebe5ddf9818b4a891f89b1f10dad4ae9454cc4b5748f1cbaee04ad",
+      "repair_sha256": null,
+      "region_frames": [
+        726720,
+        819840
+      ],
+      "unchanged_seconds": 28.06,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5242469865339725e-05,
+      "repair_gain": 1.0,
+      "event": {
+        "start_frame": 726720,
+        "end_frame": 819840,
+        "gain": 1.7806447633812588,
+        "estimated_vocal_max_rms": 0.0004775510460603982,
+        "vocal_threshold_rms": 0.006,
+        "band_rms": 0.13032937560013358,
+        "target_lead_rms": 0.1245151698589325,
+        "rate": 1.0,
+        "transpose_semitones": 0
+      },
+      "peak": 0.891265869140625,
+      "singer_moved": false,
+      "master_gain": 1.0,
+      "listening": "NOT RUN",
+      "vocal_subtraction": false,
+      "note": "Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.",
+      "artifacts": {
+        "performance": "9205a445650dedd4facec6bec447ee20ac3c1a703b228d9bb7192535aaaefb24",
+        "original": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "music": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "user": "580b64b0ab55d6da0e6d547157f6c6100e24518381f1e9eda93ede8a1c0550f3"
+      },
+      "sample_used": true,
+      "selection_seed": 4,
+      "grid": {
+        "bpm": 84.0,
+        "offset_frames": 6720,
+        "confidence": 0.9389129325596612,
+        "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+      },
+      "options_considered": 13,
+      "rejected_candidates": 0,
+      "arrangement_fingerprint": "existing-gap:3",
+      "history_saved": true,
+      "crop_seconds": [
+        1.94,
+        3.88
+      ]
+    },
+    {
+      "technical": "PASS",
+      "mode": "vocal-replacement",
+      "song_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "source_sha256": "1517ce18d8052a142edd0a7b128f7a15ea523b213c4463773cc6795941fae7b1",
+      "repair_sha256": null,
+      "region_frames": [
+        548640,
+        713760
+      ],
+      "unchanged_seconds": 26.56,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5256316881706589e-05,
+      "repair_gain": 1.0,
+      "event": {
+        "start_frame": 555291,
+        "end_frame": 610011,
+        "gain": 2.7788852396222863,
+        "estimated_vocal_max_rms": 6.177562024146162e-05,
+        "vocal_threshold_rms": 0.006,
+        "band_rms": 0.12131623549090362,
+        "target_lead_rms": 0.11238814326756458,
+        "rate": 1.0,
+        "transpose_semitones": 0
+      },
+      "peak": 0.891265869140625,
+      "singer_moved": false,
+      "master_gain": 1.0,
+      "listening": "NOT RUN",
+      "vocal_subtraction": true,
+      "note": "Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.",
+      "artifacts": {
+        "performance": "8f6063693c890c0b8b53da0a830b34376637435d4d0bcfc9b4866e9a4aed0a17",
+        "original": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "music": "b5448abf78d2dd12246ce6651709a8b73421116ef0421ae0f43f729a1e05ebc1",
+        "user": "dd98955cf5460260f7302b17ad8bd1ebbbc4d0717757270b594134d6a27b0034"
+      },
+      "sample_used": true,
+      "selection_seed": 5,
+      "grid": {
+        "bpm": 84.0,
+        "offset_frames": 6720,
+        "confidence": 0.9389129325596612,
+        "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+      },
+      "options_considered": 25,
+      "rejected_candidates": 0,
+      "arrangement_fingerprint": "vocal-replacement:2",
+      "history_saved": true,
+      "crop_seconds": [
+        4.22,
+        5.36
+      ]
+    },
+    {
+      "technical": "PASS",
+      "mode": "vocal-replacement",
+      "song_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "source_sha256": "1f4ed5e327ebe5ddf9818b4a891f89b1f10dad4ae9454cc4b5748f1cbaee04ad",
+      "repair_sha256": null,
+      "region_frames": [
+        548640,
+        713760
+      ],
+      "unchanged_seconds": 26.56,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.525812567090834e-05,
+      "repair_gain": 1.0,
+      "event": {
+        "start_frame": 589577,
+        "end_frame": 682697,
+        "gain": 1.6072207025237015,
+        "estimated_vocal_max_rms": 0.0,
+        "vocal_threshold_rms": 0.006,
+        "band_rms": 0.16246921116373642,
+        "target_lead_rms": 0.11238814326756458,
+        "rate": 1.0,
+        "transpose_semitones": 0
+      },
+      "peak": 0.891265869140625,
+      "singer_moved": false,
+      "master_gain": 1.0,
+      "listening": "NOT RUN",
+      "vocal_subtraction": true,
+      "note": "Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.",
+      "artifacts": {
+        "performance": "b25e290497db0ed0f424d34f9c21205905728a757ba28f6df5a81584b5cf2b2e",
+        "original": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "music": "b5448abf78d2dd12246ce6651709a8b73421116ef0421ae0f43f729a1e05ebc1",
+        "user": "422adb08cbd2e630ec46204f07a7687ed1ca4f09c885c9bfb6399f5e9ff570f1"
+      },
+      "sample_used": true,
+      "selection_seed": 6,
+      "grid": {
+        "bpm": 84.0,
+        "offset_frames": 6720,
+        "confidence": 0.9389129325596612,
+        "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+      },
+      "options_considered": 13,
+      "rejected_candidates": 0,
+      "arrangement_fingerprint": "vocal-replacement:3",
+      "history_saved": true,
+      "crop_seconds": [
+        1.94,
+        3.88
+      ]
+    },
+    {
+      "technical": "PASS",
+      "mode": "existing-gap",
+      "song_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "source_sha256": "1517ce18d8052a142edd0a7b128f7a15ea523b213c4463773cc6795941fae7b1",
+      "repair_sha256": null,
+      "region_frames": [
+        726720,
+        781440
+      ],
+      "unchanged_seconds": 28.86,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5253767899681137e-05,
+      "repair_gain": 1.0,
+      "event": {
+        "start_frame": 726720,
+        "end_frame": 781440,
+        "gain": 2.974144406448461,
+        "estimated_vocal_max_rms": 0.0004529895377345383,
+        "vocal_threshold_rms": 0.006,
+        "band_rms": 0.12339840377072964,
+        "target_lead_rms": 0.1245151698589325,
+        "rate": 1.0,
+        "transpose_semitones": 0
+      },
+      "peak": 0.972412109375,
+      "singer_moved": false,
+      "master_gain": 1.0,
+      "listening": "NOT RUN",
+      "vocal_subtraction": false,
+      "note": "Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.",
+      "artifacts": {
+        "performance": "c2474cf9b090a76cc28f13ab14255e880a7ae773c7b2f430193130afdcfd1cbd",
+        "original": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "music": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "user": "b92019405b0d7ba7a0471400006ea3c93c5c837873c34a17b74ce60ba3c02253"
+      },
+      "sample_used": true,
+      "selection_seed": 7,
+      "grid": {
+        "bpm": 84.0,
+        "offset_frames": 6720,
+        "confidence": 0.9389129325596612,
+        "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+      },
+      "options_considered": 25,
+      "rejected_candidates": 0,
+      "arrangement_fingerprint": "existing-gap:3",
+      "history_saved": true,
+      "crop_seconds": [
+        4.22,
+        5.36
+      ]
+    }
+  ]
+}

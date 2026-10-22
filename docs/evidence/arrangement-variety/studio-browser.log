@@ -1,0 +1,20 @@
+Generating a real reply through the browser
+{
+  speech_analysis_with_typed_idea: 'PASS',
+  automatic_arrangement: 'PASS',
+  placement: 'Male · Reggae. Inspired by your supplied idea. Your phrase takes a short singing turn; the rest of the song stays in place.',
+  status: 'PASS',
+  browser: '149.0.7827.55',
+  real_generation: 'PASS',
+  consent_required: 'PASS',
+  no_autoplay: 'PASS',
+  play_seek_exclusivity: 'PASS',
+  durations: [ 6, 30, 30 ],
+  layouts: [ { width: 375, overflow: false }, { width: 320, overflow: false } ],
+  errors: [],
+  warnings: [
+    'signal is aborted without reason',
+    'signal is aborted without reason',
+    'signal is aborted without reason'
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-22",
+  "status": "PASS - owner accepts these two examples",
+  "feedback": "both are acceptable, we can make it sometime like an A and sometime like an B so I dont want definitie pattern that we make everytime the same way because that way becomes repetitive, I want user be curios about this and dont understand the pattern and anticipate what is coming next",
+  "scope": "Informal acceptance of the presented same-song A/B pair only; no all-style or automatic-selection acceptance inferred.",
+  "candidates": {
+    "gap": {
+      "performance_sha256": "0e93cdf097337b469600480805b6e84853aeb195e39f1b0afcf18c47437f2d55",
+      "audition_sha256": "62c5336c815fdd8f7b32ad4964ede67e3217c24e5927707b284d45ef6175815c"
+    },
+    "replacement": {
+      "performance_sha256": "4f66e9c5e6826c4f507039524354f3f55b41f4c77a1ab351f55c0146e9092cc5",
+      "audition_sha256": "6ad2670233c68c78c0a744bfcaa9703f86f58321f9f1eeedfc1154ad29b7f5cb"
+    }
+  },
+  "broader_quality": "PARTIAL",
+  "prior_source_led_rejection": "FAIL - retained"
+}

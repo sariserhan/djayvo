@@ -59,7 +59,8 @@ a{color:#b5efac}button{font:inherit;background:#b5efac;color:#111b20;border:0;bo
 .actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}:focus-visible{outline:3px solid #d7ff80;outline-offset:4px}</style>
 <h1>The same song. One small change.</h1><p>Compare the original with a short call from the real recording.
 The singer stays in its original place. Each button jumps to the part that matters.</p>
-<p>These are listening candidates, not approved improvements. All versions use the same playback gain.</p>'''+''.join(cards)+'''
+<p>Two ways for your phrase to join the music. All versions use the same playback gain.
+<a href="http://127.0.0.1:4198/">Make a new song with a varied arrangement</a>.</p>'''+''.join(cards)+'''
 <p role="status" aria-live="polite" id="status"></p><p><a href="previous.html">Earlier style comparisons</a></p>
 <script>
 document.addEventListener('play',e=>{if(e.target.tagName==='AUDIO')document.querySelectorAll('audio').forEach(a=>{if(a!==e.target)a.pause()})},true);

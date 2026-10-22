@@ -1,6 +1,6 @@
 # Let the idea become the song — 2026-10-22
 
-**Later direction:** The owner reconsidered omission and authorized a [source-led conversation study](source-led-response.md). This report preserves the earlier decision and studio behavior; it is no longer the proposed product direction.
+**Later direction:** The owner reconsidered omission, rejected the regenerated [source-led study](source-led-response.md), then accepted both [same-song A/B edits](local-call-edit.md). The [local studio now varies those arrangements](arrangement-variety.md). This report preserves the earlier decision and behavior.
 
 The owner explicitly changes the product requirement: the input may inspire the
 song without appearing as audio. All, part, repetitions or none are creative

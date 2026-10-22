@@ -1,0 +1,84 @@
+{
+  "technical": "PASS",
+  "job_id": "3dc28253cda7460c9dea53e0eb9430f8",
+  "browser": "Chromium - real UI generation",
+  "input": {
+    "original_sha256": "4302f16007c5905e3d6a6627bcbd776bf12fb230b610d4022c90233afe652d4f",
+    "original_seconds": 6.0,
+    "decoded_sha256": "4325b2ebd431110840a2e0647cfb58b531e64c8fd95df7a9e2a00a4f998d57c2",
+    "decoded_seconds": 6.0,
+    "original_preserved": true
+  },
+  "source": {
+    "source": {
+      "sha256": "986a02dedb179550605341b262c5e85bd313a78ec0b711e0a1daca5d6e2b6d36",
+      "kind": "recorded",
+      "consent_confirmed": true,
+      "processed_frames": 55680
+    },
+    "sample_rate": 48000,
+    "voice_clips": [
+      {
+        "id": 0,
+        "start_frame": 0,
+        "end_frame": 55680
+      }
+    ],
+    "original_seconds": [
+      4.2,
+      5.36
+    ]
+  },
+  "arrangement": {
+    "technical": "PASS",
+    "mode": "vocal-replacement",
+    "song_sha256": "467f31e22966b4a0e0217031933a56639a2d814df424053d0e97d817a88e2861",
+    "source_sha256": "986a02dedb179550605341b262c5e85bd313a78ec0b711e0a1daca5d6e2b6d36",
+    "repair_sha256": null,
+    "region_frames": [
+      542880,
+      653760
+    ],
+    "unchanged_seconds": 27.69,
+    "outside_region_max_pcm_error": 0.0,
+    "source_identity_max_pcm_error": 1.5257508017415752e-05,
+    "repair_gain": 1.0,
+    "event": {
+      "start_frame": 586795,
+      "end_frame": 642475,
+      "gain": 3.4328074771816275,
+      "estimated_vocal_max_rms": 0.0,
+      "vocal_threshold_rms": 0.006,
+      "band_rms": 0.1783660755431707,
+      "target_lead_rms": 0.14,
+      "rate": 1.0,
+      "transpose_semitones": 0
+    },
+    "peak": 0.891265869140625,
+    "singer_moved": false,
+    "master_gain": 1.0,
+    "listening": "NOT RUN",
+    "vocal_subtraction": true,
+    "note": "Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.",
+    "artifacts": {
+      "performance": "2ab554f35e74a6a033a5aa5bb9e8a1ce333ad8a218f9f9b5b34237a974d50a20",
+      "original": "467f31e22966b4a0e0217031933a56639a2d814df424053d0e97d817a88e2861",
+      "music": "d8706acc99414524bb864ae915465cec990fdafd7996dd68bc9fe3a739abc249",
+      "user": "56b0acce593a486576e63e4bfe179b8979b907c1e287afb2b08ce76a63e6904c"
+    },
+    "sample_used": true,
+    "selection_seed": 2598940845,
+    "grid": {
+      "bpm": 82.95,
+      "offset_frames": 13920,
+      "confidence": 0.9153261723272595,
+      "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+    },
+    "options_considered": 25,
+    "rejected_candidates": 1,
+    "arrangement_fingerprint": "vocal-replacement:3",
+    "history_saved": true,
+    "meaning_origin": "your supplied idea"
+  },
+  "listening": "NOT RUN"
+}

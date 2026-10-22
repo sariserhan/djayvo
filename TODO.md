@@ -3,7 +3,9 @@
 ## Same-song call edits — 2026-10-22
 
 - [x] **CALL-001 — PASS, local implementation/evidence:** Two original-song candidates, intact short source crop, fixed singer timing, exact PCM outside 1.96 / 2.4-second changes, common-gain comparisons and passage-jump players. Nineteen scoped tests and Chromium/WebKit checks pass. Two regenerated repair trials failed the overlap check and are excluded. [Report](docs/local-call-edit.md).
-- [ ] **CALL-002 — PARTIAL:** New musical acceptance, local vocal-subtraction artifacts, intelligibility and broad automatic arrangement remain unverified. The rejected source-led approach remains FAIL; these edits are not promoted to the ordinary studio.
+- [x] **CALL-002 — PASS, scoped owner listening:** Owner says both A/B examples are acceptable. [Exact feedback and audio hashes](docs/evidence/local-call-edit/owner-listening.json). This accepts these two examples, not broad automatic quality.
+- [x] **CALL-003 — PASS, local implementation:** Automatic A/B choices, varied pause-bounded source excerpts and entrances, bounded private recent-history penalties, no forced alternation, preserved original music outside the edit and honest no-fit fallback. [Report and checks](docs/arrangement-variety.md).
+- [ ] **CALL-004 — PARTIAL:** Musical acceptance across automatically selected phrases, songs and styles, including estimated vocal-subtraction artifacts and semantic fit. The earlier source-led candidate remains FAIL; production model/quality gates stay open.
 
 ## Source-led conversation study — 2026-10-22
 

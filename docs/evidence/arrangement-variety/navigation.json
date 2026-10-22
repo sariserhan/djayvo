@@ -1,0 +1,14 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "review_to_studio_navigation": "PASS",
+    "updated_copy": "PASS"
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "review_to_studio_navigation": "PASS",
+    "updated_copy": "PASS"
+  }
+]

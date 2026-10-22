@@ -43,14 +43,25 @@ class StudioFlow(unittest.TestCase):
             samples=np.repeat((.1*np.sin(np.arange(12*RATE)*.1))[:,None],2,axis=1)
             write_pcm(source,samples);studio.prepare_source(source,root)
             speech={'phrases':[{'start_seconds':6.,'end_seconds':7.,'text':'A question?'}]}
-            self.assertIsNone(studio.sample_candidate(root,speech,'acousticpop',12))
             self.assertIsNone(studio.sample_candidate(root,{'phrases':[]},'reggae',12))
-            result=studio.sample_candidate(root,speech,'reggae',12)
+            result=studio.sample_candidate(root,speech,'acousticpop',12)
             self.assertIsNotNone(result)
-            pcm=read_pcm(result[0],(2,5))
-            self.assertEqual(len(pcm),2*RATE)
-            self.assertTrue(np.all(pcm[round(1.08*RATE)+10:]==0))
+            pcm=read_pcm(result[0],(.35,5))
+            self.assertAlmostEqual(len(pcm)/RATE,1.08)
             meta=json.loads(result[1].read_text());self.assertEqual(meta['original_seconds'],[5.96,7.04])
+
+    def test_long_segment_can_supply_different_intact_pause_bounded_clauses(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);source=root/'input.wav'
+            write_pcm(source,np.repeat((.1*np.sin(np.arange(6*RATE)*.1))[:,None],2,axis=1))
+            speech={'source_rate':16000,'phrases':[{'start_seconds':1.,'end_seconds':5.,'text':'One idea, another idea.'}],
+                    'words':[{'start_frame':a*16000,'end_frame':b*16000} for a,b in [(1,2),(3,5)]]}
+            crops=set()
+            for seed in range(8):
+                work=root/str(seed);work.mkdir();studio.prepare_source(source,work)
+                _,score=studio.sample_candidate(work,speech,'country',6,seed)
+                crops.add(tuple(json.loads(score.read_text())['original_seconds']))
+            self.assertEqual(crops,{(.96,2.04),(2.96,5.04)})
 
     def test_model_failure_does_not_blame_recording_duration(self):
         with tempfile.TemporaryDirectory() as d,patch.object(studio,'OUTPUT',Path(d)/'jobs'):
@@ -106,7 +117,7 @@ class StudioFlow(unittest.TestCase):
                     write_pcm(dest/'singer.wav', np.tile(samples, (10, 1)))
                     (dest/'complete.json').write_text(json.dumps({'technical': 'PASS', 'case': c,
                         'audio_sha256': digest(dest/'singer.wav'), 'plan_sha256': digest(plan)}))
-            with patch.object(studio.subprocess, 'run', side_effect=run):
+            with patch.object(studio.subprocess, 'run', side_effect=run), patch.object(studio,'understand',return_value={}):
                 singer, exchange, lyrics, status, meaning = studio.make_reply(str(source), 'I have a question', 'female', 'reggae', True)
             self.assertEqual(meaning,'I have a question')
             self.assertNotEqual(singer, exchange)
@@ -121,7 +132,8 @@ class StudioFlow(unittest.TestCase):
             self.assertFalse(list(studio.OUTPUT.rglob('.partial')))
             with patch.object(studio.subprocess,'run',side_effect=run), \
                  patch.object(studio,'sample_candidate',return_value=(source,source)), \
-                 patch.object(studio,'assemble',side_effect=ValueError('Invalid optional sample')):
+                 patch.object(studio,'arrange',side_effect=ValueError('Invalid optional sample')), \
+                 patch.object(studio,'understand',return_value={}):
                 singer,exchange,_,status,_=studio.make_reply(str(source),'I have a question','female','reggae',True)
             self.assertEqual(digest(Path(singer)),digest(Path(exchange)))
             self.assertIn('without replaying your recording',status)

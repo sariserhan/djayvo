@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import secrets
+import random
 import shutil
 import wave
 
@@ -13,7 +14,8 @@ import sys
 import uuid
 
 from arrange_voice_research import RATE, digest, read_pcm
-from assemble_sung_response import assemble, keep_song
+from assemble_sung_response import keep_song
+from local_call_edit import arrange
 from singing_response import STYLES, STYLE_LABELS, VOICES, MAX_PHRASE_CHARS, digest as file_digest, load_plan, text_field
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -65,10 +67,7 @@ def understand(work, env):
     return result
 
 
-def sample_candidate(work, speech, genre, seconds):
-    # shortcut: conservative style/phrase rules are not a musical-quality judge; expand only after listening evidence.
-    if genre not in ('hiphop','rap','reggae','funk','house','disco','edm','dj','techno','drumandbass'):
-        return None
+def sample_candidate(work, speech, genre, seconds, seed=0):
     candidates=[]
     for phrase in speech.get('phrases',[]):
         if not isinstance(phrase,dict) or not isinstance(phrase.get('text'),str):continue
@@ -76,14 +75,26 @@ def sample_candidate(work, speech, genre, seconds):
         if (type(a) in (int,float) and type(b) in (int,float) and np.isfinite([a,b]).all()
             and 0<=a<b<=seconds and .35<=b-a<=2.5 and 1<=len(phrase['text'].split())<=8):
             candidates.append((a,b))
+    # Word timing supplies pause-bounded clauses even when ASR emits one long segment.
+    rate=speech.get('source_rate',16000);groups=[]
+    if type(rate) not in (int,float) or not np.isfinite(rate) or not 8000<=rate<=192000:raise ValueError('Invalid speech rate')
+    for word in speech.get('words',[]):
+        if not isinstance(word,dict):continue
+        a,b=word.get('start_frame'),word.get('end_frame')
+        if type(a) is not int or type(b) is not int or not 0<=a<b<=seconds*rate:continue
+        a,b=a/rate,b/rate
+        if groups and a<groups[-1][1]:continue
+        if groups and 0<=a-groups[-1][1]<.3:groups[-1]=(groups[-1][0],b)
+        else:groups.append((a,b))
+    candidates.extend((a,b) for a,b in groups if .35<=b-a<=2.5)
     if not candidates:return None
-    a,b=max(candidates,key=lambda p:p[1]-p[0])
+    a,b=random.Random(seed).choice(sorted(set(candidates)))
     a=max(0,a-.04);b=min(seconds,b+.04)
     source=work/'source.wav'
     subprocess.run(['ffmpeg','-v','error','-nostdin','-n','-protocol_whitelist','file,pipe',
-        '-ss',str(a),'-i',str(work/'original-recording'),'-t',str(max(2,b-a)),'-ar',str(RATE),'-ac','2',
-        '-af',f'atrim=duration={b-a},apad=whole_dur=2','-c:a','pcm_s16le',str(source)],check=True,timeout=20,capture_output=True)
-    pcm=read_pcm(source,(2,5));score=work/'source.json'
+        '-ss',str(a),'-i',str(work/'original-recording'),'-t',str(b-a),'-ar',str(RATE),'-ac','2',
+        '-c:a','pcm_s16le',str(source)],check=True,timeout=20,capture_output=True)
+    pcm=read_pcm(source,(.35,5));score=work/'source.json'
     score.write_text(json.dumps({'source':{'sha256':digest(source),'kind':'recorded','consent_confirmed':True,
         'processed_frames':len(pcm)},'sample_rate':RATE,'voice_clips':[{'id':0,'start_frame':0,'end_frame':len(pcm)}],
         'original_seconds':[a,b]}))
@@ -112,9 +123,12 @@ def make_reply(audio, phrase, voice, genre, consent):
         input_report = prepare_source(audio,work)
         env = {**os.environ, 'PYTORCH_ENABLE_MPS_FALLBACK': '1', 'HF_HUB_DISABLE_TELEMETRY': '1'}
         speech={};interpretation='your supplied idea'
-        if not phrase:
-            stage = 'Understanding the recording'
+        stage = 'Understanding the recording'
+        try:
             speech=understand(work,env)
+        except StudioError:
+            if not phrase:raise
+        if not phrase:
             phrase=speech['transcript'].strip()
             interpretation='the locally recognized words'
             if not phrase:
@@ -122,7 +136,7 @@ def make_reply(audio, phrase, voice, genre, consent):
                 interpretation='a wordless sound; add an idea if you want a specific meaning'
         stage = 'Choosing whether to use the recording'
         try:
-            candidate=sample_candidate(work,speech,chosen_genre,input_report['original_seconds'])
+            candidate=sample_candidate(work,speech,chosen_genre,input_report['original_seconds'],seed)
         except (ValueError,OSError,subprocess.SubprocessError):
             candidate=None
         plan_path = work / 'reply.json'
@@ -147,13 +161,13 @@ def make_reply(audio, phrase, voice, genre, consent):
                     subprocess.run([sys.executable, str(ROOT/'scripts/separate_singer.py'), '--input', str(singer/'singer.wav'),
                                     '--output', str(singer/'stems')], stdout=log, stderr=subprocess.STDOUT, env=env, timeout=600, check=True)
                 stage = 'Arranging your phrase'
-                report = assemble(*candidate, singer, result_dir, True)
+                report = arrange(candidate[0],singer,result_dir,OUTPUT/'arrangement-history.json',seed,True)
             except (ValueError,OSError,subprocess.SubprocessError) as error:
                 (work/'sample-skipped.json').write_text(json.dumps({'stage':stage,'error_type':type(error).__name__})+'\n')
                 result_dir=work/'meaning-only'
-                report=keep_song(singer,result_dir,'Optional sample processing failed; the completed song is preserved.')
+                report=keep_song(singer,result_dir,'Could not arrange the recording; the completed song is preserved for comparison.')
         else:
-            report = keep_song(singer,result_dir,'Creative choice: let the singer carry the idea without replaying the recording.')
+            report = keep_song(singer,result_dir,'Could not find a short, intact phrase; the completed song is preserved for comparison.')
         report['meaning_origin']=interpretation
         (result_dir/'complete.json').write_text(json.dumps(report,indent=2)+'\n')
     except (ValueError, OSError, subprocess.SubprocessError) as error:
@@ -161,8 +175,10 @@ def make_reply(audio, phrase, voice, genre, consent):
         if isinstance(error,StudioError): raise
         raise StudioError(f'{stage} failed. Your recording is saved. Try Make a song again; you do not need to record it again.') from error
     (work / '.partial').unlink()
-    placement = ('A short phrase joins the song; the singer and band stay unchanged.' if report['sample_used'] else
-                 'The song uses the idea, without replaying your recording.')
+    placement = (('Your phrase takes a short singing turn; the rest of the song stays in place.'
+                  if report.get('mode')=='vocal-replacement' else
+                  'Your phrase joins a gap in the song; the singer and band stay unchanged.') if report['sample_used'] else
+                 'Could not fit your recording this time. The original song is saved without replaying your recording; try another song.')
     return (str(singer/'singer.wav'), str(result_dir/'performance.wav'), case['lyrics'],
             f"{chosen_voice.title()} · {STYLE_LABELS[chosen_genre]}. Inspired by {interpretation}. {placement}",phrase)
 
@@ -182,7 +198,7 @@ def serve():
     import gradio as gr
 
     with gr.Blocks(title='Jamloom · musician voice', analytics_enabled=False) as app:
-        gr.Markdown('# Turn your sound into a song\nRecord a thought, a story or a sound. We make a song from the idea; your recording may be used briefly or left out entirely. '
+        gr.Markdown('# Turn your sound into a song\nRecord a thought, a story or a sound. Your phrase can join a musical gap or take a short singing turn. Each song gets a fresh arrangement, chosen to fit the music. '
                     'Everything stays on this Mac. New singing is experimental; listen before keeping it.')
         consent = gr.Checkbox(label='I have permission to use this recording.', value=False)
         audio = gr.Audio(sources=['microphone', 'upload'], type='filepath', format='wav', buttons=['download'], label='Your recording · up to 5 minutes / 100 MB', elem_id='user-phrase')

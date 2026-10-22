@@ -3,11 +3,12 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from arrange_voice_research import RATE, digest, read_pcm, write_pcm
-from local_call_edit import add_call, blend_patch, edit, replace_vocal
+from local_call_edit import add_call, blend_patch, edit, replace_vocal, arrange, rank_options, read_history, arrangement_options
 from singing_response import source_conditioning
 
 
@@ -22,10 +23,11 @@ class LocalCallEdit(unittest.TestCase):
         write_pcm(self.song_dir/'singer.wav',self.song)
         self.song=read_pcm(self.song_dir/'singer.wav',(30,30))
         h=digest(self.song_dir/'singer.wav')
-        (self.song_dir/'complete.json').write_text(json.dumps({'technical':'PASS','audio_sha256':h}))
+        (self.song_dir/'complete.json').write_text(json.dumps({'technical':'PASS','audio_sha256':h,'case':{'bpm':90}}))
         np.save(self.song_dir/'stems/vocals.npy',self.vocals)
+        np.save(self.song_dir/'stems/drums.npy',np.zeros_like(self.vocals))
         (self.song_dir/'stems/complete.json').write_text(json.dumps({'technical':'PASS','source_sha256':h,
-            'stems':{'vocals':digest(self.song_dir/'stems/vocals.npy')}}))
+            'stems':{name:digest(self.song_dir/f'stems/{name}.npy') for name in ('vocals','drums')}}))
         self.hook=self.root/'hook.wav';write_pcm(self.hook,self.song[:2*RATE])
 
     def tearDown(self):self.temp.cleanup()
@@ -108,6 +110,57 @@ class LocalCallEdit(unittest.TestCase):
         self.assertLessEqual(result['source_identity_max_pcm_error'],.5/32768+1e-12)
         with self.assertRaises(ValueError):replace_vocal(self.song,self.vocals,0,30*RATE)
         with self.assertRaises(ValueError):edit(self.song_dir,self.hook,self.root/'outside',8,True,replace_region=[4.8,7.2])
+
+    def test_variety_does_not_force_alternation_and_is_reproducible(self):
+        options=[{'mode':m,'fingerprint':f'{m}:{i}'} for m in ('existing-gap','vocal-replacement') for i in range(3)]
+        history=[];modes=[];seen=[]
+        for seed in range(40):
+            order=rank_options(options,history,seed)
+            self.assertEqual(order,rank_options(options,history,seed))
+            selected=order[0];fp=selected['fingerprint']
+            if history:self.assertNotEqual(fp,history[-1])
+            history=([*history,fp])[-12:];modes.append(selected['mode']);seen.append(fp)
+        self.assertEqual(len(set(seen)),6)
+        for mode in ('existing-gap','vocal-replacement'):
+            self.assertIn((mode,mode),list(zip(modes,modes[1:])))
+        self.assertEqual(rank_options(options[:1],[options[0]['fingerprint']],1),options[:1])
+
+    def test_automatic_edit_records_only_successful_choices(self):
+        history=self.root/'history.json'
+        first=arrange(self.hook,self.song_dir,self.root/'automatic',history,42,True)
+        self.assertTrue(first['sample_used']);self.assertEqual(first['outside_region_max_pcm_error'],0)
+        self.assertEqual(read_history(history),[first['arrangement_fingerprint']])
+        before=history.read_bytes()
+        with patch('local_call_edit.add_call',side_effect=ValueError('clash')):
+            fallback=arrange(self.hook,self.song_dir,self.root/'fallback',history,43,True)
+        self.assertFalse(fallback['sample_used'])
+        self.assertEqual(fallback['arrangement_status'],'NO_SAFE_PLACEMENT')
+        self.assertEqual(history.read_bytes(),before)
+        self.assertEqual(digest(self.root/'fallback/performance.wav'),digest(self.song_dir/'singer.wav'))
+        with self.assertRaises(ValueError):arrange(self.hook,self.song_dir,self.root/'no-consent',history,44)
+        self.assertFalse((self.root/'no-consent').exists())
+        for content in ('broken','{}','"string"','[]'*9000):
+            history.write_text(content);self.assertEqual(read_history(history),[])
+
+    def test_replacement_uses_isolated_phrases_and_leaves_a_reply(self):
+        vocals=self.vocals.copy()
+        vocals[12*RATE:14*RATE]=self.song[12*RATE:14*RATE]*.7
+        grid={'bpm':90,'offset_frames':0,'confidence':0}
+        hook=read_pcm(self.hook,(2,2))
+        options=arrangement_options(self.song,vocals,hook,grid)
+        replacements=[c for c in options if c['replace_region']]
+        self.assertTrue(replacements)
+        self.assertEqual(replacements[0]['replace_region'],[4.88,7.12])
+        self.assertTrue(all(c['call_at']<12 for c in options))
+        with patch('local_call_edit.rank_options',return_value=replacements), \
+             patch('local_call_edit.stem',side_effect=lambda folder,name,receipt,shape: vocals if name=='vocals' else np.zeros_like(vocals)):
+            # Persist matching stem evidence before the real edit validates it again.
+            np.save(self.song_dir/'stems/vocals.npy',vocals)
+            path=self.song_dir/'stems/complete.json';report=json.loads(path.read_text())
+            report['stems']['vocals']=digest(self.song_dir/'stems/vocals.npy');path.write_text(json.dumps(report))
+            result=arrange(self.hook,self.song_dir,self.root/'automatic-b',self.root/'history.json',7,True)
+        self.assertEqual(result['mode'],'vocal-replacement')
+        self.assertFalse(result['singer_moved']);self.assertEqual(result['outside_region_max_pcm_error'],0)
 
 
 if __name__=='__main__':unittest.main()
