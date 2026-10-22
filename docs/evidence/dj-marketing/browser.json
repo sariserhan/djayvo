@@ -1,0 +1,206 @@
+[
+  {
+    "browser": "chromium",
+    "routes": [
+      {
+        "path": "/",
+        "status": 200,
+        "title": "Learn to DJ Online & Build Your First Mix",
+        "description": "Learn to DJ with Jamloom. Start with a free beginner lesson, practise mixing on browser decks, and build toward your first DJ set. No controller needed.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      },
+      {
+        "path": "/academy",
+        "status": 200,
+        "title": "Learn to DJ: Beginner Lessons & Mixing Practice · Jamloom",
+        "description": "Learn to DJ online with Jamloom DJ Academy. Try a free beginner lesson, practise transitions on real browser decks, and work toward your first mix.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      },
+      {
+        "path": "/dj-studio",
+        "status": 200,
+        "title": "Practise DJ Mixing Online — Free Browser DJ Studio · Jamloom",
+        "description": "Practise DJ mixing on your laptop with free tracks, two decks, EQ, loops and recording. New to DJing? Start with Jamloom’s free beginner lesson.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      },
+      {
+        "path": "/learn",
+        "status": 200,
+        "title": "Learn to DJ & Make Music — Beginner Guides · Jamloom",
+        "description": "Learn how to become a DJ, mix from your laptop, and make music with your own sounds. Beginner guides to DJ practice, voice remixing and live audio.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      },
+      {
+        "path": "/learn/how-to-become-a-dj",
+        "status": 200,
+        "title": "How to become a DJ: start learning on your laptop · Jamloom",
+        "description": "Learn how to start DJing: understand the decks, practise your first transition, choose tracks and record a short set. Begin with a free Jamloom lesson.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      },
+      {
+        "path": "/learn/laptop-dj",
+        "status": 200,
+        "title": "Learn to DJ on a laptop without a controller · Jamloom",
+        "description": "Practise DJ mixing with two browser decks: load music, set levels, use cue points and blend tracks in the Jamloom studio.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      }
+    ],
+    "primaryLearningJourney": "PASS",
+    "remixStillReachable": "PASS",
+    "guideSitemap": "PASS",
+    "shareImage": "PASS",
+    "comingSoonCopy": "PASS",
+    "audio": "muted",
+    "publication": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "routes": [
+      {
+        "path": "/",
+        "status": 200,
+        "title": "Learn to DJ Online & Build Your First Mix",
+        "description": "Learn to DJ with Jamloom. Start with a free beginner lesson, practise mixing on browser decks, and build toward your first DJ set. No controller needed.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      },
+      {
+        "path": "/academy",
+        "status": 200,
+        "title": "Learn to DJ: Beginner Lessons & Mixing Practice · Jamloom",
+        "description": "Learn to DJ online with Jamloom DJ Academy. Try a free beginner lesson, practise transitions on real browser decks, and work toward your first mix.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      },
+      {
+        "path": "/dj-studio",
+        "status": 200,
+        "title": "Practise DJ Mixing Online — Free Browser DJ Studio · Jamloom",
+        "description": "Practise DJ mixing on your laptop with free tracks, two decks, EQ, loops and recording. New to DJing? Start with Jamloom’s free beginner lesson.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      },
+      {
+        "path": "/learn",
+        "status": 200,
+        "title": "Learn to DJ & Make Music — Beginner Guides · Jamloom",
+        "description": "Learn how to become a DJ, mix from your laptop, and make music with your own sounds. Beginner guides to DJ practice, voice remixing and live audio.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      },
+      {
+        "path": "/learn/how-to-become-a-dj",
+        "status": 200,
+        "title": "How to become a DJ: start learning on your laptop · Jamloom",
+        "description": "Learn how to start DJing: understand the decks, practise your first transition, choose tracks and record a short set. Begin with a free Jamloom lesson.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      },
+      {
+        "path": "/learn/laptop-dj",
+        "status": 200,
+        "title": "Learn to DJ on a laptop without a controller · Jamloom",
+        "description": "Practise DJ mixing with two browser decks: load music, set levels, use cue points and blend tracks in the Jamloom studio.",
+        "canonical": "PASS",
+        "openGraph": "PASS",
+        "twitter": "PASS",
+        "widths": [
+          1440,
+          390,
+          320
+        ],
+        "axeViolations": 0
+      }
+    ],
+    "primaryLearningJourney": "PASS",
+    "remixStillReachable": "PASS",
+    "guideSitemap": "PASS",
+    "shareImage": "PASS",
+    "comingSoonCopy": "PASS",
+    "audio": "muted",
+    "publication": "NOT RUN"
+  }
+]

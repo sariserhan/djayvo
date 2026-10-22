@@ -1,4 +1,4 @@
 import {guides} from '../../lib/editorial';
 import {pageMetadata} from '../../lib/product';
-export const metadata=pageMetadata('Learn Jamloom','Practical guides to voice remixing, laptop DJ mixing and permitted live audio processing.','/learn');
-export default function Learn(){return <section className="product-document"><p className="eyebrow">Start with a sound</p><h1>Learn by playing.</h1>{Object.entries(guides).map(([slug,g])=><article className="product-panel" key={slug}><h2><a href={'/learn/'+slug}>{g.title}</a></h2><p>{g.description}</p></article>)}</section>}
+export const metadata=pageMetadata('Learn to DJ & Make Music — Beginner Guides','Learn how to become a DJ, mix from your laptop, and make music with your own sounds. Beginner guides to DJ practice, voice remixing and live audio.','/learn');
+export default function Learn(){return <section className="product-document"><p className="eyebrow">DJ skills &amp; creative tools</p><h1>Learn to DJ. Keep creating.</h1><p>Start with the DJ basics, practise a transition, then explore new ways to make music.</p><a href="/academy/lessons/first-crossfade">Try the free DJ lesson →</a>{Object.entries(guides).map(([slug,g])=><article className="product-panel" key={slug}><h2><a href={'/learn/'+slug}>{g.title}</a></h2><p>{g.description}</p></article>)}</section>}

@@ -1,3 +1,7 @@
+# DJ learning marketing and SEO — 2026-10-21
+
+**PASS, local.** The marketing site now leads with becoming a DJ and learning to mix. Homepage actions, Academy/studio copy, beginner guides, search metadata, social previews and coming-soon messaging are aligned. Existing launch gates and course availability remain unchanged. Chromium/WebKit, typecheck and five metadata/launch tests pass. [Report and screenshots](dj-learning-marketing.md). Deployment and search ranking validation NOT RUN.
+
 # Performance studio simplicity — 2026-10-21
 
 **PASS, local; specification PARTIAL.** Track loading comes first, voice response follows three steps, and specialist controls open only when needed. All 178 original controls remain. Vinyl grooves, paper labels, metal spindles and strobe rims replace the old platters in the studio and homepage. Both browsers pass real interactions, Academy, fullscreen and accessibility checks; 137 unit tests, typecheck and offline bundle preparation pass. Human usability, listening and physical checks remain unclaimed. [Report, screenshots and receipts](studio-simplicity.md). No deployment.
