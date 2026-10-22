@@ -2,7 +2,7 @@
 
 ## Musician training request — 2026-10-21
 
-- [ ] **TRAIN-007 — NOT RUN, corrected intent:** Multiple original male/female musician singing voices with contextual, lightly humorous lyrical replies; varied reggae/hip-hop and other arrangements, melody, delivery and source looping chosen to fit the rhythm. Same-source audible diversity and vocalist control require evaluation. TRAIN-006 only remixed the user voice and does not fulfill this requirement. Actual two-voice vocal generation, arrangement and listening remain. [Owner example and acceptance](docs/musician-vocal-response.md).
+- [ ] **TRAIN-007 — PARTIAL:** Natural-sounding AI singer clarified by owner. Local contextual lyric planning, separate singer generation, male/female × reggae/hip-hop choices, source pickup and downloads implemented. Four actual singer WAVs, four assembled exchanges, six unit tests and Chromium/WebKit listening-page checks PASS. Local studio uses pinned models with no cloud recording upload. Naturalness, lyric/voice fidelity, creative diversity, adaptive live arrangement and production integration remain open. [Implementation, listening page and evidence](docs/singing-response.md).
 
 - [x] **TRAIN-006 — PASS, local voice audition:** Three new mixes using the authorized owner voice and existing epoch-10 hip-hop/funk/bass-b audio; Group 1 excluded. Six voice/music comparisons at −22 LUFS, clean-source/stem checks, deterministic rerender, eight regression tests and both-browser playback/seek PASS. Musical acceptance remains open. [Report](docs/voice-led-review.md).
 

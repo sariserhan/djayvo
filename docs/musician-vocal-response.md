@@ -1,6 +1,9 @@
 # Musician voice and contextual sung responses
 
-**Owner clarification: required behavior; implementation NOT RUN.** The previous
+**Owner clarification: required behavior; local implementation PARTIAL.** The owner
+confirmed a natural-sounding AI singer. Actual singer audio and a local generation
+studio are now implemented; [current evidence and remaining acceptance](singing-response.md).
+The historical gap below records the starting point. The previous
 [voice-led audition](voice-led-review.md) misunderstood the requested feature.
 Adding the user's recorded voice to an instrumental does not fulfill this request.
 The owner wants a separate musician voice that sings a playful, contextual reply.
@@ -59,7 +62,7 @@ input needs a relevant response. Transcription uncertainty must not silently
 turn into fabricated statements attributed to the user. The original recording
 remains a distinct audio source even if a generated singer repeats its words.
 
-## Actual gap and next implementation
+## Starting gap before the local implementation
 
 The current local research arranger only schedules existing source crops and
 ducks a prerecorded backing. The recent adapter trial learned from six audio

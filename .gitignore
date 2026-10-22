@@ -2,6 +2,7 @@
 /renders/
 /dist/
 /.venv*/
+/.cache/acestep/
 __pycache__/
 .DS_Store
 *.wav

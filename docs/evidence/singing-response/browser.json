@@ -1,0 +1,72 @@
+[
+  {
+    "browser": "chromium",
+    "version": "149.0.7827.55",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/jamloom/renders/singing-response-review-20261022/review/index.html",
+    "players": 8,
+    "durations_seconds": [
+      30,
+      35.714292,
+      30,
+      37.659583,
+      30,
+      35.106375,
+      30,
+      38.571438
+    ],
+    "play_seek_pause_exclusivity": "PASS",
+    "audio_download_links": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "docs/evidence/singing-response/chromium-desktop.png",
+      "docs/evidence/singing-response/chromium-mobile.png"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "version": "26.5",
+    "status": "PASS",
+    "url": "file:///Users/serhansari/Documents/projects/jamloom/renders/singing-response-review-20261022/review/index.html",
+    "players": 8,
+    "durations_seconds": [
+      30,
+      35.71429166666667,
+      30,
+      37.65958333333333,
+      30,
+      35.106375,
+      30,
+      38.5714375
+    ],
+    "play_seek_pause_exclusivity": "PASS",
+    "audio_download_links": "PASS",
+    "no_autoplay": "PASS",
+    "errors": [],
+    "layouts": [
+      {
+        "width": 375,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "screenshots": [
+      "docs/evidence/singing-response/webkit-desktop.png",
+      "docs/evidence/singing-response/webkit-mobile.png"
+    ]
+  }
+]

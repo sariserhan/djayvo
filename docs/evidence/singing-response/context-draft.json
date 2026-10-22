@@ -1,0 +1,9 @@
+{
+  "status": "PASS: bounded actual model output",
+  "input": "My coffee went cold",
+  "lyrics": "Sweet, just like that \u2014 no need to shout.  \nI\u2019ll bring you warm, fresh, and a little more.  \nYour brew\u2019s gone chilly? That\u2019s just the wind.  \nNext time, just add a spoon of me \u2014 no need to find.  \nSip slow, smile, and watch the sun rise.  \nNow that\u2019s how you keep it *just right*.",
+  "lyric_model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "plan_sha256": "3d4470fa009be44f4e9f79644656ee31623f856fc6fc5a5b51b988c3ead5287b",
+  "interpretation": "Mentions a chilly brew and warmth. One different-topic check; musical humor and broad semantic reliability are not established.",
+  "audio_rendered_for_this_check": false
+}

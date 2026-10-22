@@ -1,0 +1,8 @@
+test_invalid_or_unbounded_plan_rejected (test_singing_response.SingingPlans.test_invalid_or_unbounded_plan_rejected) ... ok
+test_revision_and_size_checks (test_singing_response.SingingPlans.test_revision_and_size_checks) ... ok
+test_voices_and_styles_are_independent_and_repeatable (test_singing_response.SingingPlans.test_voices_and_styles_are_independent_and_repeatable) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+OK

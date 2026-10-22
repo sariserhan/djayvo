@@ -1,0 +1,157 @@
+{
+  "technical": "PASS",
+  "plan_sha256": "102888acf4f3598ef402bf25959309e67b0515546f1ef4ed38529c5bb007e4f0",
+  "cases": [
+    {
+      "case": "reggae-female",
+      "assembly": {
+        "technical": "PASS",
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "singer_sha256": "5e6fa159bb13a66e974cefc962a9def9d2302a77a0a2abf451cfdc9e53edf093",
+        "source_crop_frames": [
+          0,
+          175689
+        ],
+        "source_starts_frames": [
+          0
+        ],
+        "source_gain": 2.6532793522267206,
+        "singer_start_frame": 274286,
+        "sample_rate": 48000,
+        "frames": 1714286,
+        "source_identity_max_pcm_error": 1.5258196493284082e-05,
+        "source_singer_overlap_frames": 0,
+        "master_gain": 0.891236007376999,
+        "sha256": "e24f792ebc8af445650553bcea8acb7444336c6247af22067cb5b5765217d9c4",
+        "listening": "NOT RUN",
+        "note": "Source-only pickup followed by generated singer and band; bar grid is requested tempo, not verified beat alignment."
+      },
+      "matched": {
+        "singer": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -6.2,
+          "sha256": "c95e9e2d61cc685c56ab06dbaab83317eb8bc657d4cfe10fa289614f04378908"
+        },
+        "exchange": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -6.1,
+          "sha256": "9291f8fcc59abcbb43b4f13b4779e593ed2e40e2605fcd522519c3698a71dc42"
+        }
+      }
+    },
+    {
+      "case": "hiphop-female",
+      "assembly": {
+        "technical": "PASS",
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "singer_sha256": "686b696363f79ef80715bac88c285c0abc3b6fc17f254ee9a311a663690fa433",
+        "source_crop_frames": [
+          0,
+          175689
+        ],
+        "source_starts_frames": [
+          0,
+          183830
+        ],
+        "source_gain": 2.6532793522267206,
+        "singer_start_frame": 367660,
+        "sample_rate": 48000,
+        "frames": 1807660,
+        "source_identity_max_pcm_error": 1.5257873417884316e-05,
+        "source_singer_overlap_frames": 0,
+        "master_gain": 0.8912665249775803,
+        "sha256": "83e19fe2241c3ca36c26e2afdb6758eb5a674a060587353e0c31c21fd58c5295",
+        "listening": "NOT RUN",
+        "note": "Source-only pickup followed by generated singer and band; bar grid is requested tempo, not verified beat alignment."
+      },
+      "matched": {
+        "singer": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -6.7,
+          "sha256": "874d3de06eefb05f014f2b183d180206a08558c9f2c584cef6cb652d3669728b"
+        },
+        "exchange": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -6.5,
+          "sha256": "f0e1adfa0c100773c4d24b29cc1b0247cc7a43d21abaa4f4d68dfd897e1c4033"
+        }
+      }
+    },
+    {
+      "case": "hiphop-male",
+      "assembly": {
+        "technical": "PASS",
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "singer_sha256": "18448f602a57e1fdb38b98bca3d412ae9c52ad5f16582979c6008f4adc9ffc2a",
+        "source_crop_frames": [
+          0,
+          175689
+        ],
+        "source_starts_frames": [
+          0
+        ],
+        "source_gain": 2.6532793522267206,
+        "singer_start_frame": 245106,
+        "sample_rate": 48000,
+        "frames": 1685106,
+        "source_identity_max_pcm_error": 1.5257873417884316e-05,
+        "source_singer_overlap_frames": 0,
+        "master_gain": 0.8912665249775803,
+        "sha256": "7bb2d1b2ba3e77dee8d32fcc5a32c481f836fdb297061eb811940a5a533e9a3c",
+        "listening": "NOT RUN",
+        "note": "Source-only pickup followed by generated singer and band; bar grid is requested tempo, not verified beat alignment."
+      },
+      "matched": {
+        "singer": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -6.7,
+          "sha256": "60e1779ec4c18a5da5b3cea2a5391d520f488442a2d875cc8fd1985a504c307f"
+        },
+        "exchange": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -6.5,
+          "sha256": "04002f6a968137389ed1952f24b48003f0bfd226df6b7aaa197c95aa19fcc6ca"
+        }
+      }
+    },
+    {
+      "case": "reggae-male",
+      "assembly": {
+        "technical": "PASS",
+        "source_sha256": "7b23204717e1f114ebb25821ba4847416af336278fc0ee22275481d330950427",
+        "singer_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "source_crop_frames": [
+          0,
+          175689
+        ],
+        "source_starts_frames": [
+          0,
+          205714
+        ],
+        "source_gain": 2.6532793522267206,
+        "singer_start_frame": 411429,
+        "sample_rate": 48000,
+        "frames": 1851429,
+        "source_identity_max_pcm_error": 1.5258196493284082e-05,
+        "source_singer_overlap_frames": 0,
+        "master_gain": 0.891236007376999,
+        "sha256": "2be8cd83bbdb211bd75c7ed6cbcbe3fc9dbe63dfd10dc27f6a8d1415da205fb3",
+        "listening": "NOT RUN",
+        "note": "Source-only pickup followed by generated singer and band; bar grid is requested tempo, not verified beat alignment."
+      },
+      "matched": {
+        "singer": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -5.7,
+          "sha256": "4be57b239db3e33e6d8f28410d8ac6fc7c31275ba161ea7ab29fdcb273cf8ead"
+        },
+        "exchange": {
+          "lufs": -20.0,
+          "true_peak_dbfs": -5.7,
+          "sha256": "2faed9646e495940995b5486a90b74d0795ea3f26a871fe0615ca052bbf2ec29"
+        }
+      }
+    }
+  ],
+  "human_listening": "NOT RUN"
+}

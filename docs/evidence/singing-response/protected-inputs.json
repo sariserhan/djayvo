@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "prior_manifest": "docs/evidence/musician-training/protected-before.json",
+  "entries": 10,
+  "hashes_unchanged": true
+}

@@ -1,0 +1,7 @@
+test_permission_and_selection_checked_before_creating_job (test_singer_studio.StudioFlow.test_permission_and_selection_checked_before_creating_job) ... ok
+test_pipeline_keeps_source_and_singer_distinct (test_singer_studio.StudioFlow.test_pipeline_keeps_source_and_singer_distinct) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.453s
+
+OK

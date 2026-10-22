@@ -1,0 +1,99 @@
+[
+  {
+    "job": "38dc77e16ab946f28121b191aaa3c1ef",
+    "technical": "PASS",
+    "voice": "female",
+    "style": "reggae",
+    "singer_sha256": "e1e8c7e8d1347c3d866e5d18471a5817ca48912ca646b85f601483c999358c6b",
+    "exchange": {
+      "technical": "PASS",
+      "source_sha256": "c2bb1bf57952c4ea6688551fc1aa8e47c39d8a01a2e08d854d21f0c7de8691da",
+      "singer_sha256": "e1e8c7e8d1347c3d866e5d18471a5817ca48912ca646b85f601483c999358c6b",
+      "source_crop_frames": [
+        0,
+        175689
+      ],
+      "source_starts_frames": [
+        0
+      ],
+      "source_gain": 2.6532793522267206,
+      "singer_start_frame": 274286,
+      "sample_rate": 48000,
+      "frames": 1714286,
+      "source_identity_max_pcm_error": 1.5258196493284082e-05,
+      "source_singer_overlap_frames": 0,
+      "master_gain": 0.891236007376999,
+      "sha256": "09554afc2ec8041400a82961570d7365b5ef426a6a6ed211d36cf808fde3cf1d",
+      "listening": "NOT RUN",
+      "note": "Source-only pickup followed by generated singer and band; bar grid is requested tempo, not verified beat alignment."
+    },
+    "lyric_model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "seconds_singer": 98.02180050004972,
+    "lyric_quality": "PARTIAL: relevant intent but awkward wording can occur; not a human listening score"
+  },
+  {
+    "job": "740fbeb4c3e7449ab9132b792090cb84",
+    "technical": "PASS",
+    "voice": "female",
+    "style": "hiphop",
+    "singer_sha256": "98ff1a82b62b2be3a8d66e58dbcdb73856327e038cf669acb8dba1bfa96a51d0",
+    "exchange": {
+      "technical": "PASS",
+      "source_sha256": "c2bb1bf57952c4ea6688551fc1aa8e47c39d8a01a2e08d854d21f0c7de8691da",
+      "singer_sha256": "98ff1a82b62b2be3a8d66e58dbcdb73856327e038cf669acb8dba1bfa96a51d0",
+      "source_crop_frames": [
+        0,
+        175689
+      ],
+      "source_starts_frames": [
+        0,
+        183830
+      ],
+      "source_gain": 2.6532793522267206,
+      "singer_start_frame": 367660,
+      "sample_rate": 48000,
+      "frames": 1807660,
+      "source_identity_max_pcm_error": 1.5257873417884316e-05,
+      "source_singer_overlap_frames": 0,
+      "master_gain": 0.8912665249775803,
+      "sha256": "d8dbdc43bcf9fab78b9436f0d31b15fa82bbcb267d21c62e3d872b26479c672c",
+      "listening": "NOT RUN",
+      "note": "Source-only pickup followed by generated singer and band; bar grid is requested tempo, not verified beat alignment."
+    },
+    "lyric_model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "seconds_singer": 59.17805504100397,
+    "lyric_quality": "PARTIAL: relevant intent but awkward wording can occur; not a human listening score"
+  },
+  {
+    "job": "8a7a7f1733da47e09e26c346cbe4042f",
+    "technical": "PASS",
+    "voice": "female",
+    "style": "reggae",
+    "singer_sha256": "a90201995175b5277f4cc6264b4d4972c0740313096b4bcbac4c78bb11d4282d",
+    "exchange": {
+      "technical": "PASS",
+      "source_sha256": "c2bb1bf57952c4ea6688551fc1aa8e47c39d8a01a2e08d854d21f0c7de8691da",
+      "singer_sha256": "a90201995175b5277f4cc6264b4d4972c0740313096b4bcbac4c78bb11d4282d",
+      "source_crop_frames": [
+        0,
+        175689
+      ],
+      "source_starts_frames": [
+        0
+      ],
+      "source_gain": 2.6532793522267206,
+      "singer_start_frame": 274286,
+      "sample_rate": 48000,
+      "frames": 1714286,
+      "source_identity_max_pcm_error": 1.5258196493284082e-05,
+      "source_singer_overlap_frames": 0,
+      "master_gain": 0.891236007376999,
+      "sha256": "47c73afdf9c4ebe04941f4f33e823cd03c6a590dd760200c5f217de47ad1a593",
+      "listening": "NOT RUN",
+      "note": "Source-only pickup followed by generated singer and band; bar grid is requested tempo, not verified beat alignment."
+    },
+    "lyric_model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "seconds_singer": 50.631330791977234,
+    "lyric_quality": "PARTIAL: relevant intent but awkward wording can occur; not a human listening score"
+  }
+]

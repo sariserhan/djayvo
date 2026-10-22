@@ -1,0 +1,18 @@
+{
+  "sha256": {
+    "scripts/assemble_sung_response.py": "67f74669ada0845453947f84864469a6edc988a87ef76cc06bd1811aadedd029",
+    "scripts/prepare_singer_review.py": "c546ec46849eac28af6f08d714be84668c663a4bf374cbff459f271891ee7d60",
+    "scripts/setup_singer.sh": "3c2205c8e22959bb7f43122e8347edd674d88628cb62066354d2bd41d4ba0212",
+    "scripts/singer_studio.py": "1e8027966a67a91e67ecc20c38dc370c7d5c037d17318837d929a86ac4cec04b",
+    "scripts/singing_response.py": "0edf16db24ec8f1662f7b997184b7009294527d6c912258687b9d4fefe68b49f"
+  },
+  "paid_compute_used": false,
+  "recordings_uploaded": false,
+  "production_promoted": false,
+  "failures_preserved": [
+    "default MPS float32 model-copy stall",
+    "float16 invalid latent rejection",
+    "bundled ACE lyric model produced unrelated oversized lyrics; rejected",
+    "first browser render completed but exclusive playback check failed; corrected script initialization"
+  ]
+}
