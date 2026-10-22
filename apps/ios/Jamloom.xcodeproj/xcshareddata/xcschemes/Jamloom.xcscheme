@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07B9D83792BDA342F664B0B8"
+               BlueprintIdentifier = "C2AF2FE3EE86BFE430E7C173"
                BuildableName = "Jamloom.app"
                BlueprintName = "Jamloom"
                ReferencedContainer = "container:Jamloom.xcodeproj">
@@ -33,7 +33,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07B9D83792BDA342F664B0B8"
+            BlueprintIdentifier = "C2AF2FE3EE86BFE430E7C173"
             BuildableName = "Jamloom.app"
             BlueprintName = "Jamloom"
             ReferencedContainer = "container:Jamloom.xcodeproj">
@@ -45,7 +45,7 @@
             parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3384BCF28489393D85E28505"
+               BlueprintIdentifier = "100DB209726F8FBBBB37B3A7"
                BuildableName = "JamloomTests.xctest"
                BlueprintName = "JamloomTests"
                ReferencedContainer = "container:Jamloom.xcodeproj">
@@ -56,7 +56,7 @@
             parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A824B23C5035671269D864CE"
+               BlueprintIdentifier = "5DB309339DCB32E9217562D4"
                BuildableName = "JamloomUITests.xctest"
                BlueprintName = "JamloomUITests"
                ReferencedContainer = "container:Jamloom.xcodeproj">
@@ -80,12 +80,17 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07B9D83792BDA342F664B0B8"
+            BlueprintIdentifier = "C2AF2FE3EE86BFE430E7C173"
             BuildableName = "Jamloom.app"
             BlueprintName = "Jamloom"
             ReferencedContainer = "container:Jamloom.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+      </CommandLineArguments>
+      <StoreKitConfigurationFileReference
+         identifier = "../../JamloomTests/LocalCredits.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -97,7 +102,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07B9D83792BDA342F664B0B8"
+            BlueprintIdentifier = "C2AF2FE3EE86BFE430E7C173"
             BuildableName = "Jamloom.app"
             BlueprintName = "Jamloom"
             ReferencedContainer = "container:Jamloom.xcodeproj">

@@ -24,8 +24,8 @@ struct AudioInput: Sendable {
         let rate = file.processingFormat.sampleRate
         let channels = Int(file.processingFormat.channelCount)
         let duration = Double(file.length) / rate
-        guard (8000...192000).contains(rate), (1...2).contains(channels), (2...15.001).contains(duration) else {
-            throw RemixError.message("Choose 2–15 seconds of mono or stereo audio, then trim to 2–5 seconds.")
+        guard (8000...192000).contains(rate), (1...2).contains(channels), (1...15.001).contains(duration) else {
+            throw RemixError.message("Choose 1–15 seconds of mono or stereo audio.")
         }
         guard let buffer = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: AVAudioFrameCount(file.length)) else {
             throw RemixError.message("Could not read this recording.")
@@ -45,10 +45,10 @@ struct AudioInput: Sendable {
         return AudioInput(samples: mono, rate: rate)
     }
 
-    func writeTrimmed(to url: URL, start: Double, end: Double) throws {
+    func writeTrimmed(to url: URL, start: Double, end: Double, extended: Bool = false) throws {
         guard start.isFinite, end.isFinite, start >= 0, end <= duration + 0.000001,
-              end - start >= 1.999999, end - start <= 5.000001 else {
-            throw RemixError.message("Select between 2 and 5 seconds.")
+              end - start >= (extended ? 0.999999 : 1.999999), end - start <= (extended ? 15.000001 : 5.000001) else {
+            throw RemixError.message("Select a clip within the allowed duration.")
         }
         let first = Int((start * rate).rounded())
         // Round duration once so decimal slider positions retain an exact two-second selection.

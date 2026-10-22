@@ -1,8 +1,7 @@
 # Jamloom for iPhone and iPad
 
-Local Instant Remix prototype, iOS 17+. SwiftUI and AVFoundation call the existing
-C++17 C ABI on a worker; no audio engine is duplicated in Swift. No account,
-network SDK, analytics, paid provider or background microphone capability.
+Improvisation and Music DNA, iOS 17+. SwiftUI and AVFoundation call the existing
+C++17 C ABI on a worker; no audio engine is duplicated in Swift. Optional Better Auth sign-in syncs explicitly selected preferences and ledger balance. Local audio requires no account and is never automatically uploaded. Purchases and cloud generation remain closed.
 
 Open `Jamloom.xcodeproj` in Xcode. The committed project needs no package download.
 `project.yml` is its source; regenerate only after project membership/settings
@@ -18,7 +17,7 @@ xcodebuild build -project apps/ios/Jamloom.xcodeproj -scheme Jamloom \
 For development/device use, select your own signing team in Xcode or pass
 `DEVELOPMENT_TEAM=YOUR_TEAM` on the command line. Do not commit signing files or
 credentials. An unsigned build is not an installable release or a device test.
-No App Store app has been registered/submitted by this implementation.
+No App Store app has been registered/submitted by this implementation. The Debug scheme uses the local `LocalCredits.storekit` fixture; it is excluded from Release and is not evidence of real Apple sandbox delivery.
 
 Debug tests require the **existing** transferred fixture at
 `renders/fixtures/synthetic-speech.wav`; a build step verifies its exact hash
@@ -34,22 +33,24 @@ xcrun simctl list devices available
 xcodebuild test -project apps/ios/Jamloom.xcodeproj -scheme Jamloom \
   -destination 'platform=iOS Simulator,id=SIMULATOR_UUID' \
   -derivedDataPath build-ios -parallel-testing-enabled NO \
-  -resultBundlePath renders/ios-validation/new-run.xcresult CODE_SIGNING_ALLOWED=NO
+  -resultBundlePath renders/ios-validation/new-run.xcresult CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=-
 ```
 
+Simulator tests use local ad-hoc signing so StoreKit sees the correct bundle identity;
+this does not use a distribution certificate or contact App Store Connect.
 The same checks are available through `sh scripts/ios_smoke.sh` after setting
 `JAMLOOM_SIMULATOR_ID`; `JAMLOOM_IOS_OUTPUT` may select a fresh evidence directory.
-The Release audit also verifies privacy declarations, licenses and absence of
-Debug controls/recordings. Use a new result path each run. Tests exercise real render/export/hashes,
+The Release audit also verifies privacy declarations, licenses, catalogue metadata and absence of
+Debug controls/recordings/StoreKit fixtures. Use a new result path each run. Tests exercise real render/export/hashes,
 consent, bounds, cancellation, recovery, persistence, tamper rejection and
 UI generation/playback/save/relaunch/share-sheet presentation/deletion. Simulator audio
 playback is functional evidence, not listening or physical routing evidence.
 
 ## Product behavior
 
-Confirm permission for the sound. Record up to five seconds, or import a local
-2–15 second audio file (64 MB maximum, 1–2 channels, 8–192 kHz) and select 2–5
-seconds. Imports decode through AVFoundation, are downmixed to mono, and selected
+Confirm permission for the sound. Record up to fifteen seconds, or import a local
+1–15 second audio file (64 MB maximum, 1–2 channels, 8–192 kHz) and select 1–15
+seconds. Choose a 15/30/45/60-second output; arrangements finish on musical boundaries. Imports decode through AVFoundation, are downmixed to mono, and selected
 samples are written to a new PCM16 WAV. External originals are never overwritten.
 Make Music produces the three original strategies; the separate club action
 produces the original electronic arrangement. Regeneration uses a fresh seed.
@@ -89,3 +90,20 @@ battery/thermal testing, accessibility review, public policy/contact details,
 beta acceptance and release approval remain separate gates. See
 [the validation report](../../docs/ios-instant-remix.md) and
 [release readiness](../../docs/release-readiness.md).
+
+## Music DNA and account sync
+
+Choose your instruments, energy, tempo, novelty and 30–180-second duration, then
+compose two variations. Cleared catalogue selections preserve track identities,
+ratings and weights; genre evidence is metadata only. Use a variation's settings
+next time only through its explicit button. Save/share/delete use the same private
+library as improvisation. Corrupt or partial exports are withheld.
+
+Account sign-in is optional and uses memory-only cookies. Profile loading replaces
+the draft only when an account profile exists; saving/deletion uses revision checks.
+A conflict requires loading the newer account version. The app never silently uploads
+audio or local preferences. Sign in again after app termination. `Retry pending purchases`
+requires a configured sandbox verifier and leaves transactions unfinished until the
+server acknowledges delivery. New purchases are disabled until release gates pass.
+
+See [current implementation, evidence and remaining gates](../../docs/ios-product-parity.md).

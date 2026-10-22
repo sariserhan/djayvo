@@ -24,6 +24,9 @@ enum AudioSession {
             queue.async {
                 do {
                     let player = try AVAudioPlayer(contentsOf: url)
+                    #if DEBUG
+                    if ProcessInfo.processInfo.arguments.contains("--ui-testing") { player.volume = 0 }
+                    #endif
                     guard player.prepareToPlay() else { throw RemixError.message("This mix could not be prepared for playback.") }
                     continuation.resume(returning: player)
                 } catch { continuation.resume(throwing: error) }

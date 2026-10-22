@@ -25,6 +25,36 @@ final class RemixTests: XCTestCase {
             XCTAssertEqual(try AudioInput.read(boundary).duration, 2, accuracy: 0.000001)
         }
     }
+    func testExtendedSourceAndOutputContractKeepsLegacyExports() throws {
+        let store = try library(); defer { try? FileManager.default.removeItem(at: store.root) }
+        let input = try AudioInput.read(fixture())
+        let one = store.root.appendingPathComponent("one.wav")
+        try input.writeTrimmed(to: one, start: 0.03, end: 1.03, extended: true)
+        XCTAssertEqual(try AudioInput.read(one).duration, 1, accuracy: 0.000001)
+        let session = try store.generate(input: input, start: 0.03, end: 1.03, seed: 4123, consent: true, club: true, seconds: 15, cancellation: RenderCancellation())
+        let file = try AVAudioFile(forReading: store.wav(session, style: "club"))
+        XCTAssertTrue((13...18).contains(Double(file.length) / 48000))
+        XCTAssertEqual(try store.load().sessions.count, 1)
+        XCTAssertThrowsError(try store.generate(input: input, start: 0, end: 3, seed: 1, consent: true, club: true, seconds: 61, cancellation: RenderCancellation()))
+        XCTAssertEqual(try store.load().incomplete, 0)
+        let legacy = try JSONDecoder().decode(RemixSession.self, from: Data("{\"id\":\"\(UUID())\",\"created\":0,\"seed\":1,\"styles\":[\"club\"],\"generationSeconds\":1,\"saved\":false}".utf8))
+        XCTAssertFalse(legacy.isTaste)
+    }
+    func testMaximumSourceAndCompositionDurations() throws {
+        let store = try library(); defer { try? FileManager.default.removeItem(at: store.root) }
+        let source = try AudioInput.read(fixture())
+        let input = AudioInput(samples: (0..<Int(source.rate * 15)).map { source.samples[$0 % source.samples.count] }, rate: source.rate)
+        let remix = try store.generate(input: input, start: 0, end: 15, seed: 4123, consent: true, club: true, seconds: 60, cancellation: RenderCancellation())
+        let voice = try AVAudioFile(forReading: store.wav(remix, style: "club"))
+        XCTAssertTrue((56.9...60).contains(Double(voice.length) / 48000))
+        var profile = TasteProfile(); profile.tempo = 180; profile.instruments = ["piano"]
+        let music = try store.generateTaste(recipe: TasteRecipe(profile: profile, seconds: 180), seed: 4123, cancellation: RenderCancellation())
+        for style in music.styles {
+            let file = try AVAudioFile(forReading: store.wav(music, style: style))
+            XCTAssertTrue((176...180).contains(Double(file.length) / 48000))
+        }
+        XCTAssertEqual(try store.load().sessions.count, 2)
+    }
     func testOversizedAndCorruptImportsAreRejected() throws {
         let store = try library(); defer { try? FileManager.default.removeItem(at: store.root) }
         let file = store.root.appendingPathComponent("invalid.wav")

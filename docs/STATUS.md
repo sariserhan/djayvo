@@ -1,6 +1,10 @@
 # Jamloom implementation checkpoint
 
-## Latest: private action replay — 2026-10-21
+## Latest: iOS product parity — 2026-10-21
+
+**PASS, local implementation and checks; specification PARTIAL.** Native Music DNA now renders and saves two shared-engine variations, with catalogue preferences, explicit account/profile/balance sync and guarded purchase recovery. Improvisation supports the wider source/output contract. Native/WASM WAV identity and maximum-duration checks PASS. Signed sandbox refund reconciliation reuses the existing wallet. Listening and physical checks stay deferred, earlier musical FAIL remains, real Apple/provider qualification remains open, and launch stays last. Native account integration, local StoreKit recovery, iPhone/iPad scoped UI, core/sanitizer and unsigned Release audit PASS. No push, deployment or paid execution. [Report and validation](ios-product-parity.md).
+
+## Previous: private action replay — 2026-10-21
 
 **PASS, local reconstruction; specification PARTIAL.** Existing capture exports now render A/B/C/instruments from verified WAV/MP3/FLAC sources and recorded actions. Instrument takes carry their context clock and include accepted sequencer commands; old dry takes remain compatible. Both-browser actual capture/replay and four-channel reconstruction pass. Historical decoder timing and prior DSP memory remain unavailable; exact master reproduction is not claimed. Listening and physical checks remain deferred, provider/model acceptance remains gated, iOS next and launch last. No paid execution or deployment. [Report and evidence](mix-action-replay.md).
 

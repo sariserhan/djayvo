@@ -18,7 +18,7 @@ mkdir -p "$OUTPUT"
 xcodebuild test -project apps/ios/Jamloom.xcodeproj -scheme Jamloom \
     -destination "platform=iOS Simulator,id=$JAMLOOM_SIMULATOR_ID" \
     -derivedDataPath build-ios -parallel-testing-enabled NO \
-    -resultBundlePath "$OUTPUT/tests.xcresult" CODE_SIGNING_ALLOWED=NO > "$OUTPUT/tests.log" 2>&1
+    -resultBundlePath "$OUTPUT/tests.xcresult" CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- > "$OUTPUT/tests.log" 2>&1
 xcodebuild build -project apps/ios/Jamloom.xcodeproj -scheme Jamloom \
     -configuration Release -destination 'generic/platform=iOS' \
     -derivedDataPath build-ios-device CODE_SIGNING_ALLOWED=NO > "$OUTPUT/release.log" 2>&1

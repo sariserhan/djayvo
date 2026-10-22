@@ -9,8 +9,8 @@ test('launch gate defaults on and only explicit false disables it',()=>{
  assert.equal(comingSoonEnabled({JAMLOOM_COMING_SOON:'false'}),false);
 });
 test('coming-soon recovery allows login, support and signed callbacks, not signup or product APIs',()=>{
- for(const path of ['/account/sign-in','/account/reset-password','/api/auth/sign-in/email','/api/auth/reset-password/token','/admin','/admin/users','/api/admin/settings','/support','/api/contact','/api/payments/stripe','/api/academy/stripe','/privacy','/sitemap.xml'])assert.equal(comingSoonRecovery(path),true,path);
- for(const path of ['/','/account','/account/sign-up','/api/auth/sign-up/email','/api/catalogue','/api/library','/api/payments/checkout','/academy','/studio/dj.html','/admin-fake','/support/example','/api/auth/sign-in/email/fake'])assert.equal(comingSoonRecovery(path),false,path);
+ for(const path of ['/account/sign-in','/account/reset-password','/api/auth/sign-in/email','/api/auth/reset-password/token','/admin','/admin/users','/api/admin/settings','/support','/api/contact','/api/payments/stripe','/api/payments/apple/notifications','/api/academy/stripe','/privacy','/sitemap.xml'])assert.equal(comingSoonRecovery(path),true,path);
+ for(const path of ['/','/account','/account/sign-up','/api/auth/sign-up/email','/api/catalogue','/api/library','/api/account','/api/payments/checkout','/academy','/studio/dj.html','/admin-fake','/support/example','/api/auth/sign-in/email/fake'])assert.equal(comingSoonRecovery(path),false,path);
 });
 test('launch responses contain real navigation, one tracker and private caching; product APIs stay closed',async()=>{
  const home=comingSoonResponse(new Request('https://www.jamloom.com/?admin=true'));

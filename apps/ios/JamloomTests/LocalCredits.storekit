@@ -1,0 +1,18 @@
+{
+  "identifier" : "F9BA6DB8-7C08-45ED-81DD-3478199A6DEE",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "2D00D39C-12B3-443E-BEC6-173BCBAA69B1",
+      "localizations" : [{ "description" : "Local test credits only", "displayName" : "Starter", "locale" : "en_US" }],
+      "productID" : "com.jamloom.credits.starter",
+      "referenceName" : "Starter test",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : { "_failTransactionsEnabled" : false, "_locale" : "en_US", "_storefront" : "USA" },
+  "subscriptionGroups" : [],
+  "version" : { "major" : 3, "minor" : 0 }
+}

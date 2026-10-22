@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the built local-only iOS Release bundle, not App Store acceptance."""
+"""Check the built iOS Release bundle, not App Store acceptance."""
 import argparse
 import hashlib
 import json
@@ -16,11 +16,19 @@ def verify(bundle):
     assert not info.get('UIFileSharingEnabled'), 'Private source library must not be exposed'
     assert privacy['NSPrivacyTracking'] is False
     assert privacy['NSPrivacyTrackingDomains'] == []
-    assert privacy['NSPrivacyCollectedDataTypes'] == []
+    collected = privacy['NSPrivacyCollectedDataTypes']
+    assert {row['NSPrivacyCollectedDataType'] for row in collected} == {
+        'NSPrivacyCollectedDataTypeEmailAddress', 'NSPrivacyCollectedDataTypeUserID',
+        'NSPrivacyCollectedDataTypeOtherUserContent', 'NSPrivacyCollectedDataTypePurchaseHistory'}
+    assert all(row['NSPrivacyCollectedDataTypeLinked'] is True and
+               row['NSPrivacyCollectedDataTypeTracking'] is False and
+               row['NSPrivacyCollectedDataTypePurposes'] == ['NSPrivacyCollectedDataTypePurposeAppFunctionality']
+               for row in collected)
     reasons = {row['NSPrivacyAccessedAPIType']: set(row['NSPrivacyAccessedAPITypeReasons'])
                for row in privacy['NSPrivacyAccessedAPITypes']}
     assert reasons['NSPrivacyAccessedAPICategorySystemBootTime'] == {'35F9.1'}
     assert reasons['NSPrivacyAccessedAPICategoryFileTimestamp'] == {'C617.1', '3B52.1'}
+    assert not list(bundle.rglob('*.storekit')), 'Local StoreKit fixture found in Release'
     assert not list(bundle.rglob('*.wav')), 'Test/private audio found in Release'
     assert not list(bundle.rglob('*.mp3')) and not list(bundle.rglob('*.m4a'))
     executable = bundle / info['CFBundleExecutable']
@@ -30,6 +38,7 @@ def verify(bundle):
     repo = Path(__file__).resolve().parents[1]
     for notice in (repo / 'assets/licenses').glob('*.txt'):
         assert (bundle / 'licenses' / notice.name).read_bytes() == notice.read_bytes()
+    assert (bundle / 'manifest.json').read_bytes() == (repo / 'apps/web/practice-audio/manifest.json').read_bytes(), 'Catalogue metadata mismatch'
     assert (bundle / 'Assets.car').is_file(), 'App icon missing'
     return {'gate': 'PASS', 'bundle_identifier': info['CFBundleIdentifier'],
             'version': info['CFBundleShortVersionString'], 'build': info['CFBundleVersion'],

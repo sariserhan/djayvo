@@ -42,6 +42,16 @@ int jamloom_render_file(const JamloomRenderOptions* options, char* error, size_t
 typedef int (*JamloomCancelCheck)(void* context);
 int jamloom_render_file_cancellable(const JamloomRenderOptions* options,
     JamloomCancelCheck cancelled, void* context, char* error, size_t capacity);
+/* Additive duration contract: 0 retains legacy output; 15..60 accepts 1..15s input. */
+int jamloom_render_file_duration(const JamloomRenderOptions* options, uint32_t seconds,
+    JamloomCancelCheck cancelled, void* context, char* error, size_t capacity);
+/* Creates a NEW directory containing music.wav, music.score.json and music.report.json.
+ * Caller publishes its own library metadata only after success. No source audio is used.
+ * Instruments: bits 0..4 piano/guitar/bass/drums/synth; energy/direction 0..2.
+ */
+int jamloom_render_taste(const char* directory, uint32_t seed, uint32_t tempo,
+    uint32_t energy, uint32_t instruments, uint32_t novelty, uint32_t seconds,
+    uint32_t direction, JamloomCancelCheck cancelled, void* context, char* error, size_t capacity);
 uint32_t jamloom_abi_version(void);
 
 #ifdef __cplusplus

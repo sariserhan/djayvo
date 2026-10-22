@@ -2,8 +2,8 @@
 
 ## Remaining specification work — 2026-10-21
 
-Owner requests all remaining non-iOS product work, with iOS next and launch
-operations last. Listening and physical checks are explicitly deferred by the
+Owner requests all available specification work. Local iOS implementation and checks now follow
+the completed non-iOS technical batches; launch operations remain last. Listening and physical checks are explicitly deferred by the
 owner; keep automation muted.
 No new paid compute, live charges or publication is implied.
 
@@ -15,9 +15,10 @@ No new paid compute, live charges or publication is implied.
 | FIN-004 | DJ/live control and transport completion | PARTIAL | Imported beat controls, slip rolls, bounded curves and opt-in paused A/B recovery PASS; scratch/key-lock, advanced FX, full A/B/C scenes and a sample-timed note sequencer implemented; continual phrase capture/response cycles implemented; physical cue/deadlines remain unqualified |
 | FIN-005 | Native Live Source integration | PARTIAL | Secure-origin fixture: Chromium pairing PASS; WebKit blocks loopback and falls back. Actual hosted capture/routing remains deferred |
 | FIN-006 | Academy acceptance | PARTIAL | Automated batch complete; owner mini-set, manual accessibility and physical output remain deferred |
-| FIN-007 | iOS, then launch operations | NOT RUN | Explicitly deferred until preceding work is finished |
+| FIN-007 | iOS, then launch operations | PARTIAL | Native shared-engine Music DNA, wider improvisation, catalogue, account/balance/profile sync and purchase recovery implemented. Local verification below; physical and real Apple/provider qualification remain. Launch last |
 
-[Latest action replay implementation and remaining gates](docs/mix-action-replay.md).
+[Latest iOS product parity and remaining gates](docs/ios-product-parity.md).
+[Previous action replay implementation](docs/mix-action-replay.md).
 [Previous capture/data follow-through](docs/r1-capture-completion.md).
 [Duration and continual-phrase implementation](docs/duration-and-live-phrases.md).
 Previous DJ/recovery checkpoint: `6faebff`, [report](docs/non-ios-finish.md).
@@ -27,6 +28,7 @@ Prior [completion checkpoint](docs/non-ios-completion.md) is preserved.
 - [x] **FIN-009 — PASS, local implementation:** Opt-in 1–15 second source / 15–60 second output contract, versioned score replay, private-storage migration and continual phrase capture with bar-aligned responses. Physical/quality qualification remains under L01/L03 and M1; see the current report.
 - [x] **FIN-010 — PASS, local (`8f3027f`):** WAV-linked deck history, optional aligned float stems, saved-plan/source identity and bounded cross-split near-duplicate rejection. Existing source inventories remain readable. [Capture report](docs/r1-capture-completion.md).
 - [x] **FIN-011 — PASS, local (`144e45c`):** Source/action mix reconstruction through the shared deck DSP, instrument WASM and mixer; clocked instrument takes including sequencer commands; original-hash-verified WAV/MP3/FLAC inputs; private assembler/renderer and replay receipts. Historical decoder/DSP state cannot be reconstructed exactly. [Replay report](docs/mix-action-replay.md).
+- [x] **FIN-012 — PASS, local implementation and checks:** Private iOS A/B composition, wider source/output durations, catalogue preferences, actual native account/profile/ledger sync, local StoreKit acknowledgment recovery and signed sandbox refund callback. Core/sanitizer, exact simulator/WASM WAV identity, iPhone/iPad scoped UI and unsigned Release audit PASS. Real Apple/provider/device acceptance remains under FIN-007; [report and evidence](docs/ios-product-parity.md).
 No push or deployment in this increment. Human checks remain deferred; the specification is not marked complete.
 
 ## Live Audio DJ — 2026-10-21
@@ -232,7 +234,7 @@ Every row expands an epic into the next acceptance task; historical completed wo
 | Live / companion / macOS | Paired native loopback, output exclusion, measured transport | Agent + owner | PARTIAL | Native Core Audio tap/output/effects and authenticated web controls implemented; build/launch/PCM/HTTP/browser PASS. Actual capture, physical latency/restoration/endurance NOT RUN. [Report](docs/live-source-companion.md) | Live Source checkpoint |
 | Taste / web / explicit profile | Local/private account CRUD, transparent preferences, tenant/CAS safety | Agent | PASS | Three-user HTTP/auth tests, race/size/origin/deletion validation; no trained taste claim | Full-product checkpoint |
 | Taste / composition / generation | Original enjoyable audio from preferences and lawful data | Agent + listeners | NOT RUN | Planning briefs only; quality gate failed | — |
-| iOS / parity / two experiences | Local improvisation + taste, verified account/credit sync | Agent + owner | PARTIAL | 12 simulator tests pass; local taste added; account/payment/device parity open | Full-product checkpoint |
+| iOS / parity / two experiences | Local improvisation + taste, verified account/credit sync | Agent + owner | PARTIAL | Native composition and explicit account/balance/profile sync implemented; exact simulator/WASM PCM parity PASS; real Apple/payment/device qualification open | Full-product checkpoint |
 | Release / discoverability / SEO | SSR/canonical/sitemap/OG, accessible routes, measured field performance | Agent + owner | PARTIAL | 13 axe scans pass; local lab only; public rich results, manual accessibility/CWV open | Full-product checkpoint |
 | Release / legal + ops / handbook | Exact owner actions, rollback and reproducible handoff | Agent + owner | PARTIAL | [Handbook](docs/OWNER_HANDBOOK.md) delivered; legal/provider decisions remain | Full-product checkpoint |
 | Release / acceptance / paid launch | Musical, financial, platform/security gates all pass | Owner | FAIL | Quality failed; sales closed; production publication NOT RUN | — |

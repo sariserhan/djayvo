@@ -1,3 +1,7 @@
+# iOS product parity — 2026-10-21
+
+**PASS, local implementation and checks; specification PARTIAL.** Native Music DNA uses the shared composer for private A/B audio, with exact simulator/WASM output parity, catalogue preferences and explicit profile synchronization. Optional native account access displays the server ledger; purchase recovery and signed sandbox refunds preserve acknowledgment and account boundaries. Wider improvisation and maximum-duration checks pass. Listening, physical checks and real Apple/provider/model acceptance remain open; launch is last. [Current implementation and validation](ios-product-parity.md).
+
 # Private action reconstruction — 2026-10-21
 
 **PASS, local; specification PARTIAL.** Added a runnable private source/action mixer replay, hash-verified WAV/MP3/FLAC decoding, clocked instrument exports and exact sequencer-command capture. Reuses the existing DeckDSP, instrument WASM and mixer. Both browsers pass actual concurrent take/mix → package → replay; dry takes remain byte-identical. Historical playback reconstruction retains explicit timing/DSP limits. Listening, physical checks, quality-gated provider/model work, iOS and launch retain their existing boundaries. [Report and reproducible checks](mix-action-replay.md).

@@ -4,25 +4,46 @@ import AVFoundation
 
 @main
 struct JamloomApp: App {
+    @StateObject private var model = AppModel()
+    @StateObject private var account = AccountModel()
+    @State private var showError = false
+    @Environment(\.scenePhase) private var scenePhase
     var body: some Scene { WindowGroup {
         TabView {
-            RemixView().tabItem { Label("Improvise", systemImage: "waveform") }
-            MusicDNAView().tabItem { Label("Music DNA", systemImage: "music.note.list") }
+            RemixView(account: account, model: model).tabItem { Label("Improvise", systemImage: "waveform") }
+            MusicDNAView(model: model, account: account).tabItem { Label("Music DNA", systemImage: "music.note.list") }
         }
+            .onChange(of: scenePhase) { _, phase in
+                model.foreground = phase == .active
+                if phase == .background { model.suspendAudio(cancelRender: true) }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.interruptionNotification)) { _ in
+                model.suspendAudio(cancelRender: false)
+            }
+            .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.routeChangeNotification)) { note in
+                let reason = (note.userInfo?[AVAudioSessionRouteChangeReasonKey] as? NSNumber)?.uintValue
+                if reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue || reason == AVAudioSession.RouteChangeReason.noSuitableRouteForCategory.rawValue {
+                    model.suspendAudio(cancelRender: false)
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.mediaServicesWereResetNotification)) { _ in
+                model.suspendAudio(cancelRender: true)
+            }
+            .onChange(of: model.error, initial: true) { _, error in if error != nil { showError = true } }
+            .alert("Jamloom", isPresented: $showError) {
+                Button("OK") { model.error = nil }
+            } message: { Text(model.error ?? "") }
     } }
 }
 
 struct RemixView: View {
+    @ObservedObject var account: AccountModel
+    @State private var showAccount = false
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @StateObject private var model = AppModel()
-    @Environment(\.scenePhase) private var scenePhase
+    @ObservedObject var model: AppModel
     @State private var importing = false
-    @State private var deletion: RemixSession?
-    @State private var showDeleteSession = false
     @State private var deleteAll = false
-    @State private var share: ShareItem?
     @State private var privacy = false
-    @State private var showError = false
     private let accent = Color(red: 0.78, green: 0.96, blue: 0.32)
 
     var body: some View {
@@ -40,9 +61,9 @@ struct RemixView: View {
                         HStack { ProgressView(); Text(model.activity); Spacer(); if model.canCancel { Button("Cancel", action: model.cancel) } }
                             .accessibilityIdentifier("generationProgress")
                     }
-                    if !model.sessions.isEmpty {
+                    if model.sessions.contains(where: { !$0.isTaste }) {
                         Text("Your mixes").font(.title2.bold())
-                        ForEach(model.sessions) { session in sessionCard(session) }
+                        ForEach(model.sessions.filter { !$0.isTaste }) { session in SavedSessionView(model: model, session: session) }
                     }
                     if model.incomplete > 0 {
                         Text("\(model.incomplete) incomplete or changed sessions were kept out of playback. Delete all local data to remove them.")
@@ -55,50 +76,27 @@ struct RemixView: View {
             }
             .background(Color(red: 0.055, green: 0.07, blue: 0.075))
             .navigationTitle("Jamloom").navigationBarTitleDisplayMode(.inline)
+            .toolbar { Button("Account") { model.suspendAudio(cancelRender: false); showAccount = true } }
+            .sheet(isPresented: $showAccount) { AccountView(account: account) }
             .tint(accent).preferredColorScheme(.dark)
             .task { await model.loadLibrary() }
             .onDisappear { model.suspendAudio(cancelRender: true) }
-            .onChange(of: scenePhase) { _, phase in
-                model.foreground = phase == .active
-                if phase == .background { model.suspendAudio(cancelRender: true) }
-            }
-            .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.interruptionNotification)) { _ in
-                model.suspendAudio(cancelRender: false)
-            }
-            .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.routeChangeNotification)) { note in
-                let reason = (note.userInfo?[AVAudioSessionRouteChangeReasonKey] as? NSNumber)?.uintValue
-                if reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue || reason == AVAudioSession.RouteChangeReason.noSuitableRouteForCategory.rawValue {
-                    model.suspendAudio(cancelRender: false)
-                }
-            }
-            .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.mediaServicesWereResetNotification)) { _ in
-                model.suspendAudio(cancelRender: true)
-            }
             .fileImporter(isPresented: $importing, allowedContentTypes: [.audio]) { result in
                 switch result {
                 case .success(let url): Task { await model.importAudio(url) }
                 case .failure(let error): model.error = error.localizedDescription
                 }
             }
-            .onChange(of: model.error, initial: true) { _, error in if error != nil { showError = true } }
-            .alert("Jamloom", isPresented: $showError) {
-                Button("OK") { model.error = nil }
-            } message: { Text(model.error ?? "") }
-            .confirmationDialog("Delete this session and its recording?", isPresented: $showDeleteSession, titleVisibility: .visible, presenting: deletion) { session in
-                Button("Delete session", role: .destructive) { model.delete(session); deletion = nil }
-                    .accessibilityIdentifier("confirmDeleteSession")
-            }
             .confirmationDialog("Delete all recordings and mixes from Jamloom? Exported copies stay where you shared them.", isPresented: $deleteAll, titleVisibility: .visible) {
                 Button("Delete all local data", role: .destructive) { model.deleteAll() }
             }
-            .sheet(item: $share) { item in ShareSheet(url: item.url) }
             .sheet(isPresented: $privacy) {
                 NavigationStack {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 16) {
                             Text("Your recordings stay here").font(.title.bold())
-                            Text("Jamloom records only after you tap Record and allow microphone access. Capture stops after five seconds, when you stop it, or when the app goes into the background.")
-                            Text("Audio is processed on this device. This version has no accounts, cloud generation, advertising, analytics or automatic uploads. Its private library is excluded from device backups.")
+                            Text("Jamloom records only after you tap Record and allow microphone access. Capture stops after fifteen seconds, when you stop it, or when the app goes into the background.")
+                            Text("Audio is processed on this device. Optional sign-in can sync your preferences and account balance. Audio is never automatically uploaded. Cloud generation and purchases are closed; there is no advertising or analytics. Its private library is excluded from device backups.")
                             Text("Record and import only sounds you have permission to use. Get permission from recognizable speakers before recording or sharing them. Take special care with children's voices and private information.")
                             Text("Sessions stay in the app until you delete them or uninstall it. Save marks a favorite; every completed session already stays in your library. Share exports only the selected WAV through an app you choose. Copies you share are outside Jamloom's control.")
                             Text("Instrument credits").font(.headline)
@@ -120,10 +118,10 @@ struct RemixView: View {
             Label("Start with a sound", systemImage: "waveform").font(.headline)
             Toggle("I have permission to record and remix this sound.", isOn: $model.consent)
                 .accessibilityIdentifier("consentToggle").disabled(!model.editable)
-            Text("2–5 seconds. Processed on your device.").font(.footnote).foregroundStyle(.secondary)
+            Text("1–15 seconds. Processed on your device.").font(.footnote).foregroundStyle(.secondary)
             if model.recording {
                 HStack {
-                    Label(String(format: "Recording · %.1f / 5 seconds", model.recordingSeconds), systemImage: "record.circle.fill").foregroundStyle(.red)
+                    Label(String(format: "Recording · %.1f / 15 seconds", model.recordingSeconds), systemImage: "record.circle.fill").foregroundStyle(.red)
                     Spacer()
                     Button("Stop", action: model.stopRecording).buttonStyle(.bordered)
                 }
@@ -151,14 +149,18 @@ struct RemixView: View {
                 .frame(height: 64).accessibilityLabel("Recording waveform")
             Text(String(format: "%.2f – %.2f seconds · %.2f seconds selected", model.trimStart, model.trimEnd, model.trimEnd - model.trimStart))
                 .font(.caption.monospacedDigit())
-            Slider(value: $model.trimStart, in: 0...max(0, input.duration - 2), step: 0.01) {
+            Slider(value: $model.trimStart, in: 0...max(0, input.duration - 1), step: 0.01) {
                 Text("Clip start")
             }.onChange(of: model.trimStart) { _, value in
-                model.trimEnd = min(input.duration, max(value + 2, min(model.trimEnd, value + 5)))
+                model.trimEnd = min(input.duration, max(value + 1, min(model.trimEnd, value + 15)))
             }.accessibilityIdentifier("trimStart")
-            Slider(value: $model.trimEnd, in: min(input.duration, model.trimStart + 2)...min(input.duration, model.trimStart + 5), step: 0.01) {
+            Slider(value: $model.trimEnd, in: min(input.duration, model.trimStart + 1)...min(input.duration, model.trimStart + 15), step: 0.01) {
                 Text("Clip end")
             }.onChange(of: model.trimEnd) { _, value in model.trimEnd = min(input.duration, value) }
+            Picker("Output length", selection: $model.outputSeconds) {
+                ForEach([15, 30, 45, 60], id: \.self) { Text("\($0) seconds").tag($0) }
+            }.accessibilityIdentifier("outputSeconds")
+            Text("Arrangements end on a musical boundary; the exact length may vary slightly.").font(.caption)
             Button { Task { await model.generate() } } label: {
                 Label(model.sessions.isEmpty ? "Make Music" : "Remix Again", systemImage: "sparkles").frame(maxWidth: .infinity)
             }.buttonStyle(.borderedProminent).foregroundStyle(.black).accessibilityIdentifier("makeMusic")
@@ -167,7 +169,15 @@ struct RemixView: View {
                 .disabled(!model.validSelection || !model.consent)
         }.disabled(!model.editable)
     }
-    private func sessionCard(_ session: RemixSession) -> some View {
+}
+
+struct SavedSessionView: View {
+    @ObservedObject var model: AppModel
+    let session: RemixSession
+    var prefer: ((String) -> Void)? = nil
+    @State private var showDeleteSession = false
+    @State private var share: ShareItem?
+    var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Text(session.created, format: .dateTime.month().day().hour().minute()).font(.headline)
@@ -180,22 +190,30 @@ struct RemixView: View {
                 if let url = model.library?.wav(session, style: style) {
                     HStack {
                         Button { Task { await model.play(url) } } label: {
-                            Label(style == "hiphop" ? "Hip-hop" : style.capitalized,
+                            Label(style == "taste_a" ? "Variation A" : style == "taste_b" ? "Variation B" : style == "hiphop" ? "Hip-hop" : style.capitalized,
                                   systemImage: model.playing == url ? "stop.circle.fill" : "play.circle.fill")
                                 .frame(minHeight: 44)
                         }.accessibilityIdentifier("play-\(style)")
+                            .accessibilityValue(model.playing == url ? "Playing" : "Stopped")
                         Spacer()
                         Button { model.stopPlayback(); share = ShareItem(url: url) } label: { Label("Share", systemImage: "square.and.arrow.up").frame(minHeight: 44) }
                             .accessibilityIdentifier("share-\(style)")
                     }.disabled(!model.editable)
+                    if let prefer { Button("Use \(style == "taste_a" ? "A" : "B") settings next time") { prefer(style) }.disabled(!model.editable) }
                 }
             }
+            if !session.isTaste {
             Text("Share only with permission from the people you recorded.").font(.caption).foregroundStyle(.secondary)
             Button("Remix this sound") {
                 if let source = model.library?.folder(session.id).appendingPathComponent("source.wav") { Task { await model.importAudio(source) } }
             }.disabled(!model.editable || !model.consent)
-            Button("Delete session", role: .destructive) { deletion = session; showDeleteSession = true }
+            }
+            Button("Delete session", role: .destructive) { showDeleteSession = true }
                 .font(.caption).disabled(!model.editable).accessibilityIdentifier("deleteSession")
+        }.buttonStyle(.borderless)
+        .sheet(item: $share) { item in ShareSheet(url: item.url) }
+        .confirmationDialog("Delete this session?", isPresented: $showDeleteSession, titleVisibility: .visible) {
+            Button("Delete session", role: .destructive) { model.delete(session) }.accessibilityIdentifier("confirmDeleteSession")
         }.padding().background(.white.opacity(0.055), in: RoundedRectangle(cornerRadius: 20))
     }
 }

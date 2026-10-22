@@ -7,6 +7,9 @@ struct RemixSession: Codable, Identifiable, Sendable {
     let styles: [String]
     let generationSeconds: Double
     var saved: Bool
+    var taste: TasteRecipe? = nil
+    var artifacts: [TasteArtifact]? = nil
+    var isTaste: Bool { taste != nil }
 }
 
 struct RemixLibrary: Sendable {
@@ -35,10 +38,10 @@ struct RemixLibrary: Sendable {
     func folder(_ id: UUID) -> URL { root.appendingPathComponent(id.uuidString, isDirectory: true) }
     func prefix(_ id: UUID) -> URL { folder(id).appendingPathComponent("remix") }
     func wav(_ session: RemixSession, style: String) -> URL {
-        folder(session.id).appendingPathComponent("remix.\(style).wav")
+        folder(session.id).appendingPathComponent(session.isTaste ? "\(style)/music.wav" : "remix.\(style).wav")
     }
     func save(_ session: RemixSession) throws {
-        try JSONEncoder().encode(session).write(to: folder(session.id).appendingPathComponent("session.json"), options: .atomic)
+        try JSONEncoder().encode(session).write(to: folder(session.id).appendingPathComponent("session.json"), options: [.atomic, .completeFileProtection])
     }
     func load() throws -> (sessions: [RemixSession], incomplete: Int) {
         let folders = try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: [.isSymbolicLinkKey])
@@ -48,18 +51,20 @@ struct RemixLibrary: Sendable {
             do {
                 guard try folder.resourceValues(forKeys: [.isSymbolicLinkKey]).isSymbolicLink != true else { throw RemixError.message("Invalid saved folder.") }
                 let metadata = folder.appendingPathComponent("session.json")
-                guard (try metadata.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 65537) <= 65536 else { throw RemixError.message("Invalid session record.") }
+                let metadataValues = try metadata.resourceValues(forKeys: [.fileSizeKey, .isSymbolicLinkKey, .isRegularFileKey])
+                guard metadataValues.isRegularFile == true, metadataValues.isSymbolicLink != true, (metadataValues.fileSize ?? 65537) <= 65536 else { throw RemixError.message("Invalid session record.") }
                 let session = try JSONDecoder().decode(RemixSession.self, from: Data(contentsOf: metadata))
                 guard session.id.uuidString == folder.lastPathComponent,
-                      session.styles == RemixEngine.styles || session.styles == ["club"] else { throw RemixError.message("Invalid saved session.") }
-                try RemixEngine.verify(source: folder.appendingPathComponent("source.wav"), prefix: prefix(session.id), styles: session.styles)
+                      session.styles == RemixEngine.styles || session.styles == ["club"] || (session.isTaste && session.styles == ["taste_a", "taste_b"]) else { throw RemixError.message("Invalid saved session.") }
+                if session.isTaste { try verifyTaste(session) }
+                else { try RemixEngine.verify(source: folder.appendingPathComponent("source.wav"), prefix: prefix(session.id), styles: session.styles) }
                 sessions.append(session)
             } catch { incomplete += 1 }
         }
         return (sessions.sorted { $0.created > $1.created }, incomplete)
     }
     func generate(input: AudioInput, start: Double, end: Double, seed: UInt32, consent: Bool,
-                  club: Bool, cancellation: RenderCancellation) throws -> RemixSession {
+                  club: Bool, seconds: UInt32 = 0, cancellation: RenderCancellation) throws -> RemixSession {
         guard consent else { throw RemixError.message("Confirm permission to process this sound first.") }
         let entries = try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: nil)
         guard entries.filter({ UUID(uuidString: $0.lastPathComponent) != nil }).count < 50 else {
@@ -71,8 +76,8 @@ struct RemixLibrary: Sendable {
         do {
             let started = ProcessInfo.processInfo.systemUptime
             let source = directory.appendingPathComponent("source.wav")
-            try input.writeTrimmed(to: source, start: start, end: end)
-            try RemixEngine.render(source: source, prefix: prefix(id), seed: seed, consent: consent, club: club, cancellation: cancellation)
+            try input.writeTrimmed(to: source, start: start, end: end, extended: seconds != 0)
+            try RemixEngine.render(source: source, prefix: prefix(id), seed: seed, consent: consent, club: club, seconds: seconds, cancellation: cancellation)
             guard !cancellation.isCancelled else { throw RemixError.cancelled }
             let session = RemixSession(id: id, created: Date(), seed: seed,
                 styles: club ? ["club"] : RemixEngine.styles,

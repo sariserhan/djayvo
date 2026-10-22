@@ -18,7 +18,7 @@ final class RenderCancellation: @unchecked Sendable {
 enum RemixEngine {
     static let styles = ["hiphop", "reggae", "experimental"]
     static func render(source: URL, prefix: URL, seed: UInt32, consent: Bool,
-                       club: Bool = false, cancellation: RenderCancellation) throws {
+                       club: Bool = false, seconds: UInt32 = 0, cancellation: RenderCancellation) throws {
         guard consent else { throw RemixError.message("Confirm permission to process this sound first.") }
         let context = Unmanaged.passUnretained(cancellation).toOpaque()
         var error = [CChar](repeating: 0, count: 1024)
@@ -27,7 +27,7 @@ enum RemixEngine {
                 var options = JamloomRenderOptions(struct_size: UInt32(MemoryLayout<JamloomRenderOptions>.size),
                     abi_version: JAMLOOM_ABI_VERSION, input_path: input, output_prefix: output,
                     sample_rate: 48000, seed: seed, block_size: 512, flags: JAMLOOM_CONSENT, strategy: club ? 5 : 0)
-                return jamloom_render_file_cancellable(&options, { context in
+                return jamloom_render_file_duration(&options, seconds, { context in
                     guard let context else { return 1 }
                     return Unmanaged<RenderCancellation>.fromOpaque(context).takeUnretainedValue().isCancelled ? 1 : 0
                 }, context, &error, error.count)

@@ -10,7 +10,7 @@ const pool=createPool(url.toString()),folder=await mkdtemp(join(tmpdir(),'jamloo
 let server;let logs='';const result={database:'disposable loopback',real_provider_transactions:'NOT RUN',checks:[]};
 try{
  await migrate(pool);
- const env={...process.env,DATABASE_URL:url.toString(),BETTER_AUTH_URL:base,BETTER_AUTH_SECRET:randomUUID()+randomUUID(),JAMLOOM_LOCAL_OUTBOX:join(folder,'mail'),STRIPE_SECRET_KEY:'sk_test_local_fixture',STRIPE_WEBHOOK_SECRET:'whsec_local_fixture'};
+ const env={...process.env,JAMLOOM_COMING_SOON:'false',DATABASE_URL:url.toString(),BETTER_AUTH_URL:base,BETTER_AUTH_SECRET:randomUUID()+randomUUID(),JAMLOOM_LOCAL_OUTBOX:join(folder,'mail'),STRIPE_SECRET_KEY:'sk_test_local_fixture',STRIPE_WEBHOOK_SECRET:'whsec_local_fixture'};
  delete env.VERCEL;delete env.RESEND_API_KEY;delete env.APPLE_ROOT_CERTIFICATES_BASE64;
  server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port','4221'],{env,stdio:['ignore','pipe','pipe']});server.stdout.on('data',s=>{logs+=s});server.stderr.on('data',s=>{logs+=s});
  for(let i=0;i<100;i++){try{if((await fetch(base+'/')).ok)break;}catch{}await delay(100);if(i===99)throw new Error('Local server did not start');}
@@ -26,6 +26,12 @@ try{
  }
  const alice=await account('alice@example.test'),bob=await account('bob@example.test'),carol=await account('carol@example.test');
  result.checks.push('three signups, captured verification emails, real Better Auth sessions');
+ assert.equal((await api('/api/account')).status,401);
+ const accountResponse=await api('/api/account',{cookie:alice});assert.equal(accountResponse.status,200);
+ assert.match(accountResponse.headers.get('cache-control'),/private.*no-store/);
+ const snapshot=await accountResponse.json();assert.equal(snapshot.user.email,'alice@example.test');assert.deepEqual(snapshot.balance,{available:0,reserved:0});assert.equal(snapshot.purchasesReleased,false);
+ assert.equal((await (await api('/api/account',{cookie:bob})).json()).user.email,'bob@example.test');
+ result.checks.push('native account balance endpoint authenticates, isolates users and never enables purchases');
  assert.equal((await api('/api/taste')).status,401);
  assert.equal((await api('/api/taste',{method:'POST',body:{profile:emptyTaste,revision:0},cookie:alice,origin:'https://foreign.example'})).status,403);
  const saved=await api('/api/taste',{method:'POST',body:{profile:emptyTaste,revision:0},cookie:alice});assert.equal(saved.status,200);const revision=(await saved.json()).revision;
@@ -49,7 +55,7 @@ try{
  assert.equal((await webhook({...fixture,id:'evt_live_fixture',livemode:true})).status,403);
  assert.equal((await pool.query('SELECT count(*)::int n FROM credit_lots')).rows[0].n,0);
  result.checks.push('private account views, purchases blocked, HTTP signature/body/replay/live-mode rejection; no credits minted');
- result.status='PASS';await writeFile(new URL('../../../docs/evidence/full-product/product-http.json',import.meta.url),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+ result.status='PASS';await writeFile(process.env.JAMLOOM_TEST_EVIDENCE??new URL('../../../docs/evidence/full-product/product-http.json',import.meta.url),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
 }finally{
  if(server&&server.exitCode===null){const stopped=once(server,'exit');server.kill('SIGTERM');await stopped;}
  await pool.end();await admin.query(`DROP DATABASE "${name}" WITH (FORCE)`);await admin.end();await rm(folder,{recursive:true,force:true});

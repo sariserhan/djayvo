@@ -1,0 +1,102 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -project apps/ios/Jamloom.xcodeproj -scheme Jamloom -derivedDataPath build-ios-parity -destination "platform=iOS Simulator,id=309B362A-F926-4F8C-BB40-662059D0848A" -parallel-testing-enabled NO "-only-testing:JamloomUITests/FlowTests/testTasteCompositionPlaybackPreferenceAndRelaunch" "-only-testing:JamloomUITests/FlowTests/testMicrophoneDenialKeepsImportAvailable" -resultBundlePath renders/ios-parity-20261021/ipad-final.xcresult CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=-
+Build output omitted; raw log retained in renders/ios-parity-20261021/ipad-final.log.
+Test Suite 'Selected tests' started at 2026-10-21 22:05:50.227.
+Test Suite 'JamloomUITests.xctest' started at 2026-10-21 22:05:50.228.
+Test Suite 'FlowTests' started at 2026-10-21 22:05:50.228.
+Test Case '-[JamloomUITests.FlowTests testMicrophoneDenialKeepsImportAvailable]' started.
+    t =     0.08s Start Test at 2026-10-21 22:05:50.310
+    t =     0.35s Set Up
+    t =     0.38s Open com.djayvo.app
+    t =     0.38s     Launch com.djayvo.app
+2026-10-21 22:05:51.105 xcodebuild[24500:9895713] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-21 22:05:51.105 xcodebuild[24500:9895713] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-21 22:05:51.168 xcodebuild[24500:9895713] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+    t =     5.86s         Setting up automation session
+objc[26322]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x101dd0398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x1061b4310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =    14.34s         Wait for com.djayvo.app to idle
+    t =    17.30s Waiting 15.0s for "consentToggle" Switch to exist
+    t =    18.39s     Checking `Expect predicate `existsNoRetry == 1` for object "consentToggle" Switch`
+    t =    18.39s         Checking existence of `"consentToggle" Switch`
+    t =    18.92s Tap "consentToggle" Switch
+    t =    18.92s     Wait for com.djayvo.app to idle
+    t =    18.93s     Find the "consentToggle" Switch
+    t =    18.99s     Check for interrupting elements affecting "consentToggle" Switch
+    t =    19.09s         Wait for com.apple.springboard to idle
+    t =    19.13s     Synthesize event
+    t =    19.54s     Wait for com.djayvo.app to idle
+    t =    19.55s Find the "consentToggle" Switch
+/Users/serhansari/Documents/projects/jamloom/apps/ios/JamloomUITests/FlowTests.swift:85: error: -[JamloomUITests.FlowTests testMicrophoneDenialKeepsImportAvailable] : XCTAssertEqual failed: ("Optional("0")") is not equal to ("Optional("1")")
+    t =    19.77s Tear Down
+Test Case '-[JamloomUITests.FlowTests testMicrophoneDenialKeepsImportAvailable]' failed (19.974 seconds).
+Test Case '-[JamloomUITests.FlowTests testTasteCompositionPlaybackPreferenceAndRelaunch]' started.
+    t =     0.00s Start Test at 2026-10-21 22:06:10.280
+    t =     0.06s Set Up
+    t =     0.07s Open com.djayvo.app
+    t =     0.07s     Launch com.djayvo.app
+    t =     0.07s         Terminate com.djayvo.app:26625
+2026-10-21 22:06:10.387 xcodebuild[24500:9895713] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:06:10.388 xcodebuild[24500:9895713] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:06:10.388 xcodebuild[24500:9895713] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:06:11.370 xcodebuild[24500:9895713] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-21 22:06:11.371 xcodebuild[24500:9895713] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-21 22:06:11.397 xcodebuild[24500:9895713] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+    t =     1.33s         Setting up automation session
+    t =     8.08s         Wait for com.djayvo.app to idle
+    t =    10.48s Tap "Music DNA" Button
+    t =    10.48s     Wait for com.djayvo.app to idle
+    t =    10.48s     Find the "Music DNA" Button
+    t =    11.35s Requesting snapshot of accessibility hierarchy for app with pid 26948
+/Users/serhansari/Documents/projects/jamloom/apps/ios/JamloomUITests/FlowTests.swift:39: error: -[JamloomUITests.FlowTests testTasteCompositionPlaybackPreferenceAndRelaunch] : Failed to tap "Music DNA" Button: Find single matching element. Multiple matching elements found for <XCUIElementQuery: 0x105ed7a70>.
+Sparse tree of matches:
+→Application, pid: 26948, label: 'Jamloom'
+  ↳Window (Main)
+    ↳Other
+      ↳Other
+        ↳Other
+          ↳Other
+            ↳Other
+              ↳Other
+                ↳Other
+                  ↳Button, identifier: 'music.note.list', label: 'Music DNA'
+                    ↳Button, identifier: 'music.note.list', label: 'Music DNA'
+Possibly caused by runtime issues:
+Automation type mismatch: computed Button from legacy attributes vs Cell from modern attribute. Input attributes and values: {
+    "XC_kAXXCAttributeAutomationType" = 75;
+    "XC_kAXXCAttributeElementBaseType" = "_UIFloatingTabBarItemCell";
+    "XC_kAXXCAttributeElementType" = "_UIFloatingTabBarItemCell";
+    "XC_kAXXCAttributeTraits" = 146297323520;
+}
+Automation type mismatch: computed Button from legacy attributes vs Cell from modern attribute. Input attributes and values: {
+    "XC_kAXXCAttributeAutomationType" = 75;
+    "XC_kAXXCAttributeElementBaseType" = "_UIFloatingTabBarItemCell";
+    "XC_kAXXCAttributeElementType" = "_UIFloatingTabBarItemCell";
+    "XC_kAXXCAttributeTraits" = 146297323528;
+}
+Automation type mismatch: computed Button from legacy attributes vs Other from modern attribute. Input attributes and values: {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = "_UIFloatingTabBarItemView";
+    "XC_kAXXCAttributeElementType" = "_UIFloatingTabBarItemView";
+    "XC_kAXXCAttributeTraits" = 8858370056;
+}
+Automation type mismatch: computed Button from legacy attributes vs Other from modern attribute. Input attributes and values: {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = "_UIFloatingTabBarItemView";
+    "XC_kAXXCAttributeElementType" = "_UIFloatingTabBarItemView";
+    "XC_kAXXCAttributeTraits" = 8858370048;
+}
+See test report attachments for more detail.
+    t =    11.58s Tear Down
+Test Case '-[JamloomUITests.FlowTests testTasteCompositionPlaybackPreferenceAndRelaunch]' failed (11.829 seconds).
+Test Suite 'FlowTests' failed at 2026-10-21 22:06:22.110.
+	 Executed 2 tests, with 2 failures (0 unexpected) in 31.803 (31.882) seconds
+Test Suite 'JamloomUITests.xctest' failed at 2026-10-21 22:06:22.112.
+	 Executed 2 tests, with 2 failures (0 unexpected) in 31.803 (31.884) seconds
+Test Suite 'Selected tests' failed at 2026-10-21 22:06:22.119.
+	 Executed 2 tests, with 2 failures (0 unexpected) in 31.803 (31.893) seconds
+2026-10-21 22:06:22.197 xcodebuild[24500:9895713] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:06:22.197 xcodebuild[24500:9895713] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:06:22.198 xcodebuild[24500:9895713] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:06:22.240 xcodebuild[24500:9895713] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:06:22.240 xcodebuild[24500:9895713] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:06:22.241 xcodebuild[24500:9895713] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).

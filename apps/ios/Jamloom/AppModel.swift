@@ -9,6 +9,7 @@ final class AppModel: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAud
     @Published var trimEnd = 2.0
     @Published var recording = false
     @Published var recordingSeconds = 0.0
+    @Published var outputSeconds = 30
     @Published var busy = false
     @Published var activity = ""
     @Published var error: String?
@@ -21,12 +22,13 @@ final class AppModel: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAud
     private(set) var library: RemixLibrary?
     private var recorder: AVAudioRecorder?
     private var player: AVAudioPlayer?
+    private var audioGeneration: UInt64 = 0
     private var timer: Timer?
     private var cancellation: RenderCancellation?
     private var pendingRecording: URL?
     var editable: Bool { !busy && !recording && !permissionPending && !audioPreparing }
     var canCancel: Bool { cancellation != nil }
-    var validSelection: Bool { input != nil && trimEnd - trimStart >= 1.999999 && trimEnd - trimStart <= 5.000001 }
+    var validSelection: Bool { input != nil && trimEnd - trimStart >= 0.999999 && trimEnd - trimStart <= 15.000001 }
 
     override init() {
         super.init()
@@ -51,23 +53,26 @@ final class AppModel: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAud
             let scoped = url.startAccessingSecurityScopedResource()
             defer { if scoped { url.stopAccessingSecurityScopedResource() } }
             let sound = try await Task.detached { try AudioInput.read(url) }.value
-            input = sound; trimStart = 0; trimEnd = min(5, sound.duration)
+            input = sound; trimStart = 0; trimEnd = min(15, sound.duration)
         } catch { self.error = error.localizedDescription }
         busy = false
     }
     func startRecording() async {
         guard editable, consent, foreground else { return }
+        let requestGeneration = audioGeneration
         permissionPending = true
         let granted = await AVAudioApplication.requestRecordPermission()
         permissionPending = false
+        guard requestGeneration == audioGeneration else { return }
         guard granted else { error = "Microphone access is off. Enable it in Settings, or import a recording."; return }
         guard consent, foreground, editable, let library else { return }
         stopPlayback()
+        let generation = audioGeneration
         do {
             audioPreparing = true
             defer { audioPreparing = false }
             try await AudioSession.activate(recording: true)
-            guard foreground, consent else { AudioSession.deactivate(); return }
+            guard foreground, consent, generation == audioGeneration else { AudioSession.deactivate(); return }
             let url = library.root.appendingPathComponent("capture-\(UUID().uuidString).wav")
             pendingRecording = url
             let recorder = try AVAudioRecorder(url: url, settings: [AVFormatIDKey: kAudioFormatLinearPCM,
@@ -75,7 +80,7 @@ final class AppModel: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAud
                 AVLinearPCMIsFloatKey: false, AVLinearPCMIsBigEndianKey: false])
             recorder.delegate = self
             self.recorder = recorder
-            guard recorder.record(forDuration: 5) else { throw RemixError.message("Recording could not start. Check the microphone route.") }
+            guard recorder.record(forDuration: 15) else { throw RemixError.message("Recording could not start. Check the microphone route.") }
             recording = true; recordingSeconds = 0
             timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] _ in
                 Task { @MainActor in self?.recordingSeconds = self?.recorder?.currentTime ?? 0 }
@@ -109,16 +114,31 @@ final class AppModel: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAud
         }
     }
     func generate(club: Bool = false) async {
-        guard editable, consent, validSelection, let input, let library else { return }
+        guard editable, consent, validSelection, (15...60).contains(outputSeconds), let input, let library else { return }
         stopPlayback()
         let token = RenderCancellation()
         cancellation = token; busy = true
         activity = club ? "Making your club mix…" : "Making three variations…"
         let start = trimStart, end = trimEnd, seed = UInt32.random(in: 1...UInt32.max)
+        let seconds = UInt32(outputSeconds)
         do {
             let session = try await Task.detached(priority: .userInitiated) {
                 try library.generate(input: input, start: start, end: end, seed: seed,
-                    consent: true, club: club, cancellation: token)
+                    consent: true, club: club, seconds: seconds, cancellation: token)
+            }.value
+            sessions.insert(session, at: 0)
+        } catch { self.error = error.localizedDescription }
+        busy = false; cancellation = nil
+    }
+    func generateTaste(profile: TasteProfile, seconds: Int, direction: Int = 0) async {
+        guard editable, let library else { return }
+        stopPlayback()
+        let token = RenderCancellation()
+        cancellation = token; busy = true; activity = "Composing two variations…"
+        do {
+            let recipe = TasteRecipe(profile: profile, seconds: seconds, direction: direction)
+            let session = try await Task.detached(priority: .userInitiated) {
+                try library.generateTaste(recipe: recipe, seed: UInt32.random(in: 1...UInt32.max), cancellation: token)
             }.value
             sessions.insert(session, at: 0)
         } catch { self.error = error.localizedDescription }
@@ -129,13 +149,14 @@ final class AppModel: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAud
         if playing == url { stopPlayback(); return }
         guard editable else { return }
         stopPlayback()
+        let generation = audioGeneration
         do {
             audioPreparing = true
             defer { audioPreparing = false }
             try await AudioSession.activate(recording: false)
-            guard foreground else { AudioSession.deactivate(); return }
+            guard foreground, generation == audioGeneration else { AudioSession.deactivate(); return }
             let prepared = try await AudioSession.preparePlayer(url)
-            guard foreground else { AudioSession.deactivate(); return }
+            guard foreground, generation == audioGeneration else { AudioSession.deactivate(); return }
             player = prepared
             player?.delegate = self
             guard player?.play() == true else { throw RemixError.message("This mix could not play.") }
@@ -143,6 +164,7 @@ final class AppModel: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAud
         } catch { stopPlayback(); self.error = error.localizedDescription }
     }
     func stopPlayback() {
+        audioGeneration &+= 1
         player?.stop(); player = nil; playing = nil
         if !recording { AudioSession.deactivate() }
     }

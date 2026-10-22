@@ -1,14 +1,16 @@
 import SwiftUI
 
-struct TasteProfile: Codable, Equatable {
+struct TasteProfile: Codable, Equatable, Sendable {
     var version = 1
     var references: [String] = []
     var energy = "balanced"
     var tempo = 110
     var instruments = ["piano", "bass", "drums"]
     var novelty = 50
+    var catalogue: [TasteChoice]? = nil
     static let availableInstruments = ["piano", "guitar", "bass", "drums", "synth", "voice"]
     func validate() throws {
+        try TasteCatalogue.validate(catalogue ?? [])
         guard version == 1, references.count <= 20,
               references.allSatisfy({ !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && $0.utf16.count <= 160 }),
               ["gentle", "balanced", "intense"].contains(energy), (60...180).contains(tempo),
@@ -27,6 +29,8 @@ struct TasteProfile: Codable, Equatable {
     }
     static func load(from url: URL) throws -> Self {
         guard FileManager.default.fileExists(atPath: url.path) else { return Self() }
+        let values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+        guard values.isRegularFile == true, values.isSymbolicLink != true, (values.fileSize ?? 16385) <= 16384 else { throw CocoaError(.fileReadTooLarge) }
         let data = try Data(contentsOf: url)
         guard data.count <= 16384 else { throw CocoaError(.fileReadTooLarge) }
         let value = try JSONDecoder().decode(Self.self, from: data); try value.validate(); return value
@@ -34,6 +38,14 @@ struct TasteProfile: Codable, Equatable {
 }
 
 struct MusicDNAView: View {
+    @ObservedObject var model: AppModel
+    @ObservedObject var account: AccountModel
+    @State private var showAccount = false
+    private enum InputField: Hashable { case references, search }
+    @FocusState private var activeInput: InputField?
+    @State private var catalogueSearch = ""
+    @State private var seconds = 60
+    @State private var direction = 0
     @State private var profile = TasteProfile()
     @State private var references = ""
     @State private var message = ""
@@ -45,7 +57,29 @@ struct MusicDNAView: View {
                     Text("Favourite song names are personal notes. Jamloom does not download or train on those recordings, or infer their tempo from a title.")
                 }
                 Section("Favourite tracks and artists — one per line") {
-                    TextEditor(text: $references).frame(minHeight: 100).accessibilityLabel("Favourite tracks and artists")
+                    TextEditor(text: $references).focused($activeInput, equals: .references).frame(minHeight: 100).accessibilityLabel("Favourite tracks and artists")
+                }
+                Section {
+                    DisclosureGroup("Choose catalogue references") {
+                    TextField("Search title or artist", text: $catalogueSearch).focused($activeInput, equals: .search)
+                    ForEach(TasteCatalogue.tracks.filter { catalogueSearch.isEmpty || "\($0.title) \($0.artist)".localizedCaseInsensitiveContains(catalogueSearch) }) { track in
+                        VStack(alignment: .leading) {
+                            Text("\(track.title) — \(track.artist)")
+                            Text("Jamloom practice master · \(track.genre) · \(track.license)").font(.caption)
+                            Picker("Rating for \(track.title)", selection: Binding(get: {
+                                profile.catalogue?.first { $0.id == track.id }?.rating ?? "none"
+                            }, set: { rating in
+                                var choices = profile.catalogue ?? []; choices.removeAll { $0.id == track.id }
+                                if rating != "none" { choices.append(TasteChoice(id: track.id, rating: rating, weight: 1)) }; profile.catalogue = choices
+                            })) { ForEach(["none", "love", "like", "avoid"], id: \.self) { Text($0.capitalized).tag($0) } }
+                            if let index = profile.catalogue?.firstIndex(where: { $0.id == track.id }) {
+                                Stepper("Importance: \(profile.catalogue![index].weight)", value: Binding(get: { profile.catalogue![index].weight }, set: { profile.catalogue![index].weight = $0 }), in: 1...5)
+                            }
+                        }
+                    }
+                    }
+                    ForEach(TasteCatalogue.scores(profile.catalogue ?? []), id: \.genre) { score in Text("\(score.genre): \(score.score)") }
+                    Text("Genre scores use catalogue labels and your ratings. Confidence is limited. Tempo, key, melody, instruments, language and energy are unknown; your controls remain authoritative.").font(.caption)
                 }
                 Section("Your musical direction") {
                     Picker("Energy", selection: $profile.energy) { ForEach(["gentle", "balanced", "intense"], id: \.self) { Text($0).tag($0) } }
@@ -65,16 +99,71 @@ struct MusicDNAView: View {
                         } catch { message = "Choose at least one instrument and at most 20 references, up to 160 characters each. Saving must be available on this device." }
                     }
                     Button("Delete saved profile", role: .destructive) {
-                        do { let url = try TasteProfile.location(); if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }; profile = TasteProfile(); references = ""; message = "Profile deleted." }
+                        do { let url = try TasteProfile.location(); if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }; profile = TasteProfile(); references = ""; direction = 0; let feedback = try RemixLibrary.application().root.appendingPathComponent("taste-preference.json"); if FileManager.default.fileExists(atPath: feedback.path) { try FileManager.default.removeItem(at: feedback) }; message = "Profile deleted." }
                         catch { message = "Could not delete the saved profile. Try again." }
                     }
                     Text(message).accessibilityIdentifier("tasteStatus")
                 }
-                Section("Availability") {
-                    Text("Taste-driven audio, account sync and credit purchases are not released. Local improvisation is in the other tab. DJ Studio and Live Audio DJ are desktop experiences.")
+                if account.snapshot != nil {
+                    Section("Account preferences") {
+                        Text("Load replaces these controls with the account version. Save uploads only these preferences. Your recordings and compositions stay here.").font(.caption)
+                        Button("Load account profile") { Task { await account.perform {
+                            if let saved = try await account.loadTaste() { profile = saved; references = profile.references.joined(separator: "\n") }
+                            message = "Account preferences loaded. Save locally to keep them on this device."
+                        } } }
+                        Button("Save profile to account") { Task { await account.perform {
+                            profile.references = references.split(separator: "\n").map(String.init)
+                            try await account.saveTaste(profile); message = "Preferences saved to your account."
+                        } } }
+                        Button("Delete account profile", role: .destructive) { Task { await account.perform {
+                            try await account.deleteTaste(); message = "Account profile deleted. Your local copy is unchanged."
+                        } } }
+                        if !account.message.isEmpty { Text(account.message) }
+                    }.disabled(account.busy)
                 }
-            }.navigationTitle("My Music DNA")
-                .task { do { profile = try TasteProfile.load(from: TasteProfile.location()); references = profile.references.joined(separator: "\n") } catch { message = "Saved profile could not be read. Delete it to start again." } }
+                Section("Compose on this device") {
+                    Picker("Composition length", selection: $seconds) {
+                        ForEach([30, 60, 90, 120, 180], id: \.self) { Text("\($0) seconds").tag($0) }
+                    }
+                    Text("Two original instrumental variations from your controls. Song titles are notes, not audio inputs. Exact length follows musical boundaries.").font(.caption)
+                    Button("Compose two variations") {
+                        profile.references = references.split(separator: "\n").map(String.init)
+                        Task { await model.generateTaste(profile: profile, seconds: seconds, direction: direction) }
+                    }.disabled(!model.editable).accessibilityIdentifier("composeTaste")
+                    if model.busy {
+                        ProgressView(model.activity)
+                        if model.canCancel { Button("Cancel", action: model.cancel) }
+                    }
+                }
+                ForEach(model.sessions.filter { $0.isTaste }) { session in
+                    Section { SavedSessionView(model: model, session: session, prefer: { style in
+                        do {
+                            guard let recipe = session.taste else { return }
+                            let next = ((recipe.direction ?? 0) + (style == "taste_b" ? 1 : 0)) % 3
+                            try recipe.profile.save(to: TasteProfile.location())
+                            try JSONEncoder().encode(next).write(to: RemixLibrary.application().root.appendingPathComponent("taste-preference.json"), options: [.atomic, .completeFileProtection])
+                            profile = recipe.profile; references = profile.references.joined(separator: "\n"); direction = next
+                            message = "Variation settings saved for your next composition. No training or upload."
+                        } catch { message = "Could not save preference feedback. Try again." }
+                    }) }
+                }
+                Section("Availability") {
+                    Text("Local composition previews are available. Musical quality is still being evaluated. Optional account preference sync is available. Credit purchases remain closed. Local improvisation is in the other tab. DJ Studio and Live Audio DJ are desktop experiences.")
+                }
+            }.scrollDismissesKeyboard(.interactively).disabled(account.busy).navigationTitle("My Music DNA")
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) { Button("Account") { model.suspendAudio(cancelRender: false); showAccount = true } }
+                    ToolbarItemGroup(placement: .keyboard) { Spacer(); Button("Done editing") { activeInput = nil } }
+                }
+                .sheet(isPresented: $showAccount) { AccountView(account: account) }
+                .onDisappear { model.suspendAudio(cancelRender: true) }
+                .task { await model.loadLibrary(); do { profile = try TasteProfile.load(from: TasteProfile.location()); references = profile.references.joined(separator: "\n")
+                    let feedback = try RemixLibrary.application().root.appendingPathComponent("taste-preference.json")
+                    if FileManager.default.fileExists(atPath: feedback.path) {
+                        guard (try feedback.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 100) < 16 else { throw CocoaError(.fileReadTooLarge) }
+                        let value = try JSONDecoder().decode(Int.self, from: Data(contentsOf: feedback)); guard (0...2).contains(value) else { throw CocoaError(.fileReadCorruptFile) }; direction = value
+                    }
+                } catch { message = "Saved profile could not be read. Delete it to start again." } }
         }
     }
 }

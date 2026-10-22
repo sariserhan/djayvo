@@ -3,7 +3,7 @@ import {origin} from './product';
 export const comingSoonEnabled=(env:Record<string,string|undefined>=process.env)=>env.JAMLOOM_COMING_SOON!=='false';
 export function comingSoonRecovery(path:string){
  return /^\/admin(?:\/|$)/.test(path)||path.startsWith('/api/admin/')||
-  ['/account/sign-in','/account/forgot-password','/account/reset-password','/account/verify','/contact','/support','/privacy','/terms','/licenses','/robots.txt','/sitemap.xml','/api/site-status','/api/contact','/api/notifications','/api/payments/stripe','/api/academy/stripe'].includes(path)||
+  ['/account/sign-in','/account/forgot-password','/account/reset-password','/account/verify','/contact','/support','/privacy','/terms','/licenses','/robots.txt','/sitemap.xml','/api/site-status','/api/contact','/api/notifications','/api/payments/stripe','/api/payments/apple/notifications','/api/academy/stripe'].includes(path)||
   ['/sign-in/email','/sign-out','/get-session','/request-password-reset','/reset-password','/send-verification-email','/verify-email'].some(p=>path==='/api/auth'+p)||path.startsWith('/api/auth/reset-password/');
 }
 export const launchCacheHeaders={'Cache-Control':'private, no-store','Vary':'Cookie','X-Content-Type-Options':'nosniff'};

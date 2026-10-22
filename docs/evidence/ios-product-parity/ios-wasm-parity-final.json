@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "scope": "iOS simulator C ABI vs existing browser WASM; identical whole WAV",
+  "report": [
+    {
+      "variation": "A",
+      "status": "PASS",
+      "bytes": 5829864,
+      "sha256": "c5c65e60fb92d7604e44bffe989d3eb16780e85abc3414593ac3b979afbcfc0f",
+      "args": [
+        4123,
+        110,
+        1,
+        13,
+        50,
+        30,
+        0
+      ]
+    },
+    {
+      "variation": "B",
+      "status": "PASS",
+      "bytes": 5829864,
+      "sha256": "403afaf648d6b2b670bfb73befcac8f0df66414b8dfb20358fa166fc978ed33d",
+      "args": [
+        4124,
+        110,
+        1,
+        13,
+        50,
+        30,
+        1
+      ]
+    }
+  ]
+}

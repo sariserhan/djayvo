@@ -1,0 +1,36 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /Users/serhansari/Documents/projects/jamloom/renders/ios-parity-20261021/native-account/native.xctestrun -destination "platform=iOS Simulator,id=309B362A-F926-4F8C-BB40-662059D0848A" -parallel-testing-enabled NO "-only-testing:JamloomTests/AccountTests/testActualLocalAccountAndProfileSync" -resultBundlePath /Users/serhansari/Documents/projects/jamloom/renders/ios-parity-20261021/native-account/tests.xcresult
+
+Writing result bundle at path:
+	/Users/serhansari/Documents/projects/jamloom/renders/ios-parity-20261021/native-account/tests.xcresult
+
+2026-10-21 21:56:17.744 xcodebuild[17387:9855751] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:00:06.150234-0400 Jamloom[19659:9871484] [API] cannot add handler to 0 from 0 - dropping
+2026-10-21 22:00:06.151118-0400 Jamloom[19659:9871484] [API] cannot add handler to 0 from 0 - dropping
+2026-10-21 22:00:07.117685-0400 Jamloom[19659:9871484] [XPCErrors] non-launching port is incompatible with service identifier "com.apple.PointerUI.pointeruid.default-service"
+2026-10-21 22:00:07.785081-0400 Jamloom[19659:9871484] [API] cannot add handler to 0 from 0 - dropping
+2026-10-21 22:00:07.785315-0400 Jamloom[19659:9871484] [API] cannot add handler to 0 from 0 - dropping
+Test Suite 'Selected tests' started at 2026-10-21 22:00:15.216.
+Test Suite 'JamloomTests.xctest' started at 2026-10-21 22:00:15.223.
+Test Suite 'AccountTests' started at 2026-10-21 22:00:15.223.
+Test Case '-[JamloomTests.AccountTests testActualLocalAccountAndProfileSync]' started.
+Test Case '-[JamloomTests.AccountTests testActualLocalAccountAndProfileSync]' passed (3.211 seconds).
+Test Suite 'AccountTests' passed at 2026-10-21 22:00:18.445.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.211 (3.221) seconds
+Test Suite 'JamloomTests.xctest' passed at 2026-10-21 22:00:18.464.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.211 (3.241) seconds
+Test Suite 'Selected tests' passed at 2026-10-21 22:00:18.465.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.211 (3.249) seconds
+2026-10-21 22:00:18.551 xcodebuild[17387:9855751] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:00:18.555 xcodebuild[17387:9855751] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:00:18.572 xcodebuild[17387:9855751] [MT] IDESchemeActionSDKRecord: operatingSystemBuild = <DVTBuildVersion 24A94232>, error = invalidDigitCount(94232).
+2026-10-21 22:00:19.684 xcodebuild[17387:9855751] [MT] IDETestOperationsObserverDebug: 247.789 elapsed -- Testing started completed.
+2026-10-21 22:00:19.684 xcodebuild[17387:9855751] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-21 22:00:19.684 xcodebuild[17387:9855751] [MT] IDETestOperationsObserverDebug: 247.789 sec, +247.789 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/serhansari/Documents/projects/jamloom/renders/ios-parity-20261021/native-account/tests.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

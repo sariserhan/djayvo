@@ -1,5 +1,9 @@
 #include "jamloom/taste.h"
 #include "jamloom/audio.h"
+#include "jamloom/jamloom_c.h"
+#include <filesystem>
+#include <fstream>
+#include <iterator>
 #include <array>
 #include <stdexcept>
 #include <iostream>
@@ -36,6 +40,24 @@ int main() {
         check(jamloom::compile(long_plan).total_frames<=180ULL*48000);
         jamloom::render_taste(long_plan,"taste-long-test");
         jamloom::render_taste(a,"taste-test");
+        namespace fs=std::filesystem;
+        const auto directory=fs::current_path()/"taste-c-api-test";
+        check(!fs::exists(directory));
+        char error[128];
+        int calls=0;
+        const auto cancel=[](void* context) { return ++*static_cast<int*>(context)>4?1:0; };
+        check(jamloom_render_taste(directory.string().c_str(),1,110,1,31,50,30,0,cancel,&calls,error,sizeof(error))==4);
+        check(!fs::exists(directory));
+        check(jamloom_render_taste(directory.string().c_str(),1,110,1,0,50,30,0,nullptr,nullptr,error,sizeof(error))==1);
+        check(!fs::exists(directory));
+        check(jamloom_render_taste(directory.string().c_str(),1,110,1,31,50,30,0,nullptr,nullptr,error,sizeof(error))==0);
+        const auto bytes=[](const fs::path& path) { std::ifstream f(path,std::ios::binary); return std::vector<char>((std::istreambuf_iterator<char>(f)),{}); };
+        const auto before=bytes(directory/"music.wav");
+        check(before==bytes("taste-test.wav"));
+        check(jamloom_render_taste(directory.string().c_str(),2,110,1,31,50,30,0,nullptr,nullptr,error,sizeof(error))==1);
+        check(before==bytes(directory/"music.wav"));
+        for(const auto* file:{"music.wav","music.score.json","music.report.json"}) fs::remove(directory/file);
+        fs::remove(directory);
         std::cout<<"PASS: preference bounds, instrument masks, duration, distinct plans, exact block replay, real WAV\n";
     } catch(const std::exception& e) { std::cerr<<e.what()<<'\n'; return 1; }
 }

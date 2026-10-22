@@ -21,6 +21,8 @@ targets:
     platform: iOS
     sources:
       - path: Jamloom
+      - path: ../web/practice-audio/manifest.json
+        buildPhase: resources
       - path: ../../assets/licenses
         type: folder
         buildPhase: resources
@@ -43,6 +45,7 @@ targets:
             digest=$(shasum -a 256 "$fixture" | cut -d ' ' -f 1)
             test "$digest" = c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e || exit 1
             cp "$fixture" "$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/synthetic-speech.wav"
+            cp "$SRCROOT/JamloomTests/LocalCredits.storekit" "$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/LocalCredits.storekit"
           fi
         basedOnDependencyAnalysis: false
   JamloomTests:
@@ -67,6 +70,9 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
 schemes:
   Jamloom:
+    run:
+      config: Debug
+      storeKitConfiguration: JamloomTests/LocalCredits.storekit
     build:
       targets:
         Jamloom: all

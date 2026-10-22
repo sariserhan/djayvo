@@ -87,17 +87,20 @@ PerformancePlan make_taste(std::uint32_t seed, unsigned tempo, unsigned energy,
     return p;
 }
 
-void render_taste(const PerformancePlan& p, const std::string& prefix) {
+void render_taste(const PerformancePlan& p, const std::string& prefix, const RenderControl& control) {
+    control.check();
     const auto schedule=compile(p);
     Renderer renderer(schedule);
     WavWriter wav(prefix+".wav",p.sample_rate,schedule.total_frames);
     std::array<float,1024> buffer{};
     while (!renderer.finished()) {
+        control.check();
         const auto frames=renderer.process(buffer.data(),512);
         if (!frames) throw std::runtime_error("Renderer did not progress");
         wav.write(buffer.data(),frames);
     }
     wav.close();
+    control.check();
     if (renderer.voice_overflows() || renderer.stats().nonfinite_samples || renderer.stats().limited_samples || renderer.stats().peak<.0001)
         throw std::runtime_error("Composition failed audio validation");
     write_score(p,prefix+".score.json");

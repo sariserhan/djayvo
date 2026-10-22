@@ -28,6 +28,10 @@ import StoreKit
         await transaction.finish()
     }
     func reconcileUnfinished(accountToken: UUID, deliver: (String, UUID) async throws -> Void) async throws {
-        for await result in Transaction.unfinished { try await deliverVerified(result, accountToken: accountToken, deliver: deliver) }
+        for await result in Transaction.unfinished {
+            // Another Jamloom account's pending purchase must not block this account's recovery.
+            if case .verified(let transaction) = result, transaction.appAccountToken != accountToken { continue }
+            try await deliverVerified(result, accountToken: accountToken, deliver: deliver)
+        }
     }
 }
