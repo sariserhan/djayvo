@@ -1,3 +1,17 @@
+# Academy CI migration expectations — 2026-10-22
+
+**PASS, local; GitHub Actions rerun NOT RUN.** The reported admin failure reproduces: migration `0013_audio_duration.sql` correctly applies, but admin, wallet and account tests still expect twelve migrations. Those three assertions now compare the applied names with the sorted checked-in SQL filenames. Production code and migration SQL are unchanged; repeat-run, rollback, changed-SQL rejection and legacy duration upgrade checks remain intact.
+
+Validation on Node 22.23.1 and PostgreSQL 16.14 used UUID-named disposable databases on loopback, removed by the suites. From `apps/site`, set `JAMLOOM_TEST_DATABASE_URL=postgresql://serhansari@127.0.0.1:5432/postgres` (substitute your local database role):
+
+- `npm run test:admin`: 9 PASS (previously reproduced `13 !== 12`).
+- `npm run test:academy`: 13 PASS.
+- `npm run test:wallet`: 15 PASS, including queue/watchdog/provider tests.
+- `DATABASE_URL="$JAMLOOM_TEST_DATABASE_URL" BETTER_AUTH_URL=http://127.0.0.1:4225 BETTER_AUTH_SECRET=local-only-test-secret-at-least-thirty-two-characters JAMLOOM_LOCAL_OUTBOX=/tmp/jamloom-ci-test-mail node --import tsx --test tests/database.test.ts tests/duration.test.ts`: 10 PASS; mail stays local.
+- `npm run studio:prepare && node --test ../web/tests/*.test.js && npm run typecheck`: preparation/audit PASS, 137 tests PASS, typecheck PASS.
+
+Total: 184 tests PASS. Existing installed dependencies were used; clean CI installation and the hosted Ubuntu workflow were not rerun. No hosted database access, push or deployment.
+
 # Full product landing page — 2026-10-22
 
 **PASS, local.** Main and coming-soon landing pages now present five dedicated sections: DJ Academy, DJ Studio without a controller, AI Improvisation, Music DNA and Live DJ for supported computer audio. Each has a real product preview; the main page retains a working deck. Shared descriptions, product navigation, SEO and the 1200×630 social image cover the full offering. Preview screenshots show actual local UI; the recording waveform is the retained synthetic fixture, with no user recording or live capture. Typecheck, five launch/metadata tests and Chromium/WebKit checks at four widths pass, including image loads, product/section links, muted deck playback and zero accessibility violations. The public coming-soon HTML was rendered as a browser fixture; access/caching rules pass unit checks and remain unchanged. No deployment or new paid services. [Homepage](../apps/site/app/page.tsx), [shared content](../apps/site/lib/home-products.ts).
