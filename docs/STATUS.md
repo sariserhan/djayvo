@@ -1,5 +1,9 @@
 # Jamloom implementation checkpoint
 
+## Latest: private action replay — 2026-10-21
+
+**PASS, local reconstruction; specification PARTIAL.** Existing capture exports now render A/B/C/instruments from verified WAV/MP3/FLAC sources and recorded actions. Instrument takes carry their context clock and include accepted sequencer commands; old dry takes remain compatible. Both-browser actual capture/replay and four-channel reconstruction pass. Historical decoder timing and prior DSP memory remain unavailable; exact master reproduction is not claimed. Listening and physical checks remain deferred, provider/model acceptance remains gated, iOS next and launch last. No paid execution or deployment. [Report and evidence](mix-action-replay.md).
+
 ## Latest: capture/data technical follow-through — 2026-10-21
 
 **Local capture tooling PASS; specification PARTIAL.** Deck transport history, optional aligned A/B/C/instrument stems, exact saved-plan/source linkage and near-duplicate split guards are implemented. Existing native/dry replay is preserved; observed controls are not full action-only browser replay. Listening and physical checks remain explicitly deferred by the owner; provider/model gates remain open. iOS and launch retain their order. [Current report and evidence](r1-capture-completion.md).

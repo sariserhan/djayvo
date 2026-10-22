@@ -1,5 +1,7 @@
 # Demonstration capture and split checks — 2026-10-21
 
+Follow-up: [private source/action reconstruction](mix-action-replay.md) implements the later replay path. The checkpoint below preserves its original evidence and limits.
+
 **Implementation commit: `8f3027f` (local only).**
 
 **Local capture tooling PASS; full specification PARTIAL.** The owner asked to

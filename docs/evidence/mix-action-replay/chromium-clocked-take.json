@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.1-live-instrument-take",
+  "scope": "dry_instruments",
+  "origin": "unreviewed_live_capture",
+  "training_authorized": false,
+  "engine_sha256": "10a29570a9d5bffa6098b602a14d8b18cc11e3660492a8cdddf8684f7873c0e8",
+  "wav_sha256": "5d9653c3d11668b11d0ad74d596cf870bd6eb2a21081af05b564b3871b905c9f",
+  "sample_rate": 48000,
+  "frames": 88832,
+  "initial_mouth": 0,
+  "events": [
+    {
+      "frame": 6400,
+      "command": {
+        "type": "note",
+        "id": 1,
+        "patch": 0,
+        "pitch": 60,
+        "velocity": 100
+      }
+    },
+    {
+      "frame": 13568,
+      "command": {
+        "type": "off",
+        "id": 1
+      }
+    },
+    {
+      "frame": 13824,
+      "command": {
+        "type": "panic"
+      }
+    },
+    {
+      "frame": 13824,
+      "command": {
+        "type": "panic"
+      }
+    },
+    {
+      "frame": 14080,
+      "command": {
+        "type": "note",
+        "id": 2,
+        "patch": 11,
+        "pitch": 36,
+        "velocity": 100
+      }
+    },
+    {
+      "frame": 21760,
+      "command": {
+        "type": "mouth",
+        "position": 0.7
+      }
+    },
+    {
+      "frame": 21760,
+      "command": {
+        "type": "mouth",
+        "position": 0.7
+      }
+    },
+    {
+      "frame": 29184,
+      "command": {
+        "type": "off",
+        "id": 2
+      }
+    },
+    {
+      "frame": 31744,
+      "command": {
+        "type": "note",
+        "id": 3,
+        "patch": 12,
+        "pitch": 39,
+        "velocity": 110
+      }
+    },
+    {
+      "frame": 40448,
+      "command": {
+        "type": "off",
+        "id": 3
+      }
+    },
+    {
+      "frame": 42496,
+      "command": {
+        "type": "panic"
+      }
+    },
+    {
+      "frame": 42496,
+      "command": {
+        "type": "note",
+        "id": 4294967040,
+        "patch": 11,
+        "pitch": 60,
+        "velocity": 100
+      }
+    },
+    {
+      "frame": 47732,
+      "command": {
+        "type": "off",
+        "id": 4294967040
+      }
+    },
+    {
+      "frame": 55587,
+      "command": {
+        "type": "note",
+        "id": 4294967042,
+        "patch": 11,
+        "pitch": 64,
+        "velocity": 100
+      }
+    },
+    {
+      "frame": 60823,
+      "command": {
+        "type": "off",
+        "id": 4294967042
+      }
+    },
+    {
+      "frame": 69632,
+      "command": {
+        "type": "panic"
+      }
+    },
+    {
+      "frame": 88832,
+      "command": {
+        "type": "panic"
+      }
+    }
+  ],
+  "observed_context_start_frame": 6400
+}

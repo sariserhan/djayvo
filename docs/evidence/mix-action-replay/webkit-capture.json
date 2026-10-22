@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "browser": "webkit",
+  "version": "26.5",
+  "url": "http://127.0.0.1:59563/dj.html",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "checks": [
+    "consent-gated keyboard, mouth and simulated MIDI recording; playable WAV and exact replay",
+    "actual concurrent take/mix clocks assemble and render a private action-only reconstruction",
+    "explicit source pairing exports four hash-linked files; response WAV replays exactly; no inferred context or training rights",
+    "desktop/mobile capture controls render without horizontal overflow",
+    "confirmed tempo/key/downbeat frozen at start; later context edits do not relabel the response",
+    "loaded source excluded by default; replacement and consent withdrawal discard paired takes, including stale async completion",
+    "delete and permission withdrawal discard local take without restoring stale export",
+    "focus loss, audio suspension and worklet failure discard incomplete capture"
+  ],
+  "errors": [],
+  "external": [],
+  "warnings": [
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy.",
+    "Refused to apply a stylesheet because its hash, its nonce, or 'unsafe-inline' does not appear in the style-src directive of the Content Security Policy."
+  ],
+  "frames": 87296,
+  "rate": 48000,
+  "acceptedCommands": 17,
+  "peak": 0.347076416015625,
+  "replay": "byte-identical WAV; max and RMS PCM difference 0",
+  "physicalMidi": "NOT RUN",
+  "humanQuality": "NOT RUN",
+  "training": "NOT RUN",
+  "scope": "private dry instrument capture; simulated input, actual browser/worklet audio"
+}

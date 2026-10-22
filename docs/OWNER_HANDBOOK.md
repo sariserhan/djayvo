@@ -8,7 +8,7 @@ Production separately. No owner setup task below means the integration has passe
 ## Current order and local completion work — 2026-10-21
 
 Finish non-iOS product work first, iOS second, launch operations last. This
-increment has no deployment or paid-service step. [Current report](r1-capture-completion.md)
+increment has no deployment or paid-service step. [Current report](mix-action-replay.md)
 lists what works and what still requires evidence; it does not close the spec.
 Listening and physical checks are explicitly deferred until the owner resumes them.
 
@@ -24,6 +24,14 @@ before recording. Download the master, stems, source details, mixer controls and
 deck history for private review; removing permission deletes the tab copies.
 Stems use extra memory and support up to 96 kHz. These exports do not authorize
 training or replace reviewed expert demonstrations. Listening remains deferred.
+
+For private developer replay, start the instrument take before the mix and stop it
+last, within its 30-second cap. Musical-action downloads now include the context
+clock and sequencer commands. Keep the original source files, controls, deck history
+and source details. The [replay workflow](mix-action-replay.md#reproduce-a-private-recording)
+checks WAV/MP3/FLAC source hashes and writes an offline reconstruction without upload
+or playback. Historical decoder timing/effect tails may differ; retain the original
+mix WAV or aligned stems when preserving the actual performance matters.
 
 For developer rehearsal, use a loopback database, local private audio directory,
 `JAMLOOM_GENERATION_SANDBOX=true` and the one-shot `generation:local` command.
@@ -108,7 +116,7 @@ Agent work continues when any of these external steps is missing.
 | P1 — [OWNER ACTION REQUIRED] GPU spending approval | Vast.ai → Billing and Instances/Templates. Select reviewed pinned model/template, hourly ceiling, total experiment cap and kill deadline before renting. [Instance management](https://docs.vast.ai/guides/instances/manage-instances). | Existing `VASTAI_KEY` in private research environment; future worker signing secret is separate | Record rental, startup/idle/retry/storage costs; destroy instance and confirm billing stop. A local timeout alone does not stop rented billing. No agent rental in this checkpoint. | Existing research trials retained; durable queue and Vast shutdown adapter/watchdog pass mocked tests; real termination, invoices and deployment NOT RUN |
 | P1 — [OWNER ACTION REQUIRED] Apple IAP sandbox | App Store Connect → My Apps → Jamloom → Monetization/In-App Purchases → + → Consumable. Create 10/25/50-credit product identifiers, approved localizations/screenshots and sandbox users. [Apple setup](https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-consumable-or-non-consumable-in-app-purchases/). | `APPLE_BUNDLE_ID` and `APPLE_ROOT_CERTIFICATES_BASE64` (comma-separated base64 DER Apple root certificates from Apple PKI, public data) configure the sandbox verifier. Future server API/production work may additionally require `APPLE_APP_ID`, `APPLE_KEY_ID`, `APPLE_ISSUER_ID`, `APPLE_PRIVATE_KEY`; not used today | StoreKit display prices, verified JWS server ingestion, account token binding, replay/refund tests and durable ledger ack before finish. No expiry for consumables. | PARTIAL: official Apple SDK verification + gated StoreKit client compiled; real sandbox purchase/account bridge and notifications NOT RUN |
 | P1 — [OWNER ACTION REQUIRED] native app release | Apple Developer → Identifiers/signing; App Store Connect → agreements/tax/banking, privacy, accessibility and TestFlight. Preserve existing `com.djayvo.app` storage/signing identity until migration reviewed. | Signing remains in ignored `Local.xcconfig` | Simulator build is separate from physical microphone, interruption, memory/battery, VoiceOver and App Review proof. Upload requires explicit approval. | Prior local prototype preserved; new full parity incomplete |
-| P1 — [OWNER ACTION REQUIRED] live capture permissions | macOS Settings → Privacy & Security → Screen & System Audio Recording for a future reviewed companion; browser source chooser for current preview. Select permitted test audio, never protected-stream bypass. | None for browser preview | Physical output isolation, no feedback, source-stop/recovery and latency measurements. Browser cannot guarantee external app suppression; monitoring requires explicit confirmation. | Native companion not implemented; physical gate NOT RUN |
+| P1 — [OWNER ACTION REQUIRED] live capture permissions | macOS Settings → Privacy & Security → Screen & System Audio Recording for Jamloom Live when physical checks resume; browser source chooser for current preview. Select permitted test audio, never protected-stream bypass. | None for browser preview | Physical output isolation, no feedback, source-stop/recovery and latency measurements. Browser cannot guarantee external app suppression; monitoring requires explicit confirmation. | Native companion implemented and locally tested; physical gate explicitly deferred / NOT RUN |
 | P1 — [OWNER ACTION REQUIRED] indexing and analytics consent | Search Console → Add property `jamloom.com` → DNS verification; submit `https://www.jamloom.com/sitemap.xml` after publishing. VisitorPing site `vp_QBDH92AC`: complete required consent and verify two page visits in Live Radar. | Optional site-verification value; existing public VisitorPing key unchanged | [Rich Results Test](https://search.google.com/test/rich-results), URL inspection, public crawl, legitimate referrals and consent behavior. Script delivery is not collection proof. | Local SSR/metadata tests only; external dashboard actions NOT RUN |
 | P2 — RevenueCat decision | Optional. Do not create a project solely to satisfy a checklist; consumable balance stays in Neon. If adopted, RevenueCat → Project → Apps → App Store integration and verified webhooks. | None configured/required today | [Consumable guidance](https://www.revenuecat.com/docs/platform-resources/non-subscriptions); event replays and account mapping tests | Not adopted |
 | P2 — catalog metadata import | Pick a licensed metadata provider, approve exact permitted fields/uses and retention. No Spotify/YouTube scraping or training from streams. | Provider-specific names only after design approval | Terms review, unknown-field handling, opt-in import and deletion | Manual first-party notes only |

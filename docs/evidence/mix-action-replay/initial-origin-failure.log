@@ -1,0 +1,34 @@
+Artifacts: /Users/serhansari/Documents/projects/jamloom/renders/mix-action-replay-PQ01Mg
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.evaluate: TypeError: Cannot read properties of undefined (reading 'digest')
+    at sha256 (http://jamloom-replay.test/live-take.js:77:77)
+    at replayMix (http://jamloom-replay.test/mix-replay.js:146:84)
+    at async eval (eval at evaluate (:303:30), <anonymous>:4:31)
+    at async <anonymous>:329:30
+    at /Users/serhansari/Documents/projects/jamloom/scripts/replay_mix.mjs:62:17
+    at async file:///Users/serhansari/Documents/projects/jamloom/scripts/replay_mix.mjs:60:18 {
+  log: []
+}
+
+Node.js v22.23.1
+
+
+1 !== 0
+
+    at file:///Users/serhansari/Documents/projects/jamloom/apps/web/tests/mix-replay.mjs:51:83 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

@@ -69,7 +69,7 @@ export class MixTransport {
   }
   finish(receipt) {
     if (this.failed) return null;
-    // shortcut: main-thread observations omit decoder/DSP history; this is not a sample-exact replay plan.
+    // shortcut: observations omit decoder/DSP history; capture render-thread state before promising sample-exact replay.
     return validateMixTransport({ schema_version: '1.0-mix-transport', scope: 'observed_transport_states',
       training_authorized: false, wav_sha256: receipt.wav_sha256, sample_rate: receipt.sample_rate,
       observed_context_start_frame: receipt.observed_context_start_frame, events: this.events }, receipt);

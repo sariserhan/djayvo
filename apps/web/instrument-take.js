@@ -46,10 +46,10 @@ export function attachInstrumentTake({ context, getNode, panic, getPhrase = () =
       const version = token;
       try {
         const wav = stereoWav(data.samples, data.frames, data.rate);
-        const take = validateTake({ schema_version: '1.0-live-instrument-take', scope: 'dry_instruments',
+        const take = validateTake({ schema_version: '1.1-live-instrument-take', scope: 'dry_instruments',
           origin: 'unreviewed_live_capture', training_authorized: false, engine_sha256: getNode().engineHash,
           wav_sha256: await sha256(wav), sample_rate: data.rate, frames: data.frames,
-          initial_mouth: data.mouth, events: data.events });
+          initial_mouth: data.mouth, events: data.events, observed_context_start_frame: data.first });
         if (version !== token || !$('take-consent').checked || !sourceAllowed()) return;
         const trace = new TextEncoder().encode(JSON.stringify(take, null, 2));
         const paired = source ? await pairPhrase(source, trace) : null;

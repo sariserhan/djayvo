@@ -1,4 +1,7 @@
 import assert from 'node:assert/strict';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+import { silenceSpeakers } from '../../site/tests/silent-audio.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { createServer } from 'node:http';
@@ -15,6 +18,7 @@ const publicRoot = path.join(root, 'dist/web'), errors = [], external = [], chec
 let takingScreenshot = false;
 const server = createServer(async (req, res) => {
   const name = new URL(req.url, 'http://local').pathname.slice(1);
+  if (name === 'api/aurowall' || name === 'api/site-status') { res.writeHead(200, {'Content-Type':'application/json'}); res.end(JSON.stringify(name === 'api/aurowall' ? {tracks:[]} : {banner:null})); return; }
   if (req.method !== 'GET' || !/^[\w./-]+$/.test(name) || name.split('/').includes('..')) { res.writeHead(404); res.end(); return; }
   try {
     const bytes = await fs.readFile(path.join(publicRoot, name));
@@ -29,6 +33,7 @@ let browser;
 try {
   browser = await {chromium,webkit}[kind].launch();
   const context = await browser.newContext({viewport:{width:1440,height:1000}});
+  await context.addInitScript(silenceSpeakers);
   await context.addInitScript(fakeMidi);
   await context.addInitScript(() => {
     const Native = window.AudioContext;
@@ -63,6 +68,8 @@ try {
   await page.locator('#take-consent').check();
   await page.locator('#take-start').click();
   await page.waitForFunction(() => !document.getElementById('take-stop').disabled);
+  await page.locator('#mix-record-consent').check(); await page.locator('#mix-record-start').click();
+  await page.waitForFunction(() => !document.getElementById('mix-record-stop').disabled);
   await page.locator('.keyboard-scroll').focus(); await page.keyboard.down('a');
   await page.waitForTimeout(150); await page.keyboard.up('a');
   await page.locator('#patch').selectOption('11');
@@ -74,7 +81,14 @@ try {
   await page.waitForFunction(() => document.getElementById('midi-status').textContent.startsWith('Connected:'));
   await page.evaluate(() => midiPorts[0].emit([0x99,39,110])); await page.waitForTimeout(180);
   await page.evaluate(() => midiPorts[0].emit([0x89,39,0]));
-  await page.waitForTimeout(300); await page.locator('#take-stop').click();
+  await page.locator('#sequence-step-0').selectOption('60');
+  await page.locator('#sequence-step-2').selectOption('64');
+  await page.locator('#sequence-start').click();
+  await page.waitForFunction(() => !document.getElementById('sequence-stop').disabled);
+  await page.waitForTimeout(500); await page.locator('#sequence-stop').click();
+  await page.waitForTimeout(300); await page.locator('#mix-record-stop').click();
+  await page.locator('#mix-record-sources').waitFor({state:'visible'});
+  await page.locator('#take-stop').click();
   await page.locator('#take-wav').waitFor({state:'visible'});
   assert.equal(await page.locator('#take-start').isDisabled(),true);
   const downloads = {};
@@ -84,6 +98,7 @@ try {
   }
   const take = JSON.parse(await fs.readFile(path.join(output,'take.json'),'utf8'));
   assert.equal(take.training_authorized,false);
+  assert.ok(take.events.some(e => e.command.type === 'note' && e.command.id >= 0xffffff00));
   for (const patch of [0,11,12]) assert.ok(take.events.some(e=>e.command.type==='note' && e.command.patch===patch));
   assert.ok(take.events.some(e=>e.command.type==='mouth' && e.command.position===.7));
   const wav = await fs.readFile(path.join(output,'take.wav'));
@@ -95,6 +110,22 @@ try {
   await page.waitForFunction(()=>document.getElementById('take-player').currentTime>0);
   await page.locator('#take-player').evaluate(audio=>audio.pause());
   checks.push('consent-gated keyboard, mouth and simulated MIDI recording; playable WAV and exact replay');
+  assert.equal(take.schema_version, '1.1-live-instrument-take');
+  assert.ok(Number.isSafeInteger(take.observed_context_start_frame));
+  for (const [id,name] of [['mix-record-json','mix.json'],['mix-record-automation','controls.json'],['mix-record-sources','sources.json'],['mix-record-transport','transport.json']]) {
+    const pending=page.waitForEvent('download'); await page.locator('#'+id).click(); await (await pending).saveAs(path.join(output,name));
+  }
+  const mix=JSON.parse(await fs.readFile(path.join(output,'mix.json'),'utf8'));
+  assert.ok(take.observed_context_start_frame <= mix.observed_context_start_frame);
+  assert.ok(take.observed_context_start_frame+take.frames >= mix.observed_context_start_frame+mix.frames);
+  const run=promisify(execFile), packageFile=path.join(output,'replay.json');
+  await run(process.execPath,['scripts/prepare_mix_replay.mjs',...['mix.json','controls.json','sources.json','transport.json'].map(n=>path.join(output,n)),packageFile,path.join(output,'take.json')],{cwd:root});
+  const bindings=path.join(output,'assets.json'); await fs.writeFile(bindings,JSON.stringify({[take.engine_sha256]:path.join(publicRoot,'engine/jamloom_live.wasm')}));
+  await run(process.execPath,['scripts/replay_mix.mjs',packageFile,bindings,path.join(output,'replay')],{cwd:root,env:{...process.env,JAMLOOM_BROWSER:kind},timeout:130000});
+  const reconstructed=await fs.readFile(path.join(output,'replay/replay.wav'));assert.equal(reconstructed.length,44+mix.frames*4);
+  let reconstructedPeak=0;for(let i=44;i<reconstructed.length;i+=2)reconstructedPeak=Math.max(reconstructedPeak,Math.abs(reconstructed.readInt16LE(i)));
+  assert.ok(reconstructedPeak>30);checks.push('actual concurrent take/mix clocks assemble and render a private action-only reconstruction');
+  await page.locator('#mix-record-delete').click();
   assert.equal(await page.locator('#take-source').isVisible(),false);
   await page.locator('#take-delete').click();
   await page.locator('#phrase-consent').check();

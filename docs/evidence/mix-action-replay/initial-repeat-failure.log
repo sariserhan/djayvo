@@ -1,0 +1,21 @@
+Artifacts: /Users/serhansari/Documents/projects/jamloom/renders/mix-action-replay-ZSN4cu
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'b7872a5ac73ca97fbf68fb5a79f42ecc610253ad81864fe4c617b547362b3cf1'
+- '7a5b8623ceefd38646de901523746e87f8bb387bb7b54f2b419d3dadf86d1c1c'
+
+    at file:///Users/serhansari/Documents/projects/jamloom/apps/web/tests/mix-replay.mjs:56:20 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'b7872a5ac73ca97fbf68fb5a79f42ecc610253ad81864fe4c617b547362b3cf1',
+  expected: '7a5b8623ceefd38646de901523746e87f8bb387bb7b54f2b419d3dadf86d1c1c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

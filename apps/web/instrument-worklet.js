@@ -8,16 +8,19 @@ class JamloomInstruments extends AudioWorkletProcessor {
     if (!this.engine.jamloom_live_init(sampleRate)) throw new Error('Unsupported instrument sample rate');
     this.samples = new Float32Array(this.engine.memory.buffer, this.engine.jamloom_live_buffer(), 4096);
     this.renderSequence=count=>this.render(count);
-    this.emitSequence=command=>{if(command.type==='off'){this.engine.jamloom_live_off(command.id);return;}if(!this.engine.jamloom_live_note(command.id,command.patch,command.pitch,command.velocity)){this.sequence=null;this.engine.jamloom_live_panic();this.port.postMessage({type:'sequence-stopped',message:'Instrument voice limit reached.'});}};
+    this.emitSequence=command=>{
+      if(command.type==='off'){this.engine.jamloom_live_off(command.id);this.record(command);}
+      else if(this.engine.jamloom_live_note(command.id,command.patch,command.pitch,command.velocity))this.record(command);
+      else{this.sequence=null;this.accept({type:'panic'});this.port.postMessage({type:'sequence-stopped',message:'Instrument voice limit reached.'});}
+    };
     this.port.onmessage = ({ data }) => {
       if (!data || typeof data !== 'object') return;
       if(data.type==='sequence-start'){
-        if(this.take){this.port.postMessage({type:'sequence-stopped',message:'Finish the dry instrument take before starting a sequence.'});return;}
-        this.sequence=null;this.engine.jamloom_live_panic();
+        this.sequence=null;this.accept({type:'panic'});
         try{this.sequence=new StepSequence(sampleRate,data.pattern,data.patch,data.velocity);this.port.postMessage({type:'sequence-started'});}
         catch(error){this.port.postMessage({type:'sequence-stopped',message:error.message});}return;
       }
-      if(data.type==='sequence-stop'||data.type==='panic'||data.type==='take-start'){this.sequence=null;this.engine.jamloom_live_panic();this.port.postMessage({type:'sequence-stopped'});if(data.type==='sequence-stop')return;}
+      if(data.type==='sequence-stop'||data.type==='panic'||data.type==='take-start'){this.sequence=null;this.accept({type:'panic'});this.port.postMessage({type:'sequence-stopped'});if(data.type==='sequence-stop'||data.type==='panic')return;}
       if (data.type === 'take-start' && Number.isSafeInteger(data.token) && data.token > 0 && !this.take) {
         try {
           this.take = new TakeBuffer(sampleRate, data.mouth); this.token = data.token;
@@ -30,21 +33,25 @@ class JamloomInstruments extends AudioWorkletProcessor {
       if (data.type === 'take-stop' && this.take && data.token === this.token) {
         const take = this.take; this.take = null;
         this.port.postMessage({ type: 'take-done', token: this.token, rate: take.rate, mouth: take.mouth,
-          frames: take.frames, events: take.events, samples: take.samples }, [take.samples.buffer]);
+          first: take.first, frames: take.frames, events: take.events, samples: take.samples }, [take.samples.buffer]);
         return;
       }
-      if (validCommand(data)) {
-        if (!executeCommand(this.engine, data)) this.port.postMessage({ type: 'rejected' });
-        else if (this.take && !this.take.accepted(data)) {
-          this.take = null; this.port.postMessage({ type: 'take-failed', token: this.token });
-        }
-      }
+      if (validCommand(data) && !this.accept(data)) this.port.postMessage({ type: 'rejected' });
     };
     this.port.postMessage({ type: 'ready' });
   }
+  accept(command) {
+    if (!executeCommand(this.engine, command)) return false;
+    this.record(command); return true;
+  }
+  record(command) {
+    if (this.take && !this.take.accepted(command)) {
+      this.take = null; this.port.postMessage({ type: 'take-failed', token: this.token });
+    }
+  }
   render(frames){
     if(!this.engine.jamloom_live_render(frames))return;
-    if(this.take)this.take.copy(this.samples,frames);
+    if(this.take){this.take.first ??= currentFrame + this.offset;this.take.copy(this.samples,frames);}
     for(let c=0;c<this.output.length;c++)for(let i=0;i<frames;i++)this.output[c][this.offset+i]=this.samples[i*2+Math.min(c,1)];
     this.offset+=frames;
   }

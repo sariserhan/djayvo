@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0-mix-replay-result",
+  "status": "PASS",
+  "scope": "observed_action_reconstruction",
+  "training_authorized": false,
+  "source_recording_sha256": "1fec18b83007967c8632b40f5cbf01b5c97ed87d5f07a54c8f4d060f83173e14",
+  "replay_wav_sha256": "ad07249ea52572823d7fea57d5b0e2ace84a24216a9f9e92b1a4a4f2d50a072c",
+  "input_sha256": "da4741252b6ed5fca96847725e8fffa79f37b5073a80faa1e541afb4bd338433",
+  "frames": 78592,
+  "sample_rate": 48000,
+  "exact_recording_match": false,
+  "automation_quantum_frames": 128,
+  "prior_dsp_history": "reset",
+  "decoded_sources": [],
+  "transport": "Observed frames interpreted by the shared DeckDSP; historical decoder and worklet acceptance timing is not recoverable.",
+  "browser": "webkit",
+  "browser_version": "26.5",
+  "network": "intercepted locally; no external requests",
+  "playback": "offline render only",
+  "input_file_sha256": "8181df8d433f35c516132d2aa28337fd78e402fcda8b3cf7beecdbf45dd73004"
+}

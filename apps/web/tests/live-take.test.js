@@ -10,7 +10,7 @@ function harness() {
   let Processor;
   const messages = [];
   vm.runInNewContext(fs.readFileSync(new URL('../instrument-worklet.js', import.meta.url), 'utf8').replace(/^import .*;\n/gm, ''), {
-    StepSequence, TakeBuffer, executeCommand, validCommand, WebAssembly, sampleRate: 48000,
+    StepSequence, TakeBuffer, executeCommand, validCommand, WebAssembly, sampleRate: 48000, currentFrame: 1024,
     AudioWorkletProcessor: class { constructor() { this.port = { postMessage: (data, transfer = []) =>
       messages.push(structuredClone(data, { transfer })) }; } },
     registerProcessor: (_, cls) => { Processor = cls; },
@@ -84,11 +84,32 @@ test('recording is off by default and stale stop cannot export another take', ()
   h.send({type:'take-start',token:1,mouth:0}); h.block(); h.send({type:'take-stop',token:2});
   assert.ok(h.processor.take); assert.equal(h.messages.at(-1).type,'take-started');
 });
-test('real instrument engine sequences notes, stops on panic, and keeps dry captures isolated',()=>{
+test('real instrument engine sequences notes, stops on panic, and captures accepted sequence actions',async()=>{
  const h=harness(),pattern={tempo:113,notes:[60,null,64,null,...Array(12).fill(null)]};
  h.send({type:'sequence-start',pattern,patch:0,velocity:100});assert.equal(h.messages.at(-1).type,'sequence-started');
  let peak=0;for(let i=0;i<100;i++){h.block();for(const value of h.output[0][0]){assert.ok(Number.isFinite(value));peak=Math.max(peak,Math.abs(value));}}assert.ok(peak>.001);
  h.send({type:'panic'});assert.equal(h.processor.sequence,null);for(let i=0;i<400;i++)h.block();assert.ok(h.output[0][0].every(v=>Math.abs(v)<1e-5));
  h.send({type:'sequence-start',pattern,patch:0,velocity:100});h.send({type:'take-start',token:1,mouth:0});assert.equal(h.processor.sequence,null);
- h.send({type:'sequence-start',pattern,patch:0,velocity:100});assert.equal(h.processor.sequence,null);assert.match(h.messages.at(-1).message,/Finish the dry/);assert.ok(h.processor.take);
+ h.send({type:'sequence-start',pattern,patch:0,velocity:100});assert.ok(h.processor.sequence);assert.ok(h.processor.take);
+ for(let i=0;i<240;i++)h.block();h.send({type:'sequence-stop'});for(let i=0;i<400;i++)h.block();h.send({type:'take-stop',token:1});
+ const done=h.messages.at(-1),trace=await makeTrace(done);assert.ok(trace.events.some(e=>e.command.type==='note'&&e.command.id>=0xffffff00));
+ assert.deepEqual(await replayTake(trace,wasm),stereoWav(done.samples,done.frames,done.rate));
+});
+
+test('clocked instrument takes preserve old replay and reject invalid context origins', async () => {
+  const h = harness(); h.send({ type: 'take-start', token: 1, mouth: 0 }); h.send(note); h.block();
+  h.send({ type: 'take-stop', token: 1 }); const done = h.messages.at(-1);
+  assert.equal(done.first, 1024);
+  const take = { ...await makeTrace(done), schema_version: '1.1-live-instrument-take', observed_context_start_frame: done.first };
+  validateTake(take); assert.deepEqual(await replayTake(take, wasm), stereoWav(done.samples, done.frames, done.rate));
+  for (const frame of [-1, NaN, 1.5]) assert.throws(() => validateTake({ ...take, observed_context_start_frame: frame }));
+});
+
+test('capture writes fixed command buffers and snapshots values independently of caller mutation', () => {
+  const take = new TakeBuffer(32000, 0), command = { ...note }, storage = take.commandData;
+  assert.equal(take.accepted(command), true); command.pitch = 72;
+  assert.equal(take.events[0].command.pitch, 60);
+  for (let i = 1; i < TAKE_EVENTS; i++) assert.equal(take.accepted(command), true);
+  assert.equal(take.accepted(command), false); assert.equal(take.commandData, storage);
+  assert.equal(take.count, TAKE_EVENTS);
 });

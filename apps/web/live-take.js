@@ -26,15 +26,33 @@ export function executeCommand(engine, command) {
 export class TakeBuffer {
   constructor(rate, mouth) {
     if (!integer(rate, 32000, 192000) || !validCommand({ type: 'mouth', position: mouth })) throw new Error('Invalid take setup');
-    this.rate = rate; this.mouth = mouth; this.frames = 0; this.events = [];
+    this.rate = rate; this.mouth = mouth; this.frames = 0; this.count = 0;
+    this.commandFrames = new Uint32Array(TAKE_EVENTS);
+    this.commandTypes = new Uint8Array(TAKE_EVENTS);
+    this.commandData = new Float64Array(TAKE_EVENTS * 4);
     // Allocate only at explicit start, never inside process().
     this.samples = new Float32Array(rate * TAKE_SECONDS * 2);
   }
   accepted(command) {
     if (this.frames >= this.samples.length / 2) return true;
-    if (this.events.length >= TAKE_EVENTS) return false;
-    this.events.push({ frame: this.frames, command: { ...command } });
+    if (this.count >= TAKE_EVENTS) return false;
+    const type = command.type === 'panic' ? 0 : command.type === 'mouth' ? 1 : command.type === 'off' ? 2 : command.type === 'note' ? 3 : -1;
+    if (type < 0) return false;
+    const index = this.count++, at = index * 4;
+    this.commandFrames[index] = this.frames; this.commandTypes[index] = type;
+    this.commandData[at] = type === 1 ? command.position : command.id ?? 0;
+    this.commandData[at + 1] = command.patch ?? 0; this.commandData[at + 2] = command.pitch ?? 0;
+    this.commandData[at + 3] = command.velocity ?? 0;
     return true;
+  }
+  get events() {
+    // Materialize only on export; sequencer callbacks write into fixed buffers.
+    return Array.from({ length: this.count }, (_, index) => {
+      const at = index * 4, type = this.commandTypes[index], data = this.commandData;
+      const command = type === 0 ? { type: 'panic' } : type === 1 ? { type: 'mouth', position: data[at] } :
+        type === 2 ? { type: 'off', id: data[at] } : { type: 'note', id: data[at], patch: data[at + 1], pitch: data[at + 2], velocity: data[at + 3] };
+      return { frame: this.commandFrames[index], command };
+    });
   }
   copy(samples, frames) {
     const count = Math.min(frames, this.samples.length / 2 - this.frames);
@@ -43,9 +61,11 @@ export class TakeBuffer {
   }
 }
 export function validateTake(take) {
+  const clocked = take?.schema_version === '1.1-live-instrument-take';
   if (!exactKeys(take, ['schema_version', 'scope', 'origin', 'training_authorized', 'engine_sha256',
-    'wav_sha256', 'sample_rate', 'frames', 'initial_mouth', 'events']) ||
-    take.schema_version !== '1.0-live-instrument-take' || take.scope !== 'dry_instruments' ||
+    'wav_sha256', 'sample_rate', 'frames', 'initial_mouth', 'events', ...(clocked ? ['observed_context_start_frame'] : [])]) ||
+    !['1.0-live-instrument-take', '1.1-live-instrument-take'].includes(take.schema_version) || take.scope !== 'dry_instruments' ||
+    (clocked && (!Number.isSafeInteger(take.observed_context_start_frame) || take.observed_context_start_frame < 0)) ||
     take.origin !== 'unreviewed_live_capture' || take.training_authorized !== false ||
     !/^[a-f0-9]{64}$/.test(take.engine_sha256) || !/^[a-f0-9]{64}$/.test(take.wav_sha256) ||
     !integer(take.sample_rate, 32000, 192000) || !integer(take.frames, 1, take.sample_rate * TAKE_SECONDS) ||
