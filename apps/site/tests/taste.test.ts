@@ -50,3 +50,17 @@ test('song annotations reject malformed, duplicate, unbound and unsupported choi
  for(const direction of [null,NaN,-1,3,1.2,'1'])assert.throws(()=>validateTaste({...emptyTaste,direction}),/Invalid preference profile/);
  assert.equal(validateTaste({...emptyTaste,references:[' Song '],songPreferences:[song]}).songPreferences?.[0].reference,'Song');
 });
+
+
+test('favorite search ranks artists and tracks, tolerates a typo and preserves Unicode saved choices',async()=>{
+ const {searchTasteReferences}=await import('../lib/taste-catalogue');
+ assert.equal(searchTasteReferences('joth')[0].reference,'Joth');
+ assert.equal(searchTasteReferences('funked')[0].reference,'Funked Up — Joth');
+ assert.ok(searchTasteReferences('funkd').some(r=>r.reference==='Funked Up — Joth'));
+ assert.equal(searchTasteReferences('  BJORK ',['Björk'])[0].reference,'Björk');
+ assert.equal(searchTasteReferences('坂本',['坂本龍一'])[0].reference,'坂本龍一');
+ assert.deepEqual(searchTasteReferences('zzzzqqqq'),[]);
+ assert.equal(searchTasteReferences('joth',['Joth','Joth']).filter(r=>r.reference==='Joth').length,1);
+ assert.ok(searchTasteReferences('').length<=8);
+ assert.ok(searchTasteReferences('j').some(r=>r.kind==='Artist'));
+});

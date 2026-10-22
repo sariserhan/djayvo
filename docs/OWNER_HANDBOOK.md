@@ -1,6 +1,6 @@
 ## Music DNA favorites — 2026-10-22
 
-Local review: <http://127.0.0.1:4247/music-dna>. Add song/artist names or use **Add to favorites** in the cleared catalogue. Choose the musical parts you enjoy, then **Apply song preferences**. Review or override the controls, generate a preview and save preferences locally or to your account. Playback starts only when you press Play. YouTube/Spotify links open searches on those services; there is no account connection or playlist import. [Current evidence and limits](music-dna-favorites.md). This update is local, not deployed.
+Local review: <http://127.0.0.1:4247/music-dna>. Type in **Search artists or tracks**, select a matching track/artist, or choose **Add by name** for something not listed. Suggestions update immediately from the practice catalogue and saved favorites. Arrow keys, Enter and Escape work; **Remove favorite** removes a selection. **Add to favorites** is also available beside catalogue previews. Choose the musical parts you enjoy, then **Apply song preferences**. Review or override the controls, generate a preview and save preferences locally or to your account. Playback starts only when you press Play. YouTube/Spotify links open searches on those services; there is no account connection or playlist import. [Current evidence and limits](music-dna-favorites.md). This update is local, not deployed.
 
 ## Owner acceptance — 2026-10-22
 

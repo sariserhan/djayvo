@@ -1,5 +1,7 @@
 ## Music DNA favorite-song workflow — 2026-10-22
 
+- [x] **DNA-003 — PASS, local:** Search-as-you-type dropdown replaces the blank text area, with ranked artist/track suggestions, typo/accent handling, keyboard selection, custom names and removal. Existing catalogue/saved favorites only; no global streaming search. [Evidence](docs/music-dna-favorites.md#searchable-favorite-picker--2026-10-22).
+
 - [x] **DNA-001 — PASS, implementation and scoped technical checks:** User-confirmed favorite-song aspects and importance now apply to real composer controls; cleared catalogue previews, add-to-favorites and external listening-search links; local/account persistence and native profile compatibility. [Implementation, tests and limits](docs/music-dna-favorites.md).
 - [ ] **DNA-002 — PARTIAL:** Musical acceptance and production generation remain open. Automatic external playlist imports/audio analysis are not implemented; provider and rights approval depend on the specific source and use. Current focus is Music DNA; Basic/Pro acceptance remains closed.
 

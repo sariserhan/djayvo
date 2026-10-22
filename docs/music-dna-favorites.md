@@ -40,3 +40,11 @@ JAMLOOM_TEST_DATABASE_URL=postgresql://serhansari@127.0.0.1:5432/postgres JAMLOO
 ```
 
 The browser test defaults to `/tmp/jamloom-dna-browser`, suppresses physical output and blocks external requests. Blocked VisitorPing and Next CSS prefetch warnings are retained separately; unexpected console errors fail. No Spotify/YouTube playback or third-party request is needed for this test.
+
+## Searchable favorite picker — 2026-10-22
+
+Replaced the multiline textarea with an accessible autocomplete dropdown. Matches update on each keystroke, rank exact/prefix matches ahead of substrings, and tolerate one typo in words of four or more characters. Artist and track rows are labeled separately; saved favorites are also searchable. Accent-insensitive matching and non-Latin text are supported. Users can select with keyboard/pointer, add an unlisted name and remove a favorite with its associated annotations. Existing profile storage and composer behavior are unchanged.
+
+Coverage is explicitly the existing ten-track practice catalogue plus saved favorites. This is not a global Spotify/YouTube catalogue search. No query leaves the device, no provider API is added, and no new payment/configuration is needed. MusicBrainz was considered but not integrated: its [official API FAQ](https://musicbrainz.org/doc/MusicBrainz_API/FAQ) directs commercial users to a commercial plan/contact. That service is not assumed authorized for this product.
+
+Six focused tests, typecheck and production build pass. Chromium and WebKit pass at 1280, 390 and 320 pixels, with zero accessibility violations and no unexpected console errors. An initial Remove button label mismatch was corrected before the passing rerun. [Browser evidence](evidence/music-dna-search/browser.json) covers autocomplete, duplicate prevention, custom-name fallback, storage and unchanged composition flow; [artifact hashes](evidence/music-dna-search/artifacts.json) identify the raw screenshots/audio and logs under `renders/music-dna-search-20261022/`. The picker uses the [WAI-ARIA combobox interaction pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/). No deployment or new musical listening acceptance.

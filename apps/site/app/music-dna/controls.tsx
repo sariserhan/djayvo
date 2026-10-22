@@ -1,6 +1,7 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import {emptyTaste,validateTaste,tasteBrief,tasteRender,energies,instruments,tasteAspects,applySongPreferences,type TasteAspect,type SongPreference,type Taste} from '../../lib/taste';
+import {FavoriteSearch} from './favorite-search';
 import {tasteCatalogue,inferCatalogueTaste,type ReferenceChoice} from '../../lib/taste-catalogue';
 export function TasteNotebook(){
  const [profile,setProfile]=useState<Taste>(emptyTaste),[message,setMessage]=useState(''),[brief,setBrief]=useState(''),[revision,setRevision]=useState(0),[busy,setBusy]=useState(false);
@@ -65,11 +66,12 @@ export function TasteNotebook(){
  }catch{setMessage('Preference could not be saved on this device.');}}
  function clear(){try{localStorage.removeItem('jamloom-taste-v1');localStorage.removeItem('jamloom-dna-preference');setProfile(emptyTaste);setDirection(0);setPersonalize(false);setBrief('');setMessage('Saved profile and feedback deleted from this device.');}catch{setMessage('Storage is unavailable. Clear site data in your browser settings.');}}
  return <section className="product-panel"><h2>Your preference notebook</h2><p>Start with songs you love. Choose the parts you enjoy, then use those choices to shape your own original music.</p><div className="product-controls">
- <label>Favourite tracks and artists — one per line<textarea disabled={busy} value={profile.references.join('\n')} maxLength={3220} onChange={e=>updateReferences(e.target.value.split('\n'))}/></label>
+ <FavoriteSearch saved={profile.references} disabled={busy||rendering} onSelect={addSong}/>
  <p>Song titles alone do not change the music. Your choices below describe what you want to hear; they are not an automatic analysis of those recordings.</p>
  <div className="dna-favorites">{[...new Set(profile.references.map(s=>s.trim()).filter(Boolean))].slice(0,20).map(reference=>{
   const choice=songChoice(reference);
   return <fieldset key={reference}><legend>{reference}</legend>
+   <button className="secondary" disabled={busy||rendering} aria-label={`Remove favorite ${reference}`} onClick={()=>updateReferences(profile.references.filter(r=>r.trim()!==reference))}>Remove favorite</button>
    <p>What would you like in your music?</p><div className="dna-aspects">{Object.entries(tasteAspects).map(([aspect,label])=><label key={aspect}><input type="checkbox" disabled={busy||rendering} checked={choice.aspects.includes(aspect as TasteAspect)} onChange={e=>updateSong({...choice,aspects:e.target.checked?[...choice.aspects,aspect as TasteAspect]:choice.aspects.filter(a=>a!==aspect)})}/>{label}</label>)}</div>
    <label>Influence of {reference}<select disabled={busy||rendering} value={choice.weight} onChange={e=>updateSong({...choice,weight:Number(e.target.value)})}><option value={1}>A little</option><option value={3}>Some</option><option value={5}>A lot</option></select></label>
    <div className="product-actions"><a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(reference)}`} target="_blank" rel="noreferrer">Find on YouTube ↗</a><a href={`https://open.spotify.com/search/${encodeURIComponent(reference)}`} target="_blank" rel="noreferrer">Find on Spotify ↗</a></div>

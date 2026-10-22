@@ -26,6 +26,24 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   });
   assert.equal((await page.goto(base+'/music-dna')).status(),200);assert.match(await page.title(),/Music DNA/);
   await page.getByRole('heading',{name:'Your preference notebook'}).waitFor();
+  const search=page.getByRole('combobox',{name:'Search artists or tracks'});
+  await search.fill('j');assert.ok(await page.getByRole('option').count()>1);
+  await search.fill('joth');assert.match(await page.getByRole('option').first().innerText(),/Artist.*Joth/s);
+  await search.press('Escape');assert.equal(await search.getAttribute('aria-expanded'),'false');
+  await search.press('ArrowDown');assert.equal(await search.getAttribute('aria-expanded'),'true');await search.press('Enter');
+  assert.equal(await page.getByRole('group',{name:'Joth',exact:true}).count(),1);
+  await search.fill('joth');await search.press('Enter');assert.equal(await page.getByRole('group',{name:'Joth',exact:true}).count(),1);
+  await page.getByRole('button',{name:'Remove favorite Joth',exact:true}).click();
+  await search.fill('funkd');await page.getByRole('option',{name:/Track.*Funked Up/s}).click();
+  assert.equal(await page.getByRole('group',{name:'Funked Up — Joth',exact:true}).count(),1);
+  await page.getByRole('button',{name:'Remove favorite Funked Up — Joth',exact:true}).click();
+  for(const width of [1280,390,320]){
+   await page.setViewportSize({width,height:900});await search.fill('jo');await search.scrollIntoViewIfNeeded();
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+   await page.screenshot({path:join(output,`${name}-search-${width}.png`)});
+   assert.deepEqual((await new AxeBuilder({page}).include('.dna-search').analyze()).violations,[]);
+  }
+  await search.press('Escape');await page.setViewportSize({width:1280,height:900});
   assert.equal(await page.locator('.product-panel audio').count(),10);assert.ok(await page.locator('.product-panel audio').evaluateAll(list=>list.every(a=>a.paused&&a.preload==='none')));
   const preview=page.getByLabel('Listen to Funked Up',{exact:true});
   await preview.evaluate(a=>a.play());await page.waitForFunction(()=>document.querySelector('.product-panel audio')?.currentTime>0);
@@ -69,12 +87,12 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    await song.scrollIntoViewIfNeeded();await page.screenshot({path:join(output,`${name}-${width}.png`)});
   }
   const accessibility=await new AxeBuilder({page}).include('.product-panel').analyze();assert.deepEqual(accessibility.violations,[]);
-  await page.getByLabel('Favourite tracks and artists').fill('Another song');assert.ok(await page.getByRole('button',{name:'Apply song preferences',exact:true}).isDisabled());
+  await page.getByRole('button',{name:'Remove favorite Funked Up — Joth',exact:true}).click();await page.getByRole('combobox',{name:'Search artists or tracks'}).fill('Another song');await page.getByRole('option',{name:/Add by name/}).click();assert.ok(await page.getByRole('button',{name:'Apply song preferences',exact:true}).isDisabled());
   await page.getByRole('button',{name:'Save preferences and prepare directions',exact:true}).click();await page.reload();
-  assert.equal(await page.getByLabel('Favourite tracks and artists').inputValue(),'Another song');
-  await page.getByRole('button',{name:'Delete saved profile',exact:true}).click();assert.equal(await page.getByLabel('Favourite tracks and artists').inputValue(),'');
+  assert.equal(await page.getByRole('group',{name:'Another song',exact:true}).count(),1);
+  await page.getByRole('button',{name:'Delete saved profile',exact:true}).click();assert.equal(await page.locator('.dna-favorites fieldset').count(),0);
   assert.equal(await page.getByLabel('Preferred tempo:').inputValue(),'110');assert.deepEqual(errors,[]);
-  results.push({browser:name,status:'PASS',widths:[1280,390,320],muted_catalogue_playback:'PASS',exclusive_audio:'PASS',song_preferences_and_render:'PASS',same_seed_audio_different:true,audio,storage_removal_overrides:'PASS',axe_violations:0,console_errors:errors,expected_console:expectedConsole,human_listening:'NOT RUN'});
+  results.push({browser:name,status:'PASS',widths:[1280,390,320],search_typing_typo_keyboard_pointer_duplicates:'PASS',muted_catalogue_playback:'PASS',exclusive_audio:'PASS',song_preferences_and_render:'PASS',same_seed_audio_different:true,audio,storage_removal_overrides:'PASS',axe_violations:0,console_errors:errors,expected_console:expectedConsole,human_listening:'NOT RUN'});
  }finally{await browser.close();}
 }
 await writeFile(join(output,'report.json'),JSON.stringify(results,null,2)+'\n');console.log(JSON.stringify(results));

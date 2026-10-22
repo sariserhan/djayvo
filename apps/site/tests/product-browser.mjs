@@ -26,9 +26,9 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await page.goto(base+'/dj-studio');const structured=JSON.parse(await page.locator('script[type="application/ld+json"]').innerText());assert.equal(structured['@type'],'WebApplication');assert.equal(structured.offers.price,0);assert.equal(structured.aggregateRating,undefined);
   await page.goto(base+'/');await page.setViewportSize({width:390,height:844});await page.screenshot({path:new URL(name+'-home-mobile.png',evidence).pathname,fullPage:true});
   const offlineJS=await browser.newContext({javaScriptEnabled:false});const ssr=await offlineJS.newPage();await ssr.goto(base+'/');assert.equal(await ssr.locator('.feature-list article').count(),5);await offlineJS.close();
-  await page.goto(base+'/music-dna');await page.getByLabel('Favourite tracks and artists').fill('An original song — a musician');
+  await page.goto(base+'/music-dna');await page.getByRole('combobox',{name:'Search artists or tracks'}).fill('An original song — a musician');await page.getByRole('option',{name:/Add by name/}).click();
   await page.getByRole('button',{name:'Save preferences and prepare directions'}).click();assert.match(await page.getByRole('status').innerText(),/Saved on this device/);
-  await page.reload();assert.equal(await page.getByLabel('Favourite tracks and artists').inputValue(),'An original song — a musician');
+  await page.reload();assert.equal(await page.getByRole('group',{name:'An original song — a musician',exact:true}).count(),1);
   await page.getByRole('button',{name:'Delete saved profile'}).click();assert.equal(await page.evaluate(()=>localStorage.getItem('jamloom-taste-v1')),null);
   await page.goto(base+'/examples');await page.getByLabel('Original instrument study').evaluate(a=>a.load());await page.waitForFunction(()=>document.querySelector('audio[aria-label="Original instrument study"]').readyState>=1);assert.ok(await page.getByLabel('Original instrument study').evaluate(a=>a.duration>10));
   // A real oscillator supplies PCM; only the permission/source chooser is simulated.

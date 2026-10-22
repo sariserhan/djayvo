@@ -1,0 +1,109 @@
+{
+  "artifacts": [
+    {
+      "path": "renders/music-dna-search-20261022/browser/chromium-1280.png",
+      "bytes": 89356,
+      "sha256": "a2fef7404e89430cdb465e4e757b495fc5a2fbd541fdbb348a01dbb77998ed29"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/chromium-320.png",
+      "bytes": 35998,
+      "sha256": "330167b69a393028ffdea8317bea08f4da938d7b695a617c6ef2e080bac58043"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/chromium-390.png",
+      "bytes": 37472,
+      "sha256": "5df014ac93038e348bfbab38fc16d8352db04f33aa54e2afacd1c4f78e3fef05"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/chromium-fast-drums.wav",
+      "bytes": 5979472,
+      "sha256": "d038b0f5b37608eedef799d2137b8f7f5f64b75081c044b631fbe424b213c8ce"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/chromium-gentle-piano.wav",
+      "bytes": 6144044,
+      "sha256": "6b269c24dc874dac0fbd5abcaa0125612409373ca2b15ab0231a65249c93842a"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/chromium-search-1280.png",
+      "bytes": 57444,
+      "sha256": "ac8b5924bb91f30f7cfd9e347b04f37d9dc3cfdd9c0ed2a01d9ebc719f3b6839"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/chromium-search-320.png",
+      "bytes": 59472,
+      "sha256": "e489189d93d4332106c80dda547ef1cd5bb8625825505248ff308bc520d0659d"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/chromium-search-390.png",
+      "bytes": 64821,
+      "sha256": "4346b93976d63e4e7b4db81de46d420952ed18e8cd3deab914051020e48be027"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/report.json",
+      "bytes": 3354,
+      "sha256": "b912bd1c3e394b29030f23ff21f849ef6da8a0f65fbeba114234e6adf5536839"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/webkit-1280.png",
+      "bytes": 114339,
+      "sha256": "106463c9bbc98cbde58a4fd42cdd467be1744277177c4f6911aa7999ed65272b"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/webkit-320.png",
+      "bytes": 46800,
+      "sha256": "16e47a7e0b421831b81c1016a109cdff5b20dfc974b223eb6c8f261b73b0de69"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/webkit-390.png",
+      "bytes": 50559,
+      "sha256": "a9081acf7b01bcaa616e6f01695ecec0d4a175fc1552cadb9cfabc86a43a10dc"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/webkit-fast-drums.wav",
+      "bytes": 5979472,
+      "sha256": "d038b0f5b37608eedef799d2137b8f7f5f64b75081c044b631fbe424b213c8ce"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/webkit-gentle-piano.wav",
+      "bytes": 6144044,
+      "sha256": "6b269c24dc874dac0fbd5abcaa0125612409373ca2b15ab0231a65249c93842a"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/webkit-search-1280.png",
+      "bytes": 83879,
+      "sha256": "27f244fda6ae7b672349a1aebedf4ab03d8acebf88a7cde97e08c15055c1a902"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/webkit-search-320.png",
+      "bytes": 69028,
+      "sha256": "7d314f6650c20eb64b9d05be3f9d9c949a9ab481acec8f16f6497c00e606dd7f"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser/webkit-search-390.png",
+      "bytes": 80885,
+      "sha256": "62d6fa790c5ce43c516a9ac1276a560d3024f7a45beb5c5e9288f5aa2c3a8852"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser-initial-label-failure.log",
+      "bytes": 2828,
+      "sha256": "9e80a7068c3c832c659702b45024cfcf3479d9e8f49916101f7d0eb7aa53f726"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/browser.log",
+      "bytes": 2721,
+      "sha256": "31bd36d764bcf631f509e3ef3b822bbc5c01b5eff299e7fc77e414027d5260a4"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/build.log",
+      "bytes": 2668,
+      "sha256": "62693e60111e1dc2fdd82a06bd572669b236904216a2b1d1ba32bfc772aec251"
+    },
+    {
+      "path": "renders/music-dna-search-20261022/unit.log",
+      "bytes": 1633,
+      "sha256": "55b23eef94e7f799011aa02873e3d1878022c0a7e6a7dee4f9004e5838316eaa"
+    }
+  ]
+}

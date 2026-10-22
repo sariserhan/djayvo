@@ -20,3 +20,38 @@ export function inferCatalogueTaste(value:ReferenceChoice[]){
   confidence:choices.length?'limited_metadata':'none',unknown:['tempo','key','melody','instrumentation','vocal language','energy'],
   explanation:'Genre scores use the catalogue labels and your ratings, not analysis of a recording. Your tempo, energy and instrument controls remain authoritative.'};
 }
+
+export type TasteSuggestion={reference:string;kind:'Track'|'Artist'|'Saved favorite';detail:string};
+const normalize=(value:string)=>value.normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+function distance(a:string,b:string){
+ let row=Array.from({length:b.length+1},(_,i)=>i);
+ for(let i=0;i<a.length;i++){
+  const next=[i+1];for(let j=0;j<b.length;j++)next.push(Math.min(next[j]+1,row[j+1]+1,row[j]+(a[i]===b[j]?0:1)));
+  row=next;
+ }return row[b.length];
+}
+export function searchTasteReferences(query:string,saved:string[]=[]):TasteSuggestion[]{
+ // shortcut: local catalogue and saved names only; expand when a global catalogue provider is configured.
+ const q=normalize(query.slice(0,160));
+ const candidates:TasteSuggestion[]=[
+  ...tasteCatalogue.map(t=>({reference:`${t.title} — ${t.artist}`,kind:'Track' as const,detail:t.edition})),
+  ...[...new Set(tasteCatalogue.map(t=>t.artist))].map(artist=>({reference:artist,kind:'Artist' as const,detail:'In the practice catalogue'})),
+  ...saved.slice(0,20).map(reference=>({reference,kind:'Saved favorite' as const,detail:'From your saved choices'}))
+ ];
+ const seen=new Set<string>();
+ return candidates.filter(c=>{const key=normalize(c.reference);if(seen.has(key))return false;seen.add(key);return true;})
+  .map(candidate=>{
+   const name=normalize(candidate.reference),words=name.split(' ');
+   let score=0;
+   if(q){
+    if(name===q)score=100;
+    else if(name.startsWith(q))score=90;
+    else if(name.includes(q))score=80;
+    else{
+     const costs=q.split(' ').map(term=>Math.min(...words.map(word=>word.startsWith(term)?0:distance(term,word))));
+     score=costs.every((cost,i)=>cost<=(q.split(' ')[i].length>=4?1:0))?60-costs.reduce((a,b)=>a+b,0):0;
+    }
+   }
+   return {candidate,score};
+  }).filter(r=>!q||r.score>0).sort((a,b)=>b.score-a.score||a.candidate.reference.localeCompare(b.candidate.reference)).slice(0,8).map(r=>r.candidate);
+}

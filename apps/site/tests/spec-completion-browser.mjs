@@ -15,7 +15,7 @@ try{
    await context.route('**/*',route=>(new URL(route.request().url()).origin===base||route.request().url().startsWith('blob:'))?route.continue():route.abort());
    const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
    await page.goto(base+'/music-dna');await revealStudioTools(page);assert.match(await page.title(),/Music DNA/);
-   await page.getByLabel('Favourite tracks and artists').fill('Private reference — never uploaded');
+   await page.getByRole('combobox',{name:'Search artists or tracks'}).fill('Private reference — never uploaded');await page.getByRole('option',{name:/Add by name/}).click();
    await page.getByLabel('Search cleared tracks').fill('Funked');await page.getByLabel('Rating for Funked Up').selectOption('love');
    assert.match(await page.getByRole('heading',{name:'What your selections tell us'}).locator('..').innerText(),/preferred/);
    await page.getByLabel('Use my preferred Jamloom').check();

@@ -1,3 +1,7 @@
+## Music DNA search dropdown — 2026-10-22
+
+**PASS, local:** Favorite entry now uses immediate ranked track/artist suggestions, with keyboard/pointer selection, typo/accent matching, custom-name fallback and removal. Searches the existing practice catalogue and saved favorites entirely on-device. Existing preferences and composer remain intact. [Report](music-dna-favorites.md#searchable-favorite-picker--2026-10-22). Global streaming-catalogue search and deployment are not included.
+
 ## Music DNA favorites — 2026-10-22
 
 **PASS, scoped technical implementation; PARTIAL, musical acceptance.** Current focus is Music DNA. Favorite-song choices now apply user-confirmed mood, pace, instruments and arrangement preferences to real compositions. Ten cleared catalogue previews, external search links, account/local persistence and native profile compatibility are implemented. [Evidence and remaining limits](music-dna-favorites.md). No provider import, new training, paid execution or deployment; Basic/Pro remains accepted complete.
