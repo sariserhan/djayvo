@@ -21,6 +21,26 @@ The reference to Mr. Wobbles describes the interaction: sample a sound, build
 rhythm around it, then contribute a musician's own sung response. It does not
 request his exact vocal identity or reproduction of his recordings.
 
+## Voice and genre variety
+
+The owner additionally requests multiple original singing voices: sometimes
+female, sometimes male, with performances in reggae, hip-hop and other genres.
+Fresh runs should develop different musical ideas, not repeat one song with a
+different singer. Voice selection and genre are separate choices; neither voice
+type is restricted to one genre.
+
+Vary the contextual lyric reply, melodic contour, rhythmic delivery, source-loop
+placement/count, instrument roles, musical structure and ending. Keep each
+performance coherent and relevant to the input. A changed random seed, timbre
+or backing alone does not establish creative variety. Do not force an unrelated
+joke or constant voice/style changes just to create a difference.
+
+For the same source phrase, audition at least three meaningfully different
+performances covering male and female voices and both reggae and hip-hop.
+Evaluate lyric relevance, natural vocal delivery and audible compositional
+differences. "Always unique and creative" is the product aim, not a verified
+guarantee. Reliable vocalist control and creative diversity remain NOT RUN.
+
 ## Owner's example
 
 User input: **“I have a question.”**

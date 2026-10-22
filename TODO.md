@@ -2,7 +2,7 @@
 
 ## Musician training request — 2026-10-21
 
-- [ ] **TRAIN-007 — NOT RUN, corrected intent:** Separate musician singing voice that invents contextual, lightly humorous lyrical replies to user phrases; source looping/repetition chosen to fit the rhythm. TRAIN-006 only remixed the user voice and does not fulfill this requirement. Actual two-voice vocal generation, arrangement and listening remain. [Owner example and acceptance](docs/musician-vocal-response.md).
+- [ ] **TRAIN-007 — NOT RUN, corrected intent:** Multiple original male/female musician singing voices with contextual, lightly humorous lyrical replies; varied reggae/hip-hop and other arrangements, melody, delivery and source looping chosen to fit the rhythm. Same-source audible diversity and vocalist control require evaluation. TRAIN-006 only remixed the user voice and does not fulfill this requirement. Actual two-voice vocal generation, arrangement and listening remain. [Owner example and acceptance](docs/musician-vocal-response.md).
 
 - [x] **TRAIN-006 — PASS, local voice audition:** Three new mixes using the authorized owner voice and existing epoch-10 hip-hop/funk/bass-b audio; Group 1 excluded. Six voice/music comparisons at −22 LUFS, clean-source/stem checks, deterministic rerender, eight regression tests and both-browser playback/seek PASS. Musical acceptance remains open. [Report](docs/voice-led-review.md).
 

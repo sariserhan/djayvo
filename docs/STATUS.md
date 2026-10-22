@@ -1,6 +1,6 @@
 # Jamloom implementation checkpoint
 
-**Corrected vocal requirement:** The owner wants two distinct voices: optional rhythmic use of the submitted phrase, plus an original musician voice singing a contextual, playful reply. The user-voice-only audition did not fulfill this request. Contextual sung-response implementation and listening are NOT RUN. [Corrected requirement and example](musician-vocal-response.md).
+**Corrected vocal requirement:** The owner wants two distinct voices: optional rhythmic use of the submitted phrase, plus original male/female musician voices singing contextual, playful replies across reggae, hip-hop and other styles. Fresh runs must vary musical ideas as well as voice; diversity and vocalist control remain unverified. The user-voice-only audition did not fulfill this request. Contextual sung-response implementation and listening are NOT RUN. [Corrected requirement and example](musician-vocal-response.md).
 
 **Voice-led audition ready:** Three private 30-second mixes now combine the authorized owner recording with the latest hip-hop, funk and Group 2 bass backings. Full phrases, spaced chops and ducking reuse the local arranger; six clearly labeled voice/music comparisons are matched to −22 LUFS. Actual render checks, eight regression tests and Chromium/WebKit playback/seek checks PASS. New-mix listening NOT RUN; no training, rental, upload or product promotion. [Player location and evidence](voice-led-review.md).
 
