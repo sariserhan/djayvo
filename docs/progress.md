@@ -1,3 +1,7 @@
+# Duration and continual-phrase follow-through — 2026-10-21
+
+**Local implementation complete; overall PARTIAL.** After `6faebff`, Voice studio now supports opt-in 1–15 second inputs and bounded 15–60 second arrangements, strict 1.8 score replay and wider private storage. Prepared A can repeat an explicitly enabled capture/render/bar-aligned-C cycle, with capture paused during C and cancellation closing inputs. Existing default contracts remain available. The original quality rejection is retained; human, hardware, provider/model, iOS and launch gates remain. [Current report and receipts](duration-and-live-phrases.md).
+
 # Remaining non-iOS implementation — 2026-10-21
 
 **Overall PARTIAL; musical-quality FAIL retained.** Follow-through implements scratch/key lock, reverb/phaser/flanger, guarded headphone cue, full A/B/C scenes, a sample-timed note sequencer, cleared-catalogue taste evidence and opt-in output preference adaptation, remote-store result recovery and read-only provider charge evidence. Real Chromium/WebKit composition and exact C recovery pass. Secure-origin native control passes in Chromium; WebKit blocks loopback and retains its fallback. Human, physical and provider/model gates remain; wider supplementary voice/duration contracts are not silently marked complete. iOS is next and launch operations last. No push, deployment or paid execution. [Implementation and exact boundaries](non-ios-finish.md).

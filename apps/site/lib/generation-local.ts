@@ -15,11 +15,13 @@ const hash=(bytes:Buffer|string)=>createHash('sha256').update(bytes).digest('hex
 export type LocalGenerationInput={source:string;plan:string;title:string;consent:true};
 type LocalResult={id:string;state:'cancelled'}|{id:string;state:'completed';outputId:string;sha256:string;modeledCostMicros:number;externalSpendMicros:0};
 function input(value:LocalGenerationInput){
- if(!value||value.consent!==true||typeof value.source!=='string'||value.source.length>1_300_000||
+ if(!value||value.consent!==true||typeof value.source!=='string'||value.source.length>3_850_000||
   !/^[A-Za-z0-9+/]+={0,2}$/.test(value.source)||typeof value.plan!=='string'||Buffer.byteLength(value.plan)>1_000_000||
   typeof value.title!=='string'||!value.title.trim()||value.title.length>120||/[\x00-\x1f\x7f]/.test(value.title))throw Error('Invalid generation input or consent');
+ const plan=JSON.parse(value.plan),extended=plan?.schema_version==='1.8-remix';
+ if(extended&&(!Number.isInteger(plan.requested_seconds)||plan.requested_seconds<15||plan.requested_seconds>60))throw Error('Invalid requested duration');
  const source=Buffer.from(value.source,'base64');
- if(source.length<44||source.length>960044||source.toString('ascii',0,4)!=='RIFF'||source.readUInt32LE(4)!==source.length-8||source.toString('ascii',8,12)!=='WAVE')throw Error('Invalid source WAV');
+ if(source.length<44||source.length>2880044||source.toString('ascii',0,4)!=='RIFF'||source.readUInt32LE(4)!==source.length-8||source.toString('ascii',8,12)!=='WAVE')throw Error('Invalid source WAV');
  let format:Buffer|undefined,dataBytes:number|undefined;
  for(let at=12;at<source.length;){
   if(at+8>source.length)throw Error('Truncated source chunk');
@@ -32,8 +34,7 @@ function input(value:LocalGenerationInput){
  }
  if(!format||dataBytes===undefined||format.readUInt16LE(0)!==1||format.readUInt16LE(14)!==16)throw Error('Use PCM16 WAV');
  const channels=format.readUInt16LE(2),rate=format.readUInt32LE(4),seconds=dataBytes/(rate*2*channels);
- if(![1,2].includes(channels)||rate<8000||rate>48000||seconds<2||seconds>5||!Number.isInteger(dataBytes/(2*channels))||format.readUInt32LE(8)!==rate*2*channels||format.readUInt16LE(12)!==2*channels)throw Error('Invalid source duration or format');
- const plan=JSON.parse(value.plan);
+ if(![1,2].includes(channels)||rate<8000||rate>48000||seconds<(extended?1:2)||seconds>(extended?15:5)||!Number.isInteger(dataBytes/(2*channels))||format.readUInt32LE(8)!==rate*2*channels||format.readUInt16LE(12)!==2*channels)throw Error('Invalid source duration or format');
  if(!plan||!STRATEGIES.includes(plan.strategy)||plan.source?.sha256!==hash(source)||plan.source?.consent_confirmed!==true)throw Error('Plan must match the consented source');
  return {source,plan,planText:value.plan,title:value.title.trim(),inputSha256:hash(source),planSha256:hash(value.plan)};
 }
@@ -128,7 +129,7 @@ export class LocalGeneration {
   try{
    const payload=row.budget.render;
    if(!payload||!/^uploads\/[a-f0-9-]{36}\.wav$/.test(payload.inputKey))throw Error('Missing render payload');
-   const source=await this.store.get(payload.inputKey,960044),v=input({source:source.toString('base64'),plan:payload.plan,title:payload.title,consent:true});
+   const source=await this.store.get(payload.inputKey,2880044),v=input({source:source.toString('base64'),plan:payload.plan,title:payload.title,consent:true});
    if(v.inputSha256!==permit.inputSha256||v.planSha256!==permit.planSha256)throw Error('Worker payload identity mismatch');
    const folder=await mkdtemp(join(directory,'generation-')),prefix=join(folder,'result');
    await writeFile(join(folder,'source.wav'),source,{flag:'wx',mode:0o600});

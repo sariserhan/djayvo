@@ -92,15 +92,17 @@ Region chop_region(const AudioBuffer& source, std::uint64_t onset, std::uint64_t
 }
 }
 RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy strategy,
-                     std::uint32_t seed, bool synthetic, bool consent, const MusicalContext* context) {
+                     std::uint32_t seed, bool synthetic, bool consent, const MusicalContext* context, unsigned requested_seconds) {
     strategy_name(strategy);
+    if (requested_seconds && (requested_seconds<15 || requested_seconds>60 || strategy==Strategy::baseline))
+        throw std::invalid_argument("duration requires 15..60 seconds and an original arrangement");
     if (context && (strategy!=Strategy::call_response || context->tempo_milli_bpm<60000 ||
         context->tempo_milli_bpm>180000 || context->tonic_midi<60 || context->tonic_midi>71 ||
         (context->mode!=KeyMode::minor && context->mode!=KeyMode::major)))
         throw std::invalid_argument("session context requires call-response, 60..180 BPM and a major/minor tonic C4..B4");
     if (strategy==Strategy::baseline) return make_baseline(source,a,seed,synthetic,consent);
     if (source.sample_rate<8000 || source.sample_rate>192000 ||
-        source.mono.size()<source.sample_rate*2ULL || source.mono.size()>source.sample_rate*5ULL ||
+        source.mono.size()<source.sample_rate*(requested_seconds?1ULL:2ULL) || source.mono.size()>source.sample_rate*(requested_seconds?15ULL:5ULL) ||
         a.phrases.empty() || a.phrases.size()>128 || a.onsets.size()>2048 ||
         !std::isfinite(a.pitch_hz) || a.pitch_hz<0 || a.pitch_hz>1000 ||
         !std::isfinite(a.pitch_confidence) || a.pitch_confidence<0 || a.pitch_confidence>1 || !std::isfinite(a.normalization_gain) ||
@@ -112,6 +114,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         if (phrase.begin >= phrase.end || phrase.end > source.mono.size())
             throw std::invalid_argument("phrase outside source");
     RemixPlan r;
+    r.requested_seconds=requested_seconds;
     r.strategy = strategy; r.source_sha256 = source.sha256;
     r.synthetic_source = synthetic; r.consent_confirmed = consent; r.analysis = a;
     auto& p = r.music;
@@ -129,18 +132,38 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         p.bars=std::max(9,static_cast<int>(std::llround(28.0*p.tempo_milli_bpm/240000.0)));
     }
     const int late_break=(strategy==Strategy::reggae || strategy==Strategy::experimental)?static_cast<int>((seed>>2U)&1U):0;
-    const int break_bar=club?10:p.bars-6+late_break, return_bar=club?14:p.bars-4+late_break;
+    int intro_bars=2,build_end=6,break_bar=club?10:p.bars-6+late_break, return_bar=club?14:p.bars-4+late_break;
     p.sections={{"intro",0,2},{"groove",2,break_bar-2},{"break",break_bar,2},
                 {"return",return_bar,p.bars-1-return_bar},{"ending",p.bars-1,1}};
     if (club) p.sections={{"intro",0,2},{"build",2,4},{"drop",6,4},{"break",10,4},{"return",14,5},{"ending",19,1}};
+    if (requested_seconds) {
+        const double bar_seconds=240000.0/p.tempo_milli_bpm,tail_seconds=p.tail_ms/1000.0;
+        const int minimum=std::max(club?6:5,static_cast<int>(std::ceil((15-tail_seconds)/bar_seconds)));
+        const int maximum=static_cast<int>(std::floor((60-tail_seconds)/bar_seconds));
+        p.bars=std::clamp(static_cast<int>(std::llround((requested_seconds-tail_seconds)/bar_seconds)),minimum,maximum);
+        intro_bars=p.bars<10?1:2;
+        break_bar=std::clamp(p.bars/2,intro_bars+(club?2:1),p.bars-3);
+        return_bar=std::clamp(break_bar+std::max(1,p.bars/6),break_bar+1,p.bars-2);
+        if(club)build_end=std::clamp(p.bars*3/10,intro_bars+1,break_bar-1);
+        p.sections={{"intro",0,intro_bars},{"groove",intro_bars,break_bar-intro_bars},{"break",break_bar,return_bar-break_bar},
+                    {"return",return_bar,p.bars-1-return_bar},{"ending",p.bars-1,1}};
+        if(club)p.sections={{"intro",0,intro_bars},{"build",intro_bars,build_end-intro_bars},{"drop",build_end,break_bar-build_end},
+                           {"break",break_bar,return_bar-break_bar},{"return",return_bar,p.bars-1-return_bar},{"ending",p.bars-1,1}};
+    }
     r.instrument_room_mix=strategy==Strategy::reggae?0.24:0.18;
     if (a.pitch_hz > 0 && a.pitch_confidence >= 0.65) {
         const int midi = static_cast<int>(std::llround(69 + 12*std::log2(a.pitch_hz/440)));
         r.tonic_midi = 60 + ((midi % 12 + 12) % 12);
     }
     if (context) { r.tonic_midi=context->tonic_midi; r.key_mode=context->mode; }
-    // Entire source survives unpitched and forward. Edge fades are only 3 ms.
-    r.clips.push_back({0,source.mono.size(),1.0});
+    // Longer recordings retain a bounded clean hook; source PCM and its hash stay intact.
+    std::uint64_t hook_begin=0,hook_end=source.mono.size();
+    if(requested_seconds && source.mono.size()>source.sample_rate*5ULL){
+        const auto phrase=std::max_element(a.phrases.begin(),a.phrases.end(),[](const Region& x,const Region& y){return x.end-x.begin<y.end-y.begin;});
+        hook_begin=std::min<std::uint64_t>(phrase->begin,source.mono.size()-source.sample_rate*5ULL);
+        hook_end=hook_begin+source.sample_rate*5ULL;
+    }
+    r.clips.push_back({hook_begin,hook_end,1.0});
     // DC is not audible energy; center pause detection while keeping source PCM and edge selection intact.
     double mean=0;
     for (float sample:source.mono) mean+=sample;
@@ -171,7 +194,7 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     // The source can be a reveal, not always a spoken preamble. Rotate these
     // reproducibly across styles and seeds while keeping both clean hooks.
     const auto opening=(seed%3U+static_cast<unsigned>(strategy))%3U;
-    r.vocals.push_back({opening==0?0:2*bar_ticks,0,-3,1,false,0,true});
+    r.vocals.push_back({(requested_seconds || opening==0)?0:2*bar_ticks,0,-3,1,false,0,true});
     if (opening==2) {
         r.vocals.push_back({0,1,-8,1,false,-0.15,false});
         r.vocals.push_back({3*q/2,std::min<std::size_t>(2,r.clips.size()-1),-9,1,false,0.15,false});
@@ -225,10 +248,10 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
     if (motif.empty()) motif={0,3*q/2,5*q/2};
     std::sort(motif.begin(),motif.end());
     const auto phrase=dialogue?source_phrase(source,a,p):std::vector<PhraseNote>{};
-    for (int b=club?0:opening==0?2:0; b<p.bars; ++b) {
+    for (int b=club?0:opening==0?intro_bars:0; b<p.bars; ++b) {
         const Tick base=b*bar_ticks;
-        const bool intro=b<2;
-        const bool build=club && b>=2 && b<6;
+        const bool intro=b<intro_bars;
+        const bool build=club && b>=intro_bars && b<build_end;
         const bool breakdown=b>=break_bar && b<return_bar;
         const bool returning=b>=return_bar;
         const bool last=b==p.bars-1;
@@ -273,12 +296,12 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
         };
         if (club && (intro || build || breakdown)) {
             if (b%2==0) chord(0,bar_ticks-q/4,breakdown?60:54);
-            if (build && b>=4) {
-                for (int h=0;h<(b==5?6:8);++h) drum(h*q/2,42,(h%2?38:50)+(b-4)*8,120);
+            if (build && b>=build_end-2) {
+                for (int h=0;h<(b==build_end-1?6:8);++h) drum(h*q/2,42,(h%2?38:50)+(b-(build_end-2))*8,120);
                 // Accelerate, then leave the last beat free of new hits before the drop.
-                if (b==5) for (int h=0;h<3;++h) drum(2*q+h*q/4,38,60+h*12,120);
+                if (b==build_end-1) for (int h=0;h<3;++h) drum(2*q+h*q/4,38,60+h*12,120);
             }
-            if (b==13) {drum(2*q,38,52);drum(3*q,42,56);drum(13*q/4,38,68,120);}
+            if (b==return_bar-1) {drum(2*q,38,52);drum(3*q,42,56);drum(13*q/4,38,68,120);}
         } else if (club) {
             if (last) {chord(0,2*q,70);bass_note(0,2*q,0,100);drum(0,36,115);}
             else {
@@ -301,11 +324,11 @@ RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& a, Strategy
             if (last) {chord(0,2*q,70);bass_note(0,2*q,0,92);drum(0,36,98);}
             else {
                 const auto bar_frame=tick_to_frame(base,p);
-                const auto first_call=tick_to_frame(opening==0?0:2*bar_ticks,p);
+                const auto first_call=tick_to_frame((requested_seconds || opening==0)?0:2*bar_ticks,p);
                 const auto second_call=tick_to_frame(break_bar*bar_ticks,p);
                 const auto breath=source.sample_rate/5U;
-                const bool full_call=(bar_frame>=first_call && bar_frame<first_call+source.mono.size()+breath) ||
-                                     (bar_frame>=second_call && bar_frame<second_call+source.mono.size()+breath);
+                const bool full_call=(bar_frame>=first_call && bar_frame<first_call+(hook_end-hook_begin)+breath) ||
+                                     (bar_frame>=second_call && bar_frame<second_call+(hook_end-hook_begin)+breath);
                 const int answer_start=b-((b+3)%4);
                 const bool answer=(b%4==1 || b%4==2) && answer_start>=2 &&
                     ((answer_start+1<break_bar) || (answer_start>=return_bar && answer_start+1<p.bars-1));

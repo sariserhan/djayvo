@@ -1,0 +1,29 @@
+import assert from 'node:assert/strict';import {spawn,execFileSync} from 'node:child_process';import {mkdtemp,readFile,writeFile,mkdir} from 'node:fs/promises';import {fileURLToPath} from 'node:url';import {join} from 'node:path';import {setTimeout as delay} from 'node:timers/promises';import {createHash} from 'node:crypto';
+import {chromium,webkit} from 'playwright';import AxeBuilder from '@axe-core/playwright';import {silenceSpeakers} from './silent-audio.mjs';
+const root=fileURLToPath(new URL('../../../',import.meta.url)),folder=await mkdtemp(join(root,'renders/duration-browser-')),base='http://127.0.0.1:4237',results=[],hash=b=>createHash('sha256').update(b).digest('hex');
+const site=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port','4237'],{env:{...process.env,JAMLOOM_COMING_SOON:'false',DATABASE_URL:'',BETTER_AUTH_URL:base},stdio:'ignore'});
+try{
+ for(let i=0;i<100;i++){try{if((await fetch(base+'/studio/index.html')).ok)break;}catch{}await delay(100);if(i===99)throw Error('Site unavailable');}
+ for(const [name,engine] of Object.entries({chromium,webkit})){
+  const browser=await engine.launch(name==='chromium'?{args:['--mute-audio']}:{});
+  try{
+   const context=await browser.newContext({viewport:{width:1280,height:960}});await context.addInitScript(silenceSpeakers);await context.addInitScript(()=>{const W=window.Worker;window.Worker=class extends W{postMessage(data,...rest){if(data.wav instanceof ArrayBuffer)window.__source=Array.from(new Uint8Array(data.wav));return super.postMessage(data,...rest);}};});await context.route('**/*',r=>new URL(r.request().url()).origin===base||r.request().url().startsWith('blob:')?r.continue():r.abort());const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+   await page.goto(base+'/studio/index.html');await page.locator('#consent').check();
+   for(const [seconds,duration] of [[1,15],[15,60]]){
+    const frames=48000*seconds,wav=Buffer.alloc(44+frames*2);wav.write('RIFF');wav.writeUInt32LE(wav.length-8,4);wav.write('WAVEfmt ',8);wav.writeUInt32LE(16,16);wav.writeUInt16LE(1,20);wav.writeUInt16LE(1,22);wav.writeUInt32LE(48000,24);wav.writeUInt32LE(96000,28);wav.writeUInt16LE(2,32);wav.writeUInt16LE(16,34);wav.write('data',36);wav.writeUInt32LE(frames*2,40);for(let i=0;i<frames;i++)wav.writeInt16LE(Math.round(5000*Math.sin(i*2*Math.PI*220/48000)),44+i*2);
+    await page.locator('input[type=file]').setInputFiles({name:'synthetic.wav',mimeType:'audio/wav',buffer:wav});await page.waitForFunction(()=>!document.querySelector('#generate').disabled);await page.locator('#trim-end').fill(String(seconds));await page.locator('#remix-seconds').selectOption(String(duration));await page.locator('input[name=style][value=funk]').check();
+    const count=await page.locator('#library audio').count();await page.locator('#generate').click();await page.waitForFunction(n=>document.querySelectorAll('#library audio').length===n+1,count,{timeout:120000});
+    const source=Buffer.from(await page.evaluate(()=>window.__source));
+    const record=await page.evaluate(async()=>{const {loadSessions}=await import('/studio/library.js');const s=(await loadSessions()).sort((a,b)=>b.created-a.created)[0];return {seed:s.seed,files:await Promise.all(s.files.map(async f=>{const bytes=new Uint8Array(await f.blob.arrayBuffer());let text='';for(let i=0;i<bytes.length;i+=16384)text+=String.fromCharCode(...bytes.subarray(i,i+16384));return {name:f.name,bytes:btoa(text)};}))};});
+    const output=Buffer.from(record.files.find(f=>f.name.endsWith('.wav')).bytes,'base64'),score=Buffer.from(record.files.find(f=>f.name.endsWith('.score.json')).bytes,'base64'),plan=JSON.parse(score);assert.equal(plan.schema_version,'1.8-remix');assert.equal(plan.requested_seconds,duration);const actual=(output.length-44)/192000;assert.ok(actual>=15&&actual<=60&&Math.abs(actual-duration)<3.1);
+    const input=join(folder,`${name}-${seconds}.wav`),prefix=join(folder,`${name}-${duration}`),planPath=prefix+'.json';await writeFile(input,source);await writeFile(planPath,score);
+    execFileSync(join(root,'build-finish/jamloom_remix'),['--input',input,'--consent','--style','funk','--seed',String(record.seed),'--duration-seconds',String(duration),'--output',prefix]);assert.equal(hash(output),hash(await readFile(prefix+'.funk.wav')),'native/WASM identity');
+    execFileSync(join(root,'build-finish/jamloom_remix'),['--input',input,'--consent','--style','funk','--seed',String(record.seed),'--plan',planPath,'--block-size','113','--output',prefix+'-replay']);assert.equal(hash(output),hash(await readFile(prefix+'-replay.funk.wav')),'score replay identity');
+    await page.reload();await page.waitForFunction(n=>document.querySelectorAll('#library audio').length===n+1,count);assert.equal(await page.locator('#library audio').first().evaluate(a=>a.paused),true);await page.locator('#consent').check();results.push({browser:name,sourceSeconds:seconds,requested:duration,actual,sha256:hash(output),native_wasm_replay:'PASS',saved_reload:'PASS'});
+   }
+   for(const width of [1280,390,320]){await page.setViewportSize({width,height:960});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'overflow '+width);}
+   assert.deepEqual((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({html:n.html,summary:n.failureSummary}))})),[]);assert.deepEqual(errors,[]);console.log(name,'PASS');
+  }finally{await browser.close();}
+ }
+ await mkdir(join(root,'docs/evidence/duration-completion'),{recursive:true});await writeFile(join(root,'docs/evidence/duration-completion/browser.json'),JSON.stringify({status:'PASS',results,human_quality:'NOT RUN'},null,2)+'\n');console.log('PASS',JSON.stringify(results));
+}finally{site.kill();}

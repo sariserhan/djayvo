@@ -11,18 +11,18 @@ export async function resumeAudio(context) {
   } finally { clearTimeout(timer); }
 }
 
-export function trimFrames(length, start, end, rate = RATE) {
+export function trimFrames(length, start, end, rate = RATE, extended = false) {
   if (![start, end, rate].every(Number.isFinite) || rate <= 0 || start < 0 || end < start)
-    throw new Error('Choose a valid 2–5 second selection.');
+    throw new Error('Choose a valid selection within your recording.');
   const first = Math.round(start * rate);
   const count = Math.round((end - start) * rate);
-  if (count < 2 * rate || count > 5 * rate || first + count > length)
-    throw new Error('Choose between 2 and 5 seconds within your recording.');
+  if (count < (extended?1:2) * rate || count > (extended?15:5) * rate || first + count > length)
+    throw new Error(`Choose between ${extended?1:2} and ${extended?15:5} seconds within your recording.`);
   return [first, count];
 }
 
-export function encodeWav(samples, start = 0, end = samples.length / RATE) {
-  const [first, count] = trimFrames(samples.length, start, end);
+export function encodeWav(samples, start = 0, end = samples.length / RATE, extended = false) {
+  const [first, count] = trimFrames(samples.length, start, end, RATE, extended);
   const buffer = new ArrayBuffer(44 + count * 2);
   const view = new DataView(buffer);
   const text = (offset, value) => [...value].forEach((char, i) => view.setUint8(offset + i, char.charCodeAt(0)));
@@ -52,19 +52,20 @@ async function durationOf(blob) {
   } finally { audio.removeAttribute('src'); audio.load(); URL.revokeObjectURL(url); }
 }
 
-export async function decodeAudio(blob, recorded = false) {
+export async function decodeAudio(blob, recorded = false, minimum = 2) {
+  if (![1,2].includes(minimum)) throw new Error('Invalid recording limit.');
   if (!blob.size || blob.size > 8 * 1024 * 1024) throw new Error('Choose an audio file smaller than 8 MB.');
   // Recorded WebM can have no duration metadata. Its capture timer bounds it instead.
   if (!recorded) {
     const duration = await durationOf(blob);
-    if (!Number.isFinite(duration) || duration < 2 || duration > 15.01)
-      throw new Error('Import 2–15 seconds of audio, then choose a 2–5 second section.');
+    if (!Number.isFinite(duration) || duration < minimum || duration > 15.01)
+      throw new Error(`Import ${minimum}–15 seconds of audio, then select your phrase.`);
   }
   const context = new AudioContext();
   try {
     const input = await context.decodeAudioData(await blob.arrayBuffer());
-    if (input.duration < 2 || input.duration > 15.01 || input.numberOfChannels > 2)
-      throw new Error('Use 2–15 seconds of mono or stereo audio.');
+    if (input.duration < minimum || input.duration > 15.01 || input.numberOfChannels > 2)
+      throw new Error(`Use ${minimum}–15 seconds of mono or stereo audio.`);
     const offline = new OfflineAudioContext(1, Math.round(input.duration * RATE), RATE);
     const source = offline.createBufferSource();
     source.buffer = input; source.connect(offline.destination); source.start();

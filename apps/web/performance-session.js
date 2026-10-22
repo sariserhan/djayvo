@@ -1,4 +1,5 @@
 import { decodeAudio, encodeWav, resumeAudio } from './audio.js';
+import { livePhraseCapture } from './live-phrase-capture.js';
 import { SessionTransport } from './session-transport.js';
 import { setMixerGain, validatePreparedTrack, updateToneEcho, clearEcho, beatEchoDelay } from './mixer.js';
 import { compositionKey } from './novelty.js';
@@ -7,6 +8,7 @@ import { saveSession, verifySession } from './library.js';
 const $ = id => document.getElementById(id);
 const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
 export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights, onSaved, onPhraseChanged = () => {}, onSourcesChanged = () => {} }) {
+  let live;
   let prepared, transport, samples, performanceBuffer, download, busy = '', starting = '', revision = 0, startVersion = 0;
   let savedPerformance, saving = false, saved = false;
   let sourceOrigin, phraseBlob;
@@ -37,19 +39,24 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   function refresh() {
     const playing = !!transport?.a, activeC = !!transport?.c;
     if (wasC && !activeC) clearCEcho();
+    if(live&&!playing){const active=live;queueMicrotask(()=>{if(live===active)cancel();});}
+    if(live?.phase==='playing'&&!activeC&&playing){live.phase='listening';live.capture.listen(live.buffer);live.buffer=null;armSilenceTimeout();$('live-phrase-status').textContent='Listening for the next phrase. Capture pauses during each answer.';}
+    $('live-phrases').textContent=live?'Stop continual phrases':'Start continual phrases';
+    $('live-phrases').disabled=!live&&(!playing||!confirmed()||!permitted()||!$('live-headphones').checked||!!busy||!!starting||activeC||!context()?.audioWorklet||!navigator.mediaDevices?.getUserMedia);
+    $('live-headphones').disabled=!!live;
     $('prepare-a').disabled = !rights.checked || !deck.file || !deck.audio.paused || !!deck.loading || !!busy || !!prepared || deck.starting;
     $('release-a').disabled = !prepared && busy !== 'preparing';
     $('session-play').disabled = !confirmed() || playing || !!busy || !!starting;
     $('session-stop').disabled = !playing && starting !== 'a';
     $('context-confirmed').disabled = !prepared || playing || !!busy || !!starting;
     for (const id of ['session-bpm', 'session-key', 'session-mode', 'session-downbeat']) $(id).disabled = playing || !!busy || !!starting;
-    $('phrase-record').disabled = !canRecord || !permitted() || !!starting || (!!busy && busy !== 'recording');
+    $('phrase-record').disabled = !!live || !canRecord || !permitted() || !!starting || (!!busy && busy !== 'recording');
     $('phrase-record').textContent = busy === 'recording' ? 'Stop recording' : canRecord ? 'Record phrase' : 'Recording unavailable';
-    $('phrase-file').disabled = !permitted() || !!busy || !!starting;
+    $('phrase-file').disabled = !!live || !permitted() || !!busy || !!starting;
     $('phrase-delete').disabled = !samples && !busy && !performanceBuffer;
-    $('phrase-generate').disabled = !confirmed() || !permitted() || !samples || !!busy || !!starting || activeC;
+    $('phrase-generate').disabled = !!live || !confirmed() || !permitted() || !samples || !!busy || !!starting || activeC;
     $('phrase-cancel').disabled = !['generating', 'loading', 'permission'].includes(busy);
-    $('c-arm').disabled = !playing || !performanceBuffer || !confirmed() || !permitted() || !!busy || !!starting || activeC;
+    $('c-arm').disabled = !!live || !playing || !performanceBuffer || !confirmed() || !permitted() || !!busy || !!starting || activeC;
     $('performance-save').disabled = !savedPerformance || !permitted() || !rights.checked || !!busy || saving || saved;
     $('performance-save').textContent = saving ? 'Saving…' : saved ? 'Saved on this device' : 'Save C on this device';
     $('c-stop').disabled = !activeC && starting !== 'c';
@@ -76,7 +83,10 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     if (download) URL.revokeObjectURL(download);
     download = undefined; $('performance-download').hidden = true; $('performance-download').removeAttribute('href');
   }
+  function stopLive(){if(!live)return;const active=live;live=undefined;clearTimeout(active.silence);active.abort.abort();active.capture?.stop();$('live-headphones').checked=false;$('live-phrase-status').textContent='Continual capture stopped. Save any ready C, or delete the phrase to clear its audio.';transport?.stopC();}
+  function armSilenceTimeout(){if(live){clearTimeout(live.silence);live.silence=setTimeout(()=>{cancel();$('live-phrase-status').textContent='No phrase completed within one minute. Capture stopped.';},60000);}}
   function cancel() {
+    stopLive();
     if (starting) say('Playback request cancelled.');
     if (['permission', 'recording'].includes(busy)) $('phrase-status').textContent = samples ? 'Recording cancelled. Previous phrase kept.' : 'Recording cancelled. No phrase loaded.';
     revision++; startVersion++; starting = ''; worker?.terminate(); worker = undefined; clearTimeout(timer); clearInterval(timer);
@@ -90,6 +100,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     clearPerformance(); say('Load and prepare Deck A to begin.'); refresh();
   }
   function stop() {
+    if(live)cancel();
     if (starting) say('Playback request cancelled.');
     startVersion++; starting = ''; transport?.stop(); clearCEcho(); refresh();
   }
@@ -174,6 +185,36 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   $('phrase-file').onchange = event => {
     const file = event.target.files[0]; event.target.value = '';
     if (file && permitted() && !busy && !starting) loadPhrase(file);
+  };
+  $('live-headphones').onchange=refresh;
+  $('live-phrases').onclick=async()=>{
+    if(live){cancel();return;}
+    if(!navigator.mediaDevices?.getUserMedia||!transport?.a||!confirmed()||!permitted()||!$('live-headphones').checked||busy||starting||transport.c)return;
+    const active=live={abort:new AbortController(),phase:'opening',capture:null,buffer:null,silence:null};
+    const failed=failure=>{if(live===active){cancel();error(failure);}};
+    refresh();$('performance-error').textContent='';$('live-phrase-status').textContent='Waiting for microphone permission…';
+    try{
+      await resumeAudio(context());if(live!==active)return;
+      active.capture=await livePhraseCapture(context(),active.abort.signal,async data=>{
+        if(live!==active)return;clearTimeout(active.silence);active.phase='preparing';active.buffer=data.buffer;
+        $('live-phrase-status').textContent='Capture paused. Preparing a response…';
+        try{
+          const rate=context().sampleRate;
+          if(!(data.buffer instanceof ArrayBuffer)||data.buffer.byteLength!==rate*5*4||!Number.isInteger(data.frames)||data.frames<rate*2||data.frames>rate*5)throw Error('Invalid captured phrase');
+          const offline=new OfflineAudioContext(1,Math.round(data.frames*48000/rate),48000),buffer=offline.createBuffer(1,data.frames,rate);
+          buffer.copyToChannel(new Float32Array(data.buffer,0,data.frames),0);
+          const source=offline.createBufferSource();source.buffer=buffer;source.connect(offline.destination);source.start();
+          const normalized=(await offline.startRendering()).getChannelData(0);
+          if(live!==active)return;
+          await loadPhrase(new Blob([encodeWav(normalized)],{type:'audio/wav'}),true);
+          if(live!==active)return;
+          if(!samples||$('performance-error').textContent)throw Error($('performance-error').textContent||'Phrase rejected');
+          $('phrase-generate').onclick();
+        }catch(failure){failed(failure);}
+      },failed);
+      if(live!==active){active.capture.stop();return;}
+      active.phase='listening';active.capture.listen();armSilenceTimeout();$('live-phrase-status').textContent='Listening. Pause after your phrase; capture stops at five seconds.';refresh();
+    }catch(failure){failed(failure);}
   };
   $('phrase-record').onclick = async () => {
     if (busy === 'recording') { clearInterval(timer); recorder.stop(); stream?.getTracks().forEach(track => track.stop()); return; }
@@ -261,8 +302,10 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
         download = URL.createObjectURL(new Blob([bytes], { type: 'audio/wav' }));
         $('performance-download').href = download; $('performance-download').download = `jamloom-session-${data.seed}.wav`; $('performance-download').hidden = false;
         say(`C ready in ${((performance.now() - began) / 1000).toFixed(1)} s · ${buffer.duration.toFixed(1)} s performance. Arm it when A is playing.`);
-      } catch (failure) { if (token === revision) error(failure); }
-      finally { if (token === revision) { busy = ''; refresh(); } }
+      } catch (failure) { if (token === revision) { if(live)cancel();error(failure); } }
+      finally { if (token === revision) { busy = '';
+        if(live?.phase==='preparing'){try{live.phase='playing';transport.arm(performanceBuffer,mixer().performanceFX.input);$('live-phrase-status').textContent='Capture paused while C is armed and playing.';}catch(failure){cancel();error(failure);}}
+        refresh(); } }
     };
     worker.postMessage({ wav, style: 'call_response', seed: crypto.getRandomValues(new Uint32Array(1))[0], recent, consent: true, context: requested }, [wav]);
   };
@@ -286,6 +329,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     } catch (failure) { error(failure); }
   };
   $('c-stop').onclick = () => {
+    if(live)cancel();
     if (starting === 'c') { startVersion++; starting = ''; }
     transport?.stopC(); clearCEcho(); say(transport?.a ? 'C stopped. A continues.' : 'C stopped.'); refresh();
   };
@@ -310,7 +354,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
         beats_per_bar: 4, downbeat_seconds: Number($('session-downbeat').value), status: 'user_confirmed' } : null };
   }
   async function recoverySnapshot(){
-    if(busy||starting)throw Error('Wait for phrase preparation before saving the set.');
+    if(live||busy||starting)throw Error('Wait for phrase preparation before saving the set.');
     if(!prepared&&!samples&&!savedPerformance)return null;
     if(!permitted()&&(samples||savedPerformance))throw Error('Phrase permission is required to save this performance.');
     const snapshotRevision=revision;

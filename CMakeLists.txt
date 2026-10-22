@@ -54,7 +54,7 @@ if(EMSCRIPTEN)
   target_compile_options(jamloom_web PRIVATE -fexceptions)
   target_link_options(jamloom_web PRIVATE
     -fexceptions --no-entry
-    "-sEXPORTED_FUNCTIONS=['_jamloom_web_render','_jamloom_web_session','_jamloom_web_session_mode','_jamloom_web_taste']"
+    "-sEXPORTED_FUNCTIONS=['_jamloom_web_render','_jamloom_web_render_duration','_jamloom_web_session','_jamloom_web_session_mode','_jamloom_web_taste']"
     "-sEXPORTED_RUNTIME_METHODS=['ccall','FS']"
     -sMODULARIZE=1 -sEXPORT_ES6=1 -sENVIRONMENT=web,worker,node
     -sALLOW_MEMORY_GROWTH=1 -sMAXIMUM_MEMORY=536870912 -sSTACK_SIZE=2097152)

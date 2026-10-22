@@ -38,7 +38,7 @@ export async function verifyPerformanceSave(page, check, downloadHash) {
 
 export async function verifySavedDecks(page, check, capture) {
   await page.reload();
-  await page.locator('#saved-mixes a').click();
+  await page.getByRole('link', { name: 'Manage in Voice studio', exact: true }).click();
   await page.waitForFunction(() => document.querySelectorAll('#library audio').length === 1);
   assert.match(await page.locator('#library-count').textContent(), /1 \/ 10 sessions/);
   await page.getByRole('link', { name: 'DJ workspace', exact: true }).click();
@@ -122,7 +122,7 @@ export async function verifySavedDecks(page, check, capture) {
   await page.waitForFunction(() => document.getElementById('library-status').textContent.includes('damaged'));
   assert.equal(await page.locator('#saved-mix option').count(), 1);
   check('changed/corrupt stored bytes are rechecked on load, leave the old deck intact and are hidden on refresh');
-  await page.locator('#saved-mixes a').click();
+  await page.getByRole('link', { name: 'Manage in Voice studio', exact: true }).click();
   await page.locator('#privacy-open').click();
   await page.locator('#delete-all').click();
   await page.locator('#delete-confirm').click();

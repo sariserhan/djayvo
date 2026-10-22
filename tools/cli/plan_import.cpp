@@ -166,8 +166,10 @@ jamloom::RemixPlan import_plan(const std::string& text,const jamloom::AudioBuffe
     const auto j=Parser(text).run();
     j.keys({"schema_version","seed","source_asset_id","sample_rate","source","tempo_milli_bpm",
             "ticks_per_quarter","time_signature","target_bars","tail_ms","strategy","key","mix",
-            "analysis","sections","voice_clips","voice_events","tracks"},{"tempo_changes"});
-    const bool modes=j.at("schema_version").string()=="1.7-remix";
+            "analysis","sections","voice_clips","voice_events","tracks"},{"tempo_changes","requested_seconds"});
+    const bool extended=j.at("schema_version").string()=="1.8-remix";
+    if(extended!=j.has("requested_seconds"))reject("duration field requires plan version 1.8");
+    const bool modes=extended || j.at("schema_version").string()=="1.7-remix";
     const bool reverb=modes || j.at("schema_version").string()=="1.6-remix";
     const bool sustained=reverb || j.at("schema_version").string()=="1.5-remix";
     const bool guitar=sustained || j.at("schema_version").string()=="1.4-remix";
@@ -185,7 +187,7 @@ jamloom::RemixPlan import_plan(const std::string& text,const jamloom::AudioBuffe
         s.at("original_frames").integer()!=source.original_frames || s.at("processed_frames").integer()!=source.mono.size() ||
         s.at("kind").string()!=(synthetic?"synthetic":"recorded") || s.at("consent_confirmed").boolean()!=consent)
         reject("plan source metadata/permission mismatch");
-    RemixPlan r;r.source_sha256=source.sha256;r.synthetic_source=synthetic;r.consent_confirmed=consent;r.strategy=strategy;
+    RemixPlan r;if(extended){r.requested_seconds=j.at("requested_seconds").integer(60);if(r.requested_seconds<15)reject("duration outside 15..60");}r.source_sha256=source.sha256;r.synthetic_source=synthetic;r.consent_confirmed=consent;r.strategy=strategy;
     auto& p=r.music;p.seed=seed;p.sample_rate=source.sample_rate;
     p.tempo_milli_bpm=j.at("tempo_milli_bpm").integer(300000);
     if (j.has("tempo_changes")) for (const auto& change:j.at("tempo_changes").array(1,64)) {

@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "result": {
+    "id": "3c205cbd-7782-4ce9-b534-411cc05b8901",
+    "state": "completed",
+    "outputId": "83a937f7-903d-4b25-af0a-f25b48db2247",
+    "sha256": "f9a44b9e27abcecd21d69bf6c17eee74b1fa881b667569891aecb61cc3fe1202",
+    "modeledCostMicros": 10119,
+    "externalSpendMicros": 0
+  },
+  "recovered": {
+    "id": "67ec1f21-fb61-4867-a406-d5d4db3ec34f",
+    "state": "completed",
+    "outputId": "3c629bda-5560-4ad4-8277-70d7632db0ec",
+    "sha256": "f9a44b9e27abcecd21d69bf6c17eee74b1fa881b667569891aecb61cc3fe1202",
+    "modeledCostMicros": 10139,
+    "externalSpendMicros": 0
+  },
+  "checks": [
+    "quote has no reservation",
+    "accepted exact charge",
+    "changed input denied",
+    "other owner denied",
+    "real native renderer",
+    "frozen PCM replay",
+    "private library",
+    "idempotent submit",
+    "queued cancellation",
+    "storage failure holds reservation",
+    "corrupted output rejected",
+    "restart completes without rerender",
+    "cancellation during recovery",
+    "cancelled staged source removed",
+    "other worker jobs remain queued"
+  ],
+  "provider_execution": "NOT RUN",
+  "human_quality": "NOT RUN"
+}

@@ -27,6 +27,7 @@ const server = createServer(async (request, response) => {
     response.writeHead(404); response.end(); return;
   }
   try {
+    if(['api/aurowall','api/site-status'].includes(name)){response.setHeader('Content-Type','application/json');response.end(JSON.stringify(name==='api/aurowall'?{tracks:[]}:{maintenance:false,announcement:null}));return;}
     const bytes = await fs.readFile(name === 'session-probe.js' ? path.join(root, 'apps/web/tests/session-probe.js') : path.join(publicRoot, name));
     response.writeHead(200, { 'Content-Type': ({ '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.wasm': 'application/wasm', '.svg': 'image/svg+xml' })[path.extname(name)] || 'application/octet-stream',
       'Content-Security-Policy': "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; object-src 'none'" });
@@ -89,7 +90,7 @@ await context.addInitScript(() => {
   };
 });
 let page;
-const capture = async name => { screenshot = true; try { await page.screenshot({ path: path.join(output, name), fullPage: true }); } finally { screenshot = false; } };
+const capture = async name => { screenshot = true; try { await page.screenshot({ path: path.join(output, name), fullPage: true, caret: 'initial' }); } finally { screenshot = false; } };
 const check = name => { checks.push({ name, status: 'PASS' }); console.log('PASS:', name); };
 try {
   // Keep the missing-recorder simulation separate from the full audio session.
@@ -114,8 +115,10 @@ try {
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', message => {
     if (message.type() !== 'error') return;
+    const url=message.location().url;
+    if(!server.listening && [origin+'/api/aurowall',origin+'/api/site-status'].includes(url) && message.text().startsWith('Failed to load resource')){warnings.push({url,message:message.text(),reason:'Optional hosted API unavailable after actual server disconnect'});return;}
     if (screenshot && kind === 'webkit' && message.text().startsWith('Refused to apply a stylesheet')) warnings.push(message.text());
-    else errors.push(message.text());
+    else errors.push({message:message.text(),url});
   });
   page.on('request', request => requests.push(request.url()));
   await page.goto(`${origin}/dj.html`);

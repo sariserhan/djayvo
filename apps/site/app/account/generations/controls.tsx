@@ -17,11 +17,11 @@ export function GenerationRehearsal(){
  },[pending]);
  function changed(){setQuote(null);setInput(null);setRequestId('');}
  return <section className="product-panel product-controls" style={{overflowWrap:"anywhere"}}><h2>Local generation rehearsal</h2><p>This isolated development flow uses sandbox credits and local CPU rendering. It makes no purchase or GPU rental. Upload only a source and its exported Jamloom score that you have permission to process.</p>
- <label>Source WAV, 2–5 seconds<input type="file" accept=".wav" disabled={busy||!ready} onChange={e=>{changed();setSource(e.target.files?.[0]??null);}}/></label>
+ <label>Source WAV, 1–15 seconds (matching score required)<input type="file" accept=".wav" disabled={busy||!ready} onChange={e=>{changed();setSource(e.target.files?.[0]??null);}}/></label>
  <label>Matching Jamloom score<input type="file" accept=".json" disabled={busy||!ready} onChange={e=>{changed();setPlan(e.target.files?.[0]??null);}}/></label>
  <label><input type="checkbox" checked={consent} disabled={busy||!ready} onChange={e=>{changed();setConsent(e.target.checked);}}/>I have permission to upload and process this source and save the result privately.</label>
  <button className="secondary" disabled={busy||!source||!plan||!consent} onClick={()=>act(async()=>{
-  if(!source||!plan||source.size>960044||plan.size>1000000)throw Error('Source or score is too large.');
+  if(!source||!plan||source.size>2880044||plan.size>1000000)throw Error('Source or score is too large.');
   const bytes=new Uint8Array(await source.arrayBuffer());let binary='';for(let i=0;i<bytes.length;i+=8192)binary+=String.fromCharCode(...bytes.subarray(i,i+8192));
   const value={source:btoa(binary),plan:await plan.text(),title:'Private generation rehearsal',consent:true as const};
   const result=await call({action:'quote',input:value});setInput(value);setQuote(result);setRequestId(current=>current||crypto.randomUUID());setMessage('Quote ready; nothing reserved yet.');

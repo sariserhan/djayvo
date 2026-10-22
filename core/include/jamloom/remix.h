@@ -46,6 +46,7 @@ bool in_key(int pitch, int tonic, KeyMode mode);
 struct RemixPlan {
     PerformancePlan music;
     Strategy strategy = Strategy::hiphop;
+    unsigned requested_seconds = 0; // 0 preserves the original MVP contract; otherwise 15..60.
     std::string source_sha256;
     bool synthetic_source = false;
     bool consent_confirmed = false;
@@ -60,7 +61,8 @@ struct RemixPlan {
 struct MusicalContext { std::uint32_t tempo_milli_bpm; int tonic_midi; KeyMode mode = KeyMode::minor; };
 RemixPlan make_remix(const AudioBuffer& source, const InputAnalysis& analysis,
                      Strategy strategy, std::uint32_t seed,
-                     bool synthetic, bool consent_confirmed, const MusicalContext* context = nullptr);
+                     bool synthetic, bool consent_confirmed, const MusicalContext* context = nullptr,
+                     unsigned requested_seconds = 0);
 RemixPlan make_baseline(const AudioBuffer& source, const InputAnalysis& analysis,
                         std::uint32_t seed, bool synthetic, bool consent_confirmed);
 void validate(const RemixPlan& plan, const AudioBuffer& source);
@@ -131,5 +133,5 @@ struct PlanImport {
 void remix_file(const std::string& input, const std::string& output,
                  const std::vector<Strategy>& strategies, std::uint32_t rate,
                  std::uint32_t seed, std::size_t block, bool synthetic, bool consent, bool stems,
-                 const RenderControl& control = {}, const PlanImport* imported = nullptr);
+                 const RenderControl& control = {}, const PlanImport* imported = nullptr, unsigned requested_seconds = 0);
 } // namespace jamloom

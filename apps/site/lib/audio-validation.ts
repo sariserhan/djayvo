@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 
-export const MAX_AUDIO_BYTES = 7_680_044;
+export const MAX_AUDIO_BYTES = 11_520_044;
 export const STRATEGIES = ['hiphop','reggae','experimental','club','funk','call_response','hybrid'] as const;
 export const MOODS=['energetic','chill','playful','dark','uplifting'];
 export function publicationInput(value: unknown) {
@@ -36,7 +36,7 @@ export function saveInput(value: unknown) {
   if (v.consent !== true) throw new AudioError('Permission to save this mix is required.');
   if (typeof v.title !== 'string' || !v.title.trim() || v.title.length > 120 || /[\x00-\x1f\x7f]/.test(v.title)) throw new AudioError('Use a title of 1–120 characters.');
   if (!STRATEGIES.includes(v.strategy as typeof STRATEGIES[number])) throw new AudioError('Unsupported musical direction.');
-  if (!Number.isInteger(v.bytes) || (v.bytes as number) < 3_840_044 || (v.bytes as number) > MAX_AUDIO_BYTES || ((v.bytes as number)-44)%4) throw new AudioError('Choose a 20–40 second Jamloom WAV mix.');
+  if (!Number.isInteger(v.bytes) || (v.bytes as number) < 2_880_044 || (v.bytes as number) > MAX_AUDIO_BYTES || ((v.bytes as number)-44)%4) throw new AudioError('Choose a 15–60 second Jamloom WAV mix.');
   if (typeof v.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(v.sha256)) throw new AudioError('Invalid audio checksum.');
   return { requestId: v.requestId, title: v.title.trim(), strategy: v.strategy as string, bytes: v.bytes as number, sha256: v.sha256, publication };
 }
@@ -49,7 +49,7 @@ export function validateWav(data: Buffer, bytes: number, sha256: string) {
     data.readUInt16LE(20) !== 1 || data.readUInt16LE(22) !== 2 || data.readUInt32LE(24) !== 48000 ||
     data.readUInt32LE(28) !== 192000 || data.readUInt16LE(32) !== 4 || data.readUInt16LE(34) !== 16 ||
     data.toString('ascii',36,40) !== 'data' || data.readUInt32LE(40) !== bytes-44 ||
-    (bytes-44)%4 || bytes < 3_840_044) throw new AudioError('Choose an unmodified 20–40 second stereo 48 kHz PCM16 Jamloom WAV.');
+    (bytes-44)%4 || bytes < 2_880_044) throw new AudioError('Choose an unmodified 15–60 second stereo 48 kHz PCM16 Jamloom WAV.');
   const sum = [0,0], squares = [0,0];
   for (let at=44; at<bytes; at+=2) {
     const sample=data.readInt16LE(at), channel=((at-44)/2)%2;

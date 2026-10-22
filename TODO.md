@@ -11,16 +11,17 @@ No new paid compute, live charges or publication is implied.
 | FIN-001 | Source-responsive composition recovery | PARTIAL | Five isolated matched pairs, stems and exact replay PASS; human preference NOT RUN; earlier quality FAIL retained |
 | FIN-002 | Music DNA original audio | PARTIAL | Local shared-engine synthesis, 30–180 seconds, A/B variations, cancellation, exports and native/WASM identity PASS; cleared-catalogue identity/rating/inference and opt-in output preference adaptation PASS; musical acceptance remains |
 | FIN-003 | Quoted generation and worker completion | PARTIAL | Exact signed quote, local worker, private results, restart recovery, actual Stripe fee contract and refund-ledger tests PASS; remote-store output staging/recovery, cancellation, cleanup retry and charge-evidence collector PASS locally; actual provider bills/execution NOT RUN |
-| FIN-004 | DJ/live control and transport completion | PARTIAL | Imported beat controls, slip rolls, bounded curves and opt-in paused A/B recovery PASS; scratch/key-lock, advanced FX, full A/B/C scenes and a sample-timed note sequencer implemented; physical cue/deadlines remain unqualified |
+| FIN-004 | DJ/live control and transport completion | PARTIAL | Imported beat controls, slip rolls, bounded curves and opt-in paused A/B recovery PASS; scratch/key-lock, advanced FX, full A/B/C scenes and a sample-timed note sequencer implemented; continual phrase capture/response cycles implemented; physical cue/deadlines remain unqualified |
 | FIN-005 | Native Live Source integration | PARTIAL | Secure-origin fixture: Chromium pairing PASS; WebKit blocks loopback and falls back. Actual hosted capture/routing remains deferred |
 | FIN-006 | Academy acceptance | PARTIAL | Automated batch complete; owner mini-set, manual accessibility and physical output remain deferred |
 | FIN-007 | iOS, then launch operations | NOT RUN | Explicitly deferred until preceding work is finished |
 
-[Latest implementation, reproducible evidence and remaining gates](docs/non-ios-finish.md).
+[Latest implementation, reproducible evidence and remaining gates](docs/duration-and-live-phrases.md).
+Previous DJ/recovery checkpoint: `6faebff`, [report](docs/non-ios-finish.md).
 Prior [completion checkpoint](docs/non-ios-completion.md) is preserved.
 
 - [x] **FIN-008 — PASS, local:** Sixteenth-note sequencer with validated notes, sample-clock scheduling, panic/blur stop and paused scene recall.
-- [ ] **FIN-009 — PARTIAL:** Supplementary wider voice/duration contracts and continual live-response qualification remain outside the bounded MVP; exact remaining work is in the current report.
+- [x] **FIN-009 — PASS, local implementation:** Opt-in 1–15 second source / 15–60 second output contract, versioned score replay, private-storage migration and continual phrase capture with bar-aligned responses. Physical/quality qualification remains under L01/L03 and M1; see the current report.
 No push or deployment in this increment. Human checks remain deferred; the specification is not marked complete.
 
 ## Live Audio DJ — 2026-10-21
@@ -412,7 +413,7 @@ the source of truth and is not modified by this tracker.
 | M2 — AI director benchmarks | PARTIAL | Offline import/fallback prerequisite complete; model integration and benchmark remain NOT RUN behind M1; separately authorized pretrained and style-adapter feasibility trials measured |
 | M3 — iPhone Instant Remix | PARTIAL | Release app launches; owner recording/generation/playback, six phone tests, metrics and simulator flow pass; XCTest UI initialization, routes/lifecycle and production acceptance remain |
 | W0 — browser Instant Remix | PARTIAL | Local WebAssembly app and Chromium/WebKit/Firefox technical flows pass; physical browser microphone and owner web listening remain open |
-| M4 — live improvisation | PARTIAL | Prepared A/C session and live instrument/MIDI input implemented locally; general live transport, physical timing and venue evidence remain |
+| M4 — live improvisation | PARTIAL | Prepared A/C session and live instrument/MIDI input implemented locally; continual phrase cycles implemented; physical timing, endpoint calibration and venue evidence remain |
 | M5 — production and monetization | PARTIAL | Privacy/rights controls, production owner-preview deployment, migration/restore, hosted CI and Academy Stripe test transactions pass; permanent live billing, human/device acceptance, beta/demand and public commercial release remain |
 
 `PASS` means the named deliverable has evidence. `PARTIAL` means some required
@@ -1149,10 +1150,8 @@ paid infrastructure, training on reference tracks, publishing or charging users.
 ### M4: live improvisation — PARTIAL
 
 - [ ] **L01 — PARTIAL:** [Provisional latency/glitch budgets and measurement protocol](docs/live-research-protocol.md) defined; bounded [native callback](docs/audio-callback.md) and [browser worklet](docs/worklet-load.md) execution measured. Timing-screen failures, physical round-trip and full-session feasibility remain open.
-- [ ] **L02 — NOT RUN:** Implement explicit opt-in capture, phrase buffering and
-  bar-boundary scheduling without allocations, blocking or model work in callbacks.
-- [ ] **L03 — NOT RUN:** Test feedback, route changes, interruptions and sustained
-  sessions; measure actual end-to-end latency and consent/recording behavior.
+- [x] **L02 — PASS, local implementation:** Explicit opt-in bounded worklet capture, energy endpoint, off-callback resampling/director and bar-boundary responses. Capture pauses during C; one reusable buffer, cancellation/route/interruption cleanup. Browser runtime messaging is not a hard real-time guarantee. [Evidence and limits](docs/duration-and-live-phrases.md).
+- [ ] **L03 — PARTIAL:** Synthetic-browser continual cycles, route-change/consent cleanup and unit interruption recovery PASS. Actual feedback isolation, calibrated endpoints, end-to-end latency and sustained physical sessions remain NOT RUN. [Evidence](docs/duration-and-live-phrases.md).
 
 ### M5: production and monetization — PARTIAL
 

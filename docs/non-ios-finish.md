@@ -93,7 +93,11 @@ Earlier Academy recordings include actual muted 60-minute runs in both browsers.
 Their original receipts remain unchanged. The new short cue/restart run initially reported two Chromium clock gaps; the retained failure is not erased. After lazy effect setup, the subsequent isolated run reports zero gaps in both browsers and one classified Chromium clock stall. This does not establish the initial cause or certify physical output. This increment does not relabel those
 recordings as new-renderer, physical, audible or deployed evidence.
 
-## What still prevents full specification completion
+## What still prevented full specification completion at this checkpoint
+
+The wider-duration and continual-phrase implementation below is superseded by
+[the next local increment](duration-and-live-phrases.md); historical acceptance
+boundaries and earlier failures remain intact.
 
 1. **Musical quality FAIL / human review NOT RUN:** the owner's earlier robotic-output
    rejection stands. New comparisons require the deferred listening review; M1

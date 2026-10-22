@@ -20,7 +20,7 @@ function update() {
   $('record').textContent = state === 'recording' ? '■ Stop recording' : canRecord ? '● Record' : 'Recording unavailable';
   $('import').disabled = !idle || !$('consent').checked;
   $('generate').disabled = !idle || !samples || !$('consent').checked;
-  $('styles').disabled = !idle;
+  $('styles').disabled = !idle;$('remix-seconds').disabled=!idle;
   $('visibility').disabled = !idle;
   $('trim-start').disabled = $('trim-end').disabled = $('clear-source').disabled = !idle;
   $('cancel').hidden = state !== 'generating';
@@ -60,22 +60,23 @@ function drawWaveform() {
 new ResizeObserver(drawWaveform).observe($('waveform'));
 
 function selection() {
+  if((end-start<2 || end-start>5)&&$('remix-seconds').value==='0')$('remix-seconds').value='30';
   $('start-value').textContent = `${start.toFixed(2)} s`;
   $('end-value').textContent = `${end.toFixed(2)} s`;
   $('trim-start').value = start; $('trim-end').value = end;
   if (previewURL) { detachAudio($('preview')); URL.revokeObjectURL(previewURL); }
-  previewURL = URL.createObjectURL(new Blob([encodeWav(samples, start, end)], { type: 'audio/wav' }));
+  previewURL = URL.createObjectURL(new Blob([encodeWav(samples, start, end, true)], { type: 'audio/wav' }));
   $('preview').src = previewURL;
   drawWaveform();
 }
 $('trim-start').addEventListener('input', () => {
   start = +$('trim-start').value;
-  end = Math.min(samples.length / RATE, Math.max(start + 2, Math.min(end, start + 5)));
+  end = Math.min(samples.length / RATE, Math.max(start + 1, Math.min(end, start + 15)));
   selection();
 });
 $('trim-end').addEventListener('input', () => {
   end = +$('trim-end').value;
-  start = Math.max(0, Math.min(end - 2, Math.max(start, end - 5)));
+  start = Math.max(0, Math.min(end - 1, Math.max(start, end - 15)));
   selection();
 });
 
@@ -84,13 +85,13 @@ async function useRecording(blob, recorded = false) {
   state = 'loading'; clearError(); pauseAll(); say('Opening your recording…'); update();
   $('capture-status').textContent = '';
   try {
-    const decoded = await decodeAudio(blob, recorded);
+    const decoded = await decodeAudio(blob, recorded, 1);
     if (token !== operation || !$('consent').checked) return;
     samples = decoded; start = 0; end = Math.min(5, samples.length / RATE);
-    $('trim-start').max = samples.length / RATE - 2;
+    $('trim-start').max = samples.length / RATE - 1;
     $('trim-end').max = samples.length / RATE;
     $('trim').hidden = false;
-    $('source-description').textContent = `${(samples.length / RATE).toFixed(2)} seconds · choose 2–5 seconds`;
+    $('source-description').textContent = `${(samples.length / RATE).toFixed(2)} seconds · choose 1–15 seconds`;
     selection(); say('Choose your direction. Make something new.');
   } catch (error) { if (token === operation) { fail(error); say('Try another recording.'); } }
   finally { if (token === operation) { state = 'idle'; update(); } }
@@ -106,7 +107,7 @@ $('clear-source').onclick = () => {
   detachAudio($('preview'));
   if (previewURL) URL.revokeObjectURL(previewURL);
   previewURL = undefined;
-  $('trim').hidden = true; $('source-description').textContent = '2–5 seconds · stays on this device';
+  $('trim').hidden = true; $('source-description').textContent = '1–15 seconds · stays on this device';
   say('Add your recording to begin.'); drawWaveform(); update();
 };
 
@@ -131,6 +132,7 @@ $('record').onclick = async () => {
     const capture = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
     if (token !== operation || !$('consent').checked || document.hidden) { capture.getTracks().forEach(track => track.stop()); return; }
     stream = capture;
+    const limit=$('remix-seconds').value==='0'?5:15;
     const chunks = [];
     const type = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/webm'].find(value => MediaRecorder.isTypeSupported(value));
     recorder = new MediaRecorder(stream, type ? { mimeType: type } : undefined);
@@ -141,8 +143,8 @@ $('record').onclick = async () => {
       if (token !== operation) return;
       clearInterval(recordTimer);
       $('capture-status').textContent = '';
-      if ((performance.now() - recordedAt) < 2000) {
-        state = 'idle'; fail(new Error('Record at least 2 seconds. Try a short phrase.')); update(); return;
+      if ((performance.now() - recordedAt) < (limit===5?2000:1000)) {
+        state = 'idle'; fail(new Error(`Record at least ${limit===5?2:1} seconds. Try a short phrase.`)); update(); return;
       }
       useRecording(new Blob(chunks, { type: activeRecorder.mimeType }), true);
     };
@@ -150,11 +152,11 @@ $('record').onclick = async () => {
       if (token === operation) { stopCapture(true); fail(new Error('Microphone recording failed. Try importing audio.')); }
     };
     recordedAt = performance.now(); state = 'recording'; activeRecorder.start(); update();
-    $('capture-status').textContent = 'Recording… 0.0 s / 5 s';
+    $('capture-status').textContent = `Recording… 0.0 s / ${limit} s`;
     recordTimer = setInterval(() => {
       const elapsed = (performance.now() - recordedAt) / 1000;
-      $('capture-status').textContent = `Recording… ${elapsed.toFixed(1)} s / 5 s`;
-      if (elapsed >= 4.8) stopCapture();
+      $('capture-status').textContent = `Recording… ${elapsed.toFixed(1)} s / ${limit} s`;
+      if (elapsed >= limit-.2) stopCapture();
     }, 100);
   } catch (error) {
     if (token === operation) {
@@ -183,7 +185,9 @@ $('generate').onclick = async () => {
     fail(new Error('Your library is full. Download and delete a session before making another.')); return;
   }
   let wav;
-  try { wav = encodeWav(samples, start, end); } catch (error) { fail(error); return; }
+  try { wav = encodeWav(samples, start, end, true); } catch (error) { fail(error); return; }
+  const seconds=Number($('remix-seconds').value)||((end-start<2||end-start>5)?30:0);
+  if(seconds)$('remix-seconds').value=String(seconds);
   clearError(); pauseAll(); state = 'generating'; update(); say('Loading the music engine…');
   const token = ++operation, began = performance.now();
   const style = document.querySelector('input[name=style]:checked').value;
@@ -229,7 +233,7 @@ $('generate').onclick = async () => {
     } catch (error) { fail(error); }
     finally { state = 'idle'; update(); }
   };
-  activeWorker.postMessage({ wav, style, seed, recent, consent: true }, [wav]);
+  activeWorker.postMessage({ wav, style, seed, recent, seconds, consent: true }, [wav]);
 };
 
 function element(tag, text, className) {

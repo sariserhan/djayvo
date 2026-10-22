@@ -61,3 +61,8 @@ test('audio errors retain safe status across duplicated route modules',async()=>
  assert.ok(!(new Error('database unavailable') instanceof AudioError));
  assert.ok(!({status:404,message:'forged', [Symbol.for('jamloom.audio.error')]:true} instanceof AudioError));
 });
+
+test('extended output accepts exact 15/60 second boundaries and rejects outside them',()=>{
+ for(const seconds of [15,60]){const wav=audioFixture(seconds);assert.equal(validateWav(wav,wav.length,hash(wav)),seconds*1000);assert.equal(saveInput(input(wav)).bytes,wav.length);}
+ for(const seconds of [14,61]){const wav=audioFixture(seconds);assert.throws(()=>validateWav(wav,wav.length,hash(wav)));assert.throws(()=>saveInput(input(wav)));}
+});

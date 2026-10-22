@@ -3,7 +3,7 @@ import createEngine from './engine/jamloom_web.mjs';
 
 self.onmessage = async ({ data }) => {
   try {
-    if (data.consent !== true || !(data.wav instanceof ArrayBuffer) || data.wav.byteLength > 1000000
+    if (data.consent !== true || !(data.wav instanceof ArrayBuffer) || data.wav.byteLength > 2880044
       || !Number.isInteger(data.seed) || data.seed < 0 || data.seed > 0xffffffff
       || !['three', 'club', 'funk', 'call_response', 'hybrid'].includes(data.style)) throw new Error('Invalid recording or permission.');
     if (data.context && (data.style !== 'call_response' ||
@@ -11,14 +11,15 @@ self.onmessage = async ({ data }) => {
       !Number.isInteger(data.context.tonic) || data.context.tonic < 60 || data.context.tonic > 71 ||
       ![undefined, 'minor', 'major'].includes(data.context.mode)))
       throw new Error('Invalid session context. Confirm tempo, tonic and major/minor mode.');
+    const seconds=data.seconds??0;if(!Number.isInteger(seconds)||(seconds!==0&&(seconds<15||seconds>60))||(data.context&&seconds))throw new Error('Invalid duration.');
     const engine = await createEngine();
     engine.FS.writeFile('/input.wav', new Uint8Array(data.wav));
     self.postMessage({ type: 'rendering' });
     const styles = data.style === 'three' ? ['hiphop', 'reggae', 'experimental'] : [data.style];
     const selection = await selectFresh(data.seed, data.recent ?? [], async seed => {
       const error = data.context ? engine.ccall('jamloom_web_session_mode', 'string', ['number', 'number', 'number', 'number', 'number'],
-        [seed, data.context.tempo, data.context.tonic, data.context.mode === 'major' ? 1 : 0, 1]) : engine.ccall('jamloom_web_render', 'string', ['number', 'number', 'number'],
-        [seed, ['three', 'club', 'funk', 'call_response', 'hybrid'].indexOf(data.style), 1]);
+        [seed, data.context.tempo, data.context.tonic, data.context.mode === 'major' ? 1 : 0, 1]) : engine.ccall('jamloom_web_render_duration', 'string', ['number', 'number', 'number','number'],
+        [seed, ['three', 'club', 'funk', 'call_response', 'hybrid'].indexOf(data.style), 1,seconds]);
       if (error) throw new Error(error);
       return styles.map(style => JSON.parse(engine.FS.readFile(`/mix.${style}.score.json`, { encoding: 'utf8' })));
     });

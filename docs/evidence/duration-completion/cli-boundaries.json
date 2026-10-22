@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "sanitizers": true,
+  "results": [
+    {
+      "duration": 0,
+      "exit": 1,
+      "error": "FAIL: duration must be 15..60 seconds"
+    },
+    {
+      "duration": 14,
+      "exit": 1,
+      "error": "FAIL: duration must be 15..60 seconds"
+    },
+    {
+      "duration": 61,
+      "exit": 1,
+      "error": "FAIL: duration must be 15..60 seconds"
+    }
+  ]
+}

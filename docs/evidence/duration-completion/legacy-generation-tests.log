@@ -1,0 +1,19 @@
+> jamloom-site@0.1.0 test:generation-local
+> tsx --test tests/generation-local.test.ts
+
+TAP version 13
+# Subtest: quoted consented source executes through shared worker and private library without paid services
+ok 1 - quoted consented source executes through shared worker and private library without paid services
+  ---
+  duration_ms: 2634.581333
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2920.27225

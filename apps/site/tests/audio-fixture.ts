@@ -1,6 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
-export function audioFixture() {
-  const data=Buffer.alloc(3840044);
+export function audioFixture(seconds=20) {
+  const data=Buffer.alloc(44+seconds*192000);
   data.write('RIFF'); data.writeUInt32LE(data.length-8,4); data.write('WAVEfmt ',8); data.writeUInt32LE(16,16);
   data.writeUInt16LE(1,20); data.writeUInt16LE(2,22); data.writeUInt32LE(48000,24); data.writeUInt32LE(192000,28);
   data.writeUInt16LE(4,32); data.writeUInt16LE(16,34); data.write('data',36); data.writeUInt32LE(data.length-44,40);

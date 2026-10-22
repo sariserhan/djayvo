@@ -1,6 +1,10 @@
 # Jamloom implementation checkpoint
 
-## Latest: remaining non-iOS implementation — 2026-10-21
+## Latest: duration and continual phrases — 2026-10-21
+
+**Local implementation complete; overall PARTIAL.** Opt-in wider voice/output bounds, versioned exact score replay, existing-library migration and a bounded continual phrase cycle follow local commit `6faebff`. The current report records exact test results and distinguishes synthetic input from real microphones. Musical-quality FAIL remains; human, physical and provider/model gates remain open. iOS and launch operations are deferred in that order. No hosted migration or deployment. [Current report](duration-and-live-phrases.md).
+
+## Previous: remaining non-iOS implementation — 2026-10-21
 
 **Overall PARTIAL; musical-quality FAIL retained.** Follow-through implements scratch/key lock, reverb/phaser/flanger, guarded headphone cue, full A/B/C scenes, a sample-timed note sequencer, cleared-catalogue taste evidence and opt-in output preference adaptation, remote-store result recovery and read-only provider charge evidence. Real Chromium/WebKit composition and exact C recovery pass. Secure-origin native control passes in Chromium; WebKit blocks loopback and retains its fallback. Human, physical and provider/model gates remain; wider supplementary voice/duration contracts are not silently marked complete. iOS is next and launch operations last. No push, deployment or paid execution. [Implementation and exact boundaries](non-ios-finish.md).
 

@@ -27,7 +27,7 @@ export function SaveMix({publicSharing=true}:{publicSharing?:boolean}) {
     event.preventDefault(); setBusy(true); setMessage('Checking your selected mix…'); setError('');
     try {
       const values=new FormData(event.currentTarget), file=localFile || values.get('audio') as File;
-      if (!file || file.size<3840044 || file.size>7680044) throw new Error('Choose a 20–40 second stereo WAV downloaded from Jamloom.');
+      if (!file || file.size<2880044 || file.size>11520044) throw new Error('Choose a 15–60 second stereo WAV downloaded from Jamloom.');
       const bytes=await file.arrayBuffer();
       const sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)), b=>b.toString(16).padStart(2,'0')).join('');
       const title=String(values.get('title')).trim(), strategy=String(values.get('strategy'));

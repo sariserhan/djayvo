@@ -426,3 +426,28 @@ Trusted worker recovery and read-only provider charge collection are described i
 R2, final billing, listening and physical capture/routing checks remain open. A local
 secure-origin fixture verified Chromium with local-network permission; WebKit
 blocked loopback access and requires native companion controls or a supported browser.
+
+
+## Wider recordings and continual phrases — 2026-10-21
+
+Voice studio's approximate-duration selector enables 1–15 second selections and
+15–60 second outputs. The actual ending follows a whole bar. Original arrangements
+retain their previous bounds. Longer recordings contribute a bounded hook and
+source events; this does not certify word boundaries or musical quality.
+
+For continual phrases, prepare A, confirm its grid/key, start it, confirm voice
+permission and check headphone isolation. Start continual phrases captures one
+2–5 second phrase, pauses capture while C is prepared and played, then listens
+again. C enters on the next available bar; insufficient remaining A stops the
+cycle. Stop, permission revocation, device changes, interrupted audio or hiding
+the page closes the microphone. Headphone confirmation resets after stopping.
+One minute without a completed phrase stops capture. Each new phrase replaces temporary phrase/C audio. Save C while it is ready or
+use the mix recorder; saved library entries are unchanged.
+This is an experimental energy endpoint: actual microphones, noise, word boundaries,
+headphone leakage and latency still need the deferred physical checks.
+
+Hosted rollout must apply migration `0013_audio_duration.sql` before exposing
+extended online saves. It was tested only in disposable local PostgreSQL; no hosted
+migration ran. Keep its wider constraints if rolling back code with extended
+assets present. Do not delete user audio to restore old bounds. See the
+[implementation, reproducible checks and remaining gates](duration-and-live-phrases.md).

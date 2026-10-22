@@ -21,7 +21,7 @@ std::uint32_t number(const std::string& text) {
 int main(int argc,char** argv) {
     try {
         std::string input,output="renders/remix",style="all",plan_path;
-        std::uint32_t rate=48000,seed=4123,block=512;
+        std::uint32_t rate=48000,seed=4123,block=512,duration=0;
         bool consent=false,synthetic=false,stems=false,fallback=false;
         for (int i=1;i<argc;++i) {
             const std::string arg=argv[i];
@@ -30,7 +30,8 @@ int main(int argc,char** argv) {
                          <<"[--consent | --synthetic-fixture] [--output PREFIX] "
                          <<"[--style all|hiphop|reggae|experimental|baseline|club|funk|call_response|hybrid] [--stems] "
                          <<"[--seed UINT32] [--sample-rate 8000..192000] [--block-size 1..65536]\n"
-                         <<"[--plan FILE [--plan-fallback]] imports one bounded 1.0–1.3 remix score.\n"
+                         <<"[--duration-seconds 15..60] enables 1..15-second sources and a custom-length arrangement.\n"
+                         <<"[--plan FILE [--plan-fallback]] imports one bounded 1.0–1.8 remix score.\n"
                          <<"Plan requires one --style and matching seed/rate/source; no model is invoked.\n"
                          <<"Invalid plans fail unless --plan-fallback explicitly selects the rule planner.\n"
                          <<"--consent confirms permission to process the supplied recording locally.\n"
@@ -51,6 +52,7 @@ int main(int argc,char** argv) {
             else if (arg=="--seed") seed=number(value);
             else if (arg=="--sample-rate") rate=number(value);
             else if (arg=="--block-size") block=number(value);
+            else if (arg=="--duration-seconds") { duration=number(value); if(duration<15 || duration>60) throw std::invalid_argument("duration must be 15..60 seconds"); }
             else if (arg=="--plan") plan_path=value;
             else throw std::invalid_argument("unknown option: "+arg);
         }
@@ -83,7 +85,7 @@ int main(int argc,char** argv) {
             }
         }
         jamloom::remix_file(input,output,strategies,rate,seed,block,synthetic,consent,stems,{cancelled,nullptr},
-                          plan_path.empty()?nullptr:&receipt);
+                          plan_path.empty()?nullptr:&receipt,duration);
         for (const auto strategy:strategies)
             std::cout<<"PASS: "<<output<<'.'<<jamloom::strategy_name(strategy)<<".wav\n";
         std::cout<<"PASS: complete export "<<output<<".complete.json\nListening/recognizability: NOT RUN\n";

@@ -1044,8 +1044,28 @@ void vocal_echo() {
     }
 }
 }
+namespace {
+void custom_duration(){
+ for(unsigned seconds:{1U,5U,15U}){
+  auto a=source();a.mono.resize(a.sample_rate*seconds);a.original_frames=a.mono.size();
+  for(std::size_t i=0;i<a.mono.size();++i)a.mono[i]=static_cast<float>(.3*std::sin(6.283185307179586*220*i/a.sample_rate));
+  const auto analysis=jamloom::analyze(a);
+  for(unsigned duration:{15U,30U,45U,60U})for(auto style:{jamloom::Strategy::hiphop,jamloom::Strategy::reggae,jamloom::Strategy::experimental,jamloom::Strategy::club,jamloom::Strategy::funk,jamloom::Strategy::call_response,jamloom::Strategy::hybrid}){
+   const auto p=jamloom::make_remix(a,analysis,style,4123,true,false,nullptr,duration);jamloom::validate(p,a);
+   const auto frames=jamloom::compile(p.music).total_frames;
+   check(frames>=15*a.sample_rate&&frames<=60*a.sample_rate,"custom duration outside bounds");
+   check(std::abs(static_cast<double>(frames)/a.sample_rate-duration)<=3.1,"custom form misses requested duration");
+   check(p.clips[0].end-p.clips[0].begin<=5*a.sample_rate,"clean hook exceeds bounded phrase");
+   if(seconds==1&&duration==15&&style==jamloom::Strategy::hiphop)check(render(p,a,512)==render(p,a,113),"custom render depends on block size");
+  }
+  for(unsigned invalid:{1U,14U,61U})rejects([&]{jamloom::make_remix(a,analysis,jamloom::Strategy::hiphop,1,true,false,nullptr,invalid);});
+  if(seconds!=5)rejects([&]{jamloom::make_remix(a,analysis,jamloom::Strategy::hiphop,1,true,false);});
+ }
+}
+}
 int main() {
     const std::vector<std::pair<const char*,std::function<void()>>> tests{
+        {"custom 1..15-second sources and 15..60-second forms, legacy bounds and exact replay",custom_duration},
         {"bounded stereo feedback reverb, clean vocals, stems, tail and allocation-free processing",instrument_reverb},
         {"SHA-256 known vectors",hashes},{"energy/onset/phrase/pitch analysis and silence",analysis},
         {"offset-invariant attacks, pauses and pitch with unchanged source and raw levels",analysis_offset},

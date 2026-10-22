@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: capture cancels late permission/module startup and closes on interruption
+ok 1 - capture cancels late permission/module startup and closes on interruption
+  ---
+  duration_ms: 1.208292
+  type: 'test'
+  ...
+# Subtest: phrase endpoint ignores silence, bounds continuous input and waits for a trailing pause
+ok 2 - phrase endpoint ignores silence, bounds continuous input and waits for a trailing pause
+  ---
+  duration_ms: 10.396834
+  type: 'test'
+  ...
+# Subtest: endpoint is callback-size independent and rejects invalid buffers
+ok 3 - endpoint is callback-size independent and rejects invalid buffers
+  ---
+  duration_ms: 1.879583
+  type: 'test'
+  ...
+# Subtest: worklet transfers one bounded phrase, waits for returned storage and never monitors input
+ok 4 - worklet transfers one bounded phrase, waits for returned storage and never monitors input
+  ---
+  duration_ms: 5.616833
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 87.592542

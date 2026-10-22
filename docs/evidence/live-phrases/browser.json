@@ -1,0 +1,107 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "browser": "chromium",
+      "status": "PASS",
+      "captured": [
+        {
+          "frames": 119037,
+          "rate": 48000
+        },
+        {
+          "frames": 215037,
+          "rate": 48000
+        }
+      ],
+      "starts": [
+        {
+          "duration": 120,
+          "rate": 8000
+        },
+        {
+          "duration": 120,
+          "time": 0.8146666666666667,
+          "rate": 48000
+        },
+        {
+          "duration": 30,
+          "time": 4.814666666666667,
+          "rate": 48000
+        }
+      ],
+      "outputs": [
+        {
+          "gain": 0,
+          "peak": 0
+        }
+      ],
+      "checks": [
+        "two actual worklet phrase endpoints",
+        "real WASM response",
+        "shared-clock bar entry",
+        "capture disabled during C",
+        "automatic next phrase",
+        "explicit stop",
+        "late permission cleanup",
+        "denied permission",
+        "device change",
+        "consent revocation",
+        "responsive and axe",
+        "physical outputs muted"
+      ]
+    },
+    {
+      "browser": "webkit",
+      "status": "PASS",
+      "captured": [
+        {
+          "frames": 119709,
+          "rate": 48000
+        },
+        {
+          "frames": 214461,
+          "rate": 48000
+        }
+      ],
+      "starts": [
+        {
+          "duration": 120,
+          "rate": 8000
+        },
+        {
+          "duration": 120,
+          "time": 1.0466666666666666,
+          "rate": 48000
+        },
+        {
+          "duration": 30,
+          "time": 5.046666666666667,
+          "rate": 48000
+        }
+      ],
+      "outputs": [
+        {
+          "gain": 0,
+          "peak": 0
+        }
+      ],
+      "checks": [
+        "two actual worklet phrase endpoints",
+        "real WASM response",
+        "shared-clock bar entry",
+        "capture disabled during C",
+        "automatic next phrase",
+        "explicit stop",
+        "late permission cleanup",
+        "denied permission",
+        "device change",
+        "consent revocation",
+        "responsive and axe",
+        "physical outputs muted"
+      ]
+    }
+  ],
+  "physical_latency": "NOT RUN",
+  "human_quality": "NOT RUN"
+}

@@ -25,12 +25,13 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
             throw std::invalid_argument("sustained note conflicts with declared major key");
     if (!r.synthetic_source && !r.consent_confirmed)
         throw std::invalid_argument("recorded input requires explicit consent to process");
+    if (r.requested_seconds && (r.requested_seconds<15 || r.requested_seconds>60))throw std::invalid_argument("requested duration outside 15..60");
     if (source.sample_rate != r.music.sample_rate || source.mono.empty() ||
-        source.mono.size() < static_cast<std::size_t>(source.sample_rate) * 2 ||
-        source.mono.size() > static_cast<std::size_t>(source.sample_rate) * 5 ||
+        source.mono.size() < static_cast<std::size_t>(source.sample_rate) * (r.requested_seconds?1:2) ||
+        source.mono.size() > static_cast<std::size_t>(source.sample_rate) * (r.requested_seconds?15:5) ||
         source.sha256.size() != 64 || source.sha256.find_first_not_of("0123456789abcdef") != std::string::npos ||
         r.source_sha256 != source.sha256)
-        throw std::invalid_argument("source must be 2..5 seconds and match its plan hash/rate");
+        throw std::invalid_argument("source duration must match its bounded plan contract and hash/rate");
     for (float x : source.mono)
         if (!std::isfinite(x) || std::abs(x)>1) throw std::invalid_argument("invalid source PCM");
     if (!std::isfinite(r.analysis.normalization_gain) || r.analysis.normalization_gain <= 0 ||
@@ -56,8 +57,8 @@ void validate(const RemixPlan& r, const AudioBuffer& source) {
             throw std::invalid_argument("clip exceeds source bounds");
     const auto music_end=tick_to_frame(ticks_per_bar(r.music)*r.music.bars,r.music);
     const auto total=music_end+static_cast<std::uint64_t>(r.music.tail_ms)*source.sample_rate/1000;
-    if (total < source.sample_rate*20ULL || total > source.sample_rate*40ULL)
-        throw std::invalid_argument("remix must be 20..40 seconds");
+    if (total < source.sample_rate*(r.requested_seconds?15ULL:20ULL) || total > source.sample_rate*(r.requested_seconds?60ULL:40ULL))
+        throw std::invalid_argument("remix duration exceeds its bounded plan contract");
     bool clean=false;
     std::uint64_t transformed_frames=0;
     unsigned transformed_events=0;
@@ -134,7 +135,7 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
     const bool sustained=std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return t.instrument>=Instrument::organ;});
     const bool guitar=std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return t.instrument==Instrument::guitar;});
     const bool timeline=!p.tempo_changes.empty() || std::any_of(p.tracks.begin(),p.tracks.end(),[](const Track& t){return !t.automation.empty();});
-    out<<"{\n  \"schema_version\": \""<<(r.key_mode==KeyMode::major?"1.7-remix":r.instrument_reverb_mix>0?"1.6-remix":sustained?"1.5-remix":guitar?"1.4-remix":timeline?"1.3-remix":echoes?"1.2-remix":transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
+    out<<"{\n  \"schema_version\": \""<<(r.requested_seconds?"1.8-remix":r.key_mode==KeyMode::major?"1.7-remix":r.instrument_reverb_mix>0?"1.6-remix":sustained?"1.5-remix":guitar?"1.4-remix":timeline?"1.3-remix":echoes?"1.2-remix":transforms?"1.1-remix":"1.0-remix")<<"\",\n  \"seed\": "<<p.seed
        <<",\n  \"source_asset_id\": \"sha256:"<<source.sha256<<"\",\n  \"sample_rate\": "<<p.sample_rate
        <<",\n  \"source\": {\"sha256\": \""<<source.sha256<<"\", \"original_rate\": "<<source.original_rate
        <<", \"original_frames\": "<<source.original_frames<<", \"processed_frames\": "<<source.mono.size()
@@ -181,6 +182,7 @@ void write_score(const RemixPlan& r, const AudioBuffer& source, const std::strin
         out<<"}";
     }
     out<<"\n  ]";
+    if (r.requested_seconds) out<<",\n  \"requested_seconds\": "<<r.requested_seconds;
     if (!p.tempo_changes.empty()) {
         out<<",\n  \"tempo_changes\": [";
         for (std::size_t i=0;i<p.tempo_changes.size();++i)

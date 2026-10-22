@@ -14,7 +14,7 @@ async function handle(request:Request){
   if(!session?.user.emailVerified)return Response.json({error:'Sign in with a verified account.'},{status:401,headers});
   const owner=session.user.id,service=new LocalGeneration(pool,audio.store,config.secret);
   if(request.method==='GET')return Response.json({jobs:await service.status(owner)},{headers});
-  const data=JSON.parse((await readBody(request.body,2_400_000)).toString());
+  const data=JSON.parse((await readBody(request.body,5_000_000)).toString());
   if(data?.action==='quote')return Response.json(await service.quote(owner,data.input),{headers});
   if(data?.action==='submit')return Response.json({id:await service.submit(owner,data.requestId,data.input,data.token)},{headers});
   if(data?.action==='cancel'){uuid(data.id);await service.cancel(owner,data.id);return Response.json({cancelled:true},{headers});}

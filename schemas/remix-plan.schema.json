@@ -35,7 +35,8 @@
         "1.4-remix",
         "1.5-remix",
         "1.6-remix",
-        "1.7-remix"
+        "1.7-remix",
+        "1.8-remix"
       ]
     },
     "seed": {
@@ -378,7 +379,7 @@
         "processed_frames": {
           "type": "integer",
           "minimum": 1,
-          "maximum": 960000
+          "maximum": 2880000
         },
         "kind": {
           "enum": [
@@ -717,6 +718,11 @@
           }
         }
       }
+    },
+    "requested_seconds": {
+      "type": "integer",
+      "minimum": 15,
+      "maximum": 60
     }
   },
   "$defs": {
@@ -973,6 +979,36 @@
             "properties": {
               "mode": {
                 "const": "minor"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "const": "1.8-remix"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "requested_seconds"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "requested_seconds"
+          ]
+        },
+        "properties": {
+          "source": {
+            "properties": {
+              "processed_frames": {
+                "maximum": 960000
               }
             }
           }

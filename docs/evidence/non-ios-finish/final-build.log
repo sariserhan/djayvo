@@ -127,9 +127,9 @@ Prepared free Academy offline pack: 78 public assets, 61862431 bytes. No account
   Finished TypeScript in 1631ms ...
   Collecting page data using 9 workers ...
   Generating static pages using 9 workers (0/42) ...
-  Generating static pages using 9 workers (10/42) 
-  Generating static pages using 9 workers (20/42) 
-  Generating static pages using 9 workers (31/42) 
+  Generating static pages using 9 workers (10/42)
+  Generating static pages using 9 workers (20/42)
+  Generating static pages using 9 workers (31/42)
 ✓ Generating static pages using 9 workers (42/42) in 273ms
   Finalizing page optimization ...
 
@@ -210,4 +210,3 @@ Route (app)
 ○  (Static)   prerendered as static content
 ●  (SSG)      prerendered as static HTML (uses generateStaticParams)
 ƒ  (Dynamic)  server-rendered on demand
-

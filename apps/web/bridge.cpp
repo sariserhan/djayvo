@@ -16,16 +16,16 @@ extern "C" const char* jamloom_web_taste(unsigned seed, unsigned tempo, unsigned
 // A fresh worker owns its entire in-memory filesystem. Nothing is published to
 // the UI until every style succeeds; terminating that worker cancels the set.
 // MEMFS has no hard links, so the native remix_file publication layer cannot run.
-extern "C" const char* jamloom_web_render(unsigned seed, unsigned direction, unsigned permission) {
+extern "C" const char* jamloom_web_render_duration(unsigned seed, unsigned direction, unsigned permission,unsigned seconds) {
     static std::string error;
     error.clear();
     try {
-        if (direction > 4 || (permission != 1 && permission != 2))
+        if (direction > 4 || (permission != 1 && permission != 2) || (seconds && (seconds<15 || seconds>60)))
             throw std::invalid_argument("Confirm permission before making music.");
         const auto original = jamloom::read_wav("/input.wav");
-        if (original.original_frames < original.original_rate * 2ULL ||
-            original.original_frames > original.original_rate * 5ULL)
-            throw std::invalid_argument("Choose a 2–5 second recording.");
+        if (original.original_frames < original.original_rate * (seconds?1ULL:2ULL) ||
+            original.original_frames > original.original_rate * (seconds?15ULL:5ULL))
+            throw std::invalid_argument("Recording duration is outside the selected arrangement limits.");
         const auto source = jamloom::resample(original, 48000);
         const auto analysis = jamloom::analyze(source);
         const auto styles = direction == 4 ? std::vector<jamloom::Strategy>{jamloom::Strategy::hybrid}
@@ -35,12 +35,16 @@ extern "C" const char* jamloom_web_render(unsigned seed, unsigned direction, uns
             : std::vector<jamloom::Strategy>{jamloom::Strategy::hiphop,
                 jamloom::Strategy::reggae, jamloom::Strategy::experimental};
         for (auto style : styles) {
-            const auto plan = jamloom::make_remix(source, analysis, style, seed, permission == 2, permission == 1);
+            const auto plan = jamloom::make_remix(source, analysis, style, seed, permission == 2, permission == 1,nullptr,seconds);
             jamloom::render_remix(plan, source, std::string("/mix.") + jamloom::strategy_name(style));
         }
     } catch (const std::exception& e) { error = e.what(); }
       catch (...) { error = "The music engine could not finish. Try again."; }
     return error.c_str();
+}
+
+extern "C" const char* jamloom_web_render(unsigned seed,unsigned direction,unsigned permission){
+    return jamloom_web_render_duration(seed,direction,permission,0);
 }
 
 // Session generation uses the same validated planner and renderer in a worker.

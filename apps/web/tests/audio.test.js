@@ -21,3 +21,10 @@ test('WAV is bounded PCM16 mono with finite samples and safe clipping', () => {
   samples[0] = NaN;
   assert.throws(() => encodeWav(samples), /invalid audio/);
 });
+
+test('custom selection permits 1–15 seconds without relaxing the original helper default',()=>{
+ assert.deepEqual(trimFrames(48000*15,0,1,48000,true),[0,48000]);assert.deepEqual(trimFrames(48000*15,0,15,48000,true),[0,720000]);
+ assert.throws(()=>trimFrames(48000*15,0,1));assert.throws(()=>trimFrames(48000*15,0,15));
+ for(const end of [.99,15.01])assert.throws(()=>trimFrames(48000*16,0,end,48000,true));
+ assert.equal(encodeWav(new Float32Array(48000),0,1,true).byteLength,96044);
+});

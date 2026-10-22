@@ -9,7 +9,7 @@
 namespace jamloom {
 void remix_file(const std::string& input,const std::string& output,const std::vector<Strategy>& strategies,
                  std::uint32_t rate,std::uint32_t seed,std::size_t block,bool synthetic,bool consent,bool stems,
-                 const RenderControl& control,const PlanImport* imported) {
+                 const RenderControl& control,const PlanImport* imported,unsigned requested_seconds) {
     namespace fs=std::filesystem;
     const auto destination=fs::path(output);
     if (input.empty() || output.empty() || destination.filename().empty() ||
@@ -23,10 +23,13 @@ void remix_file(const std::string& input,const std::string& output,const std::ve
          imported->plan->music.sample_rate!=rate || imported->plan->music.seed!=seed ||
          imported->plan->synthetic_source!=synthetic || imported->plan->consent_confirmed!=consent))))
         throw std::invalid_argument("import receipt does not match render request");
+    if(requested_seconds && (requested_seconds<15 || requested_seconds>60))throw std::invalid_argument("duration must be 15..60 seconds");
+    const auto duration=imported && imported->plan?imported->plan->requested_seconds:requested_seconds;
+    if(imported && imported->plan && requested_seconds && requested_seconds!=duration)throw std::invalid_argument("plan duration does not match request");
     control.check();
     const auto original=read_wav(input);
-    if (original.original_frames<original.original_rate*2ULL || original.original_frames>original.original_rate*5ULL)
-        throw std::invalid_argument("supply a 2..5 second input recording");
+    if (original.original_frames<original.original_rate*(duration?1ULL:2ULL) || original.original_frames>original.original_rate*(duration?15ULL:5ULL))
+        throw std::invalid_argument("input recording exceeds selected duration contract");
     control.check();
     const auto source=resample(original,rate);
     const auto analysis=analyze(source);
@@ -35,7 +38,7 @@ void remix_file(const std::string& input,const std::string& output,const std::ve
     for (auto s:strategies) {
         if (std::any_of(plans.begin(),plans.end(),[s](const auto& p){return p.strategy==s;}))
             throw std::invalid_argument("duplicate export strategy");
-        plans.push_back(imported && imported->plan?*imported->plan:make_remix(source,analysis,s,seed,synthetic,consent));
+        plans.push_back(imported && imported->plan?*imported->plan:make_remix(source,analysis,s,seed,synthetic,consent,nullptr,duration));
         validate(plans.back(),source);
         const auto style=std::string(".")+strategy_name(s);
         for (const auto* extension:{".wav",".score.json",".report.json",".events.tsv"}) suffixes.push_back(style+extension);

@@ -76,7 +76,7 @@ export async function verifySession(session) {
   if (expected.length !== session.files.length) return false;
   for (const name of expected) {
     const file = session.files.find(file => file?.name === name);
-    if (!file || !(file.blob instanceof Blob) || file.blob.size <= 0 || file.blob.size > 8000000) return false;
+    if (!file || !(file.blob instanceof Blob) || file.blob.size <= 0 || file.blob.size > 11520044) return false;
     const digest = await crypto.subtle.digest('SHA-256', await file.blob.arrayBuffer());
     const hex = Array.from(new Uint8Array(digest), n => n.toString(16).padStart(2, '0')).join('');
     if (hex !== file.sha256) return false;
