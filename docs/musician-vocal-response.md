@@ -1,5 +1,7 @@
 # Musician voice and contextual sung responses
 
+**Latest owner feedback:** The original singer previews were loved; user input must become part of the song, with creative cropping and rhythmic transformation. Twelve styles and integrated sample arrangements are now implemented locally; [current report](integrated-singer.md). New-arrangement acceptance remains open.
+
 **Owner clarification: required behavior; local implementation PARTIAL.** The owner
 confirmed a natural-sounding AI singer. Actual singer audio and a local generation
 studio are now implemented; [current evidence and remaining acceptance](singing-response.md).

@@ -1,5 +1,7 @@
 # Local AI musician voice — 2026-10-22
 
+**Update:** The owner liked these singers. The introductory source playback and two-style limit are superseded by the [integrated sample arrangement and 12-style studio](integrated-singer.md). This report preserves the original audition evidence.
+
 The owner clarified that the requested musician is a natural-sounding **AI
 singer**, separate from the submitted user recording. The local implementation
 uses lyric-conditioned song generation, with male/female and reggae/hip-hop

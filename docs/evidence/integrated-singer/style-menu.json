@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "options": [
+    "Surprise me",
+    "Reggae",
+    "Hip-hop",
+    "Funk",
+    "House",
+    "Disco",
+    "R&B",
+    "Soul",
+    "Afrobeats",
+    "Latin pop",
+    "Drum and bass",
+    "Acoustic pop",
+    "Rock"
+  ],
+  "selected": "Disco"
+}

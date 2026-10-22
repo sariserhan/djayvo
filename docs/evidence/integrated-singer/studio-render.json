@@ -1,0 +1,168 @@
+{
+  "technical": "PASS",
+  "style": "disco",
+  "voice": "female",
+  "plan_sha256": "2a4facea1911fc0e3a20c5a70ae5f54e28a8d1a9feb8b477d3a20f74dff4596f",
+  "singer_sha256": "31e990d953b041fc187cb1e3f93e36b9ae18d4fb250f57588fac5a10ef956fbf",
+  "assembly": {
+    "schema": "jamloom-integrated-source-1",
+    "technical": "PASS",
+    "source_sha256": "c2bb1bf57952c4ea6688551fc1aa8e47c39d8a01a2e08d854d21f0c7de8691da",
+    "singer_sha256": "31e990d953b041fc187cb1e3f93e36b9ae18d4fb250f57588fac5a10ef956fbf",
+    "sample_rate": 48000,
+    "frames": 1440000,
+    "grid": {
+      "bpm": 116.87,
+      "offset_frames": 3840,
+      "confidence": 0.9200212234899235,
+      "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+    },
+    "source_crop_frames": [
+      2048,
+      172276
+    ],
+    "clips": [
+      {
+        "id": 0,
+        "start_frame": 2048,
+        "end_frame": 172276
+      },
+      {
+        "id": 1,
+        "start_frame": 2048,
+        "end_frame": 58560
+      },
+      {
+        "id": 2,
+        "start_frame": 58560,
+        "end_frame": 78240
+      },
+      {
+        "id": 3,
+        "start_frame": 78240,
+        "end_frame": 91200
+      },
+      {
+        "id": 4,
+        "start_frame": 91200,
+        "end_frame": 116640
+      },
+      {
+        "id": 5,
+        "start_frame": 116640,
+        "end_frame": 144480
+      },
+      {
+        "id": 6,
+        "start_frame": 144480,
+        "end_frame": 157920
+      },
+      {
+        "id": 7,
+        "start_frame": 157920,
+        "end_frame": 172276
+      }
+    ],
+    "events": [
+      {
+        "clip_id": 0,
+        "start_frame": 3840,
+        "rate": 1.0,
+        "clean": true,
+        "gain": 1.0,
+        "echo": false,
+        "section": "hook",
+        "end_frame": 174068
+      },
+      {
+        "clip_id": 1,
+        "start_frame": 669195,
+        "rate": 1.1466245555555556,
+        "clean": false,
+        "gain": 0.7,
+        "echo": false,
+        "section": "break",
+        "end_frame": 718772
+      },
+      {
+        "clip_id": 1,
+        "start_frame": 755445,
+        "rate": 1.1466245555555556,
+        "clean": false,
+        "gain": 0.85,
+        "echo": true,
+        "section": "break",
+        "end_frame": 805022
+      },
+      {
+        "clip_id": 5,
+        "start_frame": 1038836,
+        "rate": 1.1297433333333333,
+        "clean": false,
+        "gain": 0.7,
+        "echo": false,
+        "section": "answer",
+        "end_frame": 1064128
+      },
+      {
+        "clip_id": 4,
+        "start_frame": 1075800,
+        "rate": 1.0323516666666666,
+        "clean": false,
+        "gain": 0.85,
+        "echo": false,
+        "section": "answer",
+        "end_frame": 1100763
+      },
+      {
+        "clip_id": 5,
+        "start_frame": 1125086,
+        "rate": 1.1297433333333333,
+        "clean": false,
+        "gain": 0.85,
+        "echo": true,
+        "section": "answer",
+        "end_frame": 1150378
+      }
+    ],
+    "source_starts_frames": [
+      3840,
+      669195,
+      755445,
+      1038836,
+      1075800,
+      1125086
+    ],
+    "singer_start_frame": 0,
+    "source_identity_max_pcm_error": 1.5256847785444227e-05,
+    "source_gain": 2.175808514636422,
+    "master_gain": 0.8765424465877208,
+    "music_present_during_clean_hook_rms": 0.12549482270525245,
+    "source_singer_overlap_frames": 0,
+    "overlap_note": "Estimated singer stem muted during dry user events; separator bleed/echo can remain.",
+    "artifacts": {
+      "performance.wav": "2c2cbe007b02812dea34d047ee6a09837d7eb9961030945b33f10644992247de",
+      "music.wav": "33d2a1bfb3dd49a6a38a28028a33230caa0e0f7eee4bc457c60f0b9cba1d3281",
+      "user.wav": "e1c4d79af123f4d4a8a642d08e184e694313d253ba367796a836acdf98baa532"
+    },
+    "sha256": "2c2cbe007b02812dea34d047ee6a09837d7eb9961030945b33f10644992247de",
+    "listening": "NOT RUN",
+    "note": "Music from the start; clean hook, beat-fit fragments, recurring answers, rhythmic echo and a drum-led break."
+  },
+  "separation": {
+    "technical": "PASS",
+    "source_sha256": "31e990d953b041fc187cb1e3f93e36b9ae18d4fb250f57588fac5a10ef956fbf",
+    "model_sha256": "a004b2790d73ffeaa535db458a1a79b539dfdbafbccc31f275d07e632ebd7816",
+    "stems": {
+      "vocals": "2093b78a4db7c29dfe3ad9fccb8ccb355076de2d268d83068efa83ad0c44f6f7",
+      "drums": "fb9745145dcbb116c2ee881eb0c1acfb52911e44eda6eff778d80d9e80cc3d08"
+    },
+    "sample_rate": 48000,
+    "frames": 1440000,
+    "device": "cpu",
+    "seconds": 3.9240299169905484,
+    "separation_quality": "NOT RUN: estimated stems can contain bleed"
+  },
+  "lyric_model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "listening": "NOT RUN"
+}

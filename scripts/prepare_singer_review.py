@@ -5,11 +5,12 @@ import html
 import json
 from pathlib import Path
 import subprocess
+import sys
 
 from arrange_voice_research import digest
 from assemble_sung_response import assemble
 from review_cloud_music import loudness
-from singing_response import load_plan
+from singing_response import load_plan, STYLE_LABELS
 
 
 def prepare(plan_path, results, source, score, output, consent):
@@ -19,7 +20,7 @@ def prepare(plan_path, results, source, score, output, consent):
     for c in plan['cases']:
         root = results / c['id']
         receipt = json.loads((root / 'complete.json').read_text())
-        if receipt['plan_sha256'] != digest(plan_path) or receipt['case'] != c or receipt['audio_sha256'] != digest(root / 'singer.wav'):
+        if receipt.get('model_code') != plan['model_code'] or receipt.get('weights') != plan['weights'] or receipt['case'] != c or receipt['audio_sha256'] != digest(root / 'singer.wav'):
             raise ValueError('Singer does not match this reply plan')
     output.mkdir(parents=True, exist_ok=False)
     (output / '.partial').touch()
@@ -28,8 +29,11 @@ def prepare(plan_path, results, source, score, output, consent):
     for c in plan['cases']:
         root = results / c['id']
         folder = output / c['id']
+        if not (root/'stems/complete.json').exists():
+            subprocess.run([sys.executable, str(Path(__file__).parent/'separate_singer.py'), '--input', str(root/'singer.wav'),
+                            '--output', str(root/'stems')],check=True,timeout=600)
         joined = assemble(source, score, root, folder, True)
-        origins = {'singer': root / 'singer.wav', 'exchange': folder / 'performance.wav'}
+        origins = {'exchange': folder / 'performance.wav', 'singer': root / 'singer.wav'}
         levels = {kind: loudness(path) for kind, path in origins.items()}
         target = min(-20., *(v['lufs'] - v['true_peak_dbfs'] - 2 for v in levels.values()))
         players, measured = [], {}
@@ -39,26 +43,24 @@ def prepare(plan_path, results, source, score, output, consent):
                             f"volume={target-levels[kind]['lufs']}dB", '-c:a', 'pcm_s16le', str(dest)], check=True, timeout=30)
             m = loudness(dest)
             assert abs(m['lufs']-target) <= .2 and m['true_peak_dbfs'] <= -1.8
-            label = 'Hear the AI singer' if kind == 'singer' else 'User phrase → singer reply'
+            label = 'Singer before sample arrangement' if kind == 'singer' else 'Your sound inside the song'
             players.append(f'<p>{label}</p><audio controls preload="metadata" aria-label="{c["id"]}: {label}" src="{dest.name}"></audio>'
                            f'<a href="{dest.name}" download>Download</a>')
             measured[kind] = {**m, 'sha256': digest(dest)}
-        entry = joined['singer_start_frame'] / joined['sample_rate']
-        cards.append(f'<section><h2>{c["voice"].title()} · {c["genre"].title()}</h2>' + ''.join(players)
-                     + f'<p>In the full exchange, the singer starts at {entry:.1f}s, after the user sample.</p>'
+        cards.append(f'<section><h2>{c["voice"].title()} · {STYLE_LABELS[c["genre"]]}</h2>' + ''.join(players)
+                     + f'<p>Music from the start. A recognizable hook and {len(joined["events"])-1} rhythmic fragments, with room in the singer and band.</p>'
                      + f'<details><summary>Intended lyrics</summary><pre>{html.escape(c["lyrics"])}</pre></details></section>')
-        rows.append({'case': c['id'], 'assembly': joined, 'matched': measured})
+        rows.append({'case': c['id'], 'render_plan_sha256':json.loads((root/'complete.json').read_text())['plan_sha256'], 'assembly': joined, 'matched': measured})
     page = '''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Jamloom · the musician answers</title><style>
 body{font:18px/1.6 system-ui;background:#111b20;color:#e9f0eb;max-width:1100px;margin:32px auto;padding:0 20px}
 h1{line-height:1.15}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
 section{padding:22px;background:#213039;border-radius:12px}audio{width:100%}a{color:#b5efac}pre{white-space:pre-wrap;font:inherit}
 :focus-visible{outline:3px solid #d7ff80;outline-offset:4px}</style>
-<h1>The musician answers.</h1><p>Start with “Hear the AI singer”. These are newly generated sung replies, using a voice separate from the user.</p>
-<p>Then try the full exchange: the real user phrase plays first, and the AI singer answers with a band.
-The opening sample plays once or twice. Nothing plays automatically.</p>
-<p>Requested voices: male and female. Styles: reggae and hip-hop. Listen for natural singing, clear words and a playful response.
-These are AI-generated performances; voice accuracy and musical quality still need your judgment.</p><main>''' + ''.join(cards) + '''</main>
+<h1>Your sound becomes the hook.</h1><p>Play “Your sound inside the song” first. The original phrase becomes part of the rhythm,
+returns in shorter pieces and trades places with the singer. Nothing plays automatically.</p>
+<p>Listen for a recognizable source, a coherent groove and a natural exchange. Then compare with the singer before sample arrangement.
+These new arrangements still need your listening judgment.</p><main>''' + ''.join(cards) + '''</main>
 <script>document.addEventListener('play',e=>{if(e.target.tagName==='AUDIO')document.querySelectorAll('audio').forEach(a=>{if(a!==e.target)a.pause()})},true)</script></html>'''
     assert page.count('<audio ') == 2*len(rows) and 'autoplay' not in page
     (review / 'index.html').write_text(page)

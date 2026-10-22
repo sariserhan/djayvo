@@ -6,12 +6,12 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from singing_response import CODE_REVISION, WEIGHT_REVISION, caption, load_plan, validate_plan, variants
+from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, caption, load_plan, validate_plan, variants
 
 
 class SingingPlans(unittest.TestCase):
     def plan(self):
-        cases = variants(42)
+        cases = variants(42)[:4]
         for c in cases:
             c['lyrics'] = '[Verse]\nYou have a question, I wanna know\nLet it out and let the rhythm flow'
         return {'schema': 'jamloom-sung-response-1', 'model_code': CODE_REVISION,
@@ -21,10 +21,15 @@ class SingingPlans(unittest.TestCase):
         cases = variants(42)
         self.assertEqual(cases, variants(42))
         self.assertEqual({(c['genre'], c['voice']) for c in cases},
-                         {('reggae', 'male'), ('reggae', 'female'), ('hiphop', 'male'), ('hiphop', 'female')})
-        self.assertEqual(len({c['seed'] for c in cases}), 4)
+                         {(genre,voice) for genre in STYLES for voice in ('male','female')})
+        self.assertEqual(len(STYLES),12)
+        self.assertEqual(set(STYLE_LABELS),set(STYLES))
+        self.assertEqual(len({c['seed'] for c in cases}), 24)
         self.assertEqual({c['source_repetitions'] for c in cases}, {1, 2})
         self.assertTrue(all('singer' in caption(c) and 'no speech narration' in caption(c) for c in cases))
+        for c in cases:
+            c['lyrics']=self.plan()['cases'][0]['lyrics']
+            p=self.plan();p['cases']=[c];validate_plan(p)
 
     def test_invalid_or_unbounded_plan_rejected(self):
         validate_plan(self.plan())

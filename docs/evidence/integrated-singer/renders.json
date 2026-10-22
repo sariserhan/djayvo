@@ -1,0 +1,290 @@
+[
+  {
+    "case": "reggae-male",
+    "render": {
+      "technical": "PASS",
+      "case": {
+        "id": "reggae-male",
+        "genre": "reggae",
+        "voice": "male",
+        "seed": 61025,
+        "bpm": 84,
+        "duration": 30,
+        "source_repetitions": 2,
+        "lyrics": "[Verse]\nYou have a question, I wanna know\nNo need to rush it, let the question flow\n[Chorus]\nWhat is your question? Send it my way\nI brought a whole band for one thing to say\nYeah, yeah, what do you say?"
+      },
+      "caption": "laid-back reggae, offbeat muted guitar, warm rounded electric bass, live one-drop drums, organ replies. Lead vocal by an expressive adult male soul singer, warm natural baritone, intimate clear diction. Human-like sung melody with breath, connected legato phrases, subtle vibrato, relaxed rhythmic phrasing and expressive dynamics. Playful affectionate delivery, a developing hook, instrumental answers and an intentional ending. Acoustic vocal production, no vocoder, no robotic effects, no hard autotune, no speech narration. Sing the supplied reply lyrics as the musician responding to someone else.",
+      "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+      "plan_sha256": "102888acf4f3598ef402bf25959309e67b0515546f1ef4ed38529c5bb007e4f0",
+      "audio_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "seconds": 71.14603504195111,
+      "peak": 0.891265869140625,
+      "rms": 0.13279394805431366,
+      "peak_process_rss_bytes": 2287566848,
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "torch": "2.10.0",
+      "mlx_vae": true,
+      "voice_and_lyric_fidelity": "NOT RUN: requires listening",
+      "naturalness": "NOT RUN",
+      "trained_adapter": false,
+      "source_audio_uploaded": false
+    },
+    "separation": {
+      "technical": "PASS",
+      "source_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "model_sha256": "a004b2790d73ffeaa535db458a1a79b539dfdbafbccc31f275d07e632ebd7816",
+      "stems": {
+        "vocals": "624e48c6f8085f1f782bd04d6b5cc07cbbc4fb24414bb8f8b10b23385990fb20",
+        "drums": "4c2447c4513f90b63ab3f7beefe7154232d2fff89985b23baea9c319ae45023a"
+      },
+      "sample_rate": 48000,
+      "frames": 1440000,
+      "device": "cpu",
+      "seconds": 3.9285443749977276,
+      "separation_quality": "NOT RUN: estimated stems can contain bleed"
+    },
+    "reused_prior_singer": true
+  },
+  {
+    "case": "hiphop-female",
+    "render": {
+      "technical": "PASS",
+      "case": {
+        "id": "hiphop-female",
+        "genre": "hiphop",
+        "voice": "female",
+        "seed": 61023,
+        "bpm": 94,
+        "duration": 30,
+        "source_repetitions": 2,
+        "lyrics": "[Verse]\nYou have a question, well so do I\nWhy does the bass keep stealing my reply?\n[Chorus]\nTell me your question, do not be shy\nWe made a whole song just to ask you why\nOh yeah, I wanna know, let it fly"
+      },
+      "caption": "soulful hip-hop, swung live drums, warm Rhodes, melodic bass, short guitar answers. Lead vocal by an expressive adult female soul singer, warm natural chest voice, intimate clear diction. Human-like sung melody with breath, connected legato phrases, subtle vibrato, relaxed rhythmic phrasing and expressive dynamics. Playful affectionate delivery, a developing hook, instrumental answers and an intentional ending. Acoustic vocal production, no vocoder, no robotic effects, no hard autotune, no speech narration. Sing the supplied reply lyrics as the musician responding to someone else.",
+      "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+      "plan_sha256": "102888acf4f3598ef402bf25959309e67b0515546f1ef4ed38529c5bb007e4f0",
+      "audio_sha256": "686b696363f79ef80715bac88c285c0abc3b6fc17f254ee9a311a663690fa433",
+      "seconds": 83.71779420797247,
+      "peak": 0.8912353515625,
+      "rms": 0.140645831823349,
+      "peak_process_rss_bytes": 2875277312,
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "torch": "2.10.0",
+      "mlx_vae": true,
+      "voice_and_lyric_fidelity": "NOT RUN: requires listening",
+      "naturalness": "NOT RUN",
+      "trained_adapter": false,
+      "source_audio_uploaded": false
+    },
+    "separation": {
+      "technical": "PASS",
+      "source_sha256": "686b696363f79ef80715bac88c285c0abc3b6fc17f254ee9a311a663690fa433",
+      "model_sha256": "a004b2790d73ffeaa535db458a1a79b539dfdbafbccc31f275d07e632ebd7816",
+      "stems": {
+        "vocals": "321bb08b6bc8c7b242897fd886d923489b0c37ff7d460b45eb10030c9a9914d8",
+        "drums": "68763e2648169a89c2bdd1812fd5452b3786dd967a5a066d2e2bff93aa4bb299"
+      },
+      "sample_rate": 48000,
+      "frames": 1440000,
+      "device": "cpu",
+      "seconds": 3.9759680419811048,
+      "separation_quality": "NOT RUN: estimated stems can contain bleed"
+    },
+    "reused_prior_singer": true
+  },
+  {
+    "case": "funk-male",
+    "render": {
+      "technical": "PASS",
+      "case": {
+        "id": "funk-male",
+        "genre": "funk",
+        "voice": "male",
+        "seed": 610232,
+        "bpm": 108,
+        "duration": 30,
+        "source_repetitions": 1,
+        "lyrics": "[Verse]\nYou have a question, give it to me\nMy bass has opinions, the drums disagree\n[Chorus]\nWhat is your question, let it come through\nI hired a whole band to listen to you"
+      },
+      "caption": "live funk, syncopated electric bass, tight pocket drums, muted rhythm guitar, clavinet and horn answers. Lead vocal by an expressive adult male soul singer, warm natural baritone, intimate clear diction. Human-like sung melody with breath, connected legato phrases, subtle vibrato, relaxed rhythmic phrasing and expressive dynamics. Playful affectionate delivery, a developing hook, instrumental answers and an intentional ending. Acoustic vocal production, no vocoder, no robotic effects, no hard autotune, no speech narration. Leave short instrumental pockets between vocal phrases for sampled call and response. Sing the supplied reply lyrics as the musician responding to someone else.",
+      "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+      "plan_sha256": "17e6ac62b290a3b79281d6c33aeb1aafb79743de79efccee059c37d18463b30d",
+      "audio_sha256": "c3746e5717dcd9977688edef383f3929b42e4fc06318c21b1ee968caac700da2",
+      "seconds": 61.82189612498041,
+      "peak": 0.891265869140625,
+      "rms": 0.12870442867279053,
+      "peak_process_rss_bytes": 2999123968,
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "torch": "2.10.0",
+      "mlx_vae": true,
+      "voice_and_lyric_fidelity": "NOT RUN: requires listening",
+      "naturalness": "NOT RUN",
+      "trained_adapter": false,
+      "source_audio_uploaded": false
+    },
+    "separation": {
+      "technical": "PASS",
+      "source_sha256": "c3746e5717dcd9977688edef383f3929b42e4fc06318c21b1ee968caac700da2",
+      "model_sha256": "a004b2790d73ffeaa535db458a1a79b539dfdbafbccc31f275d07e632ebd7816",
+      "stems": {
+        "vocals": "df1017c047db921385f9f3847e4d294683a1185f37825496a47bee69d97a4a9e",
+        "drums": "072d65a85d043b417ee6c6f0605fd280a72f17333911aadd26b3c0bedc6f2e01"
+      },
+      "sample_rate": 48000,
+      "frames": 1440000,
+      "device": "cpu",
+      "seconds": 5.171220207994338,
+      "separation_quality": "NOT RUN: estimated stems can contain bleed"
+    },
+    "reused_prior_singer": false
+  },
+  {
+    "case": "house-female",
+    "render": {
+      "technical": "PASS",
+      "case": {
+        "id": "house-female",
+        "genre": "house",
+        "voice": "female",
+        "seed": 610237,
+        "bpm": 124,
+        "duration": 30,
+        "source_repetitions": 2,
+        "lyrics": "[Verse]\nYou have a question, I wanna know\nDrop it right here when the lights go low\n[Chorus]\nAsk me again, let the whole room hear\nWe turned one little question into a party here"
+      },
+      "caption": "vocal house, four-on-the-floor kick, offbeat hi-hats, warm piano chords, rounded dance bass, uplifting hook. Lead vocal by an expressive adult female soul singer, warm natural chest voice, intimate clear diction. Human-like sung melody with breath, connected legato phrases, subtle vibrato, relaxed rhythmic phrasing and expressive dynamics. Playful affectionate delivery, a developing hook, instrumental answers and an intentional ending. Acoustic vocal production, no vocoder, no robotic effects, no hard autotune, no speech narration. Leave short instrumental pockets between vocal phrases for sampled call and response. Sing the supplied reply lyrics as the musician responding to someone else.",
+      "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+      "plan_sha256": "17e6ac62b290a3b79281d6c33aeb1aafb79743de79efccee059c37d18463b30d",
+      "audio_sha256": "a33376e8d7af74182e9897c259e5599b70eede492a59bf118737576dbfed3961",
+      "seconds": 53.10486641700845,
+      "peak": 0.8912353515625,
+      "rms": 0.1307147741317749,
+      "peak_process_rss_bytes": 2400337920,
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "torch": "2.10.0",
+      "mlx_vae": true,
+      "voice_and_lyric_fidelity": "NOT RUN: requires listening",
+      "naturalness": "NOT RUN",
+      "trained_adapter": false,
+      "source_audio_uploaded": false
+    },
+    "separation": {
+      "technical": "PASS",
+      "source_sha256": "a33376e8d7af74182e9897c259e5599b70eede492a59bf118737576dbfed3961",
+      "model_sha256": "a004b2790d73ffeaa535db458a1a79b539dfdbafbccc31f275d07e632ebd7816",
+      "stems": {
+        "vocals": "82a112d54d8c36bf2eac8b06fc670e73ee0a302303f4c878f281da5248b1a845",
+        "drums": "79bcc09fc68a69a7b250e885e5fbe0c73deeb121205e5d27fd82393c9d66ffb9"
+      },
+      "sample_rate": 48000,
+      "frames": 1440000,
+      "device": "cpu",
+      "seconds": 5.412236500007566,
+      "separation_quality": "NOT RUN: estimated stems can contain bleed"
+    },
+    "reused_prior_singer": false
+  },
+  {
+    "case": "drumandbass-male",
+    "render": {
+      "technical": "PASS",
+      "case": {
+        "id": "drumandbass-male",
+        "genre": "drumandbass",
+        "voice": "male",
+        "seed": 610247,
+        "bpm": 172,
+        "duration": 30,
+        "source_repetitions": 2,
+        "lyrics": "[Verse]\nYou have a question, take your time\nThe drums are in a hurry but the answer is mine\n[Chorus]\nTell me what you wanna know\nFast little beat with a nice slow flow"
+      },
+      "caption": "liquid drum and bass, fast broken drums, deep rolling bass, atmospheric chords, relaxed half-time soulful singing. Lead vocal by an expressive adult male soul singer, warm natural baritone, intimate clear diction. Human-like sung melody with breath, connected legato phrases, subtle vibrato, relaxed rhythmic phrasing and expressive dynamics. Playful affectionate delivery, a developing hook, instrumental answers and an intentional ending. Acoustic vocal production, no vocoder, no robotic effects, no hard autotune, no speech narration. Leave short instrumental pockets between vocal phrases for sampled call and response. Sing the supplied reply lyrics as the musician responding to someone else.",
+      "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+      "plan_sha256": "17e6ac62b290a3b79281d6c33aeb1aafb79743de79efccee059c37d18463b30d",
+      "audio_sha256": "96c2bcb0e557e09ca7bdfdcd04c6745f193a8f831ed933aab453933654ac2f29",
+      "seconds": 33.188342958979774,
+      "peak": 0.8912353515625,
+      "rms": 0.17155860364437103,
+      "peak_process_rss_bytes": 3548971008,
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "torch": "2.10.0",
+      "mlx_vae": true,
+      "voice_and_lyric_fidelity": "NOT RUN: requires listening",
+      "naturalness": "NOT RUN",
+      "trained_adapter": false,
+      "source_audio_uploaded": false
+    },
+    "separation": {
+      "technical": "PASS",
+      "source_sha256": "96c2bcb0e557e09ca7bdfdcd04c6745f193a8f831ed933aab453933654ac2f29",
+      "model_sha256": "a004b2790d73ffeaa535db458a1a79b539dfdbafbccc31f275d07e632ebd7816",
+      "stems": {
+        "vocals": "8ea46d95f171ef07b71c6813312136b0c8852f7eb92590f2655650d3464574ca",
+        "drums": "8797b5fd3a0808bff73cb2f2f6a26ffd8e9eb2f7120a5f8880f22b4189061ac8"
+      },
+      "sample_rate": 48000,
+      "frames": 1440000,
+      "device": "cpu",
+      "seconds": 5.174539542000275,
+      "separation_quality": "NOT RUN: estimated stems can contain bleed"
+    },
+    "reused_prior_singer": false
+  },
+  {
+    "case": "acousticpop-female",
+    "render": {
+      "technical": "PASS",
+      "case": {
+        "id": "acousticpop-female",
+        "genre": "acousticpop",
+        "voice": "female",
+        "seed": 610244,
+        "bpm": 100,
+        "duration": 30,
+        "source_repetitions": 1,
+        "lyrics": "[Verse]\nYou have a question, pull up a chair\nI brought my guitar and a curious stare\n[Chorus]\nWhat is your question, tell me today\nI learned three new chords while you thought what to say"
+      },
+      "caption": "acoustic pop, fingerpicked and strummed guitar, warm piano, brushed drums, intimate natural singing. Lead vocal by an expressive adult female soul singer, warm natural chest voice, intimate clear diction. Human-like sung melody with breath, connected legato phrases, subtle vibrato, relaxed rhythmic phrasing and expressive dynamics. Playful affectionate delivery, a developing hook, instrumental answers and an intentional ending. Acoustic vocal production, no vocoder, no robotic effects, no hard autotune, no speech narration. Leave short instrumental pockets between vocal phrases for sampled call and response. Sing the supplied reply lyrics as the musician responding to someone else.",
+      "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+      "plan_sha256": "17e6ac62b290a3b79281d6c33aeb1aafb79743de79efccee059c37d18463b30d",
+      "audio_sha256": "8824a8b696144cb304c98e7ae28a720dba5a77ee885a8017ae89113e4ceba8ad",
+      "seconds": 29.38381216599373,
+      "peak": 0.891265869140625,
+      "rms": 0.10919024050235748,
+      "peak_process_rss_bytes": 4649762816,
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "torch": "2.10.0",
+      "mlx_vae": true,
+      "voice_and_lyric_fidelity": "NOT RUN: requires listening",
+      "naturalness": "NOT RUN",
+      "trained_adapter": false,
+      "source_audio_uploaded": false
+    },
+    "separation": {
+      "technical": "PASS",
+      "source_sha256": "8824a8b696144cb304c98e7ae28a720dba5a77ee885a8017ae89113e4ceba8ad",
+      "model_sha256": "a004b2790d73ffeaa535db458a1a79b539dfdbafbccc31f275d07e632ebd7816",
+      "stems": {
+        "vocals": "cc95ad39bb410fc2771b7e4fe48cdcd1e19bc7a2f26b4982fda34fda6ddb4db9",
+        "drums": "156aee14c1802c900dd75f03db093b2f7f459ccf1330ab43759370863f08087d"
+      },
+      "sample_rate": 48000,
+      "frames": 1440000,
+      "device": "cpu",
+      "seconds": 5.058329667022917,
+      "separation_quality": "NOT RUN: estimated stems can contain bleed"
+    },
+    "reused_prior_singer": false
+  }
+]

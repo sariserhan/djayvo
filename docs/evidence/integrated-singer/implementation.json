@@ -1,0 +1,14 @@
+{
+  "sha256": {
+    "scripts/singing_response.py": "909cf405b18c459e99729dc854d5fa41ff770136f05274ad1345a736d3994115",
+    "scripts/singer_studio.py": "fd40d2f10914aa24d7a1fc0ce19f73243a91a241f0e45bc095450af3e4d39e55",
+    "scripts/separate_singer.py": "4de0b971d4bd27d4454abc55031746daf704431b63ed216c3998b51e07766f84",
+    "scripts/assemble_sung_response.py": "6129a724feb91a155a4a18874a252889c8552cfb648ecc3195744addc63c2cea",
+    "scripts/prepare_singer_review.py": "91b1798683230410ea342979a11ab186e213081f9bd362b5c380841a1b7c6d6e",
+    "scripts/setup_singer.sh": "3c69d1c32b5221302ea6f82e47cb77462fda63fc3d0d0bc678cf1dc5c422b388"
+  },
+  "new_paid_compute": false,
+  "source_upload": false,
+  "new_model_training": false,
+  "production_promotion": false
+}

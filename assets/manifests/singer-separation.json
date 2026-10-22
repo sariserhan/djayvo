@@ -1,0 +1,9 @@
+{
+  "model": "torchaudio HDEMUCS_HIGH_MUSDB_PLUS",
+  "url": "https://download.pytorch.org/torchaudio/models/hdemucs_high_trained.pt",
+  "sha256": "a004b2790d73ffeaa535db458a1a79b539dfdbafbccc31f275d07e632ebd7816",
+  "bytes": 334697255,
+  "torchaudio": "2.10.0",
+  "license": "Demucs project declares MIT; official TorchAudio checkpoint downloaded for local research, not redistributed; production review separate",
+  "source": "https://github.com/facebookresearch/demucs#license"
+}

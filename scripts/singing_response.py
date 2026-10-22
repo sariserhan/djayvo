@@ -16,7 +16,19 @@ WEIGHT_REVISION = '19671f406d603126926c1b7e2adc169acbcade22'
 STYLES = {
     'reggae': (84, 'laid-back reggae, offbeat muted guitar, warm rounded electric bass, live one-drop drums, organ replies'),
     'hiphop': (94, 'soulful hip-hop, swung live drums, warm Rhodes, melodic bass, short guitar answers'),
+    'funk': (108, 'live funk, syncopated electric bass, tight pocket drums, muted rhythm guitar, clavinet and horn answers'),
+    'house': (124, 'vocal house, four-on-the-floor kick, offbeat hi-hats, warm piano chords, rounded dance bass, uplifting hook'),
+    'disco': (116, 'live disco, four-on-the-floor drums, octave bass, string accents, clean rhythm guitar, joyful chorus'),
+    'rnb': (82, 'contemporary R&B, spacious swung drums, warm electric piano, deep bass, intimate melodic vocal phrases'),
+    'soul': (92, 'live soul band, warm organ and piano, expressive bass, restrained horns, gospel-influenced melodic phrasing'),
+    'afrobeats': (104, 'Afrobeats, interlocking syncopated percussion, warm bass, bright guitar figures, buoyant melodic chorus'),
+    'latinpop': (100, 'Latin pop, syncopated hand percussion, nylon guitar, melodic bass, bright piano and an infectious sung chorus'),
+    'drumandbass': (172, 'liquid drum and bass, fast broken drums, deep rolling bass, atmospheric chords, relaxed half-time soulful singing'),
+    'acousticpop': (100, 'acoustic pop, fingerpicked and strummed guitar, warm piano, brushed drums, intimate natural singing'),
+    'rock': (122, 'melodic live pop rock, real drum kit, electric rhythm guitar, melodic bass, expressive sung hook'),
 }
+STYLE_LABELS = dict(zip(STYLES, ('Reggae', 'Hip-hop', 'Funk', 'House', 'Disco', 'R&B', 'Soul',
+                               'Afrobeats', 'Latin pop', 'Drum and bass', 'Acoustic pop', 'Rock')))
 VOICES = {
     'female': 'an expressive adult female soul singer, warm natural chest voice, intimate clear diction',
     'male': 'an expressive adult male soul singer, warm natural baritone, intimate clear diction',
@@ -35,7 +47,7 @@ def text_field(value, limit, name):
 
 
 def variants(seed):
-    if type(seed) is not int or not 0 <= seed < 2**32 - 4:
+    if type(seed) is not int or not 0 <= seed < 2**32 - 2*len(STYLES):
         raise ValueError('Invalid seed')
     pairs = [(style, voice) for style in STYLES for voice in VOICES]
     random.Random(seed).shuffle(pairs)
@@ -49,6 +61,7 @@ def caption(case):
             'Human-like sung melody with breath, connected legato phrases, subtle vibrato, relaxed rhythmic phrasing and expressive dynamics. '
             'Playful affectionate delivery, a developing hook, instrumental answers and an intentional ending. '
             'Acoustic vocal production, no vocoder, no robotic effects, no hard autotune, no speech narration. '
+            'Leave short instrumental pockets between vocal phrases for sampled call and response. '
             'Sing the supplied reply lyrics as the musician responding to someone else.')
 
 
@@ -57,8 +70,8 @@ def validate_plan(plan):
         raise ValueError('Unsupported singing plan or model revisions')
     text_field(plan.get('phrase'), 240, 'source phrase')
     cases = plan.get('cases')
-    if not isinstance(cases, list) or not 1 <= len(cases) <= 4:
-        raise ValueError('Expected one to four singer cases')
+    if not isinstance(cases, list) or not 1 <= len(cases) <= 12:
+        raise ValueError('Expected one to twelve singer cases')
     seen = set()
     for c in cases:
         if not isinstance(c, dict) or not isinstance(c.get('genre'), str) or not isinstance(c.get('voice'), str) or c.get('genre') not in STYLES or c.get('voice') not in VOICES or c.get('id') != f"{c.get('genre')}-{c.get('voice')}" or c['id'] in seen:
@@ -104,7 +117,7 @@ def draft(root, phrase, seed, output, voice=None, genre=None):
     phrase = text_field(phrase, 240, 'source phrase')
     if voice is not None and voice not in VOICES or genre is not None and genre not in STYLES:
         raise ValueError('Unknown voice or genre')
-    cases = [c for c in variants(seed) if (voice is None or c['voice'] == voice) and (genre is None or c['genre'] == genre)]
+    cases = [c for c in variants(seed) if (voice is None or c['voice'] == voice) and (genre is None or c['genre'] == genre)][:4]
     if output.exists():
         raise FileExistsError('Preserving existing lyric plan')
     import mlx.core as mx

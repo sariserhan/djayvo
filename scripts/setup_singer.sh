@@ -11,6 +11,7 @@ HF_HUB_DISABLE_TELEMETRY=1 .venv-singer/bin/python - <<'PY'
 from huggingface_hub import snapshot_download
 import json
 from pathlib import Path
+import urllib.request
 snapshot_download('ACE-Step/Ace-Step1.5', revision='19671f406d603126926c1b7e2adc169acbcade22',
     local_dir='build-style-training/upstream/checkpoints', max_workers=3,
     allow_patterns=['README.md', 'config.json', 'Qwen3-Embedding-0.6B/*',
@@ -23,5 +24,10 @@ sys.path.insert(0, 'scripts')
 from singing_response import runtime, digest
 runtime('build-style-training/upstream')
 assert all(digest(Path('build-style-training/lyric-planner') / p) == h for p, h in planner['files_sha256'].items())
+separator = json.loads(Path('assets/manifests/singer-separation.json').read_text())
+checkpoint = Path('build-style-training/separator/hdemucs_high_trained.pt')
+checkpoint.parent.mkdir(parents=True, exist_ok=True)
+if not checkpoint.exists(): urllib.request.urlretrieve(separator['url'], checkpoint)
+assert digest(checkpoint) == separator['sha256']
 print('PASS: pinned runtime and model checksums verified')
 PY

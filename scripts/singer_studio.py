@@ -10,7 +10,7 @@ import uuid
 
 from arrange_voice_research import RATE, digest, read_pcm
 from assemble_sung_response import assemble
-from singing_response import STYLES, VOICES, load_plan, text_field
+from singing_response import STYLES, STYLE_LABELS, VOICES, load_plan, text_field
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'build-style-training/upstream'
@@ -25,7 +25,7 @@ def make_reply(audio, phrase, voice, genre, consent):
         raise ValueError('Choose an available voice and style.')
     if not audio or not Path(audio).is_file() or not 44 <= Path(audio).stat().st_size <= 10*1024**2:
         raise ValueError('Record or upload a short audio clip, up to 10 MB.')
-    seed = secrets.randbelow(2**32-4)
+    seed = secrets.randbelow(2**32-2*len(STYLES))
     chosen_voice = secrets.choice(tuple(VOICES)) if voice == 'surprise' else voice
     chosen_genre = secrets.choice(tuple(STYLES)) if genre == 'surprise' else genre
     work = OUTPUT / uuid.uuid4().hex
@@ -51,11 +51,14 @@ def make_reply(audio, phrase, voice, genre, consent):
     with (work / 'render-private.log').open('w') as log:
         subprocess.run([*command, 'sing', '--runtime', str(RUNTIME), '--plan', str(plan_path), '--case', case['id'],
                         '--output', str(singer)], stdout=log, stderr=subprocess.STDOUT, env=env, timeout=600, check=True)
+    with (work / 'separate-private.log').open('w') as log:
+        subprocess.run([sys.executable, str(ROOT/'scripts/separate_singer.py'), '--input', str(singer/'singer.wav'),
+                        '--output', str(singer/'stems')], stdout=log, stderr=subprocess.STDOUT, env=env, timeout=600, check=True)
     report = assemble(source, score, singer, work / 'exchange', True)
     (work / '.partial').unlink()
     return (str(singer/'singer.wav'), str(work/'exchange/performance.wav'), case['lyrics'],
-            f"{chosen_voice.title()} · {chosen_genre.title()}. The singer enters the full exchange at {report['singer_start_frame']/RATE:.1f}s. "
-            'Listen for natural vocals and a relevant reply; try again for another interpretation.')
+            f"{chosen_voice.title()} · {STYLE_LABELS[chosen_genre]}. Your sound becomes a hook and {len(report['events'])-1} rhythmic fragments inside the song. "
+            'Listen to the full song first; try again for a new interpretation.')
 
 
 def serve():
@@ -69,18 +72,19 @@ def serve():
             raise gr.Error('Could not make this reply. Use a clear 2–5 second clip, confirm its words and permission, and try again. No completed output was replaced.') from None
 
     with gr.Blocks(title='Jamloom · musician voice', analytics_enabled=False) as app:
-        gr.Markdown('# Let the musician answer\nGive Jamloom a short phrase. An AI singer turns it into a playful musical reply. '
+        gr.Markdown('# Turn your sound into a song\nYour phrase becomes a musical hook: sliced, rhythmically reshaped and woven around an AI singer. '
                     'Everything stays on this Mac. New singing is experimental; listen before keeping it.')
         consent = gr.Checkbox(label='I have permission to use this recording.', value=False)
         audio = gr.Audio(sources=['microphone', 'upload'], type='filepath', format='wav', buttons=['download'], label='Your phrase · 2–5 seconds', elem_id='user-phrase')
         phrase = gr.Textbox(label='What does the recording say?', max_lines=2, placeholder='I have a question')
         with gr.Row():
             voice = gr.Dropdown(choices=[('Surprise me', 'surprise'), ('Female', 'female'), ('Male', 'male')], value='surprise', label='Singer')
-            genre = gr.Dropdown(choices=[('Surprise me', 'surprise'), ('Reggae', 'reggae'), ('Hip-hop', 'hiphop')], value='surprise', label='Style')
-        button = gr.Button('Make a sung reply', variant='primary')
+            genre = gr.Dropdown(choices=[('Surprise me', 'surprise'), *[(label,key) for key,label in STYLE_LABELS.items()]], value='surprise', label='Style')
+        button = gr.Button('Make a song', variant='primary')
         status = gr.Markdown('Generation can take a few minutes. Nothing plays automatically. Local recordings and results remain in this preview until deleted.')
-        singer = gr.Audio(label='Hear the AI singer', interactive=False, autoplay=False, buttons=['download'], elem_id='singer-preview')
-        exchange = gr.Audio(label='Your phrase → singer reply', interactive=False, autoplay=False, buttons=['download'], elem_id='exchange-preview')
+        exchange = gr.Audio(label='Your sound inside the song', interactive=False, autoplay=False, buttons=['download'], elem_id='exchange-preview')
+        with gr.Accordion('Singer before your sample is woven in', open=False):
+            singer = gr.Audio(label='Singer and band', interactive=False, autoplay=False, buttons=['download'], elem_id='singer-preview')
         lyrics = gr.Textbox(label='Intended lyrics', interactive=False, lines=6)
         button.click(generate, [audio, phrase, voice, genre, consent], [singer, exchange, lyrics, status],
                      concurrency_limit=1, api_name=False)

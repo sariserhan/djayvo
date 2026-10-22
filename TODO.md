@@ -2,7 +2,7 @@
 
 ## Musician training request — 2026-10-21
 
-- [ ] **TRAIN-007 — PARTIAL:** Natural-sounding AI singer clarified by owner. Local contextual lyric planning, separate singer generation, male/female × reggae/hip-hop choices, source pickup and downloads implemented. Four actual singer WAVs, four assembled exchanges, six unit tests and Chromium/WebKit listening-page checks PASS. Local studio uses pinned models with no cloud recording upload. Naturalness, lyric/voice fidelity, creative diversity, adaptive live arrangement and production integration remain open. [Implementation, listening page and evidence](docs/singing-response.md).
+- [ ] **TRAIN-007 — PARTIAL:** Owner loved the first AI singer previews; rejected source-only intros and requested more styles. Implemented a 12-style local studio, integrated clean hook and beat-fit fragments, recurring answers, rhythmic delay, estimated singer muting and drum-led breaks. Technical verification and actual new renders are recorded in the [integrated singer report](docs/integrated-singer.md). Prior takes preserved. New arrangement/style listening, formal quality, generalization and production promotion remain open.
 
 - [x] **TRAIN-006 — PASS, local voice audition:** Three new mixes using the authorized owner voice and existing epoch-10 hip-hop/funk/bass-b audio; Group 1 excluded. Six voice/music comparisons at −22 LUFS, clean-source/stem checks, deterministic rerender, eight regression tests and both-browser playback/seek PASS. Musical acceptance remains open. [Report](docs/voice-led-review.md).
 

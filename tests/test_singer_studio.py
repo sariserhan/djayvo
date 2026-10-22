@@ -33,7 +33,15 @@ class StudioFlow(unittest.TestCase):
                 if args[0] == 'ffmpeg': return real_run(args, **kwargs)
                 calls.append((args, kwargs))
                 dest = Path(args[args.index('--output')+1])
-                if args[2] == 'draft':
+                if args[1].endswith('separate_singer.py'):
+                    dest.mkdir()
+                    hashes={}
+                    for name in ('vocals','drums'):
+                        np.save(dest/f'{name}.npy',np.tile(samples*.2,(10,1)).astype('float32'),allow_pickle=False)
+                        hashes[name]=digest(dest/f'{name}.npy')
+                    (dest/'complete.json').write_text(json.dumps({'technical':'PASS',
+                        'source_sha256':digest(Path(args[args.index('--input')+1])),'stems':hashes}))
+                elif args[2] == 'draft':
                     seed = int(args[args.index('--seed')+1])
                     c = next(c for c in variants(seed) if c['id'] == 'reggae-female')
                     c['lyrics'] = '[Verse]\nYou have a question and I want to know\nLet your question flow'
@@ -52,7 +60,7 @@ class StudioFlow(unittest.TestCase):
             self.assertIn('Female · Reggae', status)
             self.assertIn('question', lyrics)
             self.assertEqual(digest(source), original_hash)
-            self.assertEqual(len(calls), 2)
+            self.assertEqual(len(calls), 3)
             self.assertTrue(all(kw['timeout'] == 600 for _, kw in calls))
             self.assertFalse(list(studio.OUTPUT.rglob('.partial')))
 
