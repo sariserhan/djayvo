@@ -1,5 +1,6 @@
 ## Pro v1 completion — 2026-10-22
 
+- [x] **PRO-007 — PASS, Stripe test recheck:** Owner-requested fresh hosted Checkout run: $49 test payment, decline, signed/duplicate callbacks, license access, full $49 refund and cached-access revocation. No live funds or production configuration changes. [Evidence](docs/evidence/pro-v1/stripe-retest-20261022.json).
 - [x] **PRO-004 — PASS:** Approved $49 one-time Pro v1; verified checkout/refunds, signed Mac activation, web offline entitlement, sampler control replay and notarized 1.0.0 candidate. [Report](docs/pro-v1-release.md).
 - [x] **PRO-005 — PASS, technical release checks:** Public signed 1.0.0 installer/feed, actual 0.1.0 upgrade, hosted CI/deployment, production access/catalogue, installed-app Aurowall PCM, owner LG listening and a 3603-second isolated endurance rerun. Approved $49 one-time production sales enabled; stable release and deployment confirmed in the [release report](docs/pro-v1-release.md).
 - [ ] **PRO-006 — PARTIAL, physical qualification:** No physical MIDI controller or separate headphone output available; cable-unplug recovery remains deferred. Native virtual MIDI passes. No real-money payment was made. Initial interrupted endurance attempt retained, cause unknown.

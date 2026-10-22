@@ -1,5 +1,7 @@
 ## Pro v1 completion — 2026-10-22
 
+**Stripe test recheck — PASS:** Rebuilt current sources and repeated actual Stripe TEST hosted Checkout against disposable local Postgres. The $49 payment and full $49 refund succeeded; decline, signed/duplicate webhooks, owner isolation, sandbox license boundaries and offline refund revocation pass. Production configuration was unchanged. [Evidence](evidence/pro-v1/stripe-retest-20261022.json).
+
 **PASS: Pro v1 implementation and technical release checks. PARTIAL: physical qualification.** Basic stays free; Pro v1 is $49 once plus tax, with Mac and web access. Signed 1.0.0 download, real upgrade, production catalogue/activation, installed-app playback, owner LG listening and a continuous 3603-second diagnostic rerun pass. The first endurance attempt stopped after about 31 minutes; its cause remains unknown and evidence is retained. Physical MIDI/headphones are unavailable, unplug is deferred, and no live charge was made. Production sales are enabled and the GitHub deployment is verified. Pro 1.0.0 is a stable public release. [Current report](pro-v1-release.md). Earlier preview notes below are historical.
 
 # Basic and Pro editions — 2026-10-22
