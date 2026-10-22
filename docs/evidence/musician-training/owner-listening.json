@@ -1,0 +1,15 @@
+{
+  "owner_statement_verbatim": "group1 is all weird, and other groups are fine but I dont understand the differencens between the versions it all sounds same to me and why we cant or dont add human voice like mr wobble does",
+  "scope": "Informal owner listening of four concealed comparison groups; no numeric ratings or timestamps supplied",
+  "group_1": "FAIL: all versions described as weird",
+  "groups_2_3_4": "PARTIAL: described as fine, without preference between versions",
+  "audible_adapter_improvement": "NOT DEMONSTRATED: owner reports versions sound the same",
+  "human_listening": "PARTIAL: owner feedback received; formal study not completed",
+  "voice_request": "Wants human voice as part of the musical performance, referencing Mr. Wobbles",
+  "generation_configuration": {
+    "instrumental": true,
+    "lyrics": "[Instrumental]",
+    "all_prompts_end_with": "No vocals."
+  },
+  "production_promotion": "NOT RUN"
+}

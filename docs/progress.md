@@ -1,5 +1,7 @@
 # Completed musician-reference training — 2026-10-21
 
+**Owner listening update:** Group 1: all versions sound weird. Groups 2–4: fine, but the owner hears no clear difference between versions. Informal listening is now PARTIAL; audible adapter improvement is NOT DEMONSTRATED and no checkpoint is selected. Human voice is requested; this comparison explicitly used instrumental mode and “No vocals” prompts. [Exact feedback](evidence/musician-training/owner-listening.json). Formal quality, physical checks and production promotion remain open.
+
 **Research execution PASS; musical acceptance PARTIAL.** Approved one-instance trial screened thirteen excerpts and trained on six provisional clips across all four authorized recordings: 60 optimizer steps, two verified ACE-Step LoRA checkpoints and thirteen comparison WAVs. All 48 artifact hashes matched; 19 regression tests and local waveform/loudness checks pass. Rental/temporary keys deleted; zero active instances and $0.0945214 observed debit, subject to billing settlement. Listening, independent generalization and production promotion NOT RUN. Product rule-based composer unchanged. [Run report](musician-training-run.md).
 
 # Earlier authorized reference preparation — 2026-10-21

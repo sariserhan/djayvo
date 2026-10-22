@@ -2,6 +2,8 @@
 
 ## Musician training request — 2026-10-21
 
+- [ ] **TRAIN-005 — PARTIAL, owner listening:** Group 1 rejected as weird; groups 2–4 fine, but no clear difference between versions. Audible training benefit NOT DEMONSTRATED; no winner selected. Owner requests human voice in musical performances; current benchmark forced instrumentals. [Feedback](docs/evidence/musician-training/owner-listening.json). Formal quality and production promotion remain open.
+
 - [x] **TRAIN-001 — PASS, preparation:** Audit actual model/data paths; prepare 48 contextual exercises for rhythm, harmony, composition, improvisation, DJ transitions, deck performance, expression and evaluation. Rehash the 16 retained Blood Club clips and both adapters. [Curriculum and evidence](docs/musician-training-curriculum.md).
 - [ ] **TRAIN-002 — NOT RUN:** Admit reviewed, training-authorized expert state/action/audio demonstrations and train/evaluate a candidate on independent sessions. Known R1 export has six automated evaluation-only rows; no eligible expert corpus identified. Four additional audio references are now authorized, but have no verified action labels. The separate audio-style trial below does not close this action-learning gate; listening stays deferred.
 - [x] **TRAIN-003 — PASS, local preparation:** Owner authorized f/down/question/pipe for training. Prepared 13 headroom-safe candidates (390 seconds), review sheet and exact hash-bound archive; preserved four originals. 14 tests, real WAV checks and 62 cross-file waveform comparisons pass. [Report and bounded GPU proposal](docs/musician-training-preparation.md). Content readiness PARTIAL; the subsequently approved execution is recorded in TRAIN-004.

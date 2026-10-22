@@ -1,5 +1,7 @@
 # Jamloom owner handbook
 
+**Owner listening update:** Group 1: all versions sound weird. Groups 2–4: fine, but the owner hears no clear difference between versions. Informal listening is now PARTIAL; audible adapter improvement is NOT DEMONSTRATED and no checkpoint is selected. Human voice is requested; this comparison explicitly used instrumental mode and “No vocals” prompts. [Exact feedback](evidence/musician-training/owner-listening.json). Formal quality, physical checks and production promotion remain open.
+
 ## Musician training data — 2026-10-21
 
 **Bounded GPU trial completed:** You approved the $10/two-hour trial for the

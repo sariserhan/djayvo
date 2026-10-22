@@ -1,10 +1,13 @@
 # Authorized musician-reference GPU trial — 2026-10-21
 
+**Owner listening update:** Group 1: all versions sound weird. Groups 2–4: fine, but the owner hears no clear difference between versions. Informal listening is now PARTIAL; audible adapter improvement is NOT DEMONSTRATED and no checkpoint is selected. Human voice is requested; this comparison explicitly used instrumental mode and “No vocals” prompts. [Exact feedback](evidence/musician-training/owner-listening.json). Formal quality, physical checks and production promotion remain open.
+
 **Research execution PASS; musical acceptance PARTIAL.** The owner approved the
 one-GPU, $10/two-hour trial and temporary upload. It completed on one RTX 3090:
 13 excerpts screened, six provisionally selected, 60 optimizer steps, two saved
 adapters and 13 comparison WAVs retrieved. The rental and temporary keys were
-deleted. Listening, physical checks and production promotion remain deferred.
+deleted. The execution-time listening status below is historical; the owner
+feedback above supersedes it. Physical checks and production promotion remain deferred.
 
 This changes experimental **ACE-Step 1.5 turbo LoRA weights**, not the product's
 rule-based C++ composer. It does not establish mastery of DJ techniques, music
