@@ -1,0 +1,31 @@
+{
+  "automatic_speech_understanding": "PASS",
+  "acoustic_without_sample": "PASS",
+  "status": "PASS",
+  "browser": "149.0.7827.55",
+  "real_generation": "PASS",
+  "consent_required": "PASS",
+  "no_autoplay": "PASS",
+  "play_seek_exclusivity": "PASS",
+  "durations": [
+    6,
+    30,
+    30
+  ],
+  "layouts": [
+    {
+      "width": 375,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "signal is aborted without reason",
+    "signal is aborted without reason",
+    "signal is aborted without reason"
+  ]
+}

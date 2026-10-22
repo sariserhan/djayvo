@@ -11,6 +11,7 @@ import resource
 import sys
 import time
 
+MAX_PHRASE_CHARS = 32000
 CODE_REVISION = 'ca1e85fe9430179831e6bc6be790c332190a3866'
 WEIGHT_REVISION = '19671f406d603126926c1b7e2adc169acbcade22'
 STYLES = {
@@ -77,14 +78,14 @@ def caption(case):
             f'{delivery}'
             'Playful affectionate delivery, a developing hook, instrumental answers and an intentional ending. '
             'Acoustic vocal production, no vocoder, no robotic effects, no hard autotune, no speech narration. '
-            'Leave a four-second instrumental call-and-response pocket before a sung answer, with the groove continuing and no vocal ad-libs in that pocket. '
+            'Let the song develop naturally; instrumental answers should serve the melody and phrasing. '
             'Perform the supplied reply lyrics as the musician responding to someone else.')
 
 
 def validate_plan(plan):
     if not isinstance(plan, dict) or plan.get('schema') != 'jamloom-sung-response-1' or plan.get('model_code') != CODE_REVISION or plan.get('weights') != WEIGHT_REVISION:
         raise ValueError('Unsupported singing plan or model revisions')
-    text_field(plan.get('phrase'), 240, 'source phrase')
+    text_field(plan.get('phrase'), MAX_PHRASE_CHARS, 'source phrase')
     cases = plan.get('cases')
     if not isinstance(cases, list) or not 1 <= len(cases) <= 12:
         raise ValueError('Expected one to twelve singer cases')
@@ -105,7 +106,7 @@ def validate_plan(plan):
 
 
 def load_plan(path):
-    if Path(path).stat().st_size > 32768:
+    if Path(path).stat().st_size > 262144:
         raise ValueError('Plan exceeds size budget')
     return validate_plan(json.loads(Path(path).read_text()))
 
@@ -130,7 +131,7 @@ def runtime(path):
 
 
 def draft(root, phrase, seed, output, voice=None, genre=None):
-    phrase = text_field(phrase, 240, 'source phrase')
+    phrase = text_field(phrase, MAX_PHRASE_CHARS, 'source phrase')
     if voice is not None and voice not in VOICES or genre is not None and genre not in STYLES:
         raise ValueError('Unknown voice or genre')
     cases = [c for c in variants(seed) if (voice is None or c['voice'] == voice) and (genre is None or c['genre'] == genre)][:4]
@@ -151,7 +152,7 @@ def draft(root, phrase, seed, output, voice=None, genre=None):
             'You are an original musician performing a friendly musical reply to a listener. '
             'Write only 4 to 6 short English lyric lines, 25 to 55 words total. '
             'Respond directly to the meaning of the quoted listener phrase, addressing them as you. '
-            'In the first line, use a meaningful word or short phrase from the listener. '
+            'Respond to the central idea, emotion or story; do not recite the transcript. '
             'Use everyday conversational English, no invented words or forced rhymes. '
             'Add a light situational joke, never mock distress. Develop a new singable hook. '
             'No explanation, title, stage directions, artist imitation or copied lyrics. '

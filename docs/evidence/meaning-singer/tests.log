@@ -1,0 +1,32 @@
+test_model_failure_does_not_blame_recording_duration (test_singer_studio.StudioFlow.test_model_failure_does_not_blame_recording_duration) ... ok
+test_permission_and_selection_checked_before_creating_job (test_singer_studio.StudioFlow.test_permission_and_selection_checked_before_creating_job) ... ok
+test_pipeline_keeps_source_and_singer_distinct (test_singer_studio.StudioFlow.test_pipeline_keeps_source_and_singer_distinct) ... ok
+test_sample_choice_is_optional_and_preserves_selected_phrase (test_singer_studio.StudioFlow.test_sample_choice_is_optional_and_preserves_selected_phrase) ... ok
+test_short_long_and_quiet_recordings_are_preserved (test_singer_studio.StudioFlow.test_short_long_and_quiet_recordings_are_preserved) ... ok
+test_invalid_or_unbounded_plan_rejected (test_singing_response.SingingPlans.test_invalid_or_unbounded_plan_rejected) ... ok
+test_rap_delivery_differs_from_sung_hiphop (test_singing_response.SingingPlans.test_rap_delivery_differs_from_sung_hiphop) ... ok
+test_revision_and_size_checks (test_singing_response.SingingPlans.test_revision_and_size_checks) ... ok
+test_voices_and_styles_are_independent_and_repeatable (test_singing_response.SingingPlans.test_voices_and_styles_are_independent_and_repeatable) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.538s
+
+OK
+test_estimated_grid_follows_actual_pulses_and_crops_stay_bounded (test_sung_assembly.SungAssembly.test_estimated_grid_follows_actual_pulses_and_crops_stay_bounded) ... ok
+test_phrase_selection_requires_real_pauses_and_vocal_gaps (test_sung_assembly.SungAssembly.test_phrase_selection_requires_real_pauses_and_vocal_gaps) ... ok
+test_real_source_is_separate_and_preserved (test_sung_assembly.SungAssembly.test_real_source_is_separate_and_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.468s
+
+OK
+test_constant_offsets_and_quiet_variation_rejected_before_model (test_word_audio.WordAudio.test_constant_offsets_and_quiet_variation_rejected_before_model) ... ok
+test_invalid_decoded_output_rejected_before_model (test_word_audio.WordAudio.test_invalid_decoded_output_rejected_before_model) ... ok
+test_optional_understanding_accepts_long_speech_and_keeps_default_private (test_word_audio.WordAudio.test_optional_understanding_accepts_long_speech_and_keeps_default_private) ... ok
+test_quiet_recording_is_valid_in_understanding_mode (test_word_audio.WordAudio.test_quiet_recording_is_valid_in_understanding_mode) ... ok
+test_valid_offset_pcm_reaches_model_unchanged (test_word_audio.WordAudio.test_valid_offset_pcm_reaches_model_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.723s
+
+OK

@@ -4,6 +4,7 @@ import sys
 import tempfile
 import subprocess
 import unittest
+import wave
 from unittest.mock import patch
 
 import numpy as np
@@ -15,35 +16,41 @@ from singing_response import CODE_REVISION, WEIGHT_REVISION, variants
 
 
 class StudioFlow(unittest.TestCase):
-    def test_quiet_overrun_is_trimmed_without_changing_original(self):
+    def test_short_long_and_quiet_recordings_are_preserved(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
-            for seconds in (2,5,5.001,5.22,6,15):
+            for seconds in (.1,1.9,5,5.22,6,60,300):
                 with self.subTest(seconds=seconds):
                     source=root/f'{seconds}.wav';work=root/str(seconds);work.mkdir()
-                    samples=np.zeros((round(seconds*RATE),2))
-                    start=RATE//2;stop=min(len(samples),start+4*RATE)
-                    samples[start:stop]=np.sin(np.arange(stop-start)[:,None]*2*np.pi*180/RATE)*.1
-                    write_pcm(source,samples);before=digest(source)
-                    pcm,report=studio.prepare_source(source,work)
-                    self.assertEqual(before,digest(source))
-                    self.assertEqual(before,digest(work/'original-recording'))
-                    self.assertTrue(2*RATE<=len(pcm)<=5*RATE)
-                    a,b=report['kept_frames']
-                    self.assertLessEqual(a,start);self.assertGreaterEqual(b,stop)
-                    np.testing.assert_array_equal(pcm,read_pcm(work/'decoded.wav',(2,15))[a:b])
-                    self.assertEqual(report['edge_quiet_removed'],seconds>5)
+                    with wave.open(str(source),'wb') as audio:
+                        audio.setparams((1,2,16000,0,'NONE','not compressed'))
+                        audio.writeframes(bytes(round(seconds*16000)*2))
+                    before=studio.file_digest(source)
+                    report=studio.prepare_source(source,work)
+                    self.assertEqual(before,studio.file_digest(source))
+                    self.assertEqual(before,studio.file_digest(work/'original-recording'))
+                    self.assertAlmostEqual(report['decoded_seconds'],seconds,places=3)
+                    self.assertTrue(report['original_preserved'])
+            source=root/'too-long.wav'
+            with wave.open(str(source),'wb') as audio:
+                audio.setparams((1,2,16000,0,'NONE','not compressed'));audio.writeframes(bytes(301*16000*2))
+            work=root/'limit';work.mkdir()
+            with self.assertRaisesRegex(studio.StudioError,'up to 5 minutes'):studio.prepare_source(source,work)
 
-    def test_invalid_duration_and_silence_have_specific_errors(self):
+    def test_sample_choice_is_optional_and_preserves_selected_phrase(self):
         with tempfile.TemporaryDirectory() as d:
-            root=Path(d)
-            for name,seconds,amplitude,message in [('short',1.9,.1,'1.90 seconds'),
-                    ('long',6,.1,'sound exceeds 5 seconds'),('limit',16,.1,'longer than 15'),
-                    ('quiet',3,0,'silent or unreadable')]:
-                source=root/f'{name}.wav';work=root/name;work.mkdir()
-                samples=amplitude*np.sin(np.arange(round(seconds*RATE))[:,None]*2*np.pi*180/RATE)
-                write_pcm(source,np.repeat(samples,2,axis=1))
-                with self.assertRaisesRegex(studio.StudioError,message):studio.prepare_source(source,work)
+            root=Path(d);source=root/'input.wav'
+            samples=np.repeat((.1*np.sin(np.arange(12*RATE)*.1))[:,None],2,axis=1)
+            write_pcm(source,samples);studio.prepare_source(source,root)
+            speech={'phrases':[{'start_seconds':6.,'end_seconds':7.,'text':'A question?'}]}
+            self.assertIsNone(studio.sample_candidate(root,speech,'acousticpop',12))
+            self.assertIsNone(studio.sample_candidate(root,{'phrases':[]},'reggae',12))
+            result=studio.sample_candidate(root,speech,'reggae',12)
+            self.assertIsNotNone(result)
+            pcm=read_pcm(result[0],(2,5))
+            self.assertEqual(len(pcm),2*RATE)
+            self.assertTrue(np.all(pcm[round(1.08*RATE)+10:]==0))
+            meta=json.loads(result[1].read_text());self.assertEqual(meta['original_seconds'],[5.96,7.04])
 
     def test_model_failure_does_not_blame_recording_duration(self):
         with tempfile.TemporaryDirectory() as d,patch.object(studio,'OUTPUT',Path(d)/'jobs'):
@@ -64,7 +71,7 @@ class StudioFlow(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d, patch.object(studio, 'OUTPUT', Path(d)/'jobs'):
             for args in [(None, 'hello', 'male', 'reggae', False),
                          (None, 'hello', 'unknown', 'reggae', True),
-                         (None, '', 'male', 'reggae', True)]:
+                         (None, 'x'*32001, 'male', 'reggae', True)]:
                 with self.assertRaises(ValueError): studio.make_reply(*args)
             self.assertFalse(studio.OUTPUT.exists())
 
@@ -100,17 +107,25 @@ class StudioFlow(unittest.TestCase):
                     (dest/'complete.json').write_text(json.dumps({'technical': 'PASS', 'case': c,
                         'audio_sha256': digest(dest/'singer.wav'), 'plan_sha256': digest(plan)}))
             with patch.object(studio.subprocess, 'run', side_effect=run):
-                singer, exchange, lyrics, status = studio.make_reply(str(source), 'I have a question', 'female', 'reggae', True)
+                singer, exchange, lyrics, status, meaning = studio.make_reply(str(source), 'I have a question', 'female', 'reggae', True)
+            self.assertEqual(meaning,'I have a question')
             self.assertNotEqual(singer, exchange)
             self.assertTrue(Path(singer).is_file() and Path(exchange).is_file())
             self.assertIn('Female · Reggae', status)
-            self.assertIn('no sample was inserted', status)
+            self.assertIn('without replaying your recording', status)
             self.assertEqual(digest(Path(singer)),digest(Path(exchange)))
             self.assertIn('question', lyrics)
             self.assertEqual(digest(source), original_hash)
-            self.assertEqual(len(calls), 3)
+            self.assertEqual(len(calls), 2)
             self.assertTrue(all(kw['timeout'] == 600 for _, kw in calls))
             self.assertFalse(list(studio.OUTPUT.rglob('.partial')))
+            with patch.object(studio.subprocess,'run',side_effect=run), \
+                 patch.object(studio,'sample_candidate',return_value=(source,source)), \
+                 patch.object(studio,'assemble',side_effect=ValueError('Invalid optional sample')):
+                singer,exchange,_,status,_=studio.make_reply(str(source),'I have a question','female','reggae',True)
+            self.assertEqual(digest(Path(singer)),digest(Path(exchange)))
+            self.assertIn('without replaying your recording',status)
+            self.assertTrue(list(studio.OUTPUT.glob('*/sample-skipped.json')))
 
 
 if __name__ == '__main__':

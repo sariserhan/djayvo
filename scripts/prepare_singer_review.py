@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 from arrange_voice_research import digest
-from assemble_sung_response import assemble
+from assemble_sung_response import assemble, keep_song
 from review_cloud_music import loudness
 from singing_response import load_plan, STYLE_LABELS
 
@@ -32,7 +32,8 @@ def prepare(plan_path, results, source, score, output, consent):
         if not (root/'stems/complete.json').exists():
             subprocess.run([sys.executable, str(Path(__file__).parent/'separate_singer.py'), '--input', str(root/'singer.wav'),
                             '--output', str(root/'stems')],check=True,timeout=600)
-        joined = assemble(source, score, root, folder, True)
+        joined = (keep_song(root,folder,'Owner preference: let the acoustic song carry the idea without replaying the recording.')
+                  if c['genre']=='acousticpop' else assemble(source, score, root, folder, True))
         origins = {'exchange': folder / 'performance.wav', 'singer': root / 'singer.wav'}
         levels = {kind: loudness(path) for kind, path in origins.items()}
         target = min(-20., *(v['lufs'] - v['true_peak_dbfs'] - 2 for v in levels.values()))
@@ -43,7 +44,7 @@ def prepare(plan_path, results, source, score, output, consent):
                             f"volume={target-levels[kind]['lufs']}dB", '-c:a', 'pcm_s16le', str(dest)], check=True, timeout=30)
             m = loudness(dest)
             assert abs(m['lufs']-target) <= .2 and m['true_peak_dbfs'] <= -1.8
-            label = 'Original song · no sample' if kind == 'singer' else ('One phrase in the song' if joined['sample_used'] else 'Song kept intact · no safe sample placement')
+            label = 'Original song · no sample' if kind == 'singer' else ('One phrase in the song' if joined['sample_used'] else 'Song without the recording')
             players.append(f'<p>{label}</p><audio controls preload="metadata" aria-label="{c["id"]}: {label}" src="{dest.name}"></audio>'
                            f'<a href="{dest.name}" download>Download</a>')
             measured[kind] = {**m, 'sha256': digest(dest)}
@@ -58,10 +59,10 @@ body{font:18px/1.6 system-ui;background:#111b20;color:#e9f0eb;max-width:1100px;m
 h1{line-height:1.15}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
 section{padding:22px;background:#213039;border-radius:12px}audio{width:100%}a{color:#b5efac}pre{white-space:pre-wrap;font:inherit}
 :focus-visible{outline:3px solid #d7ff80;outline-offset:4px}</style>
-<h1>Keep the song. Find room for your phrase.</h1><p>The same songs, with one restrained source phrase only where a vocal gap fits.
+<h1>The idea becomes the song.</h1><p>The recording is inspiration, not an obligation. The acoustic song now plays without the recording, as requested.
 Each card shows when to listen. Nothing plays automatically.</p>
 <p>Compare with the original song at matched loudness. Does the phrase add something without interrupting the music?
-If no safe space was found, both versions are the original song. These candidates still need your listening judgment.</p><main>''' + ''.join(cards) + '''</main>
+Where the recording is omitted, both versions are the original song. These candidates still need your listening judgment.</p><main>''' + ''.join(cards) + '''</main>
 <script>document.addEventListener('play',e=>{if(e.target.tagName==='AUDIO')document.querySelectorAll('audio').forEach(a=>{if(a!==e.target)a.pause()})},true)</script></html>'''
     assert page.count('<audio ') == 2*len(rows) and 'autoplay' not in page
     (review / 'index.html').write_text(page)

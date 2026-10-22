@@ -60,7 +60,7 @@ class SingingPlans(unittest.TestCase):
                 with self.assertRaises(ValueError): validate_plan(p)
         p = self.plan(); p['cases'].append(copy.deepcopy(p['cases'][0]))
         with self.assertRaises(ValueError): validate_plan(p)
-        for value in ('', 'x'*241, None):
+        for value in ('', 'x'*32001, None):
             p = self.plan(); p['phrase'] = value
             with self.assertRaises(ValueError): validate_plan(p)
 
@@ -71,7 +71,7 @@ class SingingPlans(unittest.TestCase):
             self.assertEqual(load_plan(p), self.plan())
             value = self.plan(); value['weights'] = 'main'
             with self.assertRaises(ValueError): validate_plan(value)
-            p.write_text(' ' * 32769)
+            p.write_text(' ' * 262145)
             with self.assertRaises(ValueError): load_plan(p)
 
 

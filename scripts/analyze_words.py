@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Optional offline CPU word-time estimates; no transcript is saved or printed."""
+"""Offline word timing; --understand privately retains speech for local song creation."""
 import argparse
 import hashlib
 import io
@@ -15,21 +15,21 @@ import wave
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def wav_info(data):
-    if len(data)>4*1024*1024:raise ValueError('WAV exceeds analysis size limit')
+def wav_info(data, understand=False):
+    if len(data)>(16 if understand else 4)*1024*1024:raise ValueError('WAV exceeds analysis size limit')
     with wave.open(io.BytesIO(data)) as audio:
         rate,frames=audio.getframerate(),audio.getnframes()
-        if audio.getsampwidth()!=2 or audio.getnchannels() not in (1,2) or not 8000<=rate<=192000 or not 2*rate<=frames<=5*rate:
-            raise ValueError('Use a 2–5 second PCM16 mono/stereo WAV')
+        if audio.getsampwidth()!=2 or audio.getnchannels() not in (1,2) or not 8000<=rate<=192000 or not ((1 if understand else 2*rate)<=frames<=(300 if understand else 5)*rate):
+            raise ValueError('Use a bounded PCM16 mono/stereo WAV')
         pcm=audio.readframes(frames)
         if len(pcm)!=frames*audio.getnchannels()*2:raise ValueError('Truncated WAV')
     return rate,frames
 
 
-def analyze(path,model):
+def analyze(path,model,understand=False):
     import resource
-    if path.stat().st_size>4*1024*1024:raise ValueError('WAV exceeds analysis size limit')
-    data=path.read_bytes();rate,frames=wav_info(data)
+    if path.stat().st_size>(16 if understand else 4)*1024*1024:raise ValueError('WAV exceeds analysis size limit')
+    data=path.read_bytes();rate,frames=wav_info(data,understand)
     manifest_path=ROOT/'assets/manifests/word-timing-tiny.json'
     manifest=json.loads(manifest_path.read_text())
     for name,item in manifest['files'].items():
@@ -44,25 +44,29 @@ def analyze(path,model):
                         '-ar','16000','-ac','1','-f','f32le','pipe:1'],input=data,capture_output=True,check=True,timeout=15).stdout
     samples=np.frombuffer(raw,dtype='<f4')
     # A constant electrical offset is not usable speech energy; preserve the samples.
-    if not 32000<=len(samples)<=80000 or not np.isfinite(samples).all() or np.std(samples,dtype=np.float64)<.001:
+    if not (1 if understand else 32000)<=len(samples)<=(4800000 if understand else 80000) or not np.isfinite(samples).all() or (not understand and np.std(samples,dtype=np.float64)<.001):
         raise ValueError('Silence or invalid audio is not a speech-timing source')
     start=time.monotonic()
+    if understand and np.std(samples,dtype=np.float64)<.001:
+        return {'schema_version':'1.0-recording-meaning','source_sha256':hashlib.sha256(data).hexdigest(),'transcript':'','phrases':[],'quiet':True,'transcript_saved':True}
     engine=WhisperModel(str(model.resolve()),device='cpu',compute_type='int8',cpu_threads=4,num_workers=1,local_files_only=True)
     loaded=time.monotonic()
     segments,info=engine.transcribe(samples,word_timestamps=True,beam_size=1,best_of=1,temperature=0,
-        condition_on_previous_text=False,vad_filter=False,max_new_tokens=128,log_progress=False)
-    words=[]
+        condition_on_previous_text=False,vad_filter=False,max_new_tokens=None if understand else 128,log_progress=False)
+    words=[];phrases=[]
     for segment in segments:
         if segment.no_speech_prob>.6 or segment.avg_logprob< -1:continue
+        if understand and segment.text.strip():
+            phrases.append({'text':segment.text.strip(),'start_seconds':float(segment.start),'end_seconds':float(segment.end)})
         for word in segment.words or []:
             begin=max(0,round(word.start*rate));end=min(frames,round(word.end*rate));confidence=float(word.probability)
             if not all(math.isfinite(x) for x in (word.start,word.end,confidence)) or not 0<=confidence<=1:
                 raise ValueError('Invalid model timestamp/confidence')
             if end<=begin or (words and begin<words[-1]['end_frame']):continue
             words.append({'start_frame':begin,'end_frame':end,'confidence':confidence})
-            if len(words)>128:raise ValueError('Word estimate budget exceeded')
+            if len(words)>(4096 if understand else 128):raise ValueError('Word estimate budget exceeded')
     elapsed=time.monotonic()
-    return {'schema_version':'1.0-word-times','source_sha256':hashlib.sha256(data).hexdigest(),
+    result = {'schema_version':'1.0-word-times','source_sha256':hashlib.sha256(data).hexdigest(),
         'source_rate':rate,'source_frames':frames,'model_manifest_sha256':hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
         'words':words,'language':info.language,'language_probability':float(info.language_probability),
         'device':'cpu','compute_type':'int8','threads':4,'model_load_seconds':loaded-start,'inference_seconds':elapsed-loaded,
@@ -70,26 +74,33 @@ def analyze(path,model):
         'transcript_saved':False,'network_policy':'offline local model; Python socket connections denied',
         'timing_accuracy':'NOT RUN','musical_quality':'NOT RUN'}
 
+    if understand:
+        transcript=' '.join(p['text'] for p in phrases)
+        if len(transcript)>32000:raise ValueError('Transcript exceeds local context budget')
+        result.update(schema_version='1.0-recording-meaning',transcript=transcript,phrases=phrases,transcript_saved=True)
+    return result
+
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--input',type=Path,required=True);p.add_argument('--model',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True)
     permission=p.add_mutually_exclusive_group(required=True);permission.add_argument('--consent',action='store_true');permission.add_argument('--synthetic-fixture',action='store_true')
+    p.add_argument('--understand',action='store_true',help='Privately retain a transcript for the local song; accepts up to five minutes.')
     p.add_argument('--worker',action='store_true',help=argparse.SUPPRESS)
     args=p.parse_args()
     if args.worker:
-        result=analyze(args.input,args.model);result['source_kind']='recorded' if args.consent else 'synthetic';result['consent_confirmed']=args.consent
+        result=analyze(args.input,args.model,args.understand);result['source_kind']='recorded' if args.consent else 'synthetic';result['consent_confirmed']=args.consent
         print(json.dumps(result,allow_nan=False));return
     if args.output.exists():raise ValueError('Output exists; preserving previous analysis')
-    if args.input.stat().st_size>4*1024*1024:raise ValueError('WAV exceeds analysis size limit')
-    wav_info(args.input.read_bytes())
-    result=subprocess.run([sys.executable,__file__,*sys.argv[1:],'--worker'],capture_output=True,text=True,timeout=120)
+    if args.input.stat().st_size>(16 if args.understand else 4)*1024*1024:raise ValueError('WAV exceeds analysis size limit')
+    wav_info(args.input.read_bytes(),args.understand)
+    result=subprocess.run([sys.executable,__file__,*sys.argv[1:],'--worker'],capture_output=True,text=True,timeout=600 if args.understand else 120)
     if result.returncode:raise RuntimeError('Local speech analysis failed: '+result.stderr[-2000:])
     report=json.loads(result.stdout)
     with args.output.open('x') as out:json.dump(report,out,indent=2,allow_nan=False);out.write('\n')
-    print(json.dumps({'status':'PASS','word_estimates':len(report['words']),'inference_seconds':report['inference_seconds'],
-                      'peak_rss_bytes':report['peak_rss_bytes'],'timing_accuracy':'NOT RUN','transcript_saved':False}))
+    print(json.dumps({'status':'PASS','word_estimates':len(report.get('words',[])),'inference_seconds':report.get('inference_seconds',0),
+                      'peak_rss_bytes':report.get('peak_rss_bytes',0),'timing_accuracy':'NOT RUN','transcript_saved':report['transcript_saved']}))
 
 
 if __name__=='__main__':main()

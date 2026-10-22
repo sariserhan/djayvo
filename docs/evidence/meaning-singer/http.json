@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "range_status": 206,
+  "range_bytes": 100,
+  "outside_review_status": 404,
+  "unsupported_method_status": 405
+}

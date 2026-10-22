@@ -1,5 +1,7 @@
 # Preserve the song when adding the source — 2026-10-22
 
+**Superseded behavior:** [The current studio](meaning-singer.md) accepts short/long recordings and treats sampling as optional from the start. This report preserves the preceding implementation and evidence.
+
 The owner reports that the songs sound great without the input, but the integrated
 sample makes them worse. The previous repeated/chopped arrangement therefore has
 **FAIL — owner listening feedback**. This is informal feedback, not a formal

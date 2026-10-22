@@ -1,0 +1,15 @@
+{
+  "technical": "PASS",
+  "original": {
+    "original_sha256": "76f445acffa111a8b53d3d420a667bc1e2bab419c09e757644ea0db6d251bcb0",
+    "original_seconds": 6.0,
+    "decoded_sha256": "512b3df7caa5ead4070aba43337cea517869c11ecd655221b7a3f59d85a34041",
+    "decoded_seconds": 6.0,
+    "original_preserved": true
+  },
+  "recognized_word_count": 6,
+  "phrases": 1,
+  "source_sha256": "512b3df7caa5ead4070aba43337cea517869c11ecd655221b7a3f59d85a34041",
+  "transcription_accuracy": "NOT RUN",
+  "network": "offline pinned local model"
+}

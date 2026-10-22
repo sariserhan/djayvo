@@ -15,6 +15,29 @@ from analyze_words import analyze
 
 
 class WordAudio(unittest.TestCase):
+    def test_optional_understanding_accepts_long_speech_and_keeps_default_private(self):
+        self.write_source(.1*np.sin(np.arange(6*16000)*.1))
+        segment=SimpleNamespace(no_speech_prob=.1,avg_logprob=-.2,text='Please make a song about tomorrow.',
+                                start=.5,end=5.5,words=[])
+        self.model.return_value.transcribe.return_value=([segment],SimpleNamespace(language='en',language_probability=.9))
+        result=analyze(self.source,self.root,understand=True)
+        self.assertEqual(result['transcript'],segment.text)
+        self.assertEqual(result['phrases'][0]['start_seconds'],.5)
+        self.assertTrue(result['transcript_saved'])
+        self.assertIsNone(self.model.return_value.transcribe.call_args.kwargs['max_new_tokens'])
+        with self.assertRaises(ValueError):analyze(self.source,self.root)
+        self.write_source(.1*np.sin(np.arange(3*16000)*.1))
+        result=analyze(self.source,self.root)
+        self.assertNotIn('transcript',result)
+        self.assertFalse(result['transcript_saved'])
+
+    def test_quiet_recording_is_valid_in_understanding_mode(self):
+        self.write_source(np.zeros(1600))
+        result=analyze(self.source,self.root,understand=True)
+        self.assertEqual(result['transcript'],'')
+        self.assertTrue(result['quiet'])
+        self.model.assert_not_called()
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

@@ -114,6 +114,26 @@ def choose_placement(song, vocals, clips, grid, genre):
     return None
 
 
+def keep_song(singer_dir, output, reason):
+    singer_dir,output=map(Path,(singer_dir,output))
+    if output.exists(): raise FileExistsError('Preserving existing arrangement')
+    receipt=json.loads((singer_dir/'complete.json').read_text())
+    source=singer_dir/'singer.wav'
+    if receipt.get('technical')!='PASS' or digest(source)!=receipt['audio_sha256']:
+        raise ValueError('Singing output provenance mismatch')
+    song=read_pcm(source,(30,30))
+    output.mkdir(parents=True);(output/'.partial').touch()
+    for name in ('music.wav','performance.wav'):shutil.copyfile(source,output/name)
+    write_pcm(output/'user.wav',np.zeros_like(song))
+    report={'schema':'jamloom-integrated-source-2','technical':'PASS','sample_rate':RATE,'frames':len(song),
+        'singer_sha256':receipt['audio_sha256'],'sha256':receipt['audio_sha256'],
+        'events':[],'clips':[],'sample_used':False,'music_unchanged':True,'master_gain':1.,
+        'arrangement_status':'MEANING_ONLY','note':reason,'listening':'NOT RUN',
+        'artifacts':{n:digest(output/n) for n in ('performance.wav','music.wav','user.wav')}}
+    (output/'complete.json').write_text(json.dumps(report,indent=2)+'\n');(output/'.partial').unlink()
+    return report
+
+
 def assemble(source, score, singer_dir, output, consent=False):
     if not consent: raise ValueError('Local source-processing consent required')
     source,score,singer_dir,output=map(Path,(source,score,singer_dir,output))

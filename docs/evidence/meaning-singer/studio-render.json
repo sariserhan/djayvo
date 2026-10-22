@@ -1,0 +1,17 @@
+{
+  "technical": "PASS",
+  "job": "renders/singer-studio/6ea8d8da65324a4c8436df0e4b9070d8",
+  "input": {
+    "original_sha256": "76f445acffa111a8b53d3d420a667bc1e2bab419c09e757644ea0db6d251bcb0",
+    "original_seconds": 6.0,
+    "decoded_sha256": "512b3df7caa5ead4070aba43337cea517869c11ecd655221b7a3f59d85a34041",
+    "decoded_seconds": 6.0,
+    "original_preserved": true
+  },
+  "recognized_words": 6,
+  "recognized_text_used_for_lyrics": true,
+  "original_song_sha256": "3a08f7804530886f98c1bb7c1fffd02de9ea9fddbab6130ec8b4faae0715ae7e",
+  "sample_used": false,
+  "music_preserved_exactly": true,
+  "human_listening": "NOT RUN"
+}

@@ -1,5 +1,7 @@
 # Local AI singer implementation — 2026-10-22
 
+**Meaning-first singer — 2026-10-22:** The owner makes audio reuse optional. The studio accepts short/long recordings, reads speech locally or uses a supplied idea, and may deliver the song without replaying the recording. Acoustic audition now omits the sample. [Current behavior, limits and evidence](meaning-singer.md).
+
 **Studio input repair — 2026-10-22:** The two reported recording failures were caused by the 5.001-second decoder cap being rejected by a strict five-second validator. Both actual captures now prepare successfully after edge-quiet trimming, with originals retained and specific failure messages. [Fix and regression evidence](studio-input-fix.md).
 
 **Sample quality update — 2026-10-22:** Owner likes the generated songs but reports that adding the source makes them worse. The replacement preserves the song and tries one whole phrase or pause-bounded excerpt in a vocal gap; if it cannot fit, the original song is returned with explicit status. All 23 styles remain. Six same-song comparisons and scoped technical/browser evidence are in the [replacement report](gentle-singer.md). New-arrangement listening remains open.

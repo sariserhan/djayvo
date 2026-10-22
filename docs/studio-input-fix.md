@@ -1,5 +1,7 @@
 # Studio recording-length fix — 2026-10-22
 
+**Superseded behavior:** [The current studio](meaning-singer.md) accepts short/long recordings and treats sampling as optional from the start. This report preserves the preceding implementation and evidence.
+
 The owner reported a repeated “record 2 to 5 seconds” error despite making a
 short recording. Both failed jobs stopped before lyric generation. The decoder
 capped input at **5.001 seconds**, but the next validator required **at most
