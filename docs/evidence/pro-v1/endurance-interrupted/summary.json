@@ -1,0 +1,44 @@
+{
+  "status": "FAIL",
+  "message": "Both decks must remain playing",
+  "lastPassingSeconds": 1842.0942080420002,
+  "samples": 184,
+  "lastPassingSample": {
+    "seconds": 1842.0942080420002,
+    "a": 0.874667,
+    "b": 0.752,
+    "playing": [
+      "true",
+      "true"
+    ],
+    "peak": 0.10986661911010742,
+    "memory": [
+      {
+        "type": "Browser",
+        "rssKB": 100544
+      },
+      {
+        "type": "GPU",
+        "rssKB": 89824
+      },
+      {
+        "type": "Utility",
+        "rssKB": 24160
+      },
+      {
+        "type": "Tab",
+        "rssKB": 263552
+      },
+      {
+        "type": "Utility",
+        "rssKB": 22272
+      },
+      {
+        "type": "Utility",
+        "rssKB": 33184
+      }
+    ]
+  },
+  "errors": [],
+  "cause": "Unknown. Failure report did not retain the failing media/context state. Interrupted run does not count as endurance PASS."
+}

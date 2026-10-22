@@ -1,6 +1,6 @@
 ## Pro v1 completion — 2026-10-22
 
-**PASS: $49 one-time licensing, sandbox checkout/refunds, sampler replay and signed 1.0.0 candidate. PARTIAL: release and qualification.** Basic stays free. Mac activation and web offline access are bounded to 30 days and preserve local music. Public distribution/update, hosted validation, hour-long completion and Pro speaker listening are still being checked; MIDI/headphones are unavailable and unplug remains deferred. [Current report](pro-v1-release.md). Earlier preview notes below are historical.
+**PASS: $49 one-time licensing, sandbox checkout/refunds, sampler replay and signed 1.0.0 candidate. PARTIAL: release and qualification.** Basic stays free. Mac activation and web offline access are bounded to 30 days and preserve local music. Public candidate download, actual update and owner LG speaker listening pass. Initial endurance stopped after about 31 minutes; cause unknown and diagnostic rerun in progress. Hosted validation/deployment remain open. Native virtual MIDI passes; physical MIDI/headphones are unavailable and unplug remains deferred. [Current report](pro-v1-release.md). Earlier preview notes below are historical.
 
 ## Basic and Pro preview — 2026-10-22
 

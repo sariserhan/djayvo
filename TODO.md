@@ -1,7 +1,7 @@
 ## Pro v1 completion — 2026-10-22
 
 - [x] **PRO-004 — PASS:** Approved $49 one-time Pro v1; verified checkout/refunds, signed Mac activation, web offline entitlement, sampler control replay and notarized 1.0.0 candidate. [Report](docs/pro-v1-release.md).
-- [ ] **PRO-005 — PARTIAL:** Public installer/feed, actual upgrade, hosted CI/deployment, one-hour runtime and owner speaker listening in progress. No MIDI/headphones available; cable unplug deferred.
+- [ ] **PRO-005 — PARTIAL:** Public candidate installer/feed, actual upgrade and LG owner listening PASS. Initial endurance FAIL after about 31 minutes; diagnostic rerun and hosted CI/deployment remain open. Native virtual MIDI PASS; physical MIDI/headphones unavailable, cable unplug deferred.
 
 ## Basic and Pro editions — 2026-10-22
 

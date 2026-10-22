@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Packaged app discovers and opens real macOS CoreMIDI virtual input after permission",
+    "Native MIDI note produces instrument PCM with physical output muted",
+    "Real CoreMIDI CC learn, pickup, master control and note-off reach the shared engine"
+  ],
+  "physicalController": "NOT RUN",
+  "source": "Local native virtual CoreMIDI endpoint; no synthetic browser MIDI API",
+  "physicalOutput": "muted"
+}

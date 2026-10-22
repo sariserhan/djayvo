@@ -23,6 +23,7 @@ for (const path of sourceFiles) {
   const before = await readFile(new URL(path, source));
   const after = await readFile(new URL(path, publicRoot));
   if (path === 'index.html') assert.equal(after.toString(), before.toString().replace('<a href="#mixes">Your mixes</a>', '<a href="/account">Account</a>'));
+  else if (path === 'dj.html') assert.equal(after.toString(), before.toString().replace('Save the app in Voice studio → Privacy &amp; credits for offline preparation', 'Open <a href="/pro">your Pro account</a> → Use the web studio offline to prepare offline access'));
   else if (path !== 'service-worker.js') assert.ok(before.equals(after), `Studio asset changed: ${path}`);
 }
 execFileSync('python3', ['scripts/build_offline.py', fileURLToPath(publicRoot), '--check'], { cwd: fileURLToPath(new URL('../../../', import.meta.url)), stdio: 'pipe' });
