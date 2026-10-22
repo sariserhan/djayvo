@@ -1,3 +1,7 @@
+# Visual hero — 2026-10-22
+
+**PASS, local.** A short “Find your sound” headline, one sentence and a large deck preview replace the text-heavy hero. Compact links still expose all five products. The preview links to the working deck below; coming-soon uses the same visual with its access gate preserved. Typecheck, five metadata/launch tests, Chromium/WebKit at 1440/820/390/320 px, keyboard navigation, muted deck play/pause/cue and accessibility pass. [Report and screenshots](hero-simplicity.md). Deployment NOT RUN.
+
 # Academy CI migration expectations — 2026-10-22
 
 **PASS, local; GitHub Actions rerun NOT RUN.** The reported admin failure reproduces: migration `0013_audio_duration.sql` correctly applies, but admin, wallet and account tests still expect twelve migrations. Those three assertions now compare the applied names with the sorted checked-in SQL filenames. Production code and migration SQL are unchanged; repeat-run, rollback, changed-SQL rejection and legacy duration upgrade checks remain intact.

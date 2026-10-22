@@ -21,10 +21,10 @@
 @media(max-width:760px){.product-hero,.feature-list article,.product-columns{grid-template-columns:1fr;gap:28px}.product-hero{padding-top:0;padding-bottom:40px}.signal-map{box-shadow:8px 8px 0 #1b241a;padding:22px}.feature-list article{padding:40px 0}.product-strip{font-size:11px}.product-document table{font-size:13px}.product-document td,.product-document th{padding:12px 6px}}
 @media(prefers-reduced-motion:reduce){.product-home *{scroll-behavior:auto;animation:none;transition:none}}
 
-/* A working instrument leads the homepage; the supporting routes stay compact. */
-.visual-home .product-hero{grid-template-columns:.9fr 1.15fr;gap:44px;padding-top:36px;padding-bottom:76px}
-.visual-home .product-hero h1{font-size:clamp(42px,5.8vw,78px);line-height:1.04;letter-spacing:-.06em}
-.visual-home .product-lead{max-width:430px;font-size:20px;line-height:1.5}.hero-note{font-size:12px;max-width:340px}
+/* Let the instrument lead; keep product discovery within one scan. */
+.visual-home .product-hero{grid-template-columns:1fr 1.2fr;gap:44px;padding-top:28px;padding-bottom:40px}
+.visual-home .product-hero h1{font-size:clamp(56px,7.5vw,104px);line-height:1.04;letter-spacing:-.06em}
+.visual-home .product-lead{max-width:430px;font-size:20px;line-height:1.5}
 .mini-deck{--deck:#c9fa78;min-width:0;padding:22px;border:1px solid #737b80;border-bottom:7px solid #090c10;border-radius:18px;background:repeating-linear-gradient(0deg,#ffffff02 0 1px,transparent 1px 3px),linear-gradient(120deg,#383e43,#20252b 55%,#2c3136);box-shadow:0 2px 0 #9ca2a5,inset 0 1px #ffffff30,0 9px 0 -3px #07090b,0 24px 40px #0009;font-family:var(--utility)}
 .deck-topline,.mini-mixer label>span{display:flex;justify-content:space-between;gap:10px;font-size:10px;letter-spacing:.08em}.deck-topline b{font-weight:400;color:#b9c1c8}.deck-indicator{color:var(--lime)}
 .deck-scope{display:block;width:100%;height:55px;margin:20px 0;background:repeating-linear-gradient(90deg,transparent,transparent 23px,#c9fa7809 24px),#090f13;border:1px solid #56616a;border-radius:5px;box-shadow:inset 0 3px 8px #000a,0 1px #ffffff16}
@@ -55,12 +55,14 @@
 @media(max-width:680px){.aurowall-section{grid-template-columns:1fr;padding:1.2rem;gap:1rem}}
 
 /* A directory of instruments leads into a full section for each product. */
-.product-directory{display:grid;justify-content:stretch;gap:0;border-block:1px solid var(--line)}
-.product-directory a{display:grid;grid-template-columns:1fr auto;gap:5px 20px;text-decoration:none;padding:19px 4px;border-bottom:1px solid var(--line);min-width:0}
-.product-directory a:last-child{border-bottom:0}.product-directory span{font-size:22px;font-weight:600}.product-directory small{grid-column:1;color:#c6cebf;font-size:13px}.product-directory b{grid-column:2;grid-row:1/3;align-self:center;color:var(--lime);font-size:22px;font-weight:400}
-.product-directory a:hover span{color:var(--lime)}.product-directory a:focus-visible,.product-chapters a:focus-visible{outline:3px solid var(--lime);outline-offset:5px}
+.hero-deck-preview{display:grid;gap:20px;justify-items:center;min-width:0;padding:12px 18px;text-decoration:none;color:#c6cebf}
+.hero-deck-preview img{display:block;width:100%;max-width:410px;height:auto;transform:rotate(-4deg);filter:drop-shadow(0 24px 24px #0007)}
+.hero-deck-preview>span{display:flex;justify-content:space-between;gap:20px;width:100%;max-width:410px;font:11px var(--utility)}.hero-deck-preview b{font-weight:400;color:var(--lime)}
+.product-directory{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;border-block:1px solid var(--line);padding:12px 0}
+.product-directory a{display:flex;align-items:center;gap:16px;min-height:44px;text-decoration:none;font-size:14px}.product-directory b{color:var(--lime);font-weight:400}
+.product-directory a:hover span{color:var(--lime)}.hero-deck-preview:focus-visible,.product-directory a:focus-visible,.product-chapters a:focus-visible{outline:3px solid var(--lime);outline-offset:5px}
 .product-chapters{border-top:1px solid var(--line)}.product-chapters article{grid-template-columns:minmax(0,.9fr) minmax(0,1.15fr);gap:64px;align-items:center;padding:76px 0;scroll-margin-top:30px}
 .product-chapters .chapter-copy{min-width:0}.product-chapters h2{font-size:clamp(32px,3.8vw,52px);line-height:1.08;letter-spacing:-.045em;margin:14px 0 22px}.product-chapters p{color:#c6cebf;line-height:1.65}.product-chapters .eyebrow{color:var(--lime);font-size:11px;margin:0}.product-chapters ul{padding-left:20px;margin:22px 0 28px;color:#e4eddd;font-size:14px;line-height:1.6}.product-chapters li{padding-left:4px;margin:9px 0}.product-chapters .primary{display:inline-flex;align-items:center;min-height:44px}.product-chapters .chapter-availability{font-size:12px;max-width:440px;margin:18px 0 0}
 .product-preview{display:block;min-width:0;overflow:hidden;border:1px solid #4e5b50;border-radius:12px;background:#141a16;text-decoration:none;box-shadow:0 20px 55px #0003}.preview-caption{display:flex;justify-content:space-between;gap:16px;padding:16px 20px;border-bottom:1px solid var(--line);color:#c6cebf;font:11px var(--utility)}.product-preview img{display:block;width:100%;height:auto;max-height:560px;object-fit:contain;object-position:top;background:#101211}.preview-open{display:block;padding:16px 20px;border-top:1px solid var(--line);color:var(--lime);font-size:13px}.product-preview:hover{border-color:var(--lime)}
-@media(max-width:1000px){.product-chapters article{gap:30px}.product-directory span{font-size:20px}}
-@media(max-width:760px){.product-chapters article{grid-template-columns:minmax(0,1fr);padding:44px 0;gap:28px}.product-directory a{padding:15px 2px}.product-chapters h2{max-width:560px}.product-chapters .mini-deck{max-width:none}.preview-caption,.preview-open{padding:14px}}
+@media(max-width:1000px){.product-chapters article{gap:30px}}
+@media(max-width:760px){.product-chapters article{grid-template-columns:minmax(0,1fr);padding:44px 0;gap:28px}.product-directory{justify-content:flex-start;gap:4px 22px}.hero-deck-preview img{max-width:350px}.hero-deck-preview>span{max-width:350px}.product-chapters h2{max-width:560px}.product-chapters .mini-deck{max-width:none}.preview-caption,.preview-open{padding:14px}}

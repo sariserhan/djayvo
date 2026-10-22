@@ -1,0 +1,82 @@
+[
+  {
+    "mode": "home",
+    "browser": "chromium",
+    "status": "PASS",
+    "sections": [
+      "academy",
+      "dj-studio",
+      "improvise",
+      "music-dna",
+      "live-dj"
+    ],
+    "widths": [
+      1440,
+      820,
+      390,
+      320
+    ],
+    "accessibility": [],
+    "miniDeck": "muted play/pause/cue PASS"
+  },
+  {
+    "mode": "launch",
+    "browser": "chromium",
+    "status": "PASS",
+    "sections": [
+      "academy",
+      "dj-studio",
+      "improvise",
+      "music-dna",
+      "live-dj"
+    ],
+    "widths": [
+      1440,
+      820,
+      390,
+      320
+    ],
+    "accessibility": [],
+    "miniDeck": "not exposed"
+  },
+  {
+    "mode": "home",
+    "browser": "webkit",
+    "status": "PASS",
+    "sections": [
+      "academy",
+      "dj-studio",
+      "improvise",
+      "music-dna",
+      "live-dj"
+    ],
+    "widths": [
+      1440,
+      820,
+      390,
+      320
+    ],
+    "accessibility": [],
+    "miniDeck": "muted play/pause/cue PASS"
+  },
+  {
+    "mode": "launch",
+    "browser": "webkit",
+    "status": "PASS",
+    "sections": [
+      "academy",
+      "dj-studio",
+      "improvise",
+      "music-dna",
+      "live-dj"
+    ],
+    "widths": [
+      1440,
+      820,
+      390,
+      320
+    ],
+    "accessibility": [],
+    "miniDeck": "not exposed"
+  }
+]

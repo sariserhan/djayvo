@@ -1,5 +1,9 @@
 # Jamloom development tracker
 
+## Visual hero — 2026-10-22
+
+- [x] **MKT-HERO-001 — PASS, local:** Shorten the homepage and coming-soon hero, lead with the real deck preview, and keep five-product discovery compact. Preserve the playable deck in its product section. Typecheck, five metadata/launch tests, Chromium/WebKit at four widths, keyboard navigation, muted playback and accessibility pass. [Report](docs/hero-simplicity.md). Deployment NOT RUN.
+
 ## Academy CI migration expectations — 2026-10-22
 
 - [x] **CI-MIGRATIONS-001 — PASS, local:** Reproduce `13 !== 12` and replace stale migration counts in admin, wallet and account tests with exact sorted SQL filenames. All 184 relevant tests, studio preparation and typecheck pass on Node 22/PostgreSQL 16. Migration idempotence, rollback/checksum protection and the duration upgrade regression remain covered. [Commands and results](docs/progress.md#academy-ci-migration-expectations--2026-10-22). GitHub Actions rerun NOT RUN; no push or deployment.
