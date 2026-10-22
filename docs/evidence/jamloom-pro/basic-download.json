@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "base": "http://127.0.0.1:4240",
+  "anonymousDownload": "PASS",
+  "otherProductGates": "PASS",
+  "widths": [
+    1440,
+    390,
+    320
+  ],
+  "axe": "PASS",
+  "noAudioStarted": true
+}

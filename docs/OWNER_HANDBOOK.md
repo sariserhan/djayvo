@@ -1,3 +1,9 @@
+## Basic and Pro preview — 2026-10-22
+
+Basic is the existing free Live DJ companion. Pro is the shared Performance Studio for web and Mac, with realistic deck controls, instruments, recording and saved sample banks. [Preview instructions and evidence](jamloom-pro.md). Load your music into Deck A/B, confirm permission and press Play; startup is silent. Save sample banks separately from set scenes. Open `/Applications/Jamloom Pro.app`; the signed/notarized owner preview is installed. Settings is ⌘,.
+
+Pro has no approved price or active payment requirement yet. The production Aurowall endpoint remains gated even though actual catalogue/storage playback was verified locally. Public Pro delivery and real update qualification remain separate release work. The current public Basic installer remains unchanged. Local website preview: http://127.0.0.1:4240/studio/dj.html (loopback only, launch gate disabled for this process).
+
 ## Companion download and updates — 2026-10-22
 
 The owner authorized the public companion download, icon, Settings and updates.

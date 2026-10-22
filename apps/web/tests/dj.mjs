@@ -21,6 +21,9 @@ const publicRoot = path.join(root, 'dist/web');
 const serverRequests = [];
 const server = createServer(async (request, response) => {
   serverRequests.push(request.url);
+  if(['/api/aurowall','/api/site-status'].includes(request.url)){
+    response.writeHead(200,{'Content-Type':'application/json'});response.end(JSON.stringify(request.url==='/api/aurowall'?{tracks:[]}:{maintenance:false,announcement:null}));return;
+  }
   const name = new URL(request.url, 'http://local').pathname.slice(1);
   if (request.method !== 'GET' || !/^[a-zA-Z0-9_./-]+$/.test(name) || name.split('/').includes('..')) {
     response.writeHead(404); response.end(); return;
@@ -40,8 +43,8 @@ const context = await browser.newContext({ viewport: { width: 1440, height: 1000
 await context.route('**/api/aurowall',route=>route.fulfill({json:{tracks:[]}}));
 await context.route('**/api/site-status',route=>route.fulfill({json:{maintenance:false,announcement:null}}));
 context.setDefaultTimeout(10000);
-const errors = [], requests = [], checks = [], warnings = [];
-let screenshot = false;
+const errors = [], requests = [], checks = [], warnings = [], errorLocations=[];
+let screenshot = false,disconnected=false;
 // Silence only the physical test output, downstream of the application's measured mix.
 await context.addInitScript(() => {
   const Native = window.AudioContext || window.webkitAudioContext;
@@ -82,8 +85,9 @@ const page = await context.newPage();
 page.on('pageerror', error => errors.push(error.message));
 page.on('console', message => {
   if (message.type() === 'error') {
-    if (screenshot && kind === 'webkit' && message.text().startsWith('Refused to apply a stylesheet')) warnings.push(message.text());
-    else errors.push(message.text());
+    if(disconnected&&['/api/aurowall','/api/site-status'].some(path=>message.location().url===origin+path)&&message.text().startsWith('Failed to load resource:'))warnings.push('Expected offline API failure: '+message.location().url);
+    else if (screenshot && kind === 'webkit' && message.text().startsWith('Refused to apply a stylesheet')) warnings.push(message.text());
+    else { errors.push(message.text());errorLocations.push(message.location()); }
   }
 });
 context.on('request', request => requests.push({ url: request.url(), method: request.method() }));
@@ -122,7 +126,7 @@ let signalEvidence, fxEvidence, deckFXEvidence;
 try {
   await page.goto(`${origin}/dj.html`);await revealStudioTools(page);
   for (const deck of ['a','b']) await page.locator(`.deck-${deck} .deck-fx-panel summary`).click();
-  assert.match(await page.title(), /Jamloom — DJ workspace/);
+  assert.match(await page.title(), /Jamloom Pro — Performance Studio/);
   await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
   assert.equal(await page.locator('#file-a').isDisabled(), true);
   assert.equal(await page.locator('#play-a').isDisabled(), true);
@@ -319,7 +323,7 @@ try {
     const rate = document.querySelector('#rate-a');
     for (const value of ['1.04', '1.08']) { rate.value = value; rate.dispatchEvent(new Event('input')); }
   });
-  await page.waitForFunction(before => document.querySelector('#audio-a').currentTime > before + .05 && !document.querySelector('#play-a').disabled, beforeRate);
+  await page.waitForFunction(before => document.querySelector('#audio-a').currentTime > before + .05 && document.querySelector('#audio-a').playbackRate === 1.08 && !document.querySelector('#play-a').disabled, beforeRate);
   assert.equal(await page.locator('#audio-a').evaluate(audio => audio.playbackRate), 1.08);
   assert.ok(await peak() > .01);
   await page.evaluate(() => {
@@ -553,7 +557,7 @@ try {
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
   // Match the existing offline runner: stop the real server. WebKit offline
   // emulation rejects some service-worker navigations before consulting cache.
-  server.closeAllConnections();
+  disconnected=true;server.closeAllConnections();
   await new Promise(resolve => server.close(resolve));
   const requestsBeforeDisconnect = serverRequests.length;
   await page.reload();await revealStudioTools(page);
@@ -657,6 +661,6 @@ try {
     signalEvidence, fxEvidence, deckFXEvidence, audioContext: audioContextEvidence, actualMedia: { aPeak, channelSilent, masterSilent }, errors, warnings,
     humanListening: 'NOT RUN', physicalDeviceLatency: 'NOT RUN', offlineVenueReliability: 'NOT RUN' }, null, 2));
 } catch (error) {
-  await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings, state: await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({ instruments: document.querySelector('#instrument-status').textContent, loopTrace: window.loopTrace, deckError: document.getElementById('error-a').textContent, decks: [...document.querySelectorAll('audio')].map(a => ({time:a.currentTime,paused:a.paused,seeking:a.seeking,ended:a.ended,rate:a.playbackRate,readyState:a.readyState,networkState:a.networkState,error:a.error && {code:a.error.code,message:a.error.message}})), meter:document.querySelector('#output-meter').value })).catch(() => null)]) }, null, 2));
+  await fs.writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.message, stack: error.stack, checks, errors, warnings, errorLocations, state: await Promise.race([new Promise(resolve => setTimeout(() => resolve('Page unavailable after failure'), 2000)), page.evaluate(() => ({ instruments: document.querySelector('#instrument-status').textContent, loopTrace: window.loopTrace, deckError: document.getElementById('error-a').textContent, decks: [...document.querySelectorAll('audio')].map(a => ({time:a.currentTime,paused:a.paused,seeking:a.seeking,ended:a.ended,rate:a.playbackRate,readyState:a.readyState,networkState:a.networkState,error:a.error && {code:a.error.code,message:a.error.message}})), meter:document.querySelector('#output-meter').value })).catch(() => null)]) }, null, 2));
   throw error;
 } finally { await browser.close(); server.closeAllConnections(); server.close(); }

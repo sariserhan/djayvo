@@ -200,3 +200,12 @@ retained in full in `apps/desktop-companion/Resources/Sparkle-LICENSE.txt` and
 every app bundle. It is linked only by the native macOS UI, never the shared
 C++ core. Ed25519 signatures protect the archive and feed; Developer ID,
 hardened runtime and Apple notarization protect distributed app code.
+
+## Jamloom Pro desktop — Electron 45.0.0
+
+The Pro UI uses pinned Electron 45.0.0 (MIT), with Chromium, Node and their
+bundled notices. Packaging copies the complete Electron `LICENSE` and
+`LICENSES.chromium.html` inside the app archive; Settings exposes both downloads.
+The existing audio engine and cleared practice/instrument notices remain bundled.
+Electron is confined to the desktop UI and does not enter the shared C++ core.
+`@electron/packager` 20.3.0 and its signing tools are development-only.

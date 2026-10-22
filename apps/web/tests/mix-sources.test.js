@@ -6,6 +6,15 @@ import { sha256 } from '../live-take.js';
 const receipt = { wav_sha256: 'a'.repeat(64), sample_rate: 48000, observed_context_start_frame: 48128 };
 const clock = seconds => ({ currentTime: seconds, sampleRate: 48000 });
 
+test('sampler source inventory upgrades old snapshots and retains exact sample bytes',async()=>{
+ const capture=new MixSources();capture.record({},clock(1));
+ const sample=new Blob(['cleared local sample']);capture.record({sample0:sample,sample7:sample},clock(1.2));
+ const value=await capture.finish(receipt);assert.equal(value.schema_version,'3.0-mix-sources');
+ assert.equal(value.assets[0].kind,'sampler_audio');assert.equal(value.snapshots[0].sample0,null);
+ assert.equal(value.snapshots[1].sample7,value.snapshots[1].sample0);
+ assert.equal(value.assets[0].sha256,await sha256(await sample.arrayBuffer()));
+});
+
 test('source inventory hashes exact immutable bytes after capture, deduplicates shared blobs and retains unload history', async () => {
   let reads = 0;
   class Counted extends Blob { async arrayBuffer() { reads++; return super.arrayBuffer(); } }

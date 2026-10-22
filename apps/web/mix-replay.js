@@ -17,6 +17,7 @@ export function validateMixReplay(input) {
       input.schema_version !== '1.0-mix-replay') throw Error('Invalid mix replay package');
   const r = validateMixRecording(input.recording);
   validateMixAutomation(input.automation, r); validateMixSources(input.sources, r); validateMixTransport(input.transport, r);
+  if(input.sources.assets.some(asset=>asset.kind==='sampler_audio'))throw Error('Sampler performances are preserved in the recorded WAV and instruments stem. Control replay does not include sampler triggers.');
   if (r.timestamp_discontinuities) throw Error('Discontinuous recording cannot be aligned for replay');
   const start = Math.min(input.automation.snapshot_context_frame, input.sources.snapshots[0].context_frame,
     input.transport.events[0].context_frame);

@@ -1,4 +1,6 @@
 import './site-announcement.js';
+import { attachProConsole } from './pro-console.js';
+import { attachSampler } from './sampler.js';
 import { practiceFile, partnerFile } from './practice-library.js';
 import { attachStudioView } from './studio-view.js';
 import { createMixer, updateMixer, setMixerGain, validateTrack, trackDuration, validatePreparedTrack, updateToneEcho, clearEcho } from './mixer.js';
@@ -17,6 +19,7 @@ import { DECK_EFFECTS, updateDeckEffects, clearDeckEffects } from './deck-effect
 
 const $ = id => document.getElementById(id);
 attachStudioView($('dj'), $('studio-fullscreen'), $('studio-view-status'));
+attachProConsole();
 const rights = $('music-rights');
 const decks = ['a', 'b'].map(id => ({ id, audio: $(`audio-${id}`), url: null, duration: 0, loading: null, revision: 0, starting: false }));
 let context, mixer, meterData, audioFailure, session;
@@ -137,7 +140,8 @@ function masterControls() {
 const keyboard = attachKeyboard({ graph: audioGraph, context: () => context, mixer: () => mixer, levels, masterControls, getPhrase: () => session?.phraseSource(), onSourcesChanged: () => mixRecording.sourcesChanged(),onNote:()=>bridge.publish({action:'instrument.note',control:'keyboard',source:'user',t:context.currentTime,value:null}) });
 const mixRecording = attachMixRecording({ graph: audioGraph, context: () => context, mixer: () => mixer,
   getTransport: () => ({ a: decks[0].audio.transportState(), b: decks[1].audio.transportState(), prepared: session?.transportState() ?? null }),
-  getSources: () => ({ a: decks[0].file, b: decks[1].file, ...session?.mixSources(), rack: keyboard.sourceAsset() }) });
+  getSources: () => ({ a: decks[0].file, b: decks[1].file, ...session?.mixSources(), rack: keyboard.sourceAsset(), ...sampler.sources() }) });
+const sampler=attachSampler({graph:audioGraph,context:()=>context,mixer:()=>mixer,rights,onSourcesChanged:()=>mixRecording.sourcesChanged()});
 for (const deck of decks) deck.audio.addEventListener('transportchange', event => mixRecording.transportChanged(deck.id, event.action));
 async function start(deck) {
     const { id, audio } = deck;
@@ -310,7 +314,7 @@ for (const deck of decks) {
 session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onPhraseChanged: () => { keyboard.sourceChanged(); mixRecording.sourceChanged(); }, onSourcesChanged: () => mixRecording.sourcesChanged(), onTransportChanged: () => mixRecording.transportChanged('prepared', 'prepared'), onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
 $('crossfade').oninput = $('master').oninput = levels;
 $('crossfade-curve').onchange = levels;
-$('pause-all').onclick = () => { decks.forEach(pause); clearDeckEchoes(); $('mixer-status').textContent = 'All decks paused.'; };
+$('pause-all').onclick = () => { decks.forEach(pause); sampler.stop(); clearDeckEchoes(); $('mixer-status').textContent = 'All decks and samples paused.'; };
 window.addEventListener('pagehide', event => {
   decks.forEach(pause); clearDeckEchoes();
   if (!event.persisted) { decks.forEach(unload); context?.close().catch(() => {}); }

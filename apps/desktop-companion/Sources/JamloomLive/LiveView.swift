@@ -19,7 +19,7 @@ struct LiveView: View {
         VStack(spacing:0) {
             ScrollView {
                 VStack(alignment:.leading,spacing:18) {
-                    HStack { Text("jamloom").font(.largeTitle.bold());Text(model.micRecording ? "● MIC RECORDING":"LIVE / TWO DECKS").font(.caption.monospaced()).foregroundStyle(liveColors[0]);Spacer();SettingsLink { Label("Settings",systemImage:"gearshape") };Button("Stop all / Panic",role:.destructive,action:model.stop).keyboardShortcut(.escape,modifiers:[]).disabled(!model.active && !model.micRecording && !model.micWaiting) }
+                    HStack { Text("jamloom").font(.largeTitle.bold());Text(model.micRecording ? "● MIC RECORDING":"BASIC · FREE / TWO DECKS").font(.caption.monospaced()).foregroundStyle(liveColors[0]);Spacer();SettingsLink { Label("Settings",systemImage:"gearshape") };Button("Stop all / Panic",role:.destructive,action:model.stop).keyboardShortcut(.escape,modifiers:[]).disabled(!model.active && !model.micRecording && !model.micWaiting) }
                     HStack {
                         Picker("Stereo output",selection:$model.output) {
                             Text("Choose an output").tag(UInt32(0))

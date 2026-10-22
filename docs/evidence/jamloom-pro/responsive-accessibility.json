@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "browser": "chromium",
+      "responsive": "PASS",
+      "accessibility": "PASS",
+      "reducedMotion": "PASS",
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "responsive": "PASS",
+      "accessibility": "PASS",
+      "reducedMotion": "PASS",
+      "errors": []
+    }
+  ]
+}

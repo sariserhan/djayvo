@@ -1,0 +1,1 @@
+cf346e1b58f02287d5709e305c65756cbe96684b1fb7bc2e96ade48c4d395a17  dist/releases/pro-0.1.0-nRzTbG/Jamloom-Pro-0.1.0-macOS.zip

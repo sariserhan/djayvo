@@ -59,7 +59,7 @@ try {
   };
   page.on('request', r => { if (!r.url().startsWith(url.replace('/dj.html','/')) && !r.url().startsWith('blob:')) external.push(r.url()); });
   await page.goto(url);await revealStudioTools(page);
-  assert.equal(await page.title(), 'Jamloom — DJ workspace');
+  assert.equal(await page.title(), 'Jamloom Pro — Performance Studio');
   assert.equal(await page.locator('h1').textContent(), 'Performance studio');
   assert.equal(await page.locator('#take-start').isDisabled(),true);
   assert.equal(await page.locator('#take-include-phrase').isDisabled(),true);

@@ -1,7 +1,9 @@
 import { sha256 } from './live-take.js';
 
 const baseSlots = ['a', 'b', 'c', 'phrase', 'rack'];
+const sampleSlots=Array.from({length:8},(_,i)=>'sample'+i);
 const kinds = { a: 'local_audio', b: 'local_audio', c: 'generated_wav', phrase: 'normalized_phrase_wav', rack: 'instrument_engine', plan: 'performance_plan' };
+for(const slot of sampleSlots)kinds[slot]='sampler_audio';
 const MAX_ASSETS = 16, MAX_SNAPSHOTS = 128, MAX_BYTES = 256 * 1024 * 1024, MAX_FILE = 100 * 1024 * 1024;
 const exact = (value, keys) => value && typeof value === 'object' && !Array.isArray(value) &&
   Object.keys(value).sort().join(',') === [...keys].sort().join(',');
@@ -9,10 +11,10 @@ const integer = (n, lo, hi = Number.MAX_SAFE_INTEGER) => Number.isSafeInteger(n)
 const hash = value => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
 
 export function validateMixSources(value, receipt) {
-  const withPlan=value?.schema_version==='2.0-mix-sources', slots=withPlan?[...baseSlots,'plan']:baseSlots;
+  const withSamples=value?.schema_version==='3.0-mix-sources',withPlan=withSamples||value?.schema_version==='2.0-mix-sources', slots=[...baseSlots,...(withPlan?['plan']:[]),...(withSamples?sampleSlots:[])];
   if (!exact(value, ['schema_version', 'scope', 'permission', 'rights_verified', 'training_authorized',
     'wav_sha256', 'sample_rate', 'observed_context_start_frame', 'assets', 'snapshots']) ||
-    !['1.0-mix-sources','2.0-mix-sources'].includes(value.schema_version) || value.scope !== 'loaded_assets' ||
+    !['1.0-mix-sources','2.0-mix-sources','3.0-mix-sources'].includes(value.schema_version) || value.scope !== 'loaded_assets' ||
     value.permission !== 'user_attested_private_mix' || value.rights_verified !== false || value.training_authorized !== false ||
     !hash(value.wav_sha256) || value.wav_sha256 !== receipt.wav_sha256 ||
     !integer(value.sample_rate, 32000, 192000) || value.sample_rate !== receipt.sample_rate ||
@@ -53,8 +55,10 @@ export class MixSources {
   record(sources, context) {
     if (this.cancelled || this.failed) return;
     try {
+      if(sampleSlots.some(slot=>sources[slot])&&!this.withSamples){this.withSamples=true;for(const old of this.snapshots)for(const slot of sampleSlots)old[slot]=null;}
+      if(this.withSamples&&!this.withPlan){this.withPlan=true;for(const old of this.snapshots)old.plan=null;}
       if(Object.hasOwn(sources,'plan')&&!this.withPlan){this.withPlan=true;for(const old of this.snapshots)old.plan=null;}
-      const slots=this.withPlan?[...baseSlots,'plan']:baseSlots;
+      const slots=[...baseSlots,...(this.withPlan?['plan']:[]),...(this.withSamples?sampleSlots:[])];
       const snapshot = { context_frame: Math.round(context.currentTime * context.sampleRate) };
       for (const slot of slots) {
         const source = sources[slot];
@@ -98,7 +102,7 @@ export class MixSources {
         assets.push({ kind: asset.kind, bytes: asset.bytes, sha256: digest, ...(asset.kind==='performance_plan'?{source_sha256:sourceHash}:{}) });
       }
       return validateMixSources({
-        schema_version: this.withPlan?'2.0-mix-sources':'1.0-mix-sources', scope: 'loaded_assets', permission: 'user_attested_private_mix',
+        schema_version: this.withSamples?'3.0-mix-sources':this.withPlan?'2.0-mix-sources':'1.0-mix-sources', scope: 'loaded_assets', permission: 'user_attested_private_mix',
         rights_verified: false, training_authorized: false, wav_sha256: receipt.wav_sha256,
         sample_rate: receipt.sample_rate, observed_context_start_frame: receipt.observed_context_start_frame,
         assets, snapshots: this.snapshots,

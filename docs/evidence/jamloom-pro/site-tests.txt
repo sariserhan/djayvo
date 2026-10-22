@@ -1,0 +1,54 @@
+
+> jamloom-site@0.1.0 test
+> tsx --test tests/config.test.ts tests/audio.test.ts tests/email.test.ts tests/economics.test.ts tests/taste.test.ts tests/apple-payments.test.ts tests/generation-budget.test.ts tests/coming-soon.test.ts tests/metadata.test.ts tests/aurowall-inline.test.ts
+
+✔ Apple consumables bind exact app/account/product/price/environment, reject revocation and offers (1.080667ms)
+✔ Apple official verifier rejects forged unsigned transactions (0.449625ms)
+✔ Apple sandbox refund notifications verify both signatures and hold the exact consumable receipt (0.342792ms)
+✔ private save validates consent, bounded metadata and canonical metadata-free PCM (141.652542ms)
+✔ storage is opt-in, local files cannot be hosted, R2 grants bind content length and type (10.915458ms)
+✔ brand transition preserves legacy storage config without overriding explicit opt-outs (0.128584ms)
+✔ new public saves require publication consent; legacy and private saves never queue sharing (21.578458ms)
+✔ audio errors retain safe status across duplicated route modules (0.767125ms)
+✔ extended output accepts exact 15/60 second boundaries and rejects outside them (197.401083ms)
+✔ partner catalogue accepts bounded music only, with opaque stable IDs (0.83625ms)
+✔ audio ranges support seeking and suffix reads, rejecting invalid and multiple ranges (0.161542ms)
+✔ all web Checkout factories stay inline with stable idempotency and server prices (0.120416ms)
+✔ publishable keys must match billing mode; secrets alone cannot open inline checkout (0.115625ms)
+✔ launch gate defaults on and only explicit false disables it (0.522333ms)
+✔ coming-soon recovery allows login, support and signed callbacks, not signup or product APIs (0.127292ms)
+✔ launch responses contain real navigation, one tracker and private caching; product APIs stay closed (7.455167ms)
+✔ anonymous requests cannot bypass the default gate with request headers or query flags (1.744958ms)
+✔ published Live DJ preview is accessible while other product routes remain gated (0.797083ms)
+✔ companion download uses the signed release and rejects unsafe overrides (1.820709ms)
+✔ production template binds auth and private R2 grants to Jamloom configuration (14.566625ms)
+✔ account configuration fails closed and forbids hosted development mail (0.193458ms)
+✔ Resend request routes replies to support and binds retry identity to the full payload (2.623709ms)
+✔ reply-to accepts a single mailbox and rejects malformed or injected headers (0.097625ms)
+✔ localhost can use Neon without enabling local database/storage shortcuts (0.071958ms)
+✔ email outbox cannot run in a hosted app even if a config is supplied directly (0.049125ms)
+✔ auth body limit measures real streamed bytes rather than trusting Content-Length (1.360541ms)
+✔ Jamloom config accepts legacy deployment keys and gives explicit new values priority (0.112208ms)
+✔ VisitorPing can connect without weakening script or framing protections (0.952417ms)
+✔ tax, Apple fee tier, fixed fees, refunds, FX and overhead reduce spendable proceeds (0.763125ms)
+✔ Stripe signatures require exact body, timestamp and sandbox credentials (1.876125ms)
+✔ Checkout fulfillment rereads paid state, rejects unpaid, wrong totals and live payments (0.377375ms)
+✔ private credits are 25 percent of the base rounded up, bounded and integer (0.084458ms)
+✔ shared email layout escapes content and preserves a safe exact action URL (0.808917ms)
+✔ both actual auth callbacks capture branded HTML and plain text in the private outbox (6.586792ms)
+✔ quotes bind accepted charge, account, source, plan, privacy and expiry (3.641959ms)
+✔ worker authorization binds hashes, deadlines, one attempt and conservative rental budget (0.460958ms)
+✔ real local subprocess is terminated on deadline, including an inference promise that ignores abort (106.099292ms)
+✔ completion and failures both terminate allocation; termination failure is not hidden (0.740625ms)
+✔ metadata follows runtime launch mode and never advertises private routes (2.212083ms)
+✔ taste derives explicit dimensions, never audio attributes from titles (1.41825ms)
+✔ local composer receives only explicit musical dimensions and bounded requests (0.861042ms)
+✔ catalogue choices preserve licensed identities and expose weighted metadata evidence without inferred audio (0.510542ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 42
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 713.7315

@@ -1,0 +1,65 @@
+Building for debugging...
+Build complete! (0.33 sec)
+Test Suite 'All tests' started at 2026-10-22 15:52:02.306.
+Test Suite 'JamloomLiveTests.xctest' started at 2026-10-22 15:52:02.307.
+Test Suite 'BrowserFixtureTests' started at 2026-10-22 15:52:02.307.
+Test Case '-[JamloomLiveTests.BrowserFixtureTests testLocalControlFixture]' started.
+/Users/serhansari/Documents/projects/jamloom/apps/desktop-companion/Tests/JamloomLiveTests/ControlTests.swift:70: -[JamloomLiveTests.BrowserFixtureTests testLocalControlFixture] : Test skipped - Explicit browser fixture only; never captures audio
+Test Case '-[JamloomLiveTests.BrowserFixtureTests testLocalControlFixture]' skipped (0.002 seconds).
+Test Case '-[JamloomLiveTests.BrowserFixtureTests testRealLoopbackServer]' started.
+Test Case '-[JamloomLiveTests.BrowserFixtureTests testRealLoopbackServer]' passed (0.014 seconds).
+Test Suite 'BrowserFixtureTests' passed at 2026-10-22 15:52:02.322.
+	 Executed 2 tests, with 1 test skipped and 0 failures (0 unexpected) in 0.015 (0.015) seconds
+Test Suite 'ControlModelTests' started at 2026-10-22 15:52:02.322.
+Test Case '-[JamloomLiveTests.ControlModelTests testDeckLayoutSnapshot]' started.
+/Users/serhansari/Documents/projects/jamloom/apps/desktop-companion/Tests/JamloomLiveTests/ControlModelTests.swift:95: -[JamloomLiveTests.ControlModelTests testDeckLayoutSnapshot] : Test skipped - Optional rendered layout evidence
+Test Case '-[JamloomLiveTests.ControlModelTests testDeckLayoutSnapshot]' skipped (0.001 seconds).
+Test Case '-[JamloomLiveTests.ControlModelTests testEffectsAndTransportKeepTheirBoundaries]' started.
+Test Case '-[JamloomLiveTests.ControlModelTests testEffectsAndTransportKeepTheirBoundaries]' passed (0.064 seconds).
+Test Case '-[JamloomLiveTests.ControlModelTests testIndependentDecksAndRemoteMixerReachEngines]' started.
+Test Case '-[JamloomLiveTests.ControlModelTests testIndependentDecksAndRemoteMixerReachEngines]' passed (0.006 seconds).
+Test Case '-[JamloomLiveTests.ControlModelTests testTwoSourcesStartStopAndFailIndependently]' started.
+Test Case '-[JamloomLiveTests.ControlModelTests testTwoSourcesStartStopAndFailIndependently]' passed (0.007 seconds).
+Test Case '-[JamloomLiveTests.ControlModelTests testUpdateSessionCannotStartCaptureOrRequestMicrophone]' started.
+Test Case '-[JamloomLiveTests.ControlModelTests testUpdateSessionCannotStartCaptureOrRequestMicrophone]' passed (0.006 seconds).
+Test Suite 'ControlModelTests' passed at 2026-10-22 15:52:02.407.
+	 Executed 5 tests, with 1 test skipped and 0 failures (0 unexpected) in 0.084 (0.085) seconds
+Test Suite 'ControlTests' started at 2026-10-22 15:52:02.407.
+Test Case '-[JamloomLiveTests.ControlTests testCommandsAreBoundedAndCannotStartCapture]' started.
+Test Case '-[JamloomLiveTests.ControlTests testCommandsAreBoundedAndCannotStartCapture]' passed (0.000 seconds).
+Test Case '-[JamloomLiveTests.ControlTests testHTTPFramingAndRebinding]' started.
+Test Case '-[JamloomLiveTests.ControlTests testHTTPFramingAndRebinding]' passed (0.000 seconds).
+Test Case '-[JamloomLiveTests.ControlTests testNativeInvalidSourceNeverStartsCapture]' started.
+Test Case '-[JamloomLiveTests.ControlTests testNativeInvalidSourceNeverStartsCapture]' passed (0.000 seconds).
+Test Case '-[JamloomLiveTests.ControlTests testPairOriginExpiryRevocationAndHeartbeat]' started.
+Test Case '-[JamloomLiveTests.ControlTests testPairOriginExpiryRevocationAndHeartbeat]' passed (0.000 seconds).
+Test Case '-[JamloomLiveTests.ControlTests testStrictTwoDeckProtocol]' started.
+Test Case '-[JamloomLiveTests.ControlTests testStrictTwoDeckProtocol]' passed (0.001 seconds).
+Test Suite 'ControlTests' passed at 2026-10-22 15:52:02.409.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'SamplerTests' started at 2026-10-22 15:52:02.409.
+Test Case '-[JamloomLiveTests.SamplerTests testConsentCancellationAndNoRemoteRecording]' started.
+Test Case '-[JamloomLiveTests.SamplerTests testConsentCancellationAndNoRemoteRecording]' passed (0.026 seconds).
+Test Case '-[JamloomLiveTests.SamplerTests testDeniedInputAutoFinishAndPanic]' started.
+Test Case '-[JamloomLiveTests.SamplerTests testDeniedInputAutoFinishAndPanic]' passed (0.104 seconds).
+Test Case '-[JamloomLiveTests.SamplerTests testNativeSampleLoadBoundsWithoutCapture]' started.
+Test Case '-[JamloomLiveTests.SamplerTests testNativeSampleLoadBoundsWithoutCapture]' passed (0.001 seconds).
+Test Case '-[JamloomLiveTests.SamplerTests testRecordingPreparationTargetAndClear]' started.
+Test Case '-[JamloomLiveTests.SamplerTests testRecordingPreparationTargetAndClear]' passed (0.029 seconds).
+Test Suite 'SamplerTests' passed at 2026-10-22 15:52:02.570.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.160 (0.160) seconds
+Test Suite 'SettingsTests' started at 2026-10-22 15:52:02.570.
+Test Case '-[JamloomLiveTests.SettingsTests testSettingsLayout]' started.
+Test Case '-[JamloomLiveTests.SettingsTests testSettingsLayout]' passed (0.388 seconds).
+Test Case '-[JamloomLiveTests.SettingsTests testUpdateChecksDeferDuringAudioAndPermitIdle]' started.
+Test Case '-[JamloomLiveTests.SettingsTests testUpdateChecksDeferDuringAudioAndPermitIdle]' passed (0.007 seconds).
+Test Suite 'SettingsTests' passed at 2026-10-22 15:52:02.965.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.395 (0.395) seconds
+Test Suite 'JamloomLiveTests.xctest' passed at 2026-10-22 15:52:02.965.
+	 Executed 18 tests, with 2 tests skipped and 0 failures (0 unexpected) in 0.656 (0.658) seconds
+Test Suite 'All tests' passed at 2026-10-22 15:52:02.965.
+	 Executed 18 tests, with 2 tests skipped and 0 failures (0 unexpected) in 0.656 (0.659) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2084
+􀄵  Target Platform: arm64e-apple-macos14.0
+􁁛  Test run with 0 tests in 0 suites passed after 0.001 seconds.

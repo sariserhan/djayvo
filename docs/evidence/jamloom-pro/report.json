@@ -1,0 +1,39 @@
+{
+  "status": "PASS_LOCAL_PARTIAL_RELEASE",
+  "version": "0.1.0",
+  "arch": "arm64",
+  "minimumMacOS": "14.2",
+  "package": "dist/releases/pro-0.1.0-nRzTbG/Jamloom-Pro-0.1.0-macOS.zip",
+  "installedApp": "/Applications/Jamloom Pro.app",
+  "notarization": "Accepted",
+  "signature": "PASS",
+  "staple": "PASS",
+  "gatekeeper": "PASS",
+  "unitTests": 142,
+  "siteTests": 42,
+  "basicSwift": {
+    "pass": 16,
+    "optionalSkipped": 2
+  },
+  "siteBuild": "PASS",
+  "typecheck": "PASS",
+  "physicalOutput": "muted during tests",
+  "newPhysicalQualification": "NOT RUN",
+  "publicProRelease": "NOT RUN",
+  "paidActivation": "NOT RUN",
+  "realProUpgrade": "NOT RUN",
+  "hostedProCI": "NOT RUN",
+  "publicAurowall": "launch-gated; local backend PASS",
+  "sources": {
+    "apps/desktop-pro/main.mjs": "80bc27151b258a66a51dc12ae662687dd1998f26a2d9f23afb71342c10b55bfd",
+    "apps/desktop-pro/policy.mjs": "c88a08dc12ad53bba3ba3638386c27c7f535fc7eeef98ff035f3c587a0a7c9c8",
+    "apps/desktop-pro/preload.cjs": "f93e2404136c12b6a9e4fc30a28eec8313af7adcc6046af2b6995cc25c3a4a15",
+    "apps/desktop-pro/settings.html": "02fe9c63e7192eecb3b73cc3ed1b108d3b6a81fa91f8919cc81d660d89c5aae6",
+    "apps/desktop-pro/settings.js": "8fb2155744425ab8701ddefe90da0699f1be0c79fd381e172a7ea936c2facf29",
+    "apps/web/dj.html": "9efe81c950fbd887c125f79842b8c67dace028b2d87ace3d080f5614702f5f99",
+    "apps/web/dj.js": "b5158bf8dfdd61ea5886d59d42affd8a11655ac7fa0a2aa4b7e27cf365403ee5",
+    "apps/web/pro-console.css": "e55b58bf9bb12cb4ba6fc78a83d0675352c9a145c00c43ffacf95a33b84943e9",
+    "apps/web/pro-console.js": "1ff4bad794d903ca45cfcfb836cdba39d0d11bfd52340228fb0d178e96b7717f",
+    "apps/web/sampler.js": "dac2c2e62d81e890bedcb894f621880556cdc7973498377397ff37bb403d1563"
+  }
+}

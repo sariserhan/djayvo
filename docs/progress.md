@@ -1,3 +1,7 @@
+# Basic and Pro editions — 2026-10-22
+
+**PASS, local implementation; PARTIAL, release.** Basic remains free. The shared web/Mac Performance Studio now has physical-style decks, accessible rotary controls and custom sampler banks. Pro bundles the existing studio with sandboxed local assets, native permissions/settings, local persistence and guarded updates. Unit, Chromium/WebKit, real desktop, site and Basic tests pass; the real Aurowall catalogue plays through the existing local backend with muted output. Public Pro release, paid activation, actual upgrade and new physical/listening gates remain open. [Implementation and evidence](jamloom-pro.md).
+
 # Downloadable companion, settings and signed updates — 2026-10-22
 
 **PASS, companion distribution.** Jamloom Live 0.4.0 adds the brand icon, native Settings, opt-in signed Sparkle updates and guards against updating during live audio. Website now exposes the Live DJ preview and versioned download publicly while retaining other launch gates. Apple notarization, fresh-download signature/Gatekeeper, signed in-app upgrade/relaunch, native/browser/site checks and seven GitHub jobs pass. Installed the verified app in Applications; capture remains stopped. The owner authorized this scoped public companion delivery and supplied the issuer identifier; notarization credentials now work through local Keychain. [Release report](live-companion-release.md). Existing deferred physical and product-quality gates remain open.

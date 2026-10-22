@@ -5,6 +5,15 @@ struct SettingsView:View {
     @ObservedObject var updater:LiveUpdater
     var body:some View {
         Form {
+            Section("Your edition") {
+                Text("Jamloom Basic · Free").font(.headline)
+                Text("Two live sources, mixing, effects and microphone samples stay free. Pro adds the full Performance Studio, local tracks, Aurowall music, instruments and recording.").font(.caption)
+                Button("Open Pro") {
+                    let url=URL(fileURLWithPath:"/Applications/Jamloom Pro.app")
+                    if FileManager.default.fileExists(atPath:url.path) { NSWorkspace.shared.open(url) }
+                    else { NSWorkspace.shared.open(URL(string:"https://www.jamloom.com/studio/dj.html")!) }
+                }
+            }
             Section("Audio") {
                 Picker("Stereo output",selection:$model.output) {
                     Text("Choose an output").tag(UInt32(0))
@@ -25,7 +34,7 @@ struct SettingsView:View {
                 Text("Permissions reset when you quit. Audio stays on this Mac. Capture and microphone recording always start with you.").font(.caption).foregroundStyle(.secondary)
             }
             Section("Updates") {
-                LabeledContent("Jamloom Live",value:Bundle.main.object(forInfoDictionaryKey:"CFBundleShortVersionString") as? String ?? "Development")
+                LabeledContent("Jamloom Basic",value:Bundle.main.object(forInfoDictionaryKey:"CFBundleShortVersionString") as? String ?? "Development")
                 Toggle("Automatically check for updates",isOn:Binding(get:{updater.automaticChecks},set:updater.setAutomaticChecks)).disabled(updater.failure != nil)
                 Button("Check for Updates…",action:updater.check).disabled(!updater.canCheck || model.performanceBusy)
                 Text(model.performanceBusy ? "Stop both decks and finish recording to update." : "Updates are signed and installed only with your approval. Checks pause during a live set.").font(.caption).foregroundStyle(.secondary)

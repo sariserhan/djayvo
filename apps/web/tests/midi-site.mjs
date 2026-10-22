@@ -26,7 +26,7 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
   });
   try {
     await page.goto('http://localhost:3000/studio/dj.html');await revealStudioTools(page);
-    assert.equal(await page.title(), 'Jamloom — DJ workspace');
+    assert.equal(await page.title(), 'Jamloom Pro — Performance Studio');
     await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
     await page.locator('#load-instruments').click();
     await page.waitForFunction(() => document.getElementById('instrument-status').textContent.startsWith('Ready'));

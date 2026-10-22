@@ -67,7 +67,7 @@ export function attachDeck(deck, other, { pause, start, mixer, context, scratchS
   const hotLabels = () => hot.forEach((value, index) => {
     const button = $(`hot-${id}-${index}`), label = value === null ? 'EMPTY' : `${value.toFixed(1)} s`;
     button.querySelector('small').textContent = label;
-    button.setAttribute('aria-label', `Deck ${id.toUpperCase()} hot cue ${index + 1}, ${label}`);
+    button.setAttribute('aria-label', `${index+1} ${label} — Deck ${id.toUpperCase()} hot cue`);
   });
   deck.resetTransport = () => {
     cue = 0; hot.fill(null); taps = []; drag = null; hotLabels();
@@ -177,7 +177,7 @@ export function attachDeck(deck, other, { pause, start, mixer, context, scratchS
       samples.fill(0);
       if (context()?.state === 'running' && (!audio.paused || deck.sessionPlaying)) mixer()?.strips[id === 'a' ? 0 : 1].scope.getFloatTimeDomainData(samples);
       painter.clearRect(0, 0, scope.width, scope.height); painter.beginPath();
-      painter.strokeStyle = id === 'a' ? '#c9fa78' : '#c6b1ff'; painter.lineWidth = 1.5;
+      painter.strokeStyle = id === 'a' ? '#ffd08a' : '#8dd9f3'; painter.lineWidth = 1.5;
       for (let i = 0; i < samples.length; i++) { const x = i * scope.width / samples.length, y = scope.height * (.5 - samples[i] * .45); i ? painter.lineTo(x, y) : painter.moveTo(x, y); }
       painter.stroke();
     }

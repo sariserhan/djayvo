@@ -1,0 +1,2 @@
+dist/releases/pro-0.1.0-nRzTbG/Jamloom Pro-darwin-arm64/Jamloom Pro.app: accepted
+source=Notarized Developer ID

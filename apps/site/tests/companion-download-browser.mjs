@@ -11,7 +11,7 @@ try {
  await page.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
  await page.goto(base);await page.getByRole('link',{name:'Download Live DJ for Mac'}).click();
  await page.waitForURL(base+'/live-dj');
- assert.equal(await page.getByRole('link',{name:'Download Jamloom Live for Mac',exact:true}).getAttribute('href'),'https://github.com/sariserhan/jamloom/releases/download/live-v0.4.0/Jamloom-Live-0.4.0-macOS.zip');
+ assert.equal(await page.getByRole('link',{name:'Download Jamloom Basic for Mac',exact:true}).getAttribute('href'),'https://github.com/sariserhan/jamloom/releases/download/live-v0.4.0/Jamloom-Live-0.4.0-macOS.zip');
  for(const width of [1440,390,320]) {
   await page.setViewportSize({width,height:1000});
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'overflow '+width);

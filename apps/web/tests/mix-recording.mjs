@@ -55,7 +55,7 @@ try {
   page.on('request', r => { if (!r.url().startsWith(url.replace('/dj.html','/')) && !r.url().startsWith('blob:')) external.push(r.url()); });
   await page.goto(url);await revealStudioTools(page);
   for (const deck of ['a','b']) await page.locator(`.deck-${deck} .deck-fx-panel summary`).click();
-  assert.equal(await page.title(), 'Jamloom — DJ workspace');
+  assert.equal(await page.title(), 'Jamloom Pro — Performance Studio');
   assert.equal(await page.locator('#mix-record-start').isDisabled(), true);
   const reference = await page.evaluate(async () => {
     const { createMixer, updateToneEcho, clearEcho } = await import('./mixer.js');

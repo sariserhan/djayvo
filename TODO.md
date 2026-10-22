@@ -1,3 +1,9 @@
+## Basic and Pro editions — 2026-10-22
+
+- [x] **PRO-001 — PASS, local:** Existing companion stays Basic/free; shared web/Mac professional console, physical-style jogs/rotary controls/faders, eight sample pads/four banks, full existing Performance Studio, native Settings and isolated update integration. [Report](docs/jamloom-pro.md).
+- [x] **PRO-002 — PASS, local validation:** 142 unit checks, full Chromium/WebKit DJ regressions, five-width/accessibility checks, real desktop playback/recording/relaunch, site build/download boundaries and Basic Swift checks. Real Aurowall catalogue/storage playback passes through the local backend with muted output. [Evidence](docs/evidence/jamloom-pro/).
+- [ ] **PRO-003 — PARTIAL, release:** Signed, notarized, stapled, Gatekeeper-accepted Pro 0.1.0 installed and packaged-app checks PASS; Pro public installer/feed, actual update upgrade, hosted CI, catalogue launch access, pricing/paid activation and new physical/human qualification remain open. No Pro publication or charges. [Boundaries](docs/jamloom-pro.md).
+
 ## Companion distribution — 2026-10-22
 
 - [x] **LIVE-RELEASE-001 — PASS:** App icon, native Settings, signed Sparkle updates with audio-session protection; native/browser/site checks. [Report](docs/live-companion-release.md).

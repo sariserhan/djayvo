@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "catalogue": "72 Aurowall tracks available online.",
+  "track": "Edm — Aurowall.mp3",
+  "duration": 865.334063,
+  "paused": true,
+  "transport": "Actual local server routes with configured R2; desktop public endpoint remapped to loopback for this test only.",
+  "publicEndpoint": "NOT RUN; production launch gate still applies",
+  "listening": "NOT RUN; physical output muted"
+}
