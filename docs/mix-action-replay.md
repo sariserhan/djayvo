@@ -1,5 +1,7 @@
 # Private mix action reconstruction — 2026-10-21
 
+**Implementation commit: `144e45c` (local only).**
+
 **PASS: local action reconstruction and clocked instrument capture. Overall specification PARTIAL.**
 This completes a runnable replay path for the existing browser control/source/transport
 exports. It reconstructs A/B/C and instruments from original source files, deck actions,

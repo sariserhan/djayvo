@@ -26,7 +26,7 @@ Prior [completion checkpoint](docs/non-ios-completion.md) is preserved.
 - [x] **FIN-008 — PASS, local:** Sixteenth-note sequencer with validated notes, sample-clock scheduling, panic/blur stop and paused scene recall.
 - [x] **FIN-009 — PASS, local implementation:** Opt-in 1–15 second source / 15–60 second output contract, versioned score replay, private-storage migration and continual phrase capture with bar-aligned responses. Physical/quality qualification remains under L01/L03 and M1; see the current report.
 - [x] **FIN-010 — PASS, local (`8f3027f`):** WAV-linked deck history, optional aligned float stems, saved-plan/source identity and bounded cross-split near-duplicate rejection. Existing source inventories remain readable. [Capture report](docs/r1-capture-completion.md).
-- [x] **FIN-011 — PASS, local:** Source/action mix reconstruction through the shared deck DSP, instrument WASM and mixer; clocked instrument takes including sequencer commands; original-hash-verified WAV/MP3/FLAC inputs; private assembler/renderer and replay receipts. Historical decoder/DSP state cannot be reconstructed exactly. [Replay report](docs/mix-action-replay.md).
+- [x] **FIN-011 — PASS, local (`144e45c`):** Source/action mix reconstruction through the shared deck DSP, instrument WASM and mixer; clocked instrument takes including sequencer commands; original-hash-verified WAV/MP3/FLAC inputs; private assembler/renderer and replay receipts. Historical decoder/DSP state cannot be reconstructed exactly. [Replay report](docs/mix-action-replay.md).
 No push or deployment in this increment. Human checks remain deferred; the specification is not marked complete.
 
 ## Live Audio DJ — 2026-10-21
