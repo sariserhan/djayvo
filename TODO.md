@@ -2,8 +2,8 @@
 
 ## Source-led conversation study — 2026-10-22
 
-- [x] **SOURCE-001 — PASS, local prototype:** One new reggae performance starts from an actual user-audio guide, generates backing and singer locally, and schedules separate original-voice calls and estimated complete singer replies. Source PCM and zero scheduled overlap checks pass. First missing-answer pass is retained as FAIL; the second candidate is ready on the private listening page. [Report and evidence](docs/source-led-response.md).
-- [ ] **SOURCE-002 — PARTIAL:** Human acceptance, complete lyric fidelity, reliable automatic phrase choice and broader styles remain unproven. This study does not change the 23-style studio default or close TRAIN-007.
+- [x] **SOURCE-001 — PASS, local prototype:** One new reggae performance starts from an actual user-audio guide, generates backing and singer locally, and schedules separate original-voice calls and estimated complete singer replies. Source PCM and zero scheduled overlap checks pass. First missing-answer pass is retained as FAIL; the second candidate was subsequently rejected by the owner for poor musical quality. Earlier comparisons are restored on the private listening page. [Report and evidence](docs/source-led-response.md).
+- [ ] **SOURCE-002 — FAIL, owner listening:** “this new way musical is bad.” The source-led candidate is rejected as a musical improvement. [Exact feedback](docs/evidence/source-led-response/owner-listening.json). Complete lyric fidelity, reliable automatic phrase choice and broader styles remain unproven. This study does not change the 23-style studio default or close TRAIN-007.
 
 ## Musician training request — 2026-10-21
 

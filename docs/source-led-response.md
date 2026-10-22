@@ -1,5 +1,7 @@
 # Source-led musical conversation study — 2026-10-22
 
+**Owner listening — FAIL:** “this new way musical is bad.” The new source-led reggae experiment is rejected as a musical improvement. The earlier comparison page is restored at <http://127.0.0.1:4197/>. Trial audio and technical evidence are preserved; no studio-default promotion. The goal of incorporating the user recording remains open. [Exact feedback](evidence/source-led-response/owner-listening.json).
+
 The owner reconsidered meaning-only songs and authorized one short performance
 built around a recognizable user phrase, before changing the whole studio.
 This study uses the existing permitted recording and a new reggae composition.
@@ -83,11 +85,11 @@ follows every syllable or that the model has learned improvisation. The final tu
 is not a verified downbeat. Stem separation can leave voice/instrument
 bleed. Quiet boundaries are estimates, not verified word alignment; moving a sung
 phrase can change its relationship to the harmony. The second pass contains sparse short answers; diagnostic ASR did not establish delivery of all four intended lyric lines. No pitch or time stretching
-is applied to the user or singer. The fixed two-turn arrangement needs listening
-before broader automation, more styles or a studio-default change.
+is applied to the user or singer. The owner rejected this fixed two-turn arrangement; it does not justify
+broader automation, more styles or a studio-default change.
 
-Human musical acceptance, transcription/lyric accuracy, naturalness and
-improvement over the earlier songs remain **NOT RUN**. No training, model
+Owner musical acceptance and improvement over the earlier songs are **FAIL**.
+Formal blinded evaluation, transcription/lyric accuracy and naturalness testing remain **NOT RUN**. No training, model
 promotion, new dependency, paid compute, upload, publication or iOS change.
 
 ## Retained failure
@@ -101,10 +103,11 @@ This is a bounded local model experiment, not evidence that every source works.
 
 ## Current evidence
 
-Listen at <http://127.0.0.1:4197/>. Earlier comparisons remain linked on the page.
+The default page at <http://127.0.0.1:4197/> again serves the earlier comparisons.
+The rejected study page is preserved locally, accessible by explicitly serving its directory.
 Private files are in `renders/source-led-response-20261022/`.
 
-- **PASS — actual local renders and assembly:** two model passes for the accepted
+- **PASS — actual local renders and assembly:** two model passes for the technically valid
   band/singer path, plus the retained rejected singer pass. 30-second stereo PCM,
   two original-voice calls at 2.80 and 13.22 seconds, no scheduled voice overlap,
   no source time/pitch change, source reconstruction within half a PCM16 step,
@@ -120,5 +123,10 @@ Private files are in `renders/source-led-response-20261022/`.
 - **PARTIAL — generated vocal content:** two estimated complete vocal phrases fit
   the planned responses. Diagnostic ASR recognized some response words, but not
   all intended lyrics. That is not a listening judgment or proof of naturalness.
-- **NOT RUN — musical acceptance and generalization:** one manually prepared
+- **FAIL — owner musical acceptance:** the owner rejected the new approach as bad music.
+  [Exact feedback](evidence/source-led-response/owner-listening.json).
+- **NOT RUN — generalization and formal blinded evaluation:** one manually prepared
   example, no claim of a trained improviser, no studio-default promotion.
+
+Restoring the earlier page passed exact HTML comparison and audio range checks;
+the rejected performance hash is unchanged. [Restoration receipt](evidence/source-led-response/restored-page.json).

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "url": "http://127.0.0.1:4197/",
+  "page_matches_preserved_earlier_review": true,
+  "players": 12,
+  "audio_range_status": 206,
+  "rejected_performance_preserved": true,
+  "studio_default_changed": false
+}

@@ -1,6 +1,8 @@
 # Jamloom implementation checkpoint
 
-**Source-led conversation study — 2026-10-22:** Owner reconsidered meaning-only songs and authorized one source-led test. Actual phrase audio conditions a new reggae backing and singer before assembly, with separate voice turns. The first singer pass was rejected for missing answers; the second produced a 30-second candidate. Original calls retain their source PCM and pitch, but listening quality and full lyric delivery are not established. The ordinary studio is unchanged. [Study and listening page](source-led-response.md).
+**Owner listening — FAIL:** “this new way musical is bad.” The new source-led reggae experiment is rejected as a musical improvement. The earlier comparison page is restored at <http://127.0.0.1:4197/>. Trial audio and technical evidence are preserved; no studio-default promotion. The goal of incorporating the user recording remains open. [Exact feedback](evidence/source-led-response/owner-listening.json).
+
+**Source-led conversation study — 2026-10-22:** Owner reconsidered meaning-only songs and authorized one source-led test. Actual phrase audio conditions a new reggae backing and singer before assembly, with separate voice turns. The first singer pass was rejected for missing answers; the second produced a 30-second candidate. Original calls retain their source PCM and pitch, but the owner subsequently rejected its musical quality; full lyric delivery remains unverified. The ordinary studio is unchanged. [Study and listening page](source-led-response.md).
 
 **Meaning-first singer — 2026-10-22:** The owner makes audio reuse optional. The studio accepts short/long recordings, reads speech locally or uses a supplied idea, and may deliver the song without replaying the recording. Acoustic audition now omits the sample. [Current behavior, limits and evidence](meaning-singer.md).
 

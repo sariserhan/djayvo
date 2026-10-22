@@ -1,0 +1,10 @@
+{
+  "status": "FAIL",
+  "scope": "Owner musical acceptance of the new source-led reggae experiment",
+  "feedback_verbatim": "this new way musical is bad",
+  "candidate_commit": "8e55e6c",
+  "performance_sha256": "c2a49eddee3e2eeed5da6d12a24d6cba6d4424071e4151070817b3aafbc2f505",
+  "interpretation": "Reject this experiment as a musical improvement. No specific acoustic cause was identified by the owner.",
+  "action": "Restore the earlier comparison page; preserve trial audio and technical evidence; do not promote this approach.",
+  "generalization": "Not a rejection of the goal of incorporating the user recording; no new model or arrangement has been validated."
+}
