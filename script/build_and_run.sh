@@ -21,11 +21,11 @@ cat > "$APP_BUNDLE/Contents/Info.plist" <<'PLIST'
 <key>CFBundleIdentifier</key><string>com.jamloom.live</string>
 <key>CFBundleName</key><string>Jamloom Live</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleShortVersionString</key><string>0.1.0</string>
-<key>CFBundleVersion</key><string>1</string>
+<key>CFBundleShortVersionString</key><string>0.2.0</string>
+<key>CFBundleVersion</key><string>2</string>
 <key>LSMinimumSystemVersion</key><string>14.2</string>
 <key>NSPrincipalClass</key><string>NSApplication</string>
-<key>NSAudioCaptureUsageDescription</key><string>Jamloom captures only the audio process you select, to apply local effects. It does not record or upload that audio.</string>
+<key>NSAudioCaptureUsageDescription</key><string>Jamloom captures only the audio processes you select for its two decks, to mix and apply local effects. It does not record or upload that audio.</string>
 </dict></plist>
 PLIST
 # Local owner preview only; Developer ID signing and notarization are separate release gates.

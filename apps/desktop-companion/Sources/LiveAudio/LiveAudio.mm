@@ -48,11 +48,22 @@ struct State {
     AudioDeviceIOProcID io=nullptr;
     pid_t pid=0; double rate=0, expectedTime=0; bool haveTime=false;
     std::unique_ptr<jamloom::LiveSourceDSP> dsp;
-    std::atomic<double> level{.4}, low{0}, mid{0}, high{0}, tone{18000}, echo{0}, peak{0}, inputPeak{0}, bpm{0}, confidence{0}, maxCallbackMs{0};
+    std::atomic<double> level{.4}, low{0}, mid{0}, high{0}, tone{18000}, echo{0}, peak{0}, inputPeak{0}, bpm{0}, confidence{0}, maxCallbackMs{0}, highpass{20}, echoSeconds{.3}, loopBeats{1}, tempo{120}, scratchRate{0}, mix{0}, bufferedSeconds{0};
     std::atomic<unsigned> flags{0}, fault{0};
     std::atomic<std::uint64_t> frames{0}, lastCallback{0};
     double ticksToMs=0;
     bool started=false;
+    jamloom::LiveSourceControls controls() const {
+        const auto f=flags.load();
+        jamloom::LiveSourceControls c{level.load(),low.load(),mid.load(),high.load(),tone.load(),echo.load(),bool(f&1),bool(f&2),bool(f&4)};
+        c.highpass=highpass.load();c.echoSeconds=echoSeconds.load();c.loopBeats=loopBeats.load();c.tempo=tempo.load();c.scratchRate=scratchRate.load();c.mix=mix.load();
+        c.reverse=f&8;c.scratch=f&16;c.mute=f&32;return c;
+    }
+    void setControls(const jamloom::LiveSourceControls& c) {
+        level.store(c.level);low.store(c.low);mid.store(c.mid);high.store(c.high);tone.store(c.tone);echo.store(c.echo);
+        highpass.store(c.highpass);echoSeconds.store(c.echoSeconds);loopBeats.store(c.loopBeats);tempo.store(c.tempo);scratchRate.store(c.scratchRate);mix.store(c.mix);
+        flags.store((c.bypass?1:0)|(c.roll?2:0)|(c.percussion?4:0)|(c.reverse?8:0)|(c.scratch?16:0)|(c.mute?32:0));
+    }
     ~State(){stop();}
     void stop(){
         if(io){AudioDeviceStop(aggregate,io);AudioDeviceDestroyIOProcID(aggregate,io);io=nullptr;}
@@ -82,11 +93,10 @@ OSStatus render(AudioObjectID,const AudioTimeStamp*,const AudioBufferList* input
         s.expectedTime=time->mSampleTime+frames;s.haveTime=true;
     }
     if(s.fault.load())return noErr;
-    const unsigned flags=s.flags.load();
-    jamloom::LiveSourceControls c{s.level.load(),s.low.load(),s.mid.load(),s.high.load(),s.tone.load(),s.echo.load(),bool(flags&1),bool(flags&2),bool(flags&4)};
+    const auto c=s.controls();
     if(!s.dsp->process(l,r,stride,ol,orr,outStride,frames,c)){s.fault.store(3);return noErr;}
     double peak=0,inPeak=0;for(unsigned i=0;i<frames;++i){peak=std::max({peak,std::abs(double(ol[i*outStride])),std::abs(double(orr[i*outStride]))});inPeak=std::max({inPeak,std::abs(double(l[i*stride])),std::abs(double(r[i*stride]))});}
-    s.peak.store(peak);s.inputPeak.store(inPeak);s.bpm.store(s.dsp->bpm());s.confidence.store(s.dsp->confidence());s.frames.fetch_add(frames);s.lastCallback.store(began);
+    s.peak.store(peak);s.inputPeak.store(inPeak);s.bufferedSeconds.store(s.dsp->bufferedSeconds());s.bpm.store(s.dsp->bpm());s.confidence.store(s.dsp->confidence());s.frames.fetch_add(frames);s.lastCallback.store(began);
     const double ms=(mach_absolute_time()-began)*s.ticksToMs;s.maxCallbackMs.store(std::max(ms,s.maxCallbackMs.load()));
     return noErr;
 }
@@ -113,10 +123,8 @@ OSStatus render(AudioObjectID,const AudioTimeStamp*,const AudioBufferList* input
     }return result;
 }
 - (NSString*)startProcess:(uint32_t)process output:(uint32_t)output {
-    const jamloom::LiveSourceControls previous{_state->level.load(),_state->low.load(),_state->mid.load(),_state->high.load(),_state->tone.load(),_state->echo.load()};
-    const unsigned flags=_state->flags.load();
-    [self stop]; delete _state;_state=new State;auto& s=*_state;
-    s.level.store(previous.level);s.low.store(previous.low);s.mid.store(previous.mid);s.high.store(previous.high);s.tone.store(previous.tone);s.echo.store(previous.echo);s.flags.store(flags);
+    const auto previous=_state->controls();
+    [self stop]; delete _state;_state=new State;auto& s=*_state;s.setControls(previous);
     auto fail=[&](NSString* message){s.stop();return message;};
     if(@available(macOS 14.2,*)){}else return @"Live Source requires macOS 14.2 or later.";
     if(!read(process,kAudioProcessPropertyPID,s.pid)||s.pid<=0||s.pid==getpid())return fail(@"Select another application's audio process.");
@@ -144,9 +152,19 @@ OSStatus render(AudioObjectID,const AudioTimeStamp*,const AudioBufferList* input
     s.started=true;s.lastCallback.store(mach_absolute_time());return nil;
 }
 - (void)stop { _state->stop(); }
-- (BOOL)setLevel:(double)level low:(double)low mid:(double)mid high:(double)high tone:(double)tone echo:(double)echo bypass:(BOOL)bypass roll:(BOOL)roll percussion:(BOOL)percussion {
-    jamloom::LiveSourceControls c{level,low,mid,high,tone,echo,bool(bypass),bool(roll),bool(percussion)};if(!c.valid())return NO;
-    auto& s=*_state;s.level.store(level);s.low.store(low);s.mid.store(mid);s.high.store(high);s.tone.store(tone);s.echo.store(echo);s.flags.store((bypass?1:0)|(roll?2:0)|(percussion?4:0));return YES;
+- (BOOL)setControls:(NSDictionary<NSString*,id>*)values mixGain:(double)mixGain {
+    // Every field is validated before publishing to the render thread.
+    if(values.count!=17 || !std::isfinite(mixGain) || mixGain<0 || mixGain>.5)return NO;
+    for(NSString* key in @[@"level",@"low",@"mid",@"high",@"tone",@"echo",@"highpass",@"echoSeconds",@"loopBeats",@"tempo",@"scratchRate"]) {
+        id value=values[key];if(![value isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)value)==CFBooleanGetTypeID())return NO;
+    }
+    for(NSString* key in @[@"bypass",@"roll",@"percussion",@"reverse",@"scratch",@"mute"]) {
+        id value=values[key];if(![value isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)value)!=CFBooleanGetTypeID())return NO;
+    }
+    jamloom::LiveSourceControls c{[values[@"level"] doubleValue],[values[@"low"] doubleValue],[values[@"mid"] doubleValue],[values[@"high"] doubleValue],[values[@"tone"] doubleValue],[values[@"echo"] doubleValue],[values[@"bypass"] boolValue],[values[@"roll"] boolValue],[values[@"percussion"] boolValue]};
+    c.highpass=[values[@"highpass"] doubleValue];c.echoSeconds=[values[@"echoSeconds"] doubleValue];c.loopBeats=[values[@"loopBeats"] doubleValue];c.tempo=[values[@"tempo"] doubleValue];c.scratchRate=[values[@"scratchRate"] doubleValue];
+    c.reverse=[values[@"reverse"] boolValue];c.scratch=[values[@"scratch"] boolValue];c.mute=[values[@"mute"] boolValue];c.mix=mixGain;
+    if(!c.valid())return NO;_state->setControls(c);return YES;
 }
 - (NSDictionary*)status {
     auto& s=*_state;NSString* error=@"";
@@ -159,6 +177,6 @@ OSStatus render(AudioObjectID,const AudioTimeStamp*,const AudioBufferList* input
         if(error.length)s.stop();
     }
     return @{@"active":@(s.started),@"error":error,@"peak":@(s.started?s.peak.load():0),@"inputPeak":@(s.started?s.inputPeak.load():0),
-        @"bpm":@(s.bpm.load()),@"confidence":@(s.confidence.load()),@"frames":@(s.frames.load()),@"sampleRate":@(s.rate),@"maxCallbackMs":@(s.maxCallbackMs.load())};
+        @"bpm":@(s.bpm.load()),@"confidence":@(s.confidence.load()),@"frames":@(s.frames.load()),@"sampleRate":@(s.rate),@"bufferedSeconds":@(s.started?s.bufferedSeconds.load():0),@"maxCallbackMs":@(s.maxCallbackMs.load())};
 }
 @end

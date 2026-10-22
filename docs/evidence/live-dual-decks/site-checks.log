@@ -1,0 +1,28 @@
+
+> jamloom-site@0.1.0 typecheck
+> tsc --noEmit
+
+
+> jamloom-site@0.1.0 audit:bundle
+> node scripts/audit-bundle.mjs
+
+{
+  "status": "PASS",
+  "client_files_checked": 29,
+  "server_secrets_absent": "PASS",
+  "studio_assets_unchanged_except_account_link_and_offline_hashes": "PASS",
+  "wasm_sha256": "31c08301a66dcd4350c6da2fa5dbfe336ed352b3873483238e131f9301b937d9"
+}
+✔ launch gate defaults on and only explicit false disables it (0.536708ms)
+✔ coming-soon recovery allows login, support and signed callbacks, not signup or product APIs (0.115875ms)
+✔ launch responses contain real navigation, one tracker and private caching; product APIs stay closed (2.000709ms)
+✔ anonymous requests cannot bypass the default gate with request headers or query flags (0.866417ms)
+✔ metadata follows runtime launch mode and never advertises private routes (1.667958ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 142.87025

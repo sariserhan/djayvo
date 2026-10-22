@@ -1,5 +1,7 @@
 # Live DJ controls and deck — 2026-10-22
 
+**Current update — 2026-10-22:** Owner confirms the previous controls work. The [two-deck upgrade](live-dual-decks.md) supersedes the single-deck layout and protocol described in the historical report below; its new real-source listening gate remains open.
+
 **Local implementation/tests PASS; owner live-audio acceptance PARTIAL.** The owner reports that only native output level works, on both the Mac app and website, and requests DJ deck controls. [Exact feedback](evidence/live-deck/owner-feedback.json). The exact playing process, output and control state were not supplied, so the original hardware symptom is not conclusively diagnosed or marked resolved.
 
 ## Change

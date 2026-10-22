@@ -3,16 +3,31 @@ import Network
 import Security
 
 struct LiveControls: Codable, Equatable {
-    var level = 0.4, low = 0.0, mid = 0.0, high = 0.0, tone = 18000.0, echo = 0.0
+    var level = 0.7, low = 0.0, mid = 0.0, high = 0.0, tone = 18000.0, echo = 0.0
     var bypass = false, roll = false, percussion = false
+    var highpass = 20.0, echoSeconds = 0.3, loopBeats = 1.0, tempo = 120.0, scratchRate = 0.0
+    var reverse = false, scratch = false, mute = false
     var valid: Bool {
-        level.isFinite && (0...0.8).contains(level) && [low,mid,high].allSatisfy { $0.isFinite && (-24...6).contains($0) } && tone.isFinite && (100...18000).contains(tone) && echo.isFinite && (0...0.4).contains(echo)
+        level.isFinite && (0...0.8).contains(level) && [low,mid,high].allSatisfy { $0.isFinite && (-24...6).contains($0) } && tone.isFinite && (100...18000).contains(tone) && echo.isFinite && (0...0.4).contains(echo) &&
+        highpass.isFinite && (20...4000).contains(highpass) && echoSeconds.isFinite && (0.05...1).contains(echoSeconds) && [0.25,0.5,1,2,4].contains(loopBeats) && tempo.isFinite && (60...200).contains(tempo) && scratchRate.isFinite && (-2...2).contains(scratchRate)
     }
     var dictionary: [String: Any] { (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(self))) as? [String: Any] ?? [:] }
-    static func decode(_ data: Data) -> LiveControls? {
-        guard let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any], Set(object.keys) == Set(LiveControls().dictionary.keys),
-              let controls = try? JSONDecoder().decode(Self.self, from: data), controls.valid else { return nil }
-        return controls
+    mutating func returnLive() { roll=false;reverse=false;scratch=false;scratchRate=0 }
+}
+struct MixControls: Codable, Equatable {
+    var decks = [LiveControls(),LiveControls()]
+    var crossfader = 0.5, master = 0.9
+    var valid: Bool { decks.count==2 && decks.allSatisfy(\.valid) && crossfader.isFinite && (0...1).contains(crossfader) && master.isFinite && (0...1).contains(master) }
+    var dictionary: [String: Any] { (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(self))) as? [String: Any] ?? [:] }
+    func gain(_ deck:Int) -> Double {
+        // Each native route is capped at half scale, including crossfade transients.
+        master*0.5*(deck==0 ? cos(crossfader * .pi/2) : sin(crossfader * .pi/2))
+    }
+    static func decode(_ data: Data) -> MixControls? {
+        guard let object=try? JSONSerialization.jsonObject(with:data) as? [String:Any],Set(object.keys)==Set(["decks","crossfader","master"]),
+              let decks=object["decks"] as? [[String:Any]],decks.count==2,decks.allSatisfy({Set($0.keys)==Set(LiveControls().dictionary.keys)}),
+              let value=try? JSONDecoder().decode(Self.self,from:data),value.valid else { return nil }
+        return value
     }
 }
 
@@ -43,7 +58,7 @@ struct LocalRequest {
 final class ControlServer {
     static let port: UInt16 = 48191
     static let origins: Set<String> = ["https://www.jamloom.com", "https://jamloom.com", "http://127.0.0.1:3000", "http://127.0.0.1:4234"]
-    var status: () -> [String: Any] = { [:] }, apply: (LiveControls) -> Void = { _ in }, stop: () -> Void = {}
+    var status: () -> [String: Any] = { [:] }, apply: (MixControls) -> Void = { _ in }, stop: () -> Void = {}
     var connectionChanged: (String) -> Void = { _ in }
     private var listener: NWListener?
     private var connections: [UUID: NWConnection] = [:]
@@ -91,7 +106,7 @@ final class ControlServer {
         case ("GET","/status"):
             guard request.body.isEmpty else { return (400,["error":"Unexpected body"],incoming) }
         case ("POST","/controls"):
-            guard request.headers["content-type"] == "application/json", let controls = LiveControls.decode(request.body) else { return (400,["error":"Invalid controls"],incoming) }
+            guard request.headers["content-type"] == "application/json", let controls = MixControls.decode(request.body) else { return (400,["error":"Invalid controls"],incoming) }
             apply(controls)
         case ("POST","/stop"):
             guard request.body.isEmpty else { return (400,["error":"Unexpected body"],incoming) }
@@ -100,7 +115,7 @@ final class ControlServer {
         }
         if !connected { connectionChanged("Website connected. Closing the page stops native capture within 5 seconds.") }
         lastSeen = now; connected = true
-        return (200,status().merging(["protocolVersion":1,"expiresAt":expires.timeIntervalSince1970]) { _,new in new },incoming)
+        return (200,status().merging(["protocolVersion":2,"expiresAt":expires.timeIntervalSince1970]) { _,new in new },incoming)
     }
     private func accept(_ connection: NWConnection) {
         guard connections.count < 8 else { connection.cancel(); return }

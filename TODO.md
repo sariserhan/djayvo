@@ -1,9 +1,14 @@
 # Jamloom development tracker
 
+## Two live decks — 2026-10-22
+
+- [x] **LIVE-DUAL-001 — PASS, local:** Two independent native sources and paired web decks, rotating/draggable platters, bounded reverse/scratch/loops, expanded FX, channel mute, master/crossfader and Return to live. C++/sanitizers, native model/protocol/HTTP, Chromium/WebKit gesture/control/responsive/axe, build/typecheck/audit and local app launch pass. [Report](docs/live-dual-decks.md).
+- [ ] **LIVE-DUAL-002 — PARTIAL:** Simultaneous real source capture, physical output, listening and long-session acceptance NOT RUN. App 0.2.0/protocol 2 requires the matching website; local preview ready, public update/distribution NOT RUN.
+
 ## Live DJ deck and control repair — 2026-10-22
 
 - [x] **LIVE-DECK-001 — PASS, local:** Native and paired-web deck layouts; direct native control application, visible bypass with effect-edit recovery, stale website status protection. Swift, per-effect generated PCM plus sanitizers, real native HTTP/Chromium/WebKit, responsive/axe, site build/typecheck/audit and packaged launch pass. [Report](docs/live-deck.md).
-- [ ] **LIVE-DECK-002 — PARTIAL:** Owner reports only volume works in both previous surfaces. Exact source/output cause not established; rebuilt app and local website ready for owner listening/routing retest. No claim that automated checks resolve hardware acceptance. Public distribution/deployment NOT RUN.
+- [x] **LIVE-DECK-002 — PASS, scoped owner feedback:** “now they are working” accepts the previous native/web control repair in the owner’s setup. This does not certify other routes or the new dual-deck implementation. Public distribution/deployment NOT RUN for these updates.
 
 ## Visual hero — 2026-10-22
 

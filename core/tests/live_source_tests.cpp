@@ -53,8 +53,67 @@ void individualEffects() {
     };
     check(drums(true)>drums(false)+.001,"percussion adds audio after pulse lock");
 }
+void deckTransport() {
+    for(unsigned rate:{32000u,48000u,96000u}) {
+        auto capacity=std::make_unique<jamloom::LiveDeckBuffer>();
+        for(unsigned i=0;i<rate*5;++i)capacity->sample({{0,0}},rate,jamloom::LiveSourceControls{});
+        check(capacity->seconds(rate)==4,"history capped at four seconds at every rate");
+        auto buffer=std::make_unique<jamloom::LiveDeckBuffer>();jamloom::LiveSourceControls c;
+        for(unsigned i=0;i<rate;++i)buffer->sample({{double(i)/rate,-double(i)/rate}},rate,c);
+        c.reverse=true;c.loopBeats=1;c.tempo=120;
+        std::array<double,2> previous{};unsigned falling=0;
+        for(unsigned i=0;i<rate/4;++i) {
+            const auto out=buffer->sample({{0,0}},rate,c);
+            check(std::isfinite(out[0])&&std::abs(out[0]+out[1])<1e-6,"replay stereo preserved");
+            if(i>rate/8 && out[0]<previous[0])++falling;
+            previous=out;
+        }
+        check(falling>rate/10,"reverse plays captured samples backward");
+        c.scratch=true;c.scratchRate=0;
+        for(unsigned i=0;i<rate/4;++i)previous=buffer->sample({{0,0}},rate,c);
+        check(std::abs(previous[0])<1e-5,"stationary platter becomes quiet instead of DC");
+        c.reverse=false;c.scratch=false;c.roll=false;
+        for(unsigned i=0;i<rate/4;++i)previous=buffer->sample({{0.2,-0.2}},rate,c);
+        check(std::abs(previous[0]-.2)<1e-6,"return live follows current source");
+        check(buffer->seconds(rate)<.25,"old history discarded on return live");
+        c.roll=true;c.loopBeats=4;c.tempo=60;
+        for(unsigned i=0;i<rate/2;++i)previous=buffer->sample({{0,0}},rate,c);
+        check(std::abs(previous[0]-.2)<1e-5,"next loop contains only fresh source audio");
+        for(double speed:{-2.,2.}) {
+            c.scratch=true;c.scratchRate=speed;c.loopBeats=.25;c.tempo=200;
+            for(unsigned i=0;i<rate/2;++i) { const auto out=buffer->sample({{0,0}},rate,c);check(std::isfinite(out[0])&&std::abs(out[0])<=.201,"scratch wrap bounded at extreme speeds"); }
+        }
+    }
+    auto a=std::make_unique<jamloom::LiveDeckBuffer>(),b=std::make_unique<jamloom::LiveDeckBuffer>();jamloom::LiveSourceControls c;
+    for(unsigned i=0;i<48000;++i) { a->sample({{.2,.2}},48000,c);b->sample({{-.4,-.4}},48000,c); }
+    c.roll=true;std::array<double,2> left{},right{};
+    for(unsigned i=0;i<16000;++i) { left=a->sample({{0,0}},48000,c);right=b->sample({{0,0}},48000,c); }
+    check(left[0]>.19&&right[0]<-.39,"deck histories are independent");
+    auto hp=jamloom::LiveSourceControls{};hp.highpass=2000;
+    check(toneEnergy(60,hp)<toneEnergy(60,jamloom::LiveSourceControls{})*.01,"highpass cuts bass");
+    for(double delay:{.1,.6}) {
+        auto echo=std::make_unique<jamloom::LiveSourceDSP>();echo->initialize(48000);
+        jamloom::LiveSourceControls e;e.echo=.4;e.echoSeconds=delay;
+        std::array<float,128> input{},output{};
+        for(unsigned block=0;block<500;++block)echo->process(input.data(),input.data(),1,output.data(),output.data(),1,128,e);
+        double peak=0;unsigned peakFrame=0;
+        for(unsigned frame=0;frame<48000;frame+=128) {
+            input.fill(0);if(frame==0)input[0]=.5;
+            echo->process(input.data(),input.data(),1,output.data(),output.data(),1,128,e);
+            for(unsigned i=0;i<128;++i)if(frame+i>1000 && std::abs(output[i])>peak){peak=std::abs(output[i]);peakFrame=frame+i;}
+        }
+        check(peak>.01 && std::abs(double(peakFrame)-delay*48000)<=3,"echo timing follows selected delay");
+    }
+    auto muted=hp;muted.mute=true;check(toneEnergy(1000,muted)==0,"deck mute silences output");
+    auto engine=std::make_unique<jamloom::LiveSourceDSP>();engine->initialize(48000);c={};c.mix=.5;c.level=.8;c.low=c.mid=c.high=6;
+    std::array<float,128> input{},output{};input.fill(4);
+    for(unsigned i=0;i<300;++i) { engine->process(input.data(),input.data(),1,output.data(),output.data(),1,128,c);for(float x:output)check(std::abs(x)*2<=.890001,"two native route ceilings fit shared output"); }
+    for(auto field:{&jamloom::LiveSourceControls::highpass,&jamloom::LiveSourceControls::echoSeconds,&jamloom::LiveSourceControls::loopBeats,&jamloom::LiveSourceControls::tempo,&jamloom::LiveSourceControls::scratchRate,&jamloom::LiveSourceControls::mix}) {
+        auto bad=c;bad.*field=std::numeric_limits<double>::quiet_NaN();check(!bad.valid(),"new controls reject nonfinite input");
+    }
+}
 int main(){
-    individualEffects();
+    individualEffects();deckTransport();
     auto dsp=std::make_unique<jamloom::LiveSourceDSP>();
     check(!dsp->initialize(8000),"unsupported rate");check(dsp->initialize(48000),"rate");
     std::array<float,256> in{},out{};jamloom::LiveSourceControls c;
@@ -76,5 +135,5 @@ int main(){
     in.fill(0);for(unsigned i=0;i<1500;++i)dsp->process(in.data(),in.data()+1,2,out.data(),out.data()+1,2,128,c);
     check(dsp->confidence()==0&&dsp->bpm()==0,"silence unlocks pulse");
     const auto ms=std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-begin).count();
-    std::cout<<"PASS: bounds, stereo, EQ/filter bypass, roll/echo ceiling, nonfinite input, muted output, pulse/relock; "<<dsp->frames()<<" frames in "<<ms<<" ms (offline CPU only)\n";
+    std::cout<<"PASS: dual-deck isolation, reverse/scratch/loop/return-live at 32/48/96 kHz, mix headroom, highpass, bounds, stereo, EQ/filter bypass, roll/echo ceiling, nonfinite input, mute, pulse/relock; "<<dsp->frames()<<" frames in "<<ms<<" ms (offline CPU only)\n";
 }

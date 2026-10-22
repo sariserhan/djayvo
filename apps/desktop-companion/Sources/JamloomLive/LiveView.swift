@@ -1,119 +1,163 @@
 import SwiftUI
 
-private let deckAccent = Color(red:0.79,green:0.98,blue:0.47)
-
-struct LiveView: View {
-    @ObservedObject var model: LiveModel
-    private var source: String { model.sources.first { ($0["id"] as? NSNumber)?.uint32Value == model.process }?["name"] as? String ?? "Choose a playing app" }
-    private var confidence: Double { model.telemetry["confidence"] as? Double ?? 0 }
-    private func effect<Value>(_ key: WritableKeyPath<LiveControls,Value>) -> Binding<Value> {
-        Binding(get:{model.controls[keyPath:key]},set:{value in model.updateEffect { $0[keyPath:key] = value }})
-    }
-    private func slider(_ title:String,_ value:Binding<Double>,_ range:ClosedRange<Double>,_ step:Double=1) -> some View {
-        VStack(alignment:.leading,spacing:8) {
-            HStack { Text(title);Spacer();Text(value.wrappedValue,format:.number.precision(.fractionLength(step < 1 ? 2 : 0))).monospacedDigit() }.font(.caption)
-            Slider(value:value,in:range,step:step).accessibilityLabel(title).tint(deckAccent)
-        }.padding(12).background(.black.opacity(0.35),in:RoundedRectangle(cornerRadius:8))
-    }
-    var body: some View {
-        ScrollView {
-            VStack(alignment:.leading,spacing:20) {
-                HStack {
-                    Text("jamloom").font(.largeTitle.bold())
-                    Text("LIVE DECK").font(.caption.monospaced()).foregroundStyle(deckAccent)
-                    Spacer()
-                    Label(model.active ? "LIVE" : "STOPPED",systemImage:model.active ? "waveform" : "stop.circle").foregroundStyle(model.active ? deckAccent : .secondary)
-                }
-                sourceControls
-                HStack(alignment:.top,spacing:24) {
-                    VStack(spacing:16) {
-                        VStack(alignment:.leading,spacing:6) {
-                            Text("LIVE SOURCE").font(.caption.monospaced()).foregroundStyle(deckAccent)
-                            Text(source).font(.headline).lineLimit(2)
-                            Text(confidence > 0.65 ? String(format:"%.1f BPM · estimated",model.telemetry["bpm"] as? Double ?? 0) : "Listening for a steady pulse").font(.caption).foregroundStyle(.secondary)
-                        }.frame(maxWidth:.infinity,alignment:.leading).padding(16).background(.black.opacity(0.5),in:RoundedRectangle(cornerRadius:8))
-                        LivePlatter(active:model.active)
-                        HStack {
-                            Button("Start Live Source",action:model.start).buttonStyle(.plain).padding(.horizontal,14).padding(.vertical,10).background(deckAccent,in:RoundedRectangle(cornerRadius:7)).foregroundStyle(.black).disabled(!model.consent || model.active || model.process==0 || model.output==0)
-                            Button("Stop / Panic",role:.destructive,action:model.stop).buttonStyle(.bordered).keyboardShortcut(.escape,modifiers:[]).disabled(!model.active)
-                        }
-                        Text("Play, pause and seek in your source app.").font(.caption).foregroundStyle(.secondary)
-                        let peak = model.telemetry["peak"] as? Double ?? 0
-                        ProgressView(value:min(1,max(0,peak))).tint(deckAccent).accessibilityLabel("Output peak").accessibilityValue(String(format:"%.3f",peak))
-                    }.frame(minWidth:260,maxWidth:360)
-                    VStack(alignment:.leading,spacing:12) {
-                        HStack {
-                            Text(model.controls.bypass ? "FX BYPASSED" : "FX ON").font(.headline.monospaced()).foregroundStyle(model.controls.bypass ? .orange : deckAccent)
-                            Spacer()
-                            Toggle("Bypass effects",isOn:$model.controls.bypass).toggleStyle(.button)
-                        }
-                        Text(model.controls.bypass ? "Dry signal. Move an effect to turn FX back on." : "Shape the live source with EQ, filter and echo.").font(.caption).foregroundStyle(.secondary)
-                        HStack(spacing:8) {
-                            slider("Low EQ (dB)",effect(\.low),-24...6)
-                            slider("Mid EQ (dB)",effect(\.mid),-24...6)
-                            slider("High EQ (dB)",effect(\.high),-24...6)
-                        }
-                        slider("Low-pass (Hz)",effect(\.tone),100...18000,100)
-                        slider("Echo amount",effect(\.echo),0...0.4,0.01)
-                        HStack {
-                            Toggle("One-beat roll",isOn:effect(\.roll)).toggleStyle(.button)
-                            Toggle("Percussion",isOn:effect(\.percussion)).toggleStyle(.button).accessibilityLabel("Follow a steady pulse with percussion")
-                        }
-                        Text("Roll repeats the last beat. Percussion waits for a steady pulse.").font(.caption).foregroundStyle(.secondary)
-                        Divider()
-                        slider("Output level",$model.controls.level,0...0.8,0.01)
-                    }.disabled(!model.active).frame(maxWidth:.infinity)
-                }.padding(20).background(LinearGradient(colors:[Color(white:0.20),Color(white:0.11)],startPoint:.topLeading,endPoint:.bottomTrailing),in:RoundedRectangle(cornerRadius:18)).overlay(RoundedRectangle(cornerRadius:18).stroke(Color(white:0.35)))
-                Text(model.message).font(.callout).accessibilityLabel("Capture status: "+model.message)
-                DisclosureGroup("Website pairing") {
-                    VStack(alignment:.leading,spacing:12) {
-                        HStack { Button("Copy pairing code and open website") { model.pair() };Button("Disconnect website") { model.server.revoke() } }
-                        #if DEBUG
-                        Button("Copy code and open local preview") { model.pair(origin:"http://127.0.0.1:4234") }
-                        #endif
-                        Text(model.pairing)
-                        Text("Keep the connected page open. Losing its connection stops capture within five seconds.").font(.caption).foregroundStyle(.secondary)
-                    }.padding(.top,12)
-                }
-                DisclosureGroup("Routing and signal details") {
-                    VStack(alignment:.leading,spacing:8) {
-                        Text("Peak \(model.telemetry["peak"] as? Double ?? 0,specifier:"%.3f") · processed \(model.telemetry["frames"] as? UInt64 ?? 0) frames · max callback \(model.telemetry["maxCallbackMs"] as? Double ?? 0,specifier:"%.2f") ms")
-                        Text("Pulse confidence: \(Int(confidence*100))%. Roll uses 120 BPM while uncertain. Stop restores the source route; it does not pause another app. Device changes stop capture.")
-                        Text("Audio stays on this Mac. No recording or upload. macOS 14.2 or later; Windows/Linux capture and multi-output cue routing are not included.")
-                    }.font(.caption).foregroundStyle(.secondary).padding(.top,12)
-                }
-            }.padding(24)
-        }.background(Color(red:0.055,green:0.07,blue:0.06)).frame(minWidth:820,minHeight:700)
-    }
-    private var sourceControls: some View {
-        VStack(alignment:.leading,spacing:12) {
-            HStack {
-                Picker("Source audio process",selection:$model.process) {
-                    Text("Choose a playing app").tag(UInt32(0))
-                    ForEach(model.sources.indices,id:\.self) { i in Text(model.sources[i]["name"] as? String ?? "App").tag((model.sources[i]["id"] as? NSNumber)?.uint32Value ?? 0) }
-                }.disabled(model.active)
-                Picker("Stereo speaker output",selection:$model.output) {
-                    Text("Choose an output").tag(UInt32(0))
-                    ForEach(model.outputs.indices,id:\.self) { i in Text(model.outputs[i]["name"] as? String ?? "Output").tag((model.outputs[i]["id"] as? NSNumber)?.uint32Value ?? 0) }
-                }.disabled(model.active)
-                Button("Refresh sources",action:model.refresh).disabled(model.active)
-            }
-            Toggle("I have permission to capture and process this source.",isOn:$model.consent).onChange(of:model.consent) { _,value in if !value { model.stop() } }
-        }
+let liveColors = [Color(red:0.79,green:0.98,blue:0.47),Color(red:0.77,green:0.68,blue:1)]
+struct LiveFader: View {
+    let title:String
+    @Binding var value:Double
+    let range:ClosedRange<Double>
+    var step:Double=1
+    var body:some View {
+        VStack(alignment:.leading,spacing:4) {
+            HStack { Text(title);Spacer();Text(value,format:.number.precision(.fractionLength(step<1 ? 2:0))).monospacedDigit() }.font(.caption)
+            Slider(value:$value,in:range,step:step).accessibilityLabel(title)
+        }.padding(10).background(.black.opacity(0.3),in:RoundedRectangle(cornerRadius:7))
     }
 }
-
-private struct LivePlatter: View {
-    let active: Bool
-    var body: some View {
-        ZStack {
-            Circle().fill(LinearGradient(colors:[.gray,.black,.gray],startPoint:.topLeading,endPoint:.bottomTrailing))
-            Circle().fill(Color(white:0.055)).padding(8)
-            ForEach(0..<28,id:\.self) { ring in Circle().stroke(Color(white:ring.isMultiple(of:3) ? 0.22 : 0.12),lineWidth:1).padding(CGFloat(14+ring*3)) }
-            Circle().fill(AngularGradient(colors:[.clear,.white.opacity(0.15),.clear,.black,.clear,.white.opacity(0.1),.clear],center:.center)).padding(10)
-            Circle().stroke(Color(white:0.75),style:StrokeStyle(lineWidth:3,dash:[1,7])).padding(5)
-            Circle().fill(deckAccent).frame(width:88,height:88)
-            VStack(spacing:6) { Text("JAMLOOM").font(.system(size:9,weight:.bold,design:.monospaced));Text(active ? "LIVE" : "READY").font(.headline.monospaced());Circle().fill(.gray).frame(width:8,height:8) }.foregroundStyle(.black)
-        }.frame(maxWidth:300).aspectRatio(1,contentMode:.fit).shadow(color:.black.opacity(0.6),radius:8,y:8).accessibilityElement(children:.ignore).accessibilityLabel(active ? "Live source deck active" : "Live source deck stopped")
+struct LiveView: View {
+    @ObservedObject var model:LiveModel
+    var body:some View {
+        VStack(spacing:0) {
+            ScrollView {
+                VStack(alignment:.leading,spacing:18) {
+                    HStack { Text("jamloom").font(.largeTitle.bold());Text("LIVE / TWO DECKS").font(.caption.monospaced()).foregroundStyle(liveColors[0]);Spacer();Button("Stop all / Panic",role:.destructive,action:model.stop).keyboardShortcut(.escape,modifiers:[]).disabled(!model.active) }
+                    HStack {
+                        Picker("Stereo output",selection:$model.output) {
+                            Text("Choose an output").tag(UInt32(0))
+                            ForEach(model.outputs.indices,id:\.self) { i in Text(model.outputs[i]["name"] as? String ?? "Output").tag((model.outputs[i]["id"] as? NSNumber)?.uint32Value ?? 0) }
+                        }.disabled(model.active)
+                        Button("Refresh sources",action:model.refresh)
+                        Toggle("I have permission to process these sources.",isOn:$model.consent).onChange(of:model.consent) { _,value in if !value { model.stop() } }
+                    }
+                    HStack(alignment:.top,spacing:20) { ForEach(0..<2,id:\.self) { index in NativeLiveDeck(model:model,index:index) } }
+                    Text(model.message).font(.caption).foregroundStyle(.secondary)
+                    DisclosureGroup("Website pairing") {
+                        VStack(alignment:.leading,spacing:10) {
+                            HStack { Button("Copy pairing code and open website") { model.pair() };Button("Disconnect website") { model.server.revoke() } }
+                            #if DEBUG
+                            Button("Copy code and open local preview") { model.pair(origin:"http://127.0.0.1:4234") }
+                            #endif
+                            Text(model.pairing)
+                            Text("Closing a connected page stops both captures within five seconds.").font(.caption)
+                        }.padding(.top,10)
+                    }
+                    DisclosureGroup("How live decks work") {
+                        Text("Each deck uses a different audio process. Some browser tabs share one process. Drag or reverse replays up to four seconds of recent audio in memory; Return to live rejoins the source now. Source apps keep playing. Mute silences a captured deck; Stop restores the app’s original output. No disk recording or upload. Tempo sets loop timing, not source playback speed. Separate headphone cue is not included.").font(.caption).foregroundStyle(.secondary).padding(.top,10)
+                    }
+                }.padding(24)
+            }
+            HStack(spacing:24) {
+                LiveFader(title:"Crossfader · A ↔ B",value:$model.controls.crossfader,range:0...1,step:0.01)
+                Button("Center") { model.controls.crossfader=0.5 }
+                LiveFader(title:"Master output",value:$model.controls.master,range:0...1,step:0.01)
+            }.tint(liveColors[0]).padding(18).background(Color(white:0.08))
+        }.background(Color(red:0.055,green:0.07,blue:0.06)).frame(minWidth:960,minHeight:720)
+    }
+}
+struct NativeLiveDeck:View {
+    @ObservedObject var model:LiveModel
+    let index:Int
+    private var name:String { index==0 ? "A":"B" }
+    private var deck:LiveDeck { model.decks[index] }
+    private var controls:LiveControls { model.controls.decks[index] }
+    private func binding<Value>(_ key:WritableKeyPath<LiveControls,Value>,effect:Bool=true)->Binding<Value> {
+        Binding(get:{model.controls.decks[index][keyPath:key]},set:{value in model.updateDeck(index,effect:effect) { $0[keyPath:key]=value }})
+    }
+    private func fader(_ title:String,_ key:WritableKeyPath<LiveControls,Double>,_ range:ClosedRange<Double>,_ step:Double=1,effect:Bool=true)->some View {
+        LiveFader(title:title,value:binding(key,effect:effect),range:range,step:step).accessibilityElement(children:.contain).accessibilityLabel("Deck "+name)
+    }
+    var body:some View {
+        VStack(alignment:.leading,spacing:12) {
+            HStack { Text("DECK "+name).font(.headline.monospaced());Spacer();Text(deck.active ? (controls.mute ? "MUTED":"LIVE"):"STOPPED").font(.caption.monospaced()) }.foregroundStyle(liveColors[index])
+            Picker("Source "+name,selection:$model.decks[index].process) {
+                Text("Choose a playing app").tag(UInt32(0))
+                ForEach(model.sources.indices,id:\.self) { i in Text(model.sources[i]["name"] as? String ?? "App").tag((model.sources[i]["id"] as? NSNumber)?.uint32Value ?? 0) }
+            }.disabled(deck.active)
+            HStack(spacing:18) {
+                LivePlatter(name:name,active:deck.active,controls:controls,color:liveColors[index]) { touching,rate in
+                    model.updateDeck(index,effect:false) { $0.scratch=touching;$0.scratchRate=rate }
+                }.frame(width:210,height:210)
+                VStack(alignment:.leading,spacing:10) {
+                    Text(deck.active ? deck.source:"Ready for a source").font(.headline).lineLimit(2)
+                    let confidence=deck.telemetry["confidence"] as? Double ?? 0
+                    Text(confidence>0.65 ? String(format:"%.1f BPM · detected",deck.telemetry["bpm"] as? Double ?? 0):"Pulse uncertain").font(.caption.monospaced())
+                    Button("Use detected BPM") {
+                        let bpm=deck.telemetry["bpm"] as? Double ?? 120
+                        model.updateDeck(index,effect:false) { $0.tempo=min(200,max(60,bpm)) }
+                    }.disabled(!deck.active || confidence<=0.65)
+                    Text(String(format:"Buffer %.1f s",deck.telemetry["bufferedSeconds"] as? Double ?? 0)).font(.caption.monospaced())
+                    ProgressView(value:min(1,max(0,deck.telemetry["peak"] as? Double ?? 0))).accessibilityLabel("Deck \(name) output peak")
+                    Button("Start deck "+name) { model.start(index) }.disabled(!model.consent || deck.active || deck.process==0 || model.output==0)
+                    Button("Stop deck "+name) { model.stopDeck(index) }.disabled(!deck.active)
+                }.frame(maxWidth:.infinity,alignment:.leading)
+            }
+            Text("Drag the record forward or backward to scratch recent audio.").font(.caption).foregroundStyle(.secondary)
+            VStack(spacing:10) {
+                HStack {
+                    Toggle("Reverse",isOn:binding(\.reverse,effect:false)).toggleStyle(.button)
+                    Toggle("Beat loop",isOn:binding(\.roll,effect:false)).toggleStyle(.button)
+                    Toggle("Mute",isOn:binding(\.mute,effect:false)).toggleStyle(.button)
+                    Button("Return to live") { model.returnLive(index) }
+                }
+                HStack {
+                    Picker("Loop beats",selection:binding(\.loopBeats,effect:false)) {
+                        ForEach([0.25,0.5,1,2,4],id:\.self) { Text($0,format:.number).tag($0) }
+                    }
+                    fader("FX tempo",\.tempo,60...200,1,effect:false)
+                }
+                HStack(spacing:8) { fader("Low EQ",\.low,-24...6);fader("Mid EQ",\.mid,-24...6);fader("High EQ",\.high,-24...6) }
+                HStack { fader("High-pass Hz",\.highpass,20...4000,20);fader("Low-pass Hz",\.tone,100...18000,100) }
+                HStack { fader("Echo amount",\.echo,0...0.4,0.01);fader("Echo seconds",\.echoSeconds,0.05...1,0.01) }
+                HStack {
+                    Toggle("Percussion",isOn:binding(\.percussion)).toggleStyle(.button)
+                    Toggle("Bypass FX",isOn:binding(\.bypass,effect:false)).toggleStyle(.button)
+                    Text(controls.bypass ? "FX BYPASSED":"FX ON").font(.caption.monospaced()).foregroundStyle(controls.bypass ? .orange:liveColors[index])
+                    Button("Reset FX") { model.updateDeck(index) { $0.low=0;$0.mid=0;$0.high=0;$0.tone=18000;$0.highpass=20;$0.echo=0;$0.echoSeconds=0.3;$0.percussion=false } }
+                }
+                fader("Channel level",\.level,0...0.8,0.01,effect:false)
+            }.disabled(!deck.active)
+            Text(deck.message).font(.caption).foregroundStyle(.secondary).frame(minHeight:30,alignment:.topLeading)
+        }.padding(18).tint(liveColors[index]).frame(maxWidth:.infinity,alignment:.top).background(LinearGradient(colors:[Color(white:0.20),Color(white:0.11)],startPoint:.topLeading,endPoint:.bottomTrailing),in:RoundedRectangle(cornerRadius:16)).overlay(RoundedRectangle(cornerRadius:16).stroke(Color(white:0.35)))
+    }
+}
+struct LivePlatter:View {
+    let name:String, active:Bool, controls:LiveControls, color:Color
+    let scratch:(Bool,Double)->Void
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var rotation=0.0
+    @State private var lastTick=Date()
+    @State private var lastAngle:Double?
+    @State private var lastDrag=Date()
+    static func jogRate(from:Double,to:Double,seconds:Double)->Double {
+        var delta=to-from
+        if delta > .pi { delta -= 2 * .pi };if delta < -.pi { delta += 2 * .pi }
+        return min(2,max(-2,delta/max(0.008,seconds)*1.8/(2 * .pi)))
+    }
+    var body:some View {
+        GeometryReader { geometry in
+            TimelineView(.animation(minimumInterval:1.0/30,paused:!active || reduceMotion)) { tick in
+                ZStack {
+                    Circle().fill(LinearGradient(colors:[.gray,.black,.gray],startPoint:.topLeading,endPoint:.bottomTrailing))
+                    Circle().fill(Color(white:0.055)).padding(8)
+                    ForEach(0..<23,id:\.self) { ring in Circle().stroke(Color(white:ring.isMultiple(of:3) ? 0.22:0.12),lineWidth:1).padding(CGFloat(12+ring*3)) }
+                    Circle().fill(AngularGradient(colors:[.clear,.white.opacity(0.17),.clear,.black,.clear,.white.opacity(0.12),.clear],center:.center)).padding(10)
+                    Circle().stroke(Color(white:0.75),style:StrokeStyle(lineWidth:3,dash:[1,7])).padding(5)
+                    ZStack {
+                        Circle().fill(color).frame(width:68,height:68)
+                        VStack(spacing:4) { Text("JAMLOOM").font(.system(size:8,weight:.bold,design:.monospaced));Text(name).font(.title2.bold());Circle().fill(.gray).frame(width:6,height:6) }.foregroundStyle(.black)
+                        Rectangle().fill(.white.opacity(0.8)).frame(width:2,height:14).offset(y:-geometry.size.height*0.36)
+                    }.rotationEffect(.degrees(rotation))
+                }.onChange(of:tick.date) { _,date in
+                    if active && !controls.scratch && !reduceMotion { rotation += min(0.1,date.timeIntervalSince(lastTick))*200*(controls.reverse ? -1:1) }
+                    lastTick=date
+                }
+            }.contentShape(Circle()).gesture(DragGesture(minimumDistance:0).onChanged { value in
+                guard active else { return }
+                let angle=atan2(value.location.y-geometry.size.height/2,value.location.x-geometry.size.width/2),now=Date()
+                if !controls.scratch { lastAngle=nil }
+                let rate=lastAngle.map { Self.jogRate(from:$0,to:angle,seconds:now.timeIntervalSince(lastDrag)) } ?? 0
+                rotation += rate*200*min(0.1,now.timeIntervalSince(lastDrag));lastAngle=angle;lastDrag=now;scratch(true,rate)
+            }.onEnded { _ in lastAngle=nil;scratch(false,0) })
+            .accessibilityElement(children:.ignore).accessibilityLabel("Deck \(name) platter").accessibilityHint("Drag backward or forward to scratch recent audio. Reverse and beat loop buttons are also available.")
+        }.aspectRatio(1,contentMode:.fit).shadow(color:.black.opacity(0.5),radius:8,y:6)
     }
 }
