@@ -107,7 +107,11 @@ and `renders/music-dna-fit-20261022/`. Browser playback automation is muted.
   take succeeds.
 - **PARTIAL — model screening evidence:** two older controls and three new
   rock-directed renders; no broad calibration cohort.
-- **NOT RUN — new human listening acceptance, hosted workers/deployment, model
+- **PASS — scoped informal owner review:** following the corrected flow and
+  Concrete Roots example, the owner said “yes that is good now” on 2026-10-22.
+  [Exact feedback and scope](evidence/music-dna-fit/owner-review.json). This does
+  not establish itemized vocal/lyric scores or quality across other favorite lists.
+- **NOT RUN — broad listening cohort, hosted workers/deployment, model
   production promotion, iOS.** Historical deferrals remain. No push or deployment.
 
 [Listen to Concrete Roots as a clearly labelled example](http://127.0.0.1:4247/music-dna?song=06d89abd7d194ddf81bbc54af3e9b67f).
