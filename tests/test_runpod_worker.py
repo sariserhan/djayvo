@@ -34,6 +34,13 @@ class WorkerTests(unittest.TestCase):
             with self.subTest(url=url), self.assertRaises(ValueError):worker.storage_url(url)
         with self.assertRaises(ValueError):worker.NoRedirect().redirect_request(None,None,None,None,None,None)
 
+    def test_feedback_is_bounded_and_supported_without_raw_recordings(self):
+        value={**self.job,'payload':{**self.job['payload'],'feedback':[{'rating':'dislike','tags':['too_slow']}]}}
+        self.assertEqual(worker.validate(value),value)
+        for feedback in ({},[{}]*13,[{'value':'x'*17000}]):
+            value['payload']['feedback']=feedback
+            with self.assertRaises(ValueError):worker.validate(value)
+
     def test_invalid_jobs_cannot_start_inference(self):
         for field,value in [('timeout_seconds',901),('timeout_seconds',True),('id','../a'),('product','arbitrary'),('payload',None)]:
             job={**self.job,field:value}
@@ -84,12 +91,20 @@ class WorkerTests(unittest.TestCase):
             self.assertEqual(worker.failure_location(work),'planner@music_dna_song.py:123')
             (work/'singer.log').write_text('private transcript without a traceback')
             self.assertEqual(worker.failure_location(work),'singer@unavailable')
+            (work/'failure.json').write_text(json.dumps({'stage':'checking','returncode':-9}))
+            self.assertEqual(worker.failure_location(work),'checking-exit--9')
+            (work/'status.json').write_text(json.dumps({'state':'rejected'}))
+            self.assertEqual(worker.failure_location(work),'style-rejected')
+            (work/'fit.json').write_text(json.dumps({'matching_windows':2,'private':'lyrics must not leak'}))
+            self.assertEqual(worker.failure_location(work),'style-rejected:matched-2-of-4')
+            (work/'status.json').unlink();(work/'failure.json').write_text(json.dumps({'stage':'checking','reason':'timeout'}))
+            self.assertEqual(worker.failure_location(work),'checking-timeout')
 
     def test_timeout_kills_descendants_and_waits(self):
         from subprocess import TimeoutExpired
         with tempfile.TemporaryDirectory() as folder,patch.object(worker.subprocess,'Popen') as popen,patch.object(worker.os,'killpg') as kill:
             popen.return_value.pid=1234;popen.return_value.wait.side_effect=[TimeoutExpired('fixture',1),0]
-            with self.assertRaises(TimeoutExpired):worker.execute(Path(folder),1)
+            with self.assertRaisesRegex(worker.GenerationFailure,'worker-timeout'):worker.execute(Path(folder),1)
             kill.assert_called_once_with(1234,worker.signal.SIGKILL)
             self.assertTrue(popen.call_args.kwargs['start_new_session'])
             self.assertEqual(popen.call_args.args[0][0],str(ROOT/'build-style-training/upstream/.venv/bin/python'))

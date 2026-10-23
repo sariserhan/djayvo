@@ -31,3 +31,7 @@ def validate_direction(data, direction):
         raise ValueError('Keep all required instrument roles in their supplied order')
     if re.search(direction['avoid'], data.get('sound', ''), re.I):
         raise ValueError('The sound description contradicts the musical direction')
+
+    tempos = re.findall(r'(\d{2,3})\s*(?:bpm|beats per minute)', data.get('sound', ''), re.I)
+    if any(int(tempo) != data['bpm'] for tempo in tempos):
+        raise ValueError('The sound description must use the selected BPM')

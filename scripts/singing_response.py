@@ -328,6 +328,7 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
               'plan_sha256': digest(plan_path), 'audio_sha256': digest(dest), 'seconds': time.monotonic()-started,
               'peak': peak, 'rms': float(np.sqrt(np.mean(pcm**2))), 'peak_process_rss_bytes': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
               'device': str(dit.device), 'dtype': str(dit.dtype), 'torch': torch.__version__, 'mlx_vae': dit.use_mlx_vae,
+              'inference_shift':params.shift,
               'voice_and_lyric_fidelity': 'NOT RUN: requires listening', 'naturalness': 'NOT RUN',
               'trained_adapter': False, 'source_audio_uploaded': False,
               'source_conditioning': conditioning, 'task_type': source_params.get('task_type', 'text2music')}
