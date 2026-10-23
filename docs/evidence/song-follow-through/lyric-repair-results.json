@@ -1,0 +1,157 @@
+{
+  "scope": "Five previously failed lyric-planning requests; same input/seed; all audio saved to R2.",
+  "planAndAudio": "PASS 5/5",
+  "style": "PASS 1/5, rejected 4/5",
+  "results": [
+    {
+      "id": "dna-cs",
+      "exit": 1,
+      "seconds": 272.22624287498184,
+      "status": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "published": [
+        {
+          "status": "PASS",
+          "id": "052598761d9f6f6805bc088688c90eca",
+          "sha256": "052598761d9f6f6805bc088688c90eca789b1bf7d836f59636e65baf66b39a29",
+          "bytes": 23040044,
+          "product": "music-dna",
+          "check": "style-mismatch",
+          "alreadyListed": false
+        },
+        {
+          "status": "PASS",
+          "id": "66d23c5d5ed00dc1620341ca1da7354e",
+          "sha256": "66d23c5d5ed00dc1620341ca1da7354ea614d2e8e8b4b7772de491d5c73e3c77",
+          "bytes": 23040044,
+          "product": "music-dna",
+          "check": "style-mismatch",
+          "alreadyListed": false
+        }
+      ]
+    },
+    {
+      "id": "dna-ko",
+      "exit": 1,
+      "seconds": 254.3105422499939,
+      "status": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "published": [
+        {
+          "status": "PASS",
+          "id": "3bca718947f956a098ae99f5628142c9",
+          "sha256": "3bca718947f956a098ae99f5628142c9d839fb9ff53fb60e27afbe4d93f5e0f3",
+          "bytes": 23040044,
+          "product": "music-dna",
+          "check": "style-mismatch",
+          "alreadyListed": false
+        },
+        {
+          "status": "PASS",
+          "id": "f54c0860b3fb523c2a0ef9f610d420c6",
+          "sha256": "f54c0860b3fb523c2a0ef9f610d420c68758ec914ca0ac93c9fbc4986940a991",
+          "bytes": 23040044,
+          "product": "music-dna",
+          "check": "style-mismatch",
+          "alreadyListed": false
+        }
+      ]
+    },
+    {
+      "id": "dna-la",
+      "exit": 1,
+      "seconds": 309.0538739580079,
+      "status": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "published": [
+        {
+          "status": "PASS",
+          "id": "c14928e6787163d290926a992be43c96",
+          "sha256": "c14928e6787163d290926a992be43c96bc577e5d986e323b8bf83335a52fe63e",
+          "bytes": 23040044,
+          "product": "music-dna",
+          "check": "style-mismatch",
+          "alreadyListed": false
+        },
+        {
+          "status": "PASS",
+          "id": "8ea1f58677a556e28a0194b31d65bdcb",
+          "sha256": "8ea1f58677a556e28a0194b31d65bdcb97c346e467872814f0ce4c7fabfb498d",
+          "bytes": 23040044,
+          "product": "music-dna",
+          "check": "style-mismatch",
+          "alreadyListed": false
+        }
+      ]
+    },
+    {
+      "id": "dna-ur",
+      "exit": 1,
+      "seconds": 326.2399980420014,
+      "status": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "published": [
+        {
+          "status": "PASS",
+          "id": "3441ed886898ce9003eb70b8d835a1e2",
+          "sha256": "3441ed886898ce9003eb70b8d835a1e2c5e416eb30020cae1d45a37dc5d0a663",
+          "bytes": 23040044,
+          "product": "music-dna",
+          "check": "style-mismatch",
+          "alreadyListed": false
+        },
+        {
+          "status": "PASS",
+          "id": "228b4457c06db489e2d7e64107b94684",
+          "sha256": "228b4457c06db489e2d7e64107b9468454b1e63a8366fd03a5a00ae328c917ac",
+          "bytes": 23040044,
+          "product": "music-dna",
+          "check": "style-mismatch",
+          "alreadyListed": false
+        }
+      ]
+    },
+    {
+      "id": "dna-zh",
+      "exit": 0,
+      "seconds": 363.50075370800914,
+      "status": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "published": [
+        {
+          "status": "PASS",
+          "id": "6adaf1bb0e96e919abc8ec86042d289e",
+          "sha256": "6adaf1bb0e96e919abc8ec86042d289ee9abf6a52de39939bcebf35839547f2c",
+          "bytes": 23040044,
+          "product": "music-dna",
+          "check": "style-mismatch",
+          "alreadyListed": false
+        },
+        {
+          "status": "PASS",
+          "id": "6bf17bb871613e69ba844b343f61f6fd",
+          "sha256": "6bf17bb871613e69ba844b343f61f6fde1c061c6812d9409e1bf545dd480f2d3",
+          "bytes": 23040044,
+          "product": "music-dna",
+          "check": "passed",
+          "alreadyListed": false
+        }
+      ]
+    }
+  ]
+}

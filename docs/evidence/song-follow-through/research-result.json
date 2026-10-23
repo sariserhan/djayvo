@@ -1,0 +1,40 @@
+{
+  "state": "candidate_needs_review",
+  "positive_songs": 33,
+  "cohort": "owner-reviewed generated plans; not customer feedback",
+  "minimum": "24 distinct positively rated songs, 6 favorite-list groups, 3 genre families and 2 languages; at least 16 training and 4 holdout songs",
+  "promotion": "NOT RUN: research candidates never replace the generator automatically",
+  "base_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "train_groups": [
+    "660364a559426354aa36ba2f23ce4035ddd0e94a68313d71efdc41a10e7192e1",
+    "7f5b5a98ca39ce6540f4030bdbc4158b8f8e98cc33bc5d278a665d5314b96a2b",
+    "8259637b33ce5a0a721163daffab68290d56699308f76efc64e9f2802e2d8179",
+    "9d5ef76fce63018c0aff05db53b1ad848cc29488bd909e4816a784e3411ce283",
+    "b0b84fb78a13333962ec02d7425c846736fc2ce0140b9c077b1a66eb21969bec",
+    "b7b30fa4a54d98b47367f8c99854b3549c7c8f88791227e010643a55230112fc",
+    "bf00fb8b1d6f83609d0373d0fab617216bf633299104058b0996aa1a1dd54cf6",
+    "cbdf802bff39dce53b16869aa613d14f98dd5eae5fca60099762e2b95dc41fab"
+  ],
+  "holdout_groups": [
+    "45d75d6cb5952e04cb3eea130d9035ee87b810de1cea5b0146006b63041ee4ec",
+    "a1892cd4c8a1187609098934849796dabf3700448d2a495224fbe82a20e61b5b",
+    "e09eae5b3b4bd219c1ae3dd3108d0f443032ef2bbd4ab42623f8efc413617de2"
+  ],
+  "max_example_tokens": 2078,
+  "trained_weights_sha256": "d347e538245bf4e5f6a2065920e7315331d2e0a0becc98be5c3b431e7d0e9133",
+  "evaluation": {
+    "baseline_loss": 1.381,
+    "candidate_loss": 0.659,
+    "loss_improved": true,
+    "listening": "NOT RUN",
+    "musical_quality": "NOT RUN"
+  },
+  "run": "78cf50d0e72a4fc5a2685db6e3984e65",
+  "training_runtime_sha256": "d0acb6d07f8e90f63e1d6a3a428a72dd231575fb2846a0bd4d2ab132a046448d",
+  "runtime_hash_recorded": "post-run; unchanged since this run started",
+  "train_songs": 23,
+  "holdout_songs": 10,
+  "source_manifest_sha256": "966ad7ce1022a130754239d235dc119656a573791dc5c2333e40409e3dc641b1",
+  "peak_metal_bytes": 4363893062,
+  "earlier_attempt": "0715d2752d6d441988b7554ed5436f45: operator-stopped for memory pressure; preserved failure, not consent withdrawal"
+}

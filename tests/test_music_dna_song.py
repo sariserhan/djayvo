@@ -29,6 +29,19 @@ class MusicDnaSong(unittest.TestCase):
                      'lyrics': '\n'.join('['+s+']\n'+'New days bring us closer to the light\n'*4
                                          for s in ['Verse 1', 'Chorus', 'Verse 2', 'Bridge', 'Chorus', 'Outro'])}
 
+    def test_structured_lyrics_own_the_headers_and_chorus_without_changing_words(self):
+        from music_dna_song import structured_lyrics, song_sections
+        parts={'verse_1':['İlk sabah evden yola çıkıyoruz','Eski yollar bize yeni kapılar açar','Sokak boyunca rüzgar bize eşlik eder','Günden güne daha güçlü yürüyoruz'],
+               'chorus':['Bu yol bizi birbirimize yakın tutar','Yeni güne birlikte umutla adım atarız','Uzaklarda bekleyen ışık bize yol gösterir','Yanımızda dostlar varken korku geride kalır'],
+               'verse_2':['Akşam olur yeni bir eve varırız','Masada sıcak ekmek bizi bekler','Yarın için küçük hayaller kurarız','Pencereden geçen kuşları birlikte izleriz'],
+               'bridge':['Bazen yağmur yürüyüşü yavaşlatır','Birlikte yine yola devam ederiz'], 'outro':['Günden güne aynı umutla yürürüz']}
+        result=structured_lyrics(parts);song_sections(result)
+        self.assertEqual(result.count('[Chorus]'),3)
+        for line in parts['chorus']:self.assertEqual(result.count(line),3)
+        self.assertEqual(structured_lyrics(result),result)
+        for change in ({'verse_1':['bad']},{'bridge':['[Translated heading]','words']},{'outro':['bad\\q']},{'extra':[]}):
+            with self.assertRaises(ValueError):structured_lyrics({**parts,**change})
+
     def test_full_song_uses_traits_and_all_favorites_without_sampling(self):
         plan = song_plan(self.data, self.refs, 123)
         case = plan['cases'][0]

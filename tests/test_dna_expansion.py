@@ -11,11 +11,26 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from dna_language import LANGUAGES,language,lyric_units,validate_script
 from dna_direction import direction_for,POLICY
 from music_dna_song import song_sections
-from train_dna_feedback import collect,split,consent_current,invalidate,command,run,group_key,check_lengths,execute,heldout_loss
+from train_dna_feedback import collect,split,consent_current,invalidate,command,run,group_key,check_lengths,execute,heldout_loss,owner_reviewed
 from singing_response import digest
 from evaluate_music_coverage import matrix, evaluate
 
 class DnaExpansion(unittest.TestCase):
+    def test_owner_research_is_explicit_hash_bound_and_revocable(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);feedback,work=self.fixture(root);feedback.unlink()
+            review=root/'renders/music-dna-training/owner-review.json';review.parent.mkdir()
+            item={'work':str(work.relative_to(root)),'files':{n:digest(work/n) for n in ('input.json','plan.json','fit.json','singer/complete.json','singer/singer.wav')}}
+            value={'schema':'jamloom-owner-plan-review-1','trainingConsent':True,'songs':[item,item]}
+            review.write_text(json.dumps(value));rows=owner_reviewed(root)
+            self.assertEqual(len(rows),1);self.assertEqual(collect(root)[0],[])
+            self.assertNotIn('Private catalogue name',json.dumps(rows));self.assertTrue(consent_current(root,rows))
+            value['trainingConsent']=False;review.write_text(json.dumps(value))
+            self.assertFalse(consent_current(root,rows))
+            with self.assertRaises(ValueError):owner_reviewed(root)
+            value['trainingConsent']=True;review.write_text(json.dumps(value));(work/'plan.json').write_text('{}')
+            with self.assertRaisesRegex(ValueError,'changed'):owner_reviewed(root)
+
     def test_coverage_resume_publishes_finished_render_without_regenerating(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder);source=root/'source';source.write_bytes(b'original synthetic fixture')

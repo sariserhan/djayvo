@@ -1,0 +1,18 @@
+{
+  "schema": "jamloom-owner-plan-review-1",
+  "trainingConsent": true,
+  "consentVersion": 1,
+  "date": "2026-10-23",
+  "statement": "Yes, use my feedback for local research",
+  "scope": "Original generated song plans from the previously accepted gallery; no favorite audio, no serving promotion; owner research, not customer feedback.",
+  "excluded": [
+    {
+      "work": "renders/music-validation-20261023/dna-tr",
+      "reason": "Owner reported the grammatical error G\u00fcnden G\u00fcnd\u00fcye. Musical approval is not approval of this lyric/title error."
+    }
+  ],
+  "sourceManifest": "renders/music-dna-training/owner-review.json",
+  "sourceManifestSha256": "ae346fa3fba546580c3006e60b7fc995dd192b3260dc7dca9481c736235c5e92",
+  "songCount": 33,
+  "servingModelChanged": false
+}

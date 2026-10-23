@@ -41,6 +41,37 @@ def training_data(plan,f):
     song_plan(target,refs,0,code)
     return {'messages':[{'role':'system','content':'Write an original two-minute vocal song plan in JSON from this musical direction. Keep the requested language. Use coherent verses, a memorable returning chorus, a bridge and a resolved ending.'},{'role':'user','content':json.dumps(prompt,ensure_ascii=False)},{'role':'assistant','content':json.dumps(target,ensure_ascii=False)}]}
 
+def owner_reviewed(root):
+    """Explicit owner research cohort, kept separate from customer feedback."""
+    path=root/'renders/music-dna-training/owner-review.json'
+    review=json.loads(path.read_text())
+    if review.get('schema')!='jamloom-owner-plan-review-1' or review.get('trainingConsent') is not True:
+        raise ValueError('Owner research consent is required')
+    records=[];seen=set()
+    for item in review['songs']:
+        work=(root/item['work']).resolve()
+        if not work.is_relative_to((root/'renders').resolve()):raise ValueError('Invalid research source')
+        for name,sha in item['files'].items():
+            if name not in ('input.json','plan.json','fit.json','singer/complete.json','singer/singer.wav') or digest(work/name)!=sha:
+                raise ValueError('Owner reviewed output changed')
+        if set(item['files'])!={'input.json','plan.json','fit.json','singer/complete.json','singer/singer.wav'}:
+            raise ValueError('Incomplete reviewed output')
+        plan=json.loads((work/'plan.json').read_text());fit=json.loads((work/'fit.json').read_text())
+        receipt=json.loads((work/'singer/complete.json').read_text());request=json.loads((work/'input.json').read_text())
+        audio=item['files']['singer/singer.wav'];case=plan['cases'][0]
+        if fit.get('accepted') is not True or receipt.get('source_conditioning') is not None or plan['schema']!='jamloom-dna-song-1':
+            raise ValueError('Research requires an original accepted song')
+        if any(r.get('audio_sha256')!=audio or r.get('plan_sha256')!=item['files']['plan.json'] for r in (fit,receipt)):
+            raise ValueError('Mismatched research receipts')
+        if any(r.get('input_sha256')!=item['files']['input.json'] for r in (plan,fit)):raise ValueError('Changed research input')
+        if audio in seen:continue
+        seen.add(audio)
+        records.append({'path':str(path.relative_to(root)),'sha256':digest(path),'group':group_key(request['profile']['references']),
+            'genre':plan['direction']['id'],'language':case.get('vocal_language','en'),'cohort':'owner-reviewed generated plans',
+            'data':training_data(plan,{'tags':[]})})
+    return records
+
+
 def collect(root):
     records=[];seen=set();counts={'consented':0,'negative':0,'invalid':0}
     for path in sorted((root/'renders/music-dna-feedback').glob('*/*.json')):
@@ -118,7 +149,7 @@ def invalidate(root):
             path.write_text(json.dumps(manifest,indent=2)+'\n')
 
 def command(model,data,adapter,train):
-    return [sys.executable,'-m','mlx_lm','lora','--model',str(model),'--data',str(data),'--adapter-path',str(adapter) if adapter else '',
+    return [sys.executable,str(ROOT/'scripts/train_song_planner.py'),'--model',str(model),'--data',str(data),'--adapter-path',str(adapter) if adapter else '',
             '--train' if train else '--test','--batch-size','1','--num-layers','4','--max-seq-length','4096','--seed','63023','--mask-prompt',
             *(['--iters','100','--learning-rate','0.00001','--grad-checkpoint','--steps-per-eval','25','--val-batches','4','--save-every','100'] if train else ['--test-batches','-1'])]
 
@@ -148,9 +179,11 @@ def execute(args,root,sources,log):
         finally:
             if child.poll() is None:os.killpg(child.pid,signal.SIGKILL);child.wait()
 
-def run(root,train=False):
+def run(root,train=False,owner=False):
     output=root/'renders/music-dna-training';output.mkdir(parents=True,exist_ok=True)
-    invalidate(root);records,counts=collect(root);parts=split(records)
+    invalidate(root)
+    records,counts=(owner_reviewed(root),{'cohort':'owner-reviewed generated plans; not customer feedback'}) if owner else collect(root)
+    parts=split(records)
     report={'state':'ready' if parts else 'waiting_for_feedback','positive_songs':len(records),**counts,
         'minimum':'24 distinct positively rated songs, 6 favorite-list groups, 3 genre families and 2 languages; at least 16 training and 4 holdout songs',
         'promotion':'NOT RUN: research candidates never replace the generator automatically'}
@@ -168,7 +201,8 @@ def run(root,train=False):
                 return candidate
         model=root/'build-style-training/lyric-planner'
         run_dir=output/'runs'/uuid.uuid4().hex;run_dir.mkdir(parents=True,mode=0o700)
-        manifest={**report,'state':'training','base_revision':MODEL_MANIFEST['revision'],'sources':sources,'train_groups':sorted({r['group'] for r in train_rows}),'holdout_groups':sorted({r['group'] for r in valid})}
+        manifest={**report,'state':'training','base_revision':MODEL_MANIFEST['revision'],'training_runtime_sha256':digest(ROOT/'scripts/train_song_planner.py'),
+            'loss':'full-context, checkpointed 128-token vocabulary chunks','sources':sources,'train_groups':sorted({r['group'] for r in train_rows}),'holdout_groups':sorted({r['group'] for r in valid})}
         path=run_dir/'manifest.json';path.write_text(json.dumps(manifest,indent=2)+'\n')
         (output/'status.json').write_text(json.dumps({**report,'state':'training','run':run_dir.name},indent=2)+'\n')
         try:
@@ -195,6 +229,6 @@ def run(root,train=False):
         return manifest
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--root',type=Path,default=ROOT);p.add_argument('--auto',action='store_true');p.add_argument('--train',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--root',type=Path,default=ROOT);p.add_argument('--auto',action='store_true');p.add_argument('--train',action='store_true');p.add_argument('--owner-review',action='store_true');a=p.parse_args()
     # Eligible feedback can train locally while idle; candidates never change the serving model.
-    print(json.dumps(run(a.root.resolve(),a.train or a.auto)))
+    print(json.dumps(run(a.root.resolve(),a.train or a.auto,a.owner_review)))

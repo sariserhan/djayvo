@@ -34,6 +34,27 @@ def favorites(value):
     return [{'reference': r, 'catalogue_genre': genres.get(r)} for r in refs]
 
 
+def structured_lyrics(value):
+    if isinstance(value, str):
+        return value
+    keys = ('verse_1', 'chorus', 'verse_2', 'bridge', 'outro')
+    if not isinstance(value, dict) or set(value) != set(keys):
+        raise ValueError('Lyrics need verse_1, chorus, verse_2, bridge and outro arrays')
+    sections = {}
+    for key in keys:
+        lines = value[key]
+        low, high = (1, 2) if key == 'outro' else (2, 4) if key == 'bridge' else (4, 4)
+        if not isinstance(lines, list) or not low <= len(lines) <= high:
+            raise ValueError(f'Lyrics {key} needs {low} to {high} sung lines')
+        lines = [text_field(line, 220, 'lyric line') for line in lines]
+        if any(re.search(r'[\r\n\[\]\\]', line) for line in lines):
+            raise ValueError('Each lyric line must contain only sung words, without headings or escapes')
+        sections[key] = '\n'.join(lines)
+    order = [('Verse 1','verse_1'), ('Chorus','chorus'), ('Verse 2','verse_2'),
+             ('Chorus','chorus'), ('Bridge','bridge'), ('Chorus','chorus'), ('Outro','outro')]
+    return '\n'.join(f'[{label}]\n{sections[key]}' for label, key in order)
+
+
 def song_sections(lyrics):
     sections=re.split(r'(?m)^\[([^\]]+)\]\s*',lyrics.strip())
     if len(sections)<3:raise ValueError('Use named song sections on their own lines')
@@ -69,6 +90,7 @@ def performance_caption(direction, case, sound, traits=None, retry=False):
 def song_plan(data, refs, seed, requested_language='auto', vocal_profile=None):
     if not isinstance(data, dict):
         raise ValueError('Expected a song plan')
+    data = {**data, 'lyrics': structured_lyrics(data.get('lyrics'))}
     title = text_field(data.get('title'), 100, 'title')
     summary = text_field(data.get('summary'), 1000, 'taste interpretation')
     sound = text_field(data.get('sound'), 1500, 'sound')
@@ -190,11 +212,12 @@ Return ONLY one valid JSON object, no markdown:
 "musical_traits":{"groove":"rhythmic feel","texture":"instrumental texture","harmony":"harmonic color","vocal_delivery":"phrasing and dynamics","arrangement":"section development and ending"},
 "direction_id":"copy required_direction.id","energy":"copy required_direction.energy",
 "instruments":["copy required_direction.instruments exactly"],"voice":"male OR female","bpm":100,
-"lyrics":"[Verse 1]\\n...\\n[Chorus]\\n...\\n[Verse 2]\\n...\\n[Chorus]\\n...\\n[Bridge]\\n...\\n[Chorus]\\n...\\n[Outro]\\n..."}
+"lyrics":{"verse_1":["line 1","line 2","line 3","line 4"],"chorus":["line 1","line 2","line 3","line 4"],"verse_2":["line 1","line 2","line 3","line 4"],"bridge":["line 1","line 2"],"outro":["last line"]}}
+Lyrics MUST use these five English JSON keys. Values are arrays of sung lines in the requested language. Do not write section headings or backslashes inside a line. Write the chorus ONCE; the application repeats it three times.
 Include exactly one influence per favorite, same order, indices starting at 1. Keep each description under 25 words.
 Summary: two or three clear sentences. Each musical trait: under 15 words. Sound: under 70 words, no artist names. Describe stylistic traits, not an impersonation.
 Tempo must be an integer within required_direction.bpm. Do not include any of required_direction.avoid in the sound description.
-Song lasts TWO MINUTES. Lyrics: 120–200 words total, 4 short lines per verse/chorus,
+Song lasts TWO MINUTES. Lyrics: 120–200 words total AFTER repeating the chorus three times. Use 6–9 words per line for languages with spaces; 4 short lines per verse/chorus,
 For Chinese, Japanese or Thai use 250–650 characters instead of the word count. 2–4 bridge lines and a short ending. Repeat the SAME chorus words; develop the story in verse 2. Keep lyrics under 4000 characters.'''
     selected_profile=choose_vocal_profile(seed)
     selected_voice=VOCAL_PROFILES[selected_profile][0]
@@ -219,10 +242,10 @@ For Chinese, Japanese or Thai use 250–650 characters instead of the word count
             break
         except (ValueError, TypeError, KeyError) as error:
             if attempt==3:raise
-            lyric_repair=isinstance(candidate,dict) and isinstance(candidate.get('lyrics'),str) and bool(re.search('lyrics|chorus|verse|section|writing system',str(error),re.I)) and not re.search('production|musical_traits|sound|in English',str(error),re.I)
+            lyric_repair=isinstance(candidate,dict) and isinstance(candidate.get('lyrics'),(str,dict)) and bool(re.search('lyrics|chorus|verse|section|writing system',str(error),re.I)) and not re.search('production|musical_traits|sound|in English',str(error),re.I)
             if lyric_repair:
-                messages=[{'role':'system','content':'''You are an original songwriter editing a two-minute song in the requested language. Rewrite awkward wording into natural, grammatical, singable lines with a coherent concrete story and a matching short title. Do not copy existing songs. Fix the reported problem, not just punctuation. Return ONLY {"title":"...","lyrics":"..."}.
-Use English section headings [Verse 1], [Chorus], [Verse 2], [Chorus], [Bridge], [Chorus], [Outro]. Write four different lines for each verse and chorus. Verse 2 develops the story. Repeat the same four-line chorus each time. Bridge: 2-4 contrasting lines. Outro: a short resolved ending. Lyrics: 120-200 words; for Japanese, Chinese or Thai, 250-650 characters. Use the language's normal script. Replace the bad phrasing rather than reproducing it.'''},
+                messages=[{'role':'system','content':'''You are an original songwriter editing a two-minute song in the requested language. Rewrite awkward wording into natural, grammatical, singable lines with a coherent concrete story and a matching short title. Do not copy existing songs. Fix the reported problem, not just punctuation. Return ONLY {"title":"...","lyrics":{"verse_1":["..."],"chorus":["..."],"verse_2":["..."],"bridge":["..."],"outro":["..."]}}.
+Use these five English JSON keys and arrays of sung lines. No headings, embedded newlines or backslashes inside lines. Write four different lines for each verse and chorus, 6–9 words per line in languages with spaces. Verse 2 develops the story. Return the chorus once; the application repeats it three times. Bridge: 2-4 contrasting lines. Outro: a short resolved ending. Lyrics: 120-200 words; for Japanese, Chinese or Thai, 250-650 characters. Use the language's normal script. Replace the bad phrasing rather than reproducing it.'''},
                     {'role':'user','content':json.dumps({'language':requested_language if requested_language!='auto' else candidate.get('vocal_language','en'),'musical_direction':direction['label'],'problem':str(error),'draft_lyrics':candidate['lyrics']},ensure_ascii=False)}]
             else:
                 messages=base_messages+[{'role':'assistant','content':json.dumps(candidate,ensure_ascii=False) if isinstance(candidate,dict) else raw},{'role':'user','content':f'The plan failed validation: {error}. Return the corrected full JSON object only.'}]
