@@ -1,6 +1,7 @@
 # Music DNA collections, privacy and credits — 2026-10-22
 
 **PASS: local implementation and technical verification. PARTIAL: released product.**
+Implementation commit: `9220cf7`.
 The owner approved starting prices of **1 credit public / 2 credits private**.
 This increment adds the collection and reservation flow; it does not enable
 hosted generation or real credit purchases. Basic/Pro acceptance is unchanged.
