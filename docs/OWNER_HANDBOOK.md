@@ -1,3 +1,7 @@
+## Music DNA automatic language — 2026-10-22
+
+Each click makes one song. Automatic mode draws from the interpreted languages of the saved favorites; approximate IP country can give matching languages 1.5 times their original weight, only for mixed-language lists. An English-only list stays English anywhere. Select a specific singing language to override the draw and skip country lookup. Country lookup failures leave favorites in control. The Mac loopback preview uses Country.is; hosted code can use Vercel country headers, but hosted generation remains unreleased. Only the country code is retained with the song request. [Implementation, tests and limitations](music-dna-expanded.md#one-song-weighted-language-and-approximate-country--2026-10-22).
+
 ## Music DNA languages and feedback — 2026-10-22
 
 [Open the multilingual review samples](http://127.0.0.1:4247/music-dna?song=e46c2b419c054cd79311bd9deecf1258&song=4caf5b05203048a3b61bb22cd4d2ce9c&song=c7944cb9bef241a3857be663ee5c8e53&song=0f7c7e87a20645ce8f52e6de86988fe4&song=4a81d32f68b14b09956d9d82cdabba53&song=3f868ec96fdd4f8089ce5225befefc8c). Favorites remain the only required input; **Singing language** is optional and defaults to choosing from the favorites. The local singer exposes 50 supported language settings. The technical matrix covers 25 musical families, with six completed audio examples; this does not certify every language or subgenre.

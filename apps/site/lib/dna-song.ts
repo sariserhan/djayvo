@@ -8,6 +8,7 @@ import {personalFeedback,refreshFeedback} from './dna-feedback';
 import {musicDirection} from './taste-direction';
 import {audioResponse,privateHeaders} from './audio-response';
 import {boundedAuthRequest} from './bounded-request';
+import {songCountry} from './dna-location';
 
 type Running={id:string;child:ChildProcess;timer:ReturnType<typeof setTimeout>;cancelled?:boolean};
 const state=globalThis as typeof globalThis&{jamloomDnaSong?:Running;jamloomDnaStarting?:boolean};
@@ -51,12 +52,13 @@ export async function dnaSong(request:Request){
    // Recheck after asynchronous validation so simultaneous requests cannot both claim this process.
    if(state.jamloomDnaSong||state.jamloomDnaStarting)return json({error:'A song is already being made on this Mac.'},409);
    const feedback=await personalFeedback(root,request,direction.id,profile.vocalLanguage??'auto');
+   const country=(!profile.vocalLanguage||profile.vocalLanguage==='auto')?await songCountry(request):null;
    if(state.jamloomDnaSong||state.jamloomDnaStarting)return json({error:'A song is already being made on this Mac.'},409);
    const next=randomUUID().replaceAll('-',''),work=join(directory,next);
    state.jamloomDnaStarting=true;
    try{
     await mkdir(work,{recursive:true,mode:0o700});
-    await writeFile(join(work,'input.json'),JSON.stringify({profile,direction,feedback,seed:randomInt(2**32)}),{flag:'wx',mode:0o600});
+    await writeFile(join(work,'input.json'),JSON.stringify({profile,direction,feedback,country,seed:randomInt(2**32)}),{flag:'wx',mode:0o600});
     await writeFile(join(work,'status.json'),JSON.stringify({state:'running',message:'Starting your song…'}));
    }catch(error){delete state.jamloomDnaStarting;throw error;}
    const child=spawn(join(root,'.venv-singer/bin/python'),[join(root,'scripts/music_dna_song.py'),'run',work],{

@@ -58,6 +58,9 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await page.getByText('Discover practice tracks',{exact:true}).click();
   assert.equal(await page.getByText('What would you like in your music?',{exact:true}).count(),0);
   assert.equal(await page.getByLabel('Preferred tempo:').count(),0);
+  const language=page.getByRole('combobox',{name:'Singing language',exact:true});
+  assert.equal(await language.inputValue(),'auto');
+  assert.match(await page.locator('.product-controls').innerText(),/English-only favorites stay English wherever you are/);
   const plans=[];
   const wavs=[],audio=[];
   for(let i=0;i<2;i++){
@@ -65,10 +68,13 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    if(i)await page.getByRole('button',{name:'Remove favorite Quiet study',exact:true}).click();
    await search.fill(i?'night':'quiet');await page.getByRole('option',{name:i?/Track.*Night set/:/Track.*Quiet study/}).click();
    assert.match(await page.locator('.dna-summary').innerText(),i?/Dance/:/Classical/);
-   await page.getByRole('button',{name:i?'Make another variation':'Make my music',exact:true}).click();
+   await language.selectOption(i?'tr':'auto');
+   await page.getByRole('button',{name:i?'Make another song':'Make my music',exact:true}).click();
    await page.getByLabel(`Play Fixture song ${i+1}`,{exact:true}).waitFor({timeout:120000});
    const plan=await page.getByRole('region',{name:'Songs for this list',exact:true}).getByRole('link',{name:'Download song notes',exact:true}).evaluate(async a=>await(await fetch(a.href)).json());
    assert.equal(plan.cases[0].voice,'female');assert.ok(plan.cases[0].lyrics.includes('[Chorus]'));plans.push(plan);
+   assert.equal(fixture.bodies.length,i+1);
+   assert.equal(fixture.bodies[i].vocalLanguage,i?'tr':'auto');
    assert.equal(fixture.bodies[i].referenceMetadata[0].genre,i?'Dance':'Classical');
    const url=await page.getByLabel(`Play Fixture song ${i+1}`,{exact:true}).getAttribute('src');
    const result=await page.evaluate(async url=>{
@@ -97,7 +103,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await page.reload();await page.getByRole('group',{name:'Another song',exact:true}).waitFor();
   await page.getByText('Saved favorites',{exact:true}).click();
   await page.getByRole('button',{name:'Delete saved profile',exact:true}).click();assert.equal(await page.locator('.dna-favorites fieldset').count(),0);
-  assert.equal(await page.evaluate(()=>localStorage.getItem('jamloom-taste-v1')),null);assert.ok(await page.getByRole('button',{name:'Make another variation',exact:true}).isDisabled());assert.deepEqual(errors,[]);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('jamloom-taste-v1')),null);assert.ok(await page.getByRole('button',{name:'Make another song',exact:true}).isDisabled());assert.deepEqual(errors,[]);
   results.push({browser:name,status:'PASS',widths:[1280,390,320],search_typing_typo_keyboard_pointer_duplicates:'PASS',muted_catalogue_playback:'PASS',exclusive_audio:'PASS',automatic_favorites_only_composition:'PASS',plans,generation_transport:'fixture, not model execution',audio,autosave_metadata_removal:'PASS',axe_violations:0,console_errors:errors,expected_console:expectedConsole,human_listening:'NOT RUN'});
  }finally{await browser.close();}
 }

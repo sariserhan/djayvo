@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "python_dna_tests": 20,
+  "site_tests": 62,
+  "build_and_typecheck": "PASS",
+  "bundle_audit": "PASS",
+  "weighted_draws_tested": 10000,
+  "region_rules": "matching languages in mixed lists only; 1.5 multiplier; explicit language override",
+  "live_loopback_country_lookup": "PASS, two-letter code only",
+  "hosted_geolocation": "NOT RUN",
+  "new_audio_render": "NOT RUN",
+  "human_listening": "NOT RUN",
+  "deployment": "NOT RUN",
+  "browser": {
+    "engines": [
+      "Chromium",
+      "WebKit"
+    ],
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "one_submission_per_click": "PASS",
+    "auto_and_explicit_language_submission": "PASS",
+    "runtime_errors": [],
+    "accessibility_violations": 0,
+    "expected_logs": [
+      "intentionally blocked analytics",
+      "unused CSS preload warning"
+    ],
+    "plugin": "Browser execution tool unavailable after two discovery attempts; existing isolated Playwright suite used",
+    "reviewed_screenshot": "/tmp/jamloom-weighted-language-browser/chromium-search-320.png"
+  }
+}

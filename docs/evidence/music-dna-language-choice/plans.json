@@ -1,0 +1,90 @@
+{
+  "current": [
+    {
+      "case": "mixed-in-turkey",
+      "job": "e3ab294c5c0c4f798697b54ed13f5cee",
+      "seed": 0,
+      "country": "TR",
+      "exit": 0,
+      "language": {
+        "code": "tr",
+        "label": "Turkish",
+        "basis": "weighted draw from interpreted favorite languages",
+        "counts": {
+          "en": 3,
+          "tr": 2
+        },
+        "unknown": 0,
+        "probabilities": {
+          "en": 0.5,
+          "tr": 0.5
+        },
+        "regional_boost": [
+          "tr"
+        ]
+      },
+      "case_count": 1,
+      "singer_language": "tr"
+    },
+    {
+      "case": "english-only-in-turkey",
+      "job": "1efec7e67eac4fba84953291f68ed7da",
+      "seed": 0,
+      "country": "TR",
+      "exit": 0,
+      "language": {
+        "code": "en",
+        "label": "English",
+        "basis": "weighted draw from interpreted favorite languages",
+        "counts": {
+          "en": 3
+        },
+        "unknown": 0,
+        "probabilities": {
+          "en": 1.0
+        },
+        "regional_boost": []
+      },
+      "case_count": 1,
+      "singer_language": "en"
+    }
+  ],
+  "historical_before_country_weighting": [
+    {
+      "job": "3257c983a1654994897c56655a815ef4",
+      "seed": 0,
+      "exit": 0,
+      "language": {
+        "code": "en",
+        "label": "English",
+        "basis": "weighted draw from interpreted favorite languages",
+        "counts": {
+          "en": 3,
+          "tr": 2
+        },
+        "unknown": 0
+      },
+      "case_count": 1,
+      "singer_language": "en"
+    },
+    {
+      "job": "5350b2a3715e4620b261b12d53a2b523",
+      "seed": 1,
+      "exit": 0,
+      "language": {
+        "code": "tr",
+        "label": "Turkish",
+        "basis": "weighted draw from interpreted favorite languages",
+        "counts": {
+          "en": 3,
+          "tr": 2
+        },
+        "unknown": 0
+      },
+      "case_count": 1,
+      "singer_language": "tr"
+    }
+  ],
+  "audio_render": "NOT RUN",
+  "human_listening": "NOT RUN"
+}

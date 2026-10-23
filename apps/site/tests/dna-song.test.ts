@@ -7,6 +7,7 @@ import {dnaSong,localSingerRoot,songInput} from '../lib/dna-song';
 import {musicDirection,favoriteKey} from '../lib/taste-direction';
 import {emptyTaste} from '../lib/taste';
 import {listenerDirectory,saveFeedback} from '../lib/dna-feedback';
+import {songCountry} from '../lib/dna-location';
 
 const profile={...emptyTaste,references:['Heavy favorite'],referenceMetadata:[{reference:'Heavy favorite',genre:'Metal',source:'itunes' as const,id:1}]};
 const base='http://127.0.0.1:4247/api/taste/song';
@@ -22,7 +23,9 @@ test('singer is opt-in and loopback only; profile transport excludes irrelevant 
  assert.deepEqual(songInput({...emptyTaste,references:['Halo — Beyoncé']}),{references:['Halo — Beyoncé'],referenceMetadata:[]});
 });
 test('local job enforces bounds, single execution, durable retrieval and cancellation',async()=>{
- const root=await mkdtemp(join(tmpdir(),'jamloom-dna-test-')),old=process.env.JAMLOOM_DNA_SINGER_ROOT;
+ const root=await mkdtemp(join(tmpdir(),'jamloom-dna-test-')),old=process.env.JAMLOOM_DNA_SINGER_ROOT,oldFetch=globalThis.fetch,oldVercel=process.env.VERCEL;
+ delete process.env.VERCEL;
+ globalThis.fetch=async()=>Response.json({country:'TR',ip:'198.51.100.1'});
  process.env.JAMLOOM_DNA_SINGER_ROOT=root;
  try{
   await mkdir(join(root,'.venv-singer/bin'),{recursive:true});await mkdir(join(root,'scripts'));
@@ -53,6 +56,7 @@ fs.writeFileSync(p+'/status.json',JSON.stringify({state:'completed'}));},350);`,
   const cancelled=await(await dnaSong(nextRequest)).json();
   const nextInput=JSON.parse(await readFile(join(root,'renders/music-dna-songs',cancelled.id,'input.json'),'utf8'));
   assert.deepEqual(nextInput.feedback.map((f:{tags:string[]})=>f.tags),[['repetitive']]);
+  assert.equal(nextInput.country,'TR');assert.ok(!JSON.stringify(nextInput).includes('198.51.100.1'));
   assert.ok(cancelled.id);assert.equal((await dnaSong(request('DELETE',`?id=${cancelled.id}`))).status,200);
   assert.equal((await(await dnaSong(request('GET',`?id=${cancelled.id}`))).json()).state,'cancelled');
   const work=join(root,'renders/music-dna-songs',id);
@@ -69,7 +73,25 @@ fs.writeFileSync(p+'/status.json',JSON.stringify({state:'completed'}));},350);`,
   await writeFile(join(work,'input.json'),JSON.stringify({profile}));await writeFile(join(work,'plan.json'),JSON.stringify({title:'Historical song'}));
   const legacy=await(await dnaSong(request('GET',`?id=${id}`))).json();assert.equal(legacy.legacy,true);assert.equal(legacy.styleChecked,false);assert.deepEqual(legacy.profile,profile);
   assert.equal((await dnaSong(request('GET',`?id=${id}&file=audio`))).status,200);
- }finally{if(old===undefined)delete process.env.JAMLOOM_DNA_SINGER_ROOT;else process.env.JAMLOOM_DNA_SINGER_ROOT=old;await rm(root,{recursive:true,force:true});}
+ }finally{globalThis.fetch=oldFetch;if(oldVercel===undefined)delete process.env.VERCEL;else process.env.VERCEL=oldVercel;if(old===undefined)delete process.env.JAMLOOM_DNA_SINGER_ROOT;else process.env.JAMLOOM_DNA_SINGER_ROOT=old;await rm(root,{recursive:true,force:true});}
+});
+
+test('country hint uses trusted hosting headers or loopback egress, never a remote server location',async()=>{
+ const unused:typeof fetch=async()=>{throw Error('Should not look up remote server IP');};
+ for(const [code,expected] of [['TR','TR'],['RU','RU'],['XX',null],['Turkey',null]]){
+  const remote=new Request('https://jamloom.com/api/taste/song',{headers:{'x-vercel-ip-country':code!}});
+  assert.equal(await songCountry(remote,unused,true),expected);
+  assert.equal(await songCountry(remote,unused,false),null);
+ }
+ let calls=0;
+ const lookup:typeof fetch=async(url,options)=>{calls++;assert.equal(url,'https://api.country.is/');assert.equal(options?.redirect,'error');return Response.json({country:'TR',ip:'198.51.100.1'});};
+ const local=request();local.headers.set('x-vercel-ip-country','RU');
+ assert.equal(await songCountry(local,lookup,false),'TR');assert.equal(calls,1);
+ local.headers.set('x-forwarded-for','198.51.100.1');assert.equal(await songCountry(local,lookup,false),null);assert.equal(calls,1);
+ for(const response of [new Response('',{status:429}),Response.json({country:'invalid'}),Response.json(null)]){
+  assert.equal(await songCountry(request(),async()=>response,false),null);
+ }
+ assert.equal(await songCountry(request(),async()=>{throw Error('Timed out');},false),null);
 });
 
 test('favorite identity includes genres, ignores order and case; direction follows all favorites',()=>{

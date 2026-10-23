@@ -1,3 +1,7 @@
+## Music DNA language choice — 2026-10-22
+
+**PASS, local:** One song per request, favorite-weighted automatic language and a modest regional boost constrained to languages already present. English-only lists remain English even in Türkiye/Russia; manual language overrides everything. Tests/build and real planner cases pass. [Current report](music-dna-expanded.md#one-song-weighted-language-and-approximate-country--2026-10-22). New audio quality, hosted country resolution and deployment are **NOT RUN**.
+
 ## Music DNA languages and listener learning — 2026-10-22
 
 **PASS, local implementation and technical evaluation; PARTIAL, musical/model acceptance:** 25 genre families, 50 optional language settings, musical traits/lyric repair, personal feedback and consent-bound local planner-training candidates are implemented. 61 site tests, 26 Python tests, build/bundle checks, 26 real plans across all families, six two-minute multilingual renders, and Chromium/WebKit feedback/playback/recovery checks pass. Bulk withdrawal covers feedback on older songs. Native-language quality remains unverified; Hindi diagnostics are inconclusive. Real-feedback learning waits for eligible ratings; no production model promotion or deployment. [Report and evidence](music-dna-expanded.md).

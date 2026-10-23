@@ -30,9 +30,9 @@ try{
    const wavPath=join(folder,name+'-dna.wav');await download.saveAs(wavPath);const wav=await readFile(wavPath);assert.equal(wav.toString('ascii',0,4),'RIFF');
    const score=await page.getByRole('link',{name:'Download song notes',exact:true}).evaluate(async a=>JSON.parse(await (await fetch(a.href)).text()));
    assert.equal(score.cases[0].voice,'female');assert.equal(score.influences.length,2);
-   await page.getByRole('button',{name:'Make another variation',exact:true}).click();await page.getByRole('button',{name:'Cancel composition',exact:true}).click();
+   await page.getByRole('button',{name:'Make another song',exact:true}).click();await page.getByRole('button',{name:'Cancel composition',exact:true}).click();
    assert.match(await page.getByRole('status').innerText(),/stopped/);assert.equal(await page.locator('audio[src*="file=audio"]').count(),1);
-   await page.getByRole('button',{name:'Make another variation',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('audio[src*="file=audio"]').length===2);
+   await page.getByRole('button',{name:'Make another song',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('audio[src*="file=audio"]').length===2);
    const second=page.locator('audio[src*="file=audio"]').nth(1);await second.evaluate(a=>a.play());await audio.first().evaluate(a=>a.play());assert.equal(await second.evaluate(a=>a.paused),true);await audio.first().evaluate(a=>a.pause());
    const nativeHash=createHash('sha256').update(await readFile(new URL('../../../build-finish/taste-test.wav',import.meta.url))).digest('hex');
    const wasmHash=await page.evaluate(()=>new Promise((resolve,reject)=>{

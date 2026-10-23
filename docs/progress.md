@@ -1,3 +1,7 @@
+## Music DNA language balance and location — 2026-10-22
+
+**PASS, local implementation and planner checks:** Each click returns one song. Favorite-language counts determine a weighted random selection; approximate country gently boosts only matching languages in mixed lists. English-only favorites remain English anywhere, and a manual language skips geolocation/classification. 20 Python and 62 site tests, build/bundle checks, real mixed-language and English-only planner cases pass. New audio listening and hosted geolocation are **NOT RUN**. [Evidence and limits](music-dna-expanded.md#one-song-weighted-language-and-approximate-country--2026-10-22).
+
 ## Music DNA languages and listener learning — 2026-10-22
 
 **PASS, local implementation and technical evaluation; PARTIAL, musical/model acceptance:** 25 genre families, 50 optional language settings, musical traits/lyric repair, personal feedback and consent-bound local planner-training candidates are implemented. 61 site tests, 26 Python tests, build/bundle checks, 26 real plans across all families, six two-minute multilingual renders, and Chromium/WebKit feedback/playback/recovery checks pass. Bulk withdrawal covers feedback on older songs. Native-language quality remains unverified; Hindi diagnostics are inconclusive. Real-feedback learning waits for eligible ratings; no production model promotion or deployment. [Report and evidence](music-dna-expanded.md).
