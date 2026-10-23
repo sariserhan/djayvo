@@ -24,7 +24,7 @@ export function SongGallery({scope,title}:{scope:'examples'|'mine'|'public';titl
   setBusy(true);try{const response=await fetch('/api/taste/song?id='+id,{method:'DELETE',headers:{'X-Jamloom-DNA':'1'}});if(!response.ok)throw Error();await load();window.dispatchEvent(new Event('jamloom-dna-completed'));}catch{setMessage('Could not remove this song from the public page. Try again.');}finally{setBusy(false);}
  }
  return <section className="product-panel" aria-label={title}><h2>{title}</h2>
-  <p>{scope==='examples'?'Original songs made while developing Music DNA. These examples use the sample lists chosen for each song.':scope==='mine'?'Your public and private songs. Private songs are only available to your signed-in account.':'Original songs listeners chose to share. Their favorite lists and account details stay private.'}</p>
+  <p>{scope==='examples'?'Press play. Original AI songs inspired by example favorites.':scope==='mine'?'All your songs. Private stays private.':'Made by listeners. Shared with everyone.'}</p>
   <div className="dna-song-grid">{songs.map(song=><article key={song.id}><h3>{song.title}</h3><p>{(languages.languages as Record<string,string>)[song.language]??song.language}{song.direction?' · '+song.direction:''}{scope==='mine'?' · '+(song.withdrawn_at?'Removed from public page':song.visibility):''}</p>
    {song.historical&&<p>Earlier experiment · style match not checked.</p>}
    <audio controls preload="none" aria-label={`Listen to ${song.title}`} src={`/api/taste/song?id=${song.id}&file=audio`} onPlay={event=>document.querySelectorAll('audio').forEach(audio=>{if(audio!==event.currentTarget)audio.pause();})}/>

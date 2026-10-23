@@ -25,7 +25,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   const screens=[];
   for(const slug of ['music-dna','improvise','dj-studio','academy','live-dj']){
    await page.goto(base+'/'+slug);await page.locator('h1').waitFor();assert.equal(await page.locator('h1').count(),1);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),slug+' overflow');
-   if(slug==='music-dna'){const search=page.getByRole('combobox',{name:'Search artists or tracks'});await search.waitFor();assert.ok((await search.boundingBox()).y<(await page.getByRole('combobox',{name:'Singing language',exact:true}).boundingBox()).y);}
+   if(slug==='music-dna'){const search=page.getByRole('combobox',{name:'Search artists or tracks'});await search.waitFor();assert.equal(await page.getByRole('combobox',{name:'Singing language',exact:true}).isVisible(),false);await page.locator('.dna-language > summary').click();await page.getByRole('combobox',{name:'Singing language',exact:true}).waitFor();await page.locator('.dna-language > summary').click();}
    if(['improvise','dj-studio','music-dna'].includes(slug)){assert.equal(await page.locator('.product-intro details[open]').count(),0);await page.locator('.product-intro summary').click();await page.locator('.product-intro details[open]').waitFor();await page.locator('.product-intro summary').click();}
    await page.screenshot({path:join(output,`${name}-${slug}-320.png`)});screens.push(slug);
   }

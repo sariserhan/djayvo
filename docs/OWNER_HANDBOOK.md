@@ -1,3 +1,7 @@
+## Simpler Music DNA page — 2026-10-22
+
+[Open the updated local Music DNA page](http://127.0.0.1:4247/music-dna). Search and add favorites, then choose **Make my music** in the visual song panel. **Song language** is optional; automatic remains the default. Compact favorites retain removal and **Listen elsewhere** links. Existing example songs are directly below the workspace; Your songs and Community songs follow. Credits and public/private sharing still appear only after clicking the generation button. Local listening is available; hosted paid generation remains closed. [Screenshots and verification](music-dna-visual.md).
+
 ## Visual homepage and simpler product entries — 2026-10-22
 
 [Open the local homepage](http://127.0.0.1:4247/). Choose Learn to DJ, Mix tracks, Remix a sound, Make a song or Mix live audio to change the preview. **Hear this song** plays the real Music DNA example; **Make a song** opens the favorites workflow. Each product still has its own section, with feature/setup information under details. Product pages start with shorter instructions and clearer actions. The public coming-soon design is updated locally too; release gates remain unchanged. [Screenshots and verification](visual-product-entry.md).

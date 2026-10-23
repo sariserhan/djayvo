@@ -85,3 +85,77 @@
 @media(max-width:800px){.product-showcase{grid-template-columns:1fr;gap:24px;padding-top:0}.showcase-heading h1{font-size:clamp(38px,9vw,60px)}.showcase-choices{margin-top:18px}.showcase-choices button{font-size:14px;padding:12px 10px;gap:8px}.showcase-choices button>span:first-child{font-size:22px;width:24px}.showcase-caption{padding:16px}.dna-demo{padding:20px}.showcase-footer{padding:18px}.demo-song{gap:14px}.demo-song h2{font-size:23px}.demo-record{width:72px}.showcase-image{height:280px}}
 
 .demo-play{display:block;width:100%;margin-top:20px;padding:13px 18px;border:1px solid #c3ade0;border-radius:8px;background:#c3ade0;color:#17131e;font:inherit;font-size:15px;font-weight:600;cursor:pointer;min-height:46px}.demo-play:focus-visible{outline:3px solid var(--lime);outline-offset:3px}.dna-demo audio{margin-top:12px}
+
+/* Music DNA keeps the list and its next action together. */
+.music-dna-page{max-width:1200px;margin-inline:auto}
+.music-dna-page .product-panel{padding:28px;margin-block:24px}
+.music-dna-page #dna-notebook>.product-controls{max-width:none;gap:14px}
+.dna-steps{display:flex;justify-content:space-between;gap:12px;list-style:none;margin:0 0 28px;padding:0 0 22px;border-bottom:1px solid var(--line);font-size:13px;color:#c6cebf}
+.dna-steps li{display:flex;align-items:center;gap:9px}
+.dna-steps li>span{display:grid;place-items:center;width:28px;height:28px;flex-shrink:0;border:1px solid #647255;border-radius:50%;color:var(--lime)}
+.dna-create-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:32px;align-items:start}
+.dna-create-grid>div{min-width:0}
+.dna-picker-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.dna-picker-heading h2{font-size:22px;margin:0}
+.dna-picker-heading>span,.dna-autosave{font-size:12px;color:#c6cebf}
+.music-dna-page .dna-favorites{gap:8px;margin-top:20px;max-height:360px;overflow-y:auto;scrollbar-gutter:stable}
+.dna-favorite{display:grid;grid-template-columns:36px minmax(0,1fr) 44px;align-items:center;gap:0 10px;padding:10px;border:1px solid #46513f;border-radius:10px;background:#1b231b}
+.dna-favorite-icon{display:grid;place-items:center;width:36px;height:36px;background:#38432f;border-radius:6px;color:#c9fa78;font-size:22px}
+.dna-favorite:nth-child(3n+2) .dna-favorite-icon{background:#44394f;color:#dbc5f7}
+.dna-favorite:nth-child(3n) .dna-favorite-icon{background:#453d2e;color:#f2dba9}
+.dna-favorite strong{font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+.dna-favorite>button{padding:0;width:44px;font-size:24px;background:transparent;border-color:transparent}
+.dna-favorite details{grid-column:2/-1;font-size:12px;color:#c6cebf}
+.music-dna-page .dna-favorite .product-actions{margin:10px 0 4px;gap:10px}
+.dna-empty{padding:30px 10px;text-align:center;border:1px dashed #52604c;border-radius:10px;margin:20px 0 12px}
+.dna-empty>span{font-size:30px;letter-spacing:7px;color:#b7c6a9}
+.dna-empty p{font-size:14px;color:#c6cebf;margin:8px 0 0}
+.dna-autosave{display:block;margin-top:12px}
+.dna-next-song{display:grid;gap:12px;border:1px solid #657352;border-radius:14px;padding:24px;background:radial-gradient(ellipse at 100% 0,#35442c,transparent 70%),#20271d}
+.dna-record-art{display:flex;align-items:center;gap:24px;height:110px;margin-bottom:4px}
+.dna-record-art .demo-record{width:110px}
+.dna-sound-bars{height:60px;display:flex;align-items:center;gap:5px;flex:1;opacity:.7}
+.dna-sound-bars i{flex:1;background:#c3ade0;border-radius:5px}
+.dna-next-song h3{font-size:24px;letter-spacing:-.03em;margin:0 0 10px}
+.dna-next-song p{font-size:14px;line-height:1.5;margin:8px 0}
+.dna-next-song details{font-size:12px;color:#c6cebf}
+.dna-next-song label{font-size:13px;margin-top:4px}
+.dna-next-song>small{text-align:center;font-size:12px;color:#c6cebf}
+.dna-next-song>.primary{width:100%;margin-top:2px}
+.dna-language{border-top:1px solid #52604c}
+.dna-language>summary>span{float:right;color:#e0eacc;margin-left:10px}
+.dna-tools{display:flex;flex-wrap:wrap;gap:0 24px;font-size:13px;border-top:1px solid var(--line);padding-top:10px}
+.dna-tools>details[open]{flex-basis:100%}
+.dna-genre-tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.dna-genre-tags span{padding:5px 10px;border:1px solid #647255;border-radius:20px;font-size:12px;color:#e0eacc}
+.music-dna-page #dna-notebook>.product-controls>details,.music-dna-page #dna-notebook>.product-controls>.dna-feedback{font-size:14px}
+.music-dna-page p[role=status]:empty{display:none}
+.music-dna-page .dna-song-grid article::before{content:'';float:left;width:52px;height:52px;margin:0 12px 10px 0;border-radius:8px;background:radial-gradient(circle at center,#171c17 0 5%,#d6bcf0 6% 20%,#263125 21% 34%,#111911 35% 38%,#354330 39% 45%,transparent 46%),linear-gradient(135deg,#b4c88c,#384b3a)}
+.music-dna-page .dna-song-grid article:nth-child(3n+2)::before{filter:hue-rotate(75deg)}
+.music-dna-page .dna-song-grid article:nth-child(3n)::before{filter:hue-rotate(210deg)}
+.music-dna-page .dna-song-grid h3{font-size:18px;margin:0 0 6px}
+.music-dna-page .dna-song-grid p{font-size:13px;color:#c6cebf;margin:0}
+.music-dna-page .dna-song-grid audio{clear:both;margin:16px 0}
+.music-dna-page .dna-song-grid .product-actions{margin:14px 0}
+.music-dna-page .dna-song-grid summary{font-size:13px}
+.dna-collections{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.dna-collections>.product-panel{min-width:0;margin-top:0}
+@media(max-width:700px){
+ .music-dna-page .product-panel{padding:18px}
+ .music-dna-page .product-intro h1{font-size:34px}
+ .music-dna-page .product-intro .product-lead{font-size:16px}
+ .dna-create-grid,.dna-collections{grid-template-columns:1fr;gap:20px}
+ .dna-steps{gap:8px;font-size:11px;margin-bottom:20px;padding-bottom:18px}
+ .dna-steps li{flex:1;display:grid;align-content:start;gap:8px}
+ .dna-picker-heading h2{font-size:20px}
+ .dna-picker-heading>span{white-space:nowrap;font-size:11px}
+ .dna-empty{display:flex;align-items:center;gap:12px;padding:10px;border:0;margin:4px 0}
+ .dna-empty>span{font-size:18px;letter-spacing:0;white-space:nowrap}
+ .dna-empty p{margin:0;text-align:left;font-size:12px}
+ .dna-next-song{padding:18px}
+ .dna-record-art{height:70px}
+ .dna-record-art .demo-record{width:70px}
+ .dna-sound-bars{height:42px}
+ .music-dna-page .dna-favorites{max-height:250px}
+ .dna-collections{gap:0}
+}

@@ -135,18 +135,29 @@ export function TasteNotebook(){
  {take.plan?.musical_traits&&<details><summary>The musical choices</summary><dl>{Object.entries(take.plan.musical_traits).map(([key,value])=><div key={key}><dt>{key.replaceAll('_',' ')}</dt><dd>{value}</dd></div>)}</dl></details>}
  {take.plan&&<><details><summary>Lyrics</summary><p style={{whiteSpace:'pre-wrap'}}>{take.plan.cases[0].lyrics}</p></details><details><summary>How these favorites shaped this song</summary><p>{take.plan.summary}</p><ul>{take.plan.influences.map(note=><li key={note.reference}><strong>{note.reference}</strong>: {note.description} {note.basis==='unknown'?'(Unrecognized)':note.basis==='genre_only'?'(Catalogue genre only)':'(Model interpretation)'}</li>)}</ul><p>{take.plan.cases[0].song_caption}</p><p>Musical direction uses catalogue metadata and model interpretation, not analysis of the original recordings. A style check cannot guarantee musical quality.</p></details></>}
  </article>;}
- return <section id="dna-notebook" className="product-panel"><h2>Your favorite music</h2><p>Pick songs or artists. We’ll make a new song from your taste.</p><div className="product-controls">
+ return <section id="dna-notebook" className="product-panel">
+ <ol className="dna-steps" aria-label="How Music DNA works"><li><span>1</span> Pick favorites</li><li><span>2</span> We find your sound</li><li><span>3</span> Get a song</li></ol>
+ <div className="product-controls">
+ <div className="dna-create-grid"><div className="dna-picker"><div className="dna-picker-heading"><h2>Your favorite music</h2><span>{profile.references.length} selected</span></div>
  <FavoriteSearch saved={profile.references} disabled={locked||!loaded} onSelect={addSong}/>
- <label>Singing language<select disabled={locked||!loaded} value={profile.vocalLanguage??'auto'} onChange={e=>{writable.current=true;setProfile({...profile,vocalLanguage:e.target.value});}}><option value="auto">Choose from my favorites</option>{Object.entries(languages.languages).map(([code,label])=><option key={code} value={code}>{label}</option>)}</select></label><details><summary>How language is chosen</summary><p>Automatic language follows your favorites, with a small boost for matching languages in your approximate country. English-only favorites stay English wherever you are. Choose a language above to keep it fixed.</p></details>
- <div className="dna-favorites">{[...new Set(profile.references)].map(reference=><fieldset key={reference}><legend>{reference}</legend>
-  <button className="secondary" disabled={locked} aria-label={`Remove favorite ${reference}`} onClick={()=>remove(reference)}>Remove favorite</button>
-  <div className="product-actions"><a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(reference)}`} target="_blank" rel="noreferrer">Find on YouTube ↗</a><a href={`https://open.spotify.com/search/${encodeURIComponent(reference)}`} target="_blank" rel="noreferrer">Find on Spotify ↗</a></div>
- </fieldset>)}</div>
- {profile.references.length>0&&<div className="dna-summary"><h3>Your music DNA</h3><p>{taste.genres.length?taste.genres.map(g=>g.name).join(' · '):'We’ll look up the style of your favorites when you make your music.'}</p>
-  {direction&&<p><strong>Song direction: {direction.label}</strong> · {direction.energy}. Based on {direction.coverage} of {direction.total} favorites with recognized catalogue genres.</p>}
-  <details><summary>How we choose your sound</summary><p>We consider your whole list to choose a groove, instruments, mood and vocal delivery, then write original lyrics and music. The song’s direction will appear below while it is being made.</p><p>Catalogue genres and the model’s knowledge guide this interpretation. We don’t listen to or sample the original recordings, and unfamiliar names may not provide enough information.</p></details></div>}
+ <div className="dna-favorites">{[...new Set(profile.references)].map(reference=><div className="dna-favorite" role="group" aria-label={reference} key={reference}>
+  <span className="dna-favorite-icon" aria-hidden="true">♫</span><strong>{reference}</strong><button className="secondary" disabled={locked} aria-label={`Remove favorite ${reference}`} onClick={()=>remove(reference)}>×</button>
+  <details><summary>Listen elsewhere</summary><div className="product-actions"><a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(reference)}`} target="_blank" rel="noreferrer">Find on YouTube ↗</a><a href={`https://open.spotify.com/search/${encodeURIComponent(reference)}`} target="_blank" rel="noreferrer">Find on Spotify ↗</a></div></details>
+ </div>)}</div>
+ {!profile.references.length&&<div className="dna-empty"><span aria-hidden="true">♫ + ♫ + ♫</span><p>Add the music you keep coming back to.</p></div>}
+ <small className="dna-autosave">Favorites save on this device.</small>
+ </div><div className="dna-next-song">
+ <div className="dna-record-art" aria-hidden="true"><div className="demo-record"><span>J</span></div><div className="dna-sound-bars">{[28,52,36,72,96,60,40,80,56,32,64,40].map((height,i)=><i key={i} style={{height:height+'%'}}/>)}</div></div>
+ <div className="dna-summary"><h3>{profile.references.length?'Your music DNA':'Your next favorite?'}</h3>
+ {taste.genres.length?<div className="dna-genre-tags">{taste.genres.map(g=><span key={g.name}>{g.name}</span>)}</div>:<p>{profile.references.length?'We’ll find your sound from your list.':'An original song with AI vocals, inspired by your favorites.'}</p>}
+ {profile.references.length>0&&<details><summary>How we choose your sound</summary>{direction&&<p><strong>Song direction: {direction.label}</strong> · {direction.energy}. Based on {direction.coverage} of {direction.total} favorites with recognized catalogue genres.</p>}<p>We consider your whole list to choose a groove, instruments, mood and vocal delivery, then write original lyrics and music.</p><p>Catalogue genres and the model’s knowledge guide this interpretation. We don’t listen to or sample the original recordings, and unfamiliar names may not provide enough information.</p></details>}</div>
  <button ref={generationButton} className="primary" disabled={locked||!loaded||!profile.references.length} onClick={openPrompt}>{rendering?'Making your music…':takes.length?'Make another song':'Make my music'}</button>
  {rendering&&!promptOpen&&<button className="secondary" onClick={cancel}>Cancel composition</button>}
+ <small>One song each time · Ready in a few minutes</small>
+ <details className="dna-language"><summary>Song language <span>{(languages.languages as Record<string,string>)[profile.vocalLanguage??'auto']??'Automatic'}</span></summary>
+ <label>Singing language<select disabled={locked||!loaded} value={profile.vocalLanguage??'auto'} onChange={e=>{writable.current=true;setProfile({...profile,vocalLanguage:e.target.value});}}><option value="auto">Choose from my favorites</option>{Object.entries(languages.languages).map(([code,label])=><option key={code} value={code}>{label}</option>)}</select></label>
+ <details><summary>How language is chosen</summary><p>Automatic language follows your favorites, with a small boost for matching languages in your approximate country. English-only favorites stay English wherever you are. Choose a language above to keep it fixed.</p></details></details>
+ </div></div>
  {!promptOpen&&<p role="status">{message}</p>}
  <dialog ref={prompt} className="dna-generation-dialog" aria-labelledby="dna-generation-title" onCancel={event=>{event.preventDefault();void dismissPrompt();}} onClose={()=>{setPromptOpen(false);generationButton.current?.focus();}}>
  <h2 id="dna-generation-title">Make your song</h2><p>Choose who can listen before using your credits.</p><div className="product-controls">
@@ -160,12 +171,11 @@ export function TasteNotebook(){
  <div className="product-actions"><button className="primary" disabled={locked||(visibility==='public'&&!publicConsent)} onClick={generate}>{rendering?'Preparing your song…':`Generate song · ${generationPrice} ${generationPrice===1?'credit':'credits'}`}</button><button className="secondary" onClick={dismissPrompt}>{rendering?'Cancel composition':'Cancel'}</button></div>
  {promptOpen&&<p role="status">{message}</p>}
  </div></dialog>
- <p>Your favorites save automatically on this device. This local song preview takes several minutes. Playback starts only when you press Play.</p>
  {draft&&rendering&&<div><h3>{draft.title}</h3>{draft.favorites&&<p><strong>Making a song from:</strong> {draft.favorites.map(f=>f.reference).join(' · ')}</p>}<p>{draft.summary}</p></div>}
  {current.length>0&&<section aria-label="Songs for this list"><h3>Songs for this list</h3>{current.map(songCard)}</section>}
  {earlier.length>0&&<details><summary>Earlier songs and other lists ({earlier.length})</summary><p>These songs belong to the favorites shown with each player. Older takes have not passed the new style check.</p>{earlier.map(songCard)}</details>}
  {takes.length>0&&<p>Your latest two results appear here. Your account’s full collection is in Your songs below.</p>}
- <FeedbackSettings/>
+ <div className="dna-tools"><FeedbackSettings/>
  <details><summary>Saved favorites</summary>
   <button className="secondary" disabled={locked} onClick={clear}>Delete saved profile</button>
   <fieldset><legend>Optional account copy</legend><p><a href="/account/sign-in">Sign in</a> to keep your favorites on another device. Load an existing account list before updating it.</p><div className="product-actions"><button className="secondary" disabled={locked} onClick={()=>sync('GET')}>Load account profile</button><button className="secondary" disabled={locked} onClick={()=>sync('POST')}>Save preferences to account</button><button className="secondary" disabled={locked||revision===0} onClick={()=>sync('DELETE')}>Delete account profile</button></div></fieldset>
@@ -176,6 +186,6 @@ export function TasteNotebook(){
   <audio aria-label={`Listen to ${track.title}`} controls preload="none" src={track.audio} onPlay={event=>{document.querySelectorAll<HTMLAudioElement>('audio').forEach(audio=>{if(audio!==event.currentTarget)audio.pause();});}} onError={()=>setMessage('This preview could not load. Try again or open its source link.')} />
   <button className="secondary" disabled={locked} onClick={()=>addSong(`${track.title} — ${track.artist}`)}>Add {track.title} to favorites</button>
  </article>)}
- </details>
+ </details></div>
  </div></section>;
 }

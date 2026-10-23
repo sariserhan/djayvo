@@ -1,3 +1,7 @@
+## Music DNA visual workspace — 2026-10-22
+
+**PASS, local UI and rendered verification.** The Music DNA page now puts compact favorites beside a visual song panel and one main action. Genre tags replace the expanded explanation; language and listening links remain optional. All nine examples precede the account/community collections. Chromium/WebKit at 1280/390/320, saved favorites, language, feedback, generation confirmation, actual sample playback/download, 62 site tests and build/bundle checks pass. No deployment or new model execution; existing release/quality gates remain unchanged. [Report/evidence](music-dna-visual.md).
+
 ## Visual product discovery — 2026-10-22
 
 **PASS, local.** Five immediately visible product choices change a visual preview and clear action. Music DNA demonstrates favorites → actual song with explicit playback. Shared descriptions shrink from 143 to 51 words; feature and setup detail stays expandable. All five product entries and coming-soon discovery are simplified. Desktop/mobile Chromium/WebKit, existing song/search regressions, 62 tests, build and bundle pass. No deployment or new completion claim; visitor comprehension/conversion is unmeasured. [Report/evidence](visual-product-entry.md).

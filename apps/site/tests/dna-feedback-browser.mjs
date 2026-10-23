@@ -23,8 +23,9 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    const value=req.postDataJSON();writes.push(value);records.set(owner,value);return route.fulfill({json:{feedback:value}});
   });
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/music-dna');
+  await page.locator('.dna-language > summary').click();
   const language=page.getByRole('combobox',{name:'Singing language'});await language.waitFor();assert.equal(await language.locator('option').count(),51);
-  for(const code of ['es','ru','tr']){await language.selectOption(code);await page.waitForFunction(code=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).vocalLanguage===code,code);await page.reload();await language.waitFor();assert.equal(await language.inputValue(),code);}
+  for(const code of ['es','ru','tr']){await language.selectOption(code);await page.waitForFunction(code=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).vocalLanguage===code,code);await page.reload();await page.locator('.dna-language > summary').click();await language.waitFor();assert.equal(await language.inputValue(),code);}
   await page.getByRole('button',{name:'Make my music',exact:true}).click();await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:/^Generate song/}).click();await page.getByLabel('Play Fixture song 1',{exact:true}).waitFor();assert.equal(fixture.bodies[0].vocalLanguage,'tr');
   const group=page.getByRole('group',{name:'Song feedback',exact:true});await group.getByRole('button',{name:'Not for me',exact:true}).click();
   const personal=group.getByRole('checkbox',{name:'Use this feedback to shape my future songs'}),training=group.getByRole('checkbox',{name:'Allow this Jamloom song and my rating to help train the model'});

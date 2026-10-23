@@ -53,7 +53,7 @@ export function FavoriteSearch({saved,disabled,onSelect}:{saved:string[];disable
     <span className="dna-result-kind">{option.kind}</span><strong>{option.reference}</strong><span>{option.detail}{saved.includes(option.reference)?' · Already added':''}</span>
    </button>)}
   </div>}
-  <p id={`${id}-help`}>Find artists and songs with iTunes. Search text goes to Apple through Jamloom; genre labels help shape your music. No songs are downloaded.</p>
+  <p id={`${id}-help`}>Search via Apple iTunes. Names only; no songs imported.</p>
   {online&&<p role="status">{loading?'Searching iTunes…':remote.error||(remote.suggestions.length?'Results from iTunes and your local favorites.':'No online matches. Try another spelling or choose “Add by name”.')}</p>}
   <span className="dna-search-status" aria-live="polite">{expanded?`${matches.length} matching suggestions${typed&&options.length>matches.length?'; or add your own name':''}.`:''}</span>
  </div>;

@@ -31,11 +31,24 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   assert.equal((await page.goto(base+'/music-dna')).status(),200);assert.match(await page.title(),/Music DNA/);
   await page.getByRole('heading',{name:'Your favorite music'}).waitFor();
   const search=page.getByRole('combobox',{name:'Search artists or tracks'});
+  assert.equal(await page.getByRole('list',{name:'How Music DNA works'}).locator('li').count(),3);
+  assert.equal(await page.getByRole('button',{name:'Make my music',exact:true}).isDisabled(),true);
+  for(const width of [1280,390,320]){
+   await page.setViewportSize({width,height:900});await page.evaluate(()=>scrollTo(0,0));
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+   await page.screenshot({path:join(output,`${name}-empty-${width}.png`),fullPage:true});
+  }
+  await page.setViewportSize({width:1280,height:900});
   await search.fill('j');assert.ok(await page.getByRole('listbox',{name:'Matching artists and tracks'}).getByRole('option').count()>1);
   await search.fill('joth');assert.match(await page.getByRole('listbox',{name:'Matching artists and tracks'}).getByRole('option').first().innerText(),/Artist.*Joth/s);
   await search.press('Escape');assert.equal(await search.getAttribute('aria-expanded'),'false');
   await search.press('ArrowDown');assert.equal(await search.getAttribute('aria-expanded'),'true');await search.press('Enter');
   assert.equal(await page.getByRole('group',{name:'Joth',exact:true}).count(),1);
+  assert.equal(await page.locator('.dna-picker-heading').innerText(),'Your favorite music\n1 selected');
+  const favorite=page.getByRole('group',{name:'Joth',exact:true});
+  await favorite.getByText('Listen elsewhere',{exact:true}).click();
+  assert.equal(await favorite.getByRole('link',{name:'Find on Spotify ↗'}).getAttribute('href'),'https://open.spotify.com/search/Joth');
+  assert.equal(await favorite.getByRole('link',{name:'Find on YouTube ↗'}).getAttribute('href'),'https://www.youtube.com/results?search_query=Joth');
   await search.fill('joth');await search.press('Enter');assert.equal(await page.getByRole('group',{name:'Joth',exact:true}).count(),1);
   await page.getByRole('button',{name:'Remove favorite Joth',exact:true}).click();
   await search.fill('funkd');await page.getByRole('option',{name:/Track.*Funked Up/s}).click();
@@ -58,6 +71,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await page.getByText('Discover practice tracks',{exact:true}).click();
   assert.equal(await page.getByText('What would you like in your music?',{exact:true}).count(),0);
   assert.equal(await page.getByLabel('Preferred tempo:').count(),0);
+  await page.locator('.dna-language > summary').click();
   const language=page.getByRole('combobox',{name:'Singing language',exact:true});
   assert.equal(await language.inputValue(),'auto');
   await page.getByText('How language is chosen',{exact:true}).click();
@@ -105,7 +119,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await page.getByRole('button',{name:'Remove favorite Night set',exact:true}).click();await search.fill('Another song');await page.getByRole('option',{name:/Add by name/}).click();
   await page.reload();await page.getByRole('group',{name:'Another song',exact:true}).waitFor();
   await page.getByText('Saved favorites',{exact:true}).click();
-  await page.getByRole('button',{name:'Delete saved profile',exact:true}).click();assert.equal(await page.locator('.dna-favorites fieldset').count(),0);
+  await page.getByRole('button',{name:'Delete saved profile',exact:true}).click();assert.equal(await page.locator('.dna-favorite').count(),0);
   assert.equal(await page.evaluate(()=>localStorage.getItem('jamloom-taste-v1')),null);assert.ok(await page.getByRole('button',{name:'Make another song',exact:true}).isDisabled());assert.deepEqual(errors,[]);
   results.push({browser:name,status:'PASS',widths:[1280,390,320],search_typing_typo_keyboard_pointer_duplicates:'PASS',muted_catalogue_playback:'PASS',exclusive_audio:'PASS',automatic_favorites_only_composition:'PASS',plans,generation_transport:'fixture, not model execution',audio,autosave_metadata_removal:'PASS',axe_violations:0,console_errors:errors,expected_console:expectedConsole,human_listening:'NOT RUN'});
  }finally{await browser.close();}
