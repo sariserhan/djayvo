@@ -30,6 +30,13 @@ class MusicDnaSong(unittest.TestCase):
                      'lyrics': '\n'.join('['+s+']\n'+'New days bring us closer to the light\n'*4
                                          for s in ['Verse 1', 'Chorus', 'Verse 2', 'Bridge', 'Chorus', 'Outro'])}
 
+    def test_negative_style_exclusions_do_not_become_positive_instructions(self):
+        from music_dna_song import affirmative_sound
+        self.assertEqual(affirmative_sound('Heavy riffs. No soft elements or ambient textures. Live drums.','ambient'),'Heavy riffs. Live drums.')
+        self.assertEqual(affirmative_sound('Dark ambient synths.','ambient'),'Dark ambient synths.')
+        self.assertIn('ambient',affirmative_sound('No drums but ambient synths.','ambient'))
+        self.assertEqual(affirmative_sound('No guitar. Warm piano.','ambient'),'No guitar. Warm piano.')
+
     def test_structured_lyrics_own_the_headers_and_chorus_without_changing_words(self):
         from music_dna_song import structured_lyrics, song_sections
         parts={'verse_1':['İlk sabah evden yola çıkıyoruz','Eski yollar bize yeni kapılar açar','Sokak boyunca rüzgar bize eşlik eder','Günden güne daha güçlü yürüyoruz'],
@@ -336,6 +343,8 @@ class MusicDnaSong(unittest.TestCase):
             self.assertEqual(data['required_direction']['total'],51)
             candidate=copy.deepcopy(self.data)
             candidate['energy']='high'
+            candidate['instruments']=['synths']
+            candidate['direction_id']='pop'
             candidate['vocal_language']=data['requested_language']
             candidate['bpm']=data['required_sound']['bpm'][0]
             self.assertEqual(data['required_sound']['selected']['count'],31)
@@ -356,6 +365,8 @@ class MusicDnaSong(unittest.TestCase):
             self.assertIn('syncopated',plan['cases'][0]['song_caption'])
             self.assertEqual(plan['language']['counts'],{'en':20,'tr':31})
             self.assertEqual(plan['direction']['total'],51)
+            self.assertEqual(plan['direction']['id'],'soul')
+            self.assertIn(', '.join(direction_for(refs)['instruments']),plan['cases'][0]['song_caption'])
             self.assertEqual(len(plan['favorites']),51)
             self.assertEqual(len(plan['influences']),51)
             self.assertEqual(plan['direction']['families'][0]['count'],31)

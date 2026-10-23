@@ -33,3 +33,13 @@
 
 !scripts/song_duration.py
 !assets/manifests/song-durations.json
+
+!scripts/dna_sound.py
+
+!services/runpod/vocal-identity-requirements.txt
+!assets/manifests/vocal-identity-models.json
+!assets/singer-identities/
+!assets/singer-identities/*.wav
+!assets/singer-identities/manifest.json
+!assets/singer-identities/README.md
+!assets/manifests/dna-style-reviews.json

@@ -3,7 +3,7 @@ from importlib.util import find_spec
 from pathlib import Path
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
-from check_dna_audio import POLICY, assess, score_windows
+from check_dna_audio import POLICY, assess, score_windows, apply_style_review
 from dna_direction import direction_for
 
 class DnaAudio(unittest.TestCase):
@@ -29,6 +29,19 @@ class DnaAudio(unittest.TestCase):
         self.assertFalse(assess([[.1]*len(ids)]*4, 'heavy-rock')['accepted'])
         for scores in ([], [[float('nan')]*len(ids)]*4, [[.3]]*4):
             with self.assertRaises(ValueError):assess(scores, 'heavy-rock')
+
+    def test_explicit_human_style_review_only_applies_to_identical_audio_and_style(self):
+        import json
+        root=Path(__file__).resolve().parents[1]
+        reviewed=json.loads((root/'assets/manifests/dna-style-reviews.json').read_text())['reviews'][0]
+        owner=json.loads((root/'docs/evidence/song-validation/owner-listening.json').read_text())['germanJazzBackingReview']
+        self.assertEqual(reviewed['audio_sha256'],owner['audioSha256'])
+        self.assertEqual(reviewed['statement'],owner['statement'])
+        report={'accepted':False,'target':'jazz','audio_sha256':reviewed['audio_sha256'],'limit':'Automated check','matching_windows':0}
+        result=apply_style_review(report)
+        self.assertTrue(result['accepted']);self.assertFalse(result['automated_accepted']);self.assertEqual(result['matching_windows'],0)
+        for changed in ({'target':'rock'},{'audio_sha256':'0'*64}):
+            self.assertFalse(apply_style_review({**report,**changed})['accepted'])
 
     def test_catalogue_direction_uses_whole_list_and_not_order(self):
         refs = [{'reference': str(i), 'catalogue_genre': genre} for i,genre in enumerate(['Alternative','Hard Rock','Metal'])]

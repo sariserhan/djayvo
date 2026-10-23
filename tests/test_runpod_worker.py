@@ -27,6 +27,21 @@ class WorkerTests(unittest.TestCase):
         self.job = {'id': 'a'*32, 'product': 'music-dna', 'timeout_seconds': 900, 'output_url': URL,
                     'payload': {'profile': {'references': ['Favorite — Artist'], 'referenceMetadata': [{'reference': 'Favorite — Artist', 'genre': 'Soul'}]}, 'seed': 4}}
 
+    def test_worker_build_context_includes_every_explicit_copy_source(self):
+        import fnmatch, shlex
+        rules=(ROOT/'services/runpod/Dockerfile.dockerignore').read_text().splitlines()
+        for line in (ROOT/'services/runpod/Dockerfile').read_text().splitlines():
+            if not line.startswith('COPY '):continue
+            for source in shlex.split(line)[1:-1]:
+                included=True
+                for rule in rules:
+                    if not rule or rule.startswith('#'):continue
+                    pattern=rule.lstrip('!').rstrip('/')
+                    if fnmatch.fnmatch(source,pattern) or source.startswith(pattern+'/'):
+                        included=rule.startswith('!')
+                self.assertTrue(included,source+' excluded from the worker build')
+                self.assertTrue((ROOT/source).exists(),source+' missing')
+
     def test_whole_playlist_input_is_not_cut_to_twenty(self):
         job=copy.deepcopy(self.job)
         refs=[f'Günden Güne {i} — Sanatçı' for i in range(5000)]

@@ -1,3 +1,7 @@
+# Music DNA completion qualification — 2026-10-23
+
+**IN PROGRESS.** Remaining local fixes and reproducible checks are being completed. The explicit owner-reviewed jazz recording has an audio-bound human verdict; no general classifier calibration is claimed. The portable singer runtime and bounded hosted trial are prepared, with publication/paid execution still NOT RUN. [Report](music-dna-completion.md).
+
 ## Richer Music DNA sound profiles — 2026-10-23
 
 **PASS, implementation, automated checks and actual local model planning; release/listening NOT RUN.** Per-song sound interpretations now cover the full identified list, retain uncertainty and guide a compatible group of examples rather than an arbitrary sample. Tempo and singer captions carry that guidance into generation. Descriptions persist in existing private song plans and are reused only for the same owner/environment and matching model/schema/genre. No migration or external service is needed. The actual model described ten named multilingual songs and kept twenty generic controls unknown. Two plans reused all 30 descriptions in 33.6/59.5 seconds and selected different sound groups with matching singer captions. 57 Python tests, 30 site process/PostgreSQL tests and TypeScript pass. No new audio was rendered, no compute rented and nothing published. [Behavior, evidence and release limits](music-dna-sound-profiles.md).

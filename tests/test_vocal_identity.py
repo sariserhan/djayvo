@@ -6,9 +6,9 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from vocal_identity import cast_identity,validate_identity,mix_identity,finish_identity,IDENTITIES
 
 class IdentityTests(unittest.TestCase):
- def test_normal_casting_requires_local_opt_in(self):
+ def test_normal_casting_requires_explicit_opt_in(self):
   from singing_response import cast_singer_reference
-  for enabled,device,voice,converted in [('false','mps','male',False),('true','mps','male',True),('true','mps','female',True),('true','cuda','male',False)]:
+  for enabled,device,voice,converted in [('false','mps','male',False),('true','mps','male',True),('true','mps','female',True),('true','cuda','male',True)]:
    case={'seed':42,'voice':voice}
    with patch.dict(os.environ,{'JAMLOOM_VOCAL_IDENTITY_ENABLED':enabled}),patch('singing_response.inference_device',return_value=device):
     cast_singer_reference(case)
@@ -22,6 +22,20 @@ class IdentityTests(unittest.TestCase):
    self.assertTrue(identity['accepted'])
    self.assertEqual(identity['guidance'],qualified['inference_cfg_rate'])
    self.assertEqual(identity['sha256'],qualified['target_sha256'])
+
+ def test_packaged_references_match_approved_excerpts_and_original_sources(self):
+  from vocal_identity import REFERENCE_MANIFEST,ROOT
+  from singing_response import digest
+  refs=json.loads(REFERENCE_MANIFEST.read_text())['references']
+  approved=json.loads((ROOT/'docs/evidence/song-follow-through/stronger-guidance.json').read_text())['receipts']
+  approved+=[json.loads((ROOT/'docs/evidence/song-follow-through/singer-qualification.json').read_text())['fullReceipt']]
+  for row in approved:
+   evidence=row['vocal_identity'];key=evidence['id']
+   self.assertEqual(refs[key]['source_sha256'],evidence['target_sha256'])
+   self.assertEqual(digest(REFERENCE_MANIFEST.parent/(key+'.wav')),evidence['reference_sha256'])
+  for key,ref in refs.items():
+   self.assertEqual(ref['source_sha256'],IDENTITIES[key]['sha256'])
+   self.assertEqual(digest(REFERENCE_MANIFEST.parent/(key+'.wav')),ref['sha256'])
 
  def test_hard_parent_timeout_stops_conversion_child(self):
   child="import os,time;from vocal_identity import watch_parent;watch_parent(os.getppid());print('ready',flush=True);time.sleep(60)"

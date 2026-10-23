@@ -1,0 +1,32 @@
+{
+  "synthetic": true,
+  "source": "Pinned Kokoro-82M stock voices; original generated speech, not recordings of a person.",
+  "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+  "model_license": "Apache-2.0",
+  "references": {
+    "am_michael": {
+      "sha256": "cc192e2651bc081d869baf0bc5287d0fa6576022c2d7f879dbc682bab0832bcb",
+      "source_sha256": "8ecf79c848bc32c53d6df3312c577bda0b079d4703d20f98b0ac48da1b00b2b7",
+      "seconds": 6,
+      "sample_rate": 24000
+    },
+    "am_fenrir": {
+      "sha256": "e3f7104e196c1a50cbd8abc66dc9b8d52250b8e30f47f2aff219cdadd082fc35",
+      "source_sha256": "b46ca93f62f9fa4fe425ec42fe999e8e3d6a2cf3623786d1a360be1af2fddefd",
+      "seconds": 6,
+      "sample_rate": 24000
+    },
+    "af_bella": {
+      "sha256": "3bb1fb4c62997ca6d854c785f3a1c8951774bb05e9cd161bd760fae7a33dd26f",
+      "source_sha256": "22607aa317f7ee38a06cf09325b4da143823abd32656e42d289e0a79269cf741",
+      "seconds": 6,
+      "sample_rate": 24000
+    },
+    "af_nicole": {
+      "sha256": "303efbf1961ca95a479b4c784e05ad86147949d4b894b657732494452e676456",
+      "source_sha256": "ed32a03c4018b86f44752eb5d727bcd9e701bf1a4ff84c1513b4c21f9e7e87f7",
+      "seconds": 6,
+      "sample_rate": 24000
+    }
+  }
+}

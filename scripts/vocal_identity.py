@@ -17,6 +17,8 @@ IDENTITIES={
     'af_nicole':{'voice':'female','accepted':True,'guidance':1.2,'sha256':'ed32a03c4018b86f44752eb5d727bcd9e701bf1a4ff84c1513b4c21f9e7e87f7'},
 }
 CODE='51383efd921027683c89e5348211d93ff12ac2a8'
+REFERENCE_MANIFEST=ROOT/'assets/singer-identities/manifest.json'
+MODEL_MANIFEST=ROOT/'assets/manifests/vocal-identity-models.json'
 
 
 def watch_parent(parent):
@@ -74,13 +76,14 @@ def convert(output,identity):
     if receipt.get('source_conditioning') is not None or receipt['audio_sha256']!=digest(base):raise ValueError('Changed or non-original source')
     upstream=ROOT/'build-style-training/seed-vc';models=ROOT/'build-style-training/vocal-identity'
     if subprocess.check_output(['git','rev-parse','HEAD'],cwd=upstream,text=True).strip()!=CODE or subprocess.check_output(['git','diff','--name-only','HEAD'],cwd=upstream):raise ValueError('Voice runtime revision mismatch')
-    manifest=json.loads((ROOT/'docs/evidence/song-validation/vocal-identity-models.json').read_text())
+    manifest=json.loads((MODEL_MANIFEST).read_text())
     # Verify every local dependency, including files loaded directly by Transformers.
     for repo,entry in manifest.items():
         for name,info in entry['files'].items():
             if digest(models/repo.replace('/','--')/name)!=info['sha256']:raise ValueError('Voice model hash mismatch')
-    target=ROOT/'renders/voice-identity'/f'{identity}.wav'
-    if digest(target)!=IDENTITIES[identity]['sha256']:raise ValueError('Singer target changed')
+    target=ROOT/'assets/singer-identities'/f'{identity}.wav'
+    reference_info=json.loads(REFERENCE_MANIFEST.read_text())['references'][identity]
+    if reference_info['source_sha256']!=IDENTITIES[identity]['sha256'] or digest(target)!=reference_info['sha256']:raise ValueError('Singer target changed')
     stems=output/'identity-stems';separation=json.loads((stems/'complete.json').read_text())
     if separation['source_sha256']!=digest(base) or separation['stems']['vocals']!=digest(stems/'vocals.npy'):raise ValueError('Changed separated voice')
     original,rate=sf.read(base,dtype='float32');stem=np.load(stems/'vocals.npy',allow_pickle=False)
@@ -114,10 +117,10 @@ def convert(output,identity):
     vocal,rate=sf.read(wavs[0])
     if rate!=44100:raise ValueError('Unexpected conversion rate')
     mix,balance=mix_identity(original,stem,vocal)
-    if receipt['audio_sha256']!=digest(base) or digest(target)!=IDENTITIES[identity]['sha256']:raise ValueError('Conversion inputs changed')
+    if receipt['audio_sha256']!=digest(base) or digest(target)!=reference_info['sha256']:raise ValueError('Conversion inputs changed')
     dest=output/'singer.wav';sf.write(dest,mix,48000,subtype='PCM_16')
     report={**receipt,'audio_sha256':digest(dest),'peak':float(np.max(np.abs(mix))),'rms':float(np.sqrt(np.mean(mix**2))),
-        'vocal_identity':{'id':identity,'code':CODE,'target_sha256':digest(target),'base_audio_sha256':receipt['audio_sha256'],'models_manifest_sha256':digest(ROOT/'docs/evidence/song-validation/vocal-identity-models.json'),
+        'vocal_identity':{'id':identity,'code':CODE,'target_sha256':digest(target),'target_source_sha256':reference_info['source_sha256'],'base_audio_sha256':receipt['audio_sha256'],'models_manifest_sha256':digest(MODEL_MANIFEST),
             'inference_cfg_rate':args.inference_cfg_rate,'reference_seconds':len(reference)/reference_rate,'reference_sha256':digest(work/'reference.wav'),'pitch_shift':0,'auto_pitch_adjust':False,'seconds':time.monotonic()-started,**balance,'listening':'NOT RUN for this song'}}
     (output/'complete.json').write_text(json.dumps(report,indent=2)+'\n');(output/'.partial').unlink()
 
@@ -131,7 +134,9 @@ def finish_identity(output,identity=None):
     (output/'.partial').touch();(output/'complete.json').rename(output/'base.complete.json');(output/'singer.wav').rename(output/'base.wav')
     from separate_singer import separate
     separate(output/'base.wav',output/'identity-stems')
-    args=[str(ROOT/'.venv-vocal-identity/bin/python'),str(Path(__file__).resolve()),'--output',str(output.resolve()),'--identity',identity,'--parent-pid',str(os.getpid())]
+    python=ROOT/'.venv-vocal-identity/bin/python'
+    if not python.is_file():raise ValueError('Singer identity runtime is unavailable')
+    args=[str(python),str(Path(__file__).resolve()),'--output',str(output.resolve()),'--identity',identity,'--parent-pid',str(os.getpid())]
     child=subprocess.Popen(args,env={**os.environ,'HF_HUB_OFFLINE':'1','HF_HUB_DISABLE_TELEMETRY':'1'})
     try:
         if child.wait(timeout=720):raise RuntimeError('Singer identity conversion failed')

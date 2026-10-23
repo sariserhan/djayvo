@@ -74,6 +74,19 @@ def score_audio(path, auditor=None):
     return score_windows(windows, auditor or load_auditor())
 
 
+def apply_style_review(report):
+    reviews=json.loads((ROOT/'assets/manifests/dna-style-reviews.json').read_text())
+    if reviews.get('version')!=1:raise ValueError('Unsupported style review version')
+    matching=[r for r in reviews['reviews'] if r['audio_sha256']==report.get('audio_sha256') and r['target']==report['target']]
+    if len(matching)>1:raise ValueError('Conflicting style reviews')
+    if not matching:return report
+    review=matching[0]
+    if type(review.get('accepted')) is not bool or not review.get('statement') or not review.get('evidence'):
+        raise ValueError('Invalid human style review')
+    return {**report,'automated_accepted':report['accepted'],'accepted':review['accepted'],'style_review':review,
+            'limit':report['limit']+' The exact recording has a human backing-style verdict; original automated evidence is retained.'}
+
+
 def check(work):
     request = json.loads((work/'input.json').read_text())
     plan = json.loads((work/'plan.json').read_text())
@@ -85,6 +98,7 @@ def check(work):
         raise ValueError('Song evidence does not belong to its saved favorites')
     report = {**assess(score_audio(work/'singer/singer.wav'), direction['id']), **hashes,
               'model_revision': MANIFEST['revision'], 'direction_version': POLICY['version'], 'screen_version': 1}
+    report=apply_style_review(report)
     with (work/'fit.json').open('x') as output:json.dump(report, output, indent=2)
     return report
 
