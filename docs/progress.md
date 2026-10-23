@@ -1,6 +1,6 @@
 # Music DNA completion qualification — 2026-10-23
 
-**PARTIAL.** Local matching, request/result limits, worker packaging and exact human-reviewed jazz handling are implemented. PASS: 59 site tests, TypeScript, 67 Python checks and desktop/mobile playlist browser regression. The owner approved worker publication and the bounded $3/two-song trial; its Linux build is running. Real local inference is also running. General checker calibration and new-song listening are not claimed. [Report](music-dna-completion.md).
+**PARTIAL.** Local matching, request/result limits, worker packaging and exact human-reviewed jazz handling are implemented. PASS: 59 site tests, TypeScript, 67 Python checks and desktop/mobile playlist browser regression. The owner approved worker publication and the bounded $3/two-song trial; its Linux build is running. The real 140-second local song/credit/privacy flow passed in 776.4 seconds, and its public R2 sample passes checksum/range playback. General checker calibration and new-song listening are not claimed. [Report](music-dna-completion.md).
 
 ## Richer Music DNA sound profiles — 2026-10-23
 
