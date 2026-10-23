@@ -59,6 +59,10 @@ test('real Postgres Music DNA credits, privacy, idempotence, failure and recover
    assert.deepEqual(await restarted.trackProfiles('sound',profile),[]);
    await pool.query('UPDATE dna_song_jobs SET song_plan=$2 WHERE id=$1',[job,JSON.stringify({track_profiles:[{...track,unavailable:true}]})]);
    assert.deepEqual(await restarted.trackProfiles('sound',profile),[]);
+   const many=Array.from({length:1500},(_,i)=>({...track,reference:`Saved favorite ${i}`,detail:'x'.repeat(3000)}));
+   await pool.query('UPDATE dna_song_jobs SET song_plan=$2 WHERE id=$1',[job,JSON.stringify({track_profiles:many})]);
+   const bounded=await restarted.trackProfiles('sound',{references:many.map(t=>t.reference)});
+   assert.ok(bounded.length>0&&bounded.length<many.length);assert.ok(Buffer.byteLength(JSON.stringify(bounded))<=4*1024*1024);
    await pool.query('UPDATE dna_song_jobs SET song_plan=$2 WHERE id=$1',[job,JSON.stringify({track_profiles:{bad:true}})]);
    assert.deepEqual(await restarted.trackProfiles('sound',profile),[]);
   });

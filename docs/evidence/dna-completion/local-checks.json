@@ -1,0 +1,59 @@
+{
+  "site": {
+    "passed": 59,
+    "failed": 0,
+    "typecheck": "PASS"
+  },
+  "python": {
+    "dna": 40,
+    "vocalIdentity": 7,
+    "worker": 12,
+    "singer": 8
+  },
+  "browser": [
+    {
+      "browser": "chromium",
+      "width": 1280,
+      "status": "PASS",
+      "wholePlaylist": 53,
+      "matched": 52,
+      "lateMetalSongs": 32,
+      "pages": 2,
+      "automaticImport": true,
+      "duplicateImport": true,
+      "unmatchedReview": true,
+      "cancelAndFailurePreserveFavorites": true,
+      "fullGenerationPayload": true,
+      "reload": true,
+      "a11y": true,
+      "transport": "fixtures; no song generation"
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "status": "PASS",
+      "wholePlaylist": 53,
+      "matched": 52,
+      "lateMetalSongs": 32,
+      "pages": 2,
+      "automaticImport": true,
+      "duplicateImport": true,
+      "unmatchedReview": true,
+      "cancelAndFailurePreserveFavorites": true,
+      "fullGenerationPayload": true,
+      "reload": true,
+      "a11y": true,
+      "transport": "fixtures; no song generation"
+    }
+  ],
+  "scope": "Automated tests and fixture browser flows; separate real inference and hosted trial receipts required",
+  "humanReviewUI": {
+    "status": "PASS",
+    "path": "/listening",
+    "language": "de",
+    "genre": "jazz",
+    "sample": "c0dbba",
+    "title": "Die Nacht im Kellerraum",
+    "humanReviewDistinctFromAutomated": true
+  }
+}

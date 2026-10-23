@@ -57,3 +57,13 @@ test('only status 404 is an expired-receipt candidate; a submit 404 remains unco
  await assert.rejects(provider.status('job-1'),RunpodMissingJob);
  await assert.rejects(provider.submit(job),/unconfirmed/);
 });
+
+test('whole playlists and cached descriptions pass a bounded provider request',async()=>{
+ let calls=0;
+ const provider=new RunpodProvider('secret','endpoint',async()=>{calls++;return Response.json({id:'large-job',status:'IN_QUEUE'});});
+ const payload={profile:{references:Array.from({length:5000},(_,i)=>`Long multilingual favorite ${i} — Musician`)}};
+ assert.ok(Buffer.byteLength(JSON.stringify(payload))>131072);
+ assert.equal((await provider.submit({...job,payload})).id,'large-job');
+ await assert.rejects(provider.submit({...job,payload:{extra:'x'.repeat(10_000_000)}}),/Invalid Runpod job/);
+ assert.equal(calls,1);
+});

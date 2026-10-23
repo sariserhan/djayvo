@@ -56,7 +56,7 @@ test('whole playlist covers late genre majority, retries quota, and keeps unmatc
   return Response.json({suggestions:i===74?[]:[{reference,kind:'Track',metadata:{reference,genre:i<20?'Pop':'Metal',source:'itunes',id:i+1}}]});
  };
  const result=await playlistTaste(link,new AbortController().signal,()=>{},request,async()=>{waits++;});
- assert.equal(pages,2);assert.equal(waits,1);assert.equal(checked.length,75);assert.equal(result.songs.length,74);assert.equal(result.unmatched.length,1);assert.equal(result.skipped,2);
+ assert.equal(pages,2);assert.equal(waits,1);assert.equal(checked.length,76);assert.equal(result.songs.length,74);assert.equal(result.unmatched.length,1);assert.equal(result.skipped,2);
  const profile=validateTaste({...emptyTaste,references:result.songs.map(s=>s.reference),referenceMetadata:result.songs.map(s=>s.metadata!)});
  const payload=songInput(JSON.parse(JSON.stringify(profile)));assert.equal(payload.references.length,74);assert.equal(musicDirection(payload)?.id,'heavy-rock');assert.equal(musicDirection(payload)?.total,74);
 });
@@ -84,4 +84,38 @@ test('official-video labels in different languages are removed, but live/remix i
  const {playlistQuery}=await import('../lib/playlist-match');
  for(const tag of ['(Video Oficial)','( Video Lyric )','[Resmi Klip]','(Clip Officiel)','(Официальный клип)'])assert.equal(playlistQuery('Artist - Song '+tag),'Artist - Song');
  assert.equal(playlistQuery('Artist - Song (Live Acoustic)'),'Artist - Song (Live Acoustic)');
+});
+
+test('matching removes video formatting and VEVO channel suffixes without stripping musical versions',async()=>{
+ const {playlistQuery,playlistSearchQuery}=await import('../lib/playlist-match');
+ assert.equal(playlistSearchQuery('Halo','BeyoncéVEVO'),'Beyoncé - Halo');
+ assert.equal(playlistQuery('Artist - Song (Visualizer)'),'Artist - Song');
+ assert.equal(playlistQuery('Artist - Song Official Performance Video'),'Artist - Song');
+ for(const version of ['(Remix)','(Live)','(Acoustic)','(Sped Up)','(Instrumental)','(From The Vault)'])assert.equal(playlistQuery('Artist - Song '+version),'Artist - Song '+version);
+});
+
+test('omitted guest credits only match an unambiguous exact title and primary artist',async()=>{
+ const {exactPlaylistMatch}=await import('../lib/playlist-match');
+ const song=(reference:string)=>({reference,kind:'Track' as const,detail:'iTunes',metadata:{reference,genre:'Hip-Hop/Rap',source:'itunes' as const,id:1}});
+ const original=song('Everybody (feat. Lil Uzi Vert) — Nicki Minaj');
+ assert.equal(exactPlaylistMatch('Nicki Minaj - Everybody',[original]),original);
+ assert.equal(exactPlaylistMatch('Nicki Minaj - Everybody',[original,song('Everybody (feat. Other) — Nicki Minaj')]),undefined);
+ assert.equal(exactPlaylistMatch('Nicki Minaj - Everybody (Live)',[original]),undefined);
+ assert.equal(exactPlaylistMatch('Other Artist - Everybody',[original]),undefined);
+ assert.equal(exactPlaylistMatch('Everybody',[original]),undefined);
+});
+
+test('equivalent catalogue genre labels and bracketed guest-credit wording preserve song identity',async()=>{
+ const {exactPlaylistMatch}=await import('../lib/playlist-match');
+ const song={reference:'Song (with Guest) — Artist',kind:'Track' as const,detail:'iTunes',metadata:{reference:'Song (with Guest) — Artist',genre:'Hip-Hop/Rap',source:'itunes' as const,id:1}};
+ assert.equal(exactPlaylistMatch('Artist - Song (feat. Guest)',[song,{...song,metadata:{...song.metadata,genre:'Rap'}}]),song);
+ assert.equal(exactPlaylistMatch('Artist - Song (feat. Other Guest)',[song]),undefined);
+});
+
+test('a title-only fallback still validates the original full song identity',async()=>{
+ const {playlistLookupQueries,exactPlaylistMatch}=await import('../lib/playlist-match');
+ assert.deepEqual(playlistLookupQueries('BELLAKEO (Video Oficial) - Peso Pluma, Anitta','Peso Pluma'),['BELLAKEO - Peso Pluma, Anitta','BELLAKEO']);
+ assert.deepEqual(playlistLookupQueries('Artist - Song (Live)','ArtistVEVO'),['Artist - Song (Live)','Song (Live)']);
+ const song={reference:'Song — Different Artist',kind:'Track' as const,detail:'iTunes',metadata:{reference:'Song — Different Artist',genre:'Pop',source:'itunes' as const,id:1}};
+ assert.equal(exactPlaylistMatch('Artist - Song',[song]),undefined);
 });

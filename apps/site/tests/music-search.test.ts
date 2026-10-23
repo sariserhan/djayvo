@@ -53,3 +53,19 @@ test('search route rejects malformed, oversized and cross-site requests without 
  assert.equal(response.headers.get('cache-control'),'private, no-store');assert.deepEqual(await response.json(),{suggestions:[]});
  const proxied=await POST(new Request('http://localhost:4247/api/music-search',{method:'POST',headers:{origin:'http://127.0.0.1:4247',host:'127.0.0.1:4247'},body:'{"query":"b"}'}));assert.equal(proxied.status,200);
 });
+
+test('playlist matching searches the full song catalogue separately from short autocomplete',async()=>{
+ const rows=Array.from({length:100},(_,i)=>({wrapperType:'track',kind:'song',trackName:`Song ${i}`,artistName:'Artist',trackId:i+1,primaryGenreName:'Pop'}));
+ let calls=0;
+ const search=new MusicSearch(async(input)=>{
+  const url=new URL(String(input));calls++;
+  assert.equal(url.searchParams.get('entity'),calls===1?'musicArtist,song':'song');
+  assert.equal(url.searchParams.get('limit'),calls===1?'20':'100');
+  return Response.json({results:rows});
+ });
+ assert.equal((await search.search('artist')).length,8);
+ assert.equal((await search.search('artist',true)).length,100);
+ await search.search('artist',true);assert.equal(calls,2);
+ const {exactPlaylistMatch}=await import('../lib/playlist-match');
+ assert.equal(exactPlaylistMatch('Artist - Song 98',await search.search('artist',true))?.reference,'Song 98 — Artist');
+});

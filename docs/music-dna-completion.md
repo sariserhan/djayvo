@@ -2,7 +2,7 @@
 
 Owner scope: finish the remaining Music DNA work; Spotify will be supplied later.
 SoundCloud stays deferred if paid access is necessary. Website deployment remains
-owner-controlled. New paid execution and worker publication need explicit approval.
+owner-controlled. The owner subsequently approved the worker update and a $3, one-worker, 20-minute, two-song hosted test.
 
 ## Changes
 
@@ -14,7 +14,7 @@ owner-controlled. New paid execution and worker publication need explicit approv
   and conflicting catalogue genres still need review.
 - The website's 128 KB Runpod submission limit was inconsistent with large-list
   support. Requests now respect the documented 10 MB asynchronous API limit,
-  including its envelope. Owner-private cached descriptions are capped at 4 MiB
+  including its envelope. The worker result budget now permits whole-playlist plans (12 MiB bounded result inside the client's 16 MiB response limit). Owner-private cached descriptions are capped at 4 MiB
   to leave room for the full profile; no favorites are removed. New worker build
   checks caught the missing `dna_sound.py` Docker-context allowlist entry.
 - Authoritative genre/instrument fields are filled by the application, rather
@@ -43,10 +43,10 @@ IN PROGRESS: actual whole-playlist rescan, local request-to-song/TEST-ledger
 rehearsal, browser regressions and final scoped checks. Evidence will be updated
 when those runs finish. No new database migration is needed.
 
-## Prepared hosted qualification (approval required)
+## Approved hosted qualification
 
 `apps/site/scripts/cloud-song-trial.ts --dna-completion` is dry-run by default.
-After approval, publish the reviewed worker through the existing GitHub image
+The owner approved this exact test. Publish the reviewed worker through the existing GitHub image
 workflow; use its immutable digest on the disabled Jamloom endpoint and enable
 `JAMLOOM_VOCAL_IDENTITY_ENABLED=true` for this trial.
 

@@ -1,6 +1,6 @@
 import type {PlaylistItem} from './playlist-import';
 import type {TasteSuggestion} from './taste-catalogue';
-import {exactPlaylistMatch,playlistQuery} from './playlist-match';
+import {exactPlaylistMatch,playlistQuery,playlistSearchQuery,playlistLookupQueries} from './playlist-match';
 import {MAX_FAVORITES} from './taste-limits';
 export type PlaylistProgress={phase:'reading'|'matching'|'waiting';read:number;checked:number;matched:number};
 const wait=(ms:number,signal:AbortSignal)=>new Promise<void>((resolve,reject)=>{
@@ -32,11 +32,14 @@ export async function playlistTaste(url:string,signal:AbortSignal,progress:(valu
  // Respect the catalogue's provider budget; a busy response waits and retries instead of losing later songs.
  for(const item of items.values()){
   signal.throwIfAborted();update('matching');
-  const title=playlistQuery(item.title),withArtist=item.artist&&!/\s[-—–]\s/.test(title)&&!title.toLocaleLowerCase().includes(item.artist.toLocaleLowerCase())?`${item.artist} - ${title}`:title;
-  const query=withArtist.length<=160?withArtist:title;
-  const data=await post('/api/music-search',{query});
-  if(!Array.isArray(data.suggestions))throw Error('Song matching is temporarily unavailable. Your favorites have not changed.');
-  const match=exactPlaylistMatch(title,data.suggestions)??exactPlaylistMatch(query,data.suggestions);
+  const title=playlistQuery(item.title),query=playlistSearchQuery(item.title,item.artist);
+  let match:TasteSuggestion|undefined;
+  for(const search of playlistLookupQueries(item.title,item.artist)){
+   const data=await post('/api/music-search',{query:search,tracksOnly:true});
+   if(!Array.isArray(data.suggestions))throw Error('Song matching is temporarily unavailable. Your favorites have not changed.');
+   match=exactPlaylistMatch(title,data.suggestions)??exactPlaylistMatch(query,data.suggestions);
+   if(match)break;
+  }
   if(match){const key=match.reference.normalize('NFKC').toLowerCase();if(matches.has(key))skipped++;else matches.set(key,match);}else unmatched.push(item);
   checked++;update('matching');
  }

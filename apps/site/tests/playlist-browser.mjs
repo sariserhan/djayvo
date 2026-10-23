@@ -27,7 +27,7 @@ for(const [name,engine,width] of [['chromium',chromium,1280],['webkit',webkit,39
   await page.getByText('YouTube connection is not available here yet. Search for your favorites below.',{exact:true}).waitFor();
   const use=page.getByRole('button',{name:'Use this playlist',exact:true}),picker=page.locator('.dna-playlist-picker');assert(await use.isDisabled());
   mode='ok';await page.reload();await page.getByText('Use a playlist',{exact:true}).click();await page.getByLabel('YouTube playlist link').fill('https://www.youtube.com/playlist?list=PL1234567890');await use.click();
-  await picker.getByText(/Checked 53 available playlist entries/).waitFor();assert.equal(pages,2);assert.equal(checks,53);
+  await picker.getByText(/Checked 53 available playlist entries/).waitFor();assert.equal(pages,2);assert.equal(checks,54);
   let saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')));assert.equal(saved.references.length,52);assert.equal(saved.referenceMetadata.filter(m=>m.genre==='Metal').length,32);assert.equal(await page.getByRole('button',{name:/Remove favorite /}).count(),12);
   await page.getByText('How we choose your sound',{exact:true}).click();await page.getByText(/Based on 52 of 52 favorites/).waitFor();
   await picker.getByText('1 song needs a match',{exact:true}).click();await picker.getByRole('button',{name:'Find song',exact:true}).click();assert.equal(await page.getByRole('combobox',{name:'Search artists or tracks'}).inputValue(),'Test song 52 — Test artist');

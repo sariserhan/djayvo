@@ -35,7 +35,7 @@ export class RunpodProvider{
  async submit(job:RunpodJob):Promise<RunpodResult>{
   if(!/^[a-f0-9]{32}$/.test(job.id)||!['music-dna','improvise'].includes(job.product)||
     !Number.isInteger(job.timeout_seconds)||job.timeout_seconds<5||job.timeout_seconds>900||
-    Buffer.byteLength(JSON.stringify(job))>131072||job.ttl_seconds!==undefined&&(!Number.isInteger(job.ttl_seconds)||job.ttl_seconds<job.timeout_seconds||job.ttl_seconds>1800))throw Error('Invalid Runpod job');
+    Buffer.byteLength(JSON.stringify({input:job,policy:{executionTimeout:job.timeout_seconds*1000,ttl:(job.ttl_seconds??1800)*1000}}))>10_000_000||job.ttl_seconds!==undefined&&(!Number.isInteger(job.ttl_seconds)||job.ttl_seconds<job.timeout_seconds||job.ttl_seconds>1800))throw Error('Invalid Runpod job');
   // A lost POST response may already have started paid work. Never retry submission here.
   return this.result(await this.api('run','POST',{input:job,policy:{executionTimeout:job.timeout_seconds*1000,ttl:(job.ttl_seconds??1800)*1000}}));
  }

@@ -15,7 +15,7 @@ test('test songs expose only published audio and label unaccepted takes without 
  assert.deepEqual(data.songs,validationSongs);assert.equal(data.feedbackAvailable,false);assert.equal(calls.length,0);
  assert.ok(validationSongs.length>0);
  for(const song of validationSongs){
-  assert.ok(['passed','style-mismatch','not-checked'].includes(song.check));
+  assert.ok(['owner-reviewed','passed','style-mismatch','not-checked'].includes(song.check));
   assert.ok(!('audio' in song)&&!('favorites' in song));
   const audio=await dnaExample(new Request(base+`?id=${song.id}&file=audio`),store);assert.equal(audio?.status,307);
   assert.deepEqual(calls.at(-1),[musicAudioKey(song.product,'public',song.id,song.audioSha256),false,900]);
@@ -58,4 +58,9 @@ test('R2 sample grants preserve the default private-audio lifetime and allow lon
   assert.equal(url.searchParams.get('X-Amz-Expires'),String(seconds??60));
   assert.match(url.searchParams.get('response-content-disposition')!,download?/attachment/:/inline/);
  }
+});
+
+test('the explicit jazz review is shown as a human verdict rather than an automated pass',()=>{
+ const reviewed=validationSongs.filter(s=>s.check==='owner-reviewed');
+ assert.equal(reviewed.length,1);assert.equal(reviewed[0].audioSha256,'c0dbbabab04353d94c16714767553bbd6579d018031be7ee3b298c5d4c610560');assert.equal(reviewed[0].direction,'jazz');
 });

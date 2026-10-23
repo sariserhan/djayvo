@@ -1,6 +1,6 @@
 # Music DNA completion qualification — 2026-10-23
 
-**IN PROGRESS.** Remaining local fixes and reproducible checks are being completed. The explicit owner-reviewed jazz recording has an audio-bound human verdict; no general classifier calibration is claimed. The portable singer runtime and bounded hosted trial are prepared, with publication/paid execution still NOT RUN. [Report](music-dna-completion.md).
+**PARTIAL.** Local matching, request/result limits, worker packaging and exact human-reviewed jazz handling are implemented. PASS: 59 site tests, TypeScript, 67 Python checks and desktop/mobile playlist browser regression. The owner approved worker publication and the bounded $3/two-song trial; its Linux build is running. Real local inference is also running. General checker calibration and new-song listening are not claimed. [Report](music-dna-completion.md).
 
 ## Richer Music DNA sound profiles — 2026-10-23
 

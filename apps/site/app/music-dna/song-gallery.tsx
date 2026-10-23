@@ -2,7 +2,7 @@
 import {useEffect,useRef,useState} from 'react';
 import {SongFeedback} from './song-feedback';
 import languages from '../../../../assets/manifests/dna-languages.json';
-type Entry={id:string;title:string;language:string;direction?:string;historical?:boolean;visibility?:string;withdrawn_at?:string;check?:'passed'|'style-mismatch'|'not-checked';product?:string};
+type Entry={id:string;title:string;language:string;direction?:string;historical?:boolean;visibility?:string;withdrawn_at?:string;check?:'owner-reviewed'|'passed'|'style-mismatch'|'not-checked';product?:string};
 export function SongGallery({scope,title,product='music-dna'}:{scope:'examples'|'mine'|'public'|'validation'|'showcase';title:string;product?:'music-dna'|'improvise'}){
  const curated=scope==='validation'||scope==='showcase';
  const paginated=curated||scope==='examples';
@@ -71,7 +71,7 @@ export function SongGallery({scope,title,product='music-dna'}:{scope:'examples'|
   {filterable&&scope!=='public'&&<p role="status">{filtered.length?`${filtered.length} songs`:songs.length?'No songs match these filters.':''}</p>}
   {pagination('top')}
   <div ref={grid} className={`dna-song-grid${paginated?' song-paged-grid':''}`} aria-busy={busy} hidden={scope==='public'&&busy}>{displayed.map(song=><article key={song.id}><h3>{song.title}</h3><p>{(languages.languages as Record<string,string>)[song.language]??song.language}{song.direction?' · '+song.direction:''}{scope==='mine'?' · '+(song.withdrawn_at?'Removed from public page':song.visibility):''}</p>
-   {scope==='validation'&&song.check&&<p>Sample {song.id.slice(0,6)} · {song.product==='improvise'?'Improvise':'Music DNA'} · {song.check==='passed'?'Passed automated style check':song.check==='style-mismatch'?'Flagged by automated style check':'Test take · style not verified'}. Automated checks can be wrong; they do not judge lyrics or singing.</p>}
+   {scope==='validation'&&song.check&&<p>Sample {song.id.slice(0,6)} · {song.product==='improvise'?'Improvise':'Music DNA'} · {song.check==='owner-reviewed'?'Backing style approved by a listener':song.check==='passed'?'Passed automated style check':song.check==='style-mismatch'?'Flagged by automated style check':'Test take · style not verified'}. Automated checks can be wrong; they do not judge lyrics or singing.</p>}
    {song.historical&&<p>Earlier experiment · style match not checked.</p>}
    <audio controls preload="none" aria-label={`Listen to ${song.title}`} src={`${endpoint}?id=${song.id}&file=audio`} onPlay={event=>document.querySelectorAll('audio').forEach(audio=>{if(audio!==event.currentTarget)audio.pause();})}/>
    <div className="product-actions"><a className="secondary" href={`${endpoint}?id=${song.id}&file=audio&download=1`} download>Download song</a>

@@ -56,7 +56,10 @@ export class DnaCommerce{
    FROM recent CROSS JOIN LATERAL jsonb_array_elements(song_plan->'track_profiles') AS entry
    WHERE entry->>'reference'=ANY($3::text[]) AND entry->>'unavailable' IS DISTINCT FROM 'true' AND octet_length(entry::text)<=4096
    ORDER BY entry->>'reference',entry->>'catalogue_genre',created_at DESC,id DESC LIMIT 5000`,[owner,!!this.options.live,profile.references]);
-  return rows.rows.map(row=>row.entry);
+  // Leave room for the whole profile inside Runpod's 10 MB request limit.
+  let bytes=2;const entries:unknown[]=[];
+  for(const row of rows.rows){const size=Buffer.byteLength(JSON.stringify(row.entry))+1;if(bytes+size>4*1024*1024)break;entries.push(row.entry);bytes+=size;}
+  return entries;
  }
  async start(id:string){return !!(await this.pool.query(`UPDATE dna_song_jobs d SET state='running',started_at=now()
   FROM credit_wallets w,"user" u WHERE d.id=$1 AND d.product=$2 AND d.billing_live=$3 AND d.state='queued' AND w.owner_id=d.owner_id AND NOT w.frozen AND u.id=d.owner_id AND NOT u.suspended RETURNING d.id`,[id,this.product,!!this.options.live])).rowCount;}
