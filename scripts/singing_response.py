@@ -15,6 +15,7 @@ from dna_language import language, lyric_units, validate_script
 MAX_PHRASE_CHARS = 32000
 CODE_REVISION = 'ca1e85fe9430179831e6bc6be790c332190a3866'
 WEIGHT_REVISION = '19671f406d603126926c1b7e2adc169acbcade22'
+ROOT = Path(__file__).resolve().parents[1]
 STYLES = {
     'reggae': (84, 'laid-back reggae, offbeat muted guitar, warm rounded electric bass, live one-drop drums, organ replies'),
     'hiphop': (94, 'soulful hip-hop, swung live drums, warm Rhodes, melodic bass, short guitar answers'),
@@ -294,13 +295,35 @@ def source_conditioning(path):
     return c
 
 
-def sing(root, plan_path, output, case_id, conditioning_path=None):
+def generated_vocal_reference(folder):
+    """Local research only: use a receipt-bound synthetic singer, never a favorite track."""
+    from arrange_voice_research import read_pcm
+    folder=Path(folder).resolve()
+    audio=(folder/'singer.wav').resolve();receipt=(folder/'complete.json').resolve()
+    if not audio.is_relative_to(ROOT/'renders') or not receipt.is_relative_to(ROOT/'renders'):
+        raise ValueError('Vocal reference must be a local generated singer')
+    if receipt.stat().st_size>65536:raise ValueError('Invalid reference receipt')
+    data=json.loads(receipt.read_text())
+    if (data.get('technical')!='PASS' or data.get('model_code')!=CODE_REVISION or data.get('weights')!=WEIGHT_REVISION
+            or data.get('source_conditioning') is not None or data.get('vocal_reference') is not None or data.get('trained_adapter') is not False
+            or data.get('case',{}).get('duration')!=30 or data.get('case',{}).get('voice') not in VOICES):
+        raise ValueError('Reference needs an unconditioned synthetic singer receipt')
+    read_pcm(audio,(30,30))
+    sha=digest(audio)
+    if data.get('audio_sha256')!=sha:raise ValueError('Reference singer checksum mismatch')
+    return {'audio':str(audio),'sha256':sha,'receipt_sha256':digest(receipt),'voice':data['case']['voice']}
+
+
+def sing(root, plan_path, output, case_id, conditioning_path=None, reference_singer=None):
     plan = load_plan(plan_path)
     cases = [c for c in plan['cases'] if c['id'] == case_id]
     if len(cases) != 1:
         raise ValueError('Select a case present in the plan')
     c = cases[0].copy()
     conditioning = source_conditioning(conditioning_path) if conditioning_path else None
+    reference=generated_vocal_reference(reference_singer) if reference_singer else None
+    if reference and (conditioning or inference_device()!='mps'):
+        raise ValueError('Vocal-reference research requires local text-to-music generation')
     if conditioning and plan['schema'] == 'jamloom-dna-song-1':
         raise ValueError('Music DNA does not accept reference audio')
     if conditioning:
@@ -338,6 +361,7 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
     instrumental = bool(conditioning and conditioning['instrumental'])
     source_params = ({'task_type': 'cover', 'src_audio': conditioning['audio'],
                       'audio_cover_strength': conditioning['strength']} if conditioning else {})
+    if reference:source_params['reference_audio']=reference['audio']
     if conditioning and 'repaint' in conditioning:
         source_params = {'task_type': 'repaint', 'src_audio': conditioning['audio'],
                          'repainting_start': conditioning['repaint'][0],
@@ -359,6 +383,8 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
     sf.write(dest, pcm, rate, subtype='PCM_16')
     if conditioning and digest(conditioning['audio']) != conditioning['sha256']:
         raise ValueError('Source guide changed during generation')
+    if reference and generated_vocal_reference(reference_singer)!=reference:
+        raise ValueError('Vocal reference changed during generation')
     report = {'technical': 'PASS', 'case': c, 'caption': description, 'model_code': CODE_REVISION, 'weights': WEIGHT_REVISION,
               'plan_sha256': digest(plan_path), 'audio_sha256': digest(dest), 'seconds': time.monotonic()-started,
               'peak': peak, 'rms': float(np.sqrt(np.mean(pcm**2))), 'peak_process_rss_bytes': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
@@ -366,6 +392,7 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
               'inference_shift':params.shift,
               'voice_and_lyric_fidelity': 'NOT RUN: requires listening', 'naturalness': 'NOT RUN',
               'trained_adapter': False, 'source_audio_uploaded': False,
+              'vocal_reference':reference,
               'source_conditioning': conditioning, 'task_type': source_params.get('task_type', 'text2music')}
     (output / 'complete.json').write_text(json.dumps(report, indent=2) + '\n')
     (output / '.partial').unlink()
@@ -384,10 +411,11 @@ if __name__ == '__main__':
     p.add_argument('--voice', choices=tuple(VOICES))
     p.add_argument('--genre', choices=tuple(STYLES))
     p.add_argument('--conditioning', type=Path, help='Private source-led research guide; optional')
+    p.add_argument('--reference-singer',type=Path,help='Local research only: receipt-bound generated 30-second singer directory')
     a = p.parse_args()
     if a.phase == 'draft':
         draft(runtime(a.runtime), a.phrase, a.seed, a.output, a.voice, a.genre)
     else:
         if a.plan is None or a.case is None:
             p.error('sing requires --plan and --case')
-        sing(runtime(a.runtime), a.plan, a.output, a.case, a.conditioning)
+        sing(runtime(a.runtime), a.plan, a.output, a.case, a.conditioning,a.reference_singer)

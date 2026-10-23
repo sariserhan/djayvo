@@ -4,13 +4,26 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, VOCAL_PROFILES, choose_vocal_profile, vocal_description, caption, load_plan, validate_plan, variants
+from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, VOCAL_PROFILES, choose_vocal_profile, vocal_description, generated_vocal_reference, digest, caption, load_plan, validate_plan, variants
 from assemble_sung_response import PATTERNS
 
 
 class SingingPlans(unittest.TestCase):
+    def test_reference_research_requires_bound_unconditioned_synthetic_audio(self):
+        with tempfile.TemporaryDirectory() as folder,patch('singing_response.ROOT',Path(folder).resolve()),patch('arrange_voice_research.read_pcm') as pcm:
+            root=Path(folder).resolve()/'renders'/'original';root.mkdir(parents=True)
+            (root/'singer.wav').write_bytes(b'fixture bytes; decoder is mocked')
+            receipt={'technical':'PASS','model_code':CODE_REVISION,'weights':WEIGHT_REVISION,'source_conditioning':None,'trained_adapter':False,'case':{'duration':30,'voice':'male'},'audio_sha256':digest(root/'singer.wav')}
+            (root/'complete.json').write_text(json.dumps(receipt))
+            result=generated_vocal_reference(root);self.assertEqual(result['sha256'],receipt['audio_sha256']);pcm.assert_called_once_with(root/'singer.wav',(30,30))
+            for field,value in [('audio_sha256','wrong'),('weights','unverified'),('source_conditioning',{'audio':'private'}),('vocal_reference',{'audio':'another'}),('trained_adapter',True)]:
+                (root/'complete.json').write_text(json.dumps({**receipt,field:value}))
+                with self.assertRaises(ValueError):generated_vocal_reference(root)
+            with self.assertRaises(ValueError):generated_vocal_reference(Path(folder)/'private')
+
     def test_vocal_cast_varies_without_changing_language_or_requested_gender(self):
         selected={choose_vocal_profile(seed) for seed in range(100)}
         self.assertEqual(selected,set(VOCAL_PROFILES))

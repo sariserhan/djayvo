@@ -1,0 +1,116 @@
+[
+  {
+    "seed": 9102400,
+    "audio_sha256": "50784fb3b1e15d825234a6d9c8e39d1918b777252a76e456ea7ad7ca087a2256",
+    "accepted": true,
+    "matching_windows": 4,
+    "scores": {
+      "pop": 0.586290754377842,
+      "lofi": 0.5429166108369827,
+      "soul": 0.5395496189594269,
+      "afrobeats": 0.5352911353111267,
+      "latin": 0.5128592550754547,
+      "electronic": 0.5125319063663483,
+      "reggaeton": 0.5036347359418869,
+      "ambient": 0.49054285883903503,
+      "amapiano": 0.4828391671180725,
+      "jazz": 0.48165781795978546,
+      "reggae": 0.47960643470287323,
+      "hip-hop": 0.47891226410865784,
+      "indie": 0.4520106092095375,
+      "experimental": 0.4482344388961792,
+      "dance": 0.44802194088697433,
+      "funk": 0.44016794115304947,
+      "country": 0.43696047365665436,
+      "classical": 0.43264833092689514,
+      "soft-ballad": 0.4303888604044914,
+      "traditional": 0.42899733036756516,
+      "flamenco": 0.39987074583768845,
+      "rock": 0.39640337601304054,
+      "indian": 0.3873794972896576,
+      "arabic": 0.3830260932445526,
+      "blues": 0.3394780494272709,
+      "heavy-rock": 0.23934163711965084,
+      "speech": 0.11449536681175232
+    },
+    "listening": "NOT RUN",
+    "vocal_reference": {
+      "audio": "renders/singing-response-20261022/hiphop-female/singer.wav",
+      "sha256": "686b696363f79ef80715bac88c285c0abc3b6fc17f254ee9a311a663690fa433",
+      "receipt_sha256": "e0e4ff318e1f524d2c5535b51d5ca6640f2a21f2e9acd662a55e66b41fa923c2",
+      "voice": "female"
+    },
+    "vocal_profile": "female-alto",
+    "published": [
+      {
+        "status": "PASS",
+        "id": "50784fb3b1e15d825234a6d9c8e39d19",
+        "sha256": "50784fb3b1e15d825234a6d9c8e39d1918b777252a76e456ea7ad7ca087a2256",
+        "bytes": 23040044,
+        "product": "music-dna",
+        "check": "passed",
+        "alreadyListed": false
+      }
+    ],
+    "baseline_case_identical": true,
+    "reference_processing_logged": true,
+    "audio_differs_from_baseline": true
+  },
+  {
+    "seed": 9102400,
+    "audio_sha256": "e4537b42dfeb003679ae7886e4e66c10b5d9d55c5d3e4c38c1ea67c8844da02c",
+    "accepted": true,
+    "matching_windows": 4,
+    "scores": {
+      "pop": 0.6154376715421677,
+      "soul": 0.6099249869585037,
+      "reggaeton": 0.5806926786899567,
+      "lofi": 0.5735078603029251,
+      "reggae": 0.5719741582870483,
+      "afrobeats": 0.5702108293771744,
+      "latin": 0.5584183037281036,
+      "hip-hop": 0.5580576211214066,
+      "funk": 0.5539208352565765,
+      "electronic": 0.5475192070007324,
+      "jazz": 0.5390002131462097,
+      "indie": 0.5192770212888718,
+      "rock": 0.5124252289533615,
+      "ambient": 0.4995289742946625,
+      "dance": 0.4891783893108368,
+      "amapiano": 0.48566005378961563,
+      "experimental": 0.48477498441934586,
+      "country": 0.46917493641376495,
+      "flamenco": 0.46333421021699905,
+      "blues": 0.4466770216822624,
+      "traditional": 0.42909232527017593,
+      "classical": 0.4130348712205887,
+      "arabic": 0.40731581300497055,
+      "soft-ballad": 0.3948502615094185,
+      "indian": 0.3872618079185486,
+      "heavy-rock": 0.3779311701655388,
+      "speech": 0.19816692546010017
+    },
+    "listening": "NOT RUN",
+    "vocal_reference": {
+      "audio": "renders/singing-response-20261022/reggae-male/singer.wav",
+      "sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "receipt_sha256": "a95b0e1eb6336be92017950ce221e5e3dda1f71b2b250393ae72da956738089d",
+      "voice": "male"
+    },
+    "vocal_profile": "male-bass",
+    "published": [
+      {
+        "status": "PASS",
+        "id": "e4537b42dfeb003679ae7886e4e66c10",
+        "sha256": "e4537b42dfeb003679ae7886e4e66c10b5d9d55c5d3e4c38c1ea67c8844da02c",
+        "bytes": 23040044,
+        "product": "music-dna",
+        "check": "passed",
+        "alreadyListed": false
+      }
+    ],
+    "baseline_case_identical": true,
+    "reference_processing_logged": true,
+    "audio_differs_from_baseline": true
+  }
+]

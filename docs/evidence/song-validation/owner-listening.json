@@ -29,5 +29,17 @@
     "displayTitleCorrection": "Günden Güne",
     "existingAudioChanged": false,
     "trainingConsent": false
+  },
+  "vocalVarietyFeedback": {
+    "statement": "They still sound like the same singer",
+    "requirement": "we need varieity of the singer voice so the more different voice we have the better it is",
+    "status": "FAIL: caption-only casting did not produce perceptibly distinct singers for the owner",
+    "comparedAudio": [
+      "d90710b1e3a13775e3b1b99d41a1955661eddb9f8a85d4a316480c6ab94b48fc",
+      "7ca174d99fe5daf87d680640544cb806b5609901abbad29b1cf1120cf71a8eb8",
+      "38b12521330fe5dac4f524b02d5e5a4bcc3652f8631fee60c06c4237a6c1d963",
+      "51ec7a190d436aa94fab597f1cfed145bae332e36c1b380ed442fe7ba7cd790e"
+    ],
+    "trainingConsent": false
   }
 }

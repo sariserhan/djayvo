@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
-from singing_response import digest, load_plan, VOCAL_PROFILES, validate_plan
+from singing_response import digest, load_plan, VOCAL_PROFILES, validate_plan, generated_vocal_reference
 from music_dna_song import performance_caption
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,25 +51,31 @@ def verify(work, seed, seen):
     return sha
 
 
-def evaluate(source, output, seed, voices=False):
+def evaluate(source, output, seed, voices=False, reference_singers=None):
     if not 0 <= seed < 2**32-1:
         raise ValueError('Two seeds must fit the singer range')
     output.mkdir(parents=True, exist_ok=False)
     rows, seen = [], set()
     with (ROOT/'renders/.music-dna-singer.lock').open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        takes=[(seed,profile) for profile in ('female-alto','female-soprano','male-bass','male-tenor')] if voices else [(seed,None),(seed+1,None)]
-        for selected,profile in takes:
-            work = output/(profile or str(selected))
+        takes=[(seed,profile,None) for profile in ('female-alto','female-soprano','male-bass','male-tenor')] if voices else [(seed,None,None),(seed+1,None,None)]
+        if reference_singers:
+            takes=[(seed,'female-alto' if generated_vocal_reference(path)['voice']=='female' else 'male-bass',path) for path in reference_singers]
+        for index,(selected,profile,reference) in enumerate(takes):
+            work = output/(f'reference-{index+1}' if reference else profile or str(selected))
             plan = prepare(source, work, selected, profile)
+            if reference:
+                plan['title']=plan['title'].split(' · ')[0]+f' · reference voice {index+1}'
+                (work/'plan.json').write_text(json.dumps(plan,ensure_ascii=False,indent=2)+'\n')
             with (work/'run.log').open('w') as log:
-                subprocess.run([sys.executable, str(ROOT/'scripts/singing_response.py'), 'sing', '--runtime', str(ROOT/'build-style-training/upstream'), '--plan', str(work/'plan.json'), '--output', str(work/'singer'), '--case', plan['cases'][0]['id']], stdout=log, stderr=subprocess.STDOUT, check=True, timeout=900)
+                subprocess.run([sys.executable, str(ROOT/'scripts/singing_response.py'), 'sing', '--runtime', str(ROOT/'build-style-training/upstream'), '--plan', str(work/'plan.json'), '--output', str(work/'singer'), '--case', plan['cases'][0]['id'],*(['--reference-singer',str(reference)] if reference else [])], stdout=log, stderr=subprocess.STDOUT, check=True, timeout=900)
             sha = verify(work, selected, seen)
             with (work/'check.log').open('w') as log:
                 subprocess.run([sys.executable, str(ROOT/'scripts/check_dna_audio.py'), '--work', str(work)], stdout=log, stderr=subprocess.STDOUT, check=True, timeout=180)
             fit = json.loads((work/'fit.json').read_text())
             rows.append({'seed':selected, 'audio_sha256':sha, 'accepted':fit['accepted'], 'matching_windows':fit['matching_windows'], 'scores':fit['scores'], 'listening':'NOT RUN'})
-            if voices:
+            if reference:rows[-1]['vocal_reference']=json.loads((work/'singer/complete.json').read_text())['vocal_reference']
+            if voices or reference_singers:
                 from evaluate_music_coverage import publish
                 rows[-1]['vocal_profile']=profile
                 rows[-1]['published']=publish(work,{'product':'music-dna'})
@@ -84,5 +90,6 @@ if __name__ == '__main__':
     p.add_argument('--output', required=True, type=Path)
     p.add_argument('--seed', required=True, type=int)
     p.add_argument('--voices',action='store_true',help='Compare four vocal characters on identical lyrics, style and seed; publish each verified take')
+    p.add_argument('--reference-singers',nargs=2,type=Path,help='Compare two receipt-bound synthetic vocal references locally and publish verified takes')
     args = p.parse_args()
-    evaluate(args.source.resolve(), args.output.resolve(), args.seed,args.voices)
+    evaluate(args.source.resolve(), args.output.resolve(), args.seed,args.voices,args.reference_singers)

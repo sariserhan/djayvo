@@ -1,0 +1,28 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "correctedTurkishTitle": true,
+    "mutedPlayback": [
+      "reference voice 1",
+      "reference voice 2"
+    ],
+    "duration": 120,
+    "seek": 80,
+    "mobileWidth": 390,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "correctedTurkishTitle": true,
+    "mutedPlayback": [
+      "reference voice 1",
+      "reference voice 2"
+    ],
+    "duration": 120,
+    "seek": 80,
+    "mobileWidth": 390,
+    "errors": []
+  }
+]

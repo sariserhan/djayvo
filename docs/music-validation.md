@@ -68,6 +68,8 @@ take is stored in R2 and listed on `/listening`. This is a generation comparison
 not isolated stems; changing conditioning can also change the backing music.
 All four real 120-second City Lights takes completed, passed 4/4 style windows and were verified in R2. [Comparison receipts](evidence/song-validation/vocal-comparison.json).
 
+**Owner result: FAIL for vocal distinctness.** The owner reports all four still sound like the same singer. Eight descriptions are not eight verified singers. A bounded local follow-up tests the pinned model's separate audio-reference input using two earlier, receipt-bound synthetic singers; it is not enabled in normal generation.
+
 Audible distinctness and naturalness require listening; these are directions for
 one model, not eight independently verified singer identities.
 
@@ -81,3 +83,38 @@ seeking, download checksums and overflow checks. 74 site unit tests, fresh typec
 The hosted feedback collector currently has zero eligible consented ratings.
 Owner chat reactions are recorded as review evidence, not silently converted to
 training consent or invented training data. The 07:00 provider bucket now reports $0.14823597110807896; 08:00 remains pending. [Read-only provider receipt](evidence/song-validation/provider-audit.json) confirms workers and jobs remain zero. Native-language review and broad quality acceptance remain open.
+
+
+### Audio-reference follow-up
+
+The pinned runtime and its [official reference documentation](https://github.com/ace-step/ACE-Step-1.5/blob/main/docs/en/Tutorial.md)
+expose a separate global acoustic-reference input. It can guide vocal timbre but
+also accompaniment/mixing; it is not a guaranteed singer-identity control.
+`scripts/singing_response.py --reference-singer` is a local-MPS research option
+only. It accepts a 30-second generated singer under `renders/` with a matching
+model/weight/audio receipt and no previous source conditioning or trained adapter.
+It refuses private/favorite recordings and rechecks provenance after inference.
+No web API, normal generation or paid worker enables this option.
+
+The follow-up holds City Lights lyrics, tempo, seed and corresponding caption
+constant, adding the earlier unconditioned `hiphop-female` or `reggae-male` synthetic
+render as a reference. Whole-mix references may affect genre; the ordinary style
+check remains unchanged. Each finished trial will be preserved in the listening
+gallery with its actual result. This is a two-reference feasibility test before
+building a larger accepted voice pool, not a claim that two gender labels solve
+variety.
+
+
+Reproduce locally, with no other singer process holding the GPU lock:
+
+```sh
+JAMLOOM_INFERENCE_DEVICE=mps HF_HUB_OFFLINE=1 .venv-singer/bin/python scripts/evaluate_dna_variants.py --source renders/music-dna-songs/1efec7e67eac4fba84953291f68ed7da --output renders/vocal-reference-repeat --seed 9102400 --reference-singers renders/singing-response-20261022/hiphop-female renders/singing-response-20261022/reggae-male
+```
+
+The publication step requires Node 22 on PATH and the existing operator R2
+configuration. This command intentionally stores the authorized test songs; it
+does not deploy the site or publish a worker image.
+
+**Follow-up result:** Both real 120-second reference-guided takes completed, passed all four style windows and were stored in R2. Exact baseline cases/captions/seeds match, runtime logs confirm reference processing, and both output hashes differ from their controls. These facts establish that the reference input was exercised, not perceived singer distinctness. 42 focused Python tests pass. [Trial evidence](evidence/song-validation/vocal-reference-comparison.json). Owner listening remains NOT RUN for these new versions.
+
+Both new trials also passed muted Chromium/WebKit mobile playback and seeking, with no page errors. [Browser evidence](evidence/song-validation/reference-browser.json).
