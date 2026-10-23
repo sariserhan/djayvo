@@ -66,11 +66,11 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    await search.fill(i?'night':'quiet');await page.getByRole('option',{name:i?/Track.*Night set/:/Track.*Quiet study/}).click();
    assert.match(await page.locator('.dna-summary').innerText(),i?/Dance/:/Classical/);
    await page.getByRole('button',{name:i?'Make another variation':'Make my music',exact:true}).click();
-   await page.getByLabel(`Composition variation ${i+1}`,{exact:true}).waitFor({timeout:120000});
-   const plan=await page.getByRole('link',{name:'Download song notes',exact:true}).nth(i).evaluate(async a=>await(await fetch(a.href)).json());
+   await page.getByLabel(`Play Fixture song ${i+1}`,{exact:true}).waitFor({timeout:120000});
+   const plan=await page.getByRole('region',{name:'Songs for this list',exact:true}).getByRole('link',{name:'Download song notes',exact:true}).evaluate(async a=>await(await fetch(a.href)).json());
    assert.equal(plan.cases[0].voice,'female');assert.ok(plan.cases[0].lyrics.includes('[Chorus]'));plans.push(plan);
    assert.equal(fixture.bodies[i].referenceMetadata[0].genre,i?'Dance':'Classical');
-   const url=await page.getByLabel(`Composition variation ${i+1}`,{exact:true}).getAttribute('src');
+   const url=await page.getByLabel(`Play Fixture song ${i+1}`,{exact:true}).getAttribute('src');
    const result=await page.evaluate(async url=>{
     const bytes=await(await fetch(url)).arrayBuffer();const context=new OfflineAudioContext(2,1,48000);
     const buffer=await context.decodeAudioData(bytes.slice(0));let peak=0,sum=0;
@@ -81,6 +81,10 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    assert.ok(result.seconds>=28&&result.seconds<=33);assert.ok(result.peak>0&&result.peak<=1);assert.ok(result.rms>0);
    await writeFile(join(output,`${name}-${i?'dance-favorites':'classical-favorites'}.wav`),bytes);
   }
+  assert.equal(await page.getByRole('region',{name:'Songs for this list',exact:true}).locator('audio').count(),1);
+  assert.match(await page.getByRole('region',{name:'Songs for this list',exact:true}).innerText(),/Made from: Night set/);
+  await page.getByText('Earlier songs and other lists (1)',{exact:true}).click();
+  assert.equal(await page.getByLabel('Play Fixture song 1',{exact:true}).isVisible(),true);
   assert.notDeepEqual(fixture.bodies[0].references,fixture.bodies[1].references);
   await page.reload();
   await page.getByRole('group',{name:'Night set',exact:true}).waitFor();assert.match(await page.locator('.dna-summary').innerText(),/Dance/);

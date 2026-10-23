@@ -1,0 +1,64 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "songs": [
+      {
+        "id": "06d89abd7d194ddf81bbc54af3e9b67f",
+        "title": "Concrete Roots",
+        "seconds": 120,
+        "voice": "male",
+        "bpm": 130,
+        "caption": "Riff-led heavy rock and metal, driving rhythmic momentum, powerful projected melodic vocals, punchy kick and snare, dynamic full-band choruses. Keep the music heavy even in quieter passages. Instrumentation: distorted electric guitar riffs, electric bass, hard-hitting live drums. Energy: intense. Driving, relentless rhythm with pounding kick and snare. Distorted electric guitar riffs dominate, layered with aggressive bass. Full-band choral sections surge with intensity. No quiet moments—dynamics remain sharp and unrelenting. Vocal delivery is powerful, projected, with clipped, urgent phrasing. High energy throughout, with no instrumental softness. Lead vocal: an expressive adult male singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      }
+    ],
+    "downloaded": {
+      "bytes": 23040044,
+      "sha256": "b0d3384d389644c57db4bb6c706225cb6404e7e2b1b5eaeea4a591df2b0619d4",
+      "filename": "jamloom-song-06d89abd.wav"
+    },
+    "no_autoplay": true,
+    "muted_playback": true,
+    "seek_seconds": 90,
+    "range_status": 206,
+    "layouts": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "errors": [],
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "songs": [
+      {
+        "id": "06d89abd7d194ddf81bbc54af3e9b67f",
+        "title": "Concrete Roots",
+        "seconds": 120,
+        "voice": "male",
+        "bpm": 130,
+        "caption": "Riff-led heavy rock and metal, driving rhythmic momentum, powerful projected melodic vocals, punchy kick and snare, dynamic full-band choruses. Keep the music heavy even in quieter passages. Instrumentation: distorted electric guitar riffs, electric bass, hard-hitting live drums. Energy: intense. Driving, relentless rhythm with pounding kick and snare. Distorted electric guitar riffs dominate, layered with aggressive bass. Full-band choral sections surge with intensity. No quiet moments—dynamics remain sharp and unrelenting. Vocal delivery is powerful, projected, with clipped, urgent phrasing. High energy throughout, with no instrumental softness. Lead vocal: an expressive adult male singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      }
+    ],
+    "downloaded": {
+      "bytes": 23040044,
+      "sha256": "b0d3384d389644c57db4bb6c706225cb6404e7e2b1b5eaeea4a591df2b0619d4",
+      "filename": "jamloom-song-06d89abd.wav"
+    },
+    "no_autoplay": true,
+    "muted_playback": true,
+    "seek_seconds": 90,
+    "range_status": 206,
+    "layouts": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "errors": [],
+    "human_listening": "NOT RUN"
+  }
+]

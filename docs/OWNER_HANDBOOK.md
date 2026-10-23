@@ -1,3 +1,7 @@
+## Music DNA corrected matching — 2026-10-22
+
+Keep using the favorites already saved on the [Music DNA page](http://127.0.0.1:4247/music-dna); there is no need to retype them. New takes show their source list and must pass a broad audio-style screen. Earlier takes and examples are separate from songs for the current list. [Concrete Roots is available as a labelled example](http://127.0.0.1:4247/music-dna?song=06d89abd7d194ddf81bbc54af3e9b67f); it uses a stated test list. Listening acceptance and public hosting remain open. [Details and current evidence](music-dna-fit.md).
+
 ## Music DNA favorites — 2026-10-22
 
 Local review: <http://127.0.0.1:4247/music-dna>. Add songs/artists, then **Make my music**. The current local preview uses the existing natural-sounding AI singer to make a two-minute song with original lyrics, based on the entire list. It shows the intended direction and each favorite’s influence. The simple instrumental route is superseded following your quality feedback. This is model interpretation of names/genres, not analysis of the original recordings; new listening acceptance remains open. Favorites save on-device and the latest two songs reload from local storage. Optional account controls are under **Saved favorites**; practice previews remain available. [Current song workflow, evidence and local start command](music-dna-songs.md). Hosted full-song generation is disabled; nothing is deployed by this increment.

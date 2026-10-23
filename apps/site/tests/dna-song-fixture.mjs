@@ -7,7 +7,7 @@ export async function songFixture(context){
   const req=route.request(),url=new URL(req.url()),id=url.searchParams.get('id');
   if(req.method()==='POST'){
    const profile=req.postDataJSON();bodies.push(profile);const id=String(++counter).padStart(32,'0');
-   jobs.set(id,{id,state:'running',message:'Writing your song…',polls:0,plan:{title:`Fixture song ${counter}`,summary:'Test interpretation based on the submitted favorites.',influences:profile.references.map(reference=>({reference,basis:'genre_only',description:'Test genre influence'})),cases:[{lyrics:'[Verse]\nFixture lyrics\n[Chorus]\nA song for browser testing',song_caption:'Warm piano and singing',bpm:92,voice:'female'}]}});
+   jobs.set(id,{id,profile,styleChecked:true,direction:{label:profile.referenceMetadata?.[0]?.genre??'Test style'},state:'running',message:'Writing your song…',polls:0,plan:{title:`Fixture song ${counter}`,summary:'Test interpretation based on the submitted favorites.',influences:profile.references.map(reference=>({reference,basis:'genre_only',description:'Test genre influence'})),cases:[{lyrics:'[Verse]\nFixture lyrics\n[Chorus]\nA song for browser testing',song_caption:'Warm piano and singing',bpm:92,voice:'female'}]}});
    return route.fulfill({status:202,json:{id}});
   }
   if(!id)return route.fulfill({json:{available:true}});

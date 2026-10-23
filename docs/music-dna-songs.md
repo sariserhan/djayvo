@@ -1,3 +1,5 @@
+> Superseded for list matching and acceptance by [the corrected flow and evidence](music-dna-fit.md). The examples and results below are historical; they are not songs made from the owner’s rock/metal list. The pinned auditor is now required before generating new songs.
+
 # Music DNA full songs — 2026-10-22
 
 The owner rejected the earlier instrumental output: selecting favorites worked,

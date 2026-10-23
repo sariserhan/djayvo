@@ -1,11 +1,15 @@
 import copy
+import json
+import tempfile
+from unittest.mock import patch
 from pathlib import Path
 import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
-from music_dna_song import favorites, song_plan, parse_draft
-from singing_response import caption
+from music_dna_song import favorites, song_plan, parse_draft, run
+from singing_response import caption, digest
+from dna_direction import direction_for
 
 
 class MusicDnaSong(unittest.TestCase):
@@ -16,7 +20,7 @@ class MusicDnaSong(unittest.TestCase):
                      'influences': [{'index': 1, 'basis': 'genre_only', 'description': 'Warm soul harmony'},
                                     {'index': 2, 'basis': 'unknown', 'description': 'Unknown recording'}],
                      'sound': 'Live brushed drums, warm piano and an expressive vocal crescendo',
-                     'genre': 'soul', 'voice': 'female', 'bpm': 94,
+                     'direction_id': 'soul', 'energy': direction_for(self.refs)['energy'], 'instruments': direction_for(self.refs)['instruments'], 'voice': 'female', 'bpm': 94,
                      'lyrics': '\n'.join('['+s+']\n'+'New days bring us closer to the light\n'*4
                                          for s in ['Verse 1', 'Chorus', 'Verse 2', 'Bridge', 'Chorus', 'Outro'])}
 
@@ -52,10 +56,38 @@ class MusicDnaSong(unittest.TestCase):
         self.assertEqual(parse_draft('{"title":"Test"}"}'), {'title': 'Test'})
         with self.assertRaises(ValueError):parse_draft('{"title":"Test"} unrelated extra prose')
         with self.assertRaises(ValueError):parse_draft('{"title":')
-        self.data['genre'] = 'electronic'
-        self.assertEqual(song_plan(self.data, self.refs, 1)['cases'][0]['genre'], 'electronic')
-        self.data['genre'] = '../../outside'
-        with self.assertRaises(ValueError):song_plan(self.data, self.refs, 1)
+        self.data['direction_id'] = 'electronic'
+        with self.assertRaisesRegex(ValueError, 'required musical direction'):song_plan(self.data, self.refs, 1)
+
+    def test_style_retry_is_bounded_and_preserves_rejected_evidence(self):
+        for accepted in ([False,True],[False,False],[True]):
+            with self.subTest(accepted=accepted), tempfile.TemporaryDirectory() as folder:
+                work=Path(folder)
+                profile={'references':[r['reference'] for r in self.refs], 'referenceMetadata':[{'reference':self.refs[0]['reference'],'genre':'Soul'}]}
+                (work/'input.json').write_text(json.dumps({'profile':profile,'direction':direction_for(self.refs),'seed':123}))
+                rendered=[]
+                def process(command, **kwargs):
+                    if command[2]=='draft':
+                        plan=song_plan(copy.deepcopy(self.data),self.refs,123)
+                        plan['input_sha256']=digest(work/'input.json')
+                        (work/'plan.json').write_text(json.dumps(plan))
+                    elif 'singing_response.py' in command[1]:
+                        rendered.append(json.loads((work/'plan.json').read_text())['cases'][0]['seed'])
+                        (work/'singer').mkdir();(work/'singer/singer.wav').write_bytes(b'fixture')
+                    else:(work/'fit.json').write_text(json.dumps({'accepted':accepted[len(rendered)-1]}))
+                with patch('music_dna_song.subprocess.run',side_effect=process):run(work)
+                self.assertEqual(rendered,[123] if len(accepted)==1 else [123,124])
+                self.assertEqual(json.loads((work/'status.json').read_text())['state'],'completed' if any(accepted) else 'rejected')
+                if not accepted[0]:
+                    self.assertEqual((work/'rejected-1/input.json').read_bytes(),(work/'input.json').read_bytes())
+                    self.assertEqual(json.loads((work/'rejected-1/plan.json').read_text())['cases'][0]['seed'],123)
+
+    def test_heavy_list_cannot_be_softened_by_the_planner(self):
+        refs = [{'reference': 'Heavy favorite', 'catalogue_genre': 'Metal'}]
+        direction = direction_for(refs)
+        self.data.update(direction_id=direction['id'],energy=direction['energy'],instruments=direction['instruments'],bpm=140)
+        self.data['sound'] = 'A slow piano ballad with whisper vocals'
+        with self.assertRaisesRegex(ValueError, 'contradicts'):song_plan(self.data, refs, 1)
 
 
 if __name__ == '__main__':unittest.main()

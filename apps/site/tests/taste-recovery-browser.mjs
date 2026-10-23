@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';import {writeFile} from 'node:fs/promise
 const base=process.env.JAMLOOM_TEST_URL??'http://127.0.0.1:4247';assert.equal(new URL(base).hostname,'127.0.0.1');
 const browser=await chromium.launch({args:['--mute-audio']});
 try{
- const context=await browser.newContext();await context.addInitScript(()=>localStorage.setItem('jamloom-taste-v1','corrupt-profile-preserved'));
+ const context=await browser.newContext();await context.addInitScript(()=>{if(!localStorage.getItem('jamloom-taste-v1'))localStorage.setItem('jamloom-taste-v1','corrupt-profile-preserved');});
  await context.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
  let release;const pending=new Promise(resolve=>{release=resolve;});let hold=false;
  await context.route('**/api/music-search',async route=>{if(hold)await pending;await route.fulfill({json:{suggestions:[]}}).catch(()=>{});});
@@ -26,8 +26,25 @@ try{
  await context.unroute('**/api/taste/song*');const fixture=await songFixture(context);
  const ids=['1'.repeat(32),'2'.repeat(32)];fixture.jobs.set(ids[0],{id:ids[0],state:'completed',message:'Ready'});
  await page.evaluate(ids=>localStorage.setItem('jamloom-dna-songs-v1',JSON.stringify(ids)),ids);
- await page.reload();await page.getByLabel('Composition variation 1',{exact:true}).waitFor();await page.waitForTimeout(200);
+ await page.reload();await page.getByText('Earlier songs and other lists (1)',{exact:true}).waitFor();await page.waitForTimeout(200);
  assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-dna-songs-v1'))),ids);
- const result={status:'PASS',corrupt_saved_data_preserved_until_new_list:true,cancel_during_metadata_lookup:true,late_response_cannot_start_render:true,favorites_preserved:true,unavailable_has_no_instrumental_fallback:true,partial_song_restore_does_not_erase_other_song:true};
+ // A running job from another list must never be adopted by Make my music.
+ await context.unroute('**/api/taste/song*');let posts=0;
+ await context.route('**/api/taste/song*',r=>{if(r.request().method()==='POST')posts++;return r.fulfill({json:{available:true,active:'3'.repeat(32)}});});
+ await page.getByRole('button',{name:'Make another variation',exact:true}).click();
+ await page.getByRole('status').filter({hasText:'Another song is being made'}).waitFor();assert.equal(posts,0);
+ assert.equal(await page.getByRole('button',{name:'Cancel composition',exact:true}).count(),0);
+ await context.unroute('**/api/taste/song*');
+ const rejectedId='4'.repeat(32);
+ await context.route('**/api/taste/song*',r=>{
+  const request=r.request(),id=new URL(request.url()).searchParams.get('id');
+  return r.fulfill({status:request.method()==='POST'?202:200,json:request.method()==='POST'?{id:rejectedId}:id?{id,state:'rejected',message:'Neither take passed the style check for your list. Your favorites are saved.'}:{available:true}});
+ });
+ await page.getByRole('button',{name:'Make another variation',exact:true}).click();
+ await page.getByRole('status').filter({hasText:'Neither take passed'}).waitFor();
+ assert.equal(await page.getByRole('button',{name:'Make another variation',exact:true}).isEnabled(),true);
+ assert.equal(await page.locator(`audio[src*="${rejectedId}"]`).count(),0);
+ assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references),['Unmatched favorite']);
+ const result={status:'PASS',other_list_active_job_not_adopted:true,rejected_take_not_presented:true,corrupt_saved_data_preserved_until_new_list:true,cancel_during_metadata_lookup:true,late_response_cannot_start_render:true,favorites_preserved:true,unavailable_has_no_instrumental_fallback:true,partial_song_restore_does_not_erase_other_song:true};
  await writeFile(process.env.JAMLOOM_TEST_EVIDENCE??'/tmp/jamloom-dna-auto-recovery.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
 }finally{await browser.close();}

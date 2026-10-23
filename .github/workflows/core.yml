@@ -40,6 +40,8 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '22'
+      - name: Check Music DNA contracts without model weights
+        run: python3 -m unittest discover -s tests -p 'test_*dna*.py'
       - name: Verify SDK bootstrap handles a partial dependency cache
         run: python3 tests/integration/verify_web_sdk.py
       - name: Build website from tracked sources without a prebuilt studio

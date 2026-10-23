@@ -1,3 +1,7 @@
+## Music DNA list and audio matching — 2026-10-22
+
+**PASS, local matching workflow; PARTIAL, product acceptance:** New songs retain their exact favorite snapshot, required musical direction and verified audio bindings. Current-list results, other lists and examples are separate. A local broad-style screen rejects mismatches; 59 site tests, 18 Python tests, build and a new two-minute rock vocal song pass, including actual website generation and Chromium/WebKit playback/download. Calibration and human listening remain open. [Current evidence and limits](music-dna-fit.md). No deployment.
+
 ## Music DNA full songs — 2026-10-22
 
 **PASS, local technical workflow; PARTIAL, product acceptance:** Favorites now guide a full song plan, original lyrics and the existing natural-sounding AI singer path. Two real two-minute vocal songs, actual website generation/reload, Chromium/WebKit playback/seeking, 29 site tests and 14 Python tests pass. The prior instrumental quality is rejected; new listening acceptance and hosted release remain open. [Implementation and boundaries](music-dna-songs.md).
