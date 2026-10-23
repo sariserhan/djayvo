@@ -71,14 +71,23 @@ export class DnaCommerce{
   if(!(await this.pool.query("UPDATE dna_song_jobs SET withdrawn_at=now() WHERE id=$1 AND owner_id=$2 AND product=$3 AND billing_live=$4 AND state='completed'",[id,owner,this.product,!!this.options.live])).rowCount)
    throw new AudioError('Song not found.',404);
  }
- async list(owner:string|null,scope:'mine'|'public',after=''){
+ async list(owner:string|null,scope:'mine'|'public',after='',filters={language:'',genre:''}){
   if(after&&!/^[a-f0-9]{32}$/.test(after))throw new AudioError('Invalid song cursor.');
-  const rows=(await this.pool.query(`SELECT d.id,d.title,d.language,d.direction,d.visibility,d.withdrawn_at,d.created_at
+  if(filters.language.length>50||filters.genre.length>100)throw new AudioError('Invalid song filters.');
+  const result=(await this.pool.query(`WITH visible AS (
+   SELECT d.id,d.title,d.language,d.direction,d.visibility,d.withdrawn_at,d.created_at
    FROM dna_song_jobs d JOIN generation_reservations r ON r.id=d.reservation_id
    WHERE d.state='completed' AND r.status='completed' AND d.product=$4 AND d.billing_live=$5
    AND (($1='mine' AND d.owner_id=$2) OR ($1='public' AND d.visibility='public' AND d.public_consent_at IS NOT NULL AND d.withdrawn_at IS NULL))
-   AND ($3='' OR (d.created_at,d.id)<(SELECT created_at,id FROM dna_song_jobs WHERE id=$3))
-   ORDER BY d.created_at DESC,d.id DESC LIMIT 25`,[scope,owner,after,this.product,!!this.options.live])).rows;
-  return {songs:rows.slice(0,24),next:rows.length>24?rows[23].id:null};
+  ), page AS (
+   SELECT * FROM visible WHERE ($6='' OR language=$6) AND ($7='' OR direction=$7)
+   AND ($3='' OR (created_at,id)<(SELECT created_at,id FROM visible WHERE id=$3))
+   ORDER BY created_at DESC,id DESC LIMIT 25
+  ) SELECT COALESCE((SELECT json_agg(page ORDER BY created_at DESC,id DESC) FROM page),'[]') AS songs,
+   ARRAY(SELECT DISTINCT language FROM visible WHERE language IS NOT NULL ORDER BY language) AS languages,
+   ARRAY(SELECT DISTINCT direction FROM visible WHERE direction IS NOT NULL ORDER BY direction) AS genres`,
+   [scope,owner,after,this.product,!!this.options.live,filters.language,filters.genre])).rows[0];
+  const rows: {id:string;title:string;language:string;direction:string;visibility:DnaVisibility;withdrawn_at:string|null;created_at:string}[]=result.songs;
+  return {songs:rows.slice(0,24),next:rows.length>24?rows[23].id:null,filters:{languages:result.languages,genres:result.genres}};
  }
 }

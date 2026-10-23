@@ -7,7 +7,8 @@
       "language": "English",
       "historical": false,
       "audioSha256": "b0d3384d389644c57db4bb6c706225cb6404e7e2b1b5eaeea4a591df2b0619d4",
-      "audioBytes": 23040044
+      "audioBytes": 23040044,
+      "direction": "Heavy rock / metal"
     },
     {
       "id": "0f7c7e87a20645ce8f52e6de86988fe4",
@@ -15,7 +16,8 @@
       "language": "Japanese",
       "historical": false,
       "audioSha256": "4135b0198736b57820e8482925545078c9a2e4090902ad4fd7eeb161f489239e",
-      "audioBytes": 23040044
+      "audioBytes": 23040044,
+      "direction": "Pop"
     },
     {
       "id": "3f868ec96fdd4f8089ce5225befefc8c",
@@ -23,7 +25,8 @@
       "language": "Hindi",
       "historical": false,
       "audioSha256": "45350dd503a1853830093c2ded06b4905faadecc9d9e70ca5e76fdd56005aee6",
-      "audioBytes": 23040044
+      "audioBytes": 23040044,
+      "direction": "South Asian traditions / film"
     },
     {
       "id": "4a81d32f68b14b09956d9d82cdabba53",
@@ -31,7 +34,8 @@
       "language": "Arabic",
       "historical": false,
       "audioSha256": "7a4f925fa9e0245b4302b06b2a95a6b04323e3b5c419b7e3e0967a2ca6bfaf41",
-      "audioBytes": 23040044
+      "audioBytes": 23040044,
+      "direction": "Arabic traditions / pop"
     },
     {
       "id": "4caf5b05203048a3b61bb22cd4d2ce9c",
@@ -39,7 +43,8 @@
       "language": "Russian",
       "historical": false,
       "audioSha256": "66c8d3a60fb52e41f7dba6a353ad3485332a2160f6c07644671436fbc8bb9c89",
-      "audioBytes": 23040044
+      "audioBytes": 23040044,
+      "direction": "Alternative / rock"
     },
     {
       "id": "b11454224b724e708a68b80faf60d5e2",
@@ -47,7 +52,8 @@
       "language": "English",
       "historical": true,
       "audioSha256": "4094bed308948d543855bf5a22c4829e1bf727b9162b3660e7d3805c850d8d9b",
-      "audioBytes": 23040044
+      "audioBytes": 23040044,
+      "direction": "Synthpop"
     },
     {
       "id": "c7944cb9bef241a3857be663ee5c8e53",
@@ -55,7 +61,8 @@
       "language": "Turkish",
       "historical": false,
       "audioSha256": "9c5a9235984ceb4dec03a4529536099d96cf590b321d2225e87b405373dc0243",
-      "audioBytes": 23040044
+      "audioBytes": 23040044,
+      "direction": "Pop"
     },
     {
       "id": "d0a71022000000000000000000000001",
@@ -63,7 +70,8 @@
       "language": "English",
       "historical": true,
       "audioSha256": "913e8f36f040df3eb05507c0de0d3a88cf6d363bc089bcd4c5451ae5e3877bac",
-      "audioBytes": 23040044
+      "audioBytes": 23040044,
+      "direction": "Soul"
     },
     {
       "id": "e46c2b419c054cd79311bd9deecf1258",
@@ -71,7 +79,8 @@
       "language": "Spanish",
       "historical": false,
       "audioSha256": "c3eaf32fb3ca7122d19f14fee64631d895e870fc5ac521339c7c2becc9ce5ed6",
-      "audioBytes": 23040044
+      "audioBytes": 23040044,
+      "direction": "Latin"
     }
   ]
 }

@@ -138,5 +138,32 @@ test('real Postgres Music DNA credits, privacy, idempotence, failure and recover
    assert.equal((await dnaSong(request('?id='+job,'DELETE'),{commerce:cloud,owner:'bob'})).status,200);
    assert.deepEqual(await cloud.wallet.balance('bob'),before);
   });
+  await t.test('gallery filters cover all pages without exposing private, withdrawn or other-product metadata',async()=>{
+   await commerce.wallet.grant('bob',{provider:'stripe_test',receipt:'gallery-filters',credits:60,netMicros:30_000_000});
+   const jobs:string[]=[];
+   for(let i=0;i<32;i++){
+    const job=id(),visibility=i===26?'private':'public',quote=await commerce.quote('bob',profile,visibility);
+    await commerce.submit('bob',job,profile,visibility,quote.token);await commerce.start(job);
+    await commerce.finish(job,'completed',{title:'Gallery '+i,language:i<2?'tr':i<26?'en':['fr','de','ar','ja','ko','it'][i-26],direction:i<2?'Jazz':i<26?'Rock':'Hidden genre'});
+    await pool.query("UPDATE dna_song_jobs SET created_at='2020-01-01'::timestamptz+$2*interval '1 second' WHERE id=$1",[job,i]);jobs.push(job);
+   }
+   await commerce.withdraw('bob',jobs[27]);
+   await assert.rejects(pool.query('UPDATE dna_song_jobs SET public_consent_at=NULL WHERE id=$1',[jobs[28]]));
+   await pool.query("UPDATE dna_song_jobs SET visibility='private',public_consent_at=NULL WHERE id=$1",[jobs[28]]);
+   await pool.query("UPDATE dna_song_jobs SET product='improvise' WHERE id=$1",[jobs[29]]);
+   await pool.query('UPDATE dna_song_jobs SET billing_live=true WHERE id=$1',[jobs[30]]);
+   await pool.query("UPDATE dna_song_jobs SET state='failed' WHERE id=$1",[jobs[31]]);
+   const first=await commerce.list(null,'public');assert.equal(first.songs.length,24);assert.ok(first.next);
+   assert.deepEqual(first.filters,{languages:['en','tr'],genres:['Jazz','Rock']});
+   const second=await commerce.list(null,'public',first.next);assert.deepEqual(second.songs.map(s=>s.id),[jobs[1],jobs[0]]);assert.equal(second.next,null);
+   for(const query of ['language=tr','genre=Jazz','language=tr&genre=Jazz']){
+    for(const response of [await dnaSong(request('?view=public&'+query),anonymous),await storedDnaSong(request('?view=public&'+query),{...anonymous,readOnly:true})]){
+     const result=await response!.json();assert.deepEqual(result.songs.map((s:{id:string})=>s.id),[jobs[1],jobs[0]]);assert.deepEqual(result.filters,first.filters);
+    }
+   }
+   assert.deepEqual((await commerce.list(null,'public','',{language:'tr',genre:'Rock'})).songs,[]);
+   assert.deepEqual((await commerce.list(null,'public','',{language:"en' OR true --",genre:''})).songs,[]);
+   await assert.rejects(commerce.list(null,'public','',{language:'x'.repeat(51),genre:''}),/Invalid song filters/);
+  });
  }finally{if(old===undefined)delete process.env.JAMLOOM_DNA_SINGER_ROOT;else process.env.JAMLOOM_DNA_SINGER_ROOT=old;await pool.end();await admin.query(`DROP DATABASE "${name}" WITH (FORCE)`);await admin.end();await rm(root,{recursive:true,force:true});}
 });

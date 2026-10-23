@@ -76,7 +76,7 @@ export async function dnaSong(request:Request,context?:DnaContext){
    if(!commerce)return json({songs:[],next:null,available:false});
    if(view==='mine'&&!owner)return json({songs:[],next:null,signIn:true});
    if(view==='mine'&&owner)for(const pending of await commerce.pending(owner))await dnaSong(new Request(`${url.origin}/api/taste/song?id=${pending.id}`,{headers:request.headers}),context);
-   return json(await commerce.list(owner??null,view,url.searchParams.get('after')??''));
+   return json(await commerce.list(owner??null,view,url.searchParams.get('after')??'',{language:url.searchParams.get('language')??'',genre:url.searchParams.get('genre')??''}));
   }
   if(request.method==='POST'){
    if(!commerce)return json({error:'Credit-backed generation is not enabled here yet. You can listen to the examples below.'},503);

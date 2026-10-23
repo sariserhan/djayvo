@@ -13,7 +13,7 @@ export async function storedDnaSong(request:Request,context?:DnaContext):Promise
  if(view&&request.method==='GET'){
   if(view!=='public'&&view!=='mine')return json({error:'Unknown collection.'},400);
   if(view==='mine'&&!owner)return json({songs:[],next:null,signIn:true});
-  const result=await commerce.list(owner,view,url.searchParams.get('after')??'');
+  const result=await commerce.list(owner,view,url.searchParams.get('after')??'',{language:url.searchParams.get('language')??'',genre:url.searchParams.get('genre')??''});
   return json({...result,accountFeedback:process.env.JAMLOOM_CLOUD_SONGS_ENABLED==='true',feedbackAvailable:commerce.product==='music-dna'&&process.env.JAMLOOM_CLOUD_SONGS_ENABLED==='true'});
  }
  if(!id&&request.method==='GET')return json({available:false,creditsEnabled:false,signedIn:!!owner});
