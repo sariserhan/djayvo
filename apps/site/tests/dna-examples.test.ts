@@ -64,3 +64,20 @@ test('the explicit jazz review is shown as a human verdict rather than an automa
  const reviewed=validationSongs.filter(s=>s.check==='owner-reviewed');
  assert.equal(reviewed.length,1);assert.equal(reviewed[0].audioSha256,'c0dbbabab04353d94c16714767553bbd6579d018031be7ee3b298c5d4c610560');assert.equal(reviewed[0].direction,'jazz');
 });
+
+test('Improvise exposes its existing public samples without crossing account or product boundaries',async()=>{
+ const base='https://www.jamloom.com/api/improvise/song',calls:unknown[][]=[];
+ const store=()=>({playbackURL:async(...args:unknown[])=>{calls.push(args);return 'https://r2.example.test/improvise';}});
+ const request=(query:string,method='GET')=>dnaExample(new Request(base+query,{method}),store,'improvise');
+ const response=await request('?view=validation'),data=await response!.json();
+ const expected=validationSongs.filter(song=>song.product==='improvise');
+ assert.ok(expected.length>0);assert.deepEqual(data.songs,expected);assert.equal(data.feedbackAvailable,false);
+ for(const song of expected){
+  assert.equal((await request(`?id=${song.id}&file=audio`))?.status,307);
+  assert.deepEqual(calls.at(-1),[musicAudioKey('improvise','public',song.id,song.audioSha256),false,900]);
+ }
+ const other=validationSongs.find(song=>song.product==='music-dna')!;
+ for(const query of ['?view=public','?view=mine','?view=examples',`?id=${other.id}&file=audio`,`?id=${examples.examples[0].id}&file=audio`,`?id=${expected[0].id}&file=input`,`?id=${expected[0].id}&file=plan`])assert.equal(await request(query),null);
+ for(const method of ['POST','DELETE'])assert.equal(await request(`?id=${expected[0].id}&file=audio`,method),null);
+ assert.equal(calls.length,expected.length);
+});

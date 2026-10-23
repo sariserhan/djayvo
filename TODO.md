@@ -1,3 +1,7 @@
+## Improvise public listening gallery — 2026-10-23
+
+- [x] **IMPROVISE-GALLERY — PASS, local:** Connected all 56 already-published Improvise samples to “Made with Improvise,” with an introductory listening link, language/genre filters, six-row pagination and downloads. Community/account songs remain separate. All 56 existing R2 files respond with valid WAV headers; Chromium/WebKit desktop/mobile traverse every sample, filter/reset, play real audio muted and pass accessibility/overflow checks. Six public-sample boundary tests and TypeScript PASS. No new uploads, generation, schema changes or deployment. See `docs/progress.md`.
+
 ## Improvise recording integration — 2026-10-23
 
 - [x] **IMPROVISE-BLEND — PASS, local implementation/technical validation:** Whole short recordings, phrases and non-speech excerpts can become single calls, returning hooks or beat-spaced loops. Several crops are tried; source-free fallbacks now fail instead of settling credits. Source/output-bound receipt validation, private storage and failed-job refunds pass in disposable PostgreSQL. Thirty mixes across five existing song styles preserve surrounding PCM and originals. [Behavior, evidence and release order](docs/improvise-blending.md).
