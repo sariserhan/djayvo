@@ -77,6 +77,30 @@ class WorkerTests(unittest.TestCase):
             network.assert_not_called()
         self.assertFalse(paths[-1].exists())
 
+    def test_variable_lengths_and_invalid_requests(self):
+        for product,seconds in [('music-dna',100),('music-dna',140),('improvise',30),('improvise',45)]:
+            job=copy.deepcopy(self.job);job['product']=product
+            if product=='improvise':
+                job['payload']={'voice':'male','genre':'jazz','consent':True}
+                job['source']={'url':URL.replace('11111111-1111','22222222-1111'),'bytes':44,'sha256':'a'*64}
+            job['payload']['duration_seconds']=seconds
+            def execute(work,timeout):
+                with wave.open(str(work/'audio.wav'),'wb') as wav:
+                    wav.setparams((2,2,48000,0,'NONE','not compressed'));wav.writeframes(b'\0\0'*2*48000*seconds)
+                (work/'result.json').write_text('{}')
+            class Response:
+                status=200
+                def __enter__(self):return self
+                def __exit__(self,*args):pass
+            class Opener:
+                def open(self,*args,**kwargs):return Response()
+            with patch.object(worker,'download'),patch.object(worker,'execute',side_effect=execute),patch('urllib.request.build_opener',return_value=Opener()):
+                result=worker.handler({'input':job})
+                self.assertEqual(result['seconds'],seconds);self.assertEqual(result['audio_bytes'],seconds*192000+44)
+            for invalid in (True,0,141,46 if product=='improvise' else 99):
+                job['payload']['duration_seconds']=invalid
+                with self.assertRaises(ValueError):worker.validate(job)
+
     def test_source_receipt_is_verified(self):
         class Response(io.BytesIO):pass
         class Opener:

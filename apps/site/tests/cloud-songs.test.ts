@@ -36,17 +36,18 @@ test('real Postgres cloud songs: concurrency, credits, recovery, privacy, cancel
  store.put=async(key,audio)=>{if(failStorage&&!key.startsWith('uploads/'))throw Error('Storage unavailable');await storePut(key,audio);};
  const submit=async(owner:string,visibility:'public'|'private'='public')=>{const key=id(),quote=await commerce.quote(owner,profile,visibility);await songs.submit(owner,key,profile,visibility,quote.token);return key;};
  const complete=async(key:string)=>{
-  const row=(await pool.query('SELECT output_key FROM cloud_song_runs WHERE id=$1',[key])).rows[0],audio=Buffer.alloc(120*192000+44);audio.write('RIFF');audio.writeUInt32LE(audio.length-8,4);audio.write('WAVEfmt ',8);audio.writeUInt32LE(16,16);audio.writeUInt16LE(1,20);audio.writeUInt16LE(2,22);audio.writeUInt32LE(48000,24);audio.writeUInt32LE(192000,28);audio.writeUInt16LE(4,32);audio.writeUInt16LE(16,34);audio.write('data',36);audio.writeUInt32LE(audio.length-44,40);
+  const row=(await pool.query('SELECT output_key,payload FROM cloud_song_runs WHERE id=$1',[key])).rows[0],seconds=row.payload.duration_seconds??120,audio=Buffer.alloc(seconds*192000+44);audio.write('RIFF');audio.writeUInt32LE(audio.length-8,4);audio.write('WAVEfmt ',8);audio.writeUInt32LE(16,16);audio.writeUInt16LE(1,20);audio.writeUInt16LE(2,22);audio.writeUInt32LE(48000,24);audio.writeUInt32LE(192000,28);audio.writeUInt16LE(4,32);audio.writeUInt16LE(16,34);audio.write('data',36);audio.writeUInt32LE(audio.length-44,40);
   for(let i=44;i<audio.length;i+=2)audio.writeInt16LE(Math.round(2000*Math.sin(i/100)),i);
-  await store.put(row.output_key,audio);results.set('provider-'+key,{id:'provider-'+key,status:'COMPLETED',executionTime:48000,delayTime:12000,output:{schema:'jamloom-runpod-1',id:key,product:'music-dna',audio_bytes:audio.length,audio_sha256:sha(audio),plan:{title:'Original song',direction:{id:'heavy-rock'},language:{code:'en',label:'English',country:'PRIVATE',votes:{private:1}},cases:[{lyrics:'Original lyrics'}]},fit:{accepted:true,target:'heavy-rock',audio_sha256:sha(audio)}}});
+  await store.put(row.output_key,audio);results.set('provider-'+key,{id:'provider-'+key,status:'COMPLETED',executionTime:48000,delayTime:12000,output:{schema:'jamloom-runpod-1',id:key,product:'music-dna',seconds,audio_bytes:audio.length,audio_sha256:sha(audio),plan:{title:'Original song',direction:{id:'heavy-rock'},language:{code:'en',label:'English',country:'PRIVATE',votes:{private:1}},cases:[{lyrics:'Original lyrics',duration:seconds}]},fit:{accepted:true,target:'heavy-rock',audio_sha256:sha(audio)}}});
  };
  try{
   await migrate(pool);assert.deepEqual(await migrate(pool),[]);
-  for(let i=0;i<8;i++){const owner='user'+i;await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[owner,owner+'@example.test']);await commerce.wallet.grant(owner,{provider:'stripe_test',receipt:owner,credits:50,netMicros:30000000});}
+  for(let i=0;i<9;i++){const owner='user'+i;await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[owner,owner+'@example.test']);await commerce.wallet.grant(owner,{provider:'stripe_test',receipt:owner,credits:50,netMicros:30000000});}
   await t.test('one request is reserved and dispatched once under duplicate concurrent calls',async()=>{
    const key=id(),quote=await commerce.quote('user0',profile,'public');
    await Promise.all(Array.from({length:8},()=>songs.submit('user0',key,profile,'public',quote.token)));
-   const before=submits;await Promise.all(Array.from({length:8},()=>songs.tick(key)));assert.equal(submits-before,1);assert.equal((await songs.status('user0',key)).state,'queued');
+   const duration=(await pool.query('SELECT payload FROM cloud_song_runs WHERE id=$1',[key])).rows[0].payload.duration_seconds;assert(duration>=100&&duration<=140);
+   const before=submits;await Promise.all(Array.from({length:8},()=>songs.tick(key)));assert.equal(submits-before,1);assert.equal(jobs.get(key)!.payload.duration_seconds,duration);assert.equal((await songs.status('user0',key)).state,'queued');
    await assert.rejects(songs.status('user1',key),/not found/);
    await assert.rejects(songs.submit('user0',key,{...profile,vocalLanguage:'tr'},'public',quote.token),/different/);
    await songs.cancel('user0',key);assert.deepEqual(await commerce.wallet.balance('user0'),{available:50,reserved:0});
@@ -56,6 +57,17 @@ test('real Postgres cloud songs: concurrency, credits, recovery, privacy, cancel
    for(const key of keys)assert.equal((await commerce.row(key)).state,'queued');
    await songs.cancel('user1',keys[0]);assert.equal((await commerce.row(keys[1])).state,'queued');
    for(let i=1;i<keys.length;i++){await complete(keys[i]);await songs.tick(keys[i]);assert.equal((await commerce.row(keys[i])).state,'completed');}
+  });
+  await t.test('duration boundaries settle once and a mismatched saved length refunds',async()=>{
+   for(const seconds of [100,140]){
+    const key=await submit('user8');
+    await pool.query("UPDATE cloud_song_runs SET payload=jsonb_set(payload,'{duration_seconds}',$2::jsonb) WHERE id=$1",[key,String(seconds)]);
+    await songs.tick(key);await complete(key);await songs.tick(key);
+    assert.equal((await commerce.row(key)).state,'completed');assert.equal((await commerce.row(key)).audio_bytes,seconds*192000+44);
+   }
+   const key=await submit('user8');await songs.tick(key);await complete(key);
+   results.get('provider-'+key)!.output!.seconds=1;await songs.tick(key);
+   assert.equal((await commerce.row(key)).state,'failed');assert.equal((await commerce.wallet.balance('user8')).reserved,0);
   });
   await t.test('restart after output storage failure uses persisted receipt and charges only once',async()=>{
    const key=await submit('user0','private');await songs.tick(key);await complete(key);failStorage=true;await assert.rejects(songs.tick(key),/Storage/);failStorage=false;

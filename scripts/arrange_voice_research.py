@@ -17,8 +17,8 @@ SCENES = ("instrumental-first", "fragment-pickup", "late-hook")
 
 def digest(path):
     path = Path(path)
-    if not path.is_file() or path.stat().st_size > 16 * 1024**2:
-        raise ValueError("Expected a local input no larger than 16 MiB")
+    if not path.is_file() or path.stat().st_size > 18 * 1024**2:
+        raise ValueError("Expected a local input no larger than 18 MiB")
     with path.open("rb") as file:
         return hashlib.file_digest(file, "sha256").hexdigest()
 

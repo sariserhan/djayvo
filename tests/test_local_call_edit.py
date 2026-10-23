@@ -32,6 +32,21 @@ class LocalCallEdit(unittest.TestCase):
 
     def tearDown(self):self.temp.cleanup()
 
+    def test_longest_improvise_preserves_music_outside_the_call(self):
+        song=np.tile(self.song,(2,1))[:45*RATE]
+        write_pcm(self.song_dir/'singer.wav',song)
+        sha=digest(self.song_dir/'singer.wav')
+        (self.song_dir/'complete.json').write_text(json.dumps({'technical':'PASS','audio_sha256':sha,'case':{'bpm':90,'duration':45}}))
+        vocals=np.zeros_like(song,dtype=np.float32)
+        np.save(self.song_dir/'stems/vocals.npy',vocals)
+        (self.song_dir/'stems/complete.json').write_text(json.dumps({'technical':'PASS','source_sha256':sha,'stems':{'vocals':digest(self.song_dir/'stems/vocals.npy')}}))
+        output=self.root/'long-edit'
+        edit(self.song_dir,self.hook,output,38,True)
+        actual=read_pcm(output/'performance.wav',(45,45))
+        original=read_pcm(self.song_dir/'singer.wav',(45,45))
+        np.testing.assert_array_equal(actual[:38*RATE],original[:38*RATE])
+        np.testing.assert_array_equal(actual[40*RATE:],original[40*RATE:])
+
     def test_repair_cannot_touch_outside_the_window_or_create_edge_steps(self):
         a,b=RATE,4*RATE
         generated=self.song*.8

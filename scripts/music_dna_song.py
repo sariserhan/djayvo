@@ -5,6 +5,7 @@ import fcntl
 import json
 import os
 from pathlib import Path
+from song_duration import choose_duration
 import re
 import shutil
 import subprocess
@@ -87,7 +88,7 @@ def performance_caption(direction, case, sound, traits=None, retry=False):
     return (core+detail).strip()
 
 
-def song_plan(data, refs, seed, requested_language='auto', vocal_profile=None):
+def song_plan(data, refs, seed, requested_language='auto', vocal_profile=None, duration=None):
     if not isinstance(data, dict):
         raise ValueError('Expected a song plan')
     data = {**data, 'lyrics': structured_lyrics(data.get('lyrics'))}
@@ -134,7 +135,7 @@ def song_plan(data, refs, seed, requested_language='auto', vocal_profile=None):
         raise ValueError('Invalid singer or genre')
     case = {'id': f'{genre}-{voice}', 'genre': genre, 'voice': voice, 'seed': seed,
             'vocal_profile':vocal_profile if vocal_profile is not None else choose_vocal_profile(seed,voice),
-            'duration': 120, 'bpm': data.get('bpm'), 'lyrics': data.get('lyrics'), 'vocal_language':code}
+            'duration': choose_duration('music-dna',seed,duration), 'bpm': data.get('bpm'), 'lyrics': data.get('lyrics'), 'vocal_language':code}
     cast_singer_reference(case)
     case['song_caption']=performance_caption(direction,case,sound,traits)
     plan = {'schema': 'jamloom-dna-song-1', 'model_code': CODE_REVISION, 'weights': WEIGHT_REVISION,
@@ -158,6 +159,7 @@ def parse_draft(raw):
 def draft(work):
     set_seed, generate, make_sampler = planner_functions()
     request = json.loads((work/'input.json').read_text())
+    duration=choose_duration('music-dna',request['seed'],request.get('duration_seconds'))
     refs = favorites(request['profile'])
     direction = direction_for(refs)
     if request.get('direction') != direction:
@@ -217,14 +219,17 @@ Lyrics MUST use these five English JSON keys. Values are arrays of sung lines in
 Include exactly one influence per favorite, same order, indices starting at 1. Keep each description under 25 words.
 Summary: two or three clear sentences. Each musical trait: under 15 words. Sound: under 70 words, no artist names. Describe stylistic traits, not an impersonation.
 Tempo must be an integer within required_direction.bpm. Do not include any of required_direction.avoid in the sound description.
-Song lasts TWO MINUTES. Lyrics: 120–200 words total AFTER repeating the chorus three times. Use 6–9 words per line for languages with spaces; 4 short lines per verse/chorus,
+Song lasts required_duration_seconds seconds. Fit phrasing and instrumental breathing room to that length, with a complete resolved ending before it ends. Lyrics: 120–200 words total AFTER repeating the chorus three times. Use 6–9 words per line for languages with spaces; 4 short lines per verse/chorus,
 For Chinese, Japanese or Thai use 250–650 characters instead of the word count. 2–4 bridge lines and a short ending. Repeat the SAME chorus words; develop the story in verse 2. Keep lyrics under 4000 characters.'''
+    word_target=f'{round(duration)}–{round(200*duration/120)}'
+    character_target=f'{round(250*duration/120)}–{round(650*duration/120)}'
+    system=system.replace('120–200',word_target).replace('250–650',character_target).replace('6–9 words','5–9 words')
     selected_profile=choose_vocal_profile(seed)
     selected_voice=VOCAL_PROFILES[selected_profile][0]
     cast={'seed':seed,'voice':selected_voice,'vocal_profile':selected_profile}
     cast_singer_reference(cast)
     selected_profile=cast['vocal_profile']
-    base_messages = [{'role': 'system', 'content': system}, {'role': 'user', 'content': json.dumps({'favorites': refs, 'required_direction': direction, 'required_singer':{'voice':selected_voice,'character':VOCAL_PROFILES[selected_profile][1]}, 'requested_language':requested_language, 'supported_languages':LANGUAGES, 'listener_feedback':request.get('feedback',[])}, ensure_ascii=False)}]
+    base_messages = [{'role': 'system', 'content': system}, {'role': 'user', 'content': json.dumps({'favorites': refs, 'required_direction': direction, 'required_singer':{'voice':selected_voice,'character':VOCAL_PROFILES[selected_profile][1]}, 'requested_language':requested_language, 'required_duration_seconds':duration, 'supported_languages':LANGUAGES, 'listener_feedback':request.get('feedback',[])}, ensure_ascii=False)}]
     messages=base_messages;candidate=None;lyric_repair=False
     for attempt in range(4):
         prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
@@ -238,15 +243,15 @@ For Chinese, Japanese or Thai use 250–650 characters instead of the word count
             else:candidate=parsed
             if not isinstance(candidate,dict):raise ValueError('Expected a song plan')
             candidate['voice']=selected_voice
-            plan = song_plan(candidate, refs, seed, requested_language, selected_profile)
+            plan = song_plan(candidate, refs, seed, requested_language, selected_profile, duration)
             break
         except (ValueError, TypeError, KeyError) as error:
             if attempt==3:raise
             lyric_repair=isinstance(candidate,dict) and isinstance(candidate.get('lyrics'),(str,dict)) and bool(re.search('lyrics|chorus|verse|section|writing system',str(error),re.I)) and not re.search('production|musical_traits|sound|in English',str(error),re.I)
             if lyric_repair:
-                messages=[{'role':'system','content':'''You are an original songwriter editing a two-minute song in the requested language. Rewrite awkward wording into natural, grammatical, singable lines with a coherent concrete story and a matching short title. Do not copy existing songs. Fix the reported problem, not just punctuation. Return ONLY {"title":"...","lyrics":{"verse_1":["..."],"chorus":["..."],"verse_2":["..."],"bridge":["..."],"outro":["..."]}}.
-Use these five English JSON keys and arrays of sung lines. No headings, embedded newlines or backslashes inside lines. Write four different lines for each verse and chorus, 6–9 words per line in languages with spaces. Verse 2 develops the story. Return the chorus once; the application repeats it three times. Bridge: 2-4 contrasting lines. Outro: a short resolved ending. Lyrics: 120-200 words; for Japanese, Chinese or Thai, 250-650 characters. Use the language's normal script. Replace the bad phrasing rather than reproducing it.'''},
-                    {'role':'user','content':json.dumps({'language':requested_language if requested_language!='auto' else candidate.get('vocal_language','en'),'musical_direction':direction['label'],'problem':str(error),'draft_lyrics':candidate['lyrics']},ensure_ascii=False)}]
+                messages=[{'role':'system','content':'''You are an original songwriter editing a song of the supplied duration in the requested language. Rewrite awkward wording into natural, grammatical, singable lines with a coherent concrete story and a matching short title. Do not copy existing songs. Fix the reported problem, not just punctuation. Return ONLY {"title":"...","lyrics":{"verse_1":["..."],"chorus":["..."],"verse_2":["..."],"bridge":["..."],"outro":["..."]}}.
+Use these five English JSON keys and arrays of sung lines. No headings, embedded newlines or backslashes inside lines. Write four different lines for each verse and chorus, 6–9 words per line in languages with spaces. Verse 2 develops the story. Return the chorus once; the application repeats it three times. Bridge: 2-4 contrasting lines. Outro: a short resolved ending. Lyrics: 120-200 words; for Japanese, Chinese or Thai, 250-650 characters. Use the language's normal script. Replace the bad phrasing rather than reproducing it.'''.replace('120-200',word_target).replace('250-650',character_target).replace('6–9 words','5–9 words')},
+                    {'role':'user','content':json.dumps({'language':requested_language if requested_language!='auto' else candidate.get('vocal_language','en'),'musical_direction':direction['label'],'duration_seconds':duration,'problem':str(error),'draft_lyrics':candidate['lyrics']},ensure_ascii=False)}]
             else:
                 messages=base_messages+[{'role':'assistant','content':json.dumps(candidate,ensure_ascii=False) if isinstance(candidate,dict) else raw},{'role':'user','content':f'The plan failed validation: {error}. Return the corrected full JSON object only.'}]
     plan['lyric_model_revision'] = manifest['revision']

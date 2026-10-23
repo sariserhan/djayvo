@@ -1,0 +1,12 @@
+{
+  "music-dna": {
+    "min": 100,
+    "max": 140,
+    "legacy": 120
+  },
+  "improvise": {
+    "min": 30,
+    "max": 45,
+    "legacy": 30
+  }
+}

@@ -85,7 +85,7 @@ class DnaExpansion(unittest.TestCase):
         request={'profile':{'references':['Private catalogue name'],'referenceMetadata':[{'reference':'Private catalogue name','genre':'Pop'}],'vocalLanguage':'es'}}
         lyrics='\n'.join('['+s+']\n'+'La noche nos lleva de vuelta a casa\n'*4 for s in ['Verse 1','Chorus','Verse 2','Chorus','Bridge','Outro'])
         direction=direction_for([{'reference':'Private catalogue name','catalogue_genre':'Pop'}])
-        (work/'input.json').write_text(json.dumps(request));plan={'schema':'jamloom-dna-song-1','title':'Original title','direction':direction,'input_sha256':digest(work/'input.json'),'cases':[{'song_caption':'Original lively pop','vocal_language':'es','voice':'female','bpm':110,'lyrics':lyrics}]}
+        (work/'input.json').write_text(json.dumps(request));plan={'schema':'jamloom-dna-song-1','title':'Original title','direction':direction,'input_sha256':digest(work/'input.json'),'cases':[{'duration':120,'song_caption':'Original lively pop','vocal_language':'es','voice':'female','bpm':110,'lyrics':lyrics}]}
         (work/'plan.json').write_text(json.dumps(plan));(work/'singer/singer.wav').write_bytes(b'technical fixture, not audio training evidence')
         hashes={'plan_sha256':digest(work/'plan.json'),'audio_sha256':digest(work/'singer/singer.wav')}
         (work/'singer/complete.json').write_text(json.dumps(hashes));(work/'fit.json').write_text(json.dumps({**hashes,'input_sha256':digest(work/'input.json'),'accepted':True}));(work/'status.json').write_text('{"state":"completed"}')

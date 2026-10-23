@@ -46,12 +46,22 @@ class MusicDnaSong(unittest.TestCase):
         plan = song_plan(self.data, self.refs, 123)
         case = plan['cases'][0]
         self.assertEqual(len(plan['cases']),1)
-        self.assertEqual(case['duration'], 120)
+        self.assertTrue(100<=case['duration']<=140)
+        self.assertEqual(case['duration'],song_plan(self.data,self.refs,123)['cases'][0]['duration'])
         self.assertEqual(case['bpm'], 94)
         self.assertEqual([n['reference'] for n in plan['influences']], [r['reference'] for r in self.refs])
         self.assertIn(self.data['sound'], caption(case))
         self.assertNotIn('Artist One', caption(case))
         self.assertNotIn('source_audio', plan)
+
+    def test_duration_boundaries_and_retry_preserve_the_arrangement(self):
+        from music_dna_song import retry_direction
+        for seconds in (100,140):
+            plan=song_plan(self.data,self.refs,123,duration=seconds)
+            self.assertEqual(plan['cases'][0]['duration'],seconds)
+            self.assertEqual(retry_direction(plan)['cases'][0]['duration'],seconds)
+        for seconds in (99,141,True,120.5):
+            with self.assertRaises(ValueError):song_plan(self.data,self.refs,123,duration=seconds)
 
     def test_research_variants_bind_the_actual_seed_and_reject_duplicate_audio(self):
         with tempfile.TemporaryDirectory() as folder:

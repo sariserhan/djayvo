@@ -109,7 +109,7 @@ def edit(song_dir, source, output, call_at, consent=False, repaint_dir=None, rep
     output.mkdir(parents=True);(output/'.partial').touch()
     shutil.copyfile(song_dir/'singer.wav',output/'original.wav')
     for name,pcm in [('performance',mix),('music',music),('user',voice)]:write_pcm(output/f'{name}.wav',pcm)
-    actual=read_pcm(output/'performance.wav',(30,30));saved_voice=read_pcm(output/'user.wav',(30,30))
+    actual=read_pcm(output/'performance.wav',(30,45));saved_voice=read_pcm(output/'user.wav',(30,45))
     a,b=region;outside=np.r_[np.arange(a),np.arange(b,len(song))]
     error=float(np.max(np.abs(actual[outside]-song[outside])))
     identity=float(np.max(np.abs(saved_voice-voice)))

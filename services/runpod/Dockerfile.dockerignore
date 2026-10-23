@@ -30,3 +30,6 @@
 !services/runpod/Dockerfile.dockerignore
 
 !scripts/vocal_identity.py
+
+!scripts/song_duration.py
+!assets/manifests/song-durations.json

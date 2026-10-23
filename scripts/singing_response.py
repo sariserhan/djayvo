@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+from song_duration import choose_duration, validate_duration
 import random
 import re
 import resource
@@ -119,7 +120,7 @@ def variants(seed):
     random.Random(seed).shuffle(pairs)
     return [{'id': f'{style}-{voice}', 'genre': style, 'voice': voice, 'seed': seed+i,
              'vocal_profile':choose_vocal_profile(seed+i,voice),
-             'bpm': STYLES[style][0], 'duration': 30, 'source_repetitions': 1 + i % 2}
+             'bpm': STYLES[style][0], 'duration': choose_duration('improvise',seed+i), 'source_repetitions': 1 + i % 2}
             for i, (style, voice) in enumerate(pairs)]
 
 
@@ -168,11 +169,12 @@ def validate_plan(plan):
             raise ValueError('Invalid accepted singer reference')
         if type(c.get('seed')) is not int or not 0 <= c['seed'] < 2**32:
             raise ValueError('Invalid seed')
+        validate_duration('music-dna' if song else 'improvise',c.get('duration'))
         if song:
-            if type(c.get('duration')) is not int or c['duration'] != 120 or type(c.get('bpm')) is not int or not 60 <= c['bpm'] <= 180:
+            if type(c.get('bpm')) is not int or not 60 <= c['bpm'] <= 180:
                 raise ValueError('Invalid song timing')
             text_field(c.get('song_caption'), 2000, 'song direction')
-        elif 'song_caption' in c or c.get('duration') != 30 or c.get('bpm') != STYLES[c['genre']][0] or type(c.get('source_repetitions')) is not int or c['source_repetitions'] not in (1, 2):
+        elif 'song_caption' in c or c.get('bpm') != STYLES[c['genre']][0] or type(c.get('source_repetitions')) is not int or c['source_repetitions'] not in (1, 2):
             raise ValueError('Invalid timing or repetition budget')
         code=language(c.get('vocal_language','en'))
         lyrics = text_field(c.get('lyrics'), 4000 if song else 1600, 'lyrics')
@@ -260,7 +262,7 @@ def planner_functions():
     return torch.manual_seed, generate, lambda **kwargs: kwargs
 
 
-def draft(root, phrase, seed, output, voice=None, genre=None):
+def draft(root, phrase, seed, output, voice=None, genre=None, duration=None):
     phrase = text_field(phrase, MAX_PHRASE_CHARS, 'source phrase')
     if voice is not None and voice not in VOICES or genre is not None and genre not in STYLES:
         raise ValueError('Unknown voice or genre')
@@ -270,11 +272,12 @@ def draft(root, phrase, seed, output, voice=None, genre=None):
     set_seed, generate, make_sampler = planner_functions()
     model, tokenizer, manifest = lyric_model(root)
     for c in cases:
+        if duration is not None:c['duration']=validate_duration('improvise',duration)
         cast_singer_reference(c)
         set_seed(c['seed'])
         messages = [{'role': 'system', 'content':
             'You are an original musician performing a friendly musical reply to a listener. '
-            'Write only 4 to 6 short English lyric lines, 25 to 55 words total. '
+            f"The song lasts {c['duration']} seconds. Write 4 to 8 short English lyric lines, 25 to {round(55*c['duration']/30)} words total. Leave musical breathing room and finish the last phrase before the resolved ending. "
             'Respond directly to the meaning of the quoted listener phrase, addressing them as you. '
             'Respond to the central idea, emotion or story; do not recite the transcript. '
             'Use everyday conversational English, no invented words or forced rhymes. '
@@ -487,6 +490,7 @@ if __name__ == '__main__':
     p.add_argument('--seed', type=int, default=61022)
     p.add_argument('--plan', type=Path)
     p.add_argument('--case')
+    p.add_argument('--duration',type=int)
     p.add_argument('--voice', choices=tuple(VOICES))
     p.add_argument('--genre', choices=tuple(STYLES))
     p.add_argument('--conditioning', type=Path, help='Private source-led research guide; optional')
@@ -494,7 +498,7 @@ if __name__ == '__main__':
     p.add_argument('--reference-vocals',action='store_true',help='Research only: use the pinned separated vocal stem from the reference singer')
     a = p.parse_args()
     if a.phase == 'draft':
-        draft(runtime(a.runtime), a.phrase, a.seed, a.output, a.voice, a.genre)
+        draft(runtime(a.runtime), a.phrase, a.seed, a.output, a.voice, a.genre, a.duration)
     else:
         if a.plan is None or a.case is None:
             p.error('sing requires --plan and --case')

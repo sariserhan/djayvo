@@ -1,3 +1,7 @@
+## Variable song lengths — 2026-10-23
+
+**PASS, implementation/local render/storage/schema; NOT RUN, hosted release and new listening acceptance.** Owner-confirmed ranges are Music DNA 100–140 seconds and Improvise 30–45 seconds. New requests save a varied duration; retries retain it, existing plans and older hosted requests retain their length. Lyrics, renderer checks, source placement, style windows, upload grants and stored receipts follow the same range. Actual 140/45-second Mac renders, R2 verification and desktop Chromium/mobile WebKit playback/seek pass; both are in the public listening gallery (154 samples). 67 Python tests, TypeScript, 21 cloud/audio tests, nine DNA commerce and nine admin tests pass. Production migration 0019 was backed up, restored/rehearsed, applied and verified idempotent. The updated worker must publish before the website; neither was deployed and no paid compute was used. [Report](song-duration.md).
+
 ## Public song filters — 2026-10-23
 
 **PASS, local.** Shared public galleries now expose Language and Genre filters together, Clear filters and empty results. Homepage, Music DNA, Improvise and listening routes are covered. Community queries filter the entire authorized collection before the 24-song page limit and return available languages/genres from that same visibility/product/billing scope. Stale fetch responses cannot replace a newer selection. Existing examples now carry genre labels copied from saved original plans; audio identities and storage remain unchanged.

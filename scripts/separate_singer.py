@@ -3,6 +3,7 @@
 import argparse
 import json
 from pathlib import Path
+from song_duration import LIMITS, MAX_SONG_BYTES
 import time
 
 import numpy as np
@@ -18,11 +19,11 @@ def separate(singer, output):
     if output.exists():
         raise FileExistsError('Preserving existing separation')
     source_hash = model_digest(singer)
-    if Path(singer).stat().st_size > 24_000_000:
-        raise ValueError('Singer exceeds the two-minute audio limit')
+    if Path(singer).stat().st_size > MAX_SONG_BYTES:
+        raise ValueError('Singer exceeds the supported audio limit')
     with wave.open(str(singer), 'rb') as audio:
-        if audio.getparams()[:3] != (2, 2, RATE) or audio.getnframes() not in (30*RATE, 120*RATE) or audio.getcomptype() != 'NONE':
-            raise ValueError('Expected a 30-second or two-minute stereo PCM singer')
+        if audio.getparams()[:3] != (2, 2, RATE) or not any(b['min']*RATE<=audio.getnframes()<=b['max']*RATE for b in LIMITS.values()) or audio.getcomptype() != 'NONE':
+            raise ValueError('Expected a supported-length stereo PCM singer')
         original = np.frombuffer(audio.readframes(audio.getnframes()), dtype='<i2').reshape(-1, 2).astype(np.float32)/32768
     manifest = json.loads((ROOT/'assets/manifests/singer-separation.json').read_text())
     checkpoint = ROOT/'build-style-training/separator/hdemucs_high_trained.pt'

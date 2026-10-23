@@ -82,7 +82,7 @@ def rendered(folder):
     receipt = json.loads((folder/'complete.json').read_text())
     if receipt.get('technical') != 'PASS' or digest(folder/'singer.wav') != receipt['audio_sha256']:
         raise ValueError('Generated audio provenance mismatch')
-    return read_pcm(folder/'singer.wav',(30,30)), receipt
+    return read_pcm(folder/'singer.wav',(30,45)), receipt
 
 
 def arrangement(work):

@@ -4,6 +4,7 @@ import argparse
 import json
 import math
 from pathlib import Path
+from song_duration import LIMITS
 from singing_response import digest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -67,9 +68,9 @@ def score_audio(path, auditor=None):
     import numpy as np
     import soundfile as sf
     pcm, rate = sf.read(path, dtype='float32', always_2d=True)
-    if rate != 48000 or pcm.shape != (120*rate, 2) or not np.isfinite(pcm).all() or np.max(np.abs(pcm)) >= 1 or np.sqrt(np.mean(pcm**2)) < .001:
+    if rate != 48000 or (pcm.shape[1]!=2 or not LIMITS['music-dna']['min']*rate<=len(pcm)<=LIMITS['music-dna']['max']*rate) or not np.isfinite(pcm).all() or np.max(np.abs(pcm)) >= 1 or np.sqrt(np.mean(pcm**2)) < .001:
         raise ValueError('Invalid full song audio')
-    windows = [pcm[t*rate:(t+10)*rate].mean(axis=1) for t in (15,45,75,105)]
+    windows = [pcm[t*rate:(t+10)*rate].mean(axis=1) for t in np.linspace(15,len(pcm)/rate-15,4).astype(int)]
     return score_windows(windows, auditor or load_auditor())
 
 

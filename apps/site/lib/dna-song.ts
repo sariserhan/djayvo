@@ -1,3 +1,4 @@
+import {MAX_SONG_BYTES} from './song-duration';
 import {randomInt,createHash} from 'node:crypto';
 import {spawn,type ChildProcess} from 'node:child_process';
 import {access,mkdir,readFile,writeFile,stat} from 'node:fs/promises';
@@ -51,7 +52,7 @@ async function songFiles(root:string,id:string){
    fit=JSON.parse(await readFile(join(work,'fit.json'),'utf8'));
    const receipt=JSON.parse(await readFile(join(work,'singer/complete.json'),'utf8'));
    const audioPath=join(work,'singer/singer.wav');
-   if((await stat(audioPath)).size>24_000_000)throw Error('Invalid output');
+   if((await stat(audioPath)).size>MAX_SONG_BYTES)throw Error('Invalid output');
    if(!planBytes||!plan||fit?.accepted!==true||fit.target!==input.direction?.id||JSON.stringify(plan.direction)!==JSON.stringify(input.direction)||
       plan.input_sha256!==sha(inputBytes)||fit.input_sha256!==sha(inputBytes)||fit.plan_sha256!==sha(planBytes)||receipt.plan_sha256!==sha(planBytes)||
       fit.audio_sha256!==receipt.audio_sha256||fit.audio_sha256!==sha(await readFile(audioPath))){
@@ -201,7 +202,7 @@ export async function dnaSong(request:Request,context?:DnaContext){
   if(file){
    if(status.state!=='completed')return json({error:'This song is not ready.'},409);
    if(file==='audio'){
-    const path=join(work,'singer/singer.wav');if((await stat(path)).size>24_000_000)throw Error('Invalid output');
+    const path=join(work,'singer/singer.wav');if((await stat(path)).size>MAX_SONG_BYTES)throw Error('Invalid output');
     try{const response=audioResponse(request,{data:await readFile(path)},url.searchParams.has('download'));
      response.headers.set('Content-Disposition',`${url.searchParams.has('download')?'attachment':'inline'}; filename="jamloom-song-${id.slice(0,8)}.wav"`);return response;
     }catch{return new Response(null,{status:416,headers:privateHeaders});}

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-23T19:16:58.705Z",
+  "target": "ep-flat-hill-b4q0lix4.c-6.us-east-2.aws.neon.tech/neondb",
+  "backup": {
+    "sha256": "d63e2c3699b5c544e188fb7c71a54f321c97a1703d0c3ed337c9020300e8f3e6",
+    "restore": "PASS",
+    "privateLocalPath": "build-song-duration/before-0019.dump"
+  },
+  "applied": [
+    "0019_song_duration_range.sql"
+  ],
+  "repeatApply": [],
+  "songCountBefore": 0,
+  "songCountAfter": 0,
+  "constraint": "CHECK (((audio_bytes >= 44) AND (audio_bytes <= 26880044)))"
+}

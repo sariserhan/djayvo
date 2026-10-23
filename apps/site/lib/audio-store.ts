@@ -1,3 +1,4 @@
+import {MAX_SONG_BYTES} from './song-duration';
 import { mkdir, readFile, writeFile, rename, rm, stat } from 'node:fs/promises';
 import { dirname, isAbsolute, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -61,7 +62,7 @@ export function r2AudioStore(env: Record<string,string|undefined> = process.env)
       const result=await client.send(new GetObjectCommand({Bucket:bucket,Key:key}),{abortSignal:AbortSignal.timeout(15000)});
       const body=result.Body?.transformToWebStream();
       if (!body) throw new AudioError('Upload is missing.');
-      if (!result.ContentLength || result.ContentLength>Math.min(limit,24_000_000)) { await body.cancel(); throw new AudioError('Invalid upload size.'); }
+      if (!result.ContentLength || result.ContentLength>Math.min(limit,MAX_SONG_BYTES)) { await body.cancel(); throw new AudioError('Invalid upload size.'); }
       return readBody(body,limit);
     },
     async remove(key) { await client.send(new DeleteObjectCommand({Bucket:bucket,Key:key}),{abortSignal:AbortSignal.timeout(15000)}); },

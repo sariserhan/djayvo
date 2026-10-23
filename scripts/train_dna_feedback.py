@@ -32,14 +32,14 @@ def training_data(plan,f):
     from dna_direction import direction_for
     refs=[{'reference':'Generated musical direction','catalogue_genre':'Metal' if direction['id']=='heavy-rock' else direction['id']}]
     direction=direction_for(refs)
-    prompt={'favorites':refs,'required_direction':direction,'requested_language':code,'listener_feedback':[{'rating':'like','tags':f['tags'],'language':code,'traits':traits,'bpm':case['bpm']}]}
+    prompt={'favorites':refs,'required_direction':direction,'requested_language':code,'required_duration_seconds':case['duration'],'listener_feedback':[{'rating':'like','tags':f['tags'],'language':code,'traits':traits,'bpm':case['bpm']}]}
     target={'title':plan['title'],'summary':'An original song guided by the supplied genres and positive listener feedback.',
         'influences':[{'index':i+1,'basis':'genre_only' if r['catalogue_genre'] else 'unknown','description':'Guided by the supplied catalogue genre.' if r['catalogue_genre'] else 'No genre evidence.'} for i,r in enumerate(refs)],
         'sound':plan.get('production_sound',direction['label']+' with '+', '.join(direction['instruments'])),'direction_id':direction['id'],'energy':direction['energy'],'instruments':direction['instruments'],
         'vocal_language':code,'voice':case['voice'],'bpm':case['bpm'],'lyrics':case['lyrics'],'musical_traits':traits}
     from music_dna_song import song_plan
-    song_plan(target,refs,0,code)
-    return {'messages':[{'role':'system','content':'Write an original two-minute vocal song plan in JSON from this musical direction. Keep the requested language. Use coherent verses, a memorable returning chorus, a bridge and a resolved ending.'},{'role':'user','content':json.dumps(prompt,ensure_ascii=False)},{'role':'assistant','content':json.dumps(target,ensure_ascii=False)}]}
+    song_plan(target,refs,0,code,duration=case['duration'])
+    return {'messages':[{'role':'system','content':'Write an original vocal song plan of the supplied duration in JSON from this musical direction. Keep the requested language. Use coherent verses, a memorable returning chorus, a bridge and a resolved ending.'},{'role':'user','content':json.dumps(prompt,ensure_ascii=False)},{'role':'assistant','content':json.dumps(target,ensure_ascii=False)}]}
 
 def owner_reviewed(root):
     """Explicit owner research cohort, kept separate from customer feedback."""

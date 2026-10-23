@@ -84,6 +84,8 @@ def validate(value):
     payload = value.get('payload')
     if not isinstance(payload, dict):
         raise ValueError('Missing music input')
+    from song_duration import validate_duration
+    if 'duration_seconds' in payload:validate_duration(value['product'],payload['duration_seconds'])
     if value['product'] == 'music-dna':
         from music_dna_song import favorites
         from dna_direction import direction_for
@@ -97,7 +99,7 @@ def validate(value):
         feedback=payload.get('feedback', [])
         if not isinstance(feedback,list) or len(feedback)>12 or len(json.dumps(feedback).encode())>16384:
             raise ValueError('Invalid feedback context')
-        if set(payload) - {'profile', 'seed', 'country', 'feedback'}:
+        if set(payload) - {'profile', 'seed', 'country', 'feedback', 'duration_seconds'}:
             raise ValueError('Unsupported DNA input')
     else:
         from singing_response import STYLES, VOICES, text_field, MAX_PHRASE_CHARS
@@ -159,7 +161,8 @@ def handler(job):
                 download(value['source'], work/'source')
             execute(work, value['timeout_seconds'])
             audio = work/'audio.wav'
-            seconds = 120 if value['product'] == 'music-dna' else 30
+            from song_duration import LIMITS
+            seconds = value['payload'].get('duration_seconds',LIMITS[value['product']]['legacy'])
             with wave.open(str(audio)) as wav:
                 if (wav.getframerate(), wav.getnchannels(), wav.getsampwidth(), wav.getnframes()) != (48000, 2, 2, seconds*48000):
                     raise ValueError('Unexpected finished audio')

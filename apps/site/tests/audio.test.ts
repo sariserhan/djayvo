@@ -1,3 +1,4 @@
+import {savedSongDuration,songDurations,MAX_SONG_BYTES} from '../lib/song-duration';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { audioStore, localAudioStore } from '../lib/audio-store';
@@ -78,4 +79,15 @@ test('audio errors retain safe status across duplicated route modules',async()=>
 test('extended output accepts exact 15/60 second boundaries and rejects outside them',()=>{
  for(const seconds of [15,60]){const wav=audioFixture(seconds);assert.equal(validateWav(wav,wav.length,hash(wav)),seconds*1000);assert.equal(saveInput(input(wav)).bytes,wav.length);}
  for(const seconds of [14,61]){const wav=audioFixture(seconds);assert.throws(()=>validateWav(wav,wav.length,hash(wav)));assert.throws(()=>saveInput(input(wav)));}
+});
+
+test('song duration contracts retain old jobs and bound both products without widening ordinary uploads',()=>{
+ for(const product of ['music-dna','improvise'] as const){
+  const bounds=songDurations[product];assert.equal(savedSongDuration(product,{}),bounds.legacy);
+  for(const duration_seconds of [bounds.min,bounds.max])assert.equal(savedSongDuration(product,{duration_seconds}),duration_seconds);
+  for(const duration_seconds of [true,'120',NaN,bounds.min-1,bounds.max+1])assert.throws(()=>savedSongDuration(product,{duration_seconds}));
+ }
+ const wav=audioFixture(140);assert.equal(validateWav(wav,wav.length,hash(wav),MAX_SONG_BYTES),140000);
+ assert.throws(()=>validateWav(wav,wav.length,hash(wav)));
+ const long=audioFixture(141);assert.throws(()=>validateWav(long,long.length,hash(long),MAX_SONG_BYTES));
 });

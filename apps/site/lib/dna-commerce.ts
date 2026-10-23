@@ -1,3 +1,4 @@
+import {MAX_SONG_BYTES} from './song-duration';
 import {createHash} from 'node:crypto';
 import type {Pool,PoolClient} from 'pg';
 import {Wallet} from './wallet';
@@ -53,7 +54,7 @@ export class DnaCommerce{
   if(state==='completed'&&this.store){
    const audio=details!.audio;
    if(!row.audio_key){
-    if(!audio||audio.length<44||audio.length>24_000_000||audio.toString('ascii',0,4)!=='RIFF'||!details!.plan)throw Error('Checked song audio and plan required before completion');
+    if(!audio||audio.length<44||audio.length>MAX_SONG_BYTES||audio.toString('ascii',0,4)!=='RIFF'||!details!.plan)throw Error('Checked song audio and plan required before completion');
     const sha256=createHash('sha256').update(audio).digest('hex'),key=musicAudioKey(this.product,row.visibility,id,sha256);
     await this.store.put(key,audio);
     if(createHash('sha256').update(await this.store.get(key,audio.length)).digest('hex')!==sha256)throw Error('Stored song verification failed');

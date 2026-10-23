@@ -1,3 +1,4 @@
+import {songDurations,MAX_SONG_BYTES} from '../lib/song-duration';
 import './env';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -18,7 +19,7 @@ for(const field of ['title','language','direction'])assert(typeof entry[field]==
 const path=await realpath(resolve(root,entry.audio));assert(path.startsWith(root+sep)&&path.endsWith('.wav'));
 const data=await readFile(path),hash=(b:Buffer)=>createHash('sha256').update(b).digest('hex'),sha=hash(data);
 assert.equal(sha,entry.audioSha256);
-const duration=validateWav(data,data.length,sha,24000000);assert.equal(duration,entry.product==='music-dna'?120000:30000);
+const duration=validateWav(data,data.length,sha,MAX_SONG_BYTES);const bounds=songDurations[entry.product as keyof typeof songDurations];assert(duration>=bounds.min*1000&&duration<=bounds.max*1000);
 const song:ValidationSong={id:sha.slice(0,32),title:entry.title,language:entry.language,direction:entry.direction,product:entry.product,audioSha256:sha,audioBytes:data.length,check:entry.check,createdAt:new Date().toISOString()};
 const manifestPath=resolve(root,'assets/manifests/music-validation.json'),lock=resolve(root,'renders/.validation-publication-lock');
 await mkdir(lock);

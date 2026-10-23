@@ -1,3 +1,4 @@
+import {songDurations,savedSongDuration,MAX_SONG_BYTES} from './song-duration';
 import {cloudPersonalFeedback} from './cloud-song-feedback';
 import {createHash,randomUUID,randomInt} from 'node:crypto';
 import {isDeepStrictEqual} from 'node:util';
@@ -58,6 +59,7 @@ export class CloudSongs{
    checkSource(await this.commerce.store!.get(source.object_key,source.bytes),source.bytes,source.sha256);
   }
   const payload=this.commerce.product==='music-dna'?{profile:input,seed:randomInt(2**32),...(country&&/^[A-Z]{2}$/.test(country)?{country}:{})}:(()=>{const {sourceId,...rest}=input as Record<string,unknown>;return rest;})();
+  const bounds=songDurations[this.commerce.product];payload.duration_seconds=randomInt(bounds.min,bounds.max+1);
   if(this.commerce.product==='music-dna'){const feedback=await cloudPersonalFeedback({commerce:this.commerce,owner},musicDirection(input as ReturnType<typeof songInput>)!.id,(input as {vocalLanguage?:string}).vocalLanguage??'auto');if(feedback.length)payload.feedback=feedback;}
   await this.commerce.submit(owner,id,input,visibility,token,async db=>{
    await db.query("SELECT pg_advisory_xact_lock(hashtextextended('jamloom-cloud-daily-cap',0))");
@@ -103,7 +105,7 @@ export class CloudSongs{
     // Disabled endpoints reject submissions; keep the durable queue without an ambiguous paid intent.
     if(!await this.provider.dispatchEnabled())return;
     const job:RunpodJob={id,product:this.commerce.product,timeout_seconds:this.config.executionSeconds,ttl_seconds:this.config.ttlSeconds,
-     output_url:await store!.uploadURL(run.output_key,(this.commerce.product==='music-dna'?120:30)*192000+44,this.config.ttlSeconds+300),payload:run.payload};
+     output_url:await store!.uploadURL(run.output_key,savedSongDuration(this.commerce.product,run.payload)*192000+44,this.config.ttlSeconds+300),payload:run.payload};
     if(run.source_id){
      const source=(await pool.query('SELECT * FROM song_uploads WHERE id=$1',[run.source_id])).rows[0];
      job.source={url:await store!.playbackURL(source.object_key,false,this.config.ttlSeconds+300),bytes:source.bytes,sha256:source.sha256};
@@ -131,15 +133,15 @@ export class CloudSongs{
    // Honor cancellation received before saving the completed song.
    if((await pool.query('SELECT cancel_requested FROM cloud_song_runs WHERE id=$1',[id])).rows[0].cancel_requested){await this.commerce.finish(id,'cancelled');await this.cleanup(run);return;}
    const output=result.output;if(!output)throw new AudioError('The finished song could not be verified.',422);
-   const seconds=this.commerce.product==='music-dna'?120:30;
-   if(output.schema!=='jamloom-runpod-1'||output.id!==id||output.product!==this.commerce.product||output.audio_bytes!==seconds*192000+44||typeof output.audio_sha256!=='string'||!/^[a-f0-9]{64}$/.test(output.audio_sha256))throw new AudioError('The finished song could not be verified.',422);
+   const seconds=savedSongDuration(this.commerce.product,run.payload);
+   if((run.payload.duration_seconds!==undefined&&output.seconds!==seconds)||output.schema!=='jamloom-runpod-1'||output.id!==id||output.product!==this.commerce.product||output.audio_bytes!==seconds*192000+44||typeof output.audio_sha256!=='string'||!/^[a-f0-9]{64}$/.test(output.audio_sha256))throw new AudioError('The finished song could not be verified.',422);
    const audio=await store!.get(run.output_key,Number(output.audio_bytes));
-   try{if(validateWav(audio,Number(output.audio_bytes),output.audio_sha256,24000000)!==seconds*1000)throw Error();}
+   try{if(validateWav(audio,Number(output.audio_bytes),output.audio_sha256,MAX_SONG_BYTES)!==seconds*1000)throw Error();}
    catch{throw new AudioError('The finished song could not be verified.',422);}
    const plan=output.plan as any,fit=output.fit as any;
-   if(this.commerce.product==='music-dna'&&(fit?.accepted!==true||fit.audio_sha256!==output.audio_sha256||fit.target!==musicDirection(row.profile)?.id||typeof plan?.title!=='string'||!plan.title.trim()||plan.title.length>100||!Array.isArray(plan.cases)||plan.cases.length!==1||typeof plan.cases[0]?.lyrics!=='string'||!plan.cases[0].lyrics.trim()||plan.cases[0].lyrics.length>4000))throw new AudioError('This song did not match your musical direction.',422);
+   if(this.commerce.product==='music-dna'&&(fit?.accepted!==true||fit.audio_sha256!==output.audio_sha256||fit.target!==musicDirection(row.profile)?.id||typeof plan?.title!=='string'||!plan.title.trim()||plan.title.length>100||!Array.isArray(plan.cases)||plan.cases.length!==1||(run.payload.duration_seconds!==undefined&&plan.cases[0]?.duration!==seconds)||typeof plan.cases[0]?.lyrics!=='string'||!plan.cases[0].lyrics.trim()||plan.cases[0].lyrics.length>4000))throw new AudioError('This song did not match your musical direction.',422);
    if(this.commerce.product==='improvise'&&(typeof output.lyrics!=='string'||!output.lyrics.trim()||output.lyrics.length>8000||!output.arrangement||typeof output.arrangement!=='object'))throw new AudioError('The finished song could not be verified.',422);
-   const savedPlan=this.commerce.product==='music-dna'?plan:{title:'Your new song',language:{code:'auto',label:'Automatic'},cases:[{lyrics:output.lyrics??''}],arrangement:output.arrangement};
+   const savedPlan=this.commerce.product==='music-dna'?plan:{title:'Your new song',language:{code:'auto',label:'Automatic'},cases:[{lyrics:output.lyrics??'',duration:seconds}],arrangement:output.arrangement};
    await this.commerce.finish(id,'completed',{title:String(savedPlan.title).slice(0,120),language:savedPlan.language?.code??'en',direction:this.commerce.product==='music-dna'?musicDirection(row.profile)!.label:String(row.profile.genre),audio,plan:savedPlan},estimate);
    await this.cleanup(run);
   }catch(error){
