@@ -14,8 +14,8 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   const context=await browser.newContext({viewport:{width:1280,height:900}});await context.addInitScript(silenceSpeakers);
   await context.route('**/*',r=>{const u=new URL(r.request().url());return u.origin===base||u.hostname.endsWith('.r2.cloudflarestorage.com')?r.continue():r.abort();});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/music-dna');
-  const gallery=page.getByRole('region',{name:'Listen to all songs',exact:true});await gallery.locator('audio').nth(17).waitFor();
-  assert.equal(await page.getByRole('region',{name:'Made with Music DNA',exact:true}).count(),0);
+  const gallery=page.getByRole('region',{name:'Made with Music DNA',exact:true});await gallery.locator('audio').nth(17).waitFor();
+  assert.equal(await page.getByRole('region',{name:'Made with Music DNA',exact:true}).count(),1);
   assert.equal(await gallery.locator('audio').count(),18);assert.equal(await gallery.getByText('Rate this song',{exact:true}).count(),0);
   const audio=gallery.locator('audio').first();assert.equal(await audio.evaluate(a=>a.paused),true);await audio.evaluate(a=>a.play());
   await page.waitForFunction(()=>document.querySelector('.dna-song-grid audio').currentTime>.1);assert.equal(await audio.evaluate(a=>a.muted),true);

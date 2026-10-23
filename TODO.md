@@ -1,5 +1,7 @@
 ## Full public listening collection — 2026-10-23
 
+- [x] **DNA-026 — PASS, local:** Renamed the single Music DNA gallery to “Made with Music DNA.” Updated browser selectors; Chromium confirms exactly one gallery with the new heading and loaded songs. Website deployment NOT RUN.
+
 - [x] **DNA-025 — PASS, local:** Removed the duplicate “Made with Music DNA” examples section from `/music-dna`; “Listen to all songs” remains the main listening collection. Updated affected browser checks. Chromium/WebKit verify the duplicate is absent, remaining R2 playback/seek/download checks pass, and layouts fit 1280/390/320px without page errors. No storage changes; website deployment NOT RUN. See `docs/progress.md`.
 
 - [x] **DNA-024 — PASS, local:** Homepage Music DNA chapter now replaces its screenshot with four playable original songs in a 2×2 grid, labelled “Made with Music DNA.” Back/Next cycles the public Music DNA samples and stops the previous audio. Full DNA showcases and the DNA community list are removed from the homepage; full-collection links lead to `/music-dna#public-songs`. Other product sections stay intact. Chromium/WebKit checks pass for all 98 preview samples, back/next, real muted playback, single-player behavior, load-error recovery, full-collection navigation, accessibility and layouts down to 320px. TypeScript PASS. Website deployment NOT RUN. See `docs/progress.md`.

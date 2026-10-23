@@ -52,11 +52,11 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    const song=await(await context.request.get(`${base}/api/taste/song?id=${ids[i]}`)).json();assert.equal(song.state,'completed');assert.equal(song.plan.influences.length,song.profile.references.length);songs.push({id:ids[i],title:song.plan.title,seconds:duration,language:song.plan.cases[0].vocal_language??'en',voice:song.plan.cases[0].voice,bpm:song.plan.cases[0].bpm,caption:song.plan.cases[0].song_caption});
   }
   await page.locator('audio').evaluateAll(list=>list.forEach(a=>a.pause()));
-  assert.equal(await page.getByRole('region',{name:'Made with Music DNA',exact:true}).count(),0);
+  assert.equal(await page.getByRole('region',{name:'Made with Music DNA',exact:true}).count(),1);
   const downloading=page.waitForEvent('download');await page.getByRole('link',{name:'Download song',exact:true}).first().click();
   const download=await downloading,bytes=await readFile(await download.path());assert.equal(bytes.toString('ascii',0,4),'RIFF');assert.equal(bytes.length,23040044);
   const downloaded={bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex'),filename:download.suggestedFilename()};
-  for(const width of [1280,390,320]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.getByRole('heading',{name:'Listen to all songs',exact:true}).scrollIntoViewIfNeeded();await page.screenshot({path:join(output,`${name}-${width}.png`),fullPage:true});}
+  for(const width of [1280,390,320]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.getByRole('heading',{name:'Made with Music DNA',exact:true}).scrollIntoViewIfNeeded();await page.screenshot({path:join(output,`${name}-${width}.png`),fullPage:true});}
   assert.equal(await page.evaluate(()=>localStorage.getItem('jamloom-dna-songs-v1')),null);
   assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references),saved.references);
   assert.equal(await page.getByRole('region',{name:'Songs for this list',exact:true}).count(),0);

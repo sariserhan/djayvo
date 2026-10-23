@@ -1,3 +1,7 @@
+## Music DNA gallery title — 2026-10-23
+
+**PASS, local.** Renamed the remaining Music DNA gallery to “Made with Music DNA,” as requested. Updated affected browser selectors. Chromium at localhost:4235 confirms exactly one gallery with this heading and loaded songs; the old heading is absent. Diff check PASS. No playback changes or new audio testing. Website deployment NOT RUN.
+
 ## Single Music DNA listening collection — 2026-10-23
 
 **PASS, local.** Removed the separate “Made with Music DNA” examples section from the Music DNA page at the owner's request. “Listen to all songs,” its filters and pagination remain. The homepage four-song preview is unchanged; audio files and API access are unchanged. Updated browser selectors and removed assertions for the removed example-rating UI.
