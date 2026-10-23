@@ -13,10 +13,10 @@ async function bankStore(mode,action){
  const db=await new Promise((resolve,reject)=>{const r=indexedDB.open('jamloom-sampler-v1',1);r.onupgradeneeded=()=>r.result.createObjectStore('banks');r.onsuccess=()=>resolve(r.result);r.onerror=r.onblocked=()=>reject(Error('Sample storage unavailable.'));});
  try{return await new Promise((resolve,reject)=>{const tx=db.transaction('banks',mode),result=action(tx.objectStore('banks'));tx.oncomplete=()=>resolve(result?.result);tx.onerror=tx.onabort=()=>reject(Error('Could not save this bank. The previous saved bank is kept.'));});}finally{db.close();}
 }
-export function attachSampler({graph,context,mixer,rights,onSourcesChanged}){
+export function attachSampler({graph,context,mixer,onSourcesChanged}){
  let selected=0,slots=Array(8).fill(null),voices=new Map(),revision=0,busy=false;
  const status=text=>$('sampler-status').textContent=text;
- const permitted=()=>rights.checked&&$('sample-consent').checked;
+ const permitted=()=>$('sample-consent').checked;
  const pads=Array.from({length:8},(_,i)=>{const button=document.createElement('button');button.className='sample-pad';button.id=`sample-pad-${i}`;button.innerHTML=`<strong>${i+1}</strong> <small>Load sample</small>`;button.onclick=()=>{selected=i;refresh();void play(i);};button.setAttribute('aria-label',`Sample pad ${i+1}`);$('sample-pads').append(button);return button;});
  function refresh(){
   pads.forEach((pad,i)=>{pad.setAttribute('aria-pressed',String(i===selected));pad.dataset.playing=String(voices.has(i));const name=slots[i]?.file.name??'Empty';pad.querySelector('small').textContent=name;pad.setAttribute('aria-label',`${i+1} ${name} — Sample pad`);pad.disabled=!permitted()||busy;});
@@ -77,7 +77,7 @@ export function attachSampler({graph,context,mixer,rights,onSourcesChanged}){
   }catch(error){status(error.message+' Current pads kept.');}finally{busy=false;refresh();}
  };
  $('sample-delete-bank').onclick=async()=>{if(busy)return;busy=true;refresh();try{await bankStore('readwrite',store=>store.delete($('sample-bank').value));status('Saved bank deleted. Loaded pads are unchanged.');}catch(error){status(error.message);}finally{busy=false;refresh();}};
- for(const consent of [rights,$('sample-consent')])consent.addEventListener('change',()=>{if(!permitted()){stopAll();slots.fill(null);onSourcesChanged();status('Samples cleared from this session. Delete saved banks separately.');}refresh();});
+ for(const consent of [$('sample-consent')])consent.addEventListener('change',()=>{if(!permitted()){stopAll();slots.fill(null);onSourcesChanged();status('Samples cleared from this session. Delete saved banks separately.');}refresh();});
  window.addEventListener('pagehide',stopAll);window.addEventListener('blur',stopAll);
  refresh();return {loadSample,stop:stopAll,snapshot:()=>[...voices].map(([pad,v])=>({pad,started_context_frame:v.started_context_frame,settings:{...v.settings},duration:v.duration})),sources:()=>Object.fromEntries(slots.map((slot,i)=>['sample'+i,slot?.file??null]))};
 }

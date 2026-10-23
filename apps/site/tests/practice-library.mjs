@@ -14,8 +14,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await context.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+'/studio/dj.html');await revealStudioTools(page);await page.waitForFunction(()=>document.querySelector('#practice-track').options.length===10);
-  assert.ok(await page.locator('#practice-load-a').isDisabled());
-  await page.locator('#music-rights').check();
+  assert.equal(await page.locator('#practice-load-a').isDisabled(),false);
   const played=[];
   for(const [index,track] of tracks.entries()){
    const deck=index%2===1?'b':'a';
@@ -36,8 +35,8 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   let began;const pending=new Promise(resolve=>began=resolve);let release;
   const hold=new Promise(resolve=>release=resolve);
   await page.route(target,async r=>{began();await hold;await r.abort().catch(()=>{});});
-  await page.locator('#practice-load-a').click();await pending;await page.locator('#music-rights').uncheck();release();await page.unroute(target);
-  assert.equal(await page.locator('#audio-a').getAttribute('src'),null);assert.ok(await page.locator('#practice-load-a').isDisabled());
+  await page.locator('#practice-load-a').click();await pending;await page.locator('#clear-a').click();await page.locator('#clear-b').click();release();await page.unroute(target);
+  assert.equal(await page.locator('#audio-a').getAttribute('src'),null);assert.equal(await page.locator('#practice-load-a').isDisabled(),false);
   await page.locator('#practice-track').selectOption('funky-hip-hop-lofi-jam');
   assert.match(await page.locator('#practice-track option:checked').innerText(),/Lo-fi hip-hop/);
   const layouts=[];
@@ -48,7 +47,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   }
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(axe.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})),[]);
   await page.goto(base+'/academy/lessons/first-crossfade');await revealStudioTools(page);await page.locator('#academy-load').waitFor();
-  await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
+  await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
   assert.match(await page.locator('#name-a').innerText(),/Extended/);assert.match(await page.locator('#name-b').innerText(),/Theories/);
   // Existing lesson fixtures remain separate; the same library is available for free practice.
   await page.locator('#practice-track').selectOption('funked-up');await page.locator('#practice-load-b').click();
@@ -76,7 +75,6 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    // Stop the server: WebKit offline emulation can reject even cached navigation.
    await new Promise(resolve=>server.close(resolve));
    await offline.reload();await revealStudioTools(offline);await offline.waitForFunction(()=>document.querySelector('#practice-track').options.length===10);
-   await offline.locator('#music-rights').check();
    for(const track of tracks){
     await offline.locator('#practice-track').selectOption(track.id);await offline.locator('#practice-load-a').click();
     await offline.waitForFunction(title=>document.querySelector('#state-a').textContent==='Ready'&&document.querySelector('#name-a').textContent.startsWith(title),track.title);

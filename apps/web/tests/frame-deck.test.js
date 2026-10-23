@@ -18,3 +18,9 @@ test('manual seeks override rolls and replacement cannot retain slip state',asyn
 test('a roll released after track end stops instead of restarting at zero',async()=>{
  const {deck,context}=fixture();deck.currentTime=60;await deck.play();deck.startRoll(2,120);context.currentTime=10;deck.exitLoop();assert.equal(deck.currentTime,64);assert.equal(deck.paused,true);assert.equal(deck.ended,true);
 });
+test('fractional beat loops respect grid origin and resize on the playing audio clock',async()=>{
+ const {deck,context,nodes}=fixture();deck.currentTime=4.4;deck.beatLoop(.25,120,.1);assert.deepEqual(deck.region,[4.1,4.225]);
+ await deck.play();context.currentTime=.05;deck.setLoopRegion(4.1,4.35);assert.equal(nodes.at(-1).loopEnd,4.35);assert.ok(deck.currentTime>=4.1&&deck.currentTime<=4.35);
+ for(const region of [[-1,2],[2,2],[2,65],[NaN,4]])assert.throws(()=>deck.setLoopRegion(...region));
+ assert.throws(()=>deck.beatLoop(.25,120,-1));deck.exitLoop();deck.startRoll(.125,120,.1);context.currentTime=1;deck.exitLoop();assert.equal(deck.roll,null);
+});

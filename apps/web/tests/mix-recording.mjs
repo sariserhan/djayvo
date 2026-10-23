@@ -114,7 +114,6 @@ try {
   checks.push('actual four-channel mixer tap matches destination PCM exactly, preserves stereo, includes limiter/FX/faders and mutes');
   const pcm=new Float32Array(48000*4*2);
   for(let f=0;f<48000*4;f++){pcm[f*2]=.2*Math.sin(2*Math.PI*220*f/48000);pcm[f*2+1]=.15*Math.sin(2*Math.PI*330*f/48000);}
-  await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles({name:'original-test-tone.wav',mimeType:'audio/wav',buffer:Buffer.from(stereoWav(pcm,48000*4,48000))});
   await page.waitForFunction(()=>!document.getElementById('play-a').disabled);
   await page.locator('#prepare-frames-a').click();
@@ -264,13 +263,13 @@ try {
   assert.equal(await page.locator('#mix-record-sources').getAttribute('href'),null);
   if(!await page.locator('#mix-record-consent').isChecked())assert.equal(await page.locator('#mix-record-transport').getAttribute('href'),null);
   checks.push('delayed source hashing cannot restore revoked exports; read failure and real 10-second deadline preserve WAV and controls');
-  await page.locator('#music-rights').uncheck();
+  await page.locator('#mix-record-consent').uncheck();
   assert.equal(await page.locator('#mix-record-wav').isVisible(),false);
   assert.equal(await page.locator('#mix-record-player').getAttribute('src'),null);
   assert.equal(await page.locator('#mix-record-sources').getAttribute('href'),null);
   if(!await page.locator('#mix-record-consent').isChecked())assert.equal(await page.locator('#mix-record-transport').getAttribute('href'),null);
   assert.equal(await page.locator('#mix-record-automation').getAttribute('href'),null);
-  await page.locator('#mix-record-start').click(); await recording();
+  await page.locator('#mix-record-consent').check();await page.locator('#mix-record-start').click(); await recording();
   await page.evaluate(()=>{
     const digest=crypto.subtle.digest.bind(crypto.subtle);
     crypto.subtle.digest=async(...args)=>{await new Promise(resolve=>window.releaseMixHash=resolve);crypto.subtle.digest=digest;return digest(...args);};

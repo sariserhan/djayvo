@@ -46,7 +46,6 @@ for (const [name, kind] of Object.entries({ chromium, webkit })) {
     for (const deck of ['a','b']) await page.locator(`.deck-${deck} .deck-fx-panel summary`).click();
     assert.equal(await page.title(), 'Jamloom Pro — Performance Studio');
     await page.locator('#performance-title').waitFor();
-    await page.locator('#music-rights').check();
     await page.locator('#file-a').setInputFiles('renders/session-native-20261018/session-60000.wav');
     await page.locator('#prepare-a').click();
     await page.waitForFunction(() => !document.getElementById('context-confirmed').disabled, null, { timeout: 30000 });

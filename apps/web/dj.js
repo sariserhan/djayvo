@@ -1,5 +1,6 @@
 import { attachStudioAccess } from './studio-access.js';
 import './site-announcement.js';
+import { attachProDeckTools } from './pro-deck-tools.js';
 import { attachProConsole } from './pro-console.js';
 import { attachSampler } from './sampler.js';
 import { practiceFile, partnerFile, isPracticeFile } from './practice-library.js';
@@ -22,32 +23,32 @@ const $ = id => document.getElementById(id);
 attachStudioView($('dj'), $('studio-fullscreen'), $('studio-view-status'));
 attachProConsole();
 const access = await attachStudioAccess();
-const rights = $('music-rights');
 const decks = ['a', 'b'].map(id => ({ id, audio: $(`audio-${id}`), url: null, duration: 0, loading: null, revision: 0, starting: false }));
 let context, mixer, meterData, audioFailure, session;
 for(const [index,deck] of decks.entries()){deck.media=deck.audio;deck.audio=new FrameDeck(deck.media,()=>context,()=>deck.mediaGain);}
+const proDecks = attachProDeckTools({decks,mode:access.mode,context:()=>context,prepareFrames,deckEffects});
 const time = seconds => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 
 function controls(deck) {
   const { id, audio } = deck;
   const held = deck.prepared || deck.preparing;
-  const ready = !!deck.url && rights.checked && !held;
+  const ready = !!deck.url && !held;
   $(`play-${id}`).disabled = !ready || !!deck.loading || deck.starting;
   $(`play-${id}`).textContent = `${audio.paused ? 'Play' : 'Pause'} ${id.toUpperCase()}`;
-  $(`file-${id}`).disabled = held || !rights.checked || !audio.paused || deck.starting || !!deck.loading;
+  $(`file-${id}`).disabled = held || !audio.paused || deck.starting || !!deck.loading;
   $(`practice-load-${id}`).disabled = $(`file-${id}`).disabled || !$('practice-track').value;
   $(`library-load-${id}`).disabled = $(`file-${id}`).disabled || !$('saved-mix').value;
   $(`clear-${id}`).disabled = !deck.url && !deck.loading;
   $(`seek-${id}`).disabled = !ready || !!deck.loading;
-  $(`level-${id}`).disabled = !rights.checked;
+  $(`level-${id}`).disabled = false;
   $(`jog-${id}`).closest('.deck').dataset.playing = String(held ? !!deck.sessionPlaying : !audio.paused);
   $(`state-${id}`).textContent = held ? (deck.sessionPlaying ? 'Prepared · playing' : 'Prepared session') : deck.loading ? 'Loading…' : deck.starting ? 'Starting…' : !deck.url ? 'Empty' : audio.ended ? 'Ended' : audio.paused ? 'Ready' : 'Playing';
   $(`seek-${id}`).max = String(deck.duration);
   $(`seek-${id}`).value = String(audio.currentTime || 0);
-  for (const name of ['tone', 'echo', 'delay', 'fx-reset', ...DECK_EFFECTS]) $(`${name}-${id}`).disabled = !deck.url || !rights.checked || !!deck.loading;
+  for (const name of ['tone', 'echo', 'delay', 'fx-reset', ...DECK_EFFECTS]) $(`${name}-${id}`).disabled = !deck.url || !!deck.loading;
   deck.transportControls?.(ready && !deck.loading && !deck.starting);
   $(`prepare-frames-${id}`).disabled=!ready||!audio.paused||!!deck.loading||deck.starting||!!audio.buffer;
-  if (deck.prepared) for (let band = 0; band < 3; band++) $(`eq-${id}-${band}`).disabled = !rights.checked;
+  if (deck.prepared) for (let band = 0; band < 3; band++) $(`eq-${id}-${band}`).disabled = false;
   $(`time-${id}`).textContent = `${time(deck.prepared ? deck.sessionTime || 0 : audio.currentTime || 0)} / ${time(deck.duration)}`;
 }
 
@@ -120,6 +121,7 @@ function audioGraph() {
       deck.mediaGain = context.createGain(); deck.mediaGain.gain.value = 0;
       context.createMediaElementSource(deck.media).connect(deck.mediaGain);
       deck.mediaGain.connect(mixer.strips[index].input);
+      deck.proScope=mixer.strips[index].scope;
     });
   } catch {
     audioFailure = new Error('Mixer could not initialize. Reload this page before trying again.');
@@ -136,30 +138,30 @@ function audioGraph() {
 }
 
 function masterControls() {
-  for (const id of ['crossfade', 'crossfade-curve', 'pause-all']) $(id).disabled = !rights.checked;
-  $('master').disabled = !rights.checked && !keyboard.ready();
+  for (const id of ['crossfade', 'crossfade-curve', 'pause-all']) $(id).disabled = false;
+  $('master').disabled = false;
 }
 const keyboard = attachKeyboard({ graph: audioGraph, context: () => context, mixer: () => mixer, levels, masterControls, getPhrase: () => session?.phraseSource(), onSourcesChanged: () => mixRecording.sourcesChanged(),onNote:()=>bridge.publish({action:'instrument.note',control:'keyboard',source:'user',t:context.currentTime,value:null}) });
 const mixRecording = attachMixRecording({ graph: audioGraph, context: () => context, mixer: () => mixer,
   getSampler:()=>sampler.snapshot(),
   getTransport: () => ({ a: decks[0].audio.transportState(), b: decks[1].audio.transportState(), prepared: session?.transportState() ?? null }),
   getSources: () => ({ a: decks[0].file, b: decks[1].file, ...session?.mixSources(), rack: keyboard.sourceAsset(), ...sampler.sources() }) });
-const sampler=attachSampler({graph:audioGraph,context:()=>context,mixer:()=>mixer,rights,onSourcesChanged:()=>mixRecording.sourcesChanged()});
+const sampler=attachSampler({graph:audioGraph,context:()=>context,mixer:()=>mixer,onSourcesChanged:()=>mixRecording.sourcesChanged()});
 for (const deck of decks) deck.audio.addEventListener('transportchange', event => mixRecording.transportChanged(deck.id, event.action));
 async function start(deck) {
     const { id, audio } = deck;
-    if (!rights.checked || !deck.url || deck.loading || deck.starting || deck.prepared || deck.preparing) return;
+    if (!deck.url || deck.loading || deck.starting || deck.prepared || deck.preparing) return;
     if (!audio.paused) { pause(deck); return; }
     const revision = ++deck.revision;
     deck.starting = true; deck.playRequested = true; controls(deck); $(`error-${id}`).textContent = '';
     try {
       audioGraph(); await resumeAudio(context);
-      if (revision !== deck.revision || !rights.checked) return;
+      if (revision !== deck.revision) return;
       if (context.state !== 'running') throw new Error('Audio is suspended. Press Play to try again.');
       if (audio.ended) audio.currentTime = 0;
       deck.mediaGain.gain.setTargetAtTime(1, context.currentTime, .005);
-      await playMedia(audio, () => revision === deck.revision && rights.checked && deck.playRequested);
-      if (!rights.checked || !deck.playRequested) audio.pause();
+      await playMedia(audio, () => revision === deck.revision && deck.playRequested);
+      if (!deck.playRequested) audio.pause();
       else if (revision === deck.revision) $('mixer-status').textContent = 'Manual mixing active. Keep this page open and your device awake.';
     } catch (error) {
       if (revision === deck.revision) { pause(deck); $(`error-${id}`).textContent = `Playback could not start: ${error.message}`; }
@@ -169,26 +171,20 @@ async function start(deck) {
     }
 }
 
-rights.onchange = () => {
-  if (!rights.checked) decks.forEach(unload);
-  masterControls();
-  decks.forEach(controls);
-  $('mixer-status').textContent = rights.checked ? 'Load your tracks. Start A, then bring B into the blend.' : 'Confirm your music permissions to load tracks.';
-};
 
 async function loadTrack(deck, getFile) {
   const { id, audio } = deck;
-  if (!rights.checked || !audio.paused || deck.starting || deck.loading || deck.prepared || deck.preparing) return;
+  if (!audio.paused || deck.starting || deck.loading || deck.prepared || deck.preparing) return;
   $(`error-${id}`).textContent = '';
   const revision = ++deck.revision, controller = new AbortController();
   deck.playRequested = false; deck.loading = controller; controls(deck);
   try {
     const file = await getFile(controller.signal);
-    if (!file || revision !== deck.revision || !rights.checked) return;
+    if (!file || revision !== deck.revision) return;
     if (!access.ownMusic && !isPracticeFile(file)) throw Error('Pro demo uses practice music. Switch to Basic or upgrade to load your tracks.');
     validateTrack(file);
     const duration = await trackDuration(file, controller.signal);
-    if (revision !== deck.revision || !rights.checked) return;
+    if (revision !== deck.revision) return;
     // Connect before preloading: Linux WebKit can stall when rerouting decoded media.
     audioGraph();
     const previous = deck.url, url = URL.createObjectURL(file);
@@ -206,7 +202,7 @@ async function loadTrack(deck, getFile) {
 }
 
 async function prepareFrames(deck) {
-  if(!rights.checked||!deck.file||!deck.audio.paused||deck.loading||deck.prepared||deck.preparing||deck.audio.buffer)return;
+  if(!deck.file||!deck.audio.paused||deck.loading||deck.prepared||deck.preparing||deck.audio.buffer)return;
   const revision=++deck.revision,file=deck.file;
   deck.preparing=true;controls(deck);
   try{
@@ -214,10 +210,10 @@ async function prepareFrames(deck) {
     if(deck.duration<2||deck.duration>300||deck.duration*context.sampleRate*8>128*1024*1024)
       throw Error('Beat controls need a track of 2 seconds–5 minutes within 128 MB decoded. Native playback is still available.');
     const buffer=await context.decodeAudioData(await file.arrayBuffer());validatePreparedTrack(buffer);
-    if(revision!==deck.revision||file!==deck.file||!rights.checked)return;
+    if(revision!==deck.revision||file!==deck.file)return;
     const position=deck.audio.currentTime,speed=deck.audio.playbackRate;
     const node=await deck.audio.prepareDSP(buffer);
-    if(revision!==deck.revision||file!==deck.file||!rights.checked){node.port.postMessage({type:'dispose'});node.port.close();node.disconnect();return;}
+    if(revision!==deck.revision||file!==deck.file){node.port.postMessage({type:'dispose'});node.port.close();node.disconnect();return;}
     deck.audio.useDSP(buffer,node);deck.audio.currentTime=position;deck.audio.playbackRate=speed;
     deck.audio.loop=deck.loop;deck.duration=buffer.duration;
     $(`error-${deck.id}`).textContent='Beat controls and scratch ready. Enter the track BPM. Enable key lock to preserve pitch when changing tempo.';
@@ -302,10 +298,10 @@ for (const deck of decks) {
   $(`fx-reset-${id}`).onclick = () => deckEffects(deck, true);
   $(`play-${id}`).onclick = () => start(deck);
   attachDeck(deck, decks.find(other => other !== deck), { pause, start, mixer: () => mixer, context: () => context,
-    scratchStart:async()=>{await resumeAudio(context);if(rights.checked&&deck.audio.processor)deck.mediaGain.gain.setTargetAtTime(1,context.currentTime,.005);} });
+    scratchStart:async()=>{await resumeAudio(context);if(deck.audio.processor)deck.mediaGain.gain.setTargetAtTime(1,context.currentTime,.005);} });
   $(`clear-${id}`).onclick = () => unload(deck);
   $(`seek-${id}`).oninput = event => {
-    if (deck.url && rights.checked) {
+    if (deck.url) {
       try { audio.currentTime = Math.max(0, Math.min(deck.duration, Number(event.target.value))); }
       catch { $(`error-${id}`).textContent = 'Could not seek yet. Let the track load, then try again.'; }
     }
@@ -316,12 +312,14 @@ for (const deck of decks) {
     if (deck.url) { pause(deck); $(`error-${id}`).textContent = 'Track playback failed. Unload it and try another file.'; }
   });
 }
-session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onPhraseChanged: () => { keyboard.sourceChanged(); mixRecording.sourceChanged(); }, onSourcesChanged: () => mixRecording.sourcesChanged(), onTransportChanged: () => mixRecording.transportChanged('prepared', 'prepared'), onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
+proDecks.bind();
+masterControls();
+session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, onPhraseChanged: () => { keyboard.sourceChanged(); mixRecording.sourceChanged(); }, onSourcesChanged: () => mixRecording.sourcesChanged(), onTransportChanged: () => mixRecording.transportChanged('prepared', 'prepared'), onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
 for (const [id, load] of [['sample-demo', file => sampler.loadSample(file)], ['phrase-demo', file => session.loadSample(file)]]) {
   $(id).onclick = async () => {
     const status = $(id === 'sample-demo' ? 'sampler-status' : 'phrase-status');
-    if (access.mode === 'basic' || !rights.checked || !$(id === 'sample-demo' ? 'sample-consent' : 'phrase-consent').checked) {
-      status.textContent = 'Confirm music and sample or phrase permission first. Use Pro demo to try these controls.'; return;
+    if (access.mode === 'basic' || !$(id === 'sample-demo' ? 'sample-consent' : 'phrase-consent').checked) {
+      status.textContent = 'Confirm sample or phrase permission first. Use Pro demo to try these controls.'; return;
     }
     $(id).disabled = true;
     try {
@@ -345,8 +343,8 @@ window.addEventListener('pagehide', event => {
   decks.forEach(pause); clearDeckEchoes();
   if (!event.persisted) { decks.forEach(unload); context?.close().catch(() => {}); }
 });
-attachStudioRecovery({decks,rights,loadTrack,prepareFrames,levels,deckEffects,controls,session,keyboard});
-const cueRouting=attachCueRouting({graph:audioGraph,context:()=>context,mixer:()=>mixer,rights,paused:()=>decks.every(d=>d.audio.paused&&!d.sessionPlaying&&!d.starting)});
+attachStudioRecovery({decks,loadTrack,prepareFrames,levels,deckEffects,controls,session,keyboard});
+const cueRouting=attachCueRouting({graph:audioGraph,context:()=>context,mixer:()=>mixer,paused:()=>decks.every(d=>d.audio.paused&&!d.sessionPlaying&&!d.starting)});
 const academySamples = new Float32Array(2048);
 function academySnapshot() {
   const measure=node=>{if(!node||context?.state!=='running')return {peak:0,rms:0};node.getFloatTimeDomainData(academySamples);
@@ -363,9 +361,9 @@ const bridge=deckBridge(academySnapshot);
 const setRecording=attachSetRecording({graph:audioGraph,context:()=>context,mixer:()=>mixer,emit:event=>bridge.publish({...event,...(event.action==='recording.sample'?{sample:{...academySnapshot(),peak:event.peak,rms:event.rms}}:{})})});
 for(const id of ['set-record-start','set-record-stop'])bridge.bind($(id),'onclick','recording.control');
 for(const id of ['crossfade','master','level-a','level-b','rate-a','rate-b','seek-a','seek-b','rack-level',...['a','b'].flatMap(d=>['tone','echo','delay',...['eq'].flatMap(p=>[`${p}-${d}-0`,`${p}-${d}-1`,`${p}-${d}-2`])].map(p=>p.startsWith('eq-')?p:`${p}-${d}`))])bridge.bind($(id),'oninput',id==='crossfade'?'crossfader.set':'parameter.set');
-for(const id of ['pause-all',...['a','b'].flatMap(d=>['play','cue','set-cue','loop','fx-reset','match','tap','rate-reset','prepare-frames','beat-loop','beat-roll','loop-exit','jump-back','jump-forward','align',...Array.from({length:4},(_,i)=>`hot-${d}-${i}`)].map(p=>p.startsWith('hot-')?p:`${p}-${d}`))])bridge.bind($(id),'onclick','deck.control');
+for(const id of ['pause-all',...['a','b'].flatMap(d=>['play','cue','set-cue','loop','fx-reset','match','tap','rate-reset','prepare-frames','beat-loop','beat-roll','loop-exit','jump-back','jump-forward','align',...Array.from({length:8},(_,i)=>`hot-${d}-${i}`).filter(id=>$(id))].map(p=>p.startsWith('hot-')?p:`${p}-${d}`))])bridge.bind($(id),'onclick','deck.control');
 if((location.pathname.startsWith('/academy/')||location.pathname.startsWith('/academy-offline/'))||new URLSearchParams(location.search).has('academy'))import('./academy-coach.js').then(({attachAcademy})=>attachAcademy({bridge,
-  async load(tracks){if(!rights.checked)throw new Error('Confirm the music permission checkbox first.');
+  async load(tracks){
    decks.forEach(pause);
    for(let i=0;i<2;i++){const track=tracks[i],response=await fetch(track.url);if(!response.ok)throw new Error('Practice music unavailable. Reconnect to prepare it.');
     const bytes=await response.arrayBuffer(),sha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
@@ -374,7 +372,7 @@ if((location.pathname.startsWith('/academy/')||location.pathname.startsWith('/ac
     await loadTrack(decks[i],()=>file);if(decks[i].file!==file)throw new Error('Practice track could not load.');
     const buffer=await context.decodeAudioData(bytes.slice(0));
     if(buffer.duration>180||buffer.numberOfChannels>2)throw new Error('Course audio exceeds the playback limit.');
-    if(!rights.checked||decks[i].file!==file)throw Error('Practice load interrupted.');
+    if(decks[i].file!==file)throw Error('Practice load interrupted.');
     decks[i].audio.useBuffer(buffer);controls(decks[i]);
     decks[i].academyAsset=track.id;$(`bpm-${decks[i].id}`).value=track.bpm;
    }
@@ -384,6 +382,7 @@ setInterval(() => {
   decks.forEach(controls);
   bridge.sample();
   session.refresh();
+  proDecks.refresh();
   access.refresh();
   if (!mixer || context.state !== 'running') { $('output-meter').value = 0; $('peak').textContent = 'Silent'; return; }
   let peak = 0;

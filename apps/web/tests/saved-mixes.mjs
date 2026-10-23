@@ -48,10 +48,9 @@ export async function verifySavedDecks(page, check, capture) {
   await page.locator('#library-refresh').click();
   await page.waitForFunction(() => document.getElementById('saved-mix').options.length === 2);
   await page.locator('#saved-mix').selectOption({ index: 1 });
-  assert.equal(await page.locator('#library-load-a').isDisabled(), true);
-  assert.equal(await page.locator('#library-load-b').isDisabled(), true);
-  check('saved C survives reload and consent withdrawal; loading requires fresh music permission');
-  await page.locator('#music-rights').check();
+  assert.equal(await page.locator('#library-load-a').isDisabled(), false);
+  assert.equal(await page.locator('#library-load-b').isDisabled(), false);
+  check('saved C survives reload; track loading needs no playback permission prompt');
   await page.evaluate(() => {
     const create = URL.createObjectURL.bind(URL);
     window.deckBlobs = new Map();
@@ -88,7 +87,7 @@ export async function verifySavedDecks(page, check, capture) {
   await page.setViewportSize({ width: 1440, height: 1000 });
   check('saved-mix controls fit desktop and mobile without horizontal overflow');
 
-  // Pause hashing to withdraw permission while the asynchronous library load is pending.
+  // Pause hashing to unload the track while the asynchronous library load is pending.
   await page.evaluate(() => {
     window.digest = crypto.subtle.digest.bind(crypto.subtle);
     crypto.subtle.digest = async (...args) => {
@@ -99,15 +98,14 @@ export async function verifySavedDecks(page, check, capture) {
   });
   await page.locator('#library-load-b').click();
   await page.waitForFunction(() => !!window.finishDigest);
-  await page.locator('#music-rights').uncheck();
+  await page.locator('#clear-a').click();await page.locator('#clear-b').click();
   await page.evaluate(() => finishDigest());
   await page.waitForTimeout(150);
   assert.equal(await page.locator('#audio-b').getAttribute('src'), null);
   assert.equal(await page.locator('#state-b').textContent(), 'Empty');
-  await page.locator('#music-rights').check();
   await page.locator('#library-load-b').click();
   await page.waitForFunction(() => document.getElementById('state-b').textContent === 'Ready');
-  check('permission withdrawal during verification prevents late loading; a fresh permitted retry succeeds');
+  check('unloading during verification prevents late loading; a fresh retry succeeds');
 
   await page.evaluate(async () => {
     const { loadSessions, deleteSession, saveSession } = await import('./library.js');

@@ -53,7 +53,7 @@ try{
     const capture=r=>{if(r.method()==='POST'&&r.url()===base+'/api/academy/result'){payloadBytes=Math.max(payloadBytes,Buffer.byteLength(r.postData()));const {attemptId,...data}=r.postDataJSON();trace.push(data);}};
     page.on('request',capture);
     const row={browser:name,version:browser.version(),lesson:lessonId,requested_seconds:seconds,status:'RUNNING',started_at:new Date().toISOString()};results.browsers.push(row);
-    await page.goto(base+'/academy/challenges/'+lessonId);await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible',timeout:20000});
+    await page.goto(base+'/academy/challenges/'+lessonId);await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible',timeout:20000});
     assert.match(await page.locator('#academy-save').innerText(),/Signed in/);
     await slider('crossfade',0);await play('a');await play('b');await checkSilent();
     await page.locator('#loop-a').click();await page.locator('#loop-b').click();

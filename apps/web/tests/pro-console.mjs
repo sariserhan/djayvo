@@ -19,7 +19,7 @@ try{for(const [name,kind] of Object.entries({chromium,webkit})){
  await page.setViewportSize({width:1920,height:1080});await page.locator('#dj').evaluate(n=>n.classList.add('studio-expanded'));
  const layout=await page.evaluate(()=>['sampler','recordings','session-notes'].map(id=>{const r=document.getElementById(id).getBoundingClientRect();return {top:r.top,bottom:r.bottom};}));assert.ok(layout[0].bottom<=layout[1].top&&layout[1].bottom<=layout[2].top);
  await page.locator('#dj').evaluate(n=>n.classList.remove('studio-expanded'));
- await page.setViewportSize({width:1440,height:1000});await page.locator('#music-rights').check();await page.locator('details').evaluateAll(nodes=>nodes.forEach(node=>node.open=true));
+ await page.setViewportSize({width:1440,height:1000});await page.locator('details').evaluateAll(nodes=>nodes.forEach(node=>node.open=true));
  const result=await new AxeBuilder({page}).analyze();await fs.writeFile(path.join(output,`${name}-axe.json`),JSON.stringify(result.violations,null,2));assert.deepEqual(result.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})),[]);
  await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('#vinyl-a').evaluate(node=>getComputedStyle(node).transform),'none');
  assert.deepEqual(errors,[]);checks.push({browser:name,responsive:'PASS',accessibility:'PASS',reducedMotion:'PASS',errors});

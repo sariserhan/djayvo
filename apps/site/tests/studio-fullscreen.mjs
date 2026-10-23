@@ -16,7 +16,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+'/academy/lessons/first-crossfade');await page.locator('#academy-load').waitFor();
   const button=page.locator('#studio-fullscreen');await button.click();await page.waitForFunction(()=>document.querySelector('.studio-expanded'));assert.ok(await page.locator('.academy-coach').isVisible(),'preparation remains available before loading');
-  await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
+  await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
   await button.click();await page.waitForFunction(()=>!document.querySelector('.studio-expanded'));
   await page.locator('#play-a').click();await page.waitForFunction(()=>Number(document.querySelector('#seek-a').value)>.3);
   const source=await page.locator('#name-a').innerText(),time=await page.locator('#seek-a').evaluate(a=>Number(a.value));

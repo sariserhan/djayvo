@@ -166,7 +166,6 @@ try {
   await page.locator('#phrase-consent').check();
   await page.locator('#phrase-file').setInputFiles(fixture);
   await page.waitForFunction(()=>!document.getElementById('take-include-phrase').disabled);
-  await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles(fixture);
   await page.waitForFunction(()=>!document.getElementById('prepare-a').disabled);
   await page.locator('#prepare-a').click();

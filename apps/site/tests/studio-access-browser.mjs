@@ -20,7 +20,7 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
   await page.goto(base+'/dj-studio');await page.getByRole('link',{name:'Open Studio',exact:true}).click();await mode('demo');
   assert.match(await page.title(),/Performance Studio/);assert.equal(new URL(page.url()).pathname,'/studio/dj.html');
   assert.ok(await page.getByRole('heading',{name:'Performance studio',exact:true}).isVisible());
-  await page.locator('#music-rights').check();await page.locator('.studio-nav a[href="#saved-mixes"]').click();
+  await page.locator('.studio-nav a[href="#saved-mixes"]').click();
   await page.locator('#practice-track option[value="funked-up"]').waitFor({state:'attached'});assert.equal(await page.locator('#file-a').isDisabled(),true);
   for(const [id,track] of [['a','funked-up'],['b','rhythm-garden']]){await page.locator('#practice-track').selectOption(track);await page.locator('#practice-load-'+id).click();await ready(id);}
   await page.locator('#file-a').setInputFiles(ownFile);assert.match(await page.locator('#name-a').innerText(),/Funked Up/);
@@ -35,7 +35,7 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
   const scan=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(scan.violations.map(v=>({id:v.id,targets:v.nodes.map(n=>n.target)})),[]);
   await page.locator('details').evaluateAll(nodes=>nodes.forEach(node=>node.open=false));await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:join(output,name+'-demo.png')});
   page.once('dialog',d=>d.accept());await page.locator('#studio-basic').click();await mode('basic');
-  await page.locator('#music-rights').check();await page.locator('#file-a').setInputFiles(ownFile);await ready('a');
+  await page.locator('#file-a').setInputFiles(ownFile);await ready('a');
   for(const id of ['prepare-frames-a','load-instruments','reverb-a'])assert.equal(await page.locator('#'+id).isDisabled(),true,id);
   for(const id of ['tone-a','eq-a-0'])assert.equal(await page.locator('#'+id).isDisabled(),false,id);
   await page.locator('#play-a').click();await page.waitForFunction(()=>document.getElementById('audio-a').currentTime>.1);
@@ -46,15 +46,14 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
   assert.equal(await page.locator('#sample-delete-bank').isDisabled(),false);
   // Paid UI fixture only: the real entitlement/payment database is not modified.
   await page.route('**/api/pro/access',r=>r.fulfill({json:{active:true}}));await page.route('**/api/aurowall',r=>r.fulfill({json:{tracks:[]}}));
-  await page.goto(base+'/studio/dj.html#pro');await page.reload();await mode('pro');await page.locator('#music-rights').check();await page.locator('#file-a').setInputFiles(ownFile);await ready('a');
+  await page.goto(base+'/studio/dj.html#pro');await page.reload();await mode('pro');await page.locator('#file-a').setInputFiles(ownFile);await ready('a');
   assert.equal(await page.locator('#prepare-frames-a').isDisabled(),false);assert.equal(await page.locator('#reverb-a').isDisabled(),false);
   await page.unroute('**/api/pro/access');await page.reload();await mode('demo');assert.equal(await page.locator('#file-a').isDisabled(),true);assert.deepEqual(errors,[]);
   if(name==='chromium'){
    await page.evaluate(async()=>{await navigator.serviceWorker.register('/studio/service-worker.js');await navigator.serviceWorker.ready;});
    await page.reload();await page.waitForFunction(()=>!!navigator.serviceWorker.controller);
    await context.setOffline(true);await page.reload();await mode('demo');
-   await page.locator('#studio-basic').click();await mode('basic');await page.locator('#music-rights').check();
-   await page.locator('#file-a').setInputFiles(ownFile);await ready('a');await context.setOffline(false);
+   await page.locator('#studio-basic').click();await mode('basic');await page.locator('#file-a').setInputFiles(ownFile);await ready('a');await context.setOffline(false);
   }
   checks.push({browser:name,anonymousDemo:'PASS',twoSampleDecks:'PASS',samplePlayback:'PASS',beatControls:'PASS',sampler:'PASS',samplePhrase:'PASS',basicPersonalTrack:'PASS',basicProRestrictions:'PASS',paidFixture:'PASS',revokedFixture:'PASS',accessibility:'PASS',mobileOverflow:'PASS',offlineDemoAndBasic:name==='chromium'?'PASS':'NOT RUN',errors});await context.close();
  }finally{await browser.close();}

@@ -7,7 +7,7 @@ const source = await readFile(new URL('../deck-controls.js', import.meta.url), '
 function setup() {
   const nodes = new Map(), queued = [], listeners = new Map();
   const node = id => {
-    if (!nodes.has(id)) nodes.set(id, { value: '', getContext: () => ({}) });
+    if (!nodes.has(id)) nodes.set(id, { value: '', dataset:{},setAttribute(){},querySelector:()=>({textContent:''}),getContext: () => ({}) });
     return nodes.get(id);
   };
   const audio = { paused: false, playbackRate: 1, currentTime: 1,
@@ -28,8 +28,8 @@ function setup() {
   };
   let starts = 0;
   const start = () => { starts++; deck.revision++; audio.paused = false; };
-  const sandbox = { window: {addEventListener() {}}, document: { getElementById: node }, requestAnimationFrame() {} };
-  vm.runInNewContext(source.replace(/^import .*;\n/, '').replaceAll('export function ', 'function ') + '\nglobalThis.attach = attachDeck;', sandbox);
+  const sandbox = { window: {addEventListener() {}}, document: { getElementById: id=>/^hot-a-[4-7]$/.test(id)?null:node(id), querySelectorAll:()=>Array(4) }, requestAnimationFrame() {} };
+  vm.runInNewContext(source.replace(/^import .*;\n/gm, '').replaceAll('export function ', 'function ') + '\nglobalThis.attach = attachDeck;', sandbox);
   sandbox.attach(deck, {}, { pause, start, mixer: () => null, context: () => null });
   return { deck, audio, pause, start, node, starts: () => starts,
     rate: value => node('rate-a').oninput({ target: { value } }),
@@ -56,4 +56,9 @@ test('unload/replacement cannot inherit a pending rate or resume from the old so
 test('an immediate manual Play is safely paused again before applying its pending rate', () => {
   const h = setup(); h.rate(1.1); h.start(); h.flush();
   assert.equal(h.audio.playbackRate, 1.1); assert.equal(h.audio.paused, false); assert.equal(h.starts(), 2);
+});
+
+test('a four-pad lesson retains hidden Pro cues when restoring and saving an eight-cue set',()=>{
+ const h=setup(),hot=[1,2,3,4,5,6,7,8];h.deck.restoreTransport({cue:0,hot,bpm:'120',keylock:false,rate:1,loop:false,region:null,gridOrigin:.1,quantize:true,echoDivision:'0.5'});
+ assert.deepEqual([...h.deck.transportState().hot],hot);assert.equal(h.deck.transportState().gridOrigin,.1);assert.equal(h.deck.transportState().echoDivision,'0.5');
 });

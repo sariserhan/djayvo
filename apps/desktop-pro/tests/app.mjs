@@ -20,7 +20,7 @@ async function launch(){
  await app.evaluate(({BrowserWindow})=>{for(const w of BrowserWindow.getAllWindows())w.webContents.setAudioMuted(true);});
  page.setDefaultTimeout(15000);
  await page.waitForSelector('#sample-pad-7',{state:'attached'});
- await page.locator('#music-rights').check();
+ assert.equal(await page.locator('#music-rights').count(),0);
 }
 async function reveal(){await page.locator('details').evaluateAll(nodes=>nodes.forEach(node=>node.open=true));}
 async function set(id,value){await page.locator(id).fill(String(value));await page.locator(id).dispatchEvent('input');}
@@ -52,7 +52,8 @@ try{
  await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:path.join(output,'console.png'),fullPage:false});
  await reveal();await page.locator('#prepare-frames-a').click();await page.waitForFunction(()=>document.querySelector('#prepare-frames-a').disabled&&!document.querySelector('#beat-loop-a').disabled);
  await page.locator('#bpm-a').fill('120');await page.locator('#play-a').click();await page.locator('#loop-beats-a').selectOption('1');await page.locator('#beat-loop-a').click();await page.waitForTimeout(200);await page.locator('#loop-exit-a').click();await page.locator('#pause-all').click();
- check('bundled AudioWorklet beat playback and looping work offline in desktop');
+ assert.equal(await page.locator('html.studio-pro').count(),1);assert.equal(await page.locator('.deck-a .hotcue').count(),8);await page.locator('#hot-a-7').click();assert.doesNotMatch(await page.locator('#hot-a-7').innerText(),/EMPTY/);assert.equal(await page.locator('#pro-wave-a').getAttribute('aria-disabled'),'false');
+ check('bundled AudioWorklet beat playback, Pro digital console, eight cues and real waveform work offline in desktop');
  await page.locator('#sample-consent').check();await page.locator('#sample-file').setInputFiles(tone(2));await page.waitForFunction(()=>!document.querySelector('#sample-start').disabled);
  await page.locator('#sample-end').fill('1');await page.locator('#sample-end').dispatchEvent('change');await page.locator('#sample-loop').check();
  await page.locator('#sample-pad-0').click();await page.waitForFunction(()=>document.querySelector('#sample-pad-0').dataset.playing==='true');
@@ -89,7 +90,7 @@ try{
  assert.equal(await page.evaluate(async()=>(await fetch('/api/aurowall')).status),503);
  await page.evaluate(()=>window.jamloomDesktop.saveSettings({catalogue:true,automaticUpdates:false}));
  await app.evaluate((_electron,bytes)=>{const audio=Buffer.from(bytes);globalThis.fetch=async url=>new Response(String(url).endsWith('/api/aurowall')?JSON.stringify({tracks:[{id:'a'.repeat(24),title:'Authorized fixture',artist:'Aurowall',genre:'Edm',bytes:audio.length,url:'/api/aurowall/'+'a'.repeat(24)}]}):audio,{headers:{'Content-Type':String(url).endsWith('/api/aurowall')?'application/json':'audio/mpeg'}});},[...tone(2).buffer]);
- await page.reload();await reveal();await page.locator('#music-rights').check();await page.waitForFunction(()=>[...document.querySelector('#practice-track').options].some(o=>o.value==='a'.repeat(24)));
+ await page.reload();await reveal();await page.waitForFunction(()=>[...document.querySelector('#practice-track').options].some(o=>o.value==='a'.repeat(24)));
  await page.locator('#practice-track').selectOption('a'.repeat(24));await page.locator('#practice-load-a').click();await page.waitForFunction(()=>!document.querySelector('#play-a').disabled);
  assert.match(await page.locator('#name-a').textContent(),/Aurowall/);
  await page.locator('#remember-set').check();await page.locator('#recovery-save').click();await page.waitForFunction(()=>document.querySelector('#recovery-status').textContent.includes('online only'));

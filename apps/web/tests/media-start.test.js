@@ -9,7 +9,7 @@ function setup() {
   const schedule = (fn, delay) => { timers.set(++id, { fn, delay }); return id; };
   const sandbox = { Promise, setTimeout: schedule, setInterval: schedule,
     clearTimeout: id => timers.delete(id), clearInterval: id => timers.delete(id) };
-  vm.runInNewContext(source.replace(/^import .*;\n/, '').replaceAll('export function ', 'function ') + '\nglobalThis.start = playMedia;', sandbox);
+  vm.runInNewContext(source.replace(/^import .*;\n/gm, '').replaceAll('export function ', 'function ') + '\nglobalThis.start = playMedia;', sandbox);
   return { start: sandbox.start, timers, tick: milliseconds => {
     for (const [id, timer] of [...timers]) if (timers.has(id) && timer.delay <= milliseconds) timer.fn();
   } };

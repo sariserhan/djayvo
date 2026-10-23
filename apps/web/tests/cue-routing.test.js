@@ -14,14 +14,13 @@ test('cue stays muted until verification and interrupts pending output setup',as
  const old={};for(const key of ['document','window','navigator','Audio','HTMLMediaElement','Option'])old[key]=Object.getOwnPropertyDescriptor(globalThis,key);
  Object.defineProperties(globalThis,{document:{configurable:true,value:{getElementById:element,addEventListener:(type,fn)=>events.set(type,fn)}},window:{configurable:true,value:{AudioContext:class {async setSinkId(){}},addEventListener(){}}},navigator:{configurable:true,value:{mediaDevices:{addEventListener:(type,fn)=>mediaEvents.set(type,fn),enumerateDevices:async()=>[]}}},Audio:{configurable:true,value:Audio},HTMLMediaElement:{configurable:true,value:Audio},Option:{configurable:true,value:class{}}});
  try{
- const rights=element('rights');rights.checked=true;
- attachCueRouting({graph(){},context:()=>ctx,mixer:()=>({strips:[{scope:node()},{scope:node()}]}),rights,paused:()=>true});
+ attachCueRouting({graph(){},context:()=>ctx,mixer:()=>({strips:[{scope:node()},{scope:node()}]}),paused:()=>true});
  element('cue-master-device').value='speakers';element('cue-headphone-device').value='headphones';
  await element('cue-connect').onclick();assert.equal(ctx.sinkId,'speakers');assert.ok(created.every(n=>n.gain.value===0));
  element('cue-verified').checked=true;element('cue-verified').onchange();element('cue-listen-a').checked=true;element('cue-listen-a').onchange();assert.equal(created[0].gain.value,.2);assert.equal(created[1].gain.value,0);
  mediaEvents.get('devicechange')();assert.equal(created[0].gain.value,0);assert.equal(element('cue-listen-a').disabled,true);
  await element('cue-disconnect').onclick();assert.equal(ctx.sinkId,'original');
- pendingPlay=true;const setup=element('cue-connect').onclick();while(!releasePlay)await new Promise(resolve=>setImmediate(resolve));rights.checked=false;events.get('rightschange')();releasePlay();await setup;
+ pendingPlay=true;const setup=element('cue-connect').onclick();while(!releasePlay)await new Promise(resolve=>setImmediate(resolve));mediaEvents.get('devicechange')();releasePlay();await setup;
  assert.equal(element('cue-verified').checked,false);assert.equal(element('cue-listen-a').disabled,true);assert.equal(ctx.sinkId,'original');assert.match(element('cue-status').textContent,/interrupted/);
  }finally{for(const [key,descriptor] of Object.entries(old))if(descriptor)Object.defineProperty(globalThis,key,descriptor);else delete globalThis[key];}
 });

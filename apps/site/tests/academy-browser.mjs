@@ -50,8 +50,8 @@ try{
    await page.screenshot({path:new URL(name+'-landing.png',evidence).pathname,fullPage:true});
    // Real Better Auth session, not a stubbed account API. Chromium saves progress; WebKit proves guest mode.
    if(name==='chromium')await context.addCookies(cookie.split('; ').map(v=>({name:v.slice(0,v.indexOf('=')),value:v.slice(v.indexOf('=')+1),url:base})));
-   await page.goto(base+'/academy/lessons/first-crossfade');await revealStudioTools(page);await page.locator('#academy-load').waitFor();assert.ok(await page.locator('#academy-load').isDisabled());assert.equal(await page.locator('.academy-coach #music-rights').count(),1);assert.match(await page.locator('#academy-objective').innerText(),/^1\./);
-   await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible',timeout:20000});
+   await page.goto(base+'/academy/lessons/first-crossfade');await revealStudioTools(page);await page.locator('#academy-load').waitFor();assert.equal(await page.locator('#academy-load').isDisabled(),false);assert.equal(await page.locator('#music-rights').count(),0);assert.match(await page.locator('#academy-objective').innerText(),/^1\./);
+   await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible',timeout:20000});
    await page.locator('#crossfade').focus();await page.keyboard.press('Home');
    await page.locator('#play-a').focus();await page.keyboard.press('Enter');await page.waitForTimeout(2300);await page.locator('#academy-check').click();await page.locator('#academy-check').waitFor({state:'hidden'});
    assert.match(await page.locator('#academy-objective').innerText(),/Free Jam/,await page.locator('#academy-feedback').innerText());const before=await page.locator('#seek-a').evaluate(a=>Number(a.value));await page.waitForTimeout(1000);assert.ok(await page.locator('#seek-a').evaluate(a=>Number(a.value))>before);assert.match(await page.locator('#academy-stage').innerText(),/Task 1/);
@@ -76,7 +76,7 @@ try{
     // Entitlement fixture only; provider grants are exercised separately with mocked Stripe retrieval.
     await pool.query("INSERT INTO academy_purchases(receipt,owner_id,product_key,price_id,payment_intent,amount_cents,currency,sandbox) VALUES('cs_browser', $1,'academy-complete','price_fixture','pi_browser',7999,'usd',true)",[owner]);
     assert.equal((await api('/api/academy/lesson/gain-staging',{cookie})).status,200);
-    await page.goto(base+'/academy/lessons/gain-staging');await revealStudioTools(page);await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
+    await page.goto(base+'/academy/lessons/gain-staging');await revealStudioTools(page);await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
     await page.locator('#crossfade').focus();await page.keyboard.press('Home');await page.locator('#play-a').click();await page.waitForTimeout(2400);
     for(const target of [null,50,75]){
      if(target!==null){await page.locator('#academy-next').click();await page.locator('#master').focus();await page.keyboard.press('Home');for(let i=0;i<target;i++)await page.keyboard.press('ArrowRight');await page.waitForTimeout(2300);}
@@ -96,7 +96,7 @@ try{
     console.log(name,lesson.id);
     for(const prerequisite of lesson.prerequisites)await pool.query("INSERT INTO academy_attempts(owner_id,lesson_id,version,completed_at) VALUES($1,$2,$3,now())",[learner,prerequisite,ACADEMY_VERSION]);
     await page.goto(base+'/academy/'+(lesson.assessment?'challenges':'lessons')+'/'+lesson.id);await revealStudioTools(page);await page.locator('#academy-load').waitFor();
-    await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
+    await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
     const long=lesson.tasks.some(t=>t.kind==='recording');
     if(long&&lesson.id!=='beginner-mini-set'){curriculum.push({lesson:lesson.id,route:'PASS',assessment:'rubric unit-tested; full duration browser execution NOT RUN'});continue;}
     for(const [index,task] of lesson.tasks.entries()){
@@ -139,7 +139,7 @@ try{
    }
    results.browsers.push({browser:name,curriculum,prerequisites:'seeded local access fixtures; action checks executed on actual decks'});
    // Final recorder lifecycle uses a short ungraded take; the real two-minute assessment is checked above.
-   await page.goto(base+'/academy/lessons/first-crossfade');await revealStudioTools(page);await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});await page.locator('#play-a').click();
+   await page.goto(base+'/academy/lessons/first-crossfade');await revealStudioTools(page);await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});await page.locator('#play-a').click();
    await page.locator('#set-record-consent').check();await page.locator('#set-record-start').click();await page.waitForFunction(()=>!document.querySelector('#set-record-stop').disabled);await page.waitForTimeout(1500);await page.locator('#set-record-stop').click();await page.locator('#set-record-download').waitFor({state:'visible'});
    assert.ok(await page.locator('#set-record-start').isDisabled());await page.locator('#set-record-delete').click();assert.ok(await page.locator('#set-record-download').isHidden());
    await page.locator('#set-record-start').click();await page.waitForFunction(()=>!document.querySelector('#set-record-stop').disabled);await page.locator('#set-record-consent').uncheck();assert.ok(await page.locator('#set-record-stop').isDisabled());assert.ok(await page.locator('#set-record-download').isHidden());
@@ -154,7 +154,7 @@ try{
     const stopped=once(server,'exit');server.kill('SIGTERM');await stopped;await assert.rejects(fetch(base+'/academy'));
    }else await context.setOffline(true);
    await page.reload();await revealStudioTools(page);await page.locator('#academy-load').waitFor();
-   await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});await page.locator('#crossfade').focus();await page.keyboard.press('Home');await page.locator('#play-a').click();await page.waitForTimeout(2300);await page.locator('#academy-check').click();await page.locator('#academy-check').waitFor({state:'hidden'});assert.match(await page.locator('#academy-objective').innerText(),/Free Jam/);
+   await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});await page.locator('#crossfade').focus();await page.keyboard.press('Home');await page.locator('#play-a').click();await page.waitForTimeout(2300);await page.locator('#academy-check').click();await page.locator('#academy-check').waitFor({state:'hidden'});assert.match(await page.locator('#academy-objective').innerText(),/Free Jam/);
    const cache=await page.evaluate(async()=>{const keys=(await caches.keys()).filter(k=>k.startsWith('jamloom-academy:'));const entries=(await Promise.all(keys.map(async k=>(await(await caches.open(k)).keys()).map(r=>r.url)))).flat();return entries;});assert.ok(cache.length>20);assert.ok(cache.every(u=>!u.includes('/api/')&&!u.includes('/account')));
    await context.setOffline(false);await page.getByRole('button',{name:'Remove offline lesson',exact:true}).click();await page.waitForFunction(()=>Array.from(document.querySelectorAll('.academy-actions p')).some(p=>p.textContent.startsWith('Offline lesson removed.')));
    assert.deepEqual(errors,[]);results.browsers.push({browser:name,version:browser.version(),keyboard_crossfade:'PASS',wrong_action_feedback:rejected,valid_feedback:feedback,free_jam:'PASS',offline_reload_and_audio:name==='chromium'?'PASS: browser offline mode':'PASS: origin server stopped; offline-emulator reload separately failed (#42775)',paid_access:name==='chromium'?'PASS (seeded local receipt)':'guest only',coach_does_not_grade:'PASS',assessment_metrics:checkedMetrics,wav:name+'-first-crossfade.wav',recording,audio_clock:recording.timestamp_discontinuities?'PARTIAL: recorder observed clock discontinuity; not zero-glitch proof':'PASS',accessibility:'PASS',widths:[1440,390,320],account_sync:name==='chromium'?'PASS':'guest checked'});

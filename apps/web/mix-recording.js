@@ -183,8 +183,8 @@ export function attachMixRecording({ graph, context, mixer, getSources, getTrans
   $('mix-record-consent').onchange = () => {
     if (!$('mix-record-consent').checked) clear('Mix recording permission removed. Recording discarded.'); else refresh();
   };
-  for (const id of ['music-rights', 'phrase-consent']) $(id).addEventListener('change', () => {
-    if (!$(id).checked && state !== 'idle') clear('Music or voice permission removed. Mix recording discarded.');
+  for (const id of ['phrase-consent']) $(id).addEventListener('change', () => {
+    if (!$(id).checked && state !== 'idle') clear('Voice permission removed. Mix recording discarded.');
   });
   const interrupt = () => { if (['starting', 'recording', 'stopping'].includes(state)) clear('Audio or focus interrupted. Incomplete mix recording discarded.'); };
   window.addEventListener('blur', interrupt);

@@ -19,8 +19,10 @@ export function validateRecovery(state){
   if(!d)continue;
   if(!/^[a-f0-9]{64}$/.test(d.sha)||!bounded(d.duration,0,1200)||!bounded(d.position,0,d.duration)||
    !bounded(d.rate,.84,1.16)||typeof d.buffered!=='boolean'||typeof d.loop!=='boolean'||typeof d.keylock!=='boolean'||
-   !(d.bpm===''||bounded(Number(d.bpm),40,240))||!bounded(d.cue,0,d.duration)||!Array.isArray(d.hot)||d.hot.length!==4||
+   !(d.bpm===''||bounded(Number(d.bpm),40,240))||!bounded(d.cue,0,d.duration)||!Array.isArray(d.hot)||![4,8].includes(d.hot.length)||
    !d.hot.every(n=>n===null||bounded(n,0,d.duration))||
+   (d.gridOrigin!==undefined&&!bounded(d.gridOrigin,0,d.duration))||(d.quantize!==undefined&&typeof d.quantize!=='boolean')||
+   (d.echoDivision!==undefined&&!['manual','0.25','0.5','1'].includes(d.echoDivision))||
    !(d.region===null||d.buffered&&Array.isArray(d.region)&&d.region.length===2&&bounded(d.region[0],0,d.duration)&&bounded(d.region[1],d.region[0]+.001,d.duration)))throw Error('Saved deck is damaged.');
  }
  if(state.sequence&&!validPattern(state.sequence))throw Error('Saved sequence is damaged.');
@@ -42,12 +44,12 @@ async function transaction(mode,action){
  try{return await new Promise((resolve,reject)=>{const tx=db.transaction('session',mode),result=action(tx.objectStore('session'));
   tx.oncomplete=()=>resolve(result?.result);tx.onabort=tx.onerror=()=>reject(Error('Session storage is full or unavailable. The last saved set is kept.'));});}finally{db.close();}
 }
-export function attachStudioRecovery({decks,rights,loadTrack,prepareFrames,levels,deckEffects,controls,session,keyboard}){
+export function attachStudioRecovery({decks,loadTrack,prepareFrames,levels,deckEffects,controls,session,keyboard}){
  let busy=false,cache=new WeakMap();
  const status=text=>{$('recovery-status').textContent=text;};
  const sceneKey=()=>`scene-${$('scene-slot').value}`;
  async function save(key='recovery'){
-  if(busy||!$('remember-set').checked||!rights.checked||decks.some(d=>d.loading||d.starting||d.preparing||d.audio.scratching))return;
+  if(busy||!$('remember-set').checked||decks.some(d=>d.loading||d.starting||d.preparing||d.audio.scratching))return;
   busy=true;
   try{
    const files=decks.map(d=>d.file),stored=[];
@@ -61,7 +63,7 @@ export function attachStudioRecovery({decks,rights,loadTrack,prepareFrames,level
    const performance=await session.recoverySnapshot();
    const total=stored.reduce((n,f)=>n+(f?.bytes.byteLength??0),0)+(performance?.phrase?.byteLength??0)+(performance?.performance?.files.reduce((n,f)=>n+f.bytes.byteLength,0)??0);
    if(total>MAX_BYTES)throw Error('Complete set exceeds 100 MB. The previous saved set is kept.');
-   if(!session.recoveryCurrent(performance)||!$('remember-set').checked||!rights.checked||files.some((file,i)=>file!==decks[i].file))return;
+   if(!session.recoveryCurrent(performance)||!$('remember-set').checked||files.some((file,i)=>file!==decks[i].file))return;
    const state=validateRecovery({version:2,performance,root:keyboard.recoveryRoot(),sequence:keyboard.recoveryPattern(),echoGrid:$('echo-grid-c').value,curve:$('crossfade-curve').value,values:Object.fromEntries(Object.keys({...ranges,...extended}).map(id=>[id,Number($(id).value)])),
     decks:decks.map((d,i)=>d.file?{sha:stored[i].sha,duration:d.duration,position:d.audio.roll?d.audio.rollPosition():d.audio.currentTime,rate:d.audio.playbackRate,
      buffered:!!d.audio.buffer,loop:!!d.loop,keylock:$(`keylock-${d.id}`).checked,bpm:$(`bpm-${d.id}`).value,
@@ -83,7 +85,7 @@ export function attachStudioRecovery({decks,rights,loadTrack,prepareFrames,level
  $('recovery-delete').onclick=()=>remove('recovery');$('scene-delete').onclick=()=>remove(sceneKey());
  async function restore(key='recovery'){
   if(busy)return;
-  if(!rights.checked||decks.some(d=>d.file||d.loading||d.prepared))return status('Confirm music permission and unload both decks before restoring.');
+  if(decks.some(d=>d.file||d.loading||d.prepared))return status('Unload both decks before restoring.');
   busy=true;$('recovery-restore').disabled=true;
   try{
    let record=await transaction('readonly',store=>store.get(key));
@@ -102,7 +104,7 @@ export function attachStudioRecovery({decks,rights,loadTrack,prepareFrames,level
     const deck=decks[i],saved=state.decks[i];await loadTrack(deck,()=>file);
     if(deck.file!==file)throw Error('Restore interrupted. Your saved set is still available.');
     if(saved.buffered){await prepareFrames(deck);if(!deck.audio.buffer)throw Error('Beat controls could not be restored.');}
-    if(!rights.checked||deck.file!==file||!deck.audio.paused)throw Error('Restore interrupted.');
+    if(deck.file!==file||!deck.audio.paused)throw Error('Restore interrupted.');
     deck.audio.currentTime=saved.position;deck.audio.playbackRate=saved.rate;deck.restoreTransport(saved);
    }
    await session.restoreRecovery(state.performance);

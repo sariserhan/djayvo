@@ -43,6 +43,6 @@ export function attachSetRecording({graph,context,mixer,emit}){
  };
  $('set-record-stop').onclick=stop;$('set-record-delete').onclick=()=>clear();$('set-record-consent').onchange=()=>{$('set-record-consent').checked?controls():clear('Recording permission removed. Set discarded.');};
  const interrupt=()=>{if(recorder||starting)clear('Audio or page visibility interrupted. Incomplete set discarded.');};
- for(const id of ['music-rights','phrase-consent'])$(id).addEventListener('change',()=>{if(!$(id).checked)clear('Music or voice permission removed. Set discarded.');});
+ for(const id of ['phrase-consent'])$(id).addEventListener('change',()=>{if(!$(id).checked)clear('Voice permission removed. Set discarded.');});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)interrupt();});window.addEventListener('pagehide',()=>clear());controls();return {interrupt};
 }

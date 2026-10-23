@@ -144,7 +144,6 @@ try {
   wav.write('RIFF'); wav.writeUInt32LE(wav.length - 8, 4); wav.write('WAVEfmt ', 8); wav.writeUInt32LE(16, 16);
   wav.writeUInt16LE(1, 20); wav.writeUInt16LE(1, 22); wav.writeUInt32LE(rate, 24); wav.writeUInt32LE(rate * 2, 28); wav.writeUInt16LE(2, 32); wav.writeUInt16LE(16, 34); wav.write('data', 36); wav.writeUInt32LE(frames * 2, 40);
   for (let i = 0; i < frames; i++) wav.writeInt16LE(Math.round(2200 * Math.sin(2 * Math.PI * 523.2512 * i / rate)), 44 + i * 2);
-  await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles({ name: 'session-test-a.wav', mimeType: 'audio/wav', buffer: wav });
   await page.locator('#prepare-a').click();
   await page.waitForFunction(() => !document.getElementById('context-confirmed').disabled, null, { timeout: 30000 });
@@ -411,16 +410,15 @@ try {
     assert.equal(await page.locator('#phrase-generate').isDisabled(), true);
     assert.equal(await page.locator('#session-stop').isDisabled(), false);
   }
-  await page.locator('#music-rights').uncheck();
+  await page.locator('#clear-a').click();
   assert.equal(await page.locator('#session-stop').isDisabled(), true);
   assert.equal(await page.locator('#session-play').isDisabled(), true);
-  check('separate phrase and music consent withdrawal clears owned audio and scheduled entry');
+  check('phrase consent withdrawal and deck unloading clear owned audio and scheduled entry');
   await page.evaluate(async () => { await navigator.serviceWorker.register('./service-worker.js'); await navigator.serviceWorker.ready; });
   await page.reload();await revealStudioTools(page); await page.waitForFunction(() => !!navigator.serviceWorker.controller);
   server.closeAllConnections(); await new Promise(resolve => server.close(resolve));
   const requestsBeforeDisconnect = serverRequests.length;
   await page.reload();await revealStudioTools(page);
-  await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles({ name: 'prepared-offline.wav', mimeType: 'audio/wav', buffer: wav });
   await page.locator('#prepare-a').click();
   await page.waitForFunction(() => !document.getElementById('context-confirmed').disabled, null, { timeout: 30000 });

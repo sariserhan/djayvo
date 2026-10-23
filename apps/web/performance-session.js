@@ -7,7 +7,7 @@ import { saveSession, verifySession } from './library.js';
 
 const $ = id => document.getElementById(id);
 const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
-export function attachPerformance({ deck, graph, context, mixer, pause, controls, rights, onSaved, onPhraseChanged = () => {}, onSourcesChanged = () => {}, onTransportChanged = () => {} }) {
+export function attachPerformance({ deck, graph, context, mixer, pause, controls, onSaved, onPhraseChanged = () => {}, onSourcesChanged = () => {}, onTransportChanged = () => {} }) {
   let live;
   let prepared, transport, samples, performanceBuffer, download, busy = '', starting = '', revision = 0, startVersion = 0;
   let savedPerformance, saving = false, saved = false;
@@ -15,7 +15,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
   let worker, timer, recorder, stream, recordingAt, generationContext, recent = [], wasA = false, wasC = false;
   const error = failure => { $('performance-error').textContent = failure.message || String(failure); };
   const say = text => { $('performance-status').textContent = text; };
-  const confirmed = () => rights.checked && $('context-confirmed').checked && !!prepared;
+  const confirmed = () => $('context-confirmed').checked && !!prepared;
   const permitted = () => $('phrase-consent').checked;
   const canRecord = !!(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
   const currentContext = () => ({ tempo: Math.round(Number($('session-bpm').value) * 1000), tonic: Number($('session-key').value), mode: $('session-mode').value });
@@ -44,7 +44,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     $('live-phrases').textContent=live?'Stop continual phrases':'Start continual phrases';
     $('live-phrases').disabled=!live&&(!playing||!confirmed()||!permitted()||!$('live-headphones').checked||!!busy||!!starting||activeC||!context()?.audioWorklet||!navigator.mediaDevices?.getUserMedia);
     $('live-headphones').disabled=!!live;
-    $('prepare-a').disabled = !rights.checked || !deck.file || !deck.audio.paused || !!deck.loading || !!busy || !!prepared || deck.starting;
+    $('prepare-a').disabled = !deck.file || !deck.audio.paused || !!deck.loading || !!busy || !!prepared || deck.starting;
     $('release-a').disabled = !prepared && busy !== 'preparing';
     $('session-play').disabled = !confirmed() || playing || !!busy || !!starting;
     $('session-stop').disabled = !playing && starting !== 'a';
@@ -57,7 +57,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     $('phrase-generate').disabled = !!live || !confirmed() || !permitted() || !samples || !!busy || !!starting || activeC;
     $('phrase-cancel').disabled = !['generating', 'loading', 'permission'].includes(busy);
     $('c-arm').disabled = !!live || !playing || !performanceBuffer || !confirmed() || !permitted() || !!busy || !!starting || activeC;
-    $('performance-save').disabled = !savedPerformance || !permitted() || !rights.checked || !!busy || saving || saved;
+    $('performance-save').disabled = !savedPerformance || !permitted() || !!busy || saving || saved;
     $('performance-save').textContent = saving ? 'Saving…' : saved ? 'Saved on this device' : 'Save C on this device';
     $('c-stop').disabled = !activeC && starting !== 'c';
     $('c-preview').disabled = playing || !performanceBuffer || !permitted() || !confirmed() || !!busy || !!starting || activeC;
@@ -109,7 +109,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     recent = []; clearPerformance(); $('phrase-status').textContent = 'Phrase and C deleted from this tab.'; refresh();
   }
   $('prepare-a').onclick = async () => {
-    if (busy || !deck.file || !rights.checked || !deck.audio.paused || deck.starting) return;
+    if (busy || !deck.file || !deck.audio.paused || deck.starting) return;
     const file = deck.file;
     if (file.size > 32 * 1024 * 1024 || deck.duration > 300) { error(new Error('Prepared sessions accept tracks up to 32 MB / 5 minutes. Manual decks still accept larger tracks.')); return; }
     pause(deck); busy = 'preparing'; deck.preparing = true;
@@ -135,7 +135,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
         worker.onmessage = ({ data }) => data.error ? reject(new Error(data.error)) : resolve(data.result);
         worker.postMessage({ samples: mono, rate: 8000 }, [mono.buffer]);
       });
-      if (token !== revision || !rights.checked || deck.file !== file) return;
+      if (token !== revision || deck.file !== file) return;
       prepared = buffer; deck.prepared = true;
       transport = new SessionTransport(context(), engine.jamloom_next_bar, () => { refresh(); onTransportChanged(); });
       const key = analysis.keys[0];
@@ -247,13 +247,13 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     } catch (failure) { if (token === revision) { cancel(); error(new Error(`Microphone unavailable: ${failure.message}`)); } }
   };
   $('performance-save').onclick = async () => {
-    if (!savedPerformance || saving || saved || busy || !permitted() || !rights.checked) return;
+    if (!savedPerformance || saving || saved || busy || !permitted()) return;
     const performance = savedPerformance;
     saving = true; refresh();
     $('performance-save-status').textContent = 'Saving locally. Keep this tab open until it finishes.';
     try {
       if (!await verifySession(performance)) throw new Error('Performance integrity check failed.');
-      if (performance !== savedPerformance || !permitted() || !rights.checked) return;
+      if (performance !== savedPerformance || !permitted()) return;
       // An explicit save persists independently of unloading a deck or deleting its phrase.
       await saveSession(performance);
       if (performance === savedPerformance) saved = true;
@@ -379,7 +379,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     const restoreToken=revision;
     let buffer;
     if(restored){const bytes=await restored.files.find(f=>f.name.endsWith('.wav')).blob.arrayBuffer();buffer=await context().decodeAudioData(bytes);validatePreparedTrack(buffer);}
-    if(revision!==restoreToken||!rights.checked||((state.phrase||restored)&&!permitted()))throw Error('Performance restore interrupted.');
+    if(revision!==restoreToken||((state.phrase||restored)&&!permitted()))throw Error('Performance restore interrupted.');
     $('session-bpm').value=state.context.tempo/1000;$('session-key').value=state.context.tonic;$('session-mode').value=state.context.mode;$('session-downbeat').value=state.downbeat;
     $('context-confirmed').checked=state.confirmed&&!!prepared;
     if(restored){clearPerformance();savedPerformance=restored;performanceBuffer=buffer;generationContext=state.context;download=URL.createObjectURL(restored.files.find(f=>f.name.endsWith('.wav')).blob);$('performance-download').href=download;$('performance-download').download=`jamloom-session-${restored.seed}.wav`;$('performance-download').hidden=false;onSourcesChanged();}

@@ -1,0 +1,12 @@
+{
+  "message": "page.evaluate: Error: Discontinuous recording cannot be aligned for replay\n    at validateMixReplay (jamloom://studio/mix-replay.js:22:42)\n    at replayMix (jamloom://studio/mix-replay.js:170:18)\n    at eval (eval at evaluate (:303:30), <anonymous>:6:21)\n    at async <anonymous>:329:30",
+  "stack": "page.evaluate: Error: Discontinuous recording cannot be aligned for replay\n    at validateMixReplay (jamloom://studio/mix-replay.js:22:42)\n    at replayMix (jamloom://studio/mix-replay.js:170:18)\n    at eval (eval at evaluate (:303:30), <anonymous>:6:21)\n    at async <anonymous>:329:30\n    at /Users/serhansari/Documents/projects/jamloom/apps/desktop-pro/tests/app.mjs:74:26",
+  "checks": [
+    "sandboxed desktop loads the shared secure studio, starts stopped and supports MIDI/output APIs",
+    "actual permission boundary rejects microphone capture and opens MIDI only after approval, without sysex",
+    "two local tracks play, measured signal and platters advance, rotary EQ works and active sets block updates",
+    "bundled AudioWorklet beat playback, Pro digital console, eight cues and real waveform work offline in desktop",
+    "sampler trim, looping, measured PCM, clear, atomic bank save and stopped restore"
+  ],
+  "errors": []
+}

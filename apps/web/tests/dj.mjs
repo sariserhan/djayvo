@@ -128,10 +128,11 @@ try {
   for (const deck of ['a','b']) await page.locator(`.deck-${deck} .deck-fx-panel summary`).click();
   assert.match(await page.title(), /Jamloom Pro — Performance Studio/);
   await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
-  assert.equal(await page.locator('#file-a').isDisabled(), true);
+  await page.waitForFunction(()=>!document.getElementById('file-a').disabled);
+  assert.equal(await page.locator('#file-a').isDisabled(), false);
   assert.equal(await page.locator('#play-a').isDisabled(), true);
   assert.deepEqual(await page.locator('#audio-a, #audio-b').evaluateAll(nodes => nodes.map(audio => audio.preload)), ['metadata', 'metadata']);
-  check('page identity, nonblank content, consent gating');
+  check('page identity, nonblank content, immediate local-track loading');
   signalEvidence = [];
   // Keep each signal experiment small; the combined nested loop triggered a
   // JavaScriptCore optimizer crash in the installed WebKit test runtime.
@@ -160,7 +161,6 @@ try {
   check('instrument FX stereo PCM: dry identity, echo frames/decay, low-pass attenuation, mute/reset and playable piano WAVs');
   deckFXEvidence = [await verifyInstrumentFX(page, output, 0), await verifyInstrumentFX(page, output, 1)];
   check('both deck strips: dry identity, stereo tone/echo PCM, exact echo frames, mute/reset, cleared buffers and playable piano WAVs');
-  await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles(a);
   await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
   await page.locator('#file-b').setInputFiles(b);
@@ -540,14 +540,14 @@ try {
   assert.ok(await peak() < .0001);
   check('opposite-polarity stereo remains visible on output meter despite mono cancellation');
   await set('#echo-a', .5); await set('#delay-a', 800); await page.waitForTimeout(900);
-  await page.locator('#music-rights').uncheck();
+  await page.locator('#clear-a').click();await page.locator('#clear-b').click();
   assert.equal(await page.locator('audio').evaluateAll(nodes => nodes.every(a => a.paused && !a.getAttribute('src'))), true);
   assert.equal(await page.locator('#play-b').isDisabled(), true);
   await page.waitForTimeout(150);
   assert.ok(Number(await page.locator('#output-meter').getAttribute('value')) < .0001);
   assert.equal(await page.locator('#echo-a').inputValue(), '0');
   assert.equal(await page.locator('#echo-a').isDisabled(), true);
-  check('revoking permission stops, detaches both decks and clears effect tails and controls');
+  check('unloading stops and detaches both decks and clears effect tails and controls');
   // Prepare the same audited cache as the existing offline control, then reload disconnected.
   await page.evaluate(async () => {
     await navigator.serviceWorker.register('./service-worker.js');
@@ -562,7 +562,6 @@ try {
   const requestsBeforeDisconnect = serverRequests.length;
   await page.reload();await revealStudioTools(page);
   await page.getByRole('heading', { name: 'Performance studio' }).waitFor();
-  await page.locator('#music-rights').check();
   await page.locator('#file-a').setInputFiles(a);
   await page.waitForFunction(() => !document.querySelector('#play-a').disabled);
   await page.locator('#play-a').click();
@@ -642,7 +641,6 @@ try {
   check('unload releases the deck source');
   const audioContextEvidence = await page.evaluate(() => ({ sampleRate: testAudioContext.sampleRate, baseLatency: testAudioContext.baseLatency ?? null, outputLatency: testAudioContext.outputLatency ?? null, note: 'Browser-reported values, not hardware latency measurements' }));
   await page.reload();await revealStudioTools(page);
-  await page.locator('#music-rights').check();
   await page.evaluate(() => { window.AudioContext.prototype.createGain = () => { throw new Error('Injected graph failure'); }; });
   for (let attempt = 0; attempt < 2; attempt++) {
     await page.locator('#file-a').setInputFiles(a);

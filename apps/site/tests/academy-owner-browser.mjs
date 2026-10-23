@@ -35,7 +35,7 @@ try{
    await page.getByRole('link',{name:'Leave room in the mix',exact:true}).click();await page.locator('#academy-objective').waitFor({state:'visible'});assert.ok(page.url().includes('/academy/lessons/gain-staging'));assert.deepEqual(errors,[]);
    // A delayed account attempt must not include audio samples collected before the server starts it.
    await context.route('**/api/academy/attempt',async r=>{await delay(2500);await r.continue();});
-   await page.goto(base+'/academy/lessons/first-crossfade');await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
+   await page.goto(base+'/academy/lessons/first-crossfade');await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
    await page.locator('#play-a').click();await page.waitForTimeout(2500);await page.locator('#academy-check').click();
    await page.waitForFunction(()=>document.querySelector('#academy-save').textContent.includes('saved to your account'),{},{timeout:5000});
    for(const output of await page.evaluate(()=>globalThis.__jamloomSilentOutput())){assert.equal(output.gain,0);assert.equal(output.peak,0);}

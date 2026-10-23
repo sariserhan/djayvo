@@ -1,3 +1,11 @@
+## Owner product acceptance — 2026-10-23
+
+**PASS, owner acceptance:** “I accept academy.” The owner accepts the implemented
+Academy product. This does not invent measured mini-set, screen-reader, physical
+output or venue observations, and does not authorize commercial activation.
+[Exact acceptance](evidence/academy-release/owner-product-acceptance.json).
+The earlier deferred observations below remain historical and unmeasured.
+
 ## Current web follow-up — 2026-10-21
 
 Runtime `a06151f` supersedes the deployment references in the earlier Academy checkpoint below. It adds inline web checkout and the owner-authorized Aurowall music partnership. Deployment, hosted public gates, actual embedded sandbox transactions and permanent webhook purchase/refund pass; human and sales holds remain. [Current implementation and evidence](inline-payments-aurowall.md).

@@ -36,7 +36,7 @@ export async function attachStudioAccess() {
   demo.setAttribute('aria-pressed', String(mode === 'demo'));
   for (const [button, hash] of [[basic, '#basic'], [demo, '#pro-demo']]) button.onclick = () => {
     if ((hash === '#basic' ? 'basic' : 'demo') === mode) return;
-    if (document.getElementById('music-rights').checked || document.querySelector('.deck[data-playing="true"], .sample-pad[data-playing="true"], #load-instruments:disabled, #take-wav:not([hidden])') || [...document.querySelectorAll('[id^="state-"]')].some(node => node.textContent !== 'Empty')) {
+    if (document.querySelector('.deck[data-playing="true"], .sample-pad[data-playing="true"], #load-instruments:disabled, #take-wav:not([hidden])') || [...document.querySelectorAll('[id^="state-"]')].some(node => node.textContent !== 'Empty')) {
       if (!confirm('Switch modes and clear this session? Save any work you want to keep first. Saved files stay on your device.')) return;
     }
     location.hash = hash; location.reload();

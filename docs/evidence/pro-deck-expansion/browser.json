@@ -1,0 +1,41 @@
+{
+  "checks": [
+    {
+      "browser": "chromium",
+      "eightCues": "PASS",
+      "quantizedWaveformAndCues": "PASS",
+      "gridEditing": "PASS",
+      "loopResize": "PASS",
+      "fractionalRoll": "PASS",
+      "beatJumpBothDirections": "PASS",
+      "reverseAndSlipReturn": "PASS",
+      "tempoEcho": "PASS",
+      "savedEightCueSet": "PASS",
+      "accessibility": "PASS",
+      "responsiveAndFullscreen": "PASS",
+      "academySharedDeckSmoke": "PASS",
+      "pageErrors": [],
+      "playbackWithoutPrompt": "PASS"
+    },
+    {
+      "browser": "webkit",
+      "eightCues": "PASS",
+      "quantizedWaveformAndCues": "PASS",
+      "gridEditing": "PASS",
+      "loopResize": "PASS",
+      "fractionalRoll": "PASS",
+      "beatJumpBothDirections": "PASS",
+      "reverseAndSlipReturn": "PASS",
+      "tempoEcho": "PASS",
+      "savedEightCueSet": "PASS",
+      "accessibility": "PASS",
+      "responsiveAndFullscreen": "PASS",
+      "academySharedDeckSmoke": "PASS",
+      "pageErrors": [],
+      "playbackWithoutPrompt": "PASS"
+    }
+  ],
+  "speakers": "Muted",
+  "hardware": "NOT RUN",
+  "paidAccess": "Fixture only"
+}

@@ -17,3 +17,8 @@ test('full scenes validate rack register, effects and source/performance bounds'
  for(const root of [23,25,97,NaN])assert.throws(()=>validateRecovery({...state,root}));
  for(const change of [{phrase:new ArrayBuffer(480045)},{phraseSha:'wrong'},{context:{tempo:110,tonic:60,mode:'minor'}},{performance:{files:[{bytes:new ArrayBuffer(1)}]}}])assert.throws(()=>validateRecovery({...state,performance:{...state.performance,...change}}));
 });
+test('Pro eight-cue scenes retain manual grids and legacy scenes remain valid',()=>{
+ const state=fixture();Object.assign(state.decks[0],{hot:[1,2,3,4,5,6,7,8],gridOrigin:.12,quantize:true,echoDivision:'0.5'});assert.equal(validateRecovery(state).decks[0].hot[7],8);
+ assert.equal(validateRecovery(fixture()).decks[0].hot.length,4);
+ for(const change of [{hot:Array(7).fill(null)},{gridOrigin:61},{gridOrigin:NaN},{quantize:1},{echoDivision:'unknown'}]){const copy=structuredClone(state);Object.assign(copy.decks[0],change);assert.throws(()=>validateRecovery(copy));}
+});

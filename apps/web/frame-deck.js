@@ -75,20 +75,26 @@ export class FrameDeck extends EventTarget {
     source.start(this.anchor,this.offset);this.dispatchEvent(new Event('play'));this.observe('play');return Promise.resolve();
   }
   pause(){if(!this.buffer){this.media.pause();return;}const playing=!!this.voice;const position=this.roll?this.rollPosition():this.currentTime;if(this.roll){this.roll=null;this.region=null;this.repeat=false;}this.offset=position;this.release();if(playing)this.dispatchEvent(new Event('pause'));this.observe('pause');}
-  beatLoop(beats,bpm){
+  setLoopRegion(start,end){
+    if(!this.buffer||!Number.isFinite(start)||!Number.isFinite(end)||start<0||end<=start||end>this.buffer.duration)throw Error('Loop must fit inside the track.');
+    const position=this.currentTime;this.offset=position;this.anchor=this.context().currentTime;this.region=[start,end];this.repeat=true;
+    if(this.voice?.source){this.voice.source.loop=true;this.voice.source.loopStart=start;this.voice.source.loopEnd=end;}
+    this.syncLoop();this.observe('loop');
+  }
+  beatLoop(beats,bpm,origin=0){
     if(this.roll)throw Error('Exit the roll before setting another loop.');
-    if(!this.buffer||![1,2,4,8,16,32].includes(beats)||!Number.isFinite(bpm)||bpm<40||bpm>240)throw Error('Enable beat controls and enter a valid BPM.');
-    const beat=60/bpm,start=Math.floor((this.currentTime+1e-6)/beat)*beat,end=start+beats*beat;
+    if(!this.buffer||![.125,.25,.5,1,2,4,8,16,32].includes(beats)||!Number.isFinite(bpm)||bpm<40||bpm>240||!Number.isFinite(origin)||origin<0||origin>this.buffer.duration)throw Error('Enable beat controls and enter a valid BPM.');
+    const beat=60/bpm,start=Math.max(0,origin+Math.floor((this.currentTime-origin+1e-6)/beat)*beat),end=start+beats*beat;
     if(end>this.buffer.duration)throw Error('Not enough track remains for that loop.');
-    const position=this.currentTime;this.offset=position;this.anchor=this.context().currentTime;this.region=[start,end];this.repeat=true;if(this.voice?.source){this.voice.source.loop=true;this.voice.source.loopStart=start;this.voice.source.loopEnd=end;}this.syncLoop();this.observe('loop');
+    this.setLoopRegion(start,end);
   }
   beginScratch(){if(!this.processor||this.scratching)throw Error('Enable beat controls first.');this.exitLoop();this.scratchResume=!this.paused;this.offset=this.currentTime;this.play();this.scratching=true;this.scratchSpeed=0;this.send({type:'scratch',speed:0});this.observe('scratch');}
   scratch(speed){if(!this.scratching||!Number.isFinite(speed))return;this.scratchSpeed=Math.max(-4,Math.min(4,speed));this.send({type:'scratch',speed:this.scratchSpeed});this.observe('scratch');}
   endScratch(resume=true){if(!this.scratching)return;const play=resume&&this.scratchResume;this.scratching=false;this.resync=true;this.anchor=this.context().currentTime;this.send({type:'scratch-end'});if(!play)this.pause();this.observe('scratch-end');}
   rollPosition(){return Math.min(this.buffer.duration,this.roll.position+(this.voice?Math.max(0,this.context().currentTime-this.roll.time)*this.speed:0));}
-  startRoll(beats,bpm){
+  startRoll(beats,bpm,origin=0){
     if(this.paused||this.roll||this.repeat)throw Error('Play the track and exit its loop before starting a roll.');
-    const position=this.currentTime;this.beatLoop(beats,bpm);this.roll={position,time:this.context().currentTime};this.observe('roll');
+    const position=this.currentTime;this.beatLoop(beats,bpm,origin);this.roll={position,time:this.context().currentTime};this.observe('roll');
   }
   exitLoop(){if(this.roll){const position=this.rollPosition();this.roll=null;this.loop=false;this.region=null;this.currentTime=position;}else{this.loop=false;this.region=null;}this.observe('loop');}
 }

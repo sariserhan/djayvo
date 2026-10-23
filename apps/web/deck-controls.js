@@ -1,3 +1,4 @@
+import { snapToBeat } from './pro-deck-tools.js';
 import { setMixerGain } from './mixer.js';
 const $ = id => document.getElementById(id);
 export function playMedia(audio, current) {
@@ -37,7 +38,10 @@ export function tempoRate(own, other, otherRate) {
 }
 export function attachDeck(deck, other, { pause, start, mixer, context, scratchStart }) {
   const { id, audio } = deck, jog = $(`jog-${id}`);
-  let cue = 0, hot = [null, null, null, null], taps = [], drag, pendingRate;
+  const cueCount = document.querySelectorAll(`[id^=hot-${id}-]`).length;
+  deck.gridOrigin=0;deck.quantize=false;deck.echoDivision='manual';
+  const cuePosition=()=>deck.quantize?snapToBeat(audio.currentTime,Number($(`bpm-${id}`).value),deck.gridOrigin,deck.duration):audio.currentTime;
+  let cue = 0, hot = Array(cueCount).fill(null), taps = [], drag, pendingRate;
   const error = message => { $(`error-${id}`).textContent = message; };
   const seek = position => { if (deck.url && Number.isFinite(position)) audio.currentTime = Math.max(0, Math.min(deck.duration, position)); };
   const rate = value => {
@@ -65,21 +69,21 @@ export function attachDeck(deck, other, { pause, start, mixer, context, scratchS
     if (mixer()) setMixerGain(context(), mixer(), `eq-${id}-${band}`, value);
   };
   const hotLabels = () => hot.forEach((value, index) => {
-    const button = $(`hot-${id}-${index}`), label = value === null ? 'EMPTY' : `${value.toFixed(1)} s`;
-    button.querySelector('small').textContent = label;
+    const button = $(`hot-${id}-${index}`);if(!button)return;const label = value === null ? 'EMPTY' : `${value.toFixed(1)} s`;
+    button.querySelector('small').textContent = label;button.dataset.set=String(value!==null);
     button.setAttribute('aria-label', `${index+1} ${label} — Deck ${id.toUpperCase()} hot cue`);
   });
   deck.resetTransport = () => {
-    cue = 0; hot.fill(null); taps = []; drag = null; hotLabels();
+    cue = 0; deck.gridOrigin=0;deck.quantize=false;deck.echoDivision='manual';hot.fill(null); taps = []; drag = null; hotLabels();
     rate(1); deck.loop = false; audio.loop = false; audio.preservesPitch = true;
     $(`keylock-${id}`).checked = true; $(`bpm-${id}`).value = '';
     $(`loop-${id}`).setAttribute('aria-pressed', 'false');
     for (let i = 0; i < 3; i++) { $(`eq-${id}-${i}`).value = 0; eq(i); }
   };
   deck.applyEQ = () => { for (let i = 0; i < 3; i++) eq(i); };
-  deck.transportState=()=>({cue,hot:[...hot]});
+  deck.transportState=()=>({cue,hot:[...hot],gridOrigin:deck.gridOrigin,quantize:deck.quantize,echoDivision:deck.echoDivision});
   deck.restoreTransport=state=>{
-    cue=state.cue;hot=[...state.hot];hotLabels();
+    cue=state.cue;hot=Array.from({length:Math.max(cueCount,state.hot.length)},(_,i)=>state.hot[i]??null);deck.gridOrigin=state.gridOrigin??0;deck.quantize=state.quantize??false;deck.echoDivision=state.echoDivision??'manual';hotLabels();
     $(`bpm-${id}`).value=state.bpm;$(`keylock-${id}`).checked=state.keylock;audio.preservesPitch=state.keylock;
     $(`rate-${id}`).value=String(state.rate);deck.loop=state.loop;
     if(audio.buffer)audio.region=state.region;
@@ -94,7 +98,7 @@ export function attachDeck(deck, other, { pause, start, mixer, context, scratchS
     if(audio.buffer)$(`keylock-${id}`).checked=audio.preservesPitch;
     $(`keylock-${id}`).disabled ||= !!audio.buffer && !audio.processor || !('preservesPitch' in audio);
     for (let i = 0; i < 3; i++) $(`eq-${id}-${i}`).disabled = !ready;
-    for (let i = 0; i < 4; i++) $(`hot-${id}-${i}`).disabled = !ready;
+    for (let i = 0; i < cueCount; i++) $(`hot-${id}-${i}`).disabled = !ready;
     jog.setAttribute('aria-disabled', String(!ready));
     jog.setAttribute('aria-valuemax', String(deck.duration));
     jog.setAttribute('aria-valuenow', String(audio.currentTime || 0));
@@ -103,20 +107,21 @@ export function attachDeck(deck, other, { pause, start, mixer, context, scratchS
   $(`rate-${id}`).oninput = event => rate(Number(event.target.value));
   $(`rate-reset-${id}`).onclick = () => rate(1);
   $(`keylock-${id}`).onchange = event => { audio.preservesPitch = event.target.checked; };
-  $(`set-cue-${id}`).onclick = () => { cue = audio.currentTime; $(`cue-${id}`).title = `Return to ${cue.toFixed(1)} seconds`; };
+  $(`set-cue-${id}`).onclick = () => { try { cue = cuePosition(); $(`cue-${id}`).title = `Return to ${cue.toFixed(1)} seconds`; } catch(e) { error(e.message); } };
   $(`cue-${id}`).onclick = () => { pause(deck); seek(cue); };
-  $(`loop-${id}`).onclick = event => { deck.loop = !deck.loop; event.currentTarget.setAttribute('aria-pressed', String(deck.loop));if(audio.buffer){audio.exitLoop();audio.loop=deck.loop;} };
+  $(`loop-${id}`).onclick = event => { const next=!deck.loop;if(audio.buffer){audio.exitLoop();audio.loop=next;}deck.loop=next;event.currentTarget.setAttribute('aria-pressed',String(next)); };
+  audio.addEventListener('transportchange',()=>{if(audio.buffer){deck.loop=audio.loop&&!audio.region;$(`loop-${id}`).setAttribute('aria-pressed',String(deck.loop));}});
   // shortcut: ended-event repeat can gap; use shared-frame transport for beat loops.
   // Native WebKit loop playback stalled after rapid rate/loop changes in testing.
   audio.addEventListener('ended', () => {
     if (deck.loop && deck.playRequested && deck.url && !deck.loading) { pause(deck); start(deck); }
   });
   const bpm=()=>{const value=Number($(`bpm-${id}`).value);if(value<40||value>240)throw Error('Enter the track BPM first.');return value;};
-  $(`beat-loop-${id}`).onclick=()=>{try{audio.beatLoop(Number($(`loop-beats-${id}`).value),bpm());error('');}catch(e){error(e.message);}};
-  $(`beat-roll-${id}`).onclick=()=>{try{if(audio.roll)audio.exitLoop();else audio.startRoll(Number($(`loop-beats-${id}`).value),bpm());error('');}catch(e){error(e.message);}};
+  $(`beat-loop-${id}`).onclick=()=>{try{audio.beatLoop(Number($(`loop-beats-${id}`).value),bpm(),deck.gridOrigin);error('');}catch(e){error(e.message);}};
+  $(`beat-roll-${id}`).onclick=()=>{try{if(audio.roll)audio.exitLoop();else audio.startRoll(Number($(`loop-beats-${id}`).value),bpm(),deck.gridOrigin);error('');}catch(e){error(e.message);}};
   $(`loop-exit-${id}`).onclick=()=>audio.exitLoop();
   for(const [name,beats] of [['jump-back',-4],['jump-forward',4]])$(`${name}-${id}`).onclick=()=>{try{seek(audio.currentTime+beats*60/bpm());}catch(e){error(e.message);}};
-  $(`align-${id}`).onclick=()=>{try{const beat=60/bpm(),otherBpm=Number($(`bpm-${other.id}`).value),otherBeat=60/otherBpm;if(!other.audio.buffer||otherBpm<40||otherBpm>240||!Number.isFinite(otherBeat))throw Error('Enable beat controls and enter the BPM on both decks first.');seek(Math.floor(audio.currentTime/beat)*beat+(other.audio.currentTime/otherBeat%1)*beat);}catch(e){error(e.message);}};
+  $(`align-${id}`).onclick=()=>{try{const beat=60/bpm(),otherBpm=Number($(`bpm-${other.id}`).value),otherBeat=60/otherBpm;if(!other.audio.buffer||otherBpm<40||otherBpm>240||!Number.isFinite(otherBeat))throw Error('Enable beat controls and enter the BPM on both decks first.');seek(deck.gridOrigin+Math.floor((audio.currentTime-deck.gridOrigin)/beat)*beat+(((other.audio.currentTime-other.gridOrigin)/otherBeat%1+1)%1)*beat);}catch(e){error(e.message);}};
   $(`tap-${id}`).onclick = () => {
     const now = performance.now();
     if (taps.length && now - taps.at(-1) > 1500) taps = [];
@@ -131,9 +136,9 @@ export function attachDeck(deck, other, { pause, start, mixer, context, scratchS
     catch (failure) { error(failure.message); }
   };
   for (let i = 0; i < 3; i++) $(`eq-${id}-${i}`).oninput = () => eq(i);
-  for (let i = 0; i < 4; i++) $(`hot-${id}-${i}`).onclick = event => {
+  for (let i = 0; i < cueCount; i++) $(`hot-${id}-${i}`).onclick = event => {
     if (event.shiftKey) hot[i] = null;
-    else if (hot[i] === null) hot[i] = audio.currentTime;
+    else if (hot[i] === null) { try { hot[i] = cuePosition(); } catch(e) { error(e.message); return; } }
     else seek(hot[i]);
     hotLabels();
   };

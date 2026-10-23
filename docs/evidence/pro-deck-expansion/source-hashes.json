@@ -1,0 +1,15 @@
+{
+  "apps/web/pro-deck-tools.js": "b8f8d76e876a5ed5f4a7942a9756e12f40c10c090611e978e33ec2aa36930363",
+  "apps/web/frame-deck.js": "c33cfc1a2e188299818ca8d7baec97ba3834acf24054d6e553e0ba12dd320f17",
+  "apps/web/deck-controls.js": "8a5b40e0d1ddddb6dad94355bb19a4d582ac74580173fe3cbd0d303bd83f63c0",
+  "apps/web/dj.js": "7d576b4a8dce85753ef3cf251583e0b694a2117562a1fb1439b9f173fce46357",
+  "apps/web/studio-recovery.js": "4324afeb924b3968a9f2a7321be50c1a695c2300499b33db058c25fb2b2c7274",
+  "apps/web/pro-console.css": "8059c59351db2ba79f9287f59ba16eb4fbadd5a4881c23b3ed6e29173bde3ad2",
+  "apps/web/dj.html": "de697c526684a0f9b66c0ee7ce55ae782df9d7594cc02fdfc4a6236cd3e55df1",
+  "apps/web/academy-coach.js": "ac5e21e1e529e5b24ae63a6d29cc0362ed43eb446383392c711d93982d778607",
+  "apps/web/performance-session.js": "51714f8792caca7b3b0bc3cc5440e5b604b27badf3a006cd672d4bd1c4cdb71e",
+  "apps/web/sampler.js": "67436352e258fbcfc4b71cd7d5183a37a0cf3263a6c32df48728573f4b9115c8",
+  "apps/web/cue-routing.js": "4956d9ed82b72570cb34fbddd8a2ee979e1101a02bd8a7661a5d81a7a067b535",
+  "apps/web/mix-recording.js": "2fbf0aa97b739e3aa3d75e37743bb8f57f60a44aba11e4df69d7f5f04545d6a2",
+  "apps/web/set-recording.js": "ad92e950fd4e360969140836da5bde2613a02b5ef12abda7e0cb8c82638a5c28"
+}

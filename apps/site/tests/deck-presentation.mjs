@@ -15,7 +15,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await context.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+'/academy/lessons/first-crossfade');await page.waitForLoadState('networkidle');
-  await page.locator('#music-rights').check();await page.locator('#academy-load').click();
+  await page.locator('#academy-load').click();
   await page.locator('#academy-check').waitFor({state:'visible'});
   for(const id of ['level-a','level-b','eq-a-0','eq-b-2','crossfade','master'])assert.equal(await page.locator('.mix-bus #'+id).count(),1);
   const unique=await page.evaluate(()=>{const ids=[...document.querySelectorAll('[id]')].map(e=>e.id);return new Set(ids).size===ids.length;});assert.ok(unique);
@@ -40,7 +40,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await page.locator('#jog-a').focus();await page.keyboard.press('Home');await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>Number(document.querySelector('#seek-a').value)>=.09);
   const a11y=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(a11y.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})),[]);
   await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('#vinyl-a').evaluate(e=>getComputedStyle(e).transform),'none');
-  await page.goto(base+'/academy/lessons/first-crossfade');await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
+  await page.goto(base+'/academy/lessons/first-crossfade');await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
   for(const deck of ['a','b']){
    await page.locator('#play-'+deck).click();await page.waitForTimeout(2400);await page.locator('#academy-check').click();await page.locator('#academy-check').waitFor({state:'hidden'});
    assert.match(await page.locator('#academy-objective').innerText(),/Free Jam/);await page.locator('#academy-next').click();

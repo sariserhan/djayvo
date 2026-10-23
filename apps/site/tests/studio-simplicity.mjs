@@ -23,7 +23,7 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
   assert.ok(await page.locator('#play-a').isDisabled());
   await page.locator('.studio-nav a[href="#saved-mixes"]').focus();await page.keyboard.press('Enter');
   assert.ok(await page.locator('#practice-track').isVisible());assert.equal(await page.evaluate(()=>document.activeElement.id),'saved-mixes');
-  await page.locator('#music-rights').check();await page.locator('#practice-track').selectOption('funked-up');await page.locator('#practice-load-a').click();
+  await page.locator('#practice-track').selectOption('funked-up');await page.locator('#practice-load-a').click();
   await page.waitForFunction(()=>!document.querySelector('#play-a').disabled);
   assert.match(await page.locator('#play-a').innerText(),/Play/);
   await page.locator('.deck-a .deck-tools > summary').click();await page.locator('#prepare-frames-a').click();
@@ -65,7 +65,7 @@ for(const [name,engine] of Object.entries({chromium,webkit})){
   await page.setViewportSize({width:390,height:844});await page.locator('.studio-nav a[href="#decks"]').click();await page.screenshot({path:new URL(name+'-mobile.png',evidence).pathname});
   // A nested Academy target must open itself, including after the learner folds it.
   await page.route('**/api/academy/lesson/first-crossfade',async r=>{const response=await r.fetch();const data=await response.json();data.lesson.tasks[0].control='beat-loop-a';await r.fulfill({json:data});});
-  await page.goto(base+'/academy/lessons/first-crossfade');await page.locator('#music-rights').check();await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
+  await page.goto(base+'/academy/lessons/first-crossfade');await page.locator('#academy-load').click();await page.locator('#academy-check').waitFor({state:'visible'});
   assert.ok(await page.locator('#beat-loop-a').isVisible());await page.locator('.deck-a .deck-tools > summary').click();await page.locator('#academy-focus').click();assert.equal(await page.evaluate(()=>document.activeElement.id),'beat-loop-a');assert.ok(await page.locator('#beat-loop-a').isVisible());
   await page.goto(base);await page.setViewportSize({width:1440,height:1000});const platter=page.getByRole('button',{name:'Play Deck A from platter',exact:true});await platter.click();await page.waitForFunction(()=>document.querySelector('.mini-deck audio').currentTime>.2);await page.getByRole('button',{name:'Pause Deck A from platter',exact:true}).click();await page.locator('.mini-deck').screenshot({path:new URL(name+'-homepage-decks.png',evidence).pathname});
   await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('.platter-label').first().evaluate(e=>getComputedStyle(e).animationName),'none');
