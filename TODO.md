@@ -9,7 +9,7 @@
 ## Improvise recording integration — 2026-10-23
 
 - [x] **IMPROVISE-BLEND — PASS, local implementation/technical validation:** Whole short recordings, phrases and non-speech excerpts can become single calls, returning hooks or beat-spaced loops. Several crops are tried; source-free fallbacks now fail instead of settling credits. Source/output-bound receipt validation, private storage and failed-job refunds pass in disposable PostgreSQL. Thirty mixes across five existing song styles preserve surrounding PCM and originals. [Behavior, evidence and release order](docs/improvise-blending.md).
-- [ ] **IMPROVISE-BLEND-QUALITY — PARTIAL:** Earlier A/B methods retain owner approval; new crops/repeats need listening. Fresh end-to-end model inference and hosted qualification NOT RUN. Updated worker must precede the website gate; publication/deployment remain owner-controlled.
+- [ ] **IMPROVISE-BLEND-QUALITY — PARTIAL:** Earlier A/B methods retain owner approval; new crops/repeats need listening. Fresh end-to-end model inference and hosted qualification NOT RUN. Updated worker must precede the website gate; publication/deployment remain owner-controlled. Owner review now available at `http://127.0.0.1:4249/`: all 30 blends, five suggested first listens, source timestamps and original-song comparisons. Listening remains NOT RUN.
 
 ## Improvise workspace and local-remix naming — 2026-10-23
 

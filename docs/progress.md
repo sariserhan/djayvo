@@ -1,3 +1,9 @@
+## Improvise blend listening packet — 2026-10-23
+
+**PASS, local review delivery; human listening NOT RUN.** Owner requested the exact new blends awaiting review. Prepared `renders/improvise-blending-20261023-final/listening-review/`, served only on loopback at `http://127.0.0.1:4249/`. The page includes all 30 hash-verified mixes, grouped as six arrangements of each of five existing songs, plus five original-song comparisons. Five suggested starting samples cover single calls, returning hooks, rhythmic loops and a whole short recording. Each sample displays source placement timestamps. Files reuse local audio through hard links; no source is modified, new song inferred or file uploaded.
+
+Chromium/WebKit PASS: 30 visible players, no autoplay, actual muted playback, starting-point links, only one player active, desktop/mobile overflow and no runtime errors. Screenshot inspected. Evidence: `/tmp/jamloom-prepare-blend-review.py`, `/tmp/jamloom-blend-review-browser.mjs`, `/tmp/jamloom-blend-review-browser.log`, `/tmp/jamloom-blend-review-*.png`. This local review is separate from the 56 previously published public samples. New listening approval, fresh inference and hosted qualification remain open.
+
 ## Improvise product explanation — 2026-10-23
 
 **PASS, local copy and rendered checks.** The page now leads with “Your recording. Part of a new song.” and explains: “Your words inspire the song. Your sound becomes part of the music.” Capture guidance covers speech and non-speech sounds; the creation panel explains original music/AI singing plus a phrase, loop or whole brief recording selected for fit. Metadata matches. This describes the current source-inclusive implementation; it does not add or advertise a meaning-only mode.
