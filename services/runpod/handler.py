@@ -74,7 +74,7 @@ def storage_url(value):
 
 
 def validate(value):
-    if not isinstance(value, dict) or len(json.dumps(value, allow_nan=False).encode()) > 131072:
+    if not isinstance(value, dict) or len(json.dumps(value, allow_nan=False).encode()) > 16*1024*1024:
         raise ValueError('Invalid job')
     if not re.fullmatch(r'[a-f0-9]{32}', str(value.get('id', ''))) or value.get('product') not in ('music-dna', 'improvise'):
         raise ValueError('Invalid job identity')

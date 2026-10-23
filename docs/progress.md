@@ -1,3 +1,9 @@
+## Whole-playlist taste import — 2026-10-23
+
+**PASS, local implementation/database; PARTIAL, matching coverage; NOT RUN, release/audio acceptance.** Paste a public/unlisted YouTube playlist and use it in one action. Every page and available song is checked, exact catalogue matches enter favorites atomically, and missing matches stay explicit. Provider waits/cancellation and large-list display are supported. The full matched list reaches genre voting and batched vocal-language interpretation; the songwriter uses 12 examples plus full-list direction/counts. The old 20-favorite ceiling is replaced by explicit 5,000-song/4 MiB bounds.
+
+Actual 182-entry scan: 77 unique matches, one repeated match and 104 unmatched. Actual local 30-favorite plan: 50.5 seconds, all favorites and language evidence accounted for. Initial model omissions/format errors and their fixes are retained in the report. Chromium/WebKit import-to-generation-payload checks, TypeScript, 60 regression tests plus the new 5,000-profile PostgreSQL regression, 20 Python planner tests and 10 worker tests PASS. Production migration 0020 applied after hash verification, private backup and restore/rehearsal; repeat is a no-op. Updated worker publication must precede website release. No paid compute, website deployment, new rendered song or newly enabled generation/credit switches. [Report and receipts](whole-playlist-taste.md).
+
 ## Music DNA gallery title — 2026-10-23
 
 **PASS, local.** Renamed the remaining Music DNA gallery to “Made with Music DNA,” as requested. Updated affected browser selectors. Chromium at localhost:4235 confirms exactly one gallery with this heading and loaded songs; the old heading is absent. Diff check PASS. No playback changes or new audio testing. Website deployment NOT RUN.

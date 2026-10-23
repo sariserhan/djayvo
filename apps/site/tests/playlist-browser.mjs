@@ -4,23 +4,40 @@ import {join} from 'node:path';
 import AxeBuilder from '@axe-core/playwright';
 import {chromium,webkit} from 'playwright';
 import {silenceSpeakers} from './silent-audio.mjs';
+import {songFixture} from './dna-song-fixture.mjs';
 const base=process.env.JAMLOOM_TEST_URL??'http://127.0.0.1:4247',output=process.env.JAMLOOM_EVIDENCE_DIR??'/tmp/jamloom-playlist-browser';
 assert.equal(new URL(base).hostname,'127.0.0.1');await mkdir(output,{recursive:true});const evidence=[];
 for(const [name,engine,width] of [['chromium',chromium,1280],['webkit',webkit,390]]){
  const browser=await engine.launch(name==='chromium'?{args:['--mute-audio']}:{});
  try{
-  const context=await browser.newContext({viewport:{width,height:900}});await context.addInitScript(silenceSpeakers);const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.route('**/api/playlist-import',route=>route.fulfill({json:{youtube:false,spotify:false}}));
+  const context=await browser.newContext({viewport:{width,height:900}});await context.addInitScript(silenceSpeakers);const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  const fixture=await songFixture(context);let mode='off',checks=0,pages=0;
+  await context.route('**/api/playlist-import',async route=>{
+   if(route.request().method()==='GET')return route.fulfill({json:{youtube:mode!=='off'}});
+   pages++;const second=!!route.request().postDataJSON().pageToken;
+   if(mode==='fail'&&second)return route.fulfill({status:503,json:{error:'Playlist temporarily unavailable.'}});
+   if(mode==='wait')return route.fulfill({status:429,headers:{'Retry-After':'60'},json:{error:'Wait'}});
+   return route.fulfill({json:{items:Array.from({length:second?3:50},(_,n)=>({title:`Test song ${n+(second?50:0)} — Test artist`,url:`https://www.youtube.com/watch?v=${String(n+(second?50:0)).padStart(11,'0')}`})),next:second?null:'next',skipped:second?1:0}});
+  });
+  await context.route('**/api/music-search',route=>{
+   checks++;const query=route.request().postDataJSON().query,i=Number(query.match(/song (\d+)/)?.[1]);const reference=`Test song ${i} — Test artist`;
+   return route.fulfill({json:{suggestions:i===52?[]:[{reference,kind:'Track',metadata:{reference,genre:i<20?'Pop':'Metal',source:'itunes',id:i+1}}]}});
+  });
   await page.goto(base+'/music-dna');await page.getByText('Use a playlist',{exact:true}).click();
-  await page.getByText('YouTube connection is not available here yet. Search for your favorites below.',{exact:true}).waitFor();assert.equal(await page.getByRole('button',{name:'Show songs',exact:true}).isDisabled(),true);
-  await page.unroute('**/api/playlist-import');await page.route('**/api/playlist-import',route=>route.fulfill({json:route.request().method()==='GET'?{youtube:true,spotify:false}:{items:[{title:'Test Artist - Test Original (Official Video)',url:'https://www.youtube.com/watch?v=abcdefghijk'},{title:'Second Artist - Second Song',url:'https://www.youtube.com/watch?v=12345678901'}],more:false}}));
-  await page.route('**/api/music-search',route=>route.fulfill({json:{suggestions:[{reference:'Test Original — Test Artist',kind:'Track',detail:'iTunes catalogue',metadata:{reference:'Test Original — Test Artist',genre:'Rock',source:'itunes',id:123}},{reference:'Second Song — Second Artist',kind:'Track',detail:'iTunes catalogue',metadata:{reference:'Second Song — Second Artist',genre:'Pop',source:'itunes',id:456}}]}}));
-  await page.reload();await page.getByText('Use a playlist',{exact:true}).click();await page.getByLabel('YouTube playlist link').fill('https://www.youtube.com/playlist?list=PL1234567890');await page.getByRole('button',{name:'Show songs',exact:true}).click();await page.getByRole('button',{name:'Match first 20 songs',exact:true}).click();await page.getByRole('button',{name:'Add 2 favorites',exact:true}).waitFor();const accessibility=await new AxeBuilder({page}).include('.dna-playlist-picker').analyze();assert.deepEqual(accessibility.violations,[]);await page.getByRole('button',{name:'Find song',exact:true}).first().click();
-  const search=page.getByRole('combobox',{name:'Search artists or tracks'});await search.fill('Different search');await page.getByRole('button',{name:'Find song',exact:true}).first().click();assert.equal(await search.inputValue(),'Test Artist - Test Original');
-  const option=page.getByRole('option').filter({hasText:'Test Original — Test Artist'});await option.waitFor();assert.equal(await page.getByRole('option').filter({hasText:'Add by name'}).count(),0);await option.click();
-  await page.getByRole('button',{name:'Remove favorite Test Original — Test Artist'}).waitFor();const saved=await page.evaluate(()=>localStorage.getItem('jamloom-taste-v1'));assert(!saved.includes('Official Video'));assert(saved.includes('Test Original — Test Artist'));
-  await page.getByRole('button',{name:'Add 2 favorites',exact:true}).click();assert.equal(await page.getByRole('button',{name:'Remove favorite Test Original — Test Artist'}).count(),1);await page.getByRole('button',{name:'Clear playlist preview'}).click();assert.equal(await page.getByRole('button',{name:'Find song',exact:true}).count(),0);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
-  await page.evaluate(()=>{const p=JSON.parse(localStorage.getItem('jamloom-taste-v1'));p.references=Array.from({length:19},(_,i)=>`Saved choice ${i}`);p.referenceMetadata=[];localStorage.setItem('jamloom-taste-v1',JSON.stringify(p));});await page.reload();await page.getByText('Use a playlist',{exact:true}).click();await page.getByLabel('YouTube playlist link').fill('https://www.youtube.com/playlist?list=PL1234567890');await page.getByRole('button',{name:'Show songs',exact:true}).click();await page.getByRole('button',{name:'Match first 20 songs',exact:true}).click();await page.getByRole('button',{name:'Add 2 favorites',exact:true}).click();await page.getByText('1 favorites added. Your list is full at 20 songs.',{exact:true}).waitFor();assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references.length),20);await page.getByRole('button',{name:'Clear playlist preview'}).click();await page.screenshot({path:join(output,name+'.png')});assert.deepEqual(errors,[]);evidence.push({browser:name,width,unconfiguredFixture:'PASS',accessibility:'PASS',repeatSearch:'PASS',fixturePreviewAndCatalogueSelection:'PASS',noYouTubePersistence:'PASS',bulkDuplicateAndCapacity:'PASS',errors});
+  await page.getByText('YouTube connection is not available here yet. Search for your favorites below.',{exact:true}).waitFor();
+  const use=page.getByRole('button',{name:'Use this playlist',exact:true}),picker=page.locator('.dna-playlist-picker');assert(await use.isDisabled());
+  mode='ok';await page.reload();await page.getByText('Use a playlist',{exact:true}).click();await page.getByLabel('YouTube playlist link').fill('https://www.youtube.com/playlist?list=PL1234567890');await use.click();
+  await picker.getByText(/Checked 53 available playlist entries/).waitFor();assert.equal(pages,2);assert.equal(checks,53);
+  let saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')));assert.equal(saved.references.length,52);assert.equal(saved.referenceMetadata.filter(m=>m.genre==='Metal').length,32);assert.equal(await page.getByRole('button',{name:/Remove favorite /}).count(),12);
+  await page.getByText('How we choose your sound',{exact:true}).click();await page.getByText(/Based on 52 of 52 favorites/).waitFor();
+  await picker.getByText('1 song needs a match',{exact:true}).click();await picker.getByRole('button',{name:'Find song',exact:true}).click();assert.equal(await page.getByRole('combobox',{name:'Search artists or tracks'}).inputValue(),'Test song 52 — Test artist');
+  await use.click();await picker.getByText(/Checked 53 available playlist entries/).waitFor();saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')));assert.equal(saved.references.length,52);
+  assert.deepEqual((await new AxeBuilder({page}).include('.dna-playlist-picker').analyze()).violations,[]);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);await picker.scrollIntoViewIfNeeded();await page.screenshot({path:join(output,name+'.png')});
+  mode='fail';await use.click();await picker.getByText('Playlist temporarily unavailable.',{exact:true}).waitFor();assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references.length),52);
+  mode='wait';await use.click();await picker.getByText(/Waiting for the song catalogue/).waitFor();assert(await page.getByRole('button',{name:'Make my music',exact:true}).isDisabled());await picker.getByRole('button',{name:'Cancel playlist check',exact:true}).click();await picker.getByText('Playlist check cancelled. Your favorites have not changed.',{exact:true}).waitFor();assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references.length),52);
+  await page.getByRole('button',{name:'Make my music',exact:true}).click();const dialog=page.getByRole('dialog',{name:'Make your song',exact:true});await dialog.getByRole('radio',{name:'Private · from 2 credits',exact:true}).check();await dialog.getByRole('button',{name:'Generate song · 2 credits',exact:true}).click();await page.getByLabel('Play Fixture song 1',{exact:true}).waitFor();assert.equal(fixture.bodies.length,1);assert.equal(fixture.bodies[0].references.length,52);assert.equal(fixture.bodies[0].referenceMetadata.filter(m=>m.genre==='Metal').length,32);
+  await page.reload();assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references.length),52);assert.deepEqual(errors,[]);
+  evidence.push({browser:name,width,status:'PASS',wholePlaylist:53,matched:52,lateMetalSongs:32,pages:2,automaticImport:true,duplicateImport:true,unmatchedReview:true,cancelAndFailurePreserveFavorites:true,fullGenerationPayload:true,reload:true,a11y:true,transport:'fixtures; no song generation'});
  }finally{await browser.close();}
 }
 await writeFile(join(output,'report.json'),JSON.stringify(evidence,null,2));console.log(JSON.stringify(evidence));

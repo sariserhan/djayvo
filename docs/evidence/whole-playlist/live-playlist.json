@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-23T20:27:35.945Z",
+  "read": 182,
+  "matched": 77,
+  "unmatched": 104,
+  "skipped": 0,
+  "genres": [
+    "Hip-Hop/Rap",
+    "Música Mexicana",
+    "Urbano latino",
+    "Pop",
+    "Christmas",
+    "Dance",
+    "Holiday",
+    "Alternative",
+    "Rap",
+    "Christmas: Pop",
+    "Rock",
+    "Soundtrack",
+    "Latin",
+    "R&B/Soul",
+    "K-Pop",
+    "Country",
+    "Reggae",
+    "Afrobeats",
+    "Afro-fusion"
+  ],
+  "firstMatches": [
+    "The Type (feat. YTB Fatt) — Real Boston Richey",
+    "La Diabla — Xavi",
+    "You Broke My Heart — Drake",
+    "Crazy — Finesse2tymes"
+  ],
+  "importStatus": "PASS",
+  "catalogueCoverage": "PARTIAL",
+  "duplicateMatchedEntries": 1,
+  "publicPlaylist": "https://www.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI"
+}

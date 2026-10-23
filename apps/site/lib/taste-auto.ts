@@ -1,3 +1,4 @@
+import {MAX_FAVORITES} from './taste-limits';
 import {emptyTaste,energies,validateTaste,type Taste} from './taste';
 import {tasteCatalogue,type ReferenceMetadata,type TasteSuggestion} from './taste-catalogue';
 
@@ -25,7 +26,7 @@ export function favoriteList(value:Taste):Taste{
  for(const choice of p.catalogue??[]){
   if(choice.rating==='avoid')continue;
   const track=tasteCatalogue.find(t=>t.id===choice.id)!;const reference=`${track.title} — ${track.artist}`;
-  if(references.length<20&&!references.some(r=>key(r)===key(reference)))references.push(reference);
+  if(references.length<MAX_FAVORITES&&!references.some(r=>key(r)===key(reference)))references.push(reference);
  }
  const metadata=[...(p.referenceMetadata??[])];
  for(const reference of references){

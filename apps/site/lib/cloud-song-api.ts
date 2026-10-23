@@ -1,3 +1,4 @@
+import {MAX_TASTE_BYTES} from './taste-limits';
 import {songCountry} from './dna-location';
 import {CloudSongs,songId} from './cloud-songs';
 import {visibilityInput} from './dna-commerce';
@@ -28,7 +29,7 @@ export async function cloudSongAPI(request:Request,songs:CloudSongs,owner:string
   if(!owner)return json({error:'Sign in with a verified account to make a song.'},401);
   if(request.method==='DELETE'&&songId(id)){const result=await songs.cancel(owner,id);schedule(id);return json(result);}
   if(request.method!=='POST')return json({error:'Unknown song action.'},400);
-  const bounded=await boundedAuthRequest(request,65536);if(!bounded)return json({error:'Song request is too large.'},413);
+  const bounded=await boundedAuthRequest(request,MAX_TASTE_BYTES);if(!bounded)return json({error:'Song request is too large.'},413);
   const body=await bounded.json();
   if(!body||typeof body!=='object'||Array.isArray(body))throw new AudioError('Invalid song request.');
   if(body.action==='upload'&&songs.commerce.product==='improvise')return json(await songs.upload(owner,body));

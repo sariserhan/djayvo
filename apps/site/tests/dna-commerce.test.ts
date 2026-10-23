@@ -37,6 +37,12 @@ test('real Postgres Music DNA credits, privacy, idempotence, failure and recover
   for(const owner of ['alice','bob','empty'])await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[owner,owner+'@example.test']);
   for(const owner of ['alice','bob'])await commerce.wallet.grant(owner,{provider:'stripe_test',receipt:owner,credits:20,netMicros:10_000_000});
   const context={commerce,owner:'alice'},other={commerce,owner:'bob'},anonymous={commerce,owner:null};
+  await t.test('whole playlist account profiles persist all Unicode favorites privately',async()=>{
+   const {TasteStore}=await import('../lib/taste-store');const {emptyTaste}=await import('../lib/taste');
+   const store=new TasteStore(pool),references=Array.from({length:5000},(_,i)=>`Günden Güne ${i} — Sanatçı`);
+   const value={...emptyTaste,references,referenceMetadata:references.map(reference=>({reference,genre:'Rock',source:'itunes'}))};
+   const revision=await store.save('alice',value,0);const saved=await store.load('alice');assert.equal(saved.profile.references.length,5000);assert.equal(saved.profile.references[4999],references[4999]);assert.equal(await store.load('bob'),null);await store.remove('alice',revision);
+  });
   await t.test('price, atomic reservation and duplicate request binding',async()=>{
    const pub=await commerce.quote('alice',profile,'public'),priv=await commerce.quote('alice',profile,'private');
    assert.equal(pub.credits,1);assert.equal(priv.credits,2);

@@ -6,6 +6,7 @@ import {favoriteKey,musicDirection,type FavoriteSnapshot} from '../../lib/taste-
 import languages from '../../../../assets/manifests/dna-languages.json';
 import {SongFeedback,FeedbackSettings,listenerHeaders} from './song-feedback';
 import {FavoriteSearch} from './favorite-search';
+import {MAX_FAVORITES} from '../../lib/taste-limits';
 import {PlaylistPicker} from './playlist-picker';
 import {tasteCatalogue,type ReferenceMetadata} from '../../lib/taste-catalogue';
 import {GenerationProgress,type SongProgress} from '../generation-progress';
@@ -17,6 +18,7 @@ export function TasteNotebook(){
  const [profile,setProfile]=useState<Taste>(emptyTaste),[message,setMessage]=useState(''),[revision,setRevision]=useState(0),[busy,setBusy]=useState(false),[loaded,setLoaded]=useState(false);
  const [rendering,setRendering]=useState(false),[search,setSearch]=useState(''),[job,setJob]=useState<string|null>(null),[draft,setDraft]=useState<SongPlan|null>(null);
  const [takes,setTakes]=useState<Song[]>([]);
+ const [playlistBusy,setPlaylistBusy]=useState(false),[favoriteCount,setFavoriteCount]=useState(12);
  const [playlistQuery,setPlaylistQuery]=useState<{text:string}|null>(null);
  const [progress,setProgress]=useState<SongProgress|null>(null);
  const [cloud,setCloud]=useState(false);
@@ -31,7 +33,7 @@ export function TasteNotebook(){
  const snapshot={references:profile.references,referenceMetadata:profile.referenceMetadata??[],vocalLanguage:profile.vocalLanguage},direction=musicDirection(snapshot);
  const current=takes.filter(s=>s.styleChecked&&s.profile&&favoriteKey(s.profile)===favoriteKey(snapshot));
  const earlier=takes.filter(s=>!current.includes(s));
- const taste=automaticTaste(profile),locked=busy||rendering;
+ const taste=automaticTaste(profile),locked=busy||rendering||playlistBusy;
  const selectionKey=favoriteKey(snapshot)+':'+visibility;
  const generationPrice=quote?.key===selectionKey?quote.credits:visibility==='public'?1:2;
  useEffect(()=>{setQuote(null);requestId.current=null;},[selectionKey]);
@@ -82,7 +84,7 @@ export function TasteNotebook(){
  useEffect(()=>{if(!takes.length&&!job)return;try{const previous=JSON.parse(localStorage.getItem('jamloom-dna-songs-v1')??'[]');localStorage.setItem('jamloom-dna-songs-v1',JSON.stringify([...new Set([...(Array.isArray(previous)?previous:[]),...takes.map(t=>t.id),...(job?[job]:[])])].slice(-2)));}catch{}},[takes,job]);
  function addSong(reference:string,metadata?:ReferenceMetadata){
   if(profile.references.some(r=>r.toLocaleLowerCase()===reference.toLocaleLowerCase())){setMessage('Already in your favorites.');return;}
-  if(profile.references.length>=20){setMessage('Your list has 20 favorites. Remove one before adding another.');return;}
+  if(profile.references.length>=MAX_FAVORITES){setMessage(`Your list has ${MAX_FAVORITES} favorites. Remove one before adding another.`);return;}
   try{const next=favoriteList(validateTaste({...profile,references:[...profile.references,reference],referenceMetadata:[...(profile.referenceMetadata??[]),...(metadata?[metadata]:[])]}));writable.current=true;setProfile(next);setMessage('Added to your favorites. Jamloom will choose the musical settings.');}
   catch{setMessage('This result could not be added. Try searching again.');}
  }
@@ -91,13 +93,17 @@ export function TasteNotebook(){
    catalogue:profile.catalogue?.filter(c=>{const track=tasteCatalogue.find(t=>t.id===c.id);return !track||`${track.title} — ${track.artist}`!==reference;})});
  }
  function addPlaylist(songs:import('../../lib/taste-catalogue').TasteSuggestion[]){
-  let next={...profile,references:[...profile.references],referenceMetadata:[...(profile.referenceMetadata??[])]};let added=0;
+  const next={...profile,references:[...profile.references],referenceMetadata:[...(profile.referenceMetadata??[])]};let added=0;
+  const key=(value:string)=>value.normalize('NFKC').toLowerCase(),known=new Map(next.references.map(reference=>[key(reference),reference]));
+  const metadata=new Set(next.referenceMetadata.map(row=>key(row.reference)));
   for(const song of songs){
-   if(next.references.length>=20)break;
-   if(!song.metadata||next.references.some(r=>r.normalize('NFKC').toLowerCase()===song.reference.normalize('NFKC').toLowerCase()))continue;
-   next={...next,references:[...next.references,song.reference],referenceMetadata:[...next.referenceMetadata,song.metadata]};added++;
+   if(!song.metadata)continue;
+   const reference=known.get(key(song.reference))??song.reference;
+   if(!known.has(key(reference))){next.references.push(reference);known.set(key(reference),reference);added++;}
+   if(!metadata.has(key(reference))){next.referenceMetadata.push({...song.metadata,reference});metadata.add(key(reference));}
   }
-  try{const valid=favoriteList(validateTaste(next));writable.current=true;setProfile(valid);setMessage(`${added} favorites added.${valid.references.length===20?' Your list is full at 20 songs.':''}`);}catch{setMessage('The selected songs could not be added. Your list is unchanged.');}
+  if(next.references.length>MAX_FAVORITES)throw Error(`Your combined list exceeds ${MAX_FAVORITES} favorites. Remove some favorites first; your list is unchanged.`);
+  const valid=favoriteList(validateTaste(next));writable.current=true;setProfile(valid);setMessage(`${added} favorites added. Your whole list will guide the song.`);
  }
  async function cancel(){
   if(submittingCloud.current){cancelWanted.current=true;try{localStorage.setItem(pendingKey+'-cancel',submittingCloud.current);}catch{}setProgress({state:'cancelling'});return;}
@@ -164,12 +170,13 @@ export function TasteNotebook(){
  <ol className="dna-steps" aria-label="How Music DNA works"><li><span>1</span> Pick favorites</li><li><span>2</span> We find your sound</li><li><span>3</span> Get a song</li></ol>
  <div className="product-controls">
  <div className="dna-create-grid"><div className="dna-picker"><div className="dna-picker-heading"><h2>Your favorite music</h2><span>{profile.references.length} selected</span></div>
- <PlaylistPicker disabled={locked||!loaded} onSearch={text=>setPlaylistQuery({text})} onAdd={addPlaylist}/>
+ <PlaylistPicker disabled={locked||!loaded} onSearch={text=>setPlaylistQuery({text})} onAdd={addPlaylist} onBusy={setPlaylistBusy}/>
  <FavoriteSearch saved={profile.references} disabled={locked||!loaded} onSelect={(reference,metadata)=>{addSong(reference,metadata);setPlaylistQuery(null);}} playlistQuery={playlistQuery}/>
- <div className="dna-favorites">{[...new Set(profile.references)].map(reference=><div className="dna-favorite" role="group" aria-label={reference} key={reference}>
+ <div className="dna-favorites">{[...new Set(profile.references)].slice(0,favoriteCount).map(reference=><div className="dna-favorite" role="group" aria-label={reference} key={reference}>
   <span className="dna-favorite-icon" aria-hidden="true">♫</span><strong>{reference}</strong><button className="secondary" disabled={locked} aria-label={`Remove favorite ${reference}`} onClick={()=>remove(reference)}>×</button>
   <details><summary>Listen elsewhere</summary><div className="product-actions"><a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(reference)}`} target="_blank" rel="noreferrer">Find on YouTube ↗</a><a href={`https://open.spotify.com/search/${encodeURIComponent(reference)}`} target="_blank" rel="noreferrer">Find on Spotify ↗</a></div></details>
  </div>)}</div>
+ {profile.references.length>favoriteCount&&<button className="secondary" onClick={()=>setFavoriteCount(n=>n+24)}>Show more favorites ({profile.references.length-favoriteCount} remaining)</button>}
  {!profile.references.length&&<div className="dna-empty"><span aria-hidden="true">♫ + ♫ + ♫</span><p>Add the music you keep coming back to.</p></div>}
  <small className="dna-autosave">Favorites save on this device.</small>
  </div><div className="dna-next-song">

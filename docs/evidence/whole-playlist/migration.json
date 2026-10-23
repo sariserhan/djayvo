@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-23T20:17:56.593Z",
+  "target": "ep-flat-hill-b4q0lix4.c-6.us-east-2.aws.neon.tech/neondb",
+  "backup": {
+    "sha256": "04105ff13e05fe5eed39198ce17089b21f660b20ad07d423a6dc76655737e6fe",
+    "restore": "PASS",
+    "privateLocalPath": "build-playlist-taste/before-0020.dump"
+  },
+  "applied": [
+    "0020_whole_playlist_profiles.sql"
+  ],
+  "repeatApply": [],
+  "songCountBefore": 0,
+  "songCountAfter": 0,
+  "constraint": "CHECK (((jsonb_typeof(profile) = 'object'::text) AND (octet_length((profile)::text) <= 8388608)))"
+}

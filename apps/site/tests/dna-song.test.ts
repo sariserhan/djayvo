@@ -67,7 +67,7 @@ fs.mkdirSync(p+'/singer');fs.writeFileSync(p+'/singer/singer.wav',audio);fs.writ
 const receipt={plan_sha256:sha(plan),audio_sha256:sha(audio)};fs.writeFileSync(p+'/singer/complete.json',JSON.stringify(receipt));fs.writeFileSync(p+'/fit.json',JSON.stringify({...receipt,input_sha256:sha(input),accepted:true,target:JSON.parse(input).direction.id}));
 fs.writeFileSync(p+'/status.json',JSON.stringify({state:'completed'}));},350);`,{mode:0o700});
   assert.equal((await dnaSong(request('POST','',{}))).status,400);
-  assert.equal((await dnaSong(request('POST','',{large:'x'.repeat(65537)}))).status,413);
+  assert.equal((await dnaSong(request('POST','',{large:'x'.repeat(4*1024*1024+1)}))).status,413);
   assert.equal((await dnaSong(request('POST','',{...emptyTaste,references:['Unknown']}))).status,422);
   const response=await dnaSong(request('POST','',profile));assert.equal(response.status,202);
   const {id}=await response.json();assert.match(id,/^[a-f0-9]{32}$/);

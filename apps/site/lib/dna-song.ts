@@ -1,3 +1,4 @@
+import {MAX_TASTE_BYTES} from './taste-limits';
 import {MAX_SONG_BYTES} from './song-duration';
 import {randomInt,createHash} from 'node:crypto';
 import {spawn,type ChildProcess} from 'node:child_process';
@@ -82,9 +83,9 @@ export async function dnaSong(request:Request,context?:DnaContext){
   if(request.method==='POST'){
    if(!commerce)return json({error:'Credit-backed generation is not enabled here yet. You can listen to the examples below.'},503);
    if(!owner)return json({error:'Sign in with a verified account to use your credits.'},401);
-   const bounded=await boundedAuthRequest(request,65536);if(!bounded)return json({error:'Favorites list is too large.'},413);
+   const bounded=await boundedAuthRequest(request,MAX_TASTE_BYTES);if(!bounded)return json({error:'Favorites list is too large.'},413);
    let body,profile:ReturnType<typeof songInput>;
-   try{body=await bounded.json();profile=songInput(body.profile);}catch{return json({error:'Add a valid list of one to twenty favorite songs or artists.'},400);}
+   try{body=await bounded.json();profile=songInput(body.profile);}catch{return json({error:'Add a valid list of favorite songs or artists.'},400);}
    const visibility=visibilityInput(body.visibility,body.publicConsent),direction=musicDirection(profile);
    if(!direction)return json({error:'We could not identify a style from this list yet. Choose a specific song or artist from search.'},422);
    if(body.action==='quote')return json(await commerce.quote(owner,profile,visibility));

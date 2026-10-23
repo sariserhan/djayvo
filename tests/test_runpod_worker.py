@@ -27,6 +27,14 @@ class WorkerTests(unittest.TestCase):
         self.job = {'id': 'a'*32, 'product': 'music-dna', 'timeout_seconds': 900, 'output_url': URL,
                     'payload': {'profile': {'references': ['Favorite — Artist'], 'referenceMetadata': [{'reference': 'Favorite — Artist', 'genre': 'Soul'}]}, 'seed': 4}}
 
+    def test_whole_playlist_input_is_not_cut_to_twenty(self):
+        job=copy.deepcopy(self.job)
+        refs=[f'Günden Güne {i} — Sanatçı' for i in range(5000)]
+        job['payload']['profile']={'references':refs,'referenceMetadata':[{'reference':r,'genre':'Rock'} for r in refs]}
+        self.assertEqual(len(worker.validate(job)['payload']['profile']['references']),5000)
+        job['payload']['profile']['references'].append('Too many')
+        with self.assertRaises(ValueError):worker.validate(job)
+
     def test_storage_boundary_blocks_external_hosts_redirects_and_private_paths(self):
         self.assertEqual(worker.validate(self.job), self.job)
         for url in ['http://127.0.0.1/a', URL.replace('.com/', '.com.evil/'), URL.replace('/uploads/', '/music-dna/private/'),

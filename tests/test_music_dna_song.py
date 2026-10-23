@@ -160,6 +160,8 @@ class MusicDnaSong(unittest.TestCase):
         with self.assertRaises(ValueError):parse_draft('{"title":"Test"} unrelated extra prose')
         with self.assertRaises(ValueError):parse_draft('{"title":')
         self.data['direction_id'] = 'electronic'
+        self.assertEqual(parse_draft('{"lyrics":{"outro":["last line"]"}}'), {'lyrics':{'outro':['last line']}})
+        self.assertEqual(parse_draft('{"a":{"b":"hello]"}}'), {'a':{'b':'hello]'}})
         with self.assertRaisesRegex(ValueError, 'required musical direction'):song_plan(self.data, self.refs, 1)
 
     def test_style_retry_is_bounded_and_preserves_rejected_evidence(self):
@@ -285,6 +287,34 @@ class MusicDnaSong(unittest.TestCase):
             self.assertEqual(plan['language']['code'],'tr');self.assertEqual(plan['language']['counts'],{'en':1,'tr':1})
             self.assertEqual(plan['cases'][0]['vocal_language'],'tr');self.assertEqual(len(plan['cases']),1)
             self.assertEqual(json.loads((work/'language-selection.json').read_text())['selection'],plan['language'])
+
+    def test_whole_playlist_language_and_direction_use_late_songs_with_bounded_prompts(self):
+        refs=[{'reference':f'Track {i} — Singer {i}', 'catalogue_genre':'Pop' if i<20 else 'Soul'} for i in range(51)]
+        batch_sizes=[]
+        def generate(*args,**kwargs):
+            messages=json.loads(kwargs['prompt']);data=json.loads(messages[1]['content'])
+            if messages[0]['content'].startswith('Identify the actual sung'):
+                batch_sizes.append(len(data['favorites']))
+                return json.dumps({'favorites':[{'index':i+1,'language':'en' if int(r['reference'].split()[1])<20 else 'tr'} for i,r in enumerate(data['favorites'])]})
+            self.assertEqual(len(data['favorites']),12)
+            self.assertEqual(data['required_direction']['total'],51)
+            candidate=copy.deepcopy(self.data)
+            candidate['vocal_language']=data['requested_language']
+            candidate['influences']=[{'index':i+1,'basis':'genre_only','description':'Catalogue style informs the arrangement.'} for i in range(len(data['favorites']))]
+            return json.dumps(candidate)
+        tokenizer=SimpleNamespace(apply_chat_template=lambda messages,**kwargs:json.dumps(messages))
+        with tempfile.TemporaryDirectory() as folder,patch('music_dna_song.planner_functions',return_value=(lambda _:None,generate,lambda **_:None)),patch('music_dna_song.lyric_model',return_value=(None,tokenizer,{'revision':'fixture'})):
+            work=Path(folder)
+            profile={'references':[r['reference'] for r in refs],'referenceMetadata':[{'reference':r['reference'],'genre':r['catalogue_genre']} for r in refs]}
+            self.assertEqual(len(favorites(profile)),51)
+            (work/'input.json').write_text(json.dumps({'profile':profile,'direction':direction_for(refs),'seed':0}))
+            draft(work);plan=json.loads((work/'plan.json').read_text())
+            self.assertEqual(batch_sizes,[20,20,11])
+            self.assertEqual(plan['language']['counts'],{'en':20,'tr':31})
+            self.assertEqual(plan['direction']['total'],51)
+            self.assertEqual(len(plan['favorites']),51)
+            self.assertEqual(len(plan['influences']),51)
+            self.assertEqual(plan['direction']['families'][0]['count'],31)
 
 
 if __name__ == '__main__':unittest.main()

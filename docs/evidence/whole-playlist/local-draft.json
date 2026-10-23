@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "seconds": 50.5,
+  "favorites": 30,
+  "influences": 30,
+  "direction": "Pop",
+  "language": {
+    "code": "en",
+    "label": "English",
+    "basis": "weighted draw from interpreted favorite languages",
+    "counts": {
+      "ar": 1,
+      "bn": 1,
+      "en": 9,
+      "es": 3,
+      "fr": 1,
+      "ja": 1,
+      "ru": 2,
+      "tr": 3
+    },
+    "unknown": 9,
+    "probabilities": {
+      "ar": 0.047619047619047616,
+      "bn": 0.047619047619047616,
+      "en": 0.42857142857142855,
+      "es": 0.14285714285714285,
+      "fr": 0.047619047619047616,
+      "ja": 0.047619047619047616,
+      "ru": 0.09523809523809523,
+      "tr": 0.14285714285714285
+    },
+    "regional_boost": []
+  },
+  "title": "The Last Light in Istanbul",
+  "scope": "real local planning only; no audio rendered"
+}
