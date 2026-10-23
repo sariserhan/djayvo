@@ -1,0 +1,102 @@
+{
+  "Plachta/Seed-VC": {
+    "revision": "257283f9f41585055e8f858fba4fd044e5caed6e",
+    "license": "gpl-3.0",
+    "files": {
+      "DiT_seed_v2_uvit_whisper_base_f0_44k_bigvgan_pruned_ft_ema_v2.pth": {
+        "sha256": "42aef93ffe65857c840d270252fa040f7ba04514945ec460f3ac1ac2a96de684",
+        "bytes": 820865494
+      },
+      "config_dit_mel_seed_uvit_whisper_base_f0_44k.yml": {
+        "sha256": "ff86f343b08c2def405f075022eeb10dafba23c4eda36d151010f4ca6d7a1a0a",
+        "bytes": 2408
+      }
+    }
+  },
+  "lj1995/VoiceConversionWebUI": {
+    "revision": "e6d0c1a17da07c33557852f9dfa2bd44cc75737d",
+    "license": "mit",
+    "files": {
+      "rmvpe.pt": {
+        "sha256": "6d62215f4306e3ca278246188607209f09af3dc77ed4232efdd069798c4ec193",
+        "bytes": 181184272
+      }
+    }
+  },
+  "funasr/campplus": {
+    "revision": "e4b6ede7ce16997aff4ae69fbca1f0175e2afede",
+    "license": "apache-2.0",
+    "files": {
+      "campplus_cn_common.bin": {
+        "sha256": "3388cf5fd3493c9ac9c69851d8e7a8badcfb4f3dc631020c4961371646d5ada8",
+        "bytes": 28036335
+      }
+    }
+  },
+  "nvidia/bigvgan_v2_44khz_128band_512x": {
+    "revision": "95a9d1dcb12906c03edd938d77b9333d6ded7dfb",
+    "license": "mit",
+    "files": {
+      "config.json": {
+        "sha256": "65b7f487bfaf15256056a75f6667ef5f640214c981922a111927873705ea4ddb",
+        "bytes": 1403
+      },
+      "bigvgan_generator.pt": {
+        "sha256": "d9fe7ec6bd0b44ed9d66973d5012d8181c1570b01e5c72df51973e241dccd357",
+        "bytes": 489041291
+      }
+    }
+  },
+  "openai/whisper-small": {
+    "revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+    "license": "apache-2.0",
+    "files": {
+      "config.json": {
+        "sha256": "e6a2b489da1b5aed65a8eb8d1e7466fa867ad5643a8bc138ba708bd56b2875c4",
+        "bytes": 1967
+      },
+      "preprocessor_config.json": {
+        "sha256": "9b5cd03a36fbb8a627c64d98a5b5b126ead95a77720723944487311f0110b666",
+        "bytes": 184990
+      },
+      "model.safetensors": {
+        "sha256": "1d7734884874f1a1513ed9aa760a4f8e97aaa02fd6d93a3a85d27b2ae9ca596b",
+        "bytes": 966995080
+      }
+    }
+  },
+  "hexgrad/Kokoro-82M": {
+    "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "license": "apache-2.0, per pinned model card",
+    "files": {
+      "config.json": {
+        "sha256": "5abb01e2403b072bf03d04fde160443e209d7a0dad49a423be15196b9b43c17f",
+        "bytes": 2351
+      },
+      "kokoro-v1_0.pth": {
+        "sha256": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+        "bytes": 327212226
+      },
+      "voices/am_michael.pt": {
+        "sha256": "9a443b79a4b22489a5b0ab7c651a0bcd1a30bef675c28333f06971abbd47bd37",
+        "bytes": 523435
+      },
+      "voices/am_fenrir.pt": {
+        "sha256": "98e507eca1db08230ae3b6232d59c10aec9630022d19accac4f5d12fcec3c37a",
+        "bytes": 523430
+      },
+      "voices/am_puck.pt": {
+        "sha256": "dd1d8973f4ce4b7d8ae407c77a435f485dabc052081b80ea75c4f30b84f36223",
+        "bytes": 523420
+      },
+      "README.md": {
+        "sha256": "91dcabced89db6f109b8786642f50402d3ee87450e8189589b6f85520e7f4d78",
+        "bytes": 6348
+      },
+      "VOICES.md": {
+        "sha256": "ec7e4941ad7e194af61e3455928528a9ff5360c7c505e412efab27d6a69ea106",
+        "bytes": 7625
+      }
+    }
+  }
+}

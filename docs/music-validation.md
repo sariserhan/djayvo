@@ -200,3 +200,13 @@ input. They appear as **City Lights · isolated singers · voice 1–2**.
 The owner still hears the same singer. Neither is added to the accepted pool.
 Removing the backing from these references did not solve voice identity.
 A separate local singing-voice-conversion approach is being investigated.
+
+
+### Direct identity conversion
+
+The isolated-reference comparison also failed owner distinctness. A separate
+local Seed-VC singing-conversion trial now provides three 30-second **Disco ·
+voice identity 1–3** comparisons using synthetic stock-voice targets, the same
+musical source, no pitch shifting and matched vocal level. All three completed
+on the Mac and passed verified R2 storage. Listening and normal-generation
+integration remain open. [Method, pins, results and limits](vocal-identity.md).
