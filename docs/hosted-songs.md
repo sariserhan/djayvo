@@ -92,7 +92,7 @@ Final reconciliation remains PARTIAL; no additional paid run is authorized here.
 adds bounded captions, lower-memory checking, interruption recovery and durable
 safe failure reasons. Eight local jazz/Spanish takes still fail the unchanged
 screen; speculative inference settings were not adopted. A separate $2 cloud
-reproduction is prepared, not authorized or executed. Its read-only billing
+reproduction is prepared and now owner-approved, not yet executed. Its read-only billing
 refresh now includes the final hour but still does not reconcile the trial.
 
 The existing cloud image reported `fit@unavailable` for jazz and Spanish DNA.

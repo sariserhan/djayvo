@@ -105,5 +105,6 @@ The endpoint remains disabled (0 minimum / 0 maximum workers). The read-only
 includes the previous trial's final billing hour, but reports only 2.791 billed
 seconds against roughly 492 seconds of job execution. This does not yet reconcile
 the trial's actual bill. No new paid execution occurred.
-New paid compute and worker publication require separate owner authorization
-under `AGENTS.md`; website deployment remains the owner's decision.
+The owner subsequently approved the worker-only publication and $2 retest on
+2026-10-23. Execution and results are recorded below when available; website
+deployment remains the owner's decision.
