@@ -91,7 +91,7 @@ def download(source, target):
 
 def execute(work, timeout):
     with (work/'private.log').open('wb') as log:
-        child = subprocess.Popen([sys.executable, str(Path(__file__).with_name('pipeline.py')), str(work)],
+        child = subprocess.Popen([str(ROOT/'build-style-training/upstream/.venv/bin/python'), str(Path(__file__).with_name('pipeline.py')), str(work)],
             stdout=log, stderr=subprocess.STDOUT, start_new_session=True,
             env={**os.environ, 'JAMLOOM_INFERENCE_DEVICE': 'cuda', 'HF_HUB_OFFLINE': '1', 'HF_HUB_DISABLE_TELEMETRY': '1'})
         try:
