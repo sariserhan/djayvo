@@ -38,8 +38,8 @@ if(!process.argv.includes('--apply')){
  try{
   const job:RunpodJob={id,product,timeout_seconds:900,
    output_url:await store.uploadURL(outputKey,(product==='music-dna'?120:30)*48000*4+44,3600),
-   payload:product==='music-dna'?{seed:61023,profile:{references:['Feeling Good — Nina Simone','Cantaloupe Island — Herbie Hancock'],
-    referenceMetadata:[{reference:'Feeling Good — Nina Simone',genre:'Jazz'},{reference:'Cantaloupe Island — Herbie Hancock',genre:'Jazz'}],vocalLanguage:'en'}}:
+   payload:product==='music-dna'?{seed:61023,profile:{references:['Enter Sandman — Metallica','The Trooper — Iron Maiden'],
+    referenceMetadata:[{reference:'Enter Sandman — Metallica',genre:'Metal'},{reference:'The Trooper — Iron Maiden',genre:'Metal'}],vocalLanguage:'en'}}:
     {phrase:'I have a question',voice:'female',genre:'funk',consent:true}};
   if(product==='improvise'){
    const bytes=await readFile(resolve(process.argv[sourceIndex+1]));
@@ -48,7 +48,19 @@ if(!process.argv.includes('--apply')){
    job.source={url:await store.playbackURL(sourceKey,false,3600),bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')};
   }
   const started=Date.now();
-  enabled=true;await control('PATCH',{workersMin:0,workersMax:1});
+  enabled=true;await control('PATCH',{workersMin:1,workersMax:1});
+  // Provisioning changes can reach the queue API later; wait for a ready worker before submitting.
+  state.phase='starting-worker';await save();
+  let ready=false;
+  while(Date.now()-started<1200000){
+   const health=await provider.health();
+   ready=Number(health.workers?.ready)>0||Number(health.workers?.idle)>0;
+   if(ready)break;
+   console.log({product,status:'STARTING_WORKER',elapsedSeconds:Math.round((Date.now()-started)/1000)});
+   await new Promise(r=>setTimeout(r,20000));
+  }
+  assert(ready,'Worker did not become ready within trial wall limit');
+  state.workerReadyAt=new Date().toISOString();
   state.phase='submitting';await save();
   const submitted=await provider.submit(job);providerId=submitted.id;
   state.providerId=providerId;state.phase='queued';await save();

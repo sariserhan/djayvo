@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "providerId": "5b1bbb50-be3d-4027-ac68-319ffaf92034-u2",
+  "delayMs": 9781,
+  "executionMs": 47682,
+  "wallStart": "2026-10-23T04:44:17.720Z",
+  "workerReadyAt": "2026-10-23T04:47:20.910Z",
+  "finishedAt": "2026-10-23T04:48:22.340Z",
+  "bytes": 5760044,
+  "sha256": "13d3abc4f773e9d9761bcca8359941fb9f5d45b2e195f50874a1ec851a4479e9",
+  "format": {
+    "rate": 48000,
+    "channels": 2,
+    "sampleWidth": 2,
+    "frames": 1440000
+  },
+  "disabled": true,
+  "stagingRemoved": true,
+  "listening": "NOT RUN",
+  "image": "sha256:79444f839a8361093eb1227ecb3754468feb4f07d64eecb37b7a030241c2c410",
+  "fixture": "Synthetic spoken question; no microphone recording",
+  "sourceSha256": "187dac2fb79f6d9a5c3ffbd907a23fb82b6afa95f82096386bb181e159197934"
+}

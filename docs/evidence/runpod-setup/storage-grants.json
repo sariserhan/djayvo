@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "actualSignedGrantValidation": true,
+  "put": 200,
+  "get": 200,
+  "bytes": 79732,
+  "sha256": "187dac2fb79f6d9a5c3ffbd907a23fb82b6afa95f82096386bb181e159197934"
+}

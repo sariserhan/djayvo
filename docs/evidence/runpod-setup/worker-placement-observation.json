@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-23T04:48:22.429Z",
+  "configured": {
+    "gpu": {
+      "allowedCudaVersions": [],
+      "count": 1,
+      "excludedTypes": [
+        "NVIDIA RTX 6000 Ada Generation",
+        "NVIDIA L40"
+      ],
+      "minCudaVersion": "12.8",
+      "pools": [
+        "ADA_24",
+        "ADA_48_PRO"
+      ]
+    },
+    "workers": {
+      "idleTimeout": 5,
+      "max": 0,
+      "min": 0
+    }
+  },
+  "observed": [],
+  "note": "Provider inventory reports Blackwell MIG workers despite selected ADA pools and temporarily lists two workers with configured max=1; pricing and strict placement need provider verification."
+}

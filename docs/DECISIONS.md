@@ -1,10 +1,10 @@
 # Current product decisions
 
 2026-10-22. The owner selected Runpod for hosted Music DNA and Improvise
-generation and supplied account/private-registry credentials. Build the private
-CUDA worker and provision a disabled endpoint; use bounded single-worker trials
+generation and supplied account/private-registry credentials. Build the CUDA worker and provision an authenticated, disabled endpoint; use bounded single-worker trials
 to verify inference and R2 delivery. Retain Vercel, Neon, R2 and historical Vast
-research evidence. This does not enable public paid generation.
+research evidence. The published image was verified public (allowlisted code and public
+models only); endpoint access and R2 grants remain authenticated. This does not enable public paid generation.
 
 2026-10-20. The owner-supplied full product specification takes precedence for
 four experiences, platforms and commercial safety. Existing master/addenda remain

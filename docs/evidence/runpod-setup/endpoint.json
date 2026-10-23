@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-23T05:09:32.353Z",
+  "id": "jl77hn92npt65k",
+  "image": "ghcr.io/sariserhan/jamloom/music-worker@sha256:ef211cf717379efc24f8e9988f98331ca3096b4eb119d6829af92345de14560b",
+  "workers": {
+    "idleTimeout": 5,
+    "max": 0,
+    "min": 0
+  },
+  "gpu": {
+    "allowedCudaVersions": [],
+    "count": 1,
+    "excludedTypes": [
+      "NVIDIA RTX 6000 Ada Generation",
+      "NVIDIA L40"
+    ],
+    "minCudaVersion": "12.8",
+    "pools": [
+      "ADA_24",
+      "ADA_48_PRO"
+    ]
+  },
+  "actualWorkers": 0
+}

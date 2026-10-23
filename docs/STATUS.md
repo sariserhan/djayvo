@@ -1,6 +1,6 @@
 ## Runpod setup — 2026-10-22
 
-**PARTIAL:** Runpod account access verified; shared CUDA worker and provider contracts pass local checks. Private image build, endpoint provisioning and real GPU validation pending. Website paid generation remains closed. [Report](runpod-setup.md).
+**PASS, technical Runpod setup; PARTIAL, hosted release.** Real Improvise (30-second output, 47.682-second execution) and Music DNA (120-second output, 45.931-second execution) generation, R2 checksum delivery and shutdown PASS. Music DNA metal passed all four style windows; the jazz fixture failed at style checking and remains unresolved. Cold starts measured 3–5 minutes. All workers are disabled; website dispatch, final costs, listening and credit billing remain unfinished. [Report](runpod-setup.md).
 
 ## Product music storage and R2 examples — 2026-10-22
 

@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "providerId": "a0c0ef18-98d9-4930-9b92-b3e86c83b303-u2",
+  "image": "sha256:ef211cf717379efc24f8e9988f98331ca3096b4eb119d6829af92345de14560b",
+  "fixture": "Metal: Enter Sandman - Metallica; The Trooper - Iron Maiden",
+  "delayMs": 11621,
+  "executionMs": 45931,
+  "wallStart": "2026-10-23T05:02:43.555Z",
+  "workerReadyAt": "2026-10-23T05:07:46.746Z",
+  "finishedAt": "2026-10-23T05:08:48.781Z",
+  "bytes": 23040044,
+  "sha256": "aa84335e51c64bb341702a377ca0371f6a53ed37ef504e6c6218264e68ea3222",
+  "format": {
+    "rate": 48000,
+    "channels": 2,
+    "sampleWidth": 2,
+    "frames": 5760000
+  },
+  "fit": {
+    "accepted": true,
+    "target": "heavy-rock",
+    "matching_windows": 4
+  },
+  "disabled": true,
+  "stagingRemoved": true,
+  "listening": "NOT RUN"
+}

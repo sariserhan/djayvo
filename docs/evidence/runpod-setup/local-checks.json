@@ -1,12 +1,15 @@
 {
   "status": "PASS",
-  "website_unit_tests": 68,
-  "worker_contract_tests": 6,
+  "website_unit_tests": 69,
+  "worker_contract_tests": 7,
   "dna_regression_tests": 12,
   "singing_plan_tests": 4,
   "studio_regression_tests": 6,
   "typescript": "PASS",
   "runpod_inventory_access": "PASS",
   "registry_token_scope": "read:packages verified",
-  "gpu_inference": "NOT RUN"
+  "gpu_inference": "PASS, scoped: one successful Music DNA and one successful Improvise job; jazz fixture failed",
+  "provisioning_regression": "PASS: max=3 creation default corrected; compatible driver floor; active endpoints refused; provider-renamed template reused",
+  "real_r2_signed_grants": "PASS: PUT/GET bytes match; existing public example Range GET returns 206",
+  "shutdown": "PASS: min=0, max=0, actual workers=0"
 }

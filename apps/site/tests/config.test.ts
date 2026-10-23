@@ -40,7 +40,8 @@ test('production template binds auth and private R2 grants to Jamloom configurat
     assert.equal(audioStore(config, env), null);
     const store = audioStore(config, { ...env, JAMLOOM_R2_ENABLED: 'true' })!;
     const grant = new URL(await store.uploadURL('uploads/test.wav', 3840044, 120));
-    assert.equal(grant.hostname, `jamloom-audio.${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`);
+    assert.equal(grant.hostname, `${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`);
+    assert.equal(grant.pathname, '/jamloom-audio/uploads/test.wav');
     const [cors] = JSON.parse(readFileSync(new URL('../config/r2-cors.production.json', import.meta.url), 'utf8'));
     assert.deepEqual(cors.AllowedOrigins, [config.baseURL, 'https://jamloom.com']);
     assert.deepEqual(cors.AllowedMethods, ['GET', 'PUT', 'HEAD']);

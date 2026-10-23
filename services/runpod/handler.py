@@ -16,6 +16,23 @@ ROOT = Path(__file__).resolve().parents[2]
 MAX_SECONDS = 900
 
 
+class GenerationFailure(RuntimeError):
+    """Only static stage names and source locations, never exception messages."""
+
+
+def failure_location(work):
+    for stage in ('fit', 'singer', 'planner', 'private'):
+        path = work/(stage+'.log')
+        if path.exists():
+            with path.open('rb') as log:
+                log.seek(max(0, path.stat().st_size-32768))
+                tail = log.read().decode(errors='replace')
+            locations = re.findall(r'File "[^"\n]*/([A-Za-z_]+\.py)", line ([0-9]+)', tail)
+            location = ':'.join(locations[-1]) if locations else 'unavailable'
+            return f'{stage}@{location}'
+    return 'unavailable'
+
+
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs):
         raise ValueError('Storage redirect refused')
@@ -96,7 +113,7 @@ def execute(work, timeout):
             env={**os.environ, 'JAMLOOM_INFERENCE_DEVICE': 'cuda', 'HF_HUB_OFFLINE': '1', 'HF_HUB_DISABLE_TELEMETRY': '1'})
         try:
             if child.wait(timeout=timeout):
-                raise RuntimeError('Generation failed validation or inference')
+                raise GenerationFailure(failure_location(work))
         finally:
             # Kill descendants too: a timed-out planner must not keep consuming GPU time.
             try:
@@ -136,6 +153,8 @@ def handler(job):
             return {'schema': 'jamloom-runpod-1', 'id': value['id'], 'product': value['product'],
                     'audio_sha256': hashlib.sha256(data).hexdigest(), 'audio_bytes': len(data),
                     'seconds': seconds, **result}
+    except GenerationFailure as error:
+        raise RuntimeError(f'Jamloom generation failed at {error}; no completed song was accepted.') from None
     except Exception:
         # Provider logs/errors must not contain transcripts, signed URLs or model drafts.
         raise RuntimeError('Jamloom generation failed; no completed song was accepted.') from None

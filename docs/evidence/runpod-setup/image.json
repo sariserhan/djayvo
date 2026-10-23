@@ -1,0 +1,12 @@
+{
+  "image": "ghcr.io/sariserhan/jamloom/music-worker@sha256:79444f839a8361093eb1227ecb3754468feb4f07d64eecb37b7a030241c2c410",
+  "platform": {
+    "architecture": "amd64",
+    "os": "linux"
+  },
+  "layers": 15,
+  "compressedBytes": 19965276296,
+  "largestLayerBytes": 6323501558,
+  "visibility": "public",
+  "anonymousPull": true
+}

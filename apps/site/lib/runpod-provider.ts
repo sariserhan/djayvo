@@ -19,7 +19,7 @@ export class RunpodProvider{
     ...(body===undefined?{}:{body:JSON.stringify(body)}),redirect:'error',signal:AbortSignal.timeout(15000)});
    if(!response.ok){await response.body?.cancel();throw Error('Provider request failed');}
    const value=JSON.parse((await readBody(response.body,524288)).toString());
-   if(!value||typeof value!=='object'||Array.isArray(value)||value.error)throw Error('Invalid provider response');
+   if(!value||typeof value!=='object'||Array.isArray(value)||value.error&&!['FAILED','CANCELLED','TIMED_OUT'].includes(value.status))throw Error('Invalid provider response');
    return value;
   }catch{throw Error(method==='POST'&&path==='run'?'Runpod submission is unconfirmed. Do not automatically resubmit; inspect the endpoint first.':'Runpod request failed');}
  }

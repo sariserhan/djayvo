@@ -1,0 +1,44 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "http": 200,
+      "id": "dc3b0b6e-9090-4488-badc-d2a94ca9814b-u2",
+      "status": "FAILED",
+      "delayTime": 654766,
+      "executionTime": 148,
+      "error": "{\"error_type\": \"<class 'RuntimeError'>\", \"error_message\": \"Jamloom generation failed; no completed song was accepted.\", \"error_traceback\": \"Traceback (most recent call last):\\n  File \\\"/usr/local/lib/python3.12/site-packages/runpod/serverless/modules/rp_job.py\\\", line 257, in run_job\\n    handler_return = handler(job)\\n                     ^^^^^^^^^^^^\\n  File \\\"/opt/jamloom/services/runpod/handler.py\\\", line 141, in handler\\n    raise RuntimeError('Jamloom generation failed; no completed song was accepted.') from None\\nRuntimeError: Jamloom generation failed; no completed song was accepted.\\n\", \"hostname\": \"u6e4kasheynp8v-64411a7c\", \"worker_id\": \"u6e4kasheynp8v\", \"runpod_version\": \"1.12.0\"}",
+      "disabled": true,
+      "stagingRemoved": true
+    },
+    {
+      "attempt": 2,
+      "status": "SUBMISSION_UNCONFIRMED",
+      "reconciled": "No new queued or active jobs; provider still counted only the original failure",
+      "disabled": true,
+      "stagingRemoved": true
+    },
+    {
+      "attempt": 3,
+      "id": "e6247e26-4054-4744-842d-56ad4f8176f5-u2",
+      "status": "FAILED",
+      "delayTime": 20828,
+      "executionTime": 76279,
+      "disabled": true,
+      "stagingRemoved": true,
+      "diagnosis": "Generic error; safe stage diagnostics added for the next build"
+    },
+    {
+      "attempt": 4,
+      "id": "87ecc3fa-bb85-47e7-bab1-4fa4c843022b-u2",
+      "image": "sha256:ef211cf717379efc24f8e9988f98331ca3096b4eb119d6829af92345de14560b",
+      "status": "FAILED",
+      "delayTime": 10530,
+      "executionTime": 73595,
+      "diagnosis": "fit@unavailable: failed in style-checking stage; no source traceback found in the stage log",
+      "fixture": "Jazz: Feeling Good - Nina Simone; Cantaloupe Island - Herbie Hancock",
+      "disabled": true,
+      "stagingRemoved": true
+    }
+  ]
+}

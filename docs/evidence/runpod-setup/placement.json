@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-23T04:32:25.528Z",
+  "endpoint": "jl77hn92npt65k",
+  "initialAllowedCudaVersions": [
+    "12.8",
+    "12.9",
+    "13.0"
+  ],
+  "catalogueAvailableCudaVersions": [
+    "13.2"
+  ],
+  "initialWorkers": 0,
+  "correction": {
+    "allowedCudaVersions": [],
+    "minCudaVersion": "12.8"
+  },
+  "workersAfterCorrection": {
+    "idle": 0,
+    "initializing": 1,
+    "running": 0,
+    "throttled": 0,
+    "total": 1,
+    "unhealthy": 0
+  },
+  "reason": "No host matched the original allowlist; a worker initialized after switching to a compatible driver floor."
+}

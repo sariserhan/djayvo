@@ -28,4 +28,6 @@ test('Runpod status validates identity, states, timing and receipts without expo
  await assert.rejects(provider.status('../health'),/Invalid provider job ID/);
  const failed=new RunpodProvider('secret','endpoint',async()=>Response.json({error:'private secret'},{status:500}));
  await assert.rejects(failed.status('job-1'),/^Error: Runpod request failed$/);
+ const terminal=new RunpodProvider('secret','endpoint',async()=>Response.json({id:'job-1',status:'FAILED',error:'private transcript',executionTime:148}));
+ assert.deepEqual(await terminal.status('job-1'),{id:'job-1',status:'FAILED',executionTime:148});
 });

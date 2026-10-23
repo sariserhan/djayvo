@@ -51,7 +51,7 @@ export function audioStore(config: Config, env: Record<string,string|undefined> 
 export function r2AudioStore(env: Record<string,string|undefined> = process.env): AudioStore {
   const { R2_ACCOUNT_ID: account, R2_ACCESS_KEY_ID: access, R2_SECRET_ACCESS_KEY: secret, R2_BUCKET: bucket }=env;
   if (!account || !/^[a-f0-9]{32}$/.test(account) || !access || !secret || !bucket || !/^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$/.test(bucket)) throw new Error('R2 configuration is incomplete.');
-  const client=new S3Client({region:'auto',endpoint:`https://${account}.r2.cloudflarestorage.com`,
+  const client=new S3Client({region:'auto',endpoint:`https://${account}.r2.cloudflarestorage.com`,forcePathStyle:true,
     credentials:{accessKeyId:access,secretAccessKey:secret},maxAttempts:1,
     requestChecksumCalculation:'WHEN_REQUIRED',responseChecksumValidation:'WHEN_REQUIRED'});
   return {

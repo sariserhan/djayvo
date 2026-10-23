@@ -41,7 +41,8 @@ test('storage is opt-in, local files cannot be hosted, R2 grants bind content le
   assert.throws(()=>audioStore(config,{JAMLOOM_R2_ENABLED:'true'}));
   const store=audioStore(config,{JAMLOOM_R2_ENABLED:'true',R2_ACCOUNT_ID:'a'.repeat(32),R2_BUCKET:'test-private',R2_ACCESS_KEY_ID:'test-key',R2_SECRET_ACCESS_KEY:'test-secret'})!;
   const url=new URL(await store.uploadURL('uploads/test.wav',3840044,120));
-  assert.equal(url.hostname,`test-private.${'a'.repeat(32)}.r2.cloudflarestorage.com`);
+  assert.equal(url.hostname,`${'a'.repeat(32)}.r2.cloudflarestorage.com`);
+  assert.equal(url.pathname,'/test-private/uploads/test.wav');
   assert.equal(url.searchParams.get('X-Amz-Expires'),'120');
   assert.ok(url.searchParams.get('X-Amz-SignedHeaders')?.includes('content-length'));
   assert.ok(url.searchParams.get('X-Amz-SignedHeaders')?.includes('content-type'));

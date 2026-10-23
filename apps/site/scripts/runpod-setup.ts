@@ -9,29 +9,39 @@ const template={name,imageName:image,isPublic:false,isServerless:true,containerD
  env:{JAMLOOM_R2_ORIGIN:`https://${account}.r2.cloudflarestorage.com`,JAMLOOM_R2_BUCKET:bucket},
  ...(process.env.RUNPOD_REGISTRY_AUTH_ID?{containerRegistryAuthId:process.env.RUNPOD_REGISTRY_AUTH_ID}:{})};
 // Disabled until the image and a capped real generation are reviewed. No always-on GPU.
-const endpoint={name,computeType:'GPU',gpuCount:1,gpuTypeIds:['NVIDIA GeForce RTX 4090'],
- allowedCudaVersions:['12.8','12.9','13.0'],workersMin:0,workersMax:0,idleTimeout:5,executionTimeoutMs:900000,flashboot:true,scalerType:'QUEUE_DELAY',scalerValue:4};
-if(!process.argv.includes('--apply'))console.log({template,endpoint,mode:'dry-run; no provider changes'});
+const endpoint={name,computeType:'GPU',gpuCount:1,gpuTypeIds:['NVIDIA GeForce RTX 4090','NVIDIA L40S'],
+ workersMin:0,workersMax:0,idleTimeout:5,executionTimeoutMs:900000,flashboot:true,scalerType:'QUEUE_DELAY',scalerValue:4};
+// A driver floor permits newer compatible hosts; a fixed version list can exclude all stock.
+const gpu={allowedCudaVersions:[],minCudaVersion:'12.8'};
+if(!process.argv.includes('--apply'))console.log({template,endpoint,gpu,mode:'dry-run; no provider changes'});
 else{
  const key=process.env.RUNPOD_API_KEY;if(!key)throw Error('RUNPOD_API_KEY is missing; store it in .env.local, never in chat');
- async function api(path:string,method='GET',body?:unknown){
-  const response=await fetch('https://rest.runpod.io/v1/'+path,{method,headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},
+ async function api(path:string,method='GET',body?:unknown,base='https://rest.runpod.io/v1/'){
+  const response=await fetch(base+path,{method,headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},
    ...(body?{body:JSON.stringify(body)}:{}),redirect:'error',signal:AbortSignal.timeout(30000)});
   if(!response.ok){await response.body?.cancel();throw Error(`Runpod setup returned HTTP ${response.status}; inspect existing resources before retrying`);}
   return JSON.parse((await readBody(response.body,1048576)).toString());
  }
- const templates=await api('templates');if(!Array.isArray(templates))throw Error('Unexpected template inventory');
- const matching=templates.filter(t=>t.name===name);if(matching.length>1)throw Error('Duplicate template names; inspect the account');
- let saved=matching[0];
- if(saved&&(saved.imageName!==image||saved.env?.JAMLOOM_R2_ORIGIN!==template.env.JAMLOOM_R2_ORIGIN||saved.env?.JAMLOOM_R2_BUCKET!==bucket))throw Error('Existing template differs; refusing to replace it');
- saved??=await api('templates','POST',template);
- if(typeof saved.id!=='string')throw Error('Template creation is unconfirmed; inspect before retrying');
  const endpoints=await api('endpoints');if(!Array.isArray(endpoints))throw Error('Unexpected endpoint inventory');
  const matches=endpoints.filter(e=>e.name===name);if(matches.length>1)throw Error('Duplicate endpoint names; inspect the account');
  let deployed=matches[0];
- if(deployed&&(deployed.templateId!==saved.id||deployed.workersMin!==0||deployed.workersMax!==0))throw Error('Existing endpoint differs or is active; refusing to replace it');
- deployed??=await api('endpoints','POST',{...endpoint,templateId:saved.id});
+ if(deployed&&(deployed.workersMin!==0||deployed.workersMax!==0))throw Error('Existing endpoint is active; refusing to replace it');
+ const templates=await api('templates');if(!Array.isArray(templates))throw Error('Unexpected template inventory');
+ // The v2 API can rename the attached template; its ID remains the source of truth.
+ const matching=templates.filter(t=>deployed?t.id===deployed.templateId:t.name===name);if(matching.length>1)throw Error('Duplicate templates; inspect the account');
+ let saved=matching[0];
+ if(deployed&&!saved)throw Error('Existing endpoint template is missing; inspect the account');
+ if(saved&&(saved.imageName!==image||saved.env?.JAMLOOM_R2_ORIGIN!==template.env.JAMLOOM_R2_ORIGIN||saved.env?.JAMLOOM_R2_BUCKET!==bucket))throw Error('Existing template differs; refusing to replace it');
+ saved??=await api('templates','POST',template);
+ if(typeof saved.id!=='string')throw Error('Template creation is unconfirmed; inspect before retrying');
+ if(!deployed){
+  deployed=await api('endpoints','POST',{...endpoint,templateId:saved.id});
+  // Runpod creation currently substitutes its default for max=0; PATCH honors zero.
+  await api('endpoints/'+encodeURIComponent(deployed.id),'PATCH',{workersMin:0,workersMax:0});
+ }
  const verified=await api('endpoints/'+encodeURIComponent(deployed.id));
  if(verified.templateId!==saved.id||verified.workersMin!==0||verified.workersMax!==0)throw Error('Disabled endpoint verification failed');
+ const placement=await api('serverless/'+encodeURIComponent(deployed.id),'PATCH',{gpu},'https://api.runpod.io/v2/');
+ if(placement.gpu?.minCudaVersion!==gpu.minCudaVersion||placement.gpu?.allowedCudaVersions?.length!==0)throw Error('CUDA placement verification failed');
  console.log({endpoint:verified.id,template:saved.id,workersMin:0,workersMax:0,status:'configured, disabled; no generation submitted'});
 }

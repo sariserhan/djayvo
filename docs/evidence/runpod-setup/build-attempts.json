@@ -21,5 +21,28 @@
     "stage": "runtime source verification",
     "reason": "Linux nano-vllm wheel build leaves 23 duplicate Python files under its generated build directory",
     "fix": "Remove only generated build directory; unchanged 597 source files match the original hash"
+  },
+  {
+    "run": 39897219211,
+    "status": "CANCELLED",
+    "commit": "aa57783",
+    "model_checksums": "PASS",
+    "runtime_source": "PASS",
+    "imports": "PASS",
+    "stage": "image upload",
+    "reason": "Proactively replaced combined model layer to comply with documented 10 GB per-layer limit; no registry rejection was observed"
+  },
+  {
+    "run": 39898870799,
+    "status": "PASS",
+    "commit": "34835b6",
+    "change": "Separate model download layers"
+  },
+  {
+    "run": 39901902981,
+    "status": "PASS",
+    "commit": "9a7dd2c",
+    "change": "Safe worker failure stage/source location; no private exception text",
+    "image": "sha256:ef211cf717379efc24f8e9988f98331ca3096b4eb119d6829af92345de14560b"
   }
 ]

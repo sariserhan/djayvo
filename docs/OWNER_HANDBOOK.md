@@ -1,6 +1,6 @@
 ## Runpod music worker
 
-Runpod account access and the private registry credential are configured. The GitHub classic token with `read:packages` is stored in ignored `apps/site/.env.local` as `RUNPOD_GHCR_TOKEN`; renew it before expiry and never put it in chat or Git. [Setup, variables and remaining checks](runpod-setup.md). Public generation stays closed during setup.
+Runpod account access, the worker image and authenticated endpoint are configured. Real Music DNA and Improvise generation and R2 checks passed; workers are disabled, and website dispatch/credit billing are not enabled. Listening, the failed jazz style check and final cost/load qualification remain open; the published image contains public code/models and is publicly pullable, without credentials or recordings. The registry credential remains configured. The GitHub classic token with `read:packages` is stored in ignored `apps/site/.env.local` as `RUNPOD_GHCR_TOKEN`; renew it before expiry and never put it in chat or Git. [Setup, variables and remaining checks](runpod-setup.md). Public generation stays closed during setup.
 
 ## R2 music organization — 2026-10-22
 

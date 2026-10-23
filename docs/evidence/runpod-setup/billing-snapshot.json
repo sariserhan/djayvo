@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-23T05:09:32.449Z",
+  "records": [],
+  "totals": {
+    "cpuAmount": 0,
+    "diskAmount": 0,
+    "feeAmount": 0,
+    "gpuAmount": 0,
+    "totalAmount": 0
+  },
+  "note": "Billing can lag. This snapshot is not a per-song cost certificate."
+}
