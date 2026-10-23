@@ -1,0 +1,8 @@
+{
+  applied: [
+    '0013_audio_duration.sql',
+    '0015_taste_metadata_size.sql',
+    '0016_dna_songs.sql',
+    '0017_music_storage.sql'
+  ]
+}

@@ -1,7 +1,8 @@
 # Product music storage — 2026-10-22
 
 **PASS:** implementation, local integration checks, real R2 uploads and playback.
-**NOT RUN:** production migrations/deployment and hosted generation activation.
+**PASS:** owner-authorized production migrations 0013, 0015, 0016 and 0017.
+**NOT RUN:** deployment and hosted generation activation.
 
 ## Object layout and access
 
@@ -68,15 +69,22 @@ storage helpers were reused.
 | Unit / DB-output / library checks | PASS, 66 / 10 / 21 tests |
 | Production build with TypeScript and public bundle audit | PASS |
 | Production database audit | PASS, read-only; existing migration checksums match |
-| Production writes, deployment, new music generation/listening | NOT RUN |
+| Production migrations 0013, 0015, 0016, 0017 | PASS, 17 matching ledger entries; repeat apply made no changes |
+| Deployment, new music generation/listening | NOT RUN |
 
 [Receipts and screenshots](evidence/product-music-storage/).
 R2-only preview: <http://127.0.0.1:4248/music-dna>.
 
-Before deployment, apply **0013_audio_duration**, **0015_taste_metadata_size**,
-**0016_dna_songs** and **0017_music_storage** through the approved migration
-process. The current production ledger has 13 applied migrations, including
-0014; the four above are pending. The new library writer requires 0017.
+The owner subsequently authorized applying the database migrations.
+**0013_audio_duration**, **0015_taste_metadata_size**, **0016_dna_songs** and
+**0017_music_storage** are now applied on the existing Neon production database.
+All 17 migration checksums match; none remain pending. Six new columns, five
+relevant constraints and the DNA indexes were verified. Existing row counts
+are unchanged and a repeat application made no changes. See the
+[production verification](evidence/product-music-storage/migration-verification.json),
+[application log](evidence/product-music-storage/migration-production.log) and
+[preflight](evidence/product-music-storage/migration-preflight.json).
+The new library writer schema prerequisite is satisfied.
 Production has the four R2 variable names configured, but sensitive values
 cannot be exported by the CLI for credential comparison. Verify deployed
 playback after the GitHub-driven deployment. No environment variable was changed.

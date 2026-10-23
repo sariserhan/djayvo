@@ -1,0 +1,83 @@
+{
+  "at": "2026-10-23T03:18:40.749Z",
+  "target": "ep-flat-hill-b4q0lix4.c-6.us-east-2.aws.neon.tech/neondb",
+  "status": "PASS",
+  "applied": 17,
+  "pending": [],
+  "checksumsMatch": true,
+  "existingRowCountsUnchanged": true,
+  "columns": [
+    {
+      "table_name": "dna_song_jobs",
+      "column_name": "audio_bytes",
+      "data_type": "integer",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "dna_song_jobs",
+      "column_name": "audio_key",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "dna_song_jobs",
+      "column_name": "audio_sha256",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "dna_song_jobs",
+      "column_name": "song_plan",
+      "data_type": "jsonb",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "track_assets",
+      "column_name": "product",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": "'dj-studio'::text"
+    },
+    {
+      "table_name": "track_assets",
+      "column_name": "storage_key",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    }
+  ],
+  "constraints": [
+    {
+      "conname": "dna_audio_receipt_complete",
+      "definition": "CHECK ((((audio_key IS NULL) AND (audio_sha256 IS NULL) AND (audio_bytes IS NULL)) OR ((audio_key IS NOT NULL) AND (audio_sha256 IS NOT NULL) AND (audio_bytes IS NOT NULL))))"
+    },
+    {
+      "conname": "taste_profiles_profile_check",
+      "definition": "CHECK (((jsonb_typeof(profile) = 'object'::text) AND (octet_length((profile)::text) <= 65536)))"
+    },
+    {
+      "conname": "track_assets_bytes_check",
+      "definition": "CHECK (((bytes >= 2880044) AND (bytes <= 11520044)))"
+    },
+    {
+      "conname": "track_assets_product_check",
+      "definition": "CHECK ((product = ANY (ARRAY['music-dna'::text, 'improvise'::text, 'dj-studio'::text, 'live-dj'::text, 'academy'::text])))"
+    },
+    {
+      "conname": "tracks_duration_ms_check",
+      "definition": "CHECK (((duration_ms >= 15000) AND (duration_ms <= 60000)))"
+    }
+  ],
+  "indexes": [
+    "dna_owner_songs",
+    "dna_public_songs",
+    "dna_song_jobs_pkey",
+    "dna_song_jobs_reservation_id_key"
+  ],
+  "repeatApply": "no changes",
+  "deployment": "NOT RUN"
+}

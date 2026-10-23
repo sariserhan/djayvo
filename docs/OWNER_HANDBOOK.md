@@ -2,7 +2,7 @@
 
 The nine **Made with Music DNA** examples are uploaded and verified in R2. [This local preview](http://127.0.0.1:4248/music-dna) plays them through R2 with the singer disabled. New saved music uses `music-dna/public/`, `music-dna/private/`, `improvise/public/`, `improvise/private/` and the equivalent product paths. The bucket remains private; the app checks access before issuing temporary playback links. New Music DNA songs require verified storage before completion and settlement. Offline browser sessions remain local until explicitly saved online.
 
-Before deploying the storage changes, apply the reviewed pending migrations **0013, 0015, 0016 and 0017** through the approved production migration process. Production R2 variable names exist, but sensitive values cannot be exported for comparison through the CLI. The coming-soon gate still restricts the public site; pushing code does not enable hosted generation. No deployment, migration or launch flag change was made here. [Evidence and release checklist](product-music-storage.md).
+The owner-authorized production migrations **0013, 0015, 0016 and 0017** are applied and verified; all 17 migration checksums match and none are pending. Production R2 variable names exist, but sensitive values cannot be exported for comparison through the CLI. The coming-soon gate still restricts the public site; pushing code does not enable hosted generation. No deployment or launch flag change was made here. [Evidence and release checklist](product-music-storage.md).
 
 ## Simpler Music DNA page — 2026-10-22
 
@@ -20,7 +20,7 @@ On [Music DNA](http://127.0.0.1:4247/music-dna), add favorites and click **Make 
 
 [Open Music DNA](http://127.0.0.1:4247/music-dna) and scroll to **Made with Music DNA** for all nine completed examples. No special link is needed. **Your songs** and **Community songs** are ready for the authenticated credit flow: public starts at 1 credit, private at 2, with a higher quote shown for acceptance if costs require it. Public generation requires explicit sharing permission. Private playback/download requires the owner account; withdrawal from the public page is free. Failed or cancelled jobs release reserved credits.
 
-The existing listening server exposes the examples. Credit-backed generation is currently a separately configured local account/Postgres rehearsal, verified using two test accounts; live generation and credit purchases are not enabled. Migration 0016, hosted worker/cost/payment validation and the remaining musical acceptance must precede production completion. Earlier local start instructions without a credit configuration now support listening only. [Current implementation and reproducible evidence](music-dna-sharing-credits.md).
+The existing listening server exposes the examples. Credit-backed generation is currently a separately configured local account/Postgres rehearsal, verified using two test accounts; live generation and credit purchases are not enabled. Migration 0016 is applied; hosted worker/cost/payment validation and the remaining musical acceptance must precede production completion. Earlier local start instructions without a credit configuration now support listening only. [Current implementation and reproducible evidence](music-dna-sharing-credits.md).
 
 ## Music DNA automatic language — 2026-10-22
 

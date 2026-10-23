@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-23T03:18:23.692Z",
+  "target": "ep-flat-hill-b4q0lix4.c-6.us-east-2.aws.neon.tech/neondb",
+  "action": "read-only preflight",
+  "applied": 13,
+  "pending": [
+    "0013_audio_duration.sql",
+    "0015_taste_metadata_size.sql",
+    "0016_dna_songs.sql",
+    "0017_music_storage.sql"
+  ],
+  "checksumsMatch": true,
+  "bounds": {
+    "invalid_tracks": 0,
+    "invalid_assets": 0,
+    "invalid_profiles": 0
+  },
+  "counts": {
+    "users": 1,
+    "tracks": 0,
+    "assets": 0,
+    "profiles": 0
+  }
+}
