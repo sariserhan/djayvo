@@ -1,0 +1,44 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "prompt_after_click": true,
+    "escape_restores_focus": true,
+    "no_charge_on_open": true,
+    "higher_quote_requires_second_confirmation": true,
+    "one_generation": true,
+    "homepage_examples": 9,
+    "catalogue_and_dna_playback": true,
+    "exclusive_players": true,
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "errors": [],
+    "model_execution": "fixture only",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "prompt_after_click": true,
+    "escape_restores_focus": true,
+    "no_charge_on_open": true,
+    "higher_quote_requires_second_confirmation": true,
+    "one_generation": true,
+    "homepage_examples": 9,
+    "catalogue_and_dna_playback": true,
+    "exclusive_players": true,
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "errors": [],
+    "model_execution": "fixture only",
+    "human_listening": "NOT RUN"
+  }
+]

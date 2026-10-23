@@ -60,7 +60,9 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   assert.equal(await page.getByLabel('Preferred tempo:').count(),0);
   const language=page.getByRole('combobox',{name:'Singing language',exact:true});
   assert.equal(await language.inputValue(),'auto');
+  await page.getByText('How language is chosen',{exact:true}).click();
   assert.match(await page.locator('#dna-notebook > .product-controls').innerText(),/English-only favorites stay English wherever you are/);
+  await page.getByText('How language is chosen',{exact:true}).click();
   const plans=[];
   const wavs=[],audio=[];
   for(let i=0;i<2;i++){

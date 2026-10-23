@@ -1,3 +1,7 @@
+## Visual homepage and simpler product entries — 2026-10-22
+
+[Open the local homepage](http://127.0.0.1:4247/). Choose Learn to DJ, Mix tracks, Remix a sound, Make a song or Mix live audio to change the preview. **Hear this song** plays the real Music DNA example; **Make a song** opens the favorites workflow. Each product still has its own section, with feature/setup information under details. Product pages start with shorter instructions and clearer actions. The public coming-soon design is updated locally too; release gates remain unchanged. [Screenshots and verification](visual-product-entry.md).
+
 ## Music DNA confirmation and homepage — 2026-10-22
 
 On [Music DNA](http://127.0.0.1:4247/music-dna), add favorites and click **Make my music**. The prompt asks who can listen and shows the credit price; confirm with **Generate song**. Cancelling the prompt uses no credits. The [homepage](http://127.0.0.1:4247/) now includes all nine examples and successful public DNA songs. Other products continue to feed reviewed public mixes through Cloud library. Private and withdrawn songs stay out. Local listening and credit-rehearsal limits remain unchanged. [Checks and evidence](music-dna-homepage.md).

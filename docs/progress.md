@@ -1,3 +1,7 @@
+## Visual product discovery — 2026-10-22
+
+**PASS, local.** Five immediately visible product choices change a visual preview and clear action. Music DNA demonstrates favorites → actual song with explicit playback. Shared descriptions shrink from 143 to 51 words; feature and setup detail stays expandable. All five product entries and coming-soon discovery are simplified. Desktop/mobile Chromium/WebKit, existing song/search regressions, 62 tests, build and bundle pass. No deployment or new completion claim; visitor comprehension/conversion is unmeasured. [Report/evidence](visual-product-entry.md).
+
 ## Music DNA generation prompt and homepage — 2026-10-22
 
 **PASS, local.** Make my music now opens the credit and public/private confirmation instead of displaying it in the favorites form. All nine existing examples and successful public DNA songs appear on the homepage, refreshing automatically; other studio public saves retain the shared reviewed catalogue route. Private and withdrawn music stays excluded. Keyboard/mobile/playback, real account/ledger and existing catalogue checks pass. No deployment or paid release. [Report/evidence](music-dna-homepage.md).
