@@ -144,3 +144,20 @@ dialog p,dialog li { color:#c6ccc2; }
 
 .sequence-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin:12px 0}.sequence-steps label{min-width:0}.sequence-steps select{width:100%}
 #remix-seconds { display:block; width:100%; min-height:44px; min-width:0; max-width:100%; margin-top:8px; padding:10px; color:#f0f3eb; background:#151b16; border:1px solid #586152; border-radius:6px; }
+
+/* Keep the website header identical above each product's own controls. */
+.site-header { color:#f0f3eb; background:#101211; --line:#343d34; --lime:#c3ef69; }
+.site-header .header-inner { max-width:1440px; min-height:88px; height:auto; padding:16px clamp(20px,4vw,64px); gap:24px; }
+.site-header .brand { font-size:29px; }
+.site-header nav { width:auto; justify-content:flex-end; gap:8px 28px; font-size:14px; }
+.studio-page-tools { max-width:1440px; margin:auto; padding:8px clamp(20px,4vw,64px); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.studio-page-tools nav { justify-content:flex-start; }
+@media(max-width:760px) {
+  .site-header .header-inner { min-height:76px; padding:18px 20px 10px; flex-wrap:wrap; gap:12px; }
+  .site-header .brand { font-size:27px; }
+  .site-header nav { width:100%; justify-content:flex-start; gap:4px 20px; font-size:13px; }
+  .studio-page-tools { padding-inline:20px; }
+}
+@media(max-width:400px) {
+  .site-header .header-inner,.studio-page-tools { padding-inline:16px; }
+}

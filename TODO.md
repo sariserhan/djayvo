@@ -1,3 +1,7 @@
+## Consistent website navbar — 2026-10-23
+
+- [x] **SITE-NAV — PASS, local:** One shared product-link list and header styling across the site, hosted Performance/Voice studios and Academy lesson/offline pages. Studio shortcuts, saved mixes, privacy and mode indicators remain separate. Chromium/WebKit pass 27 routes at 1440/390px, cross-product and home navigation, local studio controls, header accessibility and fullscreen return. TypeScript, integration unit test, asset preparation and bundle audit PASS. Website deployment, audio generation and native app rebuild NOT RUN. Details in `docs/progress.md`.
+
 ## Voice studio navigation — 2026-10-23
 
 - [x] **STUDIO-NAV — PASS, local:** Navbar and brand links explicitly open `index.html` instead of the directory URL that returned 404 on the hosted-site router. Native Pro keeps its existing external Improvise destination. Chromium/WebKit verify Voice studio, saved-mixes heading, brand links and return to the deck without page errors. Studio/Academy asset preparation and bundle audit PASS. Website deployment and native app rebuild NOT RUN.

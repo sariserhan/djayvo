@@ -1,4 +1,5 @@
 import { execFileSync } from 'node:child_process';
+import { studioSiteShell } from './studio-site-shell.mjs';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -25,12 +26,11 @@ for (const path of sourceFiles) {
   if (!(await stat(new URL(path, source))).isFile()) continue;
   const before = await readFile(new URL(path, source));
   const after = await readFile(new URL(path, publicRoot));
-  if (path === 'index.html') assert.equal(after.toString(), before.toString().replace('<a href="#mixes">Your mixes</a>', '<a href="/account">Account</a>'));
-  else if (path === 'dj.html') assert.equal(after.toString(), before.toString().replace('Save the app in Voice studio → Privacy &amp; credits for offline preparation', 'Open <a href="/pro">your Pro account</a> → Use the web studio offline to prepare offline access'));
+  if (path === 'index.html' || path === 'dj.html') assert.equal(after.toString(), studioSiteShell(before.toString()));
   else if (path !== 'service-worker.js') assert.ok(before.equals(after), `Studio asset changed: ${path}`);
 }
 execFileSync('python3', ['scripts/build_offline.py', fileURLToPath(publicRoot), '--check'], { cwd: fileURLToPath(new URL('../../../', import.meta.url)), stdio: 'pipe' });
 console.log(JSON.stringify({ status: 'PASS', client_files_checked: count, server_secrets_absent: 'PASS',
-  studio_assets_unchanged_except_account_link_and_offline_hashes: 'PASS',
+  studio_assets_unchanged_except_site_shell_and_offline_hashes: 'PASS',
   wasm_sha256: createHash('sha256').update(await readFile(new URL('engine/jamloom_web.wasm', publicRoot))).digest('hex'),
 }, null, 2));
