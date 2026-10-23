@@ -1,0 +1,31 @@
+{
+  "templateReadback": true,
+  "image": "ghcr.io/sariserhan/jamloom/music-worker@sha256:ef211cf717379efc24f8e9988f98331ca3096b4eb119d6829af92345de14560b",
+  "checkedAt": "2026-10-23T07:01:31.452Z",
+  "endpoint": "jl77hn92npt65k",
+  "workersMin": 0,
+  "workersMax": 0,
+  "billing": [
+    {
+      "amount": 0.08039670903235674,
+      "timeBilledMs": 173085,
+      "diskSpaceBilledGB": 180,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 04:00:00"
+    },
+    {
+      "amount": 0.07884528022259474,
+      "timeBilledMs": 162196,
+      "diskSpaceBilledGB": 120,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 05:00:00"
+    },
+    {
+      "amount": 0.0013567361165769398,
+      "timeBilledMs": 2791,
+      "diskSpaceBilledGB": 60,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 06:00:00"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import copy
 import json
 import tempfile
+import subprocess
 from unittest.mock import patch
 from types import SimpleNamespace
 from pathlib import Path
@@ -8,9 +9,10 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
-from music_dna_song import favorites, song_plan, parse_draft, run, draft, retry_direction
+from music_dna_song import favorites, song_plan, parse_draft, run, draft, retry_direction, performance_caption, check_render
 from singing_response import caption, digest, text_field
 from dna_direction import direction_for
+from dna_direction import POLICY
 from dna_language import choose_language, COUNTRY_LANGUAGES, LANGUAGES
 
 
@@ -49,6 +51,26 @@ class MusicDnaSong(unittest.TestCase):
         self.data['sound']='A gentle 72 bpm groove'
         with self.assertRaisesRegex(ValueError,'selected BPM'):
             song_plan(self.data,self.refs,123)
+
+    def test_every_style_keeps_essential_controls_within_singer_text_budget(self):
+        for direction in POLICY['directions']:
+            for code in LANGUAGES:
+                case={'bpm':direction['bpm'][0],'voice':'female','vocal_language':code}
+                for retry in (False,True):
+                    caption=performance_caption(direction,case,'Rich developing instrumental arrangement. '*100,retry=retry)
+                    self.assertLess(len(caption),512)
+                    for essential in (direction['label'],str(case['bpm']),LANGUAGES[code],*direction['instruments']):self.assertIn(essential,caption)
+
+    def test_checker_retries_interruption_on_same_audio_but_not_validation_errors(self):
+        for error in (subprocess.CalledProcessError(-9,['checker']),subprocess.TimeoutExpired(['checker'],90)):
+            with tempfile.TemporaryDirectory() as folder:
+                work=Path(folder);audio=work/'singer.wav';audio.write_bytes(b'unchanged rendered song')
+                with patch('music_dna_song.subprocess.run',side_effect=[error,None]) as process:check_render(work,{})
+                self.assertEqual(process.call_count,2);self.assertEqual(audio.read_bytes(),b'unchanged rendered song')
+                self.assertTrue(all('check_dna_audio.py' in call.args[0][1] for call in process.call_args_list))
+        with tempfile.TemporaryDirectory() as folder,patch('music_dna_song.subprocess.run',side_effect=subprocess.CalledProcessError(1,['checker'])) as process:
+            with self.assertRaises(subprocess.CalledProcessError):check_render(Path(folder),{})
+            self.assertEqual(process.call_count,1)
 
     def test_rejects_missing_evidence_unbounded_plans_and_unknown_only_lists(self):
         for field, value in [('influences', []), ('bpm', True), ('bpm', 190), ('voice', 'celebrity'),

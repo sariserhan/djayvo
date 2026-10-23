@@ -1,0 +1,11 @@
+W1023 03:04:30.123000 66524 torch/distributed/elastic/multiprocessing/redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+{"id": "funked-up", "target": "rock", "accepted": false, "top_label": "funk"}
+{"id": "wednesday-night", "target": "funk", "accepted": false, "top_label": "jazz"}
+{"id": "rhythm-garden", "target": "dance", "accepted": false, "top_label": "dance"}
+{"id": "party-sector", "target": "dance", "accepted": true, "top_label": "dance"}
+{"id": "black-diamond", "target": "dance", "accepted": true, "top_label": "dance"}
+{"id": "funky-hip-hop-lofi-jam", "target": "lofi", "accepted": false, "top_label": "soul"}
+{"id": "atmosphere", "target": "electronic", "accepted": false, "top_label": "dance"}
+{"id": "next-to-you", "target": "ambient", "accepted": true, "top_label": "afrobeats"}
+{"id": "midnight-cruiser", "target": "jazz", "accepted": true, "top_label": "jazz"}
+{"id": "midnight-moon", "target": "ambient", "accepted": false, "top_label": "indie"}

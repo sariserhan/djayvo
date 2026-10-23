@@ -30,4 +30,11 @@ test('Runpod status validates identity, states, timing and receipts without expo
  await assert.rejects(failed.status('job-1'),/^Error: Runpod request failed \(Provider HTTP 500\)$/);
  const terminal=new RunpodProvider('secret','endpoint',async()=>Response.json({id:'job-1',status:'FAILED',error:'private transcript',executionTime:148}));
  assert.deepEqual(await terminal.status('job-1'),{id:'job-1',status:'FAILED',executionTime:148});
+ for(const failure of ['style-rejected:matched-2-of-4','checking-exit--9','checking-timeout','worker-timeout','fit-retry@modeling_clap.py:123']){
+  const error=`private signed URL https://private.invalid\nJamloom generation failed at ${failure}; no completed song was accepted.\nprivate lyrics`;
+  const receipt=await new RunpodProvider('secret','endpoint',async()=>Response.json({id:'job-1',status:'FAILED',error})).status('job-1');
+  assert.equal(receipt.failure,failure);assert.doesNotMatch(JSON.stringify(receipt),/private|https/);
+ }
+ const unsafe=await new RunpodProvider('secret','endpoint',async()=>Response.json({id:'job-1',status:'FAILED',error:'Jamloom generation failed at private lyrics; no completed song was accepted.'})).status('job-1');
+ assert.equal(unsafe.failure,undefined);
 });

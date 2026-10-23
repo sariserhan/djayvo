@@ -1,11 +1,20 @@
 import sys
+from importlib.util import find_spec
 from pathlib import Path
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
-from check_dna_audio import POLICY, assess
+from check_dna_audio import POLICY, assess, score_windows
 from dna_direction import direction_for
 
 class DnaAudio(unittest.TestCase):
+    @unittest.skipUnless(find_spec('numpy') and find_spec('torch'),'Audio-array checks require the inference environment')
+    def test_audio_passages_reject_short_or_nonfinite_samples_before_inference(self):
+        import numpy as np
+        good=np.zeros(480000,dtype=np.float32)
+        bad=good.copy();bad[0]=np.nan
+        for windows in ([],[good]*3,[good,good,good,good[:-1]],[good,good,good,bad]):
+            with self.assertRaises(ValueError):score_windows(windows,None)
+
     def test_broad_mismatch_and_nonfinite_evidence_fail_closed(self):
         ids = [d['id'] for d in POLICY['directions']] + ['soft-ballad','speech']
         row = [.3]*len(ids);row[ids.index('heavy-rock')] = .55

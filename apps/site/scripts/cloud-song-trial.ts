@@ -12,19 +12,22 @@ import {DnaCommerce} from '../lib/dna-commerce';
 import {CloudSongs} from '../lib/cloud-songs';
 import {cloudSongConfig} from '../lib/cloud-song-config';
 
-const root=resolve('../..'),directory=resolve(root,'build-hosted-song-trial/final'),evidence=resolve(root,'docs/evidence/hosted-songs');
-const config=cloudSongConfig({...process.env,JAMLOOM_CLOUD_SONGS_ENABLED:'true',JAMLOOM_CLOUD_RATE_MICROS_PER_SECOND:'1000'})!;
+const repair=process.argv.includes('--repair'),maxUSD=repair?2:3,maxWorkers=repair?1:2,maxSeconds=repair?900:780;
+const root=resolve('../..'),directory=resolve(root,repair?'build-song-repair/cloud':'build-hosted-song-trial/final'),evidence=resolve(root,repair?'docs/evidence/song-generation-repair':'docs/evidence/hosted-songs');
+const config=cloudSongConfig({...process.env,CREDIT_BILLING_MODE:'test',JAMLOOM_CLOUD_SONGS_ENABLED:'true',JAMLOOM_CLOUD_RATE_MICROS_PER_SECOND:'1000'})!;
 assert.equal(config.endpoint,'jl77hn92npt65k');
-const fixtures=[['jazz','Feeling Good — Nina Simone','Jazz','en'],['rock','Enter Sandman — Metallica','Metal','en'],['spanish','La Bicicleta — Carlos Vives','Latin','es'],['turkish','Şımarık — Tarkan','Turkish Pop','tr'],['russian','Группа крови — Кино','Rock','ru'],['funk'],['reggae'],['jazz-phrase']];
-if(!process.argv.includes('--apply')){console.log({mode:'dry-run',maxUSD:3,maxWorkers:2,maxSeconds:780,requests:fixtures.length});process.exit(0);}
+const fixtures=repair?[['jazz-1','Feeling Good — Nina Simone','Jazz','en'],['spanish-1','La Bicicleta — Carlos Vives','Latin','es'],['jazz-2','Feeling Good — Nina Simone','Jazz','en'],['spanish-2','La Bicicleta — Carlos Vives','Latin','es']]:[['jazz','Feeling Good — Nina Simone','Jazz','en'],['rock','Enter Sandman — Metallica','Metal','en'],['spanish','La Bicicleta — Carlos Vives','Latin','es'],['turkish','Şımarık — Tarkan','Turkish Pop','tr'],['russian','Группа крови — Кино','Rock','ru'],['funk'],['reggae'],['jazz-phrase']];
+assert(maxWorkers*(maxSeconds+130)*config.rate/1e6+fixtures.length*.02<maxUSD,'Trial exceeds conservative budget including shutdown retries');
+if(!process.argv.includes('--apply')){console.log({mode:'dry-run',maxUSD,maxWorkers,maxSeconds,requests:fixtures.length,...(repair?{seeds:fixtures.map((_,i)=>6302301+i),requires:'Approved worker image, paid trial and JAMLOOM_TRIAL_IMAGE digest'}:{})});process.exit(0);}
 const db=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(db.hostname,'127.0.0.1');
 await mkdir(directory,{recursive:true});await mkdir(evidence,{recursive:true});
-const state:any={startedAt:new Date().toISOString(),maxUSD:3,maxWorkers:2,maxSeconds:780,requests:[],health:[],cleanup:false};
+const state:any={startedAt:new Date().toISOString(),maxUSD,maxWorkers,maxSeconds,requests:[],health:[],cleanup:false};
 const save=()=>writeFile(resolve(evidence,'trial-result.json'),JSON.stringify(state,(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');
 await writeFile(resolve(directory,'intent.json'),JSON.stringify(state),{flag:'wx',mode:0o600});
 const rest=async(path:string,method='GET',body?:unknown)=>{const response=await fetch('https://rest.runpod.io/v1/'+path,{method,headers:{Authorization:`Bearer ${config.key}`,'Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(15000)});assert(response.ok,`Runpod control HTTP ${response.status}`);return response.json();};
 const control=(method='GET',body?:unknown)=>rest('endpoints/'+config.endpoint,method,body);
 const before=await control();assert(before.name==='jamloom-music-v1'&&before.workersMin===0&&before.workersMax===0);
+if(repair){const image=process.env.JAMLOOM_TRIAL_IMAGE;assert(image&&/^ghcr\.io\/sariserhan\/jamloom\/music-worker@sha256:[a-f0-9]{64}$/.test(image),'A reviewed immutable worker image is required');const template=await rest('templates/'+encodeURIComponent(before.templateId)+'?includeEndpointBoundTemplates=true');assert.equal(template.imageName,image);state.image=image;}
 state.disabled=true;state.templateId=before.templateId;state.endpoint=config.endpoint;
 const billing=()=>rest(`billing/endpoints?endpointId=${config.endpoint}&bucketSize=hour&startTime=${new Date().toISOString().slice(0,10)}T00:00:00Z&endTime=${new Date(Date.now()+86400000).toISOString().slice(0,10)}T00:00:00Z`);
 state.billingBefore=await billing();
@@ -34,7 +37,7 @@ const delay=(ms:number)=>new Promise(r=>setTimeout(r,ms));let enabled=false,watc
 process.on('SIGINT',()=>{stopping=true;});process.on('SIGTERM',()=>{stopping=true;});
 try{
  await migrate(pool);const initial=await services[0].provider.health();assert.equal(initial.jobs?.inQueue,0);assert.equal(initial.jobs?.inProgress,0);
- const source=await readFile(resolve(directory,'source.wav'));
+ const source=repair?Buffer.alloc(0):await readFile(resolve(directory,'source.wav'));
  for(let i=0;i<fixtures.length;i++){
   const [label,reference,genre,language]=fixtures[i],songs=services[i<5?0:1],owner='trial-'+i,id=randomUUID().replaceAll('-','');
   await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[owner,owner+'@example.test']);await songs.commerce.wallet.grant(owner,{provider:'stripe_test',receipt:owner,credits:50,netMicros:30000000});
@@ -42,20 +45,21 @@ try{
   if(i<5)input=await songs.input(owner,{...emptyTaste,references:[reference],referenceMetadata:[{reference,genre,source:'itunes'}],vocalLanguage:language});
   else{const grant=await songs.upload(owner,{bytes:source.length,sha256:createHash('sha256').update(source).digest('hex'),consent:true});const uploaded=await fetch(grant.url,{method:'PUT',headers:{'Content-Type':'audio/wav','Content-Length':String(source.length)},body:source,signal:AbortSignal.timeout(15000)});assert(uploaded.ok);input=await songs.input(owner,{sourceId:grant.id,phrase:'I have a question',genre:label==='jazz-phrase'?'jazz':label,voice:'female',consent:true});}
   const quote=await songs.commerce.quote(owner,input,i%2?'private':'public');await songs.submit(owner,id,input,i%2?'private':'public',quote.token);
+  if(repair)await pool.query("UPDATE cloud_song_runs SET payload=jsonb_set(payload,'{seed}',$2::jsonb) WHERE id=$1 AND provider_id IS NULL",[id,JSON.stringify(6302301+i)]);
   state.requests.push({id,owner,label,product:songs.commerce.product,quotedCredits:quote.credits,transitions:[]});
  }
  await save();
- // Independent shutdown survives an interrupted trial process. The conservative bound is $2.40 plus storage allowance.
- watchdog=spawn(process.execPath,['--input-type=module','-e',`setTimeout(async()=>{for(let n=0;n<10;n++){try{const r=await fetch('https://rest.runpod.io/v1/endpoints/'+process.env.RUNPOD_ENDPOINT_ID,{method:'PATCH',headers:{Authorization:'Bearer '+process.env.RUNPOD_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({workersMin:0,workersMax:0}),signal:AbortSignal.timeout(10000)});if(r.ok)process.exit(0);}catch{}await new Promise(r=>setTimeout(r,3000));}process.exit(1);},780000);`],{env:process.env,stdio:'ignore',detached:true});watchdog.unref();
- const started=Date.now();enabled=true;state.disabled=false;await control('PATCH',{workersMin:0,workersMax:2});
+ // Independent shutdown survives an interrupted trial process, including bounded control retries.
+ watchdog=spawn(process.execPath,['--input-type=module','-e',`setTimeout(async()=>{for(let n=0;n<10;n++){try{const r=await fetch('https://rest.runpod.io/v1/endpoints/'+process.env.RUNPOD_ENDPOINT_ID,{method:'PATCH',headers:{Authorization:'Bearer '+process.env.RUNPOD_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({workersMin:0,workersMax:0}),signal:AbortSignal.timeout(10000)});if(r.ok)process.exit(0);}catch{}await new Promise(r=>setTimeout(r,3000));}process.exit(1);},${maxSeconds*1000});`],{env:process.env,stdio:'ignore',detached:true});watchdog.unref();
+ const started=Date.now();enabled=true;state.disabled=false;await control('PATCH',{workersMin:0,workersMax:maxWorkers});
  // Give endpoint configuration a moment to reach its queue API.
  await delay(5000);
- while(!stopping&&Date.now()-started<660000){
+ while(!stopping&&Date.now()-started<(maxSeconds-120)*1000){
   const health=await services[0].provider.health();state.health.push({seconds:Math.round((Date.now()-started)/1000),...health});
   const workers=health.workers??{},count=['idle','initializing','running'].reduce((n,k)=>n+Number(workers[k]??0),0);
-  if(count>2){state.stopReason='Provider exceeded two-worker bound';break;}
+  if(count>maxWorkers){state.stopReason='Provider exceeded worker bound';break;}
   if(Number(workers.ready??0)+Number(workers.running??0)===0){await save();console.log(JSON.stringify({seconds:Math.round((Date.now()-started)/1000),workers}));await delay(10000);continue;}
-  await Promise.all(state.requests.map(async(r:any)=>{const songs=services[r.product==='music-dna'?0:1];try{await songs.tick(r.id);}catch(error){r.pollErrors=(r.pollErrors??0)+1;r.error=error instanceof Error?error.message:'Poll failed';}const row=await songs.commerce.row(r.id),run=(await pool.query('SELECT provider_id,provider_status,execution_ms,delay_ms,estimated_cost_micros FROM cloud_song_runs WHERE id=$1',[r.id])).rows[0];Object.assign(r,run);r.state=row.state;if(r.transitions.at(-1)?.state!==row.state||r.transitions.at(-1)?.provider!==run.provider_status)r.transitions.push({seconds:Math.round((Date.now()-started)/1000),state:row.state,provider:run.provider_status});if(row.state==='completed'&&!r.saved){await writeFile(resolve(directory,r.label+'.wav'),await store.get(row.audio_key,row.audio_bytes));await writeFile(resolve(directory,r.label+'.json'),JSON.stringify(row.song_plan,null,2));r.saved=true;r.audioSha256=row.audio_sha256;r.balance=await songs.commerce.wallet.balance(r.owner);}}));
+  await Promise.all(state.requests.map(async(r:any)=>{const songs=services[r.product==='music-dna'?0:1];try{await songs.tick(r.id);}catch(error){r.pollErrors=(r.pollErrors??0)+1;r.error=error instanceof Error?error.message:'Poll failed';}const row=await songs.commerce.row(r.id),run=(await pool.query('SELECT provider_id,provider_status,execution_ms,delay_ms,estimated_cost_micros,provider_receipt->>\'failure\' AS failure FROM cloud_song_runs WHERE id=$1',[r.id])).rows[0];Object.assign(r,run);r.state=row.state;if(r.transitions.at(-1)?.state!==row.state||r.transitions.at(-1)?.provider!==run.provider_status)r.transitions.push({seconds:Math.round((Date.now()-started)/1000),state:row.state,provider:run.provider_status});if(row.state==='completed'&&!r.saved){await writeFile(resolve(directory,r.label+'.wav'),await store.get(row.audio_key,row.audio_bytes));await writeFile(resolve(directory,r.label+'.json'),JSON.stringify(row.song_plan,null,2));r.saved=true;r.audioSha256=row.audio_sha256;r.balance=await songs.commerce.wallet.balance(r.owner);}}));
   await save();console.log(JSON.stringify({seconds:Math.round((Date.now()-started)/1000),jobs:state.requests.map((r:any)=>r.label+':'+r.state),workers}));
   if(state.requests.every((r:any)=>['completed','failed','cancelled'].includes(r.state)))break;
   await delay(10000);

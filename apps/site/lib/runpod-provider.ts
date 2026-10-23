@@ -6,7 +6,7 @@ export type RunpodJob={
  id:string;product:'music-dna'|'improvise';payload:Record<string,unknown>;output_url:string;timeout_seconds:number;
  source?:{url:string;bytes:number;sha256:string};ttl_seconds?:number;
 };
-export type RunpodResult={id:string;status:RunpodState;output?:Record<string,unknown>;delayTime?:number;executionTime?:number};
+export type RunpodResult={id:string;status:RunpodState;output?:Record<string,unknown>;delayTime?:number;executionTime?:number;failure?:string};
 
 export class RunpodProvider{
  constructor(private key:string,readonly endpoint:string,private request:typeof fetch=fetch){
@@ -39,7 +39,11 @@ export class RunpodProvider{
   if(typeof value.id!=='string'||expected&&value.id!==expected||!states.includes(value.status as RunpodState))throw Error('Invalid provider job receipt');
   for(const name of ['delayTime','executionTime'])if(value[name]!==undefined&&(!Number.isSafeInteger(value[name])||Number(value[name])<0))throw Error('Invalid provider timing');
   if(value.status==='COMPLETED'&&(!value.output||typeof value.output!=='object'||Array.isArray(value.output)))throw Error('Missing worker receipt');
+  // Retain only our static diagnostic grammar; raw provider errors may contain private lyrics or URLs.
+  const failure=value.status==='FAILED'&&typeof value.error==='string'&&value.error.length<2048
+   ?value.error.match(/Jamloom generation failed at (style-rejected(?::matched-[0-4]-of-4)?|(?:writing|composing|retrying|checking)-(?:timeout|exit--?[0-9]{1,3})|worker-timeout|(?:fit(?:-retry)?|singer|planner|private)@(?:[A-Za-z_]+\.py:[0-9]{1,5}|unavailable)); no completed song was accepted\./)?.[1]:undefined;
   return {id:value.id,status:value.status as RunpodState,...(value.output?{output:value.output as Record<string,unknown>}:{}),
+   ...(failure?{failure}:{}),
    ...(value.delayTime===undefined?{}:{delayTime:Number(value.delayTime)}),...(value.executionTime===undefined?{}:{executionTime:Number(value.executionTime)})};
  }
 }

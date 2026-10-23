@@ -1,0 +1,18 @@
+{
+  "status": "PREPARED, NOT RUN; new paid compute and worker publication require owner approval",
+  "maxUSD": 2,
+  "maxWorkers": 1,
+  "maxSeconds": 900,
+  "maxRequests": 4,
+  "inputs": "Public song/artist/genre metadata only; two English jazz and two Spanish Latin requests",
+  "seeds": [
+    6302301,
+    6302302,
+    6302303,
+    6302304
+  ],
+  "scope": "Worker-only image publication and pinned endpoint update; no website deployment",
+  "safety": "Endpoint initially disabled, immutable image check, independent shutdown watchdog, isolated local database, Stripe TEST credits, R2 cleanup, final disabled/empty verification",
+  "command": "cd apps/site && JAMLOOM_TRIAL_IMAGE=<approved digest> JAMLOOM_TEST_DATABASE_URL=postgresql://serhansari@127.0.0.1:5432/postgres node --import tsx scripts/cloud-song-trial.ts --repair --apply",
+  "dryRun": "PASS; four fixtures, bounds and isolated artifact directory verified"
+}

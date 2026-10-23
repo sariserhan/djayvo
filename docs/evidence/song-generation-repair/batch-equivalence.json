@@ -1,0 +1,15 @@
+{
+  "max_score_difference": 5.364418029785156e-07,
+  "thresholds_changed": false,
+  "model_revision": "8fa0f1c6d0433df6e97c127f64b2a1d6c0dcda8a",
+  "track": "funked-up",
+  "audio_sha256": "306420edbf7493f1d660c219f42d1c6b24231b209f14745e91299ba5bf700086",
+  "passage_seconds": [
+    0.0,
+    18.75754166666667,
+    37.51510416666667,
+    56.272666666666666
+  ],
+  "assertion": "max absolute score difference < 1e-5",
+  "result": "PASS"
+}

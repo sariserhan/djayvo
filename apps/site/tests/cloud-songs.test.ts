@@ -65,7 +65,8 @@ test('real Postgres cloud songs: concurrency, credits, recovery, privacy, cancel
    assert.equal((await req('user1'))?.status,404);assert.equal((await req(null))?.status,404);assert.equal((await req('user0'))?.status,200);
   });
   await t.test('failed jobs refund all credits and invalid completed output cannot become public',async()=>{
-   const key=await submit('user4');await songs.tick(key);results.set('provider-'+key,{id:'provider-'+key,status:'FAILED',executionTime:50000});await songs.tick(key);assert.deepEqual(await commerce.wallet.balance('user4'),{available:50,reserved:0});
+   const key=await submit('user4');await songs.tick(key);results.set('provider-'+key,{id:'provider-'+key,status:'FAILED',executionTime:50000,failure:'style-rejected:matched-2-of-4'});await songs.tick(key);assert.deepEqual(await commerce.wallet.balance('user4'),{available:50,reserved:0});
+   assert.equal((await pool.query('SELECT provider_receipt FROM cloud_song_runs WHERE id=$1',[key])).rows[0].provider_receipt.failure,'style-rejected:matched-2-of-4');
    const bad=await submit('user4');await songs.tick(bad);await complete(bad);results.get('provider-'+bad)!.output!.audio_sha256='0'.repeat(64);await songs.tick(bad);assert.equal((await commerce.row(bad)).state,'failed');
    assert.ok(!(await commerce.list(null,'public')).songs.some(s=>s.id===bad));
   });

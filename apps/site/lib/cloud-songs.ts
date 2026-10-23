@@ -119,6 +119,7 @@ export class CloudSongs{
    await pool.query('UPDATE cloud_song_runs SET estimated_cost_micros=$2 WHERE id=$1',[id,estimate]);
    if(result.status==='IN_PROGRESS')await this.commerce.start(id);
    if(['FAILED','CANCELLED','TIMED_OUT'].includes(result.status)){
+    await pool.query('UPDATE cloud_song_runs SET provider_receipt=$2 WHERE id=$1',[id,JSON.stringify(result)]);
     await this.commerce.finish(id,run.cancel_requested?'cancelled':'failed');await this.cleanup(run);return;
    }
    if(result.status!=='COMPLETED')return;

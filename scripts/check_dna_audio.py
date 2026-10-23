@@ -36,24 +36,41 @@ def assess(scores, target):
             'limit': 'Broad style screening only. Not a calibrated quality, singing or listener-preference score.'}
 
 
-def score_audio(path):
-    import numpy as np
-    import soundfile as sf
+def load_auditor():
     import torch
     from transformers import ClapModel, ClapProcessor
     verify_model()
-    pcm, rate = sf.read(path, dtype='float32', always_2d=True)
-    if rate != 48000 or pcm.shape != (120*rate, 2) or not np.isfinite(pcm).all() or np.max(np.abs(pcm)) >= 1 or np.sqrt(np.mean(pcm**2)) < .001:
-        raise ValueError('Invalid full song audio')
     torch.set_num_threads(4)
     processor = ClapProcessor.from_pretrained(MODEL, local_files_only=True)
     model = ClapModel.from_pretrained(MODEL, local_files_only=True).eval()
+    return processor, model
+
+
+def score_windows(windows, auditor):
+    import numpy as np
+    import torch
+    if len(windows)!=4 or any(np.asarray(w).shape!=(480000,) or not np.isfinite(w).all() for w in windows):
+        raise ValueError('Expected four finite ten-second windows')
+    processor, model = auditor
     texts = [d['audio'] for d in POLICY['directions']] + ['A slow soft piano love ballad with gentle singing.', 'Spoken words without singing or music.']
-    windows = [pcm[t*rate:(t+10)*rate].mean(axis=1) for t in (15,45,75,105)]
-    inputs = processor(text=texts, audio=windows, return_tensors='pt', padding=True, sampling_rate=rate)
+    scores=[]
+    # Check one passage at a time to bound CPU activation memory on small workers.
     with torch.inference_mode():
-        result = model(**inputs)
-    return (result.audio_embeds @ result.text_embeds.T).tolist()
+        for window in windows:
+            inputs = processor(text=texts, audio=[window], return_tensors='pt', padding=True, sampling_rate=48000)
+            result = model(**inputs)
+            scores.extend((result.audio_embeds @ result.text_embeds.T).tolist())
+    return scores
+
+
+def score_audio(path, auditor=None):
+    import numpy as np
+    import soundfile as sf
+    pcm, rate = sf.read(path, dtype='float32', always_2d=True)
+    if rate != 48000 or pcm.shape != (120*rate, 2) or not np.isfinite(pcm).all() or np.max(np.abs(pcm)) >= 1 or np.sqrt(np.mean(pcm**2)) < .001:
+        raise ValueError('Invalid full song audio')
+    windows = [pcm[t*rate:(t+10)*rate].mean(axis=1) for t in (15,45,75,105)]
+    return score_windows(windows, auditor or load_auditor())
 
 
 def check(work):

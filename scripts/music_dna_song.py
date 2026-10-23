@@ -51,6 +51,20 @@ def song_sections(lyrics):
     if len(choruses)<2 or len(set(choruses))!=1:raise ValueError('Return the same memorable chorus at least twice')
 
 
+def performance_caption(direction, case, sound, traits=None, retry=False):
+    # The pinned singer truncates its text encoder input; keep essentials inside its 512-character contract.
+    core=(f"{direction['label']}; {case['bpm']} BPM; {direction['energy']}. "
+          f"{', '.join(direction['instruments'])}. "
+          f"Natural expressive {case['voice']} lead singing in {LANGUAGES[case['vocal_language']]}. ")
+    detail=('Swinging ride cymbal, walking upright bass, syncopated piano comping and extended jazz chords. '
+            if retry and direction['id']=='jazz' else direction['traits']+' ' if retry else '')
+    detail+=sound+' '+(' '.join(traits.values()) if traits else '')
+    if len(core)>400:raise ValueError('Musical direction exceeds singer caption budget')
+    room=511-len(core)
+    if len(detail)>room:detail=detail[:room].rsplit(' ',1)[0]
+    return (core+detail).strip()
+
+
 def song_plan(data, refs, seed, requested_language='auto'):
     if not isinstance(data, dict):
         raise ValueError('Expected a song plan')
@@ -96,11 +110,8 @@ def song_plan(data, refs, seed, requested_language='auto'):
     if not isinstance(genre, str) or not re.fullmatch(r'[a-z][a-z0-9-]{0,29}', genre) or not isinstance(voice, str) or voice not in VOICES:
         raise ValueError('Invalid singer or genre')
     case = {'id': f'{genre}-{voice}', 'genre': genre, 'voice': voice, 'seed': seed,
-            'duration': 120, 'bpm': data.get('bpm'), 'lyrics': data.get('lyrics'), 'vocal_language':code,
-            'song_caption': f"{direction['traits']} Instrumentation: {', '.join(direction['instruments'])}. Energy: {direction['energy']}. "
-            f'{sound.rstrip(".")}. '+(' '.join(traits.values())+'. ' if traits else '')+f'Sing in {LANGUAGES[code]}. Lead vocal: an expressive adult {voice} singer. Natural expressive sung melody, audible breaths, '
-            'clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, '
-            'memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics.'}
+            'duration': 120, 'bpm': data.get('bpm'), 'lyrics': data.get('lyrics'), 'vocal_language':code}
+    case['song_caption']=performance_caption(direction,case,sound,traits)
     plan = {'schema': 'jamloom-dna-song-1', 'model_code': CODE_REVISION, 'weights': WEIGHT_REVISION,
             'phrase': 'Original song from favorite music tastes', 'title': title, 'summary': summary,
             'influences': notes, 'favorites': refs, 'cases': [case],
@@ -215,11 +226,7 @@ def retry_direction(plan):
     case = plan['cases'][0]
     direction = plan['direction']
     case['seed'] = (case['seed']+1) % 2**32
-    groove = 'Swinging ride cymbal, walking upright bass, syncopated acoustic piano comping, jazz chord extensions and melodic jazz singing. ' if direction['id']=='jazz' else ''
-    case['song_caption'] = (f"{direction['label']}. {direction['traits']} {groove}"
-        f"{case['bpm']} BPM. Instruments: {', '.join(direction['instruments'])}. "
-        f"{direction['energy']} energy. Expressive {case['voice']} lead singer in {LANGUAGES[case['vocal_language']]}. "
-        'Natural singing, breathing and dynamic phrasing. Clear verses, chorus, bridge and resolved ending. Original music.')
+    case['song_caption']=performance_caption(direction,case,plan.get('production_sound',''),retry=True)
     return validate_plan(plan)
 
 
@@ -227,6 +234,24 @@ def status(work, state, message, phase=None):
     temp = work/'status.tmp'
     temp.write_text(json.dumps({'state': state, 'message': message, 'phase': phase}))
     temp.replace(work/'status.json')
+
+
+def check_render(work, env):
+    attempts=[]
+    for attempt in range(2):
+        try:
+            with (work/('fit.log' if not attempt else 'fit-retry.log')).open('x') as log:
+                subprocess.run([sys.executable, str(ROOT/'scripts/check_dna_audio.py'), '--work', str(work)],
+                               env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=90)
+            attempts.append({'attempt':attempt+1,'state':'completed'})
+            return
+        except (subprocess.CalledProcessError,subprocess.TimeoutExpired) as error:
+            transient=isinstance(error,subprocess.TimeoutExpired) or error.returncode<0
+            attempts.append({'attempt':attempt+1,'state':'timeout' if isinstance(error,subprocess.TimeoutExpired) else 'failed','exit':getattr(error,'returncode',None)})
+            if attempt or not transient:raise
+            if (work/'fit.json').exists():(work/'fit.json').rename(work/'fit-interrupted.json')
+        finally:
+            (work/'check-attempts.json').write_text(json.dumps(attempts))
 
 
 def run(work):
@@ -246,9 +271,7 @@ def run(work):
                                 '--plan', str(work/'plan.json'), '--case', plan['cases'][0]['id'], '--output', str(work/'singer')],
                                env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=1200)
             status(work, 'running', 'Checking the finished audio against your musical direction…', 'checking')
-            with (work/'fit.log').open('x') as log:
-                subprocess.run([sys.executable, str(ROOT/'scripts/check_dna_audio.py'), '--work', str(work)],
-                               env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=180)
+            check_render(work,env)
             fit = json.loads((work/'fit.json').read_text())
             if fit['accepted']:
                 status(work, 'completed', 'Your song is ready. Press Play to listen.')
@@ -259,6 +282,8 @@ def run(work):
                 shutil.copy2(work/'input.json', archive/'input.json')
                 for name in ('plan.json', 'fit.json', 'singer', 'singer.log', 'fit.log'):
                     (work/name).rename(archive/name)
+                for name in ('fit-retry.log','fit-interrupted.json','check-attempts.json'):
+                    if (work/name).exists():(work/name).rename(archive/name)
                 plan = retry_direction(plan)
                 with (work/'plan.json').open('x') as output:json.dump(plan, output, indent=2, ensure_ascii=False)
         status(work, 'rejected', 'Neither take passed the style check for your list. Your favorites are saved. Please try again later.')
@@ -266,6 +291,9 @@ def run(work):
         if isinstance(error,subprocess.CalledProcessError):
             phase=json.loads((work/'status.json').read_text()).get('phase')
             (work/'failure.json').write_text(json.dumps({'stage':phase,'returncode':error.returncode}))
+        elif isinstance(error,subprocess.TimeoutExpired):
+            phase=json.loads((work/'status.json').read_text()).get('phase')
+            (work/'failure.json').write_text(json.dumps({'stage':phase,'reason':'timeout'}))
         status(work, 'failed', 'Song generation did not finish. Your favorites and previous songs are safe. Try again.')
         raise
 

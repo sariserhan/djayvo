@@ -95,12 +95,16 @@ class WorkerTests(unittest.TestCase):
             self.assertEqual(worker.failure_location(work),'checking-exit--9')
             (work/'status.json').write_text(json.dumps({'state':'rejected'}))
             self.assertEqual(worker.failure_location(work),'style-rejected')
+            (work/'fit.json').write_text(json.dumps({'matching_windows':2,'private':'lyrics must not leak'}))
+            self.assertEqual(worker.failure_location(work),'style-rejected:matched-2-of-4')
+            (work/'status.json').unlink();(work/'failure.json').write_text(json.dumps({'stage':'checking','reason':'timeout'}))
+            self.assertEqual(worker.failure_location(work),'checking-timeout')
 
     def test_timeout_kills_descendants_and_waits(self):
         from subprocess import TimeoutExpired
         with tempfile.TemporaryDirectory() as folder,patch.object(worker.subprocess,'Popen') as popen,patch.object(worker.os,'killpg') as kill:
             popen.return_value.pid=1234;popen.return_value.wait.side_effect=[TimeoutExpired('fixture',1),0]
-            with self.assertRaises(TimeoutExpired):worker.execute(Path(folder),1)
+            with self.assertRaisesRegex(worker.GenerationFailure,'worker-timeout'):worker.execute(Path(folder),1)
             kill.assert_called_once_with(1234,worker.signal.SIGKILL)
             self.assertTrue(popen.call_args.kwargs['start_new_session'])
             self.assertEqual(popen.call_args.args[0][0],str(ROOT/'build-style-training/upstream/.venv/bin/python'))

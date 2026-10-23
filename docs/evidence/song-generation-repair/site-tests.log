@@ -1,0 +1,83 @@
+TAP version 13
+# Subtest: cloud song configuration is opt-in and requires a bounded rate
+ok 1 - cloud song configuration is opt-in and requires a bounded rate
+  ---
+  duration_ms: 1.101583
+  type: 'test'
+  ...
+# Subtest: real Postgres cloud songs: concurrency, credits, recovery, privacy, cancellation and ambiguous submission
+    # Subtest: one request is reserved and dispatched once under duplicate concurrent calls
+    ok 1 - one request is reserved and dispatched once under duplicate concurrent calls
+      ---
+      duration_ms: 48.159083
+      type: 'test'
+      ...
+    # Subtest: several users queue independently; cancellation refunds while other songs continue
+    ok 2 - several users queue independently; cancellation refunds while other songs continue
+      ---
+      duration_ms: 1699.90775
+      type: 'test'
+      ...
+    # Subtest: restart after output storage failure uses persisted receipt and charges only once
+    ok 3 - restart after output storage failure uses persisted receipt and charges only once
+      ---
+      duration_ms: 842.485375
+      type: 'test'
+      ...
+    # Subtest: failed jobs refund all credits and invalid completed output cannot become public
+    ok 4 - failed jobs refund all credits and invalid completed output cannot become public
+      ---
+      duration_ms: 532.118208
+      type: 'test'
+      ...
+    # Subtest: website input, feedback ownership, personalization and consent withdrawal
+    ok 5 - website input, feedback ownership, personalization and consent withdrawal
+      ---
+      duration_ms: 794.877375
+      type: 'test'
+      ...
+    # Subtest: lost submit response never retries paid work; quiet endpoint after TTL releases reservation
+    ok 6 - lost submit response never retries paid work; quiet endpoint after TTL releases reservation
+      ---
+      duration_ms: 15.921083
+      type: 'test'
+      ...
+    # Subtest: test credit lots cannot fund live requests or inflate live balances
+    ok 7 - test credit lots cannot fund live requests or inflate live balances
+      ---
+      duration_ms: 4.747334
+      type: 'test'
+      ...
+    # Subtest: recovery rotates ambiguous jobs and releases credits after persistent storage failure
+    ok 8 - recovery rotates ambiguous jobs and releases credits after persistent storage failure
+      ---
+      duration_ms: 677.842042
+      type: 'test'
+      ...
+    1..8
+ok 2 - real Postgres cloud songs: concurrency, credits, recovery, privacy, cancellation and ambiguous submission
+  ---
+  duration_ms: 5025.463584
+  type: 'test'
+  ...
+# Subtest: Runpod submission is bounded, asynchronous, and never retried after uncertain acceptance
+ok 3 - Runpod submission is bounded, asynchronous, and never retried after uncertain acceptance
+  ---
+  duration_ms: 20.789917
+  type: 'test'
+  ...
+# Subtest: Runpod status validates identity, states, timing and receipts without exposing provider errors
+ok 4 - Runpod status validates identity, states, timing and receipts without exposing provider errors
+  ---
+  duration_ms: 3.267791
+  type: 'test'
+  ...
+1..4
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5428.895667
