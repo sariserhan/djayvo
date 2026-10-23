@@ -3,15 +3,28 @@ import assert from 'node:assert/strict';
 import {mkdtemp,mkdir,writeFile,readFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {dnaSong,localSingerRoot,songInput} from '../lib/dna-song';
+import {dnaSong as rawDnaSong,localSingerRoot,songInput} from '../lib/dna-song';
 import {musicDirection,favoriteKey} from '../lib/taste-direction';
 import {emptyTaste} from '../lib/taste';
 import {listenerDirectory,saveFeedback} from '../lib/dna-feedback';
 import {songCountry} from '../lib/dna-location';
+import {randomUUID} from 'node:crypto';
+import type {DnaCommerce} from '../lib/dna-commerce';
+const records=new Map<string,any>();
+// Process/HTTP fixture only; real wallet transactions are tested in dna-commerce.test.ts.
+const commerce={wallet:{balance:async()=>({available:10,reserved:0})},
+ pending:async()=>[],
+ row:async(id:string)=>records.get(id),
+ submit:async(owner:string,id:string,profile:unknown,visibility:string)=>{if(!records.has(id))records.set(id,{id,owner_id:owner,state:'queued',visibility,profile});return records.get(id);},
+ start:async(id:string)=>{records.get(id).state='running';return true;},
+ finish:async(id:string,state:string)=>{records.get(id).state=state;},
+ withdraw:async(owner:string,id:string)=>{records.get(id).withdrawn_at='now';},
+ } as unknown as DnaCommerce;
+const dnaSong=(request:Request)=>rawDnaSong(request,{commerce,owner:'alice'});
 
 const profile={...emptyTaste,references:['Heavy favorite'],referenceMetadata:[{reference:'Heavy favorite',genre:'Metal',source:'itunes' as const,id:1}]};
 const base='http://127.0.0.1:4247/api/taste/song';
-const request=(method='GET',query='',body?:unknown)=>new Request(base+query,{method,headers:{host:'127.0.0.1:4247',origin:'http://127.0.0.1:4247','X-Jamloom-DNA':'1','Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
+const request=(method='GET',query='',body?:unknown)=>new Request(base+query,{method,headers:{host:'127.0.0.1:4247',origin:'http://127.0.0.1:4247','X-Jamloom-DNA':'1','Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify((body as any)?.references?{action:'submit',profile:body,visibility:'private',publicConsent:false,token:'fixture',requestId:randomUUID().replaceAll('-','')}:body)});
 test('singer is opt-in and loopback only; profile transport excludes irrelevant controls',()=>{
  assert.throws(()=>localSingerRoot(request(),''),/not available/);
  for(const headers of [{host:'public.example'},{host:'127.0.0.1:4247',origin:'https://evil.test'},{host:'localhost','sec-fetch-site':'cross-site'},{host:'localhost','x-forwarded-for':'1.2.3.4'}] as Record<string,string>[]){
@@ -33,7 +46,7 @@ test('local job enforces bounds, single execution, durable retrieval and cancell
   await mkdir(join(root,'build-style-training/taste-auditor'),{recursive:true});await writeFile(join(root,'build-style-training/taste-auditor/pytorch_model.bin'),'fixture');
   // A tiny process fixture exercises the real process boundary without running the model in unit tests.
   await writeFile(join(root,'.venv-singer/bin/python'),`#!${process.execPath}
-const fs=require('node:fs'),crypto=require('node:crypto');const p=process.argv.at(-1),sha=v=>crypto.createHash('sha256').update(v).digest('hex');
+const fs=require('node:fs'),crypto=require('node:crypto');const p=process.argv[4],sha=v=>crypto.createHash('sha256').update(v).digest('hex');
 setTimeout(()=>{const input=fs.readFileSync(p+'/input.json'),audio=Buffer.alloc(100,1),plan=JSON.stringify({title:'Fixture song',direction:JSON.parse(input).direction,input_sha256:sha(input),cases:[{vocal_language:'en',bpm:140}]});
 fs.mkdirSync(p+'/singer');fs.writeFileSync(p+'/singer/singer.wav',audio);fs.writeFileSync(p+'/plan.json',plan);
 const receipt={plan_sha256:sha(plan),audio_sha256:sha(audio)};fs.writeFileSync(p+'/singer/complete.json',JSON.stringify(receipt));fs.writeFileSync(p+'/fit.json',JSON.stringify({...receipt,input_sha256:sha(input),accepted:true,target:JSON.parse(input).direction.id}));
@@ -43,7 +56,7 @@ fs.writeFileSync(p+'/status.json',JSON.stringify({state:'completed'}));},350);`,
   assert.equal((await dnaSong(request('POST','',{...emptyTaste,references:['Unknown']}))).status,422);
   const response=await dnaSong(request('POST','',profile));assert.equal(response.status,202);
   const {id}=await response.json();assert.match(id,/^[a-f0-9]{32}$/);
-  assert.equal((await dnaSong(request('POST','',{...emptyTaste,references:['Other favorite']}))).status,409);
+  assert.equal((await dnaSong(request('POST','',profile))).status,409);
   assert.equal((await dnaSong(request('GET',`?id=${id}&file=audio`))).status,409);
   for(let i=0;i<100;i++){if((await(await dnaSong(request('GET',`?id=${id}`))).json()).state==='completed')break;await new Promise(r=>setTimeout(r,20));}
   const ready=await(await dnaSong(request('GET',`?id=${id}`))).json();assert.equal(ready.state,'completed');assert.equal(ready.plan.title,'Fixture song');assert.equal(ready.styleChecked,true);assert.deepEqual(ready.profile.references,profile.references);assert.equal(ready.direction.id,'heavy-rock');

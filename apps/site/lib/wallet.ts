@@ -53,14 +53,14 @@ export class Wallet {
         costCapMicros:cap,marginBps,visibility,creditExempt:exempt};
     });
   }
-  async reserve(owner:string,key:string,cap:number,marginBps=5000,job?:JobBudget,visibility?:'public'|'private',expectedCredits?:number){
+  async reserve(owner:string,key:string,cap:number,marginBps=5000,job?:JobBudget,visibility?:'public'|'private',expectedCredits?:number,record?:{fingerprint:string;save:(db:PoolClient,id:string)=>Promise<void>}){
     if(visibility!==undefined && !['public','private'].includes(visibility))throw new Error('Invalid visibility');
     if(expectedCredits!==undefined)integer(expectedCredits,0,100000);
     const privacyBps=visibility==='private'?2500:0;
     integer(cap,1,5_000_000);integer(marginBps,3000,9000);
     if(!/^[a-zA-Z0-9_-]{8,100}$/.test(key))throw new Error('Invalid request key');
     if(job)validatePermit({...job,version:1,reservationId:'00000000-0000-0000-0000-000000000000',expiresAt:Date.now()+60000,costCapMicros:cap,attempt:1},Date.now());
-    const fingerprint=createHash('sha256').update(JSON.stringify({cap,marginBps,job,...(visibility?{visibility}: {}),...(expectedCredits!==undefined?{expectedCredits}:{})})).digest('hex');
+    const fingerprint=createHash('sha256').update(JSON.stringify({cap,marginBps,job,...(visibility?{visibility}: {}),...(expectedCredits!==undefined?{expectedCredits}:{}),...(record?{record:record.fingerprint}:{})})).digest('hex');
     return this.atomic(owner,async db=>{
       const prior=(await db.query('SELECT * FROM generation_reservations WHERE owner_id=$1 AND request_key=$2',[owner,key])).rows[0];
       if(prior){if(prior.fingerprint!==fingerprint)throw new Error('Changed quote');return prior.id as string;}
@@ -82,6 +82,7 @@ export class Wallet {
         await db.query("INSERT INTO wallet_ledger_entries(owner_id,lot_id,reservation_id,kind,available_delta,reserved_delta) VALUES($1,$2,$3,'reserve',$4,$5)",[owner,a.id,id,-a.n,a.n]);
       }
       if(job)await db.query('INSERT INTO generation_jobs(reservation_id,owner_id,input_sha256,plan_sha256,budget) VALUES($1,$2,$3,$4,$5)',[id,owner,job.inputSha256,job.planSha256,JSON.stringify(job)]);
+      if(record)await record.save(db,id);
       return id as string;
     });
   }

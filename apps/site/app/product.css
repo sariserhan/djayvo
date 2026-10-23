@@ -71,3 +71,9 @@
 .dna-feedback button[aria-pressed=true]{background:var(--lime);border-color:var(--lime);color:#151b12}.dna-feedback label{margin-top:16px}
 
 .dna-search{position:relative;display:grid;gap:8px}.dna-search>p{font-size:14px;margin:0}.dna-suggestions{position:absolute;top:80px;inset-inline:0;z-index:5;max-height:340px;overflow-y:auto;border:1px solid #6e805d;border-radius:8px;background:#161e17;box-shadow:0 14px 32px #0009}.dna-suggestions button{display:grid;gap:4px;width:100%;padding:12px 16px;text-align:left;color:inherit;background:transparent;border:0;border-bottom:1px solid var(--line);cursor:pointer;overflow-wrap:anywhere}.dna-suggestions button[aria-selected=true],.dna-suggestions button:hover{background:#2c3c25}.dna-suggestions button>span{font-size:13px}.dna-result-kind{color:var(--lime)}.dna-search-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+.dna-song-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:1.25rem}
+.dna-song-grid article{min-width:0;padding:1.25rem;border:1px solid var(--border,#384136);border-radius:16px}
+.dna-song-grid audio{display:block;width:100%;margin:1rem 0}
+
+#dna-notebook label:has(input[type=radio]){display:flex;align-items:center;gap:12px;min-height:44px}#dna-notebook input[type=radio]{width:22px;height:22px;padding:0;flex-shrink:0}

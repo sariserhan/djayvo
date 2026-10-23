@@ -13,11 +13,16 @@ const songUrl=(id:string)=>`/api/taste/song?id=${id}`;
 export function TasteNotebook(){
  const [profile,setProfile]=useState<Taste>(emptyTaste),[message,setMessage]=useState(''),[revision,setRevision]=useState(0),[busy,setBusy]=useState(false),[loaded,setLoaded]=useState(false);
  const [rendering,setRendering]=useState(false),[search,setSearch]=useState(''),[job,setJob]=useState<string|null>(null),[draft,setDraft]=useState<SongPlan|null>(null);
- const [takes,setTakes]=useState<Song[]>([]),[examples,setExamples]=useState<Song[]>([]);
+ const [takes,setTakes]=useState<Song[]>([]);
+ const [visibility,setVisibility]=useState<'public'|'private'>('public'),[publicConsent,setPublicConsent]=useState(false);
+ const [quote,setQuote]=useState<{credits:number;token:string;expiresAt:number;key:string}|null>(null);
+ const requestId=useRef<string|null>(null);
  const snapshot={references:profile.references,referenceMetadata:profile.referenceMetadata??[],vocalLanguage:profile.vocalLanguage},direction=musicDirection(snapshot);
  const current=takes.filter(s=>s.styleChecked&&s.profile&&favoriteKey(s.profile)===favoriteKey(snapshot));
  const earlier=takes.filter(s=>!current.includes(s));
  const taste=automaticTaste(profile),locked=busy||rendering;
+ const selectionKey=favoriteKey(snapshot)+':'+visibility;
+ useEffect(()=>{setQuote(null);requestId.current=null;},[selectionKey]);
  const analysis=useRef<AbortController|null>(null),writable=useRef(false),mounted=useRef(true);
  useEffect(()=>{try{const old=localStorage.getItem('jamloom-taste-v1');if(old)setProfile(favoriteList(validateTaste(JSON.parse(old))));writable.current=true;}catch{setMessage('Saved favorites could not be read. You can start a new list.');}finally{setLoaded(true);}},[]);
  useEffect(()=>{if(!loaded||!writable.current)return;try{if(profile.references.length)localStorage.setItem('jamloom-taste-v1',JSON.stringify(profile));else localStorage.removeItem('jamloom-taste-v1');}catch{setMessage('Your list is available for this session, but this browser could not save it.');}},[profile,loaded]);
@@ -27,11 +32,11 @@ export function TasteNotebook(){
   void (async()=>{
    try{
     const history=JSON.parse(localStorage.getItem('jamloom-dna-songs-v1')??'[]');
-    const saved=[...(Array.isArray(history)?history:[]).slice(-2).map((id:string)=>({id,example:false})),...new URLSearchParams(location.search).getAll('song').slice(-6).map(id=>({id,example:true}))];
+    const saved=(Array.isArray(history)?history:[]).slice(-2).map((id:string)=>({id,example:false}));
     for(const {id,example} of saved)if(typeof id==='string'&&/^[a-f0-9]{32}$/.test(id)){
      const response=await fetch(songUrl(id),{signal:AbortSignal.timeout(10000)});if(!response.ok)continue;
      const song:Song=await response.json();if(stopped)return;
-     if(song.state==='completed')(example?setExamples:setTakes)(old=>[...old.filter(s=>s.id!==id),song].slice(example?-6:-2));
+     if(song.state==='completed')setTakes(old=>[...old.filter(s=>s.id!==id),song].slice(example?-6:-2));
      else if(song.state==='running'&&!example){setJob(id);setRendering(true);}
     }
    }catch{/* Favorites remain independent of song-history availability. */}
@@ -48,8 +53,8 @@ export function TasteNotebook(){
     if(!response.ok){if(response.status===404||response.status===409){setRendering(false);setJob(null);setMessage(song.error??'This song is unavailable. Your favorites are safe.');return;}throw Error(song.error);}
     setMessage(song.message);if(song.plan)setDraft(song.plan);
     if(song.state!=='running'){
-     setRendering(false);setJob(null);
-     if(song.state==='completed')setTakes(old=>[...old.filter(s=>s.id!==job),song].slice(-2));
+     setRendering(false);setJob(null);requestId.current=null;setQuote(null);
+     if(song.state==='completed'){setTakes(old=>[...old.filter(s=>s.id!==job),song].slice(-2));requestId.current=null;setQuote(null);window.dispatchEvent(new Event('jamloom-dna-completed'));}
      return;
     }
    }catch{if(stopped)return;setMessage('Waiting to reconnect to your song. Your favorites are saved.');}
@@ -74,7 +79,7 @@ export function TasteNotebook(){
    try{const response=await fetch(songUrl(job),{method:'DELETE',headers:{'X-Jamloom-DNA':'1'},signal:AbortSignal.timeout(15000)});const result=await response.json();if(!response.ok)throw Error(result.error);setJob(null);}
    catch(error){setMessage(error instanceof Error?error.message:'Could not stop the song.');return;}
   }
-  setRendering(false);setMessage('Composition stopped. Your previous songs are still available.');
+  setRendering(false);requestId.current=null;setQuote(null);setMessage('Composition stopped. Your previous songs are still available.');
  }
  async function generate(){
   if(analysis.current||job)return;
@@ -83,10 +88,23 @@ export function TasteNotebook(){
    if(!profile.references.length)throw Error('Add at least one favorite first.');
    const available=await fetch('/api/taste/song',{signal:AbortSignal.any([controller.signal,AbortSignal.timeout(10000)])});
    const readiness=await available.json();if(!available.ok)throw Error(readiness.error);
-   if(readiness.active)throw Error('Another song is being made on this Mac. Your saved list is unchanged; try again when it finishes.');
+   if(readiness.creditsEnabled===false)throw Error('Credit-backed generation is not enabled here yet. Listen to the examples below.');
+   if(readiness.signedIn===false)throw Error('Sign in with a verified account to use your credits.');
+   if(readiness.active||readiness.busy)throw Error('Another song is being made on this Mac. Your saved list is unchanged; try again when it finishes.');
    const resolved=await resolveFavoriteMetadata(profile,controller.signal);controller.signal.throwIfAborted();setProfile(resolved);
-   // Keep the submission response so cancellation can stop an accepted job instead of losing its id.
-   const response=await fetch('/api/taste/song',{method:'POST',headers:{'Content-Type':'application/json','X-Jamloom-DNA':'1',...listenerHeaders()},body:JSON.stringify(resolved),signal:AbortSignal.timeout(15000)});
+   if(visibility==='public'&&!publicConsent)throw Error('Agree to public sharing or choose Private.');
+   const key=favoriteKey({...resolved,referenceMetadata:resolved.referenceMetadata??[]})+':'+visibility;
+   let accepted=quote?.key===key&&quote.expiresAt>Date.now()?quote:null;
+   if(!accepted){
+    const priced=await fetch('/api/taste/song',{method:'POST',headers:{'Content-Type':'application/json','X-Jamloom-DNA':'1'},body:JSON.stringify({action:'quote',profile:resolved,visibility,publicConsent}),signal:controller.signal});
+    const price=await priced.json();if(!priced.ok)throw Error(price.error);
+    accepted={...price,key};setQuote(accepted);
+    if(price.credits>(visibility==='public'?1:2)){setRendering(false);setMessage(`This song needs ${price.credits} credits to cover its generation cost. Review the new price, then click Make my music to accept it.`);return;}
+   }
+   controller.signal.throwIfAborted();
+   requestId.current??=crypto.randomUUID().replaceAll('-','');
+   // Retain the same request id if the response is lost; retries cannot charge or generate twice.
+   const response=await fetch('/api/taste/song',{method:'POST',headers:{'Content-Type':'application/json','X-Jamloom-DNA':'1',...listenerHeaders()},body:JSON.stringify({action:'submit',profile:resolved,visibility,publicConsent,token:accepted!.token,requestId:requestId.current}),signal:AbortSignal.timeout(15000)});
    const result=await response.json();if(!response.ok)throw Error(result.error);
    if(controller.signal.aborted||!mounted.current){await fetch(songUrl(result.id),{method:'DELETE',headers:{'X-Jamloom-DNA':'1'}});return;}
    setJob(result.id);setMessage('Writing your song…');
@@ -112,7 +130,7 @@ export function TasteNotebook(){
  {take.plan?.musical_traits&&<details><summary>The musical choices</summary><dl>{Object.entries(take.plan.musical_traits).map(([key,value])=><div key={key}><dt>{key.replaceAll('_',' ')}</dt><dd>{value}</dd></div>)}</dl></details>}
  {take.plan&&<><details><summary>Lyrics</summary><p style={{whiteSpace:'pre-wrap'}}>{take.plan.cases[0].lyrics}</p></details><details><summary>How these favorites shaped this song</summary><p>{take.plan.summary}</p><ul>{take.plan.influences.map(note=><li key={note.reference}><strong>{note.reference}</strong>: {note.description} {note.basis==='unknown'?'(Unrecognized)':note.basis==='genre_only'?'(Catalogue genre only)':'(Model interpretation)'}</li>)}</ul><p>{take.plan.cases[0].song_caption}</p><p>Musical direction uses catalogue metadata and model interpretation, not analysis of the original recordings. A style check cannot guarantee musical quality.</p></details></>}
  </article>;}
- return <section className="product-panel"><h2>Your favorite music</h2><p>Add songs or artists you love. Each click makes one new song from your list, with an AI singer and a full arrangement. No music brief needed.</p><div className="product-controls">
+ return <section id="dna-notebook" className="product-panel"><h2>Your favorite music</h2><p>Add songs or artists you love. Each click makes one new song from your list, with an AI singer and a full arrangement. No music brief needed.</p><div className="product-controls">
  <label>Singing language<select disabled={locked||!loaded} value={profile.vocalLanguage??'auto'} onChange={e=>{writable.current=true;setProfile({...profile,vocalLanguage:e.target.value});}}><option value="auto">Choose from my favorites</option>{Object.entries(languages.languages).map(([code,label])=><option key={code} value={code}>{label}</option>)}</select></label><p>Automatic language follows your favorites, with a small boost for matching languages in your approximate country. English-only favorites stay English wherever you are. Choose a language above to keep it fixed.</p>
  <FavoriteSearch saved={profile.references} disabled={locked||!loaded} onSelect={addSong}/>
  <div className="dna-favorites">{[...new Set(profile.references)].map(reference=><fieldset key={reference}><legend>{reference}</legend>
@@ -122,15 +140,21 @@ export function TasteNotebook(){
  {profile.references.length>0&&<div className="dna-summary"><h3>Your music DNA</h3><p>{taste.genres.length?taste.genres.map(g=>g.name).join(' · '):'We’ll look up the style of your favorites when you make your music.'}</p>
   {direction&&<p><strong>Song direction: {direction.label}</strong> · {direction.energy}. Based on {direction.coverage} of {direction.total} favorites with recognized catalogue genres.</p>}
   <details><summary>How we choose your sound</summary><p>We consider your whole list to choose a groove, instruments, mood and vocal delivery, then write original lyrics and music. The song’s direction will appear below while it is being made.</p><p>Catalogue genres and the model’s knowledge guide this interpretation. We don’t listen to or sample the original recordings, and unfamiliar names may not provide enough information.</p></details></div>}
- <button className="primary" disabled={locked||!loaded||!profile.references.length} onClick={generate}>{rendering?'Making your music…':takes.length?'Make another song':'Make my music'}</button>
+ <fieldset disabled={locked}><legend>Who can listen?</legend>
+ <label><input type="radio" name="dna-visibility" checked={visibility==='public'} onChange={()=>{setVisibility('public');setQuote(null);requestId.current=null;}}/>Public · from 1 credit</label><p>Your finished song appears in Community songs. Your favorites and account details are not shared.</p>
+ <label><input type="radio" name="dna-visibility" checked={visibility==='private'} onChange={()=>{setVisibility('private');setPublicConsent(false);setQuote(null);requestId.current=null;}}/>Private · from 2 credits</label><p>Only your signed-in account can listen or download.</p>
+ {visibility==='public'&&<label><input type="checkbox" checked={publicConsent} onChange={e=>setPublicConsent(e.target.checked)}/>I agree to publish this new song on the community page.</label>}
+ </fieldset>
+ <p>{quote&&quote.key===favoriteKey(snapshot)+':'+visibility?`This song: ${quote.credits} ${quote.credits===1?'credit':'credits'}.`:`Starting price: ${visibility==='public'?'1 credit':'2 credits'}.`} If generation costs require more credits, we’ll show the new quote for you to accept. Failed or cancelled generations release reserved credits.</p>
+ <p><a href="/account/sign-in?callbackURL=%2Fmusic-dna">Sign in</a> · <a href="/account/credits">Your credits</a>. Credit-backed generation currently uses local test credits; paid release is not enabled.</p>
+ <button className="primary" disabled={locked||!loaded||!profile.references.length||(visibility==='public'&&!publicConsent)} onClick={generate}>{rendering?'Making your music…':takes.length?'Make another song':'Make my music'}</button>
  {rendering&&<button className="secondary" onClick={cancel}>Cancel composition</button>}
  <p role="status">{message}</p>
  <p>Your favorites save automatically on this device. This local song preview takes several minutes. Playback starts only when you press Play.</p>
  {draft&&rendering&&<div><h3>{draft.title}</h3>{draft.favorites&&<p><strong>Making a song from:</strong> {draft.favorites.map(f=>f.reference).join(' · ')}</p>}<p>{draft.summary}</p></div>}
  {current.length>0&&<section aria-label="Songs for this list"><h3>Songs for this list</h3>{current.map(songCard)}</section>}
  {earlier.length>0&&<details><summary>Earlier songs and other lists ({earlier.length})</summary><p>These songs belong to the favorites shown with each player. Older takes have not passed the new style check.</p>{earlier.map(songCard)}</details>}
- {examples.length>0&&<section aria-label="Example songs"><h3>Example songs</h3><p>These examples were made from the lists shown below. They are separate from your saved favorites.</p>{examples.map(songCard)}</section>}
- {takes.length>0&&<p>Your latest two songs stay available on this Mac. Download the ones you want to keep.</p>}
+ {takes.length>0&&<p>Your latest two results appear here. Your account’s full collection is in Your songs below.</p>}
  <FeedbackSettings/>
  <details><summary>Saved favorites</summary>
   <button className="secondary" disabled={locked} onClick={clear}>Delete saved profile</button>

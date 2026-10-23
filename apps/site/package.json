@@ -26,7 +26,7 @@
     "db:usage": "tsx scripts/usage.ts",
     "audio:cleanup": "tsx scripts/cleanup-audio.ts",
     "auth:cleanup": "tsx scripts/cleanup-auth.ts",
-    "test:wallet": "tsx --test tests/wallet.test.ts tests/generation-queue.test.ts tests/generation-watchdog.test.ts tests/vast-provider.test.ts",
+    "test:wallet": "tsx --test tests/wallet.test.ts tests/generation-queue.test.ts tests/generation-watchdog.test.ts tests/vast-provider.test.ts tests/dna-commerce.test.ts",
     "generation:watchdog": "tsx scripts/generation-watchdog.ts",
     "test:product-browser": "node tests/product-browser.mjs",
     "test:product-a11y": "node tests/product-a11y.mjs",

@@ -1,0 +1,46 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "language_save_reload": [
+      "es",
+      "ru",
+      "tr"
+    ],
+    "generation_language": "tr",
+    "explicit_separate_consents": true,
+    "feedback_save_reload_delete": true,
+    "bulk_withdrawal_clears_cards": true,
+    "failed_load_recovery": true,
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "transport": "isolated browser fixtures, no training records",
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "language_save_reload": [
+      "es",
+      "ru",
+      "tr"
+    ],
+    "generation_language": "tr",
+    "explicit_separate_consents": true,
+    "feedback_save_reload_delete": true,
+    "bulk_withdrawal_clears_cards": true,
+    "failed_load_recovery": true,
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "transport": "isolated browser fixtures, no training records",
+    "human_listening": "NOT RUN"
+  }
+]

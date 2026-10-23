@@ -1,3 +1,9 @@
+## Music DNA song collections and prices — 2026-10-22
+
+[Open Music DNA](http://127.0.0.1:4247/music-dna) and scroll to **Made with Music DNA** for all nine completed examples. No special link is needed. **Your songs** and **Community songs** are ready for the authenticated credit flow: public starts at 1 credit, private at 2, with a higher quote shown for acceptance if costs require it. Public generation requires explicit sharing permission. Private playback/download requires the owner account; withdrawal from the public page is free. Failed or cancelled jobs release reserved credits.
+
+The existing listening server exposes the examples. Credit-backed generation is currently a separately configured local account/Postgres rehearsal, verified using two test accounts; live generation and credit purchases are not enabled. Migration 0016, hosted worker/cost/payment validation and the remaining musical acceptance must precede production completion. Earlier local start instructions without a credit configuration now support listening only. [Current implementation and reproducible evidence](music-dna-sharing-credits.md).
+
 ## Music DNA automatic language — 2026-10-22
 
 Each click makes one song. Automatic mode draws from the interpreted languages of the saved favorites; approximate IP country can give matching languages 1.5 times their original weight, only for mixed-language lists. An English-only list stays English anywhere. Select a specific singing language to override the draw and skip country lookup. Country lookup failures leave favorites in control. The Mac loopback preview uses Country.is; hosted code can use Vercel country headers, but hosted generation remains unreleased. Only the country code is retained with the song request. [Implementation, tests and limitations](music-dna-expanded.md#one-song-weighted-language-and-approximate-country--2026-10-22).

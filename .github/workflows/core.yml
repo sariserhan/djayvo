@@ -82,6 +82,7 @@ jobs:
           node --test ../web/tests/*.test.js
           npm run test:academy
           npm run test:admin
+          npm run test:wallet
           node --import tsx --test tests/pro.test.ts
   build:
     strategy:

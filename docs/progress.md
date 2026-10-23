@@ -1,3 +1,7 @@
+## Music DNA collections and credits — 2026-10-22
+
+**PASS, local implementation and technical checks; product PARTIAL.** All nine existing completed examples now appear permanently on Music DNA, alongside owner and community collections. Approved starting prices are 1 public / 2 private credits. Explicit sharing consent, signed quotes, atomic reservations, idempotent settlement, full failure/cancellation refunds, private owner checks and free public withdrawal are implemented. Real Postgres, two-account Chromium/WebKit flow, nine-song playback, regressions and build/bundle checks pass. This is a loopback credit rehearsal; production migration, hosted singer/real purchases and broader musical acceptance remain open. [Report and evidence](music-dna-sharing-credits.md).
+
 ## Music DNA language balance and location — 2026-10-22
 
 **PASS, local implementation and planner checks:** Each click returns one song. Favorite-language counts determine a weighted random selection; approximate country gently boosts only matching languages in mixed lists. English-only favorites remain English anywhere, and a manual language skips geolocation/classification. 20 Python and 62 site tests, build/bundle checks, real mixed-language and English-only planner cases pass. New audio listening and hosted geolocation are **NOT RUN**. [Evidence and limits](music-dna-expanded.md#one-song-weighted-language-and-approximate-country--2026-10-22).

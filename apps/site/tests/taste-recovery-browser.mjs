@@ -12,14 +12,14 @@ try{
  await page.getByRole('status').filter({hasText:'Saved favorites could not be read'}).waitFor();assert.equal(await page.evaluate(()=>localStorage.getItem('jamloom-taste-v1')),'corrupt-profile-preserved');
  await page.getByRole('combobox',{name:'Search artists or tracks'}).fill('Unmatched favorite');await page.getByRole('option',{name:/Add by name/}).click();
  hold=true;const requested=page.waitForRequest(r=>r.url().endsWith('/api/music-search'));
- await page.getByRole('button',{name:'Make my music',exact:true}).click();await requested;
+ await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:'Make my music',exact:true}).click();await requested;
  await page.getByRole('button',{name:'Cancel composition',exact:true}).click();release();
  await page.getByRole('status').filter({hasText:'Composition stopped'}).waitFor();await page.waitForTimeout(300);
  assert.equal(await page.locator('audio[src^="blob:"]').count(),0);assert.equal(await page.getByRole('button',{name:'Make my music',exact:true}).isEnabled(),true);
  assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references),['Unmatched favorite']);
  await context.unroute('**/api/taste/song*');
  await context.route('**/api/taste/song*',r=>r.fulfill({status:503,json:{error:'Full-song generation is not available on this server yet. No instrumental substitute will be generated.'}}));
- await page.getByRole('button',{name:'Make my music',exact:true}).click();
+ await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:'Make my music',exact:true}).click();
  await page.getByRole('status').filter({hasText:'No instrumental substitute'}).waitFor();
  assert.equal(await page.locator('audio[src*="file=audio"],audio[src^="blob:"]').count(),0);
  assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references),['Unmatched favorite']);
@@ -32,16 +32,17 @@ try{
  // A running job from another list must never be adopted by Make my music.
  await context.unroute('**/api/taste/song*');let posts=0;
  await context.route('**/api/taste/song*',r=>{if(r.request().method()==='POST')posts++;return r.fulfill({json:{available:true,active:'3'.repeat(32)}});});
- await page.getByRole('button',{name:'Make another song',exact:true}).click();
+ await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:'Make another song',exact:true}).click();
  await page.getByRole('status').filter({hasText:'Another song is being made'}).waitFor();assert.equal(posts,0);
  assert.equal(await page.getByRole('button',{name:'Cancel composition',exact:true}).count(),0);
  await context.unroute('**/api/taste/song*');
  const rejectedId='4'.repeat(32);
  await context.route('**/api/taste/song*',r=>{
   const request=r.request(),id=new URL(request.url()).searchParams.get('id');
+  if(request.method()==='POST'&&request.postDataJSON().action==='quote')return r.fulfill({json:{credits:1,token:'fixture',expiresAt:Date.now()+300000}});
   return r.fulfill({status:request.method()==='POST'?202:200,json:request.method()==='POST'?{id:rejectedId}:id?{id,state:'rejected',message:'Neither take passed the style check for your list. Your favorites are saved.'}:{available:true}});
  });
- await page.getByRole('button',{name:'Make another song',exact:true}).click();
+ await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:'Make another song',exact:true}).click();
  await page.getByRole('status').filter({hasText:'Neither take passed'}).waitFor();
  assert.equal(await page.getByRole('button',{name:'Make another song',exact:true}).isEnabled(),true);
  assert.equal(await page.locator(`audio[src*="${rejectedId}"]`).count(),0);

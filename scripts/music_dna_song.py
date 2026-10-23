@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import sys
+import signal
 
 from singing_response import CODE_REVISION, WEIGHT_REVISION, VOICES, digest, lyric_model, text_field, validate_plan
 from dna_direction import direction_for, validate_direction
@@ -259,8 +260,16 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('phase', choices=('draft', 'run'))
     parser.add_argument('work', type=Path)
+    parser.add_argument('--deadline-seconds',type=int,choices=range(1,901))
     args = parser.parse_args()
     if args.phase == 'run':
+        if args.deadline_seconds:
+            def deadline(signum,frame):
+                status(args.work,'failed','Generation reached its time limit.')
+                # The website starts a dedicated process group; stop nested inference even after a server restart.
+                if os.getpgrp()==os.getpid():os.killpg(os.getpid(),signal.SIGKILL)
+                raise TimeoutError('Generation deadline reached')
+            signal.signal(signal.SIGALRM,deadline);signal.alarm(args.deadline_seconds)
         lock_path = ROOT/'renders/.music-dna-singer.lock'
         with lock_path.open('a') as lock:
             try:

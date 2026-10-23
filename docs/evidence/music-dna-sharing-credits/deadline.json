@@ -1,0 +1,7 @@
+{
+  "deadline_seconds": 1,
+  "terminal_state": "failed",
+  "process_group_terminated": true,
+  "exit": -9,
+  "audio_generated": false
+}

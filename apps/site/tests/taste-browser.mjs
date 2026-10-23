@@ -48,19 +48,20 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    assert.deepEqual((await new AxeBuilder({page}).include('.dna-search').analyze()).violations,[]);
   }
   await search.press('Escape');await page.setViewportSize({width:1280,height:900});
-  assert.equal(await page.locator('.product-panel audio').count(),10);assert.ok(await page.locator('.product-panel audio').evaluateAll(list=>list.every(a=>a.paused&&a.preload==='none')));
+  assert.equal(await page.locator('#dna-notebook audio').count(),10);assert.ok(await page.locator('#dna-notebook audio').evaluateAll(list=>list.every(a=>a.paused&&a.preload==='none')));
   await page.getByText('Discover practice tracks',{exact:true}).click();
   const preview=page.getByLabel('Listen to Funked Up',{exact:true});
-  await preview.evaluate(a=>a.play());await page.waitForFunction(()=>document.querySelector('.product-panel audio')?.currentTime>0);
+  await preview.evaluate(a=>a.play());await page.waitForFunction(()=>document.querySelector('#dna-notebook audio')?.currentTime>0);
   assert.ok(await preview.evaluate(a=>a.duration>10&&a.muted));
-  const second=page.locator('.product-panel audio').nth(1);await second.evaluate(a=>a.play());
-  await page.waitForFunction(()=>document.querySelector('.product-panel audio')?.paused);await second.evaluate(a=>a.pause());
+  const second=page.locator('#dna-notebook audio').nth(1);await second.evaluate(a=>a.play());
+  await page.waitForFunction(()=>document.querySelector('#dna-notebook audio')?.paused);await second.evaluate(a=>a.pause());
   await page.getByText('Discover practice tracks',{exact:true}).click();
   assert.equal(await page.getByText('What would you like in your music?',{exact:true}).count(),0);
   assert.equal(await page.getByLabel('Preferred tempo:').count(),0);
   const language=page.getByRole('combobox',{name:'Singing language',exact:true});
   assert.equal(await language.inputValue(),'auto');
   assert.match(await page.locator('.product-controls').innerText(),/English-only favorites stay English wherever you are/);
+  await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();
   const plans=[];
   const wavs=[],audio=[];
   for(let i=0;i<2;i++){
@@ -98,7 +99,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'horizontal overflow at '+width);
    await page.getByRole('heading',{name:'Your favorite music'}).evaluate(e=>e.scrollIntoView({block:'start'}));await page.screenshot({path:join(output,`${name}-${width}.png`)});
   }
-  const accessibility=await new AxeBuilder({page}).include('.product-panel').analyze();assert.deepEqual(accessibility.violations,[]);
+  const accessibility=await new AxeBuilder({page}).include('#dna-notebook').analyze();assert.deepEqual(accessibility.violations,[]);
   await page.getByRole('button',{name:'Remove favorite Night set',exact:true}).click();await search.fill('Another song');await page.getByRole('option',{name:/Add by name/}).click();
   await page.reload();await page.getByRole('group',{name:'Another song',exact:true}).waitFor();
   await page.getByText('Saved favorites',{exact:true}).click();

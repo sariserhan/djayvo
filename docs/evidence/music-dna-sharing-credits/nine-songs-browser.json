@@ -1,0 +1,210 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "songs": [
+      {
+        "id": "06d89abd7d194ddf81bbc54af3e9b67f",
+        "title": "Concrete Roots",
+        "seconds": 120,
+        "language": "en",
+        "voice": "male",
+        "bpm": 130,
+        "caption": "Riff-led heavy rock and metal, driving rhythmic momentum, powerful projected melodic vocals, punchy kick and snare, dynamic full-band choruses. Keep the music heavy even in quieter passages. Instrumentation: distorted electric guitar riffs, electric bass, hard-hitting live drums. Energy: intense. Driving, relentless rhythm with pounding kick and snare. Distorted electric guitar riffs dominate, layered with aggressive bass. Full-band choral sections surge with intensity. No quiet moments—dynamics remain sharp and unrelenting. Vocal delivery is powerful, projected, with clipped, urgent phrasing. High energy throughout, with no instrumental softness. Lead vocal: an expressive adult male singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "0f7c7e87a20645ce8f52e6de86988fe4",
+        "title": "夜の向こうへ",
+        "seconds": 120,
+        "language": "ja",
+        "voice": "female",
+        "bpm": 100,
+        "caption": "Melodic pop with a clear rhythmic pulse, developing verses, a strong singable chorus and expressive natural vocals. Instrumentation: rhythmic drums, melodic bass, piano guitar or synthesizers. Energy: melodic. Rhythm-driven with steady drums and melodic bass. Piano and soft synth pads create a flowing, intimate texture. Harmonies shimmer subtly, supporting vocal warmth. Dynamics rise gently in chorus, resolving softly. steady 4/4 pulse with subtle syncopation, walking like a quiet heartbeat light piano and soft synth pads with warm bass undertone moderately lush, minor-key progressions with bright chord changes in chorus gentle, clear phrasing with breath-like pauses and rising intensity in chorus Verse 1 establishes a quiet scene; Verse 2 reveals a shared memory, deepening emotional tension before chorus resolves with fading warmth. Sing in Japanese. Lead vocal: an expressive adult female singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "3f868ec96fdd4f8089ce5225befefc8c",
+        "title": "Raat Ke Awaam",
+        "seconds": 120,
+        "language": "hi",
+        "voice": "female",
+        "bpm": 100,
+        "caption": "Use the supplied South Asian style as musical guidance, expressive melodic ornament, appropriate regional percussion and a memorable sung refrain. Instrumentation: regional melodic strings or keys, tabla or regional percussion, bass. Energy: expressive. Groove pulses with tabla rhythms and bass undertones, harmonies float like whispers in the wind. Strings shimmer subtly; vocals glide with expressive phrasing. Dynamics rise in the chorus, ending softly in a hum. steady, danceable tabla rhythm with subtle off-beats layered strings and brushed bass with ambient space softly rising scale patterns with Indian classical inflections melodic, emotive, with subtle trills and pauses Verse builds intimacy; verse two deepens with a moment of quiet reflection, leading to a full chorus and soft fade out. Sing in Hindi. Lead vocal: an expressive adult female singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "4a81d32f68b14b09956d9d82cdabba53",
+        "title": "أرض المطر",
+        "seconds": 120,
+        "language": "ar",
+        "voice": "female",
+        "bpm": 72,
+        "caption": "Respect the supplied regional tradition: expressive ornamental melody, interlocking hand percussion and clear sung phrasing. Do not equate language with genre. Instrumentation: oud or regional strings, hand percussion, melodic bass. Energy: expressive. Rhythmic groove drives with oud and frame drum interplay; warm, sliding melodies in middle Eastern harmony. Vocal phrasing flows with expressive pauses and ornamentation. Dynamic build in bridge. Gentle, intimate texture throughout. steady 72 bpm with hand percussion anchoring the pulse oud and melodic bass weave with subtle hand rhythms rich, modal Arabic scales with passing tones for emotional depth expressive, fluid phrasing with slight hesitation and vibrato for intimacy Verse builds tension; bridge deepens with layered harmonies, chorus returns with added percussion, outro fades into silence. Sing in Arabic. Lead vocal: an expressive adult female singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "4caf5b05203048a3b61bb22cd4d2ce9c",
+        "title": "Город без сигарет",
+        "seconds": 120,
+        "language": "ru",
+        "voice": "male",
+        "bpm": 100,
+        "caption": "A guitar-led alternative rock band, distinct rhythmic riffs, expressive projected singing, energetic drums and dynamic choruses. Instrumentation: electric guitar, electric bass, live drums. Energy: driving. Driving alternative rock with sharp electric guitar riffs, tight bass lines, and punchy live drums. Dynamic shifts and urgent vocal delivery create a sense of urban tension and momentum. No ambient or soft elements. tight, urgent, like walking through a city at night with tension in every step aggressive guitar textures, deep bass pulse, crisp drum hits with live energy mood-driven, with subtle shifts in chord progressions — dark and evolving like a city waking up projected, urgent, with breathless intensity and sudden pauses to build tension verse builds into a charged chorus, bridge drops to silence then explodes back — ending in a fading echo of the city breathing. Sing in Russian. Lead vocal: an expressive adult male singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "b11454224b724e708a68b80faf60d5e2",
+        "title": "Flicker in the Dark",
+        "seconds": 120,
+        "language": "en",
+        "voice": "female",
+        "bpm": 112,
+        "caption": "Mid-tempo pulse with deep bass undertones and shimmering arpeggios. Warm, analog synth textures glide beneath a steady 4/4 rhythm. Dynamics shift subtly—quiet, intimate verses swell into a sustained, echoing chorus. Vocal phrasing is slow, breathy, and deliberate, like a whisper in a crowded room.. Lead vocal: an expressive adult female soul singer, warm natural chest voice, intimate clear diction. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "c7944cb9bef241a3857be663ee5c8e53",
+        "title": "Saatte Bitti",
+        "seconds": 120,
+        "language": "tr",
+        "voice": "female",
+        "bpm": 100,
+        "caption": "Melodic pop with a clear rhythmic pulse, developing verses, a strong singable chorus and expressive natural vocals. Instrumentation: rhythmic drums, melodic bass, piano guitar or synthesizers. Energy: melodic. Rhythmic drums drive a steady 4/4 pulse with a bouncy, danceable groove. Melodic bass and piano-guitar interplay add warmth. Harmonic color is bright and clear, with major-key resolutions. Vocals are expressive, natural, and slightly breathy in emotion. Arrangement builds gently: verses state a scene, chorus expands with confidence, bridge offers a quiet pause before final chorus surge. Dynamic contrast between soft intimacy and full ensemble peaks. driving 4/4 with a bouncy, danceable rhythm piano and bass interweave with light synths for airy, inviting texture bright, major-key harmonies with subtle modal shifts for emotional depth natural, slightly breathy, with rising intensity in chorus and bridge Verse 1 introduces a simple scene; Verse 2 deepens it with a personal detail; chorus repeats with growing confidence; bridge reflects silence, then final chorus resolves with full energy and clarity. Sing in Turkish. Lead vocal: an expressive adult female singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "d0a71022000000000000000000000001",
+        "title": "Fingers in the Soil",
+        "seconds": 120,
+        "language": "en",
+        "voice": "female",
+        "bpm": 100,
+        "caption": "Mid-tempo, 100 bpm, with a steady 4/4 groove driven by upright bass and brushed snare. Harmonic palette leans on warm, minor-key progressions (Dm–G–C–Am) with subtle chromatic movement. Warm piano and soft synth textures add emotional depth. Dynamics shift gently—quiet in verses, swelling slightly in chorus—like a heartbeat growing stronger. Vocal phrasing is natural, breathy, and conversational, as if speaking directly to a loved one in a dimly lit room.. Lead vocal: an expressive adult female soul singer, warm natural chest voice, intimate clear diction. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "e46c2b419c054cd79311bd9deecf1258",
+        "title": "La Sombra del Camino",
+        "seconds": 120,
+        "language": "es",
+        "voice": "male",
+        "bpm": 100,
+        "caption": "Latin rhythmic phrasing, interlocking percussion, melodic bass and expressive sung hooks, with clear instrumental answers. Instrumentation: syncopated percussion, rhythmic bass, guitar or piano. Energy: buoyant. Rhythm drives with syncopated percussion and rhythmic bass, layered with bright guitar accents. Harmonic color stays warm and forward, rooted in 7th and 9th chords. Vocals glide with expressive phrasing, rising in intensity during key phrases. Arrangement builds with interlocking percussion and bass lines, resolving in a tight, celebratory close. driving, danceable with a steady Latin clave pulse tight syncopated percussion, warm acoustic guitar, and pulsing bass lively 7th and 9th chords with open, melodic extensions smooth, expressive, with subtle emotional crescendo in key lines Verse builds tension, chorus expands with layered rhythm, bridge tightens rhythm before final chorus resolves. Sing in Spanish. Lead vocal: an expressive adult male singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      }
+    ],
+    "downloaded": {
+      "bytes": 23040044,
+      "sha256": "b0d3384d389644c57db4bb6c706225cb6404e7e2b1b5eaeea4a591df2b0619d4",
+      "filename": "jamloom-song-06d89abd.wav"
+    },
+    "no_autoplay": true,
+    "muted_playback": true,
+    "seek_seconds": 90,
+    "range_status": 206,
+    "layouts": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "errors": [],
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "songs": [
+      {
+        "id": "06d89abd7d194ddf81bbc54af3e9b67f",
+        "title": "Concrete Roots",
+        "seconds": 120,
+        "language": "en",
+        "voice": "male",
+        "bpm": 130,
+        "caption": "Riff-led heavy rock and metal, driving rhythmic momentum, powerful projected melodic vocals, punchy kick and snare, dynamic full-band choruses. Keep the music heavy even in quieter passages. Instrumentation: distorted electric guitar riffs, electric bass, hard-hitting live drums. Energy: intense. Driving, relentless rhythm with pounding kick and snare. Distorted electric guitar riffs dominate, layered with aggressive bass. Full-band choral sections surge with intensity. No quiet moments—dynamics remain sharp and unrelenting. Vocal delivery is powerful, projected, with clipped, urgent phrasing. High energy throughout, with no instrumental softness. Lead vocal: an expressive adult male singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "0f7c7e87a20645ce8f52e6de86988fe4",
+        "title": "夜の向こうへ",
+        "seconds": 120,
+        "language": "ja",
+        "voice": "female",
+        "bpm": 100,
+        "caption": "Melodic pop with a clear rhythmic pulse, developing verses, a strong singable chorus and expressive natural vocals. Instrumentation: rhythmic drums, melodic bass, piano guitar or synthesizers. Energy: melodic. Rhythm-driven with steady drums and melodic bass. Piano and soft synth pads create a flowing, intimate texture. Harmonies shimmer subtly, supporting vocal warmth. Dynamics rise gently in chorus, resolving softly. steady 4/4 pulse with subtle syncopation, walking like a quiet heartbeat light piano and soft synth pads with warm bass undertone moderately lush, minor-key progressions with bright chord changes in chorus gentle, clear phrasing with breath-like pauses and rising intensity in chorus Verse 1 establishes a quiet scene; Verse 2 reveals a shared memory, deepening emotional tension before chorus resolves with fading warmth. Sing in Japanese. Lead vocal: an expressive adult female singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "3f868ec96fdd4f8089ce5225befefc8c",
+        "title": "Raat Ke Awaam",
+        "seconds": 120,
+        "language": "hi",
+        "voice": "female",
+        "bpm": 100,
+        "caption": "Use the supplied South Asian style as musical guidance, expressive melodic ornament, appropriate regional percussion and a memorable sung refrain. Instrumentation: regional melodic strings or keys, tabla or regional percussion, bass. Energy: expressive. Groove pulses with tabla rhythms and bass undertones, harmonies float like whispers in the wind. Strings shimmer subtly; vocals glide with expressive phrasing. Dynamics rise in the chorus, ending softly in a hum. steady, danceable tabla rhythm with subtle off-beats layered strings and brushed bass with ambient space softly rising scale patterns with Indian classical inflections melodic, emotive, with subtle trills and pauses Verse builds intimacy; verse two deepens with a moment of quiet reflection, leading to a full chorus and soft fade out. Sing in Hindi. Lead vocal: an expressive adult female singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "4a81d32f68b14b09956d9d82cdabba53",
+        "title": "أرض المطر",
+        "seconds": 120,
+        "language": "ar",
+        "voice": "female",
+        "bpm": 72,
+        "caption": "Respect the supplied regional tradition: expressive ornamental melody, interlocking hand percussion and clear sung phrasing. Do not equate language with genre. Instrumentation: oud or regional strings, hand percussion, melodic bass. Energy: expressive. Rhythmic groove drives with oud and frame drum interplay; warm, sliding melodies in middle Eastern harmony. Vocal phrasing flows with expressive pauses and ornamentation. Dynamic build in bridge. Gentle, intimate texture throughout. steady 72 bpm with hand percussion anchoring the pulse oud and melodic bass weave with subtle hand rhythms rich, modal Arabic scales with passing tones for emotional depth expressive, fluid phrasing with slight hesitation and vibrato for intimacy Verse builds tension; bridge deepens with layered harmonies, chorus returns with added percussion, outro fades into silence. Sing in Arabic. Lead vocal: an expressive adult female singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "4caf5b05203048a3b61bb22cd4d2ce9c",
+        "title": "Город без сигарет",
+        "seconds": 120,
+        "language": "ru",
+        "voice": "male",
+        "bpm": 100,
+        "caption": "A guitar-led alternative rock band, distinct rhythmic riffs, expressive projected singing, energetic drums and dynamic choruses. Instrumentation: electric guitar, electric bass, live drums. Energy: driving. Driving alternative rock with sharp electric guitar riffs, tight bass lines, and punchy live drums. Dynamic shifts and urgent vocal delivery create a sense of urban tension and momentum. No ambient or soft elements. tight, urgent, like walking through a city at night with tension in every step aggressive guitar textures, deep bass pulse, crisp drum hits with live energy mood-driven, with subtle shifts in chord progressions — dark and evolving like a city waking up projected, urgent, with breathless intensity and sudden pauses to build tension verse builds into a charged chorus, bridge drops to silence then explodes back — ending in a fading echo of the city breathing. Sing in Russian. Lead vocal: an expressive adult male singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "b11454224b724e708a68b80faf60d5e2",
+        "title": "Flicker in the Dark",
+        "seconds": 120,
+        "language": "en",
+        "voice": "female",
+        "bpm": 112,
+        "caption": "Mid-tempo pulse with deep bass undertones and shimmering arpeggios. Warm, analog synth textures glide beneath a steady 4/4 rhythm. Dynamics shift subtly—quiet, intimate verses swell into a sustained, echoing chorus. Vocal phrasing is slow, breathy, and deliberate, like a whisper in a crowded room.. Lead vocal: an expressive adult female soul singer, warm natural chest voice, intimate clear diction. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "c7944cb9bef241a3857be663ee5c8e53",
+        "title": "Saatte Bitti",
+        "seconds": 120,
+        "language": "tr",
+        "voice": "female",
+        "bpm": 100,
+        "caption": "Melodic pop with a clear rhythmic pulse, developing verses, a strong singable chorus and expressive natural vocals. Instrumentation: rhythmic drums, melodic bass, piano guitar or synthesizers. Energy: melodic. Rhythmic drums drive a steady 4/4 pulse with a bouncy, danceable groove. Melodic bass and piano-guitar interplay add warmth. Harmonic color is bright and clear, with major-key resolutions. Vocals are expressive, natural, and slightly breathy in emotion. Arrangement builds gently: verses state a scene, chorus expands with confidence, bridge offers a quiet pause before final chorus surge. Dynamic contrast between soft intimacy and full ensemble peaks. driving 4/4 with a bouncy, danceable rhythm piano and bass interweave with light synths for airy, inviting texture bright, major-key harmonies with subtle modal shifts for emotional depth natural, slightly breathy, with rising intensity in chorus and bridge Verse 1 introduces a simple scene; Verse 2 deepens it with a personal detail; chorus repeats with growing confidence; bridge reflects silence, then final chorus resolves with full energy and clarity. Sing in Turkish. Lead vocal: an expressive adult female singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "d0a71022000000000000000000000001",
+        "title": "Fingers in the Soil",
+        "seconds": 120,
+        "language": "en",
+        "voice": "female",
+        "bpm": 100,
+        "caption": "Mid-tempo, 100 bpm, with a steady 4/4 groove driven by upright bass and brushed snare. Harmonic palette leans on warm, minor-key progressions (Dm–G–C–Am) with subtle chromatic movement. Warm piano and soft synth textures add emotional depth. Dynamics shift gently—quiet in verses, swelling slightly in chorus—like a heartbeat growing stronger. Vocal phrasing is natural, breathy, and conversational, as if speaking directly to a loved one in a dimly lit room.. Lead vocal: an expressive adult female soul singer, warm natural chest voice, intimate clear diction. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "e46c2b419c054cd79311bd9deecf1258",
+        "title": "La Sombra del Camino",
+        "seconds": 120,
+        "language": "es",
+        "voice": "male",
+        "bpm": 100,
+        "caption": "Latin rhythmic phrasing, interlocking percussion, melodic bass and expressive sung hooks, with clear instrumental answers. Instrumentation: syncopated percussion, rhythmic bass, guitar or piano. Energy: buoyant. Rhythm drives with syncopated percussion and rhythmic bass, layered with bright guitar accents. Harmonic color stays warm and forward, rooted in 7th and 9th chords. Vocals glide with expressive phrasing, rising in intensity during key phrases. Arrangement builds with interlocking percussion and bass lines, resolving in a tight, celebratory close. driving, danceable with a steady Latin clave pulse tight syncopated percussion, warm acoustic guitar, and pulsing bass lively 7th and 9th chords with open, melodic extensions smooth, expressive, with subtle emotional crescendo in key lines Verse builds tension, chorus expands with layered rhythm, bridge tightens rhythm before final chorus resolves. Sing in Spanish. Lead vocal: an expressive adult male singer. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      }
+    ],
+    "downloaded": {
+      "bytes": 23040044,
+      "sha256": "b0d3384d389644c57db4bb6c706225cb6404e7e2b1b5eaeea4a591df2b0619d4",
+      "filename": "jamloom-song-06d89abd.wav"
+    },
+    "no_autoplay": true,
+    "muted_playback": true,
+    "seek_seconds": 90,
+    "range_status": 206,
+    "layouts": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "errors": [],
+    "human_listening": "NOT RUN"
+  }
+]

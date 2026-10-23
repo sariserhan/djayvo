@@ -25,7 +25,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/music-dna');
   const language=page.getByRole('combobox',{name:'Singing language'});await language.waitFor();assert.equal(await language.locator('option').count(),51);
   for(const code of ['es','ru','tr']){await language.selectOption(code);await page.waitForFunction(code=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).vocalLanguage===code,code);await page.reload();await language.waitFor();assert.equal(await language.inputValue(),code);}
-  await page.getByRole('button',{name:'Make my music',exact:true}).click();await page.getByLabel('Play Fixture song 1',{exact:true}).waitFor();assert.equal(fixture.bodies[0].vocalLanguage,'tr');
+  await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:'Make my music',exact:true}).click();await page.getByLabel('Play Fixture song 1',{exact:true}).waitFor();assert.equal(fixture.bodies[0].vocalLanguage,'tr');
   const group=page.getByRole('group',{name:'Song feedback',exact:true});await group.getByRole('button',{name:'Not for me',exact:true}).click();
   const personal=group.getByRole('checkbox',{name:'Use this feedback to shape my future songs'}),training=group.getByRole('checkbox',{name:'Allow this Jamloom song and my rating to help train the model'});
   assert.equal(await personal.isChecked(),false);assert.equal(await training.isChecked(),false);
@@ -34,7 +34,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await page.reload();await group.getByRole('button',{name:'Delete feedback'}).waitFor();assert.equal(await personal.isChecked(),true);assert.equal(await training.isChecked(),false);
   await training.check();await group.getByRole('button',{name:'Save feedback',exact:true}).click();await group.getByRole('status').filter({hasText:'enough reviewed examples'}).waitFor();assert.equal(writes.at(-1).trainingConsent,true);
   for(const width of [1280,390,320]){await page.setViewportSize({width,height:900});await group.scrollIntoViewIfNeeded();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:join(output,`${name}-${width}.png`)});}
-  assert.deepEqual((await new AxeBuilder({page}).include('.product-panel').analyze()).violations,[]);
+  assert.deepEqual((await new AxeBuilder({page}).include('#dna-notebook').analyze()).violations,[]);
   failLoad=true;await page.reload();await page.getByRole('button',{name:'Reload feedback'}).waitFor();assert.equal(await group.getByRole('button',{name:'Not for me',exact:true}).isDisabled(),true);
   failLoad=false;await page.getByRole('button',{name:'Reload feedback'}).click();await group.getByRole('button',{name:'Delete feedback'}).waitFor();await group.getByRole('button',{name:'Delete feedback'}).click();await group.getByRole('status').filter({hasText:'Feedback deleted'}).waitFor();assert.equal(records.size,0);
   await page.reload();await group.getByRole('button',{name:'Yes, I like it'}).waitFor();assert.equal(await group.getByRole('button',{name:'Yes, I like it'}).getAttribute('aria-pressed'),'false');

@@ -1,0 +1,148 @@
+
+> jamloom-site@0.1.0 test:wallet
+> tsx --test tests/wallet.test.ts tests/generation-queue.test.ts tests/generation-watchdog.test.ts tests/vast-provider.test.ts tests/dna-commerce.test.ts
+
+TAP version 13
+# Subtest: DNA requires explicit visibility and public-sharing permission
+ok 1 - DNA requires explicit visibility and public-sharing permission
+  ---
+  duration_ms: 0.341459
+  type: 'test'
+  ...
+# Subtest: real Postgres Music DNA credits, privacy, idempotence, failure and recovery
+    # Subtest: price, atomic reservation and duplicate request binding
+    ok 1 - price, atomic reservation and duplicate request binding
+      ---
+      duration_ms: 20.504459
+      type: 'test'
+      ...
+    # Subtest: private audio and notes are owner-only, with full premium charged once
+    ok 2 - private audio and notes are owner-only, with full premium charged once
+      ---
+      duration_ms: 30.617292
+      type: 'test'
+      ...
+    # Subtest: public success enters the feed, without favorites or identities; withdrawal removes access
+    ok 3 - public success enters the feed, without favorites or identities; withdrawal removes access
+      ---
+      duration_ms: 17.455958
+      type: 'test'
+      ...
+    # Subtest: failure refunds all held credits and never publishes; anonymous generation is denied
+    ok 4 - failure refunds all held credits and never publishes; anonymous generation is denied
+      ---
+      duration_ms: 6.657791
+      type: 'test'
+      ...
+    # Subtest: interrupted startup and missing worker files recover without stranded credits
+    ok 5 - interrupted startup and missing worker files recover without stranded credits
+      ---
+      duration_ms: 11.226583
+      type: 'test'
+      ...
+    1..5
+ok 2 - real Postgres Music DNA credits, privacy, idempotence, failure and recovery
+  ---
+  duration_ms: 247.4755
+  type: 'test'
+  ...
+# Subtest: durable local queue: one claim, lease loss, cancellation, crash recovery, funded immutable work
+ok 3 - durable local queue: one claim, lease loss, cancellation, crash recovery, funded immutable work
+  ---
+  duration_ms: 353.128458
+  type: 'test'
+  ...
+# Subtest: durable watchdog: lost create/delete responses, restart, cancellation, identity/cost holds and settlement recovery
+ok 4 - durable watchdog: lost create/delete responses, restart, cancellation, identity/cost holds and settlement recovery
+  ---
+  duration_ms: 329.830833
+  type: 'test'
+  ...
+# Subtest: Vast adapter verifies account, traverses complete inventory, limits returned fields and confirms delete response
+ok 5 - Vast adapter verifies account, traverses complete inventory, limits returned fields and confirms delete response
+  ---
+  duration_ms: 33.181625
+  type: 'test'
+  ...
+# Subtest: invalid, incomplete, changing or cyclic inventory is never interpreted as absence
+ok 6 - invalid, incomplete, changing or cyclic inventory is never interpreted as absence
+  ---
+  duration_ms: 3.987625
+  type: 'test'
+  ...
+# Subtest: provider failures, body size and error text cannot leak secrets or prove destruction
+ok 7 - provider failures, body size and error text cannot leak secrets or prove destruction
+  ---
+  duration_ms: 3.717417
+  type: 'test'
+  ...
+# Subtest: provider billing verifies identity and complete pagination, rounds costs up and never asserts finality
+ok 8 - provider billing verifies identity and complete pagination, rounds costs up and never asserts finality
+  ---
+  duration_ms: 15.015208
+  type: 'test'
+  ...
+# Subtest: real Postgres ledger: conservation, concurrency, receipts, tenant isolation and costs
+    # Subtest: private premium is reserved atomically, rounded, captured only on success and bound to retries
+    ok 1 - private premium is reserved atomically, rounded, captured only on success and bound to retries
+      ---
+      duration_ms: 32.980083
+      type: 'test'
+      ...
+    # Subtest: receipt replay grants exactly once and cannot move between accounts
+    ok 2 - receipt replay grants exactly once and cannot move between accounts
+      ---
+      duration_ms: 14.665375
+      type: 'test'
+      ...
+    # Subtest: parallel reservations enforce one active job and no overspend
+    ok 3 - parallel reservations enforce one active job and no overspend
+      ---
+      duration_ms: 11.650833
+      type: 'test'
+      ...
+    # Subtest: zero-cost cancellation returns original lots; changed quote rejected
+    ok 4 - zero-cost cancellation returns original lots; changed quote rejected
+      ---
+      duration_ms: 12.310417
+      type: 'test'
+      ...
+    # Subtest: Apple sandbox lots preserve their own economics, ledgers immutable, disputes freeze
+    ok 5 - Apple sandbox lots preserve their own economics, ledgers immutable, disputes freeze
+      ---
+      duration_ms: 10.33625
+      type: 'test'
+      ...
+    # Subtest: unfunded jobs and invalid cost caps rejected without mutation
+    ok 6 - unfunded jobs and invalid cost caps rejected without mutation
+      ---
+      duration_ms: 1.619166
+      type: 'test'
+      ...
+    # Subtest: out-of-order refund and grant races cannot leave spendable disputed credits
+    ok 7 - out-of-order refund and grant races cannot leave spendable disputed credits
+      ---
+      duration_ms: 6.480208
+      type: 'test'
+      ...
+    # Subtest: taste profiles are owner-scoped with optimistic concurrency and deletion
+    ok 8 - taste profiles are owner-scoped with optimistic concurrency and deletion
+      ---
+      duration_ms: 3.687166
+      type: 'test'
+      ...
+    1..8
+ok 9 - real Postgres ledger: conservation, concurrency, receipts, tenant isolation and costs
+  ---
+  duration_ms: 331.407791
+  type: 'test'
+  ...
+1..9
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 575.838417

@@ -21,7 +21,7 @@ try{
    await page.getByRole('combobox',{name:'Search artists or tracks'}).fill('Private reference — never uploaded');await page.getByRole('option',{name:/Add by name/}).click();
    await page.getByText('Discover practice tracks',{exact:true}).click();await page.getByLabel('Search cleared tracks').fill('Funked');await page.getByRole('button',{name:'Add Funked Up to favorites',exact:true}).click();
    assert.match(await page.locator('.dna-summary').innerText(),/Funk/);
-   await page.getByRole('button',{name:'Make my music',exact:true}).click();
+   await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:'Make my music',exact:true}).click();
    await page.getByRole('heading',{name:'Songs for this list',exact:true}).waitFor({timeout:120000});
    const audio=page.locator('audio[src*="file=audio"]');await audio.evaluate(a=>a.play());await page.waitForFunction(()=>document.querySelector('audio[src*="file=audio"]').currentTime>.1);
    assert.equal(await audio.evaluate(a=>a.muted),true);const duration=await audio.evaluate(a=>a.duration);assert.ok(duration>=26&&duration<=31);

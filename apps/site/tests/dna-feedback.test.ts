@@ -2,7 +2,7 @@ import test from 'node:test';import assert from 'node:assert/strict';
 import {mkdtemp,mkdir,writeFile,readFile,rm} from 'node:fs/promises';import {join} from 'node:path';import {tmpdir} from 'node:os';import {createHash} from 'node:crypto';
 import {dnaFeedback} from '../lib/dna-feedback-api';import {personalFeedback,listenerDirectory} from '../lib/dna-feedback';
 import {validateFeedback} from '../lib/dna-feedback-schema';import {validateTaste,emptyTaste} from '../lib/taste';import {musicDirection,favoriteKey} from '../lib/taste-direction';
-const sha=(v:string|Buffer)=>createHash('sha256').update(v).digest('hex'),id='a'.repeat(32),base='http://127.0.0.1:4247/api/taste/feedback?id='+id;
+const sha=(v:string|Buffer)=>createHash('sha256').update(v).digest('hex'),id='e46c2b419c054cd79311bd9deecf1258',base='http://127.0.0.1:4247/api/taste/feedback?id='+id;
 const request=(method:string,listener='1'.repeat(32),value?:unknown)=>new Request(base,{method,headers:{host:'127.0.0.1:4247','X-Jamloom-DNA':'1','X-Jamloom-Listener':listener,'Content-Type':'application/json'},body:value===undefined?undefined:JSON.stringify(value)});
 const feedback={rating:'dislike',tags:['too_slow'],personalize:true,trainingConsent:false};
 test('language and feedback require supported values and explicit consent',()=>{
