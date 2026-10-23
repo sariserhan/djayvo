@@ -1,0 +1,176 @@
+{
+  "id": "f270e5933b694a7b96fafd9b8e5a4f8b",
+  "seconds": 776.423,
+  "state": "completed",
+  "phases": [
+    "preparing",
+    "writing",
+    "composing",
+    "checking",
+    "completed"
+  ],
+  "balance": {
+    "available": 18,
+    "reserved": 0
+  },
+  "quotedCredits": 2,
+  "stored": true,
+  "work": "/Users/serhansari/Documents/projects/jamloom/renders/music-dna-songs/f270e5933b694a7b96fafd9b8e5a4f8b",
+  "billing": "Disposable local TEST ledger; no customer charge",
+  "listening": "NOT RUN",
+  "title": "Rise from the Ashes",
+  "duration": 140,
+  "voice": "af_nicole",
+  "privacy": "PASS",
+  "rangePlayback": "PASS",
+  "style": {
+    "accepted": true,
+    "matchingWindows": 3,
+    "audioSha256": "d91e8ad681b0b831f9ba8a4873203bac2ff33dbd5a4800e9a3f54051d33bda30"
+  },
+  "performance": {
+    "id": "af_nicole",
+    "code": "51383efd921027683c89e5348211d93ff12ac2a8",
+    "target_sha256": "303efbf1961ca95a479b4c784e05ad86147949d4b894b657732494452e676456",
+    "target_source_sha256": "ed32a03c4018b86f44752eb5d727bcd9e701bf1a4ff84c1513b4c21f9e7e87f7",
+    "base_audio_sha256": "c38e7416839a385288226cf024fc8b630b69c43be23ee347f9d2bb49b6fbc3a8",
+    "models_manifest_sha256": "720ce767e5198202c650e7d6690306f2d1681cab743ea80ff4fc5334c45ff830",
+    "inference_cfg_rate": 1.2,
+    "reference_seconds": 6.0,
+    "reference_sha256": "303efbf1961ca95a479b4c784e05ad86147949d4b894b657732494452e676456",
+    "pitch_shift": 0,
+    "auto_pitch_adjust": false,
+    "seconds": 585.8477759590023,
+    "vocal_gain": 0.20950869252552176,
+    "master_gain": 1,
+    "frame_adjustment": -330,
+    "backing_sha256": "f00f03a65c51abb021ec727b4f21bcb4ce651c9783486fcacd82cd070d422282",
+    "listening": "NOT RUN for this song"
+  },
+  "soundGuidance": {
+    "basis": "model interpretations, not audio measurements",
+    "total": 3,
+    "described": 3,
+    "groups": [
+      {
+        "energy": "high",
+        "pace": "fast",
+        "texture": "electric",
+        "count": 2
+      },
+      {
+        "energy": "high",
+        "pace": "fast",
+        "texture": "mixed",
+        "count": 1
+      }
+    ],
+    "selected": {
+      "energy": "high",
+      "pace": "fast",
+      "texture": "electric",
+      "count": 2
+    },
+    "traits": {
+      "energy": [
+        {
+          "value": "high",
+          "count": 2
+        }
+      ],
+      "pace": [
+        {
+          "value": "fast",
+          "count": 2
+        }
+      ],
+      "texture": [
+        {
+          "value": "electric",
+          "count": 2
+        }
+      ],
+      "groove": [
+        {
+          "value": "straight",
+          "count": 2
+        }
+      ],
+      "instruments": [
+        {
+          "value": "bass guitar",
+          "count": 2
+        },
+        {
+          "value": "drum kit",
+          "count": 2
+        },
+        {
+          "value": "electric guitar",
+          "count": 2
+        }
+      ],
+      "production": [
+        {
+          "value": "raw",
+          "count": 2
+        },
+        {
+          "value": "dense",
+          "count": 1
+        },
+        {
+          "value": "distorted",
+          "count": 1
+        }
+      ],
+      "vocals": [
+        {
+          "value": "shouted",
+          "count": 2
+        },
+        {
+          "value": "intimate",
+          "count": 1
+        },
+        {
+          "value": "powerful",
+          "count": 1
+        }
+      ],
+      "mood": [
+        {
+          "value": "defiant",
+          "count": 2
+        },
+        {
+          "value": "tense",
+          "count": 2
+        }
+      ],
+      "arrangement": [
+        {
+          "value": "explosive chorus",
+          "count": 2
+        },
+        {
+          "value": "sparse verses",
+          "count": 1
+        },
+        {
+          "value": "steady groove",
+          "count": 1
+        }
+      ]
+    },
+    "bpm": [
+      150,
+      168
+    ],
+    "caption": "straight, electric, raw, shouted, explosive chorus",
+    "references": [
+      "Enter Sandman \u2014 Metallica",
+      "Killing in the Name \u2014 Rage Against the Machine"
+    ]
+  }
+}

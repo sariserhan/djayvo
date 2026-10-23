@@ -1694,6 +1694,17 @@
       "audioBytes": 8640044,
       "check": "not-checked",
       "createdAt": "2026-10-23T19:20:13.996Z"
+    },
+    {
+      "id": "d91e8ad681b0b831f9ba8a4873203bac",
+      "title": "Rise from the Ashes",
+      "language": "en",
+      "direction": "heavy-rock",
+      "product": "music-dna",
+      "audioSha256": "d91e8ad681b0b831f9ba8a4873203bac2ff33dbd5a4800e9a3f54051d33bda30",
+      "audioBytes": 26880044,
+      "check": "passed",
+      "createdAt": "2026-10-23T21:40:46.564Z"
     }
   ]
 }

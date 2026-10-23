@@ -39,9 +39,32 @@ owner-controlled. The owner subsequently approved the worker update and a $3, on
 
 ## Verification
 
-IN PROGRESS: actual whole-playlist rescan, local request-to-song/TEST-ledger
-rehearsal, browser regressions and final scoped checks. Evidence will be updated
-when those runs finish. No new database migration is needed.
+- **PASS:** 59 focused site tests and TypeScript. Real isolated PostgreSQL tests
+  cover private cached descriptions, credit reservation/refunds and billing isolation.
+- **PASS:** 67 Python checks (40 DNA, 8 singer, 7 voice identity, 12 worker).
+- **PASS:** Chromium desktop and WebKit mobile whole-playlist import, cancellation,
+  failure preservation, saved full-list generation payload, reload and accessibility.
+  The real listening page labels the exact owner-approved jazz take separately from
+  automated style results. [Local checks](evidence/dna-completion/local-checks.json).
+- **PARTIAL catalogue coverage:** all 182 available public playlist entries checked;
+  86 unique exact matches, 95 unmatched and one repeat. Earlier recorded matching
+  found 77. Primary responses were captured from the actual provider and replayed
+  with the final matcher; missing fallback queries used the real API and rate limit.
+  Unmatched originals stay visible for manual review, never guessed or silently lost.
+  [Playlist receipt](evidence/dna-completion/playlist.json).
+- **PASS local request-to-song flow:** “Rise from the Ashes,” 140 seconds, heavy rock,
+  English, approved `af_nicole` identity; 776.4 seconds from quote/submit to complete.
+  Three of four audio passages pass the existing style screen. The disposable TEST
+  ledger settles two private-song credits once, reserves zero afterward, rejects a
+  different owner and serves a byte range. This uses the real application handler,
+  models and PostgreSQL, not a full browser login/payment purchase.
+  [Full receipt](evidence/dna-completion/local-song.json).
+- **PASS sample storage:** the explicitly authorized operator sample is copied to
+  public R2 and the gallery manifest; checksum and range playback verified through
+  the real local public API. Website publication is still owner-controlled.
+- **NOT RUN:** human listening for this new song, broad genre-checker calibration,
+  maximum-size uncached model timing, and the new hosted execution (build running).
+  No database migration is needed for these changes.
 
 ## Approved hosted qualification
 

@@ -1,0 +1,11 @@
+{
+  "status": "PARTIAL",
+  "playlist": "PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI",
+  "availableEntries": 182,
+  "matchedUnique": 86,
+  "unmatched": 95,
+  "duplicatesOrUnavailable": 1,
+  "previousRecordedMatches": 77,
+  "method": "Captured fresh primary catalogue responses replayed with final matcher; missing title-only fallback queries fetched from the real local API with normal provider rate limits. No user favorites changed.",
+  "limit": "Only exact unambiguous catalogue identities are imported. Unmatched entries remain reviewable; no claim of complete catalogue coverage."
+}
