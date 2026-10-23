@@ -25,7 +25,10 @@ def run(work):
         if not fit['accepted'] or fit['audio_sha256'] != digest(work/'singer/singer.wav'):
             raise ValueError('Song receipt mismatch')
         shutil.copyfile(work/'singer/singer.wav', work/'audio.wav')
-        result = {'plan': json.loads((work/'plan.json').read_text()), 'fit': fit}
+        performance=json.loads((work/'singer/complete.json').read_text())
+        if performance['audio_sha256']!=fit['audio_sha256']:raise ValueError('Singer receipt mismatch')
+        result = {'plan': json.loads((work/'plan.json').read_text()), 'fit': fit,
+                  'performance': {'audio_sha256':performance['audio_sha256'],'vocal_identity':performance.get('vocal_identity')}}
     else:
         import singer_studio
         singer_studio.OUTPUT = work/'improvise'
