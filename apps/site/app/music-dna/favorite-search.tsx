@@ -2,7 +2,7 @@
 import {useEffect,useId,useRef,useState} from 'react';
 import {searchTasteReferences,type TasteSuggestion,type ReferenceMetadata} from '../../lib/taste-catalogue';
 
-export function FavoriteSearch({saved,disabled,onSelect}:{saved:string[];disabled:boolean;onSelect:(reference:string,metadata?:ReferenceMetadata)=>void}){
+export function FavoriteSearch({saved,disabled,onSelect,playlistQuery=''}:{saved:string[];disabled:boolean;onSelect:(reference:string,metadata?:ReferenceMetadata)=>void;playlistQuery?:string}){
  const id=useId(),input=useRef<HTMLInputElement>(null);
  const [query,setQuery]=useState(''),[open,setOpen]=useState(false),[active,setActive]=useState<string|null>(null);
  const [remote,setRemote]=useState<{query:string;suggestions:TasteSuggestion[];error:string}>({query:'',suggestions:[],error:''});
@@ -10,8 +10,9 @@ export function FavoriteSearch({saved,disabled,onSelect}:{saved:string[];disable
  const typed=query.trim(),expanded=open&&!disabled,online=expanded&&typed.length>=2;
  const candidates=[...searchTasteReferences(query,saved),...(remote.query===typed?remote.suggestions:[])];
  const matches=candidates.filter((candidate,index)=>candidates.findIndex(c=>c.reference.normalize('NFKC').toLowerCase()===candidate.reference.normalize('NFKC').toLowerCase())===index).slice(0,16);
- const options=[...matches,...(typed&&!matches.some(m=>m.reference.toLowerCase()===typed.toLowerCase())?[{reference:typed,kind:'Add by name',detail:'Not a catalogue match'}]:[])];
+ const options=[...matches,...(typed&&query!==playlistQuery&&!matches.some(m=>m.reference.toLowerCase()===typed.toLowerCase())?[{reference:typed,kind:'Add by name',detail:'Not a catalogue match'}]:[])];
  const selected=Math.max(0,options.findIndex(option=>option.reference===active)),loading=online&&remote.query!==typed;
+ useEffect(()=>{if(playlistQuery){setQuery(playlistQuery);setOpen(true);setActive(null);input.current?.focus();}},[playlistQuery]);
  useEffect(()=>{
   if(!online)return;
   const controller=new AbortController();

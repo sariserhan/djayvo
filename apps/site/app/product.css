@@ -159,3 +159,12 @@
  .music-dna-page .dna-favorites{max-height:250px}
  .dna-collections{gap:0}
 }
+
+.dna-playlist-picker { margin: 1rem 0; }
+.dna-playlist-picker input { flex: 1; min-width: 0; max-width: 100%; }
+.dna-playlist-picker ul { list-style: none; padding: 0; max-height: 22rem; overflow: auto; }
+.dna-playlist-picker li { display: flex; align-items: center; gap: .75rem; padding: .6rem 0; border-bottom: 1px solid var(--line, #ccc4); }
+.dna-playlist-picker li > div { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.dna-playlist-picker li label { display: flex; align-items: center; gap: .4rem; }
+.dna-playlist-picker li input { flex: none; }
+.dna-playlist-picker li button { flex-shrink: 0; }

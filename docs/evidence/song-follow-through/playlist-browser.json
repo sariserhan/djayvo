@@ -1,0 +1,20 @@
+[
+  {
+    "browser": "chromium",
+    "width": 1280,
+    "unconfigured": "PASS",
+    "fixturePreviewAndCatalogueSelection": "PASS",
+    "noYouTubePersistence": "PASS",
+    "bulkDuplicateAndCapacity": "PASS",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "width": 390,
+    "unconfigured": "PASS",
+    "fixturePreviewAndCatalogueSelection": "PASS",
+    "noYouTubePersistence": "PASS",
+    "bulkDuplicateAndCapacity": "PASS",
+    "errors": []
+  }
+]
