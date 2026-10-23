@@ -15,7 +15,7 @@ RUN git init build-style-training/upstream \
     && uv pip install --constraint /tmp/ace-constraints.txt faster-whisper==1.2.1 && uv cache clean \
     && rm -rf acestep/third_parts/nano-vllm/build
 # Explicit copies exclude credentials, recordings, research datasets and generated songs.
-COPY scripts/singing_response.py scripts/music_dna_song.py scripts/dna_direction.py scripts/dna_language.py scripts/check_dna_audio.py scripts/singer_studio.py scripts/analyze_words.py scripts/arrange_voice_research.py scripts/assemble_sung_response.py scripts/local_call_edit.py scripts/source_led_response.py scripts/separate_singer.py ./scripts/
+COPY scripts/vocal_identity.py scripts/singing_response.py scripts/music_dna_song.py scripts/dna_direction.py scripts/dna_language.py scripts/check_dna_audio.py scripts/singer_studio.py scripts/analyze_words.py scripts/arrange_voice_research.py scripts/assemble_sung_response.py scripts/local_call_edit.py scripts/source_led_response.py scripts/separate_singer.py ./scripts/
 COPY assets/manifests/singing-model.json assets/manifests/lyric-planner-cuda.json assets/manifests/dna-auditor.json assets/manifests/dna-directions.json assets/manifests/dna-languages.json assets/manifests/singer-separation.json assets/manifests/word-timing-tiny.json ./assets/manifests/
 COPY services/runpod/handler.py services/runpod/pipeline.py services/runpod/prepare_models.py ./services/runpod/
 ENV PATH="/opt/jamloom/build-style-training/upstream/.venv/bin:$PATH"

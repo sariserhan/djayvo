@@ -1,0 +1,22 @@
+[
+  {
+    "voice": "af_bella",
+    "audio_sha256": "22607aa317f7ee38a06cf09325b4da143823abd32656e42d289e0a79269cf741",
+    "seconds": 13.95,
+    "text": "The city lights are shining on the river tonight. I left my worries at the door and followed the sound of the band. There is a little hope in every step, a new story around every corner, and a place for all of us to sing together.",
+    "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "voice_sha256": "8cb64e02fcc8de0327a8e13817e49c76c945ecf0052ceac97d3081480e8e48d6",
+    "synthetic": true,
+    "accepted": false
+  },
+  {
+    "voice": "af_nicole",
+    "audio_sha256": "ed32a03c4018b86f44752eb5d727bcd9e701bf1a4ff84c1513b4c21f9e7e87f7",
+    "seconds": 21.05,
+    "text": "The city lights are shining on the river tonight. I left my worries at the door and followed the sound of the band. There is a little hope in every step, a new story around every corner, and a place for all of us to sing together.",
+    "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "voice_sha256": "c5561808bcf5250fe8c5f5de32caf2d94f27e57e95befdb098c5c85991d4c5da",
+    "synthetic": true,
+    "accepted": false
+  }
+]

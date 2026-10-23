@@ -1,0 +1,153 @@
+{
+  "purpose": "Candidate selection only; embedding distance does not establish listener-perceived singer identity",
+  "pairs": [
+    {
+      "voices": [
+        "af_bella",
+        "af_nicole"
+      ],
+      "cosine": 0.3226947486400604
+    },
+    {
+      "voices": [
+        "af_nicole",
+        "af_jessica"
+      ],
+      "cosine": 0.34682396054267883
+    },
+    {
+      "voices": [
+        "af_nicole",
+        "bf_emma"
+      ],
+      "cosine": 0.37821027636528015
+    },
+    {
+      "voices": [
+        "af_nicole",
+        "bf_isabella"
+      ],
+      "cosine": 0.40840303897857666
+    },
+    {
+      "voices": [
+        "af_bella",
+        "bf_isabella"
+      ],
+      "cosine": 0.5332895517349243
+    },
+    {
+      "voices": [
+        "bf_emma",
+        "bf_isabella"
+      ],
+      "cosine": 0.5938233733177185
+    },
+    {
+      "voices": [
+        "af_nicole",
+        "af_sarah"
+      ],
+      "cosine": 0.5964962244033813
+    },
+    {
+      "voices": [
+        "bf_emma",
+        "af_jessica"
+      ],
+      "cosine": 0.6047003269195557
+    },
+    {
+      "voices": [
+        "af_bella",
+        "bf_emma"
+      ],
+      "cosine": 0.6234197616577148
+    },
+    {
+      "voices": [
+        "af_bella",
+        "af_sarah"
+      ],
+      "cosine": 0.6321717500686646
+    },
+    {
+      "voices": [
+        "bf_isabella",
+        "af_jessica"
+      ],
+      "cosine": 0.6331753730773926
+    },
+    {
+      "voices": [
+        "af_bella",
+        "af_jessica"
+      ],
+      "cosine": 0.6837360858917236
+    },
+    {
+      "voices": [
+        "bf_isabella",
+        "af_sarah"
+      ],
+      "cosine": 0.6864687204360962
+    },
+    {
+      "voices": [
+        "bf_emma",
+        "af_sarah"
+      ],
+      "cosine": 0.6921122074127197
+    },
+    {
+      "voices": [
+        "af_sarah",
+        "af_jessica"
+      ],
+      "cosine": 0.7197457551956177
+    }
+  ],
+  "decision": "No additional auditions selected: the owner-rejected bella/nicole pair already has greater embedding distance than all four new targets. This metric cannot qualify distinct singing identities.",
+  "targets": [
+    {
+      "voice": "bf_emma",
+      "audio_sha256": "0a3e9bf505296312cd512eefb22068eff9daefe1c136416a2b54762cdee8721e",
+      "seconds": 12.85,
+      "text": "The city lights are shining on the river tonight. I left my worries at the door and followed the sound of the band. There is a little hope in every step, a new story around every corner, and a place for all of us to sing together.",
+      "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "voice_sha256": "d0a423deabf4a52b4f49318c51742c54e21bb89bbbe9a12141e7758ddb5da701",
+      "synthetic": true,
+      "accepted": false
+    },
+    {
+      "voice": "bf_isabella",
+      "audio_sha256": "d152cbce7241f086c85bda8396dedb929ad75fb5a2fd444be4e4dc703e549abf",
+      "seconds": 12.675,
+      "text": "The city lights are shining on the river tonight. I left my worries at the door and followed the sound of the band. There is a little hope in every step, a new story around every corner, and a place for all of us to sing together.",
+      "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "voice_sha256": "cdd4c37003805104d1d08fb1e05855c8fb2c68de24ca6e71f264a30aaa59eefd",
+      "synthetic": true,
+      "accepted": false
+    },
+    {
+      "voice": "af_sarah",
+      "audio_sha256": "de57d968f200318b7796aadc3e06f3ddfdc04a22e7290a047095258fec22e490",
+      "seconds": 13.5,
+      "text": "The city lights are shining on the river tonight. I left my worries at the door and followed the sound of the band. There is a little hope in every step, a new story around every corner, and a place for all of us to sing together.",
+      "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "voice_sha256": "49bd364ea3be9eb3e9685e8f9a15448c4883112a7c0ff7ab139fa4088b08cef9",
+      "synthetic": true,
+      "accepted": false
+    },
+    {
+      "voice": "af_jessica",
+      "audio_sha256": "4128041a17c869d7d213c2827b71cc876b46bfc84297596269f9b7fd761e72a8",
+      "seconds": 11.825,
+      "text": "The city lights are shining on the river tonight. I left my worries at the door and followed the sound of the band. There is a little hope in every step, a new story around every corner, and a place for all of us to sing together.",
+      "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "voice_sha256": "cdfdccb8cc975aa34ee6b89642963b0064237675de0e41a30ae64cc958dd4e87",
+      "synthetic": true,
+      "accepted": false
+    }
+  ]
+}

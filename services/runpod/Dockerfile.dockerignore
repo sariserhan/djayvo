@@ -28,3 +28,5 @@
 !services/runpod/prepare_models.py
 !services/runpod/Dockerfile
 !services/runpod/Dockerfile.dockerignore
+
+!scripts/vocal_identity.py

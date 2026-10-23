@@ -73,6 +73,9 @@ SINGER_REFERENCES = {
 def cast_singer_reference(case):
     # shortcut: accepted assets are local; enable CUDA only after packaging and worker qualification.
     if inference_device() == 'mps':
+        if os.environ.get('JAMLOOM_VOCAL_IDENTITY_ENABLED')=='true':
+            from vocal_identity import cast_identity
+            if cast_identity(case):return
         choices=[key for key,ref in SINGER_REFERENCES.items() if ref['voice']==case['voice']]
         key=choices[int.from_bytes(hashlib.sha256(f"jamloom-reference-1:{case['seed']}".encode()).digest()[:8],'big')%len(choices)]
         case['singer_reference']=key
@@ -158,6 +161,8 @@ def validate_plan(plan):
             raise ValueError('Invalid or duplicate singer/style')
         seen.add(c['id'])
         vocal_description(c)
+        from vocal_identity import validate_identity
+        validate_identity(c)
         reference=c.get('singer_reference')
         if reference is not None and (not isinstance(reference,str) or reference not in SINGER_REFERENCES or SINGER_REFERENCES[reference]['voice']!=c['voice']):
             raise ValueError('Invalid accepted singer reference')
@@ -386,6 +391,8 @@ def sing(root, plan_path, output, case_id, conditioning_path=None, reference_sin
         raise ValueError('Select a case present in the plan')
     c = cases[0].copy()
     conditioning = source_conditioning(conditioning_path) if conditioning_path else None
+    if c.get('vocal_identity') and (conditioning or reference_singer or inference_device()!='mps'):
+        raise ValueError('Singer identities require local original singing without other references')
     reference=resolve_vocal_reference(c, reference_singer)
     original_reference=reference
     if reference_vocals and not reference_singer:
@@ -492,3 +499,9 @@ if __name__ == '__main__':
         if a.plan is None or a.case is None:
             p.error('sing requires --plan and --case')
         sing(runtime(a.runtime), a.plan, a.output, a.case, a.conditioning,a.reference_singer,a.reference_vocals)
+        import gc
+        gc.collect()
+        import torch
+        if torch.backends.mps.is_available():torch.mps.empty_cache()
+        from vocal_identity import finish_identity
+        finish_identity(a.output)
