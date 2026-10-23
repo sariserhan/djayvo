@@ -82,7 +82,7 @@ export function ImproviseCreate(){
    <section className="capture-panel" aria-labelledby="improvise-sound-title">
     <div className="panel-heading"><h2 id="improvise-sound-title">Your sound</h2><span className="step-label">01 / Capture</span></div>
     <div className="recorder improvise-recorder" data-recording={recording}>
-     <p className="muted">A phrase, a laugh, a little everyday sound.</p>
+     <p className="muted">Say what’s on your mind—or record a laugh, a beat or an everyday sound.</p>
      <div className="waveform-surface improvise-input">
       <svg className="improvise-mic" width="76" height="100" viewBox="0 0 76 100" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true"><rect x="25" y="8" width="26" height="48" rx="13"/><path d="M14 40v8a24 24 0 0 0 48 0v-8M38 72v18M24 90h28"/></svg>
       <p role="status">{recording?'Recording…':file?name:'Start with your sound'}</p>
@@ -99,7 +99,8 @@ export function ImproviseCreate(){
      ['surprise','Surprise me','A fresh direction each time'],['hiphop','Hip-hop','Beats, flow & attitude'],['reggae','Reggae','Warm bass & offbeat grooves'],['edm','Electronic','Big energy & bright synths'],
     ].map(([id,title,description])=><label className="style-choice" key={id}><input type="radio" name="improvise-style" value={id} checked={genre===id} onChange={()=>setGenre(id)}/><span><strong>{title}</strong><small>{description}</small></span></label>)}</fieldset>
     <div className="improvise-selects"><div><label htmlFor="improvise-genre">All styles</label><select id="improvise-genre" value={genre} disabled={locked} onChange={e=>setGenre(e.target.value)}><option value="surprise">Surprise me</option>{Object.entries(styles).map(([id,label])=><option key={id} value={id}>{label}</option>)}</select></div><div><label htmlFor="improvise-singer">Singer</label><select id="improvise-singer" value={voice} disabled={locked} onChange={e=>setVoice(e.target.value)}><option value="surprise">Surprise me</option><option value="female">Female</option><option value="male">Male</option></select></div></div>
-    <p className="muted improvise-song-note">30–45 seconds · AI singing · Your sound, woven into the song</p>
+    <p className="muted improvise-song-note">We create the music and AI singing, then blend in a phrase, a loop or your whole short recording—whichever fits the song.</p>
+    <p className="muted improvise-song-note">30–45 seconds · Inspired by your words or sound</p>
     <button className="primary generate" disabled={!file||locked} onClick={()=>{previewPlayer.current?.pause();setSharing(false);setMessage('');setOpen(true);}}>Make my song <span aria-hidden="true">↗</span></button>
     <p className="muted improvise-song-note">Choose public or private and review credits next.</p>
     {progress&&!open&&<GenerationProgress {...progress}/>} {!!job&&<button className="secondary" onClick={cancel}>Cancel song</button>}

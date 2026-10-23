@@ -2,9 +2,9 @@ import {ImproviseCreate} from './create';
 import {SongGallery} from '../music-dna/song-gallery';
 import {CommunityMusic} from '../community';
 import {pageMetadata} from '../../lib/product';
-export const metadata=pageMetadata('Improvise — Your sound into a song','Record or import a sound. Choose a style and turn it into an original song with AI singing.','/improvise');
+export const metadata=pageMetadata('Improvise — Your sound into a song','Create a song inspired by your words or sound, with AI singing and your actual recording woven into the music.','/improvise');
 export default function Improvise(){return <div className="improvise-workspace">
- <section className="studio-intro" aria-labelledby="improvise-title"><div><p className="eyebrow">Improvise</p><h1 id="improvise-title">A little sound.<br/><span>A whole new song.</span></h1></div><div className="intro-note"><p className="intro">Your idea. A new rhythm.<br/>A singer to bring it to life.</p><span className="local-note">Record · Choose · Create</span></div></section>
+ <section className="studio-intro" aria-labelledby="improvise-title"><div><p className="eyebrow">Improvise</p><h1 id="improvise-title">Your recording.<br/><span>Part of a new song.</span></h1></div><div className="intro-note"><p className="intro">Your words inspire the song.<br/>Your sound becomes part of the music.</p><span className="local-note">Record · Choose · Create</span></div></section>
  <div className="product-actions"><a className="secondary" href="#public-songs">Listen to songs ↓</a></div>
  <ImproviseCreate/>
  <SongGallery scope="showcase" title="Made with Improvise" product="improvise"/>

@@ -1,3 +1,9 @@
+## Improvise product explanation — 2026-10-23
+
+**PASS, local copy and rendered checks.** The page now leads with “Your recording. Part of a new song.” and explains: “Your words inspire the song. Your sound becomes part of the music.” Capture guidance covers speech and non-speech sounds; the creation panel explains original music/AI singing plus a phrase, loop or whole brief recording selected for fit. Metadata matches. This describes the current source-inclusive implementation; it does not add or advertise a meaning-only mode.
+
+TypeScript and Chromium/WebKit at 1280/390/320px PASS: exact explanation visible, working style selection, no horizontal overflow, no framework error dialog or runtime errors. Desktop/mobile screenshots inspected. Previously authorized Playwright fallback used because Browser Node REPL is unavailable. Evidence: `/tmp/jamloom-improvise-copy.mjs`, `/tmp/jamloom-improvise-copy/`, `/tmp/jamloom-improvise-copy-browser.log`, `/tmp/jamloom-improvise-copy-types.log`. No generation, payment retesting or deployment for this copy-only change; prior worker publication/listening limits remain.
+
 ## Improvise public listening gallery — 2026-10-23
 
 **PASS, local.** The page previously showed only account/community generations, omitting the 56 existing public Improvise samples in the listening manifest. Reused the public-sample handler with an explicit product filter and connected it before account/provider handling, so public examples remain available without generation/account services. The page now has one “Made with Improvise” sample collection, a top listening link and separate Your songs / Community songs. Existing language/genre filters and six-row pagination apply. Music DNA/listening collection behavior remains unchanged; only allowlisted public audio can be signed, with no input/plan or private-song exposure.

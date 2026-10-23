@@ -1,3 +1,7 @@
+## Improvise product explanation — 2026-10-23
+
+- [x] **IMPROVISE-COPY — PASS, local:** Clarified that the recording inspires the song and is audibly blended into it; whole short clips, phrases or loops are selected to fit. Hero, capture guidance, creation explanation and page metadata now describe both parts, without suggesting a separate meaning-only mode. Chromium/WebKit at 1280/390/320px and TypeScript PASS. Copy-only change; no new generation or deployment.
+
 ## Improvise public listening gallery — 2026-10-23
 
 - [x] **IMPROVISE-GALLERY — PASS, local:** Connected all 56 already-published Improvise samples to “Made with Improvise,” with an introductory listening link, language/genre filters, six-row pagination and downloads. Community/account songs remain separate. All 56 existing R2 files respond with valid WAV headers; Chromium/WebKit desktop/mobile traverse every sample, filter/reset, play real audio muted and pass accessibility/overflow checks. Six public-sample boundary tests and TypeScript PASS. No new uploads, generation, schema changes or deployment. See `docs/progress.md`.
