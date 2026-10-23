@@ -1,0 +1,125 @@
+{
+  "results": [
+    {
+      "identity": "af_bella",
+      "seconds": 180.60308508301387,
+      "published": [
+        {
+          "status": "PASS",
+          "id": "25b1d333e52757cc66790fd28dd8934f",
+          "sha256": "25b1d333e52757cc66790fd28dd8934f91af0118fc9b695f204ed67b68923732",
+          "bytes": 5760044,
+          "product": "improvise",
+          "check": "not-checked",
+          "alreadyListed": false
+        }
+      ],
+      "listening": {
+        "naturalness": "PASS: both natural to owner",
+        "distinctness": "FAIL: same singer in different tones"
+      }
+    },
+    {
+      "identity": "af_nicole",
+      "seconds": 306.40806708298624,
+      "published": [
+        {
+          "status": "PASS",
+          "id": "51d592e8a10f66b8527207d47904ccca",
+          "sha256": "51d592e8a10f66b8527207d47904cccac009187d921d6f6080678d8632733aea",
+          "bytes": 5760044,
+          "product": "improvise",
+          "check": "not-checked",
+          "alreadyListed": false
+        }
+      ],
+      "listening": {
+        "naturalness": "PASS: both natural to owner",
+        "distinctness": "FAIL: same singer in different tones"
+      }
+    },
+    {
+      "identity": "am_michael",
+      "duration": 120,
+      "state": "failed",
+      "error": "Command '['/Users/serhansari/Documents/projects/jamloom/.venv-singer/bin/python', '/Users/serhansari/Documents/projects/jamloom/scripts/singing_response.py', 'sing', '--runtime', '/Users/serhansari/Documents/projects/jamloom/build-style-training/upstream', '--plan', '/Users/serhansari/Documents/projects/jamloom/renders/identity-qualification-20261023/full-russian/plan.json', '--case', 'rock-male', '--output', '/Users/serhansari/Documents/projects/jamloom/renders/identity-qualification-20261023/full-russian/singer']' returned non-zero exit status 1."
+    },
+    {
+      "identity": "am_michael",
+      "duration": 120,
+      "language": "ru",
+      "retry_reason": "First conversion exceeded its 720-second limit. Use a six-second excerpt of the same pinned voice target to leave more context for the song; retain the 720-second conversion limit.",
+      "listening": "NOT RUN",
+      "styleAccepted": true,
+      "published": [
+        {
+          "status": "PASS",
+          "id": "73883c75dcbbc37221126cac75902fc1",
+          "sha256": "73883c75dcbbc37221126cac75902fc19fdc7429ff8dfeaadd0bf141ab38af9e",
+          "bytes": 23040044,
+          "product": "music-dna",
+          "check": "passed",
+          "alreadyListed": false
+        }
+      ],
+      "seconds": 830.1752519169822
+    }
+  ],
+  "fullRetry": "PASS: full 120-second conversion and style check; 830.175 seconds including render, separation, conversion, check and publication; drafting excluded",
+  "automaticCasting": "OFF",
+  "publication": "Completed auditions saved to R2; website deployment not performed",
+  "fullReceipt": {
+    "technical": "PASS",
+    "case": {
+      "id": "rock-male",
+      "genre": "rock",
+      "voice": "male",
+      "seed": 9102301,
+      "duration": 120,
+      "bpm": 100,
+      "lyrics": "[Verse 1]\nТрасса рвётся в туман, пустынно — как грёбаный путь.\nЯ вижу свет в дыму, но не знаю, откуда он. \nКаждый километр — как бит в сердце, что не уходит.\nТам, где погода — молчание, я чувствую шум.\n\n[Chorus]\nТрасса вдаль, трасса вдаль, я иду, не оборачиваясь.\nТрасса вдаль, трасса вдаль, я иду — как ходьба без конца.\n\n[Verse 2]\nТеперь я знаю — это не путь, это память о прошлом, \nГде я бежал, как ветер, и не мог остановиться.\nТам, где дождь — как крик, я нашёл голос, что дышал.\nЯ встал — и встал, как в старом доме, где дверь открыта.\n\n[Chorus]\nТрасса вдаль, трасса вдаль, я иду, не оборачиваясь.\nТрасса вдаль, трасса вдаль, я иду — как ходьба без конца.\n\n[Bridge]\nЯ слышал — не в ушах, а в душе.\nЭто было — не молчание, а шум.\nЯ встал — и встал.\n\n[Chorus]\nТрасса вдаль, трасса вдаль, я иду, не оборачиваясь.\nТрасса вдаль, трасса вдаль, я иду — как ходьба без конца.\n\n[Outro]\nТрасса — это я. Я — это трасса. Слышишь? Это — начало.",
+      "vocal_language": "ru",
+      "song_caption": "Alternative / rock; 100 BPM; driving. electric guitar, electric bass, live drums. Natural expressive male lead singing in Russian. Driving groove with sharp electric guitar riffs and tight live drums. Bass provides a grounded, pulsing foundation. Harmonic color is dark and textured, with sudden dynamic shifts. No ambient elements — pure, urgent energy. driving, with a relentless, forward-moving rhythm tight, live instrumentation with distorted guitar textures and punchy bass dark, dissonant chords with",
+      "vocal_identity": "am_michael"
+    },
+    "caption": "Alternative / rock; 100 BPM; driving. electric guitar, electric bass, live drums. Natural expressive male lead singing in Russian. Driving groove with sharp electric guitar riffs and tight live drums. Bass provides a grounded, pulsing foundation. Harmonic color is dark and textured, with sudden dynamic shifts. No ambient elements — pure, urgent energy. driving, with a relentless, forward-moving rhythm tight, live instrumentation with distorted guitar textures and punchy bass dark, dissonant chords with",
+    "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+    "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+    "plan_sha256": "f30c6a8d171aaf79bec78e34eecd54cb0c154a2ef69acb717e1a70c1d29a6163",
+    "audio_sha256": "73883c75dcbbc37221126cac75902fc19fdc7429ff8dfeaadd0bf141ab38af9e",
+    "seconds": 118.5461230839719,
+    "peak": 0.9065957691280015,
+    "rms": 0.1413184413558482,
+    "peak_process_rss_bytes": 3099033600,
+    "device": "mps",
+    "dtype": "torch.bfloat16",
+    "torch": "2.10.0",
+    "mlx_vae": true,
+    "inference_shift": 1.0,
+    "voice_and_lyric_fidelity": "NOT RUN: requires listening",
+    "naturalness": "NOT RUN",
+    "trained_adapter": false,
+    "source_audio_uploaded": false,
+    "vocal_reference": null,
+    "source_conditioning": null,
+    "task_type": "text2music",
+    "vocal_identity": {
+      "id": "am_michael",
+      "code": "51383efd921027683c89e5348211d93ff12ac2a8",
+      "target_sha256": "8ecf79c848bc32c53d6df3312c577bda0b079d4703d20f98b0ac48da1b00b2b7",
+      "base_audio_sha256": "9f7e78acb5c6ad84e9ef5ad0b7edbcb58a388e9adcd9920ffa892ad8d0a822c1",
+      "models_manifest_sha256": "a842ec38151f4dacf5da4c28ad1de099c8e63e376924f63df99a07439dc8429e",
+      "reference_seconds": 6.0,
+      "reference_sha256": "cc192e2651bc081d869baf0bc5287d0fa6576022c2d7f879dbc682bab0832bcb",
+      "pitch_shift": 0,
+      "auto_pitch_adjust": false,
+      "seconds": 661.7417838749825,
+      "vocal_gain": 0.5272077020673342,
+      "master_gain": 1,
+      "frame_adjustment": -522,
+      "backing_sha256": "25d7c5b23a48733f05a72b875033d9484e92b10bcccfd04d5e41baac7df0b7f8",
+      "listening": "NOT RUN for this song"
+    }
+  },
+  "fullWebsiteTiming": "NOT RUN: no draft or whole button-to-song transaction in this test; local deadline remains 900 seconds"
+}

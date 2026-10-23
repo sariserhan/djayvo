@@ -1,0 +1,38 @@
+[
+  {
+    "browser": "chromium",
+    "id": "be1c4d1eb52707d45ce75cfdef40b4fa",
+    "duration": 30,
+    "time": 22.5,
+    "muted": true,
+    "error": null,
+    "range": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "id": "b4dfb7d689f3a41af8c65f2066cb896d",
+    "duration": 30,
+    "time": 22.5,
+    "muted": true,
+    "error": null,
+    "range": "PASS"
+  },
+  {
+    "browser": "webkit",
+    "id": "be1c4d1eb52707d45ce75cfdef40b4fa",
+    "duration": 30,
+    "time": 22.5,
+    "muted": true,
+    "error": null,
+    "range": "PASS"
+  },
+  {
+    "browser": "webkit",
+    "id": "b4dfb7d689f3a41af8c65f2066cb896d",
+    "duration": 30,
+    "time": 22.5,
+    "muted": true,
+    "error": null,
+    "range": "PASS"
+  }
+]

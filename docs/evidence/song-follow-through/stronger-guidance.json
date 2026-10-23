@@ -1,0 +1,158 @@
+{
+  "method": "Research wrapper sets inference_cfg_rate=1.2 before the pinned inference.main, with six-second excerpts from the same female targets and identical original performance/backing. Default conversion stays 0.7 and automatic casting stays off.",
+  "scope": "Reference duration and guidance strength change together; human listening needed, no parameter-causality claim.",
+  "code_commit": "aeb3173",
+  "trial_script_sha256": "9fc20f058f596ab269a9038a920ab16b65ec220c17437333630eef827a7485e6",
+  "results": [
+    {
+      "identity": "af_bella",
+      "inference_cfg_rate": 1.2,
+      "reference_seconds": 6,
+      "purpose": "Research-only guidance change; not a new accepted identity",
+      "listening": "NOT RUN",
+      "published": [
+        {
+          "status": "PASS",
+          "id": "be1c4d1eb52707d45ce75cfdef40b4fa",
+          "sha256": "be1c4d1eb52707d45ce75cfdef40b4fa229fa51f506a49f0cdde2c3819fbcf57",
+          "bytes": 5760044,
+          "product": "improvise",
+          "check": "not-checked",
+          "alreadyListed": false
+        }
+      ],
+      "seconds": 161.39746587502304
+    },
+    {
+      "identity": "af_nicole",
+      "inference_cfg_rate": 1.2,
+      "reference_seconds": 6,
+      "purpose": "Research-only guidance change; not a new accepted identity",
+      "listening": "NOT RUN",
+      "published": [
+        {
+          "status": "PASS",
+          "id": "b4dfb7d689f3a41af8c65f2066cb896d",
+          "sha256": "b4dfb7d689f3a41af8c65f2066cb896d8f68673ebd8c316a20597dcac2eefc7c",
+          "bytes": 5760044,
+          "product": "improvise",
+          "check": "not-checked",
+          "alreadyListed": false
+        }
+      ],
+      "seconds": 170.6996086250292
+    }
+  ],
+  "receipts": [
+    {
+      "technical": "PASS",
+      "case": {
+        "id": "jazz-female",
+        "genre": "jazz",
+        "voice": "female",
+        "seed": 2519097423,
+        "vocal_profile": "female-textured",
+        "bpm": 112,
+        "duration": 30,
+        "source_repetitions": 1,
+        "lyrics": "Yeah, I’ve got a question too—why do we always get stuck in the middle of a jam?  \nLet’s just… *play* it out, no pressure, just vibes and a little surprise.  \nYou’re not alone in the mix—next time, bring your B side.  \nI’ll play the bassline, you bring the spark—how’s that for a swing?"
+      },
+      "caption": "small-group vocal jazz, swinging brushed drums, walking upright bass, acoustic piano, saxophone answers, playful vocal phrasing. adult female singer, husky textured mid-range, grainy resonant tone. Connected legato phrases, natural breath, subtle vibrato. Natural vocal recording, no robotic effects, no speech narration. Playful reply, developing hook and resolved ending.",
+      "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+      "plan_sha256": "7be77c6d8a19d82aa83004636e4a8c8090659c4c4dfdd004b771fb8ac3aeadb0",
+      "audio_sha256": "be1c4d1eb52707d45ce75cfdef40b4fa229fa51f506a49f0cdde2c3819fbcf57",
+      "seconds": 44.39049070898909,
+      "peak": 0.89425234274811,
+      "rms": 0.10895241824949382,
+      "peak_process_rss_bytes": 3584770048,
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "torch": "2.10.0",
+      "mlx_vae": true,
+      "inference_shift": 1.0,
+      "voice_and_lyric_fidelity": "NOT RUN: requires listening",
+      "naturalness": "NOT RUN",
+      "trained_adapter": false,
+      "source_audio_uploaded": false,
+      "vocal_reference": null,
+      "source_conditioning": null,
+      "task_type": "text2music",
+      "research_source_receipt_sha256": "5179c882ec86e93780da5c9094a3d301f2192d61a53816028eedb52a42fdd09a",
+      "vocal_identity": {
+        "id": "af_bella",
+        "code": "51383efd921027683c89e5348211d93ff12ac2a8",
+        "target_sha256": "22607aa317f7ee38a06cf09325b4da143823abd32656e42d289e0a79269cf741",
+        "base_audio_sha256": "e7d4b1a1892c8cfd57e45a1e2f378abfce128e9662b8e0e6a54a0c08addb2a90",
+        "models_manifest_sha256": "a842ec38151f4dacf5da4c28ad1de099c8e63e376924f63df99a07439dc8429e",
+        "reference_seconds": 6.0,
+        "reference_sha256": "3bb1fb4c62997ca6d854c785f3a1c8951774bb05e9cd161bd760fae7a33dd26f",
+        "pitch_shift": 0,
+        "auto_pitch_adjust": false,
+        "seconds": 156.44775137497345,
+        "vocal_gain": 0.47382721016365886,
+        "master_gain": 1,
+        "frame_adjustment": -548,
+        "backing_sha256": "49559eb5a5d90c83a67742144b3492d367a0579c6d0018dae5f357ceb8664f58",
+        "listening": "NOT RUN for this song",
+        "inference_cfg_rate": 1.2,
+        "research_only": true
+      }
+    },
+    {
+      "technical": "PASS",
+      "case": {
+        "id": "jazz-female",
+        "genre": "jazz",
+        "voice": "female",
+        "seed": 2519097423,
+        "vocal_profile": "female-textured",
+        "bpm": 112,
+        "duration": 30,
+        "source_repetitions": 1,
+        "lyrics": "Yeah, I’ve got a question too—why do we always get stuck in the middle of a jam?  \nLet’s just… *play* it out, no pressure, just vibes and a little surprise.  \nYou’re not alone in the mix—next time, bring your B side.  \nI’ll play the bassline, you bring the spark—how’s that for a swing?"
+      },
+      "caption": "small-group vocal jazz, swinging brushed drums, walking upright bass, acoustic piano, saxophone answers, playful vocal phrasing. adult female singer, husky textured mid-range, grainy resonant tone. Connected legato phrases, natural breath, subtle vibrato. Natural vocal recording, no robotic effects, no speech narration. Playful reply, developing hook and resolved ending.",
+      "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+      "plan_sha256": "13b9269c75493c4704232d54683189da5231a9ebd86434497d63db053893d96a",
+      "audio_sha256": "b4dfb7d689f3a41af8c65f2066cb896d8f68673ebd8c316a20597dcac2eefc7c",
+      "seconds": 44.39049070898909,
+      "peak": 0.8942513716048259,
+      "rms": 0.10879239983891222,
+      "peak_process_rss_bytes": 3584770048,
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "torch": "2.10.0",
+      "mlx_vae": true,
+      "inference_shift": 1.0,
+      "voice_and_lyric_fidelity": "NOT RUN: requires listening",
+      "naturalness": "NOT RUN",
+      "trained_adapter": false,
+      "source_audio_uploaded": false,
+      "vocal_reference": null,
+      "source_conditioning": null,
+      "task_type": "text2music",
+      "research_source_receipt_sha256": "ac89147f5efc835618937a6b950c936617177d144988f5ac02d921476c229a62",
+      "vocal_identity": {
+        "id": "af_nicole",
+        "code": "51383efd921027683c89e5348211d93ff12ac2a8",
+        "target_sha256": "ed32a03c4018b86f44752eb5d727bcd9e701bf1a4ff84c1513b4c21f9e7e87f7",
+        "base_audio_sha256": "e7d4b1a1892c8cfd57e45a1e2f378abfce128e9662b8e0e6a54a0c08addb2a90",
+        "models_manifest_sha256": "a842ec38151f4dacf5da4c28ad1de099c8e63e376924f63df99a07439dc8429e",
+        "reference_seconds": 6.0,
+        "reference_sha256": "303efbf1961ca95a479b4c784e05ad86147949d4b894b657732494452e676456",
+        "pitch_shift": 0,
+        "auto_pitch_adjust": false,
+        "seconds": 164.261684334022,
+        "vocal_gain": 0.260009483075111,
+        "master_gain": 1,
+        "frame_adjustment": -548,
+        "backing_sha256": "49559eb5a5d90c83a67742144b3492d367a0579c6d0018dae5f357ceb8664f58",
+        "listening": "NOT RUN for this song",
+        "inference_cfg_rate": 1.2,
+        "research_only": true
+      }
+    }
+  ]
+}

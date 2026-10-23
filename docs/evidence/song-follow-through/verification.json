@@ -1,0 +1,44 @@
+{
+  "siteTests": {
+    "passed": 80,
+    "log": "/tmp/jamloom-site-tests-final.log"
+  },
+  "playlistAndGalleryTests": {
+    "passed": 7
+  },
+  "dnaContracts": {
+    "passed": 31,
+    "environment": ".venv-singer",
+    "log": "/tmp/jamloom-dna-contracts-model-env.log"
+  },
+  "singerContracts": {
+    "passed": 8
+  },
+  "vocalIdentityContracts": {
+    "passed": 5,
+    "includes": [
+      "local opt-in and CUDA exclusion",
+      "female fallback",
+      "hard parent timeout",
+      "preserving originals on failure",
+      "mix balance and malformed audio"
+    ]
+  },
+  "workerContracts": {
+    "passed": 8
+  },
+  "chunkedPlannerLoss": {
+    "passed": 1,
+    "comparison": "loss and gradients against unchunked implementation"
+  },
+  "siteBuild": "PASS with real server-only YouTube key configured",
+  "typecheck": "PASS",
+  "bundleAudit": "PASS 33 client files",
+  "playlistBrowser": "PASS Chromium and WebKit, muted playback and scoped accessibility",
+  "deployment": "NOT RUN: owner controlled",
+  "newPaidCompute": false,
+  "singerBrowser": "PASS: Chromium and WebKit muted playback, 90-second seeking and HTTP 206 for the new 120-second song, plus both original female auditions",
+  "revisedSingerBrowser": "PASS: both stronger-guidance auditions in Chromium and WebKit, muted playback, 22.5-second seeking, HTTP 206, no page errors",
+  "revisedSingerControl": "PASS: matching base performance and backing hashes, different reference hashes, complete 30-second stereo outputs and raw guidance-1.2 output files",
+  "gallerySongCount": 152
+}

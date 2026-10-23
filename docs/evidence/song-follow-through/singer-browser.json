@@ -1,0 +1,56 @@
+[
+  {
+    "browser": "chromium",
+    "id": "25b1d333e52757cc66790fd28dd8934f",
+    "duration": 30,
+    "time": 22.5,
+    "muted": true,
+    "error": null,
+    "range": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "id": "51d592e8a10f66b8527207d47904ccca",
+    "duration": 30,
+    "time": 22.5,
+    "muted": true,
+    "error": null,
+    "range": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "id": "73883c75dcbbc37221126cac75902fc1",
+    "duration": 120,
+    "time": 90,
+    "muted": true,
+    "error": null,
+    "range": "PASS"
+  },
+  {
+    "browser": "webkit",
+    "id": "25b1d333e52757cc66790fd28dd8934f",
+    "duration": 30,
+    "time": 22.5,
+    "muted": true,
+    "error": null,
+    "range": "PASS"
+  },
+  {
+    "browser": "webkit",
+    "id": "51d592e8a10f66b8527207d47904ccca",
+    "duration": 30,
+    "time": 22.5,
+    "muted": true,
+    "error": null,
+    "range": "PASS"
+  },
+  {
+    "browser": "webkit",
+    "id": "73883c75dcbbc37221126cac75902fc1",
+    "duration": 120,
+    "time": 90,
+    "muted": true,
+    "error": null,
+    "range": "PASS"
+  }
+]

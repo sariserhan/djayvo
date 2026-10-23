@@ -4,6 +4,12 @@
 rendering, metadata support and an automated style score do not establish native
 lyrics, pronunciation, distinct vocal identity or universal genre fidelity.
 
+**Later follow-through:** The five lyric-plan failures now render; the owner has
+confirmed a false jazz rejection by the style checker. Research training, live
+YouTube import and the latest singer tests are tracked in the
+[follow-through report](song-follow-through.md). Baseline counts below are retained
+as historical evidence.
+
 ## Current evidence
 
 - **PASS, bounded first-try startup:** The approved additional $1 cloud trial
