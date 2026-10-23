@@ -12,7 +12,8 @@ RUN git init build-style-training/upstream \
     && git fetch --depth 1 origin ca1e85fe9430179831e6bc6be790c332190a3866 && git checkout FETCH_HEAD \
     && uv sync --frozen --no-dev --python 3.12 \
     && uv pip freeze | sed '/^-e /d' > /tmp/ace-constraints.txt \
-    && uv pip install --constraint /tmp/ace-constraints.txt faster-whisper==1.2.1 && uv cache clean
+    && uv pip install --constraint /tmp/ace-constraints.txt faster-whisper==1.2.1 && uv cache clean \
+    && rm -rf acestep/third_parts/nano-vllm/build
 # Explicit copies exclude credentials, recordings, research datasets and generated songs.
 COPY scripts/singing_response.py scripts/music_dna_song.py scripts/dna_direction.py scripts/dna_language.py scripts/check_dna_audio.py scripts/singer_studio.py scripts/analyze_words.py scripts/arrange_voice_research.py scripts/assemble_sung_response.py scripts/local_call_edit.py scripts/source_led_response.py scripts/separate_singer.py ./scripts/
 COPY assets/manifests/singing-model.json assets/manifests/lyric-planner-cuda.json assets/manifests/dna-auditor.json assets/manifests/dna-directions.json assets/manifests/dna-languages.json assets/manifests/singer-separation.json assets/manifests/word-timing-tiny.json ./assets/manifests/
