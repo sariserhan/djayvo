@@ -1,0 +1,36 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "url": "http://127.0.0.1:4235/listening",
+    "title": "Listen to language and style tests · Jamloom",
+    "initialSongs": 8,
+    "filter": true,
+    "mutedPlayback": true,
+    "seek": 90,
+    "downloadHash": true,
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "url": "http://127.0.0.1:4235/listening",
+    "title": "Listen to language and style tests · Jamloom",
+    "initialSongs": 8,
+    "filter": true,
+    "mutedPlayback": true,
+    "seek": 90,
+    "downloadHash": true,
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "errors": []
+  }
+]

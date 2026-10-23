@@ -1,0 +1,11 @@
+{
+  "approved": "Approve the $1 startup verification",
+  "maxUSD": 1,
+  "maxWorkers": 1,
+  "maxSeconds": 720,
+  "maxRequests": 1,
+  "publicMetadataOnly": true,
+  "websiteDeployment": false,
+  "manualReconciliation": false,
+  "trial": "../song-finish/startup/2026-10-23T08-21-47.977Z/trial-result.json"
+}

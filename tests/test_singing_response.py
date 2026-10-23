@@ -6,11 +6,31 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, caption, load_plan, validate_plan, variants
+from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, VOCAL_PROFILES, choose_vocal_profile, vocal_description, caption, load_plan, validate_plan, variants
 from assemble_sung_response import PATTERNS
 
 
 class SingingPlans(unittest.TestCase):
+    def test_vocal_cast_varies_without_changing_language_or_requested_gender(self):
+        selected={choose_vocal_profile(seed) for seed in range(100)}
+        self.assertEqual(selected,set(VOCAL_PROFILES))
+        for voice in ('female','male'):
+            for seed in range(100):
+                profile=choose_vocal_profile(seed,voice)
+                self.assertEqual(VOCAL_PROFILES[profile][0],voice)
+                self.assertEqual(profile,choose_vocal_profile(seed,voice))
+        for c in variants(42):
+            description=caption(c)
+            self.assertLess(len(description),512)
+            self.assertIn(VOCAL_PROFILES[c['vocal_profile']][1],description)
+            self.assertIn('no robotic effects',description)
+            self.assertIn('no speech narration',description)
+        for profile in ('celebrity',[], 'female-alto'):
+            with self.assertRaises(ValueError):vocal_description({'voice':'male','vocal_profile':profile})
+        with self.assertRaises(ValueError):choose_vocal_profile(True)
+        legacy={'genre':'jazz','voice':'female'}
+        self.assertIn('adult female soul singer',caption(legacy))
+
     def plan(self):
         cases = variants(42)[:4]
         for c in cases:

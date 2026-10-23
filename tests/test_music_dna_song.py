@@ -10,10 +10,11 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
 from music_dna_song import favorites, song_plan, parse_draft, run, draft, retry_direction, performance_caption, check_render
-from singing_response import caption, digest, text_field
+from singing_response import caption, digest, text_field, VOCAL_PROFILES
 from dna_direction import direction_for
 from dna_direction import POLICY
 from dna_language import choose_language, COUNTRY_LANGUAGES, LANGUAGES
+from evaluate_dna_variants import prepare as prepare_variant, verify as verify_variant
 
 
 class MusicDnaSong(unittest.TestCase):
@@ -39,12 +40,41 @@ class MusicDnaSong(unittest.TestCase):
         self.assertNotIn('Artist One', caption(case))
         self.assertNotIn('source_audio', plan)
 
+    def test_research_variants_bind_the_actual_seed_and_reject_duplicate_audio(self):
+        with tempfile.TemporaryDirectory() as folder:
+            source=Path(folder)/'source';source.mkdir()
+            plan=song_plan(self.data,self.refs,123)
+            (source/'input.json').write_text(json.dumps({'direction':plan['direction'],'seed':123}))
+            plan['input_sha256']=digest(source/'input.json');plan['seed']=999
+            (source/'plan.json').write_text(json.dumps(plan))
+            work=Path(folder)/'take';variant=prepare_variant(source,work,124)
+            self.assertEqual(variant['cases'][0]['seed'],124)
+            self.assertNotIn('seed',variant)
+            self.assertEqual(json.loads((source/'plan.json').read_text()),plan)
+            self.assertEqual(variant['input_sha256'],digest(work/'input.json'))
+            (work/'singer').mkdir();(work/'singer/singer.wav').write_bytes(b'fixture audio')
+            receipt={'case':variant['cases'][0],'plan_sha256':digest(work/'plan.json'),'audio_sha256':digest(work/'singer/singer.wav')}
+            (work/'singer/complete.json').write_text(json.dumps(receipt))
+            seen=set();verify_variant(work,124,seen)
+            with self.assertRaisesRegex(ValueError,'Duplicate'):verify_variant(work,124,seen)
+            with self.assertRaisesRegex(ValueError,'seed'):verify_variant(work,125,set())
+            receipt['case']['seed']=123;(work/'singer/complete.json').write_text(json.dumps(receipt))
+            with self.assertRaisesRegex(ValueError,'seed'):verify_variant(work,124,set())
+            for profile in ('male-tenor','female-alto'):
+                comparison=prepare_variant(source,Path(folder)/profile,123,profile)
+                case=comparison['cases'][0]
+                self.assertEqual(case['seed'],123)
+                self.assertEqual(case['lyrics'],plan['cases'][0]['lyrics'])
+                self.assertEqual(case['vocal_profile'],profile)
+                self.assertIn(VOCAL_PROFILES[profile][1],case['song_caption'])
+                self.assertEqual(case['voice'],VOCAL_PROFILES[profile][0])
+
     def test_retry_changes_direction_brief_but_preserves_lyrics_language_and_favorites(self):
         plan = song_plan(self.data, self.refs, 123)
         before = copy.deepcopy(plan)
         retried = retry_direction(plan)
         self.assertEqual(retried['cases'][0]['seed'],124)
-        for key in ('lyrics','bpm','voice','vocal_language'):
+        for key in ('lyrics','bpm','voice','vocal_language','vocal_profile'):
             self.assertEqual(retried['cases'][0][key],before['cases'][0][key])
         self.assertEqual(retried['favorites'],before['favorites'])
         self.assertNotEqual(retried['cases'][0]['song_caption'],before['cases'][0]['song_caption'])
@@ -55,11 +85,12 @@ class MusicDnaSong(unittest.TestCase):
     def test_every_style_keeps_essential_controls_within_singer_text_budget(self):
         for direction in POLICY['directions']:
             for code in LANGUAGES:
-                case={'bpm':direction['bpm'][0],'voice':'female','vocal_language':code}
-                for retry in (False,True):
-                    caption=performance_caption(direction,case,'Rich developing instrumental arrangement. '*100,retry=retry)
-                    self.assertLess(len(caption),512)
-                    for essential in (direction['label'],str(case['bpm']),LANGUAGES[code],*direction['instruments']):self.assertIn(essential,caption)
+                for profile,(voice,tone) in VOCAL_PROFILES.items():
+                    case={'bpm':direction['bpm'][0],'voice':voice,'vocal_language':code,'vocal_profile':profile}
+                    for retry in (False,True):
+                        caption=performance_caption(direction,case,'Rich developing instrumental arrangement. '*100,retry=retry)
+                        self.assertLess(len(caption),512)
+                        for essential in (direction['label'],str(case['bpm']),LANGUAGES[code],tone,*direction['instruments']):self.assertIn(essential,caption)
 
     def test_checker_retries_interruption_on_same_audio_but_not_validation_errors(self):
         for error in (subprocess.CalledProcessError(-9,['checker']),subprocess.TimeoutExpired(['checker'],90)):

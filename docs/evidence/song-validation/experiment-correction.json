@@ -1,0 +1,16 @@
+{
+  "finding": "Previous two executions were one unique take, not two independent seeds. Research harness wrote a top-level seed instead of cases[0].seed. Production retry already changes the correct field.",
+  "previous": [
+    {
+      "reported_seed": 6302302,
+      "actual_seed": 6302302,
+      "audio_sha256": "e813a06aedee01724520682f628425a5563413b8967384139a7afe95d8fa17dd"
+    },
+    {
+      "reported_seed": 6302303,
+      "actual_seed": 6302302,
+      "audio_sha256": "e813a06aedee01724520682f628425a5563413b8967384139a7afe95d8fa17dd"
+    }
+  ],
+  "new": "latin-distinct.json"
+}

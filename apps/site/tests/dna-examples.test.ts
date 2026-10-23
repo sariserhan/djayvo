@@ -5,6 +5,24 @@ import {r2AudioStore} from '../lib/audio-store';
 import examples from '../../../assets/manifests/dna-examples.json';
 import {dnaSong} from '../lib/dna-song';
 import type {DnaCommerce} from '../lib/dna-commerce';
+import {validationSongs} from '../lib/music-validation';
+import {musicAudioKey} from '../lib/music-storage';
+
+test('test songs expose only published audio and label unaccepted takes without enabling training',async()=>{
+ const base='https://www.jamloom.com/api/taste/song',calls:unknown[][]=[];
+ const store=()=>({playbackURL:async(...args:unknown[])=>{calls.push(args);return 'https://r2.example.test/test-audio';}});
+ const response=await dnaExample(new Request(base+'?view=validation'),store),data=await response!.json();
+ assert.deepEqual(data.songs,validationSongs);assert.equal(data.feedbackAvailable,false);assert.equal(calls.length,0);
+ assert.ok(validationSongs.length>0);
+ for(const song of validationSongs){
+  assert.ok(['passed','style-mismatch','not-checked'].includes(song.check));
+  assert.ok(!('audio' in song)&&!('favorites' in song));
+  const audio=await dnaExample(new Request(base+`?id=${song.id}&file=audio`),store);assert.equal(audio?.status,307);
+  assert.deepEqual(calls.at(-1),[musicAudioKey(song.product,'public',song.id,song.audioSha256),false,900]);
+  for(const file of ['plan','input'])assert.equal(await dnaExample(new Request(base+`?id=${song.id}&file=${file}`),store),null);
+  assert.equal(await dnaExample(new Request(base+`?id=${song.id}&file=audio`,{method:'DELETE'}),store),null);
+ }
+});
 
 test('hosted account context cannot spend credits through the Mac renderer',async()=>{
  const commerce=new Proxy({},{get(){throw Error('Production commerce must not be touched');}}) as DnaCommerce;

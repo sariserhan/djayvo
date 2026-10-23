@@ -14,12 +14,13 @@ import {cloudSongConfig} from '../lib/cloud-song-config';
 
 const repair=process.argv.includes('--repair'),startup=process.argv.includes('--startup'),maxUSD=startup?1:repair?2:3,maxWorkers=repair||startup?1:2,maxSeconds=startup?720:repair?900:780;
 assert(!(repair&&startup),'Choose one trial');
-const root=resolve('../..'),directory=resolve(root,startup?'build-song-finish/startup':repair?'build-song-repair/cloud':'build-hosted-song-trial/final'),evidence=resolve(root,startup?'docs/evidence/song-finish/startup':repair?'docs/evidence/song-generation-repair':'docs/evidence/hosted-songs');
+const stamp=new Date().toISOString().replaceAll(':','-');
+const root=resolve('../..'),directory=resolve(root,startup?'build-song-finish/startup/'+stamp:repair?'build-song-repair/cloud':'build-hosted-song-trial/final'),evidence=resolve(root,startup?'docs/evidence/song-finish/startup/'+stamp:repair?'docs/evidence/song-generation-repair':'docs/evidence/hosted-songs');
 const config=cloudSongConfig({...process.env,CREDIT_BILLING_MODE:'test',JAMLOOM_CLOUD_SONGS_ENABLED:'true',JAMLOOM_CLOUD_RATE_MICROS_PER_SECOND:'1000'})!;
 assert.equal(config.endpoint,'jl77hn92npt65k');
 const fixtures=startup?[['startup','Enter Sandman — Metallica','Metal','en']]:repair?[['jazz-1','Feeling Good — Nina Simone','Jazz','en'],['spanish-1','La Bicicleta — Carlos Vives','Latin','es'],['jazz-2','Feeling Good — Nina Simone','Jazz','en'],['spanish-2','La Bicicleta — Carlos Vives','Latin','es']]:[['jazz','Feeling Good — Nina Simone','Jazz','en'],['rock','Enter Sandman — Metallica','Metal','en'],['spanish','La Bicicleta — Carlos Vives','Latin','es'],['turkish','Şımarık — Tarkan','Turkish Pop','tr'],['russian','Группа крови — Кино','Rock','ru'],['funk'],['reggae'],['jazz-phrase']];
 assert(maxWorkers*(maxSeconds+130)*config.rate/1e6+fixtures.length*.02<maxUSD,'Trial exceeds conservative budget including shutdown retries');
-if(!process.argv.includes('--apply')){console.log({mode:'dry-run',maxUSD,maxWorkers,maxSeconds,requests:fixtures.length,...(repair?{seeds:fixtures.map((_,i)=>6302301+i),requires:'Approved worker image, paid trial and JAMLOOM_TRIAL_IMAGE digest'}:{})});process.exit(0);}
+if(!process.argv.includes('--apply')){console.log({mode:'dry-run',maxUSD,maxWorkers,maxSeconds,requests:fixtures.length,...(startup?{directory,evidence,minWorkers:0,scaling:'REQUEST_COUNT / 1',activationDelaySeconds:30,manualReconciliation:false}:{}),...(repair||startup?{requires:'Approved paid trial and JAMLOOM_TRIAL_IMAGE digest'}:{}),...(repair?{seeds:fixtures.map((_,i)=>6302301+i)}:{})});process.exit(0);}
 const db=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(db.hostname,'127.0.0.1');
 await mkdir(directory,{recursive:true});await mkdir(evidence,{recursive:true});
 const state:any={startedAt:new Date().toISOString(),maxUSD,maxWorkers,maxSeconds,requests:[],health:[],cleanup:false};
@@ -28,6 +29,7 @@ await writeFile(resolve(directory,'intent.json'),JSON.stringify(state),{flag:'wx
 const rest=async(path:string,method='GET',body?:unknown)=>{const response=await fetch('https://rest.runpod.io/v1/'+path,{method,headers:{Authorization:`Bearer ${config.key}`,'Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(15000)});assert(response.ok,`Runpod control HTTP ${response.status}`);return response.json();};
 const control=(method='GET',body?:unknown)=>rest('endpoints/'+config.endpoint,method,body);
 const before=await control();assert(before.name==='jamloom-music-v1'&&before.workersMin===0&&before.workersMax===0);
+if(startup){assert.equal(before.scalerType,'REQUEST_COUNT');assert.equal(before.scalerValue,1);state.activationDelaySeconds=30;state.manualReconciliation=false;}
 if(repair||startup){const image=process.env.JAMLOOM_TRIAL_IMAGE;assert(image&&/^ghcr\.io\/sariserhan\/jamloom\/music-worker@sha256:[a-f0-9]{64}$/.test(image),'A reviewed immutable worker image is required');const template=await rest('templates/'+encodeURIComponent(before.templateId)+'?includeEndpointBoundTemplates=true');assert.equal(template.imageName,image);state.image=image;}
 state.disabled=true;state.templateId=before.templateId;state.endpoint=config.endpoint;
 const billing=()=>rest(`billing/endpoints?endpointId=${config.endpoint}&bucketSize=hour&startTime=${new Date().toISOString().slice(0,10)}T00:00:00Z&endTime=${new Date(Date.now()+86400000).toISOString().slice(0,10)}T00:00:00Z`);
@@ -38,6 +40,7 @@ const delay=(ms:number)=>new Promise(r=>setTimeout(r,ms));let enabled=false,watc
 process.on('SIGINT',()=>{stopping=true;});process.on('SIGTERM',()=>{stopping=true;});
 try{
  await migrate(pool);const initial=await services[0].provider.health();assert.equal(initial.jobs?.inQueue,0);assert.equal(initial.jobs?.inProgress,0);
+ if(startup)assert(Object.values(initial.workers??{}).every(value=>value===0),'Startup requires zero existing workers');
  const source=repair||startup?Buffer.alloc(0):await readFile(resolve(directory,'source.wav'));
  for(let i=0;i<fixtures.length;i++){
   const [label,reference,genre,language]=fixtures[i],songs=services[i<5?0:1],owner='trial-'+i,id=randomUUID().replaceAll('-','');
@@ -54,7 +57,7 @@ try{
  watchdog=spawn(process.execPath,['--input-type=module','-e',`setTimeout(async()=>{for(let n=0;n<10;n++){try{const r=await fetch('https://rest.runpod.io/v1/endpoints/'+process.env.RUNPOD_ENDPOINT_ID,{method:'PATCH',headers:{Authorization:'Bearer '+process.env.RUNPOD_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({workersMin:0,workersMax:0}),signal:AbortSignal.timeout(10000)});if(r.ok)process.exit(0);}catch{}await new Promise(r=>setTimeout(r,3000));}process.exit(1);},${maxSeconds*1000});`],{env:process.env,stdio:'ignore',detached:true});watchdog.unref();
  const started=Date.now();enabled=true;state.disabled=false;await control('PATCH',{workersMin:startup?0:maxWorkers,workersMax:maxWorkers});
  // Give endpoint configuration a moment to reach its queue API.
- await delay(5000);
+ await delay(startup?30000:5000);
  while(!stopping&&Date.now()-started<(maxSeconds-120)*1000){
   const health=await services[0].provider.health();state.health.push({seconds:Math.round((Date.now()-started)/1000),...health});
   const workers=health.workers??{},count=['idle','initializing','running'].reduce((n,k)=>n+Number(workers[k]??0),0);

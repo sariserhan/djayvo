@@ -1,0 +1,32 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "correctedTurkishTitle": true,
+    "mutedPlayback": [
+      "female alto",
+      "female soprano",
+      "male bass",
+      "male tenor"
+    ],
+    "duration": 120,
+    "seek": 80,
+    "mobileWidth": 390,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "correctedTurkishTitle": true,
+    "mutedPlayback": [
+      "female alto",
+      "female soprano",
+      "male bass",
+      "male tenor"
+    ],
+    "duration": 120,
+    "seek": 80,
+    "mobileWidth": 390,
+    "errors": []
+  }
+]

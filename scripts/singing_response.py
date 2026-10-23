@@ -48,6 +48,33 @@ VOICES = {
     'female': 'an expressive adult female soul singer, warm natural chest voice, intimate clear diction',
     'male': 'an expressive adult male soul singer, warm natural baritone, intimate clear diction',
 }
+VOCAL_PROFILES = {
+    'female-alto': ('female', 'dark rounded alto, full chest resonance'),
+    'female-mezzo': ('female', 'clear mellow mezzo-soprano, smooth rounded tone'),
+    'female-soprano': ('female', 'bright ringing soprano, light upper register'),
+    'female-textured': ('female', 'husky textured mid-range, grainy resonant tone'),
+    'male-bass': ('male', 'deep resonant bass, rich low register'),
+    'male-baritone': ('male', 'warm smoky baritone, rounded chest resonance'),
+    'male-tenor': ('male', 'bright ringing tenor, clear upper register'),
+    'male-textured': ('male', 'gravelly mid-range, dry textured resonance'),
+}
+
+
+def choose_vocal_profile(seed, voice=None):
+    if type(seed) is not int or not 0 <= seed < 2**32 or voice is not None and voice not in VOICES:
+        raise ValueError('Invalid vocal selection')
+    choices=[key for key,(gender,_) in VOCAL_PROFILES.items() if voice is None or gender==voice]
+    # Separate casting from language and audio noise; store the choice across retries.
+    index=int.from_bytes(hashlib.sha256(f'jamloom-vocal-1:{seed}'.encode()).digest()[:8],'big')
+    return choices[index%len(choices)]
+
+
+def vocal_description(case):
+    profile=case.get('vocal_profile')
+    if profile is None:return VOICES[case['voice']]
+    if not isinstance(profile,str) or profile not in VOCAL_PROFILES or VOCAL_PROFILES[profile][0]!=case['voice']:
+        raise ValueError('Invalid vocal character for the selected singer')
+    return f"adult {case['voice']} singer, {VOCAL_PROFILES[profile][1]}"
 
 
 def digest(path):
@@ -69,6 +96,7 @@ def variants(seed):
     pairs = [(style, voice) for style in STYLES for voice in VOICES]
     random.Random(seed).shuffle(pairs)
     return [{'id': f'{style}-{voice}', 'genre': style, 'voice': voice, 'seed': seed+i,
+             'vocal_profile':choose_vocal_profile(seed+i,voice),
              'bpm': STYLES[style][0], 'duration': 30, 'source_repetitions': 1 + i % 2}
             for i, (style, voice) in enumerate(pairs)]
 
@@ -76,6 +104,12 @@ def variants(seed):
 def caption(case):
     if 'song_caption' in case:
         return case['song_caption']
+    if 'vocal_profile' in case:
+        delivery=('Rhythmic rap verses, varied flow, short sung hook.' if case['genre']=='rap' else
+                  'Connected legato phrases, natural breath, subtle vibrato.')
+        core=(f"{STYLES[case['genre']][1]}. {vocal_description(case)}. {delivery} "
+              'Natural vocal recording, no robotic effects, no speech narration. ')
+        return (core+'Playful reply, developing hook and resolved ending.')[:511]
     delivery = ('Natural rhythmic rap verses with breath, clear consonants, varied flow and a short sung hook. '
                 if case['genre'] == 'rap' else
                 'Human-like sung melody with breath, connected legato phrases, subtle vibrato, relaxed rhythmic phrasing and expressive dynamics. ')
@@ -104,6 +138,7 @@ def validate_plan(plan):
         if not valid_genre or not isinstance(c.get('voice'), str) or c.get('voice') not in VOICES or c.get('id') != f"{genre}-{c.get('voice')}" or c['id'] in seen:
             raise ValueError('Invalid or duplicate singer/style')
         seen.add(c['id'])
+        vocal_description(c)
         if type(c.get('seed')) is not int or not 0 <= c['seed'] < 2**32:
             raise ValueError('Invalid seed')
         if song:

@@ -1,0 +1,33 @@
+{
+  "statement": "I only know english and turkish but now I am listening french and it sounds great",
+  "scope": "French gallery examples; exact take not specified",
+  "musicalAppeal": "positive owner reaction",
+  "fluentLanguages": [
+    "en",
+    "tr"
+  ],
+  "frenchPronunciation": "NOT RUN: owner does not speak French",
+  "trainingConsent": false,
+  "trainingEligible": false,
+  "additionalFeedback": {
+    "statement": "Iron Roots is good and I can tell you I think all the songs you make is good enough and this is good too Bicicleta en la Lluvia",
+    "musicalAppeal": "positive owner acceptance of the named songs",
+    "ironRootsAudio": "4f138dd36c6d18ba6266d683f541f2b1a3275e6fc2605c282b21056bd63a07a0",
+    "bicicletaScope": "Song title; three takes share this title, exact take not identified",
+    "notEstablished": [
+      "Spanish pronunciation",
+      "genre calibration labels",
+      "quality of future or unreviewed languages"
+    ],
+    "trainingConsent": false
+  },
+  "turkishFeedback": {
+    "statement": "I just listened this and approve it Günden Gündüye but there is a grammatical mistake for example there is no work such as Gündüye in turkish, maybe it should have been Günden Güne",
+    "audioSha256": "6e31619fbf5a1ef60bda1adcaf256bc88ab322a68644c329191473b7f9eaac2c",
+    "musicalAppeal": "PASS: owner approval",
+    "lyrics": "FAIL: owner reported invalid title; written chorus also uses günden günde instead of günden güne",
+    "displayTitleCorrection": "Günden Güne",
+    "existingAudioChanged": false,
+    "trainingConsent": false
+  }
+}

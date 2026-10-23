@@ -13,8 +13,33 @@ from dna_direction import direction_for,POLICY
 from music_dna_song import song_sections
 from train_dna_feedback import collect,split,consent_current,invalidate,command,run,group_key,check_lengths,execute,heldout_loss
 from singing_response import digest
+from evaluate_music_coverage import matrix, evaluate
 
 class DnaExpansion(unittest.TestCase):
+    def test_coverage_resume_publishes_finished_render_without_regenerating(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);source=root/'source';source.write_bytes(b'original synthetic fixture')
+            output=root/'coverage';work=output/'dna-en';work.mkdir(parents=True)
+            rows=[{'id':'dna-en','product':'music-dna'}]
+            report={'matrix':rows,'source_sha256':digest(source),'results':[{'id':'dna-en','state':'running'}]}
+            (output/'report.json').write_text(json.dumps(report));(work/'status.json').write_text('{"state":"completed"}')
+            with patch('evaluate_music_coverage.matrix',return_value=rows),patch('evaluate_music_coverage.publish',return_value=[{'status':'PASS'}]) as publish,patch('evaluate_music_coverage.subprocess.Popen') as render:
+                result=evaluate(output,source,True)
+                self.assertEqual(result['results'][0]['state'],'completed');publish.assert_called_once();render.assert_not_called()
+                evaluate(output,source,True);publish.assert_called_once()
+                source.write_bytes(b'changed')
+                with self.assertRaisesRegex(ValueError,'inputs differ'):evaluate(output,source,True)
+
+    def test_local_audio_matrix_covers_each_language_family_and_reply_style(self):
+        from singing_response import STYLES
+        rows=matrix();dna=[r for r in rows if r['product']=='music-dna'];reply=[r for r in rows if r['product']=='improvise']
+        self.assertEqual(len(rows),73);self.assertEqual(len({r['id'] for r in rows}),len(rows))
+        self.assertEqual({r['language'] for r in dna},set(LANGUAGES))
+        self.assertEqual({r['direction'] for r in dna},{d['id'] for d in POLICY['directions']})
+        self.assertEqual({r['direction'] for r in reply},set(STYLES))
+        for row in dna:
+            self.assertEqual(row['payload']['profile']['vocalLanguage'],row['language'])
+            self.assertEqual(row['payload']['profile']['referenceMetadata'][0]['source'],'coverage-fixture')
     def test_all_language_settings_and_genre_coverage(self):
         self.assertEqual(len(LANGUAGES),50)
         for code in LANGUAGES:self.assertEqual(language(code),code)

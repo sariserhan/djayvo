@@ -109,12 +109,18 @@ The real-Postgres test verifies these boundaries.
 
 ## Spanish and quality checks
 
-**FAIL, local proposed arrangement fix:** Two additional fixed-seed Spanish
-Latin renders used explicit cumbia/Latin-pop percussion and bass roles. Both
-rendered technically but matched zero of four passages under the unchanged
-style screen. That proposal was not promoted to production. It does not establish
-that Spanish itself is unsupported, or that the classifier is correctly judging
-these recordings. [Experiment](evidence/song-finish/latin-local-trial.json).
+**CORRECTED, local proposed arrangement evidence:** The earlier two reported
+fixed-seed Latin renders were the same audio: the research harness changed a
+field the singer did not read. They establish one unique failed take, not two
+independent trials. The tracked harness now changes and verifies the actual case
+seed and rejects duplicate audio. New seeds 6302303 and 6302304 produced distinct
+audio and matched 1/4 and 0/4 style windows, respectively. No threshold was
+relaxed and no arrangement fix was promoted. See [correction](evidence/song-validation/experiment-correction.json)
+and [new results](evidence/song-validation/latin-distinct.json).
+
+**Subsequent status:** [Local validation](music-validation.md) records a successful
+first-try startup, actual owner listening reactions and the continuing broader
+language/style run. Earlier deferred/not-run statements below are historical.
 
 **NOT RUN:** Representative human genre calibration, multilingual singing/lyrics
 acceptance and demonstrated improvement from real user feedback. The earlier

@@ -3,6 +3,15 @@
   "scope": "All implemented genre families plus priority multilingual renders; not human ratings",
   "cases": [
     {
+      "id": "french",
+      "direction": "pop",
+      "language": "fr",
+      "favorites": [
+        {"reference": "Dernière danse — Indila", "genre": "French Pop"}
+      ],
+      "seed": 846123
+    },
+    {
       "id": "spanish",
       "direction": "latin",
       "language": "es",
