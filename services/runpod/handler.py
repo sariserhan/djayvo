@@ -173,7 +173,7 @@ def handler(job):
             if len(data) != seconds*48000*4+44:
                 raise ValueError('Unexpected WAV encoding')
             result_path = work/'result.json'
-            if result_path.stat().st_size > 262144:
+            if result_path.stat().st_size > 12*1024*1024:
                 raise ValueError('Result exceeds budget')
             result = json.loads(result_path.read_text())
             request = urllib.request.Request(value['output_url'], data=data, method='PUT',

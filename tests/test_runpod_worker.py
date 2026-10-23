@@ -86,7 +86,7 @@ class WorkerTests(unittest.TestCase):
             with wave.open(str(work/'audio.wav'),'wb') as wav:
                 wav.setparams((2,2,48000,0,'NONE','not compressed'))
                 wav.writeframes(b'\0\0'*2*48000*120)
-            (work/'result.json').write_text(json.dumps({'plan':{'title':'Fixture'},'fit':{'accepted':True}}))
+            (work/'result.json').write_text(json.dumps({'plan':{'title':'Fixture','favorites':['Public favorite']*20000},'fit':{'accepted':True}}))
         class Response:
             status=200
             def __enter__(self):return self
@@ -95,6 +95,8 @@ class WorkerTests(unittest.TestCase):
             def open(self,request,**kwargs):uploads.append(request);return Response()
         with patch.object(worker,'execute',side_effect=execute),patch('urllib.request.build_opener',return_value=Opener()):
             result=worker.handler({'input':self.job})
+        self.assertEqual(len(result['plan']['favorites']),20000)
+        self.assertGreater(len(json.dumps(result)),262144)
         self.assertEqual(result['audio_bytes'],23040044)
         self.assertEqual(result['audio_sha256'],hashlib.sha256(uploads[0].data).hexdigest())
         self.assertFalse(paths[0].exists())
