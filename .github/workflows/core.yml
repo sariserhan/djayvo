@@ -1,6 +1,7 @@
 name: Portable core
 "on":
   push:
+    branches-ignore: [codex/runpod-setup]
   pull_request:
   workflow_dispatch:
 permissions:

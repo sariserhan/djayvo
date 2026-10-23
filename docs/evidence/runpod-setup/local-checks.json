@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "website_unit_tests": 68,
+  "worker_contract_tests": 6,
+  "dna_regression_tests": 12,
+  "singing_plan_tests": 4,
+  "studio_regression_tests": 6,
+  "typescript": "PASS",
+  "runpod_inventory_access": "PASS",
+  "registry_token_scope": "read:packages verified",
+  "gpu_inference": "NOT RUN"
+}

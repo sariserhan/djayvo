@@ -152,14 +152,50 @@ def runtime(path):
 
 
 def lyric_model(root):
-    from mlx_lm import load
-    manifest = json.loads((Path(__file__).resolve().parents[1] / 'assets/manifests/lyric-planner.json').read_text())
-    model_path = root.parent / 'lyric-planner'
+    cuda = inference_device() == 'cuda'
+    name = 'lyric-planner-cuda' if cuda else 'lyric-planner'
+    manifest = json.loads((Path(__file__).resolve().parents[1] / f'assets/manifests/{name}.json').read_text())
+    model_path = root.parent / name
     for name, expected in manifest['files_sha256'].items():
         if digest(model_path / name) != expected:
             raise ValueError('Lyric planner checksum mismatch')
-    model, tokenizer = load(str(model_path))
+    if cuda:
+        import torch
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+        if not torch.cuda.is_available():
+            raise RuntimeError('CUDA is required for the hosted planner')
+        tokenizer = AutoTokenizer.from_pretrained(model_path, local_files_only=True, trust_remote_code=False)
+        model = AutoModelForCausalLM.from_pretrained(model_path, local_files_only=True,
+            trust_remote_code=False, torch_dtype=torch.bfloat16).to('cuda').eval()
+    else:
+        from mlx_lm import load
+        model, tokenizer = load(str(model_path))
     return model, tokenizer, manifest
+
+
+def inference_device():
+    device = os.environ.get('JAMLOOM_INFERENCE_DEVICE', 'mps')
+    if device not in ('mps', 'cuda'):
+        raise ValueError('Unsupported inference device')
+    return device
+
+
+def planner_functions():
+    if inference_device() == 'mps':
+        import mlx.core as mx
+        from mlx_lm import generate
+        from mlx_lm.sample_utils import make_sampler
+        return mx.random.seed, generate, make_sampler
+    import torch
+    def generate(model, tokenizer, *, prompt, max_tokens, sampler, verbose=False):
+        inputs = tokenizer(prompt, return_tensors='pt', add_special_tokens=False).to('cuda')
+        options = {'do_sample': sampler['temp'] > 0}
+        if options['do_sample']:
+            options.update(temperature=sampler['temp'], top_p=sampler.get('top_p', 1.0))
+        with torch.inference_mode():
+            output = model.generate(**inputs, max_new_tokens=max_tokens, **options)
+        return tokenizer.decode(output[0][inputs['input_ids'].shape[-1]:], skip_special_tokens=True)
+    return torch.manual_seed, generate, lambda **kwargs: kwargs
 
 
 def draft(root, phrase, seed, output, voice=None, genre=None):
@@ -169,12 +205,10 @@ def draft(root, phrase, seed, output, voice=None, genre=None):
     cases = [c for c in variants(seed) if (voice is None or c['voice'] == voice) and (genre is None or c['genre'] == genre)][:4]
     if output.exists():
         raise FileExistsError('Preserving existing lyric plan')
-    import mlx.core as mx
-    from mlx_lm import generate
-    from mlx_lm.sample_utils import make_sampler
+    set_seed, generate, make_sampler = planner_functions()
     model, tokenizer, manifest = lyric_model(root)
     for c in cases:
-        mx.random.seed(c['seed'])
+        set_seed(c['seed'])
         messages = [{'role': 'system', 'content':
             'You are an original musician performing a friendly musical reply to a listener. '
             'Write only 4 to 6 short English lyric lines, 25 to 55 words total. '
@@ -258,9 +292,12 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
             self.dtype = torch.bfloat16
             return super()._load_main_model_from_checkpoint(**kwargs)
 
-    dit, lm = MacSingerHandler(), LLMHandler()
-    status, ok = dit.initialize_service(project_root=str(root), config_path='acestep-v15-turbo', device='mps',
-                                       compile_model=False, use_mlx_dit=False, offload_to_cpu=True, offload_dit_to_cpu=False)
+    device = inference_device()
+    if device == 'cuda' and not torch.cuda.is_available():
+        raise RuntimeError('CUDA is required for the hosted singer')
+    dit, lm = (MacSingerHandler() if device == 'mps' else AceStepHandler()), LLMHandler()
+    status, ok = dit.initialize_service(project_root=str(root), config_path='acestep-v15-turbo', device=device,
+                                       compile_model=False, use_mlx_dit=False, offload_to_cpu=device == 'mps', offload_dit_to_cpu=False)
     if not ok:
         raise RuntimeError(status)
     instrumental = bool(conditioning and conditioning['instrumental'])

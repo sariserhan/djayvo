@@ -15,7 +15,7 @@
     "start": "next start --hostname 127.0.0.1 --port 3000",
     "typecheck": "tsc --noEmit",
     "audit:bundle": "node scripts/audit-bundle.mjs",
-    "test": "tsx --test tests/config.test.ts tests/audio.test.ts tests/email.test.ts tests/economics.test.ts tests/taste.test.ts tests/taste-auto.test.ts tests/dna-song.test.ts tests/dna-examples.test.ts tests/dna-feedback.test.ts tests/music-search.test.ts tests/apple-payments.test.ts tests/generation-budget.test.ts tests/coming-soon.test.ts tests/metadata.test.ts tests/aurowall-inline.test.ts",
+    "test": "tsx --test tests/config.test.ts tests/audio.test.ts tests/email.test.ts tests/economics.test.ts tests/taste.test.ts tests/taste-auto.test.ts tests/runpod-provider.test.ts tests/dna-song.test.ts tests/dna-examples.test.ts tests/dna-feedback.test.ts tests/music-search.test.ts tests/apple-payments.test.ts tests/generation-budget.test.ts tests/coming-soon.test.ts tests/metadata.test.ts tests/aurowall-inline.test.ts",
     "test:integration": "tsx --test tests/database.test.ts tests/private-audio.test.ts tests/catalogue.test.ts",
     "test:browser": "node tests/browser.mjs",
     "test:neon": "node --import tsx tests/neon.mjs",
@@ -46,7 +46,8 @@
     "test:generation-local": "tsx --test tests/generation-local.test.ts",
     "generation:output": "tsx scripts/generation-output.ts",
     "generation:cost": "tsx scripts/generation-cost.ts",
-    "test:generation-output": "tsx --test tests/generation-output.test.ts"
+    "test:generation-output": "tsx --test tests/generation-output.test.ts",
+    "runpod:setup": "tsx scripts/runpod-setup.ts"
   },
   "dependencies": {
     "@apple/app-store-server-library": "3.1.0",
