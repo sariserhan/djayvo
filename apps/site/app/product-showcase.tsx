@@ -7,7 +7,7 @@ export function ProductShowcase(){
  async function toggle(){if(!audio.current)return;if(!audio.current.paused){audio.current.pause();return;}try{setError('');await audio.current.play();}catch{setError('This example is unavailable here. Open Music DNA to see available songs.');}}
  const product=homeProducts.find(p=>p.slug===selected)!;
  return <section className="product-showcase" aria-label="Choose what to make">
-  <div className="showcase-heading"><p className="eyebrow">Your music starts here.</p><h1>Make a song.<br/>Make a mix.<br/><em>Make it yours.</em></h1><p>Pick something. Try it.</p><a className="secondary" href="#public-songs">Listen to all songs ↓</a>
+  <div className="showcase-heading"><p className="eyebrow">Your music starts here.</p><h1>Make a song.<br/>Make a mix.<br/><em>Make it yours.</em></h1><p>Pick something. Try it.</p><a className="secondary" href="/music-dna#public-songs">Listen to all songs ↗</a>
    <div className="showcase-choices" aria-label="Explore Jamloom products">{homeProducts.map(p=><button key={p.slug} type="button" aria-pressed={selected===p.slug} aria-controls="showcase-preview" onClick={()=>{document.querySelectorAll<HTMLAudioElement>('.showcase-preview audio').forEach(a=>a.pause());setPlaying(false);setError('');setSelected(p.slug);}}><span aria-hidden="true">{p.symbol}</span><span>{p.intent}<small>{p.name}</small></span></button>)}</div>
   </div>
   <div id="showcase-preview" className="showcase-preview" aria-label={`${product.name} preview`}>
