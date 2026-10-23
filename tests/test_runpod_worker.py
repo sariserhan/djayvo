@@ -84,6 +84,7 @@ class WorkerTests(unittest.TestCase):
             with self.assertRaises(TimeoutExpired):worker.execute(Path(folder),1)
             kill.assert_called_once_with(1234,worker.signal.SIGKILL)
             self.assertTrue(popen.call_args.kwargs['start_new_session'])
+            self.assertEqual(popen.call_args.args[0][0],str(ROOT/'build-style-training/upstream/.venv/bin/python'))
 
     def test_cuda_planner_keeps_greedy_language_selection_and_bounds_output(self):
         from singing_response import planner_functions,inference_device

@@ -13,6 +13,8 @@ not a claim that research rentals were a live multi-user product.
 
 - Explicitly allowlisted Linux/amd64 image: pinned ACE-Step code/weights and model
   checksums, Qwen planner, CLAP style screen, Whisper transcription and sample arrangement.
+- Runpod SDK uses the base Python environment; music runs in its pinned upstream
+  virtual environment so newer provider SDK dependencies cannot replace model dependencies.
 - Same local music pipelines, opt-in CUDA backend. The CUDA planner uses original
   Qwen3-4B-Instruct-2507 BF16 weights instead of the Mac MLX 4-bit conversion.
   The prompts/validators remain shared; output equivalence and listening require a GPU run.
@@ -58,6 +60,19 @@ node --import tsx --test tests/runpod-provider.test.ts
 The setup script refuses to overwrite an existing mismatched/active endpoint.
 If a provider creation response is lost, inspect inventory before retrying.
 It never submits music generation or changes wallet balances.
+
+## Bounded verification
+
+`runpod-trial.ts --product music-dna --apply` (Node 22 / tsx, from `apps/site`)
+starts one test only from a disabled endpoint, validates its R2 audio checksum,
+saves results under ignored `build-runpod/`, then disables workers and removes
+staging objects. Improvise additionally requires `--source /absolute/permitted.wav`.
+An existing trial receipt blocks accidental repeat spending. Submission ambiguity
+requires provider reconciliation before another attempt. No customer credits are used.
+
+The test recording was synthesized directly to a local file; no microphone capture
+or speaker playback was started. Runpod account preflight confirmed available funding and
+zero current hourly spend. No billing settings or automatic top-up were changed.
 
 ## Remaining release work
 

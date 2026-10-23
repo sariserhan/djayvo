@@ -10,7 +10,7 @@ const template={name,imageName:image,isPublic:false,isServerless:true,containerD
  ...(process.env.RUNPOD_REGISTRY_AUTH_ID?{containerRegistryAuthId:process.env.RUNPOD_REGISTRY_AUTH_ID}:{})};
 // Disabled until the image and a capped real generation are reviewed. No always-on GPU.
 const endpoint={name,computeType:'GPU',gpuCount:1,gpuTypeIds:['NVIDIA GeForce RTX 4090'],
- workersMin:0,workersMax:0,idleTimeout:5,executionTimeoutMs:900000,flashboot:true,scalerType:'QUEUE_DELAY',scalerValue:4};
+ allowedCudaVersions:['12.8','12.9','13.0'],workersMin:0,workersMax:0,idleTimeout:5,executionTimeoutMs:900000,flashboot:true,scalerType:'QUEUE_DELAY',scalerValue:4};
 if(!process.argv.includes('--apply'))console.log({template,endpoint,mode:'dry-run; no provider changes'});
 else{
  const key=process.env.RUNPOD_API_KEY;if(!key)throw Error('RUNPOD_API_KEY is missing; store it in .env.local, never in chat');

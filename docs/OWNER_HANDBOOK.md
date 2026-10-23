@@ -1,6 +1,6 @@
 ## Runpod music worker
 
-Runpod account access is configured. A GitHub classic token with `read:packages` is needed for private image pulls; keep it in ignored `apps/site/.env.local` as `RUNPOD_GHCR_TOKEN`, never in chat or Git. [Setup, variables and remaining checks](runpod-setup.md). Public generation stays closed during setup.
+Runpod account access and the private registry credential are configured. The GitHub classic token with `read:packages` is stored in ignored `apps/site/.env.local` as `RUNPOD_GHCR_TOKEN`; renew it before expiry and never put it in chat or Git. [Setup, variables and remaining checks](runpod-setup.md). Public generation stays closed during setup.
 
 ## R2 music organization — 2026-10-22
 
