@@ -58,10 +58,11 @@ owner-controlled. The owner subsequently approved the worker update and a $3, on
   different owner and serves a byte range. This uses the real application handler,
   models and PostgreSQL, not a full browser login/payment purchase.
   [Full receipt](evidence/dna-completion/local-song.json).
+- **PASS owner listening — 2026-10-23:** “Rise from the Ashes”: “Heavy rock and natural throughout.” This approves the heavy-rock fit and natural singing of this exact 140-second recording; the receipt binds the review to its audio checksum.
 - **PASS sample storage:** the explicitly authorized operator sample is copied to
   public R2 and the gallery manifest; checksum and range playback verified through
   the real local public API. Website publication is still owner-controlled.
-- **NOT RUN:** human listening for these new songs, broad genre-checker calibration,
+- **NOT RUN:** human listening for the two hosted songs, broad genre-checker calibration,
   and maximum-size uncached model timing. Hosted execution passes below.
   No database migration is needed for these changes.
 
@@ -133,7 +134,8 @@ Both original operator samples were separately published to public R2 with the
 owner's standing permission, checksum and byte-range verification, and added to
 `music-validation.json`. The jazz title was verified on the rendered listening
 page; both public audio endpoints work. These operator publications do not expose
-customer private songs. New-song human listening is still unrecorded.
+customer private songs. Human listening for these two hosted samples remains
+unrecorded; the owner approved the separate local “Rise from the Ashes” recording above.
 
 ## Ready for the owner's release step
 

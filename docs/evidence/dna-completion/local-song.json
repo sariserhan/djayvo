@@ -17,7 +17,19 @@
   "stored": true,
   "work": "/Users/serhansari/Documents/projects/jamloom/renders/music-dna-songs/f270e5933b694a7b96fafd9b8e5a4f8b",
   "billing": "Disposable local TEST ledger; no customer charge",
-  "listening": "NOT RUN",
+  "listening": "PASS",
+  "ownerReview": {
+    "date": "2026-10-23",
+    "reviewer": "owner",
+    "verdict": "PASS",
+    "feedback": "Heavy rock and natural throughout",
+    "scope": [
+      "convincing heavy rock",
+      "natural singing throughout"
+    ],
+    "audioSha256": "d91e8ad681b0b831f9ba8a4873203bac2ff33dbd5a4800e9a3f54051d33bda30",
+    "originalPerformanceReceipt": "Preserved below as captured before owner listening."
+  },
   "title": "Rise from the Ashes",
   "duration": 140,
   "voice": "af_nicole",
