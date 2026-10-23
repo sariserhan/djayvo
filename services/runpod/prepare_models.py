@@ -31,6 +31,19 @@ def planner():
     fetch('lyric-planner-cuda.json', ROOT/'build-style-training/lyric-planner-cuda')
 
 
+def identities():
+    from vocal_identity import MODEL_MANIFEST,REFERENCE_MANIFEST,IDENTITIES
+    for repo,entry in json.loads(MODEL_MANIFEST.read_text()).items():
+        target=ROOT/'build-style-training/vocal-identity'/repo.replace('/','--')
+        snapshot_download(repo,revision=entry['revision'],local_dir=target,allow_patterns=list(entry['files']),max_workers=3)
+        for name,info in entry['files'].items():
+            if digest(target/name)!=info['sha256']:raise ValueError('Voice model checksum mismatch')
+    refs=json.loads(REFERENCE_MANIFEST.read_text())['references']
+    for key,voice in IDENTITIES.items():
+        if refs[key]['source_sha256']!=voice['sha256'] or digest(REFERENCE_MANIFEST.parent/(key+'.wav'))!=refs[key]['sha256']:
+            raise ValueError('Synthetic voice reference changed')
+
+
 def finish():
     fetch('dna-auditor.json', ROOT/'build-style-training/taste-auditor')
     speech = json.loads((ROOT/'assets/manifests/word-timing-tiny.json').read_text())

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "reviews": [
+    {
+      "audio_sha256": "c0dbbabab04353d94c16714767553bbd6579d018031be7ee3b298c5d4c610560",
+      "target": "jazz",
+      "accepted": true,
+      "reviewer": "owner",
+      "statement": "The backing sounds like jazz",
+      "evidence": "docs/evidence/song-validation/owner-listening.json#germanJazzBackingReview",
+      "scope": "Backing style only; not lyrics, pronunciation or other recordings"
+    }
+  ]
+}

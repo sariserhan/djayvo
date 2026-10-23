@@ -4,6 +4,7 @@ import argparse
 import json
 import math
 from pathlib import Path
+from song_duration import LIMITS
 from singing_response import digest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -67,10 +68,23 @@ def score_audio(path, auditor=None):
     import numpy as np
     import soundfile as sf
     pcm, rate = sf.read(path, dtype='float32', always_2d=True)
-    if rate != 48000 or pcm.shape != (120*rate, 2) or not np.isfinite(pcm).all() or np.max(np.abs(pcm)) >= 1 or np.sqrt(np.mean(pcm**2)) < .001:
+    if rate != 48000 or (pcm.shape[1]!=2 or not LIMITS['music-dna']['min']*rate<=len(pcm)<=LIMITS['music-dna']['max']*rate) or not np.isfinite(pcm).all() or np.max(np.abs(pcm)) >= 1 or np.sqrt(np.mean(pcm**2)) < .001:
         raise ValueError('Invalid full song audio')
-    windows = [pcm[t*rate:(t+10)*rate].mean(axis=1) for t in (15,45,75,105)]
+    windows = [pcm[t*rate:(t+10)*rate].mean(axis=1) for t in np.linspace(15,len(pcm)/rate-15,4).astype(int)]
     return score_windows(windows, auditor or load_auditor())
+
+
+def apply_style_review(report):
+    reviews=json.loads((ROOT/'assets/manifests/dna-style-reviews.json').read_text())
+    if reviews.get('version')!=1:raise ValueError('Unsupported style review version')
+    matching=[r for r in reviews['reviews'] if r['audio_sha256']==report.get('audio_sha256') and r['target']==report['target']]
+    if len(matching)>1:raise ValueError('Conflicting style reviews')
+    if not matching:return report
+    review=matching[0]
+    if type(review.get('accepted')) is not bool or not review.get('statement') or not review.get('evidence'):
+        raise ValueError('Invalid human style review')
+    return {**report,'automated_accepted':report['accepted'],'accepted':review['accepted'],'style_review':review,
+            'limit':report['limit']+' The exact recording has a human backing-style verdict; original automated evidence is retained.'}
 
 
 def check(work):
@@ -84,6 +98,7 @@ def check(work):
         raise ValueError('Song evidence does not belong to its saved favorites')
     report = {**assess(score_audio(work/'singer/singer.wav'), direction['id']), **hashes,
               'model_revision': MANIFEST['revision'], 'direction_version': POLICY['version'], 'screen_version': 1}
+    report=apply_style_review(report)
     with (work/'fit.json').open('x') as output:json.dump(report, output, indent=2)
     return report
 

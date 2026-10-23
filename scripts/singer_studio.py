@@ -3,6 +3,7 @@
 import json
 import os
 from pathlib import Path
+from song_duration import choose_duration
 import secrets
 import random
 import shutil
@@ -101,7 +102,7 @@ def sample_candidate(work, speech, genre, seconds, seed=0):
     return source,score
 
 
-def make_reply(audio, phrase, voice, genre, consent):
+def make_reply(audio, phrase, voice, genre, consent, duration=None):
     if consent is not True:
         raise StudioError('Confirm that you may use this recording.')
     try:
@@ -113,6 +114,7 @@ def make_reply(audio, phrase, voice, genre, consent):
     if not audio or not Path(audio).is_file() or not 44 <= Path(audio).stat().st_size <= 100*1024**2:
         raise StudioError('Record or upload an audio clip, up to 100 MB.')
     seed = secrets.randbelow(2**32-2*len(STYLES))
+    duration=choose_duration('improvise',seed,duration)
     chosen_voice = secrets.choice(tuple(VOICES)) if voice == 'surprise' else voice
     chosen_genre = secrets.choice(tuple(STYLES)) if genre == 'surprise' else genre
     work = OUTPUT / uuid.uuid4().hex
@@ -144,7 +146,7 @@ def make_reply(audio, phrase, voice, genre, consent):
         stage = 'Writing the lyrics'
         with (work / 'draft-private.log').open('w') as log:
             subprocess.run([*command, 'draft', '--runtime', str(RUNTIME), '--phrase', phrase, '--voice', chosen_voice,
-                            '--genre', chosen_genre, '--seed', str(seed), '--output', str(plan_path)],
+                            '--genre', chosen_genre, '--duration', str(duration), '--seed', str(seed), '--output', str(plan_path)],
                            stdout=log, stderr=subprocess.STDOUT, env=env, timeout=600, check=True)
         plan = load_plan(plan_path)
         case = plan['cases'][0]

@@ -2,7 +2,7 @@ name: Build Runpod music worker
 on:
   push:
     branches: [codex/runpod-setup]
-    paths: [services/runpod/**, scripts/**, assets/manifests/**, .github/workflows/runpod-image.yml]
+    paths: [services/runpod/**, scripts/**, assets/manifests/**, assets/singer-identities/**, .github/workflows/runpod-image.yml]
   workflow_dispatch:
 permissions:
   contents: read

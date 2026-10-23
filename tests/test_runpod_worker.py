@@ -27,6 +27,36 @@ class WorkerTests(unittest.TestCase):
         self.job = {'id': 'a'*32, 'product': 'music-dna', 'timeout_seconds': 900, 'output_url': URL,
                     'payload': {'profile': {'references': ['Favorite — Artist'], 'referenceMetadata': [{'reference': 'Favorite — Artist', 'genre': 'Soul'}]}, 'seed': 4}}
 
+    def test_worker_build_context_includes_every_explicit_copy_source(self):
+        import fnmatch, shlex
+        rules=(ROOT/'services/runpod/Dockerfile.dockerignore').read_text().splitlines()
+        for line in (ROOT/'services/runpod/Dockerfile').read_text().splitlines():
+            if not line.startswith('COPY '):continue
+            for source in shlex.split(line)[1:-1]:
+                included=True
+                for rule in rules:
+                    if not rule or rule.startswith('#'):continue
+                    pattern=rule.lstrip('!').rstrip('/')
+                    if fnmatch.fnmatch(source,pattern) or source.startswith(pattern+'/'):
+                        included=rule.startswith('!')
+                self.assertTrue(included,source+' excluded from the worker build')
+                self.assertTrue((ROOT/source).exists(),source+' missing')
+
+    def test_whole_playlist_input_is_not_cut_to_twenty(self):
+        job=copy.deepcopy(self.job)
+        refs=[f'Günden Güne {i} — Sanatçı' for i in range(5000)]
+        job['payload']['profile']={'references':refs,'referenceMetadata':[{'reference':r,'genre':'Rock'} for r in refs]}
+        self.assertEqual(len(worker.validate(job)['payload']['profile']['references']),5000)
+        job['payload']['profile']['references'].append('Too many')
+        with self.assertRaises(ValueError):worker.validate(job)
+
+    def test_cached_song_descriptions_are_supported_and_bounded(self):
+        job=copy.deepcopy(self.job);job['payload']['track_profiles']=[{'version':1,'model_revision':'fixture','reference':'Favorite — Artist'}]
+        self.assertEqual(worker.validate(job),job)
+        for value in ({},[{}]*5001,[{'oversize':'x'*(12*1024*1024)}]):
+            job['payload']['track_profiles']=value
+            with self.assertRaises(ValueError):worker.validate(job)
+
     def test_storage_boundary_blocks_external_hosts_redirects_and_private_paths(self):
         self.assertEqual(worker.validate(self.job), self.job)
         for url in ['http://127.0.0.1/a', URL.replace('.com/', '.com.evil/'), URL.replace('/uploads/', '/music-dna/private/'),
@@ -76,6 +106,30 @@ class WorkerTests(unittest.TestCase):
                 worker.handler({'input':self.job})
             network.assert_not_called()
         self.assertFalse(paths[-1].exists())
+
+    def test_variable_lengths_and_invalid_requests(self):
+        for product,seconds in [('music-dna',100),('music-dna',140),('improvise',30),('improvise',45)]:
+            job=copy.deepcopy(self.job);job['product']=product
+            if product=='improvise':
+                job['payload']={'voice':'male','genre':'jazz','consent':True}
+                job['source']={'url':URL.replace('11111111-1111','22222222-1111'),'bytes':44,'sha256':'a'*64}
+            job['payload']['duration_seconds']=seconds
+            def execute(work,timeout):
+                with wave.open(str(work/'audio.wav'),'wb') as wav:
+                    wav.setparams((2,2,48000,0,'NONE','not compressed'));wav.writeframes(b'\0\0'*2*48000*seconds)
+                (work/'result.json').write_text('{}')
+            class Response:
+                status=200
+                def __enter__(self):return self
+                def __exit__(self,*args):pass
+            class Opener:
+                def open(self,*args,**kwargs):return Response()
+            with patch.object(worker,'download'),patch.object(worker,'execute',side_effect=execute),patch('urllib.request.build_opener',return_value=Opener()):
+                result=worker.handler({'input':job})
+                self.assertEqual(result['seconds'],seconds);self.assertEqual(result['audio_bytes'],seconds*192000+44)
+            for invalid in (True,0,141,46 if product=='improvise' else 99):
+                job['payload']['duration_seconds']=invalid
+                with self.assertRaises(ValueError):worker.validate(job)
 
     def test_source_receipt_is_verified(self):
         class Response(io.BytesIO):pass

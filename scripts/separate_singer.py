@@ -3,10 +3,12 @@
 import argparse
 import json
 from pathlib import Path
+from song_duration import LIMITS, MAX_SONG_BYTES
 import time
 
 import numpy as np
-from arrange_voice_research import RATE, digest, read_pcm
+from arrange_voice_research import RATE
+import wave
 from singing_response import digest as model_digest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,8 +18,13 @@ def separate(singer, output):
     output = Path(output)
     if output.exists():
         raise FileExistsError('Preserving existing separation')
-    source_hash = digest(singer)
-    original = read_pcm(singer, (30, 30))
+    source_hash = model_digest(singer)
+    if Path(singer).stat().st_size > MAX_SONG_BYTES:
+        raise ValueError('Singer exceeds the supported audio limit')
+    with wave.open(str(singer), 'rb') as audio:
+        if audio.getparams()[:3] != (2, 2, RATE) or not any(b['min']*RATE<=audio.getnframes()<=b['max']*RATE for b in LIMITS.values()) or audio.getcomptype() != 'NONE':
+            raise ValueError('Expected a supported-length stereo PCM singer')
+        original = np.frombuffer(audio.readframes(audio.getnframes()), dtype='<i2').reshape(-1, 2).astype(np.float32)/32768
     manifest = json.loads((ROOT/'assets/manifests/singer-separation.json').read_text())
     checkpoint = ROOT/'build-style-training/separator/hdemucs_high_trained.pt'
     if model_digest(checkpoint) != manifest['sha256']:
@@ -57,8 +64,8 @@ def separate(singer, output):
         pcm = stems[index].T.numpy()
         assert pcm.shape == original.shape and np.isfinite(pcm).all() and np.max(np.abs(pcm)) < 4
         np.save(output/f'{name}.npy', pcm, allow_pickle=False)
-        hashes[name] = digest(output/f'{name}.npy')
-    if digest(singer) != source_hash:
+        hashes[name] = model_digest(output/f'{name}.npy')
+    if model_digest(singer) != source_hash:
         raise ValueError('Singer changed during analysis; retaining incomplete output')
     report = {'technical':'PASS','source_sha256':source_hash,'model_sha256':manifest['sha256'],
               'stems':hashes,'sample_rate':RATE,'frames':len(original),'device':'cpu',

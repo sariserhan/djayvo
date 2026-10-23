@@ -121,7 +121,7 @@ def keep_song(singer_dir, output, reason):
     source=singer_dir/'singer.wav'
     if receipt.get('technical')!='PASS' or digest(source)!=receipt['audio_sha256']:
         raise ValueError('Singing output provenance mismatch')
-    song=read_pcm(source,(30,30))
+    song=read_pcm(source,(30,45))
     output.mkdir(parents=True);(output/'.partial').touch()
     for name in ('music.wav','performance.wav'):shutil.copyfile(source,output/name)
     write_pcm(output/'user.wav',np.zeros_like(song))
@@ -147,7 +147,7 @@ def assemble(source, score, singer_dir, output, consent=False):
     if type(c.get('source_repetitions')) is not int or c['source_repetitions'] not in (1,2):
         raise ValueError('Invalid source timing budget')
     original=read_pcm(source,(2,5));read_crops(score,source,len(original))
-    song=read_pcm(singer_dir/'singer.wav',(30,30));stems=singer_dir/'stems'
+    song=read_pcm(singer_dir/'singer.wav',(30,45));stems=singer_dir/'stems'
     separated=json.loads((stems/'complete.json').read_text())
     if separated.get('technical')!='PASS' or separated.get('source_sha256')!=receipt['audio_sha256']:
         raise ValueError('Stems must match the exact singer recording')
@@ -188,7 +188,7 @@ def assemble(source, score, singer_dir, output, consent=False):
     else: shutil.copyfile(singer_dir/'singer.wav',output/'performance.wav')
     write_pcm(output/'user.wav',voice)
     if events:
-        actual=read_pcm(output/'user.wav',(30,30));edge=RATE//100
+        actual=read_pcm(output/'user.wav',(30,45));edge=RATE//100
         error=float(np.max(np.abs(actual[start+edge:stop-edge]-original[clip['start_frame']+edge:clip['end_frame']-edge]*source_gain)))
         assert error<=.5/32768+1e-12
     assert all(digest(Path(p))==h for p,h in protected.items())
