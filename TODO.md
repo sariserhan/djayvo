@@ -1,3 +1,7 @@
+## Voice studio navigation — 2026-10-23
+
+- [x] **STUDIO-NAV — PASS, local:** Navbar and brand links explicitly open `index.html` instead of the directory URL that returned 404 on the hosted-site router. Native Pro keeps its existing external Improvise destination. Chromium/WebKit verify Voice studio, saved-mixes heading, brand links and return to the deck without page errors. Studio/Academy asset preparation and bundle audit PASS. Website deployment and native app rebuild NOT RUN.
+
 ## Detachable studio windows — 2026-10-23
 
 - [x] **STUDIO-WINDOWS — PASS, local implementation and software verification:** Full deck, keys/instruments, rhythm pads, sampler, voice response and headphone controls detach into concurrent desktop windows sharing one session. Closing or returning panels preserves controls and loaded tracks. Access restrictions, keyboard focus, recording, sequencer, MIDI lookup, recovery and Academy navigation follow the moved controls. Chromium/WebKit multiwindow, instrument capture/download, lifecycle, popup-block, accessibility and mobile checks pass; the native Mac preview passes shared playback, actual focus, resize and sandbox checks. 152 web tests, 3 desktop tests, TypeScript and asset audit pass. Main studio must stay open. Publication, updated installer and new physical qualification NOT RUN. [Report](docs/studio-windows.md).

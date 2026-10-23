@@ -25,7 +25,7 @@ export function attachProConsole(){
     for(const [text,action] of [['Open Basic',()=>window.jamloomDesktop.openBasic()],['Settings',()=>window.jamloomDesktop.openSettings()]]){const button=document.createElement('button');button.className='small-button';button.textContent=text;button.onclick=action;tools.append(button);}
     // Every destination stays in the shared studio; account and marketing pages open externally.
     studioQuery('.brand').href='./dj.html';
-    for(const link of studioQueryAll('header nav a'))if(link.getAttribute('href')==='./')link.href='https://www.jamloom.com/improvise';
+    for(const link of studioQueryAll('header nav a'))if(link.getAttribute('href')==='./index.html')link.href='https://www.jamloom.com/improvise';
     window.jamloomStudioActive=()=>Boolean(studioQuery('.deck[data-playing=true],.sample-pad[data-playing=true],.piano-key[aria-pressed=true],.drum-pad[aria-pressed=true],#sustain[aria-pressed=true],#sequence-stop:not(:disabled),#c-stop:not(:disabled),#session-stop:not(:disabled),#set-record-stop:not(:disabled),#mix-record-stop:not(:disabled),#take-stop:not(:disabled)')||['phrase-record','live-phrases'].some(id=>studioElement(id)?.textContent.startsWith('Stop')));
     setInterval(()=>window.jamloomDesktop.state({active:window.jamloomStudioActive()}),500);
   }
