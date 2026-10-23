@@ -1,3 +1,7 @@
+## Music DNA confirmation and homepage — 2026-10-22
+
+On [Music DNA](http://127.0.0.1:4247/music-dna), add favorites and click **Make my music**. The prompt asks who can listen and shows the credit price; confirm with **Generate song**. Cancelling the prompt uses no credits. The [homepage](http://127.0.0.1:4247/) now includes all nine examples and successful public DNA songs. Other products continue to feed reviewed public mixes through Cloud library. Private and withdrawn songs stay out. Local listening and credit-rehearsal limits remain unchanged. [Checks and evidence](music-dna-homepage.md).
+
 ## Music DNA song collections and prices — 2026-10-22
 
 [Open Music DNA](http://127.0.0.1:4247/music-dna) and scroll to **Made with Music DNA** for all nine completed examples. No special link is needed. **Your songs** and **Community songs** are ready for the authenticated credit flow: public starts at 1 credit, private at 2, with a higher quote shown for acceptance if costs require it. Public generation requires explicit sharing permission. Private playback/download requires the owner account; withdrawal from the public page is free. Failed or cancelled jobs release reserved credits.

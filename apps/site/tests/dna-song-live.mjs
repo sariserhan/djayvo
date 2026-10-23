@@ -16,7 +16,7 @@ if(process.env.JAMLOOM_DNA_RENDER==='1'){
   const refs=['Black Hole Sun — Soundgarden','Back In Black — AC/DC','Master of Puppets — Metallica'];
   await context.addInitScript(refs=>localStorage.setItem('jamloom-taste-v1',JSON.stringify({version:1,references:refs,energy:'balanced',tempo:100,instruments:['piano'],novelty:50,referenceMetadata:refs.map((reference,i)=>({reference,genre:['Alternative','Hard Rock','Metal'][i],source:'itunes',id:100+i}))})),refs);
   const page=await context.newPage();await page.goto(base+'/music-dna');const submitted=page.waitForResponse(r=>r.url().endsWith('/api/taste/song')&&r.request().method()==='POST'&&r.request().postDataJSON().action==='submit');
-  await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:'Make my music',exact:true}).click();
+  await page.getByRole('button',{name:'Make my music',exact:true}).click();await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:/^Generate song/}).click();
   const response=await submitted;assert.equal(response.status(),202);const {id}=await response.json();ids.push(id);
   await writeFile(join(output,'submitted.json'),JSON.stringify({id,references:refs,via:'actual website submission'},null,2));
   console.log('Actual song submitted',id);

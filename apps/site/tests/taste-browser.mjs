@@ -60,8 +60,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   assert.equal(await page.getByLabel('Preferred tempo:').count(),0);
   const language=page.getByRole('combobox',{name:'Singing language',exact:true});
   assert.equal(await language.inputValue(),'auto');
-  assert.match(await page.locator('.product-controls').innerText(),/English-only favorites stay English wherever you are/);
-  await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();
+  assert.match(await page.locator('#dna-notebook > .product-controls').innerText(),/English-only favorites stay English wherever you are/);
   const plans=[];
   const wavs=[],audio=[];
   for(let i=0;i<2;i++){
@@ -71,6 +70,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    assert.match(await page.locator('.dna-summary').innerText(),i?/Dance/:/Classical/);
    await language.selectOption(i?'tr':'auto');
    await page.getByRole('button',{name:i?'Make another song':'Make my music',exact:true}).click();
+   await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:/^Generate song/}).click();
    await page.getByLabel(`Play Fixture song ${i+1}`,{exact:true}).waitFor({timeout:120000});
    const plan=await page.getByRole('region',{name:'Songs for this list',exact:true}).getByRole('link',{name:'Download song notes',exact:true}).evaluate(async a=>await(await fetch(a.href)).json());
    assert.equal(plan.cases[0].voice,'female');assert.ok(plan.cases[0].lyrics.includes('[Chorus]'));plans.push(plan);

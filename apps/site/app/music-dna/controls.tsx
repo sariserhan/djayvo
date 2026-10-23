@@ -16,12 +16,17 @@ export function TasteNotebook(){
  const [takes,setTakes]=useState<Song[]>([]);
  const [visibility,setVisibility]=useState<'public'|'private'>('public'),[publicConsent,setPublicConsent]=useState(false);
  const [quote,setQuote]=useState<{credits:number;token:string;expiresAt:number;key:string}|null>(null);
- const requestId=useRef<string|null>(null);
+ const requestId=useRef<string|null>(null),prompt=useRef<HTMLDialogElement>(null),generationButton=useRef<HTMLButtonElement>(null);
+ const [promptOpen,setPromptOpen]=useState(false);
+ useEffect(()=>{if(promptOpen)prompt.current?.showModal();else prompt.current?.close();},[promptOpen]);
+ function openPrompt(){setPublicConsent(false);setMessage('');setPromptOpen(true);}
+ async function dismissPrompt(){if(analysis.current)await cancel();setPromptOpen(false);}
  const snapshot={references:profile.references,referenceMetadata:profile.referenceMetadata??[],vocalLanguage:profile.vocalLanguage},direction=musicDirection(snapshot);
  const current=takes.filter(s=>s.styleChecked&&s.profile&&favoriteKey(s.profile)===favoriteKey(snapshot));
  const earlier=takes.filter(s=>!current.includes(s));
  const taste=automaticTaste(profile),locked=busy||rendering;
  const selectionKey=favoriteKey(snapshot)+':'+visibility;
+ const generationPrice=quote?.key===selectionKey?quote.credits:visibility==='public'?1:2;
  useEffect(()=>{setQuote(null);requestId.current=null;},[selectionKey]);
  const analysis=useRef<AbortController|null>(null),writable=useRef(false),mounted=useRef(true);
  useEffect(()=>{try{const old=localStorage.getItem('jamloom-taste-v1');if(old)setProfile(favoriteList(validateTaste(JSON.parse(old))));writable.current=true;}catch{setMessage('Saved favorites could not be read. You can start a new list.');}finally{setLoaded(true);}},[]);
@@ -99,7 +104,7 @@ export function TasteNotebook(){
     const priced=await fetch('/api/taste/song',{method:'POST',headers:{'Content-Type':'application/json','X-Jamloom-DNA':'1'},body:JSON.stringify({action:'quote',profile:resolved,visibility,publicConsent}),signal:controller.signal});
     const price=await priced.json();if(!priced.ok)throw Error(price.error);
     accepted={...price,key};setQuote(accepted);
-    if(price.credits>(visibility==='public'?1:2)){setRendering(false);setMessage(`This song needs ${price.credits} credits to cover its generation cost. Review the new price, then click Make my music to accept it.`);return;}
+    if(price.credits>(visibility==='public'?1:2)){setRendering(false);setMessage(`This song needs ${price.credits} credits to cover its generation cost. Review the new price, then confirm the new price to accept it.`);return;}
    }
    controller.signal.throwIfAborted();
    requestId.current??=crypto.randomUUID().replaceAll('-','');
@@ -107,7 +112,7 @@ export function TasteNotebook(){
    const response=await fetch('/api/taste/song',{method:'POST',headers:{'Content-Type':'application/json','X-Jamloom-DNA':'1',...listenerHeaders()},body:JSON.stringify({action:'submit',profile:resolved,visibility,publicConsent,token:accepted!.token,requestId:requestId.current}),signal:AbortSignal.timeout(15000)});
    const result=await response.json();if(!response.ok)throw Error(result.error);
    if(controller.signal.aborted||!mounted.current){await fetch(songUrl(result.id),{method:'DELETE',headers:{'X-Jamloom-DNA':'1'}});return;}
-   setJob(result.id);setMessage('Writing your song…');
+   setPromptOpen(false);setJob(result.id);setMessage('Writing your song…');
   }catch(error){if(!controller.signal.aborted&&mounted.current){setRendering(false);setMessage(error instanceof Error?error.message:'Unable to make this song.');}}
   finally{if(analysis.current===controller)analysis.current=null;}
  }
@@ -140,16 +145,21 @@ export function TasteNotebook(){
  {profile.references.length>0&&<div className="dna-summary"><h3>Your music DNA</h3><p>{taste.genres.length?taste.genres.map(g=>g.name).join(' · '):'We’ll look up the style of your favorites when you make your music.'}</p>
   {direction&&<p><strong>Song direction: {direction.label}</strong> · {direction.energy}. Based on {direction.coverage} of {direction.total} favorites with recognized catalogue genres.</p>}
   <details><summary>How we choose your sound</summary><p>We consider your whole list to choose a groove, instruments, mood and vocal delivery, then write original lyrics and music. The song’s direction will appear below while it is being made.</p><p>Catalogue genres and the model’s knowledge guide this interpretation. We don’t listen to or sample the original recordings, and unfamiliar names may not provide enough information.</p></details></div>}
+ <button ref={generationButton} className="primary" disabled={locked||!loaded||!profile.references.length} onClick={openPrompt}>{rendering?'Making your music…':takes.length?'Make another song':'Make my music'}</button>
+ {rendering&&!promptOpen&&<button className="secondary" onClick={cancel}>Cancel composition</button>}
+ {!promptOpen&&<p role="status">{message}</p>}
+ <dialog ref={prompt} className="dna-generation-dialog" aria-labelledby="dna-generation-title" onCancel={event=>{event.preventDefault();void dismissPrompt();}} onClose={()=>{setPromptOpen(false);generationButton.current?.focus();}}>
+ <h2 id="dna-generation-title">Make your song</h2><p>Choose who can listen before using your credits.</p><div className="product-controls">
  <fieldset disabled={locked}><legend>Who can listen?</legend>
- <label><input type="radio" name="dna-visibility" checked={visibility==='public'} onChange={()=>{setVisibility('public');setQuote(null);requestId.current=null;}}/>Public · from 1 credit</label><p>Your finished song appears in Community songs. Your favorites and account details are not shared.</p>
- <label><input type="radio" name="dna-visibility" checked={visibility==='private'} onChange={()=>{setVisibility('private');setPublicConsent(false);setQuote(null);requestId.current=null;}}/>Private · from 2 credits</label><p>Only your signed-in account can listen or download.</p>
+ <label><input type="radio" name="dna-visibility" checked={visibility==='public'} onChange={()=>{setVisibility('public');setQuote(null);requestId.current=null;}}/>Public · from 1 credit</label><p>Share your song on the homepage and Music DNA. Your favorites and account stay private.</p>
+ <label><input type="radio" name="dna-visibility" checked={visibility==='private'} onChange={()=>{setVisibility('private');setPublicConsent(false);setQuote(null);requestId.current=null;}}/>Private · from 2 credits</label><p>Only you can listen or download.</p>
  {visibility==='public'&&<label><input type="checkbox" checked={publicConsent} onChange={e=>setPublicConsent(e.target.checked)}/>I agree to publish this new song on the community page.</label>}
  </fieldset>
- <p>{quote&&quote.key===favoriteKey(snapshot)+':'+visibility?`This song: ${quote.credits} ${quote.credits===1?'credit':'credits'}.`:`Starting price: ${visibility==='public'?'1 credit':'2 credits'}.`} If generation costs require more credits, we’ll show the new quote for you to accept. Failed or cancelled generations release reserved credits.</p>
- <p><a href="/account/sign-in?callbackURL=%2Fmusic-dna">Sign in</a> · <a href="/account/credits">Your credits</a>. Credit-backed generation currently uses local test credits; paid release is not enabled.</p>
- <button className="primary" disabled={locked||!loaded||!profile.references.length||(visibility==='public'&&!publicConsent)} onClick={generate}>{rendering?'Making your music…':takes.length?'Make another song':'Make my music'}</button>
- {rendering&&<button className="secondary" onClick={cancel}>Cancel composition</button>}
- <p role="status">{message}</p>
+ <p>{quote&&quote.key===favoriteKey(snapshot)+':'+visibility?`This song: ${quote.credits} ${quote.credits===1?'credit':'credits'}.`:`Starting price: ${visibility==='public'?'1 credit':'2 credits'}.`} Higher costs need your approval. Failed or cancelled songs return your credits.</p>
+ <p><a href="/account/sign-in?callbackURL=%2Fmusic-dna">Sign in</a> · <a href="/account/credits">Your credits</a>. Local test credits only. Paid generation is not open.</p>
+ <div className="product-actions"><button className="primary" disabled={locked||(visibility==='public'&&!publicConsent)} onClick={generate}>{rendering?'Preparing your song…':`Generate song · ${generationPrice} ${generationPrice===1?'credit':'credits'}`}</button><button className="secondary" onClick={dismissPrompt}>{rendering?'Cancel composition':'Cancel'}</button></div>
+ {promptOpen&&<p role="status">{message}</p>}
+ </div></dialog>
  <p>Your favorites save automatically on this device. This local song preview takes several minutes. Playback starts only when you press Play.</p>
  {draft&&rendering&&<div><h3>{draft.title}</h3>{draft.favorites&&<p><strong>Making a song from:</strong> {draft.favorites.map(f=>f.reference).join(' · ')}</p>}<p>{draft.summary}</p></div>}
  {current.length>0&&<section aria-label="Songs for this list"><h3>Songs for this list</h3>{current.map(songCard)}</section>}

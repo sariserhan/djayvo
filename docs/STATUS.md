@@ -1,3 +1,7 @@
+## Music DNA generation prompt and homepage — 2026-10-22
+
+**PASS, local.** Make my music now opens the credit and public/private confirmation instead of displaying it in the favorites form. All nine existing examples and successful public DNA songs appear on the homepage, refreshing automatically; other studio public saves retain the shared reviewed catalogue route. Private and withdrawn music stays excluded. Keyboard/mobile/playback, real account/ledger and existing catalogue checks pass. No deployment or paid release. [Report/evidence](music-dna-homepage.md).
+
 ## Music DNA collections and credits — 2026-10-22
 
 **PASS, local implementation and technical checks; product PARTIAL.** All nine existing completed examples now appear permanently on Music DNA, alongside owner and community collections. Approved starting prices are 1 public / 2 private credits. Explicit sharing consent, signed quotes, atomic reservations, idempotent settlement, full failure/cancellation refunds, private owner checks and free public withdrawal are implemented. Real Postgres, two-account Chromium/WebKit flow, nine-song playback, regressions and build/bundle checks pass. This is a loopback credit rehearsal; production migration, hosted singer/real purchases and broader musical acceptance remain open. [Report and evidence](music-dna-sharing-credits.md).

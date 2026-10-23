@@ -12,7 +12,7 @@ export function MusicPlayer({children}:{children:React.ReactNode}) {
   }
   return <PlayerContext.Provider value={play}>{children}<aside className="music-player" hidden={!current} aria-label="Music player">
     <div><strong>{current?.title}</strong><span className="muted">{current?.artist}</span></div>
-    <audio ref={audio} controls preload="none" aria-label="Catalogue player" onError={()=>setError('This track is unavailable or has been withdrawn.')} onEnded={()=>{const next=queue.current[index.current+1];if(next)play(next,queue.current);}}/>
+    <audio ref={audio} controls preload="none" aria-label="Catalogue player" onPlay={event=>document.querySelectorAll('audio').forEach(a=>{if(a!==event.currentTarget)a.pause();})} onError={()=>setError('This track is unavailable or has been withdrawn.')} onEnded={()=>{const next=queue.current[index.current+1];if(next)play(next,queue.current);}}/>
     <button className="text-button" onClick={()=>{audio.current?.pause();audio.current?.removeAttribute('src');audio.current?.load();setCurrent(null);}}>Close player</button>
     <p role="alert">{error}</p>
   </aside></PlayerContext.Provider>;

@@ -47,10 +47,11 @@ fs.mkdirSync(work+'/singer');fs.writeFileSync(work+'/singer/singer.wav',wav);fs.
    const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/music-dna');
    const before=await wallet.balance(owner),jobs=[];
    for(const visibility of ['public','private']){
+    await page.getByRole('button',{name:jobs.length?'Make another song':'Make my music',exact:true}).click();
     await page.getByRole('radio',{name:visibility==='public'?'Public · from 1 credit':'Private · from 2 credits',exact:true}).check();
     if(visibility==='public')await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();
     const submitted=page.waitForResponse(r=>r.url()===base+'/api/taste/song'&&r.request().method()==='POST'&&r.request().postDataJSON().action==='submit');
-    await page.getByRole('button',{name:jobs.length?'Make another song':'Make my music',exact:true}).click();
+    await page.getByRole('button',{name:/^Generate song/}).click();
     const response=await submitted;assert.equal(response.status(),202);const {id}=await response.json();jobs.push({id,visibility});
     await page.locator(`#dna-notebook audio[src*="id=${id}&"]`).waitFor({timeout:15000});
     await page.getByRole('region',{name:'Your songs',exact:true}).locator(`audio[src*="id=${id}&"]`).waitFor();
@@ -64,7 +65,15 @@ fs.mkdirSync(work+'/singer');fs.writeFileSync(work+'/singer/singer.wav',wav);fs.
    for(const width of [1280,390,320]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));}
    await page.getByRole('region',{name:'Your songs',exact:true}).scrollIntoViewIfNeeded();await page.screenshot({path:join(folder,engineName+'-songs.png')});
    assert.deepEqual((await new AxeBuilder({page}).include('#dna-notebook').analyze()).violations,[]);assert.deepEqual(errors,[]);
-   results.push({browser:engineName,status:'PASS',real_auth:true,real_postgres:true,worker:'synthetic process fixture',public_credits:1,private_credits:2,duplicate_charges:0,private_cross_owner_status:404,private_anonymous_status:404,public_feed_excludes_private:true,widths:[1280,390,320],axe_violations:0,errors});
+   await page.goto(base+'/');
+   const homeSongs=page.getByRole('region',{name:'Community songs · Music DNA',exact:true});
+   await homeSongs.locator(`audio[src*="id=${jobs[0].id}&"]`).waitFor();
+   assert.equal(await homeSongs.locator(`audio[src*="id=${jobs[1].id}&"]`).count(),0);
+   assert.equal((await api('/api/taste/song?id='+jobs[0].id,{method:'DELETE',cookie:alice})).status,200);
+   await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+   await homeSongs.locator(`audio[src*="id=${jobs[0].id}&"]`).waitFor({state:'detached'});
+   assert.deepEqual(errors,[]);
+   results.push({homepage_public_only:true,homepage_withdrawal_refresh:true,browser:engineName,status:'PASS',real_auth:true,real_postgres:true,worker:'synthetic process fixture',public_credits:1,private_credits:2,duplicate_charges:0,private_cross_owner_status:404,private_anonymous_status:404,public_feed_excludes_private:true,widths:[1280,390,320],axe_violations:0,errors});
   }finally{await browser.close();}
  }
  await writeFile('/tmp/jamloom-dna-commerce-browser.json',JSON.stringify({status:'PASS',folder,results},null,2));console.log(JSON.stringify({status:'PASS',folder,results}));

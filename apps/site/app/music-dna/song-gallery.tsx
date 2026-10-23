@@ -15,7 +15,11 @@ export function SongGallery({scope,title}:{scope:'examples'|'mine'|'public';titl
    setMessage(result.signIn?'Sign in to see all your songs.':result.available===false?'This collection will open when credit-backed generation is enabled.':result.songs.length?'':scope==='public'?'Public songs will appear here after successful generation.':'No songs yet. Make your first song above.');
   }catch{setMessage('Songs could not load. Please try again.');}finally{setBusy(false);}
  }
- useEffect(()=>{void load();const refresh=()=>void load();window.addEventListener('jamloom-dna-completed',refresh);return()=>window.removeEventListener('jamloom-dna-completed',refresh);},[scope]);
+ useEffect(()=>{void load();const refresh=()=>{if(!document.hidden)void load();};
+  window.addEventListener('jamloom-dna-completed',refresh);window.addEventListener('focus',refresh);document.addEventListener('visibilitychange',refresh);
+  const timer=scope==='public'?setInterval(refresh,60000):undefined;
+  return()=>{clearInterval(timer);window.removeEventListener('jamloom-dna-completed',refresh);window.removeEventListener('focus',refresh);document.removeEventListener('visibilitychange',refresh);};
+ },[scope]);
  async function withdraw(id:string){
   setBusy(true);try{const response=await fetch('/api/taste/song?id='+id,{method:'DELETE',headers:{'X-Jamloom-DNA':'1'}});if(!response.ok)throw Error();await load();window.dispatchEvent(new Event('jamloom-dna-completed'));}catch{setMessage('Could not remove this song from the public page. Try again.');}finally{setBusy(false);}
  }

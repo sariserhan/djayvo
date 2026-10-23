@@ -6,6 +6,8 @@ The owner approved starting prices of **1 credit public / 2 credits private**.
 This increment adds the collection and reservation flow; it does not enable
 hosted generation or real credit purchases. Basic/Pro acceptance is unchanged.
 
+Current interface: [generation prompt and homepage update](music-dna-homepage.md).
+
 ## What the listener gets
 
 Open <http://127.0.0.1:4247/music-dna>:

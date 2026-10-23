@@ -77,3 +77,5 @@
 .dna-song-grid audio{display:block;width:100%;margin:1rem 0}
 
 #dna-notebook label:has(input[type=radio]){display:flex;align-items:center;gap:12px;min-height:44px}#dna-notebook input[type=radio]{width:22px;height:22px;padding:0;flex-shrink:0}
+
+.dna-generation-dialog{width:min(580px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:auto;box-sizing:border-box;background:#191f19;color:var(--cream,#eef0e7);border:1px solid #52604c;border-radius:20px;padding:28px}.dna-generation-dialog::backdrop{background:rgb(0 0 0 / .72)}.dna-generation-dialog h2{margin:0 0 12px}.dna-generation-dialog .product-controls{gap:14px;margin-top:18px}.dna-generation-dialog p{margin:0;font-size:15px}.dna-generation-dialog fieldset p{margin:4px 0 14px}.dna-generation-dialog .product-actions{margin:0}.dna-generation-dialog .product-actions{flex-wrap:wrap}.dna-generation-dialog .product-actions button{flex:1 1 180px}@media(max-width:480px){.dna-generation-dialog{padding:20px}}
