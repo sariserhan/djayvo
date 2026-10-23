@@ -1,0 +1,455 @@
+{
+  "version": 2,
+  "directions": [
+    {
+      "id": "afrobeats",
+      "label": "Afrobeats / Afropop",
+      "match": "afro.?beat|afropop|highlife|african",
+      "bpm": [
+        90,
+        120
+      ],
+      "energy": "buoyant",
+      "instruments": [
+        "interlocking percussion",
+        "melodic bass",
+        "bright guitar or keys"
+      ],
+      "traits": "Interlocking syncopated percussion, buoyant bass, melodic sung call and response and clear evolving hooks.",
+      "avoid": "exact artist imitation",
+      "audio": "A Afrobeats / Afropop song with interlocking percussion, melodic bass, bright guitar or keys and singing."
+    },
+    {
+      "id": "amapiano",
+      "label": "Amapiano",
+      "match": "amapiano|gqom",
+      "bpm": [
+        108,
+        118
+      ],
+      "energy": "flowing",
+      "instruments": [
+        "log drum bass",
+        "shuffling percussion",
+        "warm piano"
+      ],
+      "traits": "Amapiano with log-drum bass, spacious shuffling percussion, warm piano and melodic sung hooks.",
+      "avoid": "exact artist imitation",
+      "audio": "A Amapiano song with log drum bass, shuffling percussion, warm piano and singing."
+    },
+    {
+      "id": "reggaeton",
+      "label": "Reggaeton / Latin urban",
+      "match": "reggaeton|latin urban|urbano latino",
+      "bpm": [
+        88,
+        108
+      ],
+      "energy": "driving",
+      "instruments": [
+        "dembow drums",
+        "deep bass",
+        "rhythmic synth or guitar"
+      ],
+      "traits": "Dembow rhythm, deep bass, rhythmic vocal phrasing and a melodic chorus with changing sections.",
+      "avoid": "exact artist imitation",
+      "audio": "A Reggaeton / Latin urban song with dembow drums, deep bass, rhythmic synth or guitar and singing."
+    },
+    {
+      "id": "flamenco",
+      "label": "Flamenco",
+      "match": "flamenco",
+      "bpm": [
+        80,
+        140
+      ],
+      "energy": "expressive",
+      "instruments": [
+        "nylon guitar",
+        "handclaps",
+        "acoustic bass"
+      ],
+      "traits": "Expressive flamenco-inspired singing, articulate nylon guitar, handclap rhythmic interplay and dynamic verses.",
+      "avoid": "exact artist imitation",
+      "audio": "A Flamenco song with nylon guitar, handclaps, acoustic bass and singing."
+    },
+    {
+      "id": "arabic",
+      "label": "Arabic traditions / pop",
+      "match": "arabic|arabesque|arabesk|oriental|middle eastern",
+      "bpm": [
+        72,
+        128
+      ],
+      "energy": "expressive",
+      "instruments": [
+        "oud or regional strings",
+        "hand percussion",
+        "melodic bass"
+      ],
+      "traits": "Respect the supplied regional tradition: expressive ornamental melody, interlocking hand percussion and clear sung phrasing. Do not equate language with genre.",
+      "avoid": "exact artist imitation",
+      "audio": "A Arabic traditions / pop song with oud or regional strings, hand percussion, melodic bass and singing."
+    },
+    {
+      "id": "indian",
+      "label": "South Asian traditions / film",
+      "match": "bollywood|indian|hindustani|carnatic|bhangra|desi|qawwali|sufi",
+      "bpm": [
+        70,
+        140
+      ],
+      "energy": "expressive",
+      "instruments": [
+        "regional melodic strings or keys",
+        "tabla or regional percussion",
+        "bass"
+      ],
+      "traits": "Use the supplied South Asian style as musical guidance, expressive melodic ornament, appropriate regional percussion and a memorable sung refrain.",
+      "avoid": "exact artist imitation",
+      "audio": "A South Asian traditions / film song with regional melodic strings or keys, tabla or regional percussion, bass and singing."
+    },
+    {
+      "id": "lofi",
+      "label": "Lo-fi",
+      "match": "lo.?fi",
+      "bpm": [
+        65,
+        95
+      ],
+      "energy": "relaxed",
+      "instruments": [
+        "warm electric piano",
+        "rounded bass",
+        "loose dusty drums"
+      ],
+      "traits": "Lo-fi warmth, loose pocket, warm harmonic color and understated melodic singing, with developing verses rather than a static loop.",
+      "avoid": "exact artist imitation",
+      "audio": "A Lo-fi song with warm electric piano, rounded bass, loose dusty drums and singing."
+    },
+    {
+      "id": "experimental",
+      "label": "Experimental / art music",
+      "match": "experimental|avant.garde|art pop|progressive electronic",
+      "bpm": [
+        72,
+        144
+      ],
+      "energy": "adventurous",
+      "instruments": [
+        "textural synth or guitar",
+        "expressive bass",
+        "changing percussion"
+      ],
+      "traits": "Coherent experimental songwriting with surprising textures, purposeful space, evolving motifs and a recognizable original sung refrain.",
+      "avoid": "exact artist imitation",
+      "audio": "A Experimental / art music song with textural synth or guitar, expressive bass, changing percussion and singing."
+    },
+    {
+      "id": "heavy-rock",
+      "label": "Heavy rock / metal",
+      "match": "metal|hard[ -]?rock|hardcore punk|post.hardcore",
+      "bpm": [
+        112,
+        168
+      ],
+      "energy": "intense",
+      "instruments": [
+        "distorted electric guitar riffs",
+        "electric bass",
+        "hard-hitting live drums"
+      ],
+      "traits": "Riff-led heavy rock and metal, driving rhythmic momentum, powerful projected melodic vocals, punchy kick and snare, dynamic full-band choruses. Keep the music heavy even in quieter passages.",
+      "avoid": "ballad|lullaby|brushed|whisper|soft piano|gentle acoustic|downtempo|ambient",
+      "audio": "A heavy metal or hard rock song with distorted electric guitar riffs, bass, loud drums and powerful singing."
+    },
+    {
+      "id": "rock",
+      "label": "Alternative / rock",
+      "match": "rock|alternative|punk|grunge|рок",
+      "bpm": [
+        98,
+        156
+      ],
+      "energy": "driving",
+      "instruments": [
+        "electric guitar",
+        "electric bass",
+        "live drums"
+      ],
+      "traits": "A guitar-led alternative rock band, distinct rhythmic riffs, expressive projected singing, energetic drums and dynamic choruses.",
+      "avoid": "lullaby|brushed drums|ambient soundscape|piano ballad",
+      "audio": "An alternative rock song with electric guitars, bass, live rock drums and expressive singing."
+    },
+    {
+      "id": "jazz",
+      "label": "Jazz",
+      "match": "jazz|джаз",
+      "bpm": [
+        72,
+        144
+      ],
+      "energy": "expressive",
+      "instruments": [
+        "acoustic piano",
+        "upright bass",
+        "jazz drums"
+      ],
+      "traits": "Harmonically rich vocal jazz, syncopated or swinging phrasing, acoustic ensemble interplay and expressive natural vocals.",
+      "avoid": "heavy metal|supersaw drop|pounding techno",
+      "audio": "A jazz song with piano, upright bass, jazz drums and a jazz singer."
+    },
+    {
+      "id": "soul",
+      "label": "R&B / soul",
+      "match": "r&b|rnb|rhythm.*blues|soul",
+      "bpm": [
+        72,
+        116
+      ],
+      "energy": "soulful",
+      "instruments": [
+        "electric piano",
+        "warm bass",
+        "pocket drums"
+      ],
+      "traits": "Expressive R&B and soul singing, rich chords, rhythmic pocket, warm ensemble textures and a memorable melodic chorus.",
+      "avoid": "heavy metal|pounding techno",
+      "audio": "An R&B or soul song with soulful singing, electric piano, bass and a smooth drum groove."
+    },
+    {
+      "id": "blues",
+      "label": "Blues",
+      "match": "blues",
+      "bpm": [
+        72,
+        120
+      ],
+      "energy": "expressive",
+      "instruments": [
+        "blues guitar",
+        "bass",
+        "live drums"
+      ],
+      "traits": "Blues groove, expressive bent guitar notes, blues harmony, soulful projected vocals and instrumental call and response.",
+      "avoid": "supersaw drop|pounding techno",
+      "audio": "A blues song with expressive blues guitar, bass, drums and soulful blues singing."
+    },
+    {
+      "id": "country",
+      "label": "Country / folk",
+      "match": "country|americana|bluegrass|acoustic|singer.songwriter",
+      "bpm": [
+        76,
+        128
+      ],
+      "energy": "organic",
+      "instruments": [
+        "acoustic guitar",
+        "bass",
+        "light live percussion"
+      ],
+      "traits": "Organic country or folk songwriting, storytelling vocals, acoustic string textures and a grounded rhythmic pulse.",
+      "avoid": "pounding techno|supersaw drop",
+      "audio": "A country or folk song with acoustic guitar, bass, organic percussion and storytelling singing."
+    },
+    {
+      "id": "reggae",
+      "label": "Reggae",
+      "match": "reggae(?!ton)|\\bdub\\b|\\bska\\b",
+      "bpm": [
+        72,
+        108
+      ],
+      "energy": "buoyant",
+      "instruments": [
+        "offbeat rhythm guitar",
+        "deep electric bass",
+        "reggae drums"
+      ],
+      "traits": "Laid-back but rhythmic reggae, offbeat guitar skanks, strong bass movement, relaxed natural singing and syncopated percussion.",
+      "avoid": "piano ballad|heavy metal",
+      "audio": "A reggae song with offbeat guitar skanks, deep bass, reggae drums and singing."
+    },
+    {
+      "id": "hip-hop",
+      "label": "Hip-hop / rap",
+      "match": "hip.?hop|rap|рэп|хип.хоп",
+      "bpm": [
+        76,
+        112
+      ],
+      "energy": "rhythmic",
+      "instruments": [
+        "punchy beat",
+        "deep bass",
+        "sparse melodic accompaniment"
+      ],
+      "traits": "Hip-hop pocket, rhythmically varied rap verses and a melodic sung chorus, deliberate flow, punchy drums and space around the vocal.",
+      "avoid": "piano ballad|operatic|waltz",
+      "audio": "A hip hop or rap song with rhythmic rapping, a sung hook, punchy beats and deep bass."
+    },
+    {
+      "id": "dance",
+      "label": "Dance / EDM",
+      "match": "dance|house|techno|trance|edm|drum.*bass|dubstep|breakbeat|dnb",
+      "bpm": [
+        120,
+        174
+      ],
+      "energy": "intense",
+      "instruments": [
+        "electronic dance drums",
+        "synth bass",
+        "rhythmic synthesizers"
+      ],
+      "traits": "Rhythmic electronic dance music with builds, release, a clear club groove, sung hooks and an evolving bass-driven arrangement.",
+      "avoid": "acoustic ballad|brushed drums|lullaby",
+      "audio": "An electronic dance or house song with a driving dance beat, synthesizers, bass and vocal hooks."
+    },
+    {
+      "id": "ambient",
+      "label": "Chill / lo-fi",
+      "match": "ambient|chill|lo.?fi|lounge|new age",
+      "bpm": [
+        60,
+        100
+      ],
+      "energy": "gentle",
+      "instruments": [
+        "soft keys",
+        "warm bass",
+        "restrained percussion"
+      ],
+      "traits": "Spacious mellow music, understated rhythmic details, warm textures, intimate natural singing and subtle development.",
+      "avoid": "heavy metal|pounding techno",
+      "audio": "A mellow chill or lo-fi song with soft keys, warm bass, restrained drums and gentle singing."
+    },
+    {
+      "id": "electronic",
+      "label": "Electronic / synth-pop",
+      "match": "electronic|synth|electro",
+      "bpm": [
+        92,
+        136
+      ],
+      "energy": "pulsing",
+      "instruments": [
+        "synthesizers",
+        "synth bass",
+        "electronic drums"
+      ],
+      "traits": "Synth-led electronic pop, rhythmic arpeggios, distinct synth-bass motion, expressive sung hooks and evolving electronic textures.",
+      "avoid": "acoustic guitar ballad|country band",
+      "audio": "An electronic synth pop or synthwave song with synthesizers, synth bass, electronic drums and singing."
+    },
+    {
+      "id": "classical",
+      "label": "Classical / orchestral",
+      "match": "classical|orchestral|opera",
+      "bpm": [
+        60,
+        120
+      ],
+      "energy": "expressive",
+      "instruments": [
+        "acoustic piano",
+        "strings",
+        "acoustic ensemble"
+      ],
+      "traits": "Classically influenced vocal composition, developed melodic motifs, acoustic orchestration, nuanced dynamics and sustained expressive singing.",
+      "avoid": "rap verses|pounding techno|supersaw drop",
+      "audio": "A classical vocal or orchestral song with acoustic piano, strings and classical singing."
+    },
+    {
+      "id": "funk",
+      "label": "Funk / disco",
+      "match": "funk|disco",
+      "bpm": [
+        96,
+        128
+      ],
+      "energy": "buoyant",
+      "instruments": [
+        "syncopated electric bass",
+        "rhythm guitar",
+        "tight drums"
+      ],
+      "traits": "Danceable funk or disco pocket, syncopated bass and guitar, crisp drums, joyful rhythmic vocals and an infectious chorus.",
+      "avoid": "piano ballad|lullaby",
+      "audio": "A funk or disco song with syncopated electric bass, rhythm guitar, tight drums and singing."
+    },
+    {
+      "id": "latin",
+      "label": "Latin",
+      "match": "latin|salsa|bachata|bossa|flamenco|reggaeton",
+      "bpm": [
+        86,
+        132
+      ],
+      "energy": "buoyant",
+      "instruments": [
+        "syncopated percussion",
+        "rhythmic bass",
+        "guitar or piano"
+      ],
+      "traits": "Latin rhythmic phrasing, interlocking percussion, melodic bass and expressive sung hooks, with clear instrumental answers.",
+      "avoid": "piano ballad|heavy metal",
+      "audio": "A Latin song with syncopated percussion, rhythmic bass, guitar or piano and singing."
+    },
+    {
+      "id": "indie",
+      "label": "Indie",
+      "match": "indie",
+      "bpm": [
+        88,
+        136
+      ],
+      "energy": "organic",
+      "instruments": [
+        "textured guitar",
+        "melodic bass",
+        "live drums"
+      ],
+      "traits": "Distinctive indie songwriting, intimate but melodic vocals, textured guitars and changing band dynamics with a memorable refrain.",
+      "avoid": "pounding techno|operatic",
+      "audio": "An indie pop or indie rock song with textured guitars, melodic bass, drums and singing."
+    },
+    {
+      "id": "pop",
+      "label": "Pop",
+      "match": "pop|k.?pop|j.?pop|cantopop|mandopop|türkçe pop|русский поп",
+      "bpm": [
+        92,
+        132
+      ],
+      "energy": "melodic",
+      "instruments": [
+        "rhythmic drums",
+        "melodic bass",
+        "piano guitar or synthesizers"
+      ],
+      "traits": "Melodic pop with a clear rhythmic pulse, developing verses, a strong singable chorus and expressive natural vocals.",
+      "avoid": "ambient soundscape|free jazz",
+      "audio": "A pop song with catchy singing, rhythmic drums, bass and melodic accompaniment."
+    },
+    {
+      "id": "traditional",
+      "label": "Folk / regional traditions",
+      "match": "traditional|world|türk halk|turkish folk|türk sanat|anatolian folk|tango|fado|celtic|chanson|шансон|народн|polka|klezmer|folk",
+      "bpm": [
+        72,
+        132
+      ],
+      "energy": "organic",
+      "instruments": [
+        "regional acoustic strings",
+        "acoustic bass",
+        "hand percussion"
+      ],
+      "traits": "Preserve the specific regional folk tradition in the supplied catalogue labels, acoustic instrumental interplay and expressive original sung storytelling. Do not mash unrelated traditions together.",
+      "avoid": "exact artist imitation",
+      "audio": "A Folk / regional traditions song with regional acoustic strings, acoustic bass, hand percussion and singing."
+    }
+  ]
+}

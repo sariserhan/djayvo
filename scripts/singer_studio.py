@@ -50,7 +50,7 @@ def prepare_source(audio, work):
 
 
 def understand(work, env):
-    speech_python=ROOT/'.venv-speech/bin/python'
+    speech_python=Path(sys.executable) if os.environ.get('JAMLOOM_INFERENCE_DEVICE') == 'cuda' else ROOT/'.venv-speech/bin/python'
     try:
         with (work/'understand-private.log').open('w') as log:
             subprocess.run([str(speech_python),str(ROOT/'scripts/analyze_words.py'),'--input',str(work/'decoded.wav'),

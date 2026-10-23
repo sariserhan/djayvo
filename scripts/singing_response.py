@@ -10,6 +10,7 @@ import re
 import resource
 import sys
 import time
+from dna_language import language, lyric_units, validate_script
 
 MAX_PHRASE_CHARS = 32000
 CODE_REVISION = 'ca1e85fe9430179831e6bc6be790c332190a3866'
@@ -55,7 +56,9 @@ def digest(path):
 
 
 def text_field(value, limit, name):
-    if not isinstance(value, str) or not value.strip() or len(value) > limit or any(ord(c) < 32 and c != '\n' for c in value):
+    if isinstance(value,str) and len(value)>limit:
+        raise ValueError(f'{name} contains {len(value)} characters; use at most {limit}')
+    if not isinstance(value, str) or not value.strip() or any(ord(c) < 32 and c != '\n' for c in value):
         raise ValueError(f'Invalid {name}')
     return value.strip()
 
@@ -71,6 +74,8 @@ def variants(seed):
 
 
 def caption(case):
+    if 'song_caption' in case:
+        return case['song_caption']
     delivery = ('Natural rhythmic rap verses with breath, clear consonants, varied flow and a short sung hook. '
                 if case['genre'] == 'rap' else
                 'Human-like sung melody with breath, connected legato phrases, subtle vibrato, relaxed rhythmic phrasing and expressive dynamics. ')
@@ -83,25 +88,41 @@ def caption(case):
 
 
 def validate_plan(plan):
-    if not isinstance(plan, dict) or plan.get('schema') != 'jamloom-sung-response-1' or plan.get('model_code') != CODE_REVISION or plan.get('weights') != WEIGHT_REVISION:
+    if not isinstance(plan, dict) or plan.get('schema') not in ('jamloom-sung-response-1', 'jamloom-dna-song-1') or plan.get('model_code') != CODE_REVISION or plan.get('weights') != WEIGHT_REVISION:
         raise ValueError('Unsupported singing plan or model revisions')
+    song = plan['schema'] == 'jamloom-dna-song-1'
     text_field(plan.get('phrase'), MAX_PHRASE_CHARS, 'source phrase')
     cases = plan.get('cases')
     if not isinstance(cases, list) or not 1 <= len(cases) <= 12:
         raise ValueError('Expected one to twelve singer cases')
     seen = set()
     for c in cases:
-        if not isinstance(c, dict) or not isinstance(c.get('genre'), str) or not isinstance(c.get('voice'), str) or c.get('genre') not in STYLES or c.get('voice') not in VOICES or c.get('id') != f"{c.get('genre')}-{c.get('voice')}" or c['id'] in seen:
+        if not isinstance(c, dict):
+            raise ValueError('Invalid singer case')
+        genre = c.get('genre')
+        valid_genre = isinstance(genre, str) and (re.fullmatch(r'[a-z][a-z0-9-]{0,29}', genre) if song else genre in STYLES)
+        if not valid_genre or not isinstance(c.get('voice'), str) or c.get('voice') not in VOICES or c.get('id') != f"{genre}-{c.get('voice')}" or c['id'] in seen:
             raise ValueError('Invalid or duplicate singer/style')
         seen.add(c['id'])
         if type(c.get('seed')) is not int or not 0 <= c['seed'] < 2**32:
             raise ValueError('Invalid seed')
-        if c.get('duration') != 30 or c.get('bpm') != STYLES[c['genre']][0] or type(c.get('source_repetitions')) is not int or c['source_repetitions'] not in (1, 2):
+        if song:
+            if type(c.get('duration')) is not int or c['duration'] != 120 or type(c.get('bpm')) is not int or not 60 <= c['bpm'] <= 180:
+                raise ValueError('Invalid song timing')
+            text_field(c.get('song_caption'), 2000, 'song direction')
+        elif 'song_caption' in c or c.get('duration') != 30 or c.get('bpm') != STYLES[c['genre']][0] or type(c.get('source_repetitions')) is not int or c['source_repetitions'] not in (1, 2):
             raise ValueError('Invalid timing or repetition budget')
-        lyrics = text_field(c.get('lyrics'), 1600, 'lyrics')
+        code=language(c.get('vocal_language','en'))
+        lyrics = text_field(c.get('lyrics'), 4000 if song else 1600, 'lyrics')
         words = re.sub(r'\[[^\]]*\]', '', lyrics).split()
-        if not 8 <= len(words) <= 85 or '[instrumental]' in lyrics.lower():
+        units,bounds=lyric_units(lyrics,code)
+        if not (bounds[0] <= units <= bounds[1] if song else 8 <= len(words) <= 85):
+            if song:raise ValueError(f'Lyrics contain {units} {"characters" if code in ("ja","zh","yue","th") else "words"}; write between {bounds[0]} and {bounds[1]}, developing the verses and bridge')
             raise ValueError('Expected short sung reply lyrics, not an instrumental')
+        if '[instrumental]' in lyrics.lower():raise ValueError('Every section needs sung lyrics')
+        if song and not all(section in lyrics.lower() for section in ('[verse', '[chorus]', '[bridge]', '[outro]')):
+            raise ValueError('Expected developed song sections')
+        if song and 'vocal_language' in c:validate_script(lyrics,code)
     return plan
 
 
@@ -130,6 +151,53 @@ def runtime(path):
     return root
 
 
+def lyric_model(root):
+    cuda = inference_device() == 'cuda'
+    name = 'lyric-planner-cuda' if cuda else 'lyric-planner'
+    manifest = json.loads((Path(__file__).resolve().parents[1] / f'assets/manifests/{name}.json').read_text())
+    model_path = root.parent / name
+    for name, expected in manifest['files_sha256'].items():
+        if digest(model_path / name) != expected:
+            raise ValueError('Lyric planner checksum mismatch')
+    if cuda:
+        import torch
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+        if not torch.cuda.is_available():
+            raise RuntimeError('CUDA is required for the hosted planner')
+        tokenizer = AutoTokenizer.from_pretrained(model_path, local_files_only=True, trust_remote_code=False)
+        model = AutoModelForCausalLM.from_pretrained(model_path, local_files_only=True,
+            trust_remote_code=False, torch_dtype=torch.bfloat16).to('cuda').eval()
+    else:
+        from mlx_lm import load
+        model, tokenizer = load(str(model_path))
+    return model, tokenizer, manifest
+
+
+def inference_device():
+    device = os.environ.get('JAMLOOM_INFERENCE_DEVICE', 'mps')
+    if device not in ('mps', 'cuda'):
+        raise ValueError('Unsupported inference device')
+    return device
+
+
+def planner_functions():
+    if inference_device() == 'mps':
+        import mlx.core as mx
+        from mlx_lm import generate
+        from mlx_lm.sample_utils import make_sampler
+        return mx.random.seed, generate, make_sampler
+    import torch
+    def generate(model, tokenizer, *, prompt, max_tokens, sampler, verbose=False):
+        inputs = tokenizer(prompt, return_tensors='pt', add_special_tokens=False).to('cuda')
+        options = {'do_sample': sampler['temp'] > 0}
+        if options['do_sample']:
+            options.update(temperature=sampler['temp'], top_p=sampler.get('top_p', 1.0))
+        with torch.inference_mode():
+            output = model.generate(**inputs, max_new_tokens=max_tokens, **options)
+        return tokenizer.decode(output[0][inputs['input_ids'].shape[-1]:], skip_special_tokens=True)
+    return torch.manual_seed, generate, lambda **kwargs: kwargs
+
+
 def draft(root, phrase, seed, output, voice=None, genre=None):
     phrase = text_field(phrase, MAX_PHRASE_CHARS, 'source phrase')
     if voice is not None and voice not in VOICES or genre is not None and genre not in STYLES:
@@ -137,17 +205,10 @@ def draft(root, phrase, seed, output, voice=None, genre=None):
     cases = [c for c in variants(seed) if (voice is None or c['voice'] == voice) and (genre is None or c['genre'] == genre)][:4]
     if output.exists():
         raise FileExistsError('Preserving existing lyric plan')
-    import mlx.core as mx
-    from mlx_lm import load, generate
-    from mlx_lm.sample_utils import make_sampler
-    manifest = json.loads((Path(__file__).resolve().parents[1] / 'assets/manifests/lyric-planner.json').read_text())
-    model_path = root.parent / 'lyric-planner'
-    for name, expected in manifest['files_sha256'].items():
-        if digest(model_path / name) != expected:
-            raise ValueError('Lyric planner checksum mismatch')
-    model, tokenizer = load(str(model_path))
+    set_seed, generate, make_sampler = planner_functions()
+    model, tokenizer, manifest = lyric_model(root)
     for c in cases:
-        mx.random.seed(c['seed'])
+        set_seed(c['seed'])
         messages = [{'role': 'system', 'content':
             'You are an original musician performing a friendly musical reply to a listener. '
             'Write only 4 to 6 short English lyric lines, 25 to 55 words total. '
@@ -205,6 +266,8 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
         raise ValueError('Select a case present in the plan')
     c = cases[0].copy()
     conditioning = source_conditioning(conditioning_path) if conditioning_path else None
+    if conditioning and plan['schema'] == 'jamloom-dna-song-1':
+        raise ValueError('Music DNA does not accept reference audio')
     if conditioning:
         c['bpm'] = conditioning['bpm']
     description = caption(c)
@@ -229,9 +292,12 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
             self.dtype = torch.bfloat16
             return super()._load_main_model_from_checkpoint(**kwargs)
 
-    dit, lm = MacSingerHandler(), LLMHandler()
-    status, ok = dit.initialize_service(project_root=str(root), config_path='acestep-v15-turbo', device='mps',
-                                       compile_model=False, use_mlx_dit=False, offload_to_cpu=True, offload_dit_to_cpu=False)
+    device = inference_device()
+    if device == 'cuda' and not torch.cuda.is_available():
+        raise RuntimeError('CUDA is required for the hosted singer')
+    dit, lm = (MacSingerHandler() if device == 'mps' else AceStepHandler()), LLMHandler()
+    status, ok = dit.initialize_service(project_root=str(root), config_path='acestep-v15-turbo', device=device,
+                                       compile_model=False, use_mlx_dit=False, offload_to_cpu=device == 'mps', offload_dit_to_cpu=False)
     if not ok:
         raise RuntimeError(status)
     instrumental = bool(conditioning and conditioning['instrumental'])
@@ -245,14 +311,14 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
                          'repaint_wav_crossfade_sec': .04}
     params = GenerationParams(caption=description, bpm=c['bpm'], duration=c['duration'], seed=c['seed'],
                               instrumental=instrumental, lyrics='[Instrumental]' if instrumental else c['lyrics'],
-                              vocal_language='en', inference_steps=8, **source_params,
+                              vocal_language=c.get('vocal_language','en'), inference_steps=8, **source_params,
                               thinking=False, use_cot_metas=False, use_cot_caption=False, use_cot_language=False, use_cot_lyrics=False)
     result = generate_music(dit, lm, params, GenerationConfig(batch_size=1, audio_format='wav', use_random_seed=False, seeds=[c['seed']]), save_dir=str(output / 'raw'))
     if not result.success or len(result.audios) != 1:
         raise RuntimeError(result.error or 'Expected exactly one singing output')
     pcm, rate = sf.read(result.audios[0]['path'], dtype='float32', always_2d=True)
     peak = float(np.max(np.abs(pcm)))
-    if rate != 48000 or pcm.shape != (1440000, 2) or not np.isfinite(pcm).all() or not .001 < peak < 1:
+    if rate != 48000 or pcm.shape != (48000*c['duration'], 2) or not np.isfinite(pcm).all() or not .001 < peak < 1:
         raise ValueError('Invalid singer audio; refusing completed output')
     dest = output / 'singer.wav'
     sf.write(dest, pcm, rate, subtype='PCM_16')

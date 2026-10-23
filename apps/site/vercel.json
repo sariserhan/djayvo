@@ -1,4 +1,14 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "crons": [{"path": "/api/notifications", "schedule": "*/5 * * * *"}]
+  "crons": [
+    {
+      "path": "/api/notifications",
+      "schedule": "*/5 * * * *"
+    }
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "codex/runpod-setup": false
+    }
+  }
 }
