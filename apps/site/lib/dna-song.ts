@@ -112,7 +112,7 @@ export async function dnaSong(request:Request,context?:DnaContext){
     }
     await mkdir(work,{recursive:true,mode:0o700});
     await writeFile(join(work,'input.json'),JSON.stringify({profile,direction,feedback,country,seed:randomInt(2**32)}),{flag:'wx',mode:0o600});
-    await writeFile(join(work,'status.json'),JSON.stringify({state:'running',message:'Starting your song…'}));
+    await writeFile(join(work,'status.json'),JSON.stringify({state:'running',phase:'preparing',message:'Starting your song…'}));
     const child=spawn(join(root,'.venv-singer/bin/python'),[join(root,'scripts/music_dna_song.py'),'run',work,'--deadline-seconds',String(DNA_RUNTIME_MS/1000)],{
      cwd:root,detached:true,stdio:'ignore',env:{...process.env,HF_HUB_OFFLINE:'1',HF_HUB_DISABLE_TELEMETRY:'1'},
     });
@@ -180,6 +180,10 @@ export async function dnaSong(request:Request,context?:DnaContext){
    }
    return json({error:'This song is stopping or recovering. Refresh its status.'},409);
   }
+  if(record?.state==='queued'){
+   if(url.searchParams.has('file'))return json({error:'This song is not ready.'},409);
+   return json({id,state:'queued',message:'Your request is in the queue, waiting to be processed.'});
+  }
   const result=await songFiles(root,id),{input,plan,fit,legacy}=result;let status=result.status;
   if(record&&commerce&&record.state==='running'&&state.jamloomDnaSong?.id!==id){
    if(['completed','failed','rejected','cancelled'].includes(status.state)){
@@ -191,7 +195,7 @@ export async function dnaSong(request:Request,context?:DnaContext){
    }
   }
   // Finished audio is not available until its reservation has settled.
-  if(record&&record.state!=='completed'&&status.state==='completed')status={state:'running',message:'Saving your song and settling credits…'};
+  if(record&&record.state!=='completed'&&status.state==='completed')status={state:'running',phase:'saving',message:'Saving your finished song…'};
   if(record&&['failed','cancelled'].includes(record.state))status={state:record.state,message:'Song stopped. Reserved credits released.'};
   const file=url.searchParams.get('file');
   if(file){

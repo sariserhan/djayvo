@@ -70,14 +70,19 @@ class MusicDnaSong(unittest.TestCase):
                 (work/'input.json').write_text(json.dumps({'profile':profile,'direction':direction_for(self.refs),'seed':123}))
                 rendered=[]
                 def process(command, **kwargs):
+                    phase = json.loads((work/'status.json').read_text())['phase']
                     if command[2]=='draft':
+                        self.assertEqual(phase, 'writing')
                         plan=song_plan(copy.deepcopy(self.data),self.refs,123)
                         plan['input_sha256']=digest(work/'input.json')
                         (work/'plan.json').write_text(json.dumps(plan))
                     elif 'singing_response.py' in command[1]:
+                        self.assertEqual(phase, 'retrying' if rendered else 'composing')
                         rendered.append(json.loads((work/'plan.json').read_text())['cases'][0]['seed'])
                         (work/'singer').mkdir();(work/'singer/singer.wav').write_bytes(b'fixture')
-                    else:(work/'fit.json').write_text(json.dumps({'accepted':accepted[len(rendered)-1]}))
+                    else:
+                        self.assertEqual(phase, 'checking')
+                        (work/'fit.json').write_text(json.dumps({'accepted':accepted[len(rendered)-1]}))
                 with patch('music_dna_song.subprocess.run',side_effect=process):run(work)
                 self.assertEqual(rendered,[123] if len(accepted)==1 else [123,124])
                 self.assertEqual(json.loads((work/'status.json').read_text())['state'],'completed' if any(accepted) else 'rejected')

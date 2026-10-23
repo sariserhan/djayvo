@@ -4,6 +4,7 @@ import './install.js';
 import { compositionKey } from './novelty.js';
 import { decodeAudio, encodeWav, RATE } from './audio.js';
 import { loadSessions, saveSession, deleteSession, deleteAllSessions, verifySession, MAX_SESSIONS } from './library.js';
+import { showGenerationProgress } from './generation-progress.js';
 
 const $ = id => document.getElementById(id);
 const canRecord = !!(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
@@ -11,7 +12,8 @@ const names = { hiphop: 'Hip-hop', reggae: 'Reggae', experimental: 'Experimental
 let samples, start = 0, end = 0, previewURL, state = 'idle', worker, recorder, stream, recordTimer;
 let operation = 0, recordedAt = 0, sessions = [], urls = [], deleting;
 const say = message => { $('status').textContent = message; };
-const fail = error => { $('error').textContent = error.message || String(error); $('error').hidden = false; };
+const progress = (state, phase) => showGenerationProgress($('generation-progress'), state, phase);
+const fail = error => { $('error').textContent = error.message || String(error); $('error').hidden = false; if (['generating', 'saving'].includes(state)) progress('failed'); };
 const clearError = () => { $('error').hidden = true; $('error').textContent = ''; };
 
 function update() {
@@ -168,6 +170,7 @@ $('record').onclick = async () => {
 
 function cancelRender(message = 'Cancelled. Your previous mixes are safe.') {
   operation++; worker?.terminate(); worker = undefined; state = 'idle'; say(message); update();
+  progress('cancelled');
 }
 $('cancel').onclick = () => cancelRender();
 $('consent').onchange = () => {
@@ -188,7 +191,7 @@ $('generate').onclick = async () => {
   try { wav = encodeWav(samples, start, end, true); } catch (error) { fail(error); return; }
   const seconds=Number($('remix-seconds').value)||((end-start<2||end-start>5)?30:0);
   if(seconds)$('remix-seconds').value=String(seconds);
-  clearError(); pauseAll(); state = 'generating'; update(); say('Loading the music engine…');
+  clearError(); pauseAll(); state = 'generating'; update(); say(''); progress('running', 'preparing');
   const token = ++operation, began = performance.now();
   const style = document.querySelector('input[name=style]:checked').value;
   const visibility = document.querySelector('input[name=visibility]:checked').value;
@@ -198,28 +201,28 @@ $('generate').onclick = async () => {
     recent = await Promise.all(sessions.flatMap(session => session.files.filter(file => file.name.endsWith('.score.json')))
       .map(async file => compositionKey(JSON.parse(await file.blob.text()))));
   } catch (error) {
-    if (token === operation) { state = 'idle'; fail(new Error('Could not read your recent mixes. Reload the page and try again.')); update(); }
+    if (token === operation) { progress('failed'); state = 'idle'; fail(new Error('Could not read your recent mixes. Reload the page and try again.')); update(); }
     return;
   }
   if (token !== operation) return;
   const activeWorker = new Worker('./engine-worker.js', { type: 'module' });
   worker = activeWorker;
   const timeout = setTimeout(() => {
-    if (token === operation && state === 'generating') { cancelRender('Generation stopped after two minutes. Try again.'); fail(new Error('This device took too long to finish.')); }
+    if (token === operation && state === 'generating') { cancelRender('Generation stopped after two minutes. Try again.'); progress('failed'); fail(new Error('This device took too long to finish.')); }
   }, 120000);
   activeWorker.onerror = () => {
     clearTimeout(timeout);
-    if (token === operation) { cancelRender('Could not load the music engine.'); fail(new Error('Reload the page and try again. Your saved mixes are safe.')); }
+    if (token === operation) { cancelRender('Could not start your music.'); progress('failed'); fail(new Error('Reload the page and try again. Your saved mixes are safe.')); }
   };
   activeWorker.onmessage = async ({ data }) => {
     if (token !== operation) return;
-    if (data.type === 'rendering') { say(style === 'three' ? 'Making three different takes…' : `Building your ${names[style].toLowerCase()} mix…`); return; }
+    if (data.type === 'rendering') { progress('running', 'composing'); return; }
     clearTimeout(timeout);
     activeWorker.terminate(); worker = undefined;
-    if (data.type === 'error') { state = 'idle'; fail(new Error(data.message)); say('Try a different selection or recording.'); update(); return; }
+    if (data.type === 'error') { progress('failed'); state = 'idle'; fail(new Error(data.message)); say('Try a different selection or recording.'); update(); return; }
     if (data.type !== 'complete') return;
     // Completion is the cancellation boundary: commit the entire set atomically.
-    state = 'saving'; update();
+    state = 'saving'; update(); progress('running', 'saving');
     const session = { id: crypto.randomUUID(), created: Date.now(), style, visibility, seed: data.seed,
       seconds: (performance.now() - began) / 1000,
       files: data.files.map(file => ({ name: file.name, sha256: file.sha256,
@@ -229,6 +232,7 @@ $('generate').onclick = async () => {
       try { await saveSession(session); }
       catch (error) { session.unsaved = true; fail(error); }
       sessions.unshift(session); renderLibrary();
+      progress('completed');
       say(`Ready in ${session.seconds.toFixed(1)} seconds. Play a mix below, or make music again.`);
     } catch (error) { fail(error); }
     finally { state = 'idle'; update(); }

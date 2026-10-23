@@ -166,6 +166,43 @@ connect durable website job dispatch/recovery and cost-backed credit settlement.
 The local rehearsal quote must not be used as a production GPU-cost certificate.
 Stripe credit checkout and public launch remain separate unfinished work.
 
+## Generation progress display — 2026-10-23
+
+**PASS, local; NOT RUN, hosted integration/deployment.** Music DNA and the
+existing Improvise browser remix share a visual step display and animated music
+indicator (static with reduced motion). Copy is allowlisted and uses no provider
+diagnostics, hardware terminology, invented percentages or queue positions.
+Queued jobs say “You’re in the queue” and explain that the request is waiting to
+be processed. Real phase updates show preparation, writing, creation, another
+take, checking and saving; completion, rejection, cancellation and reconnects
+have distinct messages. No stage advances on a timer.
+
+Music DNA now keeps polling queued jobs and restores them on reload. Its local
+endpoint returns owner-only queued status before files exist; Python reports
+structured phases, and saving remains unfinished until durable settlement.
+The existing local Improvise remix reports preparation, creation and saving;
+it does not claim to use a cloud queue. The separate local AI singer preview
+and production Runpod dispatcher are not integrated into this display yet.
+
+Validation: 70 site tests, 144 browser-engine unit tests, 12 Music DNA Python
+tests, TypeScript, production build and public-bundle audit **PASS**.
+`apps/site/tests/generation-progress-browser.mjs` passes in Chromium and WebKit
+against `http://127.0.0.1:4235`, with 1280/390/320-width layouts, axe checks,
+reduced motion, queued reload, reconnect, retry, cancellation, rejection and
+completion. Cloud statuses are HTTP fixtures; the final local remix uses the
+real engine and synthetic audio with speaker output muted. Existing
+`taste-recovery-browser.mjs` regressions also pass. Screenshots were inspected
+in `/tmp/jamloom-generation-progress/`. The first run hit an older preview on
+port 4247; all passing rendered checks used the current development page.
+The in-app Browser tool was unavailable; the owner approved local Playwright.
+
+Reproduce: run site `npm test`, web `npm test`,
+`python3 -m unittest discover -s tests -p test_music_dna_song.py`, site
+`npm run typecheck`, `npm run build`, `npm run audit:bundle`, then
+`JAMLOOM_TEST_URL=http://127.0.0.1:4235 node tests/generation-progress-browser.mjs`
+and `node tests/taste-recovery-browser.mjs` with the same URL environment.
+No paid cloud job, model promotion or deployment was performed for this change.
+
 ## Sources
 
 Context7 was unavailable. Official [Runpod handlers](https://docs.runpod.io/serverless/workers/handler-functions),

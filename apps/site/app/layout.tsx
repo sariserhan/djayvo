@@ -6,6 +6,7 @@ import { MusicPlayer } from './player';
 import '../../web/style.css';
 import './site.css';
 import './product.css';
+import '../../web/generation-progress.css';
 
 export const metadata: Metadata = {
   title: { default: 'Jamloom', template: '%s · Jamloom' },

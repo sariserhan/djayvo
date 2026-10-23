@@ -35,6 +35,21 @@ test('singer is opt-in and loopback only; profile transport excludes irrelevant 
  assert.throws(()=>songInput(emptyTaste),/at least one/);
  assert.deepEqual(songInput({...emptyTaste,references:['Halo — Beyoncé']}),{references:['Halo — Beyoncé'],referenceMetadata:[]});
 });
+test('queued song is readable before files exist, private to its owner and cancellable',async()=>{
+ const old=process.env.JAMLOOM_DNA_SINGER_ROOT,oldVercel=process.env.VERCEL;
+ const root=await mkdtemp(join(tmpdir(),'jamloom-queued-test-')),id=randomUUID().replaceAll('-','');
+ process.env.JAMLOOM_DNA_SINGER_ROOT=root;delete process.env.VERCEL;
+ records.set(id,{id,owner_id:'alice',state:'queued',visibility:'public',created_at:new Date().toISOString()});
+ try{
+  const queued=await dnaSong(request('GET',`?id=${id}`));assert.equal(queued.status,200);assert.equal((await queued.json()).state,'queued');
+  assert.equal((await rawDnaSong(request('GET',`?id=${id}`),{commerce,owner:'bob'})).status,404);
+  assert.equal((await dnaSong(request('GET',`?id=${id}&file=audio`))).status,409);
+  assert.equal((await(await dnaSong(request('DELETE',`?id=${id}`))).json()).state,'cancelled');
+ }finally{
+  records.delete(id);if(old===undefined)delete process.env.JAMLOOM_DNA_SINGER_ROOT;else process.env.JAMLOOM_DNA_SINGER_ROOT=old;
+  if(oldVercel!==undefined)process.env.VERCEL=oldVercel;await rm(root,{recursive:true,force:true});
+ }
+});
 test('local job enforces bounds, single execution, durable retrieval and cancellation',async()=>{
  const root=await mkdtemp(join(tmpdir(),'jamloom-dna-test-')),old=process.env.JAMLOOM_DNA_SINGER_ROOT,oldFetch=globalThis.fetch,oldVercel=process.env.VERCEL;
  delete process.env.VERCEL;

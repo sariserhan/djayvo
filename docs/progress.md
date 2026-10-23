@@ -1,3 +1,7 @@
+## Generation progress display — 2026-10-23
+
+**PASS, local UI and regression checks.** Music DNA and the existing Improvise web remix now show a shared visual progress card with plain-language messages. Queue status comes from actual job state, survives refresh, and keeps polling; server phases distinguish writing, creation, a retry, checking and saving. Reconnect, cancellation and failure do not pretend completion. Chromium/WebKit, 1280/390/320 layouts, accessibility/reduced motion, real local remix, 70 site / 144 web / 12 Python tests, typecheck, build and bundle audit pass. Hosted AI singer dispatch and deployment remain **NOT RUN**. [Verification and boundaries](runpod-setup.md#generation-progress-display--2026-10-23).
+
 ## Runpod setup — 2026-10-22
 
 **PASS, technical Runpod setup; PARTIAL, hosted release.** Real Improvise (30-second output, 47.682-second execution) and Music DNA (120-second output, 45.931-second execution) generation, R2 checksum delivery and shutdown PASS. Music DNA metal passed all four style windows; the jazz fixture failed at style checking and remains unresolved. Cold starts measured 3–5 minutes. All workers are disabled; website dispatch, final costs, listening and credit billing remain unfinished. [Report](runpod-setup.md).

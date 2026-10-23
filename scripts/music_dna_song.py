@@ -210,16 +210,16 @@ Use English section headings [Verse 1], [Chorus], [Verse 2], [Chorus], [Bridge],
         json.dump(plan, f, indent=2, ensure_ascii=False)
 
 
-def status(work, state, message):
+def status(work, state, message, phase=None):
     temp = work/'status.tmp'
-    temp.write_text(json.dumps({'state': state, 'message': message}))
+    temp.write_text(json.dumps({'state': state, 'message': message, 'phase': phase}))
     temp.replace(work/'status.json')
 
 
 def run(work):
     env = {**os.environ, 'HF_HUB_OFFLINE': '1', 'HF_HUB_DISABLE_TELEMETRY': '1', 'PYTORCH_ENABLE_MPS_FALLBACK': '1'}
     try:
-        status(work, 'running', 'Understanding your favorites and writing your song…')
+        status(work, 'running', 'Understanding your favorites and writing your song…', 'writing')
         with (work/'planner.log').open('x') as log:
             subprocess.run([sys.executable, __file__, 'draft', str(work)], env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=600)
         plan = json.loads((work/'plan.json').read_text())
@@ -227,12 +227,12 @@ def run(work):
             raise ValueError('Song plan does not match its saved favorites')
         for attempt in range(2):
             status(work, 'running', 'Recording the AI singer and band. This can take several minutes…' if not attempt else
-                   'The first take missed your style. Recording one more performance with the same favorites…')
+                   'The first take missed your style. Recording one more performance with the same favorites…', 'retrying' if attempt else 'composing')
             with (work/'singer.log').open('x') as log:
                 subprocess.run([sys.executable, str(ROOT/'scripts/singing_response.py'), 'sing', '--runtime', str(RUNTIME),
                                 '--plan', str(work/'plan.json'), '--case', plan['cases'][0]['id'], '--output', str(work/'singer')],
                                env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=1200)
-            status(work, 'running', 'Checking the finished audio against your musical direction…')
+            status(work, 'running', 'Checking the finished audio against your musical direction…', 'checking')
             with (work/'fit.log').open('x') as log:
                 subprocess.run([sys.executable, str(ROOT/'scripts/check_dna_audio.py'), '--work', str(work)],
                                env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=180)

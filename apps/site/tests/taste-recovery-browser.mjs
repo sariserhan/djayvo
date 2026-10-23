@@ -14,7 +14,7 @@ try{
  hold=true;const requested=page.waitForRequest(r=>r.url().endsWith('/api/music-search'));
  await page.getByRole('button',{name:'Make my music',exact:true}).click();await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:/^Generate song/}).click();await requested;
  await page.getByRole('button',{name:'Cancel composition',exact:true}).click();release();
- await page.getByRole('status').filter({hasText:'Composition stopped'}).waitFor();await page.waitForTimeout(300);
+ await page.getByRole('status').filter({hasText:'Creation stopped'}).waitFor();await page.waitForTimeout(300);
  assert.equal(await page.locator('audio[src^="blob:"]').count(),0);assert.equal(await page.getByRole('button',{name:'Make my music',exact:true}).isEnabled(),true);
  assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references),['Unmatched favorite']);
  await context.unroute('**/api/taste/song*');
@@ -45,7 +45,7 @@ try{
  });
  if(await page.getByRole('dialog').isVisible())await page.getByRole('button',{name:'Cancel',exact:true}).click();
  await page.getByRole('button',{name:'Make another song',exact:true}).click();await page.getByRole('checkbox',{name:'I agree to publish this new song on the community page.'}).check();await page.getByRole('button',{name:/^Generate song/}).click();
- await page.getByRole('status').filter({hasText:'Neither take passed'}).waitFor();
+ await page.getByRole('status').filter({hasText:'This take wasn’t the right fit'}).waitFor();
  assert.equal(await page.getByRole('button',{name:'Make another song',exact:true}).isEnabled(),true);
  assert.equal(await page.locator(`audio[src*="${rejectedId}"]`).count(),0);
  assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references),['Unmatched favorite']);

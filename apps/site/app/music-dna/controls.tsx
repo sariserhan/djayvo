@@ -7,19 +7,21 @@ import languages from '../../../../assets/manifests/dna-languages.json';
 import {SongFeedback,FeedbackSettings,listenerHeaders} from './song-feedback';
 import {FavoriteSearch} from './favorite-search';
 import {tasteCatalogue,type ReferenceMetadata} from '../../lib/taste-catalogue';
+import {GenerationProgress,type SongProgress} from '../generation-progress';
 type SongPlan={language?:{code:string;label:string;basis:string};musical_traits?:Record<string,string>;title:string;summary:string;favorites?:{reference:string}[];influences:{reference:string;basis:string;description:string}[];cases:{lyrics:string;song_caption:string;bpm:number;voice:string}[]};
-type Song={id:string;state:string;message:string;plan?:SongPlan;profile?:FavoriteSnapshot;direction?:{label:string};legacy?:boolean;styleChecked?:boolean};
+type Song={id:string;state:string;phase?:string;message:string;plan?:SongPlan;profile?:FavoriteSnapshot;direction?:{label:string};legacy?:boolean;styleChecked?:boolean};
 const songUrl=(id:string)=>`/api/taste/song?id=${id}`;
 export function TasteNotebook(){
  const [profile,setProfile]=useState<Taste>(emptyTaste),[message,setMessage]=useState(''),[revision,setRevision]=useState(0),[busy,setBusy]=useState(false),[loaded,setLoaded]=useState(false);
  const [rendering,setRendering]=useState(false),[search,setSearch]=useState(''),[job,setJob]=useState<string|null>(null),[draft,setDraft]=useState<SongPlan|null>(null);
  const [takes,setTakes]=useState<Song[]>([]);
+ const [progress,setProgress]=useState<SongProgress|null>(null);
  const [visibility,setVisibility]=useState<'public'|'private'>('public'),[publicConsent,setPublicConsent]=useState(false);
  const [quote,setQuote]=useState<{credits:number;token:string;expiresAt:number;key:string}|null>(null);
  const requestId=useRef<string|null>(null),prompt=useRef<HTMLDialogElement>(null),generationButton=useRef<HTMLButtonElement>(null);
  const [promptOpen,setPromptOpen]=useState(false);
  useEffect(()=>{if(promptOpen)prompt.current?.showModal();else prompt.current?.close();},[promptOpen]);
- function openPrompt(){setPublicConsent(false);setMessage('');setPromptOpen(true);}
+ function openPrompt(){setPublicConsent(false);setMessage('');setProgress(null);setPromptOpen(true);}
  async function dismissPrompt(){if(analysis.current)await cancel();setPromptOpen(false);}
  const snapshot={references:profile.references,referenceMetadata:profile.referenceMetadata??[],vocalLanguage:profile.vocalLanguage},direction=musicDirection(snapshot);
  const current=takes.filter(s=>s.styleChecked&&s.profile&&favoriteKey(s.profile)===favoriteKey(snapshot));
@@ -42,7 +44,7 @@ export function TasteNotebook(){
      const response=await fetch(songUrl(id),{signal:AbortSignal.timeout(10000)});if(!response.ok)continue;
      const song:Song=await response.json();if(stopped)return;
      if(song.state==='completed')setTakes(old=>[...old.filter(s=>s.id!==id),song].slice(example?-6:-2));
-     else if(song.state==='running'&&!example){setJob(id);setRendering(true);}
+     else if(['queued','running'].includes(song.state)&&!example){setJob(id);setRendering(true);setProgress(song);}
     }
    }catch{/* Favorites remain independent of song-history availability. */}
   })();return()=>{stopped=true;};
@@ -55,14 +57,14 @@ export function TasteNotebook(){
    try{
     const response=await fetch(songUrl(job),{signal:AbortSignal.any([controller.signal,AbortSignal.timeout(10000)])});
     const song=await response.json();if(stopped)return;
-    if(!response.ok){if(response.status===404||response.status===409){setRendering(false);setJob(null);setMessage(song.error??'This song is unavailable. Your favorites are safe.');return;}throw Error(song.error);}
-    setMessage(song.message);if(song.plan)setDraft(song.plan);
-    if(song.state!=='running'){
+    if(!response.ok){if(response.status===404||response.status===409){setRendering(false);setJob(null);setProgress({state:'failed'});setMessage(song.error??'This song is unavailable. Your favorites are safe.');return;}throw Error(song.error);}
+    setProgress({state:song.state,phase:song.phase});setMessage('');if(song.plan)setDraft(song.plan);
+    if(!['queued','running'].includes(song.state)){
      setRendering(false);setJob(null);requestId.current=null;setQuote(null);
      if(song.state==='completed'){setTakes(old=>[...old.filter(s=>s.id!==job),song].slice(-2));requestId.current=null;setQuote(null);window.dispatchEvent(new Event('jamloom-dna-completed'));}
      return;
     }
-   }catch{if(stopped)return;setMessage('Waiting to reconnect to your song. Your favorites are saved.');}
+   }catch{if(stopped)return;setProgress({state:'reconnecting'});setMessage('');}
    timer=setTimeout(poll,3000);
   };
   void poll();return()=>{stopped=true;controller.abort();clearTimeout(timer);};
@@ -84,11 +86,11 @@ export function TasteNotebook(){
    try{const response=await fetch(songUrl(job),{method:'DELETE',headers:{'X-Jamloom-DNA':'1'},signal:AbortSignal.timeout(15000)});const result=await response.json();if(!response.ok)throw Error(result.error);setJob(null);}
    catch(error){setMessage(error instanceof Error?error.message:'Could not stop the song.');return;}
   }
-  setRendering(false);requestId.current=null;setQuote(null);setMessage('Composition stopped. Your previous songs are still available.');
+  setRendering(false);setProgress({state:'cancelled'});requestId.current=null;setQuote(null);setMessage('');
  }
  async function generate(){
   if(analysis.current||job)return;
-  const controller=new AbortController();analysis.current=controller;setRendering(true);setDraft(null);setMessage('Finding the music in your favorites…');
+  const controller=new AbortController();analysis.current=controller;setRendering(true);setDraft(null);setProgress({state:'running',phase:'preparing'});setMessage('');
   try{
    if(!profile.references.length)throw Error('Add at least one favorite first.');
    const available=await fetch('/api/taste/song',{signal:AbortSignal.any([controller.signal,AbortSignal.timeout(10000)])});
@@ -104,7 +106,7 @@ export function TasteNotebook(){
     const priced=await fetch('/api/taste/song',{method:'POST',headers:{'Content-Type':'application/json','X-Jamloom-DNA':'1'},body:JSON.stringify({action:'quote',profile:resolved,visibility,publicConsent}),signal:controller.signal});
     const price=await priced.json();if(!priced.ok)throw Error(price.error);
     accepted={...price,key};setQuote(accepted);
-    if(price.credits>(visibility==='public'?1:2)){setRendering(false);setMessage(`This song needs ${price.credits} credits to cover its generation cost. Review the new price, then confirm the new price to accept it.`);return;}
+    if(price.credits>(visibility==='public'?1:2)){setRendering(false);setProgress(null);setMessage(`This song needs ${price.credits} credits to cover its generation cost. Review the new price, then confirm the new price to accept it.`);return;}
    }
    controller.signal.throwIfAborted();
    requestId.current??=crypto.randomUUID().replaceAll('-','');
@@ -112,8 +114,8 @@ export function TasteNotebook(){
    const response=await fetch('/api/taste/song',{method:'POST',headers:{'Content-Type':'application/json','X-Jamloom-DNA':'1',...listenerHeaders()},body:JSON.stringify({action:'submit',profile:resolved,visibility,publicConsent,token:accepted!.token,requestId:requestId.current}),signal:AbortSignal.timeout(15000)});
    const result=await response.json();if(!response.ok)throw Error(result.error);
    if(controller.signal.aborted||!mounted.current){await fetch(songUrl(result.id),{method:'DELETE',headers:{'X-Jamloom-DNA':'1'}});return;}
-   setPromptOpen(false);setJob(result.id);setMessage('Writing your song…');
-  }catch(error){if(!controller.signal.aborted&&mounted.current){setRendering(false);setMessage(error instanceof Error?error.message:'Unable to make this song.');}}
+   setPromptOpen(false);setJob(result.id);setProgress({state:result.state??'running',phase:result.phase??'preparing'});setMessage('');
+  }catch(error){if(!controller.signal.aborted&&mounted.current){setRendering(false);setProgress({state:'failed'});setMessage(error instanceof Error?error.message:'Unable to make this song.');}}
   finally{if(analysis.current===controller)analysis.current=null;}
  }
  async function sync(method:'GET'|'POST'|'DELETE'){
@@ -152,6 +154,7 @@ export function TasteNotebook(){
  {taste.genres.length?<div className="dna-genre-tags">{taste.genres.map(g=><span key={g.name}>{g.name}</span>)}</div>:<p>{profile.references.length?'We’ll find your sound from your list.':'An original song with AI vocals, inspired by your favorites.'}</p>}
  {profile.references.length>0&&<details><summary>How we choose your sound</summary>{direction&&<p><strong>Song direction: {direction.label}</strong> · {direction.energy}. Based on {direction.coverage} of {direction.total} favorites with recognized catalogue genres.</p>}<p>We consider your whole list to choose a groove, instruments, mood and vocal delivery, then write original lyrics and music.</p><p>Catalogue genres and the model’s knowledge guide this interpretation. We don’t listen to or sample the original recordings, and unfamiliar names may not provide enough information.</p></details>}</div>
  <button ref={generationButton} className="primary" disabled={locked||!loaded||!profile.references.length} onClick={openPrompt}>{rendering?'Making your music…':takes.length?'Make another song':'Make my music'}</button>
+ {progress&&!promptOpen&&<GenerationProgress {...progress}/>}
  {rendering&&!promptOpen&&<button className="secondary" onClick={cancel}>Cancel composition</button>}
  <small>One song each time · Ready in a few minutes</small>
  <details className="dna-language"><summary>Song language <span>{(languages.languages as Record<string,string>)[profile.vocalLanguage??'auto']??'Automatic'}</span></summary>
@@ -169,6 +172,7 @@ export function TasteNotebook(){
  <p>{quote&&quote.key===favoriteKey(snapshot)+':'+visibility?`This song: ${quote.credits} ${quote.credits===1?'credit':'credits'}.`:`Starting price: ${visibility==='public'?'1 credit':'2 credits'}.`} Higher costs need your approval. Failed or cancelled songs return your credits.</p>
  <p><a href="/account/sign-in?callbackURL=%2Fmusic-dna">Sign in</a> · <a href="/account/credits">Your credits</a>. Local test credits only. Paid generation is not open.</p>
  <div className="product-actions"><button className="primary" disabled={locked||(visibility==='public'&&!publicConsent)} onClick={generate}>{rendering?'Preparing your song…':`Generate song · ${generationPrice} ${generationPrice===1?'credit':'credits'}`}</button><button className="secondary" onClick={dismissPrompt}>{rendering?'Cancel composition':'Cancel'}</button></div>
+ {progress&&promptOpen&&<GenerationProgress {...progress}/>}
  {promptOpen&&<p role="status">{message}</p>}
  </div></dialog>
  {draft&&rendering&&<div><h3>{draft.title}</h3>{draft.favorites&&<p><strong>Making a song from:</strong> {draft.favorites.map(f=>f.reference).join(' · ')}</p>}<p>{draft.summary}</p></div>}
