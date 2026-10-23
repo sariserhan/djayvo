@@ -77,6 +77,14 @@ class WorkerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder,patch('urllib.request.build_opener',return_value=Opener()):
             with self.assertRaises(ValueError):worker.download({'url':URL,'bytes':4,'sha256':'a'*64},Path(folder)/'input')
 
+    def test_failure_diagnostics_expose_source_location_without_private_content(self):
+        with tempfile.TemporaryDirectory() as folder:
+            work=Path(folder)
+            (work/'planner.log').write_text('File "/private/customer/scripts/music_dna_song.py", line 123\nValueError: private lyrics https://secret.invalid\n')
+            self.assertEqual(worker.failure_location(work),'planner@music_dna_song.py:123')
+            (work/'singer.log').write_text('private transcript without a traceback')
+            self.assertEqual(worker.failure_location(work),'singer@unavailable')
+
     def test_timeout_kills_descendants_and_waits(self):
         from subprocess import TimeoutExpired
         with tempfile.TemporaryDirectory() as folder,patch.object(worker.subprocess,'Popen') as popen,patch.object(worker.os,'killpg') as kill:
