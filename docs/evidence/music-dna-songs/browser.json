@@ -1,0 +1,80 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "songs": [
+      {
+        "id": "d0a71022000000000000000000000001",
+        "title": "Fingers in the Soil",
+        "seconds": 120,
+        "voice": "female",
+        "bpm": 100,
+        "caption": "Mid-tempo, 100 bpm, with a steady 4/4 groove driven by upright bass and brushed snare. Harmonic palette leans on warm, minor-key progressions (Dm–G–C–Am) with subtle chromatic movement. Warm piano and soft synth textures add emotional depth. Dynamics shift gently—quiet in verses, swelling slightly in chorus—like a heartbeat growing stronger. Vocal phrasing is natural, breathy, and conversational, as if speaking directly to a loved one in a dimly lit room.. Lead vocal: an expressive adult female soul singer, warm natural chest voice, intimate clear diction. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "b11454224b724e708a68b80faf60d5e2",
+        "title": "Flicker in the Dark",
+        "seconds": 120,
+        "voice": "female",
+        "bpm": 112,
+        "caption": "Mid-tempo pulse with deep bass undertones and shimmering arpeggios. Warm, analog synth textures glide beneath a steady 4/4 rhythm. Dynamics shift subtly—quiet, intimate verses swell into a sustained, echoing chorus. Vocal phrasing is slow, breathy, and deliberate, like a whisper in a crowded room.. Lead vocal: an expressive adult female soul singer, warm natural chest voice, intimate clear diction. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      }
+    ],
+    "downloaded": {
+      "bytes": 23040044,
+      "sha256": "913e8f36f040df3eb05507c0de0d3a88cf6d363bc089bcd4c5451ae5e3877bac",
+      "filename": "jamloom-song-d0a71022.wav"
+    },
+    "no_autoplay": true,
+    "muted_playback": true,
+    "seek_seconds": 90,
+    "range_status": 206,
+    "layouts": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "errors": [],
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "songs": [
+      {
+        "id": "d0a71022000000000000000000000001",
+        "title": "Fingers in the Soil",
+        "seconds": 120,
+        "voice": "female",
+        "bpm": 100,
+        "caption": "Mid-tempo, 100 bpm, with a steady 4/4 groove driven by upright bass and brushed snare. Harmonic palette leans on warm, minor-key progressions (Dm–G–C–Am) with subtle chromatic movement. Warm piano and soft synth textures add emotional depth. Dynamics shift gently—quiet in verses, swelling slightly in chorus—like a heartbeat growing stronger. Vocal phrasing is natural, breathy, and conversational, as if speaking directly to a loved one in a dimly lit room.. Lead vocal: an expressive adult female soul singer, warm natural chest voice, intimate clear diction. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      },
+      {
+        "id": "b11454224b724e708a68b80faf60d5e2",
+        "title": "Flicker in the Dark",
+        "seconds": 120,
+        "voice": "female",
+        "bpm": 112,
+        "caption": "Mid-tempo pulse with deep bass undertones and shimmering arpeggios. Warm, analog synth textures glide beneath a steady 4/4 rhythm. Dynamics shift subtly—quiet, intimate verses swell into a sustained, echoing chorus. Vocal phrasing is slow, breathy, and deliberate, like a whisper in a crowded room.. Lead vocal: an expressive adult female soul singer, warm natural chest voice, intimate clear diction. Natural expressive sung melody, audible breaths, clear diction, varied dynamics, no vocoder or robotic effects. Cohesive full song with evolving verses, memorable chorus, contrasting bridge, final chorus and resolved outro. Original music and lyrics."
+      }
+    ],
+    "downloaded": {
+      "bytes": 23040044,
+      "sha256": "913e8f36f040df3eb05507c0de0d3a88cf6d363bc089bcd4c5451ae5e3877bac",
+      "filename": "jamloom-song-d0a71022.wav"
+    },
+    "no_autoplay": true,
+    "muted_playback": true,
+    "seek_seconds": 90,
+    "range_status": 206,
+    "layouts": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "errors": [],
+    "human_listening": "NOT RUN"
+  }
+]

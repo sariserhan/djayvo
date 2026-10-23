@@ -1,3 +1,4 @@
+import {songFixture} from './dna-song-fixture.mjs';
 import assert from 'node:assert/strict';import {writeFile} from 'node:fs/promises';import {chromium} from 'playwright';
 const base=process.env.JAMLOOM_TEST_URL??'http://127.0.0.1:4247';assert.equal(new URL(base).hostname,'127.0.0.1');
 const browser=await chromium.launch({args:['--mute-audio']});
@@ -6,6 +7,7 @@ try{
  await context.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
  let release;const pending=new Promise(resolve=>{release=resolve;});let hold=false;
  await context.route('**/api/music-search',async route=>{if(hold)await pending;await route.fulfill({json:{suggestions:[]}}).catch(()=>{});});
+ await songFixture(context);
  const page=await context.newPage();await page.goto(base+'/music-dna');
  await page.getByRole('status').filter({hasText:'Saved favorites could not be read'}).waitFor();assert.equal(await page.evaluate(()=>localStorage.getItem('jamloom-taste-v1')),'corrupt-profile-preserved');
  await page.getByRole('combobox',{name:'Search artists or tracks'}).fill('Unmatched favorite');await page.getByRole('option',{name:/Add by name/}).click();
@@ -15,6 +17,17 @@ try{
  await page.getByRole('status').filter({hasText:'Composition stopped'}).waitFor();await page.waitForTimeout(300);
  assert.equal(await page.locator('audio[src^="blob:"]').count(),0);assert.equal(await page.getByRole('button',{name:'Make my music',exact:true}).isEnabled(),true);
  assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references),['Unmatched favorite']);
- const result={status:'PASS',corrupt_saved_data_preserved_until_new_list:true,cancel_during_metadata_lookup:true,late_response_cannot_start_render:true,favorites_preserved:true};
+ await context.unroute('**/api/taste/song*');
+ await context.route('**/api/taste/song*',r=>r.fulfill({status:503,json:{error:'Full-song generation is not available on this server yet. No instrumental substitute will be generated.'}}));
+ await page.getByRole('button',{name:'Make my music',exact:true}).click();
+ await page.getByRole('status').filter({hasText:'No instrumental substitute'}).waitFor();
+ assert.equal(await page.locator('audio[src*="file=audio"],audio[src^="blob:"]').count(),0);
+ assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references),['Unmatched favorite']);
+ await context.unroute('**/api/taste/song*');const fixture=await songFixture(context);
+ const ids=['1'.repeat(32),'2'.repeat(32)];fixture.jobs.set(ids[0],{id:ids[0],state:'completed',message:'Ready'});
+ await page.evaluate(ids=>localStorage.setItem('jamloom-dna-songs-v1',JSON.stringify(ids)),ids);
+ await page.reload();await page.getByLabel('Composition variation 1',{exact:true}).waitFor();await page.waitForTimeout(200);
+ assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-dna-songs-v1'))),ids);
+ const result={status:'PASS',corrupt_saved_data_preserved_until_new_list:true,cancel_during_metadata_lookup:true,late_response_cannot_start_render:true,favorites_preserved:true,unavailable_has_no_instrumental_fallback:true,partial_song_restore_does_not_erase_other_song:true};
  await writeFile(process.env.JAMLOOM_TEST_EVIDENCE??'/tmp/jamloom-dna-auto-recovery.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
 }finally{await browser.close();}

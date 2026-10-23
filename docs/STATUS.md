@@ -1,3 +1,7 @@
+## Music DNA full songs — 2026-10-22
+
+**PASS, local technical workflow; PARTIAL, product acceptance:** Favorites now guide a full song plan, original lyrics and the existing natural-sounding AI singer path. Two real two-minute vocal songs, actual website generation/reload, Chromium/WebKit playback/seeking, 29 site tests and 14 Python tests pass. The prior instrumental quality is rejected; new listening acceptance and hosted release remain open. [Implementation and boundaries](music-dna-songs.md).
+
 ## Music DNA automatic composition — 2026-10-22
 
 **PASS, local technical workflow:** Favorite list -> automatic genre-based taste direction -> playable local composition. Removed manual musical questions; added selected metadata persistence, exact legacy-name resolution, equal favorite influence and automatic device saving. 27 unit checks, build, Chromium/WebKit, four real WAVs, local account/Unicode persistence and cancellation recovery pass. [Scope, evidence and limits](music-dna-favorites.md#automatic-favorites-only-composition--2026-10-22). Acoustic understanding, human quality, iOS and publication remain unverified.

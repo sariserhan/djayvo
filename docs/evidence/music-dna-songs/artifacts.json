@@ -1,0 +1,292 @@
+[
+  {
+    "path": "renders/music-dna-song-20261022/browser/chromium-1280.png",
+    "bytes": 479149,
+    "sha256": "75bef2d88b9df8d1131336d6f7f1c48fd64d1917bfdf3beba8b266fbd0d25da5"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/browser/chromium-320.png",
+    "bytes": 448056,
+    "sha256": "3e0f8f122e8867785be0fbee9249f9511a95004ac719d92247f0b77d4ab94554"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/browser/chromium-390.png",
+    "bytes": 429479,
+    "sha256": "cfa55b60b4375212537459fe354c551f2ff3bbf6ee3b58801d3f5837febc0e62"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/browser/report.json",
+    "bytes": 4746,
+    "sha256": "d69895cc9487de73ba71b5af6eaf5ce0626b39cc299a71703f169b106f90b414"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/browser/submitted.json",
+    "bytes": 203,
+    "sha256": "21a22051c1a28a8f30eff901621acc2d68f3aed2fb79048883bffcf89bc2d1ab"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/browser/webkit-1280.png",
+    "bytes": 577955,
+    "sha256": "559f60e62ebfa119f72bc8c3c73eeb445e3ddbe66d68567db84074ca3f425ffa"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/browser/webkit-320.png",
+    "bytes": 501978,
+    "sha256": "959d73543220a85624696e3e23f15908844a42be8a34e03f0e2eca25fabd18db"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/browser/webkit-390.png",
+    "bytes": 549611,
+    "sha256": "10b8804542394813fd44f0b03b581217e8e15e64b0b8b471c588d8c057fd0fb9"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/chromium-1280.png",
+    "bytes": 71351,
+    "sha256": "88501c3cd40c3661b77c61ad4dbeb6a7578efbc48dead70dd8e993e0e7a5c3b3"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/chromium-320.png",
+    "bytes": 52207,
+    "sha256": "8b97871f7d4a765219260d5e15ce797af284784b8a1536fbf059fa58fb24995c"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/chromium-390.png",
+    "bytes": 51823,
+    "sha256": "2391e2987b62543b78fd7435318b148f5927e690862684c252d9332b912f2455"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/chromium-classical-favorites.wav",
+    "bytes": 2880044,
+    "sha256": "3387b455c7fbad3087841985e8d623a96ded1590212a81667f7f155ffe417e20"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/chromium-dance-favorites.wav",
+    "bytes": 2880044,
+    "sha256": "3387b455c7fbad3087841985e8d623a96ded1590212a81667f7f155ffe417e20"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/chromium-search-1280.png",
+    "bytes": 52811,
+    "sha256": "5522c69f3ed53303a6598dea4e1db1cdde68c7f8b2259623faaf2aef76a7e229"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/chromium-search-320.png",
+    "bytes": 55949,
+    "sha256": "7fc6e082b263d8b19c8938b46d42e1e28506e44e6c4bf6805efc092d27c5bd77"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/chromium-search-390.png",
+    "bytes": 62926,
+    "sha256": "731619295a8ff4f6f6a0797968624be5ca542a2fd63d8bd14d84084b7eafee31"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/report.json",
+    "bytes": 5851,
+    "sha256": "1cbf01280d4990447a8f038d6a61b1dd57a8d4dc3b1bfd77fc1ae9939127f256"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/webkit-1280.png",
+    "bytes": 93814,
+    "sha256": "efb3a0f6a2b0981cb5b94dbcc615df63542914aafdf959ca481ed96c00826919"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/webkit-320.png",
+    "bytes": 60093,
+    "sha256": "fb8e2ea3fec5fe8bea04c617dd321334b87644185681cb644e5c0ae794f40058"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/webkit-390.png",
+    "bytes": 64478,
+    "sha256": "bf7e1c0a8f67dd3c8cef72d5c81cb9733898efde4ce29b24d502e135ebe961ad"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/webkit-classical-favorites.wav",
+    "bytes": 2880044,
+    "sha256": "3387b455c7fbad3087841985e8d623a96ded1590212a81667f7f155ffe417e20"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/webkit-dance-favorites.wav",
+    "bytes": 2880044,
+    "sha256": "3387b455c7fbad3087841985e8d623a96ded1590212a81667f7f155ffe417e20"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/webkit-search-1280.png",
+    "bytes": 114260,
+    "sha256": "2f69e231dae9d8e9d9a855b2e5bbe0a86ab4784d877ebcfd50f8b53ec2060f2e"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/webkit-search-320.png",
+    "bytes": 64314,
+    "sha256": "8369fa94cffb41ea73429fa31ad10c5ac70bcb0c5d222ee208117231964fb170"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/fixture-browser/webkit-search-390.png",
+    "bytes": 87497,
+    "sha256": "92493532a9b4fbc67a7df1d78dbc58774accaf02b7515e4cac0d685f3c232203"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/soul/draft-private.txt",
+    "bytes": 2849,
+    "sha256": "8ca9eddfa0fac3ebe2bfed2c98a5f1d4b7cd09681c2cdf8afd730c6aecb87d6a"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/soul/input.json",
+    "bytes": 394,
+    "sha256": "9897c5c55dfac04b1dcce75aabdca4b6c27efc8cbb0f3c78d0e0d3147b690de5"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/soul/plan.json",
+    "bytes": 4394,
+    "sha256": "61c82acec6c191229a0e2f184249afbf74f120f1c7a22e65d54a0e3029fc9ae2"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/soul/planner.log",
+    "bytes": 104,
+    "sha256": "64531e3bb6c92346715ddeb6e4fa21056dbdd7f09fa4c521c998a6d35fa41af1"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/soul/singer/complete.json",
+    "bytes": 3675,
+    "sha256": "b67df3e9de653cf3404a3c8b05ec9d659e5d2e1b8ca9cb7735933d8b3073c801"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/soul/singer/raw/a7d5b03b-b9cd-79e1-9350-4b23278dbca4.wav",
+    "bytes": 23040044,
+    "sha256": "913e8f36f040df3eb05507c0de0d3a88cf6d363bc089bcd4c5451ae5e3877bac"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/soul/singer/singer.wav",
+    "bytes": 23040044,
+    "sha256": "913e8f36f040df3eb05507c0de0d3a88cf6d363bc089bcd4c5451ae5e3877bac"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/soul/singer.log",
+    "bytes": 12324,
+    "sha256": "4672605edae1ff1fb736b5db1d197b527e39a51f341445daefb496d506f1b85b"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/soul/status.json",
+    "bytes": 78,
+    "sha256": "dd8a51514c3363d8e1a379b6577bb8bd2ad9ad53a9a489324d2c626907935b5b"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/soul/vocal-check.json",
+    "bytes": 14127,
+    "sha256": "9ad1f0eac5248960abdfb79511a49c5bd5831a9fe36f840de1aa01dc287d0706"
+  },
+  {
+    "path": "renders/music-dna-song-20261022/soul/vocal-check.wav",
+    "bytes": 3840078,
+    "sha256": "e69f4ce19e98422e8f18728117af37eb1dd5e5f391666ed148276259c67c4509"
+  },
+  {
+    "path": "renders/music-dna-songs/d0a71022000000000000000000000001/draft-private.txt",
+    "bytes": 2849,
+    "sha256": "8ca9eddfa0fac3ebe2bfed2c98a5f1d4b7cd09681c2cdf8afd730c6aecb87d6a"
+  },
+  {
+    "path": "renders/music-dna-songs/d0a71022000000000000000000000001/input.json",
+    "bytes": 394,
+    "sha256": "9897c5c55dfac04b1dcce75aabdca4b6c27efc8cbb0f3c78d0e0d3147b690de5"
+  },
+  {
+    "path": "renders/music-dna-songs/d0a71022000000000000000000000001/plan.json",
+    "bytes": 4394,
+    "sha256": "61c82acec6c191229a0e2f184249afbf74f120f1c7a22e65d54a0e3029fc9ae2"
+  },
+  {
+    "path": "renders/music-dna-songs/d0a71022000000000000000000000001/planner.log",
+    "bytes": 104,
+    "sha256": "64531e3bb6c92346715ddeb6e4fa21056dbdd7f09fa4c521c998a6d35fa41af1"
+  },
+  {
+    "path": "renders/music-dna-songs/d0a71022000000000000000000000001/singer/complete.json",
+    "bytes": 3675,
+    "sha256": "b67df3e9de653cf3404a3c8b05ec9d659e5d2e1b8ca9cb7735933d8b3073c801"
+  },
+  {
+    "path": "renders/music-dna-songs/d0a71022000000000000000000000001/singer/raw/a7d5b03b-b9cd-79e1-9350-4b23278dbca4.wav",
+    "bytes": 23040044,
+    "sha256": "913e8f36f040df3eb05507c0de0d3a88cf6d363bc089bcd4c5451ae5e3877bac"
+  },
+  {
+    "path": "renders/music-dna-songs/d0a71022000000000000000000000001/singer/singer.wav",
+    "bytes": 23040044,
+    "sha256": "913e8f36f040df3eb05507c0de0d3a88cf6d363bc089bcd4c5451ae5e3877bac"
+  },
+  {
+    "path": "renders/music-dna-songs/d0a71022000000000000000000000001/singer.log",
+    "bytes": 12324,
+    "sha256": "4672605edae1ff1fb736b5db1d197b527e39a51f341445daefb496d506f1b85b"
+  },
+  {
+    "path": "renders/music-dna-songs/d0a71022000000000000000000000001/status.json",
+    "bytes": 78,
+    "sha256": "dd8a51514c3363d8e1a379b6577bb8bd2ad9ad53a9a489324d2c626907935b5b"
+  },
+  {
+    "path": "renders/music-dna-songs/b11454224b724e708a68b80faf60d5e2/draft-0-private.txt",
+    "bytes": 1670,
+    "sha256": "c01d170237fdd1f0724e0ee9d9b83a8a1298eab84119fb04158622caeee59d31"
+  },
+  {
+    "path": "renders/music-dna-songs/b11454224b724e708a68b80faf60d5e2/input.json",
+    "bytes": 410,
+    "sha256": "8d466c4872538a16c2d2fbcb6367089efa2a5c7681d5c7d63e34da2aa2d7b43e"
+  },
+  {
+    "path": "renders/music-dna-songs/b11454224b724e708a68b80faf60d5e2/plan.json",
+    "bytes": 3205,
+    "sha256": "837d83cbc243dad6475cafaac89317fbc403f313838b1a2a448840ee0a950251"
+  },
+  {
+    "path": "renders/music-dna-songs/b11454224b724e708a68b80faf60d5e2/planner.log",
+    "bytes": 104,
+    "sha256": "64531e3bb6c92346715ddeb6e4fa21056dbdd7f09fa4c521c998a6d35fa41af1"
+  },
+  {
+    "path": "renders/music-dna-songs/b11454224b724e708a68b80faf60d5e2/singer/complete.json",
+    "bytes": 2905,
+    "sha256": "7d96cfa0a531598db59e993aa5805beecdf1ca24ad8a87cd5052ea9ec0c7b9da"
+  },
+  {
+    "path": "renders/music-dna-songs/b11454224b724e708a68b80faf60d5e2/singer/raw/072eb0f8-20d9-24c5-77d2-3c68838fe913.wav",
+    "bytes": 23040044,
+    "sha256": "4094bed308948d543855bf5a22c4829e1bf727b9162b3660e7d3805c850d8d9b"
+  },
+  {
+    "path": "renders/music-dna-songs/b11454224b724e708a68b80faf60d5e2/singer/singer.wav",
+    "bytes": 23040044,
+    "sha256": "4094bed308948d543855bf5a22c4829e1bf727b9162b3660e7d3805c850d8d9b"
+  },
+  {
+    "path": "renders/music-dna-songs/b11454224b724e708a68b80faf60d5e2/singer.log",
+    "bytes": 11783,
+    "sha256": "82c43b7bc56b33d647f0995257e83545e8830b97039ee80f3c005ca5e663b5a5"
+  },
+  {
+    "path": "renders/music-dna-songs/b11454224b724e708a68b80faf60d5e2/status.json",
+    "bytes": 78,
+    "sha256": "dd8a51514c3363d8e1a379b6577bb8bd2ad9ad53a9a489324d2c626907935b5b"
+  },
+  {
+    "path": "renders/music-dna-songs/0c8de16f058045d9b4396be90d2eb72f/draft-private.txt",
+    "bytes": 2583,
+    "sha256": "558aff7c266ce7ccb137b8d4be488dcec3f8cfb92ae708a4ca50295aedd40968"
+  },
+  {
+    "path": "renders/music-dna-songs/0c8de16f058045d9b4396be90d2eb72f/input.json",
+    "bytes": 411,
+    "sha256": "9d7bf59c44bf9efabf0c4adb888d22c06f5945f3b8f026a1d35e3104b687975d"
+  },
+  {
+    "path": "renders/music-dna-songs/0c8de16f058045d9b4396be90d2eb72f/planner.log",
+    "bytes": 949,
+    "sha256": "f38d92b67e4f9de0108b731085edd6c7a1939794a4b341583fabf774746fa0a1"
+  },
+  {
+    "path": "renders/music-dna-songs/0c8de16f058045d9b4396be90d2eb72f/status.json",
+    "bytes": 120,
+    "sha256": "f0e2e35051ff2d6ae80e16f0cc25288928211f902d0068441a0712c2769a17c4"
+  }
+]

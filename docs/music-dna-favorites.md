@@ -1,3 +1,5 @@
+**Current direction:** The owner rejected the instrumental quality. The web action now uses the [full vocal-song workflow](music-dna-songs.md); older composer evidence below is historical.
+
 # Music DNA favorite-song preferences — 2026-10-22
 
 The owner selected Music DNA as the next product and approved making favorite-song choices affect original music. This increment connects explicit, user-confirmed musical choices to the existing local composer. It does not infer a song's sound from its title.

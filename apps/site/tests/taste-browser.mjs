@@ -1,3 +1,4 @@
+import {songFixture} from './dna-song-fixture.mjs';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {join} from 'node:path';
@@ -18,6 +19,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   await context.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort());
   // Catalogue-network behavior has its own live and failure-state browser test.
   await context.route('**/api/music-search',route=>{const q=route.request().postDataJSON().query;const reference=q==='quiet'?'Quiet study':q==='night'?'Night set':null;return route.fulfill({json:{suggestions:reference?[{reference,kind:'Track',detail:'Test catalogue',metadata:{reference,genre:q==='quiet'?'Classical':'Dance',source:'itunes',id:q==='quiet'?1:2}}]:[]}});});
+  const fixture=await songFixture(context);
   const page=await context.newPage(),errors=[],expectedConsole=[];page.on('pageerror',e=>errors.push(e.message));
   page.on('console',m=>{
    if(!['warning','error'].includes(m.type()))return;
@@ -65,8 +67,9 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    assert.match(await page.locator('.dna-summary').innerText(),i?/Dance/:/Classical/);
    await page.getByRole('button',{name:i?'Make another variation':'Make my music',exact:true}).click();
    await page.getByLabel(`Composition variation ${i+1}`,{exact:true}).waitFor({timeout:120000});
-   const score=await page.getByRole('link',{name:'Download score',exact:true}).nth(i).evaluate(async a=>await(await fetch(a.href)).json());
-   assert.equal(score.tempo_milli_bpm,i?128000:84000);assert.equal(score.strategy,'taste_composition');plans.push({tempo:score.tempo_milli_bpm,instruments:score.tracks.map(t=>t.instrument)});
+   const plan=await page.getByRole('link',{name:'Download song notes',exact:true}).nth(i).evaluate(async a=>await(await fetch(a.href)).json());
+   assert.equal(plan.cases[0].voice,'female');assert.ok(plan.cases[0].lyrics.includes('[Chorus]'));plans.push(plan);
+   assert.equal(fixture.bodies[i].referenceMetadata[0].genre,i?'Dance':'Classical');
    const url=await page.getByLabel(`Composition variation ${i+1}`,{exact:true}).getAttribute('src');
    const result=await page.evaluate(async url=>{
     const bytes=await(await fetch(url)).arrayBuffer();const context=new OfflineAudioContext(2,1,48000);
@@ -78,7 +81,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    assert.ok(result.seconds>=28&&result.seconds<=33);assert.ok(result.peak>0&&result.peak<=1);assert.ok(result.rms>0);
    await writeFile(join(output,`${name}-${i?'dance-favorites':'classical-favorites'}.wav`),bytes);
   }
-  assert.notDeepEqual(wavs[0],wavs[1]);
+  assert.notDeepEqual(fixture.bodies[0].references,fixture.bodies[1].references);
   await page.reload();
   await page.getByRole('group',{name:'Night set',exact:true}).waitFor();assert.match(await page.locator('.dna-summary').innerText(),/Dance/);
   for(const width of [1280,390,320]){
@@ -88,10 +91,10 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   const accessibility=await new AxeBuilder({page}).include('.product-panel').analyze();assert.deepEqual(accessibility.violations,[]);
   await page.getByRole('button',{name:'Remove favorite Night set',exact:true}).click();await search.fill('Another song');await page.getByRole('option',{name:/Add by name/}).click();
   await page.reload();await page.getByRole('group',{name:'Another song',exact:true}).waitFor();
-  await page.getByText('Length and saved favorites',{exact:true}).click();
+  await page.getByText('Saved favorites',{exact:true}).click();
   await page.getByRole('button',{name:'Delete saved profile',exact:true}).click();assert.equal(await page.locator('.dna-favorites fieldset').count(),0);
-  assert.equal(await page.evaluate(()=>localStorage.getItem('jamloom-taste-v1')),null);assert.ok(await page.getByRole('button',{name:'Make my music',exact:true}).isDisabled());assert.deepEqual(errors,[]);
-  results.push({browser:name,status:'PASS',widths:[1280,390,320],search_typing_typo_keyboard_pointer_duplicates:'PASS',muted_catalogue_playback:'PASS',exclusive_audio:'PASS',automatic_favorites_only_composition:'PASS',plans,same_seed_audio_different:true,audio,autosave_metadata_removal:'PASS',axe_violations:0,console_errors:errors,expected_console:expectedConsole,human_listening:'NOT RUN'});
+  assert.equal(await page.evaluate(()=>localStorage.getItem('jamloom-taste-v1')),null);assert.ok(await page.getByRole('button',{name:'Make another variation',exact:true}).isDisabled());assert.deepEqual(errors,[]);
+  results.push({browser:name,status:'PASS',widths:[1280,390,320],search_typing_typo_keyboard_pointer_duplicates:'PASS',muted_catalogue_playback:'PASS',exclusive_audio:'PASS',automatic_favorites_only_composition:'PASS',plans,generation_transport:'fixture, not model execution',audio,autosave_metadata_removal:'PASS',axe_violations:0,console_errors:errors,expected_console:expectedConsole,human_listening:'NOT RUN'});
  }finally{await browser.close();}
 }
 await writeFile(join(output,'report.json'),JSON.stringify(results,null,2)+'\n');console.log(JSON.stringify(results));

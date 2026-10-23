@@ -71,6 +71,8 @@ def variants(seed):
 
 
 def caption(case):
+    if 'song_caption' in case:
+        return case['song_caption']
     delivery = ('Natural rhythmic rap verses with breath, clear consonants, varied flow and a short sung hook. '
                 if case['genre'] == 'rap' else
                 'Human-like sung melody with breath, connected legato phrases, subtle vibrato, relaxed rhythmic phrasing and expressive dynamics. ')
@@ -83,25 +85,36 @@ def caption(case):
 
 
 def validate_plan(plan):
-    if not isinstance(plan, dict) or plan.get('schema') != 'jamloom-sung-response-1' or plan.get('model_code') != CODE_REVISION or plan.get('weights') != WEIGHT_REVISION:
+    if not isinstance(plan, dict) or plan.get('schema') not in ('jamloom-sung-response-1', 'jamloom-dna-song-1') or plan.get('model_code') != CODE_REVISION or plan.get('weights') != WEIGHT_REVISION:
         raise ValueError('Unsupported singing plan or model revisions')
+    song = plan['schema'] == 'jamloom-dna-song-1'
     text_field(plan.get('phrase'), MAX_PHRASE_CHARS, 'source phrase')
     cases = plan.get('cases')
     if not isinstance(cases, list) or not 1 <= len(cases) <= 12:
         raise ValueError('Expected one to twelve singer cases')
     seen = set()
     for c in cases:
-        if not isinstance(c, dict) or not isinstance(c.get('genre'), str) or not isinstance(c.get('voice'), str) or c.get('genre') not in STYLES or c.get('voice') not in VOICES or c.get('id') != f"{c.get('genre')}-{c.get('voice')}" or c['id'] in seen:
+        if not isinstance(c, dict):
+            raise ValueError('Invalid singer case')
+        genre = c.get('genre')
+        valid_genre = isinstance(genre, str) and (re.fullmatch(r'[a-z][a-z0-9-]{0,29}', genre) if song else genre in STYLES)
+        if not valid_genre or not isinstance(c.get('voice'), str) or c.get('voice') not in VOICES or c.get('id') != f"{genre}-{c.get('voice')}" or c['id'] in seen:
             raise ValueError('Invalid or duplicate singer/style')
         seen.add(c['id'])
         if type(c.get('seed')) is not int or not 0 <= c['seed'] < 2**32:
             raise ValueError('Invalid seed')
-        if c.get('duration') != 30 or c.get('bpm') != STYLES[c['genre']][0] or type(c.get('source_repetitions')) is not int or c['source_repetitions'] not in (1, 2):
+        if song:
+            if type(c.get('duration')) is not int or c['duration'] != 120 or type(c.get('bpm')) is not int or not 60 <= c['bpm'] <= 180:
+                raise ValueError('Invalid song timing')
+            text_field(c.get('song_caption'), 2000, 'song direction')
+        elif 'song_caption' in c or c.get('duration') != 30 or c.get('bpm') != STYLES[c['genre']][0] or type(c.get('source_repetitions')) is not int or c['source_repetitions'] not in (1, 2):
             raise ValueError('Invalid timing or repetition budget')
-        lyrics = text_field(c.get('lyrics'), 1600, 'lyrics')
+        lyrics = text_field(c.get('lyrics'), 4000 if song else 1600, 'lyrics')
         words = re.sub(r'\[[^\]]*\]', '', lyrics).split()
-        if not 8 <= len(words) <= 85 or '[instrumental]' in lyrics.lower():
+        if not (100 <= len(words) <= 260 if song else 8 <= len(words) <= 85) or '[instrumental]' in lyrics.lower():
             raise ValueError('Expected short sung reply lyrics, not an instrumental')
+        if song and not all(section in lyrics.lower() for section in ('[verse', '[chorus]', '[bridge]', '[outro]')):
+            raise ValueError('Expected developed song sections')
     return plan
 
 
@@ -130,6 +143,17 @@ def runtime(path):
     return root
 
 
+def lyric_model(root):
+    from mlx_lm import load
+    manifest = json.loads((Path(__file__).resolve().parents[1] / 'assets/manifests/lyric-planner.json').read_text())
+    model_path = root.parent / 'lyric-planner'
+    for name, expected in manifest['files_sha256'].items():
+        if digest(model_path / name) != expected:
+            raise ValueError('Lyric planner checksum mismatch')
+    model, tokenizer = load(str(model_path))
+    return model, tokenizer, manifest
+
+
 def draft(root, phrase, seed, output, voice=None, genre=None):
     phrase = text_field(phrase, MAX_PHRASE_CHARS, 'source phrase')
     if voice is not None and voice not in VOICES or genre is not None and genre not in STYLES:
@@ -138,14 +162,9 @@ def draft(root, phrase, seed, output, voice=None, genre=None):
     if output.exists():
         raise FileExistsError('Preserving existing lyric plan')
     import mlx.core as mx
-    from mlx_lm import load, generate
+    from mlx_lm import generate
     from mlx_lm.sample_utils import make_sampler
-    manifest = json.loads((Path(__file__).resolve().parents[1] / 'assets/manifests/lyric-planner.json').read_text())
-    model_path = root.parent / 'lyric-planner'
-    for name, expected in manifest['files_sha256'].items():
-        if digest(model_path / name) != expected:
-            raise ValueError('Lyric planner checksum mismatch')
-    model, tokenizer = load(str(model_path))
+    model, tokenizer, manifest = lyric_model(root)
     for c in cases:
         mx.random.seed(c['seed'])
         messages = [{'role': 'system', 'content':
@@ -205,6 +224,8 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
         raise ValueError('Select a case present in the plan')
     c = cases[0].copy()
     conditioning = source_conditioning(conditioning_path) if conditioning_path else None
+    if conditioning and plan['schema'] == 'jamloom-dna-song-1':
+        raise ValueError('Music DNA does not accept reference audio')
     if conditioning:
         c['bpm'] = conditioning['bpm']
     description = caption(c)
@@ -252,7 +273,7 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
         raise RuntimeError(result.error or 'Expected exactly one singing output')
     pcm, rate = sf.read(result.audios[0]['path'], dtype='float32', always_2d=True)
     peak = float(np.max(np.abs(pcm)))
-    if rate != 48000 or pcm.shape != (1440000, 2) or not np.isfinite(pcm).all() or not .001 < peak < 1:
+    if rate != 48000 or pcm.shape != (48000*c['duration'], 2) or not np.isfinite(pcm).all() or not .001 < peak < 1:
         raise ValueError('Invalid singer audio; refusing completed output')
     dest = output / 'singer.wav'
     sf.write(dest, pcm, rate, subtype='PCM_16')

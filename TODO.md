@@ -1,3 +1,6 @@
+- [x] **DNA-006 — PASS, local technical workflow:** Favorites-only full vocal songs using the existing local singer and lyric planner; per-reference interpretation, developed lyrics, two-minute renders, private local job/recovery/cancellation and listening page. Two real songs, actual website generation, Chromium/WebKit and scoped tests pass. [Report/evidence](docs/music-dna-songs.md).
+- [ ] **DNA-007 — PARTIAL, musical product acceptance:** Owner rejected the prior instrumental quality. New vocal-song examples await listening for enjoyment, reference fit, naturalness and lyrics. Hosted model/job release remains NOT RUN; local implementation is not production promotion. [Samples and remaining gates](docs/music-dna-songs.md#evidence).
+
 ## Music DNA favorite-song workflow — 2026-10-22
 
 - [x] **DNA-005 — PASS, local technical workflow:** Favorites-only input with automatic metadata-based composition settings; no manual musical questionnaire. Local/account metadata persistence, exact-name resolution, graceful unknowns and real WAV verification. [Evidence](docs/music-dna-favorites.md#automatic-favorites-only-composition--2026-10-22). Genre inference is not acoustic analysis or listening acceptance.

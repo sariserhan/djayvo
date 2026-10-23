@@ -1,0 +1,64 @@
+{
+  "samples": [
+    {
+      "id": "d0a71022000000000000000000000001",
+      "title": "Fingers in the Soil",
+      "references": [
+        "Halo \u2014 Beyonc\u00e9",
+        "If I Ain\u2019t Got You \u2014 Alicia Keys",
+        "Ordinary People \u2014 John Legend"
+      ],
+      "genre": "soul",
+      "requested_voice": "female",
+      "requested_bpm": 100,
+      "audio_seconds": 120,
+      "render_seconds": 97.21699433395406,
+      "peak": 0.891265869140625,
+      "rms": 0.13584931194782257,
+      "sha256": "913e8f36f040df3eb05507c0de0d3a88cf6d363bc089bcd4c5451ae5e3877bac",
+      "wav_bytes": 23040044,
+      "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+      "technical": "PASS",
+      "musical_acceptance": "NOT RUN"
+    },
+    {
+      "id": "b11454224b724e708a68b80faf60d5e2",
+      "title": "Flicker in the Dark",
+      "references": [
+        "Blinding Lights \u2014 The Weeknd",
+        "Midnight City \u2014 M83",
+        "Nightcall \u2014 Kavinsky"
+      ],
+      "genre": "synthpop",
+      "requested_voice": "female",
+      "requested_bpm": 112,
+      "audio_seconds": 120,
+      "render_seconds": 58.756228790967725,
+      "peak": 0.8912353515625,
+      "rms": 0.15225103497505188,
+      "sha256": "4094bed308948d543855bf5a22c4829e1bf727b9162b3660e7d3805c850d8d9b",
+      "wav_bytes": 23040044,
+      "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+      "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+      "technical": "PASS",
+      "musical_acceptance": "NOT RUN"
+    }
+  ],
+  "failed_job": {
+    "id": "0c8de16f058045d9b4396be90d2eb72f",
+    "stage": "planner",
+    "cause": "Extra JSON closing punctuation; unsupported fixed-list genre found on inspection",
+    "outcome": "failed closed before singer; raw draft retained; parser and independent full-song genre validation fixed"
+  },
+  "vocal_check": {
+    "mode": "existing offline tiny ASR, first sample only",
+    "recognized_words": 101,
+    "audio_sha256": "e69f4ce19e98422e8f18728117af37eb1dd5e5f391666ed148276259c67c4509",
+    "assessment": "Some intended phrases recognized; several mismatches. Not a diction or naturalness score."
+  },
+  "external_spend": 0,
+  "reference_audio_downloaded": false,
+  "human_listening": "NOT RUN",
+  "deployment": "NOT RUN"
+}
