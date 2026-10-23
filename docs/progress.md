@@ -1,3 +1,9 @@
+## Single Music DNA listening collection — 2026-10-23
+
+**PASS, local.** Removed the separate “Made with Music DNA” examples section from the Music DNA page at the owner's request. “Listen to all songs,” its filters and pagination remain. The homepage four-song preview is unchanged; audio files and API access are unchanged. Updated browser selectors and removed assertions for the removed example-rating UI.
+
+`dna-r2-browser.mjs` passes in Chromium/WebKit against localhost:4235: duplicate section absent, main collection present, real muted playback/seek, signed R2 range access, denied unsigned access, download checksum, no horizontal overflow at 1280/390/320px and no page errors. Mobile screenshot inspected. Evidence: `/tmp/jamloom-single-dna-gallery/report.json`. Diff check PASS. The separate local-generation browser script was updated but not rerun; no new songs generated. Website deployment NOT RUN.
+
 ## Homepage Music DNA listening preview — 2026-10-23
 
 **PASS, local.** The Music DNA product chapter replaces the screenshot with four playable songs in a two-column, two-row grid and a “Made with Music DNA” label. Back and Next cycle the 98 publicly approved Music DNA samples, wrap at the ends, stop the prior audio and clear playback errors. Only public manifest metadata reaches the preview; private/customer collections are not read. Full listening/example/DNA community galleries have been removed from the homepage. Hero and preview links lead to `/music-dna#public-songs`, where the existing filters and six-row pagination remain available. Other homepage products, Improvise, Aurowall and mix collections remain.
