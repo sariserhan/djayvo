@@ -17,7 +17,7 @@ export function TasteNotebook(){
  const [profile,setProfile]=useState<Taste>(emptyTaste),[message,setMessage]=useState(''),[revision,setRevision]=useState(0),[busy,setBusy]=useState(false),[loaded,setLoaded]=useState(false);
  const [rendering,setRendering]=useState(false),[search,setSearch]=useState(''),[job,setJob]=useState<string|null>(null),[draft,setDraft]=useState<SongPlan|null>(null);
  const [takes,setTakes]=useState<Song[]>([]);
- const [playlistQuery,setPlaylistQuery]=useState('');
+ const [playlistQuery,setPlaylistQuery]=useState<{text:string}|null>(null);
  const [progress,setProgress]=useState<SongProgress|null>(null);
  const [cloud,setCloud]=useState(false);
  const [visibility,setVisibility]=useState<'public'|'private'>('public'),[publicConsent,setPublicConsent]=useState(false);
@@ -164,8 +164,8 @@ export function TasteNotebook(){
  <ol className="dna-steps" aria-label="How Music DNA works"><li><span>1</span> Pick favorites</li><li><span>2</span> We find your sound</li><li><span>3</span> Get a song</li></ol>
  <div className="product-controls">
  <div className="dna-create-grid"><div className="dna-picker"><div className="dna-picker-heading"><h2>Your favorite music</h2><span>{profile.references.length} selected</span></div>
- <PlaylistPicker disabled={locked||!loaded} onSearch={setPlaylistQuery} onAdd={addPlaylist}/>
- <FavoriteSearch saved={profile.references} disabled={locked||!loaded} onSelect={(reference,metadata)=>{addSong(reference,metadata);setPlaylistQuery('');}} playlistQuery={playlistQuery}/>
+ <PlaylistPicker disabled={locked||!loaded} onSearch={text=>setPlaylistQuery({text})} onAdd={addPlaylist}/>
+ <FavoriteSearch saved={profile.references} disabled={locked||!loaded} onSelect={(reference,metadata)=>{addSong(reference,metadata);setPlaylistQuery(null);}} playlistQuery={playlistQuery}/>
  <div className="dna-favorites">{[...new Set(profile.references)].map(reference=><div className="dna-favorite" role="group" aria-label={reference} key={reference}>
   <span className="dna-favorite-icon" aria-hidden="true">♫</span><strong>{reference}</strong><button className="secondary" disabled={locked} aria-label={`Remove favorite ${reference}`} onClick={()=>remove(reference)}>×</button>
   <details><summary>Listen elsewhere</summary><div className="product-actions"><a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(reference)}`} target="_blank" rel="noreferrer">Find on YouTube ↗</a><a href={`https://open.spotify.com/search/${encodeURIComponent(reference)}`} target="_blank" rel="noreferrer">Find on Spotify ↗</a></div></details>

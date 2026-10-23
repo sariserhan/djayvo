@@ -2,7 +2,9 @@
   {
     "browser": "chromium",
     "width": 1280,
-    "unconfigured": "PASS",
+    "unconfiguredFixture": "PASS",
+    "accessibility": "PASS",
+    "repeatSearch": "PASS",
     "fixturePreviewAndCatalogueSelection": "PASS",
     "noYouTubePersistence": "PASS",
     "bulkDuplicateAndCapacity": "PASS",
@@ -11,7 +13,9 @@
   {
     "browser": "webkit",
     "width": 390,
-    "unconfigured": "PASS",
+    "unconfiguredFixture": "PASS",
+    "accessibility": "PASS",
+    "repeatSearch": "PASS",
     "fixturePreviewAndCatalogueSelection": "PASS",
     "noYouTubePersistence": "PASS",
     "bulkDuplicateAndCapacity": "PASS",
