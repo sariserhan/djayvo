@@ -1,6 +1,6 @@
 # Music DNA completion qualification — 2026-10-23
 
-**PARTIAL.** Local matching, request/result limits, worker packaging and exact human-reviewed jazz handling are implemented. PASS: 59 site tests, TypeScript, 67 Python checks and desktop/mobile playlist browser regression. The owner approved worker publication and the bounded $3/two-song trial; its Linux build is running. The real 140-second local song/credit/privacy flow passed in 776.4 seconds, and its public R2 sample passes checksum/range playback. General checker calibration and new-song listening are not claimed. [Report](music-dna-completion.md).
+**PASS technical qualification.** Local matching, request/result limits, worker packaging and exact human-reviewed jazz handling are implemented. PASS: 59 site tests, TypeScript, 67 Python checks, desktop/mobile browser flows, a real local 140-second song and two real hosted 140/100-second songs with approved singer conversion. All three new samples are verified in public R2. The authorized worker build is published; the one-worker trial ended safely in 9m36s, with temporary objects removed and endpoint disabled. Conservative cost bound $0.62; final provider billing pending. Local singer pool enabled. Website/ongoing paid service, Spotify and paid SoundCloud remain deferred. General classifier calibration and listening for the three new songs are not claimed. [Report](music-dna-completion.md).
 
 ## Richer Music DNA sound profiles — 2026-10-23
 

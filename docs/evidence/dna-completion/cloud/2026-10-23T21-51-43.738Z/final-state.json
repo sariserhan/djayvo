@@ -1,0 +1,59 @@
+{
+  "at": "2026-10-23T22:02:27.380Z",
+  "workersMin": 0,
+  "workersMax": 0,
+  "health": {
+    "jobs": {
+      "completed": 14,
+      "failed": 6,
+      "inProgress": 0,
+      "inQueue": 0,
+      "retried": 0
+    },
+    "workers": {
+      "idle": 0,
+      "initializing": 0,
+      "ready": 0,
+      "running": 0,
+      "throttled": 0,
+      "unhealthy": 0
+    }
+  },
+  "billing": [
+    {
+      "amount": 0.08039670903235674,
+      "timeBilledMs": 173085,
+      "diskSpaceBilledGB": 180,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 04:00:00"
+    },
+    {
+      "amount": 0.07884528022259474,
+      "timeBilledMs": 162196,
+      "diskSpaceBilledGB": 120,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 05:00:00"
+    },
+    {
+      "amount": 0.24520468042464927,
+      "timeBilledMs": 581063,
+      "diskSpaceBilledGB": 300,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 06:00:00"
+    },
+    {
+      "amount": 0.14823597110807896,
+      "timeBilledMs": 303514,
+      "diskSpaceBilledGB": 120,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 07:00:00"
+    },
+    {
+      "amount": 0.06986312568187714,
+      "timeBilledMs": 171759,
+      "diskSpaceBilledGB": 180,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 08:00:00"
+    }
+  ]
+}

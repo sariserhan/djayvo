@@ -1,5 +1,7 @@
 # Music DNA / Improvise follow-through — 2026-10-23
 
+Later technical qualification, portable CUDA singers and the exact jazz review are recorded in [Music DNA completion](music-dna-completion.md). The execution details below retain the earlier state.
+
 Owner scope: resolve generation failures, integrate the natural singer conversion,
 expand distinct singers, execute a consented feedback research trial, and connect
 external playlists. SoundCloud was explicitly deferred because of its paid access.

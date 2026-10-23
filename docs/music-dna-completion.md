@@ -34,8 +34,7 @@ owner-controlled. The owner subsequently approved the worker update and a $3, on
   identical to their audition receipts. CUDA can explicitly opt into the same
   conversion path. The worker recipe includes isolated pinned conversion
   dependencies, original GPL source/license and verified model downloads.
-  GPU model cache is released before the conversion subprocess. Activation still
-  requires the prepared hosted qualification; no shipping switch is enabled.
+  GPU model cache is released before the conversion subprocess. The hosted qualification now passes with the same settings. Local singer conversion is enabled, and the worker template retains the qualified setting while its endpoint is disabled.
 
 ## Verification
 
@@ -62,8 +61,8 @@ owner-controlled. The owner subsequently approved the worker update and a $3, on
 - **PASS sample storage:** the explicitly authorized operator sample is copied to
   public R2 and the gallery manifest; checksum and range playback verified through
   the real local public API. Website publication is still owner-controlled.
-- **NOT RUN:** human listening for this new song, broad genre-checker calibration,
-  maximum-size uncached model timing, and the new hosted execution (build running).
+- **NOT RUN:** human listening for these new songs, broad genre-checker calibration,
+  and maximum-size uncached model timing. Hosted execution passes below.
   No database migration is needed for these changes.
 
 ## Approved hosted qualification
@@ -97,3 +96,52 @@ Sources checked 2026-10-23 (Context7 tools unavailable):
 [SoundCloud API guide](https://developers.soundcloud.com/docs/api/guide),
 [Runpod operation limits](https://docs.runpod.io/serverless/endpoints/operation-reference),
 [official CLAP usage](https://github.com/LAION-AI/CLAP).
+
+## Hosted qualification — PASS
+
+[Linux build](evidence/dna-completion/worker-build.json) and
+[trial receipt](evidence/dna-completion/cloud/2026-10-23T21-51-43.738Z/trial-result.json)
+pass. Only the worker branch was published; website/main remain local.
+
+Pinned image:
+`ghcr.io/sariserhan/jamloom/music-worker@sha256:83a00c568cb48f24e27811c901ac941643aee3352f2a0239c5b071120af58780`.
+
+| Song | Duration | Singer | Execution | Provider queue | Style passages | Credits settled |
+|---|---:|---|---:|---:|---:|---:|
+| The Machine in the Basement | 2:20 | am_fenrir | 116.645 s | 10.041 s | 4/4 | 1 public |
+| Fünf Minuten im Sonnenschein | 1:40 | af_bella | 157.985 s | 127.594 s | 3/4 | 3 private |
+
+This was a real sequential queue with one worker. Initial image startup took
+227 seconds; that prewarming is additional to the table's queue and execution
+figures. Both requests used the actual application commerce/provider/storage
+path with a disposable TEST ledger. Quotes reserved 4 and 5 credits respectively;
+settlement released the unused reservation, leaving zero reserved. The private
+price has a two-credit minimum, not a fixed two-credit cap; the actual quoted
+cost policy adds a credit in this queued case. No live Stripe charge occurred.
+[Song and conversion evidence](evidence/dna-completion/cloud/2026-10-23T21-51-43.738Z/songs.json).
+
+The run ended after 9 minutes 36 seconds, below the approved 20 minutes. One
+worker maximum was observed. Shutdown, empty queue, zero workers, deletion of
+four temporary R2 objects and disposable-database cleanup pass. The final
+provider billing entry had not posted at the verification read, so a zero
+billing delta is **not** treated as free usage. The conservative trial rate
+and measured duration bound usage plus the fixed per-request allowance to
+approximately **$0.62**, below the approved $3; the provider invoice amount
+remains pending. [Final state](evidence/dna-completion/cloud/2026-10-23T21-51-43.738Z/final-state.json).
+
+Both original operator samples were separately published to public R2 with the
+owner's standing permission, checksum and byte-range verification, and added to
+`music-validation.json`. The jazz title was verified on the rendered listening
+page; both public audio endpoints work. These operator publications do not expose
+customer private songs. New-song human listening is still unrecorded.
+
+## Ready for the owner's release step
+
+The local environment now enables the approved synthetic voice pool and records
+the new worker image. The worker template also enables that pool. The endpoint
+has **workersMin=0 and workersMax=0** after qualification; continuous paid service,
+website deployment and live purchasing were not enabled by this bounded trial.
+Use the existing hosted-release checklist when the owner chooses to launch.
+Spotify remains deferred; SoundCloud requires paid access and remains deferred.
+Broad classifier calibration and all-language pronunciation are not proven by
+these successful examples. The earlier owner-feedback model remains research-only.

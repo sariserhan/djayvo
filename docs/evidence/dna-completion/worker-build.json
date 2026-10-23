@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "run": 40028143339,
+  "url": "https://github.com/sariserhan/jamloom/actions/runs/40028143339",
+  "commit": "e3419ad",
+  "branch": "codex/runpod-setup",
+  "image": "ghcr.io/sariserhan/jamloom/music-worker@sha256:83a00c568cb48f24e27811c901ac941643aee3352f2a0239c5b071120af58780",
+  "websiteDeployment": false
+}

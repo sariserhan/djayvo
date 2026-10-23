@@ -1,0 +1,283 @@
+[
+  {
+    "label": "metal",
+    "title": "The Machine in the Basement",
+    "language": {
+      "code": "en",
+      "basis": "user choice",
+      "label": "English"
+    },
+    "duration": 140,
+    "identity": {
+      "id": "am_fenrir",
+      "code": "51383efd921027683c89e5348211d93ff12ac2a8",
+      "seconds": 29.279630200995598,
+      "listening": "NOT RUN for this song",
+      "vocal_gain": 0.3983763838854897,
+      "master_gain": 1,
+      "pitch_shift": 0,
+      "target_sha256": "e3f7104e196c1a50cbd8abc66dc9b8d52250b8e30f47f2aff219cdadd082fc35",
+      "backing_sha256": "240ca874d54a9433ba3ea3528a3dc7e7ec4d35a853805dc95013dc1c58c7d0af",
+      "frame_adjustment": -330,
+      "reference_sha256": "e3f7104e196c1a50cbd8abc66dc9b8d52250b8e30f47f2aff219cdadd082fc35",
+      "auto_pitch_adjust": false,
+      "base_audio_sha256": "d068a88251290b062b7b23d3dfea9de6556a4f1cff093fb23552fb091d7bba86",
+      "reference_seconds": 6,
+      "inference_cfg_rate": 0.7,
+      "target_source_sha256": "b46ca93f62f9fa4fe425ec42fe999e8e3d6a2cf3623786d1a360be1af2fddefd",
+      "models_manifest_sha256": "720ce767e5198202c650e7d6690306f2d1681cab743ea80ff4fc5334c45ff830"
+    },
+    "style": {
+      "accepted": true,
+      "matchingWindows": 4,
+      "target": "heavy-rock"
+    },
+    "audioSha256": "35e3efd6199f68f59679008eebe64a1107c5fc941e8adad88df556f8865bb568",
+    "executionSeconds": 116.645,
+    "queueSeconds": 10.041,
+    "soundGuidance": {
+      "bpm": [
+        150,
+        168
+      ],
+      "basis": "model interpretations, not audio measurements",
+      "total": 1,
+      "groups": [
+        {
+          "pace": "fast",
+          "count": 1,
+          "energy": "high",
+          "texture": "electric"
+        }
+      ],
+      "traits": {
+        "mood": [
+          {
+            "count": 1,
+            "value": "defiant"
+          },
+          {
+            "count": 1,
+            "value": "energetic"
+          }
+        ],
+        "pace": [
+          {
+            "count": 1,
+            "value": "fast"
+          }
+        ],
+        "energy": [
+          {
+            "count": 1,
+            "value": "high"
+          }
+        ],
+        "groove": [
+          {
+            "count": 1,
+            "value": "straight"
+          }
+        ],
+        "vocals": [
+          {
+            "count": 1,
+            "value": "melodic"
+          },
+          {
+            "count": 1,
+            "value": "powerful"
+          }
+        ],
+        "texture": [
+          {
+            "count": 1,
+            "value": "electric"
+          }
+        ],
+        "production": [
+          {
+            "count": 1,
+            "value": "dense"
+          },
+          {
+            "count": 1,
+            "value": "polished"
+          }
+        ],
+        "arrangement": [
+          {
+            "count": 1,
+            "value": "explosive chorus"
+          },
+          {
+            "count": 1,
+            "value": "steady groove"
+          }
+        ],
+        "instruments": [
+          {
+            "count": 1,
+            "value": "bass guitar"
+          },
+          {
+            "count": 1,
+            "value": "drum kit"
+          },
+          {
+            "count": 1,
+            "value": "electric guitar"
+          }
+        ]
+      },
+      "caption": "straight, electric, dense, melodic, explosive chorus",
+      "selected": {
+        "pace": "fast",
+        "count": 1,
+        "energy": "high",
+        "texture": "electric"
+      },
+      "described": 1,
+      "references": [
+        "Enter Sandman \u2014 Metallica"
+      ]
+    },
+    "listening": "NOT RUN"
+  },
+  {
+    "label": "jazz",
+    "title": "F\u00fcnf Minuten im Sonnenschein",
+    "language": {
+      "code": "de",
+      "basis": "user choice",
+      "label": "German"
+    },
+    "duration": 100,
+    "identity": {
+      "id": "af_bella",
+      "code": "51383efd921027683c89e5348211d93ff12ac2a8",
+      "seconds": 13.63920408001286,
+      "listening": "NOT RUN for this song",
+      "vocal_gain": 0.5293584093940017,
+      "master_gain": 0.9317928101765202,
+      "pitch_shift": 0,
+      "target_sha256": "3bb1fb4c62997ca6d854c785f3a1c8951774bb05e9cd161bd760fae7a33dd26f",
+      "backing_sha256": "a6ed7532c97f4d29188d80399ce3c509126846743c942dc02d9e20716bfd95d0",
+      "frame_adjustment": -156,
+      "reference_sha256": "3bb1fb4c62997ca6d854c785f3a1c8951774bb05e9cd161bd760fae7a33dd26f",
+      "auto_pitch_adjust": false,
+      "base_audio_sha256": "b545cb3b1d1ac42f690f4efd1e13fbffae3527c4ce588ce0bf60d5d5bbab4d35",
+      "reference_seconds": 6,
+      "inference_cfg_rate": 1.2,
+      "target_source_sha256": "22607aa317f7ee38a06cf09325b4da143823abd32656e42d289e0a79269cf741",
+      "models_manifest_sha256": "720ce767e5198202c650e7d6690306f2d1681cab743ea80ff4fc5334c45ff830"
+    },
+    "style": {
+      "accepted": true,
+      "matchingWindows": 3,
+      "target": "jazz"
+    },
+    "audioSha256": "05ec601f2b9c9eeebc37ff7f4053c0d96ccdb65a05c3e98b6c27c9dbe677cba2",
+    "executionSeconds": 157.985,
+    "queueSeconds": 127.594,
+    "soundGuidance": {
+      "bpm": [
+        96,
+        120
+      ],
+      "basis": "model interpretations, not audio measurements",
+      "total": 1,
+      "groups": [
+        {
+          "pace": "moderate",
+          "count": 1,
+          "energy": "medium",
+          "texture": "mixed"
+        }
+      ],
+      "traits": {
+        "mood": [
+          {
+            "count": 1,
+            "value": "playful"
+          },
+          {
+            "count": 1,
+            "value": "relaxed"
+          }
+        ],
+        "pace": [
+          {
+            "count": 1,
+            "value": "moderate"
+          }
+        ],
+        "energy": [
+          {
+            "count": 1,
+            "value": "medium"
+          }
+        ],
+        "groove": [
+          {
+            "count": 1,
+            "value": "swung"
+          }
+        ],
+        "vocals": [],
+        "texture": [
+          {
+            "count": 1,
+            "value": "mixed"
+          }
+        ],
+        "production": [
+          {
+            "count": 1,
+            "value": "polished"
+          },
+          {
+            "count": 1,
+            "value": "warm"
+          }
+        ],
+        "arrangement": [
+          {
+            "count": 1,
+            "value": "instrumental breaks"
+          },
+          {
+            "count": 1,
+            "value": "steady groove"
+          }
+        ],
+        "instruments": [
+          {
+            "count": 1,
+            "value": "acoustic guitar"
+          },
+          {
+            "count": 1,
+            "value": "bass guitar"
+          },
+          {
+            "count": 1,
+            "value": "drum kit"
+          }
+        ]
+      },
+      "caption": "swung, mixed, polished, instrumental breaks",
+      "selected": {
+        "pace": "moderate",
+        "count": 1,
+        "energy": "medium",
+        "texture": "mixed"
+      },
+      "described": 1,
+      "references": [
+        "Take Five \u2014 Dave Brubeck"
+      ]
+    },
+    "listening": "NOT RUN"
+  }
+]

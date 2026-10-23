@@ -55,5 +55,10 @@
     "sample": "c0dbba",
     "title": "Die Nacht im Kellerraum",
     "humanReviewDistinctFromAutomated": true
+  },
+  "cloudSampleUI": {
+    "status": "PASS",
+    "renderedJazzTitle": true,
+    "publicAudioRanges": true
   }
 }
