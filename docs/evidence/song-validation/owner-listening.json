@@ -107,5 +107,16 @@
     "comparisonWithOriginalAcceptedPair": "Not established",
     "automaticPoolExpanded": false,
     "trainingConsent": false
+  },
+  "publicGalleryApproval": {
+    "statement": "regarless what, all songs are sound good and natural and I want all these in the public page",
+    "musicalAppeal": "PASS: owner accepts the songs for public presentation",
+    "publicationConsent": true,
+    "scope": "All 135 songs in the current R2-backed validation manifest, including similar-voice auditions",
+    "manifest": "assets/manifests/music-validation.json",
+    "manifestSha256": "5dea5abf449bab77ca31578e279230396d55cae99aa19a33b403ac6ef3b5b19f",
+    "songCount": 135,
+    "voiceDistinctness": "Prior per-comparison judgments retained; public approval does not make similar voices distinct",
+    "trainingConsent": false
   }
 }

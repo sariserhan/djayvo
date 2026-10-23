@@ -212,3 +212,36 @@ on the Mac and passed verified R2 storage. The owner accepts all three as natura
 hears voice 1 as different and voices 2/3 as alike: two perceived groups, not three
 accepted singers. Normal-generation integration and broader musical coverage
 remain open. [Method, pins, results and limits](vocal-identity.md).
+
+
+## Public song collection
+
+The owner approved all current songs for public presentation: “regarless what,
+all songs are sound good and natural and I want all these in the public page.”
+[Approval and exact manifest hash](evidence/song-validation/owner-listening.json)
+cover 135 songs already verified in R2, including similar-voice auditions and
+automated style rejections. Previous distinctness and language findings remain
+recorded; this approval is not a new training consent.
+
+**PASS, local:** Homepage and Music DNA now show **Explore songs made with
+Jamloom**, with all 135 entries available through language/style filters and
+12-song batches. Latest additions appear first. Existing curated examples and
+public user-song collections remain. The public presentation uses concise song
+information; `/listening` retains research labels. Audio uses the existing
+manifest allowlist and R2 playback/download route; private songs and source
+recordings are not added. No schema change or new upload is required.
+
+**PASS, checks:** `tsc --noEmit` and four `dna-examples.test.ts` tests. Local
+Playwright (approved fallback; Browser runtime unavailable) checked `/` and
+`/music-dna` in Chromium at 1280px and WebKit at 390px: all 135 IDs reachable,
+12/24-song expansion, filter reset, all three direct voice comparisons visible,
+muted real R2 playback, 20-second seeking, one active player, download links,
+no horizontal overflow or JavaScript exceptions. Console health is PARTIAL:
+existing local `view=public`/`view=mine` and catalogue calls return 503, Aurowall
+returns 403, and VisitorPing rejects localhost with 403. The new collection and
+existing examples return 200; tested R2 playback succeeds. These unrelated
+service errors were retained, not suppressed. Scripts, JSON and screenshots are
+under `/tmp/jamloom-public-gallery*`.
+
+**NOT RUN:** Website deployment. These additions appear on the hosted pages
+after the owner's deployment; the audio is already stored in R2.
