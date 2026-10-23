@@ -142,5 +142,28 @@
     ],
     "scope": "Two 30-second jazz conversions of the same performance",
     "automaticPoolExpanded": false
+  },
+  "fullIdentityFeedback": {
+    "statement": "Natural and smooth",
+    "audioSha256": "73883c75dcbbc37221126cac75902fc19fdc7429ff8dfeaadd0bf141ab38af9e",
+    "title": "Трасса вдаль · full singer identity",
+    "naturalness": "PASS: owner says the full two-minute singing is natural and smooth",
+    "scope": "Sound and continuity only; Russian words and pronunciation NOT RUN"
+  },
+  "strongerFemaleIdentityFeedback": {
+    "statement": "Different singers, both natural",
+    "comparedAudio": [
+      "be1c4d1eb52707d45ce75cfdef40b4fa229fa51f506a49f0cdde2c3819fbcf57",
+      "b4dfb7d689f3a41af8c65f2066cb896d8f68673ebd8c316a20597dcac2eefc7c"
+    ],
+    "identities": [
+      "af_bella",
+      "af_nicole"
+    ],
+    "naturalness": "PASS: owner accepts both as natural",
+    "distinctness": "PASS: owner hears different singers",
+    "scope": "Same 30-second jazz performance and backing, six-second synthetic references, guidance 1.2; not all genres or languages",
+    "localCandidatePoolExpanded": true,
+    "automaticCastingEnabled": false
   }
 }

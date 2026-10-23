@@ -49,7 +49,7 @@
       "duration": 120,
       "language": "ru",
       "retry_reason": "First conversion exceeded its 720-second limit. Use a six-second excerpt of the same pinned voice target to leave more context for the song; retain the 720-second conversion limit.",
-      "listening": "NOT RUN",
+      "listening": "PASS: owner says natural and smooth; Russian words not judged",
       "styleAccepted": true,
       "published": [
         {
@@ -121,5 +121,12 @@
       "listening": "NOT RUN for this song"
     }
   },
-  "fullWebsiteTiming": "NOT RUN: no draft or whole button-to-song transaction in this test; local deadline remains 900 seconds"
+  "fullWebsiteTiming": "NOT RUN: no draft or whole button-to-song transaction in this test; local deadline remains 900 seconds",
+  "fullReview": {
+    "statement": "Natural and smooth",
+    "audioSha256": "73883c75dcbbc37221126cac75902fc19fdc7429ff8dfeaadd0bf141ab38af9e",
+    "title": "Трасса вдаль · full singer identity",
+    "naturalness": "PASS: owner says the full two-minute singing is natural and smooth",
+    "scope": "Sound and continuity only; Russian words and pronunciation NOT RUN"
+  }
 }

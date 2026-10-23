@@ -1,5 +1,5 @@
 {
-  "method": "Research wrapper sets inference_cfg_rate=1.2 before the pinned inference.main, with six-second excerpts from the same female targets and identical original performance/backing. Default conversion stays 0.7 and automatic casting stays off.",
+  "method": "Research wrapper sets inference_cfg_rate=1.2 before the pinned inference.main, with six-second excerpts from the same female targets and identical original performance/backing. At trial time the default guidance was 0.7. After owner acceptance, the local female candidates use the qualified 1.2 setting; male guidance remains 0.7. Automatic casting stays off.",
   "scope": "Reference duration and guidance strength change together; human listening needed, no parameter-causality claim.",
   "code_commit": "aeb3173",
   "trial_script_sha256": "9fc20f058f596ab269a9038a920ab16b65ec220c17437333630eef827a7485e6",
@@ -9,7 +9,7 @@
       "inference_cfg_rate": 1.2,
       "reference_seconds": 6,
       "purpose": "Research-only guidance change; not a new accepted identity",
-      "listening": "NOT RUN",
+      "listening": "PASS: owner says different singers, both natural",
       "published": [
         {
           "status": "PASS",
@@ -28,7 +28,7 @@
       "inference_cfg_rate": 1.2,
       "reference_seconds": 6,
       "purpose": "Research-only guidance change; not a new accepted identity",
-      "listening": "NOT RUN",
+      "listening": "PASS: owner says different singers, both natural",
       "published": [
         {
           "status": "PASS",
@@ -154,5 +154,21 @@
         "research_only": true
       }
     }
-  ]
+  ],
+  "ownerReview": {
+    "statement": "Different singers, both natural",
+    "comparedAudio": [
+      "be1c4d1eb52707d45ce75cfdef40b4fa229fa51f506a49f0cdde2c3819fbcf57",
+      "b4dfb7d689f3a41af8c65f2066cb896d8f68673ebd8c316a20597dcac2eefc7c"
+    ],
+    "identities": [
+      "af_bella",
+      "af_nicole"
+    ],
+    "naturalness": "PASS: owner accepts both as natural",
+    "distinctness": "PASS: owner hears different singers",
+    "scope": "Same 30-second jazz performance and backing, six-second synthetic references, guidance 1.2; not all genres or languages",
+    "localCandidatePoolExpanded": true,
+    "automaticCastingEnabled": false
+  }
 }

@@ -15,10 +15,11 @@
     "passed": 8
   },
   "vocalIdentityContracts": {
-    "passed": 5,
+    "passed": 6,
     "includes": [
       "local opt-in and CUDA exclusion",
-      "female fallback",
+      "male and female deterministic selection",
+      "qualified female settings match owner-approved render receipts",
       "hard parent timeout",
       "preserving originals on failure",
       "mix balance and malformed audio"
@@ -40,5 +41,10 @@
   "singerBrowser": "PASS: Chromium and WebKit muted playback, 90-second seeking and HTTP 206 for the new 120-second song, plus both original female auditions",
   "revisedSingerBrowser": "PASS: both stronger-guidance auditions in Chromium and WebKit, muted playback, 22.5-second seeking, HTTP 206, no page errors",
   "revisedSingerControl": "PASS: matching base performance and backing hashes, different reference hashes, complete 30-second stereo outputs and raw guidance-1.2 output files",
-  "gallerySongCount": 152
+  "gallerySongCount": 152,
+  "ownerSingerReview": {
+    "fullTwoMinuteSound": "PASS: Natural and smooth",
+    "revisedFemalePair": "PASS: Different singers, both natural",
+    "languagePronunciation": "NOT RUN"
+  }
 }

@@ -13,8 +13,8 @@ ROOT=Path(__file__).resolve().parents[1]
 IDENTITIES={
     'am_michael':{'voice':'male','accepted':True,'sha256':'8ecf79c848bc32c53d6df3312c577bda0b079d4703d20f98b0ac48da1b00b2b7'},
     'am_fenrir':{'voice':'male','accepted':True,'sha256':'b46ca93f62f9fa4fe425ec42fe999e8e3d6a2cf3623786d1a360be1af2fddefd'},
-    'af_bella':{'voice':'female','accepted':False,'sha256':'22607aa317f7ee38a06cf09325b4da143823abd32656e42d289e0a79269cf741'},
-    'af_nicole':{'voice':'female','accepted':False,'sha256':'ed32a03c4018b86f44752eb5d727bcd9e701bf1a4ff84c1513b4c21f9e7e87f7'},
+    'af_bella':{'voice':'female','accepted':True,'guidance':1.2,'sha256':'22607aa317f7ee38a06cf09325b4da143823abd32656e42d289e0a79269cf741'},
+    'af_nicole':{'voice':'female','accepted':True,'guidance':1.2,'sha256':'ed32a03c4018b86f44752eb5d727bcd9e701bf1a4ff84c1513b4c21f9e7e87f7'},
 }
 CODE='51383efd921027683c89e5348211d93ff12ac2a8'
 
@@ -102,7 +102,7 @@ def convert(output,identity):
     config['model_params']['vocoder']['name']=str(models/'nvidia--bigvgan_v2_44khz_128band_512x')
     config['model_params']['speech_tokenizer']['name']=str(models/'openai--whisper-small')
     config_path=work/'config.yaml';config_path.write_text(yaml.safe_dump(config))
-    args=SimpleNamespace(source=str(work/'source.wav'),target=str(work/'reference.wav'),output=str(work/'raw'),diffusion_steps=30,length_adjust=1.0,inference_cfg_rate=.7,f0_condition=True,auto_f0_adjust=False,semi_tone_shift=0,checkpoint=pinned('Plachta/Seed-VC','DiT_seed_v2_uvit_whisper_base_f0_44k_bigvgan_pruned_ft_ema_v2.pth'),config=str(config_path),fp16=True)
+    args=SimpleNamespace(source=str(work/'source.wav'),target=str(work/'reference.wav'),output=str(work/'raw'),diffusion_steps=30,length_adjust=1.0,inference_cfg_rate=IDENTITIES[identity].get('guidance',.7),f0_condition=True,auto_f0_adjust=False,semi_tone_shift=0,checkpoint=pinned('Plachta/Seed-VC','DiT_seed_v2_uvit_whisper_base_f0_44k_bigvgan_pruned_ft_ema_v2.pth'),config=str(config_path),fp16=True)
     torch.set_num_threads(4);torch.manual_seed(receipt['case']['seed']);np.random.seed(receipt['case']['seed'])
     torchaudio.save=lambda path,audio,rate:sf.write(path,audio.detach().cpu().numpy().T,rate,subtype='FLOAT')
     started=time.monotonic();loaded=inference.load_models(args);f0=loaded[2]
@@ -118,7 +118,7 @@ def convert(output,identity):
     dest=output/'singer.wav';sf.write(dest,mix,48000,subtype='PCM_16')
     report={**receipt,'audio_sha256':digest(dest),'peak':float(np.max(np.abs(mix))),'rms':float(np.sqrt(np.mean(mix**2))),
         'vocal_identity':{'id':identity,'code':CODE,'target_sha256':digest(target),'base_audio_sha256':receipt['audio_sha256'],'models_manifest_sha256':digest(ROOT/'docs/evidence/song-validation/vocal-identity-models.json'),
-            'reference_seconds':len(reference)/reference_rate,'reference_sha256':digest(work/'reference.wav'),'pitch_shift':0,'auto_pitch_adjust':False,'seconds':time.monotonic()-started,**balance,'listening':'NOT RUN for this song'}}
+            'inference_cfg_rate':args.inference_cfg_rate,'reference_seconds':len(reference)/reference_rate,'reference_sha256':digest(work/'reference.wav'),'pitch_shift':0,'auto_pitch_adjust':False,'seconds':time.monotonic()-started,**balance,'listening':'NOT RUN for this song'}}
     (output/'complete.json').write_text(json.dumps(report,indent=2)+'\n');(output/'.partial').unlink()
 
 
