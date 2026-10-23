@@ -82,8 +82,9 @@ finally{
  if(enabled){for(let i=0;i<5;i++)try{await control('PATCH',{workersMin:0,workersMax:0});const result=await control();assert(result.workersMax===0&&result.workersMin===0);state.disabled=true;break;}catch{await delay(2000);}}
  for(let i=0;i<12;i++){const health=await services[0].provider.health();state.finalHealth=health;const active=Object.entries(health.workers??{}).filter(([k])=>k!=='unhealthy').reduce((n,[,v])=>n+Number(v??0),0);if(!active&&health.jobs?.inProgress===0&&health.jobs?.inQueue===0){state.stopped=true;break;}await delay(5000);}
  if(state.disabled&&state.stopped){watchdog?.kill();const keys=(await pool.query('SELECT object_key AS key FROM song_uploads UNION SELECT output_key FROM cloud_song_runs UNION SELECT audio_key FROM dna_song_jobs WHERE audio_key IS NOT NULL')).rows;for(const {key} of keys)await store.remove(key);state.removedObjects=keys.length;state.cleanup=true;}
+ if(completion){state.qualification=state.requests.length===2&&state.requests.every((r:any)=>r.state==='completed'&&r.saved&&r.identity&&Number(r.finalBalance?.reserved)===0)?'PASS':'FAIL';}
  state.billingAfter=await billing();state.finishedAt=new Date().toISOString();await save();
  await pool.end();if(state.cleanup)await admin.query(`DROP DATABASE "${name}" WITH (FORCE)`);else state.retainedDatabase=name;await admin.end();await save();
  assert(state.disabled&&state.stopped&&state.cleanup,'Trial shutdown/cleanup needs attention');
- console.log(JSON.stringify({disabled:state.disabled,stopped:state.stopped,cleanup:state.cleanup,results:state.requests.map((r:any)=>({label:r.label,state:r.state}))}));
+ console.log(JSON.stringify({disabled:state.disabled,stopped:state.stopped,cleanup:state.cleanup,...(completion?{qualification:state.qualification}:{}),results:state.requests.map((r:any)=>({label:r.label,state:r.state}))}));
 }
