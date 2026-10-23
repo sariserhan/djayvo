@@ -1,3 +1,9 @@
+## Full public listening collection — 2026-10-23
+
+**PASS, local.** The public showcase already used the same collection as `/listening`, but displayed only 12 cards initially and sat below the earlier examples. Homepage and Music DNA now render all 154 collection songs, with a count above the cards, language/genre filters and “Listen to all songs” shortcuts. The collection precedes the nine earlier examples. Existing private/community visibility boundaries are unchanged. Audio still loads on demand.
+
+Chromium desktop (1280px) and WebKit mobile (390px), signed out: exact song-ID parity with the listening API on both routes, working anchor/filter/reset controls, real R2 playback, accessibility checks on filters, no horizontal overflow and no page errors. TypeScript and diff checks pass. Repro: `/tmp/jamloom-full-public-gallery.mjs`; screenshots `/tmp/jamloom-full-gallery-{desktop,mobile}-{home,dna}.png`. No new uploads or migration. Public website deployment NOT RUN.
+
 ## Variable song lengths — 2026-10-23
 
 **PASS, implementation/local render/storage/schema; NOT RUN, hosted release and new listening acceptance.** Owner-confirmed ranges are Music DNA 100–140 seconds and Improvise 30–45 seconds. New requests save a varied duration; retries retain it, existing plans and older hosted requests retain their length. Lyrics, renderer checks, source placement, style windows, upload grants and stored receipts follow the same range. Actual 140/45-second Mac renders, R2 verification and desktop Chromium/mobile WebKit playback/seek pass; both are in the public listening gallery (154 samples). 67 Python tests, TypeScript, 21 cloud/audio tests, nine DNA commerce and nine admin tests pass. Production migration 0019 was backed up, restored/rehearsed, applied and verified idempotent. The updated worker must publish before the website; neither was deployed and no paid compute was used. [Report](song-duration.md).

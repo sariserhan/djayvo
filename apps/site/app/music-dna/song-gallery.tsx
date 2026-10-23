@@ -5,7 +5,6 @@ import languages from '../../../../assets/manifests/dna-languages.json';
 type Entry={id:string;title:string;language:string;direction?:string;historical?:boolean;visibility?:string;withdrawn_at?:string;check?:'passed'|'style-mismatch'|'not-checked';product?:string};
 export function SongGallery({scope,title,product='music-dna'}:{scope:'examples'|'mine'|'public'|'validation'|'showcase';title:string;product?:'music-dna'|'improvise'}){
  const curated=scope==='validation'||scope==='showcase';
- const [visibleCount,setVisibleCount]=useState(12);
  const endpoint=product==='improvise'?'/api/improvise/song':'/api/taste/song';
  const [songs,setSongs]=useState<Entry[]>([]),[next,setNext]=useState<string|null>(null),[message,setMessage]=useState('Loading songs…'),[busy,setBusy]=useState(false);
  const [feedbackAvailable,setFeedbackAvailable]=useState(true),[accountFeedback,setAccountFeedback]=useState(false);
@@ -35,16 +34,17 @@ export function SongGallery({scope,title,product='music-dna'}:{scope:'examples'|
   setBusy(true);try{const response=await fetch(endpoint+'?id='+id,{method:'DELETE',headers:{'X-Jamloom-DNA':'1'}});if(!response.ok)throw Error();await load();window.dispatchEvent(new Event('jamloom-dna-completed'));}catch{setMessage('Could not remove this song from the public page. Try again.');}finally{setBusy(false);}
  }
  const filtered=songs.filter(song=>(!language||song.language===language)&&(!genre||song.direction===genre));
- const displayed=scope==='showcase'?[...filtered].reverse().slice(0,visibleCount):filtered;
- return <section className="product-panel" aria-label={title}><h2>{title}</h2>
-  <p>{scope==='showcase'?'Find your sound. Original AI songs in different styles, languages and voices.':scope==='validation'?'Listen to our test songs. Automated checks do not judge pronunciation or musical quality.':scope==='examples'?'Press play. Original AI songs inspired by example favorites.':scope==='mine'?'All your songs. Private stays private.':'Made by listeners. Shared with everyone.'}</p>
+ const displayed=scope==='showcase'?[...filtered].reverse():filtered;
+ return <section id={scope==='showcase'?'public-songs':undefined} className="product-panel" aria-label={title}><h2>{title}</h2>
+  <p>{scope==='showcase'?'Every song from our listening collection. Choose a language or genre, then press play.':scope==='validation'?'Listen to our test songs. Automated checks do not judge pronunciation or musical quality.':scope==='examples'?'Press play. Original AI songs inspired by example favorites.':scope==='mine'?'All your songs. Private stays private.':'Made by listeners. Shared with everyone.'}</p>
   {filterable&&<div className="product-actions song-filters">
-   <label>Language <select aria-label="Language" value={language} onChange={e=>{setLanguage(e.target.value);setVisibleCount(12);}}><option value="">All languages</option>{(scope==='public'?[...options.languages]:[...new Set(songs.map(s=>s.language))]).sort((a,b)=>((languages.languages as Record<string,string>)[a]??a).localeCompare((languages.languages as Record<string,string>)[b]??b)).map(code=><option key={code} value={code}>{(languages.languages as Record<string,string>)[code]??code}</option>)}</select></label>
-   <label>Genre <select aria-label="Genre" value={genre} onChange={e=>{setGenre(e.target.value);setVisibleCount(12);}}><option value="">All genres</option>{(scope==='public'?[...options.genres]:[...new Set(songs.flatMap(s=>s.direction?[s.direction]:[]))]).sort().map(value=><option key={value} value={value}>{value}</option>)}</select></label>
-   {(language||genre)&&<button className="secondary" onClick={()=>{setLanguage('');setGenre('');setVisibleCount(12);}}>Clear filters</button>}
+   <label>Language <select aria-label="Language" value={language} onChange={e=>setLanguage(e.target.value)}><option value="">All languages</option>{(scope==='public'?[...options.languages]:[...new Set(songs.map(s=>s.language))]).sort((a,b)=>((languages.languages as Record<string,string>)[a]??a).localeCompare((languages.languages as Record<string,string>)[b]??b)).map(code=><option key={code} value={code}>{(languages.languages as Record<string,string>)[code]??code}</option>)}</select></label>
+   <label>Genre <select aria-label="Genre" value={genre} onChange={e=>setGenre(e.target.value)}><option value="">All genres</option>{(scope==='public'?[...options.genres]:[...new Set(songs.flatMap(s=>s.direction?[s.direction]:[]))]).sort().map(value=><option key={value} value={value}>{value}</option>)}</select></label>
+   {(language||genre)&&<button className="secondary" onClick={()=>{setLanguage('');setGenre('');}}>Clear filters</button>}
   </div>}
   {scope==='public'&&busy&&<p role="status">Loading songs…</p>}
 
+  {filterable&&scope!=='public'&&<p role="status">{filtered.length?`${filtered.length} songs`:songs.length?'No songs match these filters.':''}</p>}
   <div className="dna-song-grid" aria-busy={busy} hidden={scope==='public'&&busy}>{displayed.map(song=><article key={song.id}><h3>{song.title}</h3><p>{(languages.languages as Record<string,string>)[song.language]??song.language}{song.direction?' · '+song.direction:''}{scope==='mine'?' · '+(song.withdrawn_at?'Removed from public page':song.visibility):''}</p>
    {scope==='validation'&&song.check&&<p>Sample {song.id.slice(0,6)} · {song.product==='improvise'?'Improvise':'Music DNA'} · {song.check==='passed'?'Passed automated style check':song.check==='style-mismatch'?'Flagged by automated style check':'Test take · style not verified'}. Automated checks can be wrong; they do not judge lyrics or singing.</p>}
    {song.historical&&<p>Earlier experiment · style match not checked.</p>}
@@ -53,7 +53,6 @@ export function SongGallery({scope,title,product='music-dna'}:{scope:'examples'|
    {scope==='mine'&&song.visibility==='public'&&!song.withdrawn_at&&<button className="secondary" disabled={busy} onClick={()=>withdraw(song.id)}>Remove from public page</button>}</div>
    {feedbackAvailable&&scope!=='public'&&!curated&&!song.historical&&<details><summary>Rate this song</summary><SongFeedback id={song.id} account={accountFeedback}/></details>}
   </article>)}</div>
-  {filterable&&scope!=='public'&&<><p role="status">{filtered.length?`${displayed.length} of ${filtered.length} songs`:songs.length?'No songs match these filters.':''}</p>{scope==='showcase'&&displayed.length<filtered.length&&<button className="secondary" onClick={()=>setVisibleCount(count=>count+12)}>Show more songs</button>}</>}
   <p role="status">{message}</p>{next&&<button className="secondary" disabled={busy} onClick={()=>load(next)}>Load more songs</button>}
   {message.includes('try again')&&<button className="secondary" disabled={busy} onClick={()=>load()}>Retry songs</button>}
   {scope==='mine'&&message.includes('Sign in')&&<a href="/account/sign-in?callbackURL=%2Fmusic-dna">Sign in</a>}

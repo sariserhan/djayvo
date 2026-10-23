@@ -1,3 +1,7 @@
+## Full public listening collection — 2026-10-23
+
+- [x] **DNA-022 — PASS, local:** Homepage and Music DNA show all 154 approved listening samples immediately, newest first, with filters and a visible count. Removed the 12-card showcase limit; added “Listen to all songs” jump links and placed the full collection before the nine earlier examples. Anonymous Chromium desktop/WebKit mobile checks confirm exact ID parity with the listening API, filters/reset, jump links, real R2 playback, accessibility and no horizontal overflow/page errors. TypeScript PASS. Audio remains `preload="none"`. Website deployment NOT RUN; no storage or database changes. See `docs/progress.md`.
+
 ## Variable song lengths — 2026-10-23
 
 - [x] **DNA-021 — PASS, implementation/local validation/storage/schema:** New Music DNA songs vary from 1:40–2:20 and Improvise from 30–45 seconds, chosen once per request and preserved on retries. Duration-aware lyric prompts, worker receipts, placement/separation and storage limits are connected. 67 Python tests, TypeScript, cloud/audio/PostgreSQL regressions and actual 140/45-second Mac renders pass. Both samples verified in R2/public gallery; desktop/mobile playback passes. Production migration 0019 applied after backup/restore verification. **Release NOT RUN:** updated worker must publish before the website deploys; new endings await listening. [Report](docs/song-duration.md).
