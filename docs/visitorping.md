@@ -1,3 +1,5 @@
+**2026-10-23 update:** Tracking is now restricted to `jamloom.com` and `www.jamloom.com`. Localhost and preview hosts load no tracker, including the coming-soon page. [Recovery and checks](public-service-recovery.md). Earlier local script-loading evidence below is historical.
+
 # VisitorPing installation
 
 2026-10-19 (America/New_York). Public site key: `vp_QBDH92AC`.

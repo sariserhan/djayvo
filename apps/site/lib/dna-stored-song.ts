@@ -4,9 +4,11 @@ import {localSingerRoot} from './dna-song';
 
 // Hosted reads never depend on the renderer's disk. Generation stays separately gated.
 export async function storedDnaSong(request:Request,context?:DnaContext):Promise<Response|null>{
+ const url=new URL(request.url),view=url.searchParams.get('view'),id=url.searchParams.get('id');
+ if(!context&&request.method==='GET'&&(view==='public'||view==='mine'))return Response.json({songs:[],next:null,available:false,feedbackAvailable:false},{headers:privateHeaders});
  if(!context?.readOnly)try{localSingerRoot(request);return null;}catch{}
  if(!context||!['GET','DELETE'].includes(request.method))return null;
- const {commerce,owner}=context,url=new URL(request.url),view=url.searchParams.get('view'),id=url.searchParams.get('id');
+ const {commerce,owner}=context;
  const json=(value:unknown,status=200)=>Response.json(value,{status,headers:privateHeaders});
  if(view&&request.method==='GET'){
   if(view!=='public'&&view!=='mine')return json({error:'Unknown collection.'},400);

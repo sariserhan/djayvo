@@ -1,5 +1,7 @@
 # Inline payments and Aurowall music — 2026-10-21
 
+**2026-10-23 update:** Homepage playback now uses the reviewed public CDN manifest directly, without the Pro API. The deck retains its same-origin decoder proxy because CDN CORS is absent. [Current behavior and verification](public-service-recovery.md).
+
 Current music selection is **72 tracks**, after the owner requested religious and unrelated audio be removed from Jamloom. The original 94-track integration evidence below remains historical. See [deck and curation update](deck-hardware-and-curation.md).
 
 

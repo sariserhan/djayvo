@@ -6,6 +6,8 @@
 
 - [x] **DNA-018 — PASS, public song collection:** Owner approved all 135 stored test songs for public presentation, including similar voices. Homepage and Music DNA now include the full R2-backed collection, language/style filters, 12-song batches, playback and downloads. Chromium desktop/WebKit mobile and TypeScript/API checks pass; website deployment remains owner-controlled. [Report](docs/music-validation.md#public-song-collection).
 
+- [x] **DNA-019 — PASS, public service recovery:** Saved-song and catalogue reads work locally without enabling generation. Homepage Aurowall uses 72 public CDN URLs with no partner API/Pro dependency; VisitorPing makes no local requests. Desktop Chromium/mobile WebKit show no console or HTTP errors across home → Music DNA; 77 unit tests, build and client-secret audit pass. [Report](docs/public-service-recovery.md).
+
 ## Hosted songs and credits — 2026-10-23
 
 - [x] **HOSTED-007 — PASS, migration and release preparation:** Production migration 0018 applied after verified PostgreSQL 18 backup/restore; repeat no-op. Vercel production settings, separate disabled live song-credit webhook, R2 production origins and Pro cron capability verified. Purchases/generation remain disabled; website not deployed. Standing migration authorization recorded in AGENTS.md. [Report](docs/song-finish.md).

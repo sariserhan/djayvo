@@ -1,12 +1,16 @@
 import 'server-only';
-import { services, isReviewer } from './services';
+import { services, isReviewer, accountsConfigured } from './services';
 import { AudioError, uuid } from './audio-validation';
 import { boundedAuthRequest } from './bounded-request';
 import { audioResponse, privateHeaders as headers } from './audio-response';
 
 export async function catalogueRequest(request:Request,path:string[]=[],playlists=false) {
   try {
+    const collectionRead=request.method==='GET'&&!playlists&&path.length===0;
+    const unavailable=()=>Response.json({tracks:[],next:null,available:false},{headers});
+    if(collectionRead&&!accountsConfigured())return unavailable();
     const {auth,config,catalogue,audio,pool}=services();
+    if(collectionRead&&(!catalogue||!audio))return unavailable();
     if(!catalogue||!audio)throw new AudioError('Catalogue unavailable here.',503);
     if(request.method!=='GET'&&request.headers.get('origin')!==config.baseURL)throw new AudioError('Request origin not allowed.',403);
     const [id,action]=path;if(path.length>2)throw new AudioError('Not found.',404);

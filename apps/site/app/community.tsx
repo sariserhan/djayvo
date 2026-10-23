@@ -8,7 +8,7 @@ import type {PublicTrack} from '../lib/catalogue';
 export function CommunityMusic(){
  const [tracks,setTracks]=useState<PublicTrack[]>([]),[status,setStatus]=useState('Loading community music…');
  useEffect(()=>{let active=true,inFlight=false;const controller=new AbortController();
-  async function refresh(){if(document.hidden||inFlight)return;inFlight=true;try{const response=await fetch('/api/catalogue?sort=latest',{cache:'no-store',signal:controller.signal});if(!response.ok)throw new Error();const data=await response.json();if(active){setTracks(data.tracks);setStatus(data.tracks.length?'':'The first releases start with you.');}}
+  async function refresh(){if(document.hidden||inFlight)return;inFlight=true;try{const response=await fetch('/api/catalogue?sort=latest',{cache:'no-store',signal:controller.signal});if(!response.ok)throw new Error();const data=await response.json();if(active){setTracks(data.tracks);setStatus(data.available===false?'Community sharing is not enabled here yet.':data.tracks.length?'':'The first releases start with you.');}}
    catch{if(active){setTracks([]);setStatus('Community music is unavailable right now. Try again shortly.');}}finally{inFlight=false;}}
   void refresh();const timer=setInterval(()=>void refresh(),60000);document.addEventListener('visibilitychange',refresh);
   return()=>{active=false;controller.abort();clearInterval(timer);document.removeEventListener('visibilitychange',refresh);};

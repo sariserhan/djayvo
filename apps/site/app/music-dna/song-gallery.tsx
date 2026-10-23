@@ -17,7 +17,7 @@ export function SongGallery({scope,title,product='music-dna'}:{scope:'examples'|
    if(!response.ok)throw Error(result.error??'Songs could not load.');
    if(!Array.isArray(result.songs))throw Error('Invalid song collection');
    setSongs(old=>after?[...old,...result.songs]:result.songs);setNext(result.next);setFeedbackAvailable(result.feedbackAvailable!==false);setAccountFeedback(result.accountFeedback===true);
-   setMessage(result.signIn?'Sign in to see all your songs.':result.available===false?'This collection will open when credit-backed generation is enabled.':result.songs.length?'':scope==='public'?'Public songs will appear here after successful generation.':'No songs yet. Make your first song above.');
+   setMessage(result.signIn?'Sign in to see all your songs.':result.available===false?'Song collections are not enabled on this server yet.':result.songs.length?'':scope==='public'?'Public songs will appear here after successful generation.':'No songs yet. Make your first song above.');
   }catch{setMessage('Songs could not load. Please try again.');}finally{setBusy(false);}
  }
  useEffect(()=>{void load();const refresh=()=>{if(!document.hidden)void load();};

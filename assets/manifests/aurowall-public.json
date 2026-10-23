@@ -1,0 +1,580 @@
+{
+  "tracks": [
+    {
+      "id": "36e04b297242ab866a171f28",
+      "title": "80s",
+      "artist": "Aurowall",
+      "genre": "80s",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/80s/80s.mp3"
+    },
+    {
+      "id": "bf0356893f3652096f51d241",
+      "title": "90s",
+      "artist": "Aurowall",
+      "genre": "90s",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/90s/90s.mp3"
+    },
+    {
+      "id": "08abd6c3a75cb9e1aae06f78",
+      "title": "Academia",
+      "artist": "Aurowall",
+      "genre": "Academia",
+      "bytes": 14401363,
+      "url": "https://cdn.aurowall.com/academia/academia.mp3"
+    },
+    {
+      "id": "abb46d68b786545cd1b2f39f",
+      "title": "Acoustic",
+      "artist": "Aurowall",
+      "genre": "Acoustic",
+      "bytes": 12704865,
+      "url": "https://cdn.aurowall.com/acoustic/acoustic.mp3"
+    },
+    {
+      "id": "5ded5c0eb3e58c187a755a51",
+      "title": "Africa",
+      "artist": "Aurowall",
+      "genre": "Africa",
+      "bytes": 9745196,
+      "url": "https://cdn.aurowall.com/africa/africa.mp3"
+    },
+    {
+      "id": "6d62a81b9b05ca0a645ad5cd",
+      "title": "Afrobeats",
+      "artist": "Aurowall",
+      "genre": "Afrobeats",
+      "bytes": 9601196,
+      "url": "https://cdn.aurowall.com/afrobeats/afrobeats.mp3"
+    },
+    {
+      "id": "bce1de3ff76ec510a57a55f9",
+      "title": "Ambient",
+      "artist": "Aurowall",
+      "genre": "Ambient",
+      "bytes": 14056448,
+      "url": "https://cdn.aurowall.com/ambient/ambient.mp3"
+    },
+    {
+      "id": "3cc29c612ac25af9c4dfdf16",
+      "title": "Arabic",
+      "artist": "Aurowall",
+      "genre": "Arabic",
+      "bytes": 11655596,
+      "url": "https://cdn.aurowall.com/arabic/arabic.mp3"
+    },
+    {
+      "id": "3f64cb12829f01a67e2936d2",
+      "title": "Blues",
+      "artist": "Aurowall",
+      "genre": "Blues",
+      "bytes": 9601306,
+      "url": "https://cdn.aurowall.com/blues/blues.mp3"
+    },
+    {
+      "id": "dd6fa65125135e584257b12c",
+      "title": "Cafe",
+      "artist": "Aurowall",
+      "genre": "Cafe",
+      "bytes": 12389574,
+      "url": "https://cdn.aurowall.com/cafe/cafe.mp3"
+    },
+    {
+      "id": "5418bcd3203e9bd838bbed80",
+      "title": "Cello",
+      "artist": "Aurowall",
+      "genre": "Cello",
+      "bytes": 9601836,
+      "url": "https://cdn.aurowall.com/cello/cello.mp3"
+    },
+    {
+      "id": "97fccfd4e6046a89c64944c9",
+      "title": "Chill",
+      "artist": "Aurowall",
+      "genre": "Chill",
+      "bytes": 12673380,
+      "url": "https://cdn.aurowall.com/chill/chill.mp3"
+    },
+    {
+      "id": "cf63e65263289714727eb202",
+      "title": "China",
+      "artist": "Aurowall",
+      "genre": "China",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/china/china.mp3"
+    },
+    {
+      "id": "20140ebf47095dab5cdbb42d",
+      "title": "Cinematic",
+      "artist": "Aurowall",
+      "genre": "Cinematic",
+      "bytes": 9601196,
+      "url": "https://cdn.aurowall.com/cinematic/cinematic.mp3"
+    },
+    {
+      "id": "ec5e2dc42a0329bbd99482f2",
+      "title": "Classical",
+      "artist": "Aurowall",
+      "genre": "Classical",
+      "bytes": 9601358,
+      "url": "https://cdn.aurowall.com/classical/classical.mp3"
+    },
+    {
+      "id": "eac0a2367f548e6b83b4b768",
+      "title": "Country",
+      "artist": "Aurowall",
+      "genre": "Country",
+      "bytes": 11275820,
+      "url": "https://cdn.aurowall.com/country/country.mp3"
+    },
+    {
+      "id": "7336142cece9742e6352ede6",
+      "title": "Disco",
+      "artist": "Aurowall",
+      "genre": "Disco",
+      "bytes": 12454700,
+      "url": "https://cdn.aurowall.com/disco/disco.mp3"
+    },
+    {
+      "id": "1f9465fbcb77d37d8112995e",
+      "title": "Dj",
+      "artist": "Aurowall",
+      "genre": "Dj",
+      "bytes": 11025068,
+      "url": "https://cdn.aurowall.com/dj/dj.mp3"
+    },
+    {
+      "id": "3cc8f755f0760bbc2ec67c61",
+      "title": "Downtempo",
+      "artist": "Aurowall",
+      "genre": "Downtempo",
+      "bytes": 9601760,
+      "url": "https://cdn.aurowall.com/downtempo/downtempo.mp3"
+    },
+    {
+      "id": "783e23da2a1c0c9cdeb5a709",
+      "title": "Edm",
+      "artist": "Aurowall",
+      "genre": "Edm",
+      "bytes": 13846316,
+      "url": "https://cdn.aurowall.com/edm/edm.mp3"
+    },
+    {
+      "id": "c0837a55d16960b01538f77a",
+      "title": "Electro Swing",
+      "artist": "Aurowall",
+      "genre": "Electro Swing",
+      "bytes": 9602123,
+      "url": "https://cdn.aurowall.com/electro-swing/electro-swing.mp3"
+    },
+    {
+      "id": "637f9569886c8f38fecdc642",
+      "title": "Ethnic",
+      "artist": "Aurowall",
+      "genre": "Ethnic",
+      "bytes": 14130860,
+      "url": "https://cdn.aurowall.com/ethnic/ethnic.mp3"
+    },
+    {
+      "id": "2bf6be75a8e7c124e76585da",
+      "title": "Fantasy",
+      "artist": "Aurowall",
+      "genre": "Fantasy",
+      "bytes": 12112556,
+      "url": "https://cdn.aurowall.com/fantasy/fantasy.mp3"
+    },
+    {
+      "id": "872d3258afe177e0daece102",
+      "title": "Folk",
+      "artist": "Aurowall",
+      "genre": "Folk",
+      "bytes": 9601773,
+      "url": "https://cdn.aurowall.com/folk/folk.mp3"
+    },
+    {
+      "id": "115298d6964f9977379ffc2d",
+      "title": "French",
+      "artist": "Aurowall",
+      "genre": "French",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/french/french.mp3"
+    },
+    {
+      "id": "8d3dcc867023e1799fe6d81a",
+      "title": "Funk",
+      "artist": "Aurowall",
+      "genre": "Funk",
+      "bytes": 12828716,
+      "url": "https://cdn.aurowall.com/funk/funk.mp3"
+    },
+    {
+      "id": "cd0ae340e9c0b06c4bf81d56",
+      "title": "Good Vibes",
+      "artist": "Aurowall",
+      "genre": "Good Vibes",
+      "bytes": 10561429,
+      "url": "https://cdn.aurowall.com/good-vibes/good-vibes.mp3"
+    },
+    {
+      "id": "ff089af7948cbd06f7c7b326",
+      "title": "Greek",
+      "artist": "Aurowall",
+      "genre": "Greek",
+      "bytes": 11021996,
+      "url": "https://cdn.aurowall.com/greek/greek.mp3"
+    },
+    {
+      "id": "1a2475ca0e2d17e6a53901f6",
+      "title": "Harp",
+      "artist": "Aurowall",
+      "genre": "Harp",
+      "bytes": 9602314,
+      "url": "https://cdn.aurowall.com/harp/harp.mp3"
+    },
+    {
+      "id": "c6d93917418a10223b7cab44",
+      "title": "Hip Hop",
+      "artist": "Aurowall",
+      "genre": "Hip Hop",
+      "bytes": 9601196,
+      "url": "https://cdn.aurowall.com/hip-hop/hip-hop.mp3"
+    },
+    {
+      "id": "a93a8d74a66d03530d9d980d",
+      "title": "House",
+      "artist": "Aurowall",
+      "genre": "House",
+      "bytes": 13940396,
+      "url": "https://cdn.aurowall.com/house/house.mp3"
+    },
+    {
+      "id": "de0c9a19380bb1864221a2dd",
+      "title": "India",
+      "artist": "Aurowall",
+      "genre": "India",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/india/india.mp3"
+    },
+    {
+      "id": "38fa06cfa7365efa1610fdc0",
+      "title": "Indie",
+      "artist": "Aurowall",
+      "genre": "Indie",
+      "bytes": 12556460,
+      "url": "https://cdn.aurowall.com/indie/indie.mp3"
+    },
+    {
+      "id": "b404d652345aa5c1ebaba124",
+      "title": "Indonesia",
+      "artist": "Aurowall",
+      "genre": "Indonesia",
+      "bytes": 13121708,
+      "url": "https://cdn.aurowall.com/indonesia/indonesia.mp3"
+    },
+    {
+      "id": "6b6221a4929860fa0c90fa6b",
+      "title": "Italy",
+      "artist": "Aurowall",
+      "genre": "Italy",
+      "bytes": 9601281,
+      "url": "https://cdn.aurowall.com/italy/italy.mp3"
+    },
+    {
+      "id": "1813f58fbcfb2a82ba74b19d",
+      "title": "Japan",
+      "artist": "Aurowall",
+      "genre": "Japan",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/japan/japan.mp3"
+    },
+    {
+      "id": "d090be7d8c20ef9af717310f",
+      "title": "Jazz",
+      "artist": "Aurowall",
+      "genre": "Jazz",
+      "bytes": 12200642,
+      "url": "https://cdn.aurowall.com/jazz/jazz.mp3"
+    },
+    {
+      "id": "1ba0a2c8b4cdb9a205dd95a1",
+      "title": "Jazzy Lofi",
+      "artist": "Aurowall",
+      "genre": "Jazzy Lofi",
+      "bytes": 10853420,
+      "url": "https://cdn.aurowall.com/jazzy-lofi/jazzy-lofi.mp3"
+    },
+    {
+      "id": "04ffb2911af9d1fdf9e2b849",
+      "title": "Kpop",
+      "artist": "Aurowall",
+      "genre": "Kpop",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/kpop/kpop.mp3"
+    },
+    {
+      "id": "5684befd4f2e50f46e3c28e4",
+      "title": "Latin",
+      "artist": "Aurowall",
+      "genre": "Latin",
+      "bytes": 12204716,
+      "url": "https://cdn.aurowall.com/latin/latin.mp3"
+    },
+    {
+      "id": "c9166ab31f6ac0dae58cad2a",
+      "title": "Lofi",
+      "artist": "Aurowall",
+      "genre": "Lofi",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/lofi/lofi.mp3"
+    },
+    {
+      "id": "7d7e626a9959577f77ec563e",
+      "title": "Lounge",
+      "artist": "Aurowall",
+      "genre": "Lounge",
+      "bytes": 10576683,
+      "url": "https://cdn.aurowall.com/lounge/lounge.mp3"
+    },
+    {
+      "id": "d35b1d53faaed4b976ac0e8b",
+      "title": "Love Piano",
+      "artist": "Aurowall",
+      "genre": "Love Piano",
+      "bytes": 11332051,
+      "url": "https://cdn.aurowall.com/love-piano/love-piano.mp3"
+    },
+    {
+      "id": "f8ba82938fa88d03df4f4e1b",
+      "title": "Love Songs",
+      "artist": "Aurowall",
+      "genre": "Love Songs",
+      "bytes": 9601772,
+      "url": "https://cdn.aurowall.com/love-songs/love-songs.mp3"
+    },
+    {
+      "id": "c4a989b9de854ac673e3f74e",
+      "title": "Metal",
+      "artist": "Aurowall",
+      "genre": "Metal",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/metal/metal.mp3"
+    },
+    {
+      "id": "06654fed7b124b0938f05e98",
+      "title": "Morning Jazz",
+      "artist": "Aurowall",
+      "genre": "Morning Jazz",
+      "bytes": 34764181,
+      "url": "https://cdn.aurowall.com/morning-jazz/morning-jazz.mp3"
+    },
+    {
+      "id": "bd44457869d0246223114c2d",
+      "title": "Night Jazz",
+      "artist": "Aurowall",
+      "genre": "Night Jazz",
+      "bytes": 13636010,
+      "url": "https://cdn.aurowall.com/night-jazz/night-jazz.mp3"
+    },
+    {
+      "id": "f891f3b762a18ab4e3033721",
+      "title": "Night Lofi",
+      "artist": "Aurowall",
+      "genre": "Night Lofi",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/night-lofi/night-lofi.mp3"
+    },
+    {
+      "id": "9e3655a68ddf2ac9394851ae",
+      "title": "Oldies",
+      "artist": "Aurowall",
+      "genre": "Oldies",
+      "bytes": 12224415,
+      "url": "https://cdn.aurowall.com/oldies/oldies.mp3"
+    },
+    {
+      "id": "6b1d9cd3478c5ba3595cc049",
+      "title": "Piano",
+      "artist": "Aurowall",
+      "genre": "Piano",
+      "bytes": 14401000,
+      "url": "https://cdn.aurowall.com/piano/piano.mp3"
+    },
+    {
+      "id": "3bb8aa4a00f507696c5c9af5",
+      "title": "Pop",
+      "artist": "Aurowall",
+      "genre": "Pop",
+      "bytes": 10365356,
+      "url": "https://cdn.aurowall.com/pop/pop.mp3"
+    },
+    {
+      "id": "6a7cfe801782d3db0d11dbeb",
+      "title": "Portuguese",
+      "artist": "Aurowall",
+      "genre": "Portuguese",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/portuguese/portuguese.mp3"
+    },
+    {
+      "id": "729d2e1ac49122a81cd946a4",
+      "title": "Rain Piano",
+      "artist": "Aurowall",
+      "genre": "Rain Piano",
+      "bytes": 14401369,
+      "url": "https://cdn.aurowall.com/rain-piano/rain-piano.mp3"
+    },
+    {
+      "id": "775a89d84ba53e63b079fd65",
+      "title": "Rainy Jazz",
+      "artist": "Aurowall",
+      "genre": "Rainy Jazz",
+      "bytes": 11481786,
+      "url": "https://cdn.aurowall.com/rainy-jazz/rainy-jazz.mp3"
+    },
+    {
+      "id": "821337353d79d04a742f019a",
+      "title": "Rainy Lofi",
+      "artist": "Aurowall",
+      "genre": "Rainy Lofi",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/rainy-lofi/rainy-lofi.mp3"
+    },
+    {
+      "id": "7fe74210c96e4d4bb1517a83",
+      "title": "Rap",
+      "artist": "Aurowall",
+      "genre": "Rap",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/rap/rap.mp3"
+    },
+    {
+      "id": "1aa7fc0e175ae3a035c0ba2e",
+      "title": "Reggae",
+      "artist": "Aurowall",
+      "genre": "Reggae",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/reggae/reggae.mp3"
+    },
+    {
+      "id": "bf2cc43633a0d8e3ebdb03c8",
+      "title": "Rnb",
+      "artist": "Aurowall",
+      "genre": "Rnb",
+      "bytes": 12719276,
+      "url": "https://cdn.aurowall.com/rnb/rnb.mp3"
+    },
+    {
+      "id": "db9d2b35d375b5e0eeac327a",
+      "title": "Rock",
+      "artist": "Aurowall",
+      "genre": "Rock",
+      "bytes": 9601196,
+      "url": "https://cdn.aurowall.com/rock/rock.mp3"
+    },
+    {
+      "id": "b2db4a59389b78ee1b9fac64",
+      "title": "Romantic Guitar",
+      "artist": "Aurowall",
+      "genre": "Romantic Guitar",
+      "bytes": 9601764,
+      "url": "https://cdn.aurowall.com/romantic-guitar/romantic-guitar.mp3"
+    },
+    {
+      "id": "280aa8bd4d0eb6470f64f8a3",
+      "title": "Russian",
+      "artist": "Aurowall",
+      "genre": "Russian",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/russian/russian.mp3"
+    },
+    {
+      "id": "f75fe3d57924fb9afbc7c1a4",
+      "title": "Sad Lofi",
+      "artist": "Aurowall",
+      "genre": "Sad Lofi",
+      "bytes": 13218860,
+      "url": "https://cdn.aurowall.com/sad-lofi/sad-lofi.mp3"
+    },
+    {
+      "id": "5b09156cb822d7c8bed6b7a8",
+      "title": "Sad Piano",
+      "artist": "Aurowall",
+      "genre": "Sad Piano",
+      "bytes": 10527254,
+      "url": "https://cdn.aurowall.com/sad-piano/sad-piano.mp3"
+    },
+    {
+      "id": "af2fb3b41dda5dcad50a96f1",
+      "title": "Slow Blues",
+      "artist": "Aurowall",
+      "genre": "Slow Blues",
+      "bytes": 9601305,
+      "url": "https://cdn.aurowall.com/slow-blues/slow-blues.mp3"
+    },
+    {
+      "id": "f8ec79881dada6ec83dce69e",
+      "title": "Soft Soul",
+      "artist": "Aurowall",
+      "genre": "Soft Soul",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/soft-soul/soft-soul.mp3"
+    },
+    {
+      "id": "5b03775db5a2b88dca023fa1",
+      "title": "Soul",
+      "artist": "Aurowall",
+      "genre": "Soul",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/soul/soul.mp3"
+    },
+    {
+      "id": "3bcb03d70780bd29a7e700ac",
+      "title": "Synthwave",
+      "artist": "Aurowall",
+      "genre": "Synthwave",
+      "bytes": 12565676,
+      "url": "https://cdn.aurowall.com/synthwave/synthwave.mp3"
+    },
+    {
+      "id": "1c82a73489048a8b993d0bd2",
+      "title": "Techno",
+      "artist": "Aurowall",
+      "genre": "Techno",
+      "bytes": 9601196,
+      "url": "https://cdn.aurowall.com/techno/techno.mp3"
+    },
+    {
+      "id": "7c06dd0b62ad4e4dd12d6c68",
+      "title": "Trance",
+      "artist": "Aurowall",
+      "genre": "Trance",
+      "bytes": 14400812,
+      "url": "https://cdn.aurowall.com/trance/trance.mp3"
+    },
+    {
+      "id": "902926324dd6d0751bf88180",
+      "title": "Tropical",
+      "artist": "Aurowall",
+      "genre": "Tropical",
+      "bytes": 13640876,
+      "url": "https://cdn.aurowall.com/tropical/tropical.mp3"
+    },
+    {
+      "id": "9660dbfb75c21a81816fd51e",
+      "title": "Turkey",
+      "artist": "Aurowall",
+      "genre": "Turkey",
+      "bytes": 10191020,
+      "url": "https://cdn.aurowall.com/turkey/turkey.mp3"
+    },
+    {
+      "id": "7c530eb8c79965bf0e41cdee",
+      "title": "Vintage Jazz",
+      "artist": "Aurowall",
+      "genre": "Vintage Jazz",
+      "bytes": 14401001,
+      "url": "https://cdn.aurowall.com/vintage-jazz/vintage-jazz.mp3"
+    }
+  ]
+}

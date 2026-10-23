@@ -1,5 +1,6 @@
 'use client';
 import { createContext, useContext, useRef, useState } from 'react';
+import aurowall from '../../../assets/manifests/aurowall-public.json';
 import type { PublicTrack } from '../lib/catalogue';
 type PlayableTrack=Pick<PublicTrack,'id'|'title'|'artist'>&{url?:string};
 const PlayerContext=createContext<(track:PlayableTrack,queue?:PlayableTrack[])=>void>(()=>{});
@@ -8,7 +9,7 @@ export function MusicPlayer({children}:{children:React.ReactNode}) {
   const [current,setCurrent]=useState<PlayableTrack|null>(null),[error,setError]=useState('');
   function play(track:PlayableTrack,list=[track]) {
     queue.current=list;index.current=Math.max(0,list.findIndex(t=>t.id===track.id));setCurrent(track);setError('');
-    if(audio.current){audio.current.src=track.url&&/^\/api\/aurowall\/[a-f0-9]{24}$/.test(track.url)?track.url:`/api/catalogue/${encodeURIComponent(track.id)}/audio`;void audio.current.play().catch(()=>setError('Playback could not start. Try the play control.'));}
+    if(audio.current){audio.current.src=track.url&&(/^\/api\/aurowall\/[a-f0-9]{24}$/.test(track.url)||aurowall.tracks.some(t=>t.id===track.id&&t.url===track.url))?track.url:`/api/catalogue/${encodeURIComponent(track.id)}/audio`;void audio.current.play().catch(()=>setError('Playback could not start. Try the play control.'));}
   }
   return <PlayerContext.Provider value={play}>{children}<aside className="music-player" hidden={!current} aria-label="Music player">
     <div><strong>{current?.title}</strong><span className="muted">{current?.artist}</span></div>
