@@ -31,13 +31,13 @@ for style in ('reggae-male','house-female','funk-male','acousticpop-female','dru
                 r=arrange(candidate[0],song,work/f'mix-{attempt}',root/'history.json',seed+attempt,True)
             except ValueError:continue
             assert r['sample_used'] and r['events'] and r['outside_region_max_pcm_error']==0
-            assert r['source_identity_max_pcm_error']<=.5/32768+1e-12
+            assert r['processed_source_max_pcm_error']<=.5/32768+1e-12
             meta=json.loads(candidate[1].read_text())
             reports.append({'style':style,'seed':seed,'pattern':r['pattern'],'mode':r['mode'],
                 'selection':meta['selection'],'crop_seconds':meta['original_seconds'],'events':r['events'],
                 'unchanged_seconds':r['unchanged_seconds'],'peak':r['peak'],
                 'outside_region_max_pcm_error':r['outside_region_max_pcm_error'],
-                'source_identity_max_pcm_error':r['source_identity_max_pcm_error'],
+                'processed_source_max_pcm_error':r['processed_source_max_pcm_error'],
                 'performance':str(work/f'mix-{attempt}/performance.wav'),'sha256':r['artifacts']['performance']})
             break
         else:

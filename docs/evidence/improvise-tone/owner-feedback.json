@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-23",
+  "status": "PARTIAL",
+  "reviewed_report_sha256": "3b49dfa998aa344366c5c9aaba32ecc93888e67fd27fdfa1c030910532652bd2",
+  "feedback": "they are okay but not perfect because we dont alter the recording and blending perfectly with a music we make, the tone and volume seems different and not perfectly matching with the music. still use user recording but change the tone in a way that becomes part of the music perfectly but still make it feel like that is a user recording so dont completely alter it and make it someone elses voice",
+  "scope": "Prior 30 blend packet only; requests tone/volume refinement while retaining original speaker. No approval of subsequent processing inferred."
+}

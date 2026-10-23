@@ -8,7 +8,7 @@ from unittest.mock import patch
 import numpy as np
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from arrange_voice_research import RATE, digest, read_pcm, write_pcm
-from local_call_edit import add_call, blend_patch, edit, replace_vocal, arrange, rank_options, read_history, arrangement_options, mix_calls, performance_options
+from local_call_edit import add_call, blend_patch, edit, replace_vocal, arrange, rank_options, read_history, arrangement_options, mix_calls, performance_options, match_call_tone
 from singing_response import source_conditioning
 
 
@@ -71,6 +71,41 @@ class LocalCallEdit(unittest.TestCase):
         np.testing.assert_array_equal(mixed[:10*RATE],self.song[:10*RATE])
         self.assertGreater(np.max(np.abs(voice)),0)
 
+    def test_tone_processing_keeps_pitch_length_and_source_while_reducing_rumble(self):
+        time=np.arange(2*RATE)/RATE
+        signal=.05*np.sin(2*np.pi*180*time)+.03*np.sin(2*np.pi*25*time)
+        source=np.repeat(signal[:,None],2,axis=1);before=source.copy()
+        reference=np.repeat((.08*np.sin(2*np.pi*180*time))[:,None],2,axis=1)
+        processed,report=match_call_tone(source,reference)
+        np.testing.assert_array_equal(source,before);self.assertEqual(processed.shape,source.shape)
+        spectrum=np.abs(np.fft.rfft(processed[:,0]));frequencies=np.fft.rfftfreq(len(processed),1/RATE)
+        self.assertEqual(frequencies[np.argmax(spectrum)],180)
+        self.assertLess(spectrum[np.argmin(abs(frequencies-25))]/spectrum[np.argmin(abs(frequencies-180))],.2)
+        self.assertTrue(all(abs(db)<=3 for db in report['eq_db']))
+        self.assertEqual(report['pitch_shift_semitones'],0);self.assertEqual(report['formant_shift_semitones'],0)
+        self.assertLessEqual(report['max_compression_db'],6);self.assertLessEqual(report['room_wet'],.06)
+        self.assertFalse(np.array_equal(processed,source));self.assertTrue(np.isfinite(processed).all())
+        for scale in (.001,.005,.01):
+            try:
+                quiet,_=match_call_tone(source*scale,reference)
+                self.assertTrue(np.isfinite(quiet).all())
+            except ValueError:pass
+        for bad in (source*np.nan,np.zeros_like(source),source[:,0],source[:1]):
+            with self.assertRaises(ValueError):match_call_tone(bad,reference)
+
+    def test_level_tracks_local_music_and_compression_smooths_loud_syllables(self):
+        hook=read_pcm(self.hook,(2,2));hook[len(hook)//2:]*=.15
+        processed,report=match_call_tone(hook,np.zeros_like(hook))
+        def contrast(pcm):
+            return np.sqrt(np.mean(pcm[RATE//4:RATE*3//4]**2))/np.sqrt(np.mean(pcm[RATE*5//4:RATE*7//4]**2))
+        self.assertLess(contrast(processed),contrast(hook));self.assertGreater(report['max_compression_db'],0)
+        events=[]
+        for volume in (.5,1):
+            mixed,voice,event=add_call(self.song*volume,hook,10*RATE,np.zeros_like(self.song))
+            events.append(event);self.assertLess(np.max(np.abs(mixed)),.98)
+            self.assertAlmostEqual(event['processed_active_rms'],event['target_lead_rms'],places=6)
+        self.assertAlmostEqual(events[1]['target_lead_rms']/events[0]['target_lead_rms'],2)
+
     def test_gap_edit_preserves_pcm_original_and_consent(self):
         out=self.root/'out'
         with self.assertRaises(ValueError):edit(self.song_dir,self.hook,out,10,False)
@@ -122,7 +157,7 @@ class LocalCallEdit(unittest.TestCase):
         self.assertEqual(result['mode'],'vocal-replacement')
         self.assertEqual(result['outside_region_max_pcm_error'],0)
         self.assertAlmostEqual(result['unchanged_seconds'],27.6)
-        self.assertLessEqual(result['source_identity_max_pcm_error'],.5/32768+1e-12)
+        self.assertLessEqual(result['processed_source_max_pcm_error'],.5/32768+1e-12)
         with self.assertRaises(ValueError):replace_vocal(self.song,self.vocals,0,30*RATE)
         with self.assertRaises(ValueError):edit(self.song_dir,self.hook,self.root/'outside',8,True,replace_region=[4.8,7.2])
 
@@ -161,7 +196,7 @@ class LocalCallEdit(unittest.TestCase):
         self.assertEqual(len(result['events']),3)
         self.assertEqual(result['outside_region_max_pcm_error'],0)
         self.assertEqual(result['unchanged_seconds'],24)
-        self.assertLessEqual(result['source_identity_max_pcm_error'],.5/32768+1e-12)
+        self.assertLessEqual(result['processed_source_max_pcm_error'],.5/32768+1e-12)
         hook=read_pcm(self.hook,(2,2))
         for repeats in ([10.5],[5],[29],[13,16,19],[float('nan')]):
             with self.assertRaises(ValueError):mix_calls(self.song,hook,10*RATE,self.vocals,repeats)

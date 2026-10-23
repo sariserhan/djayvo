@@ -1,3 +1,8 @@
+## Improvise recording tone and level — 2026-10-23
+
+- [x] **IMPROVISE-TONE — PASS, local implementation/technical checks:** Gentle source EQ, dynamics and room treatment plus local backing/vocal level matching; no voice replacement or pitch/formant/time shifting. Thirty same-placement A/B pairs preserve backing and original files. Fourteen arranger, seven studio-flow and twelve worker tests PASS. [Report and listening comparisons](docs/improvise-tone-matching.md).
+- [ ] **IMPROVISE-TONE-LISTEN — NOT RUN:** Owner must judge whether new processing blends better while retaining the original speaker. Comparisons at `http://127.0.0.1:4249/tone-match/`. Old blend feedback remains PARTIAL. Fresh inference, hosted qualification and publication remain open.
+
 ## Improvise product explanation — 2026-10-23
 
 - [x] **IMPROVISE-COPY — PASS, local:** Clarified that the recording inspires the song and is audibly blended into it; whole short clips, phrases or loops are selected to fit. Hero, capture guidance, creation explanation and page metadata now describe both parts, without suggesting a separate meaning-only mode. Chromium/WebKit at 1280/390/320px and TypeScript PASS. Copy-only change; no new generation or deployment.
@@ -9,7 +14,7 @@
 ## Improvise recording integration — 2026-10-23
 
 - [x] **IMPROVISE-BLEND — PASS, local implementation/technical validation:** Whole short recordings, phrases and non-speech excerpts can become single calls, returning hooks or beat-spaced loops. Several crops are tried; source-free fallbacks now fail instead of settling credits. Source/output-bound receipt validation, private storage and failed-job refunds pass in disposable PostgreSQL. Thirty mixes across five existing song styles preserve surrounding PCM and originals. [Behavior, evidence and release order](docs/improvise-blending.md).
-- [ ] **IMPROVISE-BLEND-QUALITY — PARTIAL:** Earlier A/B methods retain owner approval; new crops/repeats need listening. Fresh end-to-end model inference and hosted qualification NOT RUN. Updated worker must precede the website gate; publication/deployment remain owner-controlled. Owner review now available at `http://127.0.0.1:4249/`: all 30 blends, five suggested first listens, source timestamps and original-song comparisons. Listening remains NOT RUN.
+- [ ] **IMPROVISE-BLEND-QUALITY — PARTIAL:** Earlier A/B methods retain owner approval; the owner reviewed the 30 blends as okay but not perfect because tone/volume did not match. Tone-matched refinements await listening. Fresh end-to-end model inference and hosted qualification NOT RUN. Updated worker must precede the website gate; publication/deployment remain owner-controlled. Owner review now available at `http://127.0.0.1:4249/`: all 30 blends, five suggested first listens, source timestamps and original-song comparisons. Owner listening to that packet is PARTIAL; the new tone-matched packet remains NOT RUN.
 
 ## Improvise workspace and local-remix naming — 2026-10-23
 

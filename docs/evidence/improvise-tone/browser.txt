@@ -1,0 +1,2 @@
+{"browser":"chromium","status":"PASS","pairs":30,"featured":5,"contextPreviews":true,"mutedPlayback":true,"voiceComparison":true,"singlePlayer":true,"accessibility":true,"noOverflow":true,"errors":[]}
+{"browser":"webkit","status":"PASS","pairs":30,"featured":5,"contextPreviews":true,"mutedPlayback":true,"voiceComparison":true,"singlePlayer":true,"accessibility":true,"noOverflow":true,"errors":[]}

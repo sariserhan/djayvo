@@ -7,6 +7,7 @@ from pathlib import Path
 import shutil
 
 import numpy as np
+from scipy.signal import butter, sosfilt
 from arrange_voice_research import RATE, digest, read_pcm, write_pcm
 from assemble_sung_response import envelope, intervals, beat_grid
 from source_led_response import faded, rendered, stem
@@ -31,6 +32,55 @@ def blend_patch(original, generated, start, end):
     return result, gain
 
 
+def match_call_tone(hook, reference):
+    """Gentle recording mix treatment; no resynthesis, pitch or formant shifting."""
+    if (hook.ndim!=2 or hook.shape[1]!=2 or not .35*RATE<=len(hook)<=5*RATE
+            or reference.ndim!=2 or reference.shape[1]!=2 or not len(reference)
+            or not np.isfinite(hook).all() or not np.isfinite(reference).all()):
+        raise ValueError('Expected finite stereo source and vocal reference')
+    def active(pcm):
+        levels=envelope(pcm)
+        return np.repeat(levels>max(.0003,float(np.max(levels))*.12),RATE//100)[:len(pcm)]
+    def bands(pcm):
+        low=sosfilt(butter(2,350,fs=RATE,output='sos'),pcm,axis=0)
+        upper=sosfilt(butter(2,3500,fs=RATE,output='sos'),pcm,axis=0)
+        return [low,upper-low,pcm-upper]
+    part=sosfilt(butter(2,60,btype='highpass',fs=RATE,output='sos'),hook,axis=0)
+    mask=active(part)
+    if not mask.any():raise ValueError('No audible source phrase')
+    reference_mask=active(reference);eq=np.zeros(3);reference_rms=0.
+    components=bands(part)
+    if np.count_nonzero(reference_mask)>=.15*RATE:
+        reference_rms=float(np.sqrt(np.mean(reference[reference_mask]**2)))
+        source_power=np.array([np.mean(b[mask]**2) for b in components])
+        target_power=np.array([np.mean(b[reference_mask]**2) for b in bands(reference)])
+        ratio=(target_power/max(float(target_power.sum()),1e-12)+1e-6)/(source_power/max(float(source_power.sum()),1e-12)+1e-6)
+        eq=np.clip(10*np.log10(ratio)*.4,-3,3)
+    part=sum(b*10**(db/20) for b,db in zip(components,eq))
+    levels=envelope(part);voiced=levels[levels>max(.0003,float(np.max(levels))*.12)]
+    if not len(voiced):raise ValueError('Source is too quiet after tone matching')
+    threshold=max(.0003,float(np.quantile(voiced,.65)))
+    reduction=np.minimum(6.,np.maximum(0,20*np.log10(np.maximum(levels,1e-12)/threshold))*.5)
+    smoothed=[];previous=0.
+    for db in reduction:
+        coefficient=np.exp(-.01/(.02 if db>previous else .12))
+        previous=coefficient*previous+(1-coefficient)*db;smoothed.append(previous)
+    curve=np.interp(np.arange(len(part))/RATE,(np.arange(len(smoothed))+.5)*.01,smoothed)
+    part*=10**(-curve[:,None]/20)
+    # Short, quiet reflections stay inside the phrase and cannot spill over the next singer.
+    room_source=sosfilt(butter(2,[300,4500],btype='bandpass',fs=RATE,output='sos'),part,axis=0)
+    room=np.zeros_like(part)
+    for delay,weight in [(.017,.5),(.029,.3),(.043,.2)]:
+        for channel in range(2):
+            shift=round((delay+channel*.004)*RATE)
+            room[shift:,channel]+=room_source[:-shift,channel]*weight
+    part=faded(part*.94+room*.06)
+    return part,{'version':1,'highpass_hz':60,'eq_db':eq.tolist(),
+        'max_compression_db':float(max(smoothed)),'room_wet':.06,'reference_rms':reference_rms,
+        'pitch_shift_semitones':0,'formant_shift_semitones':0,'time_scale':1.,
+        'speaker_identity_listening':'NOT RUN'}
+
+
 def add_call(song, hook, start, vocals, voice_scale=1.):
     if (type(start) is not int or not 0 <= start < start+len(hook) <= len(song)
             or vocals.shape != song.shape or not np.isfinite(vocals).all()
@@ -41,12 +91,14 @@ def add_call(song, hook, start, vocals, voice_scale=1.):
     threshold = min(.006,max(.0003,float(np.quantile(envelope(vocals),.9))*.05))
     if np.max(levels)>threshold:
         raise ValueError('Estimated singing overlaps the call; no candidate produced')
-    part = faded(hook)
+    reference=vocals[max(0,start-6*RATE):min(len(vocals),stop+6*RATE)]*voice_scale
+    part,processing=match_call_tone(hook,reference)
     active = part[np.max(np.abs(part),axis=1)>np.max(np.abs(part))*.08]
     if not len(active): raise ValueError('No audible source phrase')
     band_rms = float(np.sqrt(np.mean(song[start:stop]**2)))
     if band_rms<.015: raise ValueError('The call needs ongoing music')
-    lead_level=min(.14,max(.06,float(np.quantile(envelope(vocals),.9))*.9))
+    reference_level=processing['reference_rms']*.85 or band_rms*.7
+    lead_level=float(np.clip(reference_level,band_rms*.5,min(.18,band_rms*1.1)))
     desired=lead_level/float(np.sqrt(np.mean(active**2)))
     desired=min(desired,.5/float(np.max(np.abs(part))))
     mask=np.abs(part)>1e-8; bed=song[start:stop]
@@ -56,7 +108,8 @@ def add_call(song, hook, start, vocals, voice_scale=1.):
     voice=np.zeros_like(song);voice[start:stop]=part*gain
     return song+voice, voice, {'start_frame':start,'end_frame':stop,'gain':gain,
         'estimated_vocal_max_rms':float(np.max(levels)),'vocal_threshold_rms':threshold,
-        'band_rms':band_rms,'target_lead_rms':lead_level,'rate':1.,'transpose_semitones':0}
+        'band_rms':band_rms,'target_lead_rms':lead_level,'rate':1.,'transpose_semitones':0,
+        'processing':processing,'processed_active_rms':float(np.sqrt(np.mean(active**2)))*gain}
 
 
 def replace_vocal(song, vocals, start, end):
@@ -138,7 +191,7 @@ def edit(song_dir, source, output, call_at, consent=False, repaint_dir=None, rep
     report={'technical':'PASS','mode':'localized-repair' if repaint_dir else 'vocal-replacement' if replace_region else 'existing-gap',
         'song_sha256':receipt['audio_sha256'],'source_sha256':source_hash,'repair_sha256':repair_hash,
         'region_frames':region,'regions_frames':regions,'unchanged_seconds':len(outside)/RATE,'outside_region_max_pcm_error':error,
-        'source_identity_max_pcm_error':identity,'repair_gain':repair_gain,'event':events[0],'events':events,
+        'processed_source_max_pcm_error':identity,'speaker_identity_listening':'NOT RUN','repair_gain':repair_gain,'event':events[0],'events':events,
         'peak':float(np.max(np.abs(actual))),'singer_moved':False,'master_gain':1.,
         'listening':'NOT RUN','vocal_subtraction':replace_region is not None,
         'note':'Manually selected phrase and passage; estimated quiet or subtraction does not prove musical fit or absence of bleed.',

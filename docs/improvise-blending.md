@@ -19,6 +19,6 @@ Run the audio reproduction with `.venv-singer/bin/python docs/evidence/improvise
 
 ## Limits and release order
 
-Estimated vocal separation and beat positions do not prove musical fit. The earlier A/B listening approval does not approve these new repeats/crops. Listening to the new mixes is **NOT RUN**. Additional styles, noisy recordings and full end-to-end new inference are not qualified by these five existing performances.
+Estimated vocal separation and beat positions do not prove musical fit. The earlier A/B listening approval does not approve these new repeats/crops. The owner reviewed these 30 mixes as “okay but not perfect,” identifying tone/volume mismatch (**PARTIAL**). [New tone-matched comparisons](improvise-tone-matching.md) now await listening. Additional styles, noisy recordings and full end-to-end new inference are not qualified by these five existing performances.
 
 Publish the updated worker before enabling the new website completion gate. Old workers do not emit the required source-bound receipt and their results will fail/refund under the new gate. Drain in-flight Improvise jobs before switching versions. No worker image or website was published in this task, and no new paid compute was used.
