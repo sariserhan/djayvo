@@ -1,8 +1,8 @@
 [
-  {"href":"/academy","label":"Learn to DJ"},
   {"href":"/improvise","label":"Improvise"},
-  {"href":"/dj-studio","label":"DJ Studio"},
   {"href":"/music-dna","label":"Music DNA"},
+  {"href":"/dj-studio","label":"DJ Studio"},
   {"href":"/live-dj","label":"Live DJ"},
+  {"href":"/academy","label":"Learn to DJ"},
   {"href":"/account","label":"Account"}
 ]

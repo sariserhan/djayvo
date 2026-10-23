@@ -1,5 +1,7 @@
 ## Consistent website navbar — 2026-10-23
 
+Navbar order — **PASS, local:** Improvise → Music DNA → DJ Studio → Live DJ → Learn to DJ → Account. Rebuilt studio/Academy assets; Chromium verifies the order on home, both studios and an Academy lesson. Deployment NOT RUN.
+
 **Owner refinement — PASS, local:** Removed Pro and Pricing only from main navigation via the shared link list. Remaining links: Learn to DJ, Improvise, DJ Studio, Music DNA, Live DJ and Account. Chromium/WebKit checked all six visible links on home, both studios and Academy lessons at 1440/390px. Studio/Academy rebuild and bundle audit PASS. Product/pricing pages and upgrade links remain available. Deployment NOT RUN.
 
 **PASS, local implementation and browser validation.** The main layout and hosted studio preparation now consume `apps/site/lib/site-navigation.json`. Main links, logo destination and responsive header styling match across marketing, account, listening, studio and Academy pages. Original studio navigation becomes a secondary shortcuts row; Your mixes and Privacy & credits remain usable, and mode indicators still update. Standalone/native bundles retain their local navigation; floating tool windows retain their session controls. The public-bundle audit recognizes only the reviewed shell transformations, and offline hashes are regenerated.
