@@ -31,8 +31,8 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   assert.equal((await page.goto(base+'/music-dna')).status(),200);assert.match(await page.title(),/Music DNA/);
   await page.getByRole('heading',{name:'Your favorite music'}).waitFor();
   const search=page.getByRole('combobox',{name:'Search artists or tracks'});
-  await search.fill('j');assert.ok(await page.getByRole('option').count()>1);
-  await search.fill('joth');assert.match(await page.getByRole('option').first().innerText(),/Artist.*Joth/s);
+  await search.fill('j');assert.ok(await page.getByRole('listbox',{name:'Matching artists and tracks'}).getByRole('option').count()>1);
+  await search.fill('joth');assert.match(await page.getByRole('listbox',{name:'Matching artists and tracks'}).getByRole('option').first().innerText(),/Artist.*Joth/s);
   await search.press('Escape');assert.equal(await search.getAttribute('aria-expanded'),'false');
   await search.press('ArrowDown');assert.equal(await search.getAttribute('aria-expanded'),'true');await search.press('Enter');
   assert.equal(await page.getByRole('group',{name:'Joth',exact:true}).count(),1);

@@ -27,7 +27,7 @@ class DnaAudio(unittest.TestCase):
         self.assertEqual(result['id'], 'heavy-rock')
         self.assertEqual(direction_for(list(reversed(refs))), result)
         self.assertEqual(direction_for([{'reference':'x','catalogue_genre':'Rhythm and Blues'}])['id'], 'soul')
-        self.assertEqual(direction_for([{'reference':'x','catalogue_genre':'Reggaeton'}])['id'], 'latin')
+        self.assertEqual(direction_for([{'reference':'x','catalogue_genre':'Reggaeton'}])['id'], 'reggaeton')
         for genre,target in [('Dubstep','dance'),('Hardcore Dance','dance'),('Hard Rock','heavy-rock'),('Post-hardcore','heavy-rock'),('Dub','reggae')]:
             self.assertEqual(direction_for([{'reference':'x','catalogue_genre':genre}])['id'],target)
         with self.assertRaises(ValueError):direction_for([{'reference':'Unknown'}])

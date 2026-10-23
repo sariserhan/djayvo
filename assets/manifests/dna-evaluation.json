@@ -1,0 +1,330 @@
+{
+  "version": 1,
+  "scope": "All implemented genre families plus priority multilingual renders; not human ratings",
+  "cases": [
+    {
+      "id": "spanish",
+      "direction": "latin",
+      "language": "es",
+      "favorites": [
+        {
+          "reference": "La Camisa Negra — Juanes",
+          "genre": "Latin"
+        },
+        {
+          "reference": "Vivir Mi Vida — Marc Anthony",
+          "genre": "Salsa"
+        }
+      ],
+      "seed": 630230
+    },
+    {
+      "id": "russian",
+      "direction": "rock",
+      "language": "ru",
+      "favorites": [
+        {
+          "reference": "Группа крови — Кино",
+          "genre": "Rock"
+        },
+        {
+          "reference": "Выхода нет — Сплин",
+          "genre": "Alternative"
+        }
+      ],
+      "seed": 638149
+    },
+    {
+      "id": "turkish",
+      "direction": "pop",
+      "language": "tr",
+      "favorites": [
+        {
+          "reference": "Şımarık — Tarkan",
+          "genre": "Pop"
+        },
+        {
+          "reference": "Hadi Bakalım — Sezen Aksu",
+          "genre": "Pop"
+        }
+      ],
+      "seed": 646068
+    },
+    {
+      "id": "japanese",
+      "direction": "pop",
+      "language": "ja",
+      "favorites": [
+        {
+          "reference": "夜に駆ける — YOASOBI",
+          "genre": "J-Pop"
+        }
+      ],
+      "seed": 653987
+    },
+    {
+      "id": "arabic",
+      "direction": "arabic",
+      "language": "ar",
+      "favorites": [
+        {
+          "reference": "Tamally Maak — Amr Diab",
+          "genre": "Arabic"
+        }
+      ],
+      "seed": 661906
+    },
+    {
+      "id": "hindi",
+      "direction": "indian",
+      "language": "hi",
+      "favorites": [
+        {
+          "reference": "Tum Hi Ho — Arijit Singh",
+          "genre": "Bollywood"
+        }
+      ],
+      "seed": 669825
+    },
+    {
+      "id": "afrobeats",
+      "direction": "afrobeats",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Afrobeats / Afropop favorite",
+          "genre": "Afrobeats"
+        }
+      ],
+      "seed": 677744
+    },
+    {
+      "id": "amapiano",
+      "direction": "amapiano",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Amapiano favorite",
+          "genre": "Amapiano"
+        }
+      ],
+      "seed": 685663
+    },
+    {
+      "id": "reggaeton",
+      "direction": "reggaeton",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Reggaeton / Latin urban favorite",
+          "genre": "Reggaeton"
+        }
+      ],
+      "seed": 693582
+    },
+    {
+      "id": "flamenco",
+      "direction": "flamenco",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Flamenco favorite",
+          "genre": "Flamenco"
+        }
+      ],
+      "seed": 701501
+    },
+    {
+      "id": "lofi",
+      "direction": "lofi",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Lo-fi favorite",
+          "genre": "Lo-fi"
+        }
+      ],
+      "seed": 709420
+    },
+    {
+      "id": "experimental",
+      "direction": "experimental",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Experimental / art music favorite",
+          "genre": "Experimental"
+        }
+      ],
+      "seed": 717339
+    },
+    {
+      "id": "heavy-rock",
+      "direction": "heavy-rock",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Heavy rock / metal favorite",
+          "genre": "Metal"
+        }
+      ],
+      "seed": 725258
+    },
+    {
+      "id": "jazz",
+      "direction": "jazz",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Jazz favorite",
+          "genre": "Jazz"
+        }
+      ],
+      "seed": 733177
+    },
+    {
+      "id": "soul",
+      "direction": "soul",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: R&B / soul favorite",
+          "genre": "Soul"
+        }
+      ],
+      "seed": 741096
+    },
+    {
+      "id": "blues",
+      "direction": "blues",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Blues favorite",
+          "genre": "Blues"
+        }
+      ],
+      "seed": 749015
+    },
+    {
+      "id": "country",
+      "direction": "country",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Country / folk favorite",
+          "genre": "Country"
+        }
+      ],
+      "seed": 756934
+    },
+    {
+      "id": "reggae",
+      "direction": "reggae",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Reggae favorite",
+          "genre": "Reggae"
+        }
+      ],
+      "seed": 764853
+    },
+    {
+      "id": "hip-hop",
+      "direction": "hip-hop",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Hip-hop / rap favorite",
+          "genre": "Hip-Hop"
+        }
+      ],
+      "seed": 772772
+    },
+    {
+      "id": "dance",
+      "direction": "dance",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Dance / EDM favorite",
+          "genre": "Dance"
+        }
+      ],
+      "seed": 780691
+    },
+    {
+      "id": "ambient",
+      "direction": "ambient",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Chill / lo-fi favorite",
+          "genre": "Ambient"
+        }
+      ],
+      "seed": 788610
+    },
+    {
+      "id": "electronic",
+      "direction": "electronic",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Electronic / synth-pop favorite",
+          "genre": "Electronic"
+        }
+      ],
+      "seed": 796529
+    },
+    {
+      "id": "classical",
+      "direction": "classical",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Classical / orchestral favorite",
+          "genre": "Classical"
+        }
+      ],
+      "seed": 804448
+    },
+    {
+      "id": "funk",
+      "direction": "funk",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Funk / disco favorite",
+          "genre": "Funk"
+        }
+      ],
+      "seed": 812367
+    },
+    {
+      "id": "indie",
+      "direction": "indie",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Indie favorite",
+          "genre": "Indie"
+        }
+      ],
+      "seed": 820286
+    },
+    {
+      "id": "traditional",
+      "direction": "traditional",
+      "language": "en",
+      "favorites": [
+        {
+          "reference": "Coverage fixture: Folk / regional traditions favorite",
+          "genre": "Turkish Folk"
+        }
+      ],
+      "seed": 828205
+    }
+  ]
+}

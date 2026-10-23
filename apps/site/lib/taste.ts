@@ -1,14 +1,16 @@
+import languages from '../../../assets/manifests/dna-languages.json';
 import {validateChoices,inferCatalogueTaste,type ReferenceChoice,type ReferenceMetadata} from './taste-catalogue';
 export const energies=['gentle','balanced','intense'] as const;
 export const instruments=['piano','guitar','bass','drums','synth','voice'] as const;
 export const tasteAspects={gentle:'Gentle mood',intense:'High energy',slow:'Relaxed pace (80 BPM)',fast:'Fast pace (140 BPM)',piano:'Piano',guitar:'Guitar',bass:'Bass',drums:'Drums',synth:'Synth',groove:'Rhythmic groove',melody:'Melodic phrases',space:'Bass and space'} as const;
 export type TasteAspect=keyof typeof tasteAspects;
 export type SongPreference={reference:string;aspects:TasteAspect[];weight:number};
-export type Taste={version:1;references:string[];energy:typeof energies[number];tempo:number;instruments:string[];novelty:number;catalogue?:ReferenceChoice[];songPreferences?:SongPreference[];direction?:number;referenceMetadata?:ReferenceMetadata[]};
+export type Taste={version:1;vocalLanguage?:string;references:string[];energy:typeof energies[number];tempo:number;instruments:string[];novelty:number;catalogue?:ReferenceChoice[];songPreferences?:SongPreference[];direction?:number;referenceMetadata?:ReferenceMetadata[]};
 export const emptyTaste:Taste={version:1,references:[],energy:'balanced',tempo:110,instruments:['piano','bass','drums'],novelty:50};
 export function validateTaste(value:unknown):Taste{
  if(!value||typeof value!=='object')throw new Error('Invalid preference profile');
  const p=value as Taste;
+ if(p.vocalLanguage!==undefined&&(typeof p.vocalLanguage!=='string'||(p.vocalLanguage!=='auto'&&!Object.hasOwn(languages.languages,p.vocalLanguage))))throw Error('Unsupported singing language');
  if(p.version!==1||!Array.isArray(p.references)||p.references.length>20||p.references.some(s=>typeof s!=='string'||!s.trim()||s.length>160)||
  !energies.includes(p.energy)||!Number.isInteger(p.tempo)||p.tempo<60||p.tempo>180||!Number.isInteger(p.novelty)||p.novelty<0||p.novelty>100||
  !Array.isArray(p.instruments)||!p.instruments.length||p.instruments.length>6||new Set(p.instruments).size!==p.instruments.length||p.instruments.some(i=>!instruments.includes(i as typeof instruments[number])))throw new Error('Invalid preference profile');
@@ -28,7 +30,7 @@ export function validateTaste(value:unknown):Taste{
    (m.id!==undefined&&(!Number.isSafeInteger(m.id)||m.id<=0)))throw Error('Invalid preference profile');
   metadataSeen.add(m.reference);return {reference:m.reference,genre:m.genre.trim(),source:m.source,...(m.id!==undefined?{id:m.id}:{})};
  });
- return {version:1,references,energy:p.energy,tempo:p.tempo,instruments:[...p.instruments],novelty:p.novelty,...(p.catalogue?{catalogue:validateChoices(p.catalogue)}:{}),...(songPreferences?{songPreferences}:{}),...(p.direction!==undefined?{direction:p.direction}:{}),...(referenceMetadata?{referenceMetadata}:{})};
+ return {version:1,references,...(p.vocalLanguage?{vocalLanguage:p.vocalLanguage}:{}),energy:p.energy,tempo:p.tempo,instruments:[...p.instruments],novelty:p.novelty,...(p.catalogue?{catalogue:validateChoices(p.catalogue)}:{}),...(songPreferences?{songPreferences}:{}),...(p.direction!==undefined?{direction:p.direction}:{}),...(referenceMetadata?{referenceMetadata}:{})};
 }
 export function tasteBrief(profile:Taste){const p=validateTaste(profile);return {
  schema_version:'1.0-taste-brief',origin:'explicit_user_preferences',tempo_bpm:p.tempo,energy:p.energy,instruments:p.instruments,

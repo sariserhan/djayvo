@@ -1,0 +1,80 @@
+{
+  "scope": "Whisper tiny diagnostic only; not a delivery or pronunciation certificate",
+  "full_song": [
+    {
+      "case": "arabic",
+      "first_window_language": "ar",
+      "probability": 0.9167010188102722,
+      "human_quality": "NOT RUN"
+    },
+    {
+      "case": "hindi",
+      "first_window_language": "hi",
+      "probability": 0.5552188158035278,
+      "human_quality": "NOT RUN"
+    },
+    {
+      "case": "japanese",
+      "first_window_language": "ja",
+      "probability": 0.9415315389633179,
+      "human_quality": "NOT RUN"
+    },
+    {
+      "case": "russian",
+      "first_window_language": "pl",
+      "probability": 0.8339176774024963,
+      "human_quality": "NOT RUN"
+    },
+    {
+      "case": "spanish",
+      "first_window_language": "es",
+      "probability": 0.9042199850082397,
+      "human_quality": "NOT RUN"
+    },
+    {
+      "case": "turkish",
+      "first_window_language": "tr",
+      "probability": 0.7690176367759705,
+      "human_quality": "NOT RUN"
+    }
+  ],
+  "vocal_windows": [
+    {
+      "requested": "russian",
+      "start": 25,
+      "detected": "ru",
+      "probability": 0.8824849724769592
+    },
+    {
+      "requested": "russian",
+      "start": 55,
+      "detected": "ru",
+      "probability": 0.791588306427002
+    },
+    {
+      "requested": "russian",
+      "start": 85,
+      "detected": "ru",
+      "probability": 0.7343727946281433
+    },
+    {
+      "requested": "hindi",
+      "start": 25,
+      "detected": "te",
+      "probability": 0.39062681794166565
+    },
+    {
+      "requested": "hindi",
+      "start": 55,
+      "detected": "ar",
+      "probability": 0.571471631526947
+    },
+    {
+      "requested": "hindi",
+      "start": 85,
+      "detected": "sa",
+      "probability": 0.21657204627990723
+    }
+  ],
+  "finding": "Russian first-window hallucination detected Polish, while all three sung windows detected Russian. Hindi diagnostics are inconsistent and inconclusive. Human language review remains open."
+}

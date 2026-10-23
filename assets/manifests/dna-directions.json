@@ -1,6 +1,150 @@
 {
-  "version": 1,
+  "version": 2,
   "directions": [
+    {
+      "id": "afrobeats",
+      "label": "Afrobeats / Afropop",
+      "match": "afro.?beat|afropop|highlife|african",
+      "bpm": [
+        90,
+        120
+      ],
+      "energy": "buoyant",
+      "instruments": [
+        "interlocking percussion",
+        "melodic bass",
+        "bright guitar or keys"
+      ],
+      "traits": "Interlocking syncopated percussion, buoyant bass, melodic sung call and response and clear evolving hooks.",
+      "avoid": "exact artist imitation",
+      "audio": "A Afrobeats / Afropop song with interlocking percussion, melodic bass, bright guitar or keys and singing."
+    },
+    {
+      "id": "amapiano",
+      "label": "Amapiano",
+      "match": "amapiano|gqom",
+      "bpm": [
+        108,
+        118
+      ],
+      "energy": "flowing",
+      "instruments": [
+        "log drum bass",
+        "shuffling percussion",
+        "warm piano"
+      ],
+      "traits": "Amapiano with log-drum bass, spacious shuffling percussion, warm piano and melodic sung hooks.",
+      "avoid": "exact artist imitation",
+      "audio": "A Amapiano song with log drum bass, shuffling percussion, warm piano and singing."
+    },
+    {
+      "id": "reggaeton",
+      "label": "Reggaeton / Latin urban",
+      "match": "reggaeton|latin urban|urbano latino",
+      "bpm": [
+        88,
+        108
+      ],
+      "energy": "driving",
+      "instruments": [
+        "dembow drums",
+        "deep bass",
+        "rhythmic synth or guitar"
+      ],
+      "traits": "Dembow rhythm, deep bass, rhythmic vocal phrasing and a melodic chorus with changing sections.",
+      "avoid": "exact artist imitation",
+      "audio": "A Reggaeton / Latin urban song with dembow drums, deep bass, rhythmic synth or guitar and singing."
+    },
+    {
+      "id": "flamenco",
+      "label": "Flamenco",
+      "match": "flamenco",
+      "bpm": [
+        80,
+        140
+      ],
+      "energy": "expressive",
+      "instruments": [
+        "nylon guitar",
+        "handclaps",
+        "acoustic bass"
+      ],
+      "traits": "Expressive flamenco-inspired singing, articulate nylon guitar, handclap rhythmic interplay and dynamic verses.",
+      "avoid": "exact artist imitation",
+      "audio": "A Flamenco song with nylon guitar, handclaps, acoustic bass and singing."
+    },
+    {
+      "id": "arabic",
+      "label": "Arabic traditions / pop",
+      "match": "arabic|arabesque|arabesk|oriental|middle eastern",
+      "bpm": [
+        72,
+        128
+      ],
+      "energy": "expressive",
+      "instruments": [
+        "oud or regional strings",
+        "hand percussion",
+        "melodic bass"
+      ],
+      "traits": "Respect the supplied regional tradition: expressive ornamental melody, interlocking hand percussion and clear sung phrasing. Do not equate language with genre.",
+      "avoid": "exact artist imitation",
+      "audio": "A Arabic traditions / pop song with oud or regional strings, hand percussion, melodic bass and singing."
+    },
+    {
+      "id": "indian",
+      "label": "South Asian traditions / film",
+      "match": "bollywood|indian|hindustani|carnatic|bhangra|desi|qawwali|sufi",
+      "bpm": [
+        70,
+        140
+      ],
+      "energy": "expressive",
+      "instruments": [
+        "regional melodic strings or keys",
+        "tabla or regional percussion",
+        "bass"
+      ],
+      "traits": "Use the supplied South Asian style as musical guidance, expressive melodic ornament, appropriate regional percussion and a memorable sung refrain.",
+      "avoid": "exact artist imitation",
+      "audio": "A South Asian traditions / film song with regional melodic strings or keys, tabla or regional percussion, bass and singing."
+    },
+    {
+      "id": "lofi",
+      "label": "Lo-fi",
+      "match": "lo.?fi",
+      "bpm": [
+        65,
+        95
+      ],
+      "energy": "relaxed",
+      "instruments": [
+        "warm electric piano",
+        "rounded bass",
+        "loose dusty drums"
+      ],
+      "traits": "Lo-fi warmth, loose pocket, warm harmonic color and understated melodic singing, with developing verses rather than a static loop.",
+      "avoid": "exact artist imitation",
+      "audio": "A Lo-fi song with warm electric piano, rounded bass, loose dusty drums and singing."
+    },
+    {
+      "id": "experimental",
+      "label": "Experimental / art music",
+      "match": "experimental|avant.garde|art pop|progressive electronic",
+      "bpm": [
+        72,
+        144
+      ],
+      "energy": "adventurous",
+      "instruments": [
+        "textural synth or guitar",
+        "expressive bass",
+        "changing percussion"
+      ],
+      "traits": "Coherent experimental songwriting with surprising textures, purposeful space, evolving motifs and a recognizable original sung refrain.",
+      "avoid": "exact artist imitation",
+      "audio": "A Experimental / art music song with textural synth or guitar, expressive bass, changing percussion and singing."
+    },
     {
       "id": "heavy-rock",
       "label": "Heavy rock / metal",
@@ -22,7 +166,7 @@
     {
       "id": "rock",
       "label": "Alternative / rock",
-      "match": "rock|alternative|punk|grunge",
+      "match": "rock|alternative|punk|grunge|рок",
       "bpm": [
         98,
         156
@@ -40,7 +184,7 @@
     {
       "id": "jazz",
       "label": "Jazz",
-      "match": "jazz",
+      "match": "jazz|джаз",
       "bpm": [
         72,
         144
@@ -94,7 +238,7 @@
     {
       "id": "country",
       "label": "Country / folk",
-      "match": "country|folk|acoustic|singer.songwriter",
+      "match": "country|americana|bluegrass|acoustic|singer.songwriter",
       "bpm": [
         76,
         128
@@ -130,7 +274,7 @@
     {
       "id": "hip-hop",
       "label": "Hip-hop / rap",
-      "match": "hip.?hop|rap",
+      "match": "hip.?hop|rap|рэп|хип.хоп",
       "bpm": [
         76,
         112
@@ -274,7 +418,7 @@
     {
       "id": "pop",
       "label": "Pop",
-      "match": "pop",
+      "match": "pop|k.?pop|j.?pop|cantopop|mandopop|türkçe pop|русский поп",
       "bpm": [
         92,
         132
@@ -288,6 +432,24 @@
       "traits": "Melodic pop with a clear rhythmic pulse, developing verses, a strong singable chorus and expressive natural vocals.",
       "avoid": "ambient soundscape|free jazz",
       "audio": "A pop song with catchy singing, rhythmic drums, bass and melodic accompaniment."
+    },
+    {
+      "id": "traditional",
+      "label": "Folk / regional traditions",
+      "match": "traditional|world|türk halk|turkish folk|türk sanat|anatolian folk|tango|fado|celtic|chanson|шансон|народн|polka|klezmer|folk",
+      "bpm": [
+        72,
+        132
+      ],
+      "energy": "organic",
+      "instruments": [
+        "regional acoustic strings",
+        "acoustic bass",
+        "hand percussion"
+      ],
+      "traits": "Preserve the specific regional folk tradition in the supplied catalogue labels, acoustic instrumental interplay and expressive original sung storytelling. Do not mash unrelated traditions together.",
+      "avoid": "exact artist imitation",
+      "audio": "A Folk / regional traditions song with regional acoustic strings, acoustic bass, hand percussion and singing."
     }
   ]
 }

@@ -49,7 +49,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    if(i)assert.equal(await page.locator('audio[src*="file=audio"]').first().evaluate(a=>a.paused),true);
    await audio.evaluate(a=>{a.currentTime=90;});await page.waitForFunction(i=>document.querySelectorAll('audio[src*="file=audio"]')[i].currentTime>=90,i);
    const response=await context.request.get(`${base}/api/taste/song?id=${ids[i]}&file=audio`,{headers:{Range:'bytes=0-43'}});assert.equal(response.status(),206);assert.equal((await response.body()).subarray(0,4).toString(),'RIFF');
-   const song=await(await context.request.get(`${base}/api/taste/song?id=${ids[i]}`)).json();assert.equal(song.state,'completed');assert.ok(song.plan.influences.length>=3);songs.push({id:ids[i],title:song.plan.title,seconds:duration,voice:song.plan.cases[0].voice,bpm:song.plan.cases[0].bpm,caption:song.plan.cases[0].song_caption});
+   const song=await(await context.request.get(`${base}/api/taste/song?id=${ids[i]}`)).json();assert.equal(song.state,'completed');assert.equal(song.plan.influences.length,song.profile.references.length);songs.push({id:ids[i],title:song.plan.title,seconds:duration,language:song.plan.cases[0].vocal_language??'en',voice:song.plan.cases[0].voice,bpm:song.plan.cases[0].bpm,caption:song.plan.cases[0].song_caption});
   }
   await page.locator('audio').evaluateAll(list=>list.forEach(a=>a.pause()));
   const downloading=page.waitForEvent('download');await page.getByRole('link',{name:'Download song',exact:true}).first().click();

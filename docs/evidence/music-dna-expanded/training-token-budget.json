@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "scope": "Isolated synthetic consent fixtures only: real output schema and tokenizer checks, no human ratings saved and no training executed. Temporary fixtures removed; real queue unchanged.",
+  "budget": 4096,
+  "examples": [
+    {
+      "language": "ja",
+      "tokens": 935
+    },
+    {
+      "language": "hi",
+      "tokens": 1318
+    },
+    {
+      "language": "ar",
+      "tokens": 1087
+    },
+    {
+      "language": "ru",
+      "tokens": 1137
+    },
+    {
+      "language": "tr",
+      "tokens": 1124
+    },
+    {
+      "language": "es",
+      "tokens": 882
+    }
+  ]
+}

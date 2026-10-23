@@ -6,6 +6,7 @@ import {join} from 'node:path';
 import {dnaSong,localSingerRoot,songInput} from '../lib/dna-song';
 import {musicDirection,favoriteKey} from '../lib/taste-direction';
 import {emptyTaste} from '../lib/taste';
+import {listenerDirectory,saveFeedback} from '../lib/dna-feedback';
 
 const profile={...emptyTaste,references:['Heavy favorite'],referenceMetadata:[{reference:'Heavy favorite',genre:'Metal',source:'itunes' as const,id:1}]};
 const base='http://127.0.0.1:4247/api/taste/song';
@@ -30,7 +31,7 @@ test('local job enforces bounds, single execution, durable retrieval and cancell
   // A tiny process fixture exercises the real process boundary without running the model in unit tests.
   await writeFile(join(root,'.venv-singer/bin/python'),`#!${process.execPath}
 const fs=require('node:fs'),crypto=require('node:crypto');const p=process.argv.at(-1),sha=v=>crypto.createHash('sha256').update(v).digest('hex');
-setTimeout(()=>{const input=fs.readFileSync(p+'/input.json'),audio=Buffer.alloc(100,1),plan=JSON.stringify({title:'Fixture song',direction:JSON.parse(input).direction,input_sha256:sha(input)});
+setTimeout(()=>{const input=fs.readFileSync(p+'/input.json'),audio=Buffer.alloc(100,1),plan=JSON.stringify({title:'Fixture song',direction:JSON.parse(input).direction,input_sha256:sha(input),cases:[{vocal_language:'en',bpm:140}]});
 fs.mkdirSync(p+'/singer');fs.writeFileSync(p+'/singer/singer.wav',audio);fs.writeFileSync(p+'/plan.json',plan);
 const receipt={plan_sha256:sha(plan),audio_sha256:sha(audio)};fs.writeFileSync(p+'/singer/complete.json',JSON.stringify(receipt));fs.writeFileSync(p+'/fit.json',JSON.stringify({...receipt,input_sha256:sha(input),accepted:true,target:JSON.parse(input).direction.id}));
 fs.writeFileSync(p+'/status.json',JSON.stringify({state:'completed'}));},350);`,{mode:0o700});
@@ -47,7 +48,11 @@ fs.writeFileSync(p+'/status.json',JSON.stringify({state:'completed'}));},350);`,
   const audio=await dnaSong(ranged);assert.equal(audio.status,206);assert.equal((await audio.arrayBuffer()).byteLength,10);
   assert.equal((await dnaSong(request('GET','?id=../../secret'))).status,404);
   await new Promise(r=>setTimeout(r,100));
-  const cancelled=await(await dnaSong(request('POST','',profile))).json();
+  const nextRequest=request('POST','',profile);nextRequest.headers.set('X-Jamloom-Listener','1'.repeat(32));
+  await saveFeedback(listenerDirectory(root,nextRequest),id,{rating:'dislike',tags:['repetitive'],personalize:true,trainingConsent:false},ready,root);
+  const cancelled=await(await dnaSong(nextRequest)).json();
+  const nextInput=JSON.parse(await readFile(join(root,'renders/music-dna-songs',cancelled.id,'input.json'),'utf8'));
+  assert.deepEqual(nextInput.feedback.map((f:{tags:string[]})=>f.tags),[['repetitive']]);
   assert.ok(cancelled.id);assert.equal((await dnaSong(request('DELETE',`?id=${cancelled.id}`))).status,200);
   assert.equal((await(await dnaSong(request('GET',`?id=${cancelled.id}`))).json()).state,'cancelled');
   const work=join(root,'renders/music-dna-songs',id);
@@ -73,5 +78,5 @@ test('favorite identity includes genres, ignores order and case; direction follo
  assert.equal(favoriteKey(snapshot),favoriteKey({...snapshot,references:['c','a','b']}));
  assert.notEqual(favoriteKey(snapshot),favoriteKey({...snapshot,referenceMetadata:[]}));
  assert.equal(musicDirection({references:['Unknown'],referenceMetadata:[]}),null);
- for(const [genre,target] of [['Dubstep','dance'],['Reggaeton','latin'],['Rhythm and Blues','soul'],['Hardcore Dance','dance'],['Hard Rock','heavy-rock'],['Dub','reggae']])assert.equal(musicDirection({references:['x'],referenceMetadata:[{reference:'x',genre,source:'itunes',id:1}]})?.id,target);
+ for(const [genre,target] of [['Dubstep','dance'],['Reggaeton','reggaeton'],['Rhythm and Blues','soul'],['Hardcore Dance','dance'],['Hard Rock','heavy-rock'],['Dub','reggae']])assert.equal(musicDirection({references:['x'],referenceMetadata:[{reference:'x',genre,source:'itunes',id:1}]})?.id,target);
 });

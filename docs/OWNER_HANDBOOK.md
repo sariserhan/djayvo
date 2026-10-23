@@ -1,3 +1,11 @@
+## Music DNA languages and feedback — 2026-10-22
+
+[Open the multilingual review samples](http://127.0.0.1:4247/music-dna?song=e46c2b419c054cd79311bd9deecf1258&song=4caf5b05203048a3b61bb22cd4d2ce9c&song=c7944cb9bef241a3857be663ee5c8e53&song=0f7c7e87a20645ce8f52e6de86988fe4&song=4a81d32f68b14b09956d9d82cdabba53&song=3f868ec96fdd4f8089ce5225befefc8c). Favorites remain the only required input; **Singing language** is optional and defaults to choosing from the favorites. The local singer exposes 50 supported language settings. The technical matrix covers 25 musical families, with six completed audio examples; this does not certify every language or subgenre.
+
+Under each checked song, choose **Yes, I like it** or **Not for me**, then optional reasons. Personalization and shared model training are separate, unchecked choices. Save explicitly. **Feedback settings → Delete all my feedback** withdraws all ratings/permissions for this browser, including older songs no longer in recent history. Favorites and audio remain intact.
+
+The real training queue is empty. Eligible opted-in ratings can train a bounded local research adapter for the song planner; they do not update the acoustic singer or replace the serving model automatically. Existing model/listening gates remain. Native-language phrasing and pronunciation need review, especially the inconclusive Hindi diagnostic. [Evidence, training thresholds and commands](music-dna-expanded.md).
+
 ## Music DNA corrected matching — 2026-10-22
 
 Keep using the favorites already saved on the [Music DNA page](http://127.0.0.1:4247/music-dna); there is no need to retype them. New takes show their source list and must pass a broad audio-style screen. Earlier takes and examples are separate from songs for the current list. [Concrete Roots is available as a labelled example](http://127.0.0.1:4247/music-dna?song=06d89abd7d194ddf81bbc54af3e9b67f); it uses a stated test list. You approved the corrected flow/example on 2026-10-22. Broader listening validation and public hosting remain open. [Details and current evidence](music-dna-fit.md).

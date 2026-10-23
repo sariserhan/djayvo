@@ -1,0 +1,182 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "search_typing_typo_keyboard_pointer_duplicates": "PASS",
+    "muted_catalogue_playback": "PASS",
+    "exclusive_audio": "PASS",
+    "automatic_favorites_only_composition": "PASS",
+    "plans": [
+      {
+        "title": "Fixture song 1",
+        "summary": "Test interpretation based on the submitted favorites.",
+        "influences": [
+          {
+            "reference": "Quiet study",
+            "basis": "genre_only",
+            "description": "Test genre influence"
+          }
+        ],
+        "cases": [
+          {
+            "lyrics": "[Verse]\nFixture lyrics\n[Chorus]\nA song for browser testing",
+            "song_caption": "Warm piano and singing",
+            "bpm": 92,
+            "voice": "female"
+          }
+        ]
+      },
+      {
+        "title": "Fixture song 2",
+        "summary": "Test interpretation based on the submitted favorites.",
+        "influences": [
+          {
+            "reference": "Night set",
+            "basis": "genre_only",
+            "description": "Test genre influence"
+          }
+        ],
+        "cases": [
+          {
+            "lyrics": "[Verse]\nFixture lyrics\n[Chorus]\nA song for browser testing",
+            "song_caption": "Warm piano and singing",
+            "bpm": 92,
+            "voice": "female"
+          }
+        ]
+      }
+    ],
+    "generation_transport": "fixture, not model execution",
+    "audio": [
+      {
+        "seconds": 30,
+        "peak": 0.030518509447574615,
+        "rms": 0.02157971997173891
+      },
+      {
+        "seconds": 30,
+        "peak": 0.030518509447574615,
+        "rms": 0.02157971997173891
+      }
+    ],
+    "autosave_metadata_removal": "PASS",
+    "axe_violations": 0,
+    "console_errors": [],
+    "expected_console": [
+      {
+        "url": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      },
+      {
+        "url": "http://127.0.0.1:4247/music-dna",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+      },
+      {
+        "url": "http://127.0.0.1:4247/music-dna",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+      },
+      {
+        "url": "http://127.0.0.1:4247/music-dna",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+      },
+      {
+        "url": "http://127.0.0.1:4247/music-dna",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+      },
+      {
+        "url": "http://127.0.0.1:4247/music-dna",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+      },
+      {
+        "url": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      },
+      {
+        "url": "https://cdn.visitorping.com/site/vp_QBDH92AC.js",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      }
+    ],
+    "human_listening": "NOT RUN"
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "search_typing_typo_keyboard_pointer_duplicates": "PASS",
+    "muted_catalogue_playback": "PASS",
+    "exclusive_audio": "PASS",
+    "automatic_favorites_only_composition": "PASS",
+    "plans": [
+      {
+        "title": "Fixture song 1",
+        "summary": "Test interpretation based on the submitted favorites.",
+        "influences": [
+          {
+            "reference": "Quiet study",
+            "basis": "genre_only",
+            "description": "Test genre influence"
+          }
+        ],
+        "cases": [
+          {
+            "lyrics": "[Verse]\nFixture lyrics\n[Chorus]\nA song for browser testing",
+            "song_caption": "Warm piano and singing",
+            "bpm": 92,
+            "voice": "female"
+          }
+        ]
+      },
+      {
+        "title": "Fixture song 2",
+        "summary": "Test interpretation based on the submitted favorites.",
+        "influences": [
+          {
+            "reference": "Night set",
+            "basis": "genre_only",
+            "description": "Test genre influence"
+          }
+        ],
+        "cases": [
+          {
+            "lyrics": "[Verse]\nFixture lyrics\n[Chorus]\nA song for browser testing",
+            "song_caption": "Warm piano and singing",
+            "bpm": 92,
+            "voice": "female"
+          }
+        ]
+      }
+    ],
+    "generation_transport": "fixture, not model execution",
+    "audio": [
+      {
+        "seconds": 30,
+        "peak": 0.030517578125,
+        "rms": 0.021579390683610786
+      },
+      {
+        "seconds": 30,
+        "peak": 0.030517578125,
+        "rms": 0.021579390683610786
+      }
+    ],
+    "autosave_metadata_removal": "PASS",
+    "axe_violations": 0,
+    "console_errors": [],
+    "expected_console": [
+      {
+        "url": "",
+        "text": "The resource http://127.0.0.1:4247/_next/static/chunks/3liujdfawt50v.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+      }
+    ],
+    "human_listening": "NOT RUN"
+  }
+]

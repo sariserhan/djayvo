@@ -3,16 +3,18 @@ import {useEffect,useRef,useState} from 'react';
 import {emptyTaste,validateTaste,type Taste} from '../../lib/taste';
 import {automaticTaste,favoriteList,resolveFavoriteMetadata} from '../../lib/taste-auto';
 import {favoriteKey,musicDirection,type FavoriteSnapshot} from '../../lib/taste-direction';
+import languages from '../../../../assets/manifests/dna-languages.json';
+import {SongFeedback,FeedbackSettings,listenerHeaders} from './song-feedback';
 import {FavoriteSearch} from './favorite-search';
 import {tasteCatalogue,type ReferenceMetadata} from '../../lib/taste-catalogue';
-type SongPlan={title:string;summary:string;favorites?:{reference:string}[];influences:{reference:string;basis:string;description:string}[];cases:{lyrics:string;song_caption:string;bpm:number;voice:string}[]};
+type SongPlan={language?:{code:string;label:string;basis:string};musical_traits?:Record<string,string>;title:string;summary:string;favorites?:{reference:string}[];influences:{reference:string;basis:string;description:string}[];cases:{lyrics:string;song_caption:string;bpm:number;voice:string}[]};
 type Song={id:string;state:string;message:string;plan?:SongPlan;profile?:FavoriteSnapshot;direction?:{label:string};legacy?:boolean;styleChecked?:boolean};
 const songUrl=(id:string)=>`/api/taste/song?id=${id}`;
 export function TasteNotebook(){
  const [profile,setProfile]=useState<Taste>(emptyTaste),[message,setMessage]=useState(''),[revision,setRevision]=useState(0),[busy,setBusy]=useState(false),[loaded,setLoaded]=useState(false);
  const [rendering,setRendering]=useState(false),[search,setSearch]=useState(''),[job,setJob]=useState<string|null>(null),[draft,setDraft]=useState<SongPlan|null>(null);
  const [takes,setTakes]=useState<Song[]>([]),[examples,setExamples]=useState<Song[]>([]);
- const snapshot={references:profile.references,referenceMetadata:profile.referenceMetadata??[]},direction=musicDirection(snapshot);
+ const snapshot={references:profile.references,referenceMetadata:profile.referenceMetadata??[],vocalLanguage:profile.vocalLanguage},direction=musicDirection(snapshot);
  const current=takes.filter(s=>s.styleChecked&&s.profile&&favoriteKey(s.profile)===favoriteKey(snapshot));
  const earlier=takes.filter(s=>!current.includes(s));
  const taste=automaticTaste(profile),locked=busy||rendering;
@@ -25,11 +27,11 @@ export function TasteNotebook(){
   void (async()=>{
    try{
     const history=JSON.parse(localStorage.getItem('jamloom-dna-songs-v1')??'[]');
-    const saved=[...(Array.isArray(history)?history:[]).slice(-2).map((id:string)=>({id,example:false})),...new URLSearchParams(location.search).getAll('song').slice(-2).map(id=>({id,example:true}))];
+    const saved=[...(Array.isArray(history)?history:[]).slice(-2).map((id:string)=>({id,example:false})),...new URLSearchParams(location.search).getAll('song').slice(-6).map(id=>({id,example:true}))];
     for(const {id,example} of saved)if(typeof id==='string'&&/^[a-f0-9]{32}$/.test(id)){
      const response=await fetch(songUrl(id),{signal:AbortSignal.timeout(10000)});if(!response.ok)continue;
      const song:Song=await response.json();if(stopped)return;
-     if(song.state==='completed')(example?setExamples:setTakes)(old=>[...old.filter(s=>s.id!==id),song].slice(-2));
+     if(song.state==='completed')(example?setExamples:setTakes)(old=>[...old.filter(s=>s.id!==id),song].slice(example?-6:-2));
      else if(song.state==='running'&&!example){setJob(id);setRendering(true);}
     }
    }catch{/* Favorites remain independent of song-history availability. */}
@@ -84,7 +86,7 @@ export function TasteNotebook(){
    if(readiness.active)throw Error('Another song is being made on this Mac. Your saved list is unchanged; try again when it finishes.');
    const resolved=await resolveFavoriteMetadata(profile,controller.signal);controller.signal.throwIfAborted();setProfile(resolved);
    // Keep the submission response so cancellation can stop an accepted job instead of losing its id.
-   const response=await fetch('/api/taste/song',{method:'POST',headers:{'Content-Type':'application/json','X-Jamloom-DNA':'1'},body:JSON.stringify(resolved),signal:AbortSignal.timeout(15000)});
+   const response=await fetch('/api/taste/song',{method:'POST',headers:{'Content-Type':'application/json','X-Jamloom-DNA':'1',...listenerHeaders()},body:JSON.stringify(resolved),signal:AbortSignal.timeout(15000)});
    const result=await response.json();if(!response.ok)throw Error(result.error);
    if(controller.signal.aborted||!mounted.current){await fetch(songUrl(result.id),{method:'DELETE',headers:{'X-Jamloom-DNA':'1'}});return;}
    setJob(result.id);setMessage('Writing your song…');
@@ -100,15 +102,18 @@ export function TasteNotebook(){
  }
  function clear(){try{localStorage.removeItem('jamloom-taste-v1');localStorage.removeItem('jamloom-dna-preference');writable.current=true;setProfile(emptyTaste);setMessage('Favorites deleted from this device.');}catch{setMessage('Storage is unavailable. Clear site data in your browser settings.');}}
  function songCard(take:Song,i:number){return <article key={take.id} data-song-id={take.id}>
- <h4>{take.plan?.title??`Song ${i+1}`}</h4><p>2 min · AI singing{take.direction?` · ${take.direction.label}`:''}</p>
+ <h4>{take.plan?.title??`Song ${i+1}`}</h4><p>2 min · AI singing{take.plan?.language?` · ${take.plan.language.label}`:''}{take.direction?` · ${take.direction.label}`:''}</p>
  <p><strong>Made from:</strong> {take.profile?.references.join(' · ')??'Original list unavailable'}</p>
- {take.profile?.referenceMetadata.length? <p>{[...new Set(take.profile.referenceMetadata.map(m=>m.genre))].join(' · ')}</p>:null}
+ {take.profile?.referenceMetadata?.length? <p>{[...new Set(take.profile.referenceMetadata.map(m=>m.genre))].join(' · ')}</p>:null}
  <p>{take.styleChecked?'Broad style check passed. Listen to judge the song and singing.':'Earlier take: style match has not been checked.'}</p>
  <audio aria-label={`Play ${take.plan?.title??`song ${i+1}`}`} controls preload="metadata" src={`${songUrl(take.id)}&file=audio`} onPlay={event=>{document.querySelectorAll<HTMLAudioElement>('audio').forEach(audio=>{if(audio!==event.currentTarget)audio.pause();});}} onError={()=>setMessage('This song could not load. Your favorites are safe. Reload to reconnect to the local singer.')}/>
  <div className="product-actions"><a className="secondary" href={`${songUrl(take.id)}&file=audio&download=1`} download>Download song</a><a className="secondary" href={`${songUrl(take.id)}&file=plan`} download>Download song notes</a></div>
+ {take.styleChecked&&<SongFeedback id={take.id}/>}
+ {take.plan?.musical_traits&&<details><summary>The musical choices</summary><dl>{Object.entries(take.plan.musical_traits).map(([key,value])=><div key={key}><dt>{key.replaceAll('_',' ')}</dt><dd>{value}</dd></div>)}</dl></details>}
  {take.plan&&<><details><summary>Lyrics</summary><p style={{whiteSpace:'pre-wrap'}}>{take.plan.cases[0].lyrics}</p></details><details><summary>How these favorites shaped this song</summary><p>{take.plan.summary}</p><ul>{take.plan.influences.map(note=><li key={note.reference}><strong>{note.reference}</strong>: {note.description} {note.basis==='unknown'?'(Unrecognized)':note.basis==='genre_only'?'(Catalogue genre only)':'(Model interpretation)'}</li>)}</ul><p>{take.plan.cases[0].song_caption}</p><p>Musical direction uses catalogue metadata and model interpretation, not analysis of the original recordings. A style check cannot guarantee musical quality.</p></details></>}
  </article>;}
  return <section className="product-panel"><h2>Your favorite music</h2><p>Add songs or artists you love. We’ll use your list to write a new song, with an AI singer and a full arrangement. No music brief needed.</p><div className="product-controls">
+ <label>Singing language<select disabled={locked||!loaded} value={profile.vocalLanguage??'auto'} onChange={e=>{writable.current=true;setProfile({...profile,vocalLanguage:e.target.value});}}><option value="auto">Choose from my favorites</option>{Object.entries(languages.languages).map(([code,label])=><option key={code} value={code}>{label}</option>)}</select></label><p>Language is optional. These are the singer’s supported language settings; pronunciation and musical quality can vary.</p>
  <FavoriteSearch saved={profile.references} disabled={locked||!loaded} onSelect={addSong}/>
  <div className="dna-favorites">{[...new Set(profile.references)].map(reference=><fieldset key={reference}><legend>{reference}</legend>
   <button className="secondary" disabled={locked} aria-label={`Remove favorite ${reference}`} onClick={()=>remove(reference)}>Remove favorite</button>
@@ -126,6 +131,7 @@ export function TasteNotebook(){
  {earlier.length>0&&<details><summary>Earlier songs and other lists ({earlier.length})</summary><p>These songs belong to the favorites shown with each player. Older takes have not passed the new style check.</p>{earlier.map(songCard)}</details>}
  {examples.length>0&&<section aria-label="Example songs"><h3>Example songs</h3><p>These examples were made from the lists shown below. They are separate from your saved favorites.</p>{examples.map(songCard)}</section>}
  {takes.length>0&&<p>Your latest two songs stay available on this Mac. Download the ones you want to keep.</p>}
+ <FeedbackSettings/>
  <details><summary>Saved favorites</summary>
   <button className="secondary" disabled={locked} onClick={clear}>Delete saved profile</button>
   <fieldset><legend>Optional account copy</legend><p><a href="/account/sign-in">Sign in</a> to keep your favorites on another device. Load an existing account list before updating it.</p><div className="product-actions"><button className="secondary" disabled={locked} onClick={()=>sync('GET')}>Load account profile</button><button className="secondary" disabled={locked} onClick={()=>sync('POST')}>Save preferences to account</button><button className="secondary" disabled={locked||revision===0} onClick={()=>sync('DELETE')}>Delete account profile</button></div></fieldset>

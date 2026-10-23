@@ -10,6 +10,7 @@ import re
 import resource
 import sys
 import time
+from dna_language import language, lyric_units, validate_script
 
 MAX_PHRASE_CHARS = 32000
 CODE_REVISION = 'ca1e85fe9430179831e6bc6be790c332190a3866'
@@ -55,7 +56,9 @@ def digest(path):
 
 
 def text_field(value, limit, name):
-    if not isinstance(value, str) or not value.strip() or len(value) > limit or any(ord(c) < 32 and c != '\n' for c in value):
+    if isinstance(value,str) and len(value)>limit:
+        raise ValueError(f'{name} contains {len(value)} characters; use at most {limit}')
+    if not isinstance(value, str) or not value.strip() or any(ord(c) < 32 and c != '\n' for c in value):
         raise ValueError(f'Invalid {name}')
     return value.strip()
 
@@ -109,12 +112,17 @@ def validate_plan(plan):
             text_field(c.get('song_caption'), 2000, 'song direction')
         elif 'song_caption' in c or c.get('duration') != 30 or c.get('bpm') != STYLES[c['genre']][0] or type(c.get('source_repetitions')) is not int or c['source_repetitions'] not in (1, 2):
             raise ValueError('Invalid timing or repetition budget')
+        code=language(c.get('vocal_language','en'))
         lyrics = text_field(c.get('lyrics'), 4000 if song else 1600, 'lyrics')
         words = re.sub(r'\[[^\]]*\]', '', lyrics).split()
-        if not (100 <= len(words) <= 260 if song else 8 <= len(words) <= 85) or '[instrumental]' in lyrics.lower():
+        units,bounds=lyric_units(lyrics,code)
+        if not (bounds[0] <= units <= bounds[1] if song else 8 <= len(words) <= 85):
+            if song:raise ValueError(f'Lyrics contain {units} {"characters" if code in ("ja","zh","yue","th") else "words"}; write between {bounds[0]} and {bounds[1]}, developing the verses and bridge')
             raise ValueError('Expected short sung reply lyrics, not an instrumental')
+        if '[instrumental]' in lyrics.lower():raise ValueError('Every section needs sung lyrics')
         if song and not all(section in lyrics.lower() for section in ('[verse', '[chorus]', '[bridge]', '[outro]')):
             raise ValueError('Expected developed song sections')
+        if song and 'vocal_language' in c:validate_script(lyrics,code)
     return plan
 
 
@@ -266,7 +274,7 @@ def sing(root, plan_path, output, case_id, conditioning_path=None):
                          'repaint_wav_crossfade_sec': .04}
     params = GenerationParams(caption=description, bpm=c['bpm'], duration=c['duration'], seed=c['seed'],
                               instrumental=instrumental, lyrics='[Instrumental]' if instrumental else c['lyrics'],
-                              vocal_language='en', inference_steps=8, **source_params,
+                              vocal_language=c.get('vocal_language','en'), inference_steps=8, **source_params,
                               thinking=False, use_cot_metas=False, use_cot_caption=False, use_cot_language=False, use_cot_lyrics=False)
     result = generate_music(dit, lm, params, GenerationConfig(batch_size=1, audio_format='wav', use_random_seed=False, seeds=[c['seed']]), save_dir=str(output / 'raw'))
     if not result.success or len(result.audios) != 1:

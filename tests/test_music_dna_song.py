@@ -2,13 +2,14 @@ import copy
 import json
 import tempfile
 from unittest.mock import patch
+from types import SimpleNamespace
 from pathlib import Path
 import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
-from music_dna_song import favorites, song_plan, parse_draft, run
-from singing_response import caption, digest
+from music_dna_song import favorites, song_plan, parse_draft, run, draft
+from singing_response import caption, digest, text_field
 from dna_direction import direction_for
 
 
@@ -88,6 +89,37 @@ class MusicDnaSong(unittest.TestCase):
         self.data.update(direction_id=direction['id'],energy=direction['energy'],instruments=direction['instruments'],bpm=140)
         self.data['sound'] = 'A slow piano ballad with whisper vocals'
         with self.assertRaisesRegex(ValueError, 'contradicts'):song_plan(self.data, refs, 1)
+
+    def test_language_evidence_and_production_constraints(self):
+        with self.assertRaisesRegex(ValueError,'arrangement contains 201 characters; use at most 200'):text_field('x'*201,200,'arrangement')
+        self.data['influences'][0]['basis']='a translated genre label'
+        self.assertEqual(song_plan(self.data,self.refs,1)['influences'][0]['basis'],'genre_only')
+        with self.assertRaisesRegex(ValueError,'requested singing language'):song_plan(self.data,self.refs,1,'tr')
+        self.data['sound']='Мы идём домой и поём нашу песню'
+        with self.assertRaisesRegex(ValueError,'in English'):song_plan(self.data,self.refs,1)
+        self.data['sound']='Expressive soul band and warm piano'
+        self.data['musical_traits']={k:'An expressive soulful performance' for k in ('groove','texture','harmony','vocal_delivery','arrangement')}
+        self.data['musical_traits']['texture']='The backing band of Artist One'
+        with self.assertRaisesRegex(ValueError,'without artist names'):song_plan(self.data,self.refs,1)
+
+    def test_lyric_repair_preserves_the_validated_musical_direction(self):
+        data=copy.deepcopy(self.data);data['lyrics']='[Verse 1]\nToo short'
+        outputs=iter([json.dumps(data),json.dumps({'lyrics':self.data['lyrics']})]);prompts=[]
+        def generate(*args,**kwargs):prompts.append(kwargs['prompt']);return next(outputs)
+        mx=SimpleNamespace(random=SimpleNamespace(seed=lambda _:None))
+        tokenizer=SimpleNamespace(apply_chat_template=lambda messages,**kwargs:json.dumps(messages))
+        modules={'mlx':SimpleNamespace(core=mx),'mlx.core':mx,'mlx_lm':SimpleNamespace(generate=generate),'mlx_lm.sample_utils':SimpleNamespace(make_sampler=lambda **kwargs:None)}
+        with tempfile.TemporaryDirectory() as folder,patch.dict(sys.modules,modules),patch('music_dna_song.lyric_model',return_value=(None,tokenizer,{'revision':'fixture'})):
+            work=Path(folder);profile={'references':[r['reference'] for r in self.refs],'referenceMetadata':[{'reference':self.refs[0]['reference'],'genre':'Soul'}]}
+            (work/'input.json').write_text(json.dumps({'profile':profile,'direction':direction_for(self.refs),'seed':123}))
+            draft(work);plan=json.loads((work/'plan.json').read_text())
+            self.assertEqual(len(prompts),2);self.assertIn('draft_lyrics',prompts[1]);self.assertNotIn('Artist One',prompts[1])
+            self.assertEqual(plan['direction']['id'],'soul');self.assertEqual(plan['cases'][0]['lyrics'],self.data['lyrics'])
+        data=copy.deepcopy(self.data);data['sound']='Мы идём домой и поём нашу песню'
+        outputs=iter([json.dumps(data),json.dumps(self.data)]);prompts.clear()
+        with tempfile.TemporaryDirectory() as folder,patch.dict(sys.modules,modules),patch('music_dna_song.lyric_model',return_value=(None,tokenizer,{'revision':'fixture'})):
+            work=Path(folder);(work/'input.json').write_text(json.dumps({'profile':profile,'direction':direction_for(self.refs),'seed':123}))
+            draft(work);self.assertNotIn('draft_lyrics',prompts[1]);self.assertIn('in English',prompts[1])
 
 
 if __name__ == '__main__':unittest.main()

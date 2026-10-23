@@ -1,0 +1,329 @@
+[
+  {
+    "run": "multilingual",
+    "results": [
+      {
+        "case": "spanish",
+        "job": "e46c2b419c054cd79311bd9deecf1258",
+        "direction": "latin",
+        "language": "es",
+        "state": "completed",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "russian",
+        "job": "62e0bfe5985543f5910e25ae9297533f",
+        "direction": "rock",
+        "language": "ru",
+        "state": "rejected",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "turkish",
+        "job": "fa6d430aafaa42269f7707153ff368e1",
+        "direction": "pop",
+        "language": "tr",
+        "state": "failed",
+        "exit": 1,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "japanese",
+        "job": "f1dba8b5f23e4f5c9b778f6fec605fe1",
+        "direction": "pop",
+        "language": "ja",
+        "state": "failed",
+        "exit": 1,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "arabic",
+        "job": "2e0cda63caa149cd8a041226cb4cf914",
+        "direction": "arabic",
+        "language": "ar",
+        "state": "failed",
+        "exit": 1,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "hindi",
+        "job": "3f868ec96fdd4f8089ce5225befefc8c",
+        "direction": "indian",
+        "language": "hi",
+        "state": "completed",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      }
+    ]
+  },
+  {
+    "run": "multilingual-retry",
+    "results": [
+      {
+        "case": "russian",
+        "job": "4caf5b05203048a3b61bb22cd4d2ce9c",
+        "direction": "rock",
+        "language": "ru",
+        "state": "completed",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "turkish",
+        "job": "31dc231102594f7f9190f64112897438",
+        "direction": "pop",
+        "language": "tr",
+        "state": "failed",
+        "exit": 1,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "japanese",
+        "job": "0f7c7e87a20645ce8f52e6de86988fe4",
+        "direction": "pop",
+        "language": "ja",
+        "state": "completed",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "arabic",
+        "job": "4a81d32f68b14b09956d9d82cdabba53",
+        "direction": "arabic",
+        "language": "ar",
+        "state": "completed",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      }
+    ]
+  },
+  {
+    "run": "turkish-final",
+    "results": [
+      {
+        "case": "turkish",
+        "job": "a91b9061395f46ed9aa1ad51c3b7fd59",
+        "direction": "pop",
+        "language": "tr",
+        "state": "failed",
+        "exit": 1,
+        "human_listening": "NOT RUN"
+      }
+    ]
+  },
+  {
+    "run": "genre-plans",
+    "results": [
+      {
+        "case": "afrobeats",
+        "job": "ed5fa0e4f351460faa0cc8ab861a54b8",
+        "direction": "afrobeats",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "amapiano",
+        "job": "3258636dfb794f6fa5c2b5914d6d3b98",
+        "direction": "amapiano",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "reggaeton",
+        "job": "1aafab15728b43988d6c1812ebf07976",
+        "direction": "reggaeton",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "flamenco",
+        "job": "2f5befc0eb444b399f74cad366714795",
+        "direction": "flamenco",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "lofi",
+        "job": "cb838757ba51494b991db22808f93a36",
+        "direction": "lofi",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "experimental",
+        "job": "6b26794903a9415f847f420228d52ef3",
+        "direction": "experimental",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "heavy-rock",
+        "job": "12bc3006fac64eafb414b41762f140df",
+        "direction": "heavy-rock",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "jazz",
+        "job": "b0da009f913a43ca8908464ae5897e8b",
+        "direction": "jazz",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "soul",
+        "job": "89ae17a221894bf49c537be029eb42b6",
+        "direction": "soul",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "blues",
+        "job": "dfe7dbc22690447a9639fe47e84d0abd",
+        "direction": "blues",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "country",
+        "job": "e1d97553a19e4450894b8a5e734c5dc8",
+        "direction": "country",
+        "language": "en",
+        "state": "failed",
+        "exit": 1,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "reggae",
+        "job": "2505c197947549578ca84eba0392147e",
+        "direction": "reggae",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "hip-hop",
+        "job": "66739026c400438c81582071bf1085fd",
+        "direction": "hip-hop",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "dance",
+        "job": "8432cc87bd8b491c95f05cdcecaa5fda",
+        "direction": "dance",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "ambient",
+        "job": "9f54a09563694b32af4648ae9fd55092",
+        "direction": "ambient",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "electronic",
+        "job": "56939f2f77b748a5b93b78aca10154c8",
+        "direction": "electronic",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "classical",
+        "job": "70a28329882d4108a5b9e302fe5b9bba",
+        "direction": "classical",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "funk",
+        "job": "fb19f563594d454189e064686aa1b9ee",
+        "direction": "funk",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "indie",
+        "job": "afb64f61de7449beb856bf533a79f481",
+        "direction": "indie",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      },
+      {
+        "case": "traditional",
+        "job": "96132cd23f7940f392c5c2bfdc13fcae",
+        "direction": "traditional",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      }
+    ]
+  },
+  {
+    "run": "turkish-rewrite",
+    "results": [
+      {
+        "case": "turkish",
+        "job": "c7944cb9bef241a3857be663ee5c8e53",
+        "direction": "pop",
+        "language": "tr",
+        "state": "completed",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      }
+    ]
+  },
+  {
+    "run": "genre-repairs",
+    "results": [
+      {
+        "case": "country",
+        "job": "1bc528d518cc4e84bcaf3ea0a8741495",
+        "direction": "country",
+        "language": "en",
+        "state": "planned",
+        "exit": 0,
+        "human_listening": "NOT RUN"
+      }
+    ]
+  }
+]

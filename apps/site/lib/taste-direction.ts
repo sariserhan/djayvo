@@ -1,12 +1,12 @@
 import policy from '../../../assets/manifests/dna-directions.json';
 import type {ReferenceMetadata} from './taste-catalogue';
 
-export type FavoriteSnapshot={references:string[];referenceMetadata:ReferenceMetadata[]};
+export type FavoriteSnapshot={vocalLanguage?:string;references:string[];referenceMetadata:ReferenceMetadata[]};
 const normalized=(s:string)=>s.normalize('NFKC').trim().toLowerCase();
 export function favoriteKey(snapshot:FavoriteSnapshot){
- return JSON.stringify([...new Map(snapshot.references.map(reference=>[normalized(reference),{
+ return JSON.stringify([snapshot.vocalLanguage??'auto',[...new Map(snapshot.references.map(reference=>[normalized(reference),{
   reference:normalized(reference),genre:normalized(snapshot.referenceMetadata.find(m=>normalized(m.reference)===normalized(reference))?.genre??'')
- }])).values()].sort((a,b)=>a.reference<b.reference?-1:a.reference>b.reference?1:0));
+ }])).values()].sort((a,b)=>a.reference<b.reference?-1:a.reference>b.reference?1:0)]);
 }
 export function musicDirection(snapshot:FavoriteSnapshot){
  const votes=new Map<string,number>(),seen=new Set<string>();

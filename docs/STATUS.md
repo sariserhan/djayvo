@@ -1,3 +1,7 @@
+## Music DNA languages and listener learning — 2026-10-22
+
+**PASS, local implementation and technical evaluation; PARTIAL, musical/model acceptance:** 25 genre families, 50 optional language settings, musical traits/lyric repair, personal feedback and consent-bound local planner-training candidates are implemented. 61 site tests, 26 Python tests, build/bundle checks, 26 real plans across all families, six two-minute multilingual renders, and Chromium/WebKit feedback/playback/recovery checks pass. Bulk withdrawal covers feedback on older songs. Native-language quality remains unverified; Hindi diagnostics are inconclusive. Real-feedback learning waits for eligible ratings; no production model promotion or deployment. [Report and evidence](music-dna-expanded.md).
+
 ## Music DNA list and audio matching — 2026-10-22
 
 **PASS, local matching workflow; PARTIAL, product acceptance:** New songs retain their exact favorite snapshot, required musical direction and verified audio bindings. Current-list results, other lists and examples are separate. A local broad-style screen rejects mismatches; 59 site tests, 18 Python tests, build and a new two-minute rock vocal song pass, including actual website generation and Chromium/WebKit playback/download. Owner approved the corrected flow/example on 2026-10-22; calibration and broader listening remain open. [Current evidence and limits](music-dna-fit.md). No deployment.

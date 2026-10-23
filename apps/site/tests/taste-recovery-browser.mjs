@@ -24,9 +24,10 @@ try{
  assert.equal(await page.locator('audio[src*="file=audio"],audio[src^="blob:"]').count(),0);
  assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references),['Unmatched favorite']);
  await context.unroute('**/api/taste/song*');const fixture=await songFixture(context);
- const ids=['1'.repeat(32),'2'.repeat(32)];fixture.jobs.set(ids[0],{id:ids[0],state:'completed',message:'Ready'});
+ const ids=['1'.repeat(32),'2'.repeat(32)];fixture.jobs.set(ids[0],{id:ids[0],state:'completed',message:'Ready',profile:{references:['Historical favorite']}});
  await page.evaluate(ids=>localStorage.setItem('jamloom-dna-songs-v1',JSON.stringify(ids)),ids);
  await page.reload();await page.getByText('Earlier songs and other lists (1)',{exact:true}).waitFor();await page.waitForTimeout(200);
+ await page.getByText('Earlier songs and other lists (1)',{exact:true}).click();await page.getByText('Made from: Historical favorite',{exact:true}).waitFor();
  assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-dna-songs-v1'))),ids);
  // A running job from another list must never be adopted by Make my music.
  await context.unroute('**/api/taste/song*');let posts=0;
@@ -45,6 +46,6 @@ try{
  assert.equal(await page.getByRole('button',{name:'Make another variation',exact:true}).isEnabled(),true);
  assert.equal(await page.locator(`audio[src*="${rejectedId}"]`).count(),0);
  assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')).references),['Unmatched favorite']);
- const result={status:'PASS',other_list_active_job_not_adopted:true,rejected_take_not_presented:true,corrupt_saved_data_preserved_until_new_list:true,cancel_during_metadata_lookup:true,late_response_cannot_start_render:true,favorites_preserved:true,unavailable_has_no_instrumental_fallback:true,partial_song_restore_does_not_erase_other_song:true};
+ const result={status:'PASS',legacy_profile_without_genres_restores:true,other_list_active_job_not_adopted:true,rejected_take_not_presented:true,corrupt_saved_data_preserved_until_new_list:true,cancel_during_metadata_lookup:true,late_response_cannot_start_render:true,favorites_preserved:true,unavailable_has_no_instrumental_fallback:true,partial_song_restore_does_not_erase_other_song:true};
  await writeFile(process.env.JAMLOOM_TEST_EVIDENCE??'/tmp/jamloom-dna-auto-recovery.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
 }finally{await browser.close();}

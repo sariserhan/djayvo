@@ -4,6 +4,7 @@ import {access,mkdir,readFile,writeFile,stat} from 'node:fs/promises';
 import {isAbsolute,join} from 'node:path';
 import {validateTaste} from './taste';
 import {favoriteList} from './taste-auto';
+import {personalFeedback,refreshFeedback} from './dna-feedback';
 import {musicDirection} from './taste-direction';
 import {audioResponse,privateHeaders} from './audio-response';
 import {boundedAuthRequest} from './bounded-request';
@@ -28,7 +29,7 @@ export function localSingerRoot(request:Request,configured=process.env.JAMLOOM_D
 export function songInput(value:unknown){
  const profile=favoriteList(validateTaste(value));
  if(!profile.references.length)throw Error('Add at least one favorite first.');
- return {references:profile.references,referenceMetadata:profile.referenceMetadata??[]};
+ return {references:profile.references,referenceMetadata:profile.referenceMetadata??[],...(profile.vocalLanguage?{vocalLanguage:profile.vocalLanguage}:{})};
 }
 function stop(active:Running){
  if(active.child.pid){try{process.kill(-active.child.pid,'SIGKILL');}catch(error){if((error as NodeJS.ErrnoException).code!=='ESRCH')throw error;}}
@@ -49,11 +50,13 @@ export async function dnaSong(request:Request){
    await access(join(root,'build-style-training/taste-auditor/pytorch_model.bin'));
    // Recheck after asynchronous validation so simultaneous requests cannot both claim this process.
    if(state.jamloomDnaSong||state.jamloomDnaStarting)return json({error:'A song is already being made on this Mac.'},409);
+   const feedback=await personalFeedback(root,request,direction.id,profile.vocalLanguage??'auto');
+   if(state.jamloomDnaSong||state.jamloomDnaStarting)return json({error:'A song is already being made on this Mac.'},409);
    const next=randomUUID().replaceAll('-',''),work=join(directory,next);
    state.jamloomDnaStarting=true;
    try{
     await mkdir(work,{recursive:true,mode:0o700});
-    await writeFile(join(work,'input.json'),JSON.stringify({profile,direction,seed:randomInt(2**32)}),{flag:'wx',mode:0o600});
+    await writeFile(join(work,'input.json'),JSON.stringify({profile,direction,feedback,seed:randomInt(2**32)}),{flag:'wx',mode:0o600});
     await writeFile(join(work,'status.json'),JSON.stringify({state:'running',message:'Starting your song…'}));
    }catch(error){delete state.jamloomDnaStarting;throw error;}
    const child=spawn(join(root,'.venv-singer/bin/python'),[join(root,'scripts/music_dna_song.py'),'run',work],{
@@ -66,6 +69,7 @@ export async function dnaSong(request:Request){
     clearTimeout(active.timer);
     try{const status=JSON.parse(await readFile(join(work,'status.json'),'utf8'));if(!active.cancelled&&status.state==='running')await writeFile(join(work,'status.json'),JSON.stringify({state:'failed',message:'Song generation stopped. Your favorites and previous songs are safe.'}));}catch{}
     if(state.jamloomDnaSong===active)delete state.jamloomDnaSong;
+    void refreshFeedback(root);
    };
    child.once('error',()=>{void finish();});child.once('exit',()=>{void finish();});
    return json({id:next},202);
