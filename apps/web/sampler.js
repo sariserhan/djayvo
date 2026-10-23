@@ -50,11 +50,12 @@ export function attachSampler({graph,context,mixer,rights,onSourcesChanged}){
   for(let i=0;i<buffer.numberOfChannels;i++)if(!buffer.getChannelData(i).every(Number.isFinite))throw Error('Invalid sample audio.');
   return buffer;
  }
- $('sample-file').onchange=async event=>{
-  const file=event.target.files?.[0],index=selected;event.target.value='';if(!file||!permitted()||busy)return;
+ async function loadSample(file){
+  const index=selected;if(!file||!permitted()||busy)return;
   const token=++revision;busy=true;refresh();
   try{const buffer=await decode(file);if(token!==revision||!permitted())return;stop(index);slots[index]={file,buffer,settings:{start:0,end:buffer.duration,pitch:0,level:.8,loop:false}};onSourcesChanged();status(`Loaded pad ${index+1}. Tap its pad to play. Drag trim or change pitch below.`);}catch(error){status(error.message);}finally{busy=false;refresh();}
  };
+ $('sample-file').onchange=event=>{const file=event.target.files?.[0];event.target.value='';return loadSample(file);};
  for(const key of ['start','end','pitch','level','loop'])$('sample-'+key).onchange=()=>{
   const slot=slots[selected];if(!slot)return;const next={...slot.settings,[key]:key==='loop'?$('sample-loop').checked:Number($('sample-'+key).value)};
   if(!validSampleSettings(next,slot.buffer.duration)){status('Trim must stay inside the sample and leave at least 0.02 seconds.');refresh();return;}
@@ -78,5 +79,5 @@ export function attachSampler({graph,context,mixer,rights,onSourcesChanged}){
  $('sample-delete-bank').onclick=async()=>{if(busy)return;busy=true;refresh();try{await bankStore('readwrite',store=>store.delete($('sample-bank').value));status('Saved bank deleted. Loaded pads are unchanged.');}catch(error){status(error.message);}finally{busy=false;refresh();}};
  for(const consent of [rights,$('sample-consent')])consent.addEventListener('change',()=>{if(!permitted()){stopAll();slots.fill(null);onSourcesChanged();status('Samples cleared from this session. Delete saved banks separately.');}refresh();});
  window.addEventListener('pagehide',stopAll);window.addEventListener('blur',stopAll);
- refresh();return {stop:stopAll,snapshot:()=>[...voices].map(([pad,v])=>({pad,started_context_frame:v.started_context_frame,settings:{...v.settings},duration:v.duration})),sources:()=>Object.fromEntries(slots.map((slot,i)=>['sample'+i,slot?.file??null]))};
+ refresh();return {loadSample,stop:stopAll,snapshot:()=>[...voices].map(([pad,v])=>({pad,started_context_frame:v.started_context_frame,settings:{...v.settings},duration:v.duration})),sources:()=>Object.fromEntries(slots.map((slot,i)=>['sample'+i,slot?.file??null]))};
 }

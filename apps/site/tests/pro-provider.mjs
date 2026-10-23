@@ -41,7 +41,7 @@ try{
   const context=await browser.newContext({viewport:{width:1280,height:1100}});page=await context.newPage();page.setDefaultTimeout(30000);
   await context.addCookies(cookie.split('; ').map(v=>({name:v.slice(0,v.indexOf('=')),value:v.slice(v.indexOf('=')+1),url:base})));
   assert.equal((await api('/api/pro/license',{method:'POST',cookie})).status,403);
-  assert.equal((await api('/studio/dj.html',{cookie})).headers.get('location'),'/pro');
+  assert.equal((await api('/studio/dj.html',{cookie})).status,200);
   async function waitAccess(expected){for(let n=0;n<120;n++){const r=await api('/api/pro/access',{cookie});if(r.ok&&(await r.json()).active===expected)return;await delay(500);}throw Error('Pro access did not reconcile');}
   await page.goto(base+'/pro');
   const response=page.waitForResponse(r=>r.url()===base+'/api/pro/checkout'&&r.request().method()==='POST').then(async r=>({status:r.status(),data:await r.json(),body:r.request().postDataJSON()}));
@@ -64,7 +64,7 @@ try{
   await page.getByText('Use the web studio offline',{exact:true}).click();await page.getByRole('button',{name:'Keep web studio available offline'}).click();await page.getByText(/Web studio saved/).waitFor({timeout:75000});await page.goto(base+'/studio/dj.html');await page.reload();await page.waitForFunction(()=>!!navigator.serviceWorker.controller);
   await context.setOffline(true);assert.equal((await page.goto(base+'/studio/dj.html')).status(),200);await page.waitForSelector('#sample-pad-7',{state:'attached'});
   await page.evaluate(async()=>{for(const key of await caches.keys()){const cache=await caches.open(key),r=await cache.match(location.href);if(r){const headers=new Headers(r.headers);headers.set('X-Jamloom-Pro-Expires','1');await cache.put(location.href,new Response(await r.arrayBuffer(),{headers}));}}});
-  assert.equal((await page.reload()).status(),503);await context.setOffline(false);assert.equal((await page.goto(base+'/studio/dj.html')).status(),200);await page.waitForSelector('#sample-pad-7',{state:'attached'});
+  assert.equal((await page.reload()).status(),200);await page.locator('html[data-studio-mode=demo]').waitFor({state:'attached'});await context.setOffline(false);assert.equal((await page.goto(base+'/studio/dj.html')).status(),200);await page.waitForSelector('#sample-pad-7',{state:'attached'});
   results.offlineAccess='PASS: paid cache, expiry, online renewal';
   const licenseResponse=await api('/api/pro/license',{method:'POST',cookie});assert.equal(licenseResponse.status,200);const token=await licenseResponse.text();const {verifyLicense}=await import('../lib/pro-license.ts');assert.equal(verifyLicense(token)?.subject,owner);assert.equal(verifyLicense(token)?.sandbox,true);
   assert.equal((await api('/api/pro/refresh',{method:'POST',headers:{Authorization:'Bearer '+token}})).status,401);
@@ -74,7 +74,7 @@ try{
   assert.equal((await fetch(base+'/api/pro/stripe',{method:'POST',headers:{'stripe-signature':'invalid'},body:delivery.raw})).status,400);
   assert.equal((await pool.query('SELECT count(*)::int n FROM pro_purchases')).rows[0].n,1);assert.equal((await pool.query('SELECT count(*)::int n FROM credit_lots')).rows[0].n,0);
   const other=await account('other-pro-provider@example.test');assert.equal((await api('/api/pro/license',{method:'POST',cookie:other})).status,403);
-  const refund=await stripe.refunds.create({payment_intent:session.payment_intent},{idempotencyKey:'jamloom-pro-test-refund:'+id});assert.equal(refund.status,'succeeded');await waitAccess(false);assert.equal((await api('/api/pro/license',{method:'POST',cookie})).status,403);assert.equal((await api('/studio/dj.html',{cookie})).status,307);await page.goto(base+'/studio/dj.html');await page.waitForURL(base+'/pro');results.cachedRefundRevocation='PASS';
+  const refund=await stripe.refunds.create({payment_intent:session.payment_intent},{idempotencyKey:'jamloom-pro-test-refund:'+id});assert.equal(refund.status,'succeeded');await waitAccess(false);assert.equal((await api('/api/pro/license',{method:'POST',cookie})).status,403);assert.equal((await api('/studio/dj.html',{cookie})).status,200);await page.goto(base+'/studio/dj.html');await page.locator('html[data-studio-mode=demo]').waitFor({state:'attached'});assert.equal(await page.locator('#file-a').isDisabled(),true);results.cachedRefundRevocation='PASS';
   Object.assign(results,{status:'PASS',checkout:id,refund:refund.id,provider_transactions:'Stripe TEST only; no funds moved',signedWebhook:'PASS',declinedPayment:'PASS',duplicateDelivery:'PASS',wrongOwner:'PASS',licenseSignature:'PASS',sandboxCannotActivateRelease:'PASS',refundRevocation:'PASS',creditsGranted:0,liveCharge:'NOT RUN'});
   await writeFile(new URL('report.json',evidence),JSON.stringify(results,null,2)+'\n');console.log('PASS actual Pro checkout, signed webhook, activation file and refund');
  }catch(error){results.status='FAIL';results.error=error.message;await writeFile(new URL('failure.json',evidence),JSON.stringify(results,null,2));if(page){await page.screenshot({path:new URL('failure.png',evidence).pathname});await writeFile(new URL('failure.txt',evidence),await page.locator('body').innerText());}throw error;}finally{await browser.close();}

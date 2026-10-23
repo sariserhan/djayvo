@@ -12,7 +12,7 @@ for(const path of ['/pro','/download','/pricing','/live-dj']){
  assert.ok(html.includes('Jamloom'),path);if(path==='/pro')assert.ok(html.includes('$49 once')&&html.includes('pro-v1.0.0/Jamloom-Pro-1.0.0-macOS.zip'));
  checks.push({path,status:r.status});
 }
-const deck=await request('/studio/dj.html');assert.ok([302,303,307,308].includes(deck.status));assert.ok(deck.headers.get('location')?.endsWith('/pro'));checks.push({check:'Unpaid deck blocked',status:'PASS'});
+const deck=await request('/studio/dj.html');assert.equal(deck.status,200);assert.equal(deck.headers.has('X-Jamloom-Pro-Expires'),false);assert.ok((await deck.text()).includes('studio-access'));checks.push({check:'Public studio without paid entitlement',status:'PASS'});
 assert.equal((await request('/api/aurowall')).status,403);
 assert.equal((await request('/api/pro/refresh',{method:'POST'})).status,401);
 const headers={Authorization:'Bearer '+token};

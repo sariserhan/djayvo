@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {practiceFile} from '../practice-library.js';
+import {practiceFile,isPracticeFile} from '../practice-library.js';
 const folder = new URL('../practice-audio/', import.meta.url);
 const {tracks} = JSON.parse(await readFile(new URL('manifest.json',folder)));
 test('practice catalogue contains ten complete, pinned CC0 recordings', async () => {
@@ -21,7 +21,7 @@ test('practice catalogue contains ten complete, pinned CC0 recordings', async ()
 test('practice loader rejects truncation, excess bytes, tampering and external URLs', async t => {
   const track=tracks[0],bytes=await readFile(new URL('funked-up.mp3',folder));
   const fetch=t.mock.method(globalThis,'fetch',async()=>new Response(bytes));
-  const file=await practiceFile(track);assert.equal(file.size,track.bytes);assert.equal(file.type,'audio/mpeg');
+  const file=await practiceFile(track);assert.equal(file.size,track.bytes);assert.equal(file.type,'audio/mpeg');assert.equal(isPracticeFile(file),true);assert.equal(isPracticeFile(new File([bytes],file.name,{type:file.type})),false);
   for(const [body,pattern] of [[bytes.subarray(0,-1),/Incomplete/],[new Uint8Array(bytes.length+1),/size mismatch/],[new Uint8Array(bytes.length),/checksum mismatch/]]) {
     fetch.mock.mockImplementation(async()=>new Response(body));await assert.rejects(()=>practiceFile(track),pattern);
   }

@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "browser": "chromium",
+      "anonymousDemo": "PASS",
+      "twoSampleDecks": "PASS",
+      "samplePlayback": "PASS",
+      "beatControls": "PASS",
+      "sampler": "PASS",
+      "samplePhrase": "PASS",
+      "basicPersonalTrack": "PASS",
+      "basicProRestrictions": "PASS",
+      "paidFixture": "PASS",
+      "revokedFixture": "PASS",
+      "accessibility": "PASS",
+      "mobileOverflow": "PASS",
+      "offlineDemoAndBasic": "PASS",
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "anonymousDemo": "PASS",
+      "twoSampleDecks": "PASS",
+      "samplePlayback": "PASS",
+      "beatControls": "PASS",
+      "sampler": "PASS",
+      "samplePhrase": "PASS",
+      "basicPersonalTrack": "PASS",
+      "basicProRestrictions": "PASS",
+      "paidFixture": "PASS",
+      "revokedFixture": "PASS",
+      "accessibility": "PASS",
+      "mobileOverflow": "PASS",
+      "offlineDemoAndBasic": "NOT RUN",
+      "errors": []
+    }
+  ],
+  "paidFixture": "Simulated access response; no purchase or entitlement writes",
+  "hardwareListening": "NOT RUN"
+}

@@ -1,14 +1,15 @@
+import { attachStudioAccess } from './studio-access.js';
 import './site-announcement.js';
 import { attachProConsole } from './pro-console.js';
 import { attachSampler } from './sampler.js';
-import { practiceFile, partnerFile } from './practice-library.js';
+import { practiceFile, partnerFile, isPracticeFile } from './practice-library.js';
 import { attachStudioView } from './studio-view.js';
 import { createMixer, updateMixer, setMixerGain, validateTrack, trackDuration, validatePreparedTrack, updateToneEcho, clearEcho } from './mixer.js';
 import { attachDeck, playMedia } from './deck-controls.js';
 import { attachKeyboard } from './keyboard.js';
 import { attachPerformance } from './performance-session.js';
 import { attachMixRecording } from './mix-recording.js';
-import { resumeAudio } from './audio.js';
+import { resumeAudio, encodeWav } from './audio.js';
 import { loadSessions, loadSession, verifySession } from './library.js';
 import { attachSetRecording } from './set-recording.js';
 import { FrameDeck } from './frame-deck.js';
@@ -20,6 +21,7 @@ import { DECK_EFFECTS, updateDeckEffects, clearDeckEffects } from './deck-effect
 const $ = id => document.getElementById(id);
 attachStudioView($('dj'), $('studio-fullscreen'), $('studio-view-status'));
 attachProConsole();
+const access = await attachStudioAccess();
 const rights = $('music-rights');
 const decks = ['a', 'b'].map(id => ({ id, audio: $(`audio-${id}`), url: null, duration: 0, loading: null, revision: 0, starting: false }));
 let context, mixer, meterData, audioFailure, session;
@@ -183,6 +185,7 @@ async function loadTrack(deck, getFile) {
   try {
     const file = await getFile(controller.signal);
     if (!file || revision !== deck.revision || !rights.checked) return;
+    if (!access.ownMusic && !isPracticeFile(file)) throw Error('Pro demo uses practice music. Switch to Basic or upgrade to load your tracks.');
     validateTrack(file);
     const duration = await trackDuration(file, controller.signal);
     if (revision !== deck.revision || !rights.checked) return;
@@ -264,11 +267,12 @@ fetch(new URL('./practice-audio/manifest.json', import.meta.url)).then(async res
   const manifest = await response.json();addPracticeTracks(manifest.tracks,'CC0 practice music');
   $('practice-status').textContent = `${manifest.tracks.length} CC0 tracks ready. Pause the destination deck before loading. Your current track stays until its replacement is ready.`;
 }).catch(error => { $('practice-status').textContent = error.message; });
-fetch('/api/aurowall').then(async response=>{
+if (access.mode === 'pro') fetch('/api/aurowall').then(async response=>{
   if(!response.ok)throw Error();const {tracks}=await response.json();
   if(tracks.length)addPracticeTracks(tracks.map(track=>({...track,partner:true,source_page:'https://aurowall.com'})),'Aurowall · online');
   $('aurowall-status').textContent=tracks.length?`${tracks.length} Aurowall tracks available online.`:'No Aurowall tracks are available yet.';
 }).catch(()=>{$('aurowall-status').textContent='Aurowall music is unavailable offline or right now. Your CC0 and local tracks still work.';});
+if (access.mode !== 'pro') $('aurowall-status').textContent = 'Aurowall music is included with the Pro upgrade. Practice tracks are free.';
 $('library-refresh').onclick = refreshLibrary;
 $('saved-mix').onchange = () => decks.forEach(controls);
 for (const deck of decks) {
@@ -313,6 +317,27 @@ for (const deck of decks) {
   });
 }
 session = attachPerformance({ deck: decks[0], graph: audioGraph, context: () => context, mixer: () => mixer, pause, controls, rights, onPhraseChanged: () => { keyboard.sourceChanged(); mixRecording.sourceChanged(); }, onSourcesChanged: () => mixRecording.sourcesChanged(), onTransportChanged: () => mixRecording.transportChanged('prepared', 'prepared'), onSaved: () => { if (!$('library-refresh').disabled) refreshLibrary(); } });
+for (const [id, load] of [['sample-demo', file => sampler.loadSample(file)], ['phrase-demo', file => session.loadSample(file)]]) {
+  $(id).onclick = async () => {
+    const status = $(id === 'sample-demo' ? 'sampler-status' : 'phrase-status');
+    if (access.mode === 'basic' || !rights.checked || !$(id === 'sample-demo' ? 'sample-consent' : 'phrase-consent').checked) {
+      status.textContent = 'Confirm music and sample or phrase permission first. Use Pro demo to try these controls.'; return;
+    }
+    $(id).disabled = true;
+    try {
+      const track = practiceTracks.find(t => !t.partner);
+      if (!track) throw Error('Wait for the practice music list to load.');
+      const offline = new OfflineAudioContext(1, 4 * 48000, 48000);
+      const source = offline.createBufferSource();
+      source.buffer = await offline.decodeAudioData(await (await practiceFile(track)).arrayBuffer());
+      source.connect(offline.destination); source.start();
+      const samples = (await offline.startRendering()).getChannelData(0);
+      const clip = new File([encodeWav(samples, 0, 4)], 'Practice sound.wav', {type:'audio/wav'});
+      await load(clip);
+    } catch (error) { status.textContent = error.message; }
+    finally { $(id).disabled = false; access.refresh(); }
+  };
+}
 $('crossfade').oninput = $('master').oninput = levels;
 $('crossfade-curve').onchange = levels;
 $('pause-all').onclick = () => { decks.forEach(pause); sampler.stop(); clearDeckEchoes(); $('mixer-status').textContent = 'All decks and samples paused.'; };
@@ -359,6 +384,7 @@ setInterval(() => {
   decks.forEach(controls);
   bridge.sample();
   session.refresh();
+  access.refresh();
   if (!mixer || context.state !== 'running') { $('output-meter').value = 0; $('peak').textContent = 'Silent'; return; }
   let peak = 0;
   for (const node of mixer.stereoMeters) {

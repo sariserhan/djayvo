@@ -385,7 +385,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     if(restored){clearPerformance();savedPerformance=restored;performanceBuffer=buffer;generationContext=state.context;download=URL.createObjectURL(restored.files.find(f=>f.name.endsWith('.wav')).blob);$('performance-download').href=download;$('performance-download').download=`jamloom-session-${restored.seed}.wav`;$('performance-download').hidden=false;onSourcesChanged();}
     say('Prepared session restored, stopped. Check the saved musical context before playback.');refresh();
   }
-  return { transportState: () => transport?.snapshot() ?? null, reset, stop, refresh, phraseSource, recoverySnapshot, restoreRecovery, recoveryCurrent:state=>!state||state.revision===revision&&(!(state.phrase||state.performance)||permitted()), mixSources: () => ({
+  return { loadSample: file => { if (permitted() && !busy && !starting) return loadPhrase(file); }, transportState: () => transport?.snapshot() ?? null, reset, stop, refresh, phraseSource, recoverySnapshot, restoreRecovery, recoveryCurrent:state=>!state||state.revision===revision&&(!(state.phrase||state.performance)||permitted()), mixSources: () => ({
     c: savedPerformance?.files.find(file => file.name.endsWith('.wav'))?.blob, phrase: phraseBlob,
     plan: savedPerformance?.files.find(file => file.name.endsWith('.score.json'))?.blob,
   }) };

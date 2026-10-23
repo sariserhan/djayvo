@@ -423,3 +423,13 @@ details:has(#set-record-stop:not(:disabled),#mix-record-stop:not(:disabled),#tak
 @media(min-width:1100px) and (max-height:900px) {
  .studio-expanded .platter-row { padding-top:10px; padding-bottom:4px; }
 }
+
+/* Access choices remain above the same playable deck in every mode. */
+.studio-access{border:1px solid var(--line,#42535b);border-radius:16px;padding:20px;margin:16px 0;background:#17252b}
+.studio-access[hidden]{display:none}.studio-access h2{font-size:1.2rem;margin:0 0 8px}.studio-access p{max-width:76ch}
+.studio-access button[aria-pressed=true]{border-color:#b7f16b;background:#2c4025;color:#edffdf}
+.studio-lock-note{font-size:.75rem;color:#d3e5b5;margin:5px 0;font-weight:500}
+.studio-locked input,.studio-locked button,input.studio-locked,button.studio-locked{opacity:.55}
+.studio-access .session-actions{flex-wrap:wrap}.studio-access .primary{display:inline-flex;align-items:center}
+
+#studio-access-status:empty{display:none}

@@ -1,3 +1,5 @@
+const verifiedPracticeFiles = new WeakSet();
+export const isPracticeFile = file => verifiedPracticeFiles.has(file);
 // Fetch only our pinned public catalogue assets; never replace a deck with unverified bytes.
 export async function practiceFile(track, signal) {
   if (!/^\.\/practice-audio\/[a-z-]+\.mp3$/.test(track.url) || !/^[a-f0-9]{64}$/.test(track.sha256)
@@ -17,6 +19,7 @@ export async function practiceFile(track, signal) {
   const file = new File(chunks, `${track.title} — ${track.artist}.mp3`, {type:'audio/mpeg'});
   const hash = [...new Uint8Array(await crypto.subtle.digest('SHA-256', await file.arrayBuffer()))].map(n => n.toString(16).padStart(2, '0')).join('');
   if (hash !== track.sha256) throw new Error('Practice track checksum mismatch.');
+  verifiedPracticeFiles.add(file);
   return file;
 }
 

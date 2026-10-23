@@ -56,30 +56,44 @@ self.addEventListener('activate', event => {
   event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith(PREFIX) && key !== CACHE).map(key => caches.delete(key)))));
 });
 
+async function studioAccess(cached, key) {
+  try {
+    const response = await fetch('/api/pro/access', {cache:'no-store', credentials:'same-origin', signal:AbortSignal.timeout(5000)});
+    let active = false;
+    if (response.ok) active = (await response.json()).active === true;
+    else if (![401,403].includes(response.status)) throw Error('Access check unavailable');
+    if (cached) {
+      const headers = new Headers(cached.headers);
+      if (active) headers.set('X-Jamloom-Pro-Expires', String(Date.now() + 30 * 86400000));
+      else headers.delete('X-Jamloom-Pro-Expires');
+      await (await caches.open(CACHE)).put(key, new Response(await cached.clone().arrayBuffer(), {headers}));
+    }
+    return active;
+  } catch {
+    return !!cached && Number(cached.headers.get('X-Jamloom-Pro-Expires')) > Date.now();
+  }
+}
+
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
   if (url.search) return;
+  if (hostedPro && url.origin === new URL(self.registration.scope).origin && url.pathname === '/api/pro/access') {
+    event.respondWith((async () => {
+      const key = new URL('dj.html', self.registration.scope).href;
+      const cached = await (await caches.open(CACHE)).match(key);
+      return Response.json({active: await studioAccess(cached, key)}, {headers:{'Cache-Control':'private, no-store'}});
+    })());
+    return;
+  }
   url.hash = '';
   const key = url.href === self.registration.scope ? new URL('index.html', self.registration.scope).href : url.href;
   if (!assets.has(key)) return;
   event.respondWith((async () => {
     const cached = await (await caches.open(CACHE)).match(key);
     if (hostedPro && url.pathname === '/studio/dj.html') {
-      try {
-        const access = await fetch('/api/pro/access', {cache:'no-store', credentials:'same-origin', signal:AbortSignal.timeout(10000)});
-        if (access.status === 401 || access.status === 403 || (access.ok && !(await access.json()).active)) { await (await caches.open(CACHE)).delete(key); return Response.redirect(new URL('/pro', url).href); }
-        if (!access.ok) throw Error('Access check unavailable');
-        if (cached) {
-          const headers = new Headers(cached.headers);
-          headers.set('X-Jamloom-Pro-Expires', String(Date.now() + 30 * 86400000));
-          const renewed = new Response(await cached.arrayBuffer(), {headers});
-          await (await caches.open(CACHE)).put(key, renewed.clone());
-          return renewed;
-        }
-      } catch {
-        if (!cached || Number(cached.headers.get('X-Jamloom-Pro-Expires')) <= Date.now()) return new Response('Reconnect to renew Pro access. Your saved music is unchanged.', {status:503, headers:{'Content-Type':'text/plain'}});
-      }
+      await studioAccess(cached, key);
+      if (cached) return (await (await caches.open(CACHE)).match(key)) ?? cached;
     }
     if (cached) return cached;
     // Eviction/removal cannot mix a newer engine with an older open page.

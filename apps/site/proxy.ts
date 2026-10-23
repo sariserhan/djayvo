@@ -28,10 +28,13 @@ export async function proxy(request: NextRequest) {
     }
   }
   if(path==='/studio/dj.html'){
-    try{const {services}=await import('./lib/services');const {proAccess}=await import('./lib/pro-access');const {auth,pool}=services();const session=await auth.api.getSession({headers:request.headers});
-      if(!session?.user.emailVerified||!await proAccess(pool,session.user.id,process.env.PRO_BILLING_MODE==='live'))return NextResponse.redirect(new URL('/pro',request.url));
-    }catch{return new NextResponse('Pro access could not be verified. Your local files are unchanged.',{status:503,headers:{'Cache-Control':'private, no-store'}});}
-    const response=NextResponse.next();response.headers.set('Cache-Control','private, no-store');response.headers.set('X-Jamloom-Pro-Expires',String(Date.now()+30*86400000));return response;
+    const response=NextResponse.next();response.headers.set('Cache-Control','private, no-store');
+    // The console is public; only a verified purchase grants full-track Pro and offline renewal.
+    try{const {services}=await import('./lib/services');const {proAccess}=await import('./lib/pro-access');const {auth,pool}=services();
+      const session=request.headers.has('cookie')?await auth.api.getSession({headers:request.headers}):null;
+      if(session?.user.emailVerified&&await proAccess(pool,session.user.id,process.env.PRO_BILLING_MODE==='live'))response.headers.set('X-Jamloom-Pro-Expires',String(Date.now()+30*86400000));
+    }catch{/* Basic and sample demos remain available without an account service. */}
+    return response;
   }
   if(!/^\/(account|library|catalogue|playlists|review|admin|contact|support)(\/|$)/.test(path)){const response=NextResponse.next();if(launchBypass)response.headers.set('Cache-Control','private, no-store');return response;}
   const nonce = btoa(crypto.randomUUID());

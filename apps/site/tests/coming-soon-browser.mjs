@@ -15,7 +15,7 @@ try{
  async function cookie(email){const r=await request('/api/auth/sign-in/email',{body:{email,password}});assert.equal(r.status,200);return r.headers.getSetCookie().map(v=>v.split(';')[0]).join('; ');}
  const ownerCookie=await cookie(OWNER_EMAIL),memberCookie=await cookie('member@example.test');
  for(const options of [{},{cookie:memberCookie},{cookie:'better-auth.session_token=fake'},{headers:{'x-admin':'true','x-user-email':OWNER_EMAIL}}]){const r=await request('/?admin=true',options);assert.equal(r.status,200);assert.match(await r.text(),/Jamloom is coming soon/);assert.match(r.headers.get('cache-control'),/no-store/);}
- for(const path of ['/improvise','/academy','/studio/index.html','/studio/dj.html','/library','/account/sign-up','/account'])assert.equal((await request(path)).status,307,path);
+ for(const path of ['/improvise','/academy','/studio/index.html','/library','/account/sign-up','/account'])assert.equal((await request(path)).status,307,path);
  for(const path of ['/api/catalogue','/api/library','/api/academy/progress','/api/aurowall','/api/aurowall/000000000000000000000000'])assert.equal((await request(path)).status,503,path);
  assert.equal((await request('/api/auth/sign-up/email',{body:{name:'Blocked',email:'blocked@example.test',password}})).status,503);assert.equal((await pool.query('SELECT id FROM "user" WHERE email=\'blocked@example.test\'')).rowCount,0);
  for(const path of ['/account/sign-in','/account/forgot-password','/support','/contact','/privacy'])assert.equal((await request(path)).status,200,path);
