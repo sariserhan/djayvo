@@ -1,0 +1,48 @@
+[
+  {
+    "language": "de",
+    "accepted": false,
+    "matching_windows": 0,
+    "target": "jazz",
+    "top_styles": [
+      "reggaeton",
+      "reggae",
+      "latin"
+    ],
+    "seconds": 125.31487470900174,
+    "published": [
+      {
+        "status": "PASS",
+        "id": "c0dbbabab04353d94c16714767553bbd",
+        "sha256": "c0dbbabab04353d94c16714767553bbd6579d018031be7ee3b298c5d4c610560",
+        "bytes": 23040044,
+        "product": "music-dna",
+        "check": "style-mismatch",
+        "alreadyListed": false
+      }
+    ]
+  },
+  {
+    "language": "fi",
+    "accepted": false,
+    "matching_windows": 2,
+    "target": "country",
+    "top_styles": [
+      "country",
+      "traditional",
+      "afrobeats"
+    ],
+    "seconds": 138.90534699999262,
+    "published": [
+      {
+        "status": "PASS",
+        "id": "d9974a1a20cecd1918dd4b87bc67fad9",
+        "sha256": "d9974a1a20cecd1918dd4b87bc67fad90a0238c6afa254b3406459a344a70377",
+        "bytes": 23040044,
+        "product": "music-dna",
+        "check": "style-mismatch",
+        "alreadyListed": false
+      }
+    ]
+  }
+]

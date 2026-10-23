@@ -1,0 +1,63 @@
+{
+  "purpose": "Local screening experiments, no serving-policy or threshold change",
+  "original_model": "laion/clap-htsat-unfused",
+  "original_revision": "8fa0f1c6d0433df6e97c127f64b2a1d6c0dcda8a",
+  "music_model": "laion/larger_clap_music",
+  "music_revision": "a0b4534a14f58e20944452dff00a22a06ce629d1",
+  "source_model": "lukewys/laion_clap",
+  "source_revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+  "source_file": "music_audioset_epoch_15_esc_90.14.pt",
+  "source_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+  "converter": "https://raw.githubusercontent.com/huggingface/transformers/v4.39.3/src/transformers/models/clap/convert_clap_original_pytorch_to_hf.py",
+  "conversion": {
+    "sourceSha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+    "missing": [
+      "text_model.embeddings.token_type_ids"
+    ],
+    "unexpected": [
+      "text_transform.layers.0.linear.weight",
+      "text_transform.layers.0.linear.bias",
+      "text_transform.layers.1.linear.weight",
+      "text_transform.layers.1.linear.bias",
+      "audio_transform.layers.0.linear.weight",
+      "audio_transform.layers.0.linear.bias",
+      "audio_transform.layers.1.linear.weight",
+      "audio_transform.layers.1.linear.bias",
+      "audio_model.audio_encoder.spectrogram_extractor.stft.conv_real.weight",
+      "audio_model.audio_encoder.spectrogram_extractor.stft.conv_imag.weight",
+      "audio_model.audio_encoder.logmel_extractor.melW",
+      "audio_model.audio_encoder.tscam_conv.weight",
+      "audio_model.audio_encoder.tscam_conv.bias",
+      "audio_model.audio_encoder.head.weight",
+      "audio_model.audio_encoder.head.bias",
+      "audio_model.audio_encoder.layers.0.blocks.1.attn_mask",
+      "audio_model.audio_encoder.layers.1.blocks.1.attn_mask",
+      "audio_model.audio_encoder.layers.2.blocks.1.attn_mask",
+      "audio_model.audio_encoder.layers.2.blocks.3.attn_mask",
+      "audio_model.audio_encoder.layers.2.blocks.5.attn_mask",
+      "audio_model.audio_encoder.layers.2.blocks.7.attn_mask",
+      "audio_model.audio_encoder.layers.2.blocks.9.attn_mask",
+      "audio_model.audio_encoder.layers.2.blocks.11.attn_mask"
+    ],
+    "differingWeightsCount": 535
+  },
+  "backing_separation": {
+    "technical": "PASS",
+    "source_sha256": "c0dbbabab04353d94c16714767553bbd6579d018031be7ee3b298c5d4c610560",
+    "model_sha256": "a004b2790d73ffeaa535db458a1a79b539dfdbafbccc31f275d07e632ebd7816",
+    "stems": {
+      "vocals": "9bd3a8dd8a7a07b4d2988e0080f7c0930cb1b6db0f9bf9d123af975b8466835f",
+      "drums": "9ad6801bf9cf45ab59f81d9954bd5b6d88d85f130e81555f2122f85f98d9c710"
+    },
+    "sample_rate": 48000,
+    "frames": 5760000,
+    "device": "cpu",
+    "seconds": 98.71700729103759,
+    "separation_quality": "NOT RUN: estimated stems can contain bleed"
+  },
+  "style_trials": {
+    "planned": 14,
+    "completed": 2,
+    "remaining": "Cancelled before rendering once the owner confirmed a false rejection; evaluate the checker before making replacement songs"
+  }
+}
