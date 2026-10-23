@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { netProceeds,quoteCost,privacyCredits,COST_CATEGORIES,type Costs } from '../lib/economics';
 import { paidGenerationReleased } from '../lib/product';
-import { sandboxStripe,fulfillCheckout } from '../lib/stripe-payments';
+import { sandboxStripe,fulfillCheckout,checkout,creditBilling } from '../lib/stripe-payments';
 import Stripe from 'stripe';
 test('tax, Apple fee tier, fixed fees, refunds, FX and overhead reduce spendable proceeds',()=>{
  const net=netProceeds(9_990_000,{tax:1_665_000,provider:2_997_000,refundRisk:500_000,overhead:400_000,discount:300_000,fx:200_000});
@@ -26,10 +26,10 @@ test('Stripe signatures require exact body, timestamp and sandbox credentials',(
  assert.throws(()=>sandboxStripe({STRIPE_SECRET_KEY:'sk_live_never',STRIPE_WEBHOOK_SECRET:secret}));
 });
 test('Checkout fulfillment rereads paid state, rejects unpaid, wrong totals and live payments',async()=>{
- const session={id:'cs_test',metadata:{pack:'starter'},client_reference_id:'owner',livemode:false,mode:'payment',payment_status:'paid',payment_intent:'pi_test',currency:'usd',amount_subtotal:999,amount_total:1099,total_details:{amount_discount:0,amount_tax:100},line_items:{data:[{quantity:1,amount_subtotal:999}]}};
+ const session={id:'cs_test',metadata:{pack:'starter',jamloom_product:'song-credits'},client_reference_id:'owner',livemode:false,mode:'payment',payment_status:'paid',payment_intent:'pi_test',currency:'usd',amount_subtotal:999,amount_total:1099,total_details:{amount_discount:0,amount_tax:100},line_items:{data:[{quantity:1,amount_subtotal:999}]}};
  const charge={id:'ch_test',livemode:false,paid:true,captured:true,refunded:false,amount_refunded:0,disputed:false,currency:'usd',amount:1099,payment_intent:'pi_test',balance_transaction:{currency:'usd',source:'ch_test',amount:1099,net:1037,fee:62,exchange_rate:null}};
  const intent={id:'pi_test',livemode:false,status:'succeeded',latest_charge:charge};
- let granted=0;const wallet={grant:async(_owner:string,p:{netMicros:number})=>{assert.equal(p.netMicros,7370000);granted++;}};
+ let granted=0;const wallet={live:false,grant:async(_owner:string,p:{netMicros:number})=>{assert.equal(p.netMicros,7370000);granted++;}};
  const stripe={checkout:{sessions:{retrieve:async()=>session}},paymentIntents:{retrieve:async()=>intent}};
  await fulfillCheckout(stripe as unknown as Stripe,wallet as never,'cs_test');assert.equal(granted,1);
  for(const patch of [{payment_status:'unpaid'},{livemode:true},{amount_subtotal:1},{currency:'eur'},{client_reference_id:null}]){
@@ -45,4 +45,12 @@ test('Checkout fulfillment rereads paid state, rejects unpaid, wrong totals and 
 test('private credits are 25 percent of the base rounded up, bounded and integer',()=>{
  for(const [base,extra] of [[0,0],[1,1],[4,1],[5,2],[100000,25000]])assert.equal(privacyCredits(base),extra);
  for(const n of [-1,1.1,NaN,Infinity,100001])assert.throws(()=>privacyCredits(n));
+});
+
+test('credit checkout binds product, taxes, pack and billing mode',async()=>{
+ let captured:any;const stripe={checkout:{sessions:{create:async(value:unknown)=>{captured=value;return {};}}}};
+ await assert.rejects(checkout(stripe as unknown as Stripe,'owner','starter','fixture-key','http://localhost',false,''),/tax category/);
+ await checkout(stripe as unknown as Stripe,'owner','starter','fixture-key','http://localhost',false,'txcd_10000000');
+ assert.equal(captured.metadata.jamloom_product,'song-credits');assert.equal(captured.line_items[0].price_data.tax_behavior,'exclusive');assert.equal(captured.line_items[0].price_data.unit_amount,999);
+ assert.throws(()=>creditBilling({CREDIT_BILLING_MODE:'live',STRIPE_LIVE_SECRET_KEY:'sk_test_wrong',CREDIT_STRIPE_LIVE_WEBHOOK_SECRET:'whsec_fixture'}));
 });

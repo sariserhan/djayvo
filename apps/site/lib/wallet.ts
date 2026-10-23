@@ -6,9 +6,9 @@ import {validatePermit,type WorkerPermit} from './generation-budget';
 
 export type JobBudget=Pick<WorkerPermit,'inputSha256'|'planSha256'|'maxRuntimeMs'|'hourlyMicros'|'fixedCostMicros'>;
 
-type Purchase={provider:'stripe_test'|'apple_sandbox';receipt:string;credits:number;netMicros:number};
+type Purchase={provider:'stripe_test'|'stripe_live'|'apple_sandbox';receipt:string;credits:number;netMicros:number};
 export class Wallet {
-  constructor(private pool:Pool){}
+  constructor(private pool:Pool,readonly live=false){}
   private async atomic<T>(owner:string,fn:(db:PoolClient)=>Promise<T>,allowFrozen=false,receiptKey?:string):Promise<T>{
     const db=await this.pool.connect();
     try{await db.query('BEGIN');
@@ -21,12 +21,12 @@ export class Wallet {
     }catch(e){await db.query('ROLLBACK');throw e;}finally{db.release();}
   }
   async balance(owner:string){return (await this.pool.query(`SELECT COALESCE(sum(available_delta),0)::int AS available,
-    COALESCE(sum(reserved_delta),0)::int AS reserved FROM wallet_ledger_entries WHERE owner_id=$1`,[owner])).rows[0];}
+    COALESCE(sum(reserved_delta),0)::int AS reserved FROM wallet_ledger_entries e JOIN credit_lots l ON l.id=e.lot_id WHERE e.owner_id=$1 AND (l.provider='stripe_live')=$2`,[owner,this.live])).rows[0];}
   async accountToken(owner:string){return this.atomic(owner,async db=>(await db.query('SELECT app_account_token FROM credit_wallets WHERE owner_id=$1',[owner])).rows[0].app_account_token as string);}
   // Only verified provider adapters may call grant; there is no client grant endpoint.
   async grant(owner:string,p:Purchase){
     integer(p.credits,1,100000);integer(p.netMicros,p.credits);
-    if(!['stripe_test','apple_sandbox'].includes(p.provider)||!p.receipt||p.receipt.length>255)throw new Error('Invalid receipt');
+    if(!['stripe_test','stripe_live','apple_sandbox'].includes(p.provider)||(p.provider==='stripe_live')!==this.live||!p.receipt||p.receipt.length>255)throw new Error('Invalid receipt');
     return this.atomic(owner,async db=>{
       if((await db.query('SELECT 1 FROM purchase_holds WHERE provider=$1 AND receipt=$2',[p.provider,p.receipt])).rowCount)throw new Error('Purchase held for reconciliation');
       const result=await db.query(`INSERT INTO credit_lots(owner_id,provider,receipt,credits,net_micros)
@@ -46,8 +46,8 @@ export class Wallet {
     return this.atomic(owner,async db=>{
       const exempt=await adminAccount(db,owner);
       const lots=exempt?[]:(await db.query(`SELECT l.id,l.net_micros,l.credits,COALESCE(sum(e.available_delta),0)::int AS available
-        FROM credit_lots l JOIN wallet_ledger_entries e ON e.lot_id=l.id WHERE l.owner_id=$1
-        GROUP BY l.id ORDER BY l.created_at,l.id`,[owner])).rows;
+        FROM credit_lots l JOIN wallet_ledger_entries e ON e.lot_id=l.id WHERE l.owner_id=$1 AND (l.provider='stripe_live')=$2
+        GROUP BY l.id ORDER BY l.created_at,l.id`,[owner,this.live])).rows;
       const allocations=exempt?[]:allocateCredits(lots,cap,marginBps,visibility==='private');
       return {credits:allocations.reduce((sum,a)=>sum+a.n,0),privacyCredits:allocations.reduce((sum,a)=>sum+a.privacy,0),
         costCapMicros:cap,marginBps,visibility,creditExempt:exempt};
@@ -69,8 +69,8 @@ export class Wallet {
       if(Number(daily.cost)+cap>10_000_000)throw new Error('Daily cost ceiling');
       const exempt=await adminAccount(db,owner);
       const lots=exempt?[]:(await db.query(`SELECT l.id,l.net_micros,l.credits,COALESCE(sum(e.available_delta),0)::int AS available
-        FROM credit_lots l JOIN wallet_ledger_entries e ON e.lot_id=l.id WHERE l.owner_id=$1
-        GROUP BY l.id ORDER BY l.created_at,l.id`,[owner])).rows;
+        FROM credit_lots l JOIN wallet_ledger_entries e ON e.lot_id=l.id WHERE l.owner_id=$1 AND (l.provider='stripe_live')=$2
+        GROUP BY l.id ORDER BY l.created_at,l.id`,[owner,this.live])).rows;
       const allocations=exempt?[]:allocateCredits(lots,cap,marginBps,!!privacyBps);
       const credits=allocations.reduce((sum,a)=>sum+a.n,0);
       if(expectedCredits!==undefined && credits!==expectedCredits)throw new Error('Quote changed; request a new quote');
@@ -118,7 +118,7 @@ export class Wallet {
     },true);
   }
   async freezePurchase(provider:string,receipt:string){
-    if(!['stripe_test','apple_sandbox'].includes(provider)||!receipt||receipt.length>255)throw new Error('Invalid receipt');
+    if(!['stripe_test','stripe_live','apple_sandbox'].includes(provider)||(provider==='stripe_live')!==this.live||!receipt||receipt.length>255)throw new Error('Invalid receipt');
     const db=await this.pool.connect();
     try{await db.query('BEGIN');await db.query('SELECT pg_advisory_xact_lock(hashtextextended($1,0))',[`${provider}:${receipt}`]);
       await db.query('INSERT INTO purchase_holds(provider,receipt) VALUES($1,$2) ON CONFLICT DO NOTHING',[provider,receipt]);

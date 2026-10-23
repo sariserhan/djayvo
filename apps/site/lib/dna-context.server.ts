@@ -8,5 +8,5 @@ export async function dnaContext(request:Request):Promise<DnaContext|undefined>{
  if(config.local&&process.env.JAMLOOM_DNA_CREDITS_SANDBOX!=='true')return undefined;
  const session=await auth.api.getSession({headers:request.headers});
  const store=!config.local||process.env.JAMLOOM_DNA_R2_ENABLED==='true'?r2AudioStore():undefined;
- return {commerce:new DnaCommerce(pool,config.secret,store),owner:session?.user.emailVerified?session.user.id:null,readOnly:!config.local};
+ return {commerce:new DnaCommerce(pool,config.secret,store,{live:process.env.CREDIT_BILLING_MODE==='live'}),owner:session?.user.emailVerified?session.user.id:null,readOnly:!config.local};
 }

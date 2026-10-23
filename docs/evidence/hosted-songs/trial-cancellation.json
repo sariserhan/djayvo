@@ -1,0 +1,217 @@
+{
+  "startedAt": "2026-10-23T06:03:01.819Z",
+  "maxUSD": 3,
+  "maxWorkers": 2,
+  "maxSeconds": 900,
+  "requests": [
+    {
+      "id": "0c209c11eb2c4523aa13873a9305ff37",
+      "owner": "trial-0",
+      "label": "jazz",
+      "product": "music-dna",
+      "quotedCredits": 4,
+      "transitions": [],
+      "state": "cancelled",
+      "provider_id": "3761be79-83e6-4bc8-9a70-8516d50b579f-u2",
+      "provider_status": "CANCELLED",
+      "execution_ms": null,
+      "delay_ms": null,
+      "cleanup_at": "2026-10-23T06:03:40.217Z"
+    },
+    {
+      "id": "8fcf6cf31302439185c825bde88ffd78",
+      "owner": "trial-1",
+      "label": "rock",
+      "product": "music-dna",
+      "quotedCredits": 5,
+      "transitions": [],
+      "state": "cancelled",
+      "provider_id": "7e1f6af3-97e6-47fb-8b6d-06067e347cc0-u2",
+      "provider_status": "CANCELLED",
+      "execution_ms": null,
+      "delay_ms": null,
+      "cleanup_at": "2026-10-23T06:03:40.494Z"
+    },
+    {
+      "id": "b7f5e7ec96f449559f5084b9dfe578f8",
+      "owner": "trial-2",
+      "label": "spanish",
+      "product": "music-dna",
+      "quotedCredits": 4,
+      "transitions": [],
+      "state": "cancelled",
+      "provider_id": "4f99bfb9-ac2d-49c0-a63d-04a023b98311-u2",
+      "provider_status": "CANCELLED",
+      "execution_ms": null,
+      "delay_ms": null,
+      "cleanup_at": "2026-10-23T06:03:40.780Z"
+    },
+    {
+      "id": "ffb5629556dc4182a87a4e532b78b300",
+      "owner": "trial-3",
+      "label": "turkish",
+      "product": "music-dna",
+      "quotedCredits": 5,
+      "transitions": [],
+      "state": "cancelled",
+      "provider_id": "f1326d93-3dd2-4f51-b48b-21d323c33d7a-u1",
+      "provider_status": "CANCELLED",
+      "execution_ms": null,
+      "delay_ms": null,
+      "cleanup_at": "2026-10-23T06:03:40.973Z"
+    },
+    {
+      "id": "a70eaaa0b89743fcad915038c08f43d5",
+      "owner": "trial-4",
+      "label": "russian",
+      "product": "music-dna",
+      "quotedCredits": 4,
+      "transitions": [],
+      "state": "cancelled",
+      "provider_id": "cacfcf70-be46-4cf3-a6a2-7b7f30d6e7ea-u1",
+      "provider_status": "CANCELLED",
+      "execution_ms": null,
+      "delay_ms": null,
+      "cleanup_at": "2026-10-23T06:03:41.176Z"
+    },
+    {
+      "id": "7ecbefdebfbe40bc96503a2e9c61bc05",
+      "owner": "trial-5",
+      "label": "funk",
+      "product": "improvise",
+      "quotedCredits": 5,
+      "transitions": [],
+      "state": "cancelled",
+      "provider_id": "526a944a-2f6c-45c9-b4aa-993bdf3bf262-u1",
+      "provider_status": "CANCELLED",
+      "execution_ms": null,
+      "delay_ms": null,
+      "cleanup_at": "2026-10-23T06:03:41.506Z"
+    },
+    {
+      "id": "f6964ebbb9754edd80d89434939bf2f7",
+      "owner": "trial-6",
+      "label": "reggae",
+      "product": "improvise",
+      "quotedCredits": 4,
+      "transitions": [],
+      "state": "cancelled",
+      "provider_id": "033626d4-a090-47e9-b545-01375884892d-u1",
+      "provider_status": "CANCELLED",
+      "execution_ms": null,
+      "delay_ms": null,
+      "cleanup_at": "2026-10-23T06:03:41.867Z"
+    },
+    {
+      "id": "2b1f48bdb8f241b9ae304baedc27d43a",
+      "owner": "trial-7",
+      "label": "jazz-phrase",
+      "product": "improvise",
+      "quotedCredits": 5,
+      "transitions": [],
+      "state": "cancelled",
+      "provider_id": "c8970efb-bf32-485b-a710-743e3baa201c-u2",
+      "provider_status": "CANCELLED",
+      "execution_ms": null,
+      "delay_ms": null,
+      "cleanup_at": "2026-10-23T06:03:42.243Z"
+    }
+  ],
+  "health": [
+    {
+      "seconds": 6,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 0,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 16,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 0,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 26,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 0,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    }
+  ],
+  "cleanup": true,
+  "disabled": true,
+  "templateId": "jbpcd0xgbf",
+  "endpoint": "jl77hn92npt65k",
+  "billingBefore": [
+    {
+      "amount": 0.08039670903235674,
+      "timeBilledMs": 173085,
+      "diskSpaceBilledGB": 180,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 04:00:00"
+    },
+    {
+      "amount": 0.04899465385824442,
+      "timeBilledMs": 100789,
+      "diskSpaceBilledGB": 60,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 05:00:00"
+    }
+  ],
+  "finalHealth": {
+    "jobs": {
+      "completed": 2,
+      "failed": 3,
+      "inProgress": 0,
+      "inQueue": 0,
+      "retried": 0
+    },
+    "workers": {
+      "idle": 0,
+      "initializing": 0,
+      "ready": 0,
+      "running": 0,
+      "throttled": 0,
+      "unhealthy": 0
+    }
+  },
+  "stopped": true,
+  "stopReason": "Trial report could not serialize bigint; finally cancelled all eight requests before any completed output",
+  "finishedAt": "2026-10-23T06:05:34.897Z",
+  "removedObjects": 11
+}

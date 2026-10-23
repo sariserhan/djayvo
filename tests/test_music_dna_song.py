@@ -8,7 +8,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
-from music_dna_song import favorites, song_plan, parse_draft, run, draft
+from music_dna_song import favorites, song_plan, parse_draft, run, draft, retry_direction
 from singing_response import caption, digest, text_field
 from dna_direction import direction_for
 from dna_language import choose_language, COUNTRY_LANGUAGES, LANGUAGES
@@ -36,6 +36,19 @@ class MusicDnaSong(unittest.TestCase):
         self.assertIn(self.data['sound'], caption(case))
         self.assertNotIn('Artist One', caption(case))
         self.assertNotIn('source_audio', plan)
+
+    def test_retry_changes_direction_brief_but_preserves_lyrics_language_and_favorites(self):
+        plan = song_plan(self.data, self.refs, 123)
+        before = copy.deepcopy(plan)
+        retried = retry_direction(plan)
+        self.assertEqual(retried['cases'][0]['seed'],124)
+        for key in ('lyrics','bpm','voice','vocal_language'):
+            self.assertEqual(retried['cases'][0][key],before['cases'][0][key])
+        self.assertEqual(retried['favorites'],before['favorites'])
+        self.assertNotEqual(retried['cases'][0]['song_caption'],before['cases'][0]['song_caption'])
+        self.data['sound']='A gentle 72 bpm groove'
+        with self.assertRaisesRegex(ValueError,'selected BPM'):
+            song_plan(self.data,self.refs,123)
 
     def test_rejects_missing_evidence_unbounded_plans_and_unknown_only_lists(self):
         for field, value in [('influences', []), ('bpm', True), ('bpm', 190), ('voice', 'celebrity'),

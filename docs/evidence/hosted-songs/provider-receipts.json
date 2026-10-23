@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-23T06:22:41.753Z",
+  "failures": [
+    {
+      "label": "jazz",
+      "status": "FAILED",
+      "stage": "fit@unavailable",
+      "executionTime": 73499,
+      "delayTime": 116280
+    },
+    {
+      "label": "spanish",
+      "status": "FAILED",
+      "stage": "fit@unavailable",
+      "executionTime": 72473,
+      "delayTime": 190795
+    }
+  ],
+  "billing": [
+    {
+      "amount": 0.08039670903235674,
+      "timeBilledMs": 173085,
+      "diskSpaceBilledGB": 180,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 04:00:00"
+    },
+    {
+      "amount": 0.07884528022259474,
+      "timeBilledMs": 162196,
+      "diskSpaceBilledGB": 120,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 05:00:00"
+    }
+  ],
+  "limit": "Hourly billing may lag and includes earlier endpoint work; not a per-song final bill.",
+  "workersMin": 0,
+  "workersMax": 0,
+  "health": {
+    "jobs": {
+      "completed": 8,
+      "failed": 5,
+      "inProgress": 0,
+      "inQueue": 0,
+      "retried": 0
+    },
+    "workers": {
+      "idle": 0,
+      "initializing": 0,
+      "ready": 0,
+      "running": 0,
+      "throttled": 0,
+      "unhealthy": 0
+    }
+  }
+}

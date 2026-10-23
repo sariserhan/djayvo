@@ -1,5 +1,10 @@
 # Runpod setup — 2026-10-22
 
+**Update 2026-10-23:** Website dispatch/credits implementation and the bounded
+eight-request trial are documented in [Hosted songs](hosted-songs.md). Six songs
+completed, two DNA requests failed. Endpoint remains disabled; final cost, quality
+and owner deployment remain open. The setup evidence below is historical.
+
 **PASS, technical setup; PARTIAL, hosted release:** Runpod access, Linux build,
 authenticated endpoint, successful real Music DNA and Improvise generation, R2
 checksum delivery and shutdown verified. Successful execution took 45.931 seconds

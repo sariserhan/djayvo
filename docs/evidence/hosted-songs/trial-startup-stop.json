@@ -1,0 +1,678 @@
+{
+  "startedAt": "2026-10-23T05:56:47.491Z",
+  "maxUSD": 3,
+  "maxWorkers": 2,
+  "maxSeconds": 1200,
+  "requests": [
+    {
+      "id": "2f5c89f192834fcf831423054a4d7115",
+      "owner": "trial-0",
+      "label": "jazz",
+      "product": "music-dna",
+      "quotedCredits": 4,
+      "transitions": [
+        {
+          "seconds": 5,
+          "state": "queued",
+          "provider": null
+        }
+      ],
+      "pollErrors": 1,
+      "provider_id": null,
+      "provider_status": null,
+      "execution_ms": null,
+      "delay_ms": null,
+      "estimated_cost_micros": null,
+      "state": "queued"
+    },
+    {
+      "id": "51b76fc2e4bf45a4acddec7917d5277a",
+      "owner": "trial-1",
+      "label": "rock",
+      "product": "music-dna",
+      "quotedCredits": 5,
+      "transitions": [
+        {
+          "seconds": 6,
+          "state": "queued",
+          "provider": null
+        }
+      ],
+      "pollErrors": 1,
+      "provider_id": null,
+      "provider_status": null,
+      "execution_ms": null,
+      "delay_ms": null,
+      "estimated_cost_micros": null,
+      "state": "queued"
+    },
+    {
+      "id": "c9aa190a2bf944b095398d79d05b6f2f",
+      "owner": "trial-2",
+      "label": "spanish",
+      "product": "music-dna",
+      "quotedCredits": 4,
+      "transitions": [
+        {
+          "seconds": 6,
+          "state": "queued",
+          "provider": null
+        }
+      ],
+      "pollErrors": 1,
+      "provider_id": null,
+      "provider_status": null,
+      "execution_ms": null,
+      "delay_ms": null,
+      "estimated_cost_micros": null,
+      "state": "queued"
+    },
+    {
+      "id": "ad6a7bc2adf74de2882fa7683d20ad00",
+      "owner": "trial-3",
+      "label": "turkish",
+      "product": "music-dna",
+      "quotedCredits": 5,
+      "transitions": [
+        {
+          "seconds": 6,
+          "state": "queued",
+          "provider": null
+        }
+      ],
+      "pollErrors": 1,
+      "provider_id": null,
+      "provider_status": null,
+      "execution_ms": null,
+      "delay_ms": null,
+      "estimated_cost_micros": null,
+      "state": "queued"
+    },
+    {
+      "id": "151467de935445feb4f3398daaf6c0f2",
+      "owner": "trial-4",
+      "label": "russian",
+      "product": "music-dna",
+      "quotedCredits": 4,
+      "transitions": [
+        {
+          "seconds": 6,
+          "state": "queued",
+          "provider": null
+        }
+      ],
+      "pollErrors": 1,
+      "provider_id": null,
+      "provider_status": null,
+      "execution_ms": null,
+      "delay_ms": null,
+      "estimated_cost_micros": null,
+      "state": "queued"
+    },
+    {
+      "id": "b99bed53c7e24c4fa57f7b111c71573e",
+      "owner": "trial-5",
+      "label": "funk",
+      "product": "improvise",
+      "quotedCredits": 5,
+      "transitions": [
+        {
+          "seconds": 6,
+          "state": "queued",
+          "provider": null
+        }
+      ],
+      "pollErrors": 1,
+      "provider_id": null,
+      "provider_status": null,
+      "execution_ms": null,
+      "delay_ms": null,
+      "estimated_cost_micros": null,
+      "state": "queued"
+    },
+    {
+      "id": "d9da7268bb154cebaafe21a97ce163c2",
+      "owner": "trial-6",
+      "label": "reggae",
+      "product": "improvise",
+      "quotedCredits": 4,
+      "transitions": [
+        {
+          "seconds": 6,
+          "state": "queued",
+          "provider": null
+        }
+      ],
+      "pollErrors": 1,
+      "provider_id": null,
+      "provider_status": null,
+      "execution_ms": null,
+      "delay_ms": null,
+      "estimated_cost_micros": null,
+      "state": "queued"
+    },
+    {
+      "id": "0bc00594f409404ca7cfdf9bb55466d1",
+      "owner": "trial-7",
+      "label": "jazz-phrase",
+      "product": "improvise",
+      "quotedCredits": 5,
+      "transitions": [
+        {
+          "seconds": 6,
+          "state": "queued",
+          "provider": null
+        }
+      ],
+      "pollErrors": 1,
+      "provider_id": null,
+      "provider_status": null,
+      "execution_ms": null,
+      "delay_ms": null,
+      "estimated_cost_micros": null,
+      "state": "queued"
+    }
+  ],
+  "health": [
+    {
+      "seconds": 5,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 0,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 16,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 0,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 26,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 0,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 36,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 1,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 46,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 1,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 56,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 66,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 76,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 86,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 96,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 107,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 117,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 127,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 137,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 147,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 157,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 167,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 177,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 187,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 197,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 207,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 218,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 228,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 238,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 0,
+        "initializing": 2,
+        "ready": 0,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    },
+    {
+      "seconds": 248,
+      "jobs": {
+        "completed": 2,
+        "failed": 3,
+        "inProgress": 0,
+        "inQueue": 0,
+        "retried": 0
+      },
+      "workers": {
+        "idle": 1,
+        "initializing": 1,
+        "ready": 1,
+        "running": 0,
+        "throttled": 0,
+        "unhealthy": 0
+      }
+    }
+  ],
+  "cleanup": true,
+  "disabled": true,
+  "templateId": "jbpcd0xgbf",
+  "endpoint": "jl77hn92npt65k",
+  "billingBefore": [
+    {
+      "amount": 0.08039670903235674,
+      "timeBilledMs": 173085,
+      "diskSpaceBilledGB": 180,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 04:00:00"
+    }
+  ],
+  "stopReason": "Provider exceeded two-worker bound",
+  "finalHealth": {
+    "jobs": {
+      "completed": 2,
+      "failed": 3,
+      "inProgress": 0,
+      "inQueue": 0,
+      "retried": 0
+    },
+    "workers": {
+      "idle": 0,
+      "initializing": 0,
+      "ready": 0,
+      "running": 0,
+      "throttled": 0,
+      "unhealthy": 0
+    }
+  },
+  "stopped": true,
+  "removedObjects": 11,
+  "billingAfter": [
+    {
+      "amount": 0.08039670903235674,
+      "timeBilledMs": 173085,
+      "diskSpaceBilledGB": 180,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 04:00:00"
+    },
+    {
+      "amount": 0.04899465385824442,
+      "timeBilledMs": 100789,
+      "diskSpaceBilledGB": 60,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-23 05:00:00"
+    }
+  ],
+  "finishedAt": "2026-10-23T06:01:25.874Z"
+}

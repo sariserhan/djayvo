@@ -21,6 +21,17 @@ class GenerationFailure(RuntimeError):
 
 
 def failure_location(work):
+    try:
+        if (work/'status.json').exists() and json.loads((work/'status.json').read_text()).get('state')=='rejected':
+            return 'style-rejected'
+    except (OSError,ValueError,TypeError):
+        pass
+    try:
+        failure=json.loads((work/'failure.json').read_text())
+        if failure.get('stage') in ('writing','composing','retrying','checking') and type(failure.get('returncode')) is int:
+            return f"{failure['stage']}-exit-{failure['returncode']}"
+    except (OSError,ValueError,TypeError):
+        pass
     for stage in ('fit', 'singer', 'planner', 'private'):
         path = work/(stage+'.log')
         if path.exists():
@@ -74,7 +85,10 @@ def validate(value):
             raise ValueError('Invalid seed')
         if payload.get('country') is not None and not re.fullmatch('[A-Z]{2}', str(payload['country'])):
             raise ValueError('Invalid country')
-        if set(payload) - {'profile', 'seed', 'country'}:
+        feedback=payload.get('feedback', [])
+        if not isinstance(feedback,list) or len(feedback)>12 or len(json.dumps(feedback).encode())>16384:
+            raise ValueError('Invalid feedback context')
+        if set(payload) - {'profile', 'seed', 'country', 'feedback'}:
             raise ValueError('Unsupported DNA input')
     else:
         from singing_response import STYLES, VOICES, text_field, MAX_PHRASE_CHARS

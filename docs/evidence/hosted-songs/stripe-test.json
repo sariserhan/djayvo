@@ -1,0 +1,16 @@
+{
+  "database": "disposable loopback",
+  "human_learning": "NOT RUN",
+  "provider_transactions": "Stripe TEST only; no funds moved",
+  "browser": "Chromium hosted Checkout; muted output",
+  "status": "PASS",
+  "checkout": "cs_test_a1eRK3IoC3SvO2Qw7p2i1hiKWhFTZmay4jnd15s2Bm1LquOwHcwbtwmnFw",
+  "refund": "re_3UTbaSDlEXWDEeHO0gHmYi1J",
+  "signedWebhook": "PASS",
+  "declinedPayment": "PASS",
+  "duplicateDelivery": "PASS",
+  "wrongOwner": "PASS",
+  "refundHold": "PASS",
+  "creditsGranted": 10,
+  "liveCharge": "NOT RUN"
+}

@@ -1,0 +1,4 @@
+{"browser":"chromium","status":"PASS","uploadVerified":true,"publicConsent":true,"priceConfirmation":true,"refresh":true,"reconnect":true,"cancelDuringSubmit":true,"private":true,"mobile":true,"accessibility":true}
+{"browser":"chromium","status":"PASS","dnaLostSubmitResponse":true,"dnaEarly404":true,"dnaCancelSurvivesRefresh":true,"noDuplicateSubmit":true}
+{"browser":"webkit","status":"PASS","uploadVerified":true,"publicConsent":true,"priceConfirmation":true,"refresh":true,"reconnect":true,"cancelDuringSubmit":true,"private":true,"mobile":true,"accessibility":true}
+{"browser":"webkit","status":"PASS","dnaLostSubmitResponse":true,"dnaEarly404":true,"dnaCancelSurvivesRefresh":true,"noDuplicateSubmit":true}

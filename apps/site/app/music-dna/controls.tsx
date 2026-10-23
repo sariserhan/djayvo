@@ -11,14 +11,17 @@ import {GenerationProgress,type SongProgress} from '../generation-progress';
 type SongPlan={language?:{code:string;label:string;basis:string};musical_traits?:Record<string,string>;title:string;summary:string;favorites?:{reference:string}[];influences:{reference:string;basis:string;description:string}[];cases:{lyrics:string;song_caption:string;bpm:number;voice:string}[]};
 type Song={id:string;state:string;phase?:string;message:string;plan?:SongPlan;profile?:FavoriteSnapshot;direction?:{label:string};legacy?:boolean;styleChecked?:boolean};
 const songUrl=(id:string)=>`/api/taste/song?id=${id}`;
+const pendingKey='jamloom-dna-pending';
 export function TasteNotebook(){
  const [profile,setProfile]=useState<Taste>(emptyTaste),[message,setMessage]=useState(''),[revision,setRevision]=useState(0),[busy,setBusy]=useState(false),[loaded,setLoaded]=useState(false);
  const [rendering,setRendering]=useState(false),[search,setSearch]=useState(''),[job,setJob]=useState<string|null>(null),[draft,setDraft]=useState<SongPlan|null>(null);
  const [takes,setTakes]=useState<Song[]>([]);
  const [progress,setProgress]=useState<SongProgress|null>(null);
+ const [cloud,setCloud]=useState(false);
  const [visibility,setVisibility]=useState<'public'|'private'>('public'),[publicConsent,setPublicConsent]=useState(false);
  const [quote,setQuote]=useState<{credits:number;token:string;expiresAt:number;key:string}|null>(null);
  const requestId=useRef<string|null>(null),prompt=useRef<HTMLDialogElement>(null),generationButton=useRef<HTMLButtonElement>(null);
+ const submittingCloud=useRef<string|null>(null),cancelWanted=useRef(false);
  const [promptOpen,setPromptOpen]=useState(false);
  useEffect(()=>{if(promptOpen)prompt.current?.showModal();else prompt.current?.close();},[promptOpen]);
  function openPrompt(){setPublicConsent(false);setMessage('');setProgress(null);setPromptOpen(true);}
@@ -34,10 +37,12 @@ export function TasteNotebook(){
  useEffect(()=>{try{const old=localStorage.getItem('jamloom-taste-v1');if(old)setProfile(favoriteList(validateTaste(JSON.parse(old))));writable.current=true;}catch{setMessage('Saved favorites could not be read. You can start a new list.');}finally{setLoaded(true);}},[]);
  useEffect(()=>{if(!loaded||!writable.current)return;try{if(profile.references.length)localStorage.setItem('jamloom-taste-v1',JSON.stringify(profile));else localStorage.removeItem('jamloom-taste-v1');}catch{setMessage('Your list is available for this session, but this browser could not save it.');}},[profile,loaded]);
  useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;analysis.current?.abort();};},[]);
+ useEffect(()=>{void fetch('/api/taste/song',{signal:AbortSignal.timeout(10000)}).then(r=>r.json()).then(data=>{if(mounted.current&&data.mode==='cloud'){setCloud(true);if(data.active){setJob(data.active);setRendering(true);}}}).catch(()=>{});},[]);
  useEffect(()=>{
   let stopped=false;
   void (async()=>{
    try{
+    const pending=localStorage.getItem(pendingKey);if(pending&&/^[a-f0-9]{32}$/.test(pending)){setJob(pending);setRendering(true);}
     const history=JSON.parse(localStorage.getItem('jamloom-dna-songs-v1')??'[]');
     const saved=(Array.isArray(history)?history:[]).slice(-2).map((id:string)=>({id,example:false}));
     for(const {id,example} of saved)if(typeof id==='string'&&/^[a-f0-9]{32}$/.test(id)){
@@ -51,16 +56,19 @@ export function TasteNotebook(){
  },[]);
  useEffect(()=>{
   if(!job)return;
-  let stopped=false,timer:ReturnType<typeof setTimeout>;
+  let stopped=false,timer:ReturnType<typeof setTimeout>;const checkingUntil=Date.now()+60000;
   const controller=new AbortController();
   const poll=async()=>{
    try{
     const response=await fetch(songUrl(job),{signal:AbortSignal.any([controller.signal,AbortSignal.timeout(10000)])});
     const song=await response.json();if(stopped)return;
-    if(!response.ok){if(response.status===404||response.status===409){setRendering(false);setJob(null);setProgress({state:'failed'});setMessage(song.error??'This song is unavailable. Your favorites are safe.');return;}throw Error(song.error);}
-    setProgress({state:song.state,phase:song.phase});setMessage('');if(song.plan)setDraft(song.plan);
+    if(!response.ok){if(response.status===404&&Date.now()<checkingUntil)throw Error();if(response.status===404||response.status===409){setRendering(false);setJob(null);setProgress({state:'failed'});setMessage(song.error??'This song is unavailable. Your favorites are safe.');return;}throw Error(song.error);}
+    let cancelPending=cancelWanted.current;try{cancelPending ||= localStorage.getItem(pendingKey+'-cancel')===job;}catch{}
+    if(cancelPending&&['queued','running'].includes(song.state)){const cancelled=await fetch(songUrl(job),{method:'DELETE',headers:{'X-Jamloom-DNA':'1'},signal:AbortSignal.timeout(10000)});if(!cancelled.ok)throw Error();}
+    setProgress({state:song.cancelling?'cancelling':song.state,phase:song.phase});setMessage('');if(song.plan)setDraft(song.plan);
     if(!['queued','running'].includes(song.state)){
      setRendering(false);setJob(null);requestId.current=null;setQuote(null);
+     cancelWanted.current=false;try{if(localStorage.getItem(pendingKey)===job)localStorage.removeItem(pendingKey);if(localStorage.getItem(pendingKey+'-cancel')===job)localStorage.removeItem(pendingKey+'-cancel');}catch{}
      if(song.state==='completed'){setTakes(old=>[...old.filter(s=>s.id!==job),song].slice(-2));requestId.current=null;setQuote(null);window.dispatchEvent(new Event('jamloom-dna-completed'));}
      return;
     }
@@ -81,23 +89,25 @@ export function TasteNotebook(){
    catalogue:profile.catalogue?.filter(c=>{const track=tasteCatalogue.find(t=>t.id===c.id);return !track||`${track.title} — ${track.artist}`!==reference;})});
  }
  async function cancel(){
+  if(submittingCloud.current){cancelWanted.current=true;try{localStorage.setItem(pendingKey+'-cancel',submittingCloud.current);}catch{}setProgress({state:'cancelling'});return;}
   analysis.current?.abort();analysis.current=null;
   if(job){
-   try{const response=await fetch(songUrl(job),{method:'DELETE',headers:{'X-Jamloom-DNA':'1'},signal:AbortSignal.timeout(15000)});const result=await response.json();if(!response.ok)throw Error(result.error);setJob(null);}
+   try{const response=await fetch(songUrl(job),{method:'DELETE',headers:{'X-Jamloom-DNA':'1'},signal:AbortSignal.timeout(15000)});const result=await response.json();if(!response.ok)throw Error(result.error);if(['queued','running'].includes(result.state)){setProgress({state:'cancelling'});return;}setJob(null);}
    catch(error){setMessage(error instanceof Error?error.message:'Could not stop the song.');return;}
   }
   setRendering(false);setProgress({state:'cancelled'});requestId.current=null;setQuote(null);setMessage('');
  }
  async function generate(){
   if(analysis.current||job)return;
-  const controller=new AbortController();analysis.current=controller;setRendering(true);setDraft(null);setProgress({state:'running',phase:'preparing'});setMessage('');
+  let cloudRequest:string|null=null;const controller=new AbortController();analysis.current=controller;setRendering(true);setDraft(null);setProgress({state:'running',phase:'preparing'});setMessage('');
+  cancelWanted.current=false;
   try{
    if(!profile.references.length)throw Error('Add at least one favorite first.');
    const available=await fetch('/api/taste/song',{signal:AbortSignal.any([controller.signal,AbortSignal.timeout(10000)])});
    const readiness=await available.json();if(!available.ok)throw Error(readiness.error);
    if(readiness.creditsEnabled===false)throw Error('Credit-backed generation is not enabled here yet. Listen to the examples below.');
    if(readiness.signedIn===false)throw Error('Sign in with a verified account to use your credits.');
-   if(readiness.active||readiness.busy)throw Error('Another song is being made on this Mac. Your saved list is unchanged; try again when it finishes.');
+   if(readiness.active||readiness.busy)throw Error('Your other song is still being made. Your favorites are saved; try again when it finishes.');
    const resolved=await resolveFavoriteMetadata(profile,controller.signal);controller.signal.throwIfAborted();setProfile(resolved);
    if(visibility==='public'&&!publicConsent)throw Error('Agree to public sharing or choose Private.');
    const key=favoriteKey({...resolved,referenceMetadata:resolved.referenceMetadata??[]})+':'+visibility;
@@ -110,13 +120,15 @@ export function TasteNotebook(){
    }
    controller.signal.throwIfAborted();
    requestId.current??=crypto.randomUUID().replaceAll('-','');
+   if(readiness.mode==='cloud'){cloudRequest=requestId.current;submittingCloud.current=cloudRequest;setCloud(true);setJob(cloudRequest);setPromptOpen(false);try{localStorage.setItem(pendingKey,cloudRequest);}catch{}}
    // Retain the same request id if the response is lost; retries cannot charge or generate twice.
    const response=await fetch('/api/taste/song',{method:'POST',headers:{'Content-Type':'application/json','X-Jamloom-DNA':'1',...listenerHeaders()},body:JSON.stringify({action:'submit',profile:resolved,visibility,publicConsent,token:accepted!.token,requestId:requestId.current}),signal:AbortSignal.timeout(15000)});
-   const result=await response.json();if(!response.ok)throw Error(result.error);
-   if(controller.signal.aborted||!mounted.current){await fetch(songUrl(result.id),{method:'DELETE',headers:{'X-Jamloom-DNA':'1'}});return;}
+   const result=await response.json();if(!response.ok){if(response.status<500){cloudRequest=null;setJob(null);try{localStorage.removeItem(pendingKey);}catch{}}throw Error(result.error);}
+   if(!mounted.current){if(cloudRequest)try{localStorage.setItem('jamloom-dna-songs-v1',JSON.stringify([result.id]));}catch{}return;}
+   if(controller.signal.aborted){await fetch(songUrl(result.id),{method:'DELETE',headers:{'X-Jamloom-DNA':'1'}});return;}
    setPromptOpen(false);setJob(result.id);setProgress({state:result.state??'running',phase:result.phase??'preparing'});setMessage('');
-  }catch(error){if(!controller.signal.aborted&&mounted.current){setRendering(false);setProgress({state:'failed'});setMessage(error instanceof Error?error.message:'Unable to make this song.');}}
-  finally{if(analysis.current===controller)analysis.current=null;}
+  }catch(error){if(cloudRequest&&mounted.current&&!controller.signal.aborted){setPromptOpen(false);setJob(cloudRequest);setProgress({state:'reconnecting'});return;}if(!controller.signal.aborted&&mounted.current){setRendering(false);setProgress({state:'failed'});setMessage(error instanceof Error?error.message:'Unable to make this song.');}}
+  finally{submittingCloud.current=null;if(analysis.current===controller)analysis.current=null;}
  }
  async function sync(method:'GET'|'POST'|'DELETE'){
   setBusy(true);try{const response=await fetch('/api/taste',{method,headers:{'Content-Type':'application/json'},body:method==='GET'?undefined:JSON.stringify(method==='POST'?{profile:taste.profile,revision}:{revision})});const data=await response.json();if(!response.ok)throw new Error(data.error);
@@ -131,9 +143,9 @@ export function TasteNotebook(){
  <p><strong>Made from:</strong> {take.profile?.references.join(' · ')??'Original list unavailable'}</p>
  {take.profile?.referenceMetadata?.length? <p>{[...new Set(take.profile.referenceMetadata.map(m=>m.genre))].join(' · ')}</p>:null}
  <p>{take.styleChecked?'Broad style check passed. Listen to judge the song and singing.':'Earlier take: style match has not been checked.'}</p>
- <audio aria-label={`Play ${take.plan?.title??`song ${i+1}`}`} controls preload="metadata" src={`${songUrl(take.id)}&file=audio`} onPlay={event=>{document.querySelectorAll<HTMLAudioElement>('audio').forEach(audio=>{if(audio!==event.currentTarget)audio.pause();});}} onError={()=>setMessage('This song could not load. Your favorites are safe. Reload to reconnect to the local singer.')}/>
+ <audio aria-label={`Play ${take.plan?.title??`song ${i+1}`}`} controls preload="metadata" src={`${songUrl(take.id)}&file=audio`} onPlay={event=>{document.querySelectorAll<HTMLAudioElement>('audio').forEach(audio=>{if(audio!==event.currentTarget)audio.pause();});}} onError={()=>setMessage('This song could not load. Your favorites are safe. Reload to reconnect.')}/>
  <div className="product-actions"><a className="secondary" href={`${songUrl(take.id)}&file=audio&download=1`} download>Download song</a><a className="secondary" href={`${songUrl(take.id)}&file=plan`} download>Download song notes</a></div>
- {take.styleChecked&&<SongFeedback id={take.id}/>}
+ {take.styleChecked&&<SongFeedback id={take.id} account={cloud}/>}
  {take.plan?.musical_traits&&<details><summary>The musical choices</summary><dl>{Object.entries(take.plan.musical_traits).map(([key,value])=><div key={key}><dt>{key.replaceAll('_',' ')}</dt><dd>{value}</dd></div>)}</dl></details>}
  {take.plan&&<><details><summary>Lyrics</summary><p style={{whiteSpace:'pre-wrap'}}>{take.plan.cases[0].lyrics}</p></details><details><summary>How these favorites shaped this song</summary><p>{take.plan.summary}</p><ul>{take.plan.influences.map(note=><li key={note.reference}><strong>{note.reference}</strong>: {note.description} {note.basis==='unknown'?'(Unrecognized)':note.basis==='genre_only'?'(Catalogue genre only)':'(Model interpretation)'}</li>)}</ul><p>{take.plan.cases[0].song_caption}</p><p>Musical direction uses catalogue metadata and model interpretation, not analysis of the original recordings. A style check cannot guarantee musical quality.</p></details></>}
  </article>;}
@@ -170,7 +182,7 @@ export function TasteNotebook(){
  {visibility==='public'&&<label><input type="checkbox" checked={publicConsent} onChange={e=>setPublicConsent(e.target.checked)}/>I agree to publish this new song on the community page.</label>}
  </fieldset>
  <p>{quote&&quote.key===favoriteKey(snapshot)+':'+visibility?`This song: ${quote.credits} ${quote.credits===1?'credit':'credits'}.`:`Starting price: ${visibility==='public'?'1 credit':'2 credits'}.`} Higher costs need your approval. Failed or cancelled songs return your credits.</p>
- <p><a href="/account/sign-in?callbackURL=%2Fmusic-dna">Sign in</a> · <a href="/account/credits">Your credits</a>. Local test credits only. Paid generation is not open.</p>
+ <p><a href="/account/sign-in?callbackURL=%2Fmusic-dna">Sign in</a> · <a href="/account/credits">Your credits</a>. {cloud?'Your song keeps processing if you leave this page.':'Local test credits only. Paid generation is not open.'}</p>
  <div className="product-actions"><button className="primary" disabled={locked||(visibility==='public'&&!publicConsent)} onClick={generate}>{rendering?'Preparing your song…':`Generate song · ${generationPrice} ${generationPrice===1?'credit':'credits'}`}</button><button className="secondary" onClick={dismissPrompt}>{rendering?'Cancel composition':'Cancel'}</button></div>
  {progress&&promptOpen&&<GenerationProgress {...progress}/>}
  {promptOpen&&<p role="status">{message}</p>}
@@ -179,7 +191,7 @@ export function TasteNotebook(){
  {current.length>0&&<section aria-label="Songs for this list"><h3>Songs for this list</h3>{current.map(songCard)}</section>}
  {earlier.length>0&&<details><summary>Earlier songs and other lists ({earlier.length})</summary><p>These songs belong to the favorites shown with each player. Older takes have not passed the new style check.</p>{earlier.map(songCard)}</details>}
  {takes.length>0&&<p>Your latest two results appear here. Your account’s full collection is in Your songs below.</p>}
- <div className="dna-tools"><FeedbackSettings/>
+ <div className="dna-tools"><FeedbackSettings account={cloud}/>
  <details><summary>Saved favorites</summary>
   <button className="secondary" disabled={locked} onClick={clear}>Delete saved profile</button>
   <fieldset><legend>Optional account copy</legend><p><a href="/account/sign-in">Sign in</a> to keep your favorites on another device. Load an existing account list before updating it.</p><div className="product-actions"><button className="secondary" disabled={locked} onClick={()=>sync('GET')}>Load account profile</button><button className="secondary" disabled={locked} onClick={()=>sync('POST')}>Save preferences to account</button><button className="secondary" disabled={locked||revision===0} onClick={()=>sync('DELETE')}>Delete account profile</button></div></fieldset>

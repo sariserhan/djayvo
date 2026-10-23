@@ -210,6 +210,19 @@ Use English section headings [Verse 1], [Chorus], [Verse 2], [Chorus], [Bridge],
         json.dump(plan, f, indent=2, ensure_ascii=False)
 
 
+def retry_direction(plan):
+    """A missed style needs a clearer performance brief, not only another seed."""
+    case = plan['cases'][0]
+    direction = plan['direction']
+    case['seed'] = (case['seed']+1) % 2**32
+    groove = 'Swinging ride cymbal, walking upright bass, syncopated acoustic piano comping, jazz chord extensions and melodic jazz singing. ' if direction['id']=='jazz' else ''
+    case['song_caption'] = (f"{direction['label']}. {direction['traits']} {groove}"
+        f"{case['bpm']} BPM. Instruments: {', '.join(direction['instruments'])}. "
+        f"{direction['energy']} energy. Expressive {case['voice']} lead singer in {LANGUAGES[case['vocal_language']]}. "
+        'Natural singing, breathing and dynamic phrasing. Clear verses, chorus, bridge and resolved ending. Original music.')
+    return validate_plan(plan)
+
+
 def status(work, state, message, phase=None):
     temp = work/'status.tmp'
     temp.write_text(json.dumps({'state': state, 'message': message, 'phase': phase}))
@@ -246,10 +259,13 @@ def run(work):
                 shutil.copy2(work/'input.json', archive/'input.json')
                 for name in ('plan.json', 'fit.json', 'singer', 'singer.log', 'fit.log'):
                     (work/name).rename(archive/name)
-                plan['cases'][0]['seed'] = (plan['cases'][0]['seed']+1) % 2**32
+                plan = retry_direction(plan)
                 with (work/'plan.json').open('x') as output:json.dump(plan, output, indent=2, ensure_ascii=False)
         status(work, 'rejected', 'Neither take passed the style check for your list. Your favorites are saved. Please try again later.')
-    except (OSError, ValueError, subprocess.SubprocessError):
+    except (OSError, ValueError, subprocess.SubprocessError) as error:
+        if isinstance(error,subprocess.CalledProcessError):
+            phase=json.loads((work/'status.json').read_text()).get('phase')
+            (work/'failure.json').write_text(json.dumps({'stage':phase,'returncode':error.returncode}))
         status(work, 'failed', 'Song generation did not finish. Your favorites and previous songs are safe. Try again.')
         raise
 

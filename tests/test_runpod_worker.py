@@ -34,6 +34,13 @@ class WorkerTests(unittest.TestCase):
             with self.subTest(url=url), self.assertRaises(ValueError):worker.storage_url(url)
         with self.assertRaises(ValueError):worker.NoRedirect().redirect_request(None,None,None,None,None,None)
 
+    def test_feedback_is_bounded_and_supported_without_raw_recordings(self):
+        value={**self.job,'payload':{**self.job['payload'],'feedback':[{'rating':'dislike','tags':['too_slow']}]}}
+        self.assertEqual(worker.validate(value),value)
+        for feedback in ({},[{}]*13,[{'value':'x'*17000}]):
+            value['payload']['feedback']=feedback
+            with self.assertRaises(ValueError):worker.validate(value)
+
     def test_invalid_jobs_cannot_start_inference(self):
         for field,value in [('timeout_seconds',901),('timeout_seconds',True),('id','../a'),('product','arbitrary'),('payload',None)]:
             job={**self.job,field:value}
@@ -84,6 +91,10 @@ class WorkerTests(unittest.TestCase):
             self.assertEqual(worker.failure_location(work),'planner@music_dna_song.py:123')
             (work/'singer.log').write_text('private transcript without a traceback')
             self.assertEqual(worker.failure_location(work),'singer@unavailable')
+            (work/'failure.json').write_text(json.dumps({'stage':'checking','returncode':-9}))
+            self.assertEqual(worker.failure_location(work),'checking-exit--9')
+            (work/'status.json').write_text(json.dumps({'state':'rejected'}))
+            self.assertEqual(worker.failure_location(work),'style-rejected')
 
     def test_timeout_kills_descendants_and_waits(self):
         from subprocess import TimeoutExpired

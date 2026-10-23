@@ -12,7 +12,7 @@ export async function storedDnaSong(request:Request,context?:DnaContext):Promise
   if(view!=='public'&&view!=='mine')return json({error:'Unknown collection.'},400);
   if(view==='mine'&&!owner)return json({songs:[],next:null,signIn:true});
   const result=await commerce.list(owner,view,url.searchParams.get('after')??'');
-  return json({...result,feedbackAvailable:false});
+  return json({...result,accountFeedback:process.env.JAMLOOM_CLOUD_SONGS_ENABLED==='true',feedbackAvailable:commerce.product==='music-dna'&&process.env.JAMLOOM_CLOUD_SONGS_ENABLED==='true'});
  }
  if(!id&&request.method==='GET')return json({available:false,creditsEnabled:false,signedIn:!!owner});
  if(!id||!/^[a-f0-9]{32}$/.test(id))return json({error:'Song not found.'},404);
@@ -31,5 +31,5 @@ export async function storedDnaSong(request:Request,context?:DnaContext):Promise
  if(file==='plan'&&owns)return new Response(JSON.stringify(row.song_plan),{headers:{...privateHeaders,'Content-Type':'application/json','Content-Disposition':'attachment; filename="jamloom-song.json"'}});
  if(file)return json({error:'Unknown file.'},404);
  const plan=row.song_plan;
- return json({id,state:'completed',plan:owns?plan:{title:plan.title,language:plan.language,cases:plan.cases?.map((c:{lyrics:string;voice:string;bpm:number})=>({lyrics:c.lyrics,voice:c.voice,bpm:c.bpm}))},...(owns?{profile:row.profile}:{}),direction:{label:row.direction},styleChecked:true,visibility:row.visibility,withdrawn:!!row.withdrawn_at,owned:owns});
+ return json({id,state:'completed',plan:owns?plan:{title:plan.title,language:plan.language?{code:plan.language.code,label:plan.language.label}:undefined,cases:plan.cases?.map((c:{lyrics:string;voice:string;bpm:number})=>({lyrics:c.lyrics,voice:c.voice,bpm:c.bpm}))},...(owns?{profile:row.profile}:{}),direction:{label:row.direction},styleChecked:row.product!=='improvise',visibility:row.visibility,withdrawn:!!row.withdrawn_at,owned:owns});
 }

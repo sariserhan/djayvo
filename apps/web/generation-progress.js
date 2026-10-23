@@ -10,13 +10,14 @@ const stages = {
   failed: ['We couldn’t finish this time', 'Your earlier music is safe. Please try again.', -1],
   rejected: ['This take wasn’t the right fit', 'We couldn’t match your musical direction this time. Your favorites are saved. Please try again.', -1],
   cancelled: ['Creation stopped', 'Your earlier music is still available.', -1],
+  cancelling: ['Stopping your song', 'We’re confirming the cancellation. Your reserved credits will be returned.', -1],
   reconnecting: ['Checking on your song', 'We’ve lost touch for a moment. We’ll update you when we reconnect.', -1],
 };
 
 /** Public-facing copy is allowlisted: never display raw provider diagnostics. */
 export function generationProgress(state, phase) {
   const terminal = ['completed', 'failed', 'rejected', 'cancelled'].includes(state);
-  const key = terminal ? state : (state === 'queued' ? 'queued' : state === 'reconnecting' ? 'reconnecting' :
+  const key = terminal ? state : (state === 'queued' ? 'queued' : state === 'cancelling' ? 'cancelling' : state === 'reconnecting' ? 'reconnecting' :
     ['preparing', 'writing', 'composing', 'retrying', 'checking', 'saving'].includes(phase) ? phase : 'composing');
   const [title, detail, step] = stages[key];
   const active = !terminal;

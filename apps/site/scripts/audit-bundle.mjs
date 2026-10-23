@@ -10,6 +10,9 @@ let count = 0;
 for (const path of await readdir('.next/static', { recursive: true })) {
   if (!(await stat(`.next/static/${path}`)).isFile()) continue;
   const bytes = await readFile(`.next/static/${path}`); count++;
+  for (const name of ['RUNPOD_API_KEY','RUNPOD_GHCR_TOKEN','CREDIT_STRIPE_LIVE_WEBHOOK_SECRET']) {
+    assert.ok(!process.env[name] || !bytes.includes(process.env[name]), `Server secret found in browser bundle: ${name}`);
+  }
   for (const name of ['BETTER_AUTH_SECRET', 'DATABASE_URL', 'DATABASE_URL_UNPOOLED', 'DATABASE_MIGRATION_URL', 'RESEND_API_KEY','R2_ACCESS_KEY_ID','R2_SECRET_ACCESS_KEY','R2_AUROWALL_ACCESS_KEY_ID','R2_AUROWALL_SECRET_ACCESS_KEY','CLOUDFLARE_API_TOKEN','STRIPE_SECRET_KEY','STRIPE_WEBHOOK_SECRET','STRIPE_LIVE_SECRET_KEY','ACADEMY_STRIPE_WEBHOOK_SECRET','ACADEMY_STRIPE_LIVE_WEBHOOK_SECRET','PRO_LICENSE_PRIVATE_KEY','PRO_STRIPE_WEBHOOK_SECRET','PRO_STRIPE_LIVE_WEBHOOK_SECRET','CRON_SECRET','APPLE_PRIVATE_KEY','JAMLOOM_WORKER_SECRET','VASTAI_KEY']) {
     assert.ok(!process.env[name] || !bytes.includes(process.env[name]), `Server secret found in browser bundle: ${name}`);
   }

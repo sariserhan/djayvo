@@ -42,8 +42,8 @@ export function saveInput(value: unknown) {
   if (typeof v.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(v.sha256)) throw new AudioError('Invalid audio checksum.');
   return { requestId: v.requestId, title: v.title.trim(), strategy: v.strategy as string, bytes: v.bytes as number, sha256: v.sha256, publication,product:product as MusicProduct };
 }
-export function validateWav(data: Buffer, bytes: number, sha256: string) {
-  if (data.length !== bytes || data.length > MAX_AUDIO_BYTES || data.length < 44 ||
+export function validateWav(data: Buffer, bytes: number, sha256: string, maxBytes=MAX_AUDIO_BYTES) {
+  if (maxBytes>24000000||data.length !== bytes || data.length > maxBytes || data.length < 44 ||
     createHash('sha256').update(data).digest('hex') !== sha256) throw new AudioError('Uploaded audio does not match the selected file.');
   // Only the metadata-free format exported by Jamloom is accepted.
   if (data.toString('ascii',0,4) !== 'RIFF' || data.readUInt32LE(4) !== bytes-8 ||

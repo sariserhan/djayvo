@@ -1,0 +1,2 @@
+{"browser":"chromium","status":"PASS","queueRestore":true,"reconnect":true,"phases":true,"cancel":true,"rejected":true,"ready":true,"mobile":true,"accessibility":true,"reducedMotion":true,"realLocalRemix":true,"cloudGeneration":"NOT RUN"}
+{"browser":"webkit","status":"PASS","queueRestore":true,"reconnect":true,"phases":true,"cancel":true,"rejected":true,"ready":true,"mobile":true,"accessibility":true,"reducedMotion":true,"realLocalRemix":true,"cloudGeneration":"NOT RUN"}

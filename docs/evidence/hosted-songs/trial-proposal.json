@@ -1,0 +1,24 @@
+{
+  "status": "APPROVED_AND_EXECUTED",
+  "max_spend_usd": 3,
+  "max_wall_seconds": 1200,
+  "max_workers": 2,
+  "website_deploy": false,
+  "worker_image_change": false,
+  "endpoint": "jl77hn92npt65k",
+  "requests": [
+    "DNA jazz English",
+    "DNA rock English",
+    "DNA Latin Spanish",
+    "DNA Turkish",
+    "DNA Russian",
+    "Improvise funk synthetic phrase",
+    "Improvise reggae same phrase",
+    "Improvise jazz same phrase"
+  ],
+  "inputs": "public song metadata and synthetic permitted speech only",
+  "cleanup": "cancel unfinished known jobs, disable endpoint min/max to zero, verify no active jobs/workers, remove staging objects",
+  "limits": "Provider billing can lag; wall/worker limits and conservative per-second ceiling supplement observed charges. No customer credits or live payments.",
+  "owner_approval": "Approve the $3 trial",
+  "result": "trial-result.json"
+}

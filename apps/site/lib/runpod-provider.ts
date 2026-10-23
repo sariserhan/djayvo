@@ -4,7 +4,7 @@ const states=['IN_QUEUE','IN_PROGRESS','COMPLETED','FAILED','CANCELLED','TIMED_O
 export type RunpodState=typeof states[number];
 export type RunpodJob={
  id:string;product:'music-dna'|'improvise';payload:Record<string,unknown>;output_url:string;timeout_seconds:number;
- source?:{url:string;bytes:number;sha256:string};
+ source?:{url:string;bytes:number;sha256:string};ttl_seconds?:number;
 };
 export type RunpodResult={id:string;status:RunpodState;output?:Record<string,unknown>;delayTime?:number;executionTime?:number};
 
@@ -17,18 +17,18 @@ export class RunpodProvider{
    const response=await this.request(`https://api.runpod.ai/v2/${this.endpoint}/${path}`,{method,
     headers:{Authorization:`Bearer ${this.key}`,'Content-Type':'application/json'},
     ...(body===undefined?{}:{body:JSON.stringify(body)}),redirect:'error',signal:AbortSignal.timeout(15000)});
-   if(!response.ok){await response.body?.cancel();throw Error('Provider request failed');}
+   if(!response.ok){await response.body?.cancel();throw Error('Provider HTTP '+response.status);}
    const value=JSON.parse((await readBody(response.body,524288)).toString());
    if(!value||typeof value!=='object'||Array.isArray(value)||value.error&&!['FAILED','CANCELLED','TIMED_OUT'].includes(value.status))throw Error('Invalid provider response');
    return value;
-  }catch{throw Error(method==='POST'&&path==='run'?'Runpod submission is unconfirmed. Do not automatically resubmit; inspect the endpoint first.':'Runpod request failed');}
+  }catch(error){const status=error instanceof Error&&/^Provider HTTP [0-9]{3}$/.test(error.message)?' ('+error.message+')':'';throw Error((method==='POST'&&path==='run'?'Runpod submission is unconfirmed. Do not automatically resubmit; inspect the endpoint first.':'Runpod request failed')+status);}
  }
  async submit(job:RunpodJob):Promise<RunpodResult>{
   if(!/^[a-f0-9]{32}$/.test(job.id)||!['music-dna','improvise'].includes(job.product)||
     !Number.isInteger(job.timeout_seconds)||job.timeout_seconds<5||job.timeout_seconds>900||
-    Buffer.byteLength(JSON.stringify(job))>131072)throw Error('Invalid Runpod job');
+    Buffer.byteLength(JSON.stringify(job))>131072||job.ttl_seconds!==undefined&&(!Number.isInteger(job.ttl_seconds)||job.ttl_seconds<job.timeout_seconds||job.ttl_seconds>1800))throw Error('Invalid Runpod job');
   // A lost POST response may already have started paid work. Never retry submission here.
-  return this.result(await this.api('run','POST',{input:job,policy:{executionTimeout:job.timeout_seconds*1000,ttl:1800000}}));
+  return this.result(await this.api('run','POST',{input:job,policy:{executionTimeout:job.timeout_seconds*1000,ttl:(job.ttl_seconds??1800)*1000}}));
  }
  async status(id:string){this.id(id);return this.result(await this.api('status/'+id),id);}
  async cancel(id:string){this.id(id);return this.result(await this.api('cancel/'+id,'POST'),id);}
