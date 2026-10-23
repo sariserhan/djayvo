@@ -99,7 +99,10 @@ def validate(value):
         feedback=payload.get('feedback', [])
         if not isinstance(feedback,list) or len(feedback)>12 or len(json.dumps(feedback).encode())>16384:
             raise ValueError('Invalid feedback context')
-        if set(payload) - {'profile', 'seed', 'country', 'feedback', 'duration_seconds'}:
+        cached=payload.get('track_profiles',[])
+        if not isinstance(cached,list) or len(cached)>5000 or len(json.dumps(cached).encode())>12*1024*1024:
+            raise ValueError('Invalid saved song descriptions')
+        if set(payload) - {'profile', 'seed', 'country', 'feedback', 'duration_seconds', 'track_profiles'}:
             raise ValueError('Unsupported DNA input')
     else:
         from singing_response import STYLES, VOICES, text_field, MAX_PHRASE_CHARS

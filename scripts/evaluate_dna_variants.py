@@ -32,7 +32,7 @@ def prepare(source, work, seed, vocal_profile=None):
         if vocal_profile not in VOCAL_PROFILES:raise ValueError('Unknown vocal profile')
         case=plan['cases'][0];case['vocal_profile']=vocal_profile;case['voice']=VOCAL_PROFILES[vocal_profile][0]
         case['id']=f"{case['genre']}-{case['voice']}"
-        case['song_caption']=performance_caption(plan['direction'],case,plan.get('production_sound',''),plan.get('musical_traits'))
+        case['song_caption']=performance_caption(plan['direction'],case,plan.get('production_sound',''),plan.get('musical_traits'),guidance=plan.get('sound_guidance'))
         plan['title']+=' · '+vocal_profile.replace('-',' ')
         validate_plan(plan)
     plan['input_sha256'] = digest(work/'input.json')

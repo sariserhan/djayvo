@@ -13,6 +13,7 @@ from music_dna_song import favorites, song_plan, parse_draft, run, draft, retry_
 from singing_response import caption, digest, text_field, VOCAL_PROFILES
 from dna_direction import direction_for
 from dna_direction import POLICY
+from dna_sound import unknown, sound_guidance
 from dna_language import choose_language, COUNTRY_LANGUAGES, LANGUAGES
 from evaluate_dna_variants import prepare as prepare_variant, verify as verify_variant
 
@@ -63,10 +64,26 @@ class MusicDnaSong(unittest.TestCase):
         for seconds in (99,141,True,120.5):
             with self.assertRaises(ValueError):song_plan(self.data,self.refs,123,duration=seconds)
 
+    def test_sound_profiles_control_tempo_and_reach_the_singer_and_style_retry(self):
+        tracks=[{**unknown(r),'basis':'familiar','confidence':'medium','energy':'high','pace':'fast','texture':'electric',
+                 'groove':'syncopated','production':['raw'],'vocals':['powerful']} for r in self.refs]
+        guidance=sound_guidance(tracks,direction_for(self.refs),12)
+        data=copy.deepcopy(self.data);data['bpm']=guidance['bpm'][0]
+        plan=song_plan(data,self.refs,12,all_refs=self.refs,track_profiles=tracks,guidance=guidance)
+        self.assertEqual(plan['track_profiles'],tracks)
+        for item in ('syncopated','electric','raw','powerful'):
+            self.assertIn(item,plan['cases'][0]['song_caption'])
+            self.assertIn(item,retry_direction(copy.deepcopy(plan))['cases'][0]['song_caption'])
+        self.assertEqual(len(plan['influences']),len(tracks))
+        self.assertTrue(all(n['confidence']=='medium' for n in plan['influences']))
+        data['bpm']=direction_for(self.refs)['bpm'][0]
+        with self.assertRaisesRegex(ValueError,'tempo range'):song_plan(data,self.refs,12,track_profiles=tracks,guidance=guidance)
+
     def test_research_variants_bind_the_actual_seed_and_reject_duplicate_audio(self):
         with tempfile.TemporaryDirectory() as folder:
             source=Path(folder)/'source';source.mkdir()
             plan=song_plan(self.data,self.refs,123)
+            plan['sound_guidance']={'caption':'syncopated electric raw'}
             (source/'input.json').write_text(json.dumps({'direction':plan['direction'],'seed':123}))
             plan['input_sha256']=digest(source/'input.json');plan['seed']=999
             (source/'plan.json').write_text(json.dumps(plan))
@@ -91,6 +108,7 @@ class MusicDnaSong(unittest.TestCase):
                 self.assertEqual(case['lyrics'],plan['cases'][0]['lyrics'])
                 self.assertEqual(case['vocal_profile'],profile)
                 self.assertIn(VOCAL_PROFILES[profile][1],case['song_caption'])
+                self.assertIn('syncopated electric raw',case['song_caption'])
                 self.assertEqual(case['voice'],VOCAL_PROFILES[profile][0])
 
     def test_retry_changes_direction_brief_but_preserves_lyrics_language_and_favorites(self):
@@ -214,7 +232,12 @@ class MusicDnaSong(unittest.TestCase):
     def test_lyric_repair_preserves_the_validated_musical_direction(self):
         data=copy.deepcopy(self.data);data['lyrics']='[Verse 1]\nToo short'
         outputs=iter([json.dumps(data),json.dumps({'lyrics':self.data['lyrics']})]);prompts=[]
-        def generate(*args,**kwargs):prompts.append(kwargs['prompt']);return next(outputs)
+        def generate(*args,**kwargs):
+            messages=json.loads(kwargs['prompt'])
+            if messages[0]['content'].startswith('Describe how each'):
+                batch=json.loads(messages[1]['content'])['favorites']
+                return json.dumps({'tracks':[{'index':i+1,**unknown(ref)} for i,ref in enumerate(batch)]})
+            prompts.append(kwargs['prompt']);return next(outputs)
         mx=SimpleNamespace(random=SimpleNamespace(seed=lambda _:None))
         tokenizer=SimpleNamespace(apply_chat_template=lambda messages,**kwargs:json.dumps(messages))
         modules={'mlx':SimpleNamespace(core=mx),'mlx.core':mx,'mlx_lm':SimpleNamespace(generate=generate),'mlx_lm.sample_utils':SimpleNamespace(make_sampler=lambda **kwargs:None)}
@@ -229,6 +252,19 @@ class MusicDnaSong(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder,patch.dict(sys.modules,modules),patch('music_dna_song.lyric_model',return_value=(None,tokenizer,{'revision':'fixture'})):
             work=Path(folder);(work/'input.json').write_text(json.dumps({'profile':profile,'direction':direction_for(self.refs),'seed':123}))
             draft(work);self.assertNotIn('draft_lyrics',prompts[1]);self.assertIn('in English',prompts[1])
+
+    def test_failed_description_is_explicit_unknown_without_blocking_songwriting(self):
+        rows=[{'index':1,**unknown(self.refs[0]),'basis':'Soul'},{'index':2,**unknown(self.refs[1])}]
+        outputs=iter([json.dumps({'tracks':rows})]*2+[json.dumps(self.data)])
+        tokenizer=SimpleNamespace(apply_chat_template=lambda messages,**kwargs:json.dumps(messages))
+        with tempfile.TemporaryDirectory() as folder,patch('music_dna_song.planner_functions',return_value=(lambda _:None,lambda *a,**k:next(outputs),lambda **_:None)),patch('music_dna_song.lyric_model',return_value=(None,tokenizer,{'revision':'fixture'})):
+            work=Path(folder);profile={'references':[r['reference'] for r in self.refs],'referenceMetadata':[{'reference':self.refs[0]['reference'],'genre':'Soul'}],'vocalLanguage':'en'}
+            (work/'input.json').write_text(json.dumps({'profile':profile,'direction':direction_for(self.refs),'seed':1}))
+            draft(work);plan=json.loads((work/'plan.json').read_text())
+            self.assertTrue(plan['track_profiles'][0]['unavailable'])
+            self.assertEqual(plan['sound_guidance']['described'],0)
+            self.assertEqual(plan['influences'][0]['confidence'],'unknown')
+            self.assertEqual(plan['track_profiles'][0]['instruments'],[])
 
     def test_weighted_language_draw_and_unknown_fallback(self):
         refs=[{'reference':str(i)} for i in range(6)]
@@ -272,7 +308,7 @@ class MusicDnaSong(unittest.TestCase):
 
     def test_auto_language_is_drawn_once_and_enforced_during_plan_repair(self):
         selected=copy.deepcopy(self.data);selected['vocal_language']='tr'
-        outputs=iter(['{"favorites":[]}',json.dumps({'favorites':[{'index':1,'language':'tr'},{'index':2,'language':'en'}]}),
+        outputs=iter(['{"tracks":[]}',json.dumps({'tracks':[{'index':i+1,**unknown(ref),'language':code} for i,(ref,code) in enumerate(zip(self.refs,['tr','en']))]}),
                       json.dumps(self.data),json.dumps(selected)])
         prompts=[]
         def generate(*args,**kwargs):prompts.append(kwargs['prompt']);return next(outputs)
@@ -293,13 +329,17 @@ class MusicDnaSong(unittest.TestCase):
         batch_sizes=[]
         def generate(*args,**kwargs):
             messages=json.loads(kwargs['prompt']);data=json.loads(messages[1]['content'])
-            if messages[0]['content'].startswith('Identify the actual sung'):
+            if messages[0]['content'].startswith('Describe how each'):
                 batch_sizes.append(len(data['favorites']))
-                return json.dumps({'favorites':[{'index':i+1,'language':'en' if int(r['reference'].split()[1])<20 else 'tr'} for i,r in enumerate(data['favorites'])]})
+                return json.dumps({'tracks':[{'index':i+1,**unknown(r),'basis':'familiar','confidence':'medium','pace':'fast','energy':'high','texture':'electric','groove':'syncopated','language':'en' if int(r['reference'].split()[1])<20 else 'tr'} for i,r in enumerate(data['favorites'])]})
             self.assertEqual(len(data['favorites']),12)
             self.assertEqual(data['required_direction']['total'],51)
             candidate=copy.deepcopy(self.data)
+            candidate['energy']='high'
             candidate['vocal_language']=data['requested_language']
+            candidate['bpm']=data['required_sound']['bpm'][0]
+            self.assertEqual(data['required_sound']['selected']['count'],31)
+            self.assertTrue(all(int(r['reference'].split()[1])>=20 for r in data['favorites']))
             candidate['influences']=[{'index':i+1,'basis':'genre_only','description':'Catalogue style informs the arrangement.'} for i in range(len(data['favorites']))]
             return json.dumps(candidate)
         tokenizer=SimpleNamespace(apply_chat_template=lambda messages,**kwargs:json.dumps(messages))
@@ -309,12 +349,17 @@ class MusicDnaSong(unittest.TestCase):
             self.assertEqual(len(favorites(profile)),51)
             (work/'input.json').write_text(json.dumps({'profile':profile,'direction':direction_for(refs),'seed':0}))
             draft(work);plan=json.loads((work/'plan.json').read_text())
-            self.assertEqual(batch_sizes,[20,20,11])
+            self.assertEqual(batch_sizes,[6]*8+[3])
+            self.assertEqual(len(plan['track_profiles']),51)
+            self.assertEqual(plan['sound_guidance']['total'],51)
+            self.assertEqual(plan['sound_guidance']['described'],51)
+            self.assertIn('syncopated',plan['cases'][0]['song_caption'])
             self.assertEqual(plan['language']['counts'],{'en':20,'tr':31})
             self.assertEqual(plan['direction']['total'],51)
             self.assertEqual(len(plan['favorites']),51)
             self.assertEqual(len(plan['influences']),51)
             self.assertEqual(plan['direction']['families'][0]['count'],31)
+            self.assertEqual(plan['direction']['energy'],direction_for(refs)['energy'])
 
 
 if __name__ == '__main__':unittest.main()

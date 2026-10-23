@@ -60,7 +60,10 @@ export class CloudSongs{
   }
   const payload=this.commerce.product==='music-dna'?{profile:input,seed:randomInt(2**32),...(country&&/^[A-Z]{2}$/.test(country)?{country}:{})}:(()=>{const {sourceId,...rest}=input as Record<string,unknown>;return rest;})();
   const bounds=songDurations[this.commerce.product];payload.duration_seconds=randomInt(bounds.min,bounds.max+1);
-  if(this.commerce.product==='music-dna'){const feedback=await cloudPersonalFeedback({commerce:this.commerce,owner},musicDirection(input as ReturnType<typeof songInput>)!.id,(input as {vocalLanguage?:string}).vocalLanguage??'auto');if(feedback.length)payload.feedback=feedback;}
+  if(this.commerce.product==='music-dna'){
+   const feedback=await cloudPersonalFeedback({commerce:this.commerce,owner},musicDirection(input as ReturnType<typeof songInput>)!.id,(input as {vocalLanguage?:string}).vocalLanguage??'auto');if(feedback.length)payload.feedback=feedback;
+   const cached=await this.commerce.trackProfiles(owner,input as ReturnType<typeof songInput>);if(cached.length)payload.track_profiles=cached;
+  }
   await this.commerce.submit(owner,id,input,visibility,token,async db=>{
    await db.query("SELECT pg_advisory_xact_lock(hashtextextended('jamloom-cloud-daily-cap',0))");
    const total=(await db.query("SELECT COALESCE(sum(d.cost_cap_micros),0) AS n FROM cloud_song_runs c JOIN dna_song_jobs d ON d.id=c.id WHERE d.created_at>now()-interval '24 hours'")).rows[0];

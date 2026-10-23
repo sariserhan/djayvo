@@ -77,6 +77,20 @@ test('real Postgres cloud songs: concurrency, credits, recovery, privacy, cancel
    const req=(owner:string|null)=>cloudSongAPI(new Request('http://localhost/api/taste/song?id='+key),songs,owner,()=>{});
    assert.equal((await req('user1'))?.status,404);assert.equal((await req(null))?.status,404);assert.equal((await req('user0'))?.status,200);
   });
+  await t.test('saved descriptions reach the next worker only for their owner',async()=>{
+   await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',['soundcache','soundcache@example.test']);
+   await commerce.wallet.grant('soundcache',{provider:'stripe_test',receipt:'soundcache',credits:50,netMicros:30000000});
+   const key=await submit('soundcache');await songs.tick(key);await complete(key);
+   const track={reference:profile.references[0],catalogue_genre:profile.referenceMetadata[0].genre,version:1,model_revision:'fixture',confidence:'medium'};
+   (results.get('provider-'+key)!.output!.plan as any).track_profiles=[track];
+   await songs.tick(key);
+   const publicView=await(await cloudSongAPI(new Request('http://localhost/api/taste/song?id='+key),songs,null,()=>{}))!.json();
+   assert.equal(publicView.plan.track_profiles,undefined);assert.equal(publicView.profile,undefined);
+   const next=await submit('soundcache');await songs.tick(next);
+   assert.deepEqual(jobs.get(next)!.payload.track_profiles,[track]);await songs.cancel('soundcache',next);
+   const other=await submit('user5');await songs.tick(other);
+   assert.equal(jobs.get(other)!.payload.track_profiles,undefined);await songs.cancel('user5',other);
+  });
   await t.test('failed jobs refund all credits and invalid completed output cannot become public',async()=>{
    const key=await submit('user4');await songs.tick(key);results.set('provider-'+key,{id:'provider-'+key,status:'FAILED',executionTime:50000,failure:'style-rejected:matched-2-of-4'});await songs.tick(key);assert.deepEqual(await commerce.wallet.balance('user4'),{available:50,reserved:0});
    assert.equal((await pool.query('SELECT provider_receipt FROM cloud_song_runs WHERE id=$1',[key])).rows[0].provider_receipt.failure,'style-rejected:matched-2-of-4');

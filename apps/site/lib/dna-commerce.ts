@@ -46,6 +46,18 @@ export class DnaCommerce{
  }
  async row(id:string){return (await this.pool.query('SELECT * FROM dna_song_jobs WHERE id=$1 AND product=$2 AND billing_live=$3',[id,this.product,!!this.options.live])).rows[0];}
  async pending(owner:string){return (await this.pool.query("SELECT id FROM dna_song_jobs WHERE owner_id=$1 AND product=$2 AND billing_live=$3 AND state IN ('queued','running') ORDER BY created_at LIMIT 20",[owner,this.product,!!this.options.live])).rows as {id:string}[];}
+ async trackProfiles(owner:string,profile:{references:string[]}){
+  if(this.product!=='music-dna')return [];
+  // shortcut: reuse the owner's last 50 successful plans; add a dedicated cache only if older reuse becomes necessary.
+  const rows=await this.pool.query(`WITH recent AS (
+   SELECT song_plan,created_at,id FROM dna_song_jobs WHERE owner_id=$1 AND product='music-dna' AND billing_live=$2
+   AND state='completed' AND jsonb_typeof(song_plan->'track_profiles')='array' ORDER BY created_at DESC,id DESC LIMIT 50
+  ) SELECT DISTINCT ON (entry->>'reference',entry->>'catalogue_genre') entry
+   FROM recent CROSS JOIN LATERAL jsonb_array_elements(song_plan->'track_profiles') AS entry
+   WHERE entry->>'reference'=ANY($3::text[]) AND entry->>'unavailable' IS DISTINCT FROM 'true' AND octet_length(entry::text)<=4096
+   ORDER BY entry->>'reference',entry->>'catalogue_genre',created_at DESC,id DESC LIMIT 5000`,[owner,!!this.options.live,profile.references]);
+  return rows.rows.map(row=>row.entry);
+ }
  async start(id:string){return !!(await this.pool.query(`UPDATE dna_song_jobs d SET state='running',started_at=now()
   FROM credit_wallets w,"user" u WHERE d.id=$1 AND d.product=$2 AND d.billing_live=$3 AND d.state='queued' AND w.owner_id=d.owner_id AND NOT w.frozen AND u.id=d.owner_id AND NOT u.suspended RETURNING d.id`,[id,this.product,!!this.options.live])).rowCount;}
  async finish(id:string,state:'completed'|'failed'|'cancelled',details?:{title:string;language:string;direction:string;audio?:Buffer;plan?:unknown},settlementCost?:number){
@@ -65,8 +77,8 @@ export class DnaCommerce{
   }
   // Retry settlement before exposing a song; a crash here must never cause a second charge or render.
   await this.wallet.settle(row.owner_id,row.reservation_id,state==='completed'?(settlementCost??Number(row.cost_cap_micros)):0,state);
-  await this.pool.query(`UPDATE dna_song_jobs SET state=$2,title=$3,language=$4,direction=$5,completed_at=now()
-   WHERE id=$1 AND state IN ('queued','running',$2)`,[id,state,details?.title??null,details?.language??null,details?.direction??null]);
+  await this.pool.query(`UPDATE dna_song_jobs SET state=$2,title=$3,language=$4,direction=$5,completed_at=now(),song_plan=COALESCE(song_plan,$6::jsonb)
+   WHERE id=$1 AND state IN ('queued','running',$2)`,[id,state,details?.title??null,details?.language??null,details?.direction??null,details?.plan?JSON.stringify(details.plan):null]);
  }
  async withdraw(owner:string,id:string){
   if(!(await this.pool.query("UPDATE dna_song_jobs SET withdrawn_at=now() WHERE id=$1 AND owner_id=$2 AND product=$3 AND billing_live=$4 AND state='completed'",[id,owner,this.product,!!this.options.live])).rowCount)

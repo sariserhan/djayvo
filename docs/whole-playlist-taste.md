@@ -2,6 +2,8 @@
 
 2026-10-23. Owner request: paste a whole YouTube playlist and infer taste automatically.
 
+The later [sound-profile improvement](music-dna-sound-profiles.md) adds reusable per-song interpretations and compatible-group composition guidance to this flow.
+
 ## Behavior
 
 - Paste a public/unlisted playlist and press **Use this playlist**. The browser follows every page, then checks every available unique video against the music catalogue. No separate match/select/add steps.

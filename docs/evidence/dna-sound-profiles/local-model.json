@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "scope": "actual local description inference and validated composition plans, not rendered audio or factual musicology certification",
+  "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "description_check": {
+    "inputs": 30,
+    "named_multilingual_songs": 10,
+    "named_songs_with_model_descriptions": 10,
+    "genre_only_controls": 20,
+    "controls_with_invented_sound_traits": 0,
+    "snapshot_sha256": "0659483eba7ae658d58ee1c4bba3ce08bfd506ad01b29330a476d7fbe53fa144"
+  },
+  "runs": [
+    {
+      "status": "PASS",
+      "run": "saved-descriptions",
+      "seconds": 33.6,
+      "favorites": 30,
+      "described": 10,
+      "reused": 30,
+      "direction": "Pop",
+      "selected": {
+        "energy": "medium",
+        "pace": "moderate",
+        "texture": "electronic",
+        "count": 1
+      },
+      "bpm": 108,
+      "title": "बच्चे की डॉक्टर की बात",
+      "caption": "Pop; 108 BPM; melodic. rhythmic drums, melodic bass, piano guitar or synthesizers. Natural expressive female lead singing in Hindi. adult female singer, dark rounded alto, full chest resonance. straight, electronic, bright, layered, instrumental breaks. Straight, bright, electronic groove with drum machine and piano. Polished synths and layered vocals create a playful, uplifting texture. Moderate pace, steady beat with clear instrumental breaks. steady, bouncy drum machine with syncopated hi-hats bright",
+      "scope": "real local planning only; no audio rendered",
+      "plan_sha256": "49b3cc539e1245e189496fbedb5d85047628fba47417806763ec82ca6d4f73a0",
+      "input_sha256": "b9a0d3d0399c584613b25755b5a5267c400076000b992b782203dd7215abed89"
+    },
+    {
+      "status": "PASS",
+      "run": "next-take",
+      "seconds": 59.5,
+      "favorites": 30,
+      "described": 10,
+      "reused": 30,
+      "direction": "Pop",
+      "selected": {
+        "energy": "medium",
+        "pace": "moderate",
+        "texture": "mixed",
+        "count": 2
+      },
+      "bpm": 112,
+      "title": "Последняя танцуют",
+      "caption": "Pop; 112 BPM; melodic. rhythmic drums, melodic bass, piano guitar or synthesizers. Natural expressive male lead singing in Russian. adult male singer, deep resonant bass, rich low register. straight, mixed, polished, intimate, sparse verses. Straight, moderate groove with rhythmic drums and melodic bass. Warm, polished texture with piano guitar and strings. Intimate, reflective vocals. Sparse verses build into a steady, emotional groove. straight, dance-like with forward momentum mixed: acoustic guitar,",
+      "scope": "real local planning only; no audio rendered",
+      "plan_sha256": "a849de41d56654377ec1dae4ff61f3a5a4d014a581637dc7a852a6726b462b7b",
+      "input_sha256": "8d6548d3f35436ad0acaacad8649581cc93223580bdae92c889aaf38af6cf918"
+    }
+  ],
+  "automated": {
+    "python_dna": 38,
+    "python_singer": 8,
+    "python_worker": 11,
+    "typescript_integration": 30,
+    "typescript": "PASS"
+  },
+  "not_run": [
+    "audio render and listening comparison",
+    "maximum-size inference timing",
+    "CUDA/Runpod",
+    "worker publication",
+    "website deployment"
+  ]
+}

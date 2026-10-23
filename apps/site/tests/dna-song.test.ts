@@ -14,6 +14,7 @@ const records=new Map<string,any>();
 // Process/HTTP fixture only; real wallet transactions are tested in dna-commerce.test.ts.
 const commerce={wallet:{balance:async()=>({available:10,reserved:0})},
  pending:async()=>[],
+ trackProfiles:async()=>[{reference:"Heavy favorite",catalogue_genre:"Metal",version:1,model_revision:"fixture"}],
  row:async(id:string)=>records.get(id),
  submit:async(owner:string,id:string,profile:unknown,visibility:string)=>{if(!records.has(id))records.set(id,{id,owner_id:owner,state:'queued',visibility,profile});return records.get(id);},
  start:async(id:string)=>{records.get(id).state='running';return true;},
@@ -83,6 +84,7 @@ fs.writeFileSync(p+'/status.json',JSON.stringify({state:'completed'}));},350);`,
   await saveFeedback(listenerDirectory(root,nextRequest),id,{rating:'dislike',tags:['repetitive'],personalize:true,trainingConsent:false},ready,root);
   const cancelled=await(await dnaSong(nextRequest)).json();
   const nextInput=JSON.parse(await readFile(join(root,'renders/music-dna-songs',cancelled.id,'input.json'),'utf8'));
+  assert.equal(nextInput.track_profiles[0].reference,'Heavy favorite');
   assert.deepEqual(nextInput.feedback.map((f:{tags:string[]})=>f.tags),[['repetitive']]);
   assert.equal(nextInput.country,'TR');assert.ok(!JSON.stringify(nextInput).includes('198.51.100.1'));
   assert.ok(cancelled.id);assert.equal((await dnaSong(request('DELETE',`?id=${cancelled.id}`))).status,200);

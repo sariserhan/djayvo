@@ -43,6 +43,25 @@ test('real Postgres Music DNA credits, privacy, idempotence, failure and recover
    const value={...emptyTaste,references,referenceMetadata:references.map(reference=>({reference,genre:'Rock',source:'itunes'}))};
    const revision=await store.save('alice',value,0);const saved=await store.load('alice');assert.equal(saved.profile.references.length,5000);assert.equal(saved.profile.references[4999],references[4999]);assert.equal(await store.load('bob'),null);await store.remove('alice',revision);
   });
+  await t.test('song descriptions survive restart and stay bound to owner, billing environment and favorites',async()=>{
+   await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',['sound','sound@example.test']);
+   await commerce.wallet.grant('sound',{provider:'stripe_test',receipt:'sound',credits:10,netMicros:1000000});
+   const job=id(),quote=await commerce.quote('sound',profile,'private');await commerce.submit('sound',job,profile,'private',quote.token);
+   const track={reference:profile.references[0],catalogue_genre:'Pop',version:1,model_revision:'fixture',confidence:'medium'};
+   await commerce.finish(job,'completed',{title:'Sound fixture',language:'en',direction:'Pop',plan:{track_profiles:[track]}});
+   const restarted=new DnaCommerce(pool,'local-dna-test-secret-'.repeat(3));
+   assert.deepEqual(await restarted.trackProfiles('sound',profile),[track]);
+   assert.deepEqual(await restarted.trackProfiles('bob',profile),[]);
+   assert.deepEqual(await restarted.trackProfiles('sound',{references:['Another song']}),[]);
+   assert.deepEqual(await new DnaCommerce(pool,'secret',undefined,{live:true}).trackProfiles('sound',profile),[]);
+   assert.deepEqual(await new DnaCommerce(pool,'secret',undefined,{product:'improvise'}).trackProfiles('sound',profile),[]);
+   await pool.query('UPDATE dna_song_jobs SET song_plan=$2 WHERE id=$1',[job,JSON.stringify({track_profiles:[{...track,oversize:'x'.repeat(5000)}]})]);
+   assert.deepEqual(await restarted.trackProfiles('sound',profile),[]);
+   await pool.query('UPDATE dna_song_jobs SET song_plan=$2 WHERE id=$1',[job,JSON.stringify({track_profiles:[{...track,unavailable:true}]})]);
+   assert.deepEqual(await restarted.trackProfiles('sound',profile),[]);
+   await pool.query('UPDATE dna_song_jobs SET song_plan=$2 WHERE id=$1',[job,JSON.stringify({track_profiles:{bad:true}})]);
+   assert.deepEqual(await restarted.trackProfiles('sound',profile),[]);
+  });
   await t.test('price, atomic reservation and duplicate request binding',async()=>{
    const pub=await commerce.quote('alice',profile,'public'),priv=await commerce.quote('alice',profile,'private');
    assert.equal(pub.credits,1);assert.equal(priv.credits,2);

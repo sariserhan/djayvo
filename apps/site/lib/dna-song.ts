@@ -102,6 +102,7 @@ export async function dnaSong(request:Request,context?:DnaContext){
    await access(join(root,'build-style-training/taste-auditor/pytorch_model.bin'));
    const feedback=await personalFeedback(root,request,direction.id,profile.vocalLanguage??'auto');
    const country=(!profile.vocalLanguage||profile.vocalLanguage==='auto')?await songCountry(request):null;
+   const track_profiles=await commerce.trackProfiles(owner,profile);
    if(state.jamloomDnaSong||state.jamloomDnaStarting)return json({error:'A song is already being made on this Mac.'},409);
    state.jamloomDnaStarting=true;
    const next=body.requestId,work=join(directory,next);
@@ -113,7 +114,7 @@ export async function dnaSong(request:Request,context?:DnaContext){
      throw Error('Song could not start');
     }
     await mkdir(work,{recursive:true,mode:0o700});
-    await writeFile(join(work,'input.json'),JSON.stringify({profile,direction,feedback,country,seed:randomInt(2**32)}),{flag:'wx',mode:0o600});
+    await writeFile(join(work,'input.json'),JSON.stringify({profile,direction,feedback,country,track_profiles,seed:randomInt(2**32)}),{flag:'wx',mode:0o600});
     await writeFile(join(work,'status.json'),JSON.stringify({state:'running',phase:'preparing',message:'Starting your song…'}));
     const child=spawn(join(root,'.venv-singer/bin/python'),[join(root,'scripts/music_dna_song.py'),'run',work,'--deadline-seconds',String(DNA_RUNTIME_MS/1000)],{
      cwd:root,detached:true,stdio:'ignore',env:{...process.env,HF_HUB_OFFLINE:'1',HF_HUB_DISABLE_TELEMETRY:'1'},
