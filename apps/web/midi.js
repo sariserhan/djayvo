@@ -1,3 +1,4 @@
+import { studioElement, studioHidden, studioFocused, onStudioLeave } from './studio-windows.js';
 export function midiMessage(data) {
   if (!data || data.length !== 3 || ![...data].every(Number.isInteger) ||
       data[0] < 0x80 || data[0] > 0xbf || data[1] < 0 || data[1] > 127 || data[2] < 0 || data[2] > 127) return null;
@@ -25,11 +26,11 @@ export function midiPickup(binding, value, current, min, max, step) {
 }
 
 export function attachMidi({ message, reset }) {
-  const enable = document.getElementById('midi-enable'), select = document.getElementById('midi-input');
-  const status = document.getElementById('midi-status');
-  const target = document.getElementById('midi-target'), learn = document.getElementById('midi-learn');
-  const forget = document.getElementById('midi-forget'), list = document.getElementById('midi-bindings');
-  const learnStatus = document.getElementById('midi-learn-status');
+  const enable = studioElement('midi-enable'), select = studioElement('midi-input');
+  const status = studioElement('midi-status');
+  const target = studioElement('midi-target'), learn = studioElement('midi-learn');
+  const forget = studioElement('midi-forget'), list = studioElement('midi-bindings');
+  const learnStatus = studioElement('midi-learn-status');
   const targets = new Map([
     ['crossfade', 'Crossfader'], ['master', 'Master level'], ['level-a', 'Deck A level'], ['level-b', 'Deck B level'],
     ['tone-a', 'Deck A tone'], ['echo-a', 'Deck A echo'], ['delay-a', 'Deck A echo spacing'],
@@ -81,7 +82,7 @@ export function attachMidi({ message, reset }) {
       return true;
     }
     const binding = bindings.get(key); if (!binding) return false;
-    const node = document.getElementById(binding.target), wasLatched = binding.latched;
+    const node = studioElement(binding.target), wasLatched = binding.latched;
     if (node.disabled) { binding.latched = false; binding.previous = null; binding.last = undefined; }
     else {
       const value = midiPickup(binding, decoded.value, Number(node.value), Number(node.min), Number(node.max), Number(node.step || 1));
@@ -90,13 +91,13 @@ export function attachMidi({ message, reset }) {
     if (wasLatched !== binding.latched) renderBindings();
     return true;
   }
-  for (const id of targets.keys()) document.getElementById(id).addEventListener('input', event => {
+  for (const id of targets.keys()) studioElement(id).addEventListener('input', event => {
     if (!event.isTrusted) return;
     for (const binding of bindings.values()) if (binding.target === id) { binding.latched = false; binding.previous = null; binding.last = undefined; }
     renderBindings();
   });
-  window.addEventListener('blur', rearm);
-  document.addEventListener('visibilitychange', () => { if (document.hidden) rearm(); });
+  onStudioLeave(rearm);
+  document.addEventListener('visibilitychange', () => { if (studioHidden()) rearm(); });
   renderBindings();
   const close = port => { if (port) { port.onmidimessage = null; port.close().catch(() => {}); } };
   function detach() { revision++; reset(); close(input); input = null; clearBindings(); }
@@ -144,7 +145,7 @@ export function attachMidi({ message, reset }) {
         return;
       }
       port.onmidimessage = event => {
-        if (input !== port || document.hidden || !document.hasFocus()) return;
+        if (input !== port || studioHidden() || !studioFocused()) return;
         const decoded = midiMessage(event.data); if (decoded && !control(decoded)) message(decoded);
       };
       renderBindings();

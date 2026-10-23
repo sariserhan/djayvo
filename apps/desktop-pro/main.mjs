@@ -3,7 +3,7 @@ import {app,BrowserWindow,Menu,protocol,session,ipcMain,dialog,shell,autoUpdater
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {ORIGIN,CATALOGUE,UPDATE_FEED,trusted,assetPath,cataloguePath,settings,CSP,permissionAllowed} from './policy.mjs';
+import {ORIGIN,CATALOGUE,UPDATE_FEED,trusted,assetPath,cataloguePath,settings,CSP,permissionAllowed,detachable} from './policy.mjs';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
 const studio=app.isPackaged?path.join(here,'studio'):path.resolve(here,'../../dist/web');
@@ -70,7 +70,18 @@ ses.protocol.handle('jamloom',async request=>{
 function window(title,width,height){
   const win=new BrowserWindow({title,width,height,minWidth:title.endsWith('Settings')?600:960,minHeight:680,backgroundColor:'#171b20',show:false,webPreferences:{preload:path.join(here,'preload.cjs'),sandbox:true,contextIsolation:true,nodeIntegration:false,webSecurity:true,backgroundThrottling:false}});
   win.once('ready-to-show',()=>win.show());
-  win.webContents.setWindowOpenHandler(({url})=>{external(url);return {action:'deny'};});
+  win.webContents.setWindowOpenHandler(({url})=>{
+    if(win===main && detachable(url))return {action:'allow',overrideBrowserWindowOptions:{minWidth:360,minHeight:320,backgroundColor:'#10151b',webPreferences:{sandbox:true,contextIsolation:true,nodeIntegration:false,webSecurity:true,backgroundThrottling:false}}};
+    external(url);return {action:'deny'};
+  });
+  win.webContents.on('did-create-window',child=>{
+    child.webContents.setAudioMuted(win.webContents.isAudioMuted());
+    child.webContents.setWindowOpenHandler(()=>({action:'deny'}));
+    child.webContents.on('will-navigate',(event,url)=>{if(!detachable(url))event.preventDefault();});
+    child.webContents.on('will-attach-webview',event=>event.preventDefault());
+    const closeChild=()=>{if(!child.isDestroyed())child.destroy();};
+    win.once('closed',closeChild);child.once('closed',()=>win.removeListener('closed',closeChild));
+  });
   win.webContents.on('will-navigate',(event,url)=>{if(!trusted(url)){event.preventDefault();external(url);}});
   win.webContents.on('will-attach-webview',event=>event.preventDefault());
   win.webContents.on('render-process-gone',()=>{active=false;stopBlocker();dialog.showMessageBox({type:'error',message:'The studio stopped.',detail:'Reopen Jamloom Pro and restore your saved set. Unsaved recordings may be lost.'});});

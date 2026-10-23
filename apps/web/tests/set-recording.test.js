@@ -6,7 +6,7 @@ function fixture(){
   AudioWorkletNode:class{constructor(){meter=this;this.port={postMessage:m=>messages.push(m),close(){}};}connect(){}disconnect(){}},
   MediaRecorder:class{static isTypeSupported(){return true;}constructor(){recorder=this;this.state='inactive';}start(){this.state='recording';}stop(){this.state='inactive';}}
  };
- scope.window.MediaRecorder=scope.MediaRecorder;
+ scope.window.MediaRecorder=scope.MediaRecorder; scope.$=node; scope.onStudioHidden=()=>{};
  const source=fs.readFileSync(new URL('../set-recording.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replaceAll('export ','');
  vm.runInNewContext(source+'\nglobalThis.attach=attachSetRecording;',scope);
  const context={audioWorklet:{addModule:async()=>{}},createMediaStreamDestination:()=>({stream:{getTracks:()=>[]}}),createGain:()=>({gain:{},connect(){},disconnect(){}})};

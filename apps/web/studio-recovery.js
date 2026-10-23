@@ -1,5 +1,6 @@
+import { studioElement as $ } from './studio-windows.js';
 import {validPattern} from './step-sequence.js';
-const $=id=>document.getElementById(id);
+
 const MAX_BYTES=100*1024*1024;
 const ranges={crossfade:[0,1],master:[0,1],...Object.fromEntries(['a','b'].flatMap(d=>[
  [`level-${d}`,[0,1]],[`tone-${d}`,[0,100]],[`echo-${d}`,[0,.5]],[`delay-${d}`,[100,800]],

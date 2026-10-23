@@ -1,8 +1,9 @@
+import { studioElement as $, onStudioLeave } from './studio-windows.js';
 import { TAKE_SECONDS, stereoWav, sha256, validateTake } from './live-take.js';
 import { resumeAudio } from './audio.js';
 import { pairPhrase } from './phrase-pair.js';
 export function attachInstrumentTake({ context, getNode, panic, getPhrase = () => null }) {
-  const $ = id => document.getElementById(id);
+
   let state = 'idle', token = 0, timer, started = 0, urls = [];
   let source;
   const sourceAllowed = () => !source || ($('take-include-phrase').checked && source.current());
@@ -88,8 +89,7 @@ export function attachInstrumentTake({ context, getNode, panic, getPhrase = () =
     $('take-include-phrase').checked = false; refresh();
   };
   const interrupt = () => { if (['starting', 'recording', 'stopping'].includes(state)) clear('Capture interrupted. Incomplete take discarded.'); };
-  window.addEventListener('blur', interrupt);
-  document.addEventListener('visibilitychange', () => { if (document.hidden) interrupt(); });
+  onStudioLeave(interrupt);
   window.addEventListener('pagehide', () => clear());
   refresh();
   return { refresh, message, clear, interrupt, sourceChanged };

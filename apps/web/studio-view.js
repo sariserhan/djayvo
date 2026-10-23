@@ -1,6 +1,8 @@
+import { studioElement, focusStudioControl } from './studio-windows.js';
 // Reveal controls without replacing their DOM or disturbing active playback.
 export function revealStudioControl(element) {
   if (!element) return;
+  if (element.ownerDocument !== document) element.ownerDocument.defaultView.focus();
   for (let parent = element; parent; parent = parent.parentElement) {
     if (parent.tagName === 'DETAILS') parent.open = true;
   }
@@ -11,8 +13,9 @@ export function revealStudioControl(element) {
 // Expand the existing workspace without rebuilding media elements or the audio graph.
 export function attachStudioView(root, button, status) {
   function revealHash(hash) {
-    const target = document.getElementById(hash.slice(1));
-    if (!target || !root.contains(target)) return;
+    const target = studioElement(hash.slice(1));
+    if (!target) return;
+    if (target.ownerDocument !== document) { focusStudioControl(target); return target; }
     revealStudioControl(target);
     return target;
   }
@@ -24,7 +27,7 @@ export function attachStudioView(root, button, status) {
   revealHash(location.hash);
   let mode = '', previousScroll = 0;
   const outside = new Map();
-  const coachButton = document.getElementById('studio-coaching');
+  const coachButton = studioElement('studio-coaching');
   function coaching() {
     const panel = root.querySelector('.academy-coach');
     coachButton.hidden = !mode || !panel;

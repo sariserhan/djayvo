@@ -1,10 +1,11 @@
+import { studioElement as $, studioQueryAll, studioQuery, studioHidden, onStudioWindow, onStudioLeave } from './studio-windows.js';
 import {validPattern} from './step-sequence.js';
 import { PATCHES, DRUMS, PERCUSSION, noteName, playable, createRack } from './instrument-rack.js';
 import { updateToneEcho, clearEcho } from './mixer.js';
 import { attachMidi } from './midi.js';
 import { resumeAudio } from './audio.js';
 import { attachInstrumentTake } from './instrument-take.js';
-const $ = id => document.getElementById(id);
+
 export function attachKeyboard({ graph, context, mixer, levels, masterControls, getPhrase, onSourcesChanged = () => {}, onNote = () => {} }) {
   let node, loading = false, nextId = 1, root = 60,sequenceRequest=0;
   const held = new Map(), deferred = new Map(), pedals = new Set(), keys = new Map(), pads = new Map();
@@ -33,7 +34,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
     sequenceRequest++;
     send({ type: 'panic' });$('sequence-stop').disabled=true;$('sequence-start').disabled=!node;$('sequence-status').textContent='Pattern stopped.'; held.clear(); deferred.clear(); pedals.clear();
     $('sustain').setAttribute('aria-pressed', 'false');
-    for (const button of document.querySelectorAll('.piano-key,.drum-pad')) button.setAttribute('aria-pressed', 'false');
+    for (const button of studioQueryAll('.piano-key,.drum-pad')) button.setAttribute('aria-pressed', 'false');
   }
   const take = attachInstrumentTake({ context, getNode: () => node, panic, getPhrase });
   async function press(token, button, pitch, patch, velocity = Number($('velocity').value), group = 'local') {
@@ -86,12 +87,16 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
   function octave(delta) {
     panic(); root = Math.max(24, Math.min(96, root + delta));
     $('octave-name').textContent = `${noteName(root)}–${noteName(root + 12)}`;
-    const scroller = document.querySelector('.keyboard-scroll'); scroller.scrollLeft = keys.get(root).offsetLeft - $('keyboard').offsetLeft - 10;
+    const scroller = studioQuery('.keyboard-scroll'); scroller.scrollLeft = keys.get(root).offsetLeft - $('keyboard').offsetLeft - 10;
     availability();
   }
-  window.addEventListener('resize', () => {
-    const scroller = document.querySelector('.keyboard-scroll');
+  onStudioWindow(w => {
+  const resize = () => {
+    const scroller = studioQuery('.keyboard-scroll');
     scroller.scrollLeft = keys.get(root).offsetLeft - $('keyboard').offsetLeft - 10;
+  };
+  w.addEventListener('resize', resize); resize();
+  return () => w.removeEventListener('resize', resize);
   });
   $('load-instruments').onclick = async () => {
     if (node || loading) return;
@@ -105,7 +110,7 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
       }, { once: true });
       node.port.onmessage = ({ data }) => {
         if (data.type === 'rejected') status('Voice limit reached. Release notes or use All notes off.');
-        if(data.type==='sequence-started'){$('sequence-start').disabled=true;$('sequence-stop').disabled=false;$('sequence-status').textContent='Pattern playing. Stops when the page loses focus.';}
+        if(data.type==='sequence-started'){$('sequence-start').disabled=true;$('sequence-stop').disabled=false;$('sequence-status').textContent='Pattern playing. Stops when you leave the studio windows.';}
         if(data.type==='sequence-stopped'){$('sequence-start').disabled=!node;$('sequence-stop').disabled=true;$('sequence-status').textContent=data.message||'Pattern stopped.';}
         take.message(data);
       };
@@ -170,20 +175,29 @@ export function attachKeyboard({ graph, context, mixer, levels, masterControls, 
 
   $('sequence-start').onclick=async()=>{
     const current=++sequenceRequest;if(!node)return;
-    try{const value=pattern();if(!validPattern(value))throw Error('Choose a tempo from 40–240 BPM.');await resumeAudio(context());if(current!==sequenceRequest||document.hidden)return;send({type:'sequence-start',pattern:value,patch:Number($('patch').value),velocity:Number($('velocity').value)});}
+    try{const value=pattern();if(!validPattern(value))throw Error('Choose a tempo from 40–240 BPM.');await resumeAudio(context());if(current!==sequenceRequest||studioHidden())return;send({type:'sequence-start',pattern:value,patch:Number($('patch').value),velocity:Number($('velocity').value)});}
     catch(error){$('sequence-status').textContent=error.message;}
   };
   $('sequence-stop').onclick=()=>{sequenceRequest++;panic();};
   function restorePattern(value){if(!value)return;if(!validPattern(value))throw Error('Saved sequence is damaged.');$('sequence-tempo').value=value.tempo;value.notes.forEach((note,i)=>{$(`sequence-step-${i}`).value=note===null?'':note;});}
   $('panic').onclick = panic;
   $('octave-down').onclick = () => octave(-12); $('octave-up').onclick = () => octave(12);
-  window.addEventListener('keydown', event => {
+  onStudioWindow(w => {
+  const down = event => {
     if (event.repeat || event.metaKey || event.ctrlKey || event.altKey || /INPUT|SELECT|TEXTAREA/.test(event.target.tagName) || event.target.isContentEditable) return;
     const index = letters.indexOf(event.key.toLowerCase()); if (event.key.length !== 1 || index < 0) return;
     event.preventDefault(); const pitch = root + index; press(`key-${event.code}`, keys.get(pitch), pitch, Number($('patch').value));
+  };
+  const up = event => release(`key-${event.code}`);
+  const releaseHeld = () => {
+    for (const note of [...held.values(), ...deferred.values()]) send({type:'off', id:note.id});
+    held.clear(); deferred.clear(); pedals.clear(); $('sustain').setAttribute('aria-pressed','false');
+    for (const button of [...keys.values(), ...pads.values()]) button.setAttribute('aria-pressed','false');
+  };
+  w.addEventListener('keydown', down); w.addEventListener('keyup', up); w.addEventListener('blur', releaseHeld);
+  return () => { releaseHeld(); w.removeEventListener('keydown', down); w.removeEventListener('keyup', up); w.removeEventListener('blur', releaseHeld); };
   });
-  window.addEventListener('keyup', event => release(`key-${event.code}`));
-  window.addEventListener('blur', panic); window.addEventListener('pagehide', panic);
-  document.addEventListener('visibilitychange', () => { if (document.hidden) panic(); });
+  onStudioLeave(panic); window.addEventListener('pagehide', panic);
+  document.addEventListener('visibilitychange', () => { if (studioHidden()) panic(); });
   return { recoveryPattern:pattern,restorePattern,recoveryRoot:()=>root, restoreSettings:(savedRoot=60)=>{root=savedRoot;panic();effects();$('velocity').oninput();$('mouth').oninput();octave(0);}, ready: () => !!node, sourceAsset: () => node ? { sha256: node.engineHash, bytes: node.engineBytes } : null, panic, interrupt: take.interrupt, sourceChanged: take.sourceChanged };
 }

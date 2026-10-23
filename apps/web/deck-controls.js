@@ -1,6 +1,7 @@
+import { studioElement as $, studioQueryAll, studioAnimationFrame, onStudioWindow } from './studio-windows.js';
 import { snapToBeat } from './pro-deck-tools.js';
 import { setMixerGain } from './mixer.js';
-const $ = id => document.getElementById(id);
+
 export function playMedia(audio, current) {
   return new Promise((resolve, reject) => {
     const position = audio.currentTime;
@@ -38,7 +39,7 @@ export function tempoRate(own, other, otherRate) {
 }
 export function attachDeck(deck, other, { pause, start, mixer, context, scratchStart }) {
   const { id, audio } = deck, jog = $(`jog-${id}`);
-  const cueCount = document.querySelectorAll(`[id^=hot-${id}-]`).length;
+  const cueCount = studioQueryAll(`[id^=hot-${id}-]`).length;
   deck.gridOrigin=0;deck.quantize=false;deck.echoDivision='manual';
   const cuePosition=()=>deck.quantize?snapToBeat(audio.currentTime,Number($(`bpm-${id}`).value),deck.gridOrigin,deck.duration):audio.currentTime;
   let cue = 0, hot = Array(cueCount).fill(null), taps = [], drag, pendingRate;
@@ -165,7 +166,11 @@ export function attachDeck(deck, other, { pause, start, mixer, context, scratchS
     else if (previous.resume && previous.revision === deck.revision) start(deck);
   };
   jog.onpointercancel = jog.onlostpointercapture = () => {if(drag?.scratch)audio.endScratch(false);drag = null;};
-  window.addEventListener('blur',()=>{if(drag?.scratch)audio.endScratch(false);drag=null;});
+  onStudioWindow(w => {
+    const release = () => { if(drag?.scratch)audio.endScratch(false); drag=null; };
+    w.addEventListener('blur', release);
+    return () => { release(); w.removeEventListener('blur', release); };
+  });
   jog.onkeydown = event => {
     if (jog.getAttribute('aria-disabled') === 'true') return;
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') seek(audio.currentTime + (event.key === 'ArrowRight' ? 1 : -1) * (event.shiftKey ? 1 : .1));
@@ -186,7 +191,7 @@ export function attachDeck(deck, other, { pause, start, mixer, context, scratchS
       for (let i = 0; i < samples.length; i++) { const x = i * scope.width / samples.length, y = scope.height * (.5 - samples[i] * .45); i ? painter.lineTo(x, y) : painter.moveTo(x, y); }
       painter.stroke();
     }
-    requestAnimationFrame(draw);
+    studioAnimationFrame(draw);
   }
-  requestAnimationFrame(draw);
+  studioAnimationFrame(draw);
 }

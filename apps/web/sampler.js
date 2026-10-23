@@ -1,6 +1,7 @@
+import { studioElement as $, onStudioLeave } from './studio-windows.js';
 import {trackDuration} from './mixer.js';
 import {resumeAudio} from './audio.js';
-const $=id=>document.getElementById(id);
+
 export function validSampleSettings(s,duration){return !!s&&Number.isFinite(duration)&&duration>0&&duration<=30.01&&Number.isFinite(s.start)&&s.start>=0&&Number.isFinite(s.end)&&s.end<=duration&&s.end-s.start>=.02&&Number.isFinite(s.level)&&s.level>=0&&s.level<=1&&Number.isInteger(s.pitch)&&s.pitch>=-12&&s.pitch<=12&&typeof s.loop==='boolean';}
 export function trimSample(context,buffer,start,end){
  const first=Math.round(start*buffer.sampleRate),last=Math.min(buffer.length,Math.round(end*buffer.sampleRate)),length=last-first;
@@ -78,6 +79,6 @@ export function attachSampler({graph,context,mixer,onSourcesChanged}){
  };
  $('sample-delete-bank').onclick=async()=>{if(busy)return;busy=true;refresh();try{await bankStore('readwrite',store=>store.delete($('sample-bank').value));status('Saved bank deleted. Loaded pads are unchanged.');}catch(error){status(error.message);}finally{busy=false;refresh();}};
  for(const consent of [$('sample-consent')])consent.addEventListener('change',()=>{if(!permitted()){stopAll();slots.fill(null);onSourcesChanged();status('Samples cleared from this session. Delete saved banks separately.');}refresh();});
- window.addEventListener('pagehide',stopAll);window.addEventListener('blur',stopAll);
+ window.addEventListener('pagehide',stopAll);onStudioLeave(stopAll);
  refresh();return {loadSample,stop:stopAll,snapshot:()=>[...voices].map(([pad,v])=>({pad,started_context_frame:v.started_context_frame,settings:{...v.settings},duration:v.duration})),sources:()=>Object.fromEntries(slots.map((slot,i)=>['sample'+i,slot?.file??null]))};
 }

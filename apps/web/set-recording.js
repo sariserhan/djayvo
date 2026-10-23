@@ -1,8 +1,9 @@
+import { studioElement as $, onStudioHidden } from './studio-windows.js';
 import {resumeAudio} from './audio.js';
 import {sha256} from './live-take.js';
 export const SET_SECONDS=3600,SET_BYTES=96*1024*1024;
 export function attachSetRecording({graph,context,mixer,emit}){
- const $=id=>document.getElementById(id);let recorder,destination,meter,sink,chunks=[],bytes=0,url,receiptURL,token=0,timer,loaded=false,summary=null,starting=false;
+ let recorder,destination,meter,sink,chunks=[],bytes=0,url,receiptURL,token=0,timer,loaded=false,summary=null,starting=false;
  function disconnect(){clearTimeout(timer);if(meter){try{mixer().meter.disconnect(meter);}catch{}meter.port.close();meter.disconnect();sink.disconnect();meter=null;}if(destination){try{mixer().meter.disconnect(destination);}catch{}destination.stream.getTracks().forEach(t=>t.stop());destination=null;}}
  function controls(){const active=!!recorder||starting;$('set-record-start').disabled=active||!!url||!$('set-record-consent').checked;$('set-record-stop').disabled=recorder?.state!=='recording';$('set-record-delete').disabled=!active&&!url;}
  function clear(message='Set recording removed from this tab. Downloaded copies remain on your device.'){
@@ -44,5 +45,5 @@ export function attachSetRecording({graph,context,mixer,emit}){
  $('set-record-stop').onclick=stop;$('set-record-delete').onclick=()=>clear();$('set-record-consent').onchange=()=>{$('set-record-consent').checked?controls():clear('Recording permission removed. Set discarded.');};
  const interrupt=()=>{if(recorder||starting)clear('Audio or page visibility interrupted. Incomplete set discarded.');};
  for(const id of ['phrase-consent'])$(id).addEventListener('change',()=>{if(!$(id).checked)clear('Voice permission removed. Set discarded.');});
- document.addEventListener('visibilitychange',()=>{if(document.hidden)interrupt();});window.addEventListener('pagehide',()=>clear());controls();return {interrupt};
+ onStudioHidden(interrupt);window.addEventListener('pagehide',()=>clear());controls();return {interrupt};
 }

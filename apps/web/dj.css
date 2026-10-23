@@ -433,3 +433,18 @@ details:has(#set-record-stop:not(:disabled),#mix-record-stop:not(:disabled),#tak
 .studio-access .session-actions{flex-wrap:wrap}.studio-access .primary{display:inline-flex;align-items:center}
 
 #studio-access-status:empty{display:none}
+
+/* Detached windows share the original controls and the studio's audio engine. */
+.studio-window-tools { margin:18px 0; }
+.studio-window-tools > summary { font-weight:650; }
+.studio-detach-bar { display:flex; justify-content:flex-end; padding:10px 0; }
+.studio-detach-bar[hidden] { display:none; }
+.studio-detached-placeholder { padding:20px; border:1px dashed var(--edge); border-radius:12px; margin:12px 0; display:flex; align-items:center; flex-wrap:wrap; gap:12px; }
+.studio-detached .detached-toolbar { position:static; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:12px 20px; background:var(--panel); border-bottom:1px solid var(--edge); }
+.studio-detached .detached-toolbar h1 { font-size:18px; margin:0; letter-spacing:0; }
+.studio-detached > .hint { margin:12px 20px; }
+.studio-detached main { width:100%; max-width:none; margin:0; padding:0 16px 24px; }
+.studio-detached main > section, .studio-detached main > details { margin-top:0; }
+.studio-detached .studio-panel { margin-top:0; }
+.studio-detached .drum-pads { grid-template-columns:repeat(4,minmax(0,1fr)); }
+@media(max-width:480px) { .studio-detached .drum-pads { grid-template-columns:repeat(3,minmax(0,1fr)); } }

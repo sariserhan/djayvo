@@ -1,3 +1,4 @@
+import { studioElement as $, onStudioLeave } from './studio-windows.js';
 import { TAKE_SECONDS, stereoWav, sha256 } from './live-take.js';
 import { MixAutomation } from './mix-automation.js';
 import { MixSources } from './mix-sources.js';
@@ -24,7 +25,7 @@ export function validateMixRecording(recording) {
 }
 
 export function attachMixRecording({ graph, context, mixer, getSources, getTransport, getSampler }) {
-  const $ = id => document.getElementById(id);
+
   let state = 'idle', version = 0, node, sink, nodeError, timer, started, loaded = false, urls = [];
   let sourceCapture, sourceJob, transportCapture;
   function refresh() {
@@ -187,8 +188,7 @@ export function attachMixRecording({ graph, context, mixer, getSources, getTrans
     if (!$(id).checked && state !== 'idle') clear('Voice permission removed. Mix recording discarded.');
   });
   const interrupt = () => { if (['starting', 'recording', 'stopping'].includes(state)) clear('Audio or focus interrupted. Incomplete mix recording discarded.'); };
-  window.addEventListener('blur', interrupt);
-  document.addEventListener('visibilitychange', () => { if (document.hidden) interrupt(); });
+  onStudioLeave(interrupt);
   window.addEventListener('pagehide', () => clear());
   refresh();
   return { interrupt, transportChanged: (target, action) => transportCapture?.record(target, action, getTransport, context()), sourcesChanged: () => sourceCapture?.record(getSources(), context()),

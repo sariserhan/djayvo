@@ -1,4 +1,5 @@
-const $=id=>document.getElementById(id);
+import { studioElement as $, onStudioHidden } from './studio-windows.js';
+
 export function distinctOutputs(master,cue){return typeof master==='string'&&typeof cue==='string'&&master.length>0&&cue.length>0&&master!==cue&&![master,cue].some(id=>['default','communications'].includes(id));}
 export function attachCueRouting({graph,context,mixer,paused}){
  let player,bus,gains,limiter,testTone,configured=false,busy=false,version=0,originalSink;
@@ -42,6 +43,6 @@ export function attachCueRouting({graph,context,mixer,paused}){
  $('cue-disconnect').onclick=()=>release().then(()=>status('Headphone cue disconnected; original master output restored.'),()=>status('Cue is muted. Restore the master output in your browser settings.'));
  navigator.mediaDevices?.addEventListener('devicechange',()=>{silence();status('An audio device changed. Reconfigure and retest headphone cue.');});
  window.addEventListener('pagehide',()=>{void release().catch(()=>{});});
- document.addEventListener('visibilitychange',()=>{if(document.hidden)silence();});
+ onStudioHidden(silence);
  return {interrupt:silence};
 }

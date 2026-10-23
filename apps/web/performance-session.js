@@ -1,3 +1,4 @@
+import { studioElement as $, onStudioHidden, onStudioWindow } from './studio-windows.js';
 import { decodeAudio, encodeWav, resumeAudio } from './audio.js';
 import { livePhraseCapture } from './live-phrase-capture.js';
 import { SessionTransport } from './session-transport.js';
@@ -5,7 +6,7 @@ import { setMixerGain, validatePreparedTrack, updateToneEcho, clearEcho, beatEch
 import { compositionKey } from './novelty.js';
 import { saveSession, verifySession } from './library.js';
 
-const $ = id => document.getElementById(id);
+
 const notes = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
 export function attachPerformance({ deck, graph, context, mixer, pause, controls, onSaved, onPhraseChanged = () => {}, onSourcesChanged = () => {}, onTransportChanged = () => {} }) {
   let live;
@@ -225,7 +226,7 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     try {
       if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) throw new Error('Microphone capture is unavailable; import a phrase instead.');
       const capture = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
-      if (token !== revision || !permitted() || document.hidden) { capture.getTracks().forEach(track => track.stop()); return; }
+      if (token !== revision || !permitted() || $('performance').ownerDocument.hidden) { capture.getTracks().forEach(track => track.stop()); return; }
       stream = capture;
       const type = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/webm'].find(value => MediaRecorder.isTypeSupported(value));
       const active = recorder = new MediaRecorder(capture, type ? { mimeType: type } : undefined), chunks = [];
@@ -343,7 +344,17 @@ export function attachPerformance({ deck, graph, context, mixer, pause, controls
     $('c-level-value').textContent = `${Math.round(Number($('c-level').value) * 100)}%`;
     if (mixer()) setMixerGain(context(), mixer(), 'c', Number($('c-level').value) * Number($('master').value) * .8);
   };
-  document.addEventListener('visibilitychange', () => { if (document.hidden) { if (busy) cancel(); stop(); say('Session stopped when the page was hidden. Start A again when ready.'); } });
+  onStudioHidden(() => { if (busy) cancel(); stop(); say('Session stopped when all studio windows were hidden. Start A again when ready.'); });
+  const captureVisibility = () => {
+    if ($('performance').ownerDocument.hidden && (live || busy === 'permission' || busy === 'recording')) {
+      cancel(); say('Microphone capture stopped because its controls are hidden.');
+    }
+  };
+  document.addEventListener('studio:panels-moved', captureVisibility);
+  onStudioWindow(w => {
+    w.document.addEventListener('visibilitychange', captureVisibility);
+    return () => w.document.removeEventListener('visibilitychange', captureVisibility);
+  });
   window.addEventListener('pagehide', () => { reset(); deletePhrase(); });
   refresh();
   function phraseSource() {

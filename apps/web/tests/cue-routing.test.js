@@ -13,6 +13,7 @@ test('cue stays muted until verification and interrupts pending output setup',as
  class Audio{static prototypeSupported=true;paused=true;async setSinkId(id){this.sinkId=id;}async play(){this.paused=false;if(pendingPlay)await new Promise(resolve=>releasePlay=resolve);}pause(){this.paused=true;}}
  const old={};for(const key of ['document','window','navigator','Audio','HTMLMediaElement','Option'])old[key]=Object.getOwnPropertyDescriptor(globalThis,key);
  Object.defineProperties(globalThis,{document:{configurable:true,value:{getElementById:element,addEventListener:(type,fn)=>events.set(type,fn)}},window:{configurable:true,value:{AudioContext:class {async setSinkId(){}},addEventListener(){}}},navigator:{configurable:true,value:{mediaDevices:{addEventListener:(type,fn)=>mediaEvents.set(type,fn),enumerateDevices:async()=>[]}}},Audio:{configurable:true,value:Audio},HTMLMediaElement:{configurable:true,value:Audio},Option:{configurable:true,value:class{}}});
+ window.document = document;
  try{
  attachCueRouting({graph(){},context:()=>ctx,mixer:()=>({strips:[{scope:node()},{scope:node()}]}),paused:()=>true});
  element('cue-master-device').value='speakers';element('cue-headphone-device').value='headphones';

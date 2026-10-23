@@ -1,4 +1,5 @@
-const $ = id => document.getElementById(id);
+import { studioElement as $, studioQuery, onStudioWindow } from './studio-windows.js';
+
 export const PAD_BEATS = [.125, .25, .5, 1, 2, 4, 8, 16];
 export function snapToBeat(position, bpm, origin, duration) {
   if (![position,bpm,origin,duration].every(Number.isFinite) || bpm<40 || bpm>240 || duration<=0 || origin<0 || origin>duration) throw Error('Set the track BPM and first beat before quantizing.');
@@ -29,7 +30,7 @@ export function attachProDeckTools({decks,mode,context,prepareFrames,deckEffects
   document.documentElement.classList.add('studio-pro');
   const overview=document.createElement('section');overview.className='pro-overviews';overview.setAttribute('aria-label','Pro track waveforms');
   overview.innerHTML='<div class="pro-overview-title"><strong>JAMLOOM <span>PRO PERFORMANCE</span></strong><span>Waveforms · cue points · beat grids</span></div>';
-  document.querySelector('.console').before(overview);
+  studioQuery('.console').before(overview);
   const states=decks.map(deck=>{
     const id=deck.id,upper=id.toUpperCase(),section=$(`jog-${id}`).closest('.deck');
     const lane=document.createElement('div');lane.className=`pro-wave-lane pro-wave-${id}`;
@@ -51,7 +52,7 @@ export function attachProDeckTools({decks,mode,context,prepareFrames,deckEffects
     hot.before(modes);
     const jump=document.createElement('button');jump.className='small-button pro-jump-direction';jump.id=`pro-jump-direction-${id}`;jump.textContent='Jump forward →';jump.setAttribute('aria-pressed','false');hot.after(jump);jump.hidden=true;
     const echo=document.createElement('label');echo.className='pro-echo-sync';echo.innerHTML=`Echo timing<select id="pro-echo-sync-${id}" aria-label="Deck ${upper} echo timing"><option value="manual">Manual</option><option value="0.25">¼ beat</option><option value="0.5">½ beat</option><option value="1">1 beat</option></select>`;section.querySelector('.deck-effects').append(echo);
-    const meter=document.createElement('label');meter.className='pro-channel-meter';meter.innerHTML=`${upper} · PRE-FADER<meter id="pro-meter-${id}" min="0" max="1" value="0" aria-label="Deck ${upper} pre-fader peak"></meter>`;document.querySelector(`.channel-${id}`).append(meter);
+    const meter=document.createElement('label');meter.className='pro-channel-meter';meter.innerHTML=`${upper} · PRE-FADER<meter id="pro-meter-${id}" min="0" max="1" value="0" aria-label="Deck ${upper} pre-fader peak"></meter>`;studioQuery(`.channel-${id}`).append(meter);
     return {deck,section,modes,hot,mode:'hot',rollPad:null,direction:1,slip:true,reverse:null,buffer:null,file:null,peaks:null,meter:new Float32Array(2048),echoMs:null};
   });
   const fail=(id,error)=>{$(`error-${id}`).textContent=error.message;};
@@ -114,7 +115,11 @@ export function attachProDeckTools({decks,mode,context,prepareFrames,deckEffects
     reverse.onkeydown=event=>{if([' ','Enter'].includes(event.key)){event.preventDefault();if(!event.repeat)begin();}};
     reverse.onkeyup=event=>{if([' ','Enter'].includes(event.key)){event.preventDefault();stopReverse(state);}};
     for(const name of ['pointerup','pointercancel','lostpointercapture','blur'])reverse.addEventListener(name,()=>stopReverse(state));
-    for(const name of ['blur','pagehide'])window.addEventListener(name,()=>stopReverse(state));
+    onStudioWindow(w => {
+      const release=()=>stopReverse(state);
+      for(const name of ['blur','pagehide'])w.addEventListener(name,release);
+      return ()=>{release();for(const name of ['blur','pagehide'])w.removeEventListener(name,release);};
+    });
     audio.addEventListener('pause',()=>stopReverse(state));
     const canvas=$(`pro-wave-${id}`);
     const seek=position=>{if(!ready(deck)||state.reverse||!audio.buffer)return;audio.currentTime=deck.quantize?snapToBeat(position,tempo(deck),deck.gridOrigin??0,deck.duration):Math.max(0,Math.min(deck.duration,position));};

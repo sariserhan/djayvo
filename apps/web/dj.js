@@ -1,3 +1,4 @@
+import { studioElement as $, attachStudioWindows } from './studio-windows.js';
 import { attachStudioAccess } from './studio-access.js';
 import './site-announcement.js';
 import { attachProDeckTools } from './pro-deck-tools.js';
@@ -19,7 +20,7 @@ import { attachStudioRecovery } from './studio-recovery.js';
 import { attachCueRouting } from './cue-routing.js';
 import { DECK_EFFECTS, updateDeckEffects, clearDeckEffects } from './deck-effects.js';
 
-const $ = id => document.getElementById(id);
+
 attachStudioView($('dj'), $('studio-fullscreen'), $('studio-view-status'));
 attachProConsole();
 const access = await attachStudioAccess();
@@ -393,3 +394,5 @@ setInterval(() => {
   $('output-meter').value = Math.min(1, peak);
   $('peak').textContent = peak > .00001 ? `${(20 * Math.log10(peak)).toFixed(1)} dBFS` : 'Silent';
 }, 100);
+
+attachStudioWindows();

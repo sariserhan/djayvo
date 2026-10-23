@@ -29,6 +29,7 @@ function setup() {
   let starts = 0;
   const start = () => { starts++; deck.revision++; audio.paused = false; };
   const sandbox = { window: {addEventListener() {}}, document: { getElementById: id=>/^hot-a-[4-7]$/.test(id)?null:node(id), querySelectorAll:()=>Array(4) }, requestAnimationFrame() {} };
+  sandbox.$ = sandbox.document.getElementById; sandbox.studioQueryAll = sandbox.document.querySelectorAll; sandbox.studioAnimationFrame = () => {}; sandbox.onStudioWindow = bind => bind(sandbox.window);
   vm.runInNewContext(source.replace(/^import .*;\n/gm, '').replaceAll('export function ', 'function ') + '\nglobalThis.attach = attachDeck;', sandbox);
   sandbox.attach(deck, {}, { pause, start, mixer: () => null, context: () => null });
   return { deck, audio, pause, start, node, starts: () => starts,

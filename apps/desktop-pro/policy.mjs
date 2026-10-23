@@ -17,3 +17,5 @@ export function permissionAllowed(permission,details={}){
   return ['midi','midiSysex','speaker-selection','fullscreen'].includes(permission);
 }
 export const CSP="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' blob:; worker-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
+
+export const detachable = url => trusted(url) && new URL(url).pathname === '/detached.html' && !new URL(url).search && !new URL(url).hash;
