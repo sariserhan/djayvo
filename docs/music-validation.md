@@ -208,5 +208,7 @@ The isolated-reference comparison also failed owner distinctness. A separate
 local Seed-VC singing-conversion trial now provides three 30-second **Disco ·
 voice identity 1–3** comparisons using synthetic stock-voice targets, the same
 musical source, no pitch shifting and matched vocal level. All three completed
-on the Mac and passed verified R2 storage. Listening and normal-generation
-integration remain open. [Method, pins, results and limits](vocal-identity.md).
+on the Mac and passed verified R2 storage. The owner accepts all three as natural,
+hears voice 1 as different and voices 2/3 as alike: two perceived groups, not three
+accepted singers. Normal-generation integration and broader musical coverage
+remain open. [Method, pins, results and limits](vocal-identity.md).

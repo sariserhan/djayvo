@@ -71,9 +71,17 @@ are recorded rather than hidden.
 
 The gallery titles are **Disco · voice identity 1**, **2** and **3**.
 [Conversion, mix and publication receipts](evidence/song-validation/vocal-identity-comparisons.json).
-**Listening: NOT RUN.** These three candidates remain outside normal generation
-until their naturalness and distinctness are accepted. This experiment does not
-establish language/genre coverage or a broad production voice pool.
+**Listening: PASS for naturalness; PARTIAL for distinctness.** The owner reports
+“1 is different 2 and 3 are alike but all are natural.” This establishes two
+perceived voice groups in this comparison: voice 1 and voices 2/3 together.
+Voices 2/3 must not be counted as separate accepted singers. The exact response
+is [bound to the three output hashes](evidence/song-validation/owner-listening.json).
+Comparison with the earlier accepted female/male pair is not established.
+
+These conversions remain outside normal generation; integration and longer-song
+checks are still open. This English disco experiment does not establish
+language/genre coverage or a broad production voice pool. No training consent
+is inferred from listening feedback.
 
 All three comparisons passed muted mobile Chromium/WebKit playback and seeking,
 with no page errors. [Browser receipt](evidence/song-validation/vocal-identity-browser.json).

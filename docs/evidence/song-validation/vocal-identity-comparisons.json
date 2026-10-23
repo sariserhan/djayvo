@@ -12,7 +12,7 @@
     "pitch_shift": 0,
     "auto_pitch_adjust": false,
     "length_adjust": 1,
-    "listening": "NOT RUN",
+    "listening": "PASS: naturalness; PARTIAL: two perceived voice groups across this comparison",
     "final_sha256": "d9a1e6f54d6a8b6da37dbaaf495fc00ceb993db3d037d8a57312eb5646aa6579",
     "backing_sha256": "55bd9843a07186ab9d5bb02ea288739e85b72688d2e20bc92285241f4490b75e",
     "vocal_gain": 0.9154679754013768,
@@ -27,7 +27,10 @@
       "product": "improvise",
       "check": "not-checked",
       "alreadyListed": false
-    }
+    },
+    "owner_naturalness": "PASS",
+    "owner_perceived_voice_group": 1,
+    "owner_feedback": "owner-listening.json#directIdentityFeedback"
   },
   {
     "voice": "am_fenrir",
@@ -42,7 +45,7 @@
     "pitch_shift": 0,
     "auto_pitch_adjust": false,
     "length_adjust": 1,
-    "listening": "NOT RUN",
+    "listening": "PASS: naturalness; PARTIAL: two perceived voice groups across this comparison",
     "final_sha256": "e05f91e6bd685333bb8dd13f1313c3419596f2f0baea67e31b5acff0a51edead",
     "backing_sha256": "55bd9843a07186ab9d5bb02ea288739e85b72688d2e20bc92285241f4490b75e",
     "vocal_gain": 0.6199787340376407,
@@ -57,7 +60,10 @@
       "product": "improvise",
       "check": "not-checked",
       "alreadyListed": false
-    }
+    },
+    "owner_naturalness": "PASS",
+    "owner_perceived_voice_group": 2,
+    "owner_feedback": "owner-listening.json#directIdentityFeedback"
   },
   {
     "voice": "am_puck",
@@ -72,7 +78,7 @@
     "pitch_shift": 0,
     "auto_pitch_adjust": false,
     "length_adjust": 1,
-    "listening": "NOT RUN",
+    "listening": "PASS: naturalness; PARTIAL: two perceived voice groups across this comparison",
     "final_sha256": "efb79ba16767a3ab28bf97ba05f271551a0f17a423b2796ccf4df2644c2cea99",
     "backing_sha256": "55bd9843a07186ab9d5bb02ea288739e85b72688d2e20bc92285241f4490b75e",
     "vocal_gain": 0.5023925299160353,
@@ -87,6 +93,9 @@
       "product": "improvise",
       "check": "not-checked",
       "alreadyListed": false
-    }
+    },
+    "owner_naturalness": "PASS",
+    "owner_perceived_voice_group": 2,
+    "owner_feedback": "owner-listening.json#directIdentityFeedback"
   }
 ]
