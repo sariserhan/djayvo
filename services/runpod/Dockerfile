@@ -19,6 +19,11 @@ COPY scripts/singing_response.py scripts/music_dna_song.py scripts/dna_direction
 COPY assets/manifests/singing-model.json assets/manifests/lyric-planner-cuda.json assets/manifests/dna-auditor.json assets/manifests/dna-directions.json assets/manifests/dna-languages.json assets/manifests/singer-separation.json assets/manifests/word-timing-tiny.json ./assets/manifests/
 COPY services/runpod/handler.py services/runpod/pipeline.py services/runpod/prepare_models.py ./services/runpod/
 ENV PATH="/opt/jamloom/build-style-training/upstream/.venv/bin:$PATH"
+# GHCR limits individual layers to 10 GB; keep each model download separate.
+RUN python -c "from services.runpod.prepare_models import singer; singer('acestep-v15-turbo')"
+RUN python -c "from services.runpod.prepare_models import singer; singer('acestep-5Hz-lm-1.7B')"
+RUN python -c "from services.runpod.prepare_models import singer; singer('Qwen3-Embedding-0.6B'); singer('vae')"
+RUN python -c "from services.runpod.prepare_models import planner; planner()"
 RUN python services/runpod/prepare_models.py && mkdir -p renders \
     && python -c "import torch, transformers, faster_whisper; assert torch.__version__.startswith('2.10.0')" \
     && /usr/local/bin/python -c "import runpod" \

@@ -19,14 +19,19 @@ def fetch(manifest_name, target):
             raise ValueError('Public model checksum mismatch')
 
 
-def main():
+def singer(component):
     upstream = ROOT/'build-style-training/upstream'
     singer = json.loads((ROOT/'assets/manifests/singing-model.json').read_text())
     snapshot_download('ACE-Step/Ace-Step1.5', revision=singer['weight_revision'],
         local_dir=upstream/'checkpoints', max_workers=3,
-        allow_patterns=['README.md', 'config.json', 'Qwen3-Embedding-0.6B/*', 'acestep-v15-turbo/*',
-                        'vae/*', 'acestep-5Hz-lm-1.7B/*'])
+        allow_patterns=['README.md', 'config.json', component+'/*'])
+
+
+def planner():
     fetch('lyric-planner-cuda.json', ROOT/'build-style-training/lyric-planner-cuda')
+
+
+def finish():
     fetch('dna-auditor.json', ROOT/'build-style-training/taste-auditor')
     speech = json.loads((ROOT/'assets/manifests/word-timing-tiny.json').read_text())
     target = ROOT/'build-speech-tools/faster-whisper-tiny'
@@ -43,9 +48,9 @@ def main():
             output.write(chunk)
     if digest(target) != separator['sha256']:
         raise ValueError('Separator checksum mismatch')
-    runtime(upstream)
+    runtime(ROOT/'build-style-training/upstream')
     print('PASS: pinned public models verified')
 
 
 if __name__ == '__main__':
-    main()
+    finish()
