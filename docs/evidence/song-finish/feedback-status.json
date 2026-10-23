@@ -1,0 +1,10 @@
+{
+  "state": "waiting_for_feedback",
+  "positive_songs": 0,
+  "consented": 0,
+  "negative": 0,
+  "invalid": 0,
+  "hosted_eligible": 0,
+  "minimum": "24 distinct positively rated songs, 6 favorite-list groups, 3 genre families and 2 languages; at least 16 training and 4 holdout songs",
+  "promotion": "NOT RUN: research candidates never replace the generator automatically"
+}

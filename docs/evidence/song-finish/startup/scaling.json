@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-23T08:06:00.043Z",
+  "reason": "One accepted job remained queued with zero workers under QUEUE_DELAY; test REQUEST_COUNT within original one-worker/time/spend cap",
+  "before": {
+    "workers": {
+      "idleTimeout": 5,
+      "max": 1,
+      "min": 0
+    },
+    "scaling": {
+      "queueDelay": 4,
+      "type": "QUEUE_DELAY"
+    }
+  },
+  "after": {
+    "workers": {
+      "max": 1,
+      "min": 0
+    },
+    "scaling": {
+      "requestCount": 1,
+      "type": "REQUEST_COUNT"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "sha256": "7acca79fd82bea848887ea17ff66110b91f6faa551d6ee2c997aa792ba892138",
+  "seconds": 120.0,
+  "rate": 48000,
+  "channels": 2,
+  "peak": 0.891265869140625,
+  "listening": "NOT RUN"
+}

@@ -21,7 +21,7 @@ export async function cloudSongFeedback(request:Request,{commerce,owner}:DnaCont
  let feedback;try{feedback=validateFeedback(await body.json());}catch{return json({error:'Choose a rating and valid feedback options.'},400);}
  if(feedback.trainingConsent&&row.owner_id!==owner)return json({error:'Only the song owner can allow model training.'},403);
  await pool.query(`INSERT INTO song_feedback(owner_id,song_id,feedback) VALUES($1,$2,$3)
-  ON CONFLICT(owner_id,song_id) DO UPDATE SET feedback=EXCLUDED.feedback,updated_at=now()`,[owner,id,JSON.stringify(feedback)]);
+  ON CONFLICT(owner_id,song_id) DO UPDATE SET feedback=EXCLUDED.feedback,updated_at=now()`,[owner,id,JSON.stringify({...feedback,consentVersion:1})]);
  return json({feedback});
 }
 export async function cloudPersonalFeedback(context:DnaContext,genre:string,language:string){

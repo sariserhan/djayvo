@@ -1,0 +1,11 @@
+{
+  "status": "COMPLETED",
+  "executionTime": 80658,
+  "delayTime": 353811,
+  "fit": {
+    "accepted": true,
+    "matching_windows": 4,
+    "target": "heavy-rock",
+    "audio_sha256": "7acca79fd82bea848887ea17ff66110b91f6faa551d6ee2c997aa792ba892138"
+  }
+}

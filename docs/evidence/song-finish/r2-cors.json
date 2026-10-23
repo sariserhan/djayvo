@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "origin": "https://www.jamloom.com",
+      "status": 204,
+      "allowed": "https://www.jamloom.com"
+    },
+    {
+      "origin": "https://jamloom.com",
+      "status": 204,
+      "allowed": "https://jamloom.com"
+    },
+    {
+      "origin": "https://foreign.invalid",
+      "status": 403,
+      "allowed": null
+    },
+    {
+      "origin": "https://www.jamloom.com",
+      "method": "PUT preflight only",
+      "status": 204,
+      "allowed": "https://www.jamloom.com"
+    },
+    {
+      "origin": "https://jamloom.com",
+      "method": "PUT preflight only",
+      "status": 204,
+      "allowed": "https://jamloom.com"
+    },
+    {
+      "origin": "https://foreign.invalid",
+      "method": "PUT preflight only",
+      "status": 403,
+      "allowed": null
+    }
+  ],
+  "rangeStatus": 206,
+  "websiteDeployed": false
+}

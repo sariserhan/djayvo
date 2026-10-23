@@ -10,7 +10,7 @@ const template={name,imageName:image,isPublic:false,isServerless:true,containerD
  ...(process.env.RUNPOD_REGISTRY_AUTH_ID?{containerRegistryAuthId:process.env.RUNPOD_REGISTRY_AUTH_ID}:{})};
 // Disabled until the image and a capped real generation are reviewed. No always-on GPU.
 const endpoint={name,computeType:'GPU',gpuCount:1,gpuTypeIds:['NVIDIA GeForce RTX 4090','NVIDIA L40S'],
- workersMin:0,workersMax:0,idleTimeout:5,executionTimeoutMs:900000,flashboot:true,scalerType:'QUEUE_DELAY',scalerValue:4};
+ workersMin:0,workersMax:0,executionTimeoutMs:900000,flashboot:true,scalerType:'REQUEST_COUNT',scalerValue:1};
 // A driver floor permits newer compatible hosts; a fixed version list can exclude all stock.
 const gpu={allowedCudaVersions:[],minCudaVersion:'12.8'};
 if(!process.argv.includes('--apply'))console.log({template,endpoint,gpu,mode:'dry-run; no provider changes'});
@@ -26,7 +26,7 @@ else{
  const matches=endpoints.filter(e=>e.name===name);if(matches.length>1)throw Error('Duplicate endpoint names; inspect the account');
  let deployed=matches[0];
  if(deployed&&(deployed.workersMin!==0||deployed.workersMax!==0))throw Error('Existing endpoint is active; refusing to replace it');
- const templates=await api('templates');if(!Array.isArray(templates))throw Error('Unexpected template inventory');
+ const templates=await api('templates?includeEndpointBoundTemplates=true');if(!Array.isArray(templates))throw Error('Unexpected template inventory');
  // The v2 API can rename the attached template; its ID remains the source of truth.
  const matching=templates.filter(t=>deployed?t.id===deployed.templateId:t.name===name);if(matching.length>1)throw Error('Duplicate templates; inspect the account');
  let saved=matching[0];
@@ -41,7 +41,8 @@ else{
  }
  const verified=await api('endpoints/'+encodeURIComponent(deployed.id));
  if(verified.templateId!==saved.id||verified.workersMin!==0||verified.workersMax!==0)throw Error('Disabled endpoint verification failed');
- const placement=await api('serverless/'+encodeURIComponent(deployed.id),'PATCH',{gpu},'https://api.runpod.io/v2/');
+ const placement=await api('serverless/'+encodeURIComponent(deployed.id),'PATCH',{gpu,scaling:{type:'REQUEST_COUNT',requestCount:1}},'https://api.runpod.io/v2/');
+ if(placement.scaling?.type!=='REQUEST_COUNT'||placement.scaling?.requestCount!==1)throw Error('Request scaling verification failed');
  if(placement.gpu?.minCudaVersion!==gpu.minCudaVersion||placement.gpu?.allowedCudaVersions?.length!==0)throw Error('CUDA placement verification failed');
  console.log({endpoint:verified.id,template:saved.id,workersMin:0,workersMax:0,status:'configured, disabled; no generation submitted'});
 }

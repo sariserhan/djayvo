@@ -1,0 +1,85 @@
+{
+  "status": "PREPARED; listening remains deferred",
+  "instructions": "Judge each full song, then mark target-style fit, natural singing, intelligible language, coherence and enjoyment 1-5, with timestamps. A facilitator should present sample IDs without file paths or classifier outcomes while rating. Use fluent reviewers for lyric/language scores. Do not train or adjust thresholds using synthetic ratings.",
+  "rows": [
+    {
+      "audio": "renders/music-dna-songs/0f7c7e87a20645ce8f52e6de86988fe4/singer/singer.wav",
+      "sha256": "4135b0198736b57820e8482925545078c9a2e4090902ad4fd7eeb161f489239e",
+      "target": "pop",
+      "language": "ja",
+      "sample": "sample-01"
+    },
+    {
+      "audio": "renders/music-dna-songs/3f868ec96fdd4f8089ce5225befefc8c/singer/singer.wav",
+      "sha256": "45350dd503a1853830093c2ded06b4905faadecc9d9e70ca5e76fdd56005aee6",
+      "target": "indian",
+      "language": "hi",
+      "sample": "sample-02"
+    },
+    {
+      "audio": "renders/music-dna-songs/4caf5b05203048a3b61bb22cd4d2ce9c/singer/singer.wav",
+      "sha256": "66c8d3a60fb52e41f7dba6a353ad3485332a2160f6c07644671436fbc8bb9c89",
+      "target": "rock",
+      "language": "ru",
+      "sample": "sample-03"
+    },
+    {
+      "audio": "renders/music-dna-songs/4a81d32f68b14b09956d9d82cdabba53/singer/singer.wav",
+      "sha256": "7a4f925fa9e0245b4302b06b2a95a6b04323e3b5c419b7e3e0967a2ca6bfaf41",
+      "target": "arabic",
+      "language": "ar",
+      "sample": "sample-04"
+    },
+    {
+      "audio": "renders/music-dna-songs/c7944cb9bef241a3857be663ee5c8e53/singer/singer.wav",
+      "sha256": "9c5a9235984ceb4dec03a4529536099d96cf590b321d2225e87b405373dc0243",
+      "target": "pop",
+      "language": "tr",
+      "sample": "sample-05"
+    },
+    {
+      "audio": "build-song-repair/cloud/jazz-1.wav",
+      "sha256": "9d695e6ef9fa51f5af665507941b8d89a588c32df365279e0eb99ac5813a975e",
+      "target": "jazz",
+      "language": "en",
+      "sample": "sample-06"
+    },
+    {
+      "audio": "renders/music-dna-songs/06d89abd7d194ddf81bbc54af3e9b67f/singer/singer.wav",
+      "sha256": "b0d3384d389644c57db4bb6c706225cb6404e7e2b1b5eaeea4a591df2b0619d4",
+      "target": "heavy-rock",
+      "language": null,
+      "sample": "sample-07"
+    },
+    {
+      "audio": "renders/music-dna-songs/e46c2b419c054cd79311bd9deecf1258/singer/singer.wav",
+      "sha256": "c3eaf32fb3ca7122d19f14fee64631d895e870fc5ac521339c7c2becc9ce5ed6",
+      "target": "latin",
+      "language": "es",
+      "sample": "sample-08"
+    },
+    {
+      "audio": "build-song-repair/cloud/jazz-2.wav",
+      "sha256": "deee55e0c4fd4462c5f84bc504063b21de13491076b5d97434f1705862091097",
+      "target": "jazz",
+      "language": "en",
+      "sample": "sample-09"
+    },
+    {
+      "audio": "build-song-finish/latin-0/singer/singer.wav",
+      "sha256": "e813a06aedee01724520682f628425a5563413b8967384139a7afe95d8fa17dd",
+      "target": "latin",
+      "language": "es",
+      "sample": "sample-10"
+    },
+    {
+      "audio": "build-song-finish/latin-1/singer/singer.wav",
+      "sha256": "e813a06aedee01724520682f628425a5563413b8967384139a7afe95d8fa17dd",
+      "target": "latin",
+      "language": "es",
+      "sample": "sample-11"
+    }
+  ],
+  "ratings": [],
+  "calibration": "Do not tune and evaluate on the same rated songs. Split by favorite-list/source group and freeze thresholds before the held-out evaluation."
+}

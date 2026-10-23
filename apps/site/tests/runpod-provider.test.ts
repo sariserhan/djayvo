@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {RunpodProvider,type RunpodJob} from '../lib/runpod-provider';
+import {RunpodProvider,RunpodMissingJob,type RunpodJob} from '../lib/runpod-provider';
 const job:RunpodJob={id:'a'.repeat(32),product:'music-dna',payload:{},output_url:'https://fixture.invalid',timeout_seconds:900};
 test('Runpod submission is bounded, asynchronous, and never retried after uncertain acceptance',async()=>{
  const calls:{url:string;init?:RequestInit}[]=[];
@@ -37,4 +37,23 @@ test('Runpod status validates identity, states, timing and receipts without expo
  }
  const unsafe=await new RunpodProvider('secret','endpoint',async()=>Response.json({id:'job-1',status:'FAILED',error:'Jamloom generation failed at private lyrics; no completed song was accepted.'})).status('job-1');
  assert.equal(unsafe.failure,undefined);
+});
+
+test('dispatch checks disabled capacity without requiring a warm worker or submitting work',async()=>{
+ for(const max of [0,1]){
+  const provider=new RunpodProvider('secret','endpoint',async(url,init)=>{
+   assert.equal(String(url),'https://api.runpod.io/v2/serverless/endpoint');assert.equal(init?.method,undefined);
+   return Response.json({id:'endpoint',workers:{min:0,max}});
+  });
+  assert.equal(await provider.dispatchEnabled(),max>0);
+ }
+ for(const value of [{id:'other',workers:{max:1}},{id:'endpoint',workers:{max:'1'}},{id:'endpoint',workers:{max:-1}}]){
+  await assert.rejects(new RunpodProvider('secret','endpoint',async()=>Response.json(value)).dispatchEnabled());
+ }
+});
+
+test('only status 404 is an expired-receipt candidate; a submit 404 remains unconfirmed',async()=>{
+ const provider=new RunpodProvider('secret','endpoint',async()=>new Response('Not found',{status:404}));
+ await assert.rejects(provider.status('job-1'),RunpodMissingJob);
+ await assert.rejects(provider.submit(job),/unconfirmed/);
 });

@@ -26,6 +26,21 @@ def group_key(references):
     names=sorted({unicodedata.normalize('NFKC',r).strip().lower() for r in references})
     return hashlib.sha256(json.dumps(names,ensure_ascii=False).encode()).hexdigest()
 
+def training_data(plan,f):
+    case=plan['cases'][0]
+    direction=plan['direction'];code=case.get('vocal_language','en');traits=plan.get('musical_traits')
+    from dna_direction import direction_for
+    refs=[{'reference':'Generated musical direction','catalogue_genre':'Metal' if direction['id']=='heavy-rock' else direction['id']}]
+    direction=direction_for(refs)
+    prompt={'favorites':refs,'required_direction':direction,'requested_language':code,'listener_feedback':[{'rating':'like','tags':f['tags'],'language':code,'traits':traits,'bpm':case['bpm']}]}
+    target={'title':plan['title'],'summary':'An original song guided by the supplied genres and positive listener feedback.',
+        'influences':[{'index':i+1,'basis':'genre_only' if r['catalogue_genre'] else 'unknown','description':'Guided by the supplied catalogue genre.' if r['catalogue_genre'] else 'No genre evidence.'} for i,r in enumerate(refs)],
+        'sound':plan.get('production_sound',direction['label']+' with '+', '.join(direction['instruments'])),'direction_id':direction['id'],'energy':direction['energy'],'instruments':direction['instruments'],
+        'vocal_language':code,'voice':case['voice'],'bpm':case['bpm'],'lyrics':case['lyrics'],'musical_traits':traits}
+    from music_dna_song import song_plan
+    song_plan(target,refs,0,code)
+    return {'messages':[{'role':'system','content':'Write an original two-minute vocal song plan in JSON from this musical direction. Keep the requested language. Use coherent verses, a memorable returning chorus, a bridge and a resolved ending.'},{'role':'user','content':json.dumps(prompt,ensure_ascii=False)},{'role':'assistant','content':json.dumps(target,ensure_ascii=False)}]}
+
 def collect(root):
     records=[];seen=set();counts={'consented':0,'negative':0,'invalid':0}
     for path in sorted((root/'renders/music-dna-feedback').glob('*/*.json')):
@@ -50,20 +65,21 @@ def collect(root):
             seen.add(f['audio_sha256'])
             # Group by the entire original list, never split variants between train and holdout.
             group=group_key(request['profile']['references'])
-            direction=plan['direction'];code=case.get('vocal_language','en');traits=plan.get('musical_traits')
-            from dna_direction import direction_for
-            refs=[{'reference':'Generated musical direction','catalogue_genre':'Metal' if direction['id']=='heavy-rock' else direction['id']}]
-            direction=direction_for(refs)
-            prompt={'favorites':refs,'required_direction':direction,'requested_language':code,'listener_feedback':[{'rating':'like','tags':f['tags'],'language':code,'traits':traits,'bpm':case['bpm']}]}
-            target={'title':plan['title'],'summary':'An original song guided by the supplied genres and positive listener feedback.',
-                'influences':[{'index':i+1,'basis':'genre_only' if r['catalogue_genre'] else 'unknown','description':'Guided by the supplied catalogue genre.' if r['catalogue_genre'] else 'No genre evidence.'} for i,r in enumerate(refs)],
-                'sound':plan.get('production_sound',direction['label']+' with '+', '.join(direction['instruments'])),'direction_id':direction['id'],'energy':direction['energy'],'instruments':direction['instruments'],
-                'vocal_language':code,'voice':case['voice'],'bpm':case['bpm'],'lyrics':case['lyrics'],'musical_traits':traits}
-            from music_dna_song import song_plan
-            song_plan(target,refs,0,code)
-            records.append({'path':str(path.relative_to(root)),'sha256':digest(path),'group':group,'genre':direction['id'],'language':code,
-                'data':{'messages':[{'role':'system','content':'Write an original two-minute vocal song plan in JSON from this musical direction. Keep the requested language. Use coherent verses, a memorable returning chorus, a bridge and a resolved ending.'},{'role':'user','content':json.dumps(prompt,ensure_ascii=False)},{'role':'assistant','content':json.dumps(target,ensure_ascii=False)}]}})
+            records.append({'path':str(path.relative_to(root)),'sha256':digest(path),'group':group,'genre':plan['direction']['id'],'language':case.get('vocal_language','en'),
+                'data':training_data(plan,f)})
         except (OSError,ValueError,KeyError,TypeError,IndexError):counts['invalid']+=1
+    hosted=hosted_snapshot(root)
+    if hosted:
+        counts['hosted_eligible']=len(hosted['records'])
+        for item in hosted['records']:
+            try:
+                f=item['record'];plan=f['plan'];case=plan['cases'][0]
+                if f.get('trainingConsent') is not True or f.get('consentVersion')!=1 or f.get('rating')!='like':continue
+                if plan['schema']!='jamloom-dna-song-1' or f['audio_sha256'] in seen:continue
+                data=training_data(plan,f);seen.add(f['audio_sha256'])
+                records.append({'path':'renders/music-dna-training/hosted-feedback.json','hosted_job':f['job'],'sha256':item['sha256'],
+                    'group':f['group'],'genre':plan['direction']['id'],'language':case.get('vocal_language','en'),'data':data})
+            except (ValueError,KeyError,TypeError,IndexError):counts['invalid']+=1
     return records,counts
 
 def split(records):
@@ -73,9 +89,24 @@ def split(records):
     if len(train)<16 or len(valid)<4:return None
     return train,valid
 
+def hosted_snapshot(root):
+    try:
+        from datetime import datetime, timezone
+        snapshot=json.loads((root/'renders/music-dna-training/hosted-feedback.json').read_text())
+        age=(datetime.now(timezone.utc)-datetime.fromisoformat(snapshot['checkedAt'].replace('Z','+00:00'))).total_seconds()
+        if snapshot.get('schema')!='jamloom-hosted-training-1' or snapshot.get('live') is not True or not 0<=age<20:return None
+        return snapshot
+    except (OSError,ValueError,KeyError,TypeError):return None
+
 def consent_current(root,sources):
-    try:return all(digest(root/r['path'])==r['sha256'] and json.loads((root/r['path']).read_text()).get('trainingConsent') is True for r in sources)
-    except (OSError,ValueError,KeyError):return False
+    try:
+        snapshot=hosted_snapshot(root) if any('hosted_job' in r for r in sources) else None
+        for r in sources:
+            if 'hosted_job' in r:
+                if not snapshot or not any(x['record']['job']==r['hosted_job'] and x['sha256']==r['sha256'] and x['record'].get('trainingConsent') is True for x in snapshot['records']):return False
+            elif digest(root/r['path'])!=r['sha256'] or json.loads((root/r['path']).read_text()).get('trainingConsent') is not True:return False
+        return True
+    except (OSError,ValueError,KeyError,TypeError):return False
 
 def invalidate(root):
     for path in (root/'renders/music-dna-training/runs').glob('*/manifest.json'):
@@ -129,7 +160,7 @@ def run(root,train=False):
         try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:
             report['state']='waiting_for_idle_compute';(output/'status.json').write_text(json.dumps(report,indent=2)+'\n');return report
-        train_rows,valid=parts;sources=[{k:r[k] for k in ('path','sha256','group')} for r in records]
+        train_rows,valid=parts;sources=[{k:r[k] for k in ('path','sha256','group','hosted_job') if k in r} for r in records]
         for previous in (output/'runs').glob('*/manifest.json'):
             candidate=json.loads(previous.read_text())
             if candidate.get('sources')==sources and candidate.get('state')=='candidate_needs_review':

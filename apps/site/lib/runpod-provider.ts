@@ -8,6 +8,8 @@ export type RunpodJob={
 };
 export type RunpodResult={id:string;status:RunpodState;output?:Record<string,unknown>;delayTime?:number;executionTime?:number;failure?:string};
 
+export class RunpodMissingJob extends Error{constructor(){super('Provider job is no longer available');}}
+
 export class RunpodProvider{
  constructor(private key:string,readonly endpoint:string,private request:typeof fetch=fetch){
   if(!key.trim()||! /^[a-zA-Z0-9_-]{1,80}$/.test(endpoint))throw Error('Runpod configuration is incomplete');
@@ -17,11 +19,18 @@ export class RunpodProvider{
    const response=await this.request(`https://api.runpod.ai/v2/${this.endpoint}/${path}`,{method,
     headers:{Authorization:`Bearer ${this.key}`,'Content-Type':'application/json'},
     ...(body===undefined?{}:{body:JSON.stringify(body)}),redirect:'error',signal:AbortSignal.timeout(15000)});
-   if(!response.ok){await response.body?.cancel();throw Error('Provider HTTP '+response.status);}
+   if(!response.ok){await response.body?.cancel();if(method==='GET'&&path.startsWith('status/')&&response.status===404)throw new RunpodMissingJob();throw Error('Provider HTTP '+response.status);}
    const value=JSON.parse((await readBody(response.body,524288)).toString());
    if(!value||typeof value!=='object'||Array.isArray(value)||value.error&&!['FAILED','CANCELLED','TIMED_OUT'].includes(value.status))throw Error('Invalid provider response');
    return value;
-  }catch(error){const status=error instanceof Error&&/^Provider HTTP [0-9]{3}$/.test(error.message)?' ('+error.message+')':'';throw Error((method==='POST'&&path==='run'?'Runpod submission is unconfirmed. Do not automatically resubmit; inspect the endpoint first.':'Runpod request failed')+status);}
+  }catch(error){if(error instanceof RunpodMissingJob)throw error;const status=error instanceof Error&&/^Provider HTTP [0-9]{3}$/.test(error.message)?' ('+error.message+')':'';throw Error((method==='POST'&&path==='run'?'Runpod submission is unconfirmed. Do not automatically resubmit; inspect the endpoint first.':'Runpod request failed')+status);}
+ }
+ async dispatchEnabled(){
+  const response=await this.request(`https://api.runpod.io/v2/serverless/${this.endpoint}`,{headers:{Authorization:`Bearer ${this.key}`},redirect:'error',signal:AbortSignal.timeout(15000)});
+  if(!response.ok){await response.body?.cancel();throw Error('Song capacity could not be checked');}
+  const value=JSON.parse((await readBody(response.body,524288)).toString());
+  if(value?.id!==this.endpoint||!Number.isSafeInteger(value.workers?.max)||value.workers.max<0)throw Error('Invalid song capacity receipt');
+  return value.workers.max>0;
  }
  async submit(job:RunpodJob):Promise<RunpodResult>{
   if(!/^[a-f0-9]{32}$/.test(job.id)||!['music-dna','improvise'].includes(job.product)||

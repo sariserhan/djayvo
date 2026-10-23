@@ -1,0 +1,99 @@
+{
+  "checkedAt": "2026-10-23T07:51:49.681Z",
+  "target": "ep-flat-hill-b4q0lix4.c-6.us-east-2.aws.neon.tech/neondb",
+  "checks": [
+    {
+      "name": "0001_auth.sql",
+      "sha256": "8443db247668c553310d8514d2c851e99b54b9558e74c4d58a07b7df4bc5b1eb",
+      "applied": true
+    },
+    {
+      "name": "0002_tracks.sql",
+      "sha256": "a5aeca74c852dfba35bdfa4a72c565e4d0248c4b6d44f7e70f29e4fe91b92a42",
+      "applied": true
+    },
+    {
+      "name": "0003_private_audio.sql",
+      "sha256": "c725e42d70ef3e6c299886810683e0482ad191ac559134f1979071723efe5e5f",
+      "applied": true
+    },
+    {
+      "name": "0004_catalogue.sql",
+      "sha256": "bb9cdbcf054941f650ab9ed1392ccbf3b50d94375ba2fa2fbcb9b9efa0dc0280",
+      "applied": true
+    },
+    {
+      "name": "0005_auth_expiry.sql",
+      "sha256": "bbfae1ae6ca9c521d262ca1cbedcf12353ba6b92699011ea4cb21bfdb3124dc1",
+      "applied": true
+    },
+    {
+      "name": "0006_credit_ledger.sql",
+      "sha256": "3838df17d96d27b76b60c4d9ffb9fb170297c8c1eaecedb69e42910105061579",
+      "applied": true
+    },
+    {
+      "name": "0007_taste_profiles.sql",
+      "sha256": "f096a4260ae1c20cd63a96c579092583bfdb59a115bf7eef94711aed0223bf7b",
+      "applied": true
+    },
+    {
+      "name": "0008_generation_jobs.sql",
+      "sha256": "39ee93a7025da0d93008c5953713ac02fdfb54b3f41cb4f2c373de42a85a4a96",
+      "applied": true
+    },
+    {
+      "name": "0009_generation_rentals.sql",
+      "sha256": "aad5e5cd69a979820d083ddf9e6b46b5f210e0cbf461f1fe2e78665f0d4ac3c2",
+      "applied": true
+    },
+    {
+      "name": "0010_academy.sql",
+      "sha256": "1b2201196bf3cbdf488ac65a8b34c434a5ee0356c43dba9885096ce36aff6aad",
+      "applied": true
+    },
+    {
+      "name": "0011_administration.sql",
+      "sha256": "2df7437d00da05741a8ac12188de05e19d37142e95894873a61abce94d82ea8c",
+      "applied": true
+    },
+    {
+      "name": "0012_creation_visibility.sql",
+      "sha256": "6adb95ad324dae59e9b0c17764bd9f5651e3651d7ea6ab203c21f042c02784b4",
+      "applied": true
+    },
+    {
+      "name": "0013_audio_duration.sql",
+      "sha256": "54626b1f1d9aaac9b854407e635724177a6d06a2da3a226796034b48646f419f",
+      "applied": true
+    },
+    {
+      "name": "0014_pro_licenses.sql",
+      "sha256": "8826bf995805e572ce4cfe7eedc391c82e6d7edbc7e053ecaac5bddf38217fe2",
+      "applied": true
+    },
+    {
+      "name": "0015_taste_metadata_size.sql",
+      "sha256": "0897a0dcc4b6d5d834c0070a597d90edbe7c183d9813dfc9a3cdc2edcaa9740b",
+      "applied": true
+    },
+    {
+      "name": "0016_dna_songs.sql",
+      "sha256": "70f93fc12a247b6515ce4e9144c98691f217b73854f7e9e8c2e8fe5575281179",
+      "applied": true
+    },
+    {
+      "name": "0017_music_storage.sql",
+      "sha256": "2685139bc0c0b66dff249495d250bb79721913aeec609120574d94755bb35925",
+      "applied": true
+    },
+    {
+      "name": "0018_hosted_songs.sql",
+      "sha256": "2fbb540b55dbdbdcc815cf1d5284c9742a752626344facbebc5d72baa51c86f3",
+      "applied": false
+    }
+  ],
+  "pending": [
+    "0018_hosted_songs.sql"
+  ]
+}

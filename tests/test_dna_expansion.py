@@ -52,6 +52,21 @@ class DnaExpansion(unittest.TestCase):
         path=root/'renders/music-dna-feedback'/'listener'/(job+'.json');path.parent.mkdir(parents=True)
         path.write_text(json.dumps({'job':job,'trainingConsent':consent,'consentVersion':1,'rating':'like','tags':['groove'],**hashes}));return path,work
 
+    def test_hosted_feedback_requires_live_current_consent_and_reuses_planner_validation(self):
+        from datetime import datetime,timezone,timedelta
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);path,work=self.fixture(root)
+            f=json.loads(path.read_text());plan=json.loads((work/'plan.json').read_text());path.unlink()
+            snapshot=root/'renders/music-dna-training/hosted-feedback.json';snapshot.parent.mkdir(parents=True)
+            row={'record':{**f,'plan':plan,'group':group_key(['Private catalogue name'])},'sha256':'f'*64}
+            data={'schema':'jamloom-hosted-training-1','checkedAt':datetime.now(timezone.utc).isoformat(),'live':True,'records':[row]}
+            snapshot.write_text(json.dumps(data));records,_=collect(root)
+            self.assertEqual(len(records),1);self.assertTrue(consent_current(root,records));self.assertNotIn('Private catalogue name',json.dumps(records))
+            data['records']=[];snapshot.write_text(json.dumps(data));self.assertFalse(consent_current(root,records))
+            data['records']=[row];data['checkedAt']=(datetime.now(timezone.utc)-timedelta(seconds=21)).isoformat();snapshot.write_text(json.dumps(data))
+            self.assertEqual(collect(root)[0],[]);self.assertFalse(consent_current(root,records))
+            data['checkedAt']=datetime.now(timezone.utc).isoformat();data['live']=False;snapshot.write_text(json.dumps(data));self.assertEqual(collect(root)[0],[])
+
     def test_training_excludes_unconsented_changed_duplicate_and_reference_data(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder);path,work=self.fixture(root,False);self.assertEqual(collect(root)[0],[])

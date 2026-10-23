@@ -2,7 +2,7 @@ import {cloudPersonalFeedback} from './cloud-song-feedback';
 import {createHash,randomUUID,randomInt} from 'node:crypto';
 import {isDeepStrictEqual} from 'node:util';
 import {DnaCommerce,type DnaVisibility} from './dna-commerce';
-import {RunpodProvider,type RunpodJob,type RunpodResult} from './runpod-provider';
+import {RunpodProvider,RunpodMissingJob,type RunpodJob,type RunpodResult} from './runpod-provider';
 import type {CloudSongConfig} from './cloud-song-config';
 import {AudioError,validateWav} from './audio-validation';
 import {songInput} from './dna-song';
@@ -25,7 +25,7 @@ export function checkSource(audio:Buffer,bytes:number,sha:string){
  if(audio.length!==bytes||hash(audio)!==sha||audio.toString('ascii',0,4)!=='RIFF'||audio.readUInt32LE(4)!==bytes-8||audio.toString('ascii',8,16)!=='WAVEfmt '||audio.readUInt32LE(16)!==16||audio.readUInt16LE(20)!==1||audio.readUInt16LE(22)!==1||audio.readUInt32LE(24)!==16000||audio.readUInt32LE(28)!==32000||audio.readUInt16LE(32)!==2||audio.readUInt16LE(34)!==16||audio.toString('ascii',36,40)!=='data'||audio.readUInt32LE(40)!==bytes-44||(bytes-44)%2||bytes<=44||bytes>9600044)throw new AudioError('The recording could not be verified. Upload it again.');
 }
 export class CloudSongs{
- constructor(readonly commerce:DnaCommerce,readonly config:CloudSongConfig,readonly provider:Pick<RunpodProvider,'submit'|'status'|'cancel'|'health'>=new RunpodProvider(config.key,config.endpoint)){
+ constructor(readonly commerce:DnaCommerce,readonly config:CloudSongConfig,readonly provider:Pick<RunpodProvider,'submit'|'status'|'cancel'|'health'|'dispatchEnabled'>=new RunpodProvider(config.key,config.endpoint)){
   if(!commerce.store)throw Error('Song storage is required');
  }
  async upload(owner:string,value:Record<string,unknown>){
@@ -100,6 +100,8 @@ export class CloudSongs{
      return;
     }
     if(stop){await this.commerce.finish(id,run.cancel_requested?'cancelled':'failed');await this.cleanup(run);return;}
+    // Disabled endpoints reject submissions; keep the durable queue without an ambiguous paid intent.
+    if(!await this.provider.dispatchEnabled())return;
     const job:RunpodJob={id,product:this.commerce.product,timeout_seconds:this.config.executionSeconds,ttl_seconds:this.config.ttlSeconds,
      output_url:await store!.uploadURL(run.output_key,(this.commerce.product==='music-dna'?120:30)*192000+44,this.config.ttlSeconds+300),payload:run.payload};
     if(run.source_id){
@@ -142,7 +144,11 @@ export class CloudSongs{
    await this.cleanup(run);
   }catch(error){
    // Invalid output is terminal, but network/storage failures retain the receipt for safe retry.
-   if(error instanceof AudioError&&error.status===422){await this.commerce.finish(id,'failed');await this.cleanup(run);}
+   if(error instanceof RunpodMissingJob&&run.submitted_at&&Date.now()>Math.max(new Date(run.deadline).getTime(),new Date(run.submitted_at).getTime()+this.config.ttlSeconds*1000)+120000){
+    const health=await this.provider.health();
+    if(health.jobs?.inQueue===0&&health.jobs?.inProgress===0){await this.commerce.finish(id,run.cancel_requested?'cancelled':'failed');await this.cleanup(run);}
+   }
+   else if(error instanceof AudioError&&error.status===422){await this.commerce.finish(id,'failed');await this.cleanup(run);}
    else throw error;
   }finally{await pool.query('UPDATE cloud_song_runs SET lease_until=NULL,lease_token=NULL WHERE id=$1 AND lease_token=$2',[id,token]);}
  }

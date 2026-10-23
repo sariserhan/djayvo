@@ -4,8 +4,9 @@
 credit billing are implemented and locally verified. A real eight-request trial
 completed six songs and refunded the two failures. The subsequent repair retest
 passed both jazz requests; Spanish reliability and musical acceptance remain open.
-The repaired worker was published with owner approval. No website push/deploy,
-production migration or live credit charge was performed.
+The repaired worker was published with owner approval. No website push/deploy or
+live credit charge was performed. Migration 0018 and release configuration now
+pass under the [follow-through report](song-finish.md).
 
 | Requested work | Status | Evidence / remaining boundary |
 | --- | --- | --- |
@@ -43,9 +44,10 @@ production migration or live credit charge was performed.
 - Music DNA feedback is durable per account, with separate personalization and
   training consent and individual/bulk withdrawal. Only song owners can consent
   to training. Personalization supplies up to 12 matching recent ratings to the
-  prepared worker. **Hosted feedback-to-training ingestion is not implemented;
-  collecting consent does not mean the model has been trained.** The earlier
-  local research trainer remains separate and requires eligible reviewed songs.
+  prepared worker. Hosted feedback now reaches the operator-run research trainer
+  with current-consent checks. The production collector found zero eligible
+  ratings, so learned improvement remains **NOT RUN**. See the
+  [implementation and evidence](song-finish.md#hosted-feedback-to-research-training).
 
 ## Real bounded trial
 
@@ -130,29 +132,27 @@ placement mechanics, not whether the edits sound good. Human listening remains N
   funds moved. [Stripe report](evidence/hosted-songs/stripe-test.json).
 - Logs and receipts are in [evidence/hosted-songs](evidence/hosted-songs/).
 
-## Owner-controlled deployment checklist — NOT RUN
+## Owner-controlled deployment checklist
 
-1. Resolve the jazz/Spanish failures and review representative musical/language
-   output before calling the product ready. Publishing these local worker changes
-   and another paid trial require their own authorized release/run scope.
-2. Apply reviewed migration `0018_hosted_songs.sql` through the migration workflow.
-   It has been tested only against disposable local Postgres. Existing production
-   migration evidence still ends at 0017.
-3. Release a new pinned worker image including the shared planner retry and feedback
-   payload support, then configure the endpoint and bounded max-worker policy.
-   The current endpoint remains disabled and its image is unchanged.
-4. Set server-only Runpod/R2 credentials, a reviewed conservative
-   `JAMLOOM_CLOUD_RATE_MICROS_PER_SECOND`, daily cap, live credit mode and cron secret.
-   `JAMLOOM_CLOUD_SONGS_ENABLED` and `JAMLOOM_CREDIT_PURCHASES_ENABLED` default false.
-   Hosted generation refuses test credit mode. Confirm every-minute cron support and
-   `/api/song-jobs` authorization; verify R2 CORS for the final deployed hostname.
-5. Configure the separate live song-credit webhook at `/api/payments/stripe` for
-   completed/asynchronous-success checkout, refunds and disputes. Keep Academy/Pro
-   secrets and metadata distinct. The owner selected `txcd_10000000` on 2026-10-23;
-   local config and the production environment reference contain that category.
-   Live purchases remain disabled. A Stripe category setting alone is not a tax
-   registration or a live payment verification.
-6. Owner deploys the website, then run hosted authenticated submission, closed-tab
-   recovery, private/public playback and live-mode configuration smoke checks before
-   enabling purchases/generation. Do not infer production success from these local
-   or sandbox results.
+1. **PARTIAL:** Spanish reliability, representative musical/language review and
+   calibrated style assessment remain open. The repaired worker is already pinned;
+   the latest local Latin experiment did not establish a further fix.
+2. **PASS:** Migration `0018_hosted_songs.sql` applied and verified in production,
+   with successful private backup restore and repeat no-op.
+3. **PASS, correction; PARTIAL, fresh activation:** The published worker and
+   request-count scaling produced a verified startup song. Endpoint remains disabled
+   (0/0). On owner release, enable bounded capacity before opening website creation;
+   allow configuration propagation and validate first-try acceptance. The test needed
+   a controlled retry after HTTP 409; it did not prove automatic recovery.
+4. **PASS, prepared:** Production Runpod/R2 settings, conservative rate, daily cap,
+   live credit mode and existing cron secret are configured. Generation/purchases
+   remain false. Pro plan supports the once-per-minute cron; R2 allows both final
+   Jamloom origins. Deployed cron/authenticated job execution is NOT RUN.
+5. **PASS, prepared:** Separate live song-credit webhook at `/api/payments/stripe`
+   is created with checkout/refund/dispute events and stored secret, but disabled.
+   Academy/Pro remain separate. Approved tax code `txcd_10000000` is configured.
+   Verify deployed signature handling before activating this webhook or purchases.
+6. **NOT RUN, owner release:** Owner deploys the website, then verify authenticated
+   submission, closed-tab recovery, private/public playback and live-mode configuration
+   before enabling generation/purchases. No local or sandbox result substitutes for
+   these hosted checks. [Latest evidence](song-finish.md).

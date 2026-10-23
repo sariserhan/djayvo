@@ -14,11 +14,11 @@ test('Runpod provisioning corrects provider defaults, allows newer drivers, and 
    let endpoint=${existing}?{id:'endpoint',name:'jamloom-music-v1',templateId:'template',workersMin:0,workersMax:0}:undefined,patches=0;
    globalThis.fetch=async(url,init)=>{
     const path=new URL(url).pathname,body=init.body&&JSON.parse(init.body);
-    if(path==='/v1/templates')return Response.json([{id:'template',name:${existing}?'jamloom-music-v1-template':'jamloom-music-v1',imageName:process.env.RUNPOD_WORKER_IMAGE,
-     env:{JAMLOOM_R2_ORIGIN:'https://'+'a'.repeat(32)+'.r2.cloudflarestorage.com',JAMLOOM_R2_BUCKET:'fixture-audio'}}]);
+    if(path==='/v1/templates'){assert.equal(new URL(url).searchParams.get('includeEndpointBoundTemplates'),'true');return Response.json([{id:'template',name:${existing}?'jamloom-music-v1-template':'jamloom-music-v1',imageName:process.env.RUNPOD_WORKER_IMAGE,
+     env:{JAMLOOM_R2_ORIGIN:'https://'+'a'.repeat(32)+'.r2.cloudflarestorage.com',JAMLOOM_R2_BUCKET:'fixture-audio'}}]);}
     if(path==='/v1/endpoints'&&init.method==='GET')return Response.json(${active}?[{name:'jamloom-music-v1',templateId:'template',workersMin:1,workersMax:1}]:endpoint?[endpoint]:[]);
     if(path==='/v1/endpoints'&&init.method==='POST'){
-     assert.equal(body.workersMin,0);assert.equal(body.workersMax,0);
+     assert.equal(body.workersMin,0);assert.equal(body.workersMax,0);assert.equal(body.scalerType,'REQUEST_COUNT');assert.equal(body.scalerValue,1);assert.equal(body.idleTimeout,undefined);
      endpoint={...body,id:'endpoint',workersMax:3};return Response.json(endpoint);
     }
     if(path==='/v1/endpoints/endpoint'){
@@ -27,7 +27,7 @@ test('Runpod provisioning corrects provider defaults, allows newer drivers, and 
     }
     if(path==='/v2/serverless/endpoint'&&init.method==='PATCH'){
      patches++;assert.equal(endpoint.workersMax,0);
-     assert.deepEqual(body,{gpu:{allowedCudaVersions:[],minCudaVersion:'12.8'}});return Response.json(body);
+     assert.deepEqual(body,{gpu:{allowedCudaVersions:[],minCudaVersion:'12.8'},scaling:{type:'REQUEST_COUNT',requestCount:1}});return Response.json(body);
     }
     throw Error('Unexpected request: '+path);
    };

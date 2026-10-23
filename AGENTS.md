@@ -5,6 +5,12 @@ Use Jamloom for all current product surfaces and new code. Preserve historical
 evidence, fixture provenance, storage identities and the immutable master;
 see [rename scope](docs/jamloom-rename.md).
 
+**Migration authorization — 2026-10-23:** The owner instructed: “do the database
+migration everytime is necessary.” Apply necessary reviewed migrations during
+implementation, with target verification, backup and appropriate checks; no
+separate per-migration confirmation is required. This does not authorize website
+publication, paid compute or enabling live purchases.
+
 **Neon authorization and result — 2026-10-19:** The owner explicitly authorized
 Neon CLI init/deploy and database wiring on `misty-cherry-32516479`, branch
 `production`. [Setup and evidence](docs/neon-setup.md) pass for the database and

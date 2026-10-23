@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-23T08:11:23.172Z",
+  "endpoint": "jl77hn92npt65k",
+  "rows": {
+    "metadata": {
+      "query": {
+        "bucketSize": "hour",
+        "endTime": "2026-10-23T09:00:00Z",
+        "serverlessId": "jl77hn92npt65k",
+        "startTime": "2026-10-23T01:00:00Z"
+      },
+      "recordCount": 3,
+      "totals": {
+        "cpuAmount": 0,
+        "diskAmount": 0.00138888880610466,
+        "feeAmount": 0,
+        "gpuAmount": 0.4030577808734961,
+        "totalAmount": 0.40444666967960075
+      },
+      "uniqueServerlessCount": 1
+    },
+    "records": [
+      {
+        "cpuAmount": 0,
+        "diskAmount": 0,
+        "endTime": "2026-10-23T05:00:00Z",
+        "feeAmount": 0,
+        "gpuAmount": 0.08039670903235674,
+        "serverlessId": "jl77hn92npt65k",
+        "startTime": "2026-10-23T04:00:00Z",
+        "totalAmount": 0.08039670903235674
+      },
+      {
+        "cpuAmount": 0,
+        "diskAmount": 0,
+        "endTime": "2026-10-23T06:00:00Z",
+        "feeAmount": 0,
+        "gpuAmount": 0.07884528022259474,
+        "serverlessId": "jl77hn92npt65k",
+        "startTime": "2026-10-23T05:00:00Z",
+        "totalAmount": 0.07884528022259474
+      },
+      {
+        "cpuAmount": 0,
+        "diskAmount": 0.00138888880610466,
+        "endTime": "2026-10-23T07:00:00Z",
+        "feeAmount": 0,
+        "gpuAmount": 0.2438157916185446,
+        "serverlessId": "jl77hn92npt65k",
+        "startTime": "2026-10-23T06:00:00Z",
+        "totalAmount": 0.24520468042464927
+      }
+    ]
+  }
+}

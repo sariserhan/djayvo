@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-10-23T08:01:28.296Z",
+  "project": "prj_5YKnovNWcvnyr3cBeVW4jNmRdRQP",
+  "environment": "production",
+  "settings": [
+    {
+      "name": "RUNPOD_ENDPOINT_ID",
+      "configured": true
+    },
+    {
+      "name": "JAMLOOM_CLOUD_RATE_MICROS_PER_SECOND",
+      "configured": true
+    },
+    {
+      "name": "JAMLOOM_CLOUD_DAILY_CAP_MICROS",
+      "configured": true
+    },
+    {
+      "name": "CREDIT_BILLING_MODE",
+      "configured": true
+    },
+    {
+      "name": "CREDIT_STRIPE_TAX_CODE",
+      "configured": true
+    },
+    {
+      "name": "JAMLOOM_CLOUD_SONGS_ENABLED",
+      "configured": true
+    },
+    {
+      "name": "JAMLOOM_CREDIT_PURCHASES_ENABLED",
+      "configured": true
+    },
+    {
+      "name": "CREDIT_STRIPE_LIVE_WEBHOOK_SECRET",
+      "configured": true
+    }
+  ],
+  "websiteDeployed": false,
+  "purchasesEnabled": false,
+  "generationEnabled": false
+}

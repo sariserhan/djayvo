@@ -1,0 +1,14 @@
+{
+  "status": "APPROVED by owner, 2026-10-23",
+  "maxUSD": 1,
+  "workersMin": 0,
+  "workersMax": 1,
+  "maxSeconds": 720,
+  "requests": 1,
+  "input": "Public Metal song metadata; original English vocal song, no source recording",
+  "image": "ghcr.io/sariserhan/jamloom/music-worker@sha256:7c0c3145912c38001c5a780237d46f5f9ee5d923ee2113ba6a5c4db483a00a71",
+  "purpose": "Verify fresh asynchronous submission starts from zero workers without manual prewarming or resubmission, with the disabled-capacity guard",
+  "cleanup": "Independent shutdown watchdog, cancel before deadline, remove temporary R2 objects, drop disposable local database, verify zero workers and pending jobs",
+  "websiteDeployment": false,
+  "workerPublication": false
+}

@@ -1,3 +1,4 @@
+import {hostedTrainingSnapshot} from '../lib/hosted-training';
 import {emptyTaste} from '../lib/taste';
 import {cloudSongFeedback,cloudPersonalFeedback} from '../lib/cloud-song-feedback';
 import test from 'node:test';
@@ -14,7 +15,7 @@ import {cloudSongConfig} from '../lib/cloud-song-config';
 import {cloudSongAPI} from '../lib/cloud-song-api';
 import {localAudioStore} from '../lib/audio-store';
 import {Wallet} from '../lib/wallet';
-import type {RunpodJob,RunpodResult} from '../lib/runpod-provider';
+import {RunpodMissingJob,type RunpodJob,type RunpodResult} from '../lib/runpod-provider';
 const id=()=>randomUUID().replaceAll('-',''),sha=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
 const profile={references:['Heavy song'],referenceMetadata:[{reference:'Heavy song',genre:'Metal',source:'itunes' as const}],vocalLanguage:'en'};
 test('cloud song configuration is opt-in and requires a bounded rate',()=>{
@@ -29,8 +30,8 @@ test('real Postgres cloud songs: concurrency, credits, recovery, privacy, cancel
  const pool=createPool(url.href),directory=await mkdtemp(join(tmpdir(),'jamloom-cloud-')),store=localAudioStore(directory);
  const settings=cloudSongConfig({JAMLOOM_CLOUD_SONGS_ENABLED:'true',RUNPOD_ENDPOINT_ID:'fixture',RUNPOD_API_KEY:'secret',JAMLOOM_CLOUD_RATE_MICROS_PER_SECOND:'500'})!;
  const commerce=new DnaCommerce(pool,'fixture-secret-'.repeat(4),store,{budget:settings.budget});
- const jobs=new Map<string,RunpodJob>(),results=new Map<string,RunpodResult>();let submits=0,ambiguous=false,failStorage=false;
- const provider={submit:async(job:RunpodJob)=>{submits++;jobs.set(job.id,job);if(ambiguous)throw Error('Lost response');const result:RunpodResult={id:'provider-'+job.id,status:'IN_QUEUE'};results.set(result.id,result);return result;},status:async(id:string)=>{const r=results.get(id);if(!r)throw Error('Missing provider record');return r;},cancel:async(id:string)=>{const result:RunpodResult={id,status:'CANCELLED'};results.set(id,result);return result;},health:async()=>({jobs:{inQueue:0,inProgress:0}})};
+ const jobs=new Map<string,RunpodJob>(),results=new Map<string,RunpodResult>();let submits=0,ambiguous=false,failStorage=false,enabled=true,missing=false;
+ const provider={dispatchEnabled:async()=>enabled,submit:async(job:RunpodJob)=>{submits++;jobs.set(job.id,job);if(ambiguous)throw Error('Lost response');const result:RunpodResult={id:'provider-'+job.id,status:'IN_QUEUE'};results.set(result.id,result);return result;},status:async(id:string)=>{if(missing)throw new RunpodMissingJob();const r=results.get(id);if(!r)throw Error('Missing provider record');return r;},cancel:async(id:string)=>{const result:RunpodResult={id,status:'CANCELLED'};results.set(id,result);return result;},health:async()=>({jobs:{inQueue:0,inProgress:0}})};
  const songs=new CloudSongs(commerce,settings,provider),storePut=store.put;
  store.put=async(key,audio)=>{if(failStorage&&!key.startsWith('uploads/'))throw Error('Storage unavailable');await storePut(key,audio);};
  const submit=async(owner:string,visibility:'public'|'private'='public')=>{const key=id(),quote=await commerce.quote(owner,profile,visibility);await songs.submit(owner,key,profile,visibility,quote.token);return key;};
@@ -80,18 +81,46 @@ test('real Postgres cloud songs: concurrency, credits, recovery, privacy, cancel
    assert.equal((await cloudSongFeedback(req('POST',feedback),{commerce,owner:'user6'})).status,403);
    assert.equal((await cloudSongFeedback(req('POST',feedback),{commerce,owner:'user7'})).status,200);
    assert.equal((await cloudPersonalFeedback({commerce,owner:'user7'},'heavy-rock','en')).length,1);
+   const exported=await hostedTrainingSnapshot(pool,false);assert.equal(exported.records.length,1);
+   assert.doesNotMatch(JSON.stringify(exported),/Heavy song|user7|example.test/);
+   assert.equal((await hostedTrainingSnapshot(pool)).records.length,0,'sandbox feedback cannot train live models');
+   await pool.query("UPDATE dna_song_jobs SET song_plan=jsonb_set(song_plan,'{title}','\"Changed\"') WHERE id=$1",[key]);
+   assert.equal((await hostedTrainingSnapshot(pool,false)).records.length,0,'changed plan rejected');
+   await pool.query('UPDATE dna_song_jobs SET song_plan=$2 WHERE id=$1',[key,JSON.stringify(results.get('provider-'+key)!.output!.plan)]);
+   assert.equal((await cloudSongFeedback(req('POST',{...feedback,trainingConsent:false}),{commerce,owner:'user7'})).status,200);
+   assert.equal((await hostedTrainingSnapshot(pool,false)).records.length,0,'consent withdrawal excludes training');
+   await cloudSongFeedback(req('POST',feedback),{commerce,owner:'user7'});
    assert.equal((await cloudPersonalFeedback({commerce,owner:'user6'},'heavy-rock','en')).length,0);
    const publicSong=await(await cloudSongAPI(new Request('http://localhost/api/taste/song?id='+key),songs,null,()=>{}))!.json();
    assert.equal(publicSong.profile,undefined);assert.deepEqual(publicSong.plan.language,{code:'en',label:'English'});
    assert.equal((await cloudSongFeedback(req('DELETE',undefined,''),{commerce,owner:'user7'})).status,200);
    assert.equal((await cloudPersonalFeedback({commerce,owner:'user7'},'heavy-rock','en')).length,0);
+   assert.equal((await hostedTrainingSnapshot(pool,false)).records.length,0);
    const liveCommerce=new DnaCommerce(pool,'fixture-secret-'.repeat(4),store,{live:true});
    assert.equal(await liveCommerce.row(key),undefined);assert.equal((await liveCommerce.list(null,'public')).songs.length,0);
+  });
+  await t.test('disabled service waits without dispatch intent; enabling dispatches once and cancellation refunds',async()=>{
+   const key=await submit('user5');enabled=false;const before=submits;
+   await songs.tick(key);await songs.tick(key);assert.equal(submits,before);
+   assert.equal((await pool.query('SELECT submitted_at FROM cloud_song_runs WHERE id=$1',[key])).rows[0].submitted_at,null);
+   enabled=true;await Promise.all([songs.tick(key),songs.tick(key)]);assert.equal(submits,before+1);
+   await songs.cancel('user5',key);assert.deepEqual(await commerce.wallet.balance('user5'),{available:50,reserved:0});
+   const expired=await submit('user5');enabled=false;
+   await pool.query("UPDATE cloud_song_runs SET deadline=now()-interval '1 second' WHERE id=$1",[expired]);
+   await songs.tick(expired);assert.equal((await commerce.row(expired)).state,'failed');assert.equal(submits,before+1);enabled=true;
   });
   await t.test('lost submit response never retries paid work; quiet endpoint after TTL releases reservation',async()=>{
    const key=await submit('user5');ambiguous=true;const before=submits;await assert.rejects(songs.tick(key));ambiguous=false;
    await songs.tick(key);assert.equal(submits,before+1);assert.equal((await commerce.row(key)).state,'queued');
    await pool.query("UPDATE cloud_song_runs SET deadline=now()-interval '3 minutes' WHERE id=$1",[key]);await songs.tick(key);assert.equal((await commerce.row(key)).state,'failed');assert.deepEqual(await commerce.wallet.balance('user5'),{available:50,reserved:0});
+  });
+  await t.test('missing provider receipt refunds only after the full provider TTL and a quiet queue',async()=>{
+   const key=await submit('user5');await songs.tick(key);missing=true;
+   await assert.rejects(songs.tick(key),RunpodMissingJob);assert.equal((await commerce.row(key)).state,'queued');
+   await pool.query("UPDATE cloud_song_runs SET deadline=now()-interval '3 minutes' WHERE id=$1",[key]);
+   await assert.rejects(songs.tick(key),RunpodMissingJob,'local deadline alone is insufficient');
+   await pool.query("UPDATE cloud_song_runs SET submitted_at=now()-interval '30 minutes' WHERE id=$1",[key]);
+   await songs.tick(key);assert.equal((await commerce.row(key)).state,'failed');assert.deepEqual(await commerce.wallet.balance('user5'),{available:50,reserved:0});missing=false;
   });
   await t.test('test credit lots cannot fund live requests or inflate live balances',async()=>{
    const live=new Wallet(pool,true);assert.deepEqual(await live.balance('user6'),{available:0,reserved:0});await assert.rejects(live.quote('user6',10000),/Insufficient/);
