@@ -170,3 +170,7 @@
 .dna-playlist-picker li button { flex-shrink: 0; }
 
 .song-filters{align-items:end}.song-filters label{display:grid;gap:8px;flex:1 1 180px;max-width:320px;min-width:0}.song-filters select{width:100%;min-width:0;min-height:44px}.dna-song-grid[hidden]{display:none}
+
+.song-paged-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr))}
+.song-pagination{display:flex;align-items:center;justify-content:center;gap:16px;margin:20px 0}
+.song-pagination button{min-height:44px}.song-pagination button:disabled{opacity:.45;cursor:default}

@@ -1,3 +1,9 @@
+## Six-row song pagination — 2026-10-23
+
+**PASS, local.** Homepage and Music DNA listening collections, `/listening`, and earlier examples use six rows per page. Previous/Next and page counts appear above and below the grid. The measured column count controls page size; filters and column-count changes return to page 1. The final page is clamped when a collection shrinks. Audio remains on-demand. Community/account server pagination and visibility rules are unchanged.
+
+Chromium 1280px (18 songs/page), Chromium 800px (12), and WebKit 390px (6) passed complete traversal of all 154 unique song IDs on all three routes, six-row geometry, previous/next boundaries, language/genre/reset, pagination accessibility, no horizontal overflow and no page errors. Resizing desktop to mobile resets to page 1. Screenshots visually inspected at desktop/mobile. TypeScript and diff checks PASS. Browser runtime tools were unavailable; used the owner's previously authorized local Playwright fallback. Repro: `/tmp/jamloom-gallery-pagination.mjs`; screenshots: `/tmp/jamloom-pagination-{desktop,tablet,mobile}-{home,music-dna,listening}.png`. No database/storage changes. Website deployment NOT RUN.
+
 ## Full public listening collection — 2026-10-23
 
 **PASS, local.** The public showcase already used the same collection as `/listening`, but displayed only 12 cards initially and sat below the earlier examples. Homepage and Music DNA now render all 154 collection songs, with a count above the cards, language/genre filters and “Listen to all songs” shortcuts. The collection precedes the nine earlier examples. Existing private/community visibility boundaries are unchanged. Audio still loads on demand.
