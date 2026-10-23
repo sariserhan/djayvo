@@ -1,0 +1,59 @@
+[
+  {
+    "product": "music-dna",
+    "exit": 0,
+    "receipts": [
+      {
+        "audioSha256": "601a41a2db84c309e006f28f2abe9bb340cd33ce0e36a7e8fbd9efa3c7ee93ab",
+        "referenceId": "voice-1",
+        "referenceSha256": "686b696363f79ef80715bac88c285c0abc3b6fc17f254ee9a311a663690fa433",
+        "technical": "PASS",
+        "duration": 120
+      }
+    ],
+    "published": [
+      {
+        "status": "PASS",
+        "id": "601a41a2db84c309e006f28f2abe9bb3",
+        "sha256": "601a41a2db84c309e006f28f2abe9bb340cd33ce0e36a7e8fbd9efa3c7ee93ab",
+        "bytes": 23040044,
+        "product": "music-dna",
+        "check": "passed",
+        "alreadyListed": false
+      }
+    ]
+  },
+  {
+    "product": "improvise",
+    "exit": 0,
+    "receipts": [
+      {
+        "audioSha256": "e8dea607e9bdc66ae0fe970b3a823b1256fdd478f04a74025f4d6320928ace2e",
+        "referenceId": "voice-2",
+        "referenceSha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+        "technical": "PASS",
+        "duration": 30
+      }
+    ],
+    "published": [
+      {
+        "status": "PASS",
+        "id": "e8dea607e9bdc66ae0fe970b3a823b12",
+        "sha256": "e8dea607e9bdc66ae0fe970b3a823b1256fdd478f04a74025f4d6320928ace2e",
+        "bytes": 5760044,
+        "product": "improvise",
+        "check": "not-checked",
+        "alreadyListed": false
+      },
+      {
+        "status": "PASS",
+        "id": "2d0fe5801119f143f976bab04d550c35",
+        "sha256": "2d0fe5801119f143f976bab04d550c356d98d809a1cde95aefdead98bfcdc727",
+        "bytes": 5760044,
+        "product": "improvise",
+        "check": "not-checked",
+        "alreadyListed": false
+      }
+    ]
+  }
+]

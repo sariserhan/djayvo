@@ -26,6 +26,7 @@ def prepare(source, work, seed, vocal_profile=None):
     request['seed'] = seed
     (work/'input.json').write_text(json.dumps(request, ensure_ascii=False))
     plan.pop('seed', None)  # The singer reads the case seed, never a top-level research label.
+    plan['cases'][0].pop('singer_reference', None)
     plan['cases'][0]['seed'] = seed
     if vocal_profile is not None:
         if vocal_profile not in VOCAL_PROFILES:raise ValueError('Unknown vocal profile')
@@ -51,9 +52,12 @@ def verify(work, seed, seen):
     return sha
 
 
-def evaluate(source, output, seed, voices=False, reference_singers=None):
+def evaluate(source, output, seed, voices=False, reference_singers=None, reference_vocals=False):
     if not 0 <= seed < 2**32-1:
         raise ValueError('Two seeds must fit the singer range')
+    if reference_singers is not None and (voices or not 2 <= len(reference_singers) <= 8):
+        raise ValueError('Compare two to eight references separately from caption-only voices')
+    if reference_vocals and not reference_singers:raise ValueError('Isolated vocals require explicit references')
     output.mkdir(parents=True, exist_ok=False)
     rows, seen = [], set()
     with (ROOT/'renders/.music-dna-singer.lock').open('a') as lock:
@@ -65,10 +69,10 @@ def evaluate(source, output, seed, voices=False, reference_singers=None):
             work = output/(f'reference-{index+1}' if reference else profile or str(selected))
             plan = prepare(source, work, selected, profile)
             if reference:
-                plan['title']=plan['title'].split(' · ')[0]+f' · reference voice {index+1}'
+                plan['title']=plan['title'].split(' · ')[0]+f' · {output.name.replace("-", " ")} · voice {index+1}'
                 (work/'plan.json').write_text(json.dumps(plan,ensure_ascii=False,indent=2)+'\n')
             with (work/'run.log').open('w') as log:
-                subprocess.run([sys.executable, str(ROOT/'scripts/singing_response.py'), 'sing', '--runtime', str(ROOT/'build-style-training/upstream'), '--plan', str(work/'plan.json'), '--output', str(work/'singer'), '--case', plan['cases'][0]['id'],*(['--reference-singer',str(reference)] if reference else [])], stdout=log, stderr=subprocess.STDOUT, check=True, timeout=900)
+                subprocess.run([sys.executable, str(ROOT/'scripts/singing_response.py'), 'sing', '--runtime', str(ROOT/'build-style-training/upstream'), '--plan', str(work/'plan.json'), '--output', str(work/'singer'), '--case', plan['cases'][0]['id'],*(['--reference-singer',str(reference)] if reference else []),*(['--reference-vocals'] if reference_vocals else [])], stdout=log, stderr=subprocess.STDOUT, check=True, timeout=900)
             sha = verify(work, selected, seen)
             with (work/'check.log').open('w') as log:
                 subprocess.run([sys.executable, str(ROOT/'scripts/check_dna_audio.py'), '--work', str(work)], stdout=log, stderr=subprocess.STDOUT, check=True, timeout=180)
@@ -90,6 +94,7 @@ if __name__ == '__main__':
     p.add_argument('--output', required=True, type=Path)
     p.add_argument('--seed', required=True, type=int)
     p.add_argument('--voices',action='store_true',help='Compare four vocal characters on identical lyrics, style and seed; publish each verified take')
-    p.add_argument('--reference-singers',nargs=2,type=Path,help='Compare two receipt-bound synthetic vocal references locally and publish verified takes')
+    p.add_argument('--reference-singers',nargs='+',type=Path,help='Compare two to eight receipt-bound synthetic vocal references locally and publish verified takes')
+    p.add_argument('--reference-vocals',action='store_true',help='Compare isolated vocals from the same pinned references')
     args = p.parse_args()
-    evaluate(args.source.resolve(), args.output.resolve(), args.seed,args.voices,args.reference_singers)
+    evaluate(args.source.resolve(), args.output.resolve(), args.seed,args.voices,args.reference_singers,args.reference_vocals)

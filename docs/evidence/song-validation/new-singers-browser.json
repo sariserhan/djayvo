@@ -1,0 +1,32 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "correctedTurkishTitle": true,
+    "mutedPlayback": [
+      "new singers · voice 1",
+      "new singers · voice 2",
+      "new singers · voice 3",
+      "new singers · voice 4"
+    ],
+    "duration": 120,
+    "seek": 80,
+    "mobileWidth": 390,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "correctedTurkishTitle": true,
+    "mutedPlayback": [
+      "new singers · voice 1",
+      "new singers · voice 2",
+      "new singers · voice 3",
+      "new singers · voice 4"
+    ],
+    "duration": 120,
+    "seek": 80,
+    "mobileWidth": 390,
+    "errors": []
+  }
+]

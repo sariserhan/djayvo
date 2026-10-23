@@ -7,11 +7,55 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, VOCAL_PROFILES, choose_vocal_profile, vocal_description, generated_vocal_reference, digest, caption, load_plan, validate_plan, variants
+from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, VOCAL_PROFILES, SINGER_REFERENCES, cast_singer_reference, resolve_vocal_reference, isolated_vocal_reference, choose_vocal_profile, vocal_description, generated_vocal_reference, digest, caption, load_plan, validate_plan, variants
 from assemble_sung_response import PATTERNS
 
 
 class SingingPlans(unittest.TestCase):
+    def test_isolated_reference_requires_bound_separator_stems(self):
+        import numpy as np
+        import soundfile as sf
+        with tempfile.TemporaryDirectory() as folder,patch('singing_response.ROOT',Path(folder).resolve()):
+            root=Path(folder).resolve();stems=root/'renders/original/stems';stems.mkdir(parents=True)
+            manifest=root/'assets/manifests/singer-separation.json';manifest.parent.mkdir(parents=True);manifest.write_text('{"sha256":"pinned-separator"}')
+            audio=stems/'vocals.npy';np.save(audio,np.full((48000*30,2),1.2,dtype=np.float32),allow_pickle=False)
+            receipt={'technical':'PASS','source_sha256':'original-hash','model_sha256':'pinned-separator','stems':{'vocals':digest(audio)},'sample_rate':48000,'frames':48000*30}
+            (stems/'complete.json').write_text(json.dumps(receipt))
+            reference={'audio':str(stems.parent/'singer.wav'),'sha256':'original-hash','voice':'male'}
+            dest=root/'reference.wav';result=isolated_vocal_reference(reference,dest)
+            pcm,rate=sf.read(dest);self.assertEqual(rate,48000);self.assertEqual(pcm.shape,(48000*30,2));self.assertLessEqual(abs(pcm).max(),.98)
+            self.assertEqual(result['source_audio_sha256'],'original-hash');self.assertEqual(result['sha256'],digest(dest))
+            with self.assertRaises(FileExistsError):isolated_vocal_reference(reference,dest)
+            for field,value in [('source_sha256','different'),('model_sha256','untrusted'),('stems',{'vocals':'changed'})]:
+                (stems/'complete.json').write_text(json.dumps({**receipt,field:value}))
+                with self.assertRaisesRegex(ValueError,'provenance'):isolated_vocal_reference(reference,root/'invalid.wav')
+                self.assertFalse((root/'invalid.wav').exists())
+
+    def test_accepted_references_preserve_gender_and_validate_pinned_assets(self):
+        for key,expected in SINGER_REFERENCES.items():
+            case={'voice':expected['voice'],'seed':42}
+            with patch('singing_response.inference_device',return_value='mps'):
+                cast_singer_reference(case)
+            self.assertEqual(case['singer_reference'],key)
+            reference={'audio':'fixture','voice':expected['voice'],'sha256':expected['sha256'],'receipt_sha256':expected['receipt_sha256']}
+            with patch('singing_response.generated_vocal_reference',return_value=reference) as load:
+                self.assertEqual(resolve_vocal_reference(case),reference)
+                self.assertEqual(load.call_args.args[0].name,Path(expected['folder']).name)
+                with self.assertRaisesRegex(ValueError,'override'):resolve_vocal_reference(case,Path('other'))
+                for field in ('sha256','receipt_sha256'):
+                    with patch('singing_response.generated_vocal_reference',return_value={**reference,field:'changed'}):
+                        with self.assertRaisesRegex(ValueError,'changed'):resolve_vocal_reference(case)
+            with patch('singing_response.generated_vocal_reference',side_effect=FileNotFoundError):
+                with self.assertRaises(FileNotFoundError):resolve_vocal_reference(case)
+            legacy={'voice':expected['voice'],'seed':42}
+            with patch('singing_response.inference_device',return_value='cuda'):
+                cast_singer_reference(legacy)
+            self.assertNotIn('singer_reference',legacy)
+            self.assertIsNone(resolve_vocal_reference(legacy))
+        for key in ('private/path',[], 'voice-2'):
+            plan=self.plan();case=plan['cases'][0];case.update(voice='female',vocal_profile='female-alto',singer_reference=key,id=case['genre']+'-female')
+            with self.assertRaisesRegex(ValueError,'singer reference'):validate_plan(plan)
+
     def test_reference_research_requires_bound_unconditioned_synthetic_audio(self):
         with tempfile.TemporaryDirectory() as folder,patch('singing_response.ROOT',Path(folder).resolve()),patch('arrange_voice_research.read_pcm') as pcm:
             root=Path(folder).resolve()/'renders'/'original';root.mkdir(parents=True)

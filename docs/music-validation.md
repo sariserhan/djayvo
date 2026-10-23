@@ -43,16 +43,23 @@ Arabic traditions, South Asian traditions, lo-fi, experimental and regional folk
 alongside heavy rock, rock, Latin and pop. Broad family grouping still loses
 some subgenre specificity.
 
-The active run and per-case results are preserved in
+The completed run and per-case results are preserved in
 `renders/music-validation-20261023/report.json`. Finished/rejected takes are
 uploaded after each case. Resume only after the prior process has stopped; the
 runner verifies original inputs and never rerenders finished cases. A terminal
 case whose publication was interrupted is published idempotently on resume.
 All subsequent broad tests use local compute, not additional Runpod generation.
 
+**Final baseline result: PARTIAL — 57/73 completed, 16 failed, 111 takes published.**
+All 23 Improvise styles completed. Of the 50 DNA cases, 34 completed, 11 failed
+the unchanged style check, and five failed lyric-plan validation (Czech, Korean,
+Latin, Urdu and Chinese). These are real remaining reliability defects, not
+proof that all supported languages work. No timeouts or publication failures.
+This run predates reference-guided casting. [Per-case summary](evidence/song-validation/coverage-summary.json).
+
 ## Vocal variety
 
-New DNA and Improvise plans choose among eight generic vocal characters: female
+The first caption-only approach chose among eight generic vocal characters: female
 alto, mezzo, soprano and textured mid-range; male bass, baritone, tenor and
 textured mid-range. Casting uses the song seed independently of language. DNA
 casting no longer relies on the lyric model repeatedly choosing the same gender;
@@ -68,7 +75,7 @@ take is stored in R2 and listed on `/listening`. This is a generation comparison
 not isolated stems; changing conditioning can also change the backing music.
 All four real 120-second City Lights takes completed, passed 4/4 style windows and were verified in R2. [Comparison receipts](evidence/song-validation/vocal-comparison.json).
 
-**Owner result: FAIL for vocal distinctness.** The owner reports all four still sound like the same singer. Eight descriptions are not eight verified singers. A bounded local follow-up tests the pinned model's separate audio-reference input using two earlier, receipt-bound synthetic singers; it is not enabled in normal generation.
+**Owner result: FAIL for vocal distinctness.** The owner reports all four still sound like the same singer. Eight descriptions are not eight verified singers. A local follow-up used the pinned model's separate audio-reference input with two earlier, receipt-bound synthetic singers. The owner subsequently accepted both new auditions: “Different singers, both natural.” This supersedes the failed caption-only approach for new local plans.
 
 Audible distinctness and naturalness require listening; these are directions for
 one model, not eight independently verified singer identities.
@@ -94,15 +101,16 @@ also accompaniment/mixing; it is not a guaranteed singer-identity control.
 only. It accepts a 30-second generated singer under `renders/` with a matching
 model/weight/audio receipt and no previous source conditioning or trained adapter.
 It refuses private/favorite recordings and rechecks provenance after inference.
-No web API, normal generation or paid worker enables this option.
+The explicit research override is not exposed through a web API. New local DNA
+and Improvise plans now select the two accepted references automatically. CUDA
+workers retain their previous behavior until reference assets are packaged and
+the worker update is authorized and qualified.
 
 The follow-up holds City Lights lyrics, tempo, seed and corresponding caption
 constant, adding the earlier unconditioned `hiphop-female` or `reggae-male` synthetic
 render as a reference. Whole-mix references may affect genre; the ordinary style
-check remains unchanged. Each finished trial will be preserved in the listening
-gallery with its actual result. This is a two-reference feasibility test before
-building a larger accepted voice pool, not a claim that two gender labels solve
-variety.
+check remains unchanged. Each finished trial is preserved in the listening gallery with its actual result.
+These two auditions establish an accepted starting pair, not a broad voice pool.
 
 
 Reproduce locally, with no other singer process holding the GPU lock:
@@ -115,6 +123,80 @@ The publication step requires Node 22 on PATH and the existing operator R2
 configuration. This command intentionally stores the authorized test songs; it
 does not deploy the site or publish a worker image.
 
-**Follow-up result:** Both real 120-second reference-guided takes completed, passed all four style windows and were stored in R2. Exact baseline cases/captions/seeds match, runtime logs confirm reference processing, and both output hashes differ from their controls. These facts establish that the reference input was exercised, not perceived singer distinctness. 42 focused Python tests pass. [Trial evidence](evidence/song-validation/vocal-reference-comparison.json). Owner listening remains NOT RUN for these new versions.
+**Follow-up result:** Both real 120-second reference-guided takes completed, passed all four style windows and were stored in R2. Exact baseline cases/captions/seeds match, runtime logs confirm reference processing, and both output hashes differ from their controls. These technical facts establish that the reference input was exercised. The owner separately confirms distinctness and naturalness for this pair. 42 focused Python tests passed at that stage. [Trial evidence](evidence/song-validation/vocal-reference-comparison.json). Owner listening: PASS for distinctness and naturalness of these two English pop versions; other genres and languages remain unqualified.
 
 Both new trials also passed muted Chromium/WebKit mobile playback and seeking, with no page errors. [Browser evidence](evidence/song-validation/reference-browser.json).
+
+
+### Accepted local singer selection — 2026-10-23
+
+New local plans save an accepted reference ID, independent of language and
+matching the selected gender. The matching caption profile stays consistent
+with the audition. A genre retry keeps the same reference. Old saved plans
+remain unchanged; research comparisons explicitly remove automatic casting.
+The singer verifies both original audio and generation-receipt checksums before
+and after rendering. Changed or missing assets fail visibly rather than silently
+falling back to the failed caption-only approach. Only the two owner-accepted
+synthetic references are selectable; favorite tracks and user recordings cannot
+be used as singer references through this flow.
+
+**Local assets required:** the two original `renders/singing-response-20261022`
+singer folders remain preserved and are not committed as large audio binaries.
+No trained weights, website deployment or hosted worker change is part of this
+increment. New candidates remain research-only until reviewed.
+
+
+### Four further auditions
+
+Four additional receipt-bound synthetic references produced distinct output
+files on the same City Lights lyrics, seed, tempo and pop direction. They are
+stored in R2 and shown as **City Lights · new singers · voice 1–4**. Reference
+processing appears in all four runtime logs. Auditions 1, 2 and 4 passed the
+unchanged style check (4/4, 4/4 and 3/4 windows); audition 3 failed (2/4). This
+confirms why whole-mix references must be checked for accompaniment drift.
+These are four *candidate references*, not four accepted singer identities.
+**Owner result: FAIL for four distinct singers.** The owner hears 1/2 as the same singer and 3/4 as the same singer. Whether these differ from the original accepted pair is not established. All four remain outside the automatic pool.
+[Hashes, provenance, style scores and publication receipts](evidence/song-validation/new-singers.json).
+
+51 focused Python checks pass, including accepted-reference pins, gender,
+missing/changed assets, legacy/CUDA behavior, retry identity, independent
+research comparisons and bounded audition batches.
+[Check output](evidence/song-validation/accepted-voice-tests.txt).
+
+
+### Isolated-vocal follow-up
+
+The original male candidate sources used different caption characters (tenor
+and textured mid-range), but the owner still heard their City Lights outputs as
+the same singer. A second controlled comparison uses the already-separated
+vocals from these same two synthetic references. Lyrics, seed, tempo and target
+caption stay unchanged. This tests removal of accompaniment from the reference;
+it does not assume that separation creates a new singer identity.
+
+The research-only `--reference-vocals` option verifies the original synthetic
+receipt, pinned separator, source checksum, stem checksum, sample count and
+finite audio before converting the existing stem to PCM. Its receipt preserves
+both original and stem provenance; all files are rechecked after inference.
+Estimated stems may contain instrumental bleed. The automatic two-voice pool
+continues using the owner-accepted whole-reference method.
+
+
+**Automatic local generation: PASS, technical.** Fresh normal-pipeline jobs for
+both products completed without a reference CLI override: the two-minute DNA
+song selected voice-1 and passed the style check; the 30-second Improvise reply
+selected voice-2 and produced its user-input arrangement. All three audio files
+were verified in R2 and added to the gallery. These new outputs still require
+listening; acceptance of the earlier pair is not transferred to every new song.
+[Normal-path receipts](evidence/song-validation/accepted-local-casting.json).
+[Four-candidate muted Chromium/WebKit playback](evidence/song-validation/new-singers-browser.json).
+
+
+**Isolated-vocal result: PASS, technical; FAIL, perceived singer variety.** Both City Lights
+follow-ups completed using the separated vocal input, passed the style check
+(4/4 and 3/4 windows), and were verified in R2. Their saved musical cases exactly
+match the two prior male candidates; the reference representation is the changed
+input. They appear as **City Lights · isolated singers · voice 1–2**.
+[Receipts and comparison](evidence/song-validation/isolated-singers.json).
+The owner still hears the same singer. Neither is added to the accepted pool.
+Removing the backing from these references did not solve voice identity.
+A separate local singing-voice-conversion approach is being investigated.

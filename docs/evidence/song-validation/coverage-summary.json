@@ -1,0 +1,849 @@
+{
+  "scope": "Each of 50 languages, all 25 DNA families and 23 Improvise styles; not every language/style combination.",
+  "device": "local Mac GPU",
+  "paidCompute": false,
+  "finishedAt": 1792754736.603169,
+  "cases": 73,
+  "counts": {
+    "failed": 16,
+    "completed": 57
+  },
+  "publishedTakes": 111,
+  "results": [
+    {
+      "id": "dna-es",
+      "product": "music-dna",
+      "language": "es",
+      "direction": "latin",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "seconds": 180.97
+    },
+    {
+      "id": "dna-ru",
+      "product": "music-dna",
+      "language": "ru",
+      "direction": "rock",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 175.37
+    },
+    {
+      "id": "dna-tr",
+      "product": "music-dna",
+      "language": "tr",
+      "direction": "pop",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 140.68
+    },
+    {
+      "id": "dna-fr",
+      "product": "music-dna",
+      "language": "fr",
+      "direction": "pop",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 120.34
+    },
+    {
+      "id": "dna-ja",
+      "product": "music-dna",
+      "language": "ja",
+      "direction": "pop",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 144.64
+    },
+    {
+      "id": "dna-ar",
+      "product": "music-dna",
+      "language": "ar",
+      "direction": "arabic",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "seconds": 254.26
+    },
+    {
+      "id": "dna-hi",
+      "product": "music-dna",
+      "language": "hi",
+      "direction": "indian",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 753.61
+    },
+    {
+      "id": "dna-en",
+      "product": "music-dna",
+      "language": "en",
+      "direction": "heavy-rock",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 97.79
+    },
+    {
+      "id": "dna-az",
+      "product": "music-dna",
+      "language": "az",
+      "direction": "afrobeats",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "seconds": 241.92
+    },
+    {
+      "id": "dna-bg",
+      "product": "music-dna",
+      "language": "bg",
+      "direction": "amapiano",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "seconds": 655.81
+    },
+    {
+      "id": "dna-bn",
+      "product": "music-dna",
+      "language": "bn",
+      "direction": "reggaeton",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 193.57
+    },
+    {
+      "id": "dna-ca",
+      "product": "music-dna",
+      "language": "ca",
+      "direction": "flamenco",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "seconds": 199.49
+    },
+    {
+      "id": "dna-cs",
+      "product": "music-dna",
+      "language": "cs",
+      "direction": "lofi",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "failed",
+        "message": "Song generation did not finish. Your favorites and previous songs are safe. Try again.",
+        "phase": null
+      },
+      "seconds": 54.82
+    },
+    {
+      "id": "dna-da",
+      "product": "music-dna",
+      "language": "da",
+      "direction": "experimental",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "seconds": 186.49
+    },
+    {
+      "id": "dna-de",
+      "product": "music-dna",
+      "language": "de",
+      "direction": "jazz",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "seconds": 200.39
+    },
+    {
+      "id": "dna-el",
+      "product": "music-dna",
+      "language": "el",
+      "direction": "soul",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 130.2
+    },
+    {
+      "id": "dna-fa",
+      "product": "music-dna",
+      "language": "fa",
+      "direction": "blues",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "seconds": 210.89
+    },
+    {
+      "id": "dna-fi",
+      "product": "music-dna",
+      "language": "fi",
+      "direction": "country",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "seconds": 188.26
+    },
+    {
+      "id": "dna-he",
+      "product": "music-dna",
+      "language": "he",
+      "direction": "reggae",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 191.45
+    },
+    {
+      "id": "dna-hr",
+      "product": "music-dna",
+      "language": "hr",
+      "direction": "hip-hop",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 197.8
+    },
+    {
+      "id": "dna-ht",
+      "product": "music-dna",
+      "language": "ht",
+      "direction": "dance",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 105.88
+    },
+    {
+      "id": "dna-hu",
+      "product": "music-dna",
+      "language": "hu",
+      "direction": "ambient",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "seconds": 207.18
+    },
+    {
+      "id": "dna-id",
+      "product": "music-dna",
+      "language": "id",
+      "direction": "electronic",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 207.46
+    },
+    {
+      "id": "dna-is",
+      "product": "music-dna",
+      "language": "is",
+      "direction": "classical",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 114.43
+    },
+    {
+      "id": "dna-it",
+      "product": "music-dna",
+      "language": "it",
+      "direction": "funk",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "rejected",
+        "message": "Neither take passed the style check for your list. Your favorites are saved. Please try again later.",
+        "phase": null
+      },
+      "seconds": 205.72
+    },
+    {
+      "id": "dna-ko",
+      "product": "music-dna",
+      "language": "ko",
+      "direction": "indie",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "failed",
+        "message": "Song generation did not finish. Your favorites and previous songs are safe. Try again.",
+        "phase": null
+      },
+      "seconds": 76.58
+    },
+    {
+      "id": "dna-la",
+      "product": "music-dna",
+      "language": "la",
+      "direction": "traditional",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "failed",
+        "message": "Song generation did not finish. Your favorites and previous songs are safe. Try again.",
+        "phase": null
+      },
+      "seconds": 49.28
+    },
+    {
+      "id": "dna-lt",
+      "product": "music-dna",
+      "language": "lt",
+      "direction": "pop",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 112.95
+    },
+    {
+      "id": "dna-ms",
+      "product": "music-dna",
+      "language": "ms",
+      "direction": "rock",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 106.91
+    },
+    {
+      "id": "dna-ne",
+      "product": "music-dna",
+      "language": "ne",
+      "direction": "soul",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 126.28
+    },
+    {
+      "id": "dna-nl",
+      "product": "music-dna",
+      "language": "nl",
+      "direction": "dance",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 106.98
+    },
+    {
+      "id": "dna-no",
+      "product": "music-dna",
+      "language": "no",
+      "direction": "pop",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 123.79
+    },
+    {
+      "id": "dna-pa",
+      "product": "music-dna",
+      "language": "pa",
+      "direction": "rock",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 174.54
+    },
+    {
+      "id": "dna-pl",
+      "product": "music-dna",
+      "language": "pl",
+      "direction": "soul",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 151.83
+    },
+    {
+      "id": "dna-pt",
+      "product": "music-dna",
+      "language": "pt",
+      "direction": "dance",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 115.51
+    },
+    {
+      "id": "dna-ro",
+      "product": "music-dna",
+      "language": "ro",
+      "direction": "pop",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 114.13
+    },
+    {
+      "id": "dna-sa",
+      "product": "music-dna",
+      "language": "sa",
+      "direction": "rock",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 166.04
+    },
+    {
+      "id": "dna-sk",
+      "product": "music-dna",
+      "language": "sk",
+      "direction": "soul",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 193.64
+    },
+    {
+      "id": "dna-sr",
+      "product": "music-dna",
+      "language": "sr",
+      "direction": "dance",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 110.72
+    },
+    {
+      "id": "dna-sv",
+      "product": "music-dna",
+      "language": "sv",
+      "direction": "pop",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 127.18
+    },
+    {
+      "id": "dna-sw",
+      "product": "music-dna",
+      "language": "sw",
+      "direction": "rock",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 111.41
+    },
+    {
+      "id": "dna-ta",
+      "product": "music-dna",
+      "language": "ta",
+      "direction": "soul",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 171.48
+    },
+    {
+      "id": "dna-te",
+      "product": "music-dna",
+      "language": "te",
+      "direction": "dance",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 269.92
+    },
+    {
+      "id": "dna-th",
+      "product": "music-dna",
+      "language": "th",
+      "direction": "pop",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 182.52
+    },
+    {
+      "id": "dna-tl",
+      "product": "music-dna",
+      "language": "tl",
+      "direction": "rock",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 195.64
+    },
+    {
+      "id": "dna-uk",
+      "product": "music-dna",
+      "language": "uk",
+      "direction": "soul",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 108.8
+    },
+    {
+      "id": "dna-ur",
+      "product": "music-dna",
+      "language": "ur",
+      "direction": "dance",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "failed",
+        "message": "Song generation did not finish. Your favorites and previous songs are safe. Try again.",
+        "phase": null
+      },
+      "seconds": 139.56
+    },
+    {
+      "id": "dna-vi",
+      "product": "music-dna",
+      "language": "vi",
+      "direction": "pop",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 118.8
+    },
+    {
+      "id": "dna-yue",
+      "product": "music-dna",
+      "language": "yue",
+      "direction": "rock",
+      "state": "completed",
+      "pipelineStatus": {
+        "state": "completed",
+        "message": "Your song is ready. Press Play to listen.",
+        "phase": null
+      },
+      "seconds": 131.16
+    },
+    {
+      "id": "dna-zh",
+      "product": "music-dna",
+      "language": "zh",
+      "direction": "soul",
+      "state": "failed",
+      "pipelineStatus": {
+        "state": "failed",
+        "message": "Song generation did not finish. Your favorites and previous songs are safe. Try again.",
+        "phase": null
+      },
+      "seconds": 55.74
+    },
+    {
+      "id": "improvise-reggae",
+      "product": "improvise",
+      "language": "en",
+      "direction": "reggae",
+      "state": "completed",
+      "seconds": 57.6
+    },
+    {
+      "id": "improvise-hiphop",
+      "product": "improvise",
+      "language": "en",
+      "direction": "hiphop",
+      "state": "completed",
+      "seconds": 58.58
+    },
+    {
+      "id": "improvise-funk",
+      "product": "improvise",
+      "language": "en",
+      "direction": "funk",
+      "state": "completed",
+      "seconds": 64.82
+    },
+    {
+      "id": "improvise-house",
+      "product": "improvise",
+      "language": "en",
+      "direction": "house",
+      "state": "completed",
+      "seconds": 76.26
+    },
+    {
+      "id": "improvise-disco",
+      "product": "improvise",
+      "language": "en",
+      "direction": "disco",
+      "state": "completed",
+      "seconds": 61.35
+    },
+    {
+      "id": "improvise-rnb",
+      "product": "improvise",
+      "language": "en",
+      "direction": "rnb",
+      "state": "completed",
+      "seconds": 58.11
+    },
+    {
+      "id": "improvise-soul",
+      "product": "improvise",
+      "language": "en",
+      "direction": "soul",
+      "state": "completed",
+      "seconds": 64.08
+    },
+    {
+      "id": "improvise-afrobeats",
+      "product": "improvise",
+      "language": "en",
+      "direction": "afrobeats",
+      "state": "completed",
+      "seconds": 62.49
+    },
+    {
+      "id": "improvise-latinpop",
+      "product": "improvise",
+      "language": "en",
+      "direction": "latinpop",
+      "state": "completed",
+      "seconds": 58.39
+    },
+    {
+      "id": "improvise-drumandbass",
+      "product": "improvise",
+      "language": "en",
+      "direction": "drumandbass",
+      "state": "completed",
+      "seconds": 72.44
+    },
+    {
+      "id": "improvise-acousticpop",
+      "product": "improvise",
+      "language": "en",
+      "direction": "acousticpop",
+      "state": "completed",
+      "seconds": 66.11
+    },
+    {
+      "id": "improvise-rock",
+      "product": "improvise",
+      "language": "en",
+      "direction": "rock",
+      "state": "completed",
+      "seconds": 62.12
+    },
+    {
+      "id": "improvise-edm",
+      "product": "improvise",
+      "language": "en",
+      "direction": "edm",
+      "state": "completed",
+      "seconds": 65.67
+    },
+    {
+      "id": "improvise-dj",
+      "product": "improvise",
+      "language": "en",
+      "direction": "dj",
+      "state": "completed",
+      "seconds": 63.46
+    },
+    {
+      "id": "improvise-lofi",
+      "product": "improvise",
+      "language": "en",
+      "direction": "lofi",
+      "state": "completed",
+      "seconds": 56.99
+    },
+    {
+      "id": "improvise-jazz",
+      "product": "improvise",
+      "language": "en",
+      "direction": "jazz",
+      "state": "completed",
+      "seconds": 72.6
+    },
+    {
+      "id": "improvise-blues",
+      "product": "improvise",
+      "language": "en",
+      "direction": "blues",
+      "state": "completed",
+      "seconds": 63.78
+    },
+    {
+      "id": "improvise-rap",
+      "product": "improvise",
+      "language": "en",
+      "direction": "rap",
+      "state": "completed",
+      "seconds": 63.69
+    },
+    {
+      "id": "improvise-chill",
+      "product": "improvise",
+      "language": "en",
+      "direction": "chill",
+      "state": "completed",
+      "seconds": 65.65
+    },
+    {
+      "id": "improvise-indie",
+      "product": "improvise",
+      "language": "en",
+      "direction": "indie",
+      "state": "completed",
+      "seconds": 61.72
+    },
+    {
+      "id": "improvise-techno",
+      "product": "improvise",
+      "language": "en",
+      "direction": "techno",
+      "state": "completed",
+      "seconds": 63.73
+    },
+    {
+      "id": "improvise-synthwave",
+      "product": "improvise",
+      "language": "en",
+      "direction": "synthwave",
+      "state": "completed",
+      "seconds": 62.44
+    },
+    {
+      "id": "improvise-country",
+      "product": "improvise",
+      "language": "en",
+      "direction": "country",
+      "state": "completed",
+      "seconds": 59.99
+    }
+  ],
+  "interpretation": "Completed means the existing pipeline passed, not fluent-language or musical listening acceptance. This predates accepted singer-reference integration."
+}

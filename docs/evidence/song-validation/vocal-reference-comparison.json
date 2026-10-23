@@ -33,7 +33,7 @@
       "heavy-rock": 0.23934163711965084,
       "speech": 0.11449536681175232
     },
-    "listening": "NOT RUN",
+    "listening": "PASS: owner reports different singers, both natural",
     "vocal_reference": {
       "audio": "renders/singing-response-20261022/hiphop-female/singer.wav",
       "sha256": "686b696363f79ef80715bac88c285c0abc3b6fc17f254ee9a311a663690fa433",
@@ -90,7 +90,7 @@
       "heavy-rock": 0.3779311701655388,
       "speech": 0.19816692546010017
     },
-    "listening": "NOT RUN",
+    "listening": "PASS: owner reports different singers, both natural",
     "vocal_reference": {
       "audio": "renders/singing-response-20261022/reggae-male/singer.wav",
       "sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",

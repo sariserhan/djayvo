@@ -11,7 +11,7 @@ import subprocess
 import sys
 import signal
 
-from singing_response import CODE_REVISION, WEIGHT_REVISION, VOICES, VOCAL_PROFILES, choose_vocal_profile, vocal_description, digest, lyric_model, planner_functions, text_field, validate_plan
+from singing_response import CODE_REVISION, WEIGHT_REVISION, VOICES, VOCAL_PROFILES, choose_vocal_profile, cast_singer_reference, vocal_description, digest, lyric_model, planner_functions, text_field, validate_plan
 from dna_direction import direction_for, validate_direction
 from dna_language import LANGUAGES, language, validate_script, choose_language
 
@@ -113,6 +113,7 @@ def song_plan(data, refs, seed, requested_language='auto', vocal_profile=None):
     case = {'id': f'{genre}-{voice}', 'genre': genre, 'voice': voice, 'seed': seed,
             'vocal_profile':vocal_profile if vocal_profile is not None else choose_vocal_profile(seed,voice),
             'duration': 120, 'bpm': data.get('bpm'), 'lyrics': data.get('lyrics'), 'vocal_language':code}
+    cast_singer_reference(case)
     case['song_caption']=performance_caption(direction,case,sound,traits)
     plan = {'schema': 'jamloom-dna-song-1', 'model_code': CODE_REVISION, 'weights': WEIGHT_REVISION,
             'phrase': 'Original song from favorite music tastes', 'title': title, 'summary': summary,
@@ -197,6 +198,9 @@ Song lasts TWO MINUTES. Lyrics: 120–200 words total, 4 short lines per verse/c
 For Chinese, Japanese or Thai use 250–650 characters instead of the word count. 2–4 bridge lines and a short ending. Repeat the SAME chorus words; develop the story in verse 2. Keep lyrics under 4000 characters.'''
     selected_profile=choose_vocal_profile(seed)
     selected_voice=VOCAL_PROFILES[selected_profile][0]
+    cast={'seed':seed,'voice':selected_voice,'vocal_profile':selected_profile}
+    cast_singer_reference(cast)
+    selected_profile=cast['vocal_profile']
     base_messages = [{'role': 'system', 'content': system}, {'role': 'user', 'content': json.dumps({'favorites': refs, 'required_direction': direction, 'required_singer':{'voice':selected_voice,'character':VOCAL_PROFILES[selected_profile][1]}, 'requested_language':requested_language, 'supported_languages':LANGUAGES, 'listener_feedback':request.get('feedback',[])}, ensure_ascii=False)}]
     messages=base_messages;candidate=None;lyric_repair=False
     for attempt in range(4):

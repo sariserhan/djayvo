@@ -50,6 +50,7 @@ class MusicDnaSong(unittest.TestCase):
             work=Path(folder)/'take';variant=prepare_variant(source,work,124)
             self.assertEqual(variant['cases'][0]['seed'],124)
             self.assertNotIn('seed',variant)
+            self.assertNotIn('singer_reference',variant['cases'][0])
             self.assertEqual(json.loads((source/'plan.json').read_text()),plan)
             self.assertEqual(variant['input_sha256'],digest(work/'input.json'))
             (work/'singer').mkdir();(work/'singer/singer.wav').write_bytes(b'fixture audio')
@@ -70,17 +71,27 @@ class MusicDnaSong(unittest.TestCase):
                 self.assertEqual(case['voice'],VOCAL_PROFILES[profile][0])
 
     def test_retry_changes_direction_brief_but_preserves_lyrics_language_and_favorites(self):
-        plan = song_plan(self.data, self.refs, 123)
+        with patch('singing_response.inference_device',return_value='mps'):
+            plan = song_plan(self.data, self.refs, 123)
         before = copy.deepcopy(plan)
         retried = retry_direction(plan)
         self.assertEqual(retried['cases'][0]['seed'],124)
-        for key in ('lyrics','bpm','voice','vocal_language','vocal_profile'):
+        for key in ('lyrics','bpm','voice','vocal_language','vocal_profile','singer_reference'):
             self.assertEqual(retried['cases'][0][key],before['cases'][0][key])
         self.assertEqual(retried['favorites'],before['favorites'])
         self.assertNotEqual(retried['cases'][0]['song_caption'],before['cases'][0]['song_caption'])
         self.data['sound']='A gentle 72 bpm groove'
         with self.assertRaisesRegex(ValueError,'selected BPM'):
             song_plan(self.data,self.refs,123)
+
+    def test_reference_comparisons_are_bounded_before_writing_output(self):
+        from evaluate_dna_variants import evaluate
+        with tempfile.TemporaryDirectory() as folder:
+            output=Path(folder)/'output'
+            for refs,voices in [([],False),([Path('one')],False),([Path('one')]*9,False),([Path('one')]*2,True)]:
+                with self.assertRaisesRegex(ValueError,'two to eight'):
+                    evaluate(Path(folder),output,1,voices,refs)
+                self.assertFalse(output.exists())
 
     def test_every_style_keeps_essential_controls_within_singer_text_budget(self):
         for direction in POLICY['directions']:

@@ -41,5 +41,48 @@
       "51ec7a190d436aa94fab597f1cfed145bae332e36c1b380ed442fe7ba7cd790e"
     ],
     "trainingConsent": false
+  },
+  "referenceVoiceFeedback": {
+    "statement": "Different singers, both natural",
+    "status": "PASS: owner accepts distinctness and naturalness of the two reference-guided City Lights auditions",
+    "comparedAudio": [
+      "50784fb3b1e15d825234a6d9c8e39d1918b777252a76e456ea7ad7ca087a2256",
+      "e4537b42dfeb003679ae7886e4e66c10b5d9d55c5d3e4c38c1ea67c8844da02c"
+    ],
+    "scope": "Two English pop auditions; not all voices, languages or genres",
+    "trainingConsent": false
+  },
+  "additionalReferenceFeedback": {
+    "statement": "3 and 4 are same and 1 and 2 are also same",
+    "status": "FAIL: four auditions do not establish four distinct singers",
+    "comparedAudio": [
+      "23d246863ff1a44fa03f2c0789f64cb6e70da907e8f25d30a0426bcece15b097",
+      "66a7ba24da233d998af3fdb2106dcfb0015c867ab7b143da7c2b4c52c70548b3",
+      "bac107061bec4c81161c17a91b5ffdc6c17760822939002f3d3641e10f63da0b",
+      "3872d7537b01a3091d40b8abb28bce2ce42917090c645d1462421f4050a8179d"
+    ],
+    "sameVoicePairs": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "comparisonWithOriginalAcceptedPair": "Not established",
+    "automaticPoolExpanded": false,
+    "trainingConsent": false
+  },
+  "isolatedReferenceFeedback": {
+    "statement": "Still the same singer",
+    "status": "FAIL: removing accompaniment from the reference did not produce distinct singers",
+    "comparedAudio": [
+      "9cd152a3d3b09942fa6f8d9d0fd0ba0ed4f308421a6cc778eaf05a02960ede82",
+      "d444433b7b8c9f30568be82e72292dfe70d1d3f814b51e6a99bed571371a51d5"
+    ],
+    "automaticPoolExpanded": false,
+    "trainingConsent": false
   }
 }
