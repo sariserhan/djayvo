@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-23T03:08:11.102Z",
+  "action": "read-only production migration audit",
+  "applied": 13,
+  "pending": [
+    "0013_audio_duration.sql",
+    "0015_taste_metadata_size.sql",
+    "0016_dna_songs.sql",
+    "0017_music_storage.sql"
+  ],
+  "productionWrites": false
+}

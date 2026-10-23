@@ -1,0 +1,79 @@
+{
+  "at": "2026-10-23T03:03:45.559Z",
+  "bucket": "jamloom-audio",
+  "apply": true,
+  "songs": [
+    {
+      "id": "06d89abd7d194ddf81bbc54af3e9b67f",
+      "title": "Concrete Roots",
+      "key": "music-dna/public/06d89abd7d194ddf81bbc54af3e9b67f/b0d3384d389644c57db4bb6c706225cb6404e7e2b1b5eaeea4a591df2b0619d4.wav",
+      "bytes": 23040044,
+      "sha256": "b0d3384d389644c57db4bb6c706225cb6404e7e2b1b5eaeea4a591df2b0619d4",
+      "status": "PASS"
+    },
+    {
+      "id": "0f7c7e87a20645ce8f52e6de86988fe4",
+      "title": "夜の向こうへ",
+      "key": "music-dna/public/0f7c7e87a20645ce8f52e6de86988fe4/4135b0198736b57820e8482925545078c9a2e4090902ad4fd7eeb161f489239e.wav",
+      "bytes": 23040044,
+      "sha256": "4135b0198736b57820e8482925545078c9a2e4090902ad4fd7eeb161f489239e",
+      "status": "PASS"
+    },
+    {
+      "id": "3f868ec96fdd4f8089ce5225befefc8c",
+      "title": "Raat Ke Awaam",
+      "key": "music-dna/public/3f868ec96fdd4f8089ce5225befefc8c/45350dd503a1853830093c2ded06b4905faadecc9d9e70ca5e76fdd56005aee6.wav",
+      "bytes": 23040044,
+      "sha256": "45350dd503a1853830093c2ded06b4905faadecc9d9e70ca5e76fdd56005aee6",
+      "status": "PASS"
+    },
+    {
+      "id": "4a81d32f68b14b09956d9d82cdabba53",
+      "title": "أرض المطر",
+      "key": "music-dna/public/4a81d32f68b14b09956d9d82cdabba53/7a4f925fa9e0245b4302b06b2a95a6b04323e3b5c419b7e3e0967a2ca6bfaf41.wav",
+      "bytes": 23040044,
+      "sha256": "7a4f925fa9e0245b4302b06b2a95a6b04323e3b5c419b7e3e0967a2ca6bfaf41",
+      "status": "PASS"
+    },
+    {
+      "id": "4caf5b05203048a3b61bb22cd4d2ce9c",
+      "title": "Город без сигарет",
+      "key": "music-dna/public/4caf5b05203048a3b61bb22cd4d2ce9c/66c8d3a60fb52e41f7dba6a353ad3485332a2160f6c07644671436fbc8bb9c89.wav",
+      "bytes": 23040044,
+      "sha256": "66c8d3a60fb52e41f7dba6a353ad3485332a2160f6c07644671436fbc8bb9c89",
+      "status": "PASS"
+    },
+    {
+      "id": "b11454224b724e708a68b80faf60d5e2",
+      "title": "Flicker in the Dark",
+      "key": "music-dna/public/b11454224b724e708a68b80faf60d5e2/4094bed308948d543855bf5a22c4829e1bf727b9162b3660e7d3805c850d8d9b.wav",
+      "bytes": 23040044,
+      "sha256": "4094bed308948d543855bf5a22c4829e1bf727b9162b3660e7d3805c850d8d9b",
+      "status": "PASS"
+    },
+    {
+      "id": "c7944cb9bef241a3857be663ee5c8e53",
+      "title": "Saatte Bitti",
+      "key": "music-dna/public/c7944cb9bef241a3857be663ee5c8e53/9c5a9235984ceb4dec03a4529536099d96cf590b321d2225e87b405373dc0243.wav",
+      "bytes": 23040044,
+      "sha256": "9c5a9235984ceb4dec03a4529536099d96cf590b321d2225e87b405373dc0243",
+      "status": "PASS"
+    },
+    {
+      "id": "d0a71022000000000000000000000001",
+      "title": "Fingers in the Soil",
+      "key": "music-dna/public/d0a71022000000000000000000000001/913e8f36f040df3eb05507c0de0d3a88cf6d363bc089bcd4c5451ae5e3877bac.wav",
+      "bytes": 23040044,
+      "sha256": "913e8f36f040df3eb05507c0de0d3a88cf6d363bc089bcd4c5451ae5e3877bac",
+      "status": "PASS"
+    },
+    {
+      "id": "e46c2b419c054cd79311bd9deecf1258",
+      "title": "La Sombra del Camino",
+      "key": "music-dna/public/e46c2b419c054cd79311bd9deecf1258/c3eaf32fb3ca7122d19f14fee64631d895e870fc5ac521339c7c2becc9ce5ed6.wav",
+      "bytes": 23040044,
+      "sha256": "c3eaf32fb3ca7122d19f14fee64631d895e870fc5ac521339c7c2becc9ce5ed6",
+      "status": "PASS"
+    }
+  ]
+}

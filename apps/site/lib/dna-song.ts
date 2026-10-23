@@ -62,6 +62,7 @@ async function songFiles(root:string,id:string){
  return {status,input,plan,fit,legacy};
 }
 export async function dnaSong(request:Request,context?:DnaContext){
+ if(context?.readOnly)return json({error:unavailable},503);
  let root:string;
  try{root=localSingerRoot(request);}catch(error){return json({error:(error as Error).message},503);}
  const directory=join(root,'renders/music-dna-songs'),url=new URL(request.url),id=url.searchParams.get('id');
@@ -124,7 +125,7 @@ export async function dnaSong(request:Request,context?:DnaContext){
       const completed=!active.cancelled&&result?.status.state==='completed';
       const terminal=completed?'completed':active.cancelled?'cancelled':'failed';
       await writeFile(join(work,'status.json'),JSON.stringify({state:terminal,message:completed?'Your song is ready.':active.cancelled?'Song cancelled. Reserved credits released.':'Song did not pass generation. Reserved credits released.'}));
-      await commerce.finish(next,terminal,completed?{title:result!.plan.title,language:result!.plan.cases[0].vocal_language??'en',direction:direction.label}:undefined);
+      await commerce.finish(next,terminal,completed?{title:result!.plan.title,language:result!.plan.cases[0].vocal_language??'en',direction:direction.label,audio:commerce.store?await readFile(join(work,'singer/singer.wav')):undefined,plan:result!.plan}:undefined);
      }catch{console.error('Music DNA settlement needs recovery; credits remain held.');}
      finally{if(state.jamloomDnaSong===active)delete state.jamloomDnaSong;void refreshFeedback(root);}
     })();
@@ -166,18 +167,23 @@ export async function dnaSong(request:Request,context?:DnaContext){
    if(record.state==='completed'){await commerce.withdraw(owner!,id);return json({withdrawn:true});}
    const active=state.jamloomDnaSong;
    if(active?.id===id){
+    if(active.child.exitCode!==null||active.child.signalCode!==null)return json({error:'Your finished song is being saved. Refresh its status before retrying.'},409);
     active.cancelled=true;stop(active);
     await new Promise<void>(resolve=>{if(active.child.exitCode!==null||active.child.signalCode!==null)resolve();else active.child.once('exit',()=>resolve());});
     await active.completion;
     return json({state:'cancelled'});
    }
    if(record.state==='queued'){await commerce.finish(id,'cancelled');return json({state:'cancelled'});}
+   if(record.state==='running'){
+    let alive=false;try{const {pid}=JSON.parse(await readFile(join(work,'process.json'),'utf8'));process.kill(pid,0);alive=true;}catch{}
+    if(!alive){await commerce.finish(id,'cancelled');return json({state:'cancelled'});}
+   }
    return json({error:'This song is stopping or recovering. Refresh its status.'},409);
   }
   const result=await songFiles(root,id),{input,plan,fit,legacy}=result;let status=result.status;
   if(record&&commerce&&record.state==='running'&&state.jamloomDnaSong?.id!==id){
    if(['completed','failed','rejected','cancelled'].includes(status.state)){
-    await commerce.finish(id,status.state==='completed'?'completed':status.state==='cancelled'?'cancelled':'failed',status.state==='completed'?{title:plan.title,language:plan.cases[0].vocal_language??'en',direction:input.direction.label}:undefined);
+    await commerce.finish(id,status.state==='completed'?'completed':status.state==='cancelled'?'cancelled':'failed',status.state==='completed'?{title:plan.title,language:plan.cases[0].vocal_language??'en',direction:input.direction.label,audio:commerce.store?await readFile(join(work,'singer/singer.wav')):undefined,plan}:undefined);
     record=await commerce.row(id);
    }else if(Date.now()-new Date(record.started_at).getTime()>DNA_RUNTIME_MS+60000){
     let alive=false;try{const {pid}=JSON.parse(await readFile(join(work,'process.json'),'utf8'));process.kill(pid,0);alive=true;}catch{}

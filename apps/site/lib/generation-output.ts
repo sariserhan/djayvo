@@ -57,7 +57,7 @@ export class GenerationOutput {
    if(job.state==='completed'){await queue.reconcile(id);await this.store.remove(output.key);return {id,state:'completed',sha256:output.sha256};}
    if(!['running','stopping'].includes(job.state))throw Error('Job is terminal');
    const wav=await this.store.get(output.key,input.bytes);validateWav(wav,input.bytes,input.sha256);
-   const saved=await audio.reserve(job.owner_id,{requestId:id,title:input.title,strategy:input.strategy,bytes:input.bytes,sha256:input.sha256,consent:true},true);
+   const saved=await audio.reserve(job.owner_id,{requestId:id,title:input.title,strategy:input.strategy,bytes:input.bytes,sha256:input.sha256,consent:true,product:'improvise'},true);
    if(!saved.ready){await audio.generatedUpload(job.owner_id,saved.id,wav);await audio.finalize(job.owner_id,saved.id);}
    try{await queue.stopped(id,job.lease_token,cost,'completed',output.sha256);}
    catch(error){if((await db.query('SELECT cancel_requested FROM generation_jobs WHERE reservation_id=$1',[id])).rows[0]?.cancel_requested)await audio.remove(job.owner_id,saved.id);throw error;}

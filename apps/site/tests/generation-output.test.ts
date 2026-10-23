@@ -5,7 +5,7 @@ test('cloud output receipt recovers remote-store failure without compute, preser
  const url=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(url.hostname,'127.0.0.1');
  const admin=createPool(url.toString()),name='jamloom_cloud_output_'+randomUUID().replaceAll('-','');await admin.query(`CREATE DATABASE "${name}"`);url.pathname='/'+name;
  const pool=createPool(url.toString()),folder=await mkdtemp(join(tmpdir(),'jamloom-output-')),disk=localAudioStore(folder);
- let fail=false,cleanupKey='';const store={...disk,local:false,remove:async(key:string)=>{if(key===cleanupKey)throw Error('Cleanup unavailable');await disk.remove(key);},put:async(key:string,data:Buffer)=>{if(fail&&key.startsWith('masters/'))throw Error('Remote storage offline');await disk.put(key,data);}};
+ let fail=false,cleanupKey='';const store={...disk,local:false,remove:async(key:string)=>{if(key===cleanupKey)throw Error('Cleanup unavailable');await disk.remove(key);},put:async(key:string,data:Buffer)=>{if(fail&&key.startsWith('improvise/'))throw Error('Remote storage offline');await disk.put(key,data);}};
  const service=new GenerationOutput(pool,store),queue=new GenerationQueue(pool,'s'.repeat(32)),wallet=new Wallet(pool);
  const watchdog=new GenerationWatchdog(pool,{inventory:async()=>[],destroy:async()=>{throw Error('No provider operations allowed');}});
  const spec={inputSha256:'a'.repeat(64),planSha256:'b'.repeat(64),maxRuntimeMs:120000,hourlyMicros:750000,fixedCostMicros:10000};
@@ -25,7 +25,7 @@ test('cloud output receipt recovers remote-store failure without compute, preser
  fail=false;cleanupKey='uploads/'+id+'.wav';await assert.rejects(new GenerationOutput(pool,store).complete(id),/Cleanup unavailable/);assert.equal((await wallet.balance('alice')).reserved,0);cleanupKey='';
  const recovered=await new GenerationOutput(pool,store).complete(id);assert.equal(recovered.state,'completed');const outputId=(await pool.query('SELECT track_id FROM track_assets WHERE request_id=$1',[id])).rows[0].track_id;assert.ok(outputId);
  const privateAudio=new PrivateAudio(pool,store);await assert.rejects(privateAudio.playback('bob',outputId),/not found/);
- assert.deepEqual(await disk.get('masters/'+outputId+'.wav',wav.length),wav);
+ assert.deepEqual(await disk.get((await pool.query('SELECT storage_key FROM track_assets WHERE track_id=$1',[outputId])).rows[0].storage_key,wav.length),wav);
  await service.complete(id);assert.deepEqual(await wallet.balance('alice'),{available:19,reserved:0});
  await assert.rejects(disk.get('uploads/'+id+'.wav',wav.length),/ENOENT/);
  const cancelled=await wallet.reserve('alice','cloud_output_cancel',100000,5000,spec),second=(await queue.claim('cloud_fixture'))!;await watchdog.prepare(cancelled,second.leaseToken,42);

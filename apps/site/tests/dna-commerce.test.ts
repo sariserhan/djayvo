@@ -10,6 +10,8 @@ import {DnaCommerce,visibilityInput} from '../lib/dna-commerce';
 import {dnaSong} from '../lib/dna-song';
 import {dnaFeedback} from '../lib/dna-feedback-api';
 import {musicDirection} from '../lib/taste-direction';
+import {localAudioStore} from '../lib/audio-store';
+import {storedDnaSong} from '../lib/dna-stored-song';
 const profile={references:['Private favorite — Private artist'],referenceMetadata:[{reference:'Private favorite — Private artist',genre:'Pop',source:'itunes' as const}],vocalLanguage:'en'};
 const id=()=>randomUUID().replaceAll('-',''),sha=(v:string|Buffer)=>createHash('sha256').update(v).digest('hex');
 const request=(query:string,method='GET',body?:unknown)=>new Request('http://127.0.0.1:4247/api/taste/song'+query,{method,headers:{'X-Jamloom-DNA':'1',origin:'http://127.0.0.1:4247','Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
@@ -99,6 +101,42 @@ test('real Postgres Music DNA credits, privacy, idempotence, failure and recover
     const response=await dnaSong(request('?view=mine'),context);assert.equal(response.status,200);
     assert.equal((await commerce.row(job)).state,'failed');assert.deepEqual(await commerce.wallet.balance('alice'),before);
    }
+  });
+  await t.test('cloud storage failure holds completion; durable private/public songs survive without renderer files',async()=>{
+   const disk=localAudioStore(join(root,'objects'));let fail=true;
+   const cloud=new DnaCommerce(pool,'local-dna-test-secret-'.repeat(3),{...disk,local:false,
+    put:async(key,data)=>{if(fail)throw Error('Storage offline');await disk.put(key,data);},
+    playbackURL:async key=>'https://storage.example.test/'+key});
+   const audio=Buffer.alloc(100,1);audio.write('RIFF');
+   const plan={title:'Stored song',influences:[{reference:profile.references[0]}],cases:[{lyrics:'Original lyrics',voice:'female',bpm:110}]};
+   const details={title:plan.title,language:'en',direction:'Pop',audio,plan};
+   const remote=(job:string,suffix='',method='GET',origin='https://www.jamloom.com')=>new Request('https://www.jamloom.com/api/taste/song?id='+job+suffix,{method,headers:{origin,'X-Jamloom-DNA':'1'}});
+   for(const visibility of ['private','public'] as const){
+    const job=id(),quote=await cloud.quote('bob',profile,visibility);await cloud.submit('bob',job,profile,visibility,quote.token);await cloud.start(job);
+    const held=await cloud.wallet.balance('bob');
+    if(fail){await assert.rejects(cloud.finish(job,'completed',details),/Storage offline/);assert.equal((await cloud.row(job)).state,'running');assert.deepEqual(await cloud.wallet.balance('bob'),held);fail=false;}
+    await cloud.finish(job,'completed',details);await cloud.finish(job,'completed',details);
+    const row=await cloud.row(job);assert.ok(row.audio_key.startsWith('music-dna/'+visibility+'/'));assert.equal(row.audio_sha256,sha(audio));
+    assert.deepEqual(await disk.get(row.audio_key,audio.length),audio);
+    const owner={commerce:cloud,owner:'bob',readOnly:true},anonymous={commerce:cloud,owner:null,readOnly:true};
+    assert.equal((await storedDnaSong(remote(job,'&file=audio'),owner))?.status,307);
+    assert.equal((await storedDnaSong(remote(job,'&file=plan'),owner))?.status,200);
+    for(const suffix of ['','&file=audio','&file=audio&download=1'])assert.equal((await storedDnaSong(remote(job,suffix),anonymous))?.status,visibility==='private'?404:suffix?307:200);
+    assert.equal((await storedDnaSong(remote(job,'&file=plan'),anonymous))?.status,404);
+    if(visibility==='public'){
+     const detail=await (await storedDnaSong(remote(job),anonymous))!.text();assert.ok(!detail.includes('Private favorite'));
+     assert.equal((await storedDnaSong(remote(job,'','DELETE','https://evil.test'),owner))?.status,403);
+     assert.equal((await storedDnaSong(remote(job,'','DELETE'),owner))?.status,200);
+     assert.equal((await storedDnaSong(remote(job,'&file=audio'),anonymous))?.status,404);
+     assert.equal((await storedDnaSong(remote(job,'&file=audio'),owner))?.status,307);
+    }
+    assert.deepEqual(await cloud.wallet.balance('bob'),{available:held.available,reserved:0});
+   }
+   const before=await cloud.wallet.balance('bob'),job=id(),quote=await cloud.quote('bob',profile,'private');
+   await cloud.submit('bob',job,profile,'private',quote.token);await cloud.start(job);fail=true;
+   await assert.rejects(cloud.finish(job,'completed',details),/Storage offline/);
+   assert.equal((await dnaSong(request('?id='+job,'DELETE'),{commerce:cloud,owner:'bob'})).status,200);
+   assert.deepEqual(await cloud.wallet.balance('bob'),before);
   });
  }finally{if(old===undefined)delete process.env.JAMLOOM_DNA_SINGER_ROOT;else process.env.JAMLOOM_DNA_SINGER_ROOT=old;await pool.end();await admin.query(`DROP DATABASE "${name}" WITH (FORCE)`);await admin.end();await rm(root,{recursive:true,force:true});}
 });

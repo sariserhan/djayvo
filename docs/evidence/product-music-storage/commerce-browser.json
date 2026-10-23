@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "folder": "/var/folders/fq/152jbfw16276cgngg15zvh780000gn/T/jamloom-dna-http-aKw9P0",
+  "results": [
+    {
+      "homepage_public_only": true,
+      "homepage_withdrawal_refresh": true,
+      "browser": "chromium",
+      "status": "PASS",
+      "real_auth": true,
+      "real_postgres": true,
+      "worker": "synthetic process fixture",
+      "public_credits": 1,
+      "private_credits": 2,
+      "duplicate_charges": 0,
+      "private_cross_owner_status": 404,
+      "private_anonymous_status": 404,
+      "public_feed_excludes_private": true,
+      "widths": [
+        1280,
+        390,
+        320
+      ],
+      "axe_violations": 0,
+      "errors": []
+    },
+    {
+      "homepage_public_only": true,
+      "homepage_withdrawal_refresh": true,
+      "browser": "webkit",
+      "status": "PASS",
+      "real_auth": true,
+      "real_postgres": true,
+      "worker": "synthetic process fixture",
+      "public_credits": 1,
+      "private_credits": 2,
+      "duplicate_charges": 0,
+      "private_cross_owner_status": 404,
+      "private_anonymous_status": 404,
+      "public_feed_excludes_private": true,
+      "widths": [
+        1280,
+        390,
+        320
+      ],
+      "axe_violations": 0,
+      "errors": []
+    }
+  ]
+}

@@ -1,3 +1,7 @@
+## Product music storage and R2 examples — 2026-10-22
+
+**PASS, code/local checks and real R2 example playback; PARTIAL, hosted release.** All nine curated Music DNA songs now reside in the private `jamloom-audio` bucket. New cloud files use product/public-or-private prefixes; database authorization determines access. Music DNA verifies durable storage before completing or charging, and the shared library preserves legacy masters. Chromium/WebKit without a singer, real Postgres privacy/recovery, 66 unit tests, build and bundle pass. Read-only production audit found migrations 0013, 0015, 0016 and 0017 pending; none applied here. Public generation and coming-soon gates stay closed. [Report/evidence](product-music-storage.md).
+
 ## Music DNA visual workspace — 2026-10-22
 
 **PASS, local UI and rendered verification.** The Music DNA page now puts compact favorites beside a visual song panel and one main action. Genre tags replace the expanded explanation; language and listening links remain optional. All nine examples precede the account/community collections. Chromium/WebKit at 1280/390/320, saved favorites, language, feedback, generation confirmation, actual sample playback/download, 62 site tests and build/bundle checks pass. No deployment or new model execution; existing release/quality gates remain unchanged. [Report/evidence](music-dna-visual.md).

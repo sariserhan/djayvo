@@ -3,9 +3,11 @@ import type {Pool} from 'pg';
 import {Wallet} from './wallet';
 import {signQuote,verifyQuote} from './generation-quote';
 import {AudioError} from './audio-validation';
+import type {AudioStore} from './audio-store';
+import {musicAudioKey} from './music-storage';
 
 export type DnaVisibility='public'|'private';
-export type DnaContext={commerce:DnaCommerce;owner:string|null};
+export type DnaContext={commerce:DnaCommerce;owner:string|null;readOnly?:boolean};
 export const DNA_RUNTIME_MS=15*60*1000;
 // Local rehearsal cost ceiling, not a cloud-provider price. Production generation stays closed.
 const COST_CAP=50_000;
@@ -18,7 +20,7 @@ export function visibilityInput(value:unknown,consent:unknown):DnaVisibility{
 }
 export class DnaCommerce{
  readonly wallet:Wallet;
- constructor(readonly pool:Pool,private secret:string){this.wallet=new Wallet(pool);}
+ constructor(readonly pool:Pool,private secret:string,readonly store?:AudioStore){this.wallet=new Wallet(pool);}
  async quote(owner:string,profile:unknown,visibility:DnaVisibility){
   const price=await this.wallet.quote(owner,COST_CAP,5000,visibility);
   const quote={version:1 as const,owner,expiresAt:Date.now()+300000,...price,
@@ -41,9 +43,21 @@ export class DnaCommerce{
  async pending(owner:string){return (await this.pool.query("SELECT id FROM dna_song_jobs WHERE owner_id=$1 AND state IN ('queued','running') ORDER BY created_at LIMIT 20",[owner])).rows as {id:string}[];}
  async start(id:string){return !!(await this.pool.query(`UPDATE dna_song_jobs d SET state='running',started_at=now()
   FROM credit_wallets w,"user" u WHERE d.id=$1 AND d.state='queued' AND w.owner_id=d.owner_id AND NOT w.frozen AND u.id=d.owner_id AND NOT u.suspended RETURNING d.id`,[id])).rowCount;}
- async finish(id:string,state:'completed'|'failed'|'cancelled',details?:{title:string;language:string;direction:string}){
+ async finish(id:string,state:'completed'|'failed'|'cancelled',details?:{title:string;language:string;direction:string;audio?:Buffer;plan?:unknown}){
   const row=await this.row(id);if(!row)throw new AudioError('Song not found.',404);
   if(state==='completed'&&(!details?.title||!details.language||!details.direction))throw Error('Checked song metadata required');
+  if(state==='completed'&&this.store){
+   const audio=details!.audio;
+   if(!row.audio_key){
+    if(!audio||audio.length<44||audio.length>24_000_000||audio.toString('ascii',0,4)!=='RIFF'||!details!.plan)throw Error('Checked song audio and plan required before completion');
+    const sha256=createHash('sha256').update(audio).digest('hex'),key=musicAudioKey('music-dna',row.visibility,id,sha256);
+    await this.store.put(key,audio);
+    if(createHash('sha256').update(await this.store.get(key,audio.length)).digest('hex')!==sha256)throw Error('Stored song verification failed');
+    await this.pool.query(`UPDATE dna_song_jobs SET audio_key=$2,audio_sha256=$3,audio_bytes=$4,song_plan=$5
+     WHERE id=$1 AND audio_key IS NULL AND state IN ('queued','running')`,[id,key,sha256,audio.length,JSON.stringify(details!.plan)]);
+    const saved=await this.row(id);if(saved.audio_key!==key)throw Error('Song storage receipt changed');
+   }else if(audio&&createHash('sha256').update(audio).digest('hex')!==row.audio_sha256)throw Error('Song storage receipt changed');
+  }
   // Retry settlement before exposing a song; a crash here must never cause a second charge or render.
   await this.wallet.settle(row.owner_id,row.reservation_id,state==='completed'?Number(row.cost_cap_micros):0,state);
   await this.pool.query(`UPDATE dna_song_jobs SET state=$2,title=$3,language=$4,direction=$5,completed_at=now()

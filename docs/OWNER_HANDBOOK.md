@@ -1,3 +1,9 @@
+## R2 music organization — 2026-10-22
+
+The nine **Made with Music DNA** examples are uploaded and verified in R2. [This local preview](http://127.0.0.1:4248/music-dna) plays them through R2 with the singer disabled. New saved music uses `music-dna/public/`, `music-dna/private/`, `improvise/public/`, `improvise/private/` and the equivalent product paths. The bucket remains private; the app checks access before issuing temporary playback links. New Music DNA songs require verified storage before completion and settlement. Offline browser sessions remain local until explicitly saved online.
+
+Before deploying the storage changes, apply the reviewed pending migrations **0013, 0015, 0016 and 0017** through the approved production migration process. Production R2 variable names exist, but sensitive values cannot be exported for comparison through the CLI. The coming-soon gate still restricts the public site; pushing code does not enable hosted generation. No deployment, migration or launch flag change was made here. [Evidence and release checklist](product-music-storage.md).
+
 ## Simpler Music DNA page — 2026-10-22
 
 [Open the updated local Music DNA page](http://127.0.0.1:4247/music-dna). Search and add favorites, then choose **Make my music** in the visual song panel. **Song language** is optional; automatic remains the default. Compact favorites retain removal and **Listen elsewhere** links. Existing example songs are directly below the workspace; Your songs and Community songs follow. Credits and public/private sharing still appear only after clicking the generation button. Local listening is available; hosted paid generation remains closed. [Screenshots and verification](music-dna-visual.md).

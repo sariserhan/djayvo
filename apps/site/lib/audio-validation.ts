@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import {musicProducts,type MusicProduct} from './music-storage';
 
 export const MAX_AUDIO_BYTES = 11_520_044;
 export const STRATEGIES = ['hiphop','reggae','experimental','club','funk','call_response','hybrid'] as const;
@@ -27,7 +28,8 @@ export function uuid(value: unknown): asserts value is string {
 }
 export function saveInput(value: unknown) {
   const v = value as Record<string, unknown>;
-  if (!v || typeof v !== 'object' || Object.keys(v).some(k => !['requestId','title','strategy','bytes','sha256','consent','visibility','publication'].includes(k))) throw new AudioError('Invalid save request.');
+  if (!v || typeof v !== 'object' || Object.keys(v).some(k => !['requestId','title','strategy','bytes','sha256','consent','visibility','publication','product'].includes(k))) throw new AudioError('Invalid save request.');
+  const product=v.product??'dj-studio';if(!musicProducts.includes(product as MusicProduct))throw new AudioError('Invalid music product.');
   if(v.visibility!==undefined && !['public','private'].includes(v.visibility as string)) throw new AudioError('Choose public or private.');
   if(v.visibility!=='public' && v.publication!==undefined) throw new AudioError('Private saves cannot request publication.');
   // Legacy clients never opted into public sharing.
@@ -38,7 +40,7 @@ export function saveInput(value: unknown) {
   if (!STRATEGIES.includes(v.strategy as typeof STRATEGIES[number])) throw new AudioError('Unsupported musical direction.');
   if (!Number.isInteger(v.bytes) || (v.bytes as number) < 2_880_044 || (v.bytes as number) > MAX_AUDIO_BYTES || ((v.bytes as number)-44)%4) throw new AudioError('Choose a 15–60 second Jamloom WAV mix.');
   if (typeof v.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(v.sha256)) throw new AudioError('Invalid audio checksum.');
-  return { requestId: v.requestId, title: v.title.trim(), strategy: v.strategy as string, bytes: v.bytes as number, sha256: v.sha256, publication };
+  return { requestId: v.requestId, title: v.title.trim(), strategy: v.strategy as string, bytes: v.bytes as number, sha256: v.sha256, publication,product:product as MusicProduct };
 }
 export function validateWav(data: Buffer, bytes: number, sha256: string) {
   if (data.length !== bytes || data.length > MAX_AUDIO_BYTES || data.length < 44 ||

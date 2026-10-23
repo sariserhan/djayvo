@@ -1,0 +1,71 @@
+TAP version 13
+# Subtest: DNA requires explicit visibility and public-sharing permission
+ok 1 - DNA requires explicit visibility and public-sharing permission
+  ---
+  duration_ms: 0.325166
+  type: 'test'
+  ...
+# Subtest: real Postgres Music DNA credits, privacy, idempotence, failure and recovery
+    # Subtest: price, atomic reservation and duplicate request binding
+    ok 1 - price, atomic reservation and duplicate request binding
+      ---
+      duration_ms: 12.2645
+      type: 'test'
+      ...
+    # Subtest: private audio and notes are owner-only, with full premium charged once
+    ok 2 - private audio and notes are owner-only, with full premium charged once
+      ---
+      duration_ms: 21.04425
+      type: 'test'
+      ...
+    # Subtest: public success enters the feed, without favorites or identities; withdrawal removes access
+    ok 3 - public success enters the feed, without favorites or identities; withdrawal removes access
+      ---
+      duration_ms: 17.92475
+      type: 'test'
+      ...
+    # Subtest: failure refunds all held credits and never publishes; anonymous generation is denied
+    ok 4 - failure refunds all held credits and never publishes; anonymous generation is denied
+      ---
+      duration_ms: 6.138917
+      type: 'test'
+      ...
+    # Subtest: interrupted startup and missing worker files recover without stranded credits
+    ok 5 - interrupted startup and missing worker files recover without stranded credits
+      ---
+      duration_ms: 9.426917
+      type: 'test'
+      ...
+    # Subtest: cloud storage failure holds completion; durable private/public songs survive without renderer files
+    ok 6 - cloud storage failure holds completion; durable private/public songs survive without renderer files
+      ---
+      duration_ms: 21.541875
+      type: 'test'
+      ...
+    1..6
+ok 2 - real Postgres Music DNA credits, privacy, idempotence, failure and recovery
+  ---
+  duration_ms: 384.980084
+  type: 'test'
+  ...
+# Subtest: quoted consented source executes through shared worker and private library without paid services
+ok 3 - quoted consented source executes through shared worker and private library without paid services
+  ---
+  duration_ms: 1712.593833
+  type: 'test'
+  ...
+# Subtest: cloud output receipt recovers remote-store failure without compute, preserves budget and prevents wrong-owner replay
+ok 4 - cloud output receipt recovers remote-store failure without compute, preserves budget and prevents wrong-owner replay
+  ---
+  duration_ms: 412.978458
+  type: 'test'
+  ...
+1..4
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1893.180125

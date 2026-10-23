@@ -4,11 +4,15 @@ import { audioStore, localAudioStore } from '../lib/audio-store';
 import { readConfig } from '../lib/config';
 import { AudioError, saveInput, validateWav, readBody } from '../lib/audio-validation';
 import { audioFixture, hash, input } from './audio-fixture';
+import {musicAudioKey,masterAudioKey,musicProducts} from '../lib/music-storage';
 
 test('private save validates consent, bounded metadata and canonical metadata-free PCM',async()=>{
   const wav=audioFixture(), intent=input(wav);
   assert.equal(validateWav(wav,wav.length,hash(wav)),20000);
   assert.equal(saveInput(intent).strategy,'funk');
+  assert.equal(saveInput(intent).product,'dj-studio');
+  assert.equal(saveInput({...intent,product:'improvise'}).product,'improvise');
+  assert.throws(()=>saveInput({...intent,product:'../private'}));
   for(const delta of [{consent:false},{requestId:'../secret'},{bytes:1},{sha256:'x'},{title:'\0'},{strategy:'unknown'},{owner:'someone'}]) assert.throws(()=>saveInput({...intent,...delta}));
   for(const offset of [0,4,8,16,20,22,24,28,32,34,36,40]) {
     const bad=Buffer.from(wav); bad[offset]^=1; assert.throws(()=>validateWav(bad,bad.length,hash(bad)));
@@ -20,6 +24,14 @@ test('private save validates consent, bounded metadata and canonical metadata-fr
   const request=new Request('http://localhost',{method:'PUT',body:'12345',headers:{'Content-Length':'1'}});
   await assert.rejects(readBody(request.body,4),/too large/);
   await assert.rejects(localAudioStore('/tmp/jamloom-unit').get('../secret',4),/Invalid object key/);
+});
+test('product storage keys isolate namespaces while keeping old masters readable',()=>{
+ for(const product of musicProducts)for(const visibility of ['public','private'] as const){
+  const key=musicAudioKey(product,visibility,'a'.repeat(32),'b'.repeat(64));assert.equal(key,`${product}/${visibility}/${'a'.repeat(32)}/${'b'.repeat(64)}.wav`);
+  assert.equal(masterAudioKey({track_id:'old',storage_key:key}),key);
+ }
+ assert.equal(masterAudioKey({track_id:'old'}),'masters/old.wav');
+ assert.throws(()=>musicAudioKey('music-dna','private','../secret','b'.repeat(64)));
 });
 test('storage is opt-in, local files cannot be hosted, R2 grants bind content length and type',async()=>{
   const config=readConfig({DATABASE_URL:'postgresql://u:p@127.0.0.1/db',BETTER_AUTH_URL:'http://localhost:3000',BETTER_AUTH_SECRET:'a'.repeat(48),JAMLOOM_LOCAL_OUTBOX:'/tmp/mail'});

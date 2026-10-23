@@ -1,10 +1,10 @@
 import { mkdir, readFile, writeFile, rename, rm, stat } from 'node:fs/promises';
-import { isAbsolute, join } from 'node:path';
+import { dirname, isAbsolute, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import type { Config } from './config';
-import { AudioError, MAX_AUDIO_BYTES, readBody } from './audio-validation';
+import { AudioError, readBody } from './audio-validation';
 
 export interface AudioStore {
   local: boolean;
@@ -12,18 +12,18 @@ export interface AudioStore {
   get(key: string, limit: number): Promise<Buffer>;
   remove(key: string): Promise<void>;
   uploadURL(key: string, bytes: number, seconds: number): Promise<string>;
-  playbackURL(key: string, download?: boolean): Promise<string>;
+  playbackURL(key: string, download?: boolean, seconds?: number): Promise<string>;
 }
 export function localAudioStore(directory: string): AudioStore {
   if (!isAbsolute(directory)) throw new Error('An absolute private audio directory is required.');
   const path = (key: string) => {
-    if (!/^(uploads|masters)\/[a-f0-9-]{36}\.wav$/.test(key)) throw new Error('Invalid object key.');
+    if (!/^(uploads|masters)\/[a-f0-9-]{36}\.wav$/.test(key)&&!/^(music-dna|improvise|dj-studio|live-dj|academy)\/(public|private)\/[a-f0-9-]{32,36}\/[a-f0-9]{64}\.wav$/.test(key)) throw new Error('Invalid object key.');
     return join(directory,key);
   };
   return {
     local: true,
     async put(key,data) {
-      const target=path(key); await mkdir(join(directory,key.split('/')[0]),{recursive:true,mode:0o700});
+      const target=path(key); await mkdir(dirname(target),{recursive:true,mode:0o700});
       const temp=target+'.'+randomUUID();
       try { await writeFile(temp,data,{flag:'wx',mode:0o600}); await rename(temp,target); }
       finally { await rm(temp,{force:true}); }
@@ -46,6 +46,9 @@ export function audioStore(config: Config, env: Record<string,string|undefined> 
     return localAudioStore(directory);
   }
   if ((env.JAMLOOM_R2_ENABLED ?? env.DJAYVO_R2_ENABLED) !== 'true') return null;
+  return r2AudioStore(env);
+}
+export function r2AudioStore(env: Record<string,string|undefined> = process.env): AudioStore {
   const { R2_ACCOUNT_ID: account, R2_ACCESS_KEY_ID: access, R2_SECRET_ACCESS_KEY: secret, R2_BUCKET: bucket }=env;
   if (!account || !/^[a-f0-9]{32}$/.test(account) || !access || !secret || !bucket || !/^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$/.test(bucket)) throw new Error('R2 configuration is incomplete.');
   const client=new S3Client({region:'auto',endpoint:`https://${account}.r2.cloudflarestorage.com`,
@@ -58,11 +61,11 @@ export function audioStore(config: Config, env: Record<string,string|undefined> 
       const result=await client.send(new GetObjectCommand({Bucket:bucket,Key:key}),{abortSignal:AbortSignal.timeout(15000)});
       const body=result.Body?.transformToWebStream();
       if (!body) throw new AudioError('Upload is missing.');
-      if (!result.ContentLength || result.ContentLength>Math.min(limit,MAX_AUDIO_BYTES)) { await body.cancel(); throw new AudioError('Invalid upload size.'); }
+      if (!result.ContentLength || result.ContentLength>Math.min(limit,24_000_000)) { await body.cancel(); throw new AudioError('Invalid upload size.'); }
       return readBody(body,limit);
     },
     async remove(key) { await client.send(new DeleteObjectCommand({Bucket:bucket,Key:key}),{abortSignal:AbortSignal.timeout(15000)}); },
     uploadURL: (key,bytes,seconds) => getSignedUrl(client,new PutObjectCommand({Bucket:bucket,Key:key,ContentType:'audio/wav',ContentLength:bytes}),{expiresIn:seconds,signableHeaders:new Set(['content-type','content-length'])}),
-    playbackURL: (key,download=false) => getSignedUrl(client,new GetObjectCommand({Bucket:bucket,Key:key,ResponseCacheControl:'private, no-store',ResponseContentDisposition:`${download?'attachment':'inline'}; filename="jamloom-mix.wav"`}),{expiresIn:60}),
+    playbackURL: (key,download=false,seconds=60) => getSignedUrl(client,new GetObjectCommand({Bucket:bucket,Key:key,ResponseCacheControl:'private, no-store',ResponseContentDisposition:`${download?'attachment':'inline'}; filename="jamloom-mix.wav"`}),{expiresIn:seconds}),
   };
 }

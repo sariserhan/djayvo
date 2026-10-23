@@ -1,10 +1,11 @@
 import type { Pool, PoolClient } from 'pg';
 import type { AudioStore } from './audio-store';
+import {musicAudioKey,masterAudioKey,type MusicProduct} from './music-storage';
 import { AudioError, saveInput, uuid, validateWav } from './audio-validation';
 
-type Asset = { track_id:string; owner_id:string; bytes:number; sha256:string; state:string; expires_at:Date; staging_cleaned:boolean; publication:ReturnType<typeof saveInput>['publication'] };
+type Asset = { product:MusicProduct; storage_key:string|null; track_id:string; owner_id:string; bytes:number; sha256:string; state:string; expires_at:Date; staging_cleaned:boolean; publication:ReturnType<typeof saveInput>['publication'] };
 export const storageLimits={tracks:10, ownerBytes:100*1024**2, totalBytes:1024**3, ownerDaily:20, totalDaily:500};
-const key=(id:string, master=false) => `${master?'masters':'uploads'}/${id}.wav`;
+const key=(id:string) => `uploads/${id}.wav`;
 
 export class PrivateAudio {
   constructor(private pool:Pool, public store:AudioStore) {}
@@ -36,7 +37,7 @@ export class PrivateAudio {
         WHERE a.owner_id=$1 AND a.request_id=$2`,[owner,v.requestId])).rows[0];
       let row=existing;
       if (existing) {
-        if (existing.bytes!==v.bytes || existing.sha256!==v.sha256 || existing.title!==v.title || existing.strategy!==v.strategy || JSON.stringify(existing.publication && {artist:existing.publication.artist,description:existing.publication.description,mood:existing.publication.mood,consent:true})!==JSON.stringify(v.publication)) throw new AudioError('Save request changed. Choose the file again.',409);
+        if ((existing.storage_key!==null&&existing.product!==v.product) || existing.bytes!==v.bytes || existing.sha256!==v.sha256 || existing.title!==v.title || existing.strategy!==v.strategy || JSON.stringify(existing.publication && {artist:existing.publication.artist,description:existing.publication.description,mood:existing.publication.mood,consent:true})!==JSON.stringify(v.publication)) throw new AudioError('Save request changed. Choose the file again.',409);
       } else {
         const usage=(await db.query(`SELECT count(*) FILTER (WHERE owner_id=$1 AND state<>'deleted')::int AS tracks,
           coalesce(sum(bytes*2::bigint) FILTER (WHERE owner_id=$1 AND state<>'deleted'),0)::text AS owner_bytes,
@@ -49,8 +50,8 @@ export class PrivateAudio {
         }
         const track=(await db.query(`INSERT INTO tracks(owner_id,title,strategy,duration_ms) VALUES($1,$2,$3,$4) RETURNING id`,
           [owner,v.title,v.strategy,Math.round((v.bytes-44)/192)])).rows[0];
-        row=(await db.query(`INSERT INTO track_assets(track_id,request_id,owner_id,sha256,bytes,publication) VALUES($1,$2,$3,$4,$5,$6) RETURNING *`,
-          [track.id,v.requestId,owner,v.sha256,v.bytes,v.publication?JSON.stringify(v.publication):null])).rows[0];
+        row=(await db.query(`INSERT INTO track_assets(track_id,request_id,owner_id,sha256,bytes,publication,product,storage_key) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`,
+          [track.id,v.requestId,owner,v.sha256,v.bytes,v.publication?JSON.stringify(v.publication):null,v.product,musicAudioKey(v.product,v.publication?'public':'private',track.id,v.sha256)])).rows[0];
       }
       if (row.state==='ready') return {id:row.track_id,ready:true};
       if(recoverGenerated&&existing&&row.state==='uploading'&&row.expires_at.getTime()<=Date.now())
@@ -80,7 +81,7 @@ export class PrivateAudio {
       const data=await this.store.get(key(id),row.bytes);
       const duration=validateWav(data,row.bytes,row.sha256);
       // Retrying after a crash writes only the same checksum-bound bytes to the final key.
-      await this.store.put(key(id,true),data);
+      await this.store.put(masterAudioKey(row),data);
       await db.query("UPDATE track_assets SET state='ready' WHERE track_id=$1",[id]);
       await db.query('UPDATE tracks SET duration_ms=$2 WHERE id=$1',[id,duration]);
       if(row.publication) await db.query(`INSERT INTO catalogue_submissions(track_id,artist,description,mood) VALUES($1,$2,$3,$4) ON CONFLICT DO NOTHING`,[id,row.publication.artist,row.publication.description,row.publication.mood]);
@@ -91,7 +92,7 @@ export class PrivateAudio {
     return this.locked(owner,async db => {
       const row=await this.asset(db,owner,id);
       if (row.state!=='ready') throw new AudioError('Track not found.',404);
-      return this.store.local ? {data:await this.store.get(key(id,true),row.bytes)} : {url:await this.store.playbackURL(key(id,true),download)};
+      return this.store.local ? {data:await this.store.get(masterAudioKey(row),row.bytes)} : {url:await this.store.playbackURL(masterAudioKey(row),download)};
     });
   }
   async remove(owner:string,id:string) {
@@ -117,7 +118,7 @@ export class PrivateAudio {
           await this.store.remove(key(row.track_id));
           if (row.state==='ready') await db.query('UPDATE track_assets SET staging_cleaned=true WHERE track_id=$1',[row.track_id]);
           else {
-            await this.store.remove(key(row.track_id,true));
+            await this.store.remove(masterAudioKey(row));
             await db.query('UPDATE tracks SET deleted_at=coalesce(deleted_at,now()) WHERE id=$1',[row.track_id]);
             await db.query("UPDATE track_assets SET state='deleted', staging_cleaned=true WHERE track_id=$1",[row.track_id]);
           }

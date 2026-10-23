@@ -11,7 +11,7 @@ async function result(response:Response) {
 }
 export function SaveMix({publicSharing=true}:{publicSharing?:boolean}) {
   const router=useRouter(), form=useRef<HTMLFormElement>(null);
-  const request=useRef({identity:'',id:crypto.randomUUID()});
+  const request=useRef({identity:'',id:crypto.randomUUID()}),product=useRef('dj-studio');
   const [busy,setBusy]=useState(false), [message,setMessage]=useState(''), [error,setError]=useState('');
   const [visibility,setVisibility]=useState('public'),[localFile,setLocalFile]=useState<File|null>(null);
   useEffect(()=>{let active=true;void (async()=>{try{
@@ -19,7 +19,7 @@ export function SaveMix({publicSharing=true}:{publicSharing?:boolean}) {
     const {id,name}=JSON.parse(saved);if(typeof id!=='string'||typeof name!=='string')throw new Error();
     const session=await loadSession(id);if(!session||!await verifySession(session))throw new Error();
     const file=session.files.find((f:{name:string})=>f.name===name&&f.name.endsWith('.wav'));if(!file)throw new Error();
-    if(!active)return;setLocalFile(new File([file.blob],file.name,{type:'audio/wav'}));setVisibility(session.visibility==='public'?'public':'private');
+    if(!active)return;product.current='improvise';setLocalFile(new File([file.blob],file.name,{type:'audio/wav'}));setVisibility(session.visibility==='public'?'public':'private');
     const title=form.current?.elements.namedItem('title') as HTMLInputElement;title.value=`My ${name.split('.')[0].replaceAll('_',' ')} mix`;
     const strategy=form.current?.elements.namedItem('strategy') as HTMLSelectElement;strategy.value=name.split('.')[0];
   }catch{if(active)setError('Could not load that browser mix. Download its WAV in the studio and choose the file here.');}})();return()=>{active=false;};},[]);
@@ -32,9 +32,9 @@ export function SaveMix({publicSharing=true}:{publicSharing?:boolean}) {
       const sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)), b=>b.toString(16).padStart(2,'0')).join('');
       const title=String(values.get('title')).trim(), strategy=String(values.get('strategy'));
       const publication=visibility==='public'?{artist:values.get('artist'),description:values.get('description'),mood:values.get('mood'),consent:values.get('publicationConsent')==='on'}:undefined;
-      const identity=JSON.stringify({sha256,title,strategy,visibility,publication});
+      const identity=JSON.stringify({sha256,title,strategy,visibility,publication,product:product.current});
       if (request.current.identity!==identity) request.current={identity,id:crypto.randomUUID()};
-      const intent=await result(await fetch('/api/library',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({requestId:request.current.id,title,strategy,sha256,bytes:file.size,visibility,publication,consent:values.get('consent')==='on'})}));
+      const intent=await result(await fetch('/api/library',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({requestId:request.current.id,title,strategy,sha256,bytes:file.size,visibility,publication,product:product.current,consent:values.get('consent')==='on'})}));
       if (!intent.ready) {
         setMessage('Uploading your mix…');
         const upload=await fetch(intent.url,{method:'PUT',body:bytes,headers:{'Content-Type':'audio/wav'},credentials:new URL(intent.url,location.href).origin===location.origin?'same-origin':'omit'});
@@ -43,7 +43,7 @@ export function SaveMix({publicSharing=true}:{publicSharing?:boolean}) {
         await result(await fetch(`/api/library/${intent.id}/finalize`,{method:'POST'}));
       }
       setMessage(visibility==='public'?'Saved and submitted for review. It will appear on the homepage after approval.':'Saved privately. It will not appear on public pages.');
-      sessionStorage.removeItem('jamloom-save-selection');setLocalFile(null);setVisibility('public');
+      sessionStorage.removeItem('jamloom-save-selection');setLocalFile(null);product.current='dj-studio';setVisibility('public');
       form.current?.reset(); request.current={identity:'',id:crypto.randomUUID()}; router.refresh();
     } catch(e) {
       if (e && typeof e==='object' && 'status' in e && e.status===409) request.current.identity='';
@@ -56,7 +56,7 @@ export function SaveMix({publicSharing=true}:{publicSharing?:boolean}) {
     <label>Mix title<input name="title" required maxLength={120} disabled={busy}/></label>
     <label>Musical direction<select name="strategy" aria-label="Musical direction" disabled={busy}>{directions.map(s=><option key={s} value={s}>{s.replaceAll('_',' ')}</option>)}</select></label>
     {localFile&&<p role="status">Selected from your browser studio: {localFile.name}</p>}
-    <label>{localFile?'Choose a different WAV':'Finished WAV'}<input name="audio" type="file" accept="audio/wav,.wav" required={!localFile} disabled={busy} onChange={()=>setLocalFile(null)}/></label>
+    <label>{localFile?'Choose a different WAV':'Finished WAV'}<input name="audio" type="file" accept="audio/wav,.wav" required={!localFile} disabled={busy} onChange={()=>{setLocalFile(null);product.current='dj-studio';}}/></label>
     <fieldset className="visibility-choice" disabled={busy}><legend>Who can listen?</legend>
       <label><input type="radio" name="visibility" value="public" checked={visibility==='public'} onChange={()=>setVisibility('public')}/>Public · share after review</label>
       <label><input type="radio" name="visibility" value="private" checked={visibility==='private'} onChange={()=>setVisibility('private')}/>Private · only you</label>

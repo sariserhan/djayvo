@@ -1,6 +1,7 @@
 import type { Pool, PoolClient } from 'pg';
 import { AudioError, STRATEGIES, uuid, MOODS, publicationInput } from './audio-validation';
 import type { PrivateAudio } from './private-audio';
+import {masterAudioKey} from './music-storage';
 
 export { MOODS } from './audio-validation';
 function text(value:unknown,max:number,multiline=false) {
@@ -36,9 +37,9 @@ export class Catalogue {
     // Recheck approval while holding the owner's same lock used by removal/review.
     const owner=(await this.pool.query('SELECT owner_id FROM tracks WHERE id=$1',[id])).rows[0]?.owner_id;
     return this.audio.locked(owner,async db=>{
-      const row=(await db.query(`SELECT a.bytes ${publicJoin} AND t.id=$1`,[id])).rows[0];
+      const row=(await db.query(`SELECT a.bytes,a.track_id,a.storage_key ${publicJoin} AND t.id=$1`,[id])).rows[0];
       if(!row)throw new AudioError('Track not found.',404);
-      return this.audio.store.local?{data:await this.audio.store.get(`masters/${id}.wav`,row.bytes)}:{url:await this.audio.store.playbackURL(`masters/${id}.wav`)};
+      return this.audio.store.local?{data:await this.audio.store.get(masterAudioKey(row),row.bytes)}:{url:await this.audio.store.playbackURL(masterAudioKey(row))};
     });
   }
   async submit(owner:string,id:string,value:Record<string,unknown>) {

@@ -1,0 +1,42 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "songs": 9,
+    "localSinger": false,
+    "accountDatabase": false,
+    "storage": "real private R2",
+    "mutedPlayback": true,
+    "seconds": 120,
+    "seek": 90,
+    "rangeStatus": 206,
+    "unsignedDenied": true,
+    "downloadChecksum": "PASS",
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "songs": 9,
+    "localSinger": false,
+    "accountDatabase": false,
+    "storage": "real private R2",
+    "mutedPlayback": true,
+    "seconds": 120,
+    "seek": 90,
+    "rangeStatus": 206,
+    "unsignedDenied": true,
+    "downloadChecksum": "PASS",
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "errors": []
+  }
+]

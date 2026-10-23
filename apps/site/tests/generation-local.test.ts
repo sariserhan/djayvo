@@ -30,7 +30,7 @@ test('quoted consented source executes through shared worker and private library
   await assert.rejects(new PrivateAudio(pool,store).playback('bob',result!.outputId),/not found/);
   assert.deepEqual(await wallet.balance('alice'),{available:18,reserved:0});
   const originalPut=store.put;let fail=true;
-  store.put=async(key,data)=>{if(fail&&key.startsWith('masters/'))throw Error('Storage interrupted');return originalPut(key,data);};
+  store.put=async(key,data)=>{if(fail&&key.startsWith('improvise/'))throw Error('Storage interrupted');return originalPut(key,data);};
   const recoveryQuote=await service.quote('alice',input),recoveryId=await service.submit('alice','recover_without_compute',input,recoveryQuote.token);
   await assert.rejects(service.run(join(root,'build-finish/jamloom_remix'),folder),/Storage interrupted/);
   assert.deepEqual(await wallet.balance('alice'),{available:16,reserved:2});

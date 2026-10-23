@@ -24,15 +24,30 @@ test('real isolated Postgres and disk: private audio lifecycle and recovery',asy
     await migrate(pool);
     for(const owner of ['alice','bob','quota']) await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[owner,owner+'@example.com']);
     const request=input(wav), intent=await audio.reserve('alice',request);
+    const stored=(await pool.query('SELECT product,storage_key FROM track_assets WHERE track_id=$1',[intent.id])).rows[0];
+    assert.equal(stored.product,'dj-studio');assert.ok(stored.storage_key.startsWith('dj-studio/private/'));
     await t.test('explicit reservation, retry identity, owner binding and unavailable pending audio',async()=>{
       assert.equal((await audio.reserve('alice',request)).id,intent.id);
       await assert.rejects(audio.reserve('alice',{...request,title:'changed'}),/changed/);
+      await assert.rejects(audio.reserve('alice',{...request,product:'improvise'}),/changed/);
       await assert.rejects(audio.localUpload('bob',intent.id,wav),/not found/);
       await assert.rejects(audio.playback('alice',intent.id),/not found/);
       assert.equal((await listTracks(pool,'alice')).tracks.length,0);
       const bad=Buffer.from(wav);bad[44]^=1;
       await assert.rejects(audio.localUpload('alice',intent.id,bad),/does not match/);
       await assert.rejects(audio.finalize('alice',intent.id));
+    });
+    await t.test('pre-migration masters and interrupted saves remain readable and recoverable',async()=>{
+      const v=input(wav),old=await audio.reserve('bob',v);
+      await pool.query('UPDATE track_assets SET storage_key=NULL WHERE track_id=$1',[old.id]);
+      assert.equal((await audio.reserve('bob',{...v,product:'improvise'},true)).id,old.id);
+      await audio.localUpload('bob',old.id,wav);await audio.finalize('bob',old.id);
+      assert.deepEqual(await store.get(`masters/${old.id}.wav`,wav.length),wav);
+      assert.deepEqual((await audio.playback('bob',old.id)).data,wav);
+      await audio.remove('bob',old.id);
+      await pool.query("UPDATE track_assets SET expires_at=now()-interval '2 minutes' WHERE track_id=$1",[old.id]);
+      assert.equal((await audio.cleanup()).failed,0);
+      await assert.rejects(store.get(`masters/${old.id}.wav`,wav.length));
     });
     await t.test('finalization recovers from object write before SQL failure; retry and replay cannot change final bytes',async()=>{
       await audio.localUpload('alice',intent.id,wav);
@@ -67,7 +82,7 @@ test('real isolated Postgres and disk: private audio lifecycle and recovery',asy
       assert.equal((await broken.cleanup()).failed,1);
       assert.equal((await pool.query('SELECT state FROM track_assets WHERE track_id=$1',[intent.id])).rows[0].state,'deleting');
       assert.equal((await audio.cleanup()).cleaned,1);
-      await assert.rejects(store.get(`masters/${intent.id}.wav`,wav.length));
+      await assert.rejects(store.get((await pool.query('SELECT storage_key FROM track_assets WHERE track_id=$1',[intent.id])).rows[0].storage_key,wav.length));
       await assert.rejects(store.get(`uploads/${intent.id}.wav`,wav.length));
       await audio.remove('alice',intent.id);
       await assert.rejects(audio.reserve('alice',request),/no longer/);

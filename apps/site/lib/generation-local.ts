@@ -99,7 +99,7 @@ export class LocalGeneration {
   if((await stat(path)).size>MAX_AUDIO_BYTES)throw Error('Output exceeds storage bound');
   const wav=await readFile(path),sha=hash(wav);validateWav(wav,wav.length,result.sha256);
   const plan=JSON.parse(payload.plan);
-  const saved=await audio.reserve(row.owner_id,{requestId:id,title:payload.title,strategy:plan.strategy,bytes:wav.length,sha256:sha,consent:true});
+  const saved=await audio.reserve(row.owner_id,{requestId:id,title:payload.title,strategy:plan.strategy,bytes:wav.length,sha256:sha,consent:true,product:'improvise'});
   if(!saved.ready){await audio.localUpload(row.owner_id,saved.id,wav);await audio.finalize(row.owner_id,saved.id);}
   // A failed save leaves the render receipt held; retry never starts a second renderer.
   try{await this.queue.stopped(id,row.lease_token,Number(row.actual_cost_micros),'completed',sha);}
