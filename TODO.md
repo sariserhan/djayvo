@@ -1,3 +1,7 @@
+## Improvise workspace and local-remix naming — 2026-10-23
+
+- [x] **IMPROVISE-UI — PASS, local:** Improvise now uses the capture/direction layout of the local remix workspace, with record/import, preview, quick styles, all 23 genres and singer selection. Removed the requested recording/upload permission checkbox; explicit final Generate confirms sending the source. Credit quote, public/private choice and public-sharing confirmation remain intact. Older Voice studio is labelled Local remixes with a return to Improvise; saved mixes and the local engine are retained. Chromium/WebKit synthetic recording, import/normalized upload, selections, public/private/price/recovery/cancellation, responsive/accessibility and navigation checks PASS. TypeScript, two focused tests, asset build and audit PASS. Website/native publication, real provider generation and physical microphone checks NOT RUN. See `docs/progress.md`.
+
 ## Consistent website navbar — 2026-10-23
 
 - [x] Navbar order— PASS, local: Improvise → Music DNA → DJ Studio → Live DJ → Learn to DJ → Account. Rebuilt studio/Academy assets; Chromium verifies the order on home, both studios and an Academy lesson. Deployment NOT RUN.

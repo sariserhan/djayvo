@@ -31,13 +31,15 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
    return r.fulfill({json:{id:job,state,phase:state==='running'?'composing':undefined}});
   });
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/improvise');
-  const panel=page.locator('section').filter({has:page.getByRole('heading',{name:'Your sound. A new song.'})}).first();
-  const choose=async()=>{await panel.getByRole('checkbox',{name:/I have permission/}).check();await panel.locator('input[type=file]').setInputFiles({name:'synthetic.wav',mimeType:'audio/wav',buffer:source});await panel.getByRole('button',{name:'Make my song',exact:true}).click();};
+  const panel=page.locator('#improvise-create');
+  assert.equal(await panel.getByRole('checkbox',{name:/I have permission/}).count(),0);
+  assert.ok(await panel.getByRole('button',{name:'Record a sound',exact:true}).isEnabled());
+  const choose=async()=>{await panel.getByLabel('All styles',{exact:true}).selectOption('jazz');await panel.getByLabel('Singer',{exact:true}).selectOption('female');await panel.locator('input[type=file]').setInputFiles({name:'synthetic.wav',mimeType:'audio/wav',buffer:source});await panel.getByRole('button',{name:'Make my song',exact:true}).click();};
   await choose();assert.equal(uploads,0);await page.getByRole('checkbox',{name:/I agree to share my finished/}).check();await page.getByRole('button',{name:'Generate song · 1 credits',exact:true}).click();
-  const shown=key=>page.locator(`.generation-progress[data-state="${key}"]:visible`).waitFor({timeout:20000});await shown('queued');assert.equal(submits,1);assert.equal(uploads,1);assert.equal(bodies[0].visibility,'public');assert.equal(bodies[0].publicConsent,true);
+  const shown=key=>page.locator(`.generation-progress[data-state="${key}"]:visible`).waitFor({timeout:20000});await shown('queued');assert.equal(submits,1);assert.equal(uploads,1);assert.equal(bodies[0].visibility,'public');assert.equal(bodies[0].publicConsent,true);assert.equal(grant.consent,true);assert.equal(bodies[0].profile.consent,true);assert.equal(bodies[0].profile.genre,'jazz');assert.equal(bodies[0].profile.voice,'female');
   await page.reload();await shown('queued');assert.equal(submits,1);state='running';await shown('composing');disconnect=true;await shown('reconnecting');disconnect=false;await shown('composing');
   for(const width of [1280,390,320]){await page.setViewportSize({width,height:900});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await panel.scrollIntoViewIfNeeded();await page.screenshot({path:`${output}/${name}-${width}.png`});}
-  assert.deepEqual((await new AxeBuilder({page}).include('.product-controls').analyze()).violations,[]);
+  assert.deepEqual((await new AxeBuilder({page}).include('#improvise-create').analyze()).violations,[]);
   state='completed';await page.getByLabel('Play your new song').waitFor();
   state='queued';job=null;await choose();await page.getByRole('radio',{name:'Private · from 2 credits',exact:true}).check();await page.getByRole('button',{name:'Generate song · 2 credits',exact:true}).click();await page.getByText(/This song needs 3 credits/).waitFor();assert.equal(submits,1);
   slow=true;await page.getByRole('button',{name:'Generate song · 3 credits',exact:true}).click();await page.waitForTimeout(300);await page.getByRole('button',{name:'Cancel',exact:true}).click();await shown('cancelled');assert.equal(submits,2);assert.equal(deletes,1);assert.equal(bodies[1].visibility,'private');assert.equal(bodies[1].publicConsent,false);assert.deepEqual(errors,[]);
