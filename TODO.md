@@ -1,5 +1,7 @@
 ## Consistent website navbar — 2026-10-23
 
+- [x] **SITE-NAV-SIMPLE — PASS, local:** Removed Pro and Pricing from the shared main navbar; five product links and Account remain. Chromium/WebKit verify home, both studios and Academy at desktop/mobile sizes; rebuilt assets and bundle audit PASS. Deployment NOT RUN.
+
 - [x] **SITE-NAV — PASS, local:** One shared product-link list and header styling across the site, hosted Performance/Voice studios and Academy lesson/offline pages. Studio shortcuts, saved mixes, privacy and mode indicators remain separate. Chromium/WebKit pass 27 routes at 1440/390px, cross-product and home navigation, local studio controls, header accessibility and fullscreen return. TypeScript, integration unit test, asset preparation and bundle audit PASS. Website deployment, audio generation and native app rebuild NOT RUN. Details in `docs/progress.md`.
 
 ## Voice studio navigation — 2026-10-23
