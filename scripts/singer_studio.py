@@ -15,7 +15,7 @@ import sys
 import uuid
 
 from arrange_voice_research import RATE, digest, read_pcm
-from assemble_sung_response import keep_song
+from assemble_sung_response import intervals
 from local_call_edit import arrange
 from singing_response import STYLES, STYLE_LABELS, VOICES, MAX_PHRASE_CHARS, digest as file_digest, load_plan, text_field
 
@@ -68,13 +68,13 @@ def understand(work, env):
     return result
 
 
-def sample_candidate(work, speech, genre, seconds, seed=0):
+def sample_candidate(work, speech, genre, seconds, seed=0, attempt=0):
     candidates=[]
     for phrase in speech.get('phrases',[]):
         if not isinstance(phrase,dict) or not isinstance(phrase.get('text'),str):continue
         a,b=phrase.get('start_seconds'),phrase.get('end_seconds')
         if (type(a) in (int,float) and type(b) in (int,float) and np.isfinite([a,b]).all()
-            and 0<=a<b<=seconds and .35<=b-a<=2.5 and 1<=len(phrase['text'].split())<=8):
+            and 0<=a<b<=seconds and .35<=b-a<=4.8 and 1<=len(phrase['text'].split())<=16):
             candidates.append((a,b))
     # Word timing supplies pause-bounded clauses even when ASR emits one long segment.
     rate=speech.get('source_rate',16000);groups=[]
@@ -87,18 +87,41 @@ def sample_candidate(work, speech, genre, seconds, seed=0):
         if groups and a<groups[-1][1]:continue
         if groups and 0<=a-groups[-1][1]<.3:groups[-1]=(groups[-1][0],b)
         else:groups.append((a,b))
-    candidates.extend((a,b) for a,b in groups if .35<=b-a<=2.5)
-    if not candidates:return None
-    a,b=random.Random(seed).choice(sorted(set(candidates)))
-    a=max(0,a-.04);b=min(seconds,b+.04)
-    source=work/'source.wav'
+    candidates.extend((a,b) for a,b in groups if .35<=b-a<=4.8)
+    with wave.open(str(work/'decoded.wav')) as wav:
+        pcm=np.frombuffer(wav.readframes(wav.getnframes()),dtype='<i2').astype(np.float64)/32768
+    hop=160;levels=np.sqrt(np.mean(np.pad(pcm,(0,(-len(pcm))%hop)).reshape(-1,hop)**2,axis=1))
+    if not len(levels) or float(np.max(levels))<.0003:return None
+    active=levels>max(.0003,float(np.max(levels))*.03)
+    joined=active.copy()
+    for a,b in intervals(~active):
+        if a>0 and b<len(active) and b-a<18:joined[a:b]=True
+    # Pauses also delimit laughter, claps and sounds without recognized words.
+    if not speech.get('transcript','').strip() and not speech.get('words'):
+        candidates.extend((float(a)/100,min(seconds,float(b)/100)) for a,b in intervals(joined) if .35<=(b-a)/100<=4.8)
+    if not candidates:
+        for word in speech.get('words',[]):
+            if not isinstance(word,dict):continue
+            a,b=word.get('start_frame'),word.get('end_frame')
+            if type(a) is int and type(b) is int and 0<=a<b<=seconds*rate and .35<=(b-a)/rate<=4.8:
+                candidates.append((a/rate,b/rate))
+        if not candidates and not speech.get('transcript','').strip():
+            for a,b in intervals(joined):
+                if b-a>=35:candidates.append((float(a)/100,min(seconds,float(a+200)/100,float(b)/100)))
+    candidates=[(a,b) for a,b in candidates if np.sqrt(np.mean(pcm[round(a*16000):round(b*16000)]**2))>=.0003]
+    if .35<=seconds<=5:candidates.append((0,seconds))
+    candidates=sorted({(max(0,a-.04),min(seconds,b+.04)) for a,b in candidates})
+    random.Random(seed).shuffle(candidates)
+    if attempt>=len(candidates):return None
+    a,b=candidates[attempt]
+    source=work/('source.wav' if attempt==0 else f'source-{attempt}.wav')
     subprocess.run(['ffmpeg','-v','error','-nostdin','-n','-protocol_whitelist','file,pipe',
         '-ss',str(a),'-i',str(work/'original-recording'),'-t',str(b-a),'-ar',str(RATE),'-ac','2',
         '-c:a','pcm_s16le',str(source)],check=True,timeout=20,capture_output=True)
-    pcm=read_pcm(source,(.35,5));score=work/'source.json'
+    pcm=read_pcm(source,(.35,5));score=source.with_suffix('.json')
     score.write_text(json.dumps({'source':{'sha256':digest(source),'kind':'recorded','consent_confirmed':True,
         'processed_frames':len(pcm)},'sample_rate':RATE,'voice_clips':[{'id':0,'start_frame':0,'end_frame':len(pcm)}],
-        'original_seconds':[a,b]}))
+        'original_seconds':[a,b],'selection':'whole-recording' if a==0 and b==seconds else 'excerpt'}))
     return source,score
 
 
@@ -136,11 +159,14 @@ def make_reply(audio, phrase, voice, genre, consent, duration=None):
             if not phrase:
                 phrase='A quiet moment, with space to breathe' if speech.get('quiet') else 'A wordless sound: make an original musical response without inventing spoken words'
                 interpretation='a wordless sound; add an idea if you want a specific meaning'
-        stage = 'Choosing whether to use the recording'
-        try:
-            candidate=sample_candidate(work,speech,chosen_genre,input_report['original_seconds'],seed)
-        except (ValueError,OSError,subprocess.SubprocessError):
-            candidate=None
+        stage = 'Finding usable parts of the recording'
+        candidates=[]
+        for attempt in range(4):
+            candidate=sample_candidate(work,speech,chosen_genre,input_report['original_seconds'],seed,attempt)
+            if candidate:candidates.append(candidate)
+            else:break
+        if not candidates:
+            raise StudioError('No clear sound was found to blend into the music. Try a recording with an audible phrase or sound.')
         plan_path = work / 'reply.json'
         command = [sys.executable, str(ROOT / 'scripts/singing_response.py')]
         stage = 'Writing the lyrics'
@@ -155,21 +181,26 @@ def make_reply(audio, phrase, voice, genre, consent, duration=None):
         with (work / 'render-private.log').open('w') as log:
             subprocess.run([*command, 'sing', '--runtime', str(RUNTIME), '--plan', str(plan_path), '--case', case['id'],
                             '--output', str(singer)], stdout=log, stderr=subprocess.STDOUT, env=env, timeout=600, check=True)
-        result_dir=work/'exchange'
-        if candidate:
+        stage = 'Finding room for your sound'
+        with (work / 'separate-private.log').open('w') as log:
+            subprocess.run([sys.executable, str(ROOT/'scripts/separate_singer.py'), '--input', str(singer/'singer.wav'),
+                            '--output', str(singer/'stems')], stdout=log, stderr=subprocess.STDOUT, env=env, timeout=600, check=True)
+        report=None
+        for attempt,candidate in enumerate(candidates):
+            result_dir=work/f'exchange-{attempt}'
             try:
-                stage = 'Finding room for your phrase'
-                with (work / 'separate-private.log').open('w') as log:
-                    subprocess.run([sys.executable, str(ROOT/'scripts/separate_singer.py'), '--input', str(singer/'singer.wav'),
-                                    '--output', str(singer/'stems')], stdout=log, stderr=subprocess.STDOUT, env=env, timeout=600, check=True)
-                stage = 'Arranging your phrase'
-                report = arrange(candidate[0],singer,result_dir,OUTPUT/'arrangement-history.json',seed,True)
-            except (ValueError,OSError,subprocess.SubprocessError) as error:
-                (work/'sample-skipped.json').write_text(json.dumps({'stage':stage,'error_type':type(error).__name__})+'\n')
-                result_dir=work/'meaning-only'
-                report=keep_song(singer,result_dir,'Could not arrange the recording; the completed song is preserved for comparison.')
-        else:
-            report = keep_song(singer,result_dir,'Could not find a short, intact phrase; the completed song is preserved for comparison.')
+                stage = 'Blending your sound into the song'
+                report = arrange(candidate[0],singer,result_dir,OUTPUT/'arrangement-history.json',seed+attempt,True)
+                if report.get('sample_used') is not True or not report.get('events'):
+                    raise ValueError('Arrangement omitted the recording')
+                report['source_excerpt']=json.loads(candidate[1].read_text())
+                report['original_recording_sha256']=input_report['original_sha256']
+                break
+            except ValueError as error:
+                report=None
+                (work/f'arrangement-rejected-{attempt}.json').write_text(json.dumps({'stage':stage,'error_type':type(error).__name__})+'\n')
+        if report is None:
+            raise StudioError('Could not blend your recording without clashing with the song. Try another style or take; no song without your recording is delivered.')
         report['meaning_origin']=interpretation
         (result_dir/'complete.json').write_text(json.dumps(report,indent=2)+'\n')
     except (ValueError, OSError, subprocess.SubprocessError) as error:
@@ -177,10 +208,8 @@ def make_reply(audio, phrase, voice, genre, consent, duration=None):
         if isinstance(error,StudioError): raise
         raise StudioError(f'{stage} failed. Your recording is saved. Try Make a song again; you do not need to record it again.') from error
     (work / '.partial').unlink()
-    placement = (('Your phrase takes a short singing turn; the rest of the song stays in place.'
-                  if report.get('mode')=='vocal-replacement' else
-                  'Your phrase joins a gap in the song; the singer and band stay unchanged.') if report['sample_used'] else
-                 'Could not fit your recording this time. The original song is saved without replaying your recording; try another song.')
+    placement = ('Your sound returns as a rhythmic hook within the song.' if len(report['events'])>1 else
+                 'Your sound takes a musical turn within the song.')
     return (str(singer/'singer.wav'), str(result_dir/'performance.wav'), case['lyrics'],
             f"{chosen_voice.title()} · {STYLE_LABELS[chosen_genre]}. Inspired by {interpretation}. {placement}",phrase)
 

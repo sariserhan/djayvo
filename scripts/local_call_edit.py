@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Private same-song study: one intact call, optional bounded instrumental repair."""
+"""Blend recorded calls into a song while preserving the surrounding performance."""
 import argparse
 import json
 import random
@@ -8,7 +8,7 @@ import shutil
 
 import numpy as np
 from arrange_voice_research import RATE, digest, read_pcm, write_pcm
-from assemble_sung_response import envelope, intervals, beat_grid, keep_song
+from assemble_sung_response import envelope, intervals, beat_grid
 from source_led_response import faded, rendered, stem
 
 
@@ -71,7 +71,23 @@ def replace_vocal(song, vocals, start, end):
     return song-vocals*mask, vocals*(1-mask)
 
 
-def edit(song_dir, source, output, call_at, consent=False, repaint_dir=None, replace_region=None):
+def mix_calls(song, hook, start, vocals, repeat_at=(), voice_scale=1.):
+    if (not isinstance(repeat_at,(list,tuple)) or len(repeat_at)>2
+            or any(type(t) not in (int,float) or not np.isfinite(t) for t in repeat_at)):
+        raise ValueError('Expected at most two finite repeat times')
+    starts=[start,*[round(t*RATE) for t in repeat_at]]
+    if len(starts)*len(hook)>6*RATE or any(b<a+len(hook)+round(.12*RATE) for a,b in zip(starts,starts[1:])):
+        raise ValueError('Calls must be separated and leave room for the singer')
+    voice=np.zeros_like(song);events=[]
+    for at in starts:
+        _,part,event=add_call(song,hook,at,vocals,voice_scale)
+        voice+=part;events.append(event)
+    mix=song+voice
+    if np.max(np.abs(mix))>=.98:raise ValueError('Unsafe mix peak')
+    return mix,voice,events
+
+
+def edit(song_dir, source, output, call_at, consent=False, repaint_dir=None, replace_region=None, repeat_at=()):
     if not consent: raise ValueError('Local source consent required')
     if output.exists(): raise FileExistsError('Preserving existing edit')
     song, receipt=rendered(song_dir)
@@ -104,13 +120,16 @@ def edit(song_dir, source, output, call_at, consent=False, repaint_dir=None, rep
         music,repair_gain=blend_patch(song,generated,a,b)
         vocals=stem(repaint_dir,'vocals',repair,song.shape)
         repair_hash=repair['audio_sha256'];region=[a,b]
-    mix,voice,event=add_call(music,hook,start,vocals,repair_gain)
+    mix,voice,events=mix_calls(music,hook,start,vocals,repeat_at,repair_gain)
     if np.max(np.abs(mix))>=.98: raise ValueError('Unsafe mix peak')
     output.mkdir(parents=True);(output/'.partial').touch()
     shutil.copyfile(song_dir/'singer.wav',output/'original.wav')
     for name,pcm in [('performance',mix),('music',music),('user',voice)]:write_pcm(output/f'{name}.wav',pcm)
     actual=read_pcm(output/'performance.wav',(30,45));saved_voice=read_pcm(output/'user.wav',(30,45))
-    a,b=region;outside=np.r_[np.arange(a),np.arange(b,len(song))]
+    regions=[region]+[[e['start_frame'],e['end_frame']] for e in events[1:]]
+    outside_mask=np.ones(len(song),dtype=bool)
+    for a,b in regions:outside_mask[a:b]=False
+    outside=np.flatnonzero(outside_mask)
     error=float(np.max(np.abs(actual[outside]-song[outside])))
     identity=float(np.max(np.abs(saved_voice-voice)))
     if error!=0 or identity>.5/32768+1e-12: raise ValueError('Preservation check failed')
@@ -118,8 +137,8 @@ def edit(song_dir, source, output, call_at, consent=False, repaint_dir=None, rep
         raise ValueError('Original song or source changed during editing')
     report={'technical':'PASS','mode':'localized-repair' if repaint_dir else 'vocal-replacement' if replace_region else 'existing-gap',
         'song_sha256':receipt['audio_sha256'],'source_sha256':source_hash,'repair_sha256':repair_hash,
-        'region_frames':region,'unchanged_seconds':len(outside)/RATE,'outside_region_max_pcm_error':error,
-        'source_identity_max_pcm_error':identity,'repair_gain':repair_gain,'event':event,
+        'region_frames':region,'regions_frames':regions,'unchanged_seconds':len(outside)/RATE,'outside_region_max_pcm_error':error,
+        'source_identity_max_pcm_error':identity,'repair_gain':repair_gain,'event':events[0],'events':events,
         'peak':float(np.max(np.abs(actual))),'singer_moved':False,'master_gain':1.,
         'listening':'NOT RUN','vocal_subtraction':replace_region is not None,
         'note':'Manually selected phrase and passage; estimated quiet or subtraction does not prove musical fit or absence of bleed.',
@@ -173,6 +192,33 @@ def read_history(path):
     except (OSError,ValueError):return []
 
 
+def performance_options(options, hook, grid, song_frames):
+    """Keep single calls available; try sparse repeats only where they can fit."""
+    result=[];beat=RATE*60/grid['bpm']
+    spacing=int(np.ceil((len(hook)+.18*RATE)/beat))*beat
+    for candidate in options:
+        first=round(candidate['call_at']*RATE)
+        result.append({**candidate,'pattern':'single-call','repeat_at':[]})
+        if len(hook)>2*RATE:continue
+        variants=[]
+        if grid['confidence']>=.15:
+            for count in (1,2):
+                repeats=[round(first+i*spacing)/RATE for i in range(1,count+1)]
+                if (repeats[-1]*RATE+len(hook)<song_frames-4*RATE
+                        and (count+1)*len(hook)<=6*RATE):
+                    variants.append(('rhythmic-loop',candidate['call_at'],repeats))
+                if candidate['mode']=='existing-gap' and first-count*spacing>=RATE:
+                    starts=[round(first-i*spacing)/RATE for i in reversed(range(count+1))]
+                    variants.append(('rhythmic-loop',starts[0],starts[1:]))
+        later=[c['call_at'] for c in options if c['mode']=='existing-gap'
+               and c['call_at']>=candidate['call_at']+max(4.,len(hook)/RATE+.18)]
+        if later:variants.append(('returning-hook',candidate['call_at'],[min(later)]))
+        for pattern,call_at,repeats in variants:
+            result.append({**candidate,'pattern':pattern,'call_at':call_at,'repeat_at':repeats,
+                'fingerprint':f"{candidate['mode']}:{int(call_at/4)}:{pattern}:{len(repeats)+1}"})
+    return result
+
+
 def rank_options(options, history, seed):
     rng=random.Random(seed); remaining=list(options); ranked=[]
     while remaining:
@@ -197,19 +243,20 @@ def arrange(source, song_dir, output, history_path, seed, consent=False):
     if type(bpm) not in (int,float) or not np.isfinite(bpm) or not 60<=bpm<=180:
         raise ValueError('Invalid musical tempo')
     grid=beat_grid(drums,bpm);history=read_history(history_path)
-    options=rank_options(arrangement_options(song,vocals,hook,grid),history,seed)
+    options=rank_options(performance_options(arrangement_options(song,vocals,hook,grid),hook,grid,len(song)),history,seed)
     rejected=0
     for candidate in options:
         try:
             bed,estimate=song,vocals
             if candidate['replace_region']:
                 bed,estimate=replace_vocal(song,vocals,*[round(t*RATE) for t in candidate['replace_region']])
-            mix,_,_=add_call(bed,hook,round(candidate['call_at']*RATE),estimate)
+            mix,_,_=mix_calls(bed,hook,round(candidate['call_at']*RATE),estimate,candidate.get('repeat_at',[]))
             if np.max(np.abs(mix))>=.98:raise ValueError('Unsafe mix peak')
         except ValueError:
             rejected+=1;continue
-        report=edit(song_dir,source,output,candidate['call_at'],True,replace_region=candidate['replace_region'])
+        report=edit(song_dir,source,output,candidate['call_at'],True,replace_region=candidate['replace_region'],repeat_at=candidate.get('repeat_at',[]))
         report.update(sample_used=True,selection_seed=seed,grid=grid,options_considered=len(options),
+            pattern=candidate.get('pattern','single-call'),
             rejected_candidates=rejected,arrangement_fingerprint=candidate['fingerprint'],
             note='Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.')
         # The studio serializes jobs. Save only completed arrangements, without speech or paths.
@@ -222,10 +269,7 @@ def arrange(source, song_dir, output, history_path, seed, consent=False):
         except OSError:report['history_saved']=False
         (output/'complete.json').write_text(json.dumps(report,indent=2)+'\n')
         return report
-    report=keep_song(song_dir,output,'Could not fit the recording safely; the completed song is preserved for comparison.')
-    report.update(arrangement_status='NO_SAFE_PLACEMENT',selection_seed=seed,options_considered=len(options),rejected_candidates=rejected)
-    (output/'complete.json').write_text(json.dumps(report,indent=2)+'\n')
-    return report
+    raise ValueError('No safe source-inclusive arrangement; do not deliver the song without the recording')
 
 
 if __name__=='__main__':

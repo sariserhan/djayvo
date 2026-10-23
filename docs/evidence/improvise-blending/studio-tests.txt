@@ -1,0 +1,12 @@
+test_long_segment_can_supply_different_intact_pause_bounded_clauses (test_singer_studio.StudioFlow.test_long_segment_can_supply_different_intact_pause_bounded_clauses) ... ok
+test_model_failure_does_not_blame_recording_duration (test_singer_studio.StudioFlow.test_model_failure_does_not_blame_recording_duration) ... ok
+test_permission_and_selection_checked_before_creating_job (test_singer_studio.StudioFlow.test_permission_and_selection_checked_before_creating_job) ... ok
+test_pipeline_keeps_source_and_singer_distinct (test_singer_studio.StudioFlow.test_pipeline_keeps_source_and_singer_distinct) ... ok
+test_sample_choice_supports_sounds_and_preserves_selected_phrase (test_singer_studio.StudioFlow.test_sample_choice_supports_sounds_and_preserves_selected_phrase) ... ok
+test_short_long_and_quiet_recordings_are_preserved (test_singer_studio.StudioFlow.test_short_long_and_quiet_recordings_are_preserved) ... ok
+test_whole_recording_and_silent_input (test_singer_studio.StudioFlow.test_whole_recording_and_silent_input) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.205s
+
+OK

@@ -1,0 +1,17 @@
+test_cached_song_descriptions_are_supported_and_bounded (test_runpod_worker.WorkerTests.test_cached_song_descriptions_are_supported_and_bounded) ... ok
+test_cuda_planner_keeps_greedy_language_selection_and_bounds_output (test_runpod_worker.WorkerTests.test_cuda_planner_keeps_greedy_language_selection_and_bounds_output) ... ok
+test_failure_diagnostics_expose_source_location_without_private_content (test_runpod_worker.WorkerTests.test_failure_diagnostics_expose_source_location_without_private_content) ... ok
+test_feedback_is_bounded_and_supported_without_raw_recordings (test_runpod_worker.WorkerTests.test_feedback_is_bounded_and_supported_without_raw_recordings) ... ok
+test_invalid_jobs_cannot_start_inference (test_runpod_worker.WorkerTests.test_invalid_jobs_cannot_start_inference) ... ok
+test_only_validated_audio_is_uploaded_and_temporary_files_are_removed (test_runpod_worker.WorkerTests.test_only_validated_audio_is_uploaded_and_temporary_files_are_removed) ... ok
+test_source_receipt_is_verified (test_runpod_worker.WorkerTests.test_source_receipt_is_verified) ... ok
+test_storage_boundary_blocks_external_hosts_redirects_and_private_paths (test_runpod_worker.WorkerTests.test_storage_boundary_blocks_external_hosts_redirects_and_private_paths) ... ok
+test_timeout_kills_descendants_and_waits (test_runpod_worker.WorkerTests.test_timeout_kills_descendants_and_waits) ... ok
+test_variable_lengths_and_invalid_requests (test_runpod_worker.WorkerTests.test_variable_lengths_and_invalid_requests) ... ok
+test_whole_playlist_input_is_not_cut_to_twenty (test_runpod_worker.WorkerTests.test_whole_playlist_input_is_not_cut_to_twenty) ... ok
+test_worker_build_context_includes_every_explicit_copy_source (test_runpod_worker.WorkerTests.test_worker_build_context_includes_every_explicit_copy_source) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.205s
+
+OK

@@ -8,7 +8,7 @@ from unittest.mock import patch
 import numpy as np
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from arrange_voice_research import RATE, digest, read_pcm, write_pcm
-from local_call_edit import add_call, blend_patch, edit, replace_vocal, arrange, rank_options, read_history, arrangement_options
+from local_call_edit import add_call, blend_patch, edit, replace_vocal, arrange, rank_options, read_history, arrangement_options, mix_calls, performance_options
 from singing_response import source_conditioning
 
 
@@ -147,15 +147,41 @@ class LocalCallEdit(unittest.TestCase):
         self.assertEqual(read_history(history),[first['arrangement_fingerprint']])
         before=history.read_bytes()
         with patch('local_call_edit.add_call',side_effect=ValueError('clash')):
-            fallback=arrange(self.hook,self.song_dir,self.root/'fallback',history,43,True)
-        self.assertFalse(fallback['sample_used'])
-        self.assertEqual(fallback['arrangement_status'],'NO_SAFE_PLACEMENT')
+            with self.assertRaisesRegex(ValueError,'No safe source-inclusive'):
+                arrange(self.hook,self.song_dir,self.root/'fallback',history,43,True)
+        self.assertFalse((self.root/'fallback').exists())
         self.assertEqual(history.read_bytes(),before)
-        self.assertEqual(digest(self.root/'fallback/performance.wav'),digest(self.song_dir/'singer.wav'))
         with self.assertRaises(ValueError):arrange(self.hook,self.song_dir,self.root/'no-consent',history,44)
         self.assertFalse((self.root/'no-consent').exists())
         for content in ('broken','{}','"string"','[]'*9000):
             history.write_text(content);self.assertEqual(read_history(history),[])
+
+    def test_repeated_calls_preserve_music_and_reject_clashes(self):
+        result=edit(self.song_dir,self.hook,self.root/'repeats',10,True,repeat_at=[13,16])
+        self.assertEqual(len(result['events']),3)
+        self.assertEqual(result['outside_region_max_pcm_error'],0)
+        self.assertEqual(result['unchanged_seconds'],24)
+        self.assertLessEqual(result['source_identity_max_pcm_error'],.5/32768+1e-12)
+        hook=read_pcm(self.hook,(2,2))
+        for repeats in ([10.5],[5],[29],[13,16,19],[float('nan')]):
+            with self.assertRaises(ValueError):mix_calls(self.song,hook,10*RATE,self.vocals,repeats)
+        with self.assertRaises(ValueError):mix_calls(self.song,hook,RATE,self.vocals,[5])
+
+    def test_loops_fit_before_the_singer_and_keep_single_options(self):
+        hook=read_pcm(self.hook,(2,2));grid={'bpm':120,'offset_frames':0,'confidence':1}
+        vocals=np.zeros_like(self.song);vocals[15*RATE:17*RATE]=self.song[15*RATE:17*RATE]
+        base=arrangement_options(self.song,vocals,hook,grid)
+        choices=performance_options(base,hook,grid,len(self.song))
+        self.assertEqual(sum(c['pattern']=='single-call' for c in choices),len(base))
+        accepted=[]
+        for choice in choices:
+            if choice['pattern']!='rhythmic-loop' or choice['replace_region']:continue
+            try:mix_calls(self.song,hook,round(choice['call_at']*RATE),vocals,choice['repeat_at'])
+            except ValueError:continue
+            accepted.append(choice)
+            starts=[choice['call_at'],*choice['repeat_at']]
+            self.assertTrue(all(abs((b-a)*2-round((b-a)*2))<1e-5 for a,b in zip(starts,starts[1:])))
+        self.assertTrue(accepted,'At least one actual loop must fit, not just an unplayable option')
 
     def test_replacement_uses_isolated_phrases_and_leaves_a_reply(self):
         vocals=self.vocals.copy()

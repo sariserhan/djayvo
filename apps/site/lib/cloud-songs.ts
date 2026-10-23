@@ -25,6 +25,16 @@ export function recordingInput(v:Record<string,unknown>){
 export function checkSource(audio:Buffer,bytes:number,sha:string){
  if(audio.length!==bytes||hash(audio)!==sha||audio.toString('ascii',0,4)!=='RIFF'||audio.readUInt32LE(4)!==bytes-8||audio.toString('ascii',8,16)!=='WAVEfmt '||audio.readUInt32LE(16)!==16||audio.readUInt16LE(20)!==1||audio.readUInt16LE(22)!==1||audio.readUInt32LE(24)!==16000||audio.readUInt32LE(28)!==32000||audio.readUInt16LE(32)!==2||audio.readUInt16LE(34)!==16||audio.toString('ascii',36,40)!=='data'||audio.readUInt32LE(40)!==bytes-44||(bytes-44)%2||bytes<=44||bytes>9600044)throw new AudioError('The recording could not be verified. Upload it again.');
 }
+export function checkImproviseArrangement(value:unknown,sourceSha:string,audioSha:string,seconds:number){
+ const r=value as any,events=r?.events;
+ if(r?.sample_used!==true||r.technical!=='PASS'||r.original_recording_sha256!==sourceSha||r.artifacts?.performance!==audioSha||!Array.isArray(events)||events.length<1||events.length>3)throw new AudioError('Your recording could not be blended into this song.',422);
+ let previous=0,total=0;
+ for(const event of events){
+  if(!event||!Number.isSafeInteger(event.start_frame)||!Number.isSafeInteger(event.end_frame)||event.start_frame<previous||event.end_frame<=event.start_frame||event.end_frame>seconds*48000||typeof event.gain!=='number'||!Number.isFinite(event.gain)||event.gain<=0)throw new AudioError('Your recording could not be blended into this song.',422);
+  total+=event.end_frame-event.start_frame;previous=event.end_frame;
+ }
+ if(total>6*48000)throw new AudioError('Your recording could not be blended into this song.',422);
+}
 export class CloudSongs{
  constructor(readonly commerce:DnaCommerce,readonly config:CloudSongConfig,readonly provider:Pick<RunpodProvider,'submit'|'status'|'cancel'|'health'|'dispatchEnabled'>=new RunpodProvider(config.key,config.endpoint)){
   if(!commerce.store)throw Error('Song storage is required');
@@ -144,6 +154,11 @@ export class CloudSongs{
    const plan=output.plan as any,fit=output.fit as any;
    if(this.commerce.product==='music-dna'&&(fit?.accepted!==true||fit.audio_sha256!==output.audio_sha256||fit.target!==musicDirection(row.profile)?.id||typeof plan?.title!=='string'||!plan.title.trim()||plan.title.length>100||!Array.isArray(plan.cases)||plan.cases.length!==1||(run.payload.duration_seconds!==undefined&&plan.cases[0]?.duration!==seconds)||typeof plan.cases[0]?.lyrics!=='string'||!plan.cases[0].lyrics.trim()||plan.cases[0].lyrics.length>4000))throw new AudioError('This song did not match your musical direction.',422);
    if(this.commerce.product==='improvise'&&(typeof output.lyrics!=='string'||!output.lyrics.trim()||output.lyrics.length>8000||!output.arrangement||typeof output.arrangement!=='object'))throw new AudioError('The finished song could not be verified.',422);
+   if(this.commerce.product==='improvise'){
+    const source=(await pool.query('SELECT sha256 FROM song_uploads WHERE id=$1',[run.source_id])).rows[0];
+    if(!source)throw new AudioError('The recording could not be verified.',422);
+    checkImproviseArrangement(output.arrangement,source.sha256,output.audio_sha256,seconds);
+   }
    const savedPlan=this.commerce.product==='music-dna'?plan:{title:'Your new song',language:{code:'auto',label:'Automatic'},cases:[{lyrics:output.lyrics??'',duration:seconds}],arrangement:output.arrangement};
    await this.commerce.finish(id,'completed',{title:String(savedPlan.title).slice(0,120),language:savedPlan.language?.code??'en',direction:this.commerce.product==='music-dna'?musicDirection(row.profile)!.label:String(row.profile.genre),audio,plan:savedPlan},estimate);
    await this.cleanup(run);

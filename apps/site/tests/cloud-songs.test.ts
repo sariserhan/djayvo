@@ -10,7 +10,7 @@ import {join} from 'node:path';
 import {createPool} from '../lib/database';
 import {migrate} from '../lib/migrations';
 import {DnaCommerce} from '../lib/dna-commerce';
-import {CloudSongs,checkSource} from '../lib/cloud-songs';
+import {CloudSongs,checkSource,checkImproviseArrangement} from '../lib/cloud-songs';
 import {cloudSongConfig} from '../lib/cloud-song-config';
 import {cloudSongAPI} from '../lib/cloud-song-api';
 import {localAudioStore} from '../lib/audio-store';
@@ -23,6 +23,16 @@ test('cloud song configuration is opt-in and requires a bounded rate',()=>{
  assert.throws(()=>cloudSongConfig({VERCEL:'1',JAMLOOM_CLOUD_SONGS_ENABLED:'true',RUNPOD_ENDPOINT_ID:'fixture',RUNPOD_API_KEY:'secret',JAMLOOM_CLOUD_RATE_MICROS_PER_SECOND:'500'}),/live credits/);
  for(const rate of ['','NaN','0','1001'])assert.throws(()=>cloudSongConfig({JAMLOOM_CLOUD_SONGS_ENABLED:'true',RUNPOD_ENDPOINT_ID:'fixture',RUNPOD_API_KEY:'secret',JAMLOOM_CLOUD_RATE_MICROS_PER_SECOND:rate}));
  assert.throws(()=>checkSource(Buffer.alloc(44),44,'0'.repeat(64)));
+});
+test('Improvise receipts require a bounded audible use of this recording and this output',()=>{
+ const source='a'.repeat(64),audio='b'.repeat(64),event={start_frame:48000,end_frame:96000,gain:.8};
+ const receipt={technical:'PASS',sample_used:true,original_recording_sha256:source,artifacts:{performance:audio},events:[event]};
+ checkImproviseArrangement(receipt,source,audio,30);
+ for(const change of [{sample_used:false},{events:[]},{original_recording_sha256:audio},{artifacts:{performance:source}},
+  {events:[{...event,gain:0}]},{events:[{...event,start_frame:-1}]},{events:[{...event,end_frame:31*48000}]},
+  {events:[event,event]},{events:[{...event,end_frame:8*48000}]},{events:[null]}]){
+  assert.throws(()=>checkImproviseArrangement({...receipt,...change},source,audio,30),/could not be blended/);
+ }
 });
 test('real Postgres cloud songs: concurrency, credits, recovery, privacy, cancellation and ambiguous submission',async t=>{
  const url=new URL(process.env.JAMLOOM_TEST_DATABASE_URL??'');assert.equal(url.hostname,'127.0.0.1');
@@ -43,6 +53,27 @@ test('real Postgres cloud songs: concurrency, credits, recovery, privacy, cancel
  try{
   await migrate(pool);assert.deepEqual(await migrate(pool),[]);
   for(let i=0;i<9;i++){const owner='user'+i;await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[owner,owner+'@example.test']);await commerce.wallet.grant(owner,{provider:'stripe_test',receipt:owner,credits:50,netMicros:30000000});}
+  await t.test('Improvise omission or mismatched recording refunds; valid loops settle once',async()=>{
+   const improvCommerce=new DnaCommerce(pool,'fixture-secret-'.repeat(4),store,{budget:settings.budget,product:'improvise'});
+   const improv=new CloudSongs(improvCommerce,settings,provider);
+   const source=Buffer.alloc(32044);source.write('RIFF');source.writeUInt32LE(source.length-8,4);source.write('WAVEfmt ',8);source.writeUInt32LE(16,16);source.writeUInt16LE(1,20);source.writeUInt16LE(1,22);source.writeUInt32LE(16000,24);source.writeUInt32LE(32000,28);source.writeUInt16LE(2,32);source.writeUInt16LE(16,34);source.write('data',36);source.writeUInt32LE(source.length-44,40);
+   for(let i=44;i<source.length;i+=2)source.writeInt16LE(Math.round(2000*Math.sin(i/100)),i);
+   for(const kind of ['omitted','wrong-source','valid']){
+    const before=await commerce.wallet.balance('user8');
+    const upload=await improv.upload('user8',{bytes:source.length,sha256:sha(source),consent:true});
+    const object=(await pool.query('SELECT object_key FROM song_uploads WHERE id=$1',[upload.id])).rows[0].object_key;await store.put(object,source);
+    const input=await improv.input('user8',{sourceId:upload.id,phrase:'A question',voice:'male',genre:'reggae',consent:true});
+    const key=id(),quote=await improvCommerce.quote('user8',input,'private');await improv.submit('user8',key,input,'private',quote.token);await improv.tick(key);await complete(key);
+    const output=results.get('provider-'+key)!.output!;output.product='improvise';output.lyrics='What is your question?';
+    output.arrangement={technical:'PASS',sample_used:kind!=='omitted',original_recording_sha256:kind==='wrong-source'?'0'.repeat(64):sha(source),artifacts:{performance:output.audio_sha256},events:[{start_frame:48000,end_frame:96000,gain:1},{start_frame:4*48000,end_frame:5*48000,gain:1}]};
+    await improv.tick(key);await improv.tick(key);
+    const row=await improvCommerce.row(key);assert.equal(row.state,kind==='valid'?'completed':'failed');
+    if(kind!=='valid')assert.deepEqual(await commerce.wallet.balance('user8'),before);
+    else{assert.equal((await commerce.wallet.balance('user8')).reserved,0);assert.match(row.audio_key,/improvise\/private\//);}
+    assert.ok(!(await improvCommerce.list(null,'public')).songs.some(song=>song.id===key));
+    await assert.rejects(store.get(object,source.length));
+   }
+  });
   await t.test('one request is reserved and dispatched once under duplicate concurrent calls',async()=>{
    const key=id(),quote=await commerce.quote('user0',profile,'public');
    await Promise.all(Array.from({length:8},()=>songs.submit('user0',key,profile,'public',quote.token)));

@@ -1,0 +1,1118 @@
+{
+  "technical": "PASS",
+  "listening": "NOT RUN",
+  "new_model_inference": "NOT RUN - existing generated songs reused",
+  "originals_preserved": true,
+  "runs": [
+    {
+      "style": "reggae-male",
+      "seed": 0,
+      "pattern": "single-call",
+      "mode": "vocal-replacement",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        3.88
+      ],
+      "events": [
+        {
+          "start_frame": 606720,
+          "end_frame": 699840,
+          "gain": 1.6072207025237015,
+          "estimated_vocal_max_rms": 0.0,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.1509636737293137,
+          "target_lead_rms": 0.11238814326756458,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.56,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.525812567090834e-05,
+      "performance": "renders/improvise-blending-20261023-final/reggae-male-0/mix-0/performance.wav",
+      "sha256": "d2de6da4111d725bccea040137e5c7d37545e065a24f9aeabe014901dead813d"
+    },
+    {
+      "style": "reggae-male",
+      "seed": 1,
+      "pattern": "single-call",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 366720,
+          "end_frame": 530880,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.0012721717357635498,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.10811823493013692,
+          "target_lead_rms": 0.1245151698589325,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.58,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5252694738883768e-05,
+      "performance": "renders/improvise-blending-20261023-final/reggae-male-1/mix-0/performance.wav",
+      "sha256": "b3ddadc5c6a9e913df0821c48b8ec22885e65f7c17ffe49acfd79fdee2897d90"
+    },
+    {
+      "style": "reggae-male",
+      "seed": 2,
+      "pattern": "single-call",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 366720,
+          "end_frame": 530880,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.0012721717357635498,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.10811823493013692,
+          "target_lead_rms": 0.1245151698589325,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.58,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5252694738883768e-05,
+      "performance": "renders/improvise-blending-20261023-final/reggae-male-2/mix-0/performance.wav",
+      "sha256": "b3ddadc5c6a9e913df0821c48b8ec22885e65f7c17ffe49acfd79fdee2897d90"
+    },
+    {
+      "style": "reggae-male",
+      "seed": 3,
+      "pattern": "returning-hook",
+      "mode": "existing-gap",
+      "selection": "whole-recording",
+      "crop_seconds": [
+        0,
+        1.96
+      ],
+      "events": [
+        {
+          "start_frame": 366720,
+          "end_frame": 460800,
+          "gain": 1.7897309886608412,
+          "estimated_vocal_max_rms": 0.0012721717357635498,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.11210461509186496,
+          "target_lead_rms": 0.1245151698589325,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 721200,
+          "end_frame": 815280,
+          "gain": 1.7897309886608412,
+          "estimated_vocal_max_rms": 0.0018357665976509452,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.13023541604026648,
+          "target_lead_rms": 0.1245151698589325,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.08,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5235769414589928e-05,
+      "performance": "renders/improvise-blending-20261023-final/reggae-male-3/mix-1/performance.wav",
+      "sha256": "ec0bd20055048034d03fd48a999d17608765c83cba80375f95a5dc11af0a29c0"
+    },
+    {
+      "style": "reggae-male",
+      "seed": 4,
+      "pattern": "single-call",
+      "mode": "vocal-replacement",
+      "selection": "excerpt",
+      "crop_seconds": [
+        4.22,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 75291,
+          "end_frame": 130011,
+          "gain": 2.813477826571067,
+          "estimated_vocal_max_rms": 0.0,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.12712099864197396,
+          "target_lead_rms": 0.11378719226842353,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 27.7,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.525513722878483e-05,
+      "performance": "renders/improvise-blending-20261023-final/reggae-male-4/mix-0/performance.wav",
+      "sha256": "ed5b1e8289108a4f760e89c5eb69843927a0da69d10c438eb39c93f396d71f6c"
+    },
+    {
+      "style": "reggae-male",
+      "seed": 5,
+      "pattern": "rhythmic-loop",
+      "mode": "vocal-replacement",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        3.88
+      ],
+      "events": [
+        {
+          "start_frame": 572434,
+          "end_frame": 665554,
+          "gain": 1.6072207025237015,
+          "estimated_vocal_max_rms": 0.0,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.15508298981127436,
+          "target_lead_rms": 0.11238814326756458,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 675291,
+          "end_frame": 768411,
+          "gain": 1.6072207025237015,
+          "estimated_vocal_max_rms": 0.004023335496989501,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.11808859547076139,
+          "target_lead_rms": 0.11238814326756458,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 25.4214375,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.525812567090834e-05,
+      "performance": "renders/improvise-blending-20261023-final/reggae-male-5/mix-0/performance.wav",
+      "sha256": "4c65efa467a59c0b385d75813ae1831fa559497c9143de17a4c17e43b3369c44"
+    },
+    {
+      "style": "house-female",
+      "seed": 0,
+      "pattern": "returning-hook",
+      "mode": "vocal-replacement",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        3.88
+      ],
+      "events": [
+        {
+          "start_frame": 46452,
+          "end_frame": 139572,
+          "gain": 1.2900131268823136,
+          "estimated_vocal_max_rms": 0.00036984750966917354,
+          "vocal_threshold_rms": 0.00501148694117441,
+          "band_rms": 0.0951515894251298,
+          "target_lead_rms": 0.09020676494113937,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 876240,
+          "end_frame": 969360,
+          "gain": 1.2900131268823136,
+          "estimated_vocal_max_rms": 0.0013327925078190975,
+          "vocal_threshold_rms": 0.00501148694117441,
+          "band_rms": 0.14719960407099647,
+          "target_lead_rms": 0.09020676494113937,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 25.03,
+      "peak": 0.8912353515625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.525719565440009e-05,
+      "performance": "renders/improvise-blending-20261023-final/house-female-0/mix-0/performance.wav",
+      "sha256": "c9f52cb467cb80c6777bb91dedf298b5b61dc986dfcaab8900499f9c045fb062"
+    },
+    {
+      "style": "house-female",
+      "seed": 1,
+      "pattern": "returning-hook",
+      "mode": "vocal-replacement",
+      "selection": "excerpt",
+      "crop_seconds": [
+        4.22,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 429677,
+          "end_frame": 484397,
+          "gain": 2.2743506682990327,
+          "estimated_vocal_max_rms": 0.0,
+          "vocal_threshold_rms": 0.005110163622946079,
+          "band_rms": 0.12016688915646083,
+          "target_lead_rms": 0.09198294521302942,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 882581,
+          "end_frame": 937301,
+          "gain": 2.2743506682990327,
+          "estimated_vocal_max_rms": 0.0011701972775727783,
+          "vocal_threshold_rms": 0.005110163622946079,
+          "band_rms": 0.15766798937013907,
+          "target_lead_rms": 0.09198294521302942,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.24,
+      "peak": 0.894622802734375,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5258610958798074e-05,
+      "performance": "renders/improvise-blending-20261023-final/house-female-1/mix-1/performance.wav",
+      "sha256": "21da3707f7fe15c0585f8c88f191849968ae7d87aec15bf6551233c9ba1d0950"
+    },
+    {
+      "style": "house-female",
+      "seed": 2,
+      "pattern": "single-call",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        4.22,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 522581,
+          "end_frame": 577301,
+          "gain": 2.274350498586613,
+          "estimated_vocal_max_rms": 0.001125291921198368,
+          "vocal_threshold_rms": 0.005110163241624832,
+          "band_rms": 0.13325162718338898,
+          "target_lead_rms": 0.09198293834924698,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 28.86,
+      "peak": 0.8912353515625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5257371968897815e-05,
+      "performance": "renders/improvise-blending-20261023-final/house-female-2/mix-1/performance.wav",
+      "sha256": "59a5a51e357a5d4f82eb4754bb3be17583c605408ba8b28db5d5f1c25381d389"
+    },
+    {
+      "style": "house-female",
+      "seed": 3,
+      "pattern": "single-call",
+      "mode": "existing-gap",
+      "selection": "whole-recording",
+      "crop_seconds": [
+        0,
+        1.96
+      ],
+      "events": [
+        {
+          "start_frame": 875760,
+          "end_frame": 969840,
+          "gain": 1.3221257729338198,
+          "estimated_vocal_max_rms": 0.0014900396345183253,
+          "vocal_threshold_rms": 0.005110163241624832,
+          "band_rms": 0.1468820126616592,
+          "target_lead_rms": 0.09198293834924698,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 28.04,
+      "peak": 0.8912353515625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.525821907015848e-05,
+      "performance": "renders/improvise-blending-20261023-final/house-female-3/mix-1/performance.wav",
+      "sha256": "e830e2a4d9c44c007ae848d22e158f08f2ed9e47d789bbc22cece3b63cb8d82e"
+    },
+    {
+      "style": "house-female",
+      "seed": 4,
+      "pattern": "returning-hook",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        4.22,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 522581,
+          "end_frame": 577301,
+          "gain": 2.274350498586613,
+          "estimated_vocal_max_rms": 0.001125291921198368,
+          "vocal_threshold_rms": 0.005110163241624832,
+          "band_rms": 0.13325162718338898,
+          "target_lead_rms": 0.09198293834924698,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 882581,
+          "end_frame": 937301,
+          "gain": 2.274350498586613,
+          "estimated_vocal_max_rms": 0.001170197268947959,
+          "vocal_threshold_rms": 0.005110163241624832,
+          "band_rms": 0.15766798937013907,
+          "target_lead_rms": 0.09198293834924698,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 27.72,
+      "peak": 0.8912353515625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5257371968897815e-05,
+      "performance": "renders/improvise-blending-20261023-final/house-female-4/mix-0/performance.wav",
+      "sha256": "5ad0352dd14452c0a4e0f3f50b1a14878290854f4d4aa64d2336badbaec5764e"
+    },
+    {
+      "style": "house-female",
+      "seed": 5,
+      "pattern": "returning-hook",
+      "mode": "vocal-replacement",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        3.88
+      ],
+      "events": [
+        {
+          "start_frame": 46452,
+          "end_frame": 139572,
+          "gain": 1.2900131268823136,
+          "estimated_vocal_max_rms": 0.00036984750966917354,
+          "vocal_threshold_rms": 0.00501148694117441,
+          "band_rms": 0.0951515894251298,
+          "target_lead_rms": 0.09020676494113937,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 876240,
+          "end_frame": 969360,
+          "gain": 1.2900131268823136,
+          "estimated_vocal_max_rms": 0.0013327925078190975,
+          "vocal_threshold_rms": 0.00501148694117441,
+          "band_rms": 0.14719960407099647,
+          "target_lead_rms": 0.09020676494113937,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 25.03,
+      "peak": 0.8912353515625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.525719565440009e-05,
+      "performance": "renders/improvise-blending-20261023-final/house-female-5/mix-0/performance.wav",
+      "sha256": "c9f52cb467cb80c6777bb91dedf298b5b61dc986dfcaab8900499f9c045fb062"
+    },
+    {
+      "style": "funk-male",
+      "seed": 0,
+      "pattern": "rhythmic-loop",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        3.88
+      ],
+      "events": [
+        {
+          "start_frame": 549517,
+          "end_frame": 642637,
+          "gain": 1.0996283905410709,
+          "estimated_vocal_max_rms": 0.0005674222484230995,
+          "vocal_threshold_rms": 0.004271873831748963,
+          "band_rms": 0.13711052700407306,
+          "target_lead_rms": 0.07689372897148132,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 654867,
+          "end_frame": 747987,
+          "gain": 1.0996283905410709,
+          "estimated_vocal_max_rms": 0.003007320687174797,
+          "vocal_threshold_rms": 0.004271873831748963,
+          "band_rms": 0.14468188481310923,
+          "target_lead_rms": 0.07689372897148132,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.12,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5256495206464327e-05,
+      "performance": "renders/improvise-blending-20261023-final/funk-male-0/mix-0/performance.wav",
+      "sha256": "fe1d85d5e2852f4fde1a8b24ae7f87537802f8df062f56e3b3b584eb90ec8b29"
+    },
+    {
+      "style": "funk-male",
+      "seed": 1,
+      "pattern": "single-call",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 523180,
+          "end_frame": 687340,
+          "gain": 1.2691355291999544,
+          "estimated_vocal_max_rms": 0.0006073714466765523,
+          "vocal_threshold_rms": 0.004271873831748963,
+          "band_rms": 0.14771963999581564,
+          "target_lead_rms": 0.07689372897148132,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.58,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5258157159497854e-05,
+      "performance": "renders/improvise-blending-20261023-final/funk-male-1/mix-0/performance.wav",
+      "sha256": "a8d4655a966ff1506d2e1ee2a566d01d0df083c03b808a7e91587a1510bd75ce"
+    },
+    {
+      "style": "funk-male",
+      "seed": 2,
+      "pattern": "single-call",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 589024,
+          "end_frame": 753184,
+          "gain": 1.2691355291999544,
+          "estimated_vocal_max_rms": 0.0029396675527095795,
+          "vocal_threshold_rms": 0.004271873831748963,
+          "band_rms": 0.140285173234027,
+          "target_lead_rms": 0.07689372897148132,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.58,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5258157159497854e-05,
+      "performance": "renders/improvise-blending-20261023-final/funk-male-2/mix-0/performance.wav",
+      "sha256": "304ec0f23d0ab9bcccaa9a073e7b9d35f0f9606348fce2234f46ad27831dc31a"
+    },
+    {
+      "style": "funk-male",
+      "seed": 3,
+      "pattern": "single-call",
+      "mode": "vocal-replacement",
+      "selection": "whole-recording",
+      "crop_seconds": [
+        0,
+        1.96
+      ],
+      "events": [
+        {
+          "start_frame": 931411,
+          "end_frame": 1025491,
+          "gain": 0.8624158762447124,
+          "estimated_vocal_max_rms": 0.0,
+          "vocal_threshold_rms": 0.0019450794418302858,
+          "band_rms": 0.11132006065969074,
+          "target_lead_rms": 0.06,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.48,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5257738051213318e-05,
+      "performance": "renders/improvise-blending-20261023-final/funk-male-3/mix-1/performance.wav",
+      "sha256": "9a8be8fc5a79fde0ac2cec3a59c9817407af2a2f02e329248751904fa85b0593"
+    },
+    {
+      "style": "funk-male",
+      "seed": 4,
+      "pattern": "rhythmic-loop",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        4.22,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 615362,
+          "end_frame": 670082,
+          "gain": 1.9012579285134799,
+          "estimated_vocal_max_rms": 0.00046131887938827276,
+          "vocal_threshold_rms": 0.004271873831748963,
+          "band_rms": 0.15094324309662463,
+          "target_lead_rms": 0.07689372897148132,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 694374,
+          "end_frame": 749094,
+          "gain": 1.9012579285134799,
+          "estimated_vocal_max_rms": 0.0030411144252866507,
+          "vocal_threshold_rms": 0.004271873831748963,
+          "band_rms": 0.14128912599186388,
+          "target_lead_rms": 0.07689372897148132,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 27.72,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5257166497299746e-05,
+      "performance": "renders/improvise-blending-20261023-final/funk-male-4/mix-0/performance.wav",
+      "sha256": "0ad039e772f6f981cc437d3ab9b758f3e736ae763f7efc7ae1cefba64441d1b9"
+    },
+    {
+      "style": "funk-male",
+      "seed": 5,
+      "pattern": "single-call",
+      "mode": "vocal-replacement",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        3.88
+      ],
+      "events": [
+        {
+          "start_frame": 957748,
+          "end_frame": 1050868,
+          "gain": 0.8580375059835418,
+          "estimated_vocal_max_rms": 0.0,
+          "vocal_threshold_rms": 0.0019450794418302858,
+          "band_rms": 0.0795113586816977,
+          "target_lead_rms": 0.06,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.48,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.525726235584505e-05,
+      "performance": "renders/improvise-blending-20261023-final/funk-male-5/mix-0/performance.wav",
+      "sha256": "b4f03e199e7bfca35f5dadbfe3fc9472e84dfb595ea3cbc2b56ff74b4e8c7535"
+    },
+    {
+      "style": "acousticpop-female",
+      "seed": 0,
+      "pattern": "returning-hook",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        3.88
+      ],
+      "events": [
+        {
+          "start_frame": 362400,
+          "end_frame": 455520,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.0003355182125233114,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.09130840598898729,
+          "target_lead_rms": 0.13116459399461747,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 794400,
+          "end_frame": 887520,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.002359768608585,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.11305727240659255,
+          "target_lead_rms": 0.13116459399461747,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.12,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5252694738883768e-05,
+      "performance": "renders/improvise-blending-20261023-final/acousticpop-female-0/mix-0/performance.wav",
+      "sha256": "e2187c346f3b262ee6cde3b2c6ba4a724049d45886036cb21ef30be3ae960a2f"
+    },
+    {
+      "style": "acousticpop-female",
+      "seed": 1,
+      "pattern": "single-call",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 218400,
+          "end_frame": 382560,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.0003682387468870729,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.07365664368808852,
+          "target_lead_rms": 0.13116459399461747,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.58,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5252694738883768e-05,
+      "performance": "renders/improvise-blending-20261023-final/acousticpop-female-1/mix-0/performance.wav",
+      "sha256": "e6d0025d7eb3e01d65f267b358d1acda97e542b39943f3b8d3f92a092421af95"
+    },
+    {
+      "style": "acousticpop-female",
+      "seed": 2,
+      "pattern": "single-call",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 304800,
+          "end_frame": 468960,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.002410926390439272,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.08385799636546788,
+          "target_lead_rms": 0.13116459399461747,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.58,
+      "peak": 0.919677734375,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5252694738883768e-05,
+      "performance": "renders/improvise-blending-20261023-final/acousticpop-female-2/mix-0/performance.wav",
+      "sha256": "f3371f413ff567c3b4aaaabf8998bb69239efd9b755afd7f8116f6afa7d06eb5"
+    },
+    {
+      "style": "acousticpop-female",
+      "seed": 3,
+      "pattern": "returning-hook",
+      "mode": "existing-gap",
+      "selection": "whole-recording",
+      "crop_seconds": [
+        0,
+        1.96
+      ],
+      "events": [
+        {
+          "start_frame": 290400,
+          "end_frame": 384480,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.0003682387468870729,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.07615548113955481,
+          "target_lead_rms": 0.13116459399461747,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 794400,
+          "end_frame": 888480,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.002359768608585,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.11289000422243052,
+          "target_lead_rms": 0.13116459399461747,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.08,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5252694738883768e-05,
+      "performance": "renders/improvise-blending-20261023-final/acousticpop-female-3/mix-1/performance.wav",
+      "sha256": "83c0d1afd94cd5f8f9a8da7da99b045a65693498f49714db0a5ae41750b6d4e0"
+    },
+    {
+      "style": "acousticpop-female",
+      "seed": 4,
+      "pattern": "rhythmic-loop",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        4.22,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 189600,
+          "end_frame": 244320,
+          "gain": 3.2431477522049725,
+          "estimated_vocal_max_rms": 0.0002974099188577384,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.06205373766228962,
+          "target_lead_rms": 0.13116459399461747,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 276000,
+          "end_frame": 330720,
+          "gain": 3.2431477522049725,
+          "estimated_vocal_max_rms": 0.0003065551572944969,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.057796730560800945,
+          "target_lead_rms": 0.13116459399461747,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 362400,
+          "end_frame": 417120,
+          "gain": 3.2431477522049725,
+          "estimated_vocal_max_rms": 0.0003355182125233114,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.10286301030453014,
+          "target_lead_rms": 0.13116459399461747,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.58,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5252298265794328e-05,
+      "performance": "renders/improvise-blending-20261023-final/acousticpop-female-4/mix-0/performance.wav",
+      "sha256": "7130c0d5017fc68ff9f02ea06bb6150164e45662bf6c4463583ddb402bd0d483"
+    },
+    {
+      "style": "acousticpop-female",
+      "seed": 5,
+      "pattern": "returning-hook",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        3.88
+      ],
+      "events": [
+        {
+          "start_frame": 362400,
+          "end_frame": 455520,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.0003355182125233114,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.09130840598898729,
+          "target_lead_rms": 0.13116459399461747,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 794400,
+          "end_frame": 887520,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.002359768608585,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.11305727240659255,
+          "target_lead_rms": 0.13116459399461747,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.12,
+      "peak": 0.891265869140625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5252694738883768e-05,
+      "performance": "renders/improvise-blending-20261023-final/acousticpop-female-5/mix-0/performance.wav",
+      "sha256": "e2187c346f3b262ee6cde3b2c6ba4a724049d45886036cb21ef30be3ae960a2f"
+    },
+    {
+      "style": "drumandbass-male",
+      "seed": 0,
+      "pattern": "returning-hook",
+      "mode": "vocal-replacement",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        3.88
+      ],
+      "events": [
+        {
+          "start_frame": 54340,
+          "end_frame": 147460,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.0,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.1161670768842443,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 732480,
+          "end_frame": 825600,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.002183088656882822,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.14899580837566034,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 24.7,
+      "peak": 0.8912353515625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5252694738883768e-05,
+      "performance": "renders/improvise-blending-20261023-final/drumandbass-male-0/mix-0/performance.wav",
+      "sha256": "b5c7575b908fadfe75e6d3e9218a2bf03f22e597e9ce40de9a67eab748fe92d8"
+    },
+    {
+      "style": "drumandbass-male",
+      "seed": 1,
+      "pattern": "single-call",
+      "mode": "vocal-replacement",
+      "selection": "excerpt",
+      "crop_seconds": [
+        4.22,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 112945,
+          "end_frame": 167665,
+          "gain": 3.4616101150538263,
+          "estimated_vocal_max_rms": 0.0,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.13333517154210756,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.64,
+      "peak": 0.8912353515625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5256918011963272e-05,
+      "performance": "renders/improvise-blending-20261023-final/drumandbass-male-1/mix-1/performance.wav",
+      "sha256": "262648560a77d6dcccf080cbfa9160d9411eea94510f8e303b72679717ca6c75"
+    },
+    {
+      "style": "drumandbass-male",
+      "seed": 2,
+      "pattern": "rhythmic-loop",
+      "mode": "vocal-replacement",
+      "selection": "excerpt",
+      "crop_seconds": [
+        4.22,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 29224,
+          "end_frame": 83944,
+          "gain": 3.4616101150538263,
+          "estimated_vocal_max_rms": 0.0,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.09705533219872747,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 96201,
+          "end_frame": 150921,
+          "gain": 3.4616101150538263,
+          "estimated_vocal_max_rms": 0.0,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.1362003587042465,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 163177,
+          "end_frame": 217897,
+          "gain": 3.4616101150538263,
+          "estimated_vocal_max_rms": 0.004699372873204827,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.08216746524075788,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 25.770479166666668,
+      "peak": 0.8912353515625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5256918011963272e-05,
+      "performance": "renders/improvise-blending-20261023-final/drumandbass-male-2/mix-1/performance.wav",
+      "sha256": "5c9941c31d99a3d0777a7922198402cb9ee88ff02159fabda44d77bb191a9847"
+    },
+    {
+      "style": "drumandbass-male",
+      "seed": 3,
+      "pattern": "returning-hook",
+      "mode": "existing-gap",
+      "selection": "whole-recording",
+      "crop_seconds": [
+        0,
+        1.96
+      ],
+      "events": [
+        {
+          "start_frame": 179922,
+          "end_frame": 274002,
+          "gain": 1.7569996180081853,
+          "estimated_vocal_max_rms": 0.0047149318270385265,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.12150488719153998,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 732480,
+          "end_frame": 826560,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.0021830887999385595,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.14831289302002523,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 26.08,
+      "peak": 0.97198486328125,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5256167798238796e-05,
+      "performance": "renders/improvise-blending-20261023-final/drumandbass-male-3/mix-1/performance.wav",
+      "sha256": "90262a98f22a8a34d52f4176d62b792200b6f01451c07af0702bcb62e9eb9a71"
+    },
+    {
+      "style": "drumandbass-male",
+      "seed": 4,
+      "pattern": "rhythmic-loop",
+      "mode": "existing-gap",
+      "selection": "excerpt",
+      "crop_seconds": [
+        4.22,
+        5.36
+      ],
+      "events": [
+        {
+          "start_frame": 196666,
+          "end_frame": 251386,
+          "gain": 3.4616101150538263,
+          "estimated_vocal_max_rms": 0.0022062964271754026,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.1392306687561763,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 263643,
+          "end_frame": 318363,
+          "gain": 3.4616101150538263,
+          "estimated_vocal_max_rms": 0.0052733090706169605,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.20154629291561202,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 27.72,
+      "peak": 0.8912353515625,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.5256918011963272e-05,
+      "performance": "renders/improvise-blending-20261023-final/drumandbass-male-4/mix-0/performance.wav",
+      "sha256": "4a3c47db9819b616cad67dc33e564bc80cbfe91ebb493916f164809903a6f27f"
+    },
+    {
+      "style": "drumandbass-male",
+      "seed": 5,
+      "pattern": "returning-hook",
+      "mode": "vocal-replacement",
+      "selection": "excerpt",
+      "crop_seconds": [
+        1.94,
+        3.88
+      ],
+      "events": [
+        {
+          "start_frame": 20852,
+          "end_frame": 113972,
+          "gain": 1.7941305300043802,
+          "estimated_vocal_max_rms": 0.00020687000090671795,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.1003442965875441,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        },
+        {
+          "start_frame": 213410,
+          "end_frame": 306530,
+          "gain": 1.6148880959018677,
+          "estimated_vocal_max_rms": 0.0008021841706445834,
+          "vocal_threshold_rms": 0.006,
+          "band_rms": 0.14554232596360828,
+          "target_lead_rms": 0.14,
+          "rate": 1.0,
+          "transpose_semitones": 0
+        }
+      ],
+      "unchanged_seconds": 24.7,
+      "peak": 0.9727783203125,
+      "outside_region_max_pcm_error": 0.0,
+      "source_identity_max_pcm_error": 1.525779534821553e-05,
+      "performance": "renders/improvise-blending-20261023-final/drumandbass-male-5/mix-0/performance.wav",
+      "sha256": "35c4239cd82dcb542375e92cbe29c05be00c83e36c33dc1c8fee8068c2a9acd7"
+    }
+  ],
+  "rejected_runs": []
+}

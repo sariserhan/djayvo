@@ -1,0 +1,17 @@
+test_automatic_edit_records_only_successful_choices (test_local_call_edit.LocalCallEdit.test_automatic_edit_records_only_successful_choices) ... ok
+test_call_rejects_singing_and_bounds (test_local_call_edit.LocalCallEdit.test_call_rejects_singing_and_bounds) ... ok
+test_gap_edit_preserves_pcm_original_and_consent (test_local_call_edit.LocalCallEdit.test_gap_edit_preserves_pcm_original_and_consent) ... ok
+test_longest_improvise_preserves_music_outside_the_call (test_local_call_edit.LocalCallEdit.test_longest_improvise_preserves_music_outside_the_call) ... ok
+test_loops_fit_before_the_singer_and_keep_single_options (test_local_call_edit.LocalCallEdit.test_loops_fit_before_the_singer_and_keep_single_options) ... ok
+test_repaint_configuration_is_bounded_and_instrumental (test_local_call_edit.LocalCallEdit.test_repaint_configuration_is_bounded_and_instrumental) ... ok
+test_repair_cannot_touch_outside_the_window_or_create_edge_steps (test_local_call_edit.LocalCallEdit.test_repair_cannot_touch_outside_the_window_or_create_edge_steps) ... ok
+test_repaired_edit_binds_to_original_and_keeps_the_singer_in_place (test_local_call_edit.LocalCallEdit.test_repaired_edit_binds_to_original_and_keeps_the_singer_in_place) ... ok
+test_repeated_calls_preserve_music_and_reject_clashes (test_local_call_edit.LocalCallEdit.test_repeated_calls_preserve_music_and_reject_clashes) ... ok
+test_replacement_uses_isolated_phrases_and_leaves_a_reply (test_local_call_edit.LocalCallEdit.test_replacement_uses_isolated_phrases_and_leaves_a_reply) ... ok
+test_variety_does_not_force_alternation_and_is_reproducible (test_local_call_edit.LocalCallEdit.test_variety_does_not_force_alternation_and_is_reproducible) ... ok
+test_vocal_replacement_is_local_and_preserves_the_real_call (test_local_call_edit.LocalCallEdit.test_vocal_replacement_is_local_and_preserves_the_real_call) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 2.581s
+
+OK
