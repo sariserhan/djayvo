@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-23T07:23:40.537Z",
+  "endpoint": "jl77hn92npt65k",
+  "template": "jbpcd0xgbf",
+  "previousImage": "ghcr.io/sariserhan/jamloom/music-worker@sha256:ef211cf717379efc24f8e9988f98331ca3096b4eb119d6829af92345de14560b",
+  "image": "ghcr.io/sariserhan/jamloom/music-worker@sha256:7c0c3145912c38001c5a780237d46f5f9ee5d923ee2113ba6a5c4db483a00a71",
+  "environmentUnchanged": true,
+  "workersMin": 0,
+  "workersMax": 0,
+  "health": {
+    "jobs": {
+      "completed": 8,
+      "failed": 5,
+      "inProgress": 0,
+      "inQueue": 0,
+      "retried": 0
+    },
+    "workers": {
+      "idle": 0,
+      "initializing": 0,
+      "ready": 0,
+      "running": 0,
+      "throttled": 0,
+      "unhealthy": 0
+    }
+  }
+}

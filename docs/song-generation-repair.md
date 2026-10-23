@@ -1,9 +1,10 @@
 # Jazz / Spanish generation investigation — 2026-10-23
 
-**PASS, local reliability repairs; PARTIAL, generation reliability and musical acceptance.**
+**PASS, reliability repairs and worker publication; PARTIAL, generation reliability and musical acceptance.**
 The previous cloud failures did not retain enough evidence to identify their exact
-cause. This increment repairs confirmed prompt/reporting problems and prepares a
-bounded cloud reproduction. It does not declare either genre fixed.
+cause. This increment repairs confirmed prompt/reporting problems and completes
+the approved bounded cloud reproduction. Both jazz requests passed; Spanish
+reliability remains unresolved.
 
 ## Confirmed problems and changes
 
@@ -25,8 +26,8 @@ bounded cloud reproduction. It does not declare either genre fixed.
 
 The original cloud `fit@unavailable` messages cannot retrospectively prove an
 out-of-memory error, a bad song, or a Spanish-language limitation. The reduced
-memory and retry changes address plausible infrastructure failures; cloud
-verification is still needed.
+memory and retry changes address plausible infrastructure failures. The cloud
+retest below now distinguishes an actual style rejection from a checker crash.
 
 ## Local musical experiments
 
@@ -52,7 +53,8 @@ the Apple Silicon MLX retry completed inference. No new model was downloaded.
 See the [local evaluation](evidence/song-generation-repair/local-evaluation.json)
 for individual take results, exact input/plan/audio hashes and settings. These
 are broad style-screen results, **not listening judgments**. Local audio and raw
-logs remain under `build-song-repair/`; nothing was uploaded or published.
+logs remain under `build-song-repair/`; these local experiment songs were not
+uploaded or published.
 
 ## Calibration boundary
 
@@ -75,7 +77,7 @@ Spanish failure claim nor a blanket jazz fix. Evidence:
 [jazz control](evidence/song-generation-repair/jazz-existing-screen.json),
 [batch equivalence](evidence/song-generation-repair/batch-equivalence.json).
 
-## Verification and next cloud check
+## Verification
 
 - **PASS:** 36 focused Python tests, including all 25 genre families and all 50
   language choices in first/retry caption budgets; interruptions, invalid audio,
@@ -86,8 +88,8 @@ Spanish failure claim nor a blanket jazz fix. Evidence:
   audio-array test is explicitly skipped without NumPy/Torch; it passed in the
   inference environment above.
 - **PASS:** Four-request cloud retest dry run and conservative budget assertions.
-- **NOT RUN:** Updated Linux/GPU worker, new paid cloud generation, new website
-  deployment, musical/native-language listening or model promotion.
+- **PASS:** Published Linux worker CI, pinned model hashes and real GPU execution.
+- **NOT RUN:** Website deployment, musical/native-language listening or model promotion.
 
 The [prepared cloud proposal](evidence/song-generation-repair/cloud-proposal.json)
 allows at most $2, one worker, 15 minutes and four requests: two jazz and two
@@ -100,11 +102,67 @@ The endpoint-bound template read uses the documented option in Runpod's
 and was verified read-only against the existing pinned image. Context7 was not
 available in this session, so the official schema was consulted directly.
 
-The endpoint remains disabled (0 minimum / 0 maximum workers). The read-only
-[provider check](evidence/song-generation-repair/provider-readback.json) now
-includes the previous trial's final billing hour, but reports only 2.791 billed
-seconds against roughly 492 seconds of job execution. This does not yet reconcile
-the trial's actual bill. No new paid execution occurred.
-The owner subsequently approved the worker-only publication and $2 retest on
-2026-10-23. Execution and results are recorded below when available; website
-deployment remains the owner's decision.
+## Approved cloud retest — completed
+
+The owner approved the worker update and $2 / one-worker / 15-minute /
+four-request retest. Only `codex/runpod-setup` was pushed; main and the website
+were not deployed. [Worker build](evidence/song-generation-repair/worker-build.json)
+records commit `d4bcf0741c9933c42c25aa21ff99c3b950e7e63e` and the
+[successful Linux workflow](https://github.com/sariserhan/jamloom/actions/runs/39915983592).
+The endpoint template now pins:
+
+`ghcr.io/sariserhan/jamloom/music-worker@sha256:7c0c3145912c38001c5a780237d46f5f9ee5d923ee2113ba6a5c4db483a00a71`
+
+The trial ran 07:23:50–07:37:12 UTC (13 minutes 22 seconds), using public metadata,
+sandbox credits and an isolated local database. The provider assigned one NVIDIA
+RTX PRO 6000 Blackwell Server Edition MIG 2g.48gb worker. There were four accepted
+requests; no additional generation was started after the trial.
+
+| Request | Final result | Execution | Credits settled |
+|---|---|---:|---:|
+| Jazz 1 | PASS, 3/4 matching passages | 87.725 s | 2 |
+| Spanish Latin 1 | FAIL, style-rejected:matched-1-of-4 | 92.037 s | 0, full refund |
+| Jazz 2 | PASS, 3/4 matching passages | 88.789 s | 1 |
+| Spanish Latin 2 | CANCELLED at bounded shutdown; no musical result | 16.141 s | 0, full refund |
+
+Both successful jazz plans use the focused second take (seeds 6302302 and
+6302304), at 108 and 120 BPM respectively. Their downloaded 120-second stereo
+48 kHz WAV checksums match the provider receipts. Audio remains locally in
+`build-song-repair/cloud/`. This is technical style-screen evidence, not listening
+approval or proof that all jazz requests succeed. Spanish 1 confirms a style
+rejection in this test; it does not establish a general Spanish-language defect.
+Spanish 2 must not be counted as another style rejection.
+
+**Startup PARTIAL:** Four initial submissions returned HTTP 409 without provider
+IDs. Provider counters were unchanged and its queue was empty. The new image then
+took several minutes to download/extract after explicitly requesting one warm
+worker. Once readiness and the absence of accepted jobs were verified, only those
+four unaccepted submission intents were reconciled in the isolated test database,
+retaining their original deadlines. All four were accepted once. See the
+[cold-start reconciliation](evidence/song-generation-repair/cold-start-reconciliation.json).
+The harness now prewarms its bounded worker count before dispatch, and its final
+report uses the settled state. No automatic production resubmission was added;
+this trial does not certify scale-from-zero startup for a newly published image.
+
+**Cleanup PASS:** Minimum/maximum workers are 0/0; all worker counters and queued /
+running jobs are zero. All reserved credit balances are zero. Six temporary R2
+keys were removed and the disposable database was dropped. The independent
+shutdown watchdog remained active through cleanup.
+[Trial receipts](evidence/song-generation-repair/trial-result.json),
+[final provider readback](evidence/song-generation-repair/final-receipts.json),
+[download verification](evidence/song-generation-repair/download-verification.json).
+The original trial receipt retains the last polled `state: running` for Spanish 2;
+its `finalState: cancelled` and subsequent provider `CANCELLED` receipt are final.
+
+**Billing PARTIAL:** The retest's 07:00 UTC billing bucket was not available at
+cleanup; no exact charged total is claimed. The $2 ceiling was guarded by one
+worker, the 15-minute watchdog and a conservative rate allowance. The earlier
+trial's 06:00 bucket has now arrived: $0.24520468 / 581.063 billed seconds for the
+whole endpoint-hour, including preparation. This supersedes the earlier partial
+2.791-second receipt; it is not an exact per-song cost.
+
+**Remaining:** Spanish reliability and representative vocal-genre calibration
+remain PARTIAL / NOT RUN. Listening and native-language acceptance remain deferred.
+No thresholds were lowered and no speculative inference setting was promoted.
+Website deployment remains the owner's decision. The approved four-request trial
+is consumed; no further paid run was started.

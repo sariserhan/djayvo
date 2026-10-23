@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-10-23T07:26:14.659Z",
+  "reason": "All four initial POSTs returned HTTP 409; provider counters unchanged and no queued/in-progress jobs. Prewarm exactly one worker within original deadline.",
+  "health": {
+    "jobs": {
+      "completed": 8,
+      "failed": 5,
+      "inProgress": 0,
+      "inQueue": 0,
+      "retried": 0
+    },
+    "workers": {
+      "idle": 0,
+      "initializing": 0,
+      "ready": 0,
+      "running": 0,
+      "throttled": 0,
+      "unhealthy": 0
+    }
+  },
+  "workersMin": 1,
+  "workersMax": 1,
+  "requests": [
+    "6ac73c765866440ca67c7ebb4d89aff8",
+    "c2a5949d791a4202910b71d20b2dcd21",
+    "48363fd3611f441aaf382145f24eda22",
+    "27967d2b3a1248bba2046c6117391ca8"
+  ],
+  "resubmitted": true,
+  "reconciledAt": "2026-10-23T07:31:48.709Z",
+  "beforeResubmissionHealth": {
+    "jobs": {
+      "completed": 8,
+      "failed": 5,
+      "inProgress": 0,
+      "inQueue": 0,
+      "retried": 0
+    },
+    "workers": {
+      "idle": 1,
+      "initializing": 0,
+      "ready": 1,
+      "running": 0,
+      "throttled": 0,
+      "unhealthy": 0
+    }
+  },
+  "note": "Operator confirmed HTTP 409 rejection and unchanged empty provider queue; cleared only these four local dispatch intents, keeping original job IDs, seeds and deadlines. No automatic retry policy changed."
+}

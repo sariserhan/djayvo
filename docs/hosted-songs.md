@@ -2,17 +2,17 @@
 
 **PARTIAL overall.** Website dispatch, durable recovery, private/public storage and
 credit billing are implemented and locally verified. A real eight-request trial
-completed six songs and refunded the two failures. Jazz/Spanish DNA generation,
-final provider billing and musical acceptance remain open. The owner retains
-deployment control: no website push/deploy, production migration, worker image
-change or live credit charge was performed.
+completed six songs and refunded the two failures. The subsequent repair retest
+passed both jazz requests; Spanish reliability and musical acceptance remain open.
+The repaired worker was published with owner approval. No website push/deploy,
+production migration or live credit charge was performed.
 
 | Requested work | Status | Evidence / remaining boundary |
 | --- | --- | --- |
 | Website Music DNA and Improvise generation | PASS, implementation/local browser and real provider integration | Authenticated asynchronous jobs; refresh/reconnect/cancel; verified R2 output before settlement. Hosted HTTP deployment smoke test NOT RUN. |
 | Credits and Stripe checkout | PASS, Stripe TEST and real Postgres | Actual hosted Checkout, decline, signed/duplicate webhooks, owner isolation, refund hold; real trial reservations and failure refunds. Live credit purchases disabled. |
-| Concurrent queue, timing, cost | PARTIAL | Eight requests, max two workers; six completed, two failed; cleanup verified. Final hourly provider bill has not yet appeared. |
-| Genre/language quality and source placement | PARTIAL | Rock/Turkish/Russian DNA completed; all three Improvise placements technically passed. Jazz/Spanish DNA failed. Listening and native-language acceptance NOT RUN. |
+| Concurrent queue, timing, cost | PASS, bounded trial | Eight requests, max two workers; six completed, two failed; cleanup verified. Final endpoint-hour receipt $0.24520468 includes preparation. Subsequent repair retest bill is pending. |
+| Genre/language quality and source placement | PARTIAL | Rock/Turkish/Russian DNA completed; all three Improvise placements technically passed. Repair retest: two jazz passes, one Spanish rejection and one cancellation. Listening and native-language acceptance NOT RUN. |
 
 ## Product behavior
 
@@ -81,31 +81,33 @@ enforced shutdown. Endpoint min/max are zero; active workers and queued/running
 jobs are zero; temporary R2 objects and the disposable database were removed.
 Local audio remains in `build-hosted-song-trial/final/` for review, not publication.
 
-The billing API's latest receipt omits the final 06:00 UTC usage bucket. Its earlier
-amounts include work before this trial. `estimated_cost_micros` is a conservative
-application estimate based on queue/execution duration, **not actual charged cost**.
-Final reconciliation remains PARTIAL; no additional paid run is authorized here.
+The final 06:00 UTC billing bucket has now arrived: $0.24520468 and 581.063 billed
+seconds for the endpoint-hour including preparation. This supersedes earlier
+missing/partial receipts. `estimated_cost_micros` remains a conservative application
+estimate, not actual charged cost. This receipt establishes bounded hourly spend,
+not an exact per-song bill. [Readback](evidence/song-generation-repair/trial-result.json).
 
 ## Quality findings
 
 **Update — 2026-10-23:** [The repair investigation](song-generation-repair.md)
 adds bounded captions, lower-memory checking, interruption recovery and durable
-safe failure reasons. Eight local jazz/Spanish takes still fail the unchanged
-screen; speculative inference settings were not adopted. A separate $2 cloud
-reproduction is prepared and now owner-approved, not yet executed. Its read-only billing
-refresh now includes the final hour but still does not reconcile the trial.
+safe failure reasons. The repaired worker is published and pinned. The approved
+$2 retest completed: two jazz passes, one Spanish style rejection and one Spanish
+cancellation at the time bound. All reserved credits were released or settled,
+workers are off and temporary storage is cleaned. Spanish reliability and human
+acceptance remain open; the retest's final bill is pending. Website not deployed.
 
-The existing cloud image reported `fit@unavailable` for jazz and Spanish DNA.
+The previous cloud image reported `fit@unavailable` for jazz and Spanish DNA.
 It did not provide enough detail to establish whether the fit process crashed or
-rejected the audio. The prepared worker now reports safe stage/exit diagnostics
+rejected the audio. The published worker now reports safe stage/exit diagnostics
 without exposing lyrics, recordings, signed URLs or exception messages.
 
 Local jazz experiments also failed the unchanged audio screen. A shorter retry
 brief, explicit walking bass/ride swing and a tag-based experiment did not establish
 a reliable fix. Do not lower the threshold or call the issue solved. The production
 retry now changes the musical brief, rather than only changing its seed; contradictory
-BPM instructions are rejected. These changes are locally tested but are not in the
-currently pinned cloud image. [Quality summary](evidence/hosted-songs/quality.json).
+BPM instructions are rejected. These changes are locally tested and included in
+the repaired pinned cloud image. [Quality summary](evidence/hosted-songs/quality.json).
 
 Three real Improvise songs used the source at different positions: funk replaced a
 short vocal region; reggae and jazz used existing gaps. Singing timing did not move;

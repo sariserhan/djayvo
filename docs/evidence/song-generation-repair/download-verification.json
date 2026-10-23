@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "listening": "NOT RUN; owner deferred",
+  "files": [
+    {
+      "label": "jazz-1",
+      "sha256": "9d695e6ef9fa51f5af665507941b8d89a588c32df365279e0eb99ac5813a975e",
+      "sampleRate": 48000,
+      "frames": 5760000,
+      "channels": 2,
+      "durationSeconds": 120.0,
+      "peak": 0.891265869140625,
+      "rms": 0.14264984253497806,
+      "status": "PASS"
+    },
+    {
+      "label": "jazz-2",
+      "sha256": "deee55e0c4fd4462c5f84bc504063b21de13491076b5d97434f1705862091097",
+      "sampleRate": 48000,
+      "frames": 5760000,
+      "channels": 2,
+      "durationSeconds": 120.0,
+      "peak": 0.891265869140625,
+      "rms": 0.1442832439284975,
+      "status": "PASS"
+    }
+  ]
+}

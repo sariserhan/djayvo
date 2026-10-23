@@ -51,13 +51,14 @@ try{
  await save();
  // Independent shutdown survives an interrupted trial process, including bounded control retries.
  watchdog=spawn(process.execPath,['--input-type=module','-e',`setTimeout(async()=>{for(let n=0;n<10;n++){try{const r=await fetch('https://rest.runpod.io/v1/endpoints/'+process.env.RUNPOD_ENDPOINT_ID,{method:'PATCH',headers:{Authorization:'Bearer '+process.env.RUNPOD_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({workersMin:0,workersMax:0}),signal:AbortSignal.timeout(10000)});if(r.ok)process.exit(0);}catch{}await new Promise(r=>setTimeout(r,3000));}process.exit(1);},${maxSeconds*1000});`],{env:process.env,stdio:'ignore',detached:true});watchdog.unref();
- const started=Date.now();enabled=true;state.disabled=false;await control('PATCH',{workersMin:0,workersMax:maxWorkers});
+ const started=Date.now();enabled=true;state.disabled=false;await control('PATCH',{workersMin:maxWorkers,workersMax:maxWorkers});
  // Give endpoint configuration a moment to reach its queue API.
  await delay(5000);
  while(!stopping&&Date.now()-started<(maxSeconds-120)*1000){
   const health=await services[0].provider.health();state.health.push({seconds:Math.round((Date.now()-started)/1000),...health});
   const workers=health.workers??{},count=['idle','initializing','running'].reduce((n,k)=>n+Number(workers[k]??0),0);
   if(count>maxWorkers){state.stopReason='Provider exceeded worker bound';break;}
+  // A newly published image can return HTTP 409 until its first worker is ready.
   if(Number(workers.ready??0)+Number(workers.running??0)===0){await save();console.log(JSON.stringify({seconds:Math.round((Date.now()-started)/1000),workers}));await delay(10000);continue;}
   await Promise.all(state.requests.map(async(r:any)=>{const songs=services[r.product==='music-dna'?0:1];try{await songs.tick(r.id);}catch(error){r.pollErrors=(r.pollErrors??0)+1;r.error=error instanceof Error?error.message:'Poll failed';}const row=await songs.commerce.row(r.id),run=(await pool.query('SELECT provider_id,provider_status,execution_ms,delay_ms,estimated_cost_micros,provider_receipt->>\'failure\' AS failure FROM cloud_song_runs WHERE id=$1',[r.id])).rows[0];Object.assign(r,run);r.state=row.state;if(r.transitions.at(-1)?.state!==row.state||r.transitions.at(-1)?.provider!==run.provider_status)r.transitions.push({seconds:Math.round((Date.now()-started)/1000),state:row.state,provider:run.provider_status});if(row.state==='completed'&&!r.saved){await writeFile(resolve(directory,r.label+'.wav'),await store.get(row.audio_key,row.audio_bytes));await writeFile(resolve(directory,r.label+'.json'),JSON.stringify(row.song_plan,null,2));r.saved=true;r.audioSha256=row.audio_sha256;r.balance=await songs.commerce.wallet.balance(r.owner);}}));
   await save();console.log(JSON.stringify({seconds:Math.round((Date.now()-started)/1000),jobs:state.requests.map((r:any)=>r.label+':'+r.state),workers}));
@@ -66,7 +67,7 @@ try{
  }
 }catch(error){state.error=error instanceof Error?error.message:'Trial interrupted';throw error;}
 finally{
- for(const r of state.requests)try{const songs=services[r.product==='music-dna'?0:1];await songs.cancel(r.owner,r.id);r.finalState=(await songs.commerce.row(r.id))?.state;r.finalBalance=await songs.commerce.wallet.balance(r.owner);}catch{r.cancelUnconfirmed=true;}
+ for(const r of state.requests)try{const songs=services[r.product==='music-dna'?0:1];await songs.cancel(r.owner,r.id);r.finalState=(await songs.commerce.row(r.id))?.state;r.state=r.finalState;r.finalBalance=await songs.commerce.wallet.balance(r.owner);}catch{r.cancelUnconfirmed=true;}
  if(enabled){for(let i=0;i<5;i++)try{await control('PATCH',{workersMin:0,workersMax:0});const result=await control();assert(result.workersMax===0&&result.workersMin===0);state.disabled=true;break;}catch{await delay(2000);}}
  for(let i=0;i<12;i++){const health=await services[0].provider.health();state.finalHealth=health;const active=Object.entries(health.workers??{}).filter(([k])=>k!=='unhealthy').reduce((n,[,v])=>n+Number(v??0),0);if(!active&&health.jobs?.inProgress===0&&health.jobs?.inQueue===0){state.stopped=true;break;}await delay(5000);}
  if(state.disabled&&state.stopped){watchdog?.kill();const keys=(await pool.query('SELECT object_key AS key FROM song_uploads UNION SELECT output_key FROM cloud_song_runs UNION SELECT audio_key FROM dna_song_jobs WHERE audio_key IS NOT NULL')).rows;for(const {key} of keys)await store.remove(key);state.removedObjects=keys.length;state.cleanup=true;}
