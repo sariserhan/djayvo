@@ -16,6 +16,19 @@ from singing_response import CODE_REVISION, WEIGHT_REVISION, variants
 
 
 class StudioFlow(unittest.TestCase):
+    def test_only_a_confident_complete_final_word_can_be_repeated(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);source=root/'input.wav'
+            write_pcm(source,np.repeat((.1*np.sin(np.arange(2*RATE)*.1))[:,None],2,axis=1))
+            for i,confidence in enumerate((.9,.4,float('nan'))):
+                work=root/str(i);work.mkdir();studio.prepare_source(source,work)
+                speech={'source_rate':16000,'transcript':'A short phrase','phrases':[{'text':'A short phrase','start_seconds':0,'end_seconds':2}],
+                        'words':[{'start_frame':22400,'end_frame':31360,'confidence':confidence}]}
+                _,score=studio.sample_candidate(work,speech,'reggae',2)
+                metadata=json.loads(score.read_text())
+                if confidence==.9:self.assertEqual(metadata['rhythm_word_frames'],[65280,96000])
+                else:self.assertIsNone(metadata['rhythm_word_frames'])
+
     def test_short_long_and_quiet_recordings_are_preserved(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)

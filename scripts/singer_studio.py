@@ -119,9 +119,18 @@ def sample_candidate(work, speech, genre, seconds, seed=0, attempt=0):
         '-ss',str(a),'-i',str(work/'original-recording'),'-t',str(b-a),'-ar',str(RATE),'-ac','2',
         '-c:a','pcm_s16le',str(source)],check=True,timeout=20,capture_output=True)
     pcm=read_pcm(source,(.35,5));score=source.with_suffix('.json')
+    word_frames=None
+    for word in speech.get('words',[]):
+        if not isinstance(word,dict):continue
+        start,stop,confidence=word.get('start_frame'),word.get('end_frame'),word.get('confidence',0)
+        if (type(start) is int and type(stop) is int and type(confidence) in (int,float)
+                and .8<=confidence<=1 and a+.18<=start/rate<stop/rate<=b and b-stop/rate<=.08):
+            first=max(0,round((start/rate-a-.04)*RATE));last=min(len(pcm),round((stop/rate-a+.04)*RATE))
+            if .18*RATE<=last-first<=1.2*RATE:word_frames=[first,last]
     score.write_text(json.dumps({'source':{'sha256':digest(source),'kind':'recorded','consent_confirmed':True,
         'processed_frames':len(pcm)},'sample_rate':RATE,'voice_clips':[{'id':0,'start_frame':0,'end_frame':len(pcm)}],
-        'original_seconds':[a,b],'selection':'whole-recording' if a==0 and b==seconds else 'excerpt'}))
+        'original_seconds':[a,b],'rhythm_word_frames':word_frames,
+        'selection':'whole-recording' if a==0 and b==seconds else 'excerpt'}))
     return source,score
 
 
@@ -190,7 +199,7 @@ def make_reply(audio, phrase, voice, genre, consent, duration=None):
             result_dir=work/f'exchange-{attempt}'
             try:
                 stage = 'Blending your sound into the song'
-                report = arrange(candidate[0],singer,result_dir,OUTPUT/'arrangement-history.json',seed+attempt,True)
+                report = arrange(candidate[0],singer,result_dir,OUTPUT/'arrangement-history.json',seed+attempt,True,source_score=candidate[1])
                 if report.get('sample_used') is not True or not report.get('events'):
                     raise ValueError('Arrangement omitted the recording')
                 report['source_excerpt']=json.loads(candidate[1].read_text())
@@ -208,7 +217,7 @@ def make_reply(audio, phrase, voice, genre, consent, duration=None):
         if isinstance(error,StudioError): raise
         raise StudioError(f'{stage} failed. Your recording is saved. Try Make a song again; you do not need to record it again.') from error
     (work / '.partial').unlink()
-    placement = ('Your sound returns as a rhythmic hook within the song.' if len(report['events'])>1 else
+    placement = ('Your sound returns as a rhythmic hook within the song.' if len(report['events'])>1 or report['pattern']=='word-reply' else
                  'Your sound takes a musical turn within the song.')
     return (str(singer/'singer.wav'), str(result_dir/'performance.wav'), case['lyrics'],
             f"{chosen_voice.title()} · {STYLE_LABELS[chosen_genre]}. Inspired by {interpretation}. {placement}",phrase)

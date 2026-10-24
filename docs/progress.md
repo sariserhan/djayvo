@@ -1,3 +1,9 @@
+## Improvise automatic rhythm integration — 2026-10-23
+
+**PASS: owner accepts the two rhythm auditions as a better fit with the same recognizable voice. PASS: local technical integration. PARTIAL: broad musical/release qualification.** The shared local/Runpod path now uses hash-bound source metadata to select a confident complete final word, fits phrases to a reliable estimated pulse within 0.8–1.25 duration, and optionally repeats the original word once. Original timing and other patterns remain available, with history-aware family selection. Existing overlap, headroom, source budget and failed-job behavior remain; uncertain timing or unavailable transforms fall back to ordinary source-inclusive candidates.
+
+PASS: 17 arranger, 8 studio-flow and 12 worker tests; 12 actual automatically cropped/arranged mixes across reggae/funk/house; unchanged surrounding PCM/original files, safe peaks, four different pattern types, and all real receipts accepted by the website's source/output/duration checks. These use retained songs and hash-verified cached ASR; no new singer inference. [Feedback, implementation, evidence and limits](improvise-rhythm-integration.md). Listening acceptance is specific to the two prior auditions, not the 12 automatic mixes or all sources. No frontend/schema change, paid compute, upload, provider mutation or deployment. Updated hosted worker qualification/publication and existing lyric-polish gates remain open.
+
 ## Improvise rhythm experiment and reggae listening — 2026-10-23
 
 **PASS: owner prefers revised reggae B. FAIL: second tone treatment did not produce noticeable improvement. PARTIAL: new rhythm trial.** Feedback is recorded against the reviewed packet and exact reggae audio; no blanket reggae or source-identity acceptance is inferred. The serving code is unchanged this increment.

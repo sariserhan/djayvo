@@ -5,12 +5,44 @@ import json
 import random
 from pathlib import Path
 import shutil
+import subprocess
 
 import numpy as np
 from scipy.signal import butter, sosfilt
 from arrange_voice_research import RATE, digest, read_pcm, write_pcm
 from assemble_sung_response import envelope, intervals, beat_grid
 from source_led_response import faded, rendered, stem
+
+
+def fit_call_rhythm(hook, recipe):
+    """Fit the original phrase to beats; optionally answer with one original word."""
+    ratio=recipe.get('duration_ratio') if isinstance(recipe,dict) else None
+    if (hook.ndim!=2 or hook.shape[1]!=2 or not .35*RATE<=len(hook)<=5*RATE
+            or not np.isfinite(hook).all() or type(ratio) not in (int,float)
+            or not np.isfinite(ratio) or not .8<=ratio<=1.25):
+        raise ValueError('Invalid source rhythm transform')
+    frames=round(len(hook)*ratio);word=recipe.get('word_frames');repeat=recipe.get('repeat_offset_frames')
+    if not .35*RATE<=frames<=5*RATE:raise ValueError('Rhythmic phrase exceeds duration budget')
+    if word is not None:
+        if (not isinstance(word,list) or len(word)!=2 or any(type(f) is not int for f in word)
+                or not 0<=word[0]<word[1]<=len(hook) or not .18*RATE<=word[1]-word[0]<=1.2*RATE
+                or type(repeat) is not int or repeat<frames+.12*RATE or repeat+word[1]-word[0]>5*RATE):
+            raise ValueError('Invalid repeated word bounds')
+    elif repeat is not None:raise ValueError('Repeat requires a source word')
+    result=subprocess.run(['ffmpeg','-v','error','-nostdin','-f','f32le','-ar',str(RATE),'-ac','2',
+        '-i','pipe:0','-af',f'atempo={1/ratio:.12f}','-f','f32le','pipe:1'],
+        input=hook.astype('<f4').tobytes(),capture_output=True,check=True,timeout=30)
+    if len(result.stdout)%8:raise ValueError('Invalid tempo output framing')
+    pcm=np.frombuffer(result.stdout,dtype='<f4').reshape(-1,2).astype(np.float64)
+    if not np.isfinite(pcm).all() or abs(len(pcm)-frames)>.08*RATE:
+        raise ValueError('Tempo transform failed finite/duration checks')
+    # shortcut: short endpoint error is padded/faded; upgrade if listening exposes lost consonants.
+    pcm=faded(np.pad(pcm,((0,max(0,frames-len(pcm))),(0,0)))[:frames])
+    if word is not None:
+        pcm=np.pad(pcm,((0,repeat+word[1]-word[0]-frames),(0,0)))
+        pcm[repeat:]+=faded(hook[word[0]:word[1]])*.72
+    if np.max(np.abs(pcm))>=1:raise ValueError('Unsafe transformed source peak')
+    return pcm
 
 
 def blend_patch(original, generated, start, end):
@@ -140,11 +172,12 @@ def mix_calls(song, hook, start, vocals, repeat_at=(), voice_scale=1.):
     return mix,voice,events
 
 
-def edit(song_dir, source, output, call_at, consent=False, repaint_dir=None, replace_region=None, repeat_at=()):
+def edit(song_dir, source, output, call_at, consent=False, repaint_dir=None, replace_region=None, repeat_at=(), rhythm=None):
     if not consent: raise ValueError('Local source consent required')
     if output.exists(): raise FileExistsError('Preserving existing edit')
     song, receipt=rendered(song_dir)
     source_hash=digest(source);hook=read_pcm(source,(.35,5))
+    if rhythm is not None:hook=fit_call_rhythm(hook,rhythm)
     if type(call_at) not in (int,float) or not np.isfinite(call_at): raise ValueError('Invalid call time')
     start=round(call_at*RATE);stop=start+len(hook)
     vocals=stem(song_dir,'vocals',receipt,song.shape)
@@ -196,6 +229,10 @@ def edit(song_dir, source, output, call_at, consent=False, repaint_dir=None, rep
         'listening':'NOT RUN','vocal_subtraction':replace_region is not None,
         'note':'Manually selected phrase and passage; estimated quiet or subtraction does not prove musical fit or absence of bleed.',
         'artifacts':{name:digest(output/f'{name}.wav') for name in ('performance','original','music','user')}}
+    if rhythm is not None:
+        write_pcm(output/'rhythm-source.wav',hook)
+        report['source_rhythm']={**rhythm,'pitch_shift_semitones':0,'word_gain':.72 if rhythm.get('word_frames') else 0,
+            'input_sha256':source_hash,'output_sha256':digest(output/'rhythm-source.wav')}
     (output/'complete.json').write_text(json.dumps(report,indent=2)+'\n');(output/'.partial').unlink()
     return report
 
@@ -276,7 +313,7 @@ def rank_options(options, history, seed):
     rng=random.Random(seed); remaining=list(options); ranked=[]
     while remaining:
         # Penalize recent shapes, not A or B outright: A-A and B-B can still occur at different entrances.
-        weights=[1/(sum(other['mode']==c['mode'] for other in remaining)*
+        weights=[1/(sum((other['mode'],other.get('treatment'))==(c['mode'],c.get('treatment')) for other in remaining)*
                     (1+3*history.count(c['fingerprint'])+
                      sum(h.split(':')[0]==c['mode'] for h in history[-4:]))) for c in remaining]
         if history and any(c['fingerprint']!=history[-1] for c in remaining):
@@ -286,31 +323,60 @@ def rank_options(options, history, seed):
     return ranked
 
 
-def arrange(source, song_dir, output, history_path, seed, consent=False):
+def arrange(source, song_dir, output, history_path, seed, consent=False, source_score=None):
     if not consent:raise ValueError('Local source consent required')
     if output.exists():raise FileExistsError('Preserving existing arrangement')
     song,receipt=rendered(song_dir);hook=read_pcm(source,(.35,5))
+    word=None
+    if source_score is not None:
+        if source_score.stat().st_size>1024**2:raise ValueError('Source metadata exceeds budget')
+        score=json.loads(source_score.read_text())
+        if (not isinstance(score,dict) or not isinstance(score.get('source'),dict)
+                or score['source'].get('sha256')!=digest(source) or score.get('sample_rate')!=RATE
+                or score['source'].get('processed_frames')!=len(hook)):
+            raise ValueError('Source rhythm metadata does not match recording')
+        word=score.get('rhythm_word_frames')
+        if word is not None and (not isinstance(word,list) or len(word)!=2 or any(type(f) is not int for f in word)
+                or not 0<=word[0]<word[1]<=len(hook) or not .18*RATE<=word[1]-word[0]<=1.2*RATE):
+            raise ValueError('Invalid source word bounds')
     vocals=stem(song_dir,'vocals',receipt,song.shape)
     drums=stem(song_dir,'drums',receipt,song.shape)
     bpm=receipt['case']['bpm']
     if type(bpm) not in (int,float) or not np.isfinite(bpm) or not 60<=bpm<=180:
         raise ValueError('Invalid musical tempo')
     grid=beat_grid(drums,bpm);history=read_history(history_path)
-    options=rank_options(performance_options(arrangement_options(song,vocals,hook,grid),hook,grid,len(song)),history,seed)
+    hooks={'original':(hook,None)};rhythm_failure=None
+    if grid['confidence']>=.15:
+        beat=RATE*60/grid['bpm'];beats=round(len(hook)/beat);ratio=beats*beat/len(hook)
+        if .8<=ratio<=1.25:
+            for treatment in ('beat-fitted','word-reply'):
+                if treatment=='word-reply' and word is None:continue
+                recipe={'duration_ratio':ratio}
+                if treatment=='word-reply':recipe.update(word_frames=word,repeat_offset_frames=round((beats+.5)*beat))
+                try:hooks[treatment]=(fit_call_rhythm(hook,recipe),recipe)
+                except (ValueError,OSError,subprocess.SubprocessError) as error:rhythm_failure=type(error).__name__
+    choices=[]
+    for treatment,(clip,recipe) in hooks.items():
+        base=arrangement_options(song,vocals,clip,grid)
+        options=(performance_options(base,clip,grid,len(song)) if treatment=='original' else
+                 [{**c,'pattern':treatment,'repeat_at':[]} for c in base])
+        choices.extend({**c,'treatment':treatment,'fingerprint':c['fingerprint']+':'+treatment} for c in options)
+    options=rank_options(choices,history,seed)
     rejected=0
     for candidate in options:
+        clip,recipe=hooks[candidate.get('treatment','original')]
         try:
             bed,estimate=song,vocals
             if candidate['replace_region']:
                 bed,estimate=replace_vocal(song,vocals,*[round(t*RATE) for t in candidate['replace_region']])
-            mix,_,_=mix_calls(bed,hook,round(candidate['call_at']*RATE),estimate,candidate.get('repeat_at',[]))
+            mix,_,_=mix_calls(bed,clip,round(candidate['call_at']*RATE),estimate,candidate.get('repeat_at',[]))
             if np.max(np.abs(mix))>=.98:raise ValueError('Unsafe mix peak')
         except ValueError:
             rejected+=1;continue
-        report=edit(song_dir,source,output,candidate['call_at'],True,replace_region=candidate['replace_region'],repeat_at=candidate.get('repeat_at',[]))
+        report=edit(song_dir,source,output,candidate['call_at'],True,replace_region=candidate['replace_region'],repeat_at=candidate.get('repeat_at',[]),rhythm=recipe)
         report.update(sample_used=True,selection_seed=seed,grid=grid,options_considered=len(options),
             pattern=candidate.get('pattern','single-call'),
-            rejected_candidates=rejected,arrangement_fingerprint=candidate['fingerprint'],
+            rejected_candidates=rejected,arrangement_fingerprint=candidate['fingerprint'],rhythm_fallback=rhythm_failure,
             note='Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.')
         # The studio serializes jobs. Save only completed arrangements, without speech or paths.
         try:

@@ -1,7 +1,13 @@
+## Improvise automatic rhythm integration — 2026-10-23
+
+- [x] **IMPROVISE-RHYTHM-ACCEPT — PASS, sample-specific owner listening:** “Better fit, same recognizable voice” for the reggae/funk rhythm auditions. [Exact feedback and audio hashes](docs/evidence/improvise-rhythm-integration/owner-feedback.json).
+- [x] **IMPROVISE-RHYTHM-AUTO — PASS, local technical:** Automatic confident final-word selection, bounded beat fitting and optional word replies integrated into the shared local/worker pipeline. Original timing and other arrangements remain available; selection varies with history. Source metadata/hash bounds, overlap/headroom checks, safe transform fallback and source-inclusive completion retained. Thirty-seven tests and 12 real automatic mixes across three styles pass, including the website's receipt gate. [Report](docs/improvise-rhythm-integration.md).
+- [ ] **IMPROVISE-RHYTHM-RELEASE — PARTIAL:** Prior two auditions accepted; new automatic selection across diverse recordings/languages and updated hosted execution remain unqualified. No paid compute, worker publication or website deployment. Existing lyric-polish and release gates remain open.
+
 ## Improvise rhythm listening experiment — 2026-10-23
 
 - [x] **IMPROVISE-REGGAE-LISTEN — PASS, relative improvement:** Owner says revised reggae B fits reggae better. This is specific to the controlled sample; broader genre/naturalness and full-flow lyrics remain unqualified. [Feedback](docs/evidence/improvise-rhythm/owner-feedback.json).
-- [ ] **IMPROVISE-SOURCE-FIT — PARTIAL:** Owner hears no noticeable improvement from either EQ/dynamics round. New beat-fitted whole-phrase plus final-word-repeat comparisons pass local signal/PCM checks in reggae and funk. House safely rejects for lack of shared space. Eleven review files pass muted Chromium/WebKit checks. Listen at `http://127.0.0.1:4249/rhythm-match/`. General selection, musical acceptance and serving integration of this rhythm hypothesis remain NOT RUN. [Report](docs/improvise-rhythm-review.md).
+- [ ] **IMPROVISE-SOURCE-FIT — PARTIAL:** Owner hears no noticeable improvement from either EQ/dynamics round. Owner approves the reggae/funk rhythm comparisons as a better fit with the same recognizable voice. House was safely omitted from that fixed A/B trial. Automatic selection is now implemented and technically verified; broader listening and hosted publication remain open. [Report](docs/improvise-rhythm-review.md).
 
 ## Improvise reggae phrasing and stronger recording treatment — 2026-10-23
 

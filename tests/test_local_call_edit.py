@@ -2,13 +2,15 @@ import json
 from pathlib import Path
 import sys
 import tempfile
+import subprocess
 import unittest
 from unittest.mock import patch
 
 import numpy as np
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from arrange_voice_research import RATE, digest, read_pcm, write_pcm
-from local_call_edit import add_call, blend_patch, edit, replace_vocal, arrange, rank_options, read_history, arrangement_options, mix_calls, performance_options, match_call_tone
+from local_call_edit import add_call, blend_patch, edit, replace_vocal, arrange, rank_options, read_history, arrangement_options, mix_calls, performance_options, match_call_tone, fit_call_rhythm
+from source_led_response import faded
 from singing_response import source_conditioning
 
 
@@ -31,6 +33,49 @@ class LocalCallEdit(unittest.TestCase):
         self.hook=self.root/'hook.wav';write_pcm(self.hook,self.song[:2*RATE])
 
     def tearDown(self):self.temp.cleanup()
+
+    def test_rhythm_preserves_pitch_and_repeats_only_the_original_word(self):
+        t=np.arange(2*RATE)/RATE
+        hook=faded(np.repeat((.1*np.sin(2*np.pi*180*t))[:,None],2,axis=1));saved=hook.copy()
+        for ratio in (.8,1.,1.25):
+            pcm=fit_call_rhythm(hook,{'duration_ratio':ratio})
+            self.assertEqual(len(pcm),round(len(hook)*ratio))
+            hz=np.fft.rfftfreq(len(pcm),1/RATE)[np.argmax(abs(np.fft.rfft(pcm[:,0])))]
+            self.assertLess(abs(hz-180),2)
+        repeat=round(2.5*RATE);word=[round(1.5*RATE),2*RATE]
+        pcm=fit_call_rhythm(hook,{'duration_ratio':1.1,'word_frames':word,'repeat_offset_frames':repeat})
+        np.testing.assert_array_equal(pcm[repeat:],faded(hook[word[0]:word[1]])*.72)
+        np.testing.assert_array_equal(hook,saved)
+        for recipe in ({'duration_ratio':float('nan')},{'duration_ratio':.79},
+                       {'duration_ratio':True},{'duration_ratio':1,'repeat_offset_frames':repeat},
+                       {'duration_ratio':1,'word_frames':[-1,RATE],'repeat_offset_frames':repeat},
+                       {'duration_ratio':1,'word_frames':word,'repeat_offset_frames':RATE}):
+            with self.assertRaises(ValueError):fit_call_rhythm(hook,recipe)
+        with patch('local_call_edit.subprocess.run',return_value=subprocess.CompletedProcess([],0,stdout=b'broken')):
+            with self.assertRaises(ValueError):fit_call_rhythm(hook,{'duration_ratio':1})
+
+    def test_automatic_rhythm_is_source_bound_and_unavailable_transform_falls_back(self):
+        score=self.root/'source.json'
+        metadata={'sample_rate':RATE,'source':{'sha256':digest(self.hook),'processed_frames':2*RATE},
+                  'rhythm_word_frames':[round(1.5*RATE),2*RATE]}
+        score.write_text(json.dumps(metadata))
+        grid={'bpm':120.,'offset_frames':0,'confidence':1.}
+        prefer=lambda options,history,seed:sorted(options,key=lambda c:c.get('treatment')!='word-reply')
+        with patch('local_call_edit.beat_grid',return_value=grid),patch('local_call_edit.rank_options',side_effect=prefer):
+            result=arrange(self.hook,self.song_dir,self.root/'rhythm',self.root/'history',42,True,score)
+        self.assertEqual(result['pattern'],'word-reply')
+        self.assertEqual(result['source_rhythm']['input_sha256'],digest(self.hook))
+        self.assertEqual(result['source_sha256'],digest(self.hook))
+        self.assertEqual(result['outside_region_max_pcm_error'],0)
+        self.assertLess(result['peak'],.98)
+        with patch('local_call_edit.beat_grid',return_value=grid),\
+                patch('local_call_edit.fit_call_rhythm',side_effect=subprocess.CalledProcessError(1,'ffmpeg')):
+            fallback=arrange(self.hook,self.song_dir,self.root/'plain',self.root/'history',43,True,score)
+        self.assertNotIn('source_rhythm',fallback);self.assertEqual(fallback['rhythm_fallback'],'CalledProcessError')
+        for change in ({'source':{'sha256':'wrong','processed_frames':2*RATE}}, {'rhythm_word_frames':[0,3*RATE]}):
+            score.write_text(json.dumps({**metadata,**change}))
+            with self.assertRaises(ValueError):arrange(self.hook,self.song_dir,self.root/'invalid',self.root/'history',44,True,score)
+        self.assertFalse((self.root/'invalid').exists())
 
     def test_longest_improvise_preserves_music_outside_the_call(self):
         song=np.tile(self.song,(2,1))[:45*RATE]

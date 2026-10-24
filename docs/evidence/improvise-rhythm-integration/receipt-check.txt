@@ -1,0 +1,1 @@
+PASS: all 12 real automatic mixes pass the hosted source/output/duration receipt gate; wrong source hashes reject. No provider, storage or database writes.
