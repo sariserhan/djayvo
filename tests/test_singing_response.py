@@ -7,24 +7,49 @@ import unittest
 from unittest.mock import Mock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, VOCAL_PROFILES, SINGER_REFERENCES, cast_singer_reference, resolve_vocal_reference, isolated_vocal_reference, choose_vocal_profile, vocal_description, generated_vocal_reference, digest, caption, load_plan, validate_plan, variants, draft
+from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, VOCAL_PROFILES, SINGER_REFERENCES, cast_singer_reference, resolve_vocal_reference, isolated_vocal_reference, choose_vocal_profile, vocal_description, generated_vocal_reference, digest, caption, load_plan, validate_plan, variants, draft, validate_reply_lyrics
 from assemble_sung_response import PATTERNS
 
 
 class SingingPlans(unittest.TestCase):
     def test_reggae_lyric_writer_receives_word_direction_not_band_instructions(self):
-        tokenizer=Mock();generate=Mock(return_value='[Verse]\nYou have a question, I am listening\n[Chorus]\nTell me what you want to know')
+        tokenizer=Mock();generate=Mock(return_value='[Verse]\nYou have a question, I am listening\nTake your time and tell me more\n[Chorus]\nWhat is the thing you want to know\nWe can work it out together')
         with tempfile.TemporaryDirectory() as folder,patch('singing_response.cast_singer_reference'),\
                 patch('singing_response.lyric_model',return_value=(None,tokenizer,{'revision':'test'})),\
                 patch('singing_response.planner_functions',return_value=(Mock(),generate,Mock())):
             output=Path(folder)/'plan.json'
             draft(Path(folder),'I have a question',42,output,'male','reggae',35)
             self.assertEqual(load_plan(output)['phrase'],'I have a question')
-            message=tokenizer.apply_chat_template.call_args.args[0][-1]['content']
+            message=tokenizer.apply_chat_template.call_args_list[0].args[0][-1]['content']
             self.assertIn('short conversational lines',message)
             self.assertIn('not instrument or performance instructions',message)
             self.assertIn('I have a question',message)
             self.assertNotIn('organ replies',message)
+
+    def test_editor_replaces_draft_and_bounds_invalid_output_retries(self):
+        good = '[Verse]\nYou have a question, I am listening\nTake your time and tell me more\n[Chorus]\nWhat is the thing you want to know\nWe can work it out together'
+        bad = '[Verse]\nEven if it is just a small, silly tide'
+        for outputs, succeeds, calls in (([bad,good],True,2),([bad,'[Guitar solo]',good],True,3),
+                                         ([bad,'[Guitar solo]','too short'],False,3)):
+            tokenizer=Mock();generate=Mock(side_effect=outputs)
+            with tempfile.TemporaryDirectory() as folder,patch('singing_response.cast_singer_reference'), \
+                    patch('singing_response.lyric_model',return_value=(None,tokenizer,{'revision':'test'})), \
+                    patch('singing_response.planner_functions',return_value=(Mock(),generate,Mock())):
+                output=Path(folder)/'plan.json'
+                if succeeds:
+                    draft(Path(folder),'I have a question',42,output,'male','funk',35)
+                    case=load_plan(output)['cases'][0]
+                    self.assertEqual(case['lyrics'],good)
+                    self.assertEqual(case['lyric_edit']['passes'],calls-1)
+                else:
+                    with self.assertRaises(ValueError):draft(Path(folder),'I have a question',42,output,'male','funk',35)
+                    self.assertFalse(output.exists())
+                self.assertEqual(generate.call_count,calls)
+                edit=tokenizer.apply_chat_template.call_args_list[1].args[0]
+                self.assertIn('meaningless metaphors',edit[0]['content'])
+                self.assertEqual(json.loads(edit[1]['content'])['listener'],'I have a question')
+        for invalid in (good+'\n[Instrumental]',good.replace('Take your time','(sing softly) Take your time'), 'word '*200):
+            with self.assertRaises(ValueError):validate_reply_lyrics(invalid)
 
     def test_reggae_directs_the_singer_not_only_the_backing(self):
         for voice in ('male','female'):

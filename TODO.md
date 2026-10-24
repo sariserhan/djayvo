@@ -1,3 +1,7 @@
+## Improvise final quality and hosted verification — 2026-10-23
+
+**PARTIAL, in progress:** Added bounded lyric editing before singing. Running six audible source types plus silence across all 23 styles and fresh full generation. Prepared a four-song, one-worker, $3/20-minute cloud qualification using synthetic speech and test credits. Paid approval and new listening evidence remain outstanding; website deployment excluded. [Report](docs/improvise-finish.md).
+
 ## Improvise automatic rhythm integration — 2026-10-23
 
 - [x] **IMPROVISE-RHYTHM-ACCEPT — PASS, sample-specific owner listening:** “Better fit, same recognizable voice” for the reggae/funk rhythm auditions. [Exact feedback and audio hashes](docs/evidence/improvise-rhythm-integration/owner-feedback.json).

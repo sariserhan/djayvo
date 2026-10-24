@@ -1,3 +1,7 @@
+## Improvise final quality and hosted verification — 2026-10-23
+
+**PARTIAL, in progress:** Added bounded lyric editing before singing. Running six audible source types plus silence across all 23 styles and fresh full generation. Prepared a four-song, one-worker, $3/20-minute cloud qualification using synthetic speech and test credits. Paid approval and new listening evidence remain outstanding; website deployment excluded. [Report](improvise-finish.md).
+
 ## Improvise automatic rhythm integration — 2026-10-23
 
 **PASS: owner accepts the two rhythm auditions as a better fit with the same recognizable voice. PASS: local technical integration. PARTIAL: broad musical/release qualification.** The shared local/Runpod path now uses hash-bound source metadata to select a confident complete final word, fits phrases to a reliable estimated pulse within 0.8–1.25 duration, and optionally repeats the original word once. Original timing and other patterns remain available, with history-aware family selection. Existing overlap, headroom, source budget and failed-job behavior remain; uncertain timing or unavailable transforms fall back to ordinary source-inclusive candidates.
