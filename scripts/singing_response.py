@@ -277,7 +277,7 @@ def validate_reply_lyrics(lyrics):
     if not 4 <= len(sung) <= 8 or not 12 <= len(' '.join(sung).split()) <= 60:
         raise ValueError('Write 4 to 8 sung lines and 12 to 60 words')
     if any(re.search(r'[\[\]()*`{}]|^(?:title|lyrics|verse|chorus|note|here\b|sure\b)\s*:', line, re.I) for line in sung):
-        raise ValueError('Only sung words and optional [Verse]/[Chorus] headings are allowed')
+        raise ValueError('Use only sung words and optional [Verse]/[Chorus] headings. Remove parentheses and markdown; write sung ad-libs as plain words and omit stage directions')
     return lyrics
 
 

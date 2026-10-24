@@ -1,0 +1,70 @@
+[
+  {
+    "label": "reggae-question",
+    "technical": "PASS",
+    "duration": 33,
+    "pattern": "beat-fitted",
+    "elapsed_seconds": 148.14,
+    "performance_sha256": "b53b62b4a8a775e566ab29d90aa8f53e94a22ce218a3eb47f0f3382307d6c2ce",
+    "source_sha256": "76f445acffa111a8b53d3d420a667bc1e2bab419c09e757644ea0db6d251bcb0",
+    "lyric_checks": {
+      "version": 2,
+      "passes": 1,
+      "human_review": "NOT RUN"
+    },
+    "peak": 0.8912353515625,
+    "outside_region_max_pcm_error": 0.0,
+    "listening": "PENDING owner review"
+  },
+  {
+    "label": "jazz-coffee",
+    "technical": "PASS",
+    "duration": 39,
+    "pattern": "single-call",
+    "elapsed_seconds": 163.92,
+    "performance_sha256": "883ed4331ef8603e06b44ad617bdfc94dfd75593d3b18d88f4a5fe8a8891fb34",
+    "source_sha256": "87d32e94c5f5d597966966f66866cb75e656ffe85dac884d66b5aec45fcf24f9",
+    "lyric_checks": {
+      "version": 2,
+      "passes": 1,
+      "human_review": "NOT RUN"
+    },
+    "peak": 0.97283935546875,
+    "outside_region_max_pcm_error": 0.0,
+    "listening": "PENDING owner review"
+  },
+  {
+    "label": "edm-dance",
+    "technical": "PASS",
+    "duration": 45,
+    "pattern": "beat-fitted",
+    "elapsed_seconds": 163.66,
+    "performance_sha256": "3f4c6a2a2221934612b3667385d8a57d24510ca7b1ad377d4e0279d9fcdd7b23",
+    "source_sha256": "5d77a642094851be90de12d6be02bfd47a2dcc83e8e3eb1baae42314d83b78c7",
+    "lyric_checks": {
+      "version": 2,
+      "passes": 1,
+      "human_review": "NOT RUN"
+    },
+    "peak": 0.846771240234375,
+    "outside_region_max_pcm_error": 0.0,
+    "listening": "PENDING owner review"
+  },
+  {
+    "label": "acoustic-turkish",
+    "technical": "PASS",
+    "duration": 30,
+    "pattern": "beat-fitted",
+    "elapsed_seconds": 135.28,
+    "performance_sha256": "a37caecdcf3af34712e9ba68b1d93c17c348bdc881fe5e3c59c3927a8063842b",
+    "source_sha256": "b135d47b74bf1bde897e0b1f855dac6a899d441915df660e86692b9e57d7269b",
+    "lyric_checks": {
+      "version": 2,
+      "passes": 1,
+      "human_review": "NOT RUN"
+    },
+    "peak": 0.8912353515625,
+    "outside_region_max_pcm_error": 0.0,
+    "listening": "PENDING owner review"
+  }
+]

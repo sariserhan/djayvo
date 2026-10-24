@@ -193,7 +193,14 @@
         "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/country/mix-0/performance.wav",
         "pattern": "beat-fitted"
       }
-    ]
+    ],
+    "patterns": {
+      "beat-fitted": 57,
+      "word-reply": 18,
+      "single-call": 42,
+      "rhythmic-loop": 11,
+      "returning-hook": 10
+    }
   },
   "listening": "NOT RUN for these automatic mixes",
   "source_note": "One authorized human recording; synthetic English/Turkish/noisy speech and generated claps. Not broad human-speaker evidence."

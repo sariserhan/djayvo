@@ -1,0 +1,18 @@
+Playing chromium 0
+Playing chromium 1
+Playing chromium 2
+Playing chromium 3
+Playing chromium 4
+Playing chromium 5
+Playing chromium 6
+Playing chromium 7
+{"browser":"chromium","status":"PASS","players":8,"singlePlayer":true,"accessibility":true,"noOverflow":true,"errors":[]}
+Playing webkit 0
+Playing webkit 1
+Playing webkit 2
+Playing webkit 3
+Playing webkit 4
+Playing webkit 5
+Playing webkit 6
+Playing webkit 7
+{"browser":"webkit","status":"PASS","players":8,"singlePlayer":true,"accessibility":true,"noOverflow":true,"errors":[]}

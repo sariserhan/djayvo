@@ -23,3 +23,15 @@ The prepared hosted trial reuses the existing guarded runner with `--improvise-c
 Worker build `40045642751` was cancelled to include the percussion fix. Intermediate candidate `321295e` builds on the website-disabled `codex/runpod-setup` branch under run `40045670271`. Cloud approval is recorded; no Runpod worker has been started yet.
 
 The intermediate image build was also cancelled after the lyric probes exposed filler. Final worker candidate `e6fea69` contains the simpler writer, decorative-symbol cleanup and short-percussion selection. Four new local end-to-end takes are running against this exact logic; earlier takes are retained and are not substituted for final-code qualification.
+
+## Final local verification
+
+**PASS:** Four fresh complete recording-to-song runs using the final concise writer: reggae 33 s, jazz 39 s, EDM 45 s, acoustic 30 s. Actual ASR, planner, singer, separation and automatic arrangement ran; no cached songs/transcripts. Each retained the original recording, stayed below peak limits and preserved surrounding PCM. Local elapsed times were approximately 135–164 seconds per song. Turkish input receives an English sung reply; this is not a Turkish-singing test.
+
+**PASS:** All 23 real planner style probes after fixing one rap repair instruction. The initial rap result contained a sung ad-lib in parentheses; explicit repair instructions now preserve its words without parentheses. Twenty-two cases passed directly, rap passed its one allowed repair. Initial failure evidence is retained. This repair-hint wording does not affect the four fresh takes, which all passed without repair.
+
+**PASS:** 142 final real audio receipts (138 matrix plus four fresh songs) satisfy website checks and reject wrong source hashes. All eight local review players pass actual muted playback in Chromium and WebKit, single-player behavior, lyric disclosure, automated accessibility, 1280/390 px overflow and runtime-error checks. Mobile screenshot inspected. Browser execution tooling is unavailable; used the owner's previously approved local Playwright fallback. The first browser checks stalled after six paused downloads on the simple local server; switching clips now explicitly releases the previous preview download and restarts that preview. This affects only the local review packet.
+
+Review: http://127.0.0.1:4249/improvise-finish/ . Owner listening requested for the first four cards; no approval invented. Review builder and browser harness: `/tmp/jamloom-improvise-finish-review.py` and `/tmp/jamloom-improvise-finish-browser.mjs`; screenshots `/tmp/jamloom-improvise-finish-{chromium,webkit}-{1280,390}.png`.
+
+Final hosted candidate: `b6cd6a4`, run `40047696253`, overlays exactly the three changed scripts on the previously qualified immutable runtime image `sha256:83a00c568cb48f24e27811c901ac941643aee3352f2a0239c5b071120af58780`. All other runtime source/manifests were verified unchanged. Canonical main retains the full Dockerfile for dependency/model rebuilds. Intermediate full builds were cancelled, not reported as passed. The final cloud trial remains within the approved $3/four-song/one-worker/20-minute envelope.

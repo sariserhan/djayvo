@@ -1,0 +1,146 @@
+{
+  "technical": "PASS",
+  "musical_quality": "NOT RUN for text-only probes",
+  "runs": [
+    {
+      "style": "reggae",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "37887acecabedbaa37499c8d1ff39861713e45d1721d9314985d4eb927ba3329"
+    },
+    {
+      "style": "hiphop",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "3e9a7158fbafb9237daf04e3b8d06050ecbff54b3e5adef316331d4f9f4f43d7"
+    },
+    {
+      "style": "funk",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "85432c4cc54432f99f2658fdbe5c19a0acc5a07ccef800ff75d6754ea846c700"
+    },
+    {
+      "style": "house",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "8a04ef5816494e90764a7e1c984c114bc38cce9a86ffd065c935ee1f0f16ea43"
+    },
+    {
+      "style": "disco",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "2f52c8cd39caa89880e0f2fa484cc5e3741daede40c8c9868cd3b25b92dcf467"
+    },
+    {
+      "style": "rnb",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "fbe57a22908afb4a7226383a860c16359cc18a8be02aad89dd76153b5059f17f"
+    },
+    {
+      "style": "soul",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "f39d079d88b788c4dd25cb0b64718d6e65c8e3a5248cf99066f6015040d1db38"
+    },
+    {
+      "style": "afrobeats",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "9495786d7c5058d78981660dbf102994842dd12abb03404bb4c0bd5b88c285a0"
+    },
+    {
+      "style": "latinpop",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "de6cd04efb18e20367f253678a197da549390622d87ff19d8a44f17cb5cad5c4"
+    },
+    {
+      "style": "drumandbass",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "2be563c53bdd09327ae84f61f219ab338e70f967dd3b1c2847a002274f35fe0b"
+    },
+    {
+      "style": "acousticpop",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "2fd874fb0cb476c4554673253961470b851d18b4948f0541900126e2c75bcfd2"
+    },
+    {
+      "style": "rock",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "fb35ca60c1186c91e843761cd79d4296c5a4be5cf74f729be57775ac38a7c5b1"
+    },
+    {
+      "style": "edm",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "082a2c5a82e598a645af0e7afb1a49c4fb8f4d4f815db45b04f34fe7baa5f551"
+    },
+    {
+      "style": "dj",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "7ed86ddae8fb221c481ae5bdebf4754a052bae7661e2e26d2ace61ad4b544369"
+    },
+    {
+      "style": "lofi",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "e23204cb995ec7fcc7e16e3dff1c4ff180567040506338c585e7cace4ab698cd"
+    },
+    {
+      "style": "jazz",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "98187f1d6b429f1c29d4c487680d9c7957b4d33bc5fa80e8974c582e9760d323"
+    },
+    {
+      "style": "blues",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "cbc8291995f4079465f427dcb989efd168a2b6faf0464f252a5db2d3a5d84d40"
+    },
+    {
+      "style": "rap",
+      "technical": "PASS",
+      "passes": 2,
+      "plan_sha256": "a95b713294968723478e45675ffe39aa93d2b25259a0b4f837918d64d914c96f"
+    },
+    {
+      "style": "chill",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "ab176f50b87595d405ac336dc1b7167ca1079a8d100191874da1d967e1d34c57"
+    },
+    {
+      "style": "indie",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "ed1e475ad7191d624c98722517e1be5edc816824cce803ce0ecb77d53b5996c6"
+    },
+    {
+      "style": "techno",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "9388db9bb4d7b9e0149df0235edc46b615a1481e98f2bc703f67e2954ed2a189"
+    },
+    {
+      "style": "synthwave",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "079d337a4501e2e95d7a57c7f6c252f720a62aa49cab6846d3e36f9b0e09df26"
+    },
+    {
+      "style": "country",
+      "technical": "PASS",
+      "passes": 1,
+      "plan_sha256": "f1eb04cb60c396e881d31f62b3b6d1e750fb87052ba312dcfd98288bcb66c05d"
+    }
+  ],
+  "first_pass_count": 22,
+  "repaired_count": 1
+}

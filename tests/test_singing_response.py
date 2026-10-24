@@ -29,7 +29,7 @@ class SingingPlans(unittest.TestCase):
     def test_lyric_writer_bounds_invalid_output_retries(self):
         good = '[Verse]\nYou have a question, I am listening\nTake your time and tell me more\n[Chorus]\nWhat is the thing you want to know\nWe can work it out together'
         bad = '[Verse]\nEven if it is just a small, silly tide'
-        for outputs, succeeds, calls in (([good],True,1),([bad,good],True,2),
+        for outputs, succeeds, calls in (([good],True,1),([bad,good],True,2),([good+' (together)',good],True,2),
                                          ([bad,'[Guitar solo]'],False,2)):
             tokenizer=Mock();generate=Mock(side_effect=outputs)
             with tempfile.TemporaryDirectory() as folder,patch('singing_response.cast_singer_reference'), \

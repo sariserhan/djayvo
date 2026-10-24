@@ -1,0 +1,18 @@
+Playing chromium 0
+Playing chromium 1
+Playing chromium 2
+Playing chromium 3
+Playing chromium 4
+Playing chromium 5
+Playing chromium 6
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.evaluate: Error: Playback start timed out: http://127.0.0.1:4249/improvise-finish/noisy-house-ddeabe2bbafc.wav ready=0 network=2 error=undefined
+    at eval (eval at evaluate (:303:30), <anonymous>:1:73)
+    at /private/tmp/jamloom-improvise-finish-browser.mjs:16:25 {
+  log: []
+}
+
+Node.js v22.23.1

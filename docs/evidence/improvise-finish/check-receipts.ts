@@ -6,11 +6,13 @@ import {checkImproviseArrangement} from '../../../apps/site/lib/cloud-songs';
 const root='renders/improvise-finish-20261023';
 const matrix=JSON.parse(readFileSync(root+'/matrix.json','utf8')).filter((r:any)=>r.source!=='claps');
 const percussion=JSON.parse(readFileSync(root+'/percussion.json','utf8'));
-const fresh=JSON.parse(readFileSync(root+'/fresh.json','utf8'));
+const fresh=JSON.parse(readFileSync('renders/improvise-finish-final-20261023/fresh.json','utf8'));
+assert.equal(fresh.length,4);
 let passed=0,rejected=0;
 for(const run of [...matrix,...percussion,...fresh]){
  if(run.technical==='EXPECTED_REJECTION'){rejected++;continue;}
  assert.equal(run.technical,'PASS');
+ if(run.song){const plan=JSON.parse(readFileSync(join(dirname(run.song),'../reply.json'),'utf8'));assert.equal(plan.cases[0].lyric_checks.version,2);}
  const audio=readFileSync(run.audio),sha=createHash('sha256').update(audio).digest('hex');
  const receipt=JSON.parse(readFileSync(join(dirname(run.audio),'complete.json'),'utf8'));
  // Read frames from the PCM data chunk; generated WAVs use the standard 44-byte header.

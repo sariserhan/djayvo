@@ -1,0 +1,35 @@
+{
+  "review": "Coding-agent text inspection of three test phrases; lines relate to their topic. Not a listening or universal grammar gate.",
+  "runs": [
+    {
+      "case": "dance",
+      "seed": 42319,
+      "lyrics": "You lost your keys?  \nStill wanna dance?  \nNo problem, mate.  \nKeys or no, we move.  \nDance! Dance! Dance!",
+      "checks": {
+        "version": 2,
+        "passes": 1,
+        "human_review": "NOT RUN"
+      }
+    },
+    {
+      "case": "question",
+      "seed": 42316,
+      "lyrics": "You got a question?  \nNo problem, just say it.  \nI'm here, no rush.  \nSay it again?  \nYeah, I hear you.  \nWe\u2019ll find a way.",
+      "checks": {
+        "version": 2,
+        "passes": 1,
+        "human_review": "NOT RUN"
+      }
+    },
+    {
+      "case": "turkish",
+      "seed": 42308,
+      "lyrics": "You feeling great today?  \nYeah, let\u2019s dance together.  \nSunshine, laughter, no stress.  \nHow about we do it?  \nYeah, let\u2019s go!",
+      "checks": {
+        "version": 2,
+        "passes": 1,
+        "human_review": "NOT RUN"
+      }
+    }
+  ]
+}
