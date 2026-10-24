@@ -1,0 +1,17 @@
+{
+  "currentRelease": "1.1.0",
+  "releases": [
+    {
+      "version": "1.1.0",
+      "updateTo": {
+        "version": "1.1.0",
+        "url": "https://github.com/sariserhan/jamloom/releases/download/pro-v1.1.0/Jamloom-Pro-1.1.0-macOS.zip",
+        "name": "Jamloom Pro 1.1.0",
+        "notes": "Pro v1: expanded performance console, eight hot cues, beat grids and detachable studio windows.",
+        "pub_date": "2026-10-24T01:54:19.648Z",
+        "sha256": "b1e0b9911c752980f7c6db579c79b9e9f2e56bac9bbc0ee740b21dfc9df69765",
+        "size": 173864252
+      }
+    }
+  ]
+}

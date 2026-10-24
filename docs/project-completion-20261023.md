@@ -26,3 +26,5 @@ Evidence: [completion work](../TODO.md). Historical dated sections below retain 
 ## Pro 1.1.0 candidate
 
 **PASS:** all eight actual signed-app checks, three detachable-window checks, 153 web unit tests, 96 site tests, production build and client-secret/bundle audit. Updated installer includes the expanded console, eight hot cues, beat grids and detachable tools; animation callback preserves timestamps. Signed-app evidence: [report](evidence/project-completion-20261023/pro-signed-app.json). The upgrade harness now reads the target version and preserves the isolated old-app/profile strategy. Apple notarization is underway; public release/update and hosted website verification are pending.
+
+Hosted CI exposed a Python-version mismatch in the Amazon Linux website job: its system Python 3.9 lacks `hashlib.file_digest`, while the model scripts use Python 3.12. The job now installs/runs 3.12 for DNA tests, matching the worker, without changing Amazon Linux's system Python. [AWS runtime documentation](https://docs.aws.amazon.com/linux/al2023/ug/python.html). Initial website CI failed; the Mac app and Academy jobs passed. Full rerun remains pending.

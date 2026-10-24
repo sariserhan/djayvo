@@ -34,7 +34,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Install baseline build-image utilities
-        run: dnf install -y git make python3 python3-pip tar gzip xz findutils
+        run: dnf install -y git make python3 python3-pip python3.12 tar gzip xz findutils
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
@@ -42,7 +42,7 @@ jobs:
         with:
           node-version: '22'
       - name: Check Music DNA contracts without model weights
-        run: python3 -m unittest discover -s tests -p 'test_*dna*.py'
+        run: python3.12 -m unittest discover -s tests -p 'test_*dna*.py'
       - name: Verify SDK bootstrap handles a partial dependency cache
         run: python3 tests/integration/verify_web_sdk.py
       - name: Build website from tracked sources without a prebuilt studio
