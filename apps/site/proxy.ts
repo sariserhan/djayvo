@@ -6,7 +6,7 @@ import {comingSoonEnabled,comingSoonRecovery,comingSoonResponse} from './lib/com
 
 export async function proxy(request: NextRequest) {
   const path=request.nextUrl.pathname;
-  const recovery=/^\/(admin|account|contact|support)(\/|$)/.test(path)||['/maintenance','/api/site-status','/api/contact','/api/notifications','/api/song-jobs','/api/payments/stripe','/api/academy/stripe','/api/pro/stripe','/api/pro/refresh'].includes(path)||path.startsWith('/api/admin/')||path.startsWith('/api/auth/');
+  const recovery=/^\/(admin|account|contact|support)(\/|$)/.test(path)||['/maintenance','/api/maintenance','/api/site-status','/api/contact','/api/notifications','/api/song-jobs','/api/payments/stripe','/api/academy/stripe','/api/pro/stripe','/api/pro/refresh'].includes(path)||path.startsWith('/api/admin/')||path.startsWith('/api/auth/');
   let configured=false;try{readConfig();configured=true;}catch{}
   let launchBypass=false;
   if(comingSoonEnabled()&&!comingSoonRecovery(path)){

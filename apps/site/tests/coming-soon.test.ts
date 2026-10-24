@@ -38,3 +38,11 @@ test('published Live DJ preview is accessible while other product routes remain 
  assert.equal(response.headers.get('x-middleware-next'),'1');
  assert.match(await comingSoonResponse(new Request('https://www.jamloom.com/')).text(),/href="\/live-dj">Download free Basic for Mac/);
 });
+
+// The route still enforces CRON_SECRET and the reviewed database identity.
+test('retention cron reaches its own authorization while launch access stays closed',async()=>{
+ assert.equal(comingSoonRecovery('/api/maintenance'),true);
+ assert.equal(comingSoonRecovery('/api/maintenance/fake'),false);
+ const response=await proxy(new NextRequest('https://www.jamloom.com/api/maintenance'));
+ assert.equal(response.headers.get('x-middleware-next'),'1');
+});
