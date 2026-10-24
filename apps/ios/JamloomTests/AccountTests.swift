@@ -18,6 +18,19 @@ private final class AccountProtocol: URLProtocol {
     override func stopLoading() {}
 }
 @MainActor final class AccountTests: XCTestCase {
+    func testCatalogueSearchUsesPublicRouteWithoutSigningIn() async throws {
+        let transport = transport(), account = AccountModel(transport: transport)
+        defer { transport.session.invalidateAndCancel() }
+        AccountProtocol.handle = { request in
+            XCTAssertEqual(request.url?.path, "/api/music-search"); XCTAssertEqual(request.httpMethod, "POST")
+            XCTAssertNil(request.value(forHTTPHeaderField: "Authorization"))
+            return (200, Data(#"{"suggestions":[{"reference":"Daft Punk","kind":"Artist","metadata":{"reference":"Daft Punk","genre":"Electronic","source":"itunes","id":5468295}},{"reference":"One More Time — Daft Punk","kind":"Track"}]}"#.utf8))
+        }
+        XCTAssertNil(account.snapshot)
+        let result: MusicSearchResult = try await account.transport.request("/api/music-search", method: "POST", body: Data(#"{"query":"Daft Punk"}"#.utf8))
+        XCTAssertEqual(result.suggestions.map(\.kind), ["Artist", "Track"])
+        XCTAssertEqual(result.suggestions.first?.metadata?.source, "itunes"); XCTAssertNil(account.snapshot)
+    }
     func testCloudDownloadFollowsOnlySignedSongStorageWithoutCredentials() async throws {
         let transport = transport(); defer { transport.session.invalidateAndCancel(); AccountProtocol.headers = ["Content-Type": "application/json"] }
         let id = String(repeating: "b", count: 32), data = try CloudRecording.wav(AudioInput(samples: [Float](repeating: 0.1, count: 48000), rate: 48000), start: 0, end: 1)

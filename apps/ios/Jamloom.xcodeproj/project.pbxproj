@@ -53,8 +53,10 @@
 		D5F8B6F0C944C5D6AF62F3E3 /* full_band_interpolation.inc in Resources */ = {isa = PBXBuildFile; fileRef = E3F8BB997819B3B7E8D19081 /* full_band_interpolation.inc */; };
 		DDA9AE42432EF06BC449726F /* remix_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A4AD63A92EB27D0BE63A921 /* remix_renderer.cpp */; };
 		E5FC49CC280317B13A61C625 /* DJDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711C5E29451A1F38F39D291 /* DJDeck.swift */; };
+		EA1071E2D3D02DAE077751A5 /* YouTubeFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B384EBAF464D2E904ACCD9 /* YouTubeFavorites.swift */; };
 		EA397E2A38B903C6ADD6C302 /* c_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 349507E6CB1B4CAF64C016D2 /* c_api.cpp */; };
 		EADCB3454AFC675C2FF24488 /* LocalCredits.storekit in Resources */ = {isa = PBXBuildFile; fileRef = EA3023065583600FBCEF3071 /* LocalCredits.storekit */; };
+		F2D4FE7C86834CA110743642 /* YouTubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864A01ACFE0F319042F9F05 /* YouTubeTests.swift */; };
 		F2E6D213AB1C32C13D2EEF23 /* StudioServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC0A3578A8991E5DEF6503A /* StudioServer.swift */; };
 		FBCEC495F16BF2409E06070F /* AppleMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F06F88AE491AA4BE88A4FBC /* AppleMusicTests.swift */; };
 		FDBB60E7CEA0BAFCB273A8ED /* RemixEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6759756AEC3E73B056A85E2 /* RemixEngine.swift */; };
@@ -96,6 +98,7 @@
 		4E104CA55FFE73815BFB8771 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		52F047FEAC97E68B7223E5F6 /* CloudImprovise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudImprovise.swift; sourceTree = "<group>"; };
 		599320B94B8B3C60346D5875 /* session.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = session.cpp; sourceTree = "<group>"; };
+		59B384EBAF464D2E904ACCD9 /* YouTubeFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeFavorites.swift; sourceTree = "<group>"; };
 		6008279FB014E3E2C600ACE2 /* MobileAudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAudioTests.swift; sourceTree = "<group>"; };
 		676104D5CE7DBA493DBF322E /* licenses */ = {isa = PBXFileReference; lastKnownFileType = folder; name = licenses; path = ../../assets/licenses; sourceTree = SOURCE_ROOT; };
 		6C8269766F62E5CE20BEF623 /* synth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = synth.h; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 		7F3D1A759500C8151936462F /* Studio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Studio; path = "../../build-ios-studio/Studio"; sourceTree = SOURCE_ROOT; };
 		83B30E6BC18016D1AD3A2426 /* TasteCatalogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteCatalogue.swift; sourceTree = "<group>"; };
 		8711C5E29451A1F38F39D291 /* DJDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJDeck.swift; sourceTree = "<group>"; };
+		8864A01ACFE0F319042F9F05 /* YouTubeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeTests.swift; sourceTree = "<group>"; };
 		8E3764675A02ECC77FCB18D7 /* analysis.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = analysis.cpp; sourceTree = "<group>"; };
 		917F5B7E0A4EDD7D8CA8C490 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		97D63F9E78BE8A4E9C10828F /* MusicDNA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDNA.swift; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 				2246AE44A64358577B0C3E29 /* RemixTests.swift */,
 				7E7898394A1CA5697717DA10 /* StudioServerTests.swift */,
 				102524A2E8C6A45767B51DFA /* TasteTests.swift */,
+				8864A01ACFE0F319042F9F05 /* YouTubeTests.swift */,
 			);
 			path = JamloomTests;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				AFC0A3578A8991E5DEF6503A /* StudioServer.swift */,
 				83B30E6BC18016D1AD3A2426 /* TasteCatalogue.swift */,
 				25F31AC2FFEB8CFE139F4EDF /* TasteRender.swift */,
+				59B384EBAF464D2E904ACCD9 /* YouTubeFavorites.swift */,
 			);
 			path = Jamloom;
 			sourceTree = "<group>";
@@ -483,6 +489,7 @@
 				F2E6D213AB1C32C13D2EEF23 /* StudioServer.swift in Sources */,
 				BD48F2F523EE0F3B3FB96539 /* TasteCatalogue.swift in Sources */,
 				8F7A55CB236A88FA1553BA73 /* TasteRender.swift in Sources */,
+				EA1071E2D3D02DAE077751A5 /* YouTubeFavorites.swift in Sources */,
 				9594ED6B246734DDD9648325 /* analysis.cpp in Sources */,
 				EA397E2A38B903C6ADD6C302 /* c_api.cpp in Sources */,
 				78F568894949291040BD4A6E /* demo.cpp in Sources */,
@@ -521,6 +528,7 @@
 				1331031A07F060E981933E67 /* RemixTests.swift in Sources */,
 				8E8E73993328B394DF69C825 /* StudioServerTests.swift in Sources */,
 				AFDE0493993178A9E7F5D562 /* TasteTests.swift in Sources */,
+				F2D4FE7C86834CA110743642 /* YouTubeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +600,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -608,7 +616,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../core/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.6.0;
+				MARKETING_VERSION = 0.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -676,7 +684,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -698,7 +706,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../core/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.6.0;
+				MARKETING_VERSION = 0.7.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

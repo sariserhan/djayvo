@@ -17,7 +17,7 @@ struct AppleMusicPage: Decodable {
             let genreNames: [String]?
             let inFavorites: Bool?
         }
-        struct Related: Decodable { let data: [Entry] }
+        struct Related: Decodable { let data: [Entry]? }
         let type: String
         let attributes: Attributes?
         let relationships: [String: Related]?
@@ -51,7 +51,7 @@ struct AppleMusicPage: Decodable {
             let reference = (artist ? item.name : "\(item.name) — \(item.artistName ?? "")").trimmingCharacters(in: .whitespacesAndNewlines)
             guard !item.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, !reference.isEmpty, reference.utf16.count <= 160, reference.rangeOfCharacter(from: .controlCharacters) == nil,
                   artist || !(item.artistName?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true) else { skipped += 1; continue }
-            let genre = (item.genreNames ?? entry.relationships?["catalog"]?.data.first?.attributes?.genreNames)?.first { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && $0.utf16.count <= 80 && $0.rangeOfCharacter(from: .controlCharacters) == nil }
+            let genre = (item.genreNames ?? entry.relationships?["catalog"]?.data?.first?.attributes?.genreNames)?.first { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && $0.utf16.count <= 80 && $0.rangeOfCharacter(from: .controlCharacters) == nil }
             favorites.append(AppleMusicFavorite(reference: reference, genre: genre, artist: artist))
         }
         return (page, favorites, skipped)

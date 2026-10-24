@@ -22,6 +22,8 @@ final class AppleMusicTests: XCTestCase {
         XCTAssertThrowsError(try AppleMusicPage.decode(Data(repeating: 0, count: 4 * 1024 * 1024 + 1), kind: "songs"))
         let invalidName = try AppleMusicPage.decode(Data(#"{"data":[{"type":"library-songs","attributes":{"name":" ","artistName":"Artist","inFavorites":true}}]}"#.utf8), kind: "songs")
         XCTAssertTrue(invalidName.1.isEmpty); XCTAssertEqual(invalidName.2, 1)
+        let linksOnly = try AppleMusicPage.decode(Data(#"{"data":[{"type":"library-songs","attributes":{"name":"Tune","artistName":"Artist","inFavorites":true},"relationships":{"catalog":{"href":"/v1/catalog/us/songs/1"},"artists":{"href":"/v1/me/library/artists"}}}]}"#.utf8), kind: "songs")
+        XCTAssertEqual(linksOnly.1, [AppleMusicFavorite(reference: "Tune — Artist", genre: nil, artist: false)])
     }
     func testMergePreservesExistingPreferencesDeduplicatesAndEnforcesCapacity() throws {
         var original = TasteProfile(); original.references = ["BJORK"]

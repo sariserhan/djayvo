@@ -76,13 +76,82 @@ final class FlowTests: XCTestCase {
         XCTAssertEqual(app.switches["Send this clip for cloud processing"].value as? String, "0")
         let image = XCTAttachment(screenshot: app.screenshot()); image.name = "Explicit cloud consent"; image.lifetime = .keepAlways; add(image)
     }
+    // Live provider check: run explicitly against the published names-only search API.
+    func testLiveFavoriteAutocompleteWithoutAnAccount() {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
+        app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
+        app.launch(); app.buttons["Music DNA"].firstMatch.tap()
+        let field = app.textFields["dnaSearch"]
+        XCTAssertTrue(field.waitForExistence(timeout: 15)); waitUntilEnabled(field)
+        field.tap(); field.typeText("Daft Punk")
+        let artist = app.buttons["dnaSuggestion-Daft Punk"]
+        XCTAssertTrue(artist.waitForExistence(timeout: 30)); XCTAssertEqual(app.alerts.count, 0)
+        let screenshot = XCTAttachment(screenshot: app.screenshot()); screenshot.name = "Live account-free artist and song suggestions"; screenshot.lifetime = .keepAlways; add(screenshot)
+        artist.tap()
+        XCTAssertTrue(NSPredicate(format: "value != %@", "Daft Punk").evaluate(with: field))
+        field.tap(); field.typeText("Daft Punk")
+        let track = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@ AND identifier CONTAINS %@", "dnaSuggestion-", " — ")).firstMatch
+        XCTAssertTrue(track.waitForExistence(timeout: 30)); let reference = String(track.identifier.dropFirst("dnaSuggestion-".count))
+        track.tap()
+        app.terminate(); app.launch(); app.buttons["Music DNA"].firstMatch.tap()
+        let favorites = app.textViews["Favourite tracks and artists"]
+        XCTAssertTrue(favorites.waitForExistence(timeout: 15)); waitUntilEnabled(favorites)
+        XCTAssertEqual(favorites.value as? String, "Daft Punk\n\(reference)")
+        XCTAssertEqual(app.alerts.count, 0)
+    }
+    // Live public one-song playlist: run explicitly against the published import API.
+    func testLiveYouTubePlaylistImportWithoutAnAccount() {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
+        app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
+        app.launch(); app.buttons["Music DNA"].firstMatch.tap()
+        let search = app.textFields["dnaSearch"]
+        XCTAssertTrue(search.waitForExistence(timeout: 15)); waitUntilEnabled(search)
+        let button = app.buttons["youtubeMusicFavorites"]
+        for _ in 0..<6 { if button.isHittable { break }; app.swipeUp() }
+        button.tap()
+        let field = app.textFields["youtubePlaylistLink"]
+        XCTAssertTrue(field.waitForExistence(timeout: 10)); field.tap()
+        field.typeText("https://music.youtube.com/playlist?list=OLAK5uy_nwYsan9TcbkjHCOv-tt49-WVSivyoYaoU")
+        app.buttons["checkYouTubePlaylist"].tap()
+        let addSongs = app.buttons["addYouTubeFavorites"]
+        XCTAssertTrue(addSongs.waitForExistence(timeout: 90)); XCTAssertTrue(addSongs.isHittable)
+        XCTAssertTrue(app.staticTexts["MATHEMATICS — Jace Davey"].exists)
+        XCTAssertEqual(app.alerts.count, 0)
+        let screenshot = XCTAttachment(screenshot: app.screenshot()); screenshot.name = "Live YouTube Music matched playlist"; screenshot.lifetime = .keepAlways; add(screenshot)
+        addSongs.tap()
+        app.terminate(); app.launch(); app.buttons["Music DNA"].firstMatch.tap()
+        let favorites = app.textViews["Favourite tracks and artists"]
+        XCTAssertTrue(favorites.waitForExistence(timeout: 15)); waitUntilEnabled(favorites)
+        XCTAssertEqual(favorites.value as? String, "MATHEMATICS — Jace Davey")
+    }
+    func testYouTubeImportRequiresAnExplicitValidPlaylist() {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
+        app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
+        app.launch(); app.buttons["Music DNA"].firstMatch.tap()
+        let search = app.textFields["dnaSearch"]
+        XCTAssertTrue(search.waitForExistence(timeout: 15)); waitUntilEnabled(search)
+        let button = app.buttons["youtubeMusicFavorites"]
+        for _ in 0..<6 { if button.isHittable { break }; app.swipeUp() }
+        button.tap()
+        let field = app.textFields["youtubePlaylistLink"], check = app.buttons["checkYouTubePlaylist"]
+        XCTAssertTrue(field.waitForExistence(timeout: 10)); XCTAssertFalse(check.isEnabled)
+        XCTAssertFalse(app.staticTexts["youtubeImportStatus"].exists)
+        field.tap(); field.typeText("https://example.com/playlist?list=PL1234567890"); check.tap()
+        XCTAssertTrue(app.staticTexts["youtubeImportStatus"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["youtubeImportStatus"].label, "Paste a public or unlisted YouTube Music playlist link.")
+        XCTAssertFalse(app.buttons["addYouTubeFavorites"].exists); XCTAssertEqual(app.alerts.count, 0)
+        let image = XCTAttachment(screenshot: app.screenshot()); image.name = "YouTube Music playlist import"; image.lifetime = .keepAlways; add(image)
+        app.buttons["Cancel"].tap(); XCTAssertTrue(button.waitForExistence(timeout: 5))
+    }
     func testAppleMusicImportPreviewRequiresExplicitConnection() {
         let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
         app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
         app.launch(); app.buttons["Music DNA"].firstMatch.tap()
+        let search = app.textFields["dnaSearch"]
+        XCTAssertTrue(search.waitForExistence(timeout: 15)); waitUntilEnabled(search)
         let button = app.buttons["appleMusicFavorites"]
-        XCTAssertTrue(button.waitForExistence(timeout: 15)); waitUntilEnabled(button)
-        for _ in 0..<4 { if button.isHittable { break }; app.swipeUp() }
+        for _ in 0..<6 { if button.isHittable { break }; app.swipeUp() }
+        XCTAssertTrue(button.exists); waitUntilEnabled(button)
         button.tap()
         XCTAssertTrue(app.buttons["loadAppleFavorites"].waitForExistence(timeout: 10))
         XCTAssertFalse(app.staticTexts["appleFavoritesStatus"].exists)
@@ -97,10 +166,10 @@ final class FlowTests: XCTestCase {
         app.launch(); app.buttons["Music DNA"].firstMatch.tap()
         let references = app.textViews["Favourite tracks and artists"]
         XCTAssertTrue(references.waitForExistence(timeout: 15)); waitUntilEnabled(references)
-        app.swipeUp(); references.tap(); references.typeText("A favorite song — Artist")
+        for _ in 0..<4 { if references.isHittable { break }; app.swipeUp() }; references.tap(); references.typeText("A favorite song — Artist")
         app.buttons["Done editing"].tap()
         let create = app.buttons["cloudDNA"]
-        for _ in 0..<5 { if create.isHittable { break }; app.swipeDown() }
+        for _ in 0..<5 { if create.isHittable { break }; app.swipeUp() }
         create.tap()
         XCTAssertTrue(app.buttons["Sign in"].waitForExistence(timeout: 15))
         XCTAssertEqual(app.switches["Use these favorites for cloud generation"].value as? String, "0")

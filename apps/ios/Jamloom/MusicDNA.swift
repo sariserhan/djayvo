@@ -60,6 +60,19 @@ struct TasteProfile: Codable, Equatable, Sendable {
         songPreferences = songPreferences?.filter { selected.contains($0.reference) }
         referenceMetadata = referenceMetadata?.filter { selected.contains($0.reference) }
     }
+    func adding(_ songs: [MusicSuggestion]) throws -> (TasteProfile, Int) {
+        var value = self, added = 0, metadata = referenceMetadata ?? []
+        var seen = Set(references.map { $0.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: Locale(identifier: "en_US_POSIX")) })
+        for song in songs {
+            let key = song.reference.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: Locale(identifier: "en_US_POSIX"))
+            guard seen.insert(key).inserted else { continue }
+            guard value.references.count < Self.maximumReferences else { throw RemixError.message("This import would exceed 5,000 favorites. Remove some names first.") }
+            value.references.append(song.reference); added += 1
+            if let item = song.metadata { metadata.append(item) }
+        }
+        if !metadata.isEmpty { value.referenceMetadata = metadata }
+        try value.validate(); return (value, added)
+    }
     static func location() throws -> URL { try RemixLibrary.application().root.appendingPathComponent("taste-profile.json") }
     func save(to url: URL) throws {
         try validate()
@@ -85,10 +98,12 @@ struct MusicDNAView: View {
     @State private var showAccount = false
     @State private var showCloud = false
     @State private var showAppleMusic = false
+    @State private var showYouTubeMusic = false
     @State private var search = ""
     @State private var suggestions: [MusicSuggestion] = []
     @State private var searching = false
-    private enum InputField: Hashable { case references, search }
+    @State private var searchMessage = ""
+    private enum InputField: Hashable { case references, search, catalogue }
     @FocusState private var activeInput: InputField?
     @State private var catalogueSearch = ""
     @State private var seconds = 60
@@ -100,12 +115,31 @@ struct MusicDNAView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
-                    Label("Find your sound", systemImage: "waveform.path").font(.title2.bold())
-                    Text("Choose a mood. Pick your instruments. Play.").foregroundStyle(.secondary)
-                    DisclosureGroup("About local previews") {
-                        Text("Favourite song names are personal notes. Local previews use your controls; they do not analyze or download those songs.").font(.footnote)
+                Section("Search songs and artists") {
+                    HStack {
+                        Image(systemName: "magnifyingglass").foregroundStyle(.secondary)
+                        TextField("Start typing a song or artist…", text: $search)
+                            .focused($activeInput, equals: .search).submitLabel(.done).onSubmit { activeInput = nil }.autocorrectionDisabled().textInputAutocapitalization(.never)
+                            .accessibilityLabel("Search songs and artists").accessibilityIdentifier("dnaSearch")
+                        if !search.isEmpty { Button { search = "" } label: { Image(systemName: "xmark.circle.fill") }.buttonStyle(.plain).accessibilityLabel("Clear song or artist search") }
                     }
+                    Text("Suggestions from iTunes · No Apple Music account needed").font(.caption).foregroundStyle(.secondary)
+                    if searching { ProgressView("Finding matches…") }
+                    ForEach(suggestions, id: \.reference) { result in
+                        Button { addFavorite(result) } label: {
+                            HStack {
+                                Image(systemName: result.kind == "Artist" ? "person.circle.fill" : "music.note")
+                                VStack(alignment: .leading) { Text(result.reference); Text([result.kind, result.metadata?.genre].compactMap { $0 }.joined(separator: " · ")).font(.caption).foregroundStyle(.secondary) }
+                                Spacer(); Image(systemName: profile.references.contains(result.reference) ? "checkmark.circle.fill" : "plus.circle.fill")
+                            }
+                        }.accessibilityIdentifier("dnaSuggestion-\(result.reference)")
+                            .disabled(profile.references.contains(result.reference))
+                    }
+                    if !searchMessage.isEmpty { Text(searchMessage).font(.footnote).accessibilityIdentifier("dnaSearchStatus") }
+                }
+                Section("Favourite tracks and artists — one per line") {
+                    Text("\(references.split(separator: "\n").count) / 5,000 favorites").font(.caption)
+                    TextEditor(text: $references).focused($activeInput, equals: .references).frame(minHeight: 100).accessibilityLabel("Favourite tracks and artists")
                 }
                 Section("Your next song") {
                     Button("Create a Music DNA song", systemImage: "sparkles") {
@@ -117,39 +151,17 @@ struct MusicDNAView: View {
                         ForEach(TasteProfile.languages.keys.sorted(), id: \.self) { Text(TasteProfile.languages[$0] ?? $0).tag($0) }
                     }
                 }
-                Section {
+                Section("Import favorites") {
+                    Button("Import YouTube Music playlist", systemImage: "play.rectangle.fill") {
+                        activeInput = nil; profile.setReferences(references); showYouTubeMusic = true
+                    }.accessibilityIdentifier("youtubeMusicFavorites")
                     Button("Import Apple Music favorites", systemImage: "music.note.list") {
                         activeInput = nil; profile.setReferences(references); showAppleMusic = true
                     }.accessibilityIdentifier("appleMusicFavorites")
                 }
-                Section("Find a favorite") {
-                    HStack {
-                        TextField("Song or artist", text: $search).accessibilityIdentifier("dnaSearch")
-                        Button("Search", systemImage: "magnifyingglass") { Task { await findFavorites() } }
-                            .disabled(search.trimmingCharacters(in: .whitespacesAndNewlines).count < 2 || searching)
-                    }
-                    if searching { ProgressView() }
-                    ForEach(suggestions, id: \.reference) { result in
-                        Button {
-                            profile.setReferences(references)
-                            guard profile.references.count < TasteProfile.maximumReferences else { message = "Your list already has 5,000 favorites."; return }
-                            if !profile.references.contains(result.reference) { profile.references.append(result.reference) }
-                            if let metadata = result.metadata {
-                                profile.referenceMetadata = (profile.referenceMetadata ?? []).filter { $0.reference != result.reference } + [metadata]
-                            }
-                            references = profile.references.joined(separator: "\n"); suggestions = []; search = ""
-                        } label: {
-                            HStack { Image(systemName: "plus.circle.fill"); VStack(alignment: .leading) { Text(result.reference); Text(result.metadata?.genre ?? result.kind).font(.caption).foregroundStyle(.secondary) } }
-                        }
-                    }
-                }
-                Section("Favourite tracks and artists — one per line") {
-                    Text("\(references.split(separator: "\n").count) / 5,000 favorites").font(.caption)
-                    TextEditor(text: $references).focused($activeInput, equals: .references).frame(minHeight: 100).accessibilityLabel("Favourite tracks and artists")
-                }
                 Section {
                     DisclosureGroup("Choose catalogue references") {
-                    TextField("Search title or artist", text: $catalogueSearch).focused($activeInput, equals: .search)
+                    TextField("Search title or artist", text: $catalogueSearch).focused($activeInput, equals: .catalogue)
                     ForEach(TasteCatalogue.tracks.filter { catalogueSearch.isEmpty || "\($0.title) \($0.artist)".localizedCaseInsensitiveContains(catalogueSearch) }) { track in
                         VStack(alignment: .leading) {
                             Text("\(track.title) — \(track.artist)")
@@ -247,17 +259,22 @@ struct MusicDNAView: View {
                 Section("Availability") {
                     Text("Local instrumental previews work on this device. Cloud Music DNA and Improvise use the same services as the website when available. Mix your tracks in DJ Deck. Credit purchases remain closed.")
                 }
-            }.scrollDismissesKeyboard(.interactively).disabled(account.busy || !profileLoaded).navigationTitle("My Music DNA").preferredColorScheme(.dark).tint(.mint)
+            }.scrollDismissesKeyboard(.interactively).disabled(account.busy || !profileLoaded).navigationTitle("My Music DNA").navigationBarTitleDisplayMode(.inline).preferredColorScheme(.dark).tint(.mint)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) { Button("Account", systemImage: "person.crop.circle") { model.suspendAudio(cancelRender: false); showAccount = true } }
-                    ToolbarItemGroup(placement: .keyboard) { Spacer(); Button("Done editing") { activeInput = nil } }
+                    ToolbarItemGroup(placement: .keyboard) { if activeInput == .references { Spacer(); Button("Done editing") { activeInput = nil } } }
                 }
                 .sheet(isPresented: $showAccount) { AccountView(account: account) }
                 .sheet(isPresented: $showAppleMusic) { AppleMusicFavoritesView(profile: profile) { value, added in
                     try value.save(to: TasteProfile.location()); profile = value; references = value.references.joined(separator: "\n")
                     message = "Added \(added) Apple Music favorites on this device."
                 } }
+                .sheet(isPresented: $showYouTubeMusic) { YouTubeFavoritesView(transport: account.transport, profile: profile) { value, added in
+                    try value.save(to: TasteProfile.location()); profile = value; references = value.references.joined(separator: "\n")
+                    message = "Added \(added) matched playlist songs on this device."
+                } }
                 .sheet(isPresented: $showCloud) { CloudDNAView(cloud: cloud, account: account, model: model, profile: profile) }
+                .task(id: search) { await findFavorites(query: search) }
                 .onChange(of: references) { _, _ in cloud.tasteChanged() }
                 .onChange(of: profile) { _, _ in cloud.tasteChanged() }
                 .onDisappear { model.suspendAudio(cancelRender: true) }
@@ -270,14 +287,34 @@ struct MusicDNAView: View {
                 } catch { message = "Saved profile could not be read. Delete it to start again." } }
         }
     }
-    private func findFavorites() async {
-        searching = true; defer { searching = false }
+    private func findFavorites(query: String) async {
+        suggestions = []; searchMessage = ""; searching = false
+        let typed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard typed.utf16.count >= 2 else { return }
+        guard typed.utf16.count <= 160, typed.rangeOfCharacter(from: .controlCharacters) == nil else { searchMessage = "Enter up to 160 characters."; return }
+        searching = true
+        defer { if !Task.isCancelled, search == query { searching = false } }
         do {
-            let response: MusicSearchResult = try await account.transport.request("/api/music-search", method: "POST", body: JSONSerialization.data(withJSONObject: ["query": search]))
-            guard response.suggestions.count <= 100 else { throw URLError(.cannotParseResponse) }
-            for result in response.suggestions { var check = TasteProfile(); check.references = [result.reference]; check.referenceMetadata = result.metadata.map { [$0] }; try check.validate() }
-            suggestions = response.suggestions; message = suggestions.isEmpty ? "No matches. You can enter a name yourself." : ""
-        } catch { message = "Search is unavailable. You can enter your favorites below." }
+            try await Task.sleep(nanoseconds: 400_000_000)
+            let response: MusicSearchResult = try await account.transport.request("/api/music-search", method: "POST", body: JSONSerialization.data(withJSONObject: ["query": typed]))
+            try Task.checkCancellation()
+            guard search == query else { return }
+            suggestions = Array(try response.validated().prefix(16))
+            searchMessage = suggestions.isEmpty ? "No matches. You can enter a name below." : ""
+        } catch {
+            guard !Task.isCancelled, search == query else { return }
+            searchMessage = "Search is unavailable. Try again or enter a name below."
+        }
+    }
+    private func addFavorite(_ result: MusicSuggestion) {
+        do {
+            var updated = profile; updated.setReferences(references)
+            guard updated.references.count < TasteProfile.maximumReferences else { searchMessage = "Your list already has 5,000 favorites."; return }
+            updated = try updated.adding([result]).0
+            try updated.save(to: TasteProfile.location())
+            profile = updated; references = updated.references.joined(separator: "\n"); suggestions = []; search = ""; activeInput = nil
+            message = "Favorite saved on this device."
+        } catch { searchMessage = "The favorite could not be saved. Check your list and try again." }
     }
     private var energyPicker: some View {
         Picker("Energy", selection: $profile.energy) { ForEach(["gentle", "balanced", "intense"], id: \.self) { Text($0.capitalized).tag($0) } }
@@ -285,7 +322,17 @@ struct MusicDNAView: View {
 }
 
 struct MusicSuggestion: Decodable { let reference: String; let kind: String; let metadata: TasteReferenceMetadata? }
-struct MusicSearchResult: Decodable { let suggestions: [MusicSuggestion] }
+struct MusicSearchResult: Decodable {
+    let suggestions: [MusicSuggestion]
+    func validated() throws -> [MusicSuggestion] {
+        guard suggestions.count <= 100, Set(suggestions.map(\.reference)).count == suggestions.count else { throw URLError(.cannotParseResponse) }
+        for result in suggestions {
+            var check = TasteProfile(); check.references = [result.reference]; check.referenceMetadata = result.metadata.map { [$0] }; try check.validate()
+            guard ["Artist", "Track"].contains(result.kind), result.reference.rangeOfCharacter(from: .controlCharacters) == nil else { throw URLError(.cannotParseResponse) }
+        }
+        return suggestions
+    }
+}
 
 struct CloudDNAView: View {
     @ObservedObject var cloud: CloudSongModel

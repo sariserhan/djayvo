@@ -42,6 +42,10 @@ Simulator tests use local ad-hoc signing so StoreKit sees the correct bundle ide
 this does not use a distribution certificate or contact App Store Connect.
 The same checks are available through `sh scripts/ios_smoke.sh` after setting
 `JAMLOOM_SIMULATOR_ID`; `JAMLOOM_IOS_OUTPUT` may select a fresh evidence directory.
+The smoke script skips the two `testLiveFavoriteAutocompleteWithoutAnAccount` and
+`testLiveYouTubePlaylistImportWithoutAnAccount` UI checks. Run those explicitly with
+`-only-testing:JamloomUITests/FlowTests/<test name>` against the published service;
+they require internet and available public catalogue/playlist data.
 The Release audit also verifies privacy declarations, licenses, catalogue metadata and absence of
 Debug controls/recordings/StoreKit fixtures. Use a new result path each run. Tests exercise real render/export/hashes,
 consent, bounds, cancellation, recovery, persistence, tamper rejection and

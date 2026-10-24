@@ -36,6 +36,9 @@ final class AccountTransport: NSObject, URLSessionTaskDelegate, @unchecked Senda
         return url.url!
     }
     func request<T: Decodable>(_ path: String, method: String = "GET", body: Data? = nil, query: [String: String] = [:]) async throws -> T {
+        try JSONDecoder().decode(T.self, from: await requestData(path, method: method, body: body, query: query))
+    }
+    func requestData(_ path: String, method: String = "GET", body: Data? = nil, query: [String: String] = [:]) async throws -> Data {
         let limit = ["/api/taste", CloudSongProduct.musicDNA.path].contains(path) ? TasteProfile.maximumBytes : 65536
         guard (body?.count ?? 0) <= limit else { throw RemixError.message("Account request is too large.") }
         var request = URLRequest(url: try requestURL(path, query: query))
@@ -60,10 +63,10 @@ final class AccountTransport: NSObject, URLSessionTaskDelegate, @unchecked Senda
         }
         guard http.statusCode == 200 || (song && http.statusCode == 202) else {
             let message = (try? JSONDecoder().decode(Failure.self, from: data).error) ?? "Song service unavailable. Check your song before trying again."
-            if song { throw SongRequestError(status: http.statusCode, message: message) }
+            if song || ["/api/music-search", "/api/playlist-import"].contains(path) { throw SongRequestError(status: http.statusCode, message: message) }
             throw RemixError.message("Account service unavailable. Try again later.")
         }
-        return try JSONDecoder().decode(T.self, from: data)
+        return data
     }
     func songAudio(_ id: String, product: CloudSongProduct = .improvise) async throws -> URL {
         let url = try requestURL(product.path, query: ["id": id, "file": "audio"])
