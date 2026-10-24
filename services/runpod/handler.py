@@ -41,8 +41,27 @@ def failure_location(work):
             return f"{failure['stage']}-exit-{failure['returncode']}"
     except (OSError,ValueError,TypeError):
         pass
-    for stage in ('fit-retry', 'fit', 'singer', 'planner', 'private'):
-        path = work/(stage+'.log')
+    logs = [(stage,work/(stage+'.log')) for stage in ('fit-retry', 'fit', 'singer', 'planner', 'private')]
+    for path in (work/'improvise').glob('*/failure.json'):
+        try:
+            failure=json.loads(path.read_text())
+            stage,filename={
+                'Preparing the recording':('source',None),
+                'Understanding the recording':('transcription','understand-private.log'),
+                'Finding usable parts of the recording':('selection',None),
+                'Writing the lyrics':('lyrics','draft-private.log'),
+                'Generating the singer and music':('singing','render-private.log'),
+                'Finding room for your sound':('separation','separate-private.log'),
+                'Blending your sound into the song':('arrangement',None),
+            }[failure['stage']]
+            if filename is None:return 'improvise-'+stage
+            logs.insert(0,('improvise-'+stage,path.parent/filename))
+            break
+        except (OSError,ValueError,TypeError,KeyError):
+            continue
+    for stage,path in logs:
+        if stage.startswith('improvise-') and not path.exists():
+            return stage
         if path.exists():
             with path.open('rb') as log:
                 log.seek(max(0, path.stat().st_size-32768))
