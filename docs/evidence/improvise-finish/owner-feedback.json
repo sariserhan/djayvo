@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "scope": "First four final local songs: singing, recording blend and lyric meaning. Acoustic uses Turkish input and an English sung reply. Not a review of future cloud outputs or every possible input.",
+  "question": "Do the singing and recording blend sound natural, and do the lyrics make sense?",
+  "owner_response": "All four sound good and make sense",
+  "review_url": "http://127.0.0.1:4249/improvise-finish/",
+  "songs": [
+    {
+      "label": "reggae-question",
+      "performance_sha256": "b53b62b4a8a775e566ab29d90aa8f53e94a22ce218a3eb47f0f3382307d6c2ce"
+    },
+    {
+      "label": "jazz-coffee",
+      "performance_sha256": "883ed4331ef8603e06b44ad617bdfc94dfd75593d3b18d88f4a5fe8a8891fb34"
+    },
+    {
+      "label": "edm-dance",
+      "performance_sha256": "3f4c6a2a2221934612b3667385d8a57d24510ca7b1ad377d4e0279d9fcdd7b23"
+    },
+    {
+      "label": "acoustic-turkish",
+      "performance_sha256": "a37caecdcf3af34712e9ba68b1d93c17c348bdc881fe5e3c59c3927a8063842b"
+    }
+  ]
+}
