@@ -1,0 +1,200 @@
+{
+  "initial": {
+    "audible_pass": 135,
+    "silence_rejected": 23,
+    "failures": [
+      {
+        "source": "claps",
+        "genre": "drumandbass",
+        "errors": [
+          "No safe source-inclusive arrangement; do not deliver the song without the recording"
+        ]
+      },
+      {
+        "source": "claps",
+        "genre": "dj",
+        "errors": [
+          "No safe source-inclusive arrangement; do not deliver the song without the recording"
+        ]
+      },
+      {
+        "source": "claps",
+        "genre": "lofi",
+        "errors": [
+          "No safe source-inclusive arrangement; do not deliver the song without the recording"
+        ]
+      }
+    ]
+  },
+  "final": {
+    "audible_pass": 138,
+    "genres": 23,
+    "audible_sources": 6,
+    "silence_rejections": 23,
+    "percussion_rerun": [
+      {
+        "genre": "reggae",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/reggae/mix-0/performance.wav",
+        "pattern": "returning-hook"
+      },
+      {
+        "genre": "hiphop",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/hiphop/mix-0/performance.wav",
+        "pattern": "returning-hook"
+      },
+      {
+        "genre": "funk",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/funk/mix-0/performance.wav",
+        "pattern": "single-call"
+      },
+      {
+        "genre": "house",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/house/mix-0/performance.wav",
+        "pattern": "beat-fitted"
+      },
+      {
+        "genre": "disco",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/disco/mix-0/performance.wav",
+        "pattern": "beat-fitted"
+      },
+      {
+        "genre": "rnb",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/rnb/mix-0/performance.wav",
+        "pattern": "single-call"
+      },
+      {
+        "genre": "soul",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/soul/mix-0/performance.wav",
+        "pattern": "single-call"
+      },
+      {
+        "genre": "afrobeats",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/afrobeats/mix-0/performance.wav",
+        "pattern": "returning-hook"
+      },
+      {
+        "genre": "latinpop",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/latinpop/mix-0/performance.wav",
+        "pattern": "beat-fitted"
+      },
+      {
+        "genre": "drumandbass",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/drumandbass/mix-0/performance.wav",
+        "pattern": "single-call"
+      },
+      {
+        "genre": "acousticpop",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/acousticpop/mix-0/performance.wav",
+        "pattern": "single-call"
+      },
+      {
+        "genre": "rock",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/rock/mix-0/performance.wav",
+        "pattern": "beat-fitted"
+      },
+      {
+        "genre": "edm",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/edm/mix-0/performance.wav",
+        "pattern": "beat-fitted"
+      },
+      {
+        "genre": "dj",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/dj/mix-0/performance.wav",
+        "pattern": "single-call"
+      },
+      {
+        "genre": "lofi",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/lofi/mix-0/performance.wav",
+        "pattern": "returning-hook"
+      },
+      {
+        "genre": "jazz",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/jazz/mix-0/performance.wav",
+        "pattern": "beat-fitted"
+      },
+      {
+        "genre": "blues",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/blues/mix-0/performance.wav",
+        "pattern": "beat-fitted"
+      },
+      {
+        "genre": "rap",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/rap/mix-0/performance.wav",
+        "pattern": "rhythmic-loop"
+      },
+      {
+        "genre": "chill",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/chill/mix-0/performance.wav",
+        "pattern": "returning-hook"
+      },
+      {
+        "genre": "indie",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/indie/mix-0/performance.wav",
+        "pattern": "single-call"
+      },
+      {
+        "genre": "techno",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/techno/mix-0/performance.wav",
+        "pattern": "beat-fitted"
+      },
+      {
+        "genre": "synthwave",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/synthwave/mix-0/performance.wav",
+        "pattern": "rhythmic-loop"
+      },
+      {
+        "genre": "country",
+        "technical": "PASS",
+        "errors": [],
+        "audio": "/Users/serhansari/Documents/projects/jamloom/renders/improvise-finish-20261023/percussion/country/mix-0/performance.wav",
+        "pattern": "beat-fitted"
+      }
+    ]
+  },
+  "listening": "NOT RUN for these automatic mixes",
+  "source_note": "One authorized human recording; synthetic English/Turkish/noisy speech and generated claps. Not broad human-speaker evidence."
+}

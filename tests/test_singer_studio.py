@@ -29,6 +29,24 @@ class StudioFlow(unittest.TestCase):
                 if confidence==.9:self.assertEqual(metadata['rhythm_word_frames'],[65280,96000])
                 else:self.assertIsNone(metadata['rhythm_word_frames'])
 
+    def test_short_percussive_sound_can_be_selected_without_whole_recording(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);source=root/'claps.wav'
+            pcm=np.zeros((3*RATE,2));rng=np.random.default_rng(8)
+            for start in (RATE//2,2*RATE):
+                pcm[start:start+2400]=rng.normal(0,.1,(2400,2))
+            write_pcm(source,pcm);studio.prepare_source(source,root)
+            durations=[]
+            for attempt in range(4):
+                result=studio.sample_candidate(root,{},'dj',3,11,attempt)
+                if result is None:break
+                metadata=json.loads(result[1].read_text());a,b=metadata['original_seconds']
+                self.assertTrue(0<=a<b<=3)
+                durations.append(b-a)
+                self.assertGreater(np.max(np.abs(read_pcm(result[0],(.35,5)))),.05)
+            self.assertTrue(any(.35<=duration<.6 for duration in durations))
+            self.assertIn(3,durations)
+
     def test_short_long_and_quiet_recordings_are_preserved(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)

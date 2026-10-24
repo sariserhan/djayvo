@@ -1,0 +1,10 @@
+{
+  "answer": "Approve the $3 cloud test",
+  "max_usd": 3,
+  "max_workers": 1,
+  "max_seconds": 1200,
+  "requests": 4,
+  "source": "synthetic speech",
+  "website_deployment": false,
+  "temporary_storage": true
+}

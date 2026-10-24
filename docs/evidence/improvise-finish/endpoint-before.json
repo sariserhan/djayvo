@@ -1,0 +1,8 @@
+{
+  "endpoint": "jl77hn92npt65k",
+  "template": "jbpcd0xgbf",
+  "workersMin": 0,
+  "workersMax": 0,
+  "image": "ghcr.io/sariserhan/jamloom/music-worker@sha256:83a00c568cb48f24e27811c901ac941643aee3352f2a0239c5b071120af58780",
+  "voiceIdentity": "true"
+}
