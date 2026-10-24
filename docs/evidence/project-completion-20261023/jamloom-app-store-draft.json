@@ -1,0 +1,1 @@
+{"status":200,"body":{"data":{"type":"apps","id":"6826480059","attributes":{"name":"Jamloom","bundleId":"com.djayvo.app","sku":"jamloom-ios","primaryLocale":"en-US"},"links":{"self":"https://api.appstoreconnect.apple.com/v1/apps/6826480059"}},"links":{"self":"https://api.appstoreconnect.apple.com/v1/apps/6826480059?fields%5Bapps%5D=name%2CbundleId%2Csku%2CprimaryLocale"}}}

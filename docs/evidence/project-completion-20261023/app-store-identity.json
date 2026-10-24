@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-24T03:14:01.793Z",
+  "results": [
+    {
+      "keyID": "5QYF99NV59",
+      "http": 401,
+      "apps": [],
+      "errors": [
+        {
+          "code": "NOT_AUTHORIZED",
+          "title": "Authentication credentials are missing or invalid."
+        }
+      ]
+    },
+    {
+      "keyID": "B64B7LA698",
+      "http": 200,
+      "apps": [],
+      "errors": []
+    }
+  ]
+}

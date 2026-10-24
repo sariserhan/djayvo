@@ -1,0 +1,12 @@
+{
+  "status": "PARTIAL",
+  "testAssertions": "PASS",
+  "passed": 3,
+  "tests": [
+    "testLandscapeDeckControlsFitWithoutScrolling",
+    "testMusicDNACloudConsentKeepsLocalFavoritesAndRequiresSignIn",
+    "testTasteTabPersistenceAndDeletion"
+  ],
+  "sourceLog": "/tmp/jamloom-native-dna-ipad.log",
+  "limitation": "All three UI cases reported passed; Xcode result finalization hung for more than 14 minutes and was terminated. Preserve incomplete xcresult and log; not a clean result-bundle pass."
+}

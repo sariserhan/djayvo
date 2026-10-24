@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-24T03:16:50.300Z",
+  "status": "PASS",
+  "bundleIds": [
+    {
+      "id": "XGNY8WG8A9",
+      "name": "Jamloom",
+      "identifier": "com.djayvo.app",
+      "platform": "UNIVERSAL",
+      "seedId": "BA24C6W48D"
+    }
+  ],
+  "publicRelease": false
+}

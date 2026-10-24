@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-24T03:10:19.225Z",
+  "target": "ep-flat-hill-b4q0lix4.c-6.us-east-2.aws.neon.tech/neondb",
+  "status": "PASS",
+  "applied": [
+    "0021_apple_production.sql"
+  ],
+  "backup": {
+    "path": "renders/project-completion-20261023/before-apple-production.dump",
+    "bytes": 103229,
+    "sha256": "c699781244e78744b134c105549b66cbb2f9eccabbcf054a06327c2debd9652a"
+  },
+  "ledgerRowsPreserved": true,
+  "repeatedMigration": "no-op",
+  "communityStates": []
+}

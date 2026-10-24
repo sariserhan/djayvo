@@ -1,0 +1,1 @@
+{"status":"PASS","account":"acct_1TxA3vDlEXWDEeHO","chargesEnabled":true,"endpoint":{"id":"we_1UTdPIDlEXWDEeHODgVnLaTr","url":"https://www.jamloom.com/api/payments/stripe","status":"disabled"},"taxCode":"txcd_10000000","liveCharges":0,"websiteDeployed":false}

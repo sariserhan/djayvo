@@ -1,0 +1,33 @@
+{
+  "status": "PARTIAL",
+  "scope": "Draft prices only. No submission or public activation.",
+  "products": [
+    {
+      "name": "starter",
+      "id": "6826479674",
+      "priceUSD": "9.99",
+      "pricePoint": "eyJzIjoiNjgyNjQ3OTY3NCIsInQiOiJVU0EiLCJwIjoiMTAxMjcifQ",
+      "proceedsEstimate": "7.0",
+      "status": 201,
+      "scheduleID": "6826479674"
+    },
+    {
+      "name": "creator",
+      "id": "6826480115",
+      "priceUSD": "24.99",
+      "pricePoint": "eyJzIjoiNjgyNjQ4MDExNSIsInQiOiJVU0EiLCJwIjoiMTAyMDIifQ",
+      "proceedsEstimate": "17.5",
+      "status": 201,
+      "scheduleID": "6826480115"
+    },
+    {
+      "name": "studio",
+      "id": "6826480267",
+      "priceUSD": "49.99",
+      "pricePoint": "eyJzIjoiNjgyNjQ4MDI2NyIsInQiOiJVU0EiLCJwIjoiMTAzMjcifQ",
+      "proceedsEstimate": "35.0",
+      "status": 201,
+      "scheduleID": "6826480267"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "scope": "Saved draft metadata only; not uploaded or submitted",
+  "appID": "6826480059",
+  "version": "0.6.0",
+  "releaseType": "MANUAL",
+  "appStoreState": "PREPARE_FOR_SUBMISSION",
+  "name": "Jamloom",
+  "subtitle": "Record, remix and mix music",
+  "privacyURL": "https://www.jamloom.com/privacy",
+  "supportURL": "https://www.jamloom.com/support"
+}

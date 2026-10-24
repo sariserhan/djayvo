@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-24T03:09:27.621Z",
+  "scope": "Hourly endpoint aggregate; not exact per-request invoice",
+  "billing": [
+    {
+      "amount": 0.2649009758606553,
+      "timeBilledMs": 542082,
+      "diskSpaceBilledGB": 180,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-24 01:00:00"
+    },
+    {
+      "amount": 0.03576222155243158,
+      "timeBilledMs": 73568,
+      "diskSpaceBilledGB": 60,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-24 02:00:00"
+    }
+  ]
+}

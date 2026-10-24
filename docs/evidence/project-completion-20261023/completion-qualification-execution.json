@@ -1,0 +1,20 @@
+{
+  "approval": "Owner: Approve the capped $6 qualification",
+  "startedAt": "2026-10-24T03:13:54.892Z",
+  "endpoint": "jl77hn92npt65k",
+  "image": "ghcr.io/sariserhan/jamloom/music-worker@sha256:590b4eb541aa1a030f53b39ec2368597c757b8a6eae7ba1ffe92957653e4d67e",
+  "previousImage": "ghcr.io/sariserhan/jamloom/music-worker@sha256:83a00c568cb48f24e27811c901ac941643aee3352f2a0239c5b071120af58780",
+  "maxUSD": 6,
+  "requests": 5,
+  "restored": true,
+  "trials": [
+    {
+      "mode": "--improvise-completion",
+      "exitCode": 1
+    }
+  ],
+  "workersMin": 0,
+  "workersMax": 0,
+  "environmentPreserved": true,
+  "finishedAt": "2026-10-24T03:23:25.636Z"
+}

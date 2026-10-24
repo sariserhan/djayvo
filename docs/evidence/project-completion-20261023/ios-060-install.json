@@ -1,0 +1,37 @@
+{
+  "info" : {
+    "arguments" : [
+      "devicectl",
+      "device",
+      "install",
+      "app",
+      "--device",
+      "00008120-001E28663CE3C01E",
+      "--json-output",
+      "docs/evidence/project-completion-20261023/ios-060-install.json",
+      "renders/project-completion-20261023/Jamloom-0.6.0-final.xcarchive/Products/Applications/Jamloom.app"
+    ],
+    "commandType" : "devicectl.device.install.app",
+    "environment" : {
+      "TERM" : "dumb"
+    },
+    "jsonVersion" : 5,
+    "outcome" : "success",
+    "version" : "651.13.5"
+  },
+  "result" : {
+    "deviceIdentifier" : "1786A9A3-6848-5F6D-A089-D6453798AE6F",
+    "installedApplications" : [
+      {
+        "bundleID" : "com.djayvo.app",
+        "databaseSequenceNumber" : 3556,
+        "databaseUUID" : "F39E89E5-1651-4D8E-927A-45F14CDB6E88",
+        "installationURL" : "file:///private/var/containers/Bundle/Application/8284E0E8-5437-4D7F-9FCE-02CD5D933DBE/Jamloom.app/",
+        "launchServicesIdentifier" : "unknown",
+        "options" : {
+
+        }
+      }
+    ]
+  }
+}

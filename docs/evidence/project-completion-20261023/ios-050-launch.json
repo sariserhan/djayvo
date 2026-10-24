@@ -1,0 +1,56 @@
+{
+  "info" : {
+    "arguments" : [
+      "devicectl",
+      "device",
+      "process",
+      "launch",
+      "--device",
+      "00008120-001E28663CE3C01E",
+      "com.djayvo.app",
+      "--json-output",
+      "docs/evidence/project-completion-20261023/ios-050-launch.json"
+    ],
+    "commandType" : "devicectl.device.process.launch",
+    "environment" : {
+      "TERM" : "dumb"
+    },
+    "jsonVersion" : 5,
+    "outcome" : "success",
+    "version" : "651.13.5"
+  },
+  "result" : {
+    "deviceIdentifier" : "1786A9A3-6848-5F6D-A089-D6453798AE6F",
+    "launchOptions" : {
+      "activatedWhenStarted" : true,
+      "arguments" : [
+
+      ],
+      "environmentVariables" : {
+        "TERM" : "dumb"
+      },
+      "platformSpecificOptions" : {
+
+      },
+      "startStopped" : false,
+      "terminateExistingInstances" : false,
+      "user" : {
+        "active" : true
+      }
+    },
+    "process" : {
+      "auditToken" : [
+        4294967295,
+        501,
+        501,
+        501,
+        501,
+        17024,
+        0,
+        45296
+      ],
+      "executable" : "file:///private/var/containers/Bundle/Application/BC39EDA7-768B-4CD7-9C29-0845B58ADFFE/Jamloom.app/Jamloom",
+      "processIdentifier" : 17024
+    }
+  }
+}

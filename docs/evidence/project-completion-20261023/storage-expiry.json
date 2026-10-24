@@ -1,0 +1,11 @@
+{
+  "key": "uploads/2918e84d-e4ae-495e-8b93-60c9774525a2.wav",
+  "createdAt": "2026-10-24T03:09:40.435Z",
+  "observations": [
+    {
+      "at": "2026-10-24T03:09:41.013Z",
+      "status": 206
+    }
+  ],
+  "expiresAt": "expiry-date=\"Sun, 25 Oct 2026 03:09:40 GMT\", rule-id=\"jamloom-temporary-uploads-1-day\""
+}

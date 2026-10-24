@@ -1,0 +1,38 @@
+{
+  "status": "APPROVED by owner: Approve the capped $6 qualification",
+  "maxUSD": 6,
+  "maxWorkers": 1,
+  "maxSecondsPerTrial": 1200,
+  "maxSecondsTotal": 2400,
+  "requests": 5,
+  "image": "ghcr.io/sariserhan/jamloom/music-worker@sha256:590b4eb541aa1a030f53b39ec2368597c757b8a6eae7ba1ffe92957653e4d67e",
+  "source": "renders/improvise-finish-20261023/sources/cloud-normalized.wav",
+  "trials": [
+    {
+      "mode": "--improvise-completion",
+      "requests": 4,
+      "durations": [
+        30,
+        35,
+        40,
+        45
+      ],
+      "styles": [
+        "reggae",
+        "jazz",
+        "edm",
+        "acousticpop"
+      ],
+      "maxUSD": 3
+    },
+    {
+      "mode": "--maximum-dna",
+      "requests": 1,
+      "duration": 90,
+      "references": 5000,
+      "source": "Synthetic scale fixture names and practice genre metadata; no Spotify content",
+      "maxUSD": 3
+    }
+  ],
+  "safety": "Independent shutdown watchdog per trial; one worker; isolated local database; temporary object cleanup; restore previous image; no public activation; stop on failed trial; no automatic retry"
+}

@@ -1,3 +1,7 @@
+## Remaining-work follow-through — 2026-10-23
+
+**Overall PARTIAL.** The owner's “complete all those” instruction covers the eight remaining workstreams. [Current completion ledger](docs/completion-followthrough.md) is authoritative for their present status; earlier dated entries below retain historical evidence and may describe superseded blockers. Native cloud Music DNA, Apple Music import and production Apple verification are implemented. The approved qualification ended with three songs completed and one jazz safety failure; cleanup and shutdown passed, and the maximum-library follow-up was not started. Jamloom App Store draft, English listing and three credit prices are saved; no submission. Credit purchases and public generation remain closed.
+
 ## Project completion campaign — 2026-10-23
 
 Owner: “lets do all of these and complete all of them”. This supersedes the earlier pause for the listed website/Mac releases, iOS qualification and prepared $3 diagnostic run. Evidence requirements remain unchanged. The original four-request allowance is exhausted. The owner separately approved one additional 30-second reggae diagnostic, one worker, 20 minutes and $3 maximum; no further requests or unlimited spending are authorized.

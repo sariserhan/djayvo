@@ -1,0 +1,12 @@
+{
+  mode: 'dry-run',
+  maxUSD: 3,
+  maxWorkers: 1,
+  maxSeconds: 1200,
+  requests: 1,
+  requires: 'Approved paid trial and JAMLOOM_TRIAL_IMAGE digest',
+  durations: [ 100 ],
+  references: 5000,
+  identityConversion: true,
+  websiteDeployment: false
+}

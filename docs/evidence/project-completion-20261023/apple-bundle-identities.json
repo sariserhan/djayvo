@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-24T03:16:06.157Z",
+  "results": [
+    {
+      "identifier": "com.djayvo.app",
+      "status": 200,
+      "matches": []
+    },
+    {
+      "identifier": "com.jamloom.app",
+      "status": 200,
+      "matches": []
+    }
+  ]
+}
