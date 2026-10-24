@@ -1,5 +1,7 @@
 # iOS product parity — 2026-10-21
 
+**Latest update, 2026-10-23:** optional native cloud Improvise and the shared professional DJ console supersede the original two-tab/no-upload/no-bundled-audio scope below. Signed 0.4.1 candidate, current phone/iPad checks and explicit remaining gates are in [the completion report](project-completion-20261023.md#professional-native-dj-console--041-candidate). Earlier evidence below remains historical.
+
 The latest continuation advances available local work into iOS, following the
 owner's non-iOS → iOS → launch order. Listening and physical checks remain deferred.
 No provider rental, live charge, model training, push, deployment or upload occurs.

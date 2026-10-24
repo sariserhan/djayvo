@@ -1,8 +1,10 @@
 import SwiftUI
 import StoreKit
+import CryptoKit
 
 // Keep login cookies in memory; never follow a redirect with credentials or private preferences.
 final class AccountTransport: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+    private struct Failure: Decodable { let error: String }
     let base: URL
     private(set) var session: URLSession!
     init(base: URL = URL(string: "https://www.jamloom.com")!, configuration: URLSessionConfiguration = .ephemeral) {
@@ -18,25 +20,36 @@ final class AccountTransport: NSObject, URLSessionTaskDelegate, @unchecked Senda
     func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse,
                     newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) { completionHandler(nil) }
     func clearCookies() { session.configuration.httpCookieStorage?.removeCookies(since: .distantPast) }
-    func request<T: Decodable>(_ path: String, method: String = "GET", body: Data? = nil) async throws -> T {
+    private func requestURL(_ path: String, query: [String: String]) throws -> URL {
         var allowed = base.absoluteString == "https://www.jamloom.com"
         #if DEBUG
         allowed = allowed || (base.scheme == "http" && base.host == "127.0.0.1" && base.path.isEmpty && base.user == nil && base.password == nil && base.query == nil && base.fragment == nil)
         #endif
-        guard allowed, path.hasPrefix("/api/"), !path.contains(".."), !path.contains("?"), (body?.count ?? 0) <= 65536 else {
+        guard allowed, path.hasPrefix("/api/"), !path.contains(".."), !path.contains("?"),
+              query.isEmpty || (path == "/api/improvise/song" && query.keys.allSatisfy({ ["id", "file"].contains($0) }) &&
+                query["id"]?.range(of: "^[a-f0-9]{32}$", options: .regularExpression) != nil &&
+                (query["file"] == nil || query["file"] == "audio")) else {
             throw RemixError.message("Invalid account request.")
         }
-        var request = URLRequest(url: base.appendingPathComponent(String(path.dropFirst())))
+        var url = URLComponents(url: base.appendingPathComponent(String(path.dropFirst())), resolvingAgainstBaseURL: false)!
+        if !query.isEmpty { url.queryItems = query.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) } }
+        return url.url!
+    }
+    func request<T: Decodable>(_ path: String, method: String = "GET", body: Data? = nil, query: [String: String] = [:]) async throws -> T {
+        guard (body?.count ?? 0) <= 65536 else { throw RemixError.message("Account request is too large.") }
+        var request = URLRequest(url: try requestURL(path, query: query))
         request.httpMethod = method; request.httpBody = body
         request.setValue(base.absoluteString, forHTTPHeaderField: "Origin")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
+        let song = path == "/api/improvise/song"
+        if song { request.setValue("1", forHTTPHeaderField: "X-Jamloom-DNA") }
         let (stream, response) = try await session.bytes(for: request)
         defer { stream.task.cancel() }
         guard let http = response as? HTTPURLResponse else { throw URLError(.badServerResponse) }
         if http.statusCode == 401 { clearCookies(); throw AccountError.signedOut }
-        if http.statusCode == 409 { throw AccountError.conflict }
-        guard http.statusCode == 200, response.mimeType == "application/json", response.expectedContentLength <= 65536 else {
+        if http.statusCode == 409 && !song { throw AccountError.conflict }
+        guard response.mimeType == "application/json", response.expectedContentLength <= 65536 else {
             throw RemixError.message("Account service unavailable. Check your sign-in details or try again later. Local music is unchanged.")
         }
         var data = Data()
@@ -44,8 +57,62 @@ final class AccountTransport: NSObject, URLSessionTaskDelegate, @unchecked Senda
             guard data.count < 65536 else { throw URLError(.dataLengthExceedsMaximum) }
             data.append(byte)
         }
+        guard http.statusCode == 200 || (song && http.statusCode == 202) else {
+            let message = (try? JSONDecoder().decode(Failure.self, from: data).error) ?? "Song service unavailable. Check your song before trying again."
+            if song { throw SongRequestError(status: http.statusCode, message: message) }
+            throw RemixError.message("Account service unavailable. Try again later.")
+        }
         return try JSONDecoder().decode(T.self, from: data)
     }
+    func songAudio(_ id: String) async throws -> URL {
+        let url = try requestURL("/api/improvise/song", query: ["id": id, "file": "audio"])
+        var (stream, response) = try await session.bytes(from: url)
+        var storage: URLSession?
+        var digest: String?
+        defer { stream.task.cancel(); storage?.invalidateAndCancel() }
+        if let http = response as? HTTPURLResponse, http.statusCode == 307 {
+            stream.task.cancel()
+            guard let location = http.value(forHTTPHeaderField: "Location"), let target = URL(string: location),
+                  Self.signedStorageURL(target), target.path.range(of: "^/[a-z0-9-]+/improvise/(private|public)/\(id)/[a-f0-9]{64}\\.wav$", options: .regularExpression) != nil else { throw URLError(.badURL) }
+            digest = target.deletingPathExtension().lastPathComponent
+            storage = storageSession()
+            (stream, response) = try await storage!.bytes(from: target)
+        }
+        guard (response as? HTTPURLResponse)?.statusCode == 200, ["audio/wav", "audio/x-wav"].contains(response.mimeType ?? ""), response.expectedContentLength <= 64 * 1024 * 1024 else { throw RemixError.message("Your song could not be downloaded. Try again.") }
+        var data = Data()
+        for try await byte in stream { guard data.count < 64 * 1024 * 1024 else { throw URLError(.dataLengthExceedsMaximum) }; data.append(byte) }
+        guard data.count > 44, digest == nil || digest == SHA256.hash(data: data).map({ String(format: "%02x", $0) }).joined() else { throw RemixError.message("The song download is incomplete. Try again.") }
+        let file = FileManager.default.temporaryDirectory.appendingPathComponent("jamloom-\(id).wav")
+        try data.write(to: file, options: [.atomic, .completeFileProtection])
+        return file
+    }
+    func uploadSong(_ data: Data, to url: URL) async throws {
+        guard data.count > 44, data.count <= 960044,
+              Self.signedStorageURL(url), url.path.range(of: "^/[a-z0-9-]+/uploads/[a-f0-9-]{36}\\.wav$", options: .regularExpression) != nil else { throw URLError(.badURL) }
+        let upload = storageSession()
+        defer { upload.invalidateAndCancel() }
+        var request = URLRequest(url: url); request.httpMethod = "PUT"; request.setValue("audio/wav", forHTTPHeaderField: "Content-Type")
+        let (_, response) = try await upload.upload(for: request, from: data)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw RemixError.message("Upload did not finish. Your recording is still here.") }
+    }
+    private static func signedStorageURL(_ url: URL) -> Bool {
+        url.scheme == "https" && url.user == nil && url.password == nil && url.port == nil && url.fragment == nil &&
+        url.host?.range(of: "^[a-f0-9]{32}\\.r2\\.cloudflarestorage\\.com$", options: .regularExpression) != nil &&
+        URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.contains(where: { $0.name == "X-Amz-Signature" && !($0.value ?? "").isEmpty }) == true
+    }
+    private func storageSession() -> URLSession {
+        // A separate cookie-free session keeps account credentials away from object storage.
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = session.configuration.protocolClasses
+        configuration.httpCookieStorage = nil; configuration.httpShouldSetCookies = false
+        configuration.timeoutIntervalForRequest = 30; configuration.timeoutIntervalForResource = 60
+        return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+    }
+}
+struct SongRequestError: LocalizedError {
+    let status: Int
+    let message: String
+    var errorDescription: String? { message }
 }
 enum AccountError: LocalizedError {
     case signedOut, conflict

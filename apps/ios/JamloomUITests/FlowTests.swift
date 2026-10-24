@@ -2,6 +2,80 @@ import XCTest
 
 final class FlowTests: XCTestCase {
     override func setUpWithError() throws { continueAfterFailure = false }
+    private func waitUntilEnabled(_ element: XCUIElement) {
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: element)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed)
+    }
+    private func loadPracticeDecks(_ app: XCUIApplication) {
+        let music = app.webViews.buttons["Music"]
+        XCTAssertTrue(music.waitForExistence(timeout: 20)); music.tap()
+        for letter in ["A", "B"] {
+            let load = app.webViews.buttons["Load into \(letter)"]
+            let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: load)
+            XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 20), .completed)
+            load.tap()
+            Thread.sleep(forTimeInterval: 2)
+        }
+        app.webViews.buttons["Done"].tap()
+    }
+    func testLandscapeDeckControlsFitWithoutScrolling() {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
+        app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
+        XCUIDevice.shared.orientation = .landscapeLeft
+        defer { XCUIDevice.shared.orientation = .portrait }
+        app.launch(); app.buttons["DJ Deck"].firstMatch.tap()
+        loadPracticeDecks(app)
+        for name in ["Play A", "Play B", "Cue", "Stop"] {
+            let control = app.webViews.buttons[name].firstMatch
+            XCTAssertTrue(control.isHittable, name)
+            XCTAssertTrue(app.frame.contains(control.frame), "Clipped: \(name) \(control.frame)")
+        }
+        let pads = app.webViews.descendants(matching: .any)["Performance pads and effects"].firstMatch
+        XCTAssertTrue(pads.isHittable)
+        XCTAssertTrue(app.frame.contains(pads.frame))
+        let crossfade = app.webViews.sliders["Crossfader"]
+        XCTAssertTrue(crossfade.isHittable)
+        XCTAssertTrue(app.frame.contains(crossfade.frame))
+        let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); screenshot.name = "Professional landscape console"; screenshot.lifetime = .keepAlways; add(screenshot)
+    }
+    func testDeckRotationRetainsTracksAndStopsOnTabChange() {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
+        app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
+        XCUIDevice.shared.orientation = .landscapeLeft
+        defer { XCUIDevice.shared.orientation = .portrait }
+        app.launch(); app.buttons["DJ Deck"].firstMatch.tap()
+        loadPracticeDecks(app)
+        let play = app.webViews.buttons["Play A"]
+        XCTAssertTrue(play.isEnabled); play.tap()
+        XCTAssertTrue(app.webViews.buttons["Pause A"].waitForExistence(timeout: 10))
+        app.buttons["Improvise"].firstMatch.tap(); app.buttons["DJ Deck"].firstMatch.tap()
+        XCTAssertTrue(play.waitForExistence(timeout: 10)); XCTAssertTrue(play.isEnabled)
+        XCUIDevice.shared.orientation = .portrait
+        Thread.sleep(forTimeInterval: 1)
+        XCTAssertTrue(app.webViews.buttons["Play B"].exists)
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); image.name = "Professional portrait console"; image.lifetime = .keepAlways; add(image)
+        XCUIDevice.shared.orientation = .landscapeLeft
+        Thread.sleep(forTimeInterval: 1)
+        XCTAssertTrue(play.isHittable); XCTAssertTrue(play.isEnabled)
+    }
+    func testCloudCreationRequiresSeparateConsentAndSignIn() {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
+        app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
+        app.launch()
+        let consent = app.switches["consentToggle"]
+        XCTAssertTrue(consent.waitForExistence(timeout: 10)); waitUntilEnabled(consent); consent.tap()
+        XCTAssertEqual(consent.value as? String, "1")
+        app.buttons["Load test clip"].tap()
+        let cloud = app.buttons["Create a full song"]
+        for _ in 0..<6 { if cloud.isHittable { break }; app.swipeUp() }
+        XCTAssertTrue(cloud.waitForExistence(timeout: 15)); cloud.tap()
+        XCTAssertTrue(app.buttons["Sign in"].waitForExistence(timeout: 10))
+        let upload = app.buttons["Upload clip & review price"]
+        app.scrollViews.firstMatch.swipeUp()
+        XCTAssertTrue(upload.exists); XCTAssertFalse(upload.isEnabled)
+        XCTAssertEqual(app.switches["Send this clip for cloud processing"].value as? String, "0")
+        let image = XCTAttachment(screenshot: app.screenshot()); image.name = "Explicit cloud consent"; image.lifetime = .keepAlways; add(image)
+    }
     func testTasteTabPersistenceAndDeletion() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing"]
@@ -31,7 +105,9 @@ final class FlowTests: XCTestCase {
         let screenshot = XCTAttachment(screenshot: app.screenshot())
         screenshot.name = "Music DNA local preferences"; screenshot.lifetime = .keepAlways; add(screenshot)
         app.terminate(); app.launch(); app.buttons["Music DNA"].firstMatch.tap()
-        XCTAssertEqual(app.textViews["Favourite tracks and artists"].value as? String, "")
+        XCTAssertTrue(references.waitForExistence(timeout: 10))
+        // A real iPhone can expose an empty TextEditor value as nil.
+        XCTAssertTrue(references.value == nil || references.value as? String == "")
     }
     func testTasteCompositionPlaybackPreferenceAndRelaunch() {
         let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
@@ -82,7 +158,7 @@ final class FlowTests: XCTestCase {
         app.launch()
         let consent = app.switches["consentToggle"]
         XCTAssertTrue(consent.waitForExistence(timeout: 15))
-        consent.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5)).tap()
+        waitUntilEnabled(consent); consent.tap()
         let consented = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == '1'"), object: consent)
         XCTAssertEqual(XCTWaiter.wait(for: [consented], timeout: 5), .completed)
         app.buttons["Record"].tap()
@@ -119,7 +195,7 @@ final class FlowTests: XCTestCase {
         let consent = app.switches["consentToggle"]
         XCTAssertTrue(consent.waitForExistence(timeout: 15))
         XCTAssertFalse(app.buttons["Load test clip"].isEnabled)
-        consent.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5)).tap()
+        waitUntilEnabled(consent); consent.tap()
         let consented = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == '1'"), object: consent)
         XCTAssertEqual(XCTWaiter.wait(for: [consented], timeout: 5), .completed)
         app.buttons["Load test clip"].tap()
@@ -136,6 +212,17 @@ final class FlowTests: XCTestCase {
         play.tap()
         app.buttons["Save"].firstMatch.tap()
         XCTAssertTrue(app.buttons["Saved"].firstMatch.exists)
+        app.buttons["DJ Deck"].firstMatch.tap()
+        let music = app.webViews.buttons["Music"]
+        XCTAssertTrue(music.waitForExistence(timeout: 20)); music.tap()
+        app.webViews.buttons["Saved mix → A"].tap()
+        let saved = app.buttons["loadSaved-hiphop"].firstMatch
+        XCTAssertTrue(saved.waitForExistence(timeout: 20)); saved.tap()
+        XCTAssertTrue(app.webViews.staticTexts["Jamloom hiphop.wav"].waitForExistence(timeout: 30))
+        let deckPlay = app.webViews.buttons["Play A"]
+        XCTAssertTrue(deckPlay.isEnabled); deckPlay.tap()
+        XCTAssertTrue(app.webViews.buttons["Pause A"].waitForExistence(timeout: 10))
+        app.buttons["Improvise"].firstMatch.tap()
         let screenshot = XCTAttachment(screenshot: app.screenshot())
         screenshot.name = "Three generated mixes"; screenshot.lifetime = .keepAlways; add(screenshot)
         app.terminate(); app.launch()

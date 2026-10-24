@@ -1,0 +1,11 @@
+{
+  "gate": "PASS",
+  "version": "0.4.1",
+  "build": "3",
+  "device": "iPhone 14 Pro / iOS 27.0.1",
+  "bundle": "com.djayvo.app",
+  "archive": "renders/project-completion-20261023/Jamloom-0.4.1-reviewed.xcarchive",
+  "codesign": "PASS strict verification",
+  "installOutcome": "success",
+  "ownerAcceptance": "Pending"
+}

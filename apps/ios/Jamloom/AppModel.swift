@@ -4,7 +4,8 @@ import AVFoundation
 @MainActor
 final class AppModel: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     @Published var consent = false
-    @Published var input: AudioInput?
+    @Published var input: AudioInput? { didSet { inputRevision &+= 1 } }
+    @Published private(set) var inputRevision = 0
     @Published var trimStart = 0.0
     @Published var trimEnd = 2.0
     @Published var recording = false

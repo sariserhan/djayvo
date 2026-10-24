@@ -1,14 +1,16 @@
 import XCTest
+import CryptoKit
 @testable import Jamloom
 
 private final class AccountProtocol: URLProtocol {
     static var handle: ((URLRequest) throws -> (Int, Data))!
+    static var headers = ["Content-Type": "application/json"]
     override class func canInit(with request: URLRequest) -> Bool { true }
     override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
     override func startLoading() {
         do {
             let (status, data) = try Self.handle(request)
-            let response = HTTPURLResponse(url: request.url!, statusCode: status, httpVersion: nil, headerFields: ["Content-Type": "application/json"])!
+            let response = HTTPURLResponse(url: request.url!, statusCode: status, httpVersion: nil, headerFields: Self.headers)!
             client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
             client?.urlProtocol(self, didLoad: data); client?.urlProtocolDidFinishLoading(self)
         } catch { client?.urlProtocol(self, didFailWithError: error) }
@@ -16,6 +18,122 @@ private final class AccountProtocol: URLProtocol {
     override func stopLoading() {}
 }
 @MainActor final class AccountTests: XCTestCase {
+    func testCloudDownloadFollowsOnlySignedSongStorageWithoutCredentials() async throws {
+        let transport = transport(); defer { transport.session.invalidateAndCancel(); AccountProtocol.headers = ["Content-Type": "application/json"] }
+        let id = String(repeating: "b", count: 32), data = try CloudRecording.wav(AudioInput(samples: [Float](repeating: 0.1, count: 48000), rate: 48000), start: 0, end: 1)
+        let digest = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+        var location = "https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.r2.cloudflarestorage.com/test/improvise/private/\(id)/\(digest).wav?X-Amz-Signature=test"
+        var downloads = 0, corrupt = false
+        AccountProtocol.handle = { request in
+            if request.url?.host == "www.jamloom.com" { AccountProtocol.headers = ["Location": location]; return (307, Data()) }
+            downloads += 1
+            XCTAssertNil(request.value(forHTTPHeaderField: "Cookie")); XCTAssertNil(request.value(forHTTPHeaderField: "Authorization"))
+            AccountProtocol.headers = ["Content-Type": "audio/wav"]
+            return (200, corrupt ? Data(repeating: 0, count: data.count) : data)
+        }
+        let file = try await transport.songAudio(id); defer { try? FileManager.default.removeItem(at: file) }
+        XCTAssertEqual(try Data(contentsOf: file), data); XCTAssertEqual(downloads, 1)
+        corrupt = true
+        do { _ = try await transport.songAudio(id); XCTFail("Must reject a corrupted download") } catch { }
+        location = "https://example.com/recording.wav"
+        do { _ = try await transport.songAudio(id); XCTFail("Must reject a foreign redirect") } catch { }
+        XCTAssertEqual(downloads, 2)
+    }
+    func testNativeCloudFlowQuotesBeforeSubmissionAndKeepsStorageUnauthenticated() async throws {
+        let transport = transport(), account = AccountModel(transport: transport), cloud = CloudImproviseModel()
+        let user = UUID().uuidString
+        defer { cloud.stopPolling(); UserDefaults.standard.removeObject(forKey: "jamloom-native-improvise-\(user)") }
+        var uploads = 0, quotes = 0, submits = 0, submittedID = ""
+        AccountProtocol.handle = { request in
+            let url = request.url!
+            if url.host != "www.jamloom.com" {
+                uploads += 1
+                XCTAssertEqual(request.httpMethod, "PUT"); XCTAssertEqual(request.value(forHTTPHeaderField: "Content-Type"), "audio/wav")
+                XCTAssertNil(request.value(forHTTPHeaderField: "Cookie")); XCTAssertNil(request.value(forHTTPHeaderField: "Origin")); XCTAssertNil(request.value(forHTTPHeaderField: "Authorization"))
+                return (200, Data())
+            }
+            if url.path == "/api/auth/sign-in/email" { return (200, Data("{\"user\":{\"id\":\"\(user)\",\"email\":\"test@example.test\"}}".utf8)) }
+            if url.path == "/api/account" { return (200, Data("{\"user\":{\"id\":\"\(user)\",\"email\":\"test@example.test\"},\"balance\":{\"available\":20,\"reserved\":0},\"purchasesReleased\":false}".utf8)) }
+            if request.httpMethod == "GET" {
+                return (200, Data((url.query == nil ? "{\"creditsEnabled\":true,\"signedIn\":true}" : "{\"id\":\"\(submittedID)\",\"state\":\"completed\"}").utf8))
+            }
+            var data = request.httpBody ?? Data()
+            if let stream = request.httpBodyStream { stream.open(); defer { stream.close() }; var bytes = [UInt8](repeating: 0, count: 4096); while stream.hasBytesAvailable { let count = stream.read(&bytes, maxLength: bytes.count); if count <= 0 { break }; data.append(contentsOf: bytes.prefix(count)) } }
+            let body = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+            switch body["action"] as? String {
+            case "upload":
+                XCTAssertEqual(body["consent"] as? Bool, true)
+                XCTAssertEqual((body["sha256"] as? String)?.count, 64)
+                return (200, Data("{\"id\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"url\":\"https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.r2.cloudflarestorage.com/test/uploads/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa.wav?X-Amz-Signature=test\"}".utf8))
+            case "quote":
+                quotes += 1; XCTAssertEqual(submits, 0); XCTAssertEqual(body["visibility"] as? String, "private")
+                return (200, Data("{\"credits\":7,\"token\":\"test-quote\",\"expiresAt\":\(Date().addingTimeInterval(300).timeIntervalSince1970 * 1000)}".utf8))
+            case "submit":
+                submits += 1; submittedID = try XCTUnwrap(body["requestId"] as? String)
+                XCTAssertEqual(UserDefaults.standard.string(forKey: "jamloom-native-improvise-\(user)"), submittedID)
+                XCTAssertEqual(body["token"] as? String, "test-quote"); XCTAssertEqual(body["publicConsent"] as? Bool, false)
+                return (202, Data("{\"id\":\"\(submittedID)\",\"state\":\"queued\"}".utf8))
+            default: throw URLError(.badServerResponse)
+            }
+        }
+        await account.signIn(email: "test@example.test", password: "test-password")
+        await cloud.connect(account)
+        let input = AudioInput(samples: [Float](repeating: 0.1, count: 48000), rate: 48000)
+        await cloud.review(input: input, start: 0, end: 1); XCTAssertEqual(uploads, 0)
+        cloud.consent = true
+        await cloud.review(input: input, start: 0, end: 1)
+        XCTAssertEqual(uploads, 1); XCTAssertEqual(quotes, 1); XCTAssertEqual(submits, 0); XCTAssertEqual(cloud.quote?.credits, 7, cloud.message)
+        cloud.invalidateQuote(); await cloud.review(input: input, start: 0, end: 1)
+        XCTAssertEqual(uploads, 1); XCTAssertEqual(quotes, 2)
+        await cloud.submit()
+        for _ in 0..<50 { if cloud.state == "completed" { break }; try await Task.sleep(for: .milliseconds(20)) }
+        XCTAssertEqual(cloud.state, "completed"); XCTAssertEqual(submits, 1)
+        await cloud.submit(); XCTAssertEqual(submits, 1)
+        cloud.newSong(); XCTAssertNil(cloud.job); XCTAssertFalse(cloud.consent)
+        AccountProtocol.handle = { _ in XCTFail("Unsafe upload destination must be rejected before transport"); return (200, Data()) }
+        do { try await transport.uploadSong(Data(repeating: 0, count: 100), to: URL(string: "https://example.com/private")!); XCTFail("Expected storage restriction") } catch { }
+    }
+    func testSongTransportKeepsOriginQueryAndAcceptedResponseBoundaries() async throws {
+        let transport = transport(); defer { transport.session.invalidateAndCancel() }
+        let id = String(repeating: "a", count: 32)
+        AccountProtocol.handle = { request in
+            XCTAssertEqual(request.url?.host, "www.jamloom.com")
+            XCTAssertEqual(request.value(forHTTPHeaderField: "X-Jamloom-DNA"), "1")
+            XCTAssertEqual(request.value(forHTTPHeaderField: "Origin"), "https://www.jamloom.com")
+            return (202, Data("{\"id\":\"\(id)\",\"state\":\"queued\"}".utf8))
+        }
+        let accepted: CloudImproviseModel.Job = try await transport.request("/api/improvise/song", method: "POST", body: Data("{}".utf8))
+        XCTAssertEqual(accepted.id, id)
+        AccountProtocol.handle = { request in
+            XCTAssertEqual(URLComponents(url: request.url!, resolvingAgainstBaseURL: false)?.queryItems, [URLQueryItem(name: "id", value: id)])
+            return (200, Data("{\"id\":\"\(id)\",\"state\":\"completed\"}".utf8))
+        }
+        let done: CloudImproviseModel.Job = try await transport.request("/api/improvise/song", query: ["id": id]); XCTAssertEqual(done.state, "completed")
+        AccountProtocol.handle = { _ in XCTFail("Invalid query must not leave device"); return (200, Data()) }
+        for query in [["id": "../account"], ["id": id, "url": "https://example.com"], ["id": id, "file": "source"]] {
+            do { let _: CloudImproviseModel.Job = try await transport.request("/api/improvise/song", query: query); XCTFail("Expected query restriction") } catch { }
+        }
+        do { let _: AccountSnapshot = try await transport.request("/api/account", query: ["id": id]); XCTFail("Account query must stay restricted") } catch { }
+        AccountProtocol.handle = { _ in (402, Data("{\"error\":\"You need more credits.\"}".utf8)) }
+        do { let _: CloudImproviseModel.Job = try await transport.request("/api/improvise/song", method: "POST"); XCTFail("Expected credit failure") }
+        catch let error as SongRequestError { XCTAssertEqual(error.status, 402); XCTAssertEqual(error.message, "You need more credits.") }
+    }
+    func testCloudUnavailableAndNoConsentNeverUpload() async throws {
+        let account = AccountModel(transport: transport()), cloud = CloudImproviseModel()
+        var calls = 0
+        AccountProtocol.handle = { request in
+            calls += 1; XCTAssertEqual(request.httpMethod, "GET"); XCTAssertEqual(request.url?.path, "/api/improvise/song")
+            return (200, Data("{\"available\":false,\"creditsEnabled\":false}".utf8))
+        }
+        await cloud.connect(account)
+        XCTAssertFalse(cloud.available)
+        let input = AudioInput(samples: [Float](repeating: 0.1, count: 48000), rate: 48000)
+        await cloud.review(input: input, start: 0, end: 1)
+        cloud.consent = true
+        await cloud.review(input: input, start: 0, end: 1)
+        await cloud.submit()
+        XCTAssertEqual(calls, 1); XCTAssertNil(cloud.quote); XCTAssertNil(cloud.job)
+    }
     func transport() -> AccountTransport {
         let config = URLSessionConfiguration.ephemeral; config.protocolClasses = [AccountProtocol.self]
         return AccountTransport(configuration: config)

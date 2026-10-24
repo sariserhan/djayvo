@@ -1,13 +1,15 @@
 # Jamloom for iPhone and iPad
 
-Improvisation and Music DNA, iOS 17+. SwiftUI and AVFoundation call the existing
+Improvise, Music DNA and the shared professional DJ studio, iOS 17+. SwiftUI and AVFoundation call the existing
 C++17 C ABI on a worker; no audio engine is duplicated in Swift. Optional Better Auth sign-in syncs explicitly selected preferences and ledger balance. Local audio requires no account and is never automatically uploaded. Purchases and cloud generation remain closed.
 
-Open `Jamloom.xcodeproj` in Xcode. The committed project needs no package download.
+Open `Jamloom.xcodeproj` in Xcode. Its build step prepares the shared WebAssembly studio; the first build downloads the pinned Emscripten toolchain. Xcode 27.1 enables foldable division-aware layouts; older compilers retain responsive iPhone/iPad layouts.
 `project.yml` is its source; regenerate only after project membership/settings
 changes using the already-installed XcodeGen 2.46.0:
 
 ```sh
+sh scripts/web_build.sh
+python3 scripts/prepare_ios_studio.py
 xcodegen generate --spec apps/ios/project.yml
 xcodebuild build -project apps/ios/Jamloom.xcodeproj -scheme Jamloom \
   -configuration Release -destination 'generic/platform=iOS' \
@@ -107,3 +109,20 @@ requires a configured sandbox verifier and leaves transactions unfinished until 
 server acknowledges delivery. New purchases are disabled until release gates pass.
 
 See [current implementation, evidence and remaining gates](../../docs/ios-product-parity.md).
+
+## Native professional studio (0.4.1)
+
+The bundled console reuses the web/Pro DSP, waveforms, jog wheels, mixer,
+beat grids, cue pads and effects. Music loads cleared practice tracks, an
+explicitly selected local file, or a saved native mix into either deck. The
+private loopback host serves bundled assets only; saved audio crosses an
+explicit native bridge. Landscape keeps both decks and the mixer together;
+portrait stacks them, and iPad exposes more performance controls. Playback
+stops on tab changes, interruptions and backgrounding. Touch and hold a set
+hot cue to clear it.
+
+Cloud Improvise uses the same service contract as the website, with separate
+audio-upload consent, sign-in, a confirmed quote and recoverable jobs. Public
+generation remains gated; this client does not enable the service. Local
+instrumental previews continue to work without an account. Device results and
+remaining listening/release gates are in the dated completion report.

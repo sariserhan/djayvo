@@ -1,0 +1,92 @@
+/* Native safe areas belong to SwiftUI; this surface uses the remaining viewport. */
+html.mobile-studio, .mobile-studio body { margin:0; background:#090e16; height:100%; }
+.mobile-studio body > header, .mobile-studio .skip, .mobile-studio #dj > :not(.mobile-bar):not(.console), .mobile-studio .jog-help { display:none!important; }
+.mobile-studio #dj { display:flex; flex-direction:column; width:100%; max-width:none; height:100dvh; padding:0; margin:0; }
+.mobile-bar { display:flex; align-items:center; gap:8px; padding:4px 10px; flex-shrink:0; border-bottom:1px solid #3c485b; }
+.mobile-bar strong { margin-right:auto; color:#e9f1f8; font:700 14px ui-monospace,monospace; letter-spacing:2px; }.mobile-bar strong span { color:#ffbf69; }
+.mobile-studio button,.mobile-studio select { min-height:44px; font-size:12px; }
+.mobile-bar button,.mobile-load,.mobile-library button { border:1px solid #57667d; background:#202c3e; color:#f0f6ff; padding:8px 12px; border-radius:6px; }
+.mobile-bar #mobile-stop { color:#ffc4be; }.mobile-bar button[aria-pressed=true] { color:#07121d; background:#ffbf69; }
+.mobile-studio .console { flex:1; min-height:0; grid-template-columns:minmax(0,1fr) 168px minmax(0,1fr); align-items:stretch; gap:6px; padding:6px; overflow:auto; }
+.mobile-studio .deck { padding:10px; display:flex; flex-direction:column; min-height:0; overflow:auto; border-radius:8px; }
+.mobile-studio .deck-heading { flex-wrap:nowrap; gap:6px; margin:0; }.mobile-studio .deck-heading h2 { font-size:12px; letter-spacing:1px; white-space:nowrap; margin:0 auto 0 0; }.mobile-studio .deck-state { font-size:9px; padding:4px; }
+.mobile-studio .deck-heading > button[id^=clear] { display:none; }.mobile-studio .mobile-load { padding:4px 8px; }
+.mobile-studio .deck-display { margin-top:4px; padding:6px 8px; flex-shrink:0; }.mobile-studio .deck-display .track-name { font-size:12px; margin:0; }
+.mobile-studio .deck-display > .deck-scope,.mobile-studio .position-readout,.mobile-studio .deck-display > input,.mobile-studio .pro-wave-heading,.mobile-studio .pro-wave-lane p { display:none; }
+.mobile-studio .pro-wave-lane { margin:0; padding:0; border:0; }.mobile-studio .pro-wave-lane canvas { height:24px; margin:0; min-height:44px; }
+.mobile-studio .platter-row { flex:1; min-height:140px; padding:14px 4px; gap:20px; }
+.mobile-studio .jog { width:clamp(125px,20vw,270px); padding:14px; }.mobile-studio .pro-jog-screen strong { font-size:20px; }.mobile-studio .pro-jog-screen small { font-size:8px; }
+.mobile-studio .pitch-strip { width:44px; font-size:9px; }.mobile-studio .pitch-strip input { height:110px; min-width:44px; }.mobile-studio .pitch-strip output { min-height:16px; }.mobile-studio .pitch-strip button { width:44px; padding:2px; font-size:9px; }
+.mobile-studio .transport { flex-shrink:0; grid-template-columns:48px 52px 1fr 1fr; gap:6px; margin-top:auto; padding-block:6px; }
+.mobile-studio .transport button { width:auto; min-width:0; height:44px; min-height:44px; padding:4px; font-size:10px; }.mobile-studio .transport .play-button { height:48px; }
+.mobile-studio .deck-error { font-size:11px; margin:0; flex-shrink:0; }.mobile-studio .deck-error:empty { display:none; }
+.mobile-studio .mobile-pad-panel { display:none; flex:1; min-height:0; overflow:auto; padding:6px 0; }
+.mobile-studio [data-mobile-panel=pads] .platter-row { display:none; }.mobile-studio [data-mobile-panel=pads] .mobile-pad-panel { display:block; }
+.mobile-studio .hotcues { grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; margin:8px 0; }.mobile-studio .hotcue { min-height:48px; padding:4px; }.mobile-studio .pro-pad-modes { gap:3px; }.mobile-studio .pro-pad-modes button { font-size:9px; }
+.mobile-studio .pro-tempo { display:grid; grid-template-columns:1fr 1fr; }.mobile-studio .pro-deck-toolbar { gap:5px; margin:0 0 8px; }.mobile-studio .pro-deck-toolbar button { font-size:10px; }
+.mobile-studio .mix-bus { padding:8px; display:flex; flex-direction:column; gap:6px; grid-column:auto; grid-row:auto; overflow:auto; border-radius:8px; }
+.mobile-studio .bus-heading { display:none; }.mobile-studio .mix-bus > .master { order:3; padding:5px; }.mobile-studio .master label,.mobile-studio .master output { font-size:10px; }
+.mobile-studio .mixer-channels { gap:12px; }.mobile-studio .channel-strip h3 { font-size:10px; margin:0; }.mobile-studio .mix-bus .eq { display:flex; flex-direction:column-reverse; gap:2px; }.mobile-studio .eq label { gap:0; font-size:8px; }
+.mobile-studio .rotary { width:44px; height:44px; margin:2px auto; }.mobile-studio .eq output { display:none; }.mobile-studio .channel-fader { margin:0; }.mobile-studio .channel-fader input { height:70px; min-width:44px; }
+.mobile-studio .level-label { font-size:9px; }.mobile-studio .level-label output { display:none; }.mobile-studio .pro-channel-meter { font-size:8px; margin:0; }.mobile-studio .pro-channel-meter meter { height:8px; margin-top:2px; }
+.mobile-studio .blend { margin-top:auto; padding:4px; }.mobile-studio .blend label,.mobile-studio .blend output { font-size:10px; }.mobile-studio .blend input { min-height:44px; }.mobile-studio .blend .ends { display:none; }
+.mobile-studio .mix-bus > label,.mobile-studio #pause-all,.mobile-studio #mixer-status { display:none; }
+.mobile-library { color:#e9f1f8; background:#111b29; border:1px solid #65778e; border-radius:12px; width:min(680px,calc(100vw - 24px)); max-height:calc(100dvh - 20px); padding:16px; overflow:auto; }
+.mobile-library::backdrop { background:#03060bc9; }.mobile-library-heading { display:flex; align-items:center; justify-content:space-between; }.mobile-library h2 { font-size:20px; margin:0; }
+.mobile-library .file-label { display:flex; padding:10px 0; }.mobile-library .file-label span { min-width:60px; color:#eef5ff; }.mobile-library input[type=file] { min-height:44px; }.mobile-library input::file-selector-button { min-height:44px; }
+.mobile-consent { display:flex; align-items:center; gap:12px; min-height:44px; font-size:13px; }.mobile-consent input { min-width:24px; min-height:24px; }
+.mobile-library #practice-library > p,.mobile-library #practice-library > .studio-options,.mobile-library #practice-library > .session-actions > a { display:none; }.mobile-library #practice-status,.mobile-library #practice-credit { display:block!important; font-size:12px; }.mobile-library select { max-width:100%; }
+@media (orientation:landscape) and (max-height:500px) {
+ .mobile-studio .console { grid-template-columns:minmax(0,1fr) 150px minmax(0,1fr); padding:3px; gap:4px; }
+ .mobile-studio .deck { padding:4px 8px; }.mobile-studio .deck-display { padding:2px 5px; }.mobile-studio .deck-display .track-name { font-size:10px; }
+ .mobile-studio .platter-row { min-height:106px; padding:7px 2px; gap:18px; }.mobile-studio .jog { width:108px; padding:10px; }.mobile-studio .jog::after { inset:14px; }
+ .mobile-studio .pro-jog-screen strong { font-size:17px; }.mobile-studio .pro-jog-screen output { font-size:10px; margin-top:2px; }
+ .mobile-studio .pitch-strip { display:grid; grid-template-columns:44px 44px; align-items:center; gap:0; width:88px; }.mobile-studio .pitch-strip input { grid-row:1/4; grid-column:1; height:88px; }.mobile-studio .pitch-strip output { grid-column:2; }.mobile-studio .pitch-strip button { grid-column:2; }
+ .mobile-studio .mix-bus { padding:4px; gap:2px; }.mobile-studio .mixer-channels { gap:6px; }.mobile-studio .channel-fader input { height:44px; }.mobile-studio .pro-channel-meter,.mobile-studio .level-label { display:none; }
+ .mobile-studio .eq label { position:relative; padding-left:15px; }.mobile-studio .rotary { margin:0; }.mobile-studio .eq label { font-size:8px; display:flex; flex-direction:row; justify-content:space-between; }
+ .mobile-studio .mix-bus > .master { order:0; padding:0 4px; }.mobile-studio .master > :not(input):not(:first-child) { display:none; }.mobile-studio .master > input { min-height:44px; margin:0; }.mobile-studio .master > label:first-child { display:none; }
+ .mobile-studio .blend { padding:0 4px; }.mobile-studio .blend label { display:none; }.mobile-studio .blend output { display:block; text-align:center; font-size:9px; }.mobile-studio .blend input { margin:0; }
+}
+@media (max-width:600px) and (orientation:portrait) {
+ .mobile-studio #dj { height:auto; min-height:100dvh; }.mobile-bar { position:sticky; top:0; z-index:10; background:#090e16; gap:4px; }.mobile-bar strong { font-size:11px; }.mobile-bar button { padding:6px 8px; }
+ .mobile-studio .console { display:grid; grid-template-columns:1fr; overflow:visible; }.mobile-studio .deck { overflow:visible; min-height:360px; }.mobile-studio .jog { width:180px; }.mobile-studio .mix-bus { grid-row:2; display:grid; grid-template-columns:1fr 1fr; gap:10px; }.mobile-studio .mixer-channels { grid-column:1/-1; }.mobile-studio .mix-bus .eq { flex-direction:row; justify-content:space-around; }.mobile-studio .channel-fader input { writing-mode:horizontal-tb; width:100%; height:44px; }.mobile-studio .mix-bus .master { order:0; }.mobile-studio .blend { margin:0; }.mobile-studio .mobile-pad-panel { max-height:440px; }
+}
+.mobile-studio .transport > button { grid-row:1; grid-column:auto; }
+.mobile-studio .channel-strip { padding-inline:0; }.mobile-studio .rotary { flex:0 0 44px; }
+.mobile-studio .jog { height:clamp(125px,20vw,270px); }
+.mobile-studio .mix-bus > .master { display:none; }.mobile-studio [data-mobile-panel=pads] .mix-bus > .master { display:block; }
+@media (orientation:landscape) and (max-height:500px) {
+ .mobile-studio .deck-heading { min-height:20px; flex:0 0 20px; }.mobile-studio .deck-heading > .mobile-load { display:none; }.mobile-studio .deck-state { padding:2px 4px; }
+ .mobile-studio .jog { width:100px; height:100px; }.mobile-studio .platter-row { min-height:112px; padding-block:6px; }
+ .mobile-studio .eq label { padding:0; }.mobile-studio #peak { display:none; }
+ .mobile-studio .transport { padding-block:2px; gap:5px; }.mobile-studio .deck-display { margin-top:1px; }
+ .mobile-studio .mix-bus .channel-strip h3 { white-space:nowrap; font-size:8px; line-height:12px; }.mobile-studio .mix-bus .channel-fader { height:44px; }
+ .mobile-studio .mix-bus .channel-fader input { margin:0; }.mobile-studio .blend { flex-shrink:0; }
+}
+@media (max-width:600px) and (orientation:portrait) { .mobile-studio .jog { height:180px; } }
+.mobile-studio #crossfade { height:44px; min-height:44px; margin:0; }
+@media (min-width:850px) and (min-height:600px) {
+ .mobile-studio #dj:not([data-mobile-panel=pads]) .mobile-pad-panel { display:block; flex:none; overflow:visible; }
+ .mobile-studio #dj:not([data-mobile-panel=pads]) .mobile-pad-panel > :not(.pro-pad-modes):not(.hotcues) { display:none; }
+ .mobile-studio .mix-bus > .master { display:block; }
+ .mobile-studio .hotcues { margin:8px 0; }.mobile-studio .hotcue { min-height:48px; }
+}
+/* Native division geometry keeps interactive controls off a partially folded display. */
+.mobile-studio #dj[data-fold=vertical] .console { grid-template-columns:minmax(0,calc(var(--fold-start) - 6px)) var(--fold-size) minmax(0,1fr); gap:0; }
+.mobile-studio #dj[data-fold=vertical] .deck-a { grid-column:1; grid-row:1/3; margin-right:6px; }
+.mobile-studio #dj[data-fold=vertical] .deck-b { grid-column:3; grid-row:1; margin-left:6px; }
+.mobile-studio #dj[data-fold=vertical] .mix-bus { grid-column:3; grid-row:2; margin-left:6px; }
+.mobile-studio #dj[data-fold=vertical] .mobile-bar { padding-left:calc(var(--fold-start) + var(--fold-size) + 6px); }
+.mobile-studio #dj[data-fold=vertical] .mobile-bar strong { position:absolute; left:12px; }
+.mobile-studio #dj[data-fold] .jog { width:120px; height:120px; }.mobile-studio #dj[data-fold] .platter-row { min-height:140px; }
+.mobile-studio #dj[data-fold] .mobile-pad-panel { display:none; }.mobile-studio #dj[data-fold][data-mobile-panel=pads] .mobile-pad-panel { display:block; }
+.mobile-studio #dj[data-fold=horizontal] .console { grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-rows:minmax(0,calc(var(--fold-start) - var(--bar-height) - 6px)) var(--fold-size) minmax(0,1fr); gap:0; }
+.mobile-studio #dj[data-fold=horizontal] .deck-a { grid-column:1; grid-row:1; margin-right:4px; }
+.mobile-studio #dj[data-fold=horizontal] .deck-b { grid-column:2; grid-row:1; margin-left:4px; }
+.mobile-studio #dj[data-fold=horizontal] .mix-bus { grid-column:1/-1; grid-row:3; margin-top:6px; }
+.mobile-studio #dj[data-fold] .mix-bus { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr); align-items:center; }
+.mobile-studio #dj[data-fold] .mixer-channels { grid-column:1; grid-row:1/3; }.mobile-studio #dj[data-fold] .blend { grid-column:2; margin:0; }
+.mobile-studio #dj[data-fold] .mix-bus > .master { display:block; grid-column:2; }
+.mobile-studio #dj[data-fold] .mix-bus .eq { flex-direction:row; justify-content:space-around; flex-wrap:wrap; }.mobile-studio #dj[data-fold] .channel-fader input { writing-mode:horizontal-tb; width:100%; height:44px; }
+.mobile-studio [data-mobile-panel=pads] .mix-bus > label { display:block; font-size:11px; }
+.mobile-studio .hotcue { -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; }

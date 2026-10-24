@@ -76,7 +76,7 @@ export function attachProDeckTools({decks,mode,context,prepareFrames,deckEffects
       button.dataset.set=String(state.mode==='hot'&&cues[i]!=null);
     });
     state.hot.dataset.mode=state.mode;
-    state.section.querySelector('.pad-help').textContent=state.mode==='hot'?'Click empty to set · Shift-click to clear · Quantize follows your grid':state.mode==='roll'?'Play, then tap a pad to roll. Tap it again or Exit loop to return to the song timeline.':state.mode==='jump'?'Choose a distance, then jump forward or backward.':'Tap a size to loop from this beat. Use Exit loop to continue.';
+    state.section.querySelector('.pad-help').textContent=state.mode==='hot'?(window.jamloomMobile?'Tap to set or jump · Hold a cue to clear it':'Click empty to set · Shift-click to clear · Quantize follows your grid'):state.mode==='roll'?'Play, then tap a pad to roll. Tap it again or Exit loop to return to the song timeline.':state.mode==='jump'?'Choose a distance, then jump forward or backward.':'Tap a size to loop from this beat. Use Exit loop to continue.';
   }
   function bind(){for(const state of states){
     const {deck}=state,id=deck.id,audio=deck.audio;

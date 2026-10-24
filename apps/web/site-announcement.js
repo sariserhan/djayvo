@@ -8,5 +8,5 @@ async function updateAnnouncement(){
   element.textContent=banner;
  }catch{/* Prepared offline music remains available. */}
 }
-void updateAnnouncement();setInterval(updateAnnouncement,60000);
+if(!window.jamloomMobile){void updateAnnouncement();setInterval(updateAnnouncement,60000);}
 window.addEventListener('pagehide',()=>controller.abort());

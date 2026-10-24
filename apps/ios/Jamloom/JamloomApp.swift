@@ -6,28 +6,33 @@ import AVFoundation
 struct JamloomApp: App {
     @StateObject private var model = AppModel()
     @StateObject private var account = AccountModel()
+    @StateObject private var decks = DJModel()
     @State private var showError = false
     @Environment(\.scenePhase) private var scenePhase
     var body: some Scene { WindowGroup {
         TabView {
-            RemixView(account: account, model: model).tabItem { Label("Improvise", systemImage: "waveform") }
+            RemixView(account: account, model: model, clearDecks: { decks.clear() }).tabItem { Label("Improvise", systemImage: "waveform") }
             MusicDNAView(model: model, account: account).tabItem { Label("Music DNA", systemImage: "music.note.list") }
+            DJDeckView(decks: decks, model: model).tabItem { Label("DJ Deck", systemImage: "opticaldisc") }
         }
             .onChange(of: scenePhase) { _, phase in
                 model.foreground = phase == .active
-                if phase == .background { model.suspendAudio(cancelRender: true) }
+                if phase == .background { model.suspendAudio(cancelRender: true); decks.stop() }
             }
             .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.interruptionNotification)) { _ in
                 model.suspendAudio(cancelRender: false)
+                decks.stop()
             }
             .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.routeChangeNotification)) { note in
                 let reason = (note.userInfo?[AVAudioSessionRouteChangeReasonKey] as? NSNumber)?.uintValue
                 if reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue || reason == AVAudioSession.RouteChangeReason.noSuitableRouteForCategory.rawValue {
                     model.suspendAudio(cancelRender: false)
+                    decks.stop()
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: AVAudioSession.mediaServicesWereResetNotification)) { _ in
                 model.suspendAudio(cancelRender: true)
+                decks.stop()
             }
             .onChange(of: model.error, initial: true) { _, error in if error != nil { showError = true } }
             .alert("Jamloom", isPresented: $showError) {
@@ -38,46 +43,54 @@ struct JamloomApp: App {
 
 struct RemixView: View {
     @ObservedObject var account: AccountModel
+    @StateObject private var cloud = CloudImproviseModel()
+    @State private var showCloud = false
     @State private var showAccount = false
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject var model: AppModel
+    var clearDecks: () -> Void = {}
     @State private var importing = false
     @State private var deleteAll = false
     @State private var privacy = false
     private let accent = Color(red: 0.78, green: 0.96, blue: 0.32)
 
-    var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Your sound.\nA new groove.").font(.largeTitle.bold())
-                        Text("A phrase, a laugh, a small surprise. Make it music.")
-                            .foregroundStyle(.secondary)
-                    }
+    private func standardLayout(_ geometry: GeometryProxy) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                introduction
+                LazyVGrid(columns: dynamicTypeSize.isAccessibilitySize || model.input == nil ? [GridItem(.flexible())] : [GridItem(.adaptive(minimum: min(320, max(1, geometry.size.width - 40))), alignment: .top)], alignment: .leading, spacing: 24) {
                     captureCard
                     if let input = model.input { trimCard(input) }
-                    if model.busy {
-                        HStack { ProgressView(); Text(model.activity); Spacer(); if model.canCancel { Button("Cancel", action: model.cancel) } }
-                            .accessibilityIdentifier("generationProgress")
-                    }
-                    if model.sessions.contains(where: { !$0.isTaste }) {
-                        Text("Your mixes").font(.title2.bold())
-                        ForEach(model.sessions.filter { !$0.isTaste }) { session in SavedSessionView(model: model, session: session) }
-                    }
-                    if model.incomplete > 0 {
-                        Text("\(model.incomplete) incomplete or changed sessions were kept out of playback. Delete all local data to remove them.")
-                            .font(.footnote).foregroundStyle(.secondary)
-                    }
-                    Button("Privacy & your recordings") { privacy = true }
-                    Button("Delete all local data", role: .destructive) { deleteAll = true }.disabled(!model.editable)
-                }.padding(20).frame(maxWidth: 680)
-                    .frame(maxWidth: .infinity)
+                }
+                generationProgress
+                savedMixes
+            }.padding(20).frame(maxWidth: 1120).frame(maxWidth: .infinity)
+        }
+    }
+
+    var body: some View {
+        NavigationStack {
+            GeometryReader { geometry in
+                #if compiler(>=6.4)
+                if #available(iOS 27.1, *), geometry.size.width >= 620, !dynamicTypeSize.isAccessibilitySize {
+                    ArrangementView {
+                        ScrollView { VStack(alignment: .leading, spacing: 24) { introduction; captureCard; if let input = model.input { trimCard(input) }; generationProgress }.padding(20) }
+                    } secondary: {
+                        ScrollView { savedMixes.padding(20) }
+                    }.arrangementViewStyle(.split)
+                } else { standardLayout(geometry) }
+                #else
+                standardLayout(geometry)
+                #endif
             }
             .background(Color(red: 0.055, green: 0.07, blue: 0.075))
             .navigationTitle("Jamloom").navigationBarTitleDisplayMode(.inline)
-            .toolbar { Button("Account") { model.suspendAudio(cancelRender: false); showAccount = true } }
+            .toolbar { Button("Account", systemImage: "person.crop.circle") { model.suspendAudio(cancelRender: false); showAccount = true } }
             .sheet(isPresented: $showAccount) { AccountView(account: account) }
+            .sheet(isPresented: $showCloud) { CloudImproviseView(cloud: cloud, account: account, model: model) }
+            .onChange(of: model.trimStart) { _, _ in cloud.recordingChanged() }
+            .onChange(of: model.trimEnd) { _, _ in cloud.recordingChanged() }
+            .onChange(of: model.inputRevision) { _, _ in cloud.recordingChanged() }
             .tint(accent).preferredColorScheme(.dark)
             .task { await model.loadLibrary() }
             .onDisappear { model.suspendAudio(cancelRender: true) }
@@ -88,7 +101,7 @@ struct RemixView: View {
                 }
             }
             .confirmationDialog("Delete all recordings and mixes from Jamloom? Exported copies stay where you shared them.", isPresented: $deleteAll, titleVisibility: .visible) {
-                Button("Delete all local data", role: .destructive) { model.deleteAll() }
+                Button("Delete all local data", role: .destructive) { model.deleteAll(); clearDecks(); cloud.clearDownloadedAudio() }
             }
             .sheet(isPresented: $privacy) {
                 NavigationStack {
@@ -96,7 +109,7 @@ struct RemixView: View {
                         VStack(alignment: .leading, spacing: 16) {
                             Text("Your recordings stay here").font(.title.bold())
                             Text("Jamloom records only after you tap Record and allow microphone access. Capture stops after fifteen seconds, when you stop it, or when the app goes into the background.")
-                            Text("Audio is processed on this device. Optional sign-in can sync your preferences and account balance. Audio is never automatically uploaded. Cloud generation and purchases are closed; there is no advertising or analytics. Its private library is excluded from device backups.")
+                            Text("Local previews are processed on this device. Create a full song uses the same cloud engine as the website, when available. It uploads only after you explicitly consent, and shows a credit quote before creating your private song. Audio is never automatically uploaded. Optional sign-in can sync your preferences and account balance. Purchases remain closed. There is no advertising or analytics. Its private library is excluded from device backups.")
                             Text("Record and import only sounds you have permission to use. Get permission from recognizable speakers before recording or sharing them. Take special care with children's voices and private information.")
                             Text("Sessions stay in the app until you delete them or uninstall it. Save marks a favorite; every completed session already stays in your library. Share exports only the selected WAV through an app you choose. Copies you share are outside Jamloom's control.")
                             Text("Instrument credits").font(.headline)
@@ -106,29 +119,74 @@ struct RemixView: View {
                                     DisclosureGroup(name) { Text(notice).font(.caption).textSelection(.enabled) }
                                 }
                             }
-                            Text("This is a local prototype. Musical quality is still being evaluated; it does not clone voices or imitate a performer.")
+                            Text("Musical quality is still being evaluated. Local previews are instrumental. Cloud creation can transform your recorded voice; use only voices you have permission to process.")
                         }.padding()
                     }.navigationTitle("Privacy").toolbar { Button("Done") { privacy = false } }
                 }.preferredColorScheme(.dark)
             }
         }
     }
+    private var introduction: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Make it yours.").font(.largeTitle.bold())
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 16) {
+                    Label("Record", systemImage: "mic.fill")
+                    Image(systemName: "chevron.right").accessibilityHidden(true)
+                    Label("Create", systemImage: "sparkles")
+                    Image(systemName: "chevron.right").accessibilityHidden(true)
+                    Label("Play", systemImage: "play.fill")
+                }
+                Text("Record · Create · Play")
+            }.font(.caption).foregroundStyle(.secondary)
+        }
+    }
+    @ViewBuilder private var generationProgress: some View {
+        if model.busy {
+            HStack { ProgressView(); Text(model.activity); Spacer(); if model.canCancel { Button("Cancel", action: model.cancel) } }
+                .accessibilityIdentifier("generationProgress")
+        }
+    }
+    private var savedMixes: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            if model.sessions.contains(where: { !$0.isTaste }) {
+                Text("Your mixes").font(.title2.bold())
+                ForEach(model.sessions.filter { !$0.isTaste }) { session in SavedSessionView(model: model, session: session) }
+            }
+            if model.incomplete > 0 {
+                Text("\(model.incomplete) incomplete or changed sessions were kept out of playback. Delete all local data to remove them.")
+                    .font(.footnote).foregroundStyle(.secondary)
+            }
+            Button("Privacy & your recordings") { privacy = true }
+            Button("Delete all local data", role: .destructive) { deleteAll = true }.disabled(!model.editable)
+        }.frame(maxWidth: .infinity, alignment: .leading)
+    }
     private var captureCard: some View {
         VStack(alignment: .leading, spacing: 16) {
             Label("Start with a sound", systemImage: "waveform").font(.headline)
-            Toggle("I have permission to record and remix this sound.", isOn: $model.consent)
-                .accessibilityIdentifier("consentToggle").disabled(!model.editable)
-            Text("1–15 seconds. Processed on your device.").font(.footnote).foregroundStyle(.secondary)
+            Button {
+                if model.recording { model.stopRecording() } else { Task { await model.startRecording() } }
+            } label: {
+                VStack(spacing: 8) {
+                    Image(systemName: model.recording ? "stop.circle.fill" : "mic.circle.fill").font(.system(size: 80))
+                    Text(model.recording ? "Stop" : "Record").font(.headline)
+                }.foregroundStyle(model.recording ? .red : accent).frame(maxWidth: .infinity).padding(.vertical, 12)
+            }.buttonStyle(.plain).accessibilityLabel(model.recording ? "Stop" : "Record")
+                .disabled(!model.consent || (!model.recording && !model.editable))
+            HStack {
+                Text("I have permission to use this sound.").accessibilityHidden(true)
+                Spacer()
+                Toggle("I have permission to use this sound.", isOn: $model.consent).labelsHidden().fixedSize()
+                    .accessibilityIdentifier("consentToggle").disabled(!model.editable)
+            }
+            Text("1–15 seconds. Stays here until you choose to upload.").font(.footnote).foregroundStyle(.secondary)
             if model.recording {
                 HStack {
                     Label(String(format: "Recording · %.1f / 15 seconds", model.recordingSeconds), systemImage: "record.circle.fill").foregroundStyle(.red)
                     Spacer()
-                    Button("Stop", action: model.stopRecording).buttonStyle(.bordered)
                 }
             } else {
                 (dynamicTypeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12)) : AnyLayout(HStackLayout(spacing: 12))) {
-                    Button { Task { await model.startRecording() } } label: { Label("Record", systemImage: "mic.fill") }
-                        .buttonStyle(.borderedProminent).foregroundStyle(.black)
                     Button { importing = true } label: { Label("Import", systemImage: "square.and.arrow.down") }.buttonStyle(.bordered)
                 }.disabled(!model.consent || !model.editable)
                 if model.permissionPending { Text("Waiting for microphone permission…").font(.footnote) }
@@ -161,9 +219,13 @@ struct RemixView: View {
                 ForEach([15, 30, 45, 60], id: \.self) { Text("\($0) seconds").tag($0) }
             }.accessibilityIdentifier("outputSeconds")
             Text("Arrangements end on a musical boundary; the exact length may vary slightly.").font(.caption)
+            Button { model.stopPlayback(); showCloud = true } label: {
+                Label("Create a full song", systemImage: "sparkles").frame(maxWidth: .infinity, minHeight: 32)
+            }.buttonStyle(.borderedProminent).foregroundStyle(.black).disabled(!model.validSelection || !model.consent)
+            Label("Local instrumental previews", systemImage: "iphone").font(.caption).foregroundStyle(.secondary)
             Button { Task { await model.generate() } } label: {
                 Label(model.sessions.isEmpty ? "Make Music" : "Remix Again", systemImage: "sparkles").frame(maxWidth: .infinity)
-            }.buttonStyle(.borderedProminent).foregroundStyle(.black).accessibilityIdentifier("makeMusic")
+            }.buttonStyle(.bordered).accessibilityIdentifier("makeMusic")
                 .disabled(!model.validSelection || !model.consent)
             Button("Make a club mix") { Task { await model.generate(club: true) } }
                 .disabled(!model.validSelection || !model.consent)
@@ -218,7 +280,7 @@ struct SavedSessionView: View {
     }
 }
 
-private struct Waveform: View {
+struct Waveform: View {
     let bars: [Float]
     let start: Double
     let end: Double

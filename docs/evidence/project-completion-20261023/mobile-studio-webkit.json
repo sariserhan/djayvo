@@ -1,0 +1,290 @@
+{
+  "gate": "PASS",
+  "engine": "WebKit",
+  "geometry": [
+    {
+      "name": "landscape",
+      "width": 734,
+      "height": 323,
+      "overflow": false,
+      "controls": [
+        {
+          "id": "play-a",
+          "x": 65,
+          "y": 261,
+          "w": 52,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "id": "play-b",
+          "x": 508,
+          "y": 261,
+          "w": 52,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "id": "jog-a",
+          "x": 42.5,
+          "y": 153,
+          "w": 100,
+          "h": 100,
+          "visible": true
+        },
+        {
+          "id": "jog-b",
+          "x": 485.5,
+          "y": 153,
+          "w": 100,
+          "h": 100,
+          "visible": true
+        },
+        {
+          "id": "crossfade",
+          "x": 304,
+          "y": 277,
+          "w": 129,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "id": "eq-a-0",
+          "x": 320,
+          "y": 165,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "id": "eq-b-2",
+          "x": 393,
+          "y": 73,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "small-landscape",
+      "width": 568,
+      "height": 270,
+      "overflow": false,
+      "controls": [
+        {
+          "id": "play-a",
+          "x": 65,
+          "y": 261,
+          "w": 52,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "id": "play-b",
+          "x": 425,
+          "y": 261,
+          "w": 52,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "id": "jog-a",
+          "x": 1,
+          "y": 153,
+          "w": 100,
+          "h": 100,
+          "visible": true
+        },
+        {
+          "id": "jog-b",
+          "x": 361,
+          "y": 153,
+          "w": 100,
+          "h": 100,
+          "visible": true
+        },
+        {
+          "id": "crossfade",
+          "x": 221,
+          "y": 277,
+          "w": 129,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "id": "eq-a-0",
+          "x": 237,
+          "y": 165,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "id": "eq-b-2",
+          "x": 310,
+          "y": 73,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "ipad",
+      "width": 1060,
+      "height": 750,
+      "overflow": false,
+      "controls": [
+        {
+          "id": "play-a",
+          "x": 71,
+          "y": 672,
+          "w": 52,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "id": "play-b",
+          "x": 685,
+          "y": 672,
+          "w": 52,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "id": "jog-a",
+          "x": 85,
+          "y": 237,
+          "w": 212,
+          "h": 212,
+          "visible": true
+        },
+        {
+          "id": "jog-b",
+          "x": 699,
+          "y": 237,
+          "w": 212,
+          "h": 212,
+          "visible": true
+        },
+        {
+          "id": "crossfade",
+          "x": 459,
+          "y": 535.15625,
+          "w": 142,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "id": "eq-a-0",
+          "x": 467.5,
+          "y": 212,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "id": "eq-b-2",
+          "x": 549,
+          "y": 92,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "portrait",
+      "width": 393,
+      "height": 700,
+      "overflow": false,
+      "controls": [
+        {
+          "id": "play-a",
+          "x": 71,
+          "y": 433,
+          "w": 52,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "id": "play-b",
+          "x": 71,
+          "y": 1180.84375,
+          "w": 52,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "id": "jog-a",
+          "x": 74.5,
+          "y": 220.5,
+          "w": 180,
+          "h": 180,
+          "visible": true
+        },
+        {
+          "id": "jog-b",
+          "x": 74.5,
+          "y": 968.34375,
+          "w": 180,
+          "h": 180,
+          "visible": false
+        },
+        {
+          "id": "crossfade",
+          "x": 205.5,
+          "y": 558,
+          "w": 168.5,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "id": "eq-a-0",
+          "x": 21.578125,
+          "y": 646.921875,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        },
+        {
+          "id": "eq-b-2",
+          "x": 327.5625,
+          "y": 646.921875,
+          "w": 44,
+          "h": 44,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "fold-vertical",
+      "width": 1024,
+      "height": 768,
+      "division": {
+        "x": 500,
+        "y": 0,
+        "width": 24,
+        "height": 768
+      },
+      "overlap": [],
+      "scope": "Injected division geometry, not a physical Duo test"
+    },
+    {
+      "name": "fold-horizontal",
+      "width": 850,
+      "height": 1050,
+      "division": {
+        "x": 0,
+        "y": 500,
+        "width": 850,
+        "height": 24
+      },
+      "overlap": [],
+      "scope": "Injected division geometry, not a physical Duo test"
+    }
+  ],
+  "errors": [],
+  "audio": "Muted automated playback; listening NOT RUN"
+}

@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		021A1890F1B361C7A45E324F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F16A8D072B07DB6A914D103 /* Assets.xcassets */; };
 		03691B81D660974A3768DCCB /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2939FD8D1B87A8606A585960 /* Account.swift */; };
+		0CEE4B08A0AA65B0D554D98B /* MobileAudioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6008279FB014E3E2C600ACE2 /* MobileAudioTests.swift */; };
 		1331031A07F060E981933E67 /* RemixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246AE44A64358577B0C3E29 /* RemixTests.swift */; };
 		1848E2688592EA4B70C92346 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E46D0F0B6F3890F3CD11F /* AppModel.swift */; };
 		206DF64A94F23A80B539A25C /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B6D54B2307E83BF311E329C6 /* manifest.json */; };
+		21AA43411FB50CE5B8EC6684 /* CloudImprovise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F047FEAC97E68B7223E5F6 /* CloudImprovise.swift */; };
 		233A512B1D3A82BB05E7A9E6 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02DDB4842983D2C220FE180 /* AudioSession.swift */; };
 		255FE25581AE80A34A5DDC0A /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 017B27BE3D48223E7D7E6471 /* renderer.cpp */; };
 		311802DFDCD8BEE11C9F86E8 /* JamloomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D3D83B51DF8B7F58A197A3 /* JamloomApp.swift */; };
@@ -28,11 +30,14 @@
 		7E8D2905B25AC9FE2BEF513F /* plan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9E7D80A812646BF27A24CEC /* plan.cpp */; };
 		7EC9429BD9E7967B2E0E1975 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7B95B54DEB78D0ABE3BEFF43 /* PrivacyInfo.xcprivacy */; };
 		8E697E97E701C8135F0BD051 /* acoustic_bank.inc in Resources */ = {isa = PBXBuildFile; fileRef = 1E5064135B14BB6C3D155EC0 /* acoustic_bank.inc */; };
+		8E8E73993328B394DF69C825 /* StudioServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7898394A1CA5697717DA10 /* StudioServerTests.swift */; };
 		8F7A55CB236A88FA1553BA73 /* TasteRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F31AC2FFEB8CFE139F4EDF /* TasteRender.swift */; };
+		91F91D1B9B7EF3EE8B17CDE2 /* Studio in Resources */ = {isa = PBXBuildFile; fileRef = 7F3D1A759500C8151936462F /* Studio */; };
 		9594ED6B246734DDD9648325 /* analysis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E3764675A02ECC77FCB18D7 /* analysis.cpp */; };
 		997616C15CFC7023A67F0673 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6FC7B79AED84081562F85C /* PerformanceTests.swift */; };
 		9D3AFC0695A502C09836CB14 /* remix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D36F09BD0C31A98B93E8591 /* remix.cpp */; };
 		A6F0380593420B13FD3728C4 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECADB888A44B343A9F98AFC7 /* input.cpp */; };
+		A782AD1688A5968DBB71BC42 /* improvise-styles.json in Resources */ = {isa = PBXBuildFile; fileRef = D43A832EC9FCD72385B24D06 /* improvise-styles.json */; };
 		A7A5B67A05EFA20463774DF3 /* voice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F96217E3F88508B83C207EFD /* voice.cpp */; };
 		A99783723F5E1CBE058F1BB2 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599320B94B8B3C60346D5875 /* session.cpp */; };
 		AD3B17FC8F3C9E6F302163C7 /* CreditPurchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D1DD8B5B38100F8208C16D /* CreditPurchases.swift */; };
@@ -45,8 +50,10 @@
 		CD130110FCA1756D651B1E3E /* electronic_bank.inc in Resources */ = {isa = PBXBuildFile; fileRef = AD2EB4E1EE1BB4096A89995E /* electronic_bank.inc */; };
 		D5F8B6F0C944C5D6AF62F3E3 /* full_band_interpolation.inc in Resources */ = {isa = PBXBuildFile; fileRef = E3F8BB997819B3B7E8D19081 /* full_band_interpolation.inc */; };
 		DDA9AE42432EF06BC449726F /* remix_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A4AD63A92EB27D0BE63A921 /* remix_renderer.cpp */; };
+		E5FC49CC280317B13A61C625 /* DJDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711C5E29451A1F38F39D291 /* DJDeck.swift */; };
 		EA397E2A38B903C6ADD6C302 /* c_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 349507E6CB1B4CAF64C016D2 /* c_api.cpp */; };
 		EADCB3454AFC675C2FF24488 /* LocalCredits.storekit in Resources */ = {isa = PBXBuildFile; fileRef = EA3023065583600FBCEF3071 /* LocalCredits.storekit */; };
+		F2E6D213AB1C32C13D2EEF23 /* StudioServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC0A3578A8991E5DEF6503A /* StudioServer.swift */; };
 		FDBB60E7CEA0BAFCB273A8ED /* RemixEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6759756AEC3E73B056A85E2 /* RemixEngine.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,7 +91,9 @@
 		3B9E46D0F0B6F3890F3CD11F /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		41F5DCCD4669793436DBDB99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4E104CA55FFE73815BFB8771 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		52F047FEAC97E68B7223E5F6 /* CloudImprovise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudImprovise.swift; sourceTree = "<group>"; };
 		599320B94B8B3C60346D5875 /* session.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = session.cpp; sourceTree = "<group>"; };
+		6008279FB014E3E2C600ACE2 /* MobileAudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAudioTests.swift; sourceTree = "<group>"; };
 		676104D5CE7DBA493DBF322E /* licenses */ = {isa = PBXFileReference; lastKnownFileType = folder; name = licenses; path = ../../assets/licenses; sourceTree = SOURCE_ROOT; };
 		6C8269766F62E5CE20BEF623 /* synth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = synth.h; sourceTree = "<group>"; };
 		6F16A8D072B07DB6A914D103 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,13 +101,17 @@
 		7A4AD63A92EB27D0BE63A921 /* remix_renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = remix_renderer.cpp; sourceTree = "<group>"; };
 		7B95B54DEB78D0ABE3BEFF43 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		7D36F09BD0C31A98B93E8591 /* remix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = remix.cpp; sourceTree = "<group>"; };
+		7E7898394A1CA5697717DA10 /* StudioServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioServerTests.swift; sourceTree = "<group>"; };
+		7F3D1A759500C8151936462F /* Studio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Studio; path = "../../build-ios-studio/Studio"; sourceTree = SOURCE_ROOT; };
 		83B30E6BC18016D1AD3A2426 /* TasteCatalogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteCatalogue.swift; sourceTree = "<group>"; };
+		8711C5E29451A1F38F39D291 /* DJDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJDeck.swift; sourceTree = "<group>"; };
 		8E3764675A02ECC77FCB18D7 /* analysis.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = analysis.cpp; sourceTree = "<group>"; };
 		917F5B7E0A4EDD7D8CA8C490 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		97D63F9E78BE8A4E9C10828F /* MusicDNA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDNA.swift; sourceTree = "<group>"; };
 		98D11C624280A4B7D35475C1 /* guitar_bank.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = guitar_bank.inc; sourceTree = "<group>"; };
 		AC6FC7B79AED84081562F85C /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		AD2EB4E1EE1BB4096A89995E /* electronic_bank.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = electronic_bank.inc; sourceTree = "<group>"; };
+		AFC0A3578A8991E5DEF6503A /* StudioServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioServer.swift; sourceTree = "<group>"; };
 		B2D1DD8B5B38100F8208C16D /* CreditPurchases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditPurchases.swift; sourceTree = "<group>"; };
 		B6D54B2307E83BF311E329C6 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		C02DDB4842983D2C220FE180 /* AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
@@ -106,6 +119,7 @@
 		C3629937B433702DD137C634 /* remix_file.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = remix_file.cpp; sourceTree = "<group>"; };
 		C449519E857CCA87F77CCA7A /* AudioInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioInput.swift; sourceTree = "<group>"; };
 		C782D6233C48A1956FF7EC86 /* FlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTests.swift; sourceTree = "<group>"; };
+		D43A832EC9FCD72385B24D06 /* improvise-styles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "improvise-styles.json"; sourceTree = "<group>"; };
 		DE34D5E5A24FFDE26FE4B7B5 /* live.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = live.cpp; sourceTree = "<group>"; };
 		E3F8BB997819B3B7E8D19081 /* full_band_interpolation.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = full_band_interpolation.inc; sourceTree = "<group>"; };
 		E46E6D6A00B2BC919A9FE502 /* performance_voices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = performance_voices.h; sourceTree = "<group>"; };
@@ -135,6 +149,15 @@
 			);
 			name = audio;
 			path = ../../core/audio;
+			sourceTree = "<group>";
+		};
+		5437CE8D5D9098DBB05F354F /* manifests */ = {
+			isa = PBXGroup;
+			children = (
+				D43A832EC9FCD72385B24D06 /* improvise-styles.json */,
+			);
+			name = manifests;
+			path = ../../assets/manifests;
 			sourceTree = "<group>";
 		};
 		5A0F44BB088890198880C836 /* arrangement */ = {
@@ -169,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				676104D5CE7DBA493DBF322E /* licenses */,
+				7F3D1A759500C8151936462F /* Studio */,
 				5A0F44BB088890198880C836 /* arrangement */,
 				39B701C2E7766F3897828845 /* audio */,
 				CAEAB0543A9C5AA2CFFEC78C /* composition */,
@@ -176,6 +200,7 @@
 				ADADEEDF15CB840C7896C53B /* Jamloom */,
 				98AF21981595A1E76153CD10 /* JamloomTests */,
 				8301EB1C3D225525E1329887 /* JamloomUITests */,
+				5437CE8D5D9098DBB05F354F /* manifests */,
 				82C374A5252708745CA49DB6 /* practice-audio */,
 				D4731893CCEC26653BB23C9B /* Products */,
 			);
@@ -186,9 +211,11 @@
 			children = (
 				F56535D124F9214619CD1F94 /* AccountTests.swift */,
 				EA3023065583600FBCEF3071 /* LocalCredits.storekit */,
+				6008279FB014E3E2C600ACE2 /* MobileAudioTests.swift */,
 				AC6FC7B79AED84081562F85C /* PerformanceTests.swift */,
 				F696D52DCA58CAE4E76EB9A2 /* PurchaseTests.swift */,
 				2246AE44A64358577B0C3E29 /* RemixTests.swift */,
+				7E7898394A1CA5697717DA10 /* StudioServerTests.swift */,
 				102524A2E8C6A45767B51DFA /* TasteTests.swift */,
 			);
 			path = JamloomTests;
@@ -203,13 +230,16 @@
 				C449519E857CCA87F77CCA7A /* AudioInput.swift */,
 				C02DDB4842983D2C220FE180 /* AudioSession.swift */,
 				917F5B7E0A4EDD7D8CA8C490 /* Bridge.h */,
+				52F047FEAC97E68B7223E5F6 /* CloudImprovise.swift */,
 				B2D1DD8B5B38100F8208C16D /* CreditPurchases.swift */,
+				8711C5E29451A1F38F39D291 /* DJDeck.swift */,
 				41F5DCCD4669793436DBDB99 /* Info.plist */,
 				32D3D83B51DF8B7F58A197A3 /* JamloomApp.swift */,
 				4E104CA55FFE73815BFB8771 /* Library.swift */,
 				97D63F9E78BE8A4E9C10828F /* MusicDNA.swift */,
 				7B95B54DEB78D0ABE3BEFF43 /* PrivacyInfo.xcprivacy */,
 				E6759756AEC3E73B056A85E2 /* RemixEngine.swift */,
+				AFC0A3578A8991E5DEF6503A /* StudioServer.swift */,
 				83B30E6BC18016D1AD3A2426 /* TasteCatalogue.swift */,
 				25F31AC2FFEB8CFE139F4EDF /* TasteRender.swift */,
 			);
@@ -296,6 +326,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 98BA2E192F4980036180E346 /* Build configuration list for PBXNativeTarget "Jamloom" */;
 			buildPhases = (
+				38CE43A9F027D1E9ECCD4C9E /* Prepare shared DJ studio */,
 				3B1E0D9F87770609928ECAF4 /* Sources */,
 				CBC559B9A6B32AFB06FA6C25 /* Resources */,
 				25FC1F252C8143C57BDAB138 /* Debug synthetic fixture */,
@@ -368,10 +399,12 @@
 			files = (
 				021A1890F1B361C7A45E324F /* Assets.xcassets in Resources */,
 				7EC9429BD9E7967B2E0E1975 /* PrivacyInfo.xcprivacy in Resources */,
+				91F91D1B9B7EF3EE8B17CDE2 /* Studio in Resources */,
 				8E697E97E701C8135F0BD051 /* acoustic_bank.inc in Resources */,
 				CD130110FCA1756D651B1E3E /* electronic_bank.inc in Resources */,
 				D5F8B6F0C944C5D6AF62F3E3 /* full_band_interpolation.inc in Resources */,
 				7CD883373702C1E01730C216 /* guitar_bank.inc in Resources */,
+				A782AD1688A5968DBB71BC42 /* improvise-styles.json in Resources */,
 				B6C2756D9D8FD76E6D3D3FBD /* licenses in Resources */,
 				206DF64A94F23A80B539A25C /* manifest.json in Resources */,
 			);
@@ -399,6 +432,25 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$CONFIGURATION\" = Debug ]; then\n  fixture=\"$SRCROOT/../../renders/fixtures/synthetic-speech.wav\"\n  digest=$(shasum -a 256 \"$fixture\" | cut -d ' ' -f 1)\n  test \"$digest\" = c6db8bb92195399e012b1186908798bf345e5a0f3b185f82a3be745759a4410e || exit 1\n  cp \"$fixture\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/synthetic-speech.wav\"\n  cp \"$SRCROOT/JamloomTests/LocalCredits.storekit\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/LocalCredits.storekit\"\nfi\n";
 		};
+		38CE43A9F027D1E9ECCD4C9E /* Prepare shared DJ studio */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare shared DJ studio";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/../..\"\nsh scripts/web_build.sh\npython3 scripts/prepare_ios_studio.py\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -410,11 +462,14 @@
 				1848E2688592EA4B70C92346 /* AppModel.swift in Sources */,
 				B763B68E36CB1CBEC3467D83 /* AudioInput.swift in Sources */,
 				233A512B1D3A82BB05E7A9E6 /* AudioSession.swift in Sources */,
+				21AA43411FB50CE5B8EC6684 /* CloudImprovise.swift in Sources */,
 				AD3B17FC8F3C9E6F302163C7 /* CreditPurchases.swift in Sources */,
+				E5FC49CC280317B13A61C625 /* DJDeck.swift in Sources */,
 				311802DFDCD8BEE11C9F86E8 /* JamloomApp.swift in Sources */,
 				74BD772DD3B699ABBE8B8D86 /* Library.swift in Sources */,
 				3FFAC8FE5D21643B13F1F976 /* MusicDNA.swift in Sources */,
 				FDBB60E7CEA0BAFCB273A8ED /* RemixEngine.swift in Sources */,
+				F2E6D213AB1C32C13D2EEF23 /* StudioServer.swift in Sources */,
 				BD48F2F523EE0F3B3FB96539 /* TasteCatalogue.swift in Sources */,
 				8F7A55CB236A88FA1553BA73 /* TasteRender.swift in Sources */,
 				9594ED6B246734DDD9648325 /* analysis.cpp in Sources */,
@@ -448,9 +503,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EDED2CE18CA3081A4EED5EE /* AccountTests.swift in Sources */,
+				0CEE4B08A0AA65B0D554D98B /* MobileAudioTests.swift in Sources */,
 				997616C15CFC7023A67F0673 /* PerformanceTests.swift in Sources */,
 				35E9023246CF950B0E50A8C5 /* PurchaseTests.swift in Sources */,
 				1331031A07F060E981933E67 /* RemixTests.swift in Sources */,
+				8E8E73993328B394DF69C825 /* StudioServerTests.swift in Sources */,
 				AFDE0493993178A9E7F5D562 /* TasteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,7 +580,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -539,7 +596,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../core/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.4.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -607,7 +664,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -629,7 +686,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../core/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.4.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

@@ -117,6 +117,10 @@ function audioGraph() {
   try {
     context = new Audio({ latencyHint: 'interactive' });
     mixer = createMixer(context); meterData = new Float32Array(mixer.meter.fftSize);
+    if (window.jamloomMobileMuted === true) {
+      const mute = context.createGain(); mute.gain.value = 0;
+      mixer.meter.disconnect(context.destination); mixer.meter.connect(mute); mute.connect(context.destination);
+    }
     decks.forEach((deck, index) => {
       // Gate native decoder backlog on pause while preserving already-generated effect tails.
       deck.mediaGain = context.createGain(); deck.mediaGain.gain.value = 0;
@@ -200,6 +204,7 @@ async function loadTrack(deck, getFile) {
     if (deck.loading === controller) deck.loading = null;
     controls(deck);
   }
+  if (window.jamloomMobile && deck.file && deck.duration <= 300) await prepareFrames(deck);
 }
 
 async function prepareFrames(deck) {
@@ -217,7 +222,7 @@ async function prepareFrames(deck) {
     if(revision!==deck.revision||file!==deck.file){node.port.postMessage({type:'dispose'});node.port.close();node.disconnect();return;}
     deck.audio.useDSP(buffer,node);deck.audio.currentTime=position;deck.audio.playbackRate=speed;
     deck.audio.loop=deck.loop;deck.duration=buffer.duration;
-    $(`error-${deck.id}`).textContent='Beat controls and scratch ready. Enter the track BPM. Enable key lock to preserve pitch when changing tempo.';
+    $(`error-${deck.id}`).textContent=window.jamloomMobile ? '' : 'Beat controls and scratch ready. Enter the track BPM. Enable key lock to preserve pitch when changing tempo.';
   }catch(error){if(revision===deck.revision)$(`error-${deck.id}`).textContent=error.message;}
   finally{deck.preparing=false;controls(deck);}
 }
@@ -264,7 +269,7 @@ fetch(new URL('./practice-audio/manifest.json', import.meta.url)).then(async res
   const manifest = await response.json();addPracticeTracks(manifest.tracks,'CC0 practice music');
   $('practice-status').textContent = `${manifest.tracks.length} CC0 tracks ready. Pause the destination deck before loading. Your current track stays until its replacement is ready.`;
 }).catch(error => { $('practice-status').textContent = error.message; });
-if (access.mode === 'pro') fetch('/api/aurowall').then(async response=>{
+if (access.mode === 'pro' && !window.jamloomMobile) fetch('/api/aurowall').then(async response=>{
   if(!response.ok)throw Error();const {tracks}=await response.json();
   if(tracks.length)addPracticeTracks(tracks.map(track=>({...track,partner:true,source_page:'https://aurowall.com'})),'Aurowall · online');
   $('aurowall-status').textContent=tracks.length?`${tracks.length} Aurowall tracks available online.`:'No Aurowall tracks are available yet.';
@@ -395,4 +400,22 @@ setInterval(() => {
   $('peak').textContent = peak > .00001 ? `${(20 * Math.log10(peak)).toFixed(1)} dBFS` : 'Silent';
 }, 100);
 
-attachStudioWindows();
+if (window.jamloomMobile) {
+  window.jamloomMobileLoad = async (id, name, encoded) => {
+    if (!['a','b'].includes(id) || typeof name !== 'string' || name.length > 255 || typeof encoded !== 'string' || encoded.length > 44739244) throw Error('Invalid saved mix.');
+    const deck=decks.find(d=>d.id===id);
+    if (!deck.audio.paused || deck.loading || deck.preparing) throw Error('Pause the deck first.');
+    const bytes=Uint8Array.from(atob(encoded),c=>c.charCodeAt(0));
+    const file=new File([bytes],name,{type:'audio/wav'});
+    await loadTrack(deck,()=>file);
+    if(deck.file!==file)throw Error('Saved mix could not load.');
+  };
+  window.jamloomMobileStop = () => {
+    decks.forEach(pause); sampler.stop(); clearDeckEchoes();
+    keyboard.panic(); keyboard.interrupt(); cueRouting.interrupt();
+    mixRecording.interrupt(); setRecording.interrupt();
+    context?.suspend().catch(() => {});
+  };
+  const {attachMobileStudio} = await import('./mobile-studio.js');
+  attachMobileStudio();
+} else attachStudioWindows();

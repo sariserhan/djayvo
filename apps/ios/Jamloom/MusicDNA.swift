@@ -56,6 +56,7 @@ struct TasteProfile: Codable, Equatable, Sendable {
 }
 
 struct MusicDNAView: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
     @ObservedObject var model: AppModel
     @ObservedObject var account: AccountModel
     @State private var showAccount = false
@@ -71,8 +72,11 @@ struct MusicDNAView: View {
         NavigationStack {
             Form {
                 Section {
-                    Text("Your preferences, with room for surprise.").font(.title2.bold())
-                    Text("Favourite song names are personal notes. Jamloom does not download or train on those recordings, or infer their tempo from a title.")
+                    Label("Find your sound", systemImage: "waveform.path").font(.title2.bold())
+                    Text("Choose a mood. Pick your instruments. Play.").foregroundStyle(.secondary)
+                    DisclosureGroup("About local previews") {
+                        Text("Favourite song names are personal notes. Local previews use your controls; they do not analyze or download those songs.").font(.footnote)
+                    }
                 }
                 Section("Favourite tracks and artists — one per line") {
                     TextEditor(text: $references).focused($activeInput, equals: .references).frame(minHeight: 100).accessibilityLabel("Favourite tracks and artists")
@@ -97,16 +101,24 @@ struct MusicDNAView: View {
                     }
                     }
                     ForEach(TasteCatalogue.scores(profile.catalogue ?? []), id: \.genre) { score in Text("\(score.genre): \(score.score)") }
-                    Text("Genre scores use catalogue labels and your ratings. Confidence is limited. Tempo, key, melody, instruments, language and energy are unknown; your controls remain authoritative.").font(.caption)
+                    DisclosureGroup("How catalogue choices work") {
+                        Text("Genre scores use catalogue labels and your ratings. Tempo, key, melody, instruments, language and energy are unknown; your controls remain authoritative.").font(.caption)
+                    }
                 }
                 Section("Your musical direction") {
-                    Picker("Energy", selection: $profile.energy) { ForEach(["gentle", "balanced", "intense"], id: \.self) { Text($0).tag($0) } }
+                    if typeSize.isAccessibilitySize { energyPicker.pickerStyle(.menu) }
+                    else { energyPicker.pickerStyle(.segmented) }
                     Stepper("Preferred tempo: \(profile.tempo) BPM", value: $profile.tempo, in: 60...180)
                     Stepper("Room for surprise: \(profile.novelty)%", value: $profile.novelty, in: 0...100, step: 5)
-                    ForEach(TasteProfile.availableInstruments, id: \.self) { instrument in
-                        Toggle(instrument.capitalized, isOn: Binding(get: { profile.instruments.contains(instrument) }, set: { enabled in
-                            profile.instruments.removeAll { $0 == instrument }; if enabled { profile.instruments.append(instrument) }
-                        }))
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 130))], spacing: 12) {
+                        ForEach(TasteProfile.availableInstruments, id: \.self) { instrument in
+                            Toggle(isOn: Binding(get: { profile.instruments.contains(instrument) }, set: { enabled in
+                                profile.instruments.removeAll { $0 == instrument }; if enabled { profile.instruments.append(instrument) }
+                            })) {
+                                Label(instrument.capitalized, systemImage: ["piano": "pianokeys", "guitar": "guitars", "bass": "guitars.fill", "drums": "circle.grid.cross", "synth": "waveform.path", "voice": "mic.fill"][instrument] ?? "music.note")
+                                    .frame(maxWidth: .infinity, minHeight: 44)
+                            }.toggleStyle(.button)
+                        }
                     }
                 }
                 Section {
@@ -167,11 +179,11 @@ struct MusicDNAView: View {
                     }) }
                 }
                 Section("Availability") {
-                    Text("Local composition previews are available. Musical quality is still being evaluated. Optional account preference sync is available. Credit purchases remain closed. Local improvisation is in the other tab. DJ Studio and Live Audio DJ are desktop experiences.")
+                    Text("Local instrumental previews work on this device. Full cloud songs are in Improvise when available. Mix your tracks in DJ Deck. Credit purchases remain closed.")
                 }
-            }.scrollDismissesKeyboard(.interactively).disabled(account.busy).navigationTitle("My Music DNA")
+            }.scrollDismissesKeyboard(.interactively).disabled(account.busy).navigationTitle("My Music DNA").preferredColorScheme(.dark).tint(.mint)
                 .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) { Button("Account") { model.suspendAudio(cancelRender: false); showAccount = true } }
+                    ToolbarItem(placement: .topBarTrailing) { Button("Account", systemImage: "person.crop.circle") { model.suspendAudio(cancelRender: false); showAccount = true } }
                     ToolbarItemGroup(placement: .keyboard) { Spacer(); Button("Done editing") { activeInput = nil } }
                 }
                 .sheet(isPresented: $showAccount) { AccountView(account: account) }
@@ -184,5 +196,8 @@ struct MusicDNAView: View {
                     }
                 } catch { message = "Saved profile could not be read. Delete it to start again." } }
         }
+    }
+    private var energyPicker: some View {
+        Picker("Energy", selection: $profile.energy) { ForEach(["gentle", "balanced", "intense"], id: \.self) { Text($0.capitalized).tag($0) } }
     }
 }
