@@ -1,0 +1,11 @@
+{
+  mode: 'dry-run',
+  maxUSD: 3,
+  maxWorkers: 1,
+  maxSeconds: 1200,
+  requests: 4,
+  requires: 'Approved paid trial and JAMLOOM_TRIAL_IMAGE digest',
+  durations: [ 30, 35, 40, 45 ],
+  source: '--source synthetic WAV required',
+  websiteDeployment: false
+}

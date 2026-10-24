@@ -4,7 +4,9 @@
 
 The owner requested all four remaining items: lyric polish, broader recordings/styles, fresh complete generation and updated hosted-worker verification. Website deployment remains excluded.
 
-The shared lyric writer now edits its draft before singing, checking conversational meaning, grammar, forced rhyme and unrelated filler. It uses the existing pinned planner; no new service or dependency. A bounded format check permits four to eight sung lines, 25–85 words and optional Verse/Chorus headings. One format repair is allowed; malformed output fails before singing. Plans retain a draft hash and editor-pass count, without treating model review as human approval. Existing saved plans remain readable and Music DNA is unchanged.
+The shared lyric writer now uses short conversational replies grounded in the recording, instead of requiring longer rhyming verses. It uses the existing pinned planner, asks for 12–45 words, and permits 12–60 words across four to eight lines after validation. Decorative symbols are removed; instrument directions, prose and malformed output fail a bounded format check with one repair attempt. Plans retain a check version/pass count. Existing saved plans remain readable and Music DNA is unchanged.
+
+An initial two-pass editor still produced unrelated filler. A separate model review incorrectly accepted it, so neither is used as a quality gate. Simpler direct instructions produced contextually relevant question/dance/Turkish replies in the local probe. This improves guidance and format reliability; it cannot guarantee that every generated lyric is natural. New listening remains necessary.
 
 Local checks and reproduction are under [evidence/improvise-finish](evidence/improvise-finish). The fresh runner uses actual transcription, drafting, singing, separation and automatic arrangement. The broader matrix uses retained songs across all 23 styles and six audible inputs plus silence: the authorized owner phrase, synthetic English voices, Turkish speech, noisy speech and generated claps. Synthetic fixtures are technical tests, not diverse human speaker acceptance. All audio stays local and originals are preserved.
 
@@ -18,4 +20,6 @@ The prepared hosted trial reuses the existing guarded runner with `--improvise-c
 
 **PASS:** 140 actual receipts checked so far (138 final matrix mixes plus the first two fresh songs), including original-source/output binding and rejection of wrong source hashes. This count will be refreshed after the remaining fresh songs finish.
 
-Worker build `40045642751` was cancelled to include the percussion fix. Final candidate `321295e` builds on the website-disabled `codex/runpod-setup` branch under run `40045670271`. Cloud approval is recorded; no Runpod worker has been started yet.
+Worker build `40045642751` was cancelled to include the percussion fix. Intermediate candidate `321295e` builds on the website-disabled `codex/runpod-setup` branch under run `40045670271`. Cloud approval is recorded; no Runpod worker has been started yet.
+
+The intermediate image build was also cancelled after the lyric probes exposed filler. Final worker candidate `e6fea69` contains the simpler writer, decorative-symbol cleanup and short-percussion selection. Four new local end-to-end takes are running against this exact logic; earlier takes are retained and are not substituted for final-code qualification.

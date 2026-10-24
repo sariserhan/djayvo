@@ -42,6 +42,7 @@ process.on('SIGINT',()=>{stopping=true;});process.on('SIGTERM',()=>{stopping=tru
 try{
  await migrate(pool);const initial=await services[0].provider.health();assert.equal(initial.jobs?.inQueue,0);assert.equal(initial.jobs?.inProgress,0);
  if(startup)assert(Object.values(initial.workers??{}).every(value=>value===0),'Startup requires zero existing workers');
+ if(improvise)assert(process.argv.includes('--source')&&process.argv[process.argv.indexOf('--source')+1],'Provide --source before starting a trial');
  const source=improvise?await readFile(resolve(process.argv[process.argv.indexOf('--source')+1])):repair||startup||completion?Buffer.alloc(0):await readFile(resolve(directory,'source.wav'));
  if(improvise)assert(process.argv.includes('--source')&&source.length>=44&&source.length<=24000000&&source.toString('ascii',0,4)==='RIFF','Use an explicitly permitted bounded WAV');
  for(let i=0;i<fixtures.length;i++){
@@ -74,7 +75,7 @@ try{
    state.prewarmSeconds=Math.round((Date.now()-started)/1000);dispatchReady=true;
   }
   await Promise.all(state.requests.map(async(r:any)=>{const songs=services[r.product==='music-dna'?0:1];try{await songs.tick(r.id);}catch(error){r.pollErrors=(r.pollErrors??0)+1;r.error=error instanceof Error?error.message:'Poll failed';}const row=await songs.commerce.row(r.id),run=(await pool.query('SELECT provider_id,provider_status,execution_ms,delay_ms,estimated_cost_micros,provider_receipt->>\'failure\' AS failure FROM cloud_song_runs WHERE id=$1',[r.id])).rows[0];Object.assign(r,run);r.state=row.state;if(r.transitions.at(-1)?.state!==row.state||r.transitions.at(-1)?.provider!==run.provider_status)r.transitions.push({seconds:Math.round((Date.now()-started)/1000),state:row.state,provider:run.provider_status});if(row.state==='completed'&&!r.saved){await writeFile(resolve(directory,r.label+'.wav'),await store.get(row.audio_key,row.audio_bytes));await writeFile(resolve(directory,r.label+'.json'),JSON.stringify(row.song_plan,null,2));if(completion){const receipt=(await pool.query('SELECT provider_receipt FROM cloud_song_runs WHERE id=$1',[r.id])).rows[0].provider_receipt;await writeFile(resolve(directory,r.label+'-receipt.json'),JSON.stringify(receipt,null,2));r.duration=receipt.output.seconds;r.identity=receipt.output.performance?.vocal_identity?.id;assert(r.identity,'Missing completed voice conversion receipt');assert.equal(receipt.output.performance.audio_sha256,row.audio_sha256);}
-if(improvise){assert(row.song_plan.arrangement.sample_used);assert(row.song_plan.arrangement.events.length>0);assert.equal(row.song_plan.arrangement.original_recording_sha256,createHash('sha256').update(source).digest('hex'));r.pattern=row.song_plan.arrangement.pattern;}
+if(improvise){assert(row.song_plan.arrangement.sample_used);assert(row.song_plan.arrangement.events.length>0);assert.equal(row.song_plan.arrangement.original_recording_sha256,createHash('sha256').update(source).digest('hex'));r.pattern=row.song_plan.arrangement.pattern;r.duration=row.song_plan.cases[0].duration;assert.equal(r.duration,30+5*state.requests.indexOf(r));}
 r.saved=true;r.audioSha256=row.audio_sha256;r.balance=await songs.commerce.wallet.balance(r.owner);}}));
   await save();console.log(JSON.stringify({seconds:Math.round((Date.now()-started)/1000),jobs:state.requests.map((r:any)=>r.label+':'+r.state),workers}));
   if(state.requests.every((r:any)=>['completed','failed','cancelled'].includes(r.state)))break;
@@ -86,10 +87,11 @@ finally{
  if(enabled){for(let i=0;i<5;i++)try{await control('PATCH',{workersMin:0,workersMax:0});const result=await control();assert(result.workersMax===0&&result.workersMin===0);state.disabled=true;break;}catch{await delay(2000);}}
  for(let i=0;i<12;i++){const health=await services[0].provider.health();state.finalHealth=health;const active=Object.entries(health.workers??{}).filter(([k])=>k!=='unhealthy').reduce((n,[,v])=>n+Number(v??0),0);if(!active&&health.jobs?.inProgress===0&&health.jobs?.inQueue===0){state.stopped=true;break;}await delay(5000);}
  if(state.disabled&&state.stopped){watchdog?.kill();const keys=(await pool.query('SELECT object_key AS key FROM song_uploads UNION SELECT output_key FROM cloud_song_runs UNION SELECT audio_key FROM dna_song_jobs WHERE audio_key IS NOT NULL')).rows;for(const {key} of keys)await store.remove(key);state.removedObjects=keys.length;state.cleanup=true;}
- if(improvise){state.qualification=state.requests.length===4&&state.requests.every((r:any)=>r.state==='completed'&&r.saved&&Number(r.finalBalance?.reserved)===0)?'PASS':'FAIL';}
+ if(improvise){state.creditSettlement=state.requests.every((r:any)=>Number(r.finalBalance?.available)===(r.state==='completed'?50-r.quotedCredits:50));state.qualification=state.creditSettlement&&state.requests.length===4&&state.requests.every((r:any)=>r.state==='completed'&&r.saved&&Number(r.finalBalance?.reserved)===0)?'PASS':'FAIL';}
  if(completion){state.qualification=state.requests.length===2&&state.requests.every((r:any)=>r.state==='completed'&&r.saved&&r.identity&&Number(r.finalBalance?.reserved)===0)?'PASS':'FAIL';}
  state.billingAfter=await billing();state.finishedAt=new Date().toISOString();await save();
  await pool.end();if(state.cleanup)await admin.query(`DROP DATABASE "${name}" WITH (FORCE)`);else state.retainedDatabase=name;await admin.end();await save();
  assert(state.disabled&&state.stopped&&state.cleanup,'Trial shutdown/cleanup needs attention');
  console.log(JSON.stringify({disabled:state.disabled,stopped:state.stopped,cleanup:state.cleanup,...(completion||improvise?{qualification:state.qualification}:{}),results:state.requests.map((r:any)=>({label:r.label,state:r.state}))}));
+ if(improvise)assert.equal(state.qualification,'PASS','Inspect retained trial evidence; do not automatically retry');
 }

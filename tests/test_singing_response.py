@@ -26,11 +26,11 @@ class SingingPlans(unittest.TestCase):
             self.assertIn('I have a question',message)
             self.assertNotIn('organ replies',message)
 
-    def test_editor_replaces_draft_and_bounds_invalid_output_retries(self):
+    def test_lyric_writer_bounds_invalid_output_retries(self):
         good = '[Verse]\nYou have a question, I am listening\nTake your time and tell me more\n[Chorus]\nWhat is the thing you want to know\nWe can work it out together'
         bad = '[Verse]\nEven if it is just a small, silly tide'
-        for outputs, succeeds, calls in (([bad,good],True,2),([bad,'[Guitar solo]',good],True,3),
-                                         ([bad,'[Guitar solo]','too short'],False,3)):
+        for outputs, succeeds, calls in (([good],True,1),([bad,good],True,2),
+                                         ([bad,'[Guitar solo]'],False,2)):
             tokenizer=Mock();generate=Mock(side_effect=outputs)
             with tempfile.TemporaryDirectory() as folder,patch('singing_response.cast_singer_reference'), \
                     patch('singing_response.lyric_model',return_value=(None,tokenizer,{'revision':'test'})), \
@@ -40,14 +40,15 @@ class SingingPlans(unittest.TestCase):
                     draft(Path(folder),'I have a question',42,output,'male','funk',35)
                     case=load_plan(output)['cases'][0]
                     self.assertEqual(case['lyrics'],good)
-                    self.assertEqual(case['lyric_edit']['passes'],calls-1)
+                    self.assertEqual(case['lyric_checks']['passes'],calls)
                 else:
                     with self.assertRaises(ValueError):draft(Path(folder),'I have a question',42,output,'male','funk',35)
                     self.assertFalse(output.exists())
                 self.assertEqual(generate.call_count,calls)
-                edit=tokenizer.apply_chat_template.call_args_list[1].args[0]
-                self.assertIn('meaningless metaphors',edit[0]['content'])
+                edit=tokenizer.apply_chat_template.call_args_list[0].args[0]
+                self.assertIn('Stay with what they actually said',edit[0]['content'])
                 self.assertEqual(json.loads(edit[1]['content'])['listener'],'I have a question')
+        self.assertNotIn('🕺',validate_reply_lyrics(good+' 🕺'))
         for invalid in (good+'\n[Instrumental]',good.replace('Take your time','(sing softly) Take your time'), 'word '*200):
             with self.assertRaises(ValueError):validate_reply_lyrics(invalid)
 

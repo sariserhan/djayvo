@@ -1,6 +1,6 @@
 ## Improvise final quality and hosted verification — 2026-10-23
 
-**PARTIAL, in progress:** Added bounded lyric editing before singing. Running six audible source types plus silence across all 23 styles and fresh full generation. Prepared a four-song, one-worker, $3/20-minute cloud qualification using synthetic speech and test credits. Paid approval and new listening evidence remain outstanding; website deployment excluded. [Report](improvise-finish.md).
+**PARTIAL, in progress:** Added concise, grounded lyric instructions and bounded formatting repair; short percussion now supplies usable excerpts. PASS: 138 final audible mixes across all 23 styles, 23 silence rejections, 49 Python checks and 16 Postgres/service checks. Four final-code fresh songs and the updated worker build are running. Owner approved the prepared four-song, one-worker, $3/20-minute cloud trial; new listening evidence remains outstanding; website deployment excluded. [Report](improvise-finish.md).
 
 ## Improvise automatic rhythm integration — 2026-10-23
 

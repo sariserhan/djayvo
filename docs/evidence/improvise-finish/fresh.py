@@ -4,12 +4,13 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3];sys.path.insert(0,str(ROOT/'scripts'))
 import singer_studio
 from singing_response import digest
-out=ROOT/'renders/improvise-finish-20261023'; runs=[]
+out=ROOT/(sys.argv[1] if len(sys.argv)>1 else 'renders/improvise-finish-20261023');out.mkdir(parents=True,exist_ok=True)
+sources=ROOT/'renders/improvise-finish-20261023/sources';runs=[]
 for label,source,genre,voice,duration in [
  ('reggae-question',ROOT/'renders/meaning-singer-trial-20261022/original-recording','reggae','male',33),
- ('jazz-coffee',out/'sources/coffee.aiff','jazz','female',39),
- ('edm-dance',out/'sources/dance.aiff','edm','male',45),
- ('acoustic-turkish',out/'sources/turkish.aiff','acousticpop','female',30)]:
+ ('jazz-coffee',sources/'coffee.aiff','jazz','female',39),
+ ('edm-dance',sources/'dance.aiff','edm','male',45),
+ ('acoustic-turkish',sources/'turkish.aiff','acousticpop','female',30)]:
     singer_studio.OUTPUT=out/label;singer_studio.OUTPUT.mkdir(exist_ok=False)
     start=time.monotonic();original=digest(source)
     try:
