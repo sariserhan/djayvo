@@ -1,0 +1,48 @@
+{
+  "checked_at": "2026-10-24T04:46:33.904Z",
+  "commit": "bd07ad1e9fd52664fac7e2653fd0a91ad00c4496",
+  "status": "PASS",
+  "origin": "https://www.jamloom.com",
+  "anonymous_home_six_products": true,
+  "local_remixes_direct_route": 200,
+  "shared_navigation": true,
+  "images": [
+    {
+      "path": "/product-previews/academy.png",
+      "sha256": "592612dc1bec16ed1dc2ee1118f24a3b1a904b394b738ceb2434dae8a74b70d1",
+      "bytes": 622138,
+      "status": "PASS"
+    },
+    {
+      "path": "/product-previews/improvise.png",
+      "sha256": "cedd4b9b50c224bc2684124b7377783aeb876a9341dee691cf004221af3804ef",
+      "bytes": 75905,
+      "status": "PASS"
+    },
+    {
+      "path": "/product-previews/live-dj.png",
+      "sha256": "662ed8e50c17658fcb0656f79f33f1b187cb34bf77392e8f7c4ad1a3cccc6461",
+      "bytes": 115233,
+      "status": "PASS"
+    },
+    {
+      "path": "/product-previews/local-remixes.png",
+      "sha256": "4c991d4a415c4a74282b70c1c9a396c6a3cd0576a39dfd0e262da6ce42d755b1",
+      "bytes": 47350,
+      "status": "PASS"
+    }
+  ],
+  "gates": [
+    {
+      "path": "/api/generations",
+      "status": 503,
+      "method": "GET"
+    },
+    {
+      "path": "/api/payments/checkout",
+      "status": 503,
+      "method": "GET"
+    }
+  ],
+  "no_generation_or_purchase_requested": true
+}
