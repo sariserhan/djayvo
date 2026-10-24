@@ -1,6 +1,6 @@
 ## Homepage Improvise collection — 2026-10-24
 
-**Implementation and local browser checks PASS; deployment pending.** Replaced the empty community query on the homepage with the existing 56-song Improvise listening collection, accurately titled “Made with Improvise.” Pagination, filters, real muted playback, Chromium/WebKit rendering, scoped accessibility and production build pass. Actual community songs remain on the Improvise page; privacy and launch gates are unchanged. [Evidence](homepage-gallery-20261024.md).
+**Implementation, local browser checks and deployment PASS.** Replaced the empty community query on the homepage with the existing 56-song Improvise listening collection, accurately titled “Made with Improvise.” Pagination, filters, real muted playback, Chromium/WebKit rendering, scoped accessibility and production build pass. Actual community songs remain on the Improvise page; privacy and launch gates are unchanged. [Evidence](homepage-gallery-20261024.md).
 
 ## Website product clarity — 2026-10-24
 
