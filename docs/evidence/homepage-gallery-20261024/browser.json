@@ -1,0 +1,52 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "six_choices_above_fold": true,
+    "real_example_muted_playback": true,
+    "preview_switches_and_routes": true,
+    "improvise_examples_and_pagination": true,
+    "all_features_preserved_under_details": true,
+    "product_routes": [
+      "music-dna",
+      "improvise",
+      "dj-studio",
+      "academy",
+      "live-dj",
+      "studio/index.html"
+    ],
+    "public_coming_soon": "rendered actual response fixture; no deployment",
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "six_choices_above_fold": true,
+    "real_example_muted_playback": true,
+    "preview_switches_and_routes": true,
+    "improvise_examples_and_pagination": true,
+    "all_features_preserved_under_details": true,
+    "product_routes": [
+      "music-dna",
+      "improvise",
+      "dj-studio",
+      "academy",
+      "live-dj",
+      "studio/index.html"
+    ],
+    "public_coming_soon": "rendered actual response fixture; no deployment",
+    "widths": [
+      1280,
+      390,
+      320
+    ],
+    "axe_violations": 0,
+    "errors": []
+  }
+]

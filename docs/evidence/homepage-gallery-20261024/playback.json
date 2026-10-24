@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "songCount": "56 songs",
+  "autoplay": false,
+  "actual_first_improvise_audio_muted_playback": true,
+  "genre_filter_and_clear": true,
+  "widths": [
+    1280,
+    390
+  ],
+  "page_errors": [],
+  "browser_runtime": "Existing Playwright fallback; Browser runtime unavailable",
+  "scope": "Local homepage, existing published example audio; no new generation or private song publication"
+}

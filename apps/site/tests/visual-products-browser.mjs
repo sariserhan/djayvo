@@ -24,7 +24,15 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   for(const p of homeProducts){await choices.getByRole('button',{name:p.intent+' '+p.name,exact:true}).click();assert.equal(await choices.locator('[aria-pressed=true]').count(),1);assert.equal(await preview.getAttribute('aria-label'),p.name+' preview');assert.equal(await preview.locator('a.primary').getAttribute('href'),p.slug==='dj-studio'?'#dj-studio':p.href);if(p.slug!=='music-dna')await preview.locator('img').evaluate(img=>img.decode());}
   await choices.getByRole('button',{name:'Taste to song Music DNA',exact:true}).click();assert.equal(await preview.locator('audio').evaluate(a=>a.paused),true);
   for(const width of [1280,390,320]){await page.setViewportSize({width,height:900});await page.evaluate(()=>scrollTo(0,0));assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert.ok(await choices.getByRole('button').last().evaluate(e=>e.getBoundingClientRect().bottom<=innerHeight),'All six choices should fit the initial viewport');await page.screenshot({path:join(output,`${name}-home-${width}.png`)});}
-  assert.deepEqual((await new AxeBuilder({page}).include('.product-showcase').analyze()).violations,[]);
+  const gallery=page.getByRole('region',{name:'Made with Improvise',exact:true});
+  await gallery.locator('article').first().waitFor();
+  assert.ok(await gallery.locator('audio').count()>0,'Homepage must show existing Improvise examples');
+  assert.ok((await gallery.locator('audio').first().getAttribute('src')).startsWith('/api/improvise/song?'));
+  assert.equal(await page.getByRole('heading',{name:'Community songs · Improvise',exact:true}).count(),0);
+  await gallery.getByRole('button',{name:'Next',exact:true}).first().click();
+  assert.match(await gallery.locator('.song-pagination').first().innerText(),/Page 2 of/);
+  await gallery.getByRole('button',{name:'Previous',exact:true}).first().click();
+  assert.deepEqual((await new AxeBuilder({page}).include('.product-showcase').include('#public-songs').analyze()).violations,[]);
   assert.equal(await page.locator('.product-chapters > article').count(),6);assert.equal(await page.locator('.product-chapters details[open]').count(),0);
   const screens=[];
   for(const slug of ['music-dna','improvise','dj-studio','academy','live-dj','studio/index.html']){
@@ -39,7 +47,7 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   for(const width of [1280,390,320]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:join(output,`${name}-coming-soon-${width}.png`)});}
   await page.locator('.launch-products-nav a[href="#music-dna"]').click();assert.ok(page.url().endsWith('#music-dna'));
   assert.deepEqual((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations,[]);assert.deepEqual(errors,[]);
-  results.push({browser:name,status:'PASS',six_choices_above_fold:true,real_example_muted_playback:true,preview_switches_and_routes:true,all_features_preserved_under_details:true,product_routes:screens,public_coming_soon:'rendered actual response fixture; no deployment',widths:[1280,390,320],axe_violations:0,errors});
+  results.push({browser:name,status:'PASS',six_choices_above_fold:true,real_example_muted_playback:true,preview_switches_and_routes:true,improvise_examples_and_pagination:true,all_features_preserved_under_details:true,product_routes:screens,public_coming_soon:'rendered actual response fixture; no deployment',widths:[1280,390,320],axe_violations:0,errors});
  }finally{await browser.close();}
 }
 await writeFile(join(output,'report.json'),JSON.stringify(results,null,2)+'\n');console.log(JSON.stringify(results));

@@ -1,0 +1,9 @@
+# Homepage Improvise gallery — 2026-10-24
+
+**Implementation and local browser checks PASS; deployment pending.**
+
+The homepage used `SongGallery scope="public"`, which lists completed, consented community publications. That collection returns zero Improvise songs. The existing 56 Improvise listening samples are a separate manifest-backed collection, already shown on `/improvise` with `scope="showcase"`. The homepage now reuses that view under the accurate title “Made with Improvise,” including its existing filters, pagination, audio and downloads. Actual community songs remain on the Improvise product page. No song visibility or account data was changed.
+
+Checks: production build PASS; all six `dna-examples.test.ts` checks PASS; Chromium and WebKit homepage regression PASS at 1280/390/320 with existing-example rendering and pagination assertions, zero page errors and zero scoped Axe violations. A separate real-audio check loaded all 56 examples, played the first Improvise example with speakers muted, exercised genre filtering/clearing and verified desktop/mobile overflow. [Browser report](evidence/homepage-gallery-20261024/browser.json), [playback receipt](evidence/homepage-gallery-20261024/playback.json), [desktop](evidence/homepage-gallery-20261024/gallery-1280.png), [mobile](evidence/homepage-gallery-20261024/gallery-390.png).
+
+The anonymous production site still has its existing coming-soon gate: song API requests without an authorized session return HTTP 503. This is distinct from the empty community collection and is unchanged by this fix. The full homepage remains available through the existing owner preview. No paid generation, new sample generation, private publication or launch-gate expansion occurred. Browser runtime tools remained unavailable; the previously authorized Playwright workflow was used.

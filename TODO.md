@@ -1,3 +1,7 @@
+## Homepage Improvise collection — 2026-10-24
+
+**Implementation and local browser checks PASS; deployment pending.** Replaced the empty community query on the homepage with the existing 56-song Improvise listening collection, accurately titled “Made with Improvise.” Pagination, filters, real muted playback, Chromium/WebKit rendering, scoped accessibility and production build pass. Actual community songs remain on the Improvise page; privacy and launch gates are unchanged. [Evidence](docs/homepage-gallery-20261024.md).
+
 ## Website product clarity — 2026-10-24
 
 **Implementation, local browser checks and hosted publication PASS.** Local Remixes is distinct from Improvise in the hero, homepage, shared navbar and public launch page, with a direct free workspace link. Actual deck/practice/song previews replace the misleading text-heavy images. Six clear product choices, short descriptions and existing interactive demos remain responsive. 104 website tests, typecheck, build, bundle audit, Chromium/WebKit at 1280/390/320 and focused Axe checks PASS. GitHub deployment `bd07ad1e` is live: anonymous Local Remixes access and all four image hashes verified. Mobile work is paused at the owner’s request. [Evidence](docs/homepage-20261024.md).
