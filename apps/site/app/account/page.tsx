@@ -3,6 +3,8 @@ import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { accountsConfigured, services, isReviewer } from '../../lib/services';
 import { SignOut } from './form';
+import {DeleteAccount} from './delete-account';
+import {deletionRequest} from '../../lib/account-deletion';
 
 export const dynamic = 'force-dynamic';
 export default async function Account() {
@@ -15,6 +17,6 @@ export default async function Account() {
     <div className="account-links"><a href="/pro">My Pro license</a><a href="/improvise">Make music</a><a href="/library">Cloud library</a><a href="/account/credits">Credits</a><a href="/account/purchases">Purchases</a><a href="/account/generations">Generations</a></div>
     {isAdmin(session.user)&&<p><a href="/admin">Admin dashboard</a></p>}
     {isReviewer(session.user)&&<p><a href="/review">Catalogue review</a></p>}
-    <hr /><SignOut />
+    <hr /><DeleteAccount pending={(await deletionRequest(services().pool,session.user.id))?.status==='open'}/><SignOut />
   </section>;
 }

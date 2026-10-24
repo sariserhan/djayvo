@@ -56,13 +56,16 @@ def mix_identity(original,stem,vocal):
     vocal=np.pad(vocal,(0,max(0,-difference)))[:len(original)]
     rms=float(np.sqrt(np.mean(vocal.astype('float64')**2)))
     if rms<1e-6:raise ValueError('Silent converted singer')
-    gain=float(np.sqrt(np.mean(stem.astype('float64')**2)))/rms
-    if not .1<gain<10:raise ValueError('Unsafe vocal balance')
+    target_rms=float(np.sqrt(np.mean(stem.astype('float64')**2)))
+    if target_rms<1e-6:raise ValueError('Silent source singer')
+    gain=target_rms/rms
+    # Attenuating a louder conversion preserves the source balance; excessive boost can amplify noise.
+    if not 0<gain<10:raise ValueError('Unsafe vocal amplification')
     backing=original-stem
     mix=backing+gain*vocal[:,None];peak=float(np.max(np.abs(mix)))
     trim=min(1,.95/max(peak,1e-9));mix*=trim
     if not np.isfinite(mix).all() or not .001<float(np.max(np.abs(mix)))<1:raise ValueError('Invalid final mix')
-    return mix,{'vocal_gain':gain,'master_gain':trim,'frame_adjustment':difference,'backing_sha256':hashlib.sha256(backing.tobytes()).hexdigest()}
+    return mix,{'vocal_gain':gain,'source_vocal_rms':target_rms,'converted_vocal_rms':rms,'master_gain':trim,'frame_adjustment':difference,'backing_sha256':hashlib.sha256(backing.tobytes()).hexdigest()}
 
 
 def convert(output,identity):

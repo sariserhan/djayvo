@@ -36,7 +36,7 @@
     "test:academy-browser": "node --import tsx tests/academy-browser.mjs",
     "test:academy-endurance": "node --import tsx tests/academy-endurance.mjs",
     "test:audio-variety": "node tests/audio-variety-audit.mjs",
-    "test:admin": "node --import tsx --test tests/admin.test.ts",
+    "test:admin": "node --import tsx --test tests/admin.test.ts tests/account-deletion.test.ts",
     "test:admin-browser": "node --import tsx tests/admin-browser.mjs",
     "test:landing-browser": "node --import tsx tests/landing-browser.mjs",
     "test:coming-soon-browser": "node --import tsx tests/coming-soon-browser.mjs",

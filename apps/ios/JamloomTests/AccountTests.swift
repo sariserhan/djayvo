@@ -18,6 +18,29 @@ private final class AccountProtocol: URLProtocol {
     override func stopLoading() {}
 }
 @MainActor final class AccountTests: XCTestCase {
+    func testAccountDeletionRequestRequiresSignInAndKeepsAccountUntilReviewed() async throws {
+        let transport = transport(), account = AccountModel(transport: transport)
+        var requested = false, requests = 0
+        let id = UUID().uuidString
+        AccountProtocol.handle = { request in
+            requests += 1
+            if request.url?.path == "/api/auth/sign-in/email" { return (200, Data(#"{"user":{"id":"owner","email":"test@example.test"}}"#.utf8)) }
+            let receipt = "{\"id\":\"\(id)\",\"status\":\"open\",\"created_at\":\"2026-10-24T00:00:00Z\"}"
+            if request.url?.path == "/api/account/deletion" {
+                XCTAssertEqual(request.httpMethod, "POST"); XCTAssertEqual(request.value(forHTTPHeaderField: "Origin"), "https://www.jamloom.com")
+                requested = true; return (200, Data("{\"request\":\(receipt)}".utf8))
+            }
+            XCTAssertEqual(request.url?.path, "/api/account")
+            return (200, Data("{\"user\":{\"id\":\"owner\",\"email\":\"test@example.test\"},\"balance\":{\"available\":0,\"reserved\":0},\"purchasesReleased\":false,\"deletionRequest\":\(requested ? receipt : "null")}".utf8))
+        }
+        await account.requestAccountDeletion(); XCTAssertEqual(requests, 0)
+        await account.signIn(email: "test@example.test", password: "fixture password")
+        XCTAssertNil(account.snapshot?.deletionRequest)
+        await account.requestAccountDeletion()
+        XCTAssertEqual(account.snapshot?.deletionRequest?.id.uuidString, id)
+        XCTAssertEqual(account.snapshot?.user.id, "owner")
+        XCTAssertTrue(account.message.contains("not been deleted yet"))
+    }
     func testCatalogueSearchUsesPublicRouteWithoutSigningIn() async throws {
         let transport = transport(), account = AccountModel(transport: transport)
         defer { transport.session.invalidateAndCancel() }

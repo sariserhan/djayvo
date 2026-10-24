@@ -78,4 +78,15 @@ class IdentityTests(unittest.TestCase):
   self.assertEqual(report['master_gain'],1)
   for bad in [np.zeros(44100),np.full(44100,np.nan),vocal[:22050]]:
    with self.assertRaises(ValueError):mix_identity(backing+stem,stem,bad)
+ def test_quiet_source_allows_safe_attenuation_but_not_excessive_boost(self):
+  t=np.arange(48000)/48000
+  stem=np.tile((.003*np.sin(2*np.pi*220*t))[:,None],(1,2))
+  backing=np.tile((.2*np.sin(2*np.pi*100*t))[:,None],(1,2))
+  vocal=.1*np.sin(2*np.pi*220*np.arange(44100)/44100)
+  mixed,report=mix_identity(backing+stem,stem,vocal)
+  self.assertLess(report['vocal_gain'],.1)
+  self.assertLess(np.max(np.abs(mixed-(backing+stem))),.0001)
+  self.assertAlmostEqual(report['source_vocal_rms'],report['converted_vocal_rms']*report['vocal_gain'])
+  with self.assertRaisesRegex(ValueError,'amplification'):mix_identity(backing+stem,stem,vocal*.0001)
+  with self.assertRaisesRegex(ValueError,'Silent source'):mix_identity(backing,np.zeros_like(stem),vocal)
 if __name__=='__main__':unittest.main()

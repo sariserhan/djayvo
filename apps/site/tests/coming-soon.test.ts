@@ -17,7 +17,7 @@ test('account-free native catalogue suggestions pass the launch gate without ope
 });
 test('coming-soon recovery allows login, support and signed callbacks, Pro registration but not unrelated product APIs',()=>{
  for(const path of ['/pro','/dj-studio','/studio/dj.html','/account','/account/sign-up','/api/auth/sign-up/email','/api/pro/stripe','/api/aurowall','/account/sign-in','/account/reset-password','/api/auth/sign-in/email','/api/auth/reset-password/token','/admin','/admin/users','/api/admin/settings','/support','/api/contact','/api/payments/stripe','/api/payments/apple/notifications','/api/academy/stripe','/privacy','/sitemap.xml'])assert.equal(comingSoonRecovery(path),true,path);
- for(const path of ['/','/api/catalogue','/api/library','/api/account','/api/payments/checkout','/academy','/admin-fake','/support/example','/api/auth/sign-in/email/fake'])assert.equal(comingSoonRecovery(path),false,path);
+ for(const path of ['/','/api/catalogue','/api/library','/api/account/fake','/api/account/deletion/fake','/api/payments/checkout','/academy','/admin-fake','/support/example','/api/auth/sign-in/email/fake'])assert.equal(comingSoonRecovery(path),false,path);
 });
 test('launch responses contain real navigation, one tracker and private caching; product APIs stay closed',async()=>{
  const home=comingSoonResponse(new Request('https://www.jamloom.com/?admin=true'));

@@ -1,3 +1,7 @@
+## Release follow-through — 2026-10-24
+
+**Overall PARTIAL.** Account-deletion initiation and vocal-balance correction implemented and locally checked. TestFlight preparation, actual Apple sandbox receipts, bounded hosted requalification and human/hardware evidence remain separate. [Current release ledger](release-completion-20261024.md).
+
 ## Native music discovery — 2026-10-24
 
 **Implementation and physical iPhone PASS.** Music DNA now suggests songs and artists while typing without an Apple Music account, retains optional personal Apple Music import, and imports public/unlisted YouTube Music playlists through the shared exact catalogue matcher. Existing favorites are preserved. The live production API and 103 website tests pass; native contract checks pass (22, one optional server test skipped). All five physical iPhone checks pass; signed 0.7.0 (9) is installed and open. Four iPad simulator cases pass, but Xcode report finalization stalled (PARTIAL artifact). Spotify import stays disabled under provider policy. App Store draft 0.7.0 is saved; its icon awaits the first uploaded/processed build. [Current evidence and remaining gates](completion-followthrough.md).

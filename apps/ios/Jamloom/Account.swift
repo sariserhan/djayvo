@@ -63,7 +63,7 @@ final class AccountTransport: NSObject, URLSessionTaskDelegate, @unchecked Senda
         }
         guard http.statusCode == 200 || (song && http.statusCode == 202) else {
             let message = (try? JSONDecoder().decode(Failure.self, from: data).error) ?? "Song service unavailable. Check your song before trying again."
-            if song || ["/api/music-search", "/api/playlist-import"].contains(path) { throw SongRequestError(status: http.statusCode, message: message) }
+            if song || ["/api/music-search", "/api/playlist-import", "/api/account/deletion"].contains(path) { throw SongRequestError(status: http.statusCode, message: message) }
             throw RemixError.message("Account service unavailable. Try again later.")
         }
         return data
@@ -130,7 +130,9 @@ struct AccountSnapshot: Decodable {
     let user: AccountUser
     let balance: Balance
     let purchasesReleased: Bool
+    var deletionRequest: AccountDeletionRequest? = nil
 }
+struct AccountDeletionRequest: Decodable { let id: UUID; let status: String; let created_at: String }
 struct AccountTaste: Decodable { let profile: TasteProfile; let revision: Int }
 
 @MainActor final class AccountModel: ObservableObject {
@@ -198,6 +200,16 @@ struct AccountTaste: Decodable { let profile: TasteProfile; let revision: Int }
             let _: Ack = try await transport.request("/api/auth/sign-out", method: "POST", body: Data("{}".utf8))
         }
     }
+    func requestAccountDeletion() async {
+        await perform {
+            guard snapshot != nil else { throw AccountError.signedOut }
+            struct Receipt: Decodable { let request: AccountDeletionRequest }
+            let receipt: Receipt = try await transport.request("/api/account/deletion", method: "POST", body: Data("{\"confirm\":true}".utf8))
+            guard receipt.request.status == "open" else { throw URLError(.cannotParseResponse) }
+            try await fetchSnapshot()
+            message = "Deletion request received. Support will confirm timing and completion by email. Your account has not been deleted yet."
+        }
+    }
     private func purchaseToken() async throws -> UUID {
         guard snapshot != nil else { throw AccountError.signedOut }
         struct Token: Decodable { let appAccountToken: UUID }
@@ -253,6 +265,7 @@ struct AccountView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var email = ""
     @State private var password = ""
+    @State private var confirmDeletion = false
     var body: some View {
         NavigationStack {
             Form {
@@ -264,6 +277,15 @@ struct AccountView: View {
                         Button("Refresh balance") { Task { await account.refresh() } }
                         Button("Retry pending purchases") { Task { await account.retryPurchases() } }
                         Button("Sign out") { Task { await account.signOut() } }
+                    }
+                    Section("Delete account") {
+                        Text("Request deletion of your account and associated online data. Support reviews requests and confirms timing and completion by email. Required financial records may be retained. Local recordings are managed separately on this device.")
+                        if let request = snapshot.deletionRequest {
+                            Text(request.status == "open" ? "Deletion request received · Awaiting review" : "Previous request closed · Check your email")
+                            Text("Reference: \(request.id.uuidString.lowercased())").font(.caption).textSelection(.enabled)
+                        }
+                        Button("Request account deletion", role: .destructive) { confirmDeletion = true }
+                            .disabled(snapshot.deletionRequest?.status == "open").accessibilityIdentifier("requestAccountDeletion")
                     }
                     if account.canPurchase {
                         Section("Add credits") {
@@ -291,6 +313,10 @@ struct AccountView: View {
                 if account.busy { ProgressView("Contacting your account…") }
                 if !account.message.isEmpty { Text(account.message).accessibilityIdentifier("accountStatus") }
             }.disabled(account.busy).navigationTitle("Jamloom account")
+                .alert("Request account deletion?", isPresented: $confirmDeletion) {
+                    Button("Cancel", role: .cancel) {}
+                    Button("Send deletion request", role: .destructive) { Task { await account.requestAccountDeletion() } }
+                } message: { Text("This sends a deletion request for your signed-in account. Support will confirm completion by email. It does not immediately erase your account or local recordings.") }
                 .toolbar { Button("Done") { password = ""; dismiss() } }
                 .task(id: account.snapshot?.purchasesReleased) { await account.loadProducts() }
         }

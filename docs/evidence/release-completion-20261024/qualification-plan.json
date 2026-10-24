@@ -1,0 +1,28 @@
+{
+  "status": "PREPARED; awaiting fresh approval",
+  "maxUSD": 6,
+  "maxWorkers": 1,
+  "maxSecondsTotal": 2400,
+  "requests": 2,
+  "trials": [
+    {
+      "mode": "--jazz-diagnostic",
+      "duration": 35,
+      "requests": 1,
+      "maxUSD": 3,
+      "maxSeconds": 1200
+    },
+    {
+      "mode": "--maximum-dna",
+      "duration": 100,
+      "references": 5000,
+      "requests": 1,
+      "maxUSD": 3,
+      "maxSeconds": 1200
+    }
+  ],
+  "source": "renders/improvise-finish-20261023/sources/cloud-normalized.wav",
+  "image": "New immutable worker digest built from the vocal-balance correction; resolve and record before activation",
+  "safety": "One worker, independent shutdown watchdog, isolated local database, temporary R2 cleanup, restore original image, stop on failed first trial, no automatic retries, no public activation",
+  "uncertainty": "Prior hosted failure did not retain its gain value. Safe attenuation now passes local regression tests; hosted jazz cause/fix is not yet proven."
+}
