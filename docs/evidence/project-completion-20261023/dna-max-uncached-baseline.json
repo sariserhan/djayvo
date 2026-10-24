@@ -1,0 +1,10 @@
+{
+  "status": "FAIL",
+  "reason": "600-second-planner-timeout",
+  "favorites": 5000,
+  "cache_entries": 0,
+  "input_kind": "synthetic unknown titles with fixture genres for throughput, not music-quality evidence",
+  "elapsed_seconds": 600.13,
+  "completed_batch_logs": 33,
+  "plan_written": false
+}

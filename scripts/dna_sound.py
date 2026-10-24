@@ -63,7 +63,7 @@ def validate_track(row, ref):
     return result
 
 
-def interpret_tracks(refs, revision, cached, infer):
+def interpret_tracks(refs, revision, cached, infer, seed=0):
     if not isinstance(cached, list) or len(cached) > 5000:
         raise ValueError('Invalid saved song descriptions')
     available = {}
@@ -82,6 +82,11 @@ def interpret_tracks(refs, revision, cached, infer):
             continue
     reused = len(available)
     missing = [ref for ref in refs if (ref['reference'], ref['catalogue_genre']) not in available]
+    # Keep per-song work bounded; subsequent successful takes expand the saved coverage.
+    selected = random.Random(seed).sample(sorted(missing, key=lambda r: r['reference']), 12) if len(missing) > 12 else missing
+    for ref in missing:
+        available[(ref['reference'], ref['catalogue_genre'])] = {**unknown(ref), 'unavailable': True}
+    missing = selected
     for offset in range(0, len(missing), 6):
         batch = missing[offset:offset+6]
         rows = infer(batch)
@@ -124,6 +129,7 @@ def sound_guidance(tracks, direction, seed):
     tokens = [values[0]['value'] for key in ('groove', 'texture', 'production', 'vocals', 'arrangement') if (values := traits[key])]
     tokens = [v for v in tokens if not re.search(direction['avoid'], v, re.I)]
     return {'basis': 'model interpretations, not audio measurements', 'total': len(tracks),
+            'interpreted': sum(r.get('unavailable') is not True for r in tracks),
             'described': sum(r['basis'] == 'familiar' and r['confidence'] == 'medium' for r in tracks),
             'groups': [{'energy': k[0], 'pace': k[1], 'texture': k[2], 'count': len(groups[k])} for k in ordered],
             'selected': {'energy': selected[0], 'pace': selected[1], 'texture': selected[2], 'count': len(members)} if selected else None,
@@ -132,6 +138,8 @@ def sound_guidance(tracks, direction, seed):
 
 
 def describe_track(row):
+    if row.get('unavailable') is True:
+        return 'Detailed interpretation pending; catalogue genre still contributes.' if row['catalogue_genre'] else 'Detailed interpretation pending; sound details are unknown.'
     values = [row[k] for k in SCALARS if row[k]] + [v for k in FIELDS if k not in SCALARS for v in row[k]]
     return ('Model interpretation: ' + ', '.join(values) + '. Not audio analysis.') if values else (
         'Only catalogue genre is known; specific sound details are uncertain.' if row['catalogue_genre'] else 'Sound details are unknown.')

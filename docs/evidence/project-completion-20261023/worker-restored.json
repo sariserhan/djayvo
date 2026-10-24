@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "endpoint": "jl77hn92npt65k",
+  "template": "jbpcd0xgbf",
+  "diagnosticImage": "ghcr.io/sariserhan/jamloom/music-worker@sha256:bce682ad6f43be90e13a246fe280a29ec78dc063456c2d37c1d2190dd96c669f",
+  "restoredImage": "ghcr.io/sariserhan/jamloom/music-worker@sha256:83a00c568cb48f24e27811c901ac941643aee3352f2a0239c5b071120af58780",
+  "workersMin": 0,
+  "workersMax": 0,
+  "environmentPreserved": true
+}

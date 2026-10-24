@@ -232,10 +232,10 @@ def draft(work):
                     batches+=1
                     return safe
                 messages.extend([{'role':'assistant','content':raw},{'role':'user','content':f'Fix the validation error: {error}. Return all {len(batch)} tracks with every field, using null or [] for unknown details.'}])
-    tracks,reused=interpret_tracks(all_refs,manifest['revision'],request.get('track_profiles',[]),infer)
+    tracks,reused=interpret_tracks(all_refs,manifest['revision'],request.get('track_profiles',[]),infer,seed)
     guidance=sound_guidance(tracks,direction,seed)
     (work/'sound-profile.json').write_text(json.dumps({'track_profiles':tracks,'guidance':guidance,'reused':reused},ensure_ascii=False,indent=2))
-    # Every song is described; only the compatible examples sent to the songwriter are bounded.
+    # Every genre counts; detailed interpretations and songwriter examples are bounded.
     preferred=set(guidance['references'])
     examples=[r for r in all_refs if r['reference'] in preferred] or all_refs
     refs=examples if len(examples)<=12 else random.Random(seed).sample(sorted(examples,key=lambda r:r['reference']),12)

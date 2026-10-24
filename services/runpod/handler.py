@@ -67,6 +67,12 @@ def failure_location(work):
                 log.seek(max(0, path.stat().st_size-32768))
                 tail = log.read().decode(errors='replace')
             locations = re.findall(r'File "[^"\n]*/([A-Za-z_]+\.py)", line ([0-9]+)', tail)
+            # The conversion wrapper can hide the child's useful traceback behind its own failure.
+            if locations and locations[-1][0] == 'vocal_identity.py' and 'Singer identity conversion failed' in tail:
+                child = tail.rsplit('Traceback (most recent call last):', 1)[0]
+                inner = re.findall(r'File "[^"\n]*/([A-Za-z_]+\.py)", line ([0-9]+)', child)
+                if inner:
+                    locations = inner
             location = ':'.join(locations[-1]) if locations else 'unavailable'
             return f'{stage}@{location}'
     return 'unavailable'

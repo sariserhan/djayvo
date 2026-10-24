@@ -28,22 +28,22 @@ export function favoriteList(value:Taste):Taste{
   const track=tasteCatalogue.find(t=>t.id===choice.id)!;const reference=`${track.title} — ${track.artist}`;
   if(references.length<MAX_FAVORITES&&!references.some(r=>key(r)===key(reference)))references.push(reference);
  }
- const metadata=[...(p.referenceMetadata??[])];
+ const metadata=[...(p.referenceMetadata??[])],known=new Set(metadata.map(m=>m.reference));
  for(const reference of references){
-  if(metadata.some(m=>m.reference===reference))continue;
+  if(known.has(reference))continue;
   const tracks=tasteCatalogue.filter(t=>key(`${t.title} — ${t.artist}`)===key(reference)||key(t.artist)===key(reference));
   const genre=[...new Set(tracks.map(t=>t.genre))].join(' / ');
-  if(genre&&genre.length<=80)metadata.push({reference,genre,source:'practice'});
+  if(genre&&genre.length<=80){metadata.push({reference,genre,source:'practice'});known.add(reference);}
  }
  return {...p,references,referenceMetadata:metadata};
 }
 
 export function automaticTaste(value:Taste){
  const p=favoriteList(value),seen=new Set<string>(),genres=new Map<string,number>(),parts=new Map<string,number>(),directions=[0,0,0];
- let tempo=0,energy=0,used=0;const unresolved:string[]=[],unsupported:string[]=[];
+ let tempo=0,energy=0,used=0;const unresolved:string[]=[],unsupported:string[]=[],metadataByReference=new Map(p.referenceMetadata?.map(m=>[m.reference,m]));
  for(const reference of p.references){
   if(seen.has(key(reference)))continue;seen.add(key(reference));
-  const metadata=p.referenceMetadata?.find(m=>m.reference===reference);
+  const metadata=metadataByReference.get(reference);
   if(!metadata){unresolved.push(reference);continue;}
   genres.set(metadata.genre,(genres.get(metadata.genre)??0)+1);
   const matches=styles.filter(style=>style.match.test(metadata.genre.toLowerCase()));
@@ -64,9 +64,9 @@ export function automaticTaste(value:Taste){
 }
 
 export async function resolveFavoriteMetadata(value:Taste,signal:AbortSignal,request:typeof fetch=fetch):Promise<Taste>{
- const p=favoriteList(value),metadata=[...(p.referenceMetadata??[])];
+ const p=favoriteList(value),metadata=[...(p.referenceMetadata??[])],known=new Set(metadata.map(m=>m.reference));
  for(const reference of p.references){
-  signal.throwIfAborted();if(metadata.some(m=>m.reference===reference))continue;
+  signal.throwIfAborted();if(known.has(reference))continue;
   try{
    const response=await request('/api/music-search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:reference.replace(/\s+[—–]\s+/g,' ')}),signal:AbortSignal.any([signal,AbortSignal.timeout(8000)])});
    if(!response.ok)break;
@@ -75,7 +75,7 @@ export async function resolveFavoriteMetadata(value:Taste,signal:AbortSignal,req
    const match=(data.suggestions as TasteSuggestion[]).find(s=>typeof s.reference==='string'&&key(s.reference)===key(reference)&&s.metadata);
    if(match?.metadata){
     const candidate:ReferenceMetadata={...match.metadata,reference};
-    validateTaste({...p,referenceMetadata:[...metadata,candidate]});metadata.push(candidate);
+    validateTaste({...p,referenceMetadata:[...metadata,candidate]});metadata.push(candidate);known.add(reference);
    }
   }catch{signal.throwIfAborted();break;}
  }

@@ -1,0 +1,17 @@
+{
+  "guidance": {
+    "total": 5000,
+    "interpreted": 12,
+    "described": 0
+  },
+  "plan_favorites": 5000,
+  "source_revision": "bounded-12-new-interpretations",
+  "status": "PASS",
+  "reason": "completed",
+  "favorites": 5000,
+  "cache_entries": 0,
+  "input_kind": "synthetic unknown titles with fixture genres for throughput, not music-quality evidence",
+  "elapsed_seconds": 82.24,
+  "completed_batch_logs": 2,
+  "plan_written": true
+}

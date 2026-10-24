@@ -41,10 +41,15 @@ class SoundDescriptions(unittest.TestCase):
             batches.append(batch)
             return [{'index': i+1, **self.row, **ref} for i, ref in enumerate(batch)]
         tracks, reused = interpret_tracks(refs, 'revision1', [], infer)
-        self.assertEqual([len(b) for b in batches], [6, 6, 6, 1])
+        self.assertEqual([len(b) for b in batches], [6, 6])
         self.assertEqual(len(tracks), 19)
         self.assertEqual(reused, 0)
-        again, reused = interpret_tracks(list(reversed(refs)), 'revision1', tracks, lambda _: self.fail('cache missed'))
+        self.assertEqual(sum(r.get('unavailable') is True for r in tracks), 7)
+        batches.clear()
+        again, reused = interpret_tracks(list(reversed(refs)), 'revision1', tracks, infer)
+        self.assertEqual(reused, 12)
+        self.assertEqual([len(b) for b in batches], [6, 1])
+        _, reused = interpret_tracks(refs, 'revision1', again, lambda _: self.fail('cache missed'))
         self.assertEqual(reused, 19)
         self.assertEqual([r['reference'] for r in again], [r['reference'] for r in reversed(refs)])
         for field, value in [('version', True), ('version', VERSION+1), ('model_revision', 'older'), ('catalogue_genre', 'Jazz'), ('reference', 'Other'), ('pace', {}), ('unavailable', True)]:
@@ -57,6 +62,26 @@ class SoundDescriptions(unittest.TestCase):
             with self.assertRaises(ValueError):interpret_tracks(refs[:1], 'revision1', [], lambda _: rows)
         for cache in ({}, [None]*5001):
             with self.assertRaises(ValueError):interpret_tracks(refs, 'revision1', cache, infer)
+
+    def test_maximum_library_bounds_new_work_without_discarding_favorites(self):
+        refs = [{**self.ref, 'reference': f'Track {i:04} — Artist'} for i in range(5000)]
+        batches = []
+        def infer(batch):
+            batches.append(batch)
+            return [{'index': i+1, **self.row, **ref} for i, ref in enumerate(batch)]
+        tracks, _ = interpret_tracks(refs, 'revision1', [], infer, 73)
+        self.assertEqual([len(b) for b in batches], [6, 6])
+        self.assertEqual([r['reference'] for r in tracks], [r['reference'] for r in refs])
+        chosen = {r['reference'] for r in tracks if not r.get('unavailable')}
+        reversed_tracks, _ = interpret_tracks(list(reversed(refs)), 'revision1', [], infer, 73)
+        self.assertEqual(chosen, {r['reference'] for r in reversed_tracks if not r.get('unavailable')})
+        next_tracks, reused = interpret_tracks(refs, 'revision1', tracks, infer, 74)
+        self.assertEqual(reused, 12)
+        guidance = sound_guidance(next_tracks, direction_for(refs), 74)
+        self.assertEqual((guidance['total'], guidance['interpreted'], guidance['described']), (5000, 24, 24))
+        pending = next(r for r in next_tracks if r.get('unavailable'))
+        self.assertEqual(pending['instruments'], [])
+        self.assertIn('pending', describe_track(pending))
 
     def test_coherent_groups_vary_without_blending_unrelated_genres(self):
         tracks = [{**self.row, 'reference': f'Loud {i}'} for i in range(3)]

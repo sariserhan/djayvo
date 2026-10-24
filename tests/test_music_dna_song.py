@@ -339,7 +339,7 @@ class MusicDnaSong(unittest.TestCase):
             if messages[0]['content'].startswith('Describe how each'):
                 batch_sizes.append(len(data['favorites']))
                 return json.dumps({'tracks':[{'index':i+1,**unknown(r),'basis':'familiar','confidence':'medium','pace':'fast','energy':'high','texture':'electric','groove':'syncopated','language':'en' if int(r['reference'].split()[1])<20 else 'tr'} for i,r in enumerate(data['favorites'])]})
-            self.assertEqual(len(data['favorites']),12)
+            self.assertEqual(len(data['favorites']),10)
             self.assertEqual(data['required_direction']['total'],51)
             candidate=copy.deepcopy(self.data)
             candidate['energy']='high'
@@ -347,7 +347,7 @@ class MusicDnaSong(unittest.TestCase):
             candidate['direction_id']='pop'
             candidate['vocal_language']=data['requested_language']
             candidate['bpm']=data['required_sound']['bpm'][0]
-            self.assertEqual(data['required_sound']['selected']['count'],31)
+            self.assertEqual(data['required_sound']['selected']['count'],10)
             self.assertTrue(all(int(r['reference'].split()[1])>=20 for r in data['favorites']))
             candidate['influences']=[{'index':i+1,'basis':'genre_only','description':'Catalogue style informs the arrangement.'} for i in range(len(data['favorites']))]
             return json.dumps(candidate)
@@ -358,12 +358,13 @@ class MusicDnaSong(unittest.TestCase):
             self.assertEqual(len(favorites(profile)),51)
             (work/'input.json').write_text(json.dumps({'profile':profile,'direction':direction_for(refs),'seed':0}))
             draft(work);plan=json.loads((work/'plan.json').read_text())
-            self.assertEqual(batch_sizes,[6]*8+[3])
+            self.assertEqual(batch_sizes,[6,6])
             self.assertEqual(len(plan['track_profiles']),51)
             self.assertEqual(plan['sound_guidance']['total'],51)
-            self.assertEqual(plan['sound_guidance']['described'],51)
+            self.assertEqual(plan['sound_guidance']['described'],12)
+            self.assertEqual(plan['sound_guidance']['interpreted'],12)
             self.assertIn('syncopated',plan['cases'][0]['song_caption'])
-            self.assertEqual(plan['language']['counts'],{'en':20,'tr':31})
+            self.assertEqual(plan['language']['counts'],{'en':2,'tr':10})
             self.assertEqual(plan['direction']['total'],51)
             self.assertEqual(plan['direction']['id'],'soul')
             self.assertIn(', '.join(direction_for(refs)['instruments']),plan['cases'][0]['song_caption'])

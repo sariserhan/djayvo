@@ -16,11 +16,11 @@ export function validateTaste(value:unknown):Taste{
  if(p.version!==1||!Array.isArray(p.references)||p.references.length>MAX_FAVORITES||p.references.some(s=>typeof s!=='string'||!s.trim()||s.length>160)||
  !energies.includes(p.energy)||!Number.isInteger(p.tempo)||p.tempo<60||p.tempo>180||!Number.isInteger(p.novelty)||p.novelty<0||p.novelty>100||
  !Array.isArray(p.instruments)||!p.instruments.length||p.instruments.length>6||new Set(p.instruments).size!==p.instruments.length||p.instruments.some(i=>!instruments.includes(i as typeof instruments[number])))throw new Error('Invalid preference profile');
- const references=p.references.map(s=>s.trim()),seen=new Set<string>();
+ const references=p.references.map(s=>s.trim()),referenceSet=new Set(references),seen=new Set<string>();
  if(p.direction!==undefined&&(!Number.isInteger(p.direction)||p.direction<0||p.direction>2))throw Error('Invalid preference profile');
  if(p.songPreferences!==undefined&&(!Array.isArray(p.songPreferences)||p.songPreferences.length>20))throw Error('Invalid preference profile');
  const songPreferences=p.songPreferences?.map(choice=>{
-  if(!choice||typeof choice.reference!=='string'||!references.includes(choice.reference)||seen.has(choice.reference)||
+  if(!choice||typeof choice.reference!=='string'||!referenceSet.has(choice.reference)||seen.has(choice.reference)||
     !Array.isArray(choice.aspects)||choice.aspects.length>12||new Set(choice.aspects).size!==choice.aspects.length||
     choice.aspects.some(a=>typeof a!=='string'||!Object.hasOwn(tasteAspects,a))||!Number.isInteger(choice.weight)||choice.weight<1||choice.weight>5)throw Error('Invalid preference profile');
   seen.add(choice.reference);return {reference:choice.reference,aspects:[...choice.aspects],weight:choice.weight};
@@ -28,7 +28,7 @@ export function validateTaste(value:unknown):Taste{
  if(p.referenceMetadata!==undefined&&(!Array.isArray(p.referenceMetadata)||p.referenceMetadata.length>MAX_FAVORITES))throw Error('Invalid preference profile');
  const metadataSeen=new Set<string>();
  const referenceMetadata=p.referenceMetadata?.map(m=>{
-  if(!m||!references.includes(m.reference)||metadataSeen.has(m.reference)||typeof m.genre!=='string'||!m.genre.trim()||m.genre.length>80||/[\u0000-\u001f\u007f]/.test(m.genre)||!['itunes','practice'].includes(m.source)||
+  if(!m||!referenceSet.has(m.reference)||metadataSeen.has(m.reference)||typeof m.genre!=='string'||!m.genre.trim()||m.genre.length>80||/[\u0000-\u001f\u007f]/.test(m.genre)||!['itunes','practice'].includes(m.source)||
    (m.id!==undefined&&(!Number.isSafeInteger(m.id)||m.id<=0)))throw Error('Invalid preference profile');
   metadataSeen.add(m.reference);return {reference:m.reference,genre:m.genre.trim(),source:m.source,...(m.id!==undefined?{id:m.id}:{})};
  });

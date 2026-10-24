@@ -10,7 +10,7 @@ import {MAX_FAVORITES} from '../../lib/taste-limits';
 import {PlaylistPicker} from './playlist-picker';
 import {tasteCatalogue,type ReferenceMetadata} from '../../lib/taste-catalogue';
 import {GenerationProgress,type SongProgress} from '../generation-progress';
-type SongPlan={language?:{code:string;label:string;basis:string};musical_traits?:Record<string,string>;title:string;summary:string;favorites?:{reference:string}[];influences:{reference:string;basis:string;description:string}[];cases:{lyrics:string;song_caption:string;bpm:number;voice:string}[]};
+type SongPlan={sound_guidance?:{total:number;interpreted?:number;described:number};language?:{code:string;label:string;basis:string};musical_traits?:Record<string,string>;title:string;summary:string;favorites?:{reference:string}[];influences:{reference:string;basis:string;description:string}[];cases:{lyrics:string;song_caption:string;bpm:number;voice:string}[]};
 type Song={id:string;state:string;phase?:string;message:string;plan?:SongPlan;profile?:FavoriteSnapshot;direction?:{label:string};legacy?:boolean;styleChecked?:boolean};
 const songUrl=(id:string)=>`/api/taste/song?id=${id}`;
 const pendingKey='jamloom-dna-pending';
@@ -157,14 +157,15 @@ export function TasteNotebook(){
  function clear(){try{localStorage.removeItem('jamloom-taste-v1');localStorage.removeItem('jamloom-dna-preference');writable.current=true;setProfile(emptyTaste);setMessage('Favorites deleted from this device.');}catch{setMessage('Storage is unavailable. Clear site data in your browser settings.');}}
  function songCard(take:Song,i:number){return <article key={take.id} data-song-id={take.id}>
  <h4>{take.plan?.title??`Song ${i+1}`}</h4><p>2 min · AI singing{take.plan?.language?` · ${take.plan.language.label}`:''}{take.direction?` · ${take.direction.label}`:''}</p>
- <p><strong>Made from:</strong> {take.profile?.references.join(' · ')??'Original list unavailable'}</p>
+ <p><strong>Made from:</strong> {take.profile?.references.slice(0,12).join(' · ')??'Original list unavailable'}{(take.profile?.references.length??0)>12?` · and ${take.profile!.references.length-12} more`:''}</p>
+ {take.plan?.sound_guidance?.interpreted!==undefined&&<p>All {take.plan.sound_guidance.total} favorites contribute their available genre metadata. Detailed interpretation covers {take.plan.sound_guidance.interpreted}; {take.plan.sound_guidance.described} have recognizable sound traits. These are model estimates, including language, not audio analysis.</p>}
  {take.profile?.referenceMetadata?.length? <p>{[...new Set(take.profile.referenceMetadata.map(m=>m.genre))].join(' · ')}</p>:null}
  <p>{take.styleChecked?'Broad style check passed. Listen to judge the song and singing.':'Earlier take: style match has not been checked.'}</p>
  <audio aria-label={`Play ${take.plan?.title??`song ${i+1}`}`} controls preload="metadata" src={`${songUrl(take.id)}&file=audio`} onPlay={event=>{document.querySelectorAll<HTMLAudioElement>('audio').forEach(audio=>{if(audio!==event.currentTarget)audio.pause();});}} onError={()=>setMessage('This song could not load. Your favorites are safe. Reload to reconnect.')}/>
  <div className="product-actions"><a className="secondary" href={`${songUrl(take.id)}&file=audio&download=1`} download>Download song</a><a className="secondary" href={`${songUrl(take.id)}&file=plan`} download>Download song notes</a></div>
  {take.styleChecked&&<SongFeedback id={take.id} account={cloud}/>}
  {take.plan?.musical_traits&&<details><summary>The musical choices</summary><dl>{Object.entries(take.plan.musical_traits).map(([key,value])=><div key={key}><dt>{key.replaceAll('_',' ')}</dt><dd>{value}</dd></div>)}</dl></details>}
- {take.plan&&<><details><summary>Lyrics</summary><p style={{whiteSpace:'pre-wrap'}}>{take.plan.cases[0].lyrics}</p></details><details><summary>How these favorites shaped this song</summary><p>{take.plan.summary}</p><ul>{take.plan.influences.map(note=><li key={note.reference}><strong>{note.reference}</strong>: {note.description} {note.basis==='unknown'?'(Unrecognized)':note.basis==='genre_only'?'(Catalogue genre only)':'(Model interpretation)'}</li>)}</ul><p>{take.plan.cases[0].song_caption}</p><p>Musical direction uses catalogue metadata and model interpretation, not analysis of the original recordings. A style check cannot guarantee musical quality.</p></details></>}
+ {take.plan&&<><details><summary>Lyrics</summary><p style={{whiteSpace:'pre-wrap'}}>{take.plan.cases[0].lyrics}</p></details><details><summary>How these favorites shaped this song</summary><p>{take.plan.summary}</p><ul>{take.plan.influences.slice(0,24).map(note=><li key={note.reference}><strong>{note.reference}</strong>: {note.description} {note.basis==='unknown'?'(Unrecognized)':note.basis==='genre_only'?'(Catalogue genre only)':'(Model interpretation)'}</li>)}</ul>{take.plan.influences.length>24&&<p>Showing 24 favorites. Download song notes for the complete list and its interpretation coverage.</p>}<p>{take.plan.cases[0].song_caption}</p><p>Musical direction uses catalogue metadata and model interpretation, not analysis of the original recordings. A style check cannot guarantee musical quality.</p></details></>}
  </article>;}
  return <section id="dna-notebook" className="product-panel">
  <ol className="dna-steps" aria-label="How Music DNA works"><li><span>1</span> Pick favorites</li><li><span>2</span> We find your sound</li><li><span>3</span> Get a song</li></ol>
@@ -179,6 +180,7 @@ export function TasteNotebook(){
  {profile.references.length>favoriteCount&&<button className="secondary" onClick={()=>setFavoriteCount(n=>n+24)}>Show more favorites ({profile.references.length-favoriteCount} remaining)</button>}
  {!profile.references.length&&<div className="dna-empty"><span aria-hidden="true">♫ + ♫ + ♫</span><p>Add the music you keep coming back to.</p></div>}
  <small className="dna-autosave">Favorites save on this device.</small>
+ {profile.references.length>12&&<p>All available genres count. Each song reuses saved interpretations and explores up to 12 more favorites in detail, so a large library won’t hold up your song.</p>}
  </div><div className="dna-next-song">
  <div className="dna-record-art" aria-hidden="true"><div className="demo-record"><span>J</span></div><div className="dna-sound-bars">{[28,52,36,72,96,60,40,80,56,32,64,40].map((height,i)=><i key={i} style={{height:height+'%'}}/>)}</div></div>
  <div className="dna-summary"><h3>{profile.references.length?'Your music DNA':'Your next favorite?'}</h3>

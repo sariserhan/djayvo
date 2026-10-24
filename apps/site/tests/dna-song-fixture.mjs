@@ -9,7 +9,7 @@ export async function songFixture(context){
    const body=req.postDataJSON();
    if(body.action==='quote')return route.fulfill({json:{credits:body.visibility==='private'?2:1,token:'fixture-token',expiresAt:Date.now()+300000}});
    const profile=body.profile;bodies.push(profile);const id=String(++counter).padStart(32,'0');
-   jobs.set(id,{id,profile,styleChecked:true,direction:{label:profile.referenceMetadata?.[0]?.genre??'Test style'},state:'running',message:'Writing your song…',polls:0,plan:{title:`Fixture song ${counter}`,summary:'Test interpretation based on the submitted favorites.',influences:profile.references.map(reference=>({reference,basis:'genre_only',description:'Test genre influence'})),cases:[{lyrics:'[Verse]\nFixture lyrics\n[Chorus]\nA song for browser testing',song_caption:'Warm piano and singing',bpm:92,voice:'female'}]}});
+   jobs.set(id,{id,profile,styleChecked:true,direction:{label:profile.referenceMetadata?.[0]?.genre??'Test style'},state:'running',message:'Writing your song…',polls:0,plan:{sound_guidance:{total:profile.references.length,interpreted:Math.min(12,profile.references.length),described:0},title:`Fixture song ${counter}`,summary:'Test interpretation based on the submitted favorites.',influences:profile.references.map(reference=>({reference,basis:'genre_only',description:'Test genre influence'})),cases:[{lyrics:'[Verse]\nFixture lyrics\n[Chorus]\nA song for browser testing',song_caption:'Warm piano and singing',bpm:92,voice:'female'}]}});
    return route.fulfill({status:202,json:{id}});
   }
   if(url.searchParams.has('view'))return route.fulfill({json:{songs:[],next:null}});

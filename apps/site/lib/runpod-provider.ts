@@ -50,7 +50,7 @@ export class RunpodProvider{
   if(value.status==='COMPLETED'&&(!value.output||typeof value.output!=='object'||Array.isArray(value.output)))throw Error('Missing worker receipt');
   // Retain only our static diagnostic grammar; raw provider errors may contain private lyrics or URLs.
   const failure=value.status==='FAILED'&&typeof value.error==='string'&&value.error.length<2048
-   ?value.error.match(/Jamloom generation failed at (style-rejected(?::matched-[0-4]-of-4)?|(?:writing|composing|retrying|checking)-(?:timeout|exit--?[0-9]{1,3})|worker-timeout|(?:fit(?:-retry)?|singer|planner|private)@(?:[A-Za-z_]+\.py:[0-9]{1,5}|unavailable)); no completed song was accepted\./)?.[1]:undefined;
+   ?value.error.match(/Jamloom generation failed at (style-rejected(?::matched-[0-4]-of-4)?|(?:writing|composing|retrying|checking)-(?:timeout|exit--?[0-9]{1,3})|worker-timeout|improvise-(?:source|selection|arrangement)|improvise-(?:transcription|lyrics|singing|separation)(?:@(?:[A-Za-z_]+\.py:[0-9]{1,5}|unavailable))?|(?:fit(?:-retry)?|singer|planner|private)@(?:[A-Za-z_]+\.py:[0-9]{1,5}|unavailable)); no completed song was accepted\./)?.[1]:undefined;
   return {id:value.id,status:value.status as RunpodState,...(value.output?{output:value.output as Record<string,unknown>}:{}),
    ...(failure?{failure}:{}),
    ...(value.delayTime===undefined?{}:{delayTime:Number(value.delayTime)}),...(value.executionTime===undefined?{}:{executionTime:Number(value.executionTime)})};

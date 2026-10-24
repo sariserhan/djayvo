@@ -4,11 +4,11 @@ Owner: “lets do all of these and complete all of them”. This supersedes the 
 
 | Workstream | Status | Current action / completion requirement |
 |---|---|---|
-| Improvise hosted reliability | PARTIAL; previous trial FAIL | Approved diagnostic trial running; identify failures, fix and qualify before release |
-| Music DNA coverage and scale | PARTIAL | Measure 5,000 uncached references; resolve bounded-runtime issues; human calibration remains separate |
+| Improvise hosted reliability | PARTIAL; previous trial FAIL | Bounded trial finished: 3/4 songs PASS, reggae FAIL in voice conversion; worker stopped and prior image restored; inner diagnostic improved locally |
+| Music DNA coverage and scale | PARTIAL | PASS bounded 5,000-favorite planning and browser transport; retain every genre, interpret up to 12 new tracks per take; worker publication and human calibration pending |
 | Production generation and economics | PARTIAL | Reconcile provider cost evidence and validate purchases/recovery before activation |
-| Website and Mac release | PARTIAL | Release latest qualified website through GitHub; prepare/test/notarize updated Pro installer |
-| iOS qualification | PARTIAL | 14 physical core tests and generation performance PASS; UI automation/StoreKit failures under diagnosis |
+| Website and Mac release | PARTIAL | Pro 1.1.0 signed, notarized and published after full CI PASS; isolated real upgrade running; website release pending |
+| iOS qualification | PARTIAL | 22 physical iPhone checks PASS, including six UI flows and local StoreKit; signed archive and manual capture/share qualification in progress |
 | Launch operations | PARTIAL | Email inbox/readability and 10 live R2 gates PASS; bounded cleanup implemented/tested, deployment pending |
 | Independent quality and research | NOT RUN | Existing review packets remain available; independent ratings and permissioned expert data cannot be fabricated |
 

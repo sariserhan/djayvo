@@ -1,0 +1,13 @@
+{
+  "guidance": {},
+  "plan_favorites": 0,
+  "source_revision": "bounded-12-new-interpretations",
+  "status": "FAIL",
+  "reason": "planner-exit",
+  "favorites": 5000,
+  "cache_entries": 0,
+  "input_kind": "synthetic unknown titles with fixture genres for throughput, not music-quality evidence",
+  "elapsed_seconds": 225.39,
+  "completed_batch_logs": 2,
+  "plan_written": false
+}

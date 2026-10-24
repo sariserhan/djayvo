@@ -179,6 +179,16 @@ class WorkerTests(unittest.TestCase):
             self.assertTrue(popen.call_args.kwargs['start_new_session'])
             self.assertEqual(popen.call_args.args[0][0],str(ROOT/'build-style-training/upstream/.venv/bin/python'))
 
+    def test_identity_wrapper_preserves_child_location_without_private_text(self):
+        with tempfile.TemporaryDirectory() as folder:
+            work=Path(folder);job=work/'improvise'/'job';job.mkdir(parents=True)
+            (job/'failure.json').write_text(json.dumps({'stage':'Generating the singer and music'}))
+            log=job/'render-private.log'
+            log.write_text('Traceback (most recent call last):\n  File "/private/customer/convert_voice.py", line 88\nValueError: PRIVATE recording details\nTraceback (most recent call last):\n  File "/app/scripts/vocal_identity.py", line 142\nRuntimeError: Singer identity conversion failed\n')
+            self.assertEqual(worker.failure_location(work),'improvise-singing@convert_voice.py:88')
+            log.write_text('Traceback (most recent call last):\n  File "/app/scripts/vocal_identity.py", line 142\nRuntimeError: Singer identity conversion failed\n')
+            self.assertEqual(worker.failure_location(work),'improvise-singing@vocal_identity.py:142')
+
     def test_cuda_planner_keeps_greedy_language_selection_and_bounds_output(self):
         from singing_response import planner_functions,inference_device
         from types import SimpleNamespace

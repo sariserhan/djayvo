@@ -3,16 +3,22 @@ import type {ReferenceMetadata} from './taste-catalogue';
 
 export type FavoriteSnapshot={vocalLanguage?:string;references:string[];referenceMetadata:ReferenceMetadata[]};
 const normalized=(s:string)=>s.normalize('NFKC').trim().toLowerCase();
+function genresByReference(snapshot:FavoriteSnapshot){
+ const genres=new Map<string,string>();
+ for(const row of snapshot.referenceMetadata){const key=normalized(row.reference);if(!genres.has(key))genres.set(key,row.genre);}
+ return genres;
+}
 export function favoriteKey(snapshot:FavoriteSnapshot){
- return JSON.stringify([snapshot.vocalLanguage??'auto',[...new Map(snapshot.references.map(reference=>[normalized(reference),{
-  reference:normalized(reference),genre:normalized(snapshot.referenceMetadata.find(m=>normalized(m.reference)===normalized(reference))?.genre??'')
- }])).values()].sort((a,b)=>a.reference<b.reference?-1:a.reference>b.reference?1:0)]);
+ const genres=genresByReference(snapshot);
+ return JSON.stringify([snapshot.vocalLanguage??'auto',[...new Map(snapshot.references.map(value=>{const reference=normalized(value);return [reference,{
+  reference,genre:normalized(genres.get(reference)??'')
+ }];})).values()].sort((a,b)=>a.reference<b.reference?-1:a.reference>b.reference?1:0)]);
 }
 export function musicDirection(snapshot:FavoriteSnapshot){
- const votes=new Map<string,number>(),seen=new Set<string>();
+ const votes=new Map<string,number>(),seen=new Set<string>(),genres=genresByReference(snapshot);
  for(const reference of snapshot.references){
-  if(seen.has(normalized(reference)))continue;seen.add(normalized(reference));
-  const genre=snapshot.referenceMetadata.find(m=>normalized(m.reference)===normalized(reference))?.genre??'';
+  const key=normalized(reference);if(seen.has(key))continue;seen.add(key);
+  const genre=genres.get(key)??'';
   const match=policy.directions.find(d=>new RegExp(d.match,'i').test(genre));
   if(match)votes.set(match.id,(votes.get(match.id)??0)+1);
  }

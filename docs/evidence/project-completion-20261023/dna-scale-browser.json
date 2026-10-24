@@ -1,0 +1,42 @@
+[
+  {
+    "browser": "chromium",
+    "width": 1280,
+    "status": "PASS",
+    "wholePlaylist": 53,
+    "maxFavorites": 5000,
+    "explicitInterpretationCoverage": true,
+    "boundedNotes": true,
+    "matched": 52,
+    "lateMetalSongs": 32,
+    "pages": 2,
+    "automaticImport": true,
+    "duplicateImport": true,
+    "unmatchedReview": true,
+    "cancelAndFailurePreserveFavorites": true,
+    "fullGenerationPayload": true,
+    "reload": true,
+    "a11y": true,
+    "transport": "fixtures; no song generation"
+  },
+  {
+    "browser": "webkit",
+    "width": 390,
+    "status": "PASS",
+    "wholePlaylist": 53,
+    "maxFavorites": 5000,
+    "explicitInterpretationCoverage": true,
+    "boundedNotes": true,
+    "matched": 52,
+    "lateMetalSongs": 32,
+    "pages": 2,
+    "automaticImport": true,
+    "duplicateImport": true,
+    "unmatchedReview": true,
+    "cancelAndFailurePreserveFavorites": true,
+    "fullGenerationPayload": true,
+    "reload": true,
+    "a11y": true,
+    "transport": "fixtures; no song generation"
+  }
+]

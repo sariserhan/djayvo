@@ -132,3 +132,14 @@ test('favorite identity includes genres, ignores order and case; direction follo
  assert.equal(musicDirection({references:['Unknown'],referenceMetadata:[]}),null);
  for(const [genre,target] of [['Dubstep','dance'],['Reggaeton','reggaeton'],['Rhythm and Blues','soul'],['Hardcore Dance','dance'],['Hard Rock','heavy-rock'],['Dub','reggae']])assert.equal(musicDirection({references:['x'],referenceMetadata:[{reference:'x',genre,source:'itunes',id:1}]})?.id,target);
 });
+
+
+test('maximum favorite identity and direction normalize each entry a bounded number of times',t=>{
+ const references=Array.from({length:5000},(_,i)=>`Song ${i} — Artist`),snapshot={references,referenceMetadata:references.map((reference,i)=>({reference,genre:i<2000?'Pop':'Metal',source:'itunes' as const}))};
+ const original=String.prototype.normalize;let normalizations=0;
+ t.mock.method(String.prototype,'normalize',function(this:string,form?:string){normalizations++;return original.call(this,form);});
+ assert.equal(musicDirection(snapshot)?.id,'heavy-rock');assert.equal(musicDirection(snapshot)?.coverage,5000);
+ const identity=favoriteKey(snapshot);assert.equal(JSON.parse(identity)[1].length,5000);assert.ok(normalizations<=5000*10);
+ const duplicate={references:['A','a'],referenceMetadata:[{reference:'A',genre:'Jazz',source:'itunes' as const},{reference:'a',genre:'Metal',source:'itunes' as const}]};
+ assert.equal(musicDirection(duplicate)?.id,'jazz');assert.equal(JSON.parse(favoriteKey(duplicate))[1][0].genre,'jazz');
+});
