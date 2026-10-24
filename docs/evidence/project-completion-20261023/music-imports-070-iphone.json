@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "version": "0.7.0",
+  "build": "9",
+  "device": "Physical iPhone 14 Pro, iOS 27.0.1",
+  "xcresult": "renders/project-completion-20261023/music-imports-070-iphone.xcresult",
+  "passed": 5,
+  "failed": 0,
+  "skipped": 0,
+  "checks": [
+    "Live account-free artist and song suggestions, save and relaunch",
+    "Live public YouTube Music playlist, catalogue match, review, add and relaunch",
+    "Apple Music explicit connection preview; no personal account authorization",
+    "Cloud consent preserves favorites and requires sign-in",
+    "Invalid YouTube link cannot import or save"
+  ],
+  "screenshotReview": "PASS; readable suggestions and matched-song preview; Add button visible and hittable"
+}

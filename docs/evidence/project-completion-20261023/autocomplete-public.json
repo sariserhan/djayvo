@@ -1,0 +1,110 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-24T03:42:27.652Z",
+  "commit": "1292dbcbc57a5138bc521360af5839de87cc0d7b",
+  "url": "https://www.jamloom.com/api/music-search",
+  "authentication": "No Cookie or Authorization header",
+  "query": "Daft Punk",
+  "httpStatus": 200,
+  "suggestions": [
+    {
+      "reference": "Daft Punk",
+      "kind": "Artist",
+      "detail": "iTunes catalogue",
+      "metadata": {
+        "reference": "Daft Punk",
+        "genre": "Dance",
+        "source": "itunes",
+        "id": 5468295
+      }
+    },
+    {
+      "reference": "Get Lucky — Daft Punk, Pharrell Williams & Nile Rodgers",
+      "kind": "Track",
+      "detail": "Random Access Memories · iTunes",
+      "metadata": {
+        "reference": "Get Lucky — Daft Punk, Pharrell Williams & Nile Rodgers",
+        "genre": "Pop",
+        "source": "itunes",
+        "id": 617154366
+      }
+    },
+    {
+      "reference": "One More Time — Daft Punk",
+      "kind": "Track",
+      "detail": "Discovery · iTunes",
+      "metadata": {
+        "reference": "One More Time — Daft Punk",
+        "genre": "Dance",
+        "source": "itunes",
+        "id": 697195462
+      }
+    },
+    {
+      "reference": "Around the World — Daft Punk",
+      "kind": "Track",
+      "detail": "Homework · iTunes",
+      "metadata": {
+        "reference": "Around the World — Daft Punk",
+        "genre": "Dance",
+        "source": "itunes",
+        "id": 696886431
+      }
+    },
+    {
+      "reference": "Harder Better Faster Stronger — Daft Punk",
+      "kind": "Track",
+      "detail": "Discovery · iTunes",
+      "metadata": {
+        "reference": "Harder Better Faster Stronger — Daft Punk",
+        "genre": "Dance",
+        "source": "itunes",
+        "id": 697195787
+      }
+    },
+    {
+      "reference": "Instant Crush — Daft Punk & Julian Casablancas",
+      "kind": "Track",
+      "detail": "Random Access Memories · iTunes",
+      "metadata": {
+        "reference": "Instant Crush — Daft Punk & Julian Casablancas",
+        "genre": "Pop",
+        "source": "itunes",
+        "id": 617154362
+      }
+    },
+    {
+      "reference": "Lose Yourself to Dance — Daft Punk & Pharrell Williams",
+      "kind": "Track",
+      "detail": "Random Access Memories · iTunes",
+      "metadata": {
+        "reference": "Lose Yourself to Dance — Daft Punk & Pharrell Williams",
+        "genre": "Pop",
+        "source": "itunes",
+        "id": 617154363
+      }
+    },
+    {
+      "reference": "I Feel It Coming (feat. Daft Punk) — The Weeknd",
+      "kind": "Track",
+      "detail": "Starboy · iTunes",
+      "metadata": {
+        "reference": "I Feel It Coming (feat. Daft Punk) — The Weeknd",
+        "genre": "R&B/Soul",
+        "source": "itunes",
+        "id": 1440872309
+      }
+    },
+    {
+      "reference": "Veridis Quo — Daft Punk",
+      "kind": "Track",
+      "detail": "Discovery · iTunes",
+      "metadata": {
+        "reference": "Veridis Quo — Daft Punk",
+        "genre": "Dance",
+        "source": "itunes",
+        "id": 697196125
+      }
+    }
+  ]
+}

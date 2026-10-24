@@ -1,0 +1,22 @@
+{
+  "status": "PARTIAL",
+  "xcresult": "renders/project-completion-20261023/favorite-autocomplete-verified-iphone.xcresult",
+  "device": "Physical iPhone 14 Pro, iOS 27.0.1",
+  "checks": [
+    {
+      "test": "testLiveFavoriteAutocompleteWithoutAnAccount",
+      "status": "PASS",
+      "scope": "Public artist/track suggestions without login, both added, saved across relaunch"
+    },
+    {
+      "test": "testAppleMusicImportPreviewRequiresExplicitConnection",
+      "status": "PASS"
+    },
+    {
+      "test": "testMusicDNACloudConsentKeepsLocalFavoritesAndRequiresSignIn",
+      "status": "FAIL",
+      "reason": "Unconditional test swipe moved the text editor off screen after the compact layout change; test updated to scroll only if needed. Final combined verification separately tracked."
+    }
+  ],
+  "earlierFailure": "The first live attempt revealed a keyboard toolbar overlapping the first suggestion; product layout corrected before this passing autocomplete run."
+}

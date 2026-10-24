@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-24T04:00:45.968022+00:00",
+  "removed": [
+    {
+      "path": "/Users/serhansari/.npm/_cacache",
+      "kind": "Regenerable npm package download cache",
+      "allocatedBytesBefore": 23530004480
+    }
+  ],
+  "freeBytesBefore": 3108347904,
+  "freeBytesAfter": 27823104000,
+  "freeBytesRecovered": 24714756096,
+  "activeOpenFiles": 0,
+  "gitStatusUnchanged": true,
+  "gitIndexUnchanged": true,
+  "preserved": [
+    "Installed node_modules",
+    "Project source and local changes",
+    "Credentials",
+    "Recordings, models and evidence",
+    "Release archives and installers",
+    "Active Xcode caches and simulator data"
+  ],
+  "limitation": "Future npm installs may re-download cached packages.",
+  "installedDependencies": "PASS: npm ls --depth=0"
+}

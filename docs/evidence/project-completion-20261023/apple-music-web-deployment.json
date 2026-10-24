@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "commit": "757f10f416eb1d434cfc75cd876b6281b7e9e06a",
+  "checkedAt": "2026-10-24T03:32:06.393Z",
+  "githubVercelStatus": "success",
+  "deployment": "https://vercel.com/ssari/jamloom/6Yu8t14gqDsrFXvurR5xmq8nGN4n",
+  "pages": [
+    {
+      "path": "/privacy",
+      "status": 200,
+      "appleMusicPrivacyText": true
+    },
+    {
+      "path": "/download",
+      "status": 200
+    }
+  ]
+}

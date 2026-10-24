@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-24T04:02:12.008Z",
+  "commit": "f38b3f7cd284400641e7bf25b9ba20a8c140fab4",
+  "deployment": "dpl_AhgPFjSD4mvUANe2prooYP5Fq3yX",
+  "url": "https://www.jamloom.com/privacy",
+  "httpStatus": 200,
+  "nativeYouTubeDisclosure": true,
+  "publication": "GitHub-triggered production deployment"
+}

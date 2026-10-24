@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "app": "6826480059",
+  "version": "0.7.0",
+  "state": "PREPARE_FOR_SUBMISSION",
+  "releaseType": "MANUAL",
+  "listingSaved": true,
+  "uploadedBuilds": 0,
+  "iconAsset": "apps/ios/Jamloom/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+  "appStoreIcon": "Awaiting uploaded and processed build",
+  "submission": "NOT RUN",
+  "scope": "Draft metadata only; no upload, purchase activation or submission"
+}

@@ -1,3 +1,9 @@
+## Native music discovery — 2026-10-24
+
+**Implementation and physical iPhone PASS.** Music DNA now suggests songs and artists while typing without an Apple Music account, retains optional personal Apple Music import, and imports public/unlisted YouTube Music playlists through the shared exact catalogue matcher. Existing favorites are preserved. The live production API and 103 website tests pass; native contract checks pass (22, one optional server test skipped). All five physical iPhone checks pass; signed 0.7.0 (9) is installed and open. Four iPad simulator cases pass, but Xcode report finalization stalled (PARTIAL artifact). Spotify import stays disabled under provider policy. App Store draft 0.7.0 is saved; its icon awaits the first uploaded/processed build. [Current evidence and remaining gates](docs/completion-followthrough.md).
+
+Disk cleanup: PASS, removed 23.53 GB of unused npm package-download cache; free space rose from 3.11 GB to 27.82 GB during the check. Source, installed dependencies, recordings, models, credentials and release evidence preserved; Git status/index unchanged by cleanup. [Receipt](docs/evidence/project-completion-20261023/disk-cleanup-20261024.json).
+
 ## Remaining-work follow-through — 2026-10-23
 
 **Overall PARTIAL.** The owner's “complete all those” instruction covers the eight remaining workstreams. [Current completion ledger](docs/completion-followthrough.md) is authoritative for their present status; earlier dated entries below retain historical evidence and may describe superseded blockers. Native cloud Music DNA, Apple Music import and production Apple verification are implemented. The approved qualification ended with three songs completed and one jazz safety failure; cleanup and shutdown passed, and the maximum-library follow-up was not started. Jamloom App Store draft, English listing and three credit prices are saved; no submission. Credit purchases and public generation remain closed.

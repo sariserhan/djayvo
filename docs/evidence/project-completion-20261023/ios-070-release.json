@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-24T03:58:38.911073+00:00",
+  "archive": "renders/project-completion-20261023/Jamloom-0.7.0-9.xcarchive",
+  "version": "0.7.0",
+  "build": "9",
+  "bundleAudit": "ios-070-archive-audit.json",
+  "strictCodesign": "PASS",
+  "signature": "Development signing; not App Store distribution",
+  "installed": "PASS: actual physical iPhone",
+  "appStoreUpload": "NOT RUN",
+  "launch": "PASS: actual physical iPhone"
+}

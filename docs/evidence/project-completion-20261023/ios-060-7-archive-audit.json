@@ -1,0 +1,14 @@
+{
+  "gate": "PASS",
+  "bundle_identifier": "com.djayvo.app",
+  "version": "0.6.0",
+  "build": "7",
+  "minimum_os": "17.0",
+  "binary_sha256": "182b4cc6f2c2c9c9fa09c17dbcb409aaf21aea8f5776b8de06c8d9630c789e8c",
+  "bundle_bytes": 107822323,
+  "private_audio_and_debug_controls_absent": "PASS",
+  "license_notices": "PASS",
+  "privacy_manifest": "PASS",
+  "app_store_approval": "NOT RUN",
+  "scope": "Static bundle checks; signing, physical behavior and compliance require separate evidence."
+}

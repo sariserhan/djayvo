@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-24T03:31:27.368Z",
+  "status": "PASS",
+  "endpoint": "jl77hn92npt65k",
+  "workersMin": 0,
+  "workersMax": 0,
+  "health": {
+    "jobs": {
+      "completed": 23,
+      "failed": 10,
+      "inProgress": 0,
+      "inQueue": 0,
+      "retried": 0
+    },
+    "workers": {
+      "idle": 0,
+      "initializing": 0,
+      "ready": 0,
+      "running": 0,
+      "throttled": 0,
+      "unhealthy": 0
+    }
+  },
+  "billing": [
+    {
+      "amount": 0.2649009758606553,
+      "timeBilledMs": 542082,
+      "diskSpaceBilledGB": 180,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-24 01:00:00"
+    },
+    {
+      "amount": 0.03576222155243158,
+      "timeBilledMs": 73568,
+      "diskSpaceBilledGB": 60,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-24 02:00:00"
+    }
+  ],
+  "note": "Provider hourly totals can lag and include other approved trials; not a per-request final invoice."
+}

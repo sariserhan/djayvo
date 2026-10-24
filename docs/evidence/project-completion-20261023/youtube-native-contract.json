@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-24T03:57:12.418302+00:00",
+  "version": "0.7.0",
+  "build": "9",
+  "xcresult": "renders/project-completion-20261023/youtube-contract-verified.xcresult",
+  "passed": 22,
+  "skipped": 1,
+  "failed": 0,
+  "suites": [
+    "AccountTests",
+    "AppleMusicTests",
+    "TasteTests",
+    "YouTubeTests"
+  ],
+  "skip": "Optional local HTTP server test",
+  "scope": "Parser and URL boundaries, exact-catalogue contract, pagination, quota waits, cancellation/resume, deduplication, cap rejection, saved preferences and account transport; real import separately verified."
+}

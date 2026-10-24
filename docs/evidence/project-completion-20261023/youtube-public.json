@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-24T03:55:48.857Z",
+  "commit": "56b45541",
+  "authentication": "No Cookie or Authorization header; same-origin header matches native transport",
+  "capabilities": {
+    "youtube": true,
+    "spotify": false
+  },
+  "playlist": {
+    "items": [
+      {
+        "title": "MATHEMATICS",
+        "url": "https://www.youtube.com/watch?v=6-EA5cK1OD8",
+        "artist": "Jace Davey"
+      }
+    ],
+    "more": false,
+    "next": null,
+    "skipped": 0,
+    "url": "https://www.youtube.com/playlist?list=OLAK5uy_nwYsan9TcbkjHCOv-tt49-WVSivyoYaoU"
+  },
+  "result": {
+    "suggestions": [
+      {
+        "reference": "MATHEMATICS — Jace Davey",
+        "kind": "Track",
+        "detail": "MATHEMATICS - Single · iTunes",
+        "metadata": {
+          "reference": "MATHEMATICS — Jace Davey",
+          "genre": "Hip-Hop/Rap",
+          "source": "itunes",
+          "id": 1839914684
+        }
+      }
+    ]
+  }
+}

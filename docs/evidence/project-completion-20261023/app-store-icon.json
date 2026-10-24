@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-24T03:57:26.617417+00:00",
+  "app": "6826480059",
+  "appName": "Jamloom",
+  "uploadedBuilds": 0,
+  "icon": {
+    "path": "apps/ios/Jamloom/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+    "width": 1024,
+    "height": 1024,
+    "sha256": "bf32cfcd3f1e4bf8a5e8832f19ad2097ae070fd9b9759783160d1895576e3a02",
+    "visualInspection": "PASS; lime waveform on dark background"
+  },
+  "finding": "App Store Connect has no processed build from which to extract the app icon. The source asset exists and is configured as AppIcon for iPhone and iPad.",
+  "upload": "NOT RUN",
+  "reference": "https://developer.apple.com/help/app-store-connect/manage-app-information/add-an-app-icon/"
+}
