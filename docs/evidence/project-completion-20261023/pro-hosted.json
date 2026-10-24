@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-24T02:21:47.040Z",
+  "origin": "https://www.jamloom.com",
+  "checks": [
+    {
+      "path": "/pro",
+      "status": 200
+    },
+    {
+      "path": "/download",
+      "status": 200
+    },
+    {
+      "path": "/pricing",
+      "status": 200
+    },
+    {
+      "path": "/live-dj",
+      "status": 200
+    },
+    {
+      "check": "Public studio without paid entitlement",
+      "status": "PASS"
+    },
+    {
+      "check": "Production signed license renewal",
+      "status": "PASS"
+    },
+    {
+      "check": "Authorized production catalogue and ranged audio",
+      "status": "PASS",
+      "tracks": 72,
+      "bytes": 65536
+    },
+    {
+      "check": "Unsigned webhooks rejected in both modes",
+      "status": "PASS"
+    }
+  ],
+  "livePayment": "NOT RUN; no charge made",
+  "physicalAudio": "NOT RUN; HTTP checks only"
+}

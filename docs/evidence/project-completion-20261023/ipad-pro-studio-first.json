@@ -1,0 +1,27 @@
+{
+  "gate": "PARTIAL",
+  "device": "iPad Pro 11-inch (M5) simulator, iOS 27.0",
+  "testLines": [
+    "Test Case '-[JamloomTests.AccountTests testAccountBalanceTasteConflictAndSignout]' passed (0.053 seconds).",
+    "Test Case '-[JamloomTests.AccountTests testActualLocalAccountAndProfileSync]' skipped (0.007 seconds).",
+    "Test Case '-[JamloomTests.AccountTests testCloudDownloadFollowsOnlySignedSongStorageWithoutCredentials]' passed (0.036 seconds).",
+    "Test Case '-[JamloomTests.AccountTests testCloudUnavailableAndNoConsentNeverUpload]' passed (0.007 seconds).",
+    "Test Case '-[JamloomTests.AccountTests testNativeCloudFlowQuotesBeforeSubmissionAndKeepsStorageUnauthenticated]' passed (0.057 seconds).",
+    "Test Case '-[JamloomTests.AccountTests testOversizedUnauthorizedAndInvalidEndpointResponses]' passed (0.006 seconds).",
+    "Test Case '-[JamloomTests.AccountTests testSongTransportKeepsOriginQueryAndAcceptedResponseBoundaries]' passed (0.006 seconds).",
+    "Test Case '-[JamloomTests.MobileAudioTests testCloudRecordingProducesBoundedMono16kPCMAndRejectsInvalidTrim]' passed (0.043 seconds).",
+    "Test Case '-[JamloomTests.StudioServerTests testOnlyBundledAssetsCanBeReadThroughExactLoopbackAuthority]' passed (0.004 seconds).",
+    "Test Case '-[JamloomUITests.FlowTests testCloudCreationRequiresSeparateConsentAndSignIn]' passed (35.283 seconds).",
+    "Test Case '-[JamloomUITests.FlowTests testConsentRenderPlaybackSaveAndRelaunch]' failed (27.579 seconds).",
+    "Test Case '-[JamloomUITests.FlowTests testDeckRotationRetainsTracksAndStopsOnTabChange]' passed (58.198 seconds).",
+    "Test Case '-[JamloomUITests.FlowTests testLandscapeDeckControlsFitWithoutScrolling]' passed (28.872 seconds).",
+    "Test Case '-[JamloomUITests.FlowTests testLargeTextConsentAndPrivacy]' passed (11.525 seconds).",
+    "Test Case '-[JamloomUITests.FlowTests testMicrophoneDenialKeepsImportAvailable]' passed (12.716 seconds).",
+    "Test Case '-[JamloomUITests.FlowTests testOptionalAccountKeepsLocalCreationAvailable]' passed (7.162 seconds).",
+    "Test Case '-[JamloomUITests.FlowTests testTasteCompositionPlaybackPreferenceAndRelaunch]' passed (38.127 seconds).",
+    "Test Case '-[JamloomUITests.FlowTests testTasteTabPersistenceAndDeletion]' passed (32.042 seconds)."
+  ],
+  "failure": "Local capture consent tap did not change the switch; exact intrinsic toggle sizing added; targeted rerun pending.",
+  "resultBundleFinalized": false,
+  "scope": "All tests finished; Xcode hung collecting post-failure diagnostics. Log evidence preserved."
+}

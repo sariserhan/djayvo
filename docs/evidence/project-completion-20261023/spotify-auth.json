@@ -1,0 +1,15 @@
+{
+  "checked_at": "2026-10-24T02:27:16.139841+00:00",
+  "gate": "PASS",
+  "scope": "Application credentials only; client_credentials token request",
+  "http_status": 200,
+  "config_file": "apps/site/.env.local",
+  "variable_names": [
+    "SPOTIFY_CLIENT_ID",
+    "SPOTIFY_SECRET_KEY"
+  ],
+  "git_ignored": true,
+  "playlist_import": "NOT RUN",
+  "production_configuration": "NOT RUN",
+  "provider_content_requested": false
+}

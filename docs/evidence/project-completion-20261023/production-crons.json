@@ -1,0 +1,22 @@
+{
+  "crons": [
+    {
+      "path": "/api/maintenance",
+      "schedule": "0 * * * *",
+      "host": "jamloom-e99bd9k6t-ssari.vercel.app"
+    },
+    {
+      "path": "/api/notifications",
+      "schedule": "*/5 * * * *",
+      "host": "jamloom-e99bd9k6t-ssari.vercel.app"
+    },
+    {
+      "path": "/api/song-jobs",
+      "schedule": "* * * * *",
+      "host": "jamloom-e99bd9k6t-ssari.vercel.app"
+    }
+  ],
+  "undeployed": [],
+  "modified": [],
+  "enabled": true
+}

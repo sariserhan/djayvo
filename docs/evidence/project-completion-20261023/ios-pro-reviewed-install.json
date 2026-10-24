@@ -7,5 +7,5 @@
   "archive": "renders/project-completion-20261023/Jamloom-0.4.1-reviewed.xcarchive",
   "codesign": "PASS strict verification",
   "installOutcome": "success",
-  "ownerAcceptance": "Pending"
+  "ownerAcceptance": "PASS: Yes, this is much better"
 }

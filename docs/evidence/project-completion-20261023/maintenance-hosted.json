@@ -1,0 +1,11 @@
+{
+  "gate": "PASS",
+  "invocationUTC": "2026-10-24T02:37:04.995Z",
+  "deployment": "dpl_Dhf8nAifzrQCWFhqRLuCiE1b2N9r",
+  "sourceCommit": "1de4d4da1eb0d3e786f0b26c19b03d4a920d93bd",
+  "method": "GET",
+  "path": "/api/maintenance",
+  "responseStatusCode": 200,
+  "environment": "production",
+  "scope": "Actual Vercel cron invocation; authorized retention returned success. Public uploads and generation remain disabled."
+}

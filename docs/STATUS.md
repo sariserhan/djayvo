@@ -1,15 +1,15 @@
 ## Project completion campaign — 2026-10-23
 
-Owner: “lets do all of these and complete all of them”. This supersedes the earlier pause for the listed website/Mac releases, iOS qualification and prepared $3 diagnostic run. Evidence requirements remain unchanged. The existing four-request/one-worker/20-minute diagnostic cap applies; no unlimited spending is authorized.
+Owner: “lets do all of these and complete all of them”. This supersedes the earlier pause for the listed website/Mac releases, iOS qualification and prepared $3 diagnostic run. Evidence requirements remain unchanged. The original four-request allowance is exhausted. The owner separately approved one additional 30-second reggae diagnostic, one worker, 20 minutes and $3 maximum; no further requests or unlimited spending are authorized.
 
 | Workstream | Status | Current action / completion requirement |
 |---|---|---|
-| Improvise hosted reliability | PARTIAL; previous trial FAIL | Bounded trial finished: 3/4 songs PASS, reggae FAIL in voice conversion; worker stopped and prior image restored; inner diagnostic improved locally |
-| Music DNA coverage and scale | PARTIAL | PASS bounded 5,000-favorite planning and browser transport; retain every genre, interpret up to 12 new tracks per take; worker publication and human calibration pending |
+| Improvise hosted reliability | PARTIAL; previous trial FAIL | Bounded trial finished: 3/4 songs PASS, reggae FAIL in voice conversion; worker stopped and prior image restored; new diagnostic image published; separately approved reggae diagnostic PASS, shutdown/cleanup/rollback PASS; earlier intermittent failure remains unreproduced |
+| Music DNA coverage and scale | PARTIAL | PASS bounded 5,000-favorite planning and browser transport; retain every genre, interpret up to 12 new tracks per take; worker published; human calibration and hosted maximum-size inference pending |
 | Production generation and economics | PARTIAL | Reconcile provider cost evidence and validate purchases/recovery before activation |
-| Website and Mac release | PARTIAL | Pro 1.1.0 signed, notarized and published after full CI PASS; isolated real upgrade running; website release pending |
-| iOS qualification | PARTIAL | 22 physical iPhone checks PASS, including six UI flows and local StoreKit; signed archive and manual capture/share qualification in progress |
-| Launch operations | PARTIAL | Email inbox/readability and 10 live R2 gates PASS; bounded cleanup implemented/tested, deployment pending |
+| Website and Mac release | PARTIAL | PASS Pro 1.1.0 publication, actual isolated upgrade and production website; all eight latest CI jobs PASS after the Mac replay retry |
+| iOS qualification | PARTIAL | PASS 27 new physical iPhone checks, shared professional console, saved-mix bridge and release archive; signed 0.4.1 installed; owner visual acceptance PASS; all nine iPad UI flows have passing evidence across the corrected runs; physical iPad/Duo NOT RUN |
+| Launch operations | PARTIAL | PASS email inbox/readability, 10 live R2 gates and real hourly cleanup invocation (HTTP 200) |
 | Independent quality and research | NOT RUN | Existing review packets remain available; independent ratings and permissioned expert data cannot be fabricated |
 
 Evidence: [completion work](project-completion-20261023.md). Historical dated sections below retain their original results; later evidence supersedes their completion status.
@@ -276,3 +276,7 @@ is complete. No background agent is continuing after a session ends.
 [Implementation report](full-product-implementation.md), [owner handbook](OWNER_HANDBOOK.md),
 [TODO](../TODO.md), [decisions](DECISIONS.md). Identify checkpoint commit with
 `git log -1 -- docs/full-product-implementation.md`.
+
+**2026-10-23 completion follow-up:** PASS real Pro 1.1 upgrade and production website 35526a0. Maintenance cron first trigger FAIL (launch proxy); exact bypass fixed, 98 tests PASS, hosted rerun pending. iPhone 0.4.0 automated checks PASS but owner rejects basic DJ design; shared professional deck replacement active. Spotify application credentials authenticate (HTTP 200); playlist import remains NOT RUN. [Current report](project-completion-20261023.md#owner-review-and-current-release-follow-up).
+
+**2026-10-23 latest:** PASS actual production retention cron (HTTP 200), 99 site tests, worker image publication and native professional-console landscape fit/archive. iPad/full physical-device and owner visual acceptance remain pending; additional one-song GPU diagnostic requires fresh approval. [Evidence](project-completion-20261023.md#professional-native-dj-console--041-candidate).

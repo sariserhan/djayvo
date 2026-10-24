@@ -1,0 +1,20 @@
+{
+  "status": "PASS: owner approved and one request completed; workers stopped and prior image restored",
+  "image": "ghcr.io/sariserhan/jamloom/music-worker@sha256:590b4eb541aa1a030f53b39ec2368597c757b8a6eae7ba1ffe92957653e4d67e",
+  "imageBuild": "https://github.com/sariserhan/jamloom/actions/runs/40053550234",
+  "endpoint": "jl77hn92npt65k",
+  "currentlyStopped": true,
+  "maxUSD": 3,
+  "maxWorkers": 1,
+  "maxSeconds": 1200,
+  "requests": 1,
+  "style": "reggae",
+  "durationSeconds": 30,
+  "source": "renders/improvise-finish-20261023/sources/cloud-normalized.wav",
+  "sourceSHA256": "df73ac9b98746572ce751973b7d6025d99d6ee816f9ff71942a16c889ae393ea",
+  "sourceValidation": "PASS",
+  "cleanup": "Independent shutdown; remove trial objects and isolated database; verify credit settlement; restore prior qualified template image",
+  "websiteDeployment": false,
+  "livePurchases": false,
+  "result": "../improvise-finish/cloud/2026-10-24T02-42-53.828Z/trial-result.json"
+}

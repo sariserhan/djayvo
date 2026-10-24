@@ -1,0 +1,10 @@
+{
+  "gate": "PASS",
+  "recordedAt": "2026-10-24T02:52:49.344606+00:00",
+  "version": "0.4.1",
+  "build": "3",
+  "device": "Owner iPhone 14 Pro",
+  "prompt": "Open DJ Deck in landscape, load music, try Play, crossfader and Pads & FX. Does it look and feel like the professional deck wanted?",
+  "ownerResponse": "Yes, this is much better",
+  "scope": "Owner acceptance of the redesigned iPhone deck; not iPad/Duo hardware or full audio-route/endurance qualification"
+}

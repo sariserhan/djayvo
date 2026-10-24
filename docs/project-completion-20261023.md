@@ -1,15 +1,15 @@
 # Project completion — 2026-10-23
 
-Owner: “lets do all of these and complete all of them”. This supersedes the earlier pause for the listed website/Mac releases, iOS qualification and prepared $3 diagnostic run. Evidence requirements remain unchanged. The existing four-request/one-worker/20-minute diagnostic cap applies; no unlimited spending is authorized.
+Owner: “lets do all of these and complete all of them”. This supersedes the earlier pause for the listed website/Mac releases, iOS qualification and prepared $3 diagnostic run. Evidence requirements remain unchanged. The original four-request allowance is exhausted. The owner separately approved one additional 30-second reggae diagnostic, one worker, 20 minutes and $3 maximum; no further requests or unlimited spending are authorized.
 
 | Workstream | Status | Current action / completion requirement |
 |---|---|---|
-| Improvise hosted reliability | PARTIAL; previous trial FAIL | Bounded trial finished: 3/4 songs PASS, reggae FAIL in voice conversion; worker stopped and prior image restored; inner diagnostic improved locally |
-| Music DNA coverage and scale | PARTIAL | PASS bounded 5,000-favorite planning and browser transport; retain every genre, interpret up to 12 new tracks per take; worker publication and human calibration pending |
+| Improvise hosted reliability | PARTIAL; previous trial FAIL | Bounded trial finished: 3/4 songs PASS, reggae FAIL in voice conversion; worker stopped and prior image restored; published diagnostic image passed one separately approved reggae request; shutdown, cleanup and rollback PASS |
+| Music DNA coverage and scale | PARTIAL | PASS bounded 5,000-favorite planning and browser transport; retain every genre, interpret up to 12 new tracks per take; worker published, human calibration and hosted maximum-size inference pending |
 | Production generation and economics | PARTIAL | Reconcile provider cost evidence and validate purchases/recovery before activation |
-| Website and Mac release | PARTIAL | Pro 1.1.0 signed, notarized and published after full CI PASS; isolated real upgrade running; website release pending |
-| iOS qualification | PARTIAL | 22 existing physical-device checks PASS; owner reports local audio flow works but old engine; visual iPhone/iPad/Duo, landscape DJ decks and cloud parity implemented, verification underway |
-| Launch operations | PARTIAL | Email inbox/readability PASS, owner confirmed; 10 real R2 gates PASS with test cleanup; scheduled cleanup implemented and tested, deployment pending |
+| Website and Mac release | PARTIAL | PASS Pro 1.1.0 published, isolated real upgrade and hosted access; website 1de4d4d READY after all eight CI jobs PASS |
+| iOS qualification | PARTIAL | 27 new physical checks PASS; shared professional DJ console, native saved mixes and optional cloud client implemented; signed 0.4.1 installed; owner visual acceptance PASS |
+| Launch operations | PARTIAL | Email inbox/readability PASS, owner confirmed; 10 real R2 gates PASS with test cleanup; PASS actual hosted cleanup trigger after launch bypass and storage gating fixes; hourly schedule enabled |
 | Independent quality and research | NOT RUN | Existing review packets remain available; independent ratings and permissioned expert data cannot be fabricated |
 
 Evidence: [completion work](../TODO.md). Historical dated sections below retain their original results; later evidence supersedes their completion status.
@@ -48,3 +48,81 @@ Owner requested simpler visual controls, a landscape DJ deck, iPhone/iPad adapta
 The new full-song path uses the same `/api/improvise/song` flow as the website. It requires sign-in and explicit upload consent, normalizes only the selected clip to mono 16 kHz PCM, uses a cookie-free signed R2 upload, displays the returned private-song credit quote before submission, persists the request ID before sending, polls/reconnects/cancels, and downloads the completed WAV for playback/sharing. Existing local instrumental previews are explicitly labeled. Production generation remains gated; adding this client does not enable the paid service. The privacy manifest and microphone text now disclose optional cloud audio processing.
 
 **PASS:** initial simulator build, audio conversion and crossfade/import tests, account origin/query/status boundaries, closed-service/no-consent guard, and DJ rotation/track retention/tab-stop UI check. **FAIL, test harness:** initial cloud-screen UI check tapped the label rather than the consent switch; screenshot confirmed permission remained off. Corrected to target the switch and assert consent before continuing; full rerun underway. **NOT RUN:** new physical iPhone build, iPad visual run, actual Duo runtime/poses, Apple sandbox receipts and App Store release. Installed Xcode has the Duo profile/27.1 SDK, but installed simulator runtimes are 26.5/27.0 and reject the Duo device as incompatible. No physical Duo/iPad is connected.
+
+## Owner review and current release follow-up
+
+- **PASS:** actual isolated Pro 1.0 → 1.1 update downloaded, installed and relaunched with license, settings and stopped sampler state retained. [Upgrade](evidence/project-completion-20261023/pro-upgrade.json). Website source `35526a0` is deployed to production; coming-soon and paid-generation gates remain closed.
+- **FAIL, first hosted maintenance invocation:** Vercel cron reached the launch proxy, which returned 503 before route authorization. Exact `/api/maintenance` bypass now covered in both launch and maintenance modes; all 98 site tests PASS. Route authorization and production database identity checks remain enforced. Hosted rerun pending GitHub deployment.
+- **PASS, device checks; FAIL, owner DJ design acceptance:** 10 additional physical iPhone checks pass and signed Release 0.4.0(2) was installed. The owner says the deck does not look professional. Replacement will reuse the existing professional performance console and audio controls. The basic native deck is not accepted or complete. [Device](evidence/project-completion-20261023/iphone-visual.json), [archive](evidence/project-completion-20261023/ios-visual-final-archive-audit.json). First iPad simulator run: six UI checks PASS, two consent-touch checks FAIL; targeted fix awaiting rerun. Duo runtime/device testing remains NOT RUN.
+- **PASS, Spotify application authentication:** owner supplied server-only `SPOTIFY_CLIENT_ID` and `SPOTIFY_SECRET_KEY` in ignored `apps/site/.env.local`. The official token endpoint returned HTTP 200. No token/secret or provider content was retained. Playlist import and production configuration remain NOT RUN; credentials alone do not establish a permitted AI ingestion or DJ playback use. [Receipt](evidence/project-completion-20261023/spotify-auth.json), [Spotify policy](https://developer.spotify.com/policy).
+
+## Professional native DJ console — 0.4.1 candidate
+
+The rejected basic native player is replaced by the existing shared performance console and DSP. The app bundles the audited studio and manifest-verified CC0 practice tracks. Two real jog wheels, track waveforms, three-band EQ, channel levels, cue/loop controls, eight performance pads, beat grids and deck effects reuse the working web implementation. Landscape keeps the transport and mixer visible; iPad exposes performance pads, and portrait stacks the console. Imported audio stays inside the app's nonpersistent web view; saved Jamloom mixes transfer directly after an explicit selection. No remote website, Spotify audio, automatic recording or paid generation is involved.
+
+The local asset server binds only to `127.0.0.1`, requires an unguessable path and exact authority, rejects cross-origin requests/traversal/symlinks, serves only audited bundle resources, and blocks external subresource connections. Native saved-mix transfer is limited to 32 MB and validates the main-frame origin. Leaving the deck, backgrounding or an audio interruption stops playback. iOS 27.1 native reserved-region geometry moves controls outside display divisions without recreating the audio engine. Fold screenshots use injected geometry: actual Duo poses remain **NOT RUN**.
+
+**PASS:** 153 shared web tests; WebKit muted playback/stop, AudioWorklet, cue pads and phone/iPad bounds; simulator native rotation/track retention/tab stop; landscape fit including crossfader; signed Release archive and strict bundle/privacy audit. The first layout attempt caught real overflow and was fixed. The first native fit assertion failed to identify a toggle by its button role; the corrected accessibility query passes with a full-screen screenshot. iPad full UI run and final physical iPhone install remain in progress. [Native fit](evidence/project-completion-20261023/iphone-pro-studio-fit.json), [archive](evidence/project-completion-20261023/ios-pro-archive-audit.json).
+
+## Hosted retention and diagnostic image
+
+**PASS:** production commit `1de4d4d`, actual Vercel cron HTTP 200 at 2026-10-24 02:37 UTC. The first trigger failed at the coming-soon proxy; the second reached the handler but exposed its dependency on disabled public storage. Retention now constructs the existing private-R2 cleanup service only after authorization and reviewed-target checks. Upload/generation switches remain unchanged. All 99 site tests and TypeScript pass. [Hosted receipt](evidence/project-completion-20261023/maintenance-hosted.json).
+
+**PASS, image publication; NOT RUN, new paid diagnostic:** [worker build](https://github.com/sariserhan/jamloom/actions/runs/40053550234) published immutable image `590b4eb541aa1a030f53b39ec2368597c757b8a6eae7ba1ffe92957653e4d67e`. The single-reggae diagnostic uses one 30-second request, one worker, 20 minutes maximum and a $3 cap, with the same validated synthetic source and existing watchdog/cleanup. The endpoint was verified stopped; no new compute started. Original allowance is exhausted; new approval requested. A one-song diagnostic is not four-style qualification. [Prepared plan](evidence/project-completion-20261023/reggae-diagnostic-plan.json).
+
+**CI follow-up:** the `1de4d4d` website and six other jobs passed; the Mac replay check rejected a discontinuous recording on its first runner attempt. Existing safety rejection remains intact. The failed job is being rerun; the earlier published installer qualification remains separately recorded.
+
+## Professional iPhone studio — physical verification
+
+**PASS:** 27 checks on the actual iPhone 14 Pro / iOS 27.0.1, including the
+shared-engine landscape console, rotation with tracks retained, stopping on tab
+change, and native saved-mix loading followed by playback. One optional real-HTTP
+account test was skipped. [Device result](evidence/project-completion-20261023/iphone-pro-studio-device.json),
+[actual device screen](evidence/project-completion-20261023/iphone-pro-studio-landscape.png).
+
+**PASS:** 153 shared web tests and muted WebKit playback, two-deck controls,
+cue/hold-to-clear, valid and invalid saved-mix import, iPhone/iPad viewport checks,
+and injected vertical/horizontal division geometry. The 568x270 viewport requires
+panel scrolling; the actual iPhone landscape controls fit without scrolling.
+Injected division geometry is not physical Duo evidence. [Browser report](evidence/project-completion-20261023/mobile-studio-webkit.json).
+
+The iPad simulator's first complete run passed eight of nine UI flows; the native
+consent switch needed an intrinsic-width frame. Its subsequent saved-mix flow
+passed; a cloud test hit an accessibility error querying a disabled button's
+hittability. That test now scrolls the actual sheet and checks the required disabled
+state and separate unchecked consent. Failure receipts are retained.
+
+**PASS:** latest website CI has all eight jobs passing after retrying the Mac
+recording/replay check; its first attempt rejected a discontinuous recording.
+The continuity guard was preserved. Production retention returned HTTP 200 on
+source `1de4d4d` through the real scheduled endpoint.
+
+**PASS, single-reggae diagnostic:** the separately approved 30-second song
+completed on image `590b4eb5` in 7m32s including a 299-second cold start.
+Provider execution was 116.801 seconds. Audio hash validation, test-credit
+settlement, removal of three temporary objects, isolated-database cleanup,
+worker shutdown and restoration of the prior image/environment passed.
+[Trial](evidence/improvise-finish/cloud/2026-10-24T02-42-53.828Z/trial-result.json),
+[restoration](evidence/project-completion-20261023/reggae-diagnostic-execution.json).
+The earlier intermittent conversion failure did not recur, so its root cause is
+still unresolved. This one request is not a four-style qualification of the new
+image. Provider billing has not yet settled for this run; the $0.147 job estimate
+excludes cold-start costs and is not the final bill. No more paid requests were made.
+
+**PASS:** strict signing and bundle audit of the final reviewed 0.4.1 (3) archive,
+installed over the existing app on the owner's iPhone. Private audio was preserved.
+[Final bundle](evidence/project-completion-20261023/ios-pro-reviewed-archive-audit.json),
+[installation](evidence/project-completion-20261023/ios-pro-reviewed-install.json).
+Source commit: `5eea8f9`. Owner acceptance of the professional deck is PASS: “Yes, this is much better”. [Exact feedback](evidence/project-completion-20261023/ios-pro-owner-acceptance.json).
+
+The final iPad test exposed a separate readiness race: consent is correctly
+disabled while the library is loading, but the test tapped as soon as it existed.
+All consent-taking tests now wait for enabled state before the deliberate tap;
+consent and library guards remain unchanged. The additional local-server regression
+for query-only malformed request targets passes.
+
+**PASS, iPad final consent flow:** waiting for the enabled control resolves the
+startup race. The final targeted test verifies separate unchecked cloud consent
+and a disabled upload action while signed out. All nine iPad UI flows now have
+passing evidence across the initial and corrected runs; this is simulator evidence,
+not physical iPad qualification. [Final test](evidence/project-completion-20261023/ipad-pro-studio-ready.json).

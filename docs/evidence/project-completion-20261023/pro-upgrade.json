@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "from": "1.0.0",
+  "to": "1.1.0",
+  "checks": [
+    "1.0.0 isolated signed app stores a consented sampler bank",
+    "Actual public feed downloads signed 1.1.0",
+    "Squirrel installs and relaunches 1.1.0, retaining activation, settings and stopped sampler bank"
+  ],
+  "profile": "isolated; same profile explicitly reopened after observed automatic relaunch",
+  "physicalOutput": "muted"
+}
