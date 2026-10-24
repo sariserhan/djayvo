@@ -1,3 +1,19 @@
+## Project completion campaign — 2026-10-23
+
+Owner: “lets do all of these and complete all of them”. This supersedes the earlier pause for the listed website/Mac releases, iOS qualification and prepared $3 diagnostic run. Evidence requirements remain unchanged. The existing four-request/one-worker/20-minute diagnostic cap applies; no unlimited spending is authorized.
+
+| Workstream | Status | Current action / completion requirement |
+|---|---|---|
+| Improvise hosted reliability | PARTIAL; previous trial FAIL | Approved diagnostic trial running; identify failures, fix and qualify before release |
+| Music DNA coverage and scale | PARTIAL | Measure 5,000 uncached references; resolve bounded-runtime issues; human calibration remains separate |
+| Production generation and economics | PARTIAL | Reconcile provider cost evidence and validate purchases/recovery before activation |
+| Website and Mac release | PARTIAL | Release latest qualified website through GitHub; prepare/test/notarize updated Pro installer |
+| iOS qualification | PARTIAL | 14 physical core tests and generation performance PASS; UI automation/StoreKit failures under diagnosis |
+| Launch operations | PARTIAL | Email inbox/readability and 10 live R2 gates PASS; bounded cleanup implemented/tested, deployment pending |
+| Independent quality and research | NOT RUN | Existing review packets remain available; independent ratings and permissioned expert data cannot be fabricated |
+
+Evidence: [completion work](project-completion-20261023.md). Historical dated sections below retain their original results; later evidence supersedes their completion status.
+
 ## Improvise final quality and hosted verification — 2026-10-23
 
 **PARTIAL:** Local technical checks and owner approval of the four final songs pass. Hosted qualification **FAIL:** jazz and acoustic completed, while reggae and EDM failed with an opaque pipeline error. **PASS:** all credit settlements, full failed-job refunds, worker shutdown, ten temporary-object removals and rollback to the previously qualified image. The resumed session verified the endpoint remains disabled with no active jobs. Both local reproductions with hosted voice settings and the diagnostic image build pass; hosted failure remains unreproduced. Another bounded paid trial is prepared and awaits approval. Website deployment excluded. [Report](improvise-finish.md).

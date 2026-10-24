@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "target": "ep-flat-hill-b4q0lix4-pooler.c-6.us-east-2.aws.neon.tech/neondb",
+  "appliedMigrations": 20,
+  "pending": [],
+  "due": {
+    "sessions": 0,
+    "verifications": 0,
+    "audio": 0
+  }
+}

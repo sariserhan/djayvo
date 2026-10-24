@@ -1,3 +1,19 @@
+## Project completion campaign — 2026-10-23
+
+Owner: “lets do all of these and complete all of them”. This supersedes the earlier pause for the listed website/Mac releases, iOS qualification and prepared $3 diagnostic run. Evidence requirements remain unchanged. The existing four-request/one-worker/20-minute diagnostic cap applies; no unlimited spending is authorized.
+
+| Workstream | Status | Current action / completion requirement |
+|---|---|---|
+| Improvise hosted reliability | PARTIAL; previous trial FAIL | Approved diagnostic trial running; identify failures, fix and qualify before release |
+| Music DNA coverage and scale | PARTIAL | Measure 5,000 uncached references; resolve bounded-runtime issues; human calibration remains separate |
+| Production generation and economics | PARTIAL | Reconcile provider cost evidence and validate purchases/recovery before activation |
+| Website and Mac release | PARTIAL | Release latest qualified website through GitHub; prepare/test/notarize updated Pro installer |
+| iOS qualification | PARTIAL | 14 physical core tests and generation performance PASS; UI automation/StoreKit failures under diagnosis |
+| Launch operations | PARTIAL | Email inbox/readability and 10 live R2 gates PASS; bounded cleanup implemented/tested, deployment pending |
+| Independent quality and research | NOT RUN | Existing review packets remain available; independent ratings and permissioned expert data cannot be fabricated |
+
+Evidence: [completion work](project-completion-20261023.md). Historical dated sections below retain their original results; later evidence supersedes their completion status.
+
 ## Runpod setup — 2026-10-22
 
 **PASS, technical Runpod setup; PARTIAL, hosted release.** Real Improvise (30-second output, 47.682-second execution) and Music DNA (120-second output, 45.931-second execution) generation, R2 checksum delivery and shutdown PASS. Music DNA metal passed all four style windows; the jazz fixture failed at style checking and remains unresolved. Cold starts measured 3–5 minutes. All workers are disabled; website dispatch, final costs, listening and credit billing remain unfinished. [Report](runpod-setup.md).

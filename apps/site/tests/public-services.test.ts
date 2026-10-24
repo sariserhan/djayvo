@@ -35,8 +35,10 @@ test('song collections remain readable without a local renderer or enabled gener
  const calls:unknown[][]=[],rows=[{id:'a'.repeat(32),title:'Stored public song'}];
  const context={readOnly:true,owner:null,commerce:{product:'music-dna',list:async(...args:unknown[])=>{calls.push(args);return {songs:rows,next:null};}}} as unknown as DnaContext;
  const publicList=await storedDnaSong(new Request(base+'?view=public'),context);
- assert.deepEqual((await publicList!.json()).songs,rows);assert.deepEqual(calls,[[null,'public','']]);
+ assert.deepEqual((await publicList!.json()).songs,rows);assert.deepEqual(calls,[[null,'public','',{language:'',genre:''}]]);
  const mine=await storedDnaSong(new Request(base+'?view=mine'),context);assert.deepEqual(await mine!.json(),{songs:[],next:null,signIn:true});assert.equal(calls.length,1);
  assert.equal(await storedDnaSong(new Request(base,{method:'POST'})),null);
  const unknown=await storedDnaSong(new Request(base+'?view=unknown'),context);assert.equal(unknown?.status,400);
+ await storedDnaSong(new Request(base+'?view=public&language=de&genre=jazz&after=cursor'),context);
+ assert.deepEqual(calls.at(-1),[null,'public','cursor',{language:'de',genre:'jazz'}]);
 });

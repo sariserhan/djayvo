@@ -1,0 +1,11 @@
+{"bucket":"jamloom-audio","testObjectId":"cf500ca7-f191-4528-af0d-b6a710180b84","timestamp":"2026-10-24T01:48:54.518Z","node":"v26.3.0"}
+{"gate":"signed upload and exact server read","status":"PASS"}
+{"gate":"signed Content-Type and Content-Length tampering denied","status":"PASS"}
+{"gate":"master copy, range playback and download","status":"PASS"}
+{"gate":"temporary upload expiry header; saved master has no expiry","status":"PASS"}
+{"gate":"unsigned playback denied","status":"PASS"}
+{"gate":"late staging rewrite cannot alter saved master","status":"PASS"}
+{"gate":"chromium: real R2 upload, range fetch, decode and blocked foreign origin","status":"PASS"}
+{"gate":"webkit: real R2 upload, range fetch, decode and blocked foreign origin","status":"PASS"}
+{"gate":"expired upload grant denied","status":"PASS"}
+{"gate":"test objects deleted and absence verified","status":"PASS"}

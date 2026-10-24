@@ -38,7 +38,7 @@ export function onStudioLeave(callback) {
 export function studioAnimationFrame(callback) {
   const target = windows().find(w => !w.document.hidden) ?? window;
   let done = false;
-  const run = () => { if (done) return; done = true; clearTimeout(timer); callback(); };
+  const run = now => { if (done) return; done = true; clearTimeout(timer); callback(now ?? performance.now()); };
   const frame = target.requestAnimationFrame(run);
   const timer = setTimeout(() => { target.cancelAnimationFrame(frame); run(); }, 200);
 }

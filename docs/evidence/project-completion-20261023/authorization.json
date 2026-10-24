@@ -1,0 +1,11 @@
+{
+  "owner_instruction": "lets do all of these and complete all of them",
+  "scope": "Seven remaining workstreams listed in the preceding status review, including prepared bounded cloud diagnosis and website/Mac release work",
+  "diagnostic_trial": {
+    "max_usd": 3,
+    "requests": 4,
+    "max_workers": 1,
+    "max_seconds": 1200
+  },
+  "evidence_limits": "Does not substitute for human listening, physical measurements, third-party approvals or proven production economics."
+}

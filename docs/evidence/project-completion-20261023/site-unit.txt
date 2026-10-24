@@ -1,0 +1,590 @@
+
+> jamloom-site@0.1.0 test
+> tsx --test tests/site-navigation.test.ts tests/config.test.ts tests/audio.test.ts tests/email.test.ts tests/economics.test.ts tests/taste.test.ts tests/taste-auto.test.ts tests/runpod-provider.test.ts tests/runpod-setup.test.ts tests/dna-song.test.ts tests/dna-examples.test.ts tests/public-services.test.ts tests/dna-feedback.test.ts tests/music-search.test.ts tests/playlist-import.test.ts tests/apple-payments.test.ts tests/generation-budget.test.ts tests/coming-soon.test.ts tests/metadata.test.ts tests/aurowall-inline.test.ts tests/maintenance.test.ts
+
+TAP version 13
+# Subtest: Apple consumables bind exact app/account/product/price/environment, reject revocation and offers
+ok 1 - Apple consumables bind exact app/account/product/price/environment, reject revocation and offers
+  ---
+  duration_ms: 3.241708
+  type: 'test'
+  ...
+# Subtest: Apple official verifier rejects forged unsigned transactions
+ok 2 - Apple official verifier rejects forged unsigned transactions
+  ---
+  duration_ms: 2.671042
+  type: 'test'
+  ...
+# Subtest: Apple sandbox refund notifications verify both signatures and hold the exact consumable receipt
+ok 3 - Apple sandbox refund notifications verify both signatures and hold the exact consumable receipt
+  ---
+  duration_ms: 1.73075
+  type: 'test'
+  ...
+# Subtest: private save validates consent, bounded metadata and canonical metadata-free PCM
+ok 4 - private save validates consent, bounded metadata and canonical metadata-free PCM
+  ---
+  duration_ms: 2051.848292
+  type: 'test'
+  ...
+# Subtest: product storage keys isolate namespaces while keeping old masters readable
+ok 5 - product storage keys isolate namespaces while keeping old masters readable
+  ---
+  duration_ms: 1.946084
+  type: 'test'
+  ...
+# Subtest: storage is opt-in, local files cannot be hosted, R2 grants bind content length and type
+ok 6 - storage is opt-in, local files cannot be hosted, R2 grants bind content length and type
+  ---
+  duration_ms: 417.53375
+  type: 'test'
+  ...
+# Subtest: brand transition preserves legacy storage config without overriding explicit opt-outs
+ok 7 - brand transition preserves legacy storage config without overriding explicit opt-outs
+  ---
+  duration_ms: 0.409
+  type: 'test'
+  ...
+# Subtest: new public saves require publication consent; legacy and private saves never queue sharing
+ok 8 - new public saves require publication consent; legacy and private saves never queue sharing
+  ---
+  duration_ms: 1068.652125
+  type: 'test'
+  ...
+# Subtest: audio errors retain safe status across duplicated route modules
+ok 9 - audio errors retain safe status across duplicated route modules
+  ---
+  duration_ms: 4.199875
+  type: 'test'
+  ...
+# Subtest: extended output accepts exact 15/60 second boundaries and rejects outside them
+ok 10 - extended output accepts exact 15/60 second boundaries and rejects outside them
+  ---
+  duration_ms: 3634.347833
+  type: 'test'
+  ...
+# Subtest: song duration contracts retain old jobs and bound both products without widening ordinary uploads
+ok 11 - song duration contracts retain old jobs and bound both products without widening ordinary uploads
+  ---
+  duration_ms: 7513.199458
+  type: 'test'
+  ...
+# Subtest: partner catalogue accepts bounded music only, with opaque stable IDs
+ok 12 - partner catalogue accepts bounded music only, with opaque stable IDs
+  ---
+  duration_ms: 1.675125
+  type: 'test'
+  ...
+# Subtest: audio ranges support seeking and suffix reads, rejecting invalid and multiple ranges
+ok 13 - audio ranges support seeking and suffix reads, rejecting invalid and multiple ranges
+  ---
+  duration_ms: 0.433666
+  type: 'test'
+  ...
+# Subtest: credit Checkout uses the secure hosted flow with stable idempotency and server prices
+ok 14 - credit Checkout uses the secure hosted flow with stable idempotency and server prices
+  ---
+  duration_ms: 0.342709
+  type: 'test'
+  ...
+# Subtest: publishable keys must match billing mode; secrets alone cannot open inline checkout
+ok 15 - publishable keys must match billing mode; secrets alone cannot open inline checkout
+  ---
+  duration_ms: 0.288
+  type: 'test'
+  ...
+# Subtest: launch gate defaults on and only explicit false disables it
+ok 16 - launch gate defaults on and only explicit false disables it
+  ---
+  duration_ms: 0.916708
+  type: 'test'
+  ...
+# Subtest: coming-soon recovery allows login, support and signed callbacks, Pro registration but not unrelated product APIs
+ok 17 - coming-soon recovery allows login, support and signed callbacks, Pro registration but not unrelated product APIs
+  ---
+  duration_ms: 0.562875
+  type: 'test'
+  ...
+# Subtest: launch responses contain real navigation, one tracker and private caching; product APIs stay closed
+ok 18 - launch responses contain real navigation, one tracker and private caching; product APIs stay closed
+  ---
+  duration_ms: 182.781125
+  type: 'test'
+  ...
+# Subtest: anonymous requests cannot bypass the default gate with request headers or query flags
+ok 19 - anonymous requests cannot bypass the default gate with request headers or query flags
+  ---
+  duration_ms: 3.007917
+  type: 'test'
+  ...
+# Subtest: published Live DJ preview is accessible while other product routes remain gated
+ok 20 - published Live DJ preview is accessible while other product routes remain gated
+  ---
+  duration_ms: 1.561542
+  type: 'test'
+  ...
+# Subtest: companion download uses the signed release and rejects unsafe overrides
+ok 21 - companion download uses the signed release and rejects unsafe overrides
+  ---
+  duration_ms: 29.704083
+  type: 'test'
+  ...
+# Subtest: production template binds auth and private R2 grants to Jamloom configuration
+ok 22 - production template binds auth and private R2 grants to Jamloom configuration
+  ---
+  duration_ms: 351.655625
+  type: 'test'
+  ...
+# Subtest: account configuration fails closed and forbids hosted development mail
+ok 23 - account configuration fails closed and forbids hosted development mail
+  ---
+  duration_ms: 0.663625
+  type: 'test'
+  ...
+# Subtest: Resend request routes replies to support and binds retry identity to the full payload
+ok 24 - Resend request routes replies to support and binds retry identity to the full payload
+  ---
+  duration_ms: 14.054708
+  type: 'test'
+  ...
+# Subtest: reply-to accepts a single mailbox and rejects malformed or injected headers
+ok 25 - reply-to accepts a single mailbox and rejects malformed or injected headers
+  ---
+  duration_ms: 0.541458
+  type: 'test'
+  ...
+# Subtest: localhost can use Neon without enabling local database/storage shortcuts
+ok 26 - localhost can use Neon without enabling local database/storage shortcuts
+  ---
+  duration_ms: 0.369958
+  type: 'test'
+  ...
+# Subtest: email outbox cannot run in a hosted app even if a config is supplied directly
+ok 27 - email outbox cannot run in a hosted app even if a config is supplied directly
+  ---
+  duration_ms: 0.214959
+  type: 'test'
+  ...
+# Subtest: auth body limit measures real streamed bytes rather than trusting Content-Length
+ok 28 - auth body limit measures real streamed bytes rather than trusting Content-Length
+  ---
+  duration_ms: 6.005542
+  type: 'test'
+  ...
+# Subtest: Jamloom config accepts legacy deployment keys and gives explicit new values priority
+ok 29 - Jamloom config accepts legacy deployment keys and gives explicit new values priority
+  ---
+  duration_ms: 1.903708
+  type: 'test'
+  ...
+# Subtest: VisitorPing can connect without weakening script or framing protections
+ok 30 - VisitorPing can connect without weakening script or framing protections
+  ---
+  duration_ms: 125.231958
+  type: 'test'
+  ...
+# Subtest: test songs expose only published audio and label unaccepted takes without enabling training
+ok 31 - test songs expose only published audio and label unaccepted takes without enabling training
+  ---
+  duration_ms: 257.659333
+  type: 'test'
+  ...
+# Subtest: hosted account context cannot spend credits through the Mac renderer
+ok 32 - hosted account context cannot spend credits through the Mac renderer
+  ---
+  duration_ms: 5.382375
+  type: 'test'
+  ...
+# Subtest: hosted examples work without the Mac or account DB and only sign allowlisted audio
+ok 33 - hosted examples work without the Mac or account DB and only sign allowlisted audio
+  ---
+  duration_ms: 213.766375
+  type: 'test'
+  ...
+# Subtest: R2 sample grants preserve the default private-audio lifetime and allow longer listening
+ok 34 - R2 sample grants preserve the default private-audio lifetime and allow longer listening
+  ---
+  duration_ms: 260.841584
+  type: 'test'
+  ...
+# Subtest: the explicit jazz review is shown as a human verdict rather than an automated pass
+ok 35 - the explicit jazz review is shown as a human verdict rather than an automated pass
+  ---
+  duration_ms: 0.329917
+  type: 'test'
+  ...
+# Subtest: Improvise exposes its existing public samples without crossing account or product boundaries
+ok 36 - Improvise exposes its existing public samples without crossing account or product boundaries
+  ---
+  duration_ms: 73.63175
+  type: 'test'
+  ...
+# Subtest: language and feedback require supported values and explicit consent
+ok 37 - language and feedback require supported values and explicit consent
+  ---
+  duration_ms: 1.939
+  type: 'test'
+  ...
+# Subtest: feedback is listener-isolated, consented, bound to a real checked song and withdrawable
+ok 38 - feedback is listener-isolated, consented, bound to a real checked song and withdrawable
+  ---
+  duration_ms: 1096.957541
+  type: 'test'
+  ...
+# Subtest: singer is opt-in and loopback only; profile transport excludes irrelevant controls
+ok 39 - singer is opt-in and loopback only; profile transport excludes irrelevant controls
+  ---
+  duration_ms: 222.677083
+  type: 'test'
+  ...
+# Subtest: queued song is readable before files exist, private to its owner and cancellable
+ok 40 - queued song is readable before files exist, private to its owner and cancellable
+  ---
+  duration_ms: 25.388208
+  type: 'test'
+  ...
+# Subtest: local job enforces bounds, single execution, durable retrieval and cancellation
+ok 41 - local job enforces bounds, single execution, durable retrieval and cancellation
+  ---
+  duration_ms: 1377.768416
+  type: 'test'
+  ...
+# Subtest: country hint uses trusted hosting headers or loopback egress, never a remote server location
+ok 42 - country hint uses trusted hosting headers or loopback egress, never a remote server location
+  ---
+  duration_ms: 2.351791
+  type: 'test'
+  ...
+# Subtest: favorite identity includes genres, ignores order and case; direction follows all favorites
+ok 43 - favorite identity includes genres, ignores order and case; direction follows all favorites
+  ---
+  duration_ms: 1.466834
+  type: 'test'
+  ...
+# Subtest: tax, Apple fee tier, fixed fees, refunds, FX and overhead reduce spendable proceeds
+ok 44 - tax, Apple fee tier, fixed fees, refunds, FX and overhead reduce spendable proceeds
+  ---
+  duration_ms: 1.342583
+  type: 'test'
+  ...
+# Subtest: Stripe signatures require exact body, timestamp and sandbox credentials
+ok 45 - Stripe signatures require exact body, timestamp and sandbox credentials
+  ---
+  duration_ms: 229.11975
+  type: 'test'
+  ...
+# Subtest: Checkout fulfillment rereads paid state, rejects unpaid, wrong totals and live payments
+ok 46 - Checkout fulfillment rereads paid state, rejects unpaid, wrong totals and live payments
+  ---
+  duration_ms: 1.337291
+  type: 'test'
+  ...
+# Subtest: private credits are 25 percent of the base rounded up, bounded and integer
+ok 47 - private credits are 25 percent of the base rounded up, bounded and integer
+  ---
+  duration_ms: 2.975959
+  type: 'test'
+  ...
+# Subtest: credit checkout binds product, taxes, pack and billing mode
+ok 48 - credit checkout binds product, taxes, pack and billing mode
+  ---
+  duration_ms: 1.096542
+  type: 'test'
+  ...
+# Subtest: shared email layout escapes content and preserves a safe exact action URL
+ok 49 - shared email layout escapes content and preserves a safe exact action URL
+  ---
+  duration_ms: 1.444083
+  type: 'test'
+  ...
+# Subtest: both actual auth callbacks capture branded HTML and plain text in the private outbox
+ok 50 - both actual auth callbacks capture branded HTML and plain text in the private outbox
+  ---
+  duration_ms: 585.107833
+  type: 'test'
+  ...
+# Subtest: quotes bind accepted charge, account, source, plan, privacy and expiry
+ok 51 - quotes bind accepted charge, account, source, plan, privacy and expiry
+  ---
+  duration_ms: 8.658
+  type: 'test'
+  ...
+# Subtest: worker authorization binds hashes, deadlines, one attempt and conservative rental budget
+ok 52 - worker authorization binds hashes, deadlines, one attempt and conservative rental budget
+  ---
+  duration_ms: 2.272083
+  type: 'test'
+  ...
+# Subtest: real local subprocess is terminated on deadline, including an inference promise that ignores abort
+ok 53 - real local subprocess is terminated on deadline, including an inference promise that ignores abort
+  ---
+  duration_ms: 193.4205
+  type: 'test'
+  ...
+# Subtest: completion and failures both terminate allocation; termination failure is not hidden
+ok 54 - completion and failures both terminate allocation; termination failure is not hidden
+  ---
+  duration_ms: 0.95675
+  type: 'test'
+  ...
+# Subtest: scheduled cleanup requires authorization, reviewed database target and production environment
+ok 55 - scheduled cleanup requires authorization, reviewed database target and production environment
+  ---
+  duration_ms: 124.981792
+  type: 'test'
+  ...
+# Subtest: metadata follows runtime launch mode and never advertises private routes
+ok 56 - metadata follows runtime launch mode and never advertises private routes
+  ---
+  duration_ms: 2.196042
+  type: 'test'
+  ...
+# Subtest: music search exposes bounded artist/song names, not audio or artwork
+ok 57 - music search exposes bounded artist/song names, not audio or artwork
+  ---
+  duration_ms: 1.98175
+  type: 'test'
+  ...
+# Subtest: requests use the fixed music endpoint, coalesce and cache, and expire
+ok 58 - requests use the fixed music endpoint, coalesce and cache, and expire
+  ---
+  duration_ms: 181.062334
+  type: 'test'
+  ...
+# Subtest: provider failures do not poison the cache or pending requests
+ok 59 - provider failures do not poison the cache or pending requests
+  ---
+  duration_ms: 4.5535
+  type: 'test'
+  ...
+# Subtest: uncached requests respect the twenty-per-minute budget, including concurrent requests
+ok 60 - uncached requests respect the twenty-per-minute budget, including concurrent requests
+  ---
+  duration_ms: 220.205416
+  type: 'test'
+  ...
+# Subtest: search route rejects malformed, oversized and cross-site requests without provider calls
+ok 61 - search route rejects malformed, oversized and cross-site requests without provider calls
+  ---
+  duration_ms: 265.271875
+  type: 'test'
+  ...
+# Subtest: playlist matching searches the full song catalogue separately from short autocomplete
+ok 62 - playlist matching searches the full song catalogue separately from short autocomplete
+  ---
+  duration_ms: 87.4715
+  type: 'test'
+  ...
+# Subtest: playlist URLs never become arbitrary fetch targets; malformed/unavailable entries are omitted
+ok 63 - playlist URLs never become arbitrary fetch targets; malformed/unavailable entries are omitted
+  ---
+  duration_ms: 2.177291
+  type: 'test'
+  ...
+# Subtest: playlist connection is bounded, server credential only, no cache, and fails closed
+ok 64 - playlist connection is bounded, server credential only, no cache, and fails closed
+  ---
+  duration_ms: 479.869166
+  type: 'test'
+  ...
+# Subtest: bulk matching requires one exact catalogue song and never guesses from a partial title
+ok 65 - bulk matching requires one exact catalogue song and never guesses from a partial title
+  ---
+  duration_ms: 23.280541
+  type: 'test'
+  ...
+# Subtest: playlist continuation is passed to the fixed YouTube endpoint and bounded
+ok 66 - playlist continuation is passed to the fixed YouTube endpoint and bounded
+  ---
+  duration_ms: 0.961208
+  type: 'test'
+  ...
+# Subtest: whole playlist covers late genre majority, retries quota, and keeps unmatched entries explicit
+ok 67 - whole playlist covers late genre majority, retries quota, and keeps unmatched entries explicit
+  ---
+  duration_ms: 585.118209
+  type: 'test'
+  ...
+# Subtest: failed, cyclic and cancelled whole-playlist reads never return a partial taste
+ok 68 - failed, cyclic and cancelled whole-playlist reads never return a partial taste
+  ---
+  duration_ms: 13.1065
+  type: 'test'
+  ...
+# Subtest: large Unicode profiles round-trip without truncation and reject oversized lists
+ok 69 - large Unicode profiles round-trip without truncation and reject oversized lists
+  ---
+  duration_ms: 4691.590041
+  type: 'test'
+  ...
+# Subtest: official-video labels in different languages are removed, but live/remix identity is retained
+ok 70 - official-video labels in different languages are removed, but live/remix identity is retained
+  ---
+  duration_ms: 10.397334
+  type: 'test'
+  ...
+# Subtest: matching removes video formatting and VEVO channel suffixes without stripping musical versions
+ok 71 - matching removes video formatting and VEVO channel suffixes without stripping musical versions
+  ---
+  duration_ms: 1.861208
+  type: 'test'
+  ...
+# Subtest: omitted guest credits only match an unambiguous exact title and primary artist
+ok 72 - omitted guest credits only match an unambiguous exact title and primary artist
+  ---
+  duration_ms: 83.831125
+  type: 'test'
+  ...
+# Subtest: equivalent catalogue genre labels and bracketed guest-credit wording preserve song identity
+ok 73 - equivalent catalogue genre labels and bracketed guest-credit wording preserve song identity
+  ---
+  duration_ms: 1.480542
+  type: 'test'
+  ...
+# Subtest: a title-only fallback still validates the original full song identity
+ok 74 - a title-only fallback still validates the original full song identity
+  ---
+  duration_ms: 0.849875
+  type: 'test'
+  ...
+# Subtest: analytics loads on public domains only, including the coming-soon page
+ok 75 - analytics loads on public domains only, including the coming-soon page
+  ---
+  duration_ms: 39.712333
+  type: 'test'
+  ...
+# Subtest: public Aurowall catalogue contains only reviewed music and direct public URLs
+ok 76 - public Aurowall catalogue contains only reviewed music and direct public URLs
+  ---
+  duration_ms: 2.006917
+  type: 'test'
+  ...
+# Subtest: song collections remain readable without a local renderer or enabled generation
+ok 77 - song collections remain readable without a local renderer or enabled generation
+  ---
+  duration_ms: 54.89775
+  type: 'test'
+  ...
+# Subtest: Runpod submission is bounded, asynchronous, and never retried after uncertain acceptance
+ok 78 - Runpod submission is bounded, asynchronous, and never retried after uncertain acceptance
+  ---
+  duration_ms: 150.820625
+  type: 'test'
+  ...
+# Subtest: Runpod status validates identity, states, timing and receipts without exposing provider errors
+ok 79 - Runpod status validates identity, states, timing and receipts without exposing provider errors
+  ---
+  duration_ms: 11.287834
+  type: 'test'
+  ...
+# Subtest: dispatch checks disabled capacity without requiring a warm worker or submitting work
+ok 80 - dispatch checks disabled capacity without requiring a warm worker or submitting work
+  ---
+  duration_ms: 6.103167
+  type: 'test'
+  ...
+# Subtest: only status 404 is an expired-receipt candidate; a submit 404 remains unconfirmed
+ok 81 - only status 404 is an expired-receipt candidate; a submit 404 remains unconfirmed
+  ---
+  duration_ms: 1.58175
+  type: 'test'
+  ...
+# Subtest: whole playlists and cached descriptions pass a bounded provider request
+ok 82 - whole playlists and cached descriptions pass a bounded provider request
+  ---
+  duration_ms: 284.964667
+  type: 'test'
+  ...
+# Subtest: Runpod provisioning corrects provider defaults, allows newer drivers, and refuses active endpoints
+ok 83 - Runpod provisioning corrects provider defaults, allows newer drivers, and refuses active endpoints
+  ---
+  duration_ms: 2721.678208
+  type: 'test'
+  ...
+# Subtest: hosted studios share main navigation and retain their local controls
+ok 84 - hosted studios share main navigation and retain their local controls
+  ---
+  duration_ms: 6.311334
+  type: 'test'
+  ...
+# Subtest: favorite genres alone change real composer controls without manual musical choices
+ok 85 - favorite genres alone change real composer controls without manual musical choices
+  ---
+  duration_ms: 580.957625
+  type: 'test'
+  ...
+# Subtest: all favorites contribute equally, duplicates do not inflate taste and unknowns remain explicit
+ok 86 - all favorites contribute equally, duplicates do not inflate taste and unknowns remain explicit
+  ---
+  duration_ms: 17.259583
+  type: 'test'
+  ...
+# Subtest: legacy liked catalogue rows become favorites while avoid rows and annotations are preserved
+ok 87 - legacy liked catalogue rows become favorites while avoid rows and annotations are preserved
+  ---
+  duration_ms: 2.275334
+  type: 'test'
+  ...
+# Subtest: metadata round trips and rejects unbound, duplicate, malformed and unbounded fields
+ok 88 - metadata round trips and rejects unbound, duplicate, malformed and unbounded fields
+  ---
+  duration_ms: 14.317333
+  type: 'test'
+  ...
+# Subtest: legacy names resolve only exact metadata matches; unrelated search hits are not assigned
+ok 89 - legacy names resolve only exact metadata matches; unrelated search hits are not assigned
+  ---
+  duration_ms: 96.79575
+  type: 'test'
+  ...
+# Subtest: lookup failure preserves favorites, cancellation aborts, malformed metadata is not retained
+ok 90 - lookup failure preserves favorites, cancellation aborts, malformed metadata is not retained
+  ---
+  duration_ms: 2.56025
+  type: 'test'
+  ...
+# Subtest: taste derives explicit dimensions, never audio attributes from titles
+ok 91 - taste derives explicit dimensions, never audio attributes from titles
+  ---
+  duration_ms: 4.446584
+  type: 'test'
+  ...
+# Subtest: local composer receives only explicit musical dimensions and bounded requests
+ok 92 - local composer receives only explicit musical dimensions and bounded requests
+  ---
+  duration_ms: 4.541959
+  type: 'test'
+  ...
+# Subtest: catalogue choices preserve licensed identities and expose weighted metadata evidence without inferred audio
+ok 93 - catalogue choices preserve licensed identities and expose weighted metadata evidence without inferred audio
+  ---
+  duration_ms: 3.264417
+  type: 'test'
+  ...
+# Subtest: confirmed favorites change composition controls, blend by importance and keep unspecified settings
+ok 94 - confirmed favorites change composition controls, blend by importance and keep unspecified settings
+  ---
+  duration_ms: 5.017417
+  type: 'test'
+  ...
+# Subtest: song annotations reject malformed, duplicate, unbound and unsupported choices at the profile boundary
+ok 95 - song annotations reject malformed, duplicate, unbound and unsupported choices at the profile boundary
+  ---
+  duration_ms: 0.895584
+  type: 'test'
+  ...
+# Subtest: favorite search ranks artists and tracks, tolerates a typo and preserves Unicode saved choices
+ok 96 - favorite search ranks artists and tracks, tolerates a typo and preserves Unicode saved choices
+  ---
+  duration_ms: 61.899291
+  type: 'test'
+  ...
+1..96
+# tests 96
+# suites 0
+# pass 96
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17779.153625

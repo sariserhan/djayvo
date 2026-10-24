@@ -1,0 +1,38 @@
+2026-10-24T01:45:19.572Z WARN [Better Auth]: Field lastRequest in table rateLimit has a different type in the database. Expected number but got int8.
+▶ isolated Postgres account lifecycle, schema safety and owner isolation
+  ✔ migrations apply once and match pinned Better Auth configuration (85.090375ms)
+  ✔ failed migration rolls back and changed applied SQL is rejected (12.515959ms)
+  ✔ expired auth cleanup is bounded, retryable and preserves active records and accounts (44.940917ms)
+2026-10-24T01:45:19.871Z ERROR [Better Auth]: Invalid origin: https://other.example
+2026-10-24T01:45:19.873Z ERROR [Better Auth]: Invalid redirectURL: https://other.example/
+  ✔ unverified accounts cannot sign in; verification and origin checks work (242.208708ms)
+2026-10-24T01:45:19.935Z WARN [Better Auth]: Rate limiting could not determine a client IP and is falling back to a single shared per-path bucket. Ensure your runtime forwards a trusted client IP header, then set `advanced.ipAddress.ipAddressHeaders` or `advanced.ipAddress.trustedProxies` so the address can be resolved.
+  ✔ session cookies are validated; library pages isolate owners including cursor ties (10.599958ms)
+2026-10-24T01:45:20.273Z WARN [Better Auth]: Invalid password
+  ✔ password reset revokes sessions; reset tokens cannot be replayed (185.996125ms)
+  ✔ sign-out and expiration revoke access; password hashes are not plaintext (61.981417ms)
+2026-10-24T01:45:20.395Z WARN [Better Auth]: Reset Password: User not found
+2026-10-24T01:45:20.397Z WARN [Better Auth]: Reset Password: User not found
+2026-10-24T01:45:20.404Z WARN [Better Auth]: Reset Password: User not found
+2026-10-24T01:45:20.451Z WARN [Better Auth]: Reset Password: User not found
+2026-10-24T01:45:20.452Z WARN [Better Auth]: Reset Password: User not found
+2026-10-24T01:45:20.452Z WARN [Better Auth]: Reset Password: User not found
+  ✔ database-backed rate limits survive multiple auth instances (60.039ms)
+✔ isolated Postgres account lifecycle, schema safety and owner isolation (1093.26725ms)
+▶ real isolated Postgres and disk: private audio lifecycle and recovery
+  ✔ explicit reservation, retry identity, owner binding and unavailable pending audio (7.770708ms)
+  ✔ pre-migration masters and interrupted saves remain readable and recoverable (46.249584ms)
+  ✔ finalization recovers from object write before SQL failure; retry and replay cannot change final bytes (48.835583ms)
+  ✔ concurrent quota reservations cannot oversubscribe owner or global byte allowance (31.530916ms)
+  ✔ delete hides immediately, waits out grants, retains retry records and releases quota only after cleanup (6.731334ms)
+  ✔ expiry prevents uploads, abandoned reservation cleanup and ready staging cleanup are bounded (39.919542ms)
+  ✔ daily attempt budgets include deleted reservations (4.996292ms)
+✔ real isolated Postgres and disk: private audio lifecycle and recovery (561.811208ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1440.289417
