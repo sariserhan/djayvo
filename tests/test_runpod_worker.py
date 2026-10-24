@@ -156,6 +156,20 @@ class WorkerTests(unittest.TestCase):
             (work/'status.json').unlink();(work/'failure.json').write_text(json.dumps({'stage':'checking','reason':'timeout'}))
             self.assertEqual(worker.failure_location(work),'checking-timeout')
 
+    def test_improvise_failure_reports_inner_stage_without_private_content(self):
+        with tempfile.TemporaryDirectory() as folder:
+            work=Path(folder);job=work/'improvise'/'job';job.mkdir(parents=True)
+            (work/'private.log').write_text('File "/private/scripts/singer_studio.py", line 223\n')
+            (job/'failure.json').write_text(json.dumps({'stage':'Writing the lyrics','error_type':'CalledProcessError'}))
+            (job/'draft-private.log').write_text('File "/private/customer/scripts/singing_response.py", line 311\nValueError: private words https://secret.invalid\n')
+            self.assertEqual(worker.failure_location(work),'improvise-lyrics@singing_response.py:311')
+            (job/'draft-private.log').unlink()
+            self.assertEqual(worker.failure_location(work),'improvise-lyrics')
+            (job/'failure.json').write_text(json.dumps({'stage':'Blending your sound into the song'}))
+            self.assertEqual(worker.failure_location(work),'improvise-arrangement')
+            (job/'failure.json').write_text(json.dumps({'stage':'private words https://secret.invalid'}))
+            self.assertEqual(worker.failure_location(work),'private@singer_studio.py:223')
+
     def test_timeout_kills_descendants_and_waits(self):
         from subprocess import TimeoutExpired
         with tempfile.TemporaryDirectory() as folder,patch.object(worker.subprocess,'Popen') as popen,patch.object(worker.os,'killpg') as kill:
