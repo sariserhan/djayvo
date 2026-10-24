@@ -1,0 +1,13 @@
+{
+  "status": "PASS upload; processing pending",
+  "appId": "6826480059",
+  "version": "0.8.0",
+  "build": "12",
+  "uploadedAt": "2026-10-24T04:29:43Z",
+  "method": "xcodebuild -exportArchive destination=upload",
+  "ipaSha256": "18b4fa499075c5a331e31dd72281844a7225d5ef18e722763d3240b6dbf9f816",
+  "result": "Upload succeeded. Uploaded package is processing.",
+  "publicRelease": false,
+  "appReviewSubmission": false,
+  "fallback": "altool exited 139 without a build; App Store API confirmed zero builds before Xcode upload."
+}

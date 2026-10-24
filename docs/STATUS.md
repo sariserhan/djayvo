@@ -1,6 +1,6 @@
 ## Native Music DNA and Apple privacy — 2026-10-24
 
-**PASS:** manual musical-direction controls removed; favorites-based web flow, automatic saving and removable rows verified on the physical iPhone. App Store Data Collection answers completed, published and verified after reload; native manifest matches. 0.8.0 (12) signed/exported/installed; upload is in progress. Simulator test cases pass but report finalization stalled (**PARTIAL artifact**). [Current release ledger](release-completion-20261024.md).
+**PASS:** manual musical-direction controls removed; favorites-based web flow, automatic saving and removable rows verified on the physical iPhone. App Store Data Collection answers completed, published and verified after reload; native manifest matches. 0.8.0 (12) signed/exported/installed; upload passed; Apple processing is pending. Simulator test cases pass but report finalization stalled (**PARTIAL artifact**). [Current release ledger](release-completion-20261024.md).
 
 ## Native music discovery — 2026-10-24
 

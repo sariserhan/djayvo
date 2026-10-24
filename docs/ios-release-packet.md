@@ -30,7 +30,7 @@ Start with local Improvise and DJ Deck; these do not require sign-in. Microphone
 
 Music DNA supports local favorites and retains earlier instrumental previews. New Music DNA songs use the shared cloud service. Its cloud button deliberately reports unavailable while the public service is gated. Purchases are disabled in this binary. Do not describe these unavailable services as released functionality in final metadata. No reviewer credentials are embedded in source or this packet; configure a dedicated verified review account only when a final submission is authorized.
 
-Signed archive, distribution export, bundle audit and physical installation pass. Upload is in progress; processing, App Review approval and public availability remain separate gates.
+Signed archive, distribution export, bundle audit and physical installation pass. Upload passed; Apple processing, App Review approval and public availability remain separate gates.
 
 ## Privacy answers for review
 
