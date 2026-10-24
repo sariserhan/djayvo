@@ -1,0 +1,25 @@
+✔ cloud song configuration is opt-in and requires a bounded rate (0.644208ms)
+✔ Improvise receipts require a bounded audible use of this recording and this output (0.151625ms)
+▶ real Postgres cloud songs: concurrency, credits, recovery, privacy, cancellation and ambiguous submission
+  ✔ Improvise omission or mismatched recording refunds; valid loops settle once (275.245708ms)
+  ✔ one request is reserved and dispatched once under duplicate concurrent calls (20.967ms)
+  ✔ several users queue independently; cancellation refunds while other songs continue (630.706625ms)
+  ✔ duration boundaries settle once and a mismatched saved length refunds (773.047333ms)
+  ✔ restart after output storage failure uses persisted receipt and charges only once (586.039167ms)
+  ✔ saved descriptions reach the next worker only for their owner (340.031625ms)
+  ✔ failed jobs refund all credits and invalid completed output cannot become public (187.3015ms)
+  ✔ website input, feedback ownership, personalization and consent withdrawal (364.0435ms)
+  ✔ disabled service waits without dispatch intent; enabling dispatches once and cancellation refunds (19.203209ms)
+  ✔ lost submit response never retries paid work; quiet endpoint after TTL releases reservation (8.524334ms)
+  ✔ missing provider receipt refunds only after the full provider TTL and a quiet queue (10.2525ms)
+  ✔ test credit lots cannot fund live requests or inflate live balances (2.569041ms)
+  ✔ recovery rotates ambiguous jobs and releases credits after persistent storage failure (357.651833ms)
+✔ real Postgres cloud songs: concurrency, credits, recovery, privacy, cancellation and ambiguous submission (3977.270875ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4279.063042

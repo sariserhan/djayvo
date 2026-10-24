@@ -1,0 +1,38 @@
+{
+  "startedAt": "2026-10-24T01:10:28.206Z",
+  "maxUSD": 3,
+  "maxWorkers": 1,
+  "maxSeconds": 1200,
+  "requests": [],
+  "health": [],
+  "cleanup": true,
+  "image": "ghcr.io/sariserhan/jamloom/music-worker@sha256:acca37c030f1926915b37dc8ac7e7e9a6121935c71cac8faedf9c539b7853246",
+  "disabled": true,
+  "templateId": "jbpcd0xgbf",
+  "endpoint": "jl77hn92npt65k",
+  "billingBefore": [],
+  "error": "The recording could not be verified. Upload it again.",
+  "finalHealth": {
+    "jobs": {
+      "completed": 14,
+      "failed": 6,
+      "inProgress": 0,
+      "inQueue": 0,
+      "retried": 0
+    },
+    "workers": {
+      "idle": 0,
+      "initializing": 0,
+      "ready": 0,
+      "running": 0,
+      "throttled": 0,
+      "unhealthy": 0
+    }
+  },
+  "stopped": true,
+  "removedObjects": 1,
+  "creditSettlement": true,
+  "qualification": "FAIL",
+  "billingAfter": [],
+  "finishedAt": "2026-10-24T01:10:30.761Z"
+}

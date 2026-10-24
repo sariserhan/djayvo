@@ -1,0 +1,2 @@
+PASS: existing checkSource rejects the original stereo/48000Hz fixture and accepts the normalized mono/16000Hz PCM16 fixture.
+PASS: TypeScript --noEmit after trial preflight and exception preservation changes.

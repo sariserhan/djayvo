@@ -9,8 +9,9 @@ import {migrate} from '../lib/migrations';
 import {emptyTaste} from '../lib/taste';
 import {r2AudioStore} from '../lib/audio-store';
 import {DnaCommerce} from '../lib/dna-commerce';
-import {CloudSongs} from '../lib/cloud-songs';
+import {CloudSongs,checkSource} from '../lib/cloud-songs';
 import {cloudSongConfig} from '../lib/cloud-song-config';
+import {allocateCredits} from '../lib/economics';
 
 const improvise=process.argv.includes('--improvise-completion');
 const repair=process.argv.includes('--repair'),startup=process.argv.includes('--startup'),completion=process.argv.includes('--dna-completion'),maxUSD=completion?3:startup?1:repair?2:3,maxWorkers=repair||startup||completion||improvise?1:2,maxSeconds=completion||improvise?1200:startup?720:repair?900:780;
@@ -45,6 +46,7 @@ try{
  if(improvise)assert(process.argv.includes('--source')&&process.argv[process.argv.indexOf('--source')+1],'Provide --source before starting a trial');
  const source=improvise?await readFile(resolve(process.argv[process.argv.indexOf('--source')+1])):repair||startup||completion?Buffer.alloc(0):await readFile(resolve(directory,'source.wav'));
  if(improvise)assert(process.argv.includes('--source')&&source.length>=44&&source.length<=24000000&&source.toString('ascii',0,4)==='RIFF','Use an explicitly permitted bounded WAV');
+ if(improvise)checkSource(source,source.length,createHash('sha256').update(source).digest('hex'));
  for(let i=0;i<fixtures.length;i++){
   const [label,reference,genre,language]=fixtures[i],songs=services[improvise?1:i<5?0:1],owner='trial-'+i,id=randomUUID().replaceAll('-','');
   await pool.query('INSERT INTO "user"(id,name,email,"emailVerified") VALUES($1,$1,$2,true)',[owner,owner+'@example.test']);await songs.commerce.wallet.grant(owner,{provider:'stripe_test',receipt:owner,credits:50,netMicros:30000000});
@@ -87,11 +89,14 @@ finally{
  if(enabled){for(let i=0;i<5;i++)try{await control('PATCH',{workersMin:0,workersMax:0});const result=await control();assert(result.workersMax===0&&result.workersMin===0);state.disabled=true;break;}catch{await delay(2000);}}
  for(let i=0;i<12;i++){const health=await services[0].provider.health();state.finalHealth=health;const active=Object.entries(health.workers??{}).filter(([k])=>k!=='unhealthy').reduce((n,[,v])=>n+Number(v??0),0);if(!active&&health.jobs?.inProgress===0&&health.jobs?.inQueue===0){state.stopped=true;break;}await delay(5000);}
  if(state.disabled&&state.stopped){watchdog?.kill();const keys=(await pool.query('SELECT object_key AS key FROM song_uploads UNION SELECT output_key FROM cloud_song_runs UNION SELECT audio_key FROM dna_song_jobs WHERE audio_key IS NOT NULL')).rows;for(const {key} of keys)await store.remove(key);state.removedObjects=keys.length;state.cleanup=true;}
- if(improvise){state.creditSettlement=state.requests.every((r:any)=>Number(r.finalBalance?.available)===(r.state==='completed'?50-r.quotedCredits:50));state.qualification=state.creditSettlement&&state.requests.length===4&&state.requests.every((r:any)=>r.state==='completed'&&r.saved&&Number(r.finalBalance?.reserved)===0)?'PASS':'FAIL';}
+ if(improvise){state.creditSettlement=state.requests.every((r:any,i:number)=>{
+  r.expectedCredits=r.state==='completed'?allocateCredits([{id:'trial',net_micros:30000000,credits:50,available:50}],Number(r.estimated_cost_micros),5000,i%2===1).reduce((n,a)=>n+a.n,0):0;
+  return r.expectedCredits<=r.quotedCredits&&Number(r.finalBalance?.available)===50-r.expectedCredits&&Number(r.finalBalance?.reserved)===0;
+ });state.qualification=state.creditSettlement&&state.requests.length===4&&state.requests.every((r:any)=>r.state==='completed'&&r.saved)?'PASS':'FAIL';}
  if(completion){state.qualification=state.requests.length===2&&state.requests.every((r:any)=>r.state==='completed'&&r.saved&&r.identity&&Number(r.finalBalance?.reserved)===0)?'PASS':'FAIL';}
  state.billingAfter=await billing();state.finishedAt=new Date().toISOString();await save();
  await pool.end();if(state.cleanup)await admin.query(`DROP DATABASE "${name}" WITH (FORCE)`);else state.retainedDatabase=name;await admin.end();await save();
  assert(state.disabled&&state.stopped&&state.cleanup,'Trial shutdown/cleanup needs attention');
  console.log(JSON.stringify({disabled:state.disabled,stopped:state.stopped,cleanup:state.cleanup,...(completion||improvise?{qualification:state.qualification}:{}),results:state.requests.map((r:any)=>({label:r.label,state:r.state}))}));
- if(improvise)assert.equal(state.qualification,'PASS','Inspect retained trial evidence; do not automatically retry');
+ if(improvise&&!state.error)assert.equal(state.qualification,'PASS','Inspect retained trial evidence; do not automatically retry');
 }

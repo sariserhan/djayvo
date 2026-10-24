@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "backend": "Mac MPS/MLX, not hosted CUDA",
+  "fresh_random_seeds": true,
+  "listening": "NOT RUN",
+  "reproduces_hosted_failure": false,
+  "requests": [
+    {
+      "genre": "reggae",
+      "technical": "PASS",
+      "audio": "renders/improvise-finish-resumed-parity-20261023/reggae/4f9cee72932147b989acf1c324f12d69/exchange-0/performance.wav",
+      "audio_sha256": "23154ff1bfc9e6a644dc36bd6c8b0f06975d6b757ba63e5a550fb2adf7caa1fd",
+      "identity": "af_bella",
+      "duration": 30,
+      "source_sha256": "df73ac9b98746572ce751973b7d6025d99d6ee816f9ff71942a16c889ae393ea",
+      "elapsed_seconds": 185.31
+    },
+    {
+      "genre": "edm",
+      "technical": "PASS",
+      "audio": "renders/improvise-finish-resumed-parity-20261023/edm/38a2f6cb5dba4d739a0ac5ecfd3f2561/exchange-0/performance.wav",
+      "audio_sha256": "e467b7c3c82a811645480ae1bae7976d48a7579be9e26638ff7d9062d117e43d",
+      "identity": "af_bella",
+      "duration": 40,
+      "source_sha256": "df73ac9b98746572ce751973b7d6025d99d6ee816f9ff71942a16c889ae393ea",
+      "elapsed_seconds": 240.58
+    }
+  ]
+}

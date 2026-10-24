@@ -1,0 +1,1 @@
+PASS: original stereo 48 kHz fixture rejected; normalized mono 16 kHz PCM16 fixture accepted.

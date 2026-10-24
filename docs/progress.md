@@ -1,6 +1,6 @@
 ## Improvise final quality and hosted verification — 2026-10-23
 
-**PARTIAL, in progress:** Added concise, grounded lyric instructions and bounded formatting repair; short percussion now supplies usable excerpts. PASS: 138 final audible mixes across all 23 styles, 23 silence rejections, 49 Python checks and 16 Postgres/service checks. PASS: four fresh complete local songs, 23 real lyric-style checks (22 direct, one bounded rap repair), 142 real receipt checks and Chromium/WebKit playback. PASS: owner approves the four fresh songs as sounding good and making sense. The final worker image is building for the approved four-song, one-worker, $3/20-minute cloud trial; website deployment excluded. [Report](improvise-finish.md).
+**PARTIAL:** Local technical checks and owner approval of the four final songs pass. Hosted qualification **FAIL:** jazz and acoustic completed, while reggae and EDM failed with an opaque pipeline error. **PASS:** all credit settlements, full failed-job refunds, worker shutdown, ten temporary-object removals and rollback to the previously qualified image. The resumed session verified the endpoint remains disabled with no active jobs. Both local reproductions with hosted voice settings and the diagnostic image build pass; hosted failure remains unreproduced. Another bounded paid trial is prepared and awaits approval. Website deployment excluded. [Report](improvise-finish.md).
 
 ## Improvise automatic rhythm integration — 2026-10-23
 

@@ -1,0 +1,39 @@
+{
+  "source": "docs/evidence/improvise-finish/cloud/2026-10-24T01-11-15.765Z/trial-result.json",
+  "status": "PASS",
+  "reason": "Actual-cost settlement releases unused quoted credits. Original overly strict harness result is retained.",
+  "requests": [
+    {
+      "label": "reggae",
+      "state": "failed",
+      "quoted": 4,
+      "charged": 0,
+      "available": 50,
+      "reserved": 0
+    },
+    {
+      "label": "jazz",
+      "state": "completed",
+      "quoted": 5,
+      "charged": 3,
+      "available": 47,
+      "reserved": 0
+    },
+    {
+      "label": "edm",
+      "state": "failed",
+      "quoted": 4,
+      "charged": 0,
+      "available": 50,
+      "reserved": 0
+    },
+    {
+      "label": "acousticpop",
+      "state": "completed",
+      "quoted": 5,
+      "charged": 2,
+      "available": 48,
+      "reserved": 0
+    }
+  ]
+}

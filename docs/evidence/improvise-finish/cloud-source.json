@@ -1,0 +1,9 @@
+{
+  "source": "renders/improvise-finish-20261023/sources/cloud.wav",
+  "source_sha256": "0754dcbdbe976942373208d87321dd92f80ab5bc639685d7ed6d269c29b71887",
+  "upload": "renders/improvise-finish-20261023/sources/cloud-normalized.wav",
+  "upload_sha256": "df73ac9b98746572ce751973b7d6025d99d6ee816f9ff71942a16c889ae393ea",
+  "format": "16000Hz mono PCM16 canonical WAV, matching browser normalization",
+  "seconds": 3.3595625,
+  "prior_preflight": "Failed before worker activation, zero submitted requests; temporary object and isolated DB removed."
+}
