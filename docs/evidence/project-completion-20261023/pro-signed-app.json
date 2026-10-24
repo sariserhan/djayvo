@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "checks": [
+    "sandboxed desktop loads the shared secure studio, starts stopped and supports MIDI/output APIs",
+    "actual permission boundary rejects microphone capture and opens MIDI only after approval, without sysex",
+    "two local tracks play, measured signal and platters advance, rotary EQ works and active sets block updates",
+    "bundled AudioWorklet beat playback, Pro digital console, eight cues and real waveform work offline in desktop",
+    "sampler trim, looping, measured PCM, clear, atomic bank save and stopped restore",
+    "native WAV and sampler source fingerprints reconstruct audible sampler controls offline",
+    "real app relaunch retains local bank and settings without restarting sound",
+    "bounded Aurowall proxy loads a partner fixture and preserves the online-only storage rule; Settings can disable it"
+  ],
+  "errors": [],
+  "hardware": "NOT RUN",
+  "publicRelease": "NOT RUN"
+}

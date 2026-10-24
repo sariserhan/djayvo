@@ -9,7 +9,7 @@ assert.ok(verifyLicense(token)&&!verifyLicense(token).sandbox,'Use a current own
 const request=(path,options={})=>fetch(origin+path,{redirect:'manual',signal:AbortSignal.timeout(45000),...options});
 for(const path of ['/pro','/download','/pricing','/live-dj']){
  const r=await request(path);assert.equal(r.status,200,path);const html=await r.text();
- assert.ok(html.includes('Jamloom'),path);if(path==='/pro')assert.ok(html.includes('$49 once')&&html.includes('pro-v1.0.0/Jamloom-Pro-1.0.0-macOS.zip'));
+ assert.ok(html.includes('Jamloom'),path);if(path==='/pro')assert.ok(html.includes('$49 once')&&html.includes('pro-v1.1.0/Jamloom-Pro-1.1.0-macOS.zip'));
  checks.push({path,status:r.status});
 }
 const deck=await request('/studio/dj.html');assert.equal(deck.status,200);assert.equal(deck.headers.has('X-Jamloom-Pro-Expires'),false);assert.ok((await deck.text()).includes('studio-access'));checks.push({check:'Public studio without paid entitlement',status:'PASS'});

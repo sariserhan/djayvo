@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Three detached windows with shared transport, mixer, keyboard and pads",
+    "Resizable desktop windows, sandboxed and no arbitrary child windows",
+    "Independent close and return preserve the loaded track and playback"
+  ],
+  "errors": []
+}
