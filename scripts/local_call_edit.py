@@ -33,7 +33,7 @@ def blend_patch(original, generated, start, end):
 
 
 def match_call_tone(hook, reference):
-    """Gentle recording mix treatment; no resynthesis, pitch or formant shifting."""
+    """Recording mix treatment; no resynthesis, pitch or formant shifting."""
     if (hook.ndim!=2 or hook.shape[1]!=2 or not .35*RATE<=len(hook)<=5*RATE
             or reference.ndim!=2 or reference.shape[1]!=2 or not len(reference)
             or not np.isfinite(hook).all() or not np.isfinite(reference).all()):
@@ -42,25 +42,25 @@ def match_call_tone(hook, reference):
         levels=envelope(pcm)
         return np.repeat(levels>max(.0003,float(np.max(levels))*.12),RATE//100)[:len(pcm)]
     def bands(pcm):
-        low=sosfilt(butter(2,350,fs=RATE,output='sos'),pcm,axis=0)
-        upper=sosfilt(butter(2,3500,fs=RATE,output='sos'),pcm,axis=0)
-        return [low,upper-low,pcm-upper]
-    part=sosfilt(butter(2,60,btype='highpass',fs=RATE,output='sos'),hook,axis=0)
+        edges=[np.zeros_like(pcm),*[sosfilt(butter(2,hz,fs=RATE,output='sos'),pcm,axis=0)
+                                   for hz in (160,400,1000,2500,6000)],pcm]
+        return [b-a for a,b in zip(edges,edges[1:])]
+    part=sosfilt(butter(2,80,btype='highpass',fs=RATE,output='sos'),hook,axis=0)
     mask=active(part)
     if not mask.any():raise ValueError('No audible source phrase')
-    reference_mask=active(reference);eq=np.zeros(3);reference_rms=0.
+    reference_mask=active(reference);eq=np.zeros(6);reference_rms=0.
     components=bands(part)
     if np.count_nonzero(reference_mask)>=.15*RATE:
         reference_rms=float(np.sqrt(np.mean(reference[reference_mask]**2)))
         source_power=np.array([np.mean(b[mask]**2) for b in components])
         target_power=np.array([np.mean(b[reference_mask]**2) for b in bands(reference)])
         ratio=(target_power/max(float(target_power.sum()),1e-12)+1e-6)/(source_power/max(float(source_power.sum()),1e-12)+1e-6)
-        eq=np.clip(10*np.log10(ratio)*.4,-3,3)
+        eq=np.clip(10*np.log10(ratio)*.8,-6,6)
     part=sum(b*10**(db/20) for b,db in zip(components,eq))
     levels=envelope(part);voiced=levels[levels>max(.0003,float(np.max(levels))*.12)]
     if not len(voiced):raise ValueError('Source is too quiet after tone matching')
-    threshold=max(.0003,float(np.quantile(voiced,.65)))
-    reduction=np.minimum(6.,np.maximum(0,20*np.log10(np.maximum(levels,1e-12)/threshold))*.5)
+    threshold=max(.0003,float(np.quantile(voiced,.4)))
+    reduction=np.minimum(9.,np.maximum(0,20*np.log10(np.maximum(levels,1e-12)/threshold))*2/3)
     smoothed=[];previous=0.
     for db in reduction:
         coefficient=np.exp(-.01/(.02 if db>previous else .12))
@@ -75,7 +75,7 @@ def match_call_tone(hook, reference):
             shift=round((delay+channel*.004)*RATE)
             room[shift:,channel]+=room_source[:-shift,channel]*weight
     part=faded(part*.94+room*.06)
-    return part,{'version':1,'highpass_hz':60,'eq_db':eq.tolist(),
+    return part,{'version':2,'highpass_hz':80,'eq_crossovers_hz':[160,400,1000,2500,6000],'eq_db':eq.tolist(),
         'max_compression_db':float(max(smoothed)),'room_wet':.06,'reference_rms':reference_rms,
         'pitch_shift_semitones':0,'formant_shift_semitones':0,'time_scale':1.,
         'speaker_identity_listening':'NOT RUN'}

@@ -1,0 +1,198 @@
+{
+  "technical": "PASS",
+  "listening": "NOT RUN",
+  "source_sha256": "76f445acffa111a8b53d3d420a667bc1e2bab419c09e757644ea0db6d251bcb0",
+  "song": "renders/improvise-reggae-revision-20261023/studio/90269c8b62c14f4c908570ba425c242f/singer/singer.wav",
+  "performance": "renders/improvise-reggae-revision-20261023/studio/90269c8b62c14f4c908570ba425c242f/exchange-0/performance.wav",
+  "lyrics": "Yeah, no rush, just a nod and a grin,  \nyou got it, no need to be thin.  \nSunshine on the porch, talk slow,  \nI\u2019m here \u2014 just breathe, no need to go.  \n\n*(drums drop, organ hums, then fades \u2014 barely a beat left)*",
+  "recognized_phrase": "I have a question, please help.",
+  "song_receipt": {
+    "technical": "PASS",
+    "case": {
+      "id": "reggae-male",
+      "genre": "reggae",
+      "voice": "male",
+      "seed": 3288557553,
+      "vocal_profile": "male-bass",
+      "bpm": 84,
+      "duration": 35,
+      "source_repetitions": 2,
+      "singer_reference": "voice-2",
+      "lyrics": "Yeah, no rush, just a nod and a grin,  \nyou got it, no need to be thin.  \nSunshine on the porch, talk slow,  \nI\u2019m here \u2014 just breathe, no need to go.  \n\n*(drums drop, organ hums, then fades \u2014 barely a beat left)*"
+    },
+    "caption": "laid-back reggae, offbeat muted guitar, warm rounded electric bass, live one-drop drums, organ replies. adult male singer, deep resonant bass, rich low register. Melodic reggae singing: short syncopated phrases, offbeat pickups, laid-back timing, clipped endings, restrained vibrato, space for band replies. Natural vocal recording, no robotic effects, no speech narration. Resolved ending.",
+    "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+    "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+    "plan_sha256": "5ea16a04efeb4743599202754d19b241650ccde02fb29f1df32f78231c582b97",
+    "audio_sha256": "74342c16e82d313a1ed50bbf19baf01b2750fc3e0e3683d5a9a84823bf5b862e",
+    "seconds": 106.10807145794388,
+    "peak": 0.891265869140625,
+    "rms": 0.1277056783437729,
+    "peak_process_rss_bytes": 3134734336,
+    "device": "mps",
+    "dtype": "torch.bfloat16",
+    "torch": "2.10.0",
+    "mlx_vae": true,
+    "inference_shift": 1.0,
+    "voice_and_lyric_fidelity": "NOT RUN: requires listening",
+    "naturalness": "NOT RUN",
+    "trained_adapter": false,
+    "source_audio_uploaded": false,
+    "vocal_reference": {
+      "audio": "/Users/serhansari/Documents/projects/jamloom/renders/singing-response-20261022/reggae-male/singer.wav",
+      "sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+      "receipt_sha256": "a95b0e1eb6336be92017950ce221e5e3dda1f71b2b250393ae72da956738089d",
+      "voice": "male"
+    },
+    "source_conditioning": null,
+    "task_type": "text2music"
+  },
+  "mix_receipt": {
+    "technical": "PASS",
+    "mode": "existing-gap",
+    "song_sha256": "74342c16e82d313a1ed50bbf19baf01b2750fc3e0e3683d5a9a84823bf5b862e",
+    "source_sha256": "f46053ee62590078424d699e75147d756444f7051856173c67abeb38aef7ee72",
+    "repair_sha256": null,
+    "region_frames": [
+      304046,
+      468206
+    ],
+    "regions_frames": [
+      [
+        304046,
+        468206
+      ]
+    ],
+    "unchanged_seconds": 31.58,
+    "outside_region_max_pcm_error": 0.0,
+    "processed_source_max_pcm_error": 1.5258735658080225e-05,
+    "speaker_identity_listening": "NOT RUN",
+    "repair_gain": 1.0,
+    "event": {
+      "start_frame": 304046,
+      "end_frame": 468206,
+      "gain": 2.496171028050404,
+      "estimated_vocal_max_rms": 0.0006337618688121438,
+      "vocal_threshold_rms": 0.0013428499922156336,
+      "band_rms": 0.12302683529933431,
+      "target_lead_rms": 0.0816370613873005,
+      "rate": 1.0,
+      "transpose_semitones": 0,
+      "processing": {
+        "version": 2,
+        "highpass_hz": 80,
+        "eq_crossovers_hz": [
+          160,
+          400,
+          1000,
+          2500,
+          6000
+        ],
+        "eq_db": [
+          -2.6486631541609142,
+          0.26281166728960903,
+          0.16750454621179134,
+          0.1546702869509318,
+          0.5753226513863859,
+          -0.09482414937802275
+        ],
+        "max_compression_db": 6.769382071680327,
+        "room_wet": 0.06,
+        "reference_rms": 0.09604360163211823,
+        "pitch_shift_semitones": 0,
+        "formant_shift_semitones": 0,
+        "time_scale": 1.0,
+        "speaker_identity_listening": "NOT RUN"
+      },
+      "processed_active_rms": 0.0816370613873005
+    },
+    "events": [
+      {
+        "start_frame": 304046,
+        "end_frame": 468206,
+        "gain": 2.496171028050404,
+        "estimated_vocal_max_rms": 0.0006337618688121438,
+        "vocal_threshold_rms": 0.0013428499922156336,
+        "band_rms": 0.12302683529933431,
+        "target_lead_rms": 0.0816370613873005,
+        "rate": 1.0,
+        "transpose_semitones": 0,
+        "processing": {
+          "version": 2,
+          "highpass_hz": 80,
+          "eq_crossovers_hz": [
+            160,
+            400,
+            1000,
+            2500,
+            6000
+          ],
+          "eq_db": [
+            -2.6486631541609142,
+            0.26281166728960903,
+            0.16750454621179134,
+            0.1546702869509318,
+            0.5753226513863859,
+            -0.09482414937802275
+          ],
+          "max_compression_db": 6.769382071680327,
+          "room_wet": 0.06,
+          "reference_rms": 0.09604360163211823,
+          "pitch_shift_semitones": 0,
+          "formant_shift_semitones": 0,
+          "time_scale": 1.0,
+          "speaker_identity_listening": "NOT RUN"
+        },
+        "processed_active_rms": 0.0816370613873005
+      }
+    ],
+    "peak": 0.891265869140625,
+    "singer_moved": false,
+    "master_gain": 1.0,
+    "listening": "NOT RUN",
+    "vocal_subtraction": false,
+    "note": "Automatic quiet-boundary selection; estimated vocal subtraction and musical fit still need listening.",
+    "artifacts": {
+      "performance": "9cf7be8862e33a49457b73258652dcf2f59803d7419820b4b6d4268a1d8fcef3",
+      "original": "74342c16e82d313a1ed50bbf19baf01b2750fc3e0e3683d5a9a84823bf5b862e",
+      "music": "74342c16e82d313a1ed50bbf19baf01b2750fc3e0e3683d5a9a84823bf5b862e",
+      "user": "4eea0fade90ad3a2b0da149fca96db21a9c90051f7e6b2e6d7f6717432cbace2"
+    },
+    "sample_used": true,
+    "selection_seed": 3288557544,
+    "grid": {
+      "bpm": 84.0,
+      "offset_frames": 29760,
+      "confidence": 0.9401974742485012,
+      "method": "drum-stem onset grid; tempo searched within 10 percent; bar phase unverified"
+    },
+    "options_considered": 5,
+    "pattern": "single-call",
+    "rejected_candidates": 0,
+    "arrangement_fingerprint": "existing-gap:1",
+    "history_saved": true,
+    "source_excerpt": {
+      "source": {
+        "sha256": "f46053ee62590078424d699e75147d756444f7051856173c67abeb38aef7ee72",
+        "kind": "recorded",
+        "consent_confirmed": true,
+        "processed_frames": 164160
+      },
+      "sample_rate": 48000,
+      "voice_clips": [
+        {
+          "id": 0,
+          "start_frame": 0,
+          "end_frame": 164160
+        }
+      ],
+      "original_seconds": [
+        1.94,
+        5.36
+      ],
+      "selection": "excerpt"
+    },
+    "original_recording_sha256": "76f445acffa111a8b53d3d420a667bc1e2bab419c09e757644ea0db6d251bcb0",
+    "meaning_origin": "the locally recognized words"
+  }
+}

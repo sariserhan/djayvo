@@ -1,0 +1,194 @@
+{
+  "technical": "PASS",
+  "listening": "NOT RUN",
+  "assets": {
+    "reggae-before.wav": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+    "reggae-after.wav": "7073d13e2798dc1c9c944a10e688f47fbf1557ec30f1e12946375ba6e0dc2b04",
+    "reggae-new-song.wav": "b6930d50802f423f170a0b90d670615c77a6f3c4bf0c39edd397e06cc65d7f62",
+    "reggae-new-blend.wav": "19a30db73bd0d5961ec34bea85983fc1f16c3d37183ec52991fc611cefaebcba",
+    "1-a-context.wav": "d448bb037096fd1196cefdf0dc88a018e8923f9a5019535cf92aeec300b27850",
+    "1-b-context.wav": "0d4dca2f831cb7517a5bf67ea1fe24e2c02a107bdee404ae56d2f393022c52c2",
+    "1-raw-voice.wav": "24a600105003b4731ecf7dc01bf378359f96253bd4fe43d2826179e40eabad45",
+    "1-processed-voice.wav": "394b8fa4bc54efea8ae19d19ac03bb83bf0574b6e1600dc90a1b3230707d7c9c",
+    "7-a-context.wav": "46c5576deea1bb1a55eb5d9151d1de969e8cd8e50d80d0b86c7888851cd51e70",
+    "7-b-context.wav": "4c5174553a5d177848383f4252dfbe102ec64db9dd57b3cbd279ddda770427ac",
+    "7-raw-voice.wav": "24a600105003b4731ecf7dc01bf378359f96253bd4fe43d2826179e40eabad45",
+    "7-processed-voice.wav": "8f6283c7e6307ddb11cc3e15deef9d82ad8917d808e1327135b6b7fb0481dc51",
+    "13-a-context.wav": "cb15c35dbe43ce79df8b9d42be0ea83982e0b05ea807a35edd57a4d6a9243185",
+    "13-b-context.wav": "df616b2aa34f6c77eb473766b9112409d32e81d72287ec4320586c383f60a540",
+    "13-raw-voice.wav": "24a600105003b4731ecf7dc01bf378359f96253bd4fe43d2826179e40eabad45",
+    "13-processed-voice.wav": "b170987fd5441105901a321db64c5b8f19ccc4a431aa422273e41af0f360ea47",
+    "22-a-context.wav": "7fcca89a5f0597aa1e7d5be5b561e191a9971091dabce0c4d0f797c447cc0926",
+    "22-b-context.wav": "0d2e33a2dd0ac7305f71fee7afb629ec89cd878004ab4255a818445b45589301",
+    "22-raw-voice.wav": "fda82e052fd62161a23e01db5b185e6f128eeee272b7be21abf1059ef1068581",
+    "22-processed-voice.wav": "4869abee9f509c8e7b96be625ca586b4e1873e479f2d04bc002ebda271a45754",
+    "27-a-context.wav": "90db5369811669139effcbbd48f5ce69f7ccfa3b0d69f72e45568dead278ee86",
+    "27-b-context.wav": "d5fa399239c1d93806948b816a2eb6d2545fc5055e116add87fa13cb1623a2c6",
+    "27-raw-voice.wav": "1f14ce9e2ba98fbb9e5847a8163186bb061b493ee69f52a51331176f60e4c5b0",
+    "27-processed-voice.wav": "5fc0ff97a0cac417b9d459e21f063eb9d68649c7a1ab07863475c8c786e4553d"
+  },
+  "tone_comparisons": [
+    {
+      "number": 1,
+      "style": "reggae-male",
+      "processing": {
+        "version": 2,
+        "highpass_hz": 80,
+        "eq_crossovers_hz": [
+          160,
+          400,
+          1000,
+          2500,
+          6000
+        ],
+        "eq_db": [
+          -0.6115548257058553,
+          0.9778284156087529,
+          -0.11797285735659467,
+          -0.3415994534848419,
+          -0.10807617241157837,
+          -0.9648032021366861
+        ],
+        "max_compression_db": 5.5129439465581065,
+        "room_wet": 0.06,
+        "reference_rms": 0.10663620574243522,
+        "pitch_shift_semitones": 0,
+        "formant_shift_semitones": 0,
+        "time_scale": 1.0,
+        "speaker_identity_listening": "NOT RUN"
+      },
+      "normalized_voice_difference_rms": 0.35638828328952477,
+      "speaker_identity_and_better_fit": "NOT RUN"
+    },
+    {
+      "number": 7,
+      "style": "house-female",
+      "processing": {
+        "version": 2,
+        "highpass_hz": 80,
+        "eq_crossovers_hz": [
+          160,
+          400,
+          1000,
+          2500,
+          6000
+        ],
+        "eq_db": [
+          0.038603137361411306,
+          3.050784448066712,
+          -0.24634145974813804,
+          -3.8937026272043997,
+          -3.0638201904929723,
+          -2.073767911132595
+        ],
+        "max_compression_db": 5.354150789984621,
+        "room_wet": 0.06,
+        "reference_rms": 0.04098128345676953,
+        "pitch_shift_semitones": 0,
+        "formant_shift_semitones": 0,
+        "time_scale": 1.0,
+        "speaker_identity_listening": "NOT RUN"
+      },
+      "normalized_voice_difference_rms": 0.4385755381683826,
+      "speaker_identity_and_better_fit": "NOT RUN"
+    },
+    {
+      "number": 13,
+      "style": "funk-male",
+      "processing": {
+        "version": 2,
+        "highpass_hz": 80,
+        "eq_crossovers_hz": [
+          160,
+          400,
+          1000,
+          2500,
+          6000
+        ],
+        "eq_db": [
+          2.352335646918879,
+          1.5176774270832063,
+          -0.6248025596383835,
+          -0.6499885264089674,
+          -0.5124042960925128,
+          -1.3684991949271526
+        ],
+        "max_compression_db": 5.360218660778628,
+        "room_wet": 0.06,
+        "reference_rms": 0.09972415864467621,
+        "pitch_shift_semitones": 0,
+        "formant_shift_semitones": 0,
+        "time_scale": 1.0,
+        "speaker_identity_listening": "NOT RUN"
+      },
+      "normalized_voice_difference_rms": 0.31162740897122465,
+      "speaker_identity_and_better_fit": "NOT RUN"
+    },
+    {
+      "number": 22,
+      "style": "acousticpop-female",
+      "processing": {
+        "version": 2,
+        "highpass_hz": 80,
+        "eq_crossovers_hz": [
+          160,
+          400,
+          1000,
+          2500,
+          6000
+        ],
+        "eq_db": [
+          -2.291458531280449,
+          2.2916155390633954,
+          0.3660645343333217,
+          -2.881948065059383,
+          -3.1074220775176986,
+          -3.7595376583644367
+        ],
+        "max_compression_db": 4.909016956323022,
+        "room_wet": 0.06,
+        "reference_rms": 0.15794937312602997,
+        "pitch_shift_semitones": 0,
+        "formant_shift_semitones": 0,
+        "time_scale": 1.0,
+        "speaker_identity_listening": "NOT RUN"
+      },
+      "normalized_voice_difference_rms": 0.4214830520951085,
+      "speaker_identity_and_better_fit": "NOT RUN"
+    },
+    {
+      "number": 27,
+      "style": "drumandbass-male",
+      "processing": {
+        "version": 2,
+        "highpass_hz": 80,
+        "eq_crossovers_hz": [
+          160,
+          400,
+          1000,
+          2500,
+          6000
+        ],
+        "eq_db": [
+          -4.902922667557853,
+          -0.676172243190715,
+          2.240241558535185,
+          1.9994408317878696,
+          0.13313074700502622,
+          -2.32538207042643
+        ],
+        "max_compression_db": 4.236966088337169,
+        "room_wet": 0.06,
+        "reference_rms": 0.15055284517367468,
+        "pitch_shift_semitones": 0,
+        "formant_shift_semitones": 0,
+        "time_scale": 1.0,
+        "speaker_identity_listening": "NOT RUN"
+      },
+      "normalized_voice_difference_rms": 0.8672752516803367,
+      "speaker_identity_and_better_fit": "NOT RUN"
+    }
+  ],
+  "studio_report_sha256": "407322a8672151c0279e8ef944265278cdbf16eff15a951130d2c1619ca91119",
+  "tone_report_sha256": "3375b821db691436e66a2a0a563cab03fdbdac4a6dba62e11c023d6113e93ec6"
+}

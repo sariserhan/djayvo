@@ -1,7 +1,12 @@
+## Improvise reggae phrasing and stronger recording treatment — 2026-10-23
+
+- [x] **IMPROVISE-REGGAE — PASS, local technical:** Replaced generic soul/legato reggae singing direction with syncopated reggae phrasing; refined reggae lyric instructions. More detailed source EQ and stronger bounded compression retain original recording, pitch and duration. Forty-four focused tests, 30 mixes, one controlled fresh song, two full local studio runs and Chromium/WebKit playback of all 24 review files pass. [Report and receipts](docs/improvise-reggae-revision.md).
+- [ ] **IMPROVISE-REGGAE-QUALITY — PARTIAL:** Previous tone improvement and reggae vocal style rejected by owner. New singing and same-placement source-treatment trials await listening at `http://127.0.0.1:4249/reggae-revision/`. Full-flow lyrics still need polish. Perceived source identity, genre delivery and naturalness are not inferred from technical checks. Hosted qualification and publication NOT RUN.
+
 ## Improvise recording tone and level — 2026-10-23
 
 - [x] **IMPROVISE-TONE — PASS, local implementation/technical checks:** Gentle source EQ, dynamics and room treatment plus local backing/vocal level matching; no voice replacement or pitch/formant/time shifting. Thirty same-placement A/B pairs preserve backing and original files. Fourteen arranger, seven studio-flow and twelve worker tests PASS. [Report and listening comparisons](docs/improvise-tone-matching.md).
-- [ ] **IMPROVISE-TONE-LISTEN — NOT RUN:** Owner must judge whether new processing blends better while retaining the original speaker. Comparisons at `http://127.0.0.1:4249/tone-match/`. Old blend feedback remains PARTIAL. Fresh inference, hosted qualification and publication remain open.
+- [ ] **IMPROVISE-TONE-LISTEN — FAIL, perceived improvement:** Owner heard no difference between the previous A/B mixes and rejected the reggae singing style. Stronger processing and revised reggae directions are ready for local review; no acceptance inferred. [Feedback](docs/evidence/improvise-reggae-revision/owner-feedback.json). Hosted qualification and publication remain open.
 
 ## Improvise product explanation — 2026-10-23
 
@@ -14,7 +19,7 @@
 ## Improvise recording integration — 2026-10-23
 
 - [x] **IMPROVISE-BLEND — PASS, local implementation/technical validation:** Whole short recordings, phrases and non-speech excerpts can become single calls, returning hooks or beat-spaced loops. Several crops are tried; source-free fallbacks now fail instead of settling credits. Source/output-bound receipt validation, private storage and failed-job refunds pass in disposable PostgreSQL. Thirty mixes across five existing song styles preserve surrounding PCM and originals. [Behavior, evidence and release order](docs/improvise-blending.md).
-- [ ] **IMPROVISE-BLEND-QUALITY — PARTIAL:** Earlier A/B methods retain owner approval; the owner reviewed the 30 blends as okay but not perfect because tone/volume did not match. Tone-matched refinements await listening. Fresh end-to-end model inference and hosted qualification NOT RUN. Updated worker must precede the website gate; publication/deployment remain owner-controlled. Owner review now available at `http://127.0.0.1:4249/`: all 30 blends, five suggested first listens, source timestamps and original-song comparisons. Owner listening to that packet is PARTIAL; the new tone-matched packet remains NOT RUN.
+- [ ] **IMPROVISE-BLEND-QUALITY — PARTIAL:** Earlier A/B methods retain owner approval; the owner reviewed the 30 blends as okay but not perfect because tone/volume did not match. The first tone-matched refinements produced no perceptible improvement for the owner; revised trials are in progress. Hosted qualification NOT RUN. Updated worker must precede the website gate; publication/deployment remain owner-controlled. Owner review now available at `http://127.0.0.1:4249/`: all 30 blends, five suggested first listens, source timestamps and original-song comparisons. Owner listening to that packet is PARTIAL; the first tone-matched packet did not produce an audible improvement for the owner.
 
 ## Improvise workspace and local-remix naming — 2026-10-23
 

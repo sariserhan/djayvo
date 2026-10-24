@@ -1,0 +1,19 @@
+{
+  "schema": "jamloom-sung-response-1",
+  "model_code": "ca1e85fe9430179831e6bc6be790c332190a3866",
+  "weights": "19671f406d603126926c1b7e2adc169acbcade22",
+  "phrase": "I have a question, please help.",
+  "lyric_origin": "Preserved original comparison lyrics; same seed, duration and lyrics; caption revised.",
+  "cases": [
+    {
+      "id": "reggae-male",
+      "genre": "reggae",
+      "voice": "male",
+      "seed": 61025,
+      "bpm": 84,
+      "duration": 30,
+      "source_repetitions": 2,
+      "lyrics": "[Verse]\nYou have a question, I wanna know\nNo need to rush it, let the question flow\n[Chorus]\nWhat is your question? Send it my way\nI brought a whole band for one thing to say\nYeah, yeah, what do you say?"
+    }
+  ]
+}

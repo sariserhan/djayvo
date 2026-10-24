@@ -4,14 +4,40 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, VOCAL_PROFILES, SINGER_REFERENCES, cast_singer_reference, resolve_vocal_reference, isolated_vocal_reference, choose_vocal_profile, vocal_description, generated_vocal_reference, digest, caption, load_plan, validate_plan, variants
+from singing_response import CODE_REVISION, WEIGHT_REVISION, STYLES, STYLE_LABELS, VOCAL_PROFILES, SINGER_REFERENCES, cast_singer_reference, resolve_vocal_reference, isolated_vocal_reference, choose_vocal_profile, vocal_description, generated_vocal_reference, digest, caption, load_plan, validate_plan, variants, draft
 from assemble_sung_response import PATTERNS
 
 
 class SingingPlans(unittest.TestCase):
+    def test_reggae_lyric_writer_receives_word_direction_not_band_instructions(self):
+        tokenizer=Mock();generate=Mock(return_value='[Verse]\nYou have a question, I am listening\n[Chorus]\nTell me what you want to know')
+        with tempfile.TemporaryDirectory() as folder,patch('singing_response.cast_singer_reference'),\
+                patch('singing_response.lyric_model',return_value=(None,tokenizer,{'revision':'test'})),\
+                patch('singing_response.planner_functions',return_value=(Mock(),generate,Mock())):
+            output=Path(folder)/'plan.json'
+            draft(Path(folder),'I have a question',42,output,'male','reggae',35)
+            self.assertEqual(load_plan(output)['phrase'],'I have a question')
+            message=tokenizer.apply_chat_template.call_args.args[0][-1]['content']
+            self.assertIn('short conversational lines',message)
+            self.assertIn('not instrument or performance instructions',message)
+            self.assertIn('I have a question',message)
+            self.assertNotIn('organ replies',message)
+
+    def test_reggae_directs_the_singer_not_only_the_backing(self):
+        for voice in ('male','female'):
+            for profile in (None,*[p for p,v in VOCAL_PROFILES.items() if v[0]==voice]):
+                case={'genre':'reggae','voice':voice}
+                if profile:case['vocal_profile']=profile
+                prompt=caption(case)
+                self.assertLess(len(prompt),512)
+                for phrase in ('Melodic reggae singing','syncopated phrases','offbeat pickups','space for band replies'):
+                    self.assertIn(phrase,prompt)
+                self.assertNotIn('soul singer',prompt);self.assertNotIn('legato',prompt)
+                self.assertEqual(caption({**case,'song_caption':'Existing Music DNA direction'}),'Existing Music DNA direction')
+
     def test_isolated_reference_requires_bound_separator_stems(self):
         import numpy as np
         import soundfile as sf

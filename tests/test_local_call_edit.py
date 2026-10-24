@@ -81,9 +81,9 @@ class LocalCallEdit(unittest.TestCase):
         spectrum=np.abs(np.fft.rfft(processed[:,0]));frequencies=np.fft.rfftfreq(len(processed),1/RATE)
         self.assertEqual(frequencies[np.argmax(spectrum)],180)
         self.assertLess(spectrum[np.argmin(abs(frequencies-25))]/spectrum[np.argmin(abs(frequencies-180))],.2)
-        self.assertTrue(all(abs(db)<=3 for db in report['eq_db']))
+        self.assertTrue(all(abs(db)<=6 for db in report['eq_db']))
         self.assertEqual(report['pitch_shift_semitones'],0);self.assertEqual(report['formant_shift_semitones'],0)
-        self.assertLessEqual(report['max_compression_db'],6);self.assertLessEqual(report['room_wet'],.06)
+        self.assertLessEqual(report['max_compression_db'],9);self.assertLessEqual(report['room_wet'],.06)
         self.assertFalse(np.array_equal(processed,source));self.assertTrue(np.isfinite(processed).all())
         for scale in (.001,.005,.01):
             try:
@@ -105,6 +105,22 @@ class LocalCallEdit(unittest.TestCase):
             events.append(event);self.assertLess(np.max(np.abs(mixed)),.98)
             self.assertAlmostEqual(event['processed_active_rms'],event['target_lead_rms'],places=6)
         self.assertAlmostEqual(events[1]['target_lead_rms']/events[0]['target_lead_rms'],2)
+
+    def test_tone_matching_reduces_a_nasal_recording_without_changing_its_pitch(self):
+        t=np.arange(2*RATE)/RATE
+        low=np.sin(2*np.pi*200*t);nasal=np.sin(2*np.pi*1600*t)
+        source=np.repeat((.04*low+.12*nasal)[:,None],2,axis=1)
+        reference=np.repeat((.08*low+.02*nasal)[:,None],2,axis=1)
+        processed,report=match_call_tone(source,reference)
+        def ratio(pcm):
+            spectrum=np.abs(np.fft.rfft(pcm[:,0]))
+            return spectrum[3200]/spectrum[400]
+        self.assertLess(ratio(processed),ratio(source)*.6)
+        self.assertGreater(ratio(processed),ratio(reference))
+        self.assertEqual(processed.shape,source.shape)
+        self.assertEqual(report['version'],2)
+        _,silent_reference=match_call_tone(source,np.zeros_like(reference))
+        self.assertEqual(silent_reference['eq_db'],[0.]*6)
 
     def test_gap_edit_preserves_pcm_original_and_consent(self):
         out=self.root/'out'

@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-23",
+  "feedback": "I dont hear any difference, both are same and by the way reggae regardless the improvise it is not exactly reggae the music maybe it is reggae but singing style is wrong",
+  "tone_report_sha256": "090c528e21c281063b7f12d48ef703fafda2882d7fef50cc119b3c08dad23d6e",
+  "reggae_audio_sha256": "7fa97ed22e3d1f64e2e1accc8c3ea5ef3c9ab8f95b7bd8e5e8caa38753348c64",
+  "tone_improvement": "FAIL: owner heard no difference",
+  "reggae_vocal_style": "FAIL: owner rejects singing style",
+  "scope": "Feedback applies to previous comparisons. No approval of revised treatment or new inference inferred."
+}

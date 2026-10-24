@@ -1,6 +1,6 @@
 # Improvise recording tone and level — 2026-10-23
 
-**PASS: implementation and local technical checks. PARTIAL: musical fit and speaker recognition; new comparisons await owner listening. NOT RUN: hosted worker publication and fresh song inference.**
+**Historical first treatment: PASS, technical checks; FAIL, owner-perceived improvement.** The owner heard no difference in these A/B pairs and also rejected the reggae singing style. [Feedback](evidence/improvise-reggae-revision/owner-feedback.json). The measurements below describe the first treatment only; they do not establish a better musical result.
 
 The owner heard the earlier 30 blends and called them “okay but not perfect,” identifying different tone and volume between the recording and generated music. They requested processing that makes the recording belong in the song without making it sound like somebody else. [Exact feedback and reviewed-packet hash](evidence/improvise-tone/owner-feedback.json).
 
