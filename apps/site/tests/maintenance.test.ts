@@ -23,3 +23,15 @@ test('scheduled cleanup requires authorization, reviewed database target and pro
  const error=await maintenance(request(),unavailable,env);assert.equal(error.status,503);
  assert.equal(await error.text(),'{"error":"Maintenance needs retry"}');
 });
+
+test('retention validates storage before deleting auth records when public uploads are disabled',async()=>{
+ const secret='x'.repeat(32),env={CRON_SECRET:secret,JAMLOOM_CLEANUP_TARGET:'127.0.0.1:5432/fixture'};
+ let queries=0;
+ const getServices=()=>({config:{databaseURL:'postgresql://fixture@127.0.0.1:5432/fixture'},pool:{query:async()=>{queries++;return {rows:[],rowCount:0};}},audio:null}) as any;
+ const request=new Request('https://jamloom.test/api/maintenance',{headers:{authorization:`Bearer ${secret}`}});
+ assert.equal((await maintenance(request,getServices,env)).status,503);assert.equal(queries,0);
+ const configured={...env,R2_ACCOUNT_ID:'a'.repeat(32),R2_ACCESS_KEY_ID:'test',R2_SECRET_ACCESS_KEY:'test',R2_BUCKET:'fixture'};
+ const response=await maintenance(request,getServices,configured);
+ assert.equal(response.status,200);assert(queries>0);
+ assert.deepEqual((await response.json()).audio,{checked:0,cleaned:0,failed:0});
+});
