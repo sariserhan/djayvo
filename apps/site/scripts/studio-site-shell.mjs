@@ -8,7 +8,7 @@ export function studioSiteShell(html) {
   const original = html.match(/<header>.*?<\/header>/s)?.[0];
   const shortcuts = original?.match(/<nav aria-label="Main">(.*?)<\/nav>/s)?.[1];
   if (!original || !shortcuts) throw new Error('Studio navigation changed; review the integration.');
-  const back = html.includes('class="voice-studio"') ? '<a href="/improvise">Back to Improvise</a>' : '';
+  const back = html.includes('class="voice-studio"') ? '<a href="/improvise">Create an AI song</a>' : '';
   const mode = original.match(/<span class="brand-mode">.*?<\/span>/)?.[0] ?? '';
   return html.replace(original, `${header}<div class="studio-page-tools">${mode}<nav aria-label="Studio shortcuts">${back}${shortcuts}</nav></div>`)
     .replace('Save the app in local remixes → Privacy &amp; credits for offline preparation', 'Open <a href="/pro">your Pro account</a> → Use the web studio offline to prepare offline access');

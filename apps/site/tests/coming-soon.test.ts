@@ -52,3 +52,13 @@ test('retention cron reaches its own authorization while launch access stays clo
  const response=await proxy(new NextRequest('https://www.jamloom.com/api/maintenance'));
  assert.equal(response.headers.get('x-middleware-next'),'1');
 });
+
+test('free Local Remixes opens directly while cloud creation remains gated',async()=>{
+ assert.equal(comingSoonRecovery('/studio/index.html'),true);
+ for(const path of ['/studio/index.html/fake','/api/improvise/song','/api/generations','/api/payments/checkout'])assert.equal(comingSoonRecovery(path),false,path);
+ const response=await proxy(new NextRequest('https://www.jamloom.com/studio/index.html'));
+ assert.equal(response.headers.get('x-middleware-next'),'1');
+ const html=await comingSoonResponse(new Request('https://www.jamloom.com/')).text();
+ assert.ok(html.includes('href="/studio/index.html">Try Local Remixes free'));
+ assert.match(html,/id="local-remixes"/);
+});

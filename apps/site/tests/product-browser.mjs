@@ -23,10 +23,10 @@ for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
   }
   await page.goto(base+'/');await page.setViewportSize({width:1280,height:1000});
   if(name==='chromium')await page.screenshot({path:new URL('home-desktop.png',evidence).pathname,fullPage:true});
-  await page.getByRole('link',{name:'Make a Remix',exact:true}).first().click();await page.waitForURL(base+'/improvise');
+  await page.getByRole('link',{name:'Create an AI song',exact:true}).first().click();await page.waitForURL(base+'/improvise');
   await page.goto(base+'/dj-studio');const structured=JSON.parse(await page.locator('script[type="application/ld+json"]').innerText());assert.equal(structured['@type'],'WebApplication');assert.equal(structured.offers.price,0);assert.equal(structured.aggregateRating,undefined);
   await page.goto(base+'/');await page.setViewportSize({width:390,height:844});await page.screenshot({path:new URL(name+'-home-mobile.png',evidence).pathname,fullPage:true});
-  const offlineJS=await browser.newContext({javaScriptEnabled:false});const ssr=await offlineJS.newPage();await ssr.goto(base+'/');assert.equal(await ssr.locator('.feature-list article').count(),5);await offlineJS.close();
+  const offlineJS=await browser.newContext({javaScriptEnabled:false});const ssr=await offlineJS.newPage();await ssr.goto(base+'/');assert.equal(await ssr.locator('.feature-list article').count(),6);await offlineJS.close();
   await page.goto(base+'/music-dna');await page.getByRole('combobox',{name:'Search artists or tracks'}).fill('An original song — a musician');await page.getByRole('option',{name:/Add by name/}).click();
   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('jamloom-taste-v1')??'{}').references?.length===1);
   await page.reload();assert.equal(await page.getByRole('group',{name:'An original song — a musician',exact:true}).count(),1);

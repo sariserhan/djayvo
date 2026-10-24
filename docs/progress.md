@@ -1,3 +1,7 @@
+## Website product clarity — 2026-10-24
+
+**Implementation and local browser checks PASS; hosted verification pending.** Local Remixes is distinct from Improvise in the hero, homepage, shared navbar and public launch page, with a direct free workspace link. Actual deck/practice/song previews replace the misleading text-heavy images. Six clear product choices, short descriptions and existing interactive demos remain responsive. 104 website tests, typecheck, build, bundle audit, Chromium/WebKit at 1280/390/320 and focused Axe checks PASS. Mobile work is paused at the owner’s request. [Evidence](homepage-20261024.md).
+
 ## Native Music DNA web alignment — 2026-10-24
 
 **Implementation and physical iPhone PASS; simulator report PARTIAL.** Removed the manual musical-direction controls and separate local composition entry from Music DNA. Favorites now use removable rows, automatic local saving, and the shared web song service; practice tracks join the same list. Optional Apple Music and YouTube imports and earlier saved recordings remain available. Two physical iPhone UI checks pass; seven simulator unit checks and three simulator UI cases pass, but Xcode report finalization stalled. 0.8.0 (12), including aligned privacy declarations, is installed; signed archive/export and bundle audit pass. App Store Connect Data Collection is completed, published and verified after reload. [Release ledger](release-completion-20261024.md).

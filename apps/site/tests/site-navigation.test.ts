@@ -16,7 +16,7 @@ test('hosted studios share main navigation and retain their local controls',()=>
     assert.equal((hosted.match(/aria-label="Main"/g)??[]).length,1);
     if(name==='index.html'){
       assert.ok(hosted.includes('<a href="#mixes">Your mixes</a>'));
-      assert.ok(hosted.includes('<a href="/improvise">Back to Improvise</a>'));
+      assert.ok(hosted.includes('<a href="/improvise">Create an AI song</a>'));
       assert.equal((hosted.match(/id="privacy-open"/g)??[]).length,1);
     }else{
       assert.equal((hosted.match(/class="brand-mode"/g)??[]).length,1);

@@ -8,3 +8,5 @@
 @media(max-width:800px){.launch-products article{grid-template-columns:minmax(0,1fr);gap:24px}}
 .launch-products-nav a{gap:12px;flex:1 1 170px;justify-content:flex-start}.launch-products-nav img{width:54px;height:54px;object-fit:cover;border-radius:6px}.launch-products-nav small{display:block;color:#c7d2bd;font-size:11px;margin-top:4px}.launch-products details{margin-top:18px}.launch-products details summary{cursor:pointer;color:#c9fa78}.launch-copy h1{font-size:clamp(42px,5.5vw,76px)}
 @media(max-width:800px){.launch-products-nav{grid-row:2;margin:0;padding:12px 0}.launch-art{grid-row:3}.launch-page main{gap:24px}.launch-copy .launch-contact{display:inline-flex;margin:10px 12px 0 0;font-size:12px}.launch-products-nav a{flex:1 1 120px;padding:8px;gap:8px;font-size:12px}.launch-products-nav img{width:36px;height:36px}}
+
+.launch-header nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 24px;font-size:13px}.launch-header nav a{display:inline-flex;align-items:center;min-height:44px;color:#edf2e6}.launch-products .launch-product-status{font:12px var(--utility);color:var(--lime)}
