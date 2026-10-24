@@ -99,6 +99,11 @@ def sample_candidate(work, speech, genre, seconds, seed=0, attempt=0):
     # Pauses also delimit laughter, claps and sounds without recognized words.
     if not speech.get('transcript','').strip() and not speech.get('words'):
         candidates.extend((float(a)/100,min(seconds,float(b)/100)) for a,b in intervals(joined) if .35<=(b-a)/100<=4.8)
+        # Keep short percussion usable without forcing a whole sparse recording into a vocal gap.
+        for a,b in intervals(joined):
+            if 3<=b-a<35 and seconds>=.4:
+                start=max(0,min(a/100-.04,seconds-.4))
+                candidates.append((start,start+.4))
     if not candidates:
         for word in speech.get('words',[]):
             if not isinstance(word,dict):continue
