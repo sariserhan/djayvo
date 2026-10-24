@@ -7,7 +7,7 @@ Owner: “lets do all of these and complete all of them”. This supersedes the 
 | Improvise hosted reliability | PARTIAL; previous trial FAIL | Bounded trial finished: 3/4 songs PASS, reggae FAIL in voice conversion; worker stopped and prior image restored; new diagnostic image published; separately approved reggae diagnostic PASS, shutdown/cleanup/rollback PASS; earlier intermittent failure remains unreproduced |
 | Music DNA coverage and scale | PARTIAL | PASS bounded 5,000-favorite planning and browser transport; retain every genre, interpret up to 12 new tracks per take; worker published; human calibration and hosted maximum-size inference pending |
 | Production generation and economics | PARTIAL | Reconcile provider cost evidence and validate purchases/recovery before activation |
-| Website and Mac release | PARTIAL | PASS Pro 1.1.0 publication, actual isolated upgrade and production website; all eight latest CI jobs PASS after the Mac replay retry |
+| Website and Mac release | PASS | PASS Pro 1.1.0 publication, actual isolated upgrade and production website; all eight final implementation CI jobs PASS on 72a9f50d |
 | iOS qualification | PARTIAL | PASS 27 new physical iPhone checks, shared professional console, saved-mix bridge and release archive; signed 0.4.1 installed; owner visual acceptance PASS; all nine iPad UI flows have passing evidence across the corrected runs; physical iPad/Duo NOT RUN |
 | Launch operations | PARTIAL | PASS email inbox/readability, 10 live R2 gates and real hourly cleanup invocation (HTTP 200) |
 | Independent quality and research | NOT RUN | Existing review packets remain available; independent ratings and permissioned expert data cannot be fabricated |

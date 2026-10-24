@@ -54,7 +54,7 @@ Confirm permission for the sound. Record up to fifteen seconds, or import a loca
 1–15 second audio file (64 MB maximum, 1–2 channels, 8–192 kHz) and select 1–15
 seconds. Choose a 15/30/45/60-second output; arrangements finish on musical boundaries. Imports decode through AVFoundation, are downmixed to mono, and selected
 samples are written to a new PCM16 WAV. External originals are never overwritten.
-Make Music produces the three original strategies; the separate club action
+Local instrumental previews produce the three original strategies; the separate club action
 produces the original electronic arrangement. Regeneration uses a fresh seed.
 
 The UI shows an indeterminate generation indicator: the C API supports
@@ -86,8 +86,9 @@ inline allocation exceeded normal mobile worker stack budgets; moving it to
 heap storage preserves allocation-free processing and sample output.
 
 The six integration tests and measured three-style generation have run on an
-actual iPhone 14 Pro; see the report for exact evidence. This is not a live
-performance engine. M1 listening, physical permission/routes,
+actual iPhone 14 Pro; see the report for exact evidence. The local remix renderer
+is offline; the DJ studio uses the shared Web Audio/WebAssembly performance engine.
+M1 listening, physical permission/routes,
 battery/thermal testing, accessibility review, public policy/contact details,
 beta acceptance and release approval remain separate gates. See
 [the validation report](../../docs/ios-instant-remix.md) and

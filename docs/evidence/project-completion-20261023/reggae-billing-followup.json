@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-24T02:55:01.220Z",
+  "scope": "Hourly endpoint totals can include prior trials and late settlement; not an exact per-request invoice",
+  "records": [
+    {
+      "amount": 0.15677062515169382,
+      "timeBilledMs": 321071,
+      "diskSpaceBilledGB": 120,
+      "endpointId": "jl77hn92npt65k",
+      "time": "2026-10-24 01:00:00"
+    }
+  ]
+}

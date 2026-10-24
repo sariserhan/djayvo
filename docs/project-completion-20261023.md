@@ -7,7 +7,7 @@ Owner: “lets do all of these and complete all of them”. This supersedes the 
 | Improvise hosted reliability | PARTIAL; previous trial FAIL | Bounded trial finished: 3/4 songs PASS, reggae FAIL in voice conversion; worker stopped and prior image restored; published diagnostic image passed one separately approved reggae request; shutdown, cleanup and rollback PASS |
 | Music DNA coverage and scale | PARTIAL | PASS bounded 5,000-favorite planning and browser transport; retain every genre, interpret up to 12 new tracks per take; worker published, human calibration and hosted maximum-size inference pending |
 | Production generation and economics | PARTIAL | Reconcile provider cost evidence and validate purchases/recovery before activation |
-| Website and Mac release | PARTIAL | PASS Pro 1.1.0 published, isolated real upgrade and hosted access; website 1de4d4d READY after all eight CI jobs PASS |
+| Website and Mac release | PASS | PASS Pro 1.1.0 published, isolated real upgrade and hosted access; website 72a9f50d READY after all eight CI jobs PASS |
 | iOS qualification | PARTIAL | 27 new physical checks PASS; shared professional DJ console, native saved mixes and optional cloud client implemented; signed 0.4.1 installed; owner visual acceptance PASS |
 | Launch operations | PARTIAL | Email inbox/readability PASS, owner confirmed; 10 real R2 gates PASS with test cleanup; PASS actual hosted cleanup trigger after launch bypass and storage gating fixes; hourly schedule enabled |
 | Independent quality and research | NOT RUN | Existing review packets remain available; independent ratings and permissioned expert data cannot be fabricated |
@@ -126,3 +126,27 @@ startup race. The final targeted test verifies separate unchecked cloud consent
 and a disabled upload action while signed out. All nine iPad UI flows now have
 passing evidence across the initial and corrected runs; this is simulator evidence,
 not physical iPad qualification. [Final test](evidence/project-completion-20261023/ipad-pro-studio-ready.json).
+
+## Final implementation checks
+
+**PASS:** all eight CI jobs on implementation commit `72a9f50d`, including a fresh
+unsigned iPhone Release build and bundle audit, Mac app, Academy, website,
+Mac/Linux sanitizers and exact cross-platform audio comparison.
+[CI run](https://github.com/sariserhan/jamloom/actions/runs/40056045246),
+[receipt](evidence/project-completion-20261023/final-ci.json).
+The preceding `5eea8f9` run was superseded by this final commit; it is not a failed qualification.
+
+**PASS:** production serves that exact commit in READY deployment
+`dpl_918T3ajTKsQE2J8ZAg95BvEdPyer`; `/download` returns 200 and unauthenticated
+`/api/maintenance` returns 401. [Receipt](evidence/project-completion-20261023/final-website.json).
+The final provider recheck still shows no workers or queued/running jobs and the
+previous qualified image restored. [Shutdown recheck](evidence/project-completion-20261023/reggae-final-state.json).
+Billing still reports only the earlier hourly aggregate, so final diagnostic
+provider cost remains unconfirmed. [Billing recheck](evidence/project-completion-20261023/reggae-billing-followup.json).
+
+Remaining gates are physical iPad/Duo and external audio hardware, battery/thermal
+and long-session qualification, independent listening/calibration, final provider
+billing and purchase/release prerequisites. Public cloud generation and live
+purchases remain gated. Spotify application authentication passed; provider
+playlist/content integration is not enabled. These boundaries are not closed by
+automated checks or by the owner's acceptance of the new iPhone deck.

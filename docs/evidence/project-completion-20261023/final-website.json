@@ -1,0 +1,11 @@
+{
+  "gate": "PASS",
+  "deployment": "dpl_918T3ajTKsQE2J8ZAg95BvEdPyer",
+  "url": "jamloom-i4fuk83n2-ssari.vercel.app",
+  "source": "72a9f50d4a2c6b13e66cd356fdccfcfe99b9ed91",
+  "readyState": "READY",
+  "target": "production",
+  "downloadHTTP": 200,
+  "unauthorizedMaintenanceHTTP": 401,
+  "publicGeneration": "Remains gated"
+}
