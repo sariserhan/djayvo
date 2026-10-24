@@ -1,6 +1,6 @@
 # Improvise reggae delivery and recording treatment — 2026-10-23
 
-**PASS: local code and focused tests. PARTIAL: musical quality.** The owner heard no difference in the first tone comparison and rejected the reggae singer's style independently of the recording blend. [Exact feedback and reviewed audio/report hashes](evidence/improvise-reggae-revision/owner-feedback.json). That first treatment is not accepted as an improvement.
+**PASS: local code and focused tests. PARTIAL: musical quality.** The owner heard no difference in the first tone comparison and rejected the reggae singer's style independently of the recording blend. [Exact feedback and reviewed audio/report hashes](evidence/improvise-reggae-revision/owner-feedback.json). That first treatment is not accepted as an improvement. The subsequent owner review prefers reggae B but hears no improvement from the second recording treatment either. [Follow-up feedback](evidence/improvise-rhythm/owner-feedback.json). This accepts a relative reggae improvement, not every reggae output or the full-flow lyric sample.
 
 ## Changes
 

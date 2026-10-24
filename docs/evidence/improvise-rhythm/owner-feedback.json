@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-23",
+  "review_sha256": "27791867410d809faa8e9a25626625c01c867e2fd51f9d1c2f9d16d2fc1f5e86",
+  "reggae": {
+    "feedback": "B fits reggae better",
+    "status": "PASS: relative improvement for this controlled sample",
+    "audio_sha256": "7073d13e2798dc1c9c944a10e688f47fbf1557ec30f1e12946375ba6e0dc2b04"
+  },
+  "recording_treatment": {
+    "feedback": "Still no noticeable improvement",
+    "status": "FAIL: perceived improvement in second EQ/dynamics comparison"
+  },
+  "limits": "Not approval of every reggae output, the fresh full-flow sample, lyric quality or source identity. No acceptance of later rhythm trial inferred."
+}

@@ -1,0 +1,17 @@
+{
+  "report_sha256": "d78116a824b956a4ff0c6a6e282d9b7b5dda22350e1823a85952e8de48e10d11",
+  "assets": {
+    "reggae-before.wav": "570e650b5b09ed0b66f9d173b0974f9be09ae07c231bb04d1ce8e0868bc619fd",
+    "reggae-after.wav": "ff9f073c7feb0c28f1c4896e4b8557fb49fab569277787d44977c29b0468e535",
+    "reggae-before-full.wav": "6ef7a153c081aa9e9fb6ded20f66440e1d53ef588cdc51b56c87389dfddc8830",
+    "reggae-after-full.wav": "e64bee71a773adf41d716919ed91a1e92f40f951b2ebca4d72a27310593e701d",
+    "reggae-voice.wav": "f5ef2d785cd8d0831eaa5ed4ce27472825f9a1414bef9686a6763f7d0bfba473",
+    "funk-before.wav": "1bc91c9a3deae6c043bb68266719fa77411131418e9bd5404de60efbf562ef1f",
+    "funk-after.wav": "9b48cb85769e1e1728d23040a7736fc4551efee1057db720f7692a8ca5512294",
+    "funk-before-full.wav": "7b97578f8eb998dc01ee05c6b36bd0abb04db251df596ed44f5abb9f96c03747",
+    "funk-after-full.wav": "9c6fc6b72ae37f4ebce7be766ee1ffb8ef3baee1264b89571080fdc5c8de75c7",
+    "funk-voice.wav": "0b7f03154105e03c3bfa3442be7ca8b9c39998e3ed33c280112d533a0101f9d1",
+    "original-phrase.wav": "4d29dbbf69d5e1c9701a43b3c72ea14bcad3ba701bd65b14a6607db170f2305e"
+  },
+  "listening": "NOT RUN"
+}

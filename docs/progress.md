@@ -1,3 +1,11 @@
+## Improvise rhythm experiment and reggae listening — 2026-10-23
+
+**PASS: owner prefers revised reggae B. FAIL: second tone treatment did not produce noticeable improvement. PARTIAL: new rhythm trial.** Feedback is recorded against the reviewed packet and exact reggae audio; no blanket reggae or source-identity acceptance is inferred. The serving code is unchanged this increment.
+
+The local rhythm trial fits the actual complete source phrase to the estimated drum pulse and repeats the final word once. Reggae uses the preferred revised song; funk uses an existing song. Both A/B pairs share the same music and entrance. Synthetic duration/pitch/finite/input-preservation checks pass; two real mixes preserve surrounding PCM exactly and stay below the peak ceiling. House had no safe shared placement and is omitted with a recorded failure. Phrase/word selection is ASR-assisted and manual for this source; this is not a validated universal selector.
+
+Review at `http://127.0.0.1:4249/rhythm-match/`. All 11 real files pass muted Chromium/WebKit playback, single-player, accessibility, responsive overflow and runtime-error checks; mobile screenshot inspected. Used the previously authorized Playwright fallback because the Browser execution tool remains unavailable. [Feedback, evidence and reproduction](improvise-rhythm-review.md). New human listening and automatic/hosted integration remain open. No new song inference, training, paid compute, uploads, schema changes or deployment; only local stem separation of the existing preferred reggae output.
+
 ## Improvise reggae phrasing and stronger recording treatment — 2026-10-23
 
 **PASS, local technical; PARTIAL, musical quality.** Owner feedback rejects perceived improvement in the first A/B tone treatment and the reggae vocal style. The actual old prompt combined reggae backing with soul/legato singing. The shared Improvise prompt now directs short syncopated melodic phrases, offbeat pickups, restrained vibrato and band-response space. Reggae lyric instructions emphasize short conversational lines without instrument directions. Other styles and explicit Music DNA directions remain unchanged.

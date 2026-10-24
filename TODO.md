@@ -1,7 +1,12 @@
+## Improvise rhythm listening experiment — 2026-10-23
+
+- [x] **IMPROVISE-REGGAE-LISTEN — PASS, relative improvement:** Owner says revised reggae B fits reggae better. This is specific to the controlled sample; broader genre/naturalness and full-flow lyrics remain unqualified. [Feedback](docs/evidence/improvise-rhythm/owner-feedback.json).
+- [ ] **IMPROVISE-SOURCE-FIT — PARTIAL:** Owner hears no noticeable improvement from either EQ/dynamics round. New beat-fitted whole-phrase plus final-word-repeat comparisons pass local signal/PCM checks in reggae and funk. House safely rejects for lack of shared space. Eleven review files pass muted Chromium/WebKit checks. Listen at `http://127.0.0.1:4249/rhythm-match/`. General selection, musical acceptance and serving integration of this rhythm hypothesis remain NOT RUN. [Report](docs/improvise-rhythm-review.md).
+
 ## Improvise reggae phrasing and stronger recording treatment — 2026-10-23
 
 - [x] **IMPROVISE-REGGAE — PASS, local technical:** Replaced generic soul/legato reggae singing direction with syncopated reggae phrasing; refined reggae lyric instructions. More detailed source EQ and stronger bounded compression retain original recording, pitch and duration. Forty-four focused tests, 30 mixes, one controlled fresh song, two full local studio runs and Chromium/WebKit playback of all 24 review files pass. [Report and receipts](docs/improvise-reggae-revision.md).
-- [ ] **IMPROVISE-REGGAE-QUALITY — PARTIAL:** Previous tone improvement and reggae vocal style rejected by owner. New singing and same-placement source-treatment trials await listening at `http://127.0.0.1:4249/reggae-revision/`. Full-flow lyrics still need polish. Perceived source identity, genre delivery and naturalness are not inferred from technical checks. Hosted qualification and publication NOT RUN.
+- [ ] **IMPROVISE-REGGAE-QUALITY — PARTIAL:** Owner prefers revised reggae B (relative improvement for that sample). Both tone-treatment rounds produced no noticeable improvement. New rhythm/word-reply trials await listening at `http://127.0.0.1:4249/rhythm-match/`. Full-flow lyrics still need polish. Perceived source identity, genre delivery and naturalness are not inferred from technical checks. Hosted qualification and publication NOT RUN.
 
 ## Improvise recording tone and level — 2026-10-23
 
