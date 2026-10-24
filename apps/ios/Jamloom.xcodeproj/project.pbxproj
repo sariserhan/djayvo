@@ -36,11 +36,13 @@
 		9594ED6B246734DDD9648325 /* analysis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E3764675A02ECC77FCB18D7 /* analysis.cpp */; };
 		997616C15CFC7023A67F0673 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6FC7B79AED84081562F85C /* PerformanceTests.swift */; };
 		9D3AFC0695A502C09836CB14 /* remix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D36F09BD0C31A98B93E8591 /* remix.cpp */; };
+		A6A88CB0F000FE5D99F8C9E7 /* AppleMusicFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE5AB9D326553ADAAB85AEE /* AppleMusicFavorites.swift */; };
 		A6F0380593420B13FD3728C4 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECADB888A44B343A9F98AFC7 /* input.cpp */; };
 		A782AD1688A5968DBB71BC42 /* improvise-styles.json in Resources */ = {isa = PBXBuildFile; fileRef = D43A832EC9FCD72385B24D06 /* improvise-styles.json */; };
 		A7A5B67A05EFA20463774DF3 /* voice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F96217E3F88508B83C207EFD /* voice.cpp */; };
 		A99783723F5E1CBE058F1BB2 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599320B94B8B3C60346D5875 /* session.cpp */; };
 		AD3B17FC8F3C9E6F302163C7 /* CreditPurchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D1DD8B5B38100F8208C16D /* CreditPurchases.swift */; };
+		AE9DCACD29D33D97E4E6110F /* dna-languages.json in Resources */ = {isa = PBXBuildFile; fileRef = BA0D060435681D8D1301B020 /* dna-languages.json */; };
 		AFDE0493993178A9E7F5D562 /* TasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102524A2E8C6A45767B51DFA /* TasteTests.swift */; };
 		B6C2756D9D8FD76E6D3D3FBD /* licenses in Resources */ = {isa = PBXBuildFile; fileRef = 676104D5CE7DBA493DBF322E /* licenses */; };
 		B763B68E36CB1CBEC3467D83 /* AudioInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C449519E857CCA87F77CCA7A /* AudioInput.swift */; };
@@ -54,6 +56,7 @@
 		EA397E2A38B903C6ADD6C302 /* c_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 349507E6CB1B4CAF64C016D2 /* c_api.cpp */; };
 		EADCB3454AFC675C2FF24488 /* LocalCredits.storekit in Resources */ = {isa = PBXBuildFile; fileRef = EA3023065583600FBCEF3071 /* LocalCredits.storekit */; };
 		F2E6D213AB1C32C13D2EEF23 /* StudioServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC0A3578A8991E5DEF6503A /* StudioServer.swift */; };
+		FBCEC495F16BF2409E06070F /* AppleMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F06F88AE491AA4BE88A4FBC /* AppleMusicTests.swift */; };
 		FDBB60E7CEA0BAFCB273A8ED /* RemixEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6759756AEC3E73B056A85E2 /* RemixEngine.swift */; };
 /* End PBXBuildFile section */
 
@@ -109,11 +112,13 @@
 		917F5B7E0A4EDD7D8CA8C490 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		97D63F9E78BE8A4E9C10828F /* MusicDNA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDNA.swift; sourceTree = "<group>"; };
 		98D11C624280A4B7D35475C1 /* guitar_bank.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = guitar_bank.inc; sourceTree = "<group>"; };
+		9F06F88AE491AA4BE88A4FBC /* AppleMusicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicTests.swift; sourceTree = "<group>"; };
 		AC6FC7B79AED84081562F85C /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		AD2EB4E1EE1BB4096A89995E /* electronic_bank.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = electronic_bank.inc; sourceTree = "<group>"; };
 		AFC0A3578A8991E5DEF6503A /* StudioServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioServer.swift; sourceTree = "<group>"; };
 		B2D1DD8B5B38100F8208C16D /* CreditPurchases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditPurchases.swift; sourceTree = "<group>"; };
 		B6D54B2307E83BF311E329C6 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		BA0D060435681D8D1301B020 /* dna-languages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "dna-languages.json"; sourceTree = "<group>"; };
 		C02DDB4842983D2C220FE180 /* AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
 		C1BD9688ED749C61D0768BB6 /* resample_pcm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resample_pcm.h; sourceTree = "<group>"; };
 		C3629937B433702DD137C634 /* remix_file.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = remix_file.cpp; sourceTree = "<group>"; };
@@ -127,6 +132,7 @@
 		E9E7D80A812646BF27A24CEC /* plan.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = plan.cpp; sourceTree = "<group>"; };
 		EA3023065583600FBCEF3071 /* LocalCredits.storekit */ = {isa = PBXFileReference; path = LocalCredits.storekit; sourceTree = "<group>"; };
 		ECADB888A44B343A9F98AFC7 /* input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
+		EFE5AB9D326553ADAAB85AEE /* AppleMusicFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicFavorites.swift; sourceTree = "<group>"; };
 		F3010237F616466763D78A6D /* JamloomTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = JamloomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F56535D124F9214619CD1F94 /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		F696D52DCA58CAE4E76EB9A2 /* PurchaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTests.swift; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 		5437CE8D5D9098DBB05F354F /* manifests */ = {
 			isa = PBXGroup;
 			children = (
+				BA0D060435681D8D1301B020 /* dna-languages.json */,
 				D43A832EC9FCD72385B24D06 /* improvise-styles.json */,
 			);
 			name = manifests;
@@ -210,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				F56535D124F9214619CD1F94 /* AccountTests.swift */,
+				9F06F88AE491AA4BE88A4FBC /* AppleMusicTests.swift */,
 				EA3023065583600FBCEF3071 /* LocalCredits.storekit */,
 				6008279FB014E3E2C600ACE2 /* MobileAudioTests.swift */,
 				AC6FC7B79AED84081562F85C /* PerformanceTests.swift */,
@@ -225,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				2939FD8D1B87A8606A585960 /* Account.swift */,
+				EFE5AB9D326553ADAAB85AEE /* AppleMusicFavorites.swift */,
 				3B9E46D0F0B6F3890F3CD11F /* AppModel.swift */,
 				6F16A8D072B07DB6A914D103 /* Assets.xcassets */,
 				C449519E857CCA87F77CCA7A /* AudioInput.swift */,
@@ -401,6 +410,7 @@
 				7EC9429BD9E7967B2E0E1975 /* PrivacyInfo.xcprivacy in Resources */,
 				91F91D1B9B7EF3EE8B17CDE2 /* Studio in Resources */,
 				8E697E97E701C8135F0BD051 /* acoustic_bank.inc in Resources */,
+				AE9DCACD29D33D97E4E6110F /* dna-languages.json in Resources */,
 				CD130110FCA1756D651B1E3E /* electronic_bank.inc in Resources */,
 				D5F8B6F0C944C5D6AF62F3E3 /* full_band_interpolation.inc in Resources */,
 				7CD883373702C1E01730C216 /* guitar_bank.inc in Resources */,
@@ -460,6 +470,7 @@
 			files = (
 				03691B81D660974A3768DCCB /* Account.swift in Sources */,
 				1848E2688592EA4B70C92346 /* AppModel.swift in Sources */,
+				A6A88CB0F000FE5D99F8C9E7 /* AppleMusicFavorites.swift in Sources */,
 				B763B68E36CB1CBEC3467D83 /* AudioInput.swift in Sources */,
 				233A512B1D3A82BB05E7A9E6 /* AudioSession.swift in Sources */,
 				21AA43411FB50CE5B8EC6684 /* CloudImprovise.swift in Sources */,
@@ -503,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EDED2CE18CA3081A4EED5EE /* AccountTests.swift in Sources */,
+				FBCEC495F16BF2409E06070F /* AppleMusicTests.swift in Sources */,
 				0CEE4B08A0AA65B0D554D98B /* MobileAudioTests.swift in Sources */,
 				997616C15CFC7023A67F0673 /* PerformanceTests.swift in Sources */,
 				35E9023246CF950B0E50A8C5 /* PurchaseTests.swift in Sources */,
@@ -580,7 +592,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -596,7 +608,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../core/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.4.1;
+				MARKETING_VERSION = 0.6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -664,7 +676,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -686,7 +698,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../core/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.4.1;
+				MARKETING_VERSION = 0.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

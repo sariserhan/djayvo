@@ -7,7 +7,24 @@ struct SongPreference: Codable, Equatable, Sendable {
     static let allowed = ["gentle", "intense", "slow", "fast", "piano", "guitar", "bass", "drums", "synth", "groove", "melody", "space"]
 }
 
+struct TasteReferenceMetadata: Codable, Equatable, Sendable {
+    let reference: String
+    let genre: String
+    let source: String
+    let id: Int?
+}
+
 struct TasteProfile: Codable, Equatable, Sendable {
+    static let maximumBytes = 4 * 1024 * 1024
+    static let maximumReferences = 5000
+    static let languages: [String: String] = {
+        struct Manifest: Decodable { let languages: [String: String] }
+        guard let url = Bundle.main.url(forResource: "dna-languages", withExtension: "json"),
+              let data = try? Data(contentsOf: url), let value = try? JSONDecoder().decode(Manifest.self, from: data) else { return [:] }
+        return value.languages
+    }()
+    var vocalLanguage: String? = nil
+    var referenceMetadata: [TasteReferenceMetadata]? = nil
     var version = 1
     var references: [String] = []
     var energy = "balanced"
@@ -20,12 +37,15 @@ struct TasteProfile: Codable, Equatable, Sendable {
     static let availableInstruments = ["piano", "guitar", "bass", "drums", "synth", "voice"]
     func validate() throws {
         try TasteCatalogue.validate(catalogue ?? [])
-        let songs = songPreferences ?? []
+        let songs = songPreferences ?? [], referenceSet = Set(references), metadata = referenceMetadata ?? []
+        guard metadata.count <= Self.maximumReferences, Set(metadata.map(\.reference)).count == metadata.count,
+              metadata.allSatisfy({ referenceSet.contains($0.reference) && !$0.genre.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && $0.genre.utf16.count <= 80 && $0.genre.rangeOfCharacter(from: .controlCharacters) == nil && ["itunes", "practice", "apple-music"].contains($0.source) && ($0.id == nil || (1...9007199254740991).contains($0.id!)) }),
+              vocalLanguage == nil || vocalLanguage == "auto" || Self.languages[vocalLanguage!] != nil else { throw CocoaError(.validationMissingMandatoryProperty) }
         guard songs.count <= 20, Set(songs.map(\.reference)).count == songs.count,
-              songs.allSatisfy({ references.contains($0.reference) && (1...5).contains($0.weight) &&
+              songs.allSatisfy({ referenceSet.contains($0.reference) && (1...5).contains($0.weight) &&
                   $0.aspects.count <= 12 && Set($0.aspects).count == $0.aspects.count &&
                   $0.aspects.allSatisfy({ SongPreference.allowed.contains($0) }) }),
-              (0...2).contains(direction ?? 0), version == 1, references.count <= 20,
+              (0...2).contains(direction ?? 0), version == 1, references.count <= Self.maximumReferences,
               references.allSatisfy({ !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && $0.utf16.count <= 160 }),
               ["gentle", "balanced", "intense"].contains(energy), (60...180).contains(tempo),
               (0...100).contains(novelty), !instruments.isEmpty,
@@ -36,21 +56,23 @@ struct TasteProfile: Codable, Equatable, Sendable {
     }
     mutating func setReferences(_ text: String) {
         references = text.split(separator: "\n").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
-        songPreferences = songPreferences?.filter { references.contains($0.reference) }
+        let selected = Set(references)
+        songPreferences = songPreferences?.filter { selected.contains($0.reference) }
+        referenceMetadata = referenceMetadata?.filter { selected.contains($0.reference) }
     }
     static func location() throws -> URL { try RemixLibrary.application().root.appendingPathComponent("taste-profile.json") }
     func save(to url: URL) throws {
         try validate()
         let data = try JSONEncoder().encode(self)
-        guard data.count <= 16384 else { throw CocoaError(.fileWriteOutOfSpace) }
+        guard data.count <= Self.maximumBytes else { throw CocoaError(.fileWriteOutOfSpace) }
         try data.write(to: url, options: [.atomic, .completeFileProtection])
     }
     static func load(from url: URL) throws -> Self {
         guard FileManager.default.fileExists(atPath: url.path) else { return Self() }
         let values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
-        guard values.isRegularFile == true, values.isSymbolicLink != true, (values.fileSize ?? 16385) <= 16384 else { throw CocoaError(.fileReadTooLarge) }
+        guard values.isRegularFile == true, values.isSymbolicLink != true, (values.fileSize ?? (Self.maximumBytes + 1)) <= Self.maximumBytes else { throw CocoaError(.fileReadTooLarge) }
         let data = try Data(contentsOf: url)
-        guard data.count <= 16384 else { throw CocoaError(.fileReadTooLarge) }
+        guard data.count <= Self.maximumBytes else { throw CocoaError(.fileReadTooLarge) }
         let value = try JSONDecoder().decode(Self.self, from: data); try value.validate(); return value
     }
 }
@@ -59,13 +81,20 @@ struct MusicDNAView: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     @ObservedObject var model: AppModel
     @ObservedObject var account: AccountModel
+    @ObservedObject var cloud: CloudSongModel
     @State private var showAccount = false
+    @State private var showCloud = false
+    @State private var showAppleMusic = false
+    @State private var search = ""
+    @State private var suggestions: [MusicSuggestion] = []
+    @State private var searching = false
     private enum InputField: Hashable { case references, search }
     @FocusState private var activeInput: InputField?
     @State private var catalogueSearch = ""
     @State private var seconds = 60
     private var direction: Int { profile.direction ?? 0 }
     @State private var profile = TasteProfile()
+    @State private var profileLoaded = false
     @State private var references = ""
     @State private var message = ""
     var body: some View {
@@ -78,7 +107,44 @@ struct MusicDNAView: View {
                         Text("Favourite song names are personal notes. Local previews use your controls; they do not analyze or download those songs.").font(.footnote)
                     }
                 }
+                Section("Your next song") {
+                    Button("Create a Music DNA song", systemImage: "sparkles") {
+                        activeInput = nil; profile.setReferences(references); showCloud = true
+                    }.buttonStyle(.borderedProminent).accessibilityIdentifier("cloudDNA")
+                    Text("Original vocals and music from your favorites. Review the credit price first.").font(.caption)
+                    Picker("Singing language", selection: Binding(get: { profile.vocalLanguage ?? "auto" }, set: { profile.vocalLanguage = $0 })) {
+                        Text("Automatic").tag("auto")
+                        ForEach(TasteProfile.languages.keys.sorted(), id: \.self) { Text(TasteProfile.languages[$0] ?? $0).tag($0) }
+                    }
+                }
+                Section {
+                    Button("Import Apple Music favorites", systemImage: "music.note.list") {
+                        activeInput = nil; profile.setReferences(references); showAppleMusic = true
+                    }.accessibilityIdentifier("appleMusicFavorites")
+                }
+                Section("Find a favorite") {
+                    HStack {
+                        TextField("Song or artist", text: $search).accessibilityIdentifier("dnaSearch")
+                        Button("Search", systemImage: "magnifyingglass") { Task { await findFavorites() } }
+                            .disabled(search.trimmingCharacters(in: .whitespacesAndNewlines).count < 2 || searching)
+                    }
+                    if searching { ProgressView() }
+                    ForEach(suggestions, id: \.reference) { result in
+                        Button {
+                            profile.setReferences(references)
+                            guard profile.references.count < TasteProfile.maximumReferences else { message = "Your list already has 5,000 favorites."; return }
+                            if !profile.references.contains(result.reference) { profile.references.append(result.reference) }
+                            if let metadata = result.metadata {
+                                profile.referenceMetadata = (profile.referenceMetadata ?? []).filter { $0.reference != result.reference } + [metadata]
+                            }
+                            references = profile.references.joined(separator: "\n"); suggestions = []; search = ""
+                        } label: {
+                            HStack { Image(systemName: "plus.circle.fill"); VStack(alignment: .leading) { Text(result.reference); Text(result.metadata?.genre ?? result.kind).font(.caption).foregroundStyle(.secondary) } }
+                        }
+                    }
+                }
                 Section("Favourite tracks and artists — one per line") {
+                    Text("\(references.split(separator: "\n").count) / 5,000 favorites").font(.caption)
                     TextEditor(text: $references).focused($activeInput, equals: .references).frame(minHeight: 100).accessibilityLabel("Favourite tracks and artists")
                 }
                 Section {
@@ -126,7 +192,7 @@ struct MusicDNAView: View {
                         do {
                             profile.setReferences(references)
                             try profile.save(to: TasteProfile.location()); message = "Saved locally. No audio generated or uploaded."
-                        } catch { message = "Choose at least one instrument and at most 20 references, up to 160 characters each. Saving must be available on this device." }
+                        } catch { message = "Choose at least one instrument and at most 5,000 references, up to 160 characters each. Saving must be available on this device." }
                     }
                     Button("Delete saved profile", role: .destructive) {
                         do { let url = try TasteProfile.location(); if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }; profile = TasteProfile(); references = ""; let feedback = try RemixLibrary.application().root.appendingPathComponent("taste-preference.json"); if FileManager.default.fileExists(atPath: feedback.path) { try FileManager.default.removeItem(at: feedback) }; message = "Profile deleted." }
@@ -179,16 +245,23 @@ struct MusicDNAView: View {
                     }) }
                 }
                 Section("Availability") {
-                    Text("Local instrumental previews work on this device. Full cloud songs are in Improvise when available. Mix your tracks in DJ Deck. Credit purchases remain closed.")
+                    Text("Local instrumental previews work on this device. Cloud Music DNA and Improvise use the same services as the website when available. Mix your tracks in DJ Deck. Credit purchases remain closed.")
                 }
-            }.scrollDismissesKeyboard(.interactively).disabled(account.busy).navigationTitle("My Music DNA").preferredColorScheme(.dark).tint(.mint)
+            }.scrollDismissesKeyboard(.interactively).disabled(account.busy || !profileLoaded).navigationTitle("My Music DNA").preferredColorScheme(.dark).tint(.mint)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) { Button("Account", systemImage: "person.crop.circle") { model.suspendAudio(cancelRender: false); showAccount = true } }
                     ToolbarItemGroup(placement: .keyboard) { Spacer(); Button("Done editing") { activeInput = nil } }
                 }
                 .sheet(isPresented: $showAccount) { AccountView(account: account) }
+                .sheet(isPresented: $showAppleMusic) { AppleMusicFavoritesView(profile: profile) { value, added in
+                    try value.save(to: TasteProfile.location()); profile = value; references = value.references.joined(separator: "\n")
+                    message = "Added \(added) Apple Music favorites on this device."
+                } }
+                .sheet(isPresented: $showCloud) { CloudDNAView(cloud: cloud, account: account, model: model, profile: profile) }
+                .onChange(of: references) { _, _ in cloud.tasteChanged() }
+                .onChange(of: profile) { _, _ in cloud.tasteChanged() }
                 .onDisappear { model.suspendAudio(cancelRender: true) }
-                .task { await model.loadLibrary(); do { profile = try TasteProfile.load(from: TasteProfile.location()); references = profile.references.joined(separator: "\n")
+                .task { guard !profileLoaded else { return }; defer { profileLoaded = true }; await model.loadLibrary(); do { profile = try TasteProfile.load(from: TasteProfile.location()); references = profile.references.joined(separator: "\n")
                     let feedback = try RemixLibrary.application().root.appendingPathComponent("taste-preference.json")
                     if FileManager.default.fileExists(atPath: feedback.path) {
                         guard (try feedback.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 100) < 16 else { throw CocoaError(.fileReadTooLarge) }
@@ -197,7 +270,50 @@ struct MusicDNAView: View {
                 } catch { message = "Saved profile could not be read. Delete it to start again." } }
         }
     }
+    private func findFavorites() async {
+        searching = true; defer { searching = false }
+        do {
+            let response: MusicSearchResult = try await account.transport.request("/api/music-search", method: "POST", body: JSONSerialization.data(withJSONObject: ["query": search]))
+            guard response.suggestions.count <= 100 else { throw URLError(.cannotParseResponse) }
+            for result in response.suggestions { var check = TasteProfile(); check.references = [result.reference]; check.referenceMetadata = result.metadata.map { [$0] }; try check.validate() }
+            suggestions = response.suggestions; message = suggestions.isEmpty ? "No matches. You can enter a name yourself." : ""
+        } catch { message = "Search is unavailable. You can enter your favorites below." }
+    }
     private var energyPicker: some View {
         Picker("Energy", selection: $profile.energy) { ForEach(["gentle", "balanced", "intense"], id: \.self) { Text($0.capitalized).tag($0) } }
+    }
+}
+
+struct MusicSuggestion: Decodable { let reference: String; let kind: String; let metadata: TasteReferenceMetadata? }
+struct MusicSearchResult: Decodable { let suggestions: [MusicSuggestion] }
+
+struct CloudDNAView: View {
+    @ObservedObject var cloud: CloudSongModel
+    @ObservedObject var account: AccountModel
+    @ObservedObject var model: AppModel
+    let profile: TasteProfile
+    @Environment(\.dismiss) private var dismiss
+    @State private var showAccount = false
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    Image(systemName: "waveform.path").font(.system(size: 56)).foregroundStyle(.mint)
+                    Text("Your taste. A new song.").font(.title.bold())
+                    Label("\(profile.references.count) \(profile.references.count == 1 ? "favorite" : "favorites")", systemImage: "music.note.list").font(.headline)
+                    Text(TasteProfile.languages[profile.vocalLanguage ?? ""] ?? "Automatic singing language").foregroundStyle(.secondary)
+                    if account.snapshot == nil { Button("Sign in", systemImage: "person.crop.circle") { showAccount = true }.buttonStyle(.borderedProminent) }
+                    Toggle("Use these favorites for cloud generation", isOn: $cloud.consent).disabled(cloud.controlsLocked)
+                    Text("Only your favorite names and preferences are sent. Your song stays private. Credits are used after you confirm the price.").font(.footnote).foregroundStyle(.secondary)
+                    CloudSongActions(cloud: cloud, model: model, account: account, reviewTitle: "Review Music DNA price") {
+                        Task { await cloud.reviewTaste(profile) }
+                    }
+                }.padding(24).frame(maxWidth: 760).frame(maxWidth: .infinity)
+            }.navigationTitle("Music DNA").navigationBarTitleDisplayMode(.inline)
+                .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done", systemImage: "checkmark") { dismiss() } } }
+                .sheet(isPresented: $showAccount, onDismiss: { Task { await cloud.connect(account) } }) { AccountView(account: account) }
+                .task { await cloud.connect(account) }
+                .onDisappear { cloud.stopPolling(); model.stopPlayback() }
+        }.preferredColorScheme(.dark).tint(.mint)
     }
 }

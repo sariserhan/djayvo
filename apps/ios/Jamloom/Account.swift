@@ -26,7 +26,7 @@ final class AccountTransport: NSObject, URLSessionTaskDelegate, @unchecked Senda
         allowed = allowed || (base.scheme == "http" && base.host == "127.0.0.1" && base.path.isEmpty && base.user == nil && base.password == nil && base.query == nil && base.fragment == nil)
         #endif
         guard allowed, path.hasPrefix("/api/"), !path.contains(".."), !path.contains("?"),
-              query.isEmpty || (path == "/api/improvise/song" && query.keys.allSatisfy({ ["id", "file"].contains($0) }) &&
+              query.isEmpty || ([CloudSongProduct.improvise.path, CloudSongProduct.musicDNA.path].contains(path) && query.keys.allSatisfy({ ["id", "file"].contains($0) }) &&
                 query["id"]?.range(of: "^[a-f0-9]{32}$", options: .regularExpression) != nil &&
                 (query["file"] == nil || query["file"] == "audio")) else {
             throw RemixError.message("Invalid account request.")
@@ -36,25 +36,26 @@ final class AccountTransport: NSObject, URLSessionTaskDelegate, @unchecked Senda
         return url.url!
     }
     func request<T: Decodable>(_ path: String, method: String = "GET", body: Data? = nil, query: [String: String] = [:]) async throws -> T {
-        guard (body?.count ?? 0) <= 65536 else { throw RemixError.message("Account request is too large.") }
+        let limit = ["/api/taste", CloudSongProduct.musicDNA.path].contains(path) ? TasteProfile.maximumBytes : 65536
+        guard (body?.count ?? 0) <= limit else { throw RemixError.message("Account request is too large.") }
         var request = URLRequest(url: try requestURL(path, query: query))
         request.httpMethod = method; request.httpBody = body
         request.setValue(base.absoluteString, forHTTPHeaderField: "Origin")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        let song = path == "/api/improvise/song"
+        let song = [CloudSongProduct.improvise.path, CloudSongProduct.musicDNA.path].contains(path)
         if song { request.setValue("1", forHTTPHeaderField: "X-Jamloom-DNA") }
         let (stream, response) = try await session.bytes(for: request)
         defer { stream.task.cancel() }
         guard let http = response as? HTTPURLResponse else { throw URLError(.badServerResponse) }
         if http.statusCode == 401 { clearCookies(); throw AccountError.signedOut }
         if http.statusCode == 409 && !song { throw AccountError.conflict }
-        guard response.mimeType == "application/json", response.expectedContentLength <= 65536 else {
+        guard response.mimeType == "application/json", response.expectedContentLength <= limit else {
             throw RemixError.message("Account service unavailable. Check your sign-in details or try again later. Local music is unchanged.")
         }
         var data = Data()
         for try await byte in stream {
-            guard data.count < 65536 else { throw URLError(.dataLengthExceedsMaximum) }
+            guard data.count < limit else { throw URLError(.dataLengthExceedsMaximum) }
             data.append(byte)
         }
         guard http.statusCode == 200 || (song && http.statusCode == 202) else {
@@ -64,8 +65,8 @@ final class AccountTransport: NSObject, URLSessionTaskDelegate, @unchecked Senda
         }
         return try JSONDecoder().decode(T.self, from: data)
     }
-    func songAudio(_ id: String) async throws -> URL {
-        let url = try requestURL("/api/improvise/song", query: ["id": id, "file": "audio"])
+    func songAudio(_ id: String, product: CloudSongProduct = .improvise) async throws -> URL {
+        let url = try requestURL(product.path, query: ["id": id, "file": "audio"])
         var (stream, response) = try await session.bytes(from: url)
         var storage: URLSession?
         var digest: String?
@@ -73,7 +74,7 @@ final class AccountTransport: NSObject, URLSessionTaskDelegate, @unchecked Senda
         if let http = response as? HTTPURLResponse, http.statusCode == 307 {
             stream.task.cancel()
             guard let location = http.value(forHTTPHeaderField: "Location"), let target = URL(string: location),
-                  Self.signedStorageURL(target), target.path.range(of: "^/[a-z0-9-]+/improvise/(private|public)/\(id)/[a-f0-9]{64}\\.wav$", options: .regularExpression) != nil else { throw URLError(.badURL) }
+                  Self.signedStorageURL(target), target.path.range(of: "^/[a-z0-9-]+/\(product.rawValue)/(private|public)/\(id)/[a-f0-9]{64}\\.wav$", options: .regularExpression) != nil else { throw URLError(.badURL) }
             digest = target.deletingPathExtension().lastPathComponent
             storage = storageSession()
             (stream, response) = try await storage!.bytes(from: target)
@@ -132,6 +133,7 @@ struct AccountTaste: Decodable { let profile: TasteProfile; let revision: Int }
 @MainActor final class AccountModel: ObservableObject {
     @Published private(set) var snapshot: AccountSnapshot?
     @Published private(set) var busy = false
+    @Published private(set) var creditProducts: [Product] = []
     @Published var message = ""
     private var revision: Int? = nil
     private let purchases = CreditPurchases()
@@ -148,7 +150,20 @@ struct AccountTaste: Decodable { let profile: TasteProfile; let revision: Int }
         }
     }
     deinit { updates?.cancel(); transport.session.invalidateAndCancel() }
-    func reset() { snapshot = nil; revision = nil; transport.clearCookies() }
+    func reset() { snapshot = nil; revision = nil; creditProducts = []; transport.clearCookies() }
+    var canPurchase: Bool { CreditPurchases.released && snapshot?.purchasesReleased == true }
+    func loadProducts() async {
+        guard canPurchase else { creditProducts = []; return }
+        await perform { creditProducts = try await purchases.products().sorted { $0.price < $1.price } }
+    }
+    func buy(_ product: Product) async {
+        guard canPurchase, creditProducts.contains(where: { $0.id == product.id }) else { return }
+        await perform {
+            let token = try await purchaseToken()
+            try await purchases.purchase(product, accountToken: token, deliver: acknowledgePurchase)
+            try await fetchSnapshot()
+        }
+    }
     func perform(_ work: () async throws -> Void) async {
         guard !busy else { return }; busy = true; message = ""
         defer { busy = false }
@@ -247,6 +262,16 @@ struct AccountView: View {
                         Button("Retry pending purchases") { Task { await account.retryPurchases() } }
                         Button("Sign out") { Task { await account.signOut() } }
                     }
+                    if account.canPurchase {
+                        Section("Add credits") {
+                            ForEach(account.creditProducts) { product in
+                                Button { Task { await account.buy(product) } } label: {
+                                    HStack { Label(product.displayName, systemImage: "sparkles"); Spacer(); Text(product.displayPrice).bold() }
+                                }
+                            }
+                            if account.creditProducts.isEmpty { Text("Credit packs are temporarily unavailable."); Button("Try again") { Task { await account.loadProducts() } } }
+                        }
+                    }
                 } else {
                     Section("Sign in to your existing account") {
                         TextField("Email", text: $email).textContentType(.username).keyboardType(.emailAddress).textInputAutocapitalization(.never).autocorrectionDisabled()
@@ -258,12 +283,13 @@ struct AccountView: View {
                         }
                     }
                 }
-                Text("Signing in is optional. Account sync sends only preferences you choose to save. Audio stays on this device. Sign in again after closing the app.")
-                Text("Purchases and paid generation remain closed while musical and billing checks are pending.")
+                Text("Signing in is optional. Local previews stay on this device. Cloud creation sends the recording or favorites you explicitly choose. Sign in again after closing the app.")
+                if !account.canPurchase { Text("Credit purchases and public generation remain closed while musical and billing checks are pending.") }
                 if account.busy { ProgressView("Contacting your account…") }
                 if !account.message.isEmpty { Text(account.message).accessibilityIdentifier("accountStatus") }
             }.disabled(account.busy).navigationTitle("Jamloom account")
                 .toolbar { Button("Done") { password = ""; dismiss() } }
+                .task(id: account.snapshot?.purchasesReleased) { await account.loadProducts() }
         }
     }
 }

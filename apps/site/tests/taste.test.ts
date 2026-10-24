@@ -1,5 +1,11 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {emptyTaste,validateTaste,tasteBrief,tasteRender,applySongPreferences,type Taste} from '../lib/taste';
+test('native Apple Music favorite metadata survives the shared profile boundary',()=>{
+ const profile={...emptyTaste,references:['Tune — Artist','Artist'],referenceMetadata:[{reference:'Tune — Artist',genre:'Jazz',source:'apple-music'}]};
+ assert.deepEqual(validateTaste(JSON.parse(JSON.stringify(profile))),profile);
+ assert.throws(()=>validateTaste({...profile,referenceMetadata:[{...profile.referenceMetadata[0],source:'unknown'}]}));
+ assert.throws(()=>validateTaste({...profile,referenceMetadata:[{...profile.referenceMetadata[0],reference:'Not selected'}]}));
+});
 test('taste derives explicit dimensions, never audio attributes from titles',()=>{
  const p=validateTaste({...emptyTaste,references:['Any artist — Any song']});const brief=tasteBrief(p);
  assert.equal(brief.tempo_bpm,110);assert.equal(brief.origin,'explicit_user_preferences');assert.equal(brief.audio_generated,false);

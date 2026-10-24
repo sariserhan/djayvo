@@ -10,6 +10,7 @@
 <key>CFBundleShortVersionString</key><string>$(MARKETING_VERSION)</string>
 <key>CFBundleVersion</key><string>$(CURRENT_PROJECT_VERSION)</string>
 <key>LSRequiresIPhoneOS</key><true/>
+<key>NSAppleMusicUsageDescription</key><string>Jamloom imports your starred song and artist names into your Music DNA preferences. You review them before saving. No Apple Music audio is copied.</string>
 <key>NSMicrophoneUsageDescription</key><string>Record a short sound when you tap Record. Preview it locally, or explicitly choose to send it for cloud song creation.</string>
 <key>NSAppTransportSecurity</key><dict><key>NSAllowsLocalNetworking</key><true/></dict>
 <key>UILaunchScreen</key><dict/>

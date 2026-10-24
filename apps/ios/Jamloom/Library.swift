@@ -52,7 +52,7 @@ struct RemixLibrary: Sendable {
                 guard try folder.resourceValues(forKeys: [.isSymbolicLinkKey]).isSymbolicLink != true else { throw RemixError.message("Invalid saved folder.") }
                 let metadata = folder.appendingPathComponent("session.json")
                 let metadataValues = try metadata.resourceValues(forKeys: [.fileSizeKey, .isSymbolicLinkKey, .isRegularFileKey])
-                guard metadataValues.isRegularFile == true, metadataValues.isSymbolicLink != true, (metadataValues.fileSize ?? 65537) <= 65536 else { throw RemixError.message("Invalid session record.") }
+                guard metadataValues.isRegularFile == true, metadataValues.isSymbolicLink != true, (metadataValues.fileSize ?? (TasteProfile.maximumBytes + 65537)) <= TasteProfile.maximumBytes + 65536 else { throw RemixError.message("Invalid session record.") }
                 let session = try JSONDecoder().decode(RemixSession.self, from: Data(contentsOf: metadata))
                 guard session.id.uuidString == folder.lastPathComponent,
                       session.styles == RemixEngine.styles || session.styles == ["club"] || (session.isTaste && session.styles == ["taste_a", "taste_b"]) else { throw RemixError.message("Invalid saved session.") }

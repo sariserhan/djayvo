@@ -21,7 +21,7 @@ export function inferCatalogueTaste(value:ReferenceChoice[]){
   explanation:'Genre scores use the catalogue labels and your ratings, not analysis of a recording. Your tempo, energy and instrument controls remain authoritative.'};
 }
 
-export type ReferenceMetadata={reference:string;genre:string;source:'itunes'|'practice';id?:number};
+export type ReferenceMetadata={reference:string;genre:string;source:'itunes'|'practice'|'apple-music';id?:number};
 export type TasteSuggestion={reference:string;kind:'Track'|'Artist'|'Saved favorite';detail:string;metadata?:ReferenceMetadata};
 const normalize=(value:string)=>value.normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim();
 function distance(a:string,b:string){

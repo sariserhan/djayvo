@@ -18,6 +18,17 @@ final class TasteTests: XCTestCase {
         value.references = [String(repeating: "🎵", count: 81)]
         XCTAssertThrowsError(try value.validate())
     }
+    func testLargeWebProfileRetainsMetadataAndLanguageWithoutTruncation() throws {
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".json")
+        defer { try? FileManager.default.removeItem(at: url) }
+        var profile = TasteProfile(); profile.references = (0..<5000).map { "Favorite \($0) — Artist" }; profile.vocalLanguage = "en"
+        profile.referenceMetadata = profile.references.enumerated().map { TasteReferenceMetadata(reference: $0.element, genre: "Jazz", source: "itunes", id: $0.offset + 1) }
+        try profile.save(to: url); XCTAssertEqual(try TasteProfile.load(from: url), profile)
+        profile.references.append("Too many"); XCTAssertThrowsError(try profile.validate()); profile.references.removeLast()
+        profile.referenceMetadata!.append(profile.referenceMetadata![0]); XCTAssertThrowsError(try profile.validate()); profile.referenceMetadata!.removeLast()
+        profile.vocalLanguage = "unknown"; XCTAssertThrowsError(try profile.validate()); profile.vocalLanguage = "auto"
+        profile.setReferences(profile.references[0]); XCTAssertEqual(profile.referenceMetadata?.count, 1); XCTAssertNoThrow(try profile.validate())
+    }
     func testCatalogueProfileRoundTripAndEvidence() throws {
         let track = try XCTUnwrap(TasteCatalogue.tracks.first)
         var profile = TasteProfile(); profile.catalogue = [TasteChoice(id: track.id, rating: "love", weight: 4)]
@@ -41,7 +52,8 @@ final class TasteTests: XCTestCase {
     func testCompositionRecoveryDeterminismCancellationAndTamper() throws {
         let store = try RemixLibrary(root: FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString))
         defer { try? FileManager.default.removeItem(at: store.root) }
-        let recipe = TasteRecipe(profile: TasteProfile(), seconds: 30)
+        var profile = TasteProfile(); profile.references = (0..<5000).map { "Favorite song \($0) — Artist" }
+        let recipe = TasteRecipe(profile: profile, seconds: 30)
         let a = try store.generateTaste(recipe: recipe, seed: 4123, cancellation: RenderCancellation())
         let b = try store.generateTaste(recipe: recipe, seed: 4123, cancellation: RenderCancellation())
         XCTAssertEqual(try store.load().sessions.count, 2)
@@ -76,5 +88,9 @@ final class TasteTests: XCTestCase {
         do { _ = try await worker.value; XCTFail("Expected cancellation") } catch RemixError.cancelled { }
         XCTAssertTrue(try FileManager.default.contentsOfDirectory(atPath: store.root.path).isEmpty)
     }
-    @MainActor func testPurchasesClosedBeforeQualityAndServerDelivery() { XCTAssertFalse(CreditPurchases.released) }
+    @MainActor func testPurchasesClosedBeforeQualityAndServerDelivery() async {
+        XCTAssertFalse(CreditPurchases.released)
+        let account = AccountModel(); XCTAssertFalse(account.canPurchase)
+        await account.loadProducts(); XCTAssertTrue(account.creditProducts.isEmpty)
+    }
 }

@@ -28,7 +28,7 @@ export function validateTaste(value:unknown):Taste{
  if(p.referenceMetadata!==undefined&&(!Array.isArray(p.referenceMetadata)||p.referenceMetadata.length>MAX_FAVORITES))throw Error('Invalid preference profile');
  const metadataSeen=new Set<string>();
  const referenceMetadata=p.referenceMetadata?.map(m=>{
-  if(!m||!referenceSet.has(m.reference)||metadataSeen.has(m.reference)||typeof m.genre!=='string'||!m.genre.trim()||m.genre.length>80||/[\u0000-\u001f\u007f]/.test(m.genre)||!['itunes','practice'].includes(m.source)||
+  if(!m||!referenceSet.has(m.reference)||metadataSeen.has(m.reference)||typeof m.genre!=='string'||!m.genre.trim()||m.genre.length>80||/[\u0000-\u001f\u007f]/.test(m.genre)||!['itunes','practice','apple-music'].includes(m.source)||
    (m.id!==undefined&&(!Number.isSafeInteger(m.id)||m.id<=0)))throw Error('Invalid preference profile');
   metadataSeen.add(m.reference);return {reference:m.reference,genre:m.genre.trim(),source:m.source,...(m.id!==undefined?{id:m.id}:{})};
  });

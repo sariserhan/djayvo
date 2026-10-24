@@ -35,7 +35,12 @@ enum CloudRecording {
     }
 }
 
-@MainActor final class CloudImproviseModel: ObservableObject {
+enum CloudSongProduct: String {
+    case improvise, musicDNA = "music-dna"
+    var path: String { self == .improvise ? "/api/improvise/song" : "/api/taste/song" }
+}
+
+@MainActor final class CloudSongModel: ObservableObject {
     struct Availability: Decodable, Sendable { let creditsEnabled: Bool?; let signedIn: Bool?; let active: String? }
     struct Quote: Decodable, Sendable { let credits: Int; let token: String; let expiresAt: Double }
     struct Job: Decodable, Sendable { let id: String?; let state: String?; let phase: String?; let cancelling: Bool? }
@@ -49,45 +54,49 @@ enum CloudRecording {
     @Published private(set) var state = ""
     @Published private(set) var message = ""
     @Published private(set) var audio: URL?
+    let product: CloudSongProduct
+    private var tasteInput: [String: Any]?
+    init(product: CloudSongProduct = .improvise) { self.product = product }
     private var source: String?
     private var sourceDigest: String?
     private var requestID: String?
     private var owner: String?
     private var polling: Task<Void, Never>?
     private var transport: AccountTransport?
-    private var profile: [String: Any] { ["sourceId": source ?? "", "genre": genre, "voice": voice, "phrase": "", "consent": true] }
-    private var historyKey: String { "jamloom-native-improvise-\(owner ?? "")" }
+    private var profile: [String: Any] { if product == .musicDNA { return tasteInput ?? [:] }; return ["sourceId": source ?? "", "genre": genre, "voice": voice, "phrase": "", "consent": true] }
+    private var historyKey: String { "jamloom-native-\(product.rawValue)-\(owner ?? "")" }
     var active: Bool { job != nil && !["completed", "failed", "cancelled"].contains(state) }
     var controlsLocked: Bool { busy || active }
     func invalidateQuote() { quote = nil; requestID = nil }
     func recordingChanged() { if !active { source = nil; sourceDigest = nil; invalidateQuote() } }
+    func tasteChanged() { if !active && !busy && (tasteInput != nil || quote != nil || consent) { tasteInput = nil; invalidateQuote(); consent = false } }
     func clearDownloadedAudio() { if let audio { try? FileManager.default.removeItem(at: audio) }; audio = nil }
     func newSong() {
         guard !active, !busy else { return }
         UserDefaults.standard.removeObject(forKey: historyKey)
-        job = nil; state = ""; source = nil; sourceDigest = nil; clearDownloadedAudio(); invalidateQuote(); consent = false
+        job = nil; state = ""; tasteInput = nil; source = nil; sourceDigest = nil; clearDownloadedAudio(); invalidateQuote(); consent = false
     }
     func connect(_ account: AccountModel) async {
         guard !busy else { return }
         if owner != account.snapshot?.user.id {
             clearDownloadedAudio()
-            polling?.cancel(); polling = nil; job = nil; source = nil; sourceDigest = nil; quote = nil; audio = nil; requestID = nil; state = ""; consent = false
+            polling?.cancel(); polling = nil; job = nil; source = nil; sourceDigest = nil; quote = nil; tasteInput = nil; audio = nil; requestID = nil; state = ""; consent = false
         }
         owner = account.snapshot?.user.id; transport = account.transport
         do {
-            let status: Availability = try await account.transport.request("/api/improvise/song")
+            let status: Availability = try await account.transport.request(product.path)
             available = status.creditsEnabled == true
             if owner != nil {
                 let saved = status.active ?? UserDefaults.standard.string(forKey: historyKey)
                 if let saved, saved.range(of: "^[a-f0-9]{32}$", options: .regularExpression) != nil { job = saved; state = "reconnecting"; watch() }
             }
-            if !available { message = "Cloud song creation is not open yet. Your recording stays here."; return }
+            if !available { message = "Cloud song creation is not open yet. Your inputs stay here."; return }
             guard owner != nil, status.signedIn == true else { message = "Sign in to make a cloud song."; return }
             message = ""
         } catch { available = false; message = error.localizedDescription }
     }
     func review(input: AudioInput, start: Double, end: Double) async {
-        guard consent, available, owner != nil, !controlsLocked, let transport else { return }
+        guard product == .improvise, consent, available, owner != nil, !controlsLocked, let transport else { return }
         busy = true; message = "Preparing your recording…"
         defer { busy = false }
         do {
@@ -100,6 +109,18 @@ enum CloudRecording {
                 try await transport.uploadSong(data, to: grant.url)
                 source = grant.id; sourceDigest = digest
             }
+            let price: Quote = try await post(["action": "quote", "profile": profile, "visibility": "private", "publicConsent": false])
+            guard price.credits > 0, price.expiresAt > Date().timeIntervalSince1970 * 1000 else { throw RemixError.message("Refresh the price and try again.") }
+            quote = price; message = "Private song. Review the price before creating."
+        } catch { message = error.localizedDescription }
+    }
+    func reviewTaste(_ value: TasteProfile) async {
+        guard product == .musicDNA, consent, available, owner != nil, !controlsLocked else { return }
+        busy = true; defer { busy = false }
+        do {
+            try value.validate()
+            guard !value.references.isEmpty else { throw RemixError.message("Add a favorite song or artist first.") }
+            tasteInput = try JSONSerialization.jsonObject(with: JSONEncoder().encode(value)) as? [String: Any]
             let price: Quote = try await post(["action": "quote", "profile": profile, "visibility": "private", "publicConsent": false])
             guard price.credits > 0, price.expiresAt > Date().timeIntervalSince1970 * 1000 else { throw RemixError.message("Refresh the price and try again.") }
             quote = price; message = "Private song. Review the price before creating."
@@ -123,21 +144,21 @@ enum CloudRecording {
     }
     func cancel() async {
         guard active, let job, let transport else { return }
-        do { let _: Job = try await transport.request("/api/improvise/song", method: "DELETE", query: ["id": job]); state = "cancelling"; message = "Waiting for cancellation confirmation…" }
+        do { let _: Job = try await transport.request(product.path, method: "DELETE", query: ["id": job]); state = "cancelling"; message = "Waiting for cancellation confirmation…" }
         catch { message = "Cancellation is not confirmed. Check again before leaving." }
     }
     private func post<T: Decodable & Sendable>(_ body: [String: Any]) async throws -> T {
         guard let transport else { throw AccountError.signedOut }
-        return try await transport.request("/api/improvise/song", method: "POST", body: JSONSerialization.data(withJSONObject: body))
+        return try await transport.request(product.path, method: "POST", body: JSONSerialization.data(withJSONObject: body))
     }
     private func watch() {
         polling?.cancel()
         guard let id = job, let transport else { return }
-        let checkingUntil = Date().addingTimeInterval(60)
+        let checkingUntil = Date().addingTimeInterval(60), path = product.path
         polling = Task { [weak self] in
             while !Task.isCancelled {
                 do {
-                    let result: Job = try await transport.request("/api/improvise/song", query: ["id": id])
+                    let result: Job = try await transport.request(path, query: ["id": id])
                     guard !Task.isCancelled, let self, self.job == id else { return }
                     self.state = result.cancelling == true ? "cancelling" : result.state ?? "reconnecting"
                     self.message = result.phase?.replacingOccurrences(of: "_", with: " ").capitalized ?? ""
@@ -164,13 +185,13 @@ enum CloudRecording {
     func download() async {
         guard state == "completed", !busy, let job, let transport else { return }
         busy = true; defer { busy = false }
-        do { audio = try await transport.songAudio(job) } catch { message = error.localizedDescription }
+        do { audio = try await transport.songAudio(job, product: product) } catch { message = error.localizedDescription }
     }
     func stopPolling() { polling?.cancel(); polling = nil }
 }
 
 struct CloudImproviseView: View {
-    @ObservedObject var cloud: CloudImproviseModel
+    @ObservedObject var cloud: CloudSongModel
     @ObservedObject var account: AccountModel
     @ObservedObject var model: AppModel
     @Environment(\.dismiss) private var dismiss
@@ -215,27 +236,9 @@ struct CloudImproviseView: View {
                         Toggle("Send this clip for cloud processing", isOn: $cloud.consent).labelsHidden().fixedSize().disabled(cloud.controlsLocked)
                     }
                     Text("Only your selected clip is uploaded. Your song stays private. Credits are used only after you confirm the price.").font(.footnote).foregroundStyle(.secondary)
-                    if !cloud.message.isEmpty { Text(cloud.message).accessibilityIdentifier("cloudSongStatus") }
-                    if cloud.active {
-                        ProgressView(cloud.state.capitalized)
-                        Button("Cancel song", role: .destructive) { Task { await cloud.cancel() } }
-                    } else if cloud.state == "completed" {
-                        if let audio = cloud.audio {
-                            Button("Play song", systemImage: "play.circle.fill") { Task { await model.play(audio) } }.buttonStyle(.borderedProminent)
-                            ShareLink("Save or share song", item: audio)
-                        } else { Button("Download song", systemImage: "arrow.down.circle") { Task { await cloud.download() } }.disabled(cloud.busy) }
-                        Button("Make another song") { cloud.newSong() }
-                    } else if ["failed", "cancelled"].contains(cloud.state) {
-                        Button("Try another song") { cloud.newSong() }
-                    } else if let price = cloud.quote {
-                        Button("Create song · \(price.credits) credits", systemImage: "sparkles") { Task { await cloud.submit() } }.buttonStyle(.borderedProminent).disabled(cloud.controlsLocked || !cloud.consent)
-                        Button("Change style") { cloud.invalidateQuote() }
-                    } else {
-                        Button("Upload clip & review price", systemImage: "arrow.up.circle") {
-                            if let input = model.input { Task { await cloud.review(input: input, start: model.trimStart, end: model.trimEnd) } }
-                        }.buttonStyle(.borderedProminent).disabled(!cloud.available || !cloud.consent || account.snapshot == nil || cloud.controlsLocked)
+                    CloudSongActions(cloud: cloud, model: model, account: account, reviewTitle: "Upload clip & review price") {
+                        if let input = model.input { Task { await cloud.review(input: input, start: model.trimStart, end: model.trimEnd) } }
                     }
-                    if cloud.busy { ProgressView() }
                 }.padding().frame(maxWidth: 760).frame(maxWidth: .infinity)
             }.navigationTitle("Improvise").navigationBarTitleDisplayMode(.inline)
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done", systemImage: "checkmark") { dismiss() } } }
@@ -243,5 +246,35 @@ struct CloudImproviseView: View {
                 .task { await cloud.connect(account) }
                 .onDisappear { cloud.stopPolling(); model.stopPlayback() }
         }.preferredColorScheme(.dark).tint(.mint)
+    }
+}
+
+struct CloudSongActions: View {
+    @ObservedObject var cloud: CloudSongModel
+    @ObservedObject var model: AppModel
+    @ObservedObject var account: AccountModel
+    let reviewTitle: String
+    let review: () -> Void
+    var body: some View {
+        if !cloud.message.isEmpty { Text(cloud.message).accessibilityIdentifier("cloudSongStatus") }
+        if cloud.active {
+            ProgressView(cloud.state.capitalized)
+            Button("Cancel song", role: .destructive) { Task { await cloud.cancel() } }
+        } else if cloud.state == "completed" {
+            if let audio = cloud.audio {
+                Button("Play song", systemImage: "play.circle.fill") { Task { await model.play(audio) } }.buttonStyle(.borderedProminent)
+                ShareLink("Save or share song", item: audio)
+            } else { Button("Download song", systemImage: "arrow.down.circle") { Task { await cloud.download() } }.disabled(cloud.busy) }
+            Button("Make another song") { cloud.newSong() }
+        } else if ["failed", "cancelled"].contains(cloud.state) {
+            Button("Try another song") { cloud.newSong() }
+        } else if let price = cloud.quote {
+            Button("Create song · \(price.credits) credits", systemImage: "sparkles") { Task { await cloud.submit() } }.buttonStyle(.borderedProminent).disabled(cloud.controlsLocked || !cloud.consent)
+            Button("Change choices") { cloud.invalidateQuote() }
+        } else {
+            Button(reviewTitle, systemImage: "sparkles", action: review)
+                .buttonStyle(.borderedProminent).disabled(!cloud.available || !cloud.consent || account.snapshot == nil || cloud.controlsLocked)
+        }
+        if cloud.busy { ProgressView() }
     }
 }

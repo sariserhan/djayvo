@@ -76,6 +76,40 @@ final class FlowTests: XCTestCase {
         XCTAssertEqual(app.switches["Send this clip for cloud processing"].value as? String, "0")
         let image = XCTAttachment(screenshot: app.screenshot()); image.name = "Explicit cloud consent"; image.lifetime = .keepAlways; add(image)
     }
+    func testAppleMusicImportPreviewRequiresExplicitConnection() {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
+        app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
+        app.launch(); app.buttons["Music DNA"].firstMatch.tap()
+        let button = app.buttons["appleMusicFavorites"]
+        XCTAssertTrue(button.waitForExistence(timeout: 15)); waitUntilEnabled(button)
+        for _ in 0..<4 { if button.isHittable { break }; app.swipeUp() }
+        button.tap()
+        XCTAssertTrue(app.buttons["loadAppleFavorites"].waitForExistence(timeout: 10))
+        XCTAssertFalse(app.staticTexts["appleFavoritesStatus"].exists)
+        XCTAssertFalse(app.buttons["addAppleFavorites"].exists)
+        let image = XCTAttachment(screenshot: app.screenshot()); image.name = "Apple Music explicit import"; image.lifetime = .keepAlways; add(image)
+        app.buttons["Cancel"].tap()
+        XCTAssertTrue(button.waitForExistence(timeout: 5))
+    }
+    func testMusicDNACloudConsentKeepsLocalFavoritesAndRequiresSignIn() {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
+        app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
+        app.launch(); app.buttons["Music DNA"].firstMatch.tap()
+        let references = app.textViews["Favourite tracks and artists"]
+        XCTAssertTrue(references.waitForExistence(timeout: 15)); waitUntilEnabled(references)
+        app.swipeUp(); references.tap(); references.typeText("A favorite song — Artist")
+        app.buttons["Done editing"].tap()
+        let create = app.buttons["cloudDNA"]
+        for _ in 0..<5 { if create.isHittable { break }; app.swipeDown() }
+        create.tap()
+        XCTAssertTrue(app.buttons["Sign in"].waitForExistence(timeout: 15))
+        XCTAssertEqual(app.switches["Use these favorites for cloud generation"].value as? String, "0")
+        let quote = app.buttons["Review Music DNA price"]
+        XCTAssertTrue(quote.exists); XCTAssertFalse(quote.isEnabled)
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); image.name = "Native cloud Music DNA"; image.lifetime = .keepAlways; add(image)
+        app.buttons["Done"].firstMatch.tap()
+        XCTAssertEqual(references.value as? String, "A favorite song — Artist")
+    }
     func testTasteTabPersistenceAndDeletion() {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing"]
@@ -85,6 +119,7 @@ final class FlowTests: XCTestCase {
         XCTAssertTrue(tab.waitForExistence(timeout: 15)); tab.tap()
         let references = app.textViews["Favourite tracks and artists"]
         XCTAssertTrue(references.waitForExistence(timeout: 10))
+        waitUntilEnabled(references); app.swipeUp()
         references.tap(); references.typeText("An original tune")
         app.buttons["Done editing"].tap()
         app.swipeUp()

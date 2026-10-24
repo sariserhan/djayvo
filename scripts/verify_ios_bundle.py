@@ -12,6 +12,7 @@ def verify(bundle):
     privacy = plistlib.loads((bundle / 'PrivacyInfo.xcprivacy').read_bytes())
     assert info['CFBundleName'] == 'Jamloom'
     assert info['NSMicrophoneUsageDescription']
+    assert info['NSAppleMusicUsageDescription']
     assert not info.get('UIBackgroundModes'), 'Unexpected background capture entitlement'
     assert not info.get('UIFileSharingEnabled'), 'Private source library must not be exposed'
     assert privacy['NSPrivacyTracking'] is False
@@ -48,6 +49,7 @@ def verify(bundle):
                 for p in expected_studio.rglob('*') if p.is_file()}
     assert actual == expected and expected, 'Native studio bundle mismatch'
     assert not any(p.is_symlink() for p in (bundle / 'Studio').rglob('*')), 'Studio symlink'
+    assert (bundle / 'dna-languages.json').read_bytes() == (repo / 'assets/manifests/dna-languages.json').read_bytes(), 'Music DNA language mismatch'
     executable = bundle / info['CFBundleExecutable']
     binary = executable.read_bytes()
     assert b'--ui-testing' not in binary and b'JAMLOOM_UI_TEST_LIBRARY' not in binary, 'Debug control found in Release'

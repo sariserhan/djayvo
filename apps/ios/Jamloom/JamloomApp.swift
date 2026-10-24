@@ -7,12 +7,13 @@ struct JamloomApp: App {
     @StateObject private var model = AppModel()
     @StateObject private var account = AccountModel()
     @StateObject private var decks = DJModel()
+    @StateObject private var dnaCloud = CloudSongModel(product: .musicDNA)
     @State private var showError = false
     @Environment(\.scenePhase) private var scenePhase
     var body: some Scene { WindowGroup {
         TabView {
-            RemixView(account: account, model: model, clearDecks: { decks.clear() }).tabItem { Label("Improvise", systemImage: "waveform") }
-            MusicDNAView(model: model, account: account).tabItem { Label("Music DNA", systemImage: "music.note.list") }
+            RemixView(account: account, model: model, clearDecks: { decks.clear(); dnaCloud.clearDownloadedAudio() }).tabItem { Label("Improvise", systemImage: "waveform") }
+            MusicDNAView(model: model, account: account, cloud: dnaCloud).tabItem { Label("Music DNA", systemImage: "music.note.list") }
             DJDeckView(decks: decks, model: model).tabItem { Label("DJ Deck", systemImage: "opticaldisc") }
         }
             .onChange(of: scenePhase) { _, phase in
@@ -43,7 +44,7 @@ struct JamloomApp: App {
 
 struct RemixView: View {
     @ObservedObject var account: AccountModel
-    @StateObject private var cloud = CloudImproviseModel()
+    @StateObject private var cloud = CloudSongModel()
     @State private var showCloud = false
     @State private var showAccount = false
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
