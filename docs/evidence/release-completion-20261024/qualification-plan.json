@@ -1,5 +1,5 @@
 {
-  "status": "PREPARED; awaiting fresh approval",
+  "status": "APPROVED; awaiting immutable image and execution",
   "maxUSD": 6,
   "maxWorkers": 1,
   "maxSecondsTotal": 2400,
@@ -24,5 +24,6 @@
   "source": "renders/improvise-finish-20261023/sources/cloud-normalized.wav",
   "image": "New immutable worker digest built from the vocal-balance correction; resolve and record before activation",
   "safety": "One worker, independent shutdown watchdog, isolated local database, temporary R2 cleanup, restore original image, stop on failed first trial, no automatic retries, no public activation",
-  "uncertainty": "Prior hosted failure did not retain its gain value. Safe attenuation now passes local regression tests; hosted jazz cause/fix is not yet proven."
+  "uncertainty": "Prior hosted failure did not retain its gain value. Safe attenuation now passes local regression tests; hosted jazz cause/fix is not yet proven.",
+  "authorization": "Owner approved the capped $6 checks on October 24, 2026: one 35-second jazz request then one 100-second Music DNA request with 5,000 favorites; stop on failure."
 }

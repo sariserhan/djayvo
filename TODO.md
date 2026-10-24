@@ -1,3 +1,7 @@
+## Native Music DNA web alignment — 2026-10-24
+
+**Implementation and physical iPhone PASS; simulator report PARTIAL.** Removed the manual musical-direction controls and separate local composition entry from Music DNA. Favorites now use removable rows, automatic local saving, and the shared web song service; practice tracks join the same list. Optional Apple Music and YouTube imports and earlier saved recordings remain available. Two physical iPhone UI checks pass; seven simulator unit checks and three simulator UI cases pass, but Xcode report finalization stalled. 0.8.0 (12), including aligned privacy declarations, is installed; signed archive/export and bundle audit pass. App Store Connect Data Collection is completed, published and verified after reload. [Release ledger](docs/release-completion-20261024.md).
+
 ## Release follow-through — 2026-10-24
 
 **Overall PARTIAL.** Account-deletion initiation and vocal-balance correction implemented and locally checked. TestFlight preparation, actual Apple sandbox receipts, bounded hosted requalification and human/hardware evidence remain separate. [Current release ledger](docs/release-completion-20261024.md).

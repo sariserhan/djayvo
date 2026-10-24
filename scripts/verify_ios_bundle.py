@@ -21,11 +21,18 @@ def verify(bundle):
     assert {row['NSPrivacyCollectedDataType'] for row in collected} == {
         'NSPrivacyCollectedDataTypeEmailAddress', 'NSPrivacyCollectedDataTypeUserID',
         'NSPrivacyCollectedDataTypeOtherUserContent', 'NSPrivacyCollectedDataTypePurchaseHistory',
-        'NSPrivacyCollectedDataTypeAudioData'}
-    assert all(row['NSPrivacyCollectedDataTypeLinked'] is True and
-               row['NSPrivacyCollectedDataTypeTracking'] is False and
-               row['NSPrivacyCollectedDataTypePurposes'] == ['NSPrivacyCollectedDataTypePurposeAppFunctionality']
-               for row in collected)
+        'NSPrivacyCollectedDataTypeAudioData', 'NSPrivacyCollectedDataTypeCoarseLocation',
+        'NSPrivacyCollectedDataTypeCustomerSupport', 'NSPrivacyCollectedDataTypeSearchHistory'}
+    personalized = {'NSPrivacyCollectedDataTypeOtherUserContent',
+                    'NSPrivacyCollectedDataTypeCoarseLocation', 'NSPrivacyCollectedDataTypeUserID'}
+    for row in collected:
+        kind = row['NSPrivacyCollectedDataType']
+        assert row['NSPrivacyCollectedDataTypeLinked'] is (kind != 'NSPrivacyCollectedDataTypeSearchHistory')
+        assert row['NSPrivacyCollectedDataTypeTracking'] is False
+        expected = {'NSPrivacyCollectedDataTypePurposeAppFunctionality'}
+        if kind in personalized:
+            expected.add('NSPrivacyCollectedDataTypePurposeProductPersonalization')
+        assert set(row['NSPrivacyCollectedDataTypePurposes']) == expected
     reasons = {row['NSPrivacyAccessedAPIType']: set(row['NSPrivacyAccessedAPITypeReasons'])
                for row in privacy['NSPrivacyAccessedAPITypes']}
     assert reasons['NSPrivacyAccessedAPICategorySystemBootTime'] == {'35F9.1'}

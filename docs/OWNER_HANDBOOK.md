@@ -1,3 +1,7 @@
+## Native Music DNA and Apple privacy — 2026-10-24
+
+**PASS:** manual musical-direction controls removed; favorites-based web flow, automatic saving and removable rows verified on the physical iPhone. App Store Data Collection answers completed, published and verified after reload; native manifest matches. 0.8.0 (12) signed/exported/installed; upload is in progress. Simulator test cases pass but report finalization stalled (**PARTIAL artifact**). [Current release ledger](release-completion-20261024.md).
+
 ## Native music discovery — 2026-10-24
 
 **Implementation and physical iPhone PASS.** Music DNA now suggests songs and artists while typing without an Apple Music account, retains optional personal Apple Music import, and imports public/unlisted YouTube Music playlists through the shared exact catalogue matcher. Existing favorites are preserved. The live production API and 103 website tests pass; native contract checks pass (22, one optional server test skipped). All five physical iPhone checks pass; signed 0.7.0 (9) is installed and open. Four iPad simulator cases pass, but Xcode report finalization stalled (PARTIAL artifact). Spotify import stays disabled under provider policy. App Store draft 0.7.0 is saved; its icon awaits the first uploaded/processed build. [Current evidence and remaining gates](completion-followthrough.md).

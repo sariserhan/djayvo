@@ -6,6 +6,12 @@ final class FlowTests: XCTestCase {
         let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: element)
         XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed)
     }
+    private func editFavoriteNames(_ app: XCUIApplication) -> XCUIElement {
+        let edit = app.buttons["Edit names manually"]
+        for _ in 0..<6 { if edit.isHittable { break }; app.swipeUp() }
+        XCTAssertTrue(edit.waitForExistence(timeout: 15)); waitUntilEnabled(edit); edit.tap()
+        return app.textViews["Favourite tracks and artists"]
+    }
     private func loadPracticeDecks(_ app: XCUIApplication) {
         let music = app.webViews.buttons["Music"]
         XCTAssertTrue(music.waitForExistence(timeout: 20)); music.tap()
@@ -94,7 +100,7 @@ final class FlowTests: XCTestCase {
         XCTAssertTrue(track.waitForExistence(timeout: 30)); let reference = String(track.identifier.dropFirst("dnaSuggestion-".count))
         track.tap()
         app.terminate(); app.launch(); app.buttons["Music DNA"].firstMatch.tap()
-        let favorites = app.textViews["Favourite tracks and artists"]
+        let favorites = editFavoriteNames(app)
         XCTAssertTrue(favorites.waitForExistence(timeout: 15)); waitUntilEnabled(favorites)
         XCTAssertEqual(favorites.value as? String, "Daft Punk\n\(reference)")
         XCTAssertEqual(app.alerts.count, 0)
@@ -120,7 +126,7 @@ final class FlowTests: XCTestCase {
         let screenshot = XCTAttachment(screenshot: app.screenshot()); screenshot.name = "Live YouTube Music matched playlist"; screenshot.lifetime = .keepAlways; add(screenshot)
         addSongs.tap()
         app.terminate(); app.launch(); app.buttons["Music DNA"].firstMatch.tap()
-        let favorites = app.textViews["Favourite tracks and artists"]
+        let favorites = editFavoriteNames(app)
         XCTAssertTrue(favorites.waitForExistence(timeout: 15)); waitUntilEnabled(favorites)
         XCTAssertEqual(favorites.value as? String, "MATHEMATICS — Jace Davey")
     }
@@ -164,7 +170,7 @@ final class FlowTests: XCTestCase {
         let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
         app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
         app.launch(); app.buttons["Music DNA"].firstMatch.tap()
-        let references = app.textViews["Favourite tracks and artists"]
+        let references = editFavoriteNames(app)
         XCTAssertTrue(references.waitForExistence(timeout: 15)); waitUntilEnabled(references)
         for _ in 0..<4 { if references.isHittable { break }; app.swipeUp() }; references.tap(); references.typeText("A favorite song — Artist")
         app.buttons["Done editing"].tap()
@@ -186,9 +192,9 @@ final class FlowTests: XCTestCase {
         app.launch()
         let tab = app.buttons["Music DNA"].firstMatch
         XCTAssertTrue(tab.waitForExistence(timeout: 15)); tab.tap()
-        let references = app.textViews["Favourite tracks and artists"]
+        let references = editFavoriteNames(app)
         XCTAssertTrue(references.waitForExistence(timeout: 10))
-        waitUntilEnabled(references); app.swipeUp()
+        waitUntilEnabled(references)
         references.tap(); references.typeText("An original tune")
         app.buttons["Done editing"].tap()
         app.swipeUp()
@@ -199,7 +205,7 @@ final class FlowTests: XCTestCase {
         app.buttons["Save preferences on this device"].tap()
         XCTAssertTrue(app.staticTexts["Saved locally. No audio generated or uploaded."].waitForExistence(timeout: 5))
         app.terminate(); app.launch(); app.buttons["Music DNA"].firstMatch.tap()
-        XCTAssertEqual(app.textViews["Favourite tracks and artists"].value as? String, "An original tune")
+        XCTAssertEqual(editFavoriteNames(app).value as? String, "An original tune")
         for _ in 0..<5 {
             if app.buttons["Delete saved profile"].isHittable { break }
             app.swipeUp()
@@ -209,38 +215,35 @@ final class FlowTests: XCTestCase {
         let screenshot = XCTAttachment(screenshot: app.screenshot())
         screenshot.name = "Music DNA local preferences"; screenshot.lifetime = .keepAlways; add(screenshot)
         app.terminate(); app.launch(); app.buttons["Music DNA"].firstMatch.tap()
+        _ = editFavoriteNames(app)
         XCTAssertTrue(references.waitForExistence(timeout: 10))
         // A real iPhone can expose an empty TextEditor value as nil.
         XCTAssertTrue(references.value == nil || references.value as? String == "")
     }
-    func testTasteCompositionPlaybackPreferenceAndRelaunch() {
+    func testMusicDNAUsesFavoritesInsteadOfManualDirection() {
         let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]
         app.launchEnvironment["JAMLOOM_UI_TEST_LIBRARY"] = UUID().uuidString
         app.launch(); app.buttons["Music DNA"].firstMatch.tap()
-        let compose = app.buttons["composeTaste"]
-        for _ in 0..<12 { if compose.isHittable { break }; app.swipeUp() }
-        XCTAssertTrue(compose.isHittable); compose.tap()
-        let finished = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: compose)
-        XCTAssertEqual(XCTWaiter.wait(for: [finished], timeout: 120), .completed)
-        let play = app.buttons["play-taste_a"].firstMatch
-        for _ in 0..<8 { if play.isHittable { break }; app.swipeUp() }
-        XCTAssertTrue(play.isHittable); play.tap()
-        XCTAssertTrue(play.waitForExistence(timeout: 10))
-        let playing = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == 'Playing'"), object: play)
-        XCTAssertEqual(XCTWaiter.wait(for: [playing], timeout: 10), .completed)
-        app.buttons["Improvise"].firstMatch.tap(); app.buttons["Music DNA"].firstMatch.tap()
-        for _ in 0..<12 { if play.isHittable { break }; app.swipeUp() }
-        XCTAssertEqual(play.value as? String, "Stopped")
-        XCTAssertTrue(app.buttons["play-taste_b"].exists)
-        app.buttons["Use B settings next time"].tap()
-        app.buttons["Save"].firstMatch.tap()
-        XCTAssertTrue(app.buttons["Saved"].firstMatch.exists)
-        let screenshot = XCTAttachment(screenshot: app.screenshot()); screenshot.name = "Music DNA audio"; screenshot.lifetime = .keepAlways; add(screenshot)
+        let create = app.buttons["cloudDNA"]
+        XCTAssertTrue(create.waitForExistence(timeout: 15)); XCTAssertFalse(create.isEnabled)
+        let practice = app.buttons["Discover practice tracks"]
+        for _ in 0..<6 { if practice.isHittable { break }; app.swipeUp() }
+        practice.tap()
+        let track = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "dnaPractice-")).firstMatch
+        XCTAssertTrue(track.waitForExistence(timeout: 10)); let reference = track.label
+        track.tap()
         app.terminate(); app.launch(); app.buttons["Music DNA"].firstMatch.tap()
-        for _ in 0..<12 { if app.buttons["Saved"].firstMatch.isHittable { break }; app.swipeUp() }
-        XCTAssertTrue(app.buttons["Saved"].firstMatch.isHittable)
-        app.buttons["share-taste_a"].tap()
-        XCTAssertTrue(app.otherElements["ActivityListView"].waitForExistence(timeout: 10) || app.buttons["Copy"].exists || app.buttons["Close"].exists)
+        XCTAssertTrue(create.waitForExistence(timeout: 15)); waitUntilEnabled(create)
+        XCTAssertFalse(app.buttons["composeTaste"].exists)
+        XCTAssertFalse(app.staticTexts["Your musical direction"].exists)
+        XCTAssertFalse(app.steppers.firstMatch.exists)
+        let remove = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Remove favorite ")).firstMatch
+        XCTAssertTrue(remove.waitForExistence(timeout: 10)); XCTAssertFalse(reference.isEmpty)
+        let screenshot = XCTAttachment(screenshot: app.screenshot()); screenshot.name = "Favorites-first Music DNA"; screenshot.lifetime = .keepAlways; add(screenshot)
+        remove.tap(); XCTAssertFalse(create.isEnabled)
+        app.terminate(); app.launch(); app.buttons["Music DNA"].firstMatch.tap()
+        XCTAssertTrue(create.waitForExistence(timeout: 15)); XCTAssertFalse(create.isEnabled)
+        XCTAssertFalse(remove.exists)
     }
     func testOptionalAccountKeepsLocalCreationAvailable() {
         let app = XCUIApplication(); app.launchArguments = ["--ui-testing"]

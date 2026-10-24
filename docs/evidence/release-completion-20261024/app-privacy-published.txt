@@ -1,0 +1,336 @@
+- generic
+  - banner "App Store Connect"
+    - generic
+      - heading "App Store Connect" [level=1, ref=e1]
+        - link "App Store Connect" [ref=e3]
+      - navigation "Global" [ref=e2]
+        - list
+          - listitem [level=1]
+            - link "Apps" [ref=e11]
+          - listitem [level=1]
+            - link "Xcode Cloud" [ref=e12]
+          - listitem [level=1]
+            - link "Trends" [ref=e13]
+          - listitem [level=1]
+            - link "Reports" [ref=e14]
+          - listitem [level=1]
+            - link "Business" [ref=e15]
+      - button "Serhan Sari SERHAN SARI Account name menu" [ref=e4]
+        - StaticText "Serhan Sari"
+        - StaticText "SERHAN SARI"
+        - image
+  - generic
+    - generic [ref=e9] clickable [cursor:pointer]
+      - button "Apps menu, Jamloom, selected" [expanded=false, ref=e30]
+        - generic
+          - image "Jamloom"
+          - StaticText "Jamloom"
+        - image
+    - navigation "Apps" [ref=e10]
+      - list
+        - listitem [level=1]
+          - link "Distribution" [ref=e41]
+        - listitem [level=1]
+          - link "Analytics" [ref=e42]
+        - listitem [level=1]
+          - link "TestFlight" [ref=e43]
+  - generic
+    - main
+      - navigation "Distribution" [ref=e31]
+        - list
+          - listitem [level=1]
+            - heading "iOS App" [level=2, ref=e59]
+            - list
+              - listitem [level=2]
+                - link "0.7.0Prepare for Submission" [ref=e62]
+                  - generic [ref=e79] clickable [cursor:pointer, onclick]
+                    - StaticText "0.7.0Prepare for Submission"
+            - button "Add Platform" [ref=e53]
+          - listitem [level=1]
+            - heading "General" [level=2, ref=e60]
+            - list
+              - listitem [level=2]
+                - link "App Information" [ref=e63]
+                  - generic [ref=e80] clickable [cursor:pointer, onclick]
+                    - StaticText "App Information"
+              - listitem [level=2]
+                - link "App Review" [ref=e64]
+                  - generic [ref=e81] clickable [cursor:pointer, onclick]
+                    - StaticText "App Review"
+              - listitem [level=2]
+                - link "History" [ref=e65]
+                  - generic [ref=e82] clickable [cursor:pointer, onclick]
+                    - StaticText "History"
+          - listitem [level=1]
+            - heading "App Store" [level=2, ref=e61]
+            - heading "TRUST & SAFETY" [level=3, ref=e54]
+            - list
+              - listitem [level=2]
+                - link "App Privacy" [ref=e66]
+                  - generic [ref=e83] clickable [cursor:pointer, onclick]
+                    - StaticText "App Privacy"
+              - listitem [level=2]
+                - link "App Accessibility" [ref=e67]
+                  - generic [ref=e84] clickable [cursor:pointer, onclick]
+                    - StaticText "App Accessibility"
+              - listitem [level=2]
+                - link "Ratings and Reviews" [ref=e68]
+                  - generic [ref=e85] clickable [cursor:pointer, onclick]
+                    - StaticText "Ratings and Reviews"
+            - heading "GROWTH & MARKETING" [level=3, ref=e55]
+            - list
+              - listitem [level=2]
+                - link "In-App Events" [ref=e69]
+                  - generic [ref=e86] clickable [cursor:pointer, onclick]
+                    - StaticText "In-App Events"
+              - listitem [level=2]
+                - link "Custom Product Pages New" [ref=e70]
+                  - generic [ref=e87] clickable [cursor:pointer, onclick]
+                    - StaticText "Custom Product Pages"
+                  - paragraph
+                    - StaticText "New"
+              - listitem [level=2]
+                - link "Asset Library New" [ref=e71]
+                  - generic [ref=e88] clickable [cursor:pointer, onclick]
+                    - StaticText "Asset Library"
+                  - paragraph
+                    - StaticText "New"
+              - listitem [level=2]
+                - link "Product Page Optimization New" [ref=e72]
+                  - generic [ref=e89] clickable [cursor:pointer, onclick]
+                    - StaticText "Product Page Optimization"
+                  - paragraph
+                    - StaticText "New"
+              - listitem [level=2]
+                - link "Promo Codes" [ref=e73]
+                  - generic [ref=e90] clickable [cursor:pointer, onclick]
+                    - StaticText "Promo Codes"
+              - listitem [level=2]
+                - link "Game Center" [ref=e74]
+                  - generic [ref=e91] clickable [cursor:pointer, onclick]
+                    - StaticText "Game Center"
+            - heading "MONETIZATION" [level=3, ref=e56]
+            - list
+              - listitem [level=2]
+                - link "Pricing and Availability" [ref=e75]
+                  - generic [ref=e92] clickable [cursor:pointer, onclick]
+                    - StaticText "Pricing and Availability"
+              - listitem [level=2]
+                - link "In-App Purchases" [ref=e76]
+                  - generic [ref=e93] clickable [cursor:pointer, onclick]
+                    - StaticText "In-App Purchases"
+              - listitem [level=2]
+                - link "Subscriptions" [ref=e77]
+                  - generic [ref=e94] clickable [cursor:pointer, onclick]
+                    - StaticText "Subscriptions"
+            - heading "FEATURING" [level=3, ref=e57]
+            - list
+              - listitem [level=2]
+                - link "Nominations" [ref=e78]
+                  - generic [ref=e95] clickable [cursor:pointer, onclick]
+                    - StaticText "Nominations"
+      - heading "App Privacy" [level=2, ref=e32]
+      - paragraph
+        - StaticText "Published a few seconds ago by Serhan Sari"
+      - separator
+      - heading "Privacy Policy" [level=3, ref=e16]
+      - button "Edit" [ref=e17]
+      - generic
+        - button "English (U.S.)" [expanded=false, disabled, ref=e44]
+        - button "?" [ref=e58]
+      - LabelText
+        - StaticText "Privacy Policy URL"
+      - button "More information" [expanded=false, ref=e45]
+        - StaticText "?"
+      - paragraph
+        - StaticText "https://www.jamloom.com/privacy"
+      - generic
+        - LabelText
+          - StaticText "User Privacy Choices URL"
+        - button "More information" [expanded=false, ref=e46]
+          - StaticText "?"
+      - paragraph
+        - StaticText "–"
+      - separator
+      - heading "Product Page Preview" [level=3, ref=e18]
+      - button "See Details" [ref=e19]
+      - image
+      - paragraph
+        - StaticText "Data Linked to You"
+      - paragraph
+        - StaticText "The following data may be collected and linked to your identity:"
+      - image
+      - paragraph
+        - StaticText "Purchases"
+      - image
+      - paragraph
+        - StaticText "Location"
+      - image
+      - paragraph
+        - StaticText "User Content"
+      - image
+      - paragraph
+        - StaticText "Contact Info"
+      - image
+      - paragraph
+        - StaticText "Identifiers"
+      - image
+      - paragraph
+        - StaticText "Data Not Linked to You"
+      - paragraph
+        - StaticText "The following data may be collected but is not linked to your identity:"
+      - image
+      - paragraph
+        - StaticText "Search History"
+      - separator
+      - heading "Data Types" [level=3, ref=e20]
+      - button "Edit" [ref=e21]
+      - list
+        - listitem [level=1]
+          - ListMarker "• "
+          - StaticText "8 data types collected from this app: Search History, Purchase History, Coarse Location, Customer Support, Other User Content, Email Address, User ID, Audio Data"
+      - separator
+      - generic
+        - image
+        - paragraph
+          - StaticText "Contact Info"
+      - generic
+        - paragraph
+          - StaticText "Email Address"
+        - button "More information" [expanded=false, ref=e47]
+          - StaticText "?"
+        - button "Edit" [ref=e33]
+      - generic [ref=e22] clickable [onclick]
+        - list
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Used for App Functionality"
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Linked to the user's identity"
+      - separator
+      - generic
+        - image
+        - paragraph
+          - StaticText "Location"
+      - generic
+        - paragraph
+          - StaticText "Coarse Location"
+        - button "More information" [expanded=false, ref=e48]
+          - StaticText "?"
+        - button "Edit" [ref=e34]
+      - generic [ref=e23] clickable [onclick]
+        - list
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Used for App Functionality, and Product Personalization"
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Linked to the user's identity"
+      - separator
+      - generic
+        - image
+        - paragraph
+          - StaticText "User Content"
+      - generic
+        - paragraph
+          - StaticText "Audio Data"
+        - button "More information" [expanded=false, ref=e49]
+          - StaticText "?"
+        - button "Edit" [ref=e35]
+      - generic [ref=e24] clickable [onclick]
+        - list
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Used for App Functionality"
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Linked to the user's identity"
+      - generic
+        - paragraph
+          - StaticText "Customer Support"
+        - button "More information" [expanded=false, ref=e50]
+          - StaticText "?"
+        - button "Edit" [ref=e36]
+      - generic [ref=e25] clickable [onclick]
+        - list
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Used for App Functionality"
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Linked to the user's identity"
+      - generic
+        - paragraph
+          - StaticText "Other User Content"
+        - button "More information" [expanded=false, ref=e51]
+          - StaticText "?"
+        - button "Edit" [ref=e37]
+      - generic [ref=e26] clickable [onclick]
+        - list
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Used for App Functionality, and Product Personalization"
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Linked to the user's identity"
+      - separator
+      - generic
+        - image
+        - paragraph
+          - StaticText "Search History"
+        - button "Edit" [ref=e38]
+      - generic [ref=e27] clickable [onclick]
+        - list
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Used for App Functionality"
+      - separator
+      - generic
+        - image
+        - paragraph
+          - StaticText "Identifiers"
+      - generic
+        - paragraph
+          - StaticText "User ID"
+        - button "More information" [expanded=false, ref=e52]
+          - StaticText "?"
+        - button "Edit" [ref=e39]
+      - generic [ref=e28] clickable [onclick]
+        - list
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Used for Product Personalization, and App Functionality"
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Linked to the user's identity"
+      - separator
+      - generic
+        - image
+        - paragraph
+          - StaticText "Purchases"
+        - button "Edit" [ref=e40]
+      - generic [ref=e29] clickable [onclick]
+        - list
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Used for App Functionality"
+          - listitem [level=1]
+            - ListMarker "• "
+            - StaticText "Linked to the user's identity"
+  - contentinfo
+    - list
+      - listitem [level=1]
+        - link "App Store Connect" [ref=e5]
+    - list
+      - listitem [level=1]
+        - StaticText "Copyright © 2026 Apple Inc. All rights reserved."
+        - StaticText "|"
+      - listitem [level=1]
+        - link "Terms of Service" [ref=e6]
+        - StaticText "|"
+      - listitem [level=1]
+        - link "Privacy Policy" [ref=e7]
+        - StaticText "|"
+      - listitem [level=1]
+        - link "Contact Us" [ref=e8]

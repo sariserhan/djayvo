@@ -91,7 +91,6 @@ struct TasteProfile: Codable, Equatable, Sendable {
 }
 
 struct MusicDNAView: View {
-    @Environment(\.dynamicTypeSize) private var typeSize
     @ObservedObject var model: AppModel
     @ObservedObject var account: AccountModel
     @ObservedObject var cloud: CloudSongModel
@@ -106,8 +105,8 @@ struct MusicDNAView: View {
     private enum InputField: Hashable { case references, search, catalogue }
     @FocusState private var activeInput: InputField?
     @State private var catalogueSearch = ""
-    @State private var seconds = 60
-    private var direction: Int { profile.direction ?? 0 }
+    @State private var favoriteCount = 12
+    @State private var profileWritable = false
     @State private var profile = TasteProfile()
     @State private var profileLoaded = false
     @State private var references = ""
@@ -137,15 +136,31 @@ struct MusicDNAView: View {
                     }
                     if !searchMessage.isEmpty { Text(searchMessage).font(.footnote).accessibilityIdentifier("dnaSearchStatus") }
                 }
-                Section("Favourite tracks and artists — one per line") {
-                    Text("\(references.split(separator: "\n").count) / 5,000 favorites").font(.caption)
-                    TextEditor(text: $references).focused($activeInput, equals: .references).frame(minHeight: 100).accessibilityLabel("Favourite tracks and artists")
+                Section("Your favorite music") {
+                    Label("\(profile.references.count) / 5,000 favorites", systemImage: "music.note.list").font(.caption)
+                    ForEach(Array(profile.references.prefix(favoriteCount).enumerated()), id: \.offset) { _, reference in
+                        HStack {
+                            Image(systemName: "music.note").foregroundStyle(.mint)
+                            Text(reference)
+                            Spacer()
+                            Button { references = profile.references.filter { $0 != reference }.joined(separator: "\n") } label: { Image(systemName: "minus.circle") }
+                                .buttonStyle(.borderless).accessibilityLabel("Remove favorite \(reference)")
+                        }
+                    }
+                    if profile.references.count > favoriteCount {
+                        Button("Show more favorites (\(profile.references.count - favoriteCount) remaining)") { favoriteCount += 24 }
+                    }
+                    if profile.references.isEmpty { Label("Add the music you keep coming back to.", systemImage: "music.note.badge.plus").foregroundStyle(.secondary) }
+                    DisclosureGroup("Edit names manually") {
+                        TextEditor(text: $references).focused($activeInput, equals: .references).frame(minHeight: 100).accessibilityLabel("Favourite tracks and artists")
+                    }
+                    Text("Favorites save on this device.").font(.caption).foregroundStyle(.secondary)
                 }
                 Section("Your next song") {
-                    Button("Create a Music DNA song", systemImage: "sparkles") {
+                    Button("Make my music", systemImage: "sparkles") {
                         activeInput = nil; profile.setReferences(references); showCloud = true
-                    }.buttonStyle(.borderedProminent).accessibilityIdentifier("cloudDNA")
-                    Text("Original vocals and music from your favorites. Review the credit price first.").font(.caption)
+                    }.buttonStyle(.borderedProminent).disabled(profile.references.isEmpty).accessibilityIdentifier("cloudDNA")
+                    Text("We choose the sound from your favorites. Review the credit price before creating your song.").font(.caption)
                     Picker("Singing language", selection: Binding(get: { profile.vocalLanguage ?? "auto" }, set: { profile.vocalLanguage = $0 })) {
                         Text("Automatic").tag("auto")
                         ForEach(TasteProfile.languages.keys.sorted(), id: \.self) { Text(TasteProfile.languages[$0] ?? $0).tag($0) }
@@ -160,42 +175,18 @@ struct MusicDNAView: View {
                     }.accessibilityIdentifier("appleMusicFavorites")
                 }
                 Section {
-                    DisclosureGroup("Choose catalogue references") {
-                    TextField("Search title or artist", text: $catalogueSearch).focused($activeInput, equals: .catalogue)
-                    ForEach(TasteCatalogue.tracks.filter { catalogueSearch.isEmpty || "\($0.title) \($0.artist)".localizedCaseInsensitiveContains(catalogueSearch) }) { track in
-                        VStack(alignment: .leading) {
-                            Text("\(track.title) — \(track.artist)")
-                            Text("Jamloom practice master · \(track.genre) · \(track.license)").font(.caption)
-                            Picker("Rating for \(track.title)", selection: Binding(get: {
-                                profile.catalogue?.first { $0.id == track.id }?.rating ?? "none"
-                            }, set: { rating in
-                                var choices = profile.catalogue ?? []; choices.removeAll { $0.id == track.id }
-                                if rating != "none" { choices.append(TasteChoice(id: track.id, rating: rating, weight: 1)) }; profile.catalogue = choices
-                            })) { ForEach(["none", "love", "like", "avoid"], id: \.self) { Text($0.capitalized).tag($0) } }
-                            if let index = profile.catalogue?.firstIndex(where: { $0.id == track.id }) {
-                                Stepper("Importance: \(profile.catalogue![index].weight)", value: Binding(get: { profile.catalogue![index].weight }, set: { profile.catalogue![index].weight = $0 }), in: 1...5)
-                            }
-                        }
-                    }
-                    }
-                    ForEach(TasteCatalogue.scores(profile.catalogue ?? []), id: \.genre) { score in Text("\(score.genre): \(score.score)") }
-                    DisclosureGroup("How catalogue choices work") {
-                        Text("Genre scores use catalogue labels and your ratings. Tempo, key, melody, instruments, language and energy are unknown; your controls remain authoritative.").font(.caption)
-                    }
-                }
-                Section("Your musical direction") {
-                    if typeSize.isAccessibilitySize { energyPicker.pickerStyle(.menu) }
-                    else { energyPicker.pickerStyle(.segmented) }
-                    Stepper("Preferred tempo: \(profile.tempo) BPM", value: $profile.tempo, in: 60...180)
-                    Stepper("Room for surprise: \(profile.novelty)%", value: $profile.novelty, in: 0...100, step: 5)
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 130))], spacing: 12) {
-                        ForEach(TasteProfile.availableInstruments, id: \.self) { instrument in
-                            Toggle(isOn: Binding(get: { profile.instruments.contains(instrument) }, set: { enabled in
-                                profile.instruments.removeAll { $0 == instrument }; if enabled { profile.instruments.append(instrument) }
-                            })) {
-                                Label(instrument.capitalized, systemImage: ["piano": "pianokeys", "guitar": "guitars", "bass": "guitars.fill", "drums": "circle.grid.cross", "synth": "waveform.path", "voice": "mic.fill"][instrument] ?? "music.note")
-                                    .frame(maxWidth: .infinity, minHeight: 44)
-                            }.toggleStyle(.button)
+                    DisclosureGroup("Discover practice tracks") {
+                        TextField("Search title or artist", text: $catalogueSearch).focused($activeInput, equals: .catalogue)
+                        ForEach(TasteCatalogue.tracks.filter { catalogueSearch.isEmpty || "\($0.title) \($0.artist)".localizedCaseInsensitiveContains(catalogueSearch) }) { track in
+                            let reference = "\(track.title) — \(track.artist)"
+                            Button {
+                                addFavorite(MusicSuggestion(reference: reference, kind: "Song", metadata: TasteReferenceMetadata(reference: reference, genre: track.genre, source: "practice", id: nil)))
+                            } label: {
+                                HStack {
+                                    VStack(alignment: .leading) { Text(reference); Text("\(track.genre) · \(track.license)").font(.caption).foregroundStyle(.secondary) }
+                                    Spacer(); Image(systemName: profile.references.contains(reference) ? "checkmark.circle.fill" : "plus.circle.fill")
+                                }
+                            }.disabled(profile.references.contains(reference)).accessibilityIdentifier("dnaPractice-\(track.id)")
                         }
                     }
                 }
@@ -203,21 +194,21 @@ struct MusicDNAView: View {
                     Button("Save preferences on this device") {
                         do {
                             profile.setReferences(references)
-                            try profile.save(to: TasteProfile.location()); message = "Saved locally. No audio generated or uploaded."
-                        } catch { message = "Choose at least one instrument and at most 5,000 references, up to 160 characters each. Saving must be available on this device." }
+                            try profile.save(to: TasteProfile.location()); profileWritable = true; message = "Saved locally. No audio generated or uploaded."
+                        } catch { message = "Use at most 5,000 favorites, up to 160 characters each. Check that storage is available on this device." }
                     }
                     Button("Delete saved profile", role: .destructive) {
-                        do { let url = try TasteProfile.location(); if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }; profile = TasteProfile(); references = ""; let feedback = try RemixLibrary.application().root.appendingPathComponent("taste-preference.json"); if FileManager.default.fileExists(atPath: feedback.path) { try FileManager.default.removeItem(at: feedback) }; message = "Profile deleted." }
+                        do { let url = try TasteProfile.location(); if FileManager.default.fileExists(atPath: url.path) { try FileManager.default.removeItem(at: url) }; profile = TasteProfile(); references = ""; profileWritable = true; let feedback = try RemixLibrary.application().root.appendingPathComponent("taste-preference.json"); if FileManager.default.fileExists(atPath: feedback.path) { try FileManager.default.removeItem(at: feedback) }; message = "Profile deleted." }
                         catch { message = "Could not delete the saved profile. Try again." }
                     }
                     Text(message).accessibilityIdentifier("tasteStatus")
                 }
                 if account.snapshot != nil {
                     Section("Account preferences") {
-                        Text("Load replaces these controls with the account version. Save uploads only these preferences. Your recordings and compositions stay here.").font(.caption)
+                        Text("Load your account favorites before updating them. Saving uploads your preferences; recordings stay on this device.").font(.caption)
                         Button("Load account profile") { Task { await account.perform {
                             if let saved = try await account.loadTaste() { profile = saved; references = profile.references.joined(separator: "\n") }
-                            message = "Account preferences loaded. Save locally to keep them on this device."
+                            message = "Account preferences loaded."
                         } } }
                         Button("Save profile to account") { Task { await account.perform {
                             profile.setReferences(references)
@@ -229,35 +220,11 @@ struct MusicDNAView: View {
                         if !account.message.isEmpty { Text(account.message) }
                     }.disabled(account.busy)
                 }
-                Section("Compose on this device") {
-                    Picker("Composition length", selection: $seconds) {
-                        ForEach([30, 60, 90, 120, 180], id: \.self) { Text("\($0) seconds").tag($0) }
-                    }
-                    Text("Two original instrumental variations from your controls. Song titles are notes, not audio inputs. Exact length follows musical boundaries.").font(.caption)
-                    Button("Compose two variations") {
-                        profile.setReferences(references)
-                        Task { await model.generateTaste(profile: profile, seconds: seconds, direction: direction) }
-                    }.disabled(!model.editable).accessibilityIdentifier("composeTaste")
-                    if model.busy {
-                        ProgressView(model.activity)
-                        if model.canCancel { Button("Cancel", action: model.cancel) }
-                    }
-                }
                 ForEach(model.sessions.filter { $0.isTaste }) { session in
-                    Section { SavedSessionView(model: model, session: session, prefer: { style in
-                        do {
-                            guard let recipe = session.taste else { return }
-                            let next = ((recipe.direction ?? 0) + (style == "taste_b" ? 1 : 0)) % 3
-                            var preferred = recipe.profile; preferred.direction = next
-                            try preferred.save(to: TasteProfile.location())
-                            try JSONEncoder().encode(next).write(to: RemixLibrary.application().root.appendingPathComponent("taste-preference.json"), options: [.atomic, .completeFileProtection])
-                            profile = preferred; references = profile.references.joined(separator: "\n")
-                            message = "Variation settings saved for your next composition. No training or upload."
-                        } catch { message = "Could not save preference feedback. Try again." }
-                    }) }
+                    Section("Earlier instrumental previews") { SavedSessionView(model: model, session: session) }
                 }
                 Section("Availability") {
-                    Text("Local instrumental previews work on this device. Cloud Music DNA and Improvise use the same services as the website when available. Mix your tracks in DJ Deck. Credit purchases remain closed.")
+                    Text("Music DNA uses the same song service as the website when available. Credit purchases remain closed.")
                 }
             }.scrollDismissesKeyboard(.interactively).disabled(account.busy || !profileLoaded).navigationTitle("My Music DNA").navigationBarTitleDisplayMode(.inline).preferredColorScheme(.dark).tint(.mint)
                 .toolbar {
@@ -275,8 +242,13 @@ struct MusicDNAView: View {
                 } }
                 .sheet(isPresented: $showCloud) { CloudDNAView(cloud: cloud, account: account, model: model, profile: profile) }
                 .task(id: search) { await findFavorites(query: search) }
-                .onChange(of: references) { _, _ in cloud.tasteChanged() }
-                .onChange(of: profile) { _, _ in cloud.tasteChanged() }
+                .onChange(of: references) { _, value in profile.setReferences(value) }
+                .onChange(of: profile) { _, _ in
+                    cloud.tasteChanged()
+                    guard profileLoaded, profileWritable else { return }
+                    do { try profile.save(to: TasteProfile.location()) }
+                    catch { message = "Changes could not be saved. Check your favorites and available storage." }
+                }
                 .onDisappear { model.suspendAudio(cancelRender: true) }
                 .task { guard !profileLoaded else { return }; defer { profileLoaded = true }; await model.loadLibrary(); do { profile = try TasteProfile.load(from: TasteProfile.location()); references = profile.references.joined(separator: "\n")
                     let feedback = try RemixLibrary.application().root.appendingPathComponent("taste-preference.json")
@@ -284,6 +256,7 @@ struct MusicDNAView: View {
                         guard (try feedback.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 100) < 16 else { throw CocoaError(.fileReadTooLarge) }
                         let value = try JSONDecoder().decode(Int.self, from: Data(contentsOf: feedback)); guard (0...2).contains(value) else { throw CocoaError(.fileReadCorruptFile) }; if profile.direction == nil { profile.direction = value }
                     }
+                    profileWritable = true
                 } catch { message = "Saved profile could not be read. Delete it to start again." } }
         }
     }
@@ -312,13 +285,11 @@ struct MusicDNAView: View {
             guard updated.references.count < TasteProfile.maximumReferences else { searchMessage = "Your list already has 5,000 favorites."; return }
             updated = try updated.adding([result]).0
             try updated.save(to: TasteProfile.location())
-            profile = updated; references = updated.references.joined(separator: "\n"); suggestions = []; search = ""; activeInput = nil
+            profileWritable = true; profile = updated; references = updated.references.joined(separator: "\n"); suggestions = []; search = ""; activeInput = nil
             message = "Favorite saved on this device."
         } catch { searchMessage = "The favorite could not be saved. Check your list and try again." }
     }
-    private var energyPicker: some View {
-        Picker("Energy", selection: $profile.energy) { ForEach(["gentle", "balanced", "intense"], id: \.self) { Text($0.capitalized).tag($0) } }
-    }
+
 }
 
 struct MusicSuggestion: Decodable { let reference: String; let kind: String; let metadata: TasteReferenceMetadata? }
