@@ -1,5 +1,12 @@
 import {musicDirection} from './taste-direction';
 import type {TasteSuggestion} from './taste-catalogue';
+export async function matchPlaylistItem(item:{title:string;artist?:string}, search:(query:string)=>Promise<TasteSuggestion[]>){
+ for(const query of playlistLookupQueries(item.title,item.artist)){
+  const choices=await search(query);
+  const match=exactPlaylistMatch(playlistQuery(item.title),choices)??exactPlaylistMatch(playlistSearchQuery(item.title,item.artist),choices);
+  if(match)return match;
+ }
+}
 export function playlistQuery(title:string){
  const noise=/^(?:(?:official\s+)?(?:(?:music|performance|lyric|lyrics)\s+)?(?:video|audio|lyrics?|visualizer|mv)|(?:music\s+)?video\s+oficial|audio\s+oficial|video\s+lyric|clip\s+officiel|resmi\s+(?:video|klip)|официальный\s+клип)(?:\s+(?:hd|4k|hq))?$/i;
  return title.replace(/\([^)]*\)|\[[^\]]*\]/g,part=>noise.test(part.slice(1,-1).trim())?'':part)

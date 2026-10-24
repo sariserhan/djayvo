@@ -10,7 +10,7 @@ test('launch gate defaults on and only explicit false disables it',()=>{
  assert.equal(comingSoonEnabled({JAMLOOM_COMING_SOON:'false'}),false);
 });
 test('account-free native catalogue suggestions pass the launch gate without opening creation or purchases',async()=>{
- assert.equal(comingSoonRecovery('/api/music-search'),true);
+ assert.equal(comingSoonRecovery('/api/music-search'),true);assert.equal(comingSoonRecovery('/api/playlist-import'),true);assert.equal(comingSoonRecovery('/api/playlist-import/fake'),false);
  for(const path of ['/api/music-search/fake','/api/taste/song','/api/payments/checkout','/music-dna'])assert.equal(comingSoonRecovery(path),false);
  const response=await proxy(new NextRequest('https://www.jamloom.com/api/music-search',{method:'POST',body:'{"query":"Daft Punk"}'}));
  assert.equal(response.headers.get('x-middleware-next'),'1');

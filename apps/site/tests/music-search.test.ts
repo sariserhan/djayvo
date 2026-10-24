@@ -3,6 +3,15 @@ import assert from 'node:assert/strict';
 import {MusicSearch,MusicSearchBusy,musicSearchResults} from '../lib/music-search';
 import {POST} from '../app/api/music-search/route';
 const results=[{wrapperType:'artist',artistName:'Beyoncé'},{wrapperType:'track',kind:'song',artistName:'Beyoncé',trackName:'Halo',collectionName:'I AM…SASHA FIERCE',previewUrl:'https://example.com/audio',artworkUrl100:'https://example.com/art'}];
+test('native playlist matching shares the web exact-match rules and never returns an unmatched video title',async()=>{
+ const {matchPlaylistItem}=await import('../lib/playlist-match');
+ const track={reference:'Halo — Beyoncé',kind:'Track' as const,detail:'catalogue',metadata:{reference:'Halo — Beyoncé',genre:'Pop',source:'itunes' as const,id:1}};
+ let calls=0;const result=await matchPlaylistItem({title:'Beyoncé - Halo (Official Video)'},async()=>{calls++;return [track];});
+ assert.equal(result,track);assert.equal(calls,1);
+ assert.equal(await matchPlaylistItem({title:'Unmatched song',artist:'Other'},async()=>[track]),undefined);
+ const request=(playlistItem:unknown)=>new Request('https://jamloom.com/api/music-search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({playlistItem})});
+ for(const item of [null,{},'bad',{title:''},{title:'x'.repeat(161)},{title:'Song',artist:3},{title:'Song',artist:'bad\nchannel'}])assert.equal((await POST(request(item))).status,400);
+});
 
 test('music search exposes bounded artist/song names, not audio or artwork',()=>{
  const parsed=musicSearchResults({results:[...results,...results,null,{wrapperType:'track',kind:'music-video',artistName:'Other',trackName:'Video'},{wrapperType:'artist',artistName:'x'.repeat(161)},{wrapperType:'artist',artistName:'bad\nname'}]});
